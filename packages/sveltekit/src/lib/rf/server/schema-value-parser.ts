@@ -105,44 +105,6 @@ export async function parseSchemaValue<T>(
       value: value as T | undefined
     });
 
-  async function parseCombination(
-    element: CombinationIdentifiableElement,
-    schemas: SchemaDefinition[],
-    uiSchemas: UiSchemaDefinition | UiSchemaDefinition[],
-    schema: Schema,
-    value: SchemaValue | undefined
-  ) {
-    if (isSelect(validator, merger, schema, rootSchema)) {
-      return value;
-    }
-    const stack = COMBINATION_STACKS[element];
-    const bestIndex =
-      ((await convert(
-        { type: 'integer' },
-        {},
-        (stack[stack.length - 1] as Record<string, Input<T>>)[encodedPseudoPrefix]
-      )) as number | undefined) ??
-      getClosestMatchingOption(
-        validator,
-        merger,
-        rootSchema,
-        value,
-        schemas.map((s) => {
-          if (typeof s === 'boolean') {
-            return s ? {} : { not: {} };
-          }
-          return s;
-        }),
-        0,
-        getDiscriminatorFieldFromSchema(schema)
-      );
-    return parseSchemaDef(
-      schemas[bestIndex],
-      Array.isArray(uiSchemas) ? uiSchemas[bestIndex] : uiSchemas,
-      value
-    );
-  }
-
   async function parseArray(
     schema: Schema,
     uiSchema: UiSchema,
@@ -236,6 +198,94 @@ export async function parseSchemaValue<T>(
     return value;
   }
 
+  async function parseCombination(
+    element: CombinationIdentifiableElement,
+    schemas: SchemaDefinition[],
+    uiSchemas: UiSchemaDefinition | UiSchemaDefinition[],
+    schema: Schema,
+    value: SchemaValue | undefined
+  ) {
+    if (isSelect(validator, merger, schema, rootSchema)) {
+      return value;
+    }
+    const stack = COMBINATION_STACKS[element];
+    const last = stack[stack.length - 1];
+    const bestIndex =
+      (isRecord(last)
+        ? ((await convert({ type: 'integer' }, {}, last[encodedPseudoPrefix])) as
+            | number
+            | undefined)
+        : undefined) ??
+      getClosestMatchingOption(
+        validator,
+        merger,
+        rootSchema,
+        value,
+        schemas.map((s) => {
+          if (typeof s === 'boolean') {
+            return s ? {} : { not: {} };
+          }
+          return s;
+        }),
+        0,
+        getDiscriminatorFieldFromSchema(schema)
+      );
+    return parseSchemaDef(
+      schemas[bestIndex],
+      Array.isArray(uiSchemas) ? uiSchemas[bestIndex] : uiSchemas,
+      value
+    );
+  }
+
+  async function parseAllOf(
+    allOf: SchemaDefinition[],
+    uiSchema: UiSchema,
+    schema: Schema,
+    value: SchemaValue | undefined
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { allOf: _, ...rest } = schema;
+    for (let i = 0; i < allOf.length; i++) {
+      const s = allOf[i];
+      value = await parseSchemaDef(typeof s === 'boolean' ? s : { ...rest, ...s }, uiSchema, value);
+    }
+    return value;
+  }
+
+  function parseConditions(schema: Schema, uiSchema: UiSchema, value: SchemaValue | undefined) {
+    const { if: expression, then, else: otherwise } = schema;
+    if (expression === undefined) {
+      return value;
+    }
+    const isThenBranch =
+      typeof expression === 'boolean'
+        ? expression
+        : validator.isValid(expression, rootSchema, value);
+    const branch = isThenBranch ? then : otherwise;
+    return branch === undefined ? value : parseSchemaDef(branch, uiSchema, value);
+  }
+
+  async function parseDependencies(
+    schema: Schema,
+    uiSchema: UiSchema,
+    value: SchemaValue | undefined
+  ) {
+    const { dependencies } = schema;
+    if (dependencies === undefined || !isSchemaObjectValue(value)) {
+      return value;
+    }
+    const keys = Object.keys(dependencies);
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      const deps = dependencies[key];
+      if (!(key in value) || Array.isArray(deps)) {
+        continue;
+      }
+      value = (await parseSchemaDef(deps, uiSchema, value)) as SchemaObjectValue;
+    }
+    return value;
+  }
+
   async function parseSchemaDef(
     schema: SchemaDefinition,
     uiSchema: UiSchemaDefinition,
@@ -255,6 +305,9 @@ export async function parseSchemaValue<T>(
     if (anyOf) {
       value = await parseCombination(ANY_OF, anyOf, uiSchema.anyOf ?? uiSchema, schema, value);
     }
+    if (allOf) {
+      value = await parseAllOf(allOf, uiSchema, schema, value);
+    }
     const type = getSimpleSchemaType(schema);
     if (type === 'object') {
       value = await parseObject(schema, uiSchema, isSchemaObjectValue(value) ? value : {});
@@ -263,7 +316,8 @@ export async function parseSchemaValue<T>(
     } else if (value === undefined) {
       value = await convert(schema, uiSchema, inputStack[inputStack.length - 1]);
     }
-    return value;
+    value = await parseConditions(schema, uiSchema, value);
+    return parseDependencies(schema, uiSchema, value);
   }
 
   pushKey(input, idPrefix);

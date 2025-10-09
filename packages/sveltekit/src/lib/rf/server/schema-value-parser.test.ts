@@ -606,4 +606,438 @@ describe('parseSchemaValue', async () => {
       age: 123
     });
   });
+
+  it('Should parse schema with allOf', async () => {
+    const schema: Schema = {
+      type: 'object',
+      allOf: [
+        {
+          properties: {
+            lorem: {
+              type: ['string', 'boolean'],
+              default: true
+            }
+          }
+        },
+        {
+          properties: {
+            lorem: {
+              type: 'boolean'
+            },
+            ipsum: {
+              type: 'string'
+            }
+          }
+        }
+      ]
+    };
+    const input: Input<FormDataEntryValue> = {
+      [DEFAULT_ID_PREFIX]: { lorem: 'on', ipsum: 'foo' }
+    };
+    await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
+      lorem: 'on',
+      ipsum: 'foo'
+    });
+  });
+
+  it('Should parse schema with fixed arrays and additional items', async () => {
+    const schema: Schema = {
+      definitions: {
+        Thing: {
+          type: 'object',
+          properties: {
+            name: {
+              type: 'string',
+              default: 'Default name'
+            }
+          }
+        }
+      },
+      type: 'object',
+      properties: {
+        listOfStrings: {
+          type: 'array',
+          title: 'A list of strings',
+          items: {
+            type: 'string',
+            default: 'bazinga'
+          }
+        },
+        multipleChoicesList: {
+          type: 'array',
+          title: 'A multiple choices list',
+          items: {
+            type: 'string',
+            enum: ['foo', 'bar', 'fuzz', 'qux']
+          },
+          uniqueItems: true
+        },
+        fixedItemsList: {
+          type: 'array',
+          title: 'A list of fixed items',
+          items: [
+            {
+              title: 'A string value',
+              type: 'string',
+              default: 'lorem ipsum'
+            },
+            {
+              title: 'a boolean value',
+              type: 'boolean'
+            }
+          ],
+          additionalItems: {
+            title: 'Additional item',
+            type: 'number'
+          }
+        },
+        minItemsList: {
+          type: 'array',
+          title: 'A list with a minimal number of items',
+          minItems: 3,
+          items: {
+            $ref: '#/definitions/Thing'
+          }
+        },
+        defaultsAndMinItems: {
+          type: 'array',
+          title: 'List and item level defaults',
+          minItems: 5,
+          default: ['carp', 'trout', 'bream'],
+          items: {
+            type: 'string',
+            default: 'unidentified'
+          }
+        },
+        nestedList: {
+          type: 'array',
+          title: 'Nested list',
+          items: {
+            type: 'array',
+            title: 'Inner list',
+            items: {
+              type: 'string',
+              default: 'lorem ipsum'
+            }
+          }
+        },
+        unorderable: {
+          title: 'Unorderable items',
+          type: 'array',
+          items: {
+            type: 'string',
+            default: 'lorem ipsum'
+          }
+        },
+        copyable: {
+          title: 'Copyable items',
+          type: 'array',
+          items: {
+            type: 'string',
+            default: 'lorem ipsum'
+          }
+        },
+        unremovable: {
+          title: 'Unremovable items',
+          type: 'array',
+          items: {
+            type: 'string',
+            default: 'lorem ipsum'
+          }
+        },
+        noToolbar: {
+          title: 'No add, remove and order buttons',
+          type: 'array',
+          items: {
+            type: 'string',
+            default: 'lorem ipsum'
+          }
+        },
+        fixedNoToolbar: {
+          title: 'Fixed array without buttons',
+          type: 'array',
+          items: [
+            {
+              title: 'A number',
+              type: 'number',
+              default: 42
+            },
+            {
+              title: 'A boolean',
+              type: 'boolean',
+              default: false
+            }
+          ],
+          additionalItems: {
+            title: 'A string',
+            type: 'string',
+            default: 'lorem ipsum'
+          }
+        }
+      }
+    };
+    const input: Input<FormDataEntryValue> = {
+      [DEFAULT_ID_PREFIX]: {
+        listOfStrings: ['foo', 'bar'],
+        multipleChoicesList: ['0', '1'],
+        fixedItemsList: ['Some text', 'on', '123'],
+        minItemsList: [
+          { name: 'Default name' },
+          { name: 'Default name' },
+          { name: 'Default name' }
+        ],
+        defaultsAndMinItems: ['carp', 'trout', 'bream', 'unidentified', 'unidentified'],
+        nestedList: [['lorem', 'ipsum'], ['dolor']],
+        unorderable: ['one', 'two'],
+        copyable: ['one', 'two'],
+        unremovable: ['one', 'two'],
+        noToolbar: ['one', 'two'],
+        fixedNoToolbar: ['42', 'on', 'additional item one', 'additional item two']
+      }
+    };
+    await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
+      listOfStrings: ['foo', 'bar'],
+      multipleChoicesList: ['foo', 'bar'],
+      fixedItemsList: ['Some text', true, 123],
+      minItemsList: [
+        {
+          name: 'Default name'
+        },
+        {
+          name: 'Default name'
+        },
+        {
+          name: 'Default name'
+        }
+      ],
+      defaultsAndMinItems: ['carp', 'trout', 'bream', 'unidentified', 'unidentified'],
+      nestedList: [['lorem', 'ipsum'], ['dolor']],
+      unorderable: ['one', 'two'],
+      copyable: ['one', 'two'],
+      unremovable: ['one', 'two'],
+      noToolbar: ['one', 'two'],
+      fixedNoToolbar: [42, true, 'additional item one', 'additional item two']
+    });
+  });
+
+  it('Should parse schema with dependencies', async () => {
+    const schema: Schema = {
+      title: 'Schema dependencies',
+      description: 'These samples are best viewed without live validation.',
+      type: 'object',
+      properties: {
+        simple: {
+          title: 'Simple',
+          type: 'object',
+          properties: {
+            name: {
+              type: 'string'
+            },
+            credit_card: {
+              type: 'number'
+            }
+          },
+          required: ['name'],
+          dependencies: {
+            credit_card: {
+              properties: {
+                billing_address: {
+                  type: 'string'
+                }
+              },
+              required: ['billing_address']
+            }
+          }
+        },
+        conditional: {
+          title: 'Conditional',
+          $ref: '#/definitions/person'
+        },
+        arrayOfConditionals: {
+          title: 'Array of conditionals',
+          type: 'array',
+          items: {
+            $ref: '#/definitions/person'
+          }
+        },
+        fixedArrayOfConditionals: {
+          title: 'Fixed array of conditionals',
+          type: 'array',
+          items: [
+            {
+              title: 'Primary person',
+              $ref: '#/definitions/person'
+            }
+          ],
+          additionalItems: {
+            title: 'Additional person',
+            $ref: '#/definitions/person'
+          }
+        }
+      },
+      definitions: {
+        person: {
+          title: 'Person',
+          type: 'object',
+          properties: {
+            'Do you have any pets?': {
+              type: 'string',
+              enum: ['No', 'Yes: One', 'Yes: More than one'],
+              default: 'No'
+            }
+          },
+          required: ['Do you have any pets?'],
+          dependencies: {
+            'Do you have any pets?': {
+              oneOf: [
+                {
+                  properties: {
+                    'Do you have any pets?': {
+                      enum: ['No']
+                    }
+                  }
+                },
+                {
+                  properties: {
+                    'Do you have any pets?': {
+                      enum: ['Yes: One']
+                    },
+                    'How old is your pet?': {
+                      type: 'number'
+                    }
+                  },
+                  required: ['How old is your pet?']
+                },
+                {
+                  properties: {
+                    'Do you have any pets?': {
+                      enum: ['Yes: More than one']
+                    },
+                    'Do you want to get rid of any?': {
+                      type: 'boolean'
+                    }
+                  },
+                  required: ['Do you want to get rid of any?']
+                }
+              ]
+            }
+          }
+        }
+      }
+    };
+    const input: Input<FormDataEntryValue> = {
+      [DEFAULT_ID_PREFIX]: {
+        simple: { name: 'Randy', credit_card: '' },
+        conditional: { DoX1wyouX1whaveX1wanyX1wpetsX21r: '0' },
+        arrayOfConditionals: [
+          { DoX1wyouX1whaveX1wanyX1wpetsX21r: '1', HowX1woldX1wisX1wyourX1wpetX21r: '6' },
+          {
+            DoX1wyouX1whaveX1wanyX1wpetsX21r: '2',
+            DoX1wyouX1wwantX1wtoX1wgetX1wridX1wofX1wanyX21r: '1'
+          }
+        ],
+        fixedArrayOfConditionals: [
+          { DoX1wyouX1whaveX1wanyX1wpetsX21r: '0' },
+          { DoX1wyouX1whaveX1wanyX1wpetsX21r: '1', HowX1woldX1wisX1wyourX1wpetX21r: '6' },
+          {
+            DoX1wyouX1whaveX1wanyX1wpetsX21r: '2',
+            DoX1wyouX1wwantX1wtoX1wgetX1wridX1wofX1wanyX21r: '0'
+          }
+        ]
+      }
+    };
+    await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
+      conditional: {
+        'Do you have any pets?': 'No'
+      },
+      arrayOfConditionals: [
+        {
+          'Do you have any pets?': 'Yes: One',
+          'How old is your pet?': 6
+        },
+        {
+          'Do you have any pets?': 'Yes: More than one',
+          'Do you want to get rid of any?': false
+        }
+      ],
+      fixedArrayOfConditionals: [
+        {
+          'Do you have any pets?': 'No'
+        },
+        {
+          'Do you have any pets?': 'Yes: One',
+          'How old is your pet?': 6
+        },
+        {
+          'Do you have any pets?': 'Yes: More than one',
+          'Do you want to get rid of any?': true
+        }
+      ],
+      simple: {
+        name: 'Randy'
+      }
+    });
+  });
+
+  it('Should parse schema with If/Then/Else', async () => {
+    const schema: Schema = {
+      type: 'object',
+      properties: {
+        animal: {
+          enum: ['0', '1']
+        }
+      },
+      allOf: [
+        {
+          if: {
+            properties: {
+              animal: {
+                const: '0'
+              }
+            }
+          },
+          then: {
+            properties: {
+              food: {
+                type: 'string',
+                enum: ['meat', 'grass', 'fish']
+              }
+            },
+            required: ['food']
+          }
+        },
+        {
+          if: {
+            properties: {
+              animal: {
+                const: '1'
+              }
+            }
+          },
+          then: {
+            properties: {
+              food: {
+                type: 'string',
+                enum: ['insect', 'worms']
+              },
+              water: {
+                type: 'string',
+                enum: ['lake', 'sea']
+              }
+            },
+            required: ['food', 'water']
+          }
+        },
+        {
+          required: ['animal']
+        }
+      ]
+    };
+    const input = { [DEFAULT_ID_PREFIX]: { animal: '1', food: '0', water: '1' } };
+    await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
+      animal: '1',
+      food: 'insect',
+      water: 'sea'
+    });
+  });
 });

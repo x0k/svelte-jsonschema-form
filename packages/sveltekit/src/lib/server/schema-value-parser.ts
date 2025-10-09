@@ -378,12 +378,7 @@ export function parseSchemaValue<T>(
       );
     }
     if (schema.allOf) {
-      value = await handleAllOf(
-        schema.allOf,
-        schema,
-        (uiSchema.allOf as UiSchema | UiSchema[]) ?? uiSchema,
-        value
-      );
+      value = await handleAllOf(schema.allOf, schema, uiSchema, value);
     }
     const type = getSimpleSchemaType(schema);
     if (type === 'object') {

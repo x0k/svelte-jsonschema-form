@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import type { Schema } from '@sjsf/form';
+import { SJSF_ID_PREFIX, type Schema } from '@sjsf/form';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
@@ -817,9 +817,8 @@ describe('parseSchemaValue', async () => {
           properties: {
             'Do you have any pets?': {
               type: 'string',
-              // enum: ['No', 'Yes: One', 'Yes: More than one'],
-              enum: ['0', '1', '2'],
-              default: '0'
+              enum: ['No', 'Yes: One', 'Yes: More than one'],
+              default: 'No'
             }
           },
           required: ['Do you have any pets?'],
@@ -829,14 +828,14 @@ describe('parseSchemaValue', async () => {
                 {
                   properties: {
                     'Do you have any pets?': {
-                      enum: ['0']
+                      enum: ['No']
                     }
                   }
                 },
                 {
                   properties: {
                     'Do you have any pets?': {
-                      enum: ['1']
+                      enum: ['Yes: One']
                     },
                     'How old is your pet?': {
                       type: 'number'
@@ -847,7 +846,7 @@ describe('parseSchemaValue', async () => {
                 {
                   properties: {
                     'Do you have any pets?': {
-                      enum: ['2']
+                      enum: ['Yes: More than one']
                     },
                     'Do you want to get rid of any?': {
                       type: 'boolean'
@@ -862,43 +861,44 @@ describe('parseSchemaValue', async () => {
       }
     };
     const entries: Entries<string> = [
+      [SJSF_ID_PREFIX, 'root'],
       ['root.simple.name', 'Randy'],
       ['root.simple.credit_card', ''],
       ['root.conditional.Do you have any pets?', '0'],
-      ['root.arrayOfConditionals.0.Do you have any pets?', '1'],
-      ['root.arrayOfConditionals.0.How old is your pet?', '6'],
-      ['root.arrayOfConditionals.1.Do you have any pets?', '2'],
-      ['root.arrayOfConditionals.1.Do you want to get rid of any?', '1'],
-      ['root.fixedArrayOfConditionals.0.Do you have any pets?', '0'],
-      ['root.fixedArrayOfConditionals.1.Do you have any pets?', '1'],
-      ['root.fixedArrayOfConditionals.1.How old is your pet?', '6'],
-      ['root.fixedArrayOfConditionals.2.Do you have any pets?', '2'],
-      ['root.fixedArrayOfConditionals.2.Do you want to get rid of any?', '0']
+      ['root.arrayOfConditionals@0.Do you have any pets?', '1'],
+      ['root.arrayOfConditionals@0.How old is your pet?', '6'],
+      ['root.arrayOfConditionals@1.Do you have any pets?', '2'],
+      ['root.arrayOfConditionals@1.Do you want to get rid of any?', '1'],
+      ['root.fixedArrayOfConditionals@0.Do you have any pets?', '0'],
+      ['root.fixedArrayOfConditionals@1.Do you have any pets?', '1'],
+      ['root.fixedArrayOfConditionals@1.How old is your pet?', '6'],
+      ['root.fixedArrayOfConditionals@2.Do you have any pets?', '2'],
+      ['root.fixedArrayOfConditionals@2.Do you want to get rid of any?', '0']
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       conditional: {
-        'Do you have any pets?': '0'
+        'Do you have any pets?': 'No'
       },
       arrayOfConditionals: [
         {
-          'Do you have any pets?': '1',
+          'Do you have any pets?': 'Yes: One',
           'How old is your pet?': 6
         },
         {
-          'Do you have any pets?': '2',
+          'Do you have any pets?': 'Yes: More than one',
           'Do you want to get rid of any?': false
         }
       ],
       fixedArrayOfConditionals: [
         {
-          'Do you have any pets?': '0'
+          'Do you have any pets?': 'No'
         },
         {
-          'Do you have any pets?': '1',
+          'Do you have any pets?': 'Yes: One',
           'How old is your pet?': 6
         },
         {
-          'Do you have any pets?': '2',
+          'Do you have any pets?': 'Yes: More than one',
           'Do you want to get rid of any?': true
         }
       ],
