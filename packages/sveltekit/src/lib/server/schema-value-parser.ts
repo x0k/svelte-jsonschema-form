@@ -141,7 +141,7 @@ export function parseSchemaValue<T>(
   }
 
   async function parseObject(schema: Schema, uiSchema: UiSchema, value: SchemaObjectValue) {
-    const { properties, additionalProperties } = schema;
+    const { properties, additionalProperties, patternProperties } = schema;
 
     async function setProperty(
       property: string,
@@ -163,8 +163,9 @@ export function parseSchemaValue<T>(
         popEntriesAndFilter();
       }
     }
+    let knownProperties: Set<string>
     if (additionalProperties !== undefined) {
-      const knownProperties = new Set(getKnownProperties(schema, rootSchema));
+      knownProperties = new Set(getKnownProperties(schema, rootSchema));
       const additionalKeys = new Map<string, string>();
       const isObjectOrArraySchema =
         isSchemaObject(additionalProperties) &&
@@ -203,6 +204,9 @@ export function parseSchemaValue<T>(
         entriesStack.pop();
         popFilter();
       }
+    }
+    if (patternProperties !== undefined) {
+      knownProperties ??= new Set(getKnownProperties(schema, rootSchema))
     }
     return value;
   }

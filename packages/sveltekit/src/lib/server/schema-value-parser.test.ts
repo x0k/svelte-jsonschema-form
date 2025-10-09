@@ -1381,4 +1381,47 @@ describe('parseSchemaValue', async () => {
     const entries: Entries<FormDataEntryValue> = [];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual([]);
   });
+
+  it('Should support pattern properties', async () => {
+    const schema: Schema = {
+      title: 'A customizable registration form',
+      description: 'A simple form with pattern properties example.',
+      type: 'object',
+      required: ['firstName', 'lastName'],
+      properties: {
+        firstName: {
+          type: 'string',
+          title: 'First name'
+        },
+        lastName: {
+          type: 'string',
+          title: 'Last name'
+        }
+      },
+      additionalProperties: false,
+      patternProperties: {
+        '^foo.*$': {
+          type: 'string'
+        },
+        '^bar.*$': {
+          type: 'number'
+        }
+      }
+    };
+    const entries: Entries<string> = [
+      [SJSF_ID_PREFIX, 'root'],
+      ['root.firstName', 'Chuck'],
+      ['root.lastName', 'Norris'],
+      ['root.fooPropertyExample::key-input', 'fooPropertyExample'],
+      ['root.fooPropertyExample', 'foo'],
+      ['root.barPropertyExample::key-input', 'barPropertyExample'],
+      ['root.barPropertyExample', '123']
+    ];
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
+      firstName: 'Chuck',
+      lastName: 'Norris',
+      fooPropertyExample: 'foo',
+      barPropertyExample: 123
+    });
+  });
 });
