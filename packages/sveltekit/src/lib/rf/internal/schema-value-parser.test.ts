@@ -3,7 +3,7 @@ import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from '@sjsf/form';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
-import { createFormDataEntryConverter } from '$lib/server/convert-form-data-entry.js';
+import { createFormDataEntryConverter } from '$lib/internal/convert-form-data-entry.js';
 
 import {
   parseSchemaValue,

@@ -3,7 +3,7 @@
   import { resolver } from '@sjsf/form/resolvers/compat';
 
   import { createFormIdBuilder } from '$lib/rf/index.js';
-  import { enhance } from '$lib/rf/client/client.js';
+  import { enhance } from '$lib/rf/client/index.js';
 
   import * as defaults from '../form-defaults.js';
   import { schema, uiSchema } from '../model.js';
@@ -26,4 +26,4 @@
   });
 </script>
 
-<BasicForm {...defaults} novalidate enctype="multipart/form-data" {form} {...enhance(createPost)} />
+<BasicForm novalidate enctype="multipart/form-data" {form} {...enhance(createPost)} />

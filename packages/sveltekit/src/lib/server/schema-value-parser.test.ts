@@ -6,7 +6,7 @@ import { createFormValidator } from '@sjsf/ajv8-validator';
 import type { Entries } from '$lib/model.js';
 
 import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
-import { createFormDataEntryConverter } from './convert-form-data-entry.js';
+import { createFormDataEntryConverter } from '../internal/convert-form-data-entry.js';
 
 const opts = ({
   schema = {},

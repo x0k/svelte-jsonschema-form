@@ -28,7 +28,7 @@ import {
 import type { EntryConverter } from '$lib/model.js';
 import { ANY_OF, compilePatterns, KEY_INPUT_KEY, ONE_OF } from '$lib/internal.js';
 
-import { decode, encode } from '../internal/codec.js';
+import { decode, encode } from './codec.js';
 
 export type Input<T> = T | { [key: string]: Input<T> } | Input<T>[] | undefined;
 

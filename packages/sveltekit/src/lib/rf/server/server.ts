@@ -25,14 +25,14 @@ import {
   createFormDataEntryConverter,
   type FormDataConverterOptions,
   type UnknownEntryConverter
-} from '$lib/server/convert-form-data-entry.js';
+} from '$lib/internal/convert-form-data-entry.js';
 
 import { getRequestEvent } from '$app/server';
 import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY, type EntryConverter } from '$lib/model.js';
 
 import { decode } from '../internal/codec.js';
-import { DEFAULT_PSEUDO_PREFIX } from '../index.js';
-import { parseSchemaValue, type Input } from './schema-value-parser.js';
+import { createSvelteKitDataParser } from '../internal/sveltekit-data-parser.js';
+import { DEFAULT_PSEUDO_PREFIX } from '../id-builder.js';
 
 export interface Labels {
   'expected-record': {};
@@ -108,12 +108,15 @@ export function createServerValidator<R = FormValue>({
     validator,
     uiOptionsRegistry
   });
-  const convertEntry = create(createEntryConverter, {
-    validator,
+  const parseSvelteKitData = createSvelteKitDataParser({
+    schema,
+    uiSchema,
     merger,
-    rootSchema: schema,
-    rootUiSchema: uiSchema,
-    convertUnknownEntry
+    validator,
+    convertUnknownEntry,
+    createEntryConverter,
+    pseudoPrefix,
+    uiOptionsRegistry
   });
   function parseIdPrefix(input: Record<string, unknown>) {
     const idPrefix = input[SJSF_ID_PREFIX];
@@ -126,21 +129,12 @@ export function createServerValidator<R = FormValue>({
     }
     return decode(keys[0]);
   }
-  function parseData(signal: AbortSignal, input: Record<string, unknown>, idPrefix: string) {
+  function parseData(signal: AbortSignal, idPrefix: string, input: Record<string, unknown>) {
     const data = input[JSON_CHUNKS_KEY];
     if (Array.isArray(data) && data.every((t) => typeof t === 'string')) {
       return JSON.parse(data.join(''), createReviver(input));
     }
-    return parseSchemaValue(signal, {
-      idPrefix,
-      pseudoPrefix,
-      convertEntry,
-      input: input as Record<string, Input<FormDataEntryValue>>,
-      merger,
-      schema: schema,
-      uiSchema: uiSchema,
-      validator
-    });
+    return parseSvelteKitData(signal, idPrefix, input);
   }
   async function validate(input: unknown): Promise<StandardSchemaV1.Result<Output<R>>> {
     if (!isRecord(input)) {
@@ -149,7 +143,7 @@ export function createServerValidator<R = FormValue>({
     const { request } = getRequestEvent();
     try {
       const idPrefix = parseIdPrefix(input);
-      const value = await parseData(request.signal, input, idPrefix);
+      const value = await parseData(request.signal, idPrefix, input);
       const errors = isAsyncFormValueValidator(validator)
         ? await validator.validateFormValueAsync(request.signal, schema, value)
         : isFormValueValidator(validator)

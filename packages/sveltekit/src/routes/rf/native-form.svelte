@@ -11,11 +11,13 @@
 
   const native = createPost.for('native')
 
+  const initialValue = $derived(await native.fields.value())
+
   const form = createForm({
     ...defaults,
     idPrefix: 'native',
     get initialValue() {
-      return undefined;
+      return initialValue;
     },
     get initialErrors() {
       // @ts-expect-error

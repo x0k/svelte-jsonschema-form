@@ -3,7 +3,13 @@ import { createAttachmentKey } from 'svelte/attachments';
 import type { HTMLFormAttributes } from 'svelte/elements';
 import type { StandardSchemaV1 } from '@standard-schema/spec';
 import type { RemoteForm, RemoteFormInput } from '@sveltejs/kit';
-import { getFormContext, SJSF_ID_PREFIX, validate, type FormState } from '@sjsf/form';
+import {
+  getFormContext,
+  SJSF_ID_PREFIX,
+  validate,
+  type FormOptions,
+  type FormState
+} from '@sjsf/form';
 import { FORM_ID_PREFIX } from '@sjsf/form/internals';
 
 import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from '$lib/model.js';
@@ -121,4 +127,22 @@ export function enhance(
     method: remoteForm.method,
     action: remoteForm.action
   } satisfies HTMLFormAttributes;
+}
+
+export interface ConnectOptions {
+  /** Pass this options if context is unavailable */
+  form?: FormState<any>;
+  /** By default, handles conversion of `File` */
+  createReplacer?: (formElement: HTMLFormElement) => (key: string, value: any) => any;
+  /** @default 500000 */
+  jsonChunkSize?: number;
+}
+
+export function connect<T>(
+  remoteForm: RemoteForm<any, any>,
+  options: FormOptions<T> & ConnectOptions
+): FormOptions<T> {
+  return Object.setPrototypeOf({
+
+  }, options)
 }

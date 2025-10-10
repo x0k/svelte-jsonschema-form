@@ -38,7 +38,7 @@ import {
   createFormDataEntryConverter,
   type FormDataConverterOptions,
   type UnknownEntryConverter
-} from './convert-form-data-entry.js';
+} from '../internal/convert-form-data-entry.js';
 
 export type InitFormOptions<T, SendSchema extends boolean> = SerializableOptionalFormOptions<T> & {
   sendSchema?: SendSchema;
