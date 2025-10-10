@@ -181,7 +181,26 @@ export function getSchemaDefinitionByPath2(
       getDiscriminatorFieldFromSchema(schema)
     );
 
-    return getSchemaDefinition(schemas[index], value, path);
+    const subSchema = getSchemaDefinition(schemas[index], value, path);
+    if (subSchema !== undefined) {
+      return subSchema;
+    }
+
+    let lastBool: boolean | undefined;
+    for (const subSchema of schemas) {
+      if (!isSchemaObject(subSchema)) {
+        continue;
+      }
+      const def = getSchemaDefinition(subSchema, value, path);
+      if (def === undefined) {
+        continue;
+      }
+      if (isSchemaObject(def)) {
+        return def;
+      }
+      lastBool = def;
+    }
+    return lastBool;
   }
 
   function getSchemaDefinition(
@@ -201,13 +220,15 @@ export function getSchemaDefinitionByPath2(
         );
       }
       if (schema.allOf) {
-        return getSchemaDefinition(
-          merger.mergeAllOf(schema),
-          value,
-          path.slice(i)
-        );
+        const merged = merger.mergeAllOf(schema);
+        // NOTE: In the case of merging schemas with `if/then/else`
+        // keywords, `allOf` will remain in the schema, in which case
+        // it is better to use the `alt` strategy.
+        if (!merged.allOf) {
+          return getSchemaDefinition(merged, value, path.slice(i));
+        }
       }
-      const alt = schema.anyOf ?? schema.oneOf;
+      const alt = schema.anyOf ?? schema.oneOf ?? schema.allOf;
       if (alt) {
         const subSchema = pickSubSchema(alt, schema, value, path.slice(i));
         if (subSchema !== undefined) {
