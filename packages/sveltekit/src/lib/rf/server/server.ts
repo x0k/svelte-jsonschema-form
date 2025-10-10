@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { StandardSchemaV1 } from '@standard-schema/spec';
 import type { RemoteFormInput } from '@sveltejs/kit';
-import type { Resolver } from '@sjsf/form/lib/resolver';
 import { isRecord } from '@sjsf/form/lib/object';
 import {
   create,
@@ -14,7 +13,6 @@ import {
   type FormValue,
   type MergerFactoryOptions,
   type Schema,
-  type TranslatorDefinitions,
   type UiOptionsRegistry,
   type UiSchemaRoot,
   type Validator,
@@ -33,15 +31,9 @@ import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY, type EntryConverter } from '$li
 import { decode } from '../internal/codec.js';
 import { createSvelteKitDataParser } from '../internal/sveltekit-data-parser.js';
 import { DEFAULT_PSEUDO_PREFIX } from '../id-builder.js';
-
-export interface Labels {
-  'expected-record': {};
-  'invalid-root-keys': { keys: string[] };
-  'unexpected-error': {};
-}
+import { enServerTranslation, type ServerTranslation } from './translation.js';
 
 export interface SvelteKitFormValidatorOptions {
-  serverTranslation: Resolver<Partial<Labels>, Partial<TranslatorDefinitions<Labels>>>;
   schema: Schema;
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
@@ -52,6 +44,7 @@ export interface SvelteKitFormValidatorOptions {
   pseudoPrefix?: string;
   /** By default, handles conversion of `File` */
   createReviver?: (input: Record<string, unknown>) => (key: string, value: any) => any;
+  serverTranslation?: ServerTranslation;
 }
 
 interface Output<R> {
@@ -84,7 +77,7 @@ function createDefaultReviver(input: Record<string, unknown>) {
 }
 
 export function createServerValidator<R = FormValue>({
-  serverTranslation,
+  serverTranslation = enServerTranslation,
   schema,
   uiSchema = {},
   merger: createMerger,
@@ -94,7 +87,12 @@ export function createServerValidator<R = FormValue>({
   convertUnknownEntry,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   createReviver = createDefaultReviver
-}: SvelteKitFormValidatorOptions) {
+}: SvelteKitFormValidatorOptions): StandardSchemaV1<
+  RemoteFormInput,
+  { data: R; idPrefix: string }
+> & {
+  validate: typeof validate;
+} {
   const t = createTranslate(serverTranslation);
   const validator: Validator = create(createValidator, {
     schema: schema,
@@ -123,11 +121,7 @@ export function createServerValidator<R = FormValue>({
     if (typeof idPrefix === 'string') {
       return idPrefix;
     }
-    const keys = Object.keys(input);
-    if (keys.length !== 1) {
-      throw new PublicError(t('invalid-root-keys', { keys }));
-    }
-    return decode(keys[0]);
+    throw new PublicError(t('missing-or-invalid-id-prefix-key', {}));
   }
   function parseData(signal: AbortSignal, idPrefix: string, input: Record<string, unknown>) {
     const data = input[JSON_CHUNKS_KEY];
@@ -138,7 +132,7 @@ export function createServerValidator<R = FormValue>({
   }
   async function validate(input: unknown): Promise<StandardSchemaV1.Result<Output<R>>> {
     if (!isRecord(input)) {
-      return failure(t('expected-record', {}));
+      return failure(t('expected-record', { input }));
     }
     const { request } = getRequestEvent();
     try {
@@ -168,7 +162,5 @@ export function createServerValidator<R = FormValue>({
       vendor: 'svelte-jsonschema-form',
       validate
     }
-  } satisfies StandardSchemaV1<RemoteFormInput, { data: R; idPrefix: string }> & {
-    validate: typeof validate;
   };
 }

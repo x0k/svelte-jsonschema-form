@@ -4,21 +4,16 @@
 
   import { createFormIdBuilder } from '$lib/rf/index.js';
 
-  import * as defaults from '../form-defaults.js';
   import { schema, uiSchema } from '../model.js';
+  import * as defaults from '../form-defaults.js';
 
   import { createPost } from './data.remote.js';
 
   const native = createPost.for('native')
 
-  const initialValue = $derived(await native.fields.value())
-
   const form = createForm({
     ...defaults,
     idPrefix: 'native',
-    get initialValue() {
-      return initialValue;
-    },
     get initialErrors() {
       // @ts-expect-error
       return native.fields.allIssues()?.map((i) => ({
