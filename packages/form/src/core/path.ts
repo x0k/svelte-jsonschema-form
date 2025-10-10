@@ -6,7 +6,16 @@ import {
 import { isRecord } from "@/lib/object.js";
 
 import { resolveRef } from "./definitions.js";
-import { type Schema, type SchemaDefinition } from "./schema.js";
+import {
+  type Schema,
+  type SchemaDefinition,
+  type SchemaValue,
+} from "./schema.js";
+import type { Validator } from "./validator.js";
+import type { Merger } from "./merger.js";
+import { getClosestMatchingOption } from "./matching.js";
+import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
+import { isSchemaArrayValue, isSchemaObjectValue } from "./value.js";
 
 export type Path = Array<string | number>;
 export type RPath = Readonly<Path>;
@@ -142,4 +151,117 @@ export function getSchemaDefinitionByPath(
     return undefined;
   }
   return schema;
+}
+
+export function getSchemaDefinitionByPath2(
+  validator: Validator,
+  merger: Merger,
+  rootSchema: Schema,
+  schema: SchemaDefinition | undefined,
+  value: SchemaValue | undefined,
+  path: RPath
+) {
+  function pickSubSchema(
+    schemaDefs: SchemaDefinition[],
+    schema: Schema,
+    value: SchemaValue | undefined,
+    path: RPath
+  ) {
+    const schemas: Schema[] = schemaDefs.map((s) =>
+      typeof s === "boolean" ? (s ? {} : { not: {} }) : s
+    );
+
+    const index = getClosestMatchingOption(
+      validator,
+      merger,
+      rootSchema,
+      value,
+      schemas,
+      -1,
+      getDiscriminatorFieldFromSchema(schema)
+    );
+
+    return getSchemaDefinition(schemas[index], value, path);
+  }
+
+  function getSchemaDefinition(
+    schema: SchemaDefinition | undefined,
+    value: SchemaValue | undefined,
+    path: RPath
+  ): SchemaDefinition | undefined {
+    for (let i = 0; i < path.length; i++) {
+      if (schema === undefined || !isSchemaObject(schema)) {
+        return undefined;
+      }
+      if (schema.$ref) {
+        return getSchemaDefinition(
+          resolveRef(schema.$ref, rootSchema),
+          value,
+          path.slice(i)
+        );
+      }
+      if (schema.allOf) {
+        return getSchemaDefinition(
+          merger.mergeAllOf(schema),
+          value,
+          path.slice(i)
+        );
+      }
+      const alt = schema.anyOf ?? schema.oneOf;
+      if (alt) {
+        const subSchema = pickSubSchema(alt, schema, value, path.slice(i));
+        if (subSchema !== undefined) {
+          return subSchema;
+        }
+        // Alt schema may be mixed with normal schema so
+        // no early exit here
+      }
+      const k = path[i]!;
+      const type = typeof k;
+      if (type === "number") {
+        const { items, additionalItems }: Schema = schema;
+        schema =
+          (Array.isArray(items) ? items[k as number] : items) ??
+          additionalItems;
+        value = isSchemaArrayValue(value) ? value[k as number] : undefined;
+        continue;
+      }
+      if (type === "string") {
+        const {
+          properties,
+          patternProperties,
+          additionalProperties,
+          dependencies,
+          then,
+          else: otherwise,
+        }: Schema = schema;
+        schema =
+          (properties && properties[k as string]) ??
+          (patternProperties &&
+            Object.entries(patternProperties).find(([p]) =>
+              new RegExp(p).test(k as string)
+            )?.[1]) ??
+          additionalProperties ??
+          (dependencies &&
+            pickSubSchema(
+              Object.values(dependencies).filter(isRecord),
+              schema,
+              value,
+              path.slice(i)
+            )) ??
+          ((then || otherwise) &&
+            pickSubSchema(
+              [then, otherwise].filter(isRecord),
+              schema,
+              value,
+              path.slice(i)
+            ));
+        value = isSchemaObjectValue(value) ? value[k] : undefined;
+        continue;
+      }
+      return undefined;
+    }
+    return schema;
+  }
+  return getSchemaDefinition(schema, value, path);
 }
