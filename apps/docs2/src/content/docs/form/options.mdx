@@ -25,6 +25,9 @@ export interface IdBuilderFactoryOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
+  validator: Validator;
+  merger: FormMerger;
+  valueRef: Ref<FormValue>;
 }
 
 export interface ValidatorFactoryOptions {
