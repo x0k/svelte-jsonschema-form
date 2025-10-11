@@ -1,4 +1,5 @@
-import type { Json, Validate, ValidationError } from "@exodus/schemasafe";
+import type { Json, Validate } from "@exodus/schemasafe";
+import type { Merger } from "@sjsf/form/core";
 import type {
   FieldValueValidator,
   FormValueValidator,
@@ -58,7 +59,9 @@ export function createValidator(options: ValidatorOptions): Validator {
   };
 }
 
-export interface FormValueValidatorOptions extends ValidatorOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {
+  merger: () => Merger;
+}
 
 export function createFormValueValidator(
   options: FormValueValidatorOptions
@@ -67,7 +70,13 @@ export function createFormValueValidator(
     validateFormValue(rootSchema, formValue) {
       const validate = getValidate(options, rootSchema);
       validate(options.valueToJSON(formValue));
-      return transformFormErrors(rootSchema, validate.errors, formValue);
+      return transformFormErrors(
+        createValidator(options),
+        options.merger(),
+        rootSchema,
+        validate.errors,
+        formValue
+      );
     },
   };
 }

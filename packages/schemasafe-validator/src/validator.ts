@@ -5,7 +5,11 @@ import {
   type Validate,
 } from "@exodus/schemasafe";
 import { weakMemoize } from "@sjsf/form/lib/memoize";
-import { prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
+import {
+  prefixSchemaRefs,
+  ROOT_SCHEMA_PREFIX,
+  type Merger,
+} from "@sjsf/form/core";
 import type {
   Config,
   FieldValueValidator,
@@ -76,7 +80,9 @@ export function createValidator({
   };
 }
 
-export interface FormValueValidatorOptions extends ValidatorOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {
+  merger: () => Merger;
+}
 
 export function createFormValueValidator(
   options: FormValueValidatorOptions
@@ -85,7 +91,13 @@ export function createFormValueValidator(
     validateFormValue(rootSchema, formValue) {
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
       validator(options.valueToJSON(formValue));
-      return transformFormErrors(rootSchema, validator.errors, formValue);
+      return transformFormErrors(
+        createValidator(options),
+        options.merger(),
+        rootSchema,
+        validator.errors,
+        formValue
+      );
     },
   };
 }
@@ -127,7 +139,8 @@ export function createFormValidator({
   ...rest
 }: Partial<FormValidatorOptions> & {
   factory?: ValidateFactory;
-} = {}) {
+  merger: () => Merger;
+}) {
   const options: FormValidatorOptions = {
     ...rest,
     valueToJSON,

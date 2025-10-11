@@ -4,21 +4,32 @@ import {
   getSchemaDefinitionByPath,
   pathFromLocation,
   pathFromRef,
+  type Merger,
   type Path,
 } from "@sjsf/form/core";
-import type { Config, Schema } from "@sjsf/form";
+import type { Config, FieldValue, Schema, Validator } from "@sjsf/form";
 
 function extractKeywordValue(
+  validator: Validator,
+  merger: Merger,
   keyword: string,
   rootSchema: Schema,
   instancePath: Path,
-  schemaPath: Path
+  schemaPath: Path,
+  value: FieldValue
 ) {
   const schema = getValueByPath(rootSchema, schemaPath);
   if (schema && typeof schema === "object" && keyword in schema) {
     return String((schema as Record<string, unknown>)[keyword]);
   }
-  const def = getSchemaDefinitionByPath(rootSchema, rootSchema, instancePath);
+  const def = getSchemaDefinitionByPath(
+    validator,
+    merger,
+    rootSchema,
+    rootSchema,
+    instancePath,
+    value
+  );
   if (typeof def === "object" && def[keyword as keyof Schema] !== undefined) {
     return String(def[keyword as keyof Schema]);
   }
@@ -45,9 +56,11 @@ function createErrorMessage(keyword: string, details: string | undefined) {
 }
 
 export function transformFormErrors(
+  validator: Validator,
+  merger: Merger,
   rootSchema: Schema,
   errors: ValidationError[] | undefined,
-  data: unknown
+  data: FieldValue
 ) {
   // NOTE: According to the compiled output of `schemasafe`
   // errors can be `null`
@@ -60,7 +73,15 @@ export function transformFormErrors(
       path: instancePath,
       message: createErrorMessage(
         keyword,
-        extractKeywordValue(keyword, rootSchema, instancePath, schemaPath)
+        extractKeywordValue(
+          validator,
+          merger,
+          keyword,
+          rootSchema,
+          instancePath,
+          schemaPath,
+          data
+        )
       ),
     };
   });
