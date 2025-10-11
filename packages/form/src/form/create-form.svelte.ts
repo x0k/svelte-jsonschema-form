@@ -266,8 +266,10 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * Reset handler
    *
    * Will be called when the form is reset.
+   * 
+   * The event will be `undefined` if `reset` is called manually without passing an event.
    */
-  onReset?: (e: Event) => void;
+  onReset?: (e?: Event) => void;
   schedulerYield?: SchedulerYield;
   keyedArraysMap?: KeyedArraysMap;
 }
@@ -510,8 +512,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     submission.run(e);
   }
 
-  function reset(e: Event) {
-    e.preventDefault();
+  function reset(e?: Event) {
+    e?.preventDefault();
     fieldsStateMap.clear();
     errors.clear();
     valueRef.current = merger.mergeFormDataAndSchemaDefaults({

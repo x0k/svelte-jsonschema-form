@@ -66,7 +66,7 @@ export interface FormState<T> {
    */
   value: T | undefined;
   submit: (e: SubmitEvent) => void;
-  reset: (e: Event) => void;
+  reset: (e?: Event) => void;
 
   // Internals
 
