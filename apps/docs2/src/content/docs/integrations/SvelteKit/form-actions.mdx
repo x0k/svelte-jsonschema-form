@@ -1,7 +1,7 @@
 ---
-title: SvelteKit
+title: Form actions
 sidebar:
-  order: 2
+  order: 0
 ---
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
@@ -12,12 +12,6 @@ import Npm from '@/components/npm.astro';
 import clientCode from './_sveltekit-client.svelte.api?raw';
 import clientFlexCode from './_sveltekit-flex-client.svelte.api?raw'
 import serverCode from './_sveltekit-server.ts.api?raw';
-
-:::caution
-
-SvelteKit integration is experimental
-
-:::
 
 Since this is a `Svelte` library, you may want to use it with the `SvelteKit`.
 
@@ -47,16 +41,6 @@ On the server side you should implement at least one [action](https://svelte.dev
 which will always return the result of `validateForm` function (`redirect` and `error` helpers are allowed).
 
 If the form data is passed as `FormData`, you need to create a parser for it.
-
-:::caution
-
-Serialization of original errors may lead to non-consistent state on the client
-(for example, if the error is represented by an instance of some class).
-
-You can use the [transport](https://svelte.dev/docs/kit/@sveltejs-kit#Transport)
-hook to pass original errors correctly.
-
-:::
 
 <Code code={serverCode} lang="typescript" />
 
