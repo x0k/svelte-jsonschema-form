@@ -49,6 +49,18 @@
 		"./server": {
 			"types": "./dist/server/index.d.ts",
 			"svelte": "./dist/server/index.js"
+		},
+		"./rf": {
+			"types": "./dist/rf/index.d.ts",
+			"svelte": "./dist/rf/index.js"
+		},
+		"./rf/client": {
+			"types": "./dist/rf/client/index.d.ts",
+			"svelte": "./dist/rf/client/index.js"
+		},
+		"./rf/server": {
+			"types": "./dist/rf/server/index.d.ts",
+			"svelte": "./dist/rf/server/index.js"
 		}
 	},
 	"peerDependencies": {

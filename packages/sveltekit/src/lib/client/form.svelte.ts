@@ -32,7 +32,7 @@ export type SvelteKitFormOptions<
 function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
   meta: Meta,
   idPrefix: string
-): InitialFormData<Meta['__formValue'], Meta['__sendSchema']> | undefined {
+): InitialFormData<Meta['__formValue']> | undefined {
   if (isRecord(page.form)) {
     const validationData = page.form[meta.name] as
       | ValidatedFormData<Meta['__sendData']>

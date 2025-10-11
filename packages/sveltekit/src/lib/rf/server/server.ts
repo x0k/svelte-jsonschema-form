@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { StandardSchemaV1 } from '@standard-schema/spec';
 import type { RemoteFormInput } from '@sveltejs/kit';
+import type { MaybePromise } from '@sjsf/form/lib/types';
 import { isRecord } from '@sjsf/form/lib/object';
 import {
   create,
@@ -76,6 +77,11 @@ function createDefaultReviver(input: Record<string, unknown>) {
   };
 }
 
+export interface ValidationResult<R> {
+  idPrefix: string;
+  data: R;
+}
+
 export function createServerValidator<R = FormValue>({
   serverTranslation = enServerTranslation,
   schema,
@@ -87,11 +93,8 @@ export function createServerValidator<R = FormValue>({
   convertUnknownEntry,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   createReviver = createDefaultReviver
-}: SvelteKitFormValidatorOptions): StandardSchemaV1<
-  RemoteFormInput,
-  { data: R; idPrefix: string }
-> & {
-  validate: typeof validate;
+}: SvelteKitFormValidatorOptions): StandardSchemaV1<RemoteFormInput, ValidationResult<R>> & {
+  validate: (input: unknown) => MaybePromise<StandardSchemaV1.Result<ValidationResult<R>>>;
 } {
   const t = createTranslate(serverTranslation);
   const validator: Validator = create(createValidator, {

@@ -1,4 +1,4 @@
-import type { MaybePromise } from '@sjsf/form/lib/types';
+import type { DeepPartial, MaybePromise } from '@sjsf/form/lib/types';
 import type {
   FormOptions,
   Schema,
@@ -40,8 +40,9 @@ type PickOptionalSerializable<T> = Pick<T, Extract<OptionalKeys<T>, Serializable
 
 export type SerializableOptionalFormOptions<T> = PickOptionalSerializable<FormOptions<T>>;
 
-export type InitialFormData<T, SendSchema extends boolean> = SerializableOptionalFormOptions<T> & {
-  schema: SendSchema extends true ? Schema : undefined;
+export type InitialFormData<T = unknown> = SerializableOptionalFormOptions<T> & {
+  schema?: Schema;
+  initialValue?: DeepPartial<T>;
   initialErrors?: ValidationError[];
   uiSchema?: UiSchemaRoot;
 };

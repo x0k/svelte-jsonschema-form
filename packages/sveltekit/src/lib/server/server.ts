@@ -1,6 +1,6 @@
 import { fail, type ActionFailure, type RequestEvent } from '@sveltejs/kit';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { DeepPartial, MaybePromise } from '@sjsf/form/lib/types';
+import type { MaybePromise } from '@sjsf/form/lib/types';
 import type { Validator } from '@sjsf/form/core';
 import {
   isFormValueValidator,
@@ -28,9 +28,7 @@ import {
   FORM_DATA_FILE_PREFIX,
   JSON_CHUNKS_KEY,
   type EntryConverter,
-  type InitialFormData,
-  type SerializableOptionalFormOptions,
-  type ValidatedFormData,
+  type ValidatedFormData
 } from '$lib/model.js';
 
 import { parseSchemaValue } from './schema-value-parser.js';
@@ -39,30 +37,6 @@ import {
   type FormDataConverterOptions,
   type UnknownEntryConverter
 } from '../internal/convert-form-data-entry.js';
-
-export type InitFormOptions<T, SendSchema extends boolean> = SerializableOptionalFormOptions<T> & {
-  sendSchema?: SendSchema;
-  initialValue?: DeepPartial<T>;
-  initialErrors?: ValidationError[];
-  uiSchema?: UiSchemaRoot;
-} & (SendSchema extends true
-    ? { schema: Schema }
-    : {
-        schema?: never;
-      });
-
-export function initForm<T, SendSchema extends boolean = false>(
-  options: InitFormOptions<T, SendSchema>
-): InitialFormData<T, SendSchema> {
-  const data = {
-    ...options,
-    schema: (options.sendSchema ? options.schema : undefined) as SendSchema extends true
-      ? Schema
-      : undefined
-  };
-  delete data['sendSchema'];
-  return data;
-}
 
 export interface FormHandlerOptions<SendData extends boolean> extends IdOptions {
   schema: Schema;

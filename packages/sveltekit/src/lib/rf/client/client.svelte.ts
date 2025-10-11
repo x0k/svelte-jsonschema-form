@@ -3,6 +3,7 @@ import { getAbortSignal, onMount, untrack } from 'svelte';
 import type { StandardSchemaV1 } from '@standard-schema/spec';
 import type { RemoteForm, RemoteFormInput } from '@sveltejs/kit';
 import type { DeepPartial } from '@sjsf/form/lib/types';
+import { isRecordEmpty } from '@sjsf/form/lib/object';
 import {
   DEFAULT_ID_PREFIX,
   isUiSchemaRef,
@@ -85,21 +86,45 @@ export interface ConnectOptions extends SvelteKitDataParserOptions {
   jsonChunkSize?: number;
 }
 
-export async function connect<T>(
-  remoteForm: RemoteForm<any, any>,
-  options: FormOptions<T> & ConnectOptions
+type RemoteFieldsContainer = Pick<RemoteForm<any, any>, 'fields'>;
+
+export async function connect<
+  T,
+  F extends RemoteForm<any, any> | ReturnType<RemoteForm<any, any>['enhance']>
+>(
+  remoteForm: F,
+  options: FormOptions<T> &
+    ConnectOptions &
+    (F extends RemoteFieldsContainer ? {} : RemoteFieldsContainer)
 ): Promise<FormOptions<T>> {
   const dataParser = createSvelteKitDataParser(options);
 
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
 
-  const initialValue = $derived(
-    (await dataParser(getAbortSignal(), idPrefix, remoteForm.fields.value())) as DeepPartial<T>
-  );
+  const fields = $derived.by(() => {
+    if ('fields' in remoteForm) {
+      return remoteForm.fields;
+    } else if ('fields' in options) {
+      return options.fields;
+    } else {
+      throw new Error(
+        '`remoteForm.fields` is undefined, if you use `enhance`, pass `fields` through the form options'
+      );
+    }
+  });
+  async function getInitialValue() {
+    const formValue = fields.value();
+    if (isRecordEmpty(formValue)) {
+      return undefined;
+    }
+    return (await dataParser(getAbortSignal(), idPrefix, formValue)) as DeepPartial<T>;
+  }
+  // svelte-ignore await_waterfall
+  const initialValue = $derived(await getInitialValue());
 
   const initialErrors = $derived(
-    //@ts-expect-error TODO: create an issue
-    remoteForm.fields.allIssues()?.map((i) => ({
+    //@ts-expect-error https://github.com/sveltejs/kit/issues/14687
+    fields.allIssues()?.map((i) => ({
       path: [],
       message: i.message
     }))
