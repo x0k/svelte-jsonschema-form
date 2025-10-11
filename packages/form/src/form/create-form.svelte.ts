@@ -130,7 +130,7 @@ export interface IdBuilderFactoryOptions {
   uiOptionsRegistry: UiOptionsRegistry;
   validator: Validator;
   merger: FormMerger;
-  value: Ref<FormValue>;
+  valueRef: Ref<FormValue>;
 }
 
 export interface ValidatorFactoryOptions {
@@ -321,7 +321,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       uiOptionsRegistry,
       merger: merger,
       validator: validator,
-      value: valueRef,
+      valueRef,
     })
   );
   const idCache = new WeakMap<FieldPath, Id>();
