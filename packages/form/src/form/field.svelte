@@ -2,9 +2,10 @@
   import type { Snippet } from "svelte";
   import { DEV } from "esm-env";
 
+  import type { Ref } from '@/lib/svelte.svelte.js';
   import type { JsonPaths } from "@/lib/types.js";
   import { isObject } from "@/lib/object.js";
-  import { getSchemaDefinitionByPath } from "@/core/index.js";
+  import { getSchemaDefinitionByPath, isSchemaObjectValue } from "@/core/index.js";
 
   import {
     getFieldComponent,
@@ -25,10 +26,12 @@
   import type { ComponentProps } from "./components.js";
   import type { FoundationalFieldType } from "./fields.js";
   import {
+    FORM_MERGER,
     FORM_PATHS_TRIE_REF,
     FORM_SCHEMA,
     FORM_UI_SCHEMA,
     FORM_UI_SCHEMA_ROOT,
+    FORM_VALIDATOR,
     FORM_VALUE,
     internalRegisterFieldPath,
   } from "./internals.js";
@@ -41,7 +44,7 @@
     render?: Snippet<
       [
         Omit<ComponentProps[FoundationalFieldType], "value"> & {
-          valueRef: { value: FieldValue };
+          valueRef: Ref<FieldValue>;
         },
       ]
     >;
@@ -67,13 +70,13 @@
     internalRegisterFieldPath(form[FORM_PATHS_TRIE_REF], providedPath)
   );
 
-  const valueRef: { value: FieldValue } = $derived.by(() => {
+  const valueRef: Ref<FieldValue> = $derived.by(() => {
     if (path.length === 0) {
       return {
-        get value() {
+        get current() {
           return form[FORM_VALUE];
         },
-        set value(v) {
+        set current(v) {
           form[FORM_VALUE] = v;
         },
       };
@@ -93,11 +96,11 @@
     }
     const lastKey = path[lastIndex]!;
     return {
-      get value() {
+      get current() {
         //@ts-expect-error
         return node[lastKey];
       },
-      set value(v) {
+      set current(v) {
         //@ts-expect-error
         node[lastKey] = v;
       },
@@ -110,9 +113,12 @@
       return form[FORM_SCHEMA];
     }
     const def = getSchemaDefinitionByPath(
+      form[FORM_VALIDATOR],
+      form[FORM_MERGER],
       form[FORM_SCHEMA],
       form[FORM_SCHEMA],
-      path.slice(0, -1)
+      path.slice(0, -1),
+      valueRef.current
     );
     return def === undefined || typeof def === "boolean" ? {} : def;
   });
@@ -121,16 +127,27 @@
     if (path.length === 0) {
       return form[FORM_SCHEMA];
     }
+    let val: FieldValue = valueRef.current;
+    for (const p of path.slice(0, -1)) {
+      if (typeof p === 'number') {
+        val = Array.isArray(val) ? val[p as number] : undefined
+      } else {
+        val = isSchemaObjectValue(val) ? val[p] : undefined
+      }
+    }
     const def = getSchemaDefinitionByPath(
+      form[FORM_VALIDATOR],
+      form[FORM_MERGER],
       form[FORM_SCHEMA],
       parentSchema,
-      path.slice(-1)
+      path.slice(-1),
+      val
     );
     return def === undefined || typeof def === "boolean" ? {} : def;
   });
 
   const retrievedSchema = $derived(
-    retrieveSchema(form, schema, valueRef.value)
+    retrieveSchema(form, schema, valueRef.current)
   );
 
   const uiSchema = $derived(
@@ -192,7 +209,7 @@
   {@const Field = getFieldComponent(form, config)}
   <Field
     type="field"
-    bind:value={valueRef.value as undefined}
+    bind:value={valueRef.current as undefined}
     {config}
     {uiOption}
     {translate}
