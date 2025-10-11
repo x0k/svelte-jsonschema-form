@@ -8,6 +8,13 @@ exports[`object fields > additionalProperties 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -216,7 +223,7 @@ exports[`object fields > additionalProperties 1`] = `
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -246,6 +253,13 @@ exports[`object fields > additionalProperties with error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -466,7 +480,7 @@ exports[`object fields > additionalProperties with error 1`] = `
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -496,6 +510,13 @@ exports[`object fields > has errors 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -623,7 +644,7 @@ exports[`object fields > has errors 1`] = `
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -653,6 +674,13 @@ exports[`object fields > object 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -856,7 +884,7 @@ exports[`object fields > object 1`] = `
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -886,6 +914,13 @@ exports[`object fields > one of defaults > default preset 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -1269,7 +1304,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1299,6 +1334,13 @@ exports[`object fields > one of defaults > manual preset 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -2238,7 +2280,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2268,6 +2310,13 @@ exports[`object fields > show add button and fields if additionalProperties is t
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -2476,7 +2525,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2506,6 +2555,13 @@ exports[`object fields > with title and description > additionalProperties 1`] =
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -2741,7 +2797,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2771,6 +2827,13 @@ exports[`object fields > with title and description > object 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -3017,7 +3080,7 @@ exports[`object fields > with title and description > object 1`] = `
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3047,6 +3110,13 @@ exports[`object fields > with title and description > show add button and fields
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -3282,7 +3352,7 @@ exports[`object fields > with title and description > show add button and fields
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3312,6 +3382,13 @@ exports[`object fields > with title and description from both > additionalProper
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -3547,7 +3624,7 @@ exports[`object fields > with title and description from both > additionalProper
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3577,6 +3654,13 @@ exports[`object fields > with title and description from both > object 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -3823,7 +3907,7 @@ exports[`object fields > with title and description from both > object 1`] = `
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3853,6 +3937,13 @@ exports[`object fields > with title and description from uiSchema > additionalPr
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -4088,7 +4179,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4118,6 +4209,13 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -4364,7 +4462,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4394,6 +4492,13 @@ exports[`object fields > with title and description from uiSchema > show add but
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -4629,7 +4734,7 @@ exports[`object fields > with title and description from uiSchema > show add but
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4659,6 +4764,13 @@ exports[`object fields > with title and description with global label off > addi
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -4824,7 +4936,7 @@ exports[`object fields > with title and description with global label off > addi
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4854,6 +4966,13 @@ exports[`object fields > with title and description with global label off > obje
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -5017,7 +5136,7 @@ exports[`object fields > with title and description with global label off > obje
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5047,6 +5166,13 @@ exports[`object fields > with title and description with global label off > show
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
@@ -5212,7 +5338,7 @@ exports[`object fields > with title and description with global label off > show
     </div>
     
     
-    
+    <!---->
     <!---->
      
     <!---->
