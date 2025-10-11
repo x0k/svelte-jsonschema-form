@@ -1,11 +1,18 @@
+import type { Ref } from '@sjsf/form/lib/svelte.svelte';
 import { isSchemaObject } from '@sjsf/form/lib/json-schema';
-import { getSchemaDefinitionByPath, isMultiSelect, type SchemaDefinition } from '@sjsf/form/core';
+import {
+  getSchemaDefinitionByPath,
+  isMultiSelect,
+  isSchemaObjectValue,
+  type SchemaDefinition
+} from '@sjsf/form/core';
 import {
   decodePseudoElement,
   type FieldPath,
   type FieldPseudoElement,
   type FormIdBuilder,
   type FormMerger,
+  type FormValue,
   type Schema,
   type Validator
 } from '@sjsf/form';
@@ -18,6 +25,7 @@ export interface FormIdBuilderOptions {
   merger: FormMerger;
   idPrefix: string;
   pseudoPrefix?: string;
+  valueRef: Ref<FormValue>;
   isPrivate?: (path: FieldPath) => boolean;
 }
 
@@ -28,6 +36,7 @@ export function createFormIdBuilder({
   idPrefix,
   validator,
   merger,
+  valueRef,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   isPrivate = () => false
 }: FormIdBuilderOptions): FormIdBuilder {
@@ -52,13 +61,23 @@ export function createFormIdBuilder({
       }
       parts.push(encodedIdPrefix);
       let currentSchema: SchemaDefinition | undefined = rootSchema;
+      let currentValue = valueRef.current;
       for (let j = 0; j <= i; j++) {
         const p = path[j]!;
-        currentSchema = getSchemaDefinitionByPath(rootSchema, currentSchema, [p]);
+        currentSchema = getSchemaDefinitionByPath(
+          validator,
+          merger,
+          rootSchema,
+          currentSchema,
+          [p],
+          currentValue
+        );
         if (typeof p === 'string') {
           parts.push('.', encode(p));
+          currentValue = isSchemaObjectValue(currentValue) ? currentValue[p] : undefined;
         } else {
           parts.push('[', p.toString(), ']');
+          currentValue = Array.isArray(currentValue) ? currentValue[p] : undefined;
         }
       }
       // no pseudo elements
