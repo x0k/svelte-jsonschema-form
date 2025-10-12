@@ -128,9 +128,11 @@
       return form[FORM_SCHEMA];
     }
     let val: FieldValue = valueRef.current;
-    for (const p of path.slice(0, -1)) {
+    const parentPath = path.slice(0, -1)
+    for (let i = 0; i < parentPath.length && val !== undefined; i++) {
+      const p = parentPath[i]!;
       if (typeof p === 'number') {
-        val = Array.isArray(val) ? val[p as number] : undefined
+        val = Array.isArray(val) ? val[p] : undefined
       } else {
         val = isSchemaObjectValue(val) ? val[p] : undefined
       }
