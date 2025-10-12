@@ -126,29 +126,33 @@ export function createObjectContext<T>({
     ) => Schema) => {
       const { additionalProperties, patternProperties } = retrievedSchema;
 
+      let patterns: string[];
+      if (
+        patternProperties !== undefined &&
+        ((patterns = Object.keys(patternProperties)), patterns.length > 0)
+      ) {
+        const pairs = patterns.map((pattern) => {
+          const property = patternProperties[pattern]!;
+          return [
+            new RegExp(pattern),
+            typeof property === "boolean" ? {} : property,
+          ] as const;
+        });
+        const getDefaultSchema = isSchemaObjectValue(additionalProperties)
+          ? (val: SchemaObjectValue | null | undefined) =>
+              retrieveSchema(ctx, additionalProperties, val)
+          : () => pairs[0]![1];
+        return (val, key) =>
+          retrieveSchema(
+            ctx,
+            pairs.find(([p]) => p.test(key))?.[1] ?? getDefaultSchema(val),
+            val
+          );
+      }
       if (isSchemaObjectValue(additionalProperties)) {
         return (val) => retrieveSchema(ctx, additionalProperties, val);
       }
-      let patterns: string[];
-      if (
-        patternProperties === undefined ||
-        ((patterns = Object.keys(patternProperties)), patterns.length === 0)
-      ) {
-        return () => ({});
-      }
-      const pairs = patterns.map((pattern) => {
-        const property = patternProperties[pattern]!;
-        return [
-          new RegExp(pattern),
-          typeof property === "boolean" ? {} : property,
-        ] as const;
-      });
-      return (val, key) =>
-        retrieveSchema(
-          ctx,
-          pairs.find(([p]) => p.test(key))?.[1] ?? pairs[0]![1],
-          val
-        );
+      return () => ({});
     }
   );
 
