@@ -378,8 +378,8 @@ importers:
         specifier: ^2.1.8
         version: 2.1.8
       bits-ui:
-        specifier: ^2.11.1
-        version: 2.11.1(@internationalized/date@3.10.0)(svelte@5.39.11)
+        specifier: ^2.11.5
+        version: 2.11.5(@internationalized/date@3.10.0)(svelte@5.39.11)
       css-tree:
         specifier: ^3.1.0
         version: 3.1.0
@@ -9565,17 +9565,6 @@ snapshots:
       runed: 0.31.1(svelte@5.39.3)
       svelte: 5.39.3
       svelte-toolbelt: 0.9.3(svelte@5.39.3)
-      tabbable: 6.2.0
-
-  bits-ui@2.11.1(@internationalized/date@3.10.0)(svelte@5.39.11):
-    dependencies:
-      '@floating-ui/core': 1.7.3
-      '@floating-ui/dom': 1.7.4
-      '@internationalized/date': 3.10.0
-      esm-env: 1.2.2
-      runed: 0.31.1(svelte@5.39.11)
-      svelte: 5.39.11
-      svelte-toolbelt: 0.10.5(svelte@5.39.11)
       tabbable: 6.2.0
 
   bits-ui@2.11.1(@internationalized/date@3.9.0)(svelte@5.39.11):
