@@ -15,6 +15,7 @@
     await connect(
       createPost.enhance(async ({ submit }) => {
         await submit();
+        // @ts-expect-error https://github.com/sveltejs/kit/issues/14687
         if (createPost.fields.allIssues()) {
           return;
         }
