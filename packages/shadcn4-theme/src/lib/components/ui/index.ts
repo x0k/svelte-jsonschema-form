@@ -1,4 +1,5 @@
 export { Button } from './button/index.js';
+export { ButtonGroup } from './button-group/index.js'
 export { Calendar } from './calendar/index.js';
 export { Checkbox } from './checkbox/index.js';
 export { Input } from './input/index.js';
