@@ -35,10 +35,10 @@ You can create a new component that adapts the interface of the original compone
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
-			anyTagsField: FieldCommonProps<SchemaArrayValue>;
+			arrayTagsField: FieldCommonProps<SchemaArrayValue>;
 		}
 		interface ComponentBindings {
-			anyTagsField: 'value';
+			arrayTagsField: 'value';
 		}
 	}
 </script>
@@ -49,7 +49,7 @@ You can create a new component that adapts the interface of the original compone
 
 	import { assertStrings } from '$lib/form/cast';
 
-	let { value = $bindable(), ...rest }: ComponentProps['arrayField'] = $props();
+	let { value = $bindable(), ...rest }: ComponentProps['arrayTagsField'] = $props();
 </script>
 
 <TagsField
@@ -65,11 +65,16 @@ You can create a new component that adapts the interface of the original compone
 ```
 
 Why is this needed? Throwing an error when data formats don't match
-is only one possible approach.
-You should decide on the adaptation strategy and implement it yourself for now,
-but in the future the library may provide ready-made adapted components.
+is only one possible approach.  
+You should decide on the adaptation strategy and implement it yourself.
+However, if you're fine with the `assert`-based approach,
+you can use the following prebuilt field components:
+- `array-files`
+- `array-native-files`
+- `array-tags`
+- `unknown-native-file`
 
-You can reduce boilerplate code by using the `cast` utility from `@sjsf/form/lib/component`:
+You can also reduce boilerplate code by using the `cast` utility from `@sjsf/form/lib/component`:
 
 :::caution
 
@@ -87,14 +92,14 @@ import { assertStrings } from '$lib/form/cast';
 
 declare module "@sjsf/form" {
   interface ComponentProps {
-    tagsFieldWrapper: FieldCommonProps<SchemaArrayValue>;
+    arrayTagsField: FieldCommonProps<SchemaArrayValue>;
   }
   interface ComponentBinding {
-    tagsFieldWrapper: "value";
+    arrayTagsField: "value";
   }
 }
 
-const tagsFieldWrapper = cast(TagsField, {
+const arrayTagsField = cast(TagsField, {
   value: {
     transform(props) {
       assertStrings(props.value);

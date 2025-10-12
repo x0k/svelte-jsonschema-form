@@ -1,47 +1,16 @@
-import { cast } from "@sjsf/form/lib/component";
-import { extendByRecord } from "@sjsf/form/lib/resolver";
-import type { ComponentDefinition, FieldCommonProps } from "@sjsf/form";
-
 export { translation } from "@sjsf/form/translations/en";
 
 export { resolver } from "@sjsf/form/resolvers/basic";
 import "@sjsf/form/fields/extra-fields/enum-include";
 import "@sjsf/form/fields/extra-fields/multi-enum-include";
-import NativeFileField from "@sjsf/form/fields/extra-fields/native-file.svelte";
+import "@sjsf/form/fields/extra-fields/unknown-native-file-include";
 
-import { theme as baseTheme } from "@sjsf/basic-theme";
+export { theme } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 import "@sjsf/basic-theme/extra-widgets/radio-include";
 import "@sjsf/basic-theme/extra-widgets/file-include";
 import "@sjsf/basic-theme/extra-widgets/date-picker-include";
-
-declare module "@sjsf/form" {
-  interface ComponentProps {
-    nativeFileFieldWrapper: FieldCommonProps<unknown>;
-  }
-  interface ComponentBindings {
-    nativeFileFieldWrapper: "value";
-  }
-}
-
-const nativeFileFieldWrapper = cast(NativeFileField, {
-  value: {
-    transform(props) {
-      const v = props.value;
-      if (v !== undefined && !(v instanceof File)) {
-        throw new Error(
-          `expected "File" or "undefined" value, but got ${typeof v}`
-        );
-      }
-      return v;
-    },
-  },
-}) satisfies ComponentDefinition<"unknownField">;
-
-export const theme = extendByRecord(baseTheme, {
-  nativeFileFieldWrapper,
-});
 
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 

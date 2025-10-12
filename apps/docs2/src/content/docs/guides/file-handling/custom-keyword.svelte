@@ -46,7 +46,7 @@
     },
     uiSchema: {
       "ui:components": {
-        unknownField: "nativeFileFieldWrapper",
+        unknownField: "unknownNativeFileField",
       },
     },
     fieldsValidationMode: ON_CHANGE,

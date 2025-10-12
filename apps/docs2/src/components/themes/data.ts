@@ -153,7 +153,7 @@ export const uiSchema: UiSchemaRoot = {
   },
   resume: {
     "ui:components": {
-      unknownField: "nativeFileFieldWrapper",
+      unknownField: "unknownNativeFileField",
     },
   },
 };
