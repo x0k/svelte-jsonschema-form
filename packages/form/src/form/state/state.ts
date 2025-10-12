@@ -48,6 +48,7 @@ import {
   FORM_ERRORS,
   FORM_PATHS_TRIE_REF,
   FORM_ROOT_PATH,
+  FORM_ID_PREFIX,
 } from "../internals.js";
 import type { FieldPath, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
@@ -65,11 +66,12 @@ export interface FormState<T> {
    */
   value: T | undefined;
   submit: (e: SubmitEvent) => void;
-  reset: (e: Event) => void;
+  reset: (e?: Event) => void;
 
   // Internals
 
   [FORM_VALUE]: FormValue;
+  readonly [FORM_ID_PREFIX]: string;
   readonly [FORM_ROOT_PATH]: FieldPath;
   readonly [FORM_ID_FROM_PATH]: (path: FieldPath) => Id;
   readonly [FORM_PATHS_TRIE_REF]: PathTrieRef<FieldPath>;

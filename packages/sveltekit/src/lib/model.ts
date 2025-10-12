@@ -1,13 +1,14 @@
+import type { DeepPartial, MaybePromise } from '@sjsf/form/lib/types';
 import type {
   FormOptions,
-  IdentifiableFieldElement,
   Schema,
   SchemaValue,
+  UiSchema,
   UiSchemaRoot,
   ValidationError
 } from '@sjsf/form';
+import type { RPath, SchemaDefinition } from '@sjsf/form/core';
 
-export const ID_PREFIX_KEY = '__sjsf_sveltekit_id_prefix';
 export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
 export const FORM_DATA_FILE_PREFIX = '__sjsf_sveltekit_file__';
 
@@ -39,8 +40,9 @@ type PickOptionalSerializable<T> = Pick<T, Extract<OptionalKeys<T>, Serializable
 
 export type SerializableOptionalFormOptions<T> = PickOptionalSerializable<FormOptions<T>>;
 
-export type InitialFormData<T, SendSchema extends boolean> = SerializableOptionalFormOptions<T> & {
-  schema: SendSchema extends true ? Schema : undefined;
+export type InitialFormData<T = unknown> = SerializableOptionalFormOptions<T> & {
+  schema?: Schema;
+  initialValue?: DeepPartial<T>;
   initialErrors?: ValidationError[];
   uiSchema?: UiSchemaRoot;
 };
@@ -53,10 +55,18 @@ export interface ValidatedFormData<SendData extends boolean> {
   errors: ValidationError[];
 }
 
-export const IDENTIFIABLE_INPUT_ELEMENTS: (keyof IdentifiableFieldElement)[] = [
-  // NOTE: We use the value of `key-input` to infer new key value
-  // 'key-input',
-  // NOTE: We use the value of `anyof` and `oneof` to infer selected subSchema
-  // 'anyof',
-  // 'oneof'
-];
+export type Entry<T> = [key: string, value: T];
+
+export type Entries<T> = Entry<T>[];
+
+export interface EntryConverterOptions<T> {
+  schema: SchemaDefinition;
+  uiSchema: UiSchema;
+  path: RPath;
+  value: T | undefined;
+}
+
+export type EntryConverter<T> = (
+  signal: AbortSignal,
+  options: EntryConverterOptions<T>
+) => MaybePromise<SchemaValue | undefined>;

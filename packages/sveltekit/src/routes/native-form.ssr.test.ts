@@ -2,8 +2,7 @@ import { render } from 'svelte/server';
 import type { Page } from '@sveltejs/kit';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { ValidatedFormData } from '$lib/model.js';
-import { initForm } from '$lib/server/server.js';
+import type { InitialFormData, ValidatedFormData } from '$lib/model.js';
 
 async function renderForm(page: Partial<Page>) {
   vi.doMock('$app/state', () => ({
@@ -25,8 +24,7 @@ describe.skip('native form SSR', () => {
   it('should render initial values', async () => {
     const { body } = await renderForm({
       data: {
-        form: initForm({
-          sendSchema: true,
+        form: {
           schema: { title: 'Schema title', type: 'string' },
           initialValue: 'initial value',
           initialErrors: [
@@ -35,7 +33,7 @@ describe.skip('native form SSR', () => {
               message: 'error message'
             }
           ]
-        })
+        } satisfies InitialFormData
       }
     });
     expect(body).toContain('Schema title');
@@ -45,8 +43,7 @@ describe.skip('native form SSR', () => {
   it('should render action result', async () => {
     const { body } = await renderForm({
       data: {
-        form: initForm({
-          sendSchema: true,
+        form: {
           schema: { title: 'Schema title', type: 'string' },
           initialValue: 'initial value',
           initialErrors: [
@@ -55,7 +52,7 @@ describe.skip('native form SSR', () => {
               message: 'error message'
             }
           ]
-        })
+        } satisfies InitialFormData
       },
       form: {
         form: {
@@ -79,8 +76,7 @@ describe.skip('native form SSR', () => {
   it('should display the initial values if the validation was successful', async () => {
     const { body } = await renderForm({
       data: {
-        form: initForm({
-          sendSchema: true,
+        form: {
           schema: { title: 'Schema title', type: 'string' },
           initialValue: 'initial value',
           initialErrors: [
@@ -89,7 +85,7 @@ describe.skip('native form SSR', () => {
               message: 'error message'
             }
           ]
-        })
+        } satisfies InitialFormData
       },
       form: {
         form: {

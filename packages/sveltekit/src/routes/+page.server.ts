@@ -1,7 +1,8 @@
 import { fail } from '@sveltejs/kit';
 import type { FormValue } from '@sjsf/form';
 
-import { initForm, isValid, createFormHandler, createAction } from '$lib/server/index.js';
+import { isValid, createFormHandler, createAction } from '$lib/server/index.js';
+import type { InitialFormData } from '$lib/model.js';
 
 import type { Actions } from './$types.js';
 import { schema, uiSchema } from './model.js';
@@ -15,12 +16,11 @@ const handleForm = createFormHandler({
 });
 
 export const load = async () => {
-  const form = initForm({
+  const form = {
     initialValue: { 'newKey::123': 'foo', 'also.333': 'bar' },
-    sendSchema: true,
     schema,
-    uiSchema
-  });
+    uiSchema,
+  } satisfies InitialFormData
   return { form };
 };
 

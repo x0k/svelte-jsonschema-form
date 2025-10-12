@@ -18,16 +18,19 @@ export default {
     },
     additionalProperties: false,
     patternProperties: {
-      "^[a-z][a-zA-Z0-9-]+$": {
+      "^foo.*$": {
         type: "string",
+      },
+      "^bar.*$": {
+        type: "number",
       },
     },
   },
   uiSchema: {
     "ui:options": {
       translations: {
-        "add-object-property": "Add pattern property",
-        "additional-property": "patternProperty",
+        "add-object-property": "Add property",
+        "additional-property": "fooProp",
       },
     },
     firstName: {
@@ -45,6 +48,7 @@ export default {
   initialValue: {
     firstName: "Chuck",
     lastName: "Norris",
-    assKickCount: "infinity",
+    fooPropertyExample: "foo",
+    barPropertyExample: 123,
   },
 } satisfies Sample;

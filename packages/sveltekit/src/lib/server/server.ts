@@ -1,9 +1,8 @@
 import { fail, type ActionFailure, type RequestEvent } from '@sveltejs/kit';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { DeepPartial, MaybePromise } from '@sjsf/form/lib/types';
+import type { MaybePromise } from '@sjsf/form/lib/types';
 import type { Validator } from '@sjsf/form/core';
 import {
-  DEFAULT_ID_PREFIX,
   isFormValueValidator,
   type Schema,
   type UiSchemaRoot,
@@ -16,8 +15,7 @@ import {
   type UiOptionsRegistry,
   type Creatable,
   create,
-  type FormIdBuilder,
-  type IdBuilderFactoryOptions
+  SJSF_ID_PREFIX
 } from '@sjsf/form';
 import {
   type IdOptions,
@@ -28,58 +26,26 @@ import { DEFAULT_INDEX_SEPARATOR } from '@sjsf/form/id-builders/modern';
 
 import {
   FORM_DATA_FILE_PREFIX,
-  ID_PREFIX_KEY,
   JSON_CHUNKS_KEY,
-  type InitialFormData,
-  type SerializableOptionalFormOptions,
+  type EntryConverter,
   type ValidatedFormData
-} from '../model.js';
+} from '$lib/model.js';
 
 import { parseSchemaValue } from './schema-value-parser.js';
 import {
   createFormDataEntryConverter,
   type FormDataConverterOptions,
   type UnknownEntryConverter
-} from './convert-form-data-entry.js';
-import type { EntryConverter } from './entry.js';
-import { parseIdPrefix } from './id-prefix-parser.js';
-
-export type InitFormOptions<T, SendSchema extends boolean> = SerializableOptionalFormOptions<T> & {
-  sendSchema?: SendSchema;
-  initialValue?: DeepPartial<T>;
-  initialErrors?: ValidationError[];
-  uiSchema?: UiSchemaRoot;
-} & (SendSchema extends true
-    ? { schema: Schema }
-    : {
-        schema?: never;
-      });
-
-export function initForm<T, SendSchema extends boolean = false>(
-  options: InitFormOptions<T, SendSchema>
-): InitialFormData<T, SendSchema> {
-  const data = {
-    ...options,
-    schema: (options.sendSchema ? options.schema : undefined) as SendSchema extends true
-      ? Schema
-      : undefined
-  };
-  delete data['sendSchema'];
-  return data;
-}
+} from '../internal/convert-form-data-entry.js';
 
 export interface FormHandlerOptions<SendData extends boolean> extends IdOptions {
   schema: Schema;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
   idIndexSeparator?: string;
-  idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
-  createEntriesConverter?: Creatable<
-    EntryConverter<FormDataEntryValue>,
-    FormDataConverterOptions
-  >;
+  createEntryConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
   convertUnknownEntry?: UnknownEntryConverter;
   /** @default false */
   sendData?: SendData;
@@ -100,28 +66,19 @@ export function createFormHandler<SendData extends boolean>({
   schema,
   uiSchema = {},
   uiOptionsRegistry = {},
-  idBuilder: createIdBuilder,
   merger: createMerger,
   validator: createValidator,
-  createEntriesConverter = createFormDataEntryConverter,
+  createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
-  idPrefix = DEFAULT_ID_PREFIX,
   idSeparator = DEFAULT_ID_SEPARATOR,
   idIndexSeparator = DEFAULT_INDEX_SEPARATOR,
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
   sendData,
   createReviver = createDefaultReviver
 }: FormHandlerOptions<SendData>) {
-  const idBuilder = create(createIdBuilder, {
-    idPrefix,
-    schema,
-    uiOptionsRegistry,
-    uiSchema
-  });
   const validator: Validator = create(createValidator, {
     schema,
     uiSchema,
-    idBuilder,
     uiOptionsRegistry,
     merger: () => merger
   });
@@ -131,7 +88,7 @@ export function createFormHandler<SendData extends boolean>({
     validator,
     uiOptionsRegistry
   });
-  const convertEntries = create(createEntriesConverter, {
+  const convertEntry = create(createEntryConverter, {
     validator,
     merger,
     rootSchema: schema,
@@ -148,14 +105,10 @@ export function createFormHandler<SendData extends boolean>({
       (errors: ValidationError[]) => ValidatedFormData<SendData>
     ]
   > => {
-    const idPrefix = formData.has(ID_PREFIX_KEY)
-      ? (formData.get(ID_PREFIX_KEY) as string)
-      : parseIdPrefix({
-          formData,
-          idIndexSeparator,
-          idPseudoSeparator,
-          idSeparator
-        });
+    const idPrefix = formData.get(SJSF_ID_PREFIX);
+    if (typeof idPrefix !== 'string') {
+      throw new Error(`"${SJSF_ID_PREFIX}" key is missing in FormData or not a string`);
+    }
     const data = formData.has(JSON_CHUNKS_KEY)
       ? JSON.parse(formData.getAll(JSON_CHUNKS_KEY).join(''), createReviver(formData))
       : await parseSchemaValue(signal, {
@@ -168,7 +121,7 @@ export function createFormHandler<SendData extends boolean>({
           entries: Array.from(formData.entries()),
           validator,
           merger,
-          convertEntry: convertEntries
+          convertEntry
         });
     const errors = isAsyncFormValueValidator(validator)
       ? await validator.validateFormValueAsync(signal, schema, data)
@@ -177,7 +130,7 @@ export function createFormHandler<SendData extends boolean>({
         : [];
     function validated(errors: ValidationError[]) {
       return {
-        idPrefix,
+        idPrefix: idPrefix as string,
         isValid: errors.length === 0,
         sendData,
         data: (sendData ? data : undefined) as SendData extends true ? FormValue : undefined,
@@ -196,6 +149,10 @@ type FormRecord<F extends string, SendData extends boolean> = {
   [K in F]: ValidatedFormData<SendData>;
 };
 
+interface FormMeta {
+  idPrefix: string;
+}
+
 export function createAction<
   const F extends string,
   const SendData extends boolean,
@@ -205,7 +162,11 @@ export function createAction<
   options: FormHandlerOptions<SendData> & {
     name: F;
   },
-  userAction: (data: any, event: E) => MaybePromise<ValidationError[] | R | void>
+  userAction: (
+    data: any,
+    event: E,
+    meta: Readonly<FormMeta>
+  ) => MaybePromise<ValidationError[] | R | void>
 ) {
   const handle = createFormHandler(options);
   return async (
@@ -218,7 +179,7 @@ export function createAction<
     if (!form.isValid) {
       return fail(400, { [options.name]: form } as FormRecord<F, SendData>);
     }
-    let result = await userAction(data, event);
+    let result = await userAction(data, event, form);
     if (Array.isArray(result)) {
       if (result.length > 0) {
         return fail(400, {

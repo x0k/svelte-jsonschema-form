@@ -294,11 +294,25 @@ The `makeFormDataParser` and `validateForm` functions
 have been replaced with `createFormHandler`.
 See the [integration](../../integrations/sveltekit/#server) page for more information.
 
+The `initForm` function has been removed — specify initial values directly instead.
+
+```ts
+import type { InitialFormData } from "@sjsf/sveltekit";
+
+export const load = async () => {
+  return {
+    form: {
+      schema,
+      initialValue: { ... },
+    } satisfies InitialFormData,
+  };
+};
+```
 
 ## Dependency versions have been updated
 
 - `svelte@^5.39.0`
-- `@sveltejs/kit@^2.42.0` (`@sjsf/sveltekit`)
+- `@sveltejs/kit@^2.46.0` (`@sjsf/sveltekit`)
 - `daisyui@^5.1.0` (`@sjsf/daisyui5-theme`)
 - `flowbite-svelte-icons@^3.0.0` (`@sjsf/flowbite-icons`)
 - `flowbite-svelte@^1.13.0` (`@sjsf/flowbite3-theme`)

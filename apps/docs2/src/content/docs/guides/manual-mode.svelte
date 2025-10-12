@@ -1,5 +1,11 @@
 <script lang="ts">
-  import { type Schema, createForm, Field, handlers } from "@sjsf/form";
+  import {
+    type Schema,
+    createForm,
+    Field,
+    handlers,
+    HiddenIdPrefixInput,
+  } from "@sjsf/form";
   import type { FromSchema } from "json-schema-to-ts";
 
   import * as defaults from "@/lib/form/defaults";
@@ -36,6 +42,8 @@
   {@attach handlers(form)}
   style="display: flex; flex-direction: column; gap: 1rem;"
 >
+  <!-- Use this component if you plan to use SvelteKit integration. -->
+  <HiddenIdPrefixInput {form} />
   <Field {form} path={["login"]} />
   <Field
     {form}

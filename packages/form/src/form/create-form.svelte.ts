@@ -90,6 +90,7 @@ import {
   FORM_ERRORS,
   FORM_PATHS_TRIE_REF,
   internalHasFieldState,
+  FORM_ID_PREFIX,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
 
@@ -127,10 +128,12 @@ export interface IdBuilderFactoryOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
+  validator: Validator;
+  merger: FormMerger;
+  valueRef: Ref<FormValue>;
 }
 
 export interface ValidatorFactoryOptions {
-  idBuilder: FormIdBuilder;
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
@@ -263,8 +266,10 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * Reset handler
    *
    * Will be called when the form is reset.
+   * 
+   * The event will be `undefined` if `reset` is called manually without passing an event.
    */
-  onReset?: (e: Event) => void;
+  onReset?: (e?: Event) => void;
   schedulerYield?: SchedulerYield;
   keyedArraysMap?: KeyedArraysMap;
 }
@@ -275,18 +280,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
   const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
-  const idBuilder = $derived(
-    create(options.idBuilder, {
-      idPrefix,
-      schema: options.schema,
-      uiSchema: uiSchemaRoot,
-      uiOptionsRegistry,
-    })
-  );
-  const idCache = new WeakMap<FieldPath, Id>();
-  const createId = $derived(
-    weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
-  );
   const pathsTrieRef: PathTrieRef<FieldPath> = $derived.by(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     options.schema;
@@ -297,7 +290,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const rootPath = $derived(internalRegisterFieldPath(pathsTrieRef, []));
   const validator = $derived(
     create(options.validator, {
-      idBuilder,
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
       schema: options.schema,
@@ -322,6 +314,21 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
             initialDefaultsGenerated: false,
           })
         )
+  );
+  const idBuilder: FormIdBuilder = $derived(
+    create(options.idBuilder, {
+      idPrefix,
+      schema: options.schema,
+      uiSchema: uiSchemaRoot,
+      uiOptionsRegistry,
+      merger: merger,
+      validator: validator,
+      valueRef,
+    })
+  );
+  const idCache = new WeakMap<FieldPath, Id>();
+  const createId = $derived(
+    weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
   );
   const errors = $derived(
     Array.isArray(options.initialErrors)
@@ -384,13 +391,13 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const isSubmitted = $derived(
     internalHasFieldState(fieldsStateMap, rootPath, FIELD_SUBMITTED)
   );
-  let isFirstRender = true
+  let isFirstRender = true;
   let initialDefaultsGenerated = $derived.by(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     options.schema;
-    const result = isFirstRender
-    isFirstRender = false
-    return result
+    const result = isFirstRender;
+    isFirstRender = false;
+    return result;
   });
   // STATE END
 
@@ -505,8 +512,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     submission.run(e);
   }
 
-  function reset(e: Event) {
-    e.preventDefault();
+  function reset(e?: Event) {
+    e?.preventDefault();
     fieldsStateMap.clear();
     errors.clear();
     valueRef.current = merger.mergeFormDataAndSchemaDefaults({
@@ -540,6 +547,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     reset,
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
+    get [FORM_ID_PREFIX]() {
+      return idPrefix;
+    },
     get [FORM_ERRORS]() {
       return errors;
     },

@@ -1,8 +1,7 @@
 import type { ObjectProperties } from "@/lib/types.js";
 import { overrideByRecord } from "@/lib/resolver.js";
-import type { RPath } from "@/core/path.js";
+import { getSchemaDefinitionByPath, type RPath } from "@/core/path.js";
 
-import { getRootSchemaTitleByPath } from "../model.js";
 import type { Config } from "../config.js";
 import {
   resolveUiRef,
@@ -19,6 +18,9 @@ import {
   FORM_UI_OPTIONS_REGISTRY,
   FORM_UI_SCHEMA_ROOT,
   FORM_SCHEMA,
+  FORM_VALIDATOR,
+  FORM_MERGER,
+  FORM_VALUE,
 } from "../internals.js";
 import type { FormState } from "./state.js";
 
@@ -136,5 +138,13 @@ export function getFieldTitle<T>(ctx: FormState<T>, path: RPath) {
       return resolved;
     }
   }
-  return getRootSchemaTitleByPath(ctx[FORM_SCHEMA], path);
+  const def = getSchemaDefinitionByPath(
+    ctx[FORM_VALIDATOR],
+    ctx[FORM_MERGER],
+    ctx[FORM_SCHEMA],
+    ctx[FORM_SCHEMA],
+    path,
+    ctx[FORM_VALUE]
+  );
+  return typeof def === "object" ? def.title : undefined;
 }

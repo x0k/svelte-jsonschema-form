@@ -23,6 +23,7 @@ export interface FormIdBuilder {
   fromPath: (path: FieldPath) => string;
 }
 
+export const SJSF_ID_PREFIX = '__sjsf_id_prefix'
 export const DEFAULT_ID_PREFIX = "root";
 
 const PSEUDO_PREFIX = "__sjsf_pseudo_element";

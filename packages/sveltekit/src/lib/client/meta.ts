@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { SchemaValue } from '@sjsf/form';
+import type { Schema, SchemaValue } from '@sjsf/form';
 
 import type { ValidatedFormData, InitialFormData } from '../model.js';
 
@@ -55,21 +55,19 @@ type ValidatedFormDataFromActionDataUnion<
   FormName extends keyof ActionData
 > = ActionData extends any ? ValidatedFormDataFromActionDataBranch<ActionData, FormName> : never;
 
-
 type InitialFromDataFromPageData<PageData, FormName extends PropertyKey> = PageData extends {
-  [K in FormName]: InitialFormData<any, any>;
+  [K in FormName]: InitialFormData<any>;
 }
   ? PageData[FormName]
   : unknown;
 
 type FormValueFromInitialFormData<IFD, FallbackValue> = unknown extends IFD
   ? FallbackValue
-  : IFD extends InitialFormData<infer T, any>
+  : IFD extends InitialFormData<infer T>
     ? T
     : never;
 
 type SendDataFromValidatedFormData<VFD> =
   VFD extends ValidatedFormData<infer SendData> ? SendData : false;
 
-type SendSchemaFromInitialFormData<IFD> =
-  IFD extends InitialFormData<any, infer SendSchema> ? SendSchema : false;
+type SendSchemaFromInitialFormData<IFD> = IFD extends { schema: Schema } ? true : false;

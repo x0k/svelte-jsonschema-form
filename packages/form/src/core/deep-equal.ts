@@ -1,4 +1,4 @@
-import { isObject, isObjectProto } from "@/lib/object.js";
+import { isObject, isRecordProto } from "@/lib/object.js";
 
 import type { Schema, SchemaValue } from "./schema.js";
 
@@ -27,8 +27,8 @@ export function isSchemaValueDeepEqual(
     }
     if (
       Array.isArray(b) ||
-      !isObjectProto<SchemaValue | undefined>(a) ||
-      !isObjectProto<SchemaValue | undefined>(b)
+      !isRecordProto<SchemaValue | undefined>(a) ||
+      !isRecordProto<SchemaValue | undefined>(b)
     ) {
       // This should have been handled with ===
       return false;

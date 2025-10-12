@@ -49,11 +49,23 @@
 		"./server": {
 			"types": "./dist/server/index.d.ts",
 			"svelte": "./dist/server/index.js"
+		},
+		"./rf": {
+			"types": "./dist/rf/index.d.ts",
+			"svelte": "./dist/rf/index.js"
+		},
+		"./rf/client": {
+			"types": "./dist/rf/client/index.d.ts",
+			"svelte": "./dist/rf/client/index.js"
+		},
+		"./rf/server": {
+			"types": "./dist/rf/server/index.d.ts",
+			"svelte": "./dist/rf/server/index.js"
 		}
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.0.0-next.6",
-		"@sveltejs/kit": "^2.42.0",
+		"@sveltejs/kit": "^2.46.0",
 		"esm-env": "^1.2.0",
 		"svelte": "^5.39.0"
 	},
@@ -68,5 +80,8 @@
 		"theme-testing": "workspace:*"
 	},
 	"svelte": "./dist/model.js",
-	"types": "./dist/model.d.ts"
+	"types": "./dist/model.d.ts",
+	"dependencies": {
+		"@standard-schema/spec": "^1.0.0"
+	}
 }

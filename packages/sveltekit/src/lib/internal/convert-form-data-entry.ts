@@ -10,7 +10,7 @@ import {
 } from '@sjsf/form/core';
 import { DEFAULT_BOOLEAN_ENUM, type FieldValue, type Schema, type UiSchemaRoot } from '@sjsf/form';
 
-import type { EntryConverter, EntryConverterOptions } from './entry.js';
+import type { EntryConverter, EntryConverterOptions } from '../model.js';
 
 export type UnknownEntryConverter = (
   options: EntryConverterOptions<FormDataEntryValue>

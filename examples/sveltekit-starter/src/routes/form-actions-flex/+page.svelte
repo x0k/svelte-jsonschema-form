@@ -2,16 +2,18 @@
   import { BasicForm } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
-  import * as defaults from "$lib/form/defaults";
+  import * as defaults from "$lib/form-defaults";
 
-  import type { PageData, ActionData } from "./$types.js";
+  import type { ActionData, PageData } from "./$types";
 
   const meta = createMeta<ActionData, PageData>().form;
   const { form } = setupSvelteKitForm(meta, {
     ...defaults,
-    onSubmitError: console.warn,
-    onSuccess: console.log,
-    onFailure: console.error,
+    onSuccess: (result) => {
+      if (result.type === "success") {
+        console.log(result.data?.post);
+      }
+    },
   });
 </script>
 

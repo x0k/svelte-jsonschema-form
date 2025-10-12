@@ -1,7 +1,7 @@
 ---
-title: SvelteKit
+title: Form actions
 sidebar:
-  order: 2
+  order: 0
 ---
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
@@ -9,15 +9,11 @@ import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id
 
 import Npm from '@/components/npm.astro';
 
-import clientCode from './_sveltekit-client.svelte.api?raw';
-import clientFlexCode from './_sveltekit-flex-client.svelte.api?raw'
-import serverCode from './_sveltekit-server.ts.api?raw';
-
-:::caution
-
-SvelteKit integration is experimental
-
-:::
+import modelCode from '%/sveltekit-starter/src/routes/model?raw'
+import clientCode from '%/sveltekit-starter/src/routes/form-actions/+page.svelte?raw';
+import serverCode from '%/sveltekit-starter/src/routes/form-actions/+page.server?raw'
+import clientFlexCode from '%/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw';
+import serverFlexCode from '%/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw';
 
 Since this is a `Svelte` library, you may want to use it with the `SvelteKit`.
 
@@ -39,51 +35,37 @@ See details in the sections below
   <TabItem label='+page.server.ts'>
     <Code code={serverCode} lang='typescript' />
   </TabItem>
+  <TabItem label='model.ts'>
+    <Code code={modelCode} lang='typescript' />
+  </TabItem>
 </Tabs>
 
 ## Server
 
-On the server side you should implement at least one [action](https://svelte.dev/docs/kit/form-actions)
-which will always return the result of `validateForm` function (`redirect` and `error` helpers are allowed).
-
-If the form data is passed as `FormData`, you need to create a parser for it.
-
-:::caution
-
-Serialization of original errors may lead to non-consistent state on the client
-(for example, if the error is represented by an instance of some class).
-
-You can use the [transport](https://svelte.dev/docs/kit/@sveltejs-kit#Transport)
-hook to pass original errors correctly.
-
-:::
-
-<Code code={serverCode} lang="typescript" />
-
-:::note
-
-You can use any convenient name instead of `form`
-
-:::
-
 If you want to populate the form from the database,
-you can use the `initForm` function inside the `load` function.
+you can return `InitialFormData` object inside the `load` function.
 
 ```typescript
-import { initForm } from '@sjsf/sveltekit/server';
+import type { InitialFormData } from "@sjsf/sveltekit";
 
 export const load = async () => {
-  const data = await getData();
-  const form = initForm({ schema, validator, initialValue: data });
-  return { form };
+  return {
+    // Should match action name
+    form: {
+      schema,
+      initialValue: { title: "New post", content: "" } satisfies FormValue,
+    } satisfies InitialFormData,
+  };
 };
 ```
 
-:::note
+You can define an [action](https://svelte.dev/docs/kit/form-actions)
+using the `createAction` function.
+In this case, the callback provided as the second argument
+will only be called if the form data passes validation successfully.
 
-The name of the `initForm` function result should match the name from the `action`
-
-:::
+If any errors occur during processing,
+you can return an array of `ValidationError` objects.
 
 ## Client
 
@@ -96,8 +78,8 @@ Or use more flexible solution:
 
 The form data type will be inferred from the `PageData` type.
 
-If you did not use `initForm` in the `load` function,
-the fourth generic parameter of the `createMeta` function will be used as the form data type
+If you did not use `load` function, the third generic parameter of
+the `createMeta` function will be used as the form data type
 (default type is `SchemaValue`).
 
 :::
@@ -108,7 +90,7 @@ According to Svelte documentation your form should always use `POST` requests.
 
 By default, the form will work even with JavaScript disabled, but you should consider the following limitations of this mode of operation:
 
-- `validateForm` should be called with `sendData: true` to persist form data between page updates
+- `action` should be created with `sendData: true` to persist form data between page updates
 - Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
 will not expand/switch their state.
 - Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.

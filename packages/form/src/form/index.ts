@@ -37,3 +37,4 @@ export { default as ErrorMessage, createMessage } from "./error-message.svelte";
 export { default as Datalist } from "./datalist.svelte";
 export { default as Text } from "./text.svelte";
 export { default as Field } from "./field.svelte";
+export { default as HiddenIdPrefixInput } from "./hidden-id-prefix-input.svelte";

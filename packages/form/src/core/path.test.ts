@@ -1,9 +1,35 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
 
-import { getSchemaDefinitionByPath } from "./path.js";
-import type { Schema } from "./schema.js";
+import { getSchemaDefinitionByPath, type RPath } from "./path.js";
+import type { Schema, SchemaValue } from "./schema.js";
+import type { Validator } from "./validator.js";
+import type { Merger } from "./merger.js";
+import { createValidator } from "./test-validator.js";
+import { createMerger } from "./test-merger.js";
 
 describe("getSchemaDefinitionByPath", () => {
+  let testValidator: Validator;
+  let defaultMerger: Merger;
+
+  beforeEach(() => {
+    testValidator = createValidator();
+    defaultMerger = createMerger();
+  });
+
+  const get = (
+    schema: Schema,
+    path: RPath,
+    value: SchemaValue | undefined = undefined
+  ) =>
+    getSchemaDefinitionByPath(
+      testValidator,
+      defaultMerger,
+      schema,
+      schema,
+      path,
+      value,
+    );
+
   it("should return the property definition for an object schema", () => {
     const schema: Schema = {
       type: "object",
@@ -11,7 +37,7 @@ describe("getSchemaDefinitionByPath", () => {
         foo: { type: "string" },
       },
     };
-    const result = getSchemaDefinitionByPath(schema, schema, ["foo"]);
+    const result = get(schema, ["foo"]);
     expect(result).toEqual({ type: "string" });
   });
 
@@ -20,7 +46,7 @@ describe("getSchemaDefinitionByPath", () => {
       type: "array",
       items: { type: "number" },
     };
-    const result = getSchemaDefinitionByPath(schema, schema, [0]);
+    const result = get(schema, [0]);
     expect(result).toEqual({ type: "number" });
   });
 
@@ -31,7 +57,7 @@ describe("getSchemaDefinitionByPath", () => {
         foo: { type: "string" },
       },
     };
-    const result = getSchemaDefinitionByPath(schema, schema, ["bar"]);
+    const result = get(schema, ["bar"]);
     expect(result).toBeUndefined();
   });
 
@@ -47,10 +73,7 @@ describe("getSchemaDefinitionByPath", () => {
         },
       },
     };
-    const result = getSchemaDefinitionByPath(schema, schema, [
-      "nested",
-      "value",
-    ]);
+    const result = get(schema, ["nested", "value"]);
     expect(result).toEqual({ type: "boolean" });
   });
 
@@ -66,7 +89,7 @@ describe("getSchemaDefinitionByPath", () => {
         },
       },
     };
-    const result = getSchemaDefinitionByPath(schema, schema, ["foo"]);
+    const result = get(schema, ["foo"]);
     expect(result).toEqual({ type: "string" });
   });
 
@@ -88,7 +111,178 @@ describe("getSchemaDefinitionByPath", () => {
         },
       ],
     };
-    const result = getSchemaDefinitionByPath(schema, schema, ["alt"]);
+    const result = get(schema, ["alt"]);
     expect(result).toEqual({ type: "string" });
+  });
+
+  it("should handle dependencies keyword", () => {
+    const schema: Schema = {
+      title: "Person",
+      type: "object",
+      properties: {
+        "Do you have any pets?": {
+          type: "string",
+          enum: ["No", "Yes: One", "Yes: More than one"],
+          default: "No",
+        },
+      },
+      required: ["Do you have any pets?"],
+      dependencies: {
+        "Do you have any pets?": {
+          oneOf: [
+            {
+              properties: {
+                "Do you have any pets?": {
+                  enum: ["No"],
+                },
+              },
+            },
+            {
+              properties: {
+                "Do you have any pets?": {
+                  enum: ["Yes: One"],
+                },
+                "How old is your pet?": {
+                  type: "number",
+                },
+              },
+              required: ["How old is your pet?"],
+            },
+            {
+              properties: {
+                "Do you have any pets?": {
+                  enum: ["Yes: More than one"],
+                },
+                "Do you want to get rid of any?": {
+                  type: "boolean",
+                },
+              },
+              required: ["Do you want to get rid of any?"],
+            },
+          ],
+        },
+      },
+    };
+    const result = get(schema, ["How old is your pet?"]);
+    expect(result).toEqual({
+      type: "number",
+    });
+  });
+
+  it("should handle if,then,else keywords", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        animal: {
+          enum: ["Cat", "Fish"],
+        },
+      },
+      allOf: [
+        {
+          if: {
+            properties: {
+              animal: {
+                const: "Cat",
+              },
+            },
+          },
+          then: {
+            properties: {
+              food: {
+                type: "string",
+                enum: ["meat", "grass", "fish"],
+              },
+            },
+            required: ["food"],
+          },
+        },
+        {
+          if: {
+            properties: {
+              animal: {
+                const: "Fish",
+              },
+            },
+          },
+          then: {
+            properties: {
+              food: {
+                type: "string",
+                enum: ["insect", "worms"],
+              },
+              water: {
+                type: "string",
+                enum: ["lake", "sea"],
+              },
+            },
+            required: ["food", "water"],
+          },
+        },
+        {
+          required: ["animal"],
+        },
+      ],
+    };
+    defaultMerger = createMerger({
+      allOfMerges: [
+        {
+          input: {
+            type: "object",
+            properties: { animal: { enum: ["Cat", "Fish"] } },
+            allOf: [
+              {
+                if: { properties: { animal: { const: "Cat" } } },
+                then: {
+                  properties: {
+                    food: { type: "string", enum: ["meat", "grass", "fish"] },
+                  },
+                  required: ["food"],
+                },
+              },
+              {
+                if: { properties: { animal: { const: "Fish" } } },
+                then: {
+                  properties: {
+                    food: { type: "string", enum: ["insect", "worms"] },
+                    water: { type: "string", enum: ["lake", "sea"] },
+                  },
+                  required: ["food", "water"],
+                },
+              },
+              { required: ["animal"] },
+            ],
+          },
+          result: {
+            type: "object",
+            properties: { animal: { enum: ["Cat", "Fish"] } },
+            if: { properties: { animal: { const: "Cat" } } },
+            then: {
+              properties: {
+                food: { type: "string", enum: ["meat", "grass", "fish"] },
+              },
+              required: ["food"],
+            },
+            allOf: [
+              {
+                if: { properties: { animal: { const: "Fish" } } },
+                then: {
+                  properties: {
+                    food: { type: "string", enum: ["insect", "worms"] },
+                    water: { type: "string", enum: ["lake", "sea"] },
+                  },
+                  required: ["food", "water"],
+                },
+              },
+            ],
+            required: ["animal"],
+          },
+        },
+      ],
+    });
+    const result = get(schema, ["water"]);
+    expect(result).toEqual({
+      type: "string",
+      enum: ["lake", "sea"],
+    });
   });
 });

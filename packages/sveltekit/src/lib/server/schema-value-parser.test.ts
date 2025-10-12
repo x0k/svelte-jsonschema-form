@@ -1,11 +1,12 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import type { Schema } from '@sjsf/form';
+import { SJSF_ID_PREFIX, type Schema } from '@sjsf/form';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
-import type { Entries } from './entry.js';
+import type { Entries } from '$lib/model.js';
+
 import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
-import { createFormDataEntryConverter } from './convert-form-data-entry.js';
+import { createFormDataEntryConverter } from '../internal/convert-form-data-entry.js';
 
 const opts = ({
   schema = {},
@@ -13,11 +14,11 @@ const opts = ({
   uiSchema = {},
   idPrefix = 'root',
   idSeparator = '.',
-  idIndexSeparator = "@",
+  idIndexSeparator = '@',
   idPseudoSeparator = '::',
   validator = createFormValidator(),
   merger = createMerger(),
-  convertEntry: convertEntry = createFormDataEntryConverter({
+  convertEntry = createFormDataEntryConverter({
     merger,
     validator,
     rootSchema: schema,
@@ -45,8 +46,8 @@ describe('parseSchemaValue', async () => {
     c = new AbortController();
   });
 
-  it('Should parse empty entries', () => {
-    expect(parseSchemaValue(c.signal, opts())).toBeUndefined();
+  it('Should parse empty entries', async () => {
+    await expect(parseSchemaValue(c.signal, opts())).resolves.toBeUndefined();
   });
   it('Should parse root value', async () => {
     await expect(
@@ -419,7 +420,7 @@ describe('parseSchemaValue', async () => {
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual(123);
   });
-  it('Sould parse schema with oneOf 2', async () => {
+  it('Should parse schema with oneOf 2', async () => {
     const schema: Schema = {
       type: 'object',
       oneOf: [
@@ -816,9 +817,8 @@ describe('parseSchemaValue', async () => {
           properties: {
             'Do you have any pets?': {
               type: 'string',
-              // enum: ['No', 'Yes: One', 'Yes: More than one'],
-              enum: ['0', '1', '2'],
-              default: '0'
+              enum: ['No', 'Yes: One', 'Yes: More than one'],
+              default: 'No'
             }
           },
           required: ['Do you have any pets?'],
@@ -828,14 +828,14 @@ describe('parseSchemaValue', async () => {
                 {
                   properties: {
                     'Do you have any pets?': {
-                      enum: ['0']
+                      enum: ['No']
                     }
                   }
                 },
                 {
                   properties: {
                     'Do you have any pets?': {
-                      enum: ['1']
+                      enum: ['Yes: One']
                     },
                     'How old is your pet?': {
                       type: 'number'
@@ -846,7 +846,7 @@ describe('parseSchemaValue', async () => {
                 {
                   properties: {
                     'Do you have any pets?': {
-                      enum: ['2']
+                      enum: ['Yes: More than one']
                     },
                     'Do you want to get rid of any?': {
                       type: 'boolean'
@@ -861,43 +861,44 @@ describe('parseSchemaValue', async () => {
       }
     };
     const entries: Entries<string> = [
+      [SJSF_ID_PREFIX, 'root'],
       ['root.simple.name', 'Randy'],
       ['root.simple.credit_card', ''],
       ['root.conditional.Do you have any pets?', '0'],
-      ['root.arrayOfConditionals.0.Do you have any pets?', '1'],
-      ['root.arrayOfConditionals.0.How old is your pet?', '6'],
-      ['root.arrayOfConditionals.1.Do you have any pets?', '2'],
-      ['root.arrayOfConditionals.1.Do you want to get rid of any?', '1'],
-      ['root.fixedArrayOfConditionals.0.Do you have any pets?', '0'],
-      ['root.fixedArrayOfConditionals.1.Do you have any pets?', '1'],
-      ['root.fixedArrayOfConditionals.1.How old is your pet?', '6'],
-      ['root.fixedArrayOfConditionals.2.Do you have any pets?', '2'],
-      ['root.fixedArrayOfConditionals.2.Do you want to get rid of any?', '0']
+      ['root.arrayOfConditionals@0.Do you have any pets?', '1'],
+      ['root.arrayOfConditionals@0.How old is your pet?', '6'],
+      ['root.arrayOfConditionals@1.Do you have any pets?', '2'],
+      ['root.arrayOfConditionals@1.Do you want to get rid of any?', '1'],
+      ['root.fixedArrayOfConditionals@0.Do you have any pets?', '0'],
+      ['root.fixedArrayOfConditionals@1.Do you have any pets?', '1'],
+      ['root.fixedArrayOfConditionals@1.How old is your pet?', '6'],
+      ['root.fixedArrayOfConditionals@2.Do you have any pets?', '2'],
+      ['root.fixedArrayOfConditionals@2.Do you want to get rid of any?', '0']
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       conditional: {
-        'Do you have any pets?': '0'
+        'Do you have any pets?': 'No'
       },
       arrayOfConditionals: [
         {
-          'Do you have any pets?': '1',
+          'Do you have any pets?': 'Yes: One',
           'How old is your pet?': 6
         },
         {
-          'Do you have any pets?': '2',
+          'Do you have any pets?': 'Yes: More than one',
           'Do you want to get rid of any?': false
         }
       ],
       fixedArrayOfConditionals: [
         {
-          'Do you have any pets?': '0'
+          'Do you have any pets?': 'No'
         },
         {
-          'Do you have any pets?': '1',
+          'Do you have any pets?': 'Yes: One',
           'How old is your pet?': 6
         },
         {
-          'Do you have any pets?': '2',
+          'Do you have any pets?': 'Yes: More than one',
           'Do you want to get rid of any?': true
         }
       ],
@@ -1365,6 +1366,67 @@ describe('parseSchemaValue', async () => {
         }
       ],
       defaultsAndMinItems: ['carp', 'trout', 'bream', 'unidentified', 'unidentified']
+    });
+  });
+
+  it('Should revive empty array', async () => {
+    const schema: Schema = {
+      title: 'Locations Checkboxes',
+      type: 'array',
+      uniqueItems: true,
+      items: {
+        enum: ['foo', 'bar', 'baz']
+      }
+    };
+    const entries: Entries<FormDataEntryValue> = [];
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual([]);
+  });
+
+  it('Should support pattern properties', async () => {
+    const schema: Schema = {
+      title: 'A customizable registration form',
+      description: 'A simple form with pattern properties example.',
+      type: 'object',
+      required: ['firstName', 'lastName'],
+      properties: {
+        firstName: {
+          type: 'string',
+          title: 'First name'
+        },
+        lastName: {
+          type: 'string',
+          title: 'Last name'
+        }
+      },
+      additionalProperties: {
+        type: 'boolean'
+      },
+      patternProperties: {
+        '^foo.*$': {
+          type: 'string'
+        },
+        '^bar.*$': {
+          type: 'number'
+        }
+      }
+    };
+    const entries: Entries<string> = [
+      [SJSF_ID_PREFIX, 'root'],
+      ['root.firstName', 'Chuck'],
+      ['root.lastName', 'Norris'],
+      ['root.fooPropertyExample::key-input', 'fooProperty'],
+      ['root.fooPropertyExample', 'foo'],
+      ['root.barPropertyExample::key-input', 'barProperty'],
+      ['root.barPropertyExample', '123'],
+      ['root.baz::key-input', 'baz'],
+      ['root.baz', 'on']
+    ];
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
+      firstName: 'Chuck',
+      lastName: 'Norris',
+      fooProperty: 'foo',
+      barProperty: 123,
+      baz: true
     });
   });
 });

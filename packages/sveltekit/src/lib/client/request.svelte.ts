@@ -2,14 +2,15 @@
 import { DEV } from 'esm-env';
 import type { ActionResult } from '@sveltejs/kit';
 import { createTask, type TaskOptions } from '@sjsf/form/lib/task.svelte';
+import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX } from '@sjsf/form';
 
 import { applyAction, deserialize } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
+import { chunks } from '$lib/internal.js';
 
-import { FORM_DATA_FILE_PREFIX, ID_PREFIX_KEY, JSON_CHUNKS_KEY } from '../model.js';
+import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from '../model.js';
 
 import type { SvelteKitFormMeta } from './meta.js';
-import { DEFAULT_ID_PREFIX } from '@sjsf/form';
 
 export type SveltekitRequestOptions<ActionData, V> = Omit<
   TaskOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
@@ -77,7 +78,7 @@ export function createSvelteKitRequest<Meta extends SvelteKitFormMeta<any, any, 
       }
 
       const formData = new FormData();
-      formData.append(ID_PREFIX_KEY, options.idPrefix ?? DEFAULT_ID_PREFIX);
+      formData.append(SJSF_ID_PREFIX, options.idPrefix ?? DEFAULT_ID_PREFIX);
       for (const chunk of chunks(JSON.stringify(data, createReplacer(formData)), jsonChunkSize)) {
         formData.append(JSON_CHUNKS_KEY, chunk);
       }
@@ -180,12 +181,4 @@ function makeFormAttributeAccessor(
     submitter?.hasAttribute(`form${attribute}`)
       ? submitter[`form${capitalize(attribute)}`]
       : form[attribute];
-}
-
-// https://stackoverflow.com/a/29202760/70894
-function* chunks(str: string, size: number) {
-  const numChunks = Math.ceil(str.length / size);
-  for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
-    yield str.substring(o, o + size);
-  }
 }
