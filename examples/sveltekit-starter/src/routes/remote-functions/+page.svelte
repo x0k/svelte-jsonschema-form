@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { tick } from 'svelte';
+  import { tick } from "svelte";
   import { BasicForm, createForm } from "@sjsf/form";
   // You must export this ID Builder in your `defaults` file
   import { createFormIdBuilder } from "@sjsf/sveltekit/rf";
@@ -15,9 +15,12 @@
     await connect(
       createPost.enhance(async ({ submit }) => {
         await submit();
-        console.log(createPost.result)
-        await tick()
-        form.reset()
+        if (createPost.fields.allIssues()) {
+          return;
+        }
+        console.log(createPost.result);
+        await tick();
+        form.reset();
       }),
       {
         ...defaults,
