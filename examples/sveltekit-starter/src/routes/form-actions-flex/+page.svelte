@@ -9,7 +9,11 @@
   const meta = createMeta<ActionData, PageData>().form;
   const { form } = setupSvelteKitForm(meta, {
     ...defaults,
-    onSuccess: console.log,
+    onSuccess: (result) => {
+      if (result.type === "success") {
+        console.log(result.data?.post);
+      }
+    },
   });
 </script>
 

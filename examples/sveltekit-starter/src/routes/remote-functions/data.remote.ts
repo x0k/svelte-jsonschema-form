@@ -1,8 +1,8 @@
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 
-import { form, query } from "$app/server";
 import * as defaults from "$lib/form-defaults";
+import { form, query } from "$app/server";
 
 import { schema, type FormValue } from "../model";
 
