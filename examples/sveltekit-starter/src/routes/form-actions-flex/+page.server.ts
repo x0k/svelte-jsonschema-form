@@ -1,10 +1,10 @@
+import { fail, type Actions } from "@sveltejs/kit";
+import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler, isValid } from "@sjsf/sveltekit/server";
 
 import * as defaults from "$lib/form-defaults";
 
 import { type FormValue, schema } from "../model";
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { fail, type Actions } from "@sveltejs/kit";
 
 export const load = async () => {
   return {

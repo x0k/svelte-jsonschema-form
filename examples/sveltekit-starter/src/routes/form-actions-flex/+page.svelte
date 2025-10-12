@@ -7,7 +7,7 @@
   import type { ActionData, PageData } from "./$types";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form, request } = setupSvelteKitForm(meta, {
+  const { form } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: console.log,
   });
