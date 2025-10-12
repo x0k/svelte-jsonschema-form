@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getAbortSignal, onMount, untrack } from 'svelte';
+import { getAbortSignal, onMount, tick, untrack } from 'svelte';
 import type { StandardSchemaV1 } from '@standard-schema/spec';
 import type { RemoteForm, RemoteFormInput } from '@sveltejs/kit';
 import type { DeepPartial } from '@sjsf/form/lib/types';
@@ -131,8 +131,21 @@ export async function connect<
   );
 
   let formElement: HTMLFormElement;
+  let originalFormElement: HTMLFormElement;
+  const enhancedRemoteForm =
+    'enhance' in remoteForm
+      ? remoteForm.enhance(async ({ submit }) => {
+          await submit();
+          //@ts-expect-error https://github.com/sveltejs/kit/issues/14687
+          if (fields.allIssues()) {
+            return;
+          }
+          await tick();
+          originalFormElement.reset();
+        })
+      : remoteForm;
   onMount(() => {
-    const symbols = Object.getOwnPropertySymbols(remoteForm);
+    const symbols = Object.getOwnPropertySymbols(enhancedRemoteForm);
     if (symbols.length !== 1) {
       throw new Error(
         `The remote form specification was changed; only one custom symbol was expected, but got "${symbols.length}"`
@@ -140,7 +153,7 @@ export async function connect<
     }
     formElement = document.createElement('form');
     formElement.style.display = 'none';
-    const attach = remoteForm[symbols[0]];
+    const attach = enhancedRemoteForm[symbols[0]];
     return attach(formElement);
   });
 
@@ -215,10 +228,10 @@ export async function connect<
         return uiSchema;
       },
       onSubmit(value, e) {
-        const originalFormElement = e.target;
-        if (!(originalFormElement instanceof HTMLFormElement)) {
+        if (!(e.target instanceof HTMLFormElement)) {
           throw new Error('HTMLFormElement expected as submit event target');
         }
+        originalFormElement = e.target;
         formElement.enctype = originalFormElement.enctype;
         formElement.method = originalFormElement.method;
         formElement.action = originalFormElement.action;
