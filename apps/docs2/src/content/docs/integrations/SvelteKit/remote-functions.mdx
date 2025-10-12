@@ -4,8 +4,45 @@ sidebar:
   order: 1
 ---
 
+import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
+
+import Npm from '@/components/npm.astro';
+
+import modelCode from '%/sveltekit-starter/src/routes/model?raw'
+import clientCode from '%/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw';
+import serverCode from '%/sveltekit-starter/src/routes/remote-functions/data.remote?raw'
+
 :::caution
 
 Remote functions integration is experimental
 
 :::
+
+## Installation
+
+<Npm pkg="@sjsf/sveltekit" />
+
+## Example
+
+<Tabs>
+  <TabItem label='+page.svelte' >
+    <Code code={clientCode} lang='svelte' />
+  </TabItem>
+  <TabItem label='data.remote.ts'>
+    <Code code={serverCode} lang='typescript' />
+  </TabItem>
+  <TabItem label='model.ts'>
+    <Code code={modelCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+## Known issues
+
+- All validation errors are displayed on the root element -
+  [feature request](https://github.com/sveltejs/kit/issues/14688)
+- When using `createPost.fields.allIssues()`, the following error occurs:
+  `Type 'RecursiveFormFields' has no call signatures` -
+  [issue](https://github.com/sveltejs/kit/issues/14687)
+- The `form.value` type on the client side is `unknown` because the `RemoteForm`
+  type does not include information about the validator's output type.
+  For now, you need to specify the type manually: `createForm<FormValue>(...)`.
