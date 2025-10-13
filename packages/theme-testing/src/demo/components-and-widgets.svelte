@@ -62,6 +62,33 @@
           type: "number",
         },
       },
+      oneOf: {
+        type: "object",
+        oneOf: [
+          {
+            title: "Foo",
+            properties: {
+              foo: {
+                type: "string",
+              },
+              foo1: {
+                type: "integer"
+              }
+            },
+          },
+          {
+            title: "Bar",
+            properties: {
+              bar: {
+                type: "number",
+              },
+              bar1: {
+                type: "boolean"
+              }
+            },
+          },
+        ],
+      },
     },
     additionalProperties: {
       type: "string",
