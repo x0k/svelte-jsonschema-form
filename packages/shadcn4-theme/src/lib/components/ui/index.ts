@@ -26,5 +26,6 @@ export {
 	FieldDescription,
 	FieldError,
 	FieldTitle,
-	FieldLegend
+	FieldLegend,
+	FieldGroup
 } from './field/index.js';

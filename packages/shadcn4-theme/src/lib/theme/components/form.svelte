@@ -9,8 +9,8 @@
 
 <form
 	bind:this={ref}
-  onsubmit={ctx.submit}
-  onreset={ctx.reset}
+	onsubmit={ctx.submit}
+	onreset={ctx.reset}
 	class="flex flex-col gap-4"
 	{...formAttributes(ctx, config, 'form', attributes, {})}
 >

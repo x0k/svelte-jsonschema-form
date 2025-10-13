@@ -25,6 +25,7 @@
 			ButtonGroup: Component<ButtonGroupProps>;
 			Field: Component<FieldProps>;
 			FieldSet: Component<HTMLFieldsetAttributes>;
+			FieldGroup: Component<HTMLAttributes<HTMLDivElement>>;
 			FieldContent: Component<HTMLAttributes<HTMLDivElement>>;
 		}
 	}
@@ -38,25 +39,18 @@
 
 	const { type, children, config, errors }: ComponentProps['layout'] = $props();
 
-	const isItem = $derived(type === 'array-item' || type === 'field-content');
+	const isItem = $derived(type === 'array-item');
 	const isGrowable = $derived(
 		type === 'array-item-content' ||
 			type === 'object-property-key-input' ||
 			type === 'object-property-content'
-	);
-	const isField = $derived(type === 'multi-field' || type === 'field');
-	const isColumn = $derived(
-		type === 'array-field' ||
-			type === 'object-field' ||
-			type === 'array-items' ||
-			type === 'object-properties'
 	);
 	const isObjectProperty = $derived(type === 'object-property');
 
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 
-	const { ButtonGroup, FieldSet, Field, FieldContent } = $derived(themeCtx.components);
+	const { ButtonGroup, FieldSet, Field, FieldContent, FieldGroup } = $derived(themeCtx.components);
 
 	const attributes = $derived(layoutAttributes(ctx, config, 'layout', 'layouts', type, {}));
 </script>
@@ -73,7 +67,6 @@
 	</FieldSet>
 {:else if type == 'field'}
 	<Field
-		orientation="responsive"
 		data-invalid={errors.length > 0}
 		{...attributes}
 		{...uiOptionProps('shadcn4Field')({}, config, ctx)}
@@ -84,15 +77,15 @@
 	<FieldContent {...attributes}>
 		{@render children()}
 	</FieldContent>
+{:else if type === 'array-items' || type === 'object-properties' || type === 'multi-field' || type === 'multi-field-content'}
+	<FieldGroup {...attributes}>
+		{@render children()}
+	</FieldGroup>
 {:else}
 	<div
 		class={{
-			flex: isItem || isField || isColumn,
-			'gap-1.5': isItem || isField,
-			'gap-4': isColumn,
-			'items-start': isItem,
 			grow: isGrowable,
-			'flex-col': isColumn || isField,
+			'flex items-start gap-1.5': isItem,
 			'grid grid-cols-1 grid-rows-[1fr] items-start gap-x-1.5 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]':
 				isObjectProperty
 		}}
