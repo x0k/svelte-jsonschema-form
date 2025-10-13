@@ -2436,7 +2436,7 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
         <div
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
-          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm cursor-not-allowed opacity-50 pointer-events-none grow"
+          class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm cursor-not-allowed opacity-50 pointer-events-none rounded-lg grow"
           id="root"
           role="listbox"
           tabindex="0"
@@ -2449,7 +2449,7 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
           <!---->
            
           <span
-            class="flex flex-wrap gap-2"
+            class="rounded-lg"
           >
             <!---->
           </span>
@@ -2587,7 +2587,7 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
         <div
           aria-describedby="root::description root::help root::errors"
           aria-invalid="true"
-          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 grow"
+          class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 rounded-lg grow"
           id="root"
           role="listbox"
           tabindex="0"
@@ -2600,7 +2600,7 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
           <!---->
            
           <span
-            class="flex flex-wrap gap-2"
+            class="rounded-lg"
           >
             <!---->
           </span>
@@ -2749,7 +2749,7 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
         <div
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
-          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 grow"
+          class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 rounded-lg grow"
           id="root"
           role="listbox"
           tabindex="0"
@@ -2762,7 +2762,7 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
           <!---->
            
           <span
-            class="flex flex-wrap gap-2"
+            class="rounded-lg"
           >
             <!---->
           </span>
@@ -2899,7 +2899,7 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
         <div
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
-          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 grow"
+          class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 rounded-lg grow"
           id="root"
           role="listbox"
           tabindex="0"
@@ -2912,7 +2912,7 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
           <!---->
            
           <span
-            class="flex flex-wrap gap-2"
+            class="rounded-lg"
           >
             <!---->
           </span>
@@ -3026,7 +3026,7 @@ exports[`widgets > number > snapshots > disabled 1`] = `
         <input
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           disabled=""
           id="root"
           name="root"
@@ -3128,7 +3128,7 @@ exports[`widgets > number > snapshots > error 1`] = `
         <input
           aria-describedby="root::description root::help root::errors"
           aria-invalid="true"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
           step="any"
@@ -3240,7 +3240,7 @@ exports[`widgets > number > snapshots > normal 1`] = `
         <input
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
           step="any"
@@ -3340,7 +3340,7 @@ exports[`widgets > number > snapshots > readonly 1`] = `
         <input
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
           readonly=""
@@ -4078,7 +4078,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-required="false"
-          class="inline-flex rounded-lg shadow-xs scale-100"
+          class="inline-flex rounded-lg shadow-xs"
           role="group"
         >
           <!---->
@@ -4271,7 +4271,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="true"
           aria-required="false"
-          class="inline-flex rounded-lg shadow-xs scale-100"
+          class="inline-flex rounded-lg shadow-xs"
           role="group"
         >
           <!---->
@@ -4471,7 +4471,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-required="false"
-          class="inline-flex rounded-lg shadow-xs scale-100"
+          class="inline-flex rounded-lg shadow-xs"
           role="group"
         >
           <!---->
@@ -4660,7 +4660,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="false"
-          class="inline-flex rounded-lg shadow-xs scale-100"
+          class="inline-flex rounded-lg shadow-xs"
           role="group"
         >
           <!---->
@@ -5208,12 +5208,12 @@ exports[`widgets > select > snapshots > disabled 1`] = `
         <!---->
         <!---->
         <div
-          class="relative flex-1"
+          class="relative w-full rounded-lg flex-1"
         >
           <select
             aria-describedby="root::description root::help root::errors"
             aria-invalid="false"
-            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5 cursor-not-allowed opacity-50"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5 cursor-not-allowed opacity-50 rounded-lg"
             disabled=""
             id="root"
             name="root"
@@ -5335,12 +5335,12 @@ exports[`widgets > select > snapshots > error 1`] = `
         <!---->
         <!---->
         <div
-          class="relative flex-1"
+          class="relative w-full rounded-lg flex-1"
         >
           <select
             aria-describedby="root::description root::help root::errors"
             aria-invalid="true"
-            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5 rounded-lg"
             id="root"
             name="root"
           >
@@ -5472,12 +5472,12 @@ exports[`widgets > select > snapshots > normal 1`] = `
         <!---->
         <!---->
         <div
-          class="relative flex-1"
+          class="relative w-full rounded-lg flex-1"
         >
           <select
             aria-describedby="root::description root::help root::errors"
             aria-invalid="false"
-            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5 rounded-lg"
             id="root"
             name="root"
           >
@@ -5597,12 +5597,12 @@ exports[`widgets > select > snapshots > readonly 1`] = `
         <!---->
         <!---->
         <div
-          class="relative flex-1"
+          class="relative w-full rounded-lg flex-1"
         >
           <select
             aria-describedby="root::description root::help root::errors"
             aria-invalid="false"
-            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5 rounded-lg"
             id="root"
             name="root"
           >
@@ -6595,7 +6595,7 @@ exports[`widgets > text > snapshots > disabled 1`] = `
         <input
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           disabled=""
           id="root"
           name="root"
@@ -6696,7 +6696,7 @@ exports[`widgets > text > snapshots > error 1`] = `
         <input
           aria-describedby="root::description root::help root::errors"
           aria-invalid="true"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
           type="text"
@@ -6807,7 +6807,7 @@ exports[`widgets > text > snapshots > normal 1`] = `
         <input
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
           type="text"
@@ -6906,7 +6906,7 @@ exports[`widgets > text > snapshots > readonly 1`] = `
         <input
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
           readonly=""
