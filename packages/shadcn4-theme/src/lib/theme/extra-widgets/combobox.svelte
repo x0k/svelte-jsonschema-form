@@ -4,7 +4,7 @@
 	import '@sjsf/form/fields/extra-widgets/combobox';
 
 	import type { ButtonProps } from '../types/button.js';
-	import '../types/popover';
+	import '../types/popover.js';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
