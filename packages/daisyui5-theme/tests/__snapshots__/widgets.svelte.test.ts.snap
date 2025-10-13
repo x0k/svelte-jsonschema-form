@@ -332,6 +332,7 @@ exports[`widgets > checkbox > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           disabled=""
           id="root"
@@ -413,6 +414,7 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="checkbox checkbox-error"
           id="root"
           name="root"
@@ -504,6 +506,7 @@ exports[`widgets > checkbox > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           id="root"
           name="root"
@@ -583,6 +586,7 @@ exports[`widgets > checkbox > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           id="root"
           name="root"
@@ -664,6 +668,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           disabled=""
           id="root::0"
@@ -678,6 +683,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           disabled=""
           id="root::1"
@@ -692,6 +698,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           disabled=""
           id="root::2"
@@ -706,6 +713,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           disabled=""
           id="root::3"
@@ -790,6 +798,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="checkbox checkbox-error"
           id="root::0"
           name="root"
@@ -803,6 +812,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="checkbox checkbox-error"
           id="root::1"
           name="root"
@@ -816,6 +826,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="checkbox checkbox-error"
           id="root::2"
           name="root"
@@ -829,6 +840,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="checkbox checkbox-error"
           id="root::3"
           name="root"
@@ -923,6 +935,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           id="root::0"
           name="root"
@@ -936,6 +949,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           id="root::1"
           name="root"
@@ -949,6 +963,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           id="root::2"
           name="root"
@@ -962,6 +977,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           id="root::3"
           name="root"
@@ -1044,6 +1060,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           id="root::0"
           name="root"
@@ -1058,6 +1075,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           id="root::1"
           name="root"
@@ -1072,6 +1090,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           id="root::2"
           name="root"
@@ -1086,6 +1105,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="checkbox"
           id="root::3"
           name="root"
@@ -1165,6 +1185,7 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="input pika-single w-full"
         disabled=""
         id="root"
@@ -1241,6 +1262,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="true"
         class="input pika-single w-full input-error"
         id="root"
         name="root"
@@ -1327,6 +1349,7 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="input pika-single w-full"
         id="root"
         name="root"
@@ -1401,6 +1424,7 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="input pika-single w-full"
         id="root"
         name="root"
@@ -1476,6 +1500,7 @@ exports[`widgets > file > snapshots > disabled 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="file-input w-full"
         data-loading="false"
         data-processing="false"
@@ -1554,6 +1579,7 @@ exports[`widgets > file > snapshots > error 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="true"
         class="file-input w-full file-input-error"
         data-loading="false"
         data-processing="false"
@@ -1642,6 +1668,7 @@ exports[`widgets > file > snapshots > normal 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="file-input w-full"
         data-loading="false"
         data-processing="false"
@@ -1718,6 +1745,7 @@ exports[`widgets > file > snapshots > readonly 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="file-input w-full"
         data-loading="false"
         data-processing="false"
@@ -1798,6 +1826,7 @@ exports[`widgets > filterRadioButtons > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="Reset"
           class="btn filter-reset"
           disabled=""
@@ -1808,6 +1837,7 @@ exports[`widgets > filterRadioButtons > snapshots > disabled 1`] = `
          
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="foo"
           class="btn"
           disabled=""
@@ -1818,6 +1848,7 @@ exports[`widgets > filterRadioButtons > snapshots > disabled 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="bar"
           class="btn"
           disabled=""
@@ -1828,6 +1859,7 @@ exports[`widgets > filterRadioButtons > snapshots > disabled 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="fuzz"
           class="btn"
           disabled=""
@@ -1838,6 +1870,7 @@ exports[`widgets > filterRadioButtons > snapshots > disabled 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="qux"
           class="btn"
           disabled=""
@@ -1921,6 +1954,7 @@ exports[`widgets > filterRadioButtons > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           aria-label="Reset"
           class="btn filter-reset"
           id="root"
@@ -1930,6 +1964,7 @@ exports[`widgets > filterRadioButtons > snapshots > error 1`] = `
          
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           aria-label="foo"
           class="btn btn-error"
           id="root::0"
@@ -1939,6 +1974,7 @@ exports[`widgets > filterRadioButtons > snapshots > error 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           aria-label="bar"
           class="btn btn-error"
           id="root::1"
@@ -1948,6 +1984,7 @@ exports[`widgets > filterRadioButtons > snapshots > error 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           aria-label="fuzz"
           class="btn btn-error"
           id="root::2"
@@ -1957,6 +1994,7 @@ exports[`widgets > filterRadioButtons > snapshots > error 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           aria-label="qux"
           class="btn btn-error"
           id="root::3"
@@ -2050,6 +2088,7 @@ exports[`widgets > filterRadioButtons > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="Reset"
           class="btn filter-reset"
           id="root"
@@ -2059,6 +2098,7 @@ exports[`widgets > filterRadioButtons > snapshots > normal 1`] = `
          
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="foo"
           class="btn"
           id="root::0"
@@ -2068,6 +2108,7 @@ exports[`widgets > filterRadioButtons > snapshots > normal 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="bar"
           class="btn"
           id="root::1"
@@ -2077,6 +2118,7 @@ exports[`widgets > filterRadioButtons > snapshots > normal 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="fuzz"
           class="btn"
           id="root::2"
@@ -2086,6 +2128,7 @@ exports[`widgets > filterRadioButtons > snapshots > normal 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="qux"
           class="btn"
           id="root::3"
@@ -2167,6 +2210,7 @@ exports[`widgets > filterRadioButtons > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="Reset"
           class="btn filter-reset"
           id="root"
@@ -2177,6 +2221,7 @@ exports[`widgets > filterRadioButtons > snapshots > readonly 1`] = `
          
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="foo"
           class="btn"
           id="root::0"
@@ -2187,6 +2232,7 @@ exports[`widgets > filterRadioButtons > snapshots > readonly 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="bar"
           class="btn"
           id="root::1"
@@ -2197,6 +2243,7 @@ exports[`widgets > filterRadioButtons > snapshots > readonly 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="fuzz"
           class="btn"
           id="root::2"
@@ -2207,6 +2254,7 @@ exports[`widgets > filterRadioButtons > snapshots > readonly 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="qux"
           class="btn"
           id="root::3"
@@ -2286,6 +2334,7 @@ exports[`widgets > multiFile > snapshots > disabled 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="file-input w-full"
         data-loading="true"
         data-processing="false"
@@ -2365,6 +2414,7 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="true"
         class="file-input w-full file-input-error"
         data-loading="true"
         data-processing="false"
@@ -2454,6 +2504,7 @@ exports[`widgets > multiFile > snapshots > normal 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="file-input w-full"
         data-loading="true"
         data-processing="false"
@@ -2531,6 +2582,7 @@ exports[`widgets > multiFile > snapshots > readonly 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="file-input w-full"
         data-loading="true"
         data-processing="false"
@@ -2609,6 +2661,7 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
       <!---->
       <select
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="select select-bordered w-full"
         disabled=""
         id="root"
@@ -2707,6 +2760,7 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
       <!---->
       <select
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="true"
         class="select select-bordered w-full select-error"
         id="root"
         multiple=""
@@ -2815,6 +2869,7 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
       <!---->
       <select
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="select select-bordered w-full"
         id="root"
         multiple=""
@@ -2911,6 +2966,7 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
       <!---->
       <select
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="select select-bordered w-full"
         id="root"
         multiple=""
@@ -3007,6 +3063,7 @@ exports[`widgets > number > snapshots > disabled 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="w-full input input-bordered"
         disabled=""
         id="root"
@@ -3088,6 +3145,7 @@ exports[`widgets > number > snapshots > error 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="true"
         class="w-full input input-bordered input-error"
         id="root"
         name="root"
@@ -3179,6 +3237,7 @@ exports[`widgets > number > snapshots > normal 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="w-full input input-bordered"
         id="root"
         name="root"
@@ -3258,6 +3317,7 @@ exports[`widgets > number > snapshots > readonly 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="w-full input input-bordered"
         id="root"
         name="root"
@@ -3342,6 +3402,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           disabled=""
           id="root::0"
@@ -3356,6 +3417,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           disabled=""
           id="root::1"
@@ -3370,6 +3432,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           disabled=""
           id="root::2"
@@ -3384,6 +3447,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           disabled=""
           id="root::3"
@@ -3468,6 +3532,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="radio radio-error"
           id="root::0"
           name="root"
@@ -3481,6 +3546,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="radio radio-error"
           id="root::1"
           name="root"
@@ -3494,6 +3560,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="radio radio-error"
           id="root::2"
           name="root"
@@ -3507,6 +3574,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="radio radio-error"
           id="root::3"
           name="root"
@@ -3601,6 +3669,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           id="root::0"
           name="root"
@@ -3614,6 +3683,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           id="root::1"
           name="root"
@@ -3627,6 +3697,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           id="root::2"
           name="root"
@@ -3640,6 +3711,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           id="root::3"
           name="root"
@@ -3722,6 +3794,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           id="root::0"
           name="root"
@@ -3736,6 +3809,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           id="root::1"
           name="root"
@@ -3750,6 +3824,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           id="root::2"
           name="root"
@@ -3764,6 +3839,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="radio"
           id="root::3"
           name="root"
@@ -3846,6 +3922,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="foo"
           class="join-item btn"
           disabled=""
@@ -3856,6 +3933,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="bar"
           class="join-item btn"
           disabled=""
@@ -3866,6 +3944,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="fuzz"
           class="join-item btn"
           disabled=""
@@ -3876,6 +3955,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="qux"
           class="join-item btn"
           disabled=""
@@ -3959,6 +4039,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           aria-label="foo"
           class="join-item btn btn-error"
           id="root::0"
@@ -3968,6 +4049,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           aria-label="bar"
           class="join-item btn btn-error"
           id="root::1"
@@ -3977,6 +4059,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           aria-label="fuzz"
           class="join-item btn btn-error"
           id="root::2"
@@ -3986,6 +4069,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           aria-label="qux"
           class="join-item btn btn-error"
           id="root::3"
@@ -4079,6 +4163,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="foo"
           class="join-item btn"
           id="root::0"
@@ -4088,6 +4173,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="bar"
           class="join-item btn"
           id="root::1"
@@ -4097,6 +4183,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="fuzz"
           class="join-item btn"
           id="root::2"
@@ -4106,6 +4193,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="qux"
           class="join-item btn"
           id="root::3"
@@ -4187,6 +4275,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="foo"
           class="join-item btn"
           id="root::0"
@@ -4197,6 +4286,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="bar"
           class="join-item btn"
           id="root::1"
@@ -4207,6 +4297,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="fuzz"
           class="join-item btn"
           id="root::2"
@@ -4217,6 +4308,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           aria-label="qux"
           class="join-item btn"
           id="root::3"
@@ -4296,6 +4388,7 @@ exports[`widgets > range > snapshots > disabled 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="w-full range"
         disabled=""
         id="root"
@@ -4373,6 +4466,7 @@ exports[`widgets > range > snapshots > error 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="true"
         class="w-full range range-error"
         id="root"
         name="root"
@@ -4460,6 +4554,7 @@ exports[`widgets > range > snapshots > normal 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="w-full range"
         id="root"
         name="root"
@@ -4535,6 +4630,7 @@ exports[`widgets > range > snapshots > readonly 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="w-full range"
         id="root"
         name="root"
@@ -4614,6 +4710,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           disabled=""
           id="root::0"
@@ -4624,6 +4721,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           disabled=""
           id="root::1"
@@ -4634,6 +4732,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           disabled=""
           id="root::2"
@@ -4644,6 +4743,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           disabled=""
           id="root::3"
@@ -4654,6 +4754,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           disabled=""
           id="root::4"
@@ -4737,6 +4838,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="mask mask-star"
           id="root::0"
           name="root"
@@ -4746,6 +4848,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="mask mask-star"
           id="root::1"
           name="root"
@@ -4755,6 +4858,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="mask mask-star"
           id="root::2"
           name="root"
@@ -4764,6 +4868,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="mask mask-star"
           id="root::3"
           name="root"
@@ -4773,6 +4878,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="mask mask-star"
           id="root::4"
           name="root"
@@ -4866,6 +4972,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           id="root::0"
           name="root"
@@ -4875,6 +4982,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           id="root::1"
           name="root"
@@ -4884,6 +4992,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           id="root::2"
           name="root"
@@ -4893,6 +5002,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           id="root::3"
           name="root"
@@ -4902,6 +5012,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           id="root::4"
           name="root"
@@ -4983,6 +5094,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           id="root::0"
           name="root"
@@ -4993,6 +5105,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           id="root::1"
           name="root"
@@ -5003,6 +5116,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           id="root::2"
           name="root"
@@ -5013,6 +5127,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           id="root::3"
           name="root"
@@ -5023,6 +5138,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
         />
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="mask mask-star"
           id="root::4"
           name="root"
@@ -5102,6 +5218,7 @@ exports[`widgets > select > snapshots > disabled 1`] = `
       <!---->
       <select
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="select select-bordered w-full"
         disabled=""
         id="root"
@@ -5205,6 +5322,7 @@ exports[`widgets > select > snapshots > error 1`] = `
       <!---->
       <select
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="true"
         class="select select-bordered w-full select-error"
         id="root"
         name="root"
@@ -5318,6 +5436,7 @@ exports[`widgets > select > snapshots > normal 1`] = `
       <!---->
       <select
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="select select-bordered w-full"
         id="root"
         name="root"
@@ -5419,6 +5538,7 @@ exports[`widgets > select > snapshots > readonly 1`] = `
       <!---->
       <select
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="select select-bordered w-full"
         id="root"
         name="root"
@@ -5523,6 +5643,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="toggle"
           disabled=""
           id="root"
@@ -5604,6 +5725,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
           class="toggle toggle-error"
           id="root"
           name="root"
@@ -5695,6 +5817,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="toggle"
           id="root"
           name="root"
@@ -5774,6 +5897,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
       >
         <input
           aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
           class="toggle"
           id="root"
           name="root"
@@ -5851,6 +5975,7 @@ exports[`widgets > text > snapshots > disabled 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="input input-bordered w-full"
         disabled=""
         id="root"
@@ -5931,6 +6056,7 @@ exports[`widgets > text > snapshots > error 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="true"
         class="input input-bordered w-full input-error"
         id="root"
         name="root"
@@ -6021,6 +6147,7 @@ exports[`widgets > text > snapshots > normal 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="input input-bordered w-full"
         id="root"
         name="root"
@@ -6099,6 +6226,7 @@ exports[`widgets > text > snapshots > readonly 1`] = `
       <!---->
       <input
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="input input-bordered w-full"
         id="root"
         name="root"
@@ -6178,6 +6306,7 @@ exports[`widgets > textarea > snapshots > disabled 1`] = `
       <!---->
       <textarea
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="textarea textarea-bordered w-full"
         disabled=""
         id="root"
@@ -6253,6 +6382,7 @@ exports[`widgets > textarea > snapshots > error 1`] = `
       <!---->
       <textarea
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="true"
         class="textarea textarea-bordered w-full textarea-error"
         id="root"
         name="root"
@@ -6338,6 +6468,7 @@ exports[`widgets > textarea > snapshots > normal 1`] = `
       <!---->
       <textarea
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="textarea textarea-bordered w-full"
         id="root"
         name="root"
@@ -6411,6 +6542,7 @@ exports[`widgets > textarea > snapshots > readonly 1`] = `
       <!---->
       <textarea
         aria-describedby="root::description root::help root::errors"
+        aria-invalid="false"
         class="textarea textarea-bordered w-full"
         id="root"
         name="root"
