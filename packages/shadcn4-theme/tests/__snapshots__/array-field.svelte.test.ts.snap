@@ -37,16 +37,23 @@ exports[`array fields > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
+        <!---->
+        
         
         
         <!---->
       </div>
+      
+      
       
       
       
@@ -154,9 +161,12 @@ exports[`array fields > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
@@ -168,10 +178,13 @@ exports[`array fields > array icons 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
+        <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -192,10 +205,10 @@ exports[`array fields > array icons 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -303,6 +316,7 @@ exports[`array fields > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -416,6 +430,8 @@ exports[`array fields > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -425,9 +441,10 @@ exports[`array fields > array icons 1`] = `
         <!---->
         <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -448,10 +465,10 @@ exports[`array fields > array icons 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -559,6 +576,7 @@ exports[`array fields > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -674,8 +692,12 @@ exports[`array fields > array icons 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -838,10 +860,15 @@ exports[`array fields > empty errors array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -864,6 +891,7 @@ exports[`array fields > empty errors array 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -878,10 +906,10 @@ exports[`array fields > empty errors array 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -985,6 +1013,7 @@ exports[`array fields > empty errors array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1000,8 +1029,12 @@ exports[`array fields > empty errors array 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -1116,9 +1149,12 @@ exports[`array fields > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
@@ -1130,10 +1166,13 @@ exports[`array fields > fixed array 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
+        <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1154,10 +1193,10 @@ exports[`array fields > fixed array 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -1214,6 +1253,7 @@ exports[`array fields > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1227,6 +1267,8 @@ exports[`array fields > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1236,9 +1278,10 @@ exports[`array fields > fixed array 1`] = `
         <!---->
         <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1259,10 +1302,10 @@ exports[`array fields > fixed array 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -1321,6 +1364,7 @@ exports[`array fields > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1336,8 +1380,12 @@ exports[`array fields > fixed array 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -1464,16 +1512,23 @@ exports[`with title and description > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
+        <!---->
+        
         
         
         <!---->
       </div>
+      
+      
       
       
       
@@ -1618,9 +1673,12 @@ exports[`with title and description > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
@@ -1632,10 +1690,13 @@ exports[`with title and description > array icons 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
+        <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1656,10 +1717,10 @@ exports[`with title and description > array icons 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -1779,6 +1840,7 @@ exports[`with title and description > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1892,6 +1954,8 @@ exports[`with title and description > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1901,9 +1965,10 @@ exports[`with title and description > array icons 1`] = `
         <!---->
         <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1924,10 +1989,10 @@ exports[`with title and description > array icons 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -2047,6 +2112,7 @@ exports[`with title and description > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2162,8 +2228,12 @@ exports[`with title and description > array icons 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -2363,9 +2433,12 @@ exports[`with title and description > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
@@ -2377,10 +2450,13 @@ exports[`with title and description > fixed array 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
+        <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2401,10 +2477,10 @@ exports[`with title and description > fixed array 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -2524,6 +2600,7 @@ exports[`with title and description > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2537,6 +2614,8 @@ exports[`with title and description > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2546,9 +2625,10 @@ exports[`with title and description > fixed array 1`] = `
         <!---->
         <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2569,10 +2649,10 @@ exports[`with title and description > fixed array 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -2694,6 +2774,7 @@ exports[`with title and description > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2709,8 +2790,12 @@ exports[`with title and description > fixed array 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -2837,16 +2922,23 @@ exports[`with title and description from both > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
+        <!---->
+        
         
         
         <!---->
       </div>
+      
+      
       
       
       
@@ -2991,9 +3083,12 @@ exports[`with title and description from both > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
@@ -3005,10 +3100,13 @@ exports[`with title and description from both > array icons 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
+        <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3029,10 +3127,10 @@ exports[`with title and description from both > array icons 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -3152,6 +3250,7 @@ exports[`with title and description from both > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3265,6 +3364,8 @@ exports[`with title and description from both > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3274,9 +3375,10 @@ exports[`with title and description from both > array icons 1`] = `
         <!---->
         <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3297,10 +3399,10 @@ exports[`with title and description from both > array icons 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -3420,6 +3522,7 @@ exports[`with title and description from both > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3535,8 +3638,12 @@ exports[`with title and description from both > array icons 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -3736,9 +3843,12 @@ exports[`with title and description from both > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
@@ -3750,10 +3860,13 @@ exports[`with title and description from both > fixed array 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
+        <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3774,10 +3887,10 @@ exports[`with title and description from both > fixed array 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -3897,6 +4010,7 @@ exports[`with title and description from both > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3910,6 +4024,8 @@ exports[`with title and description from both > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3919,9 +4035,10 @@ exports[`with title and description from both > fixed array 1`] = `
         <!---->
         <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3942,10 +4059,10 @@ exports[`with title and description from both > fixed array 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -4067,6 +4184,7 @@ exports[`with title and description from both > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4082,8 +4200,12 @@ exports[`with title and description from both > fixed array 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -4210,16 +4332,23 @@ exports[`with title and description from uiSchema > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
+        <!---->
+        
         
         
         <!---->
       </div>
+      
+      
       
       
       
@@ -4364,9 +4493,12 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
@@ -4378,10 +4510,13 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
+        <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4402,10 +4537,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -4525,6 +4660,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4638,6 +4774,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4647,9 +4785,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         <!---->
         <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4670,10 +4809,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -4793,6 +4932,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4908,8 +5048,12 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -5109,9 +5253,12 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
@@ -5123,10 +5270,13 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
+        <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5147,10 +5297,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -5270,6 +5420,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -5283,6 +5434,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5292,9 +5445,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         <!---->
         <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5315,10 +5469,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -5440,6 +5594,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -5455,8 +5610,12 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -5546,16 +5705,23 @@ exports[`with title and description with global label off > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
+        <!---->
+        
         
         
         <!---->
       </div>
+      
+      
       
       
       
@@ -5663,9 +5829,12 @@ exports[`with title and description with global label off > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
@@ -5677,10 +5846,13 @@ exports[`with title and description with global label off > array icons 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
+        <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5701,10 +5873,10 @@ exports[`with title and description with global label off > array icons 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -5761,6 +5933,7 @@ exports[`with title and description with global label off > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -5874,6 +6047,8 @@ exports[`with title and description with global label off > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5883,9 +6058,10 @@ exports[`with title and description with global label off > array icons 1`] = `
         <!---->
         <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5906,10 +6082,10 @@ exports[`with title and description with global label off > array icons 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -5966,6 +6142,7 @@ exports[`with title and description with global label off > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -6081,8 +6258,12 @@ exports[`with title and description with global label off > array icons 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -6245,9 +6426,12 @@ exports[`with title and description with global label off > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
+        data-slot="field-group"
       >
         <!---->
         <!---->
@@ -6259,10 +6443,13 @@ exports[`with title and description with global label off > fixed array 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
+        <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -6283,10 +6470,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -6343,6 +6530,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -6356,6 +6544,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -6365,9 +6555,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
         <!---->
         <!---->
         <div
-          class="flex gap-1.5 items-start"
+          class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -6388,10 +6579,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -6450,6 +6641,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -6465,8 +6657,12 @@ exports[`with title and description with global label off > fixed array 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       

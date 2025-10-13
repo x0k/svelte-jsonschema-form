@@ -37,10 +37,15 @@ exports[`object fields > additionalProperties 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -62,6 +67,7 @@ exports[`object fields > additionalProperties 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -75,10 +81,10 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -186,8 +192,10 @@ exports[`object fields > additionalProperties 1`] = `
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -207,10 +215,10 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -314,8 +322,10 @@ exports[`object fields > additionalProperties 1`] = `
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -353,6 +363,7 @@ exports[`object fields > additionalProperties 1`] = `
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -366,8 +377,12 @@ exports[`object fields > additionalProperties 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -457,10 +472,15 @@ exports[`object fields > additionalProperties with error 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -482,6 +502,7 @@ exports[`object fields > additionalProperties with error 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -495,10 +516,10 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="true"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -631,8 +652,10 @@ exports[`object fields > additionalProperties with error 1`] = `
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -652,10 +675,10 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -759,8 +782,10 @@ exports[`object fields > additionalProperties with error 1`] = `
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -798,6 +823,7 @@ exports[`object fields > additionalProperties with error 1`] = `
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -811,8 +837,12 @@ exports[`object fields > additionalProperties with error 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -902,10 +932,15 @@ exports[`object fields > has errors 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -928,6 +963,7 @@ exports[`object fields > has errors 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -942,10 +978,10 @@ exports[`object fields > has errors 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -1049,6 +1085,7 @@ exports[`object fields > has errors 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1064,8 +1101,12 @@ exports[`object fields > has errors 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -1180,10 +1221,15 @@ exports[`object fields > object 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1206,6 +1252,7 @@ exports[`object fields > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1220,10 +1267,10 @@ exports[`object fields > object 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -1327,6 +1374,7 @@ exports[`object fields > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1340,6 +1388,8 @@ exports[`object fields > object 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1360,6 +1410,7 @@ exports[`object fields > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1374,10 +1425,10 @@ exports[`object fields > object 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -1483,6 +1534,7 @@ exports[`object fields > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1498,8 +1550,12 @@ exports[`object fields > object 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -1614,10 +1670,15 @@ exports[`object fields > one of defaults > default preset 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1635,6 +1696,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1660,6 +1722,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1673,6 +1736,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1693,6 +1758,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1707,10 +1773,10 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -1854,6 +1920,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1867,6 +1934,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1882,6 +1951,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1907,6 +1977,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1920,6 +1991,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1940,6 +2013,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1954,10 +2028,10 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -2101,6 +2175,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2114,6 +2189,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2134,6 +2211,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -2148,10 +2226,10 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -2317,6 +2395,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2332,8 +2411,12 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -2448,10 +2531,15 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2469,6 +2557,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2494,6 +2583,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2507,6 +2597,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2527,6 +2619,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -2541,10 +2634,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -2710,6 +2803,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2723,6 +2817,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2743,6 +2839,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -2757,10 +2854,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -2926,6 +3023,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2939,6 +3037,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2959,6 +3059,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -2973,10 +3074,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -3120,6 +3221,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3133,6 +3235,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3153,6 +3257,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3167,10 +3272,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -3336,6 +3441,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3349,6 +3455,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3369,6 +3477,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3383,10 +3492,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -3509,6 +3618,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3522,6 +3632,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3542,6 +3654,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3556,10 +3669,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -3675,6 +3788,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3688,6 +3802,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3708,6 +3824,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3722,10 +3839,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -3869,6 +3986,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3882,6 +4000,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3897,6 +4017,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3922,6 +4043,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3935,6 +4057,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3955,6 +4079,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3969,10 +4094,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -4116,6 +4241,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4129,6 +4255,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4149,6 +4277,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -4163,10 +4292,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -4332,6 +4461,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4347,8 +4477,12 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -4438,10 +4572,15 @@ exports[`object fields > show add button and fields if additionalProperties is t
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4463,6 +4602,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -4476,10 +4616,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -4587,8 +4727,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4608,10 +4750,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -4715,8 +4857,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4754,6 +4898,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -4767,8 +4912,12 @@ exports[`object fields > show add button and fields if additionalProperties is t
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -4895,10 +5044,15 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4920,6 +5074,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -4933,10 +5088,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -5044,8 +5199,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5065,10 +5222,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -5172,8 +5329,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5211,6 +5370,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -5224,8 +5384,12 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -5352,10 +5516,15 @@ exports[`object fields > with title and description > object 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5378,6 +5547,7 @@ exports[`object fields > with title and description > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -5392,10 +5562,10 @@ exports[`object fields > with title and description > object 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -5511,6 +5681,7 @@ exports[`object fields > with title and description > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -5524,6 +5695,8 @@ exports[`object fields > with title and description > object 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5544,6 +5717,7 @@ exports[`object fields > with title and description > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -5558,10 +5732,10 @@ exports[`object fields > with title and description > object 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -5679,6 +5853,7 @@ exports[`object fields > with title and description > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -5694,8 +5869,12 @@ exports[`object fields > with title and description > object 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -5822,10 +6001,15 @@ exports[`object fields > with title and description > show add button and fields
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5847,6 +6031,7 @@ exports[`object fields > with title and description > show add button and fields
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -5860,10 +6045,10 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -5971,8 +6156,10 @@ exports[`object fields > with title and description > show add button and fields
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5992,10 +6179,10 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -6099,8 +6286,10 @@ exports[`object fields > with title and description > show add button and fields
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -6138,6 +6327,7 @@ exports[`object fields > with title and description > show add button and fields
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -6151,8 +6341,12 @@ exports[`object fields > with title and description > show add button and fields
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -6279,10 +6473,15 @@ exports[`object fields > with title and description from both > additionalProper
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -6304,6 +6503,7 @@ exports[`object fields > with title and description from both > additionalProper
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -6317,10 +6517,10 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -6428,8 +6628,10 @@ exports[`object fields > with title and description from both > additionalProper
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -6449,10 +6651,10 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -6556,8 +6758,10 @@ exports[`object fields > with title and description from both > additionalProper
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -6595,6 +6799,7 @@ exports[`object fields > with title and description from both > additionalProper
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -6608,8 +6813,12 @@ exports[`object fields > with title and description from both > additionalProper
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -6736,10 +6945,15 @@ exports[`object fields > with title and description from both > object 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -6762,6 +6976,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -6776,10 +6991,10 @@ exports[`object fields > with title and description from both > object 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -6895,6 +7110,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -6908,6 +7124,8 @@ exports[`object fields > with title and description from both > object 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -6928,6 +7146,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -6942,10 +7161,10 @@ exports[`object fields > with title and description from both > object 1`] = `
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -7063,6 +7282,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -7078,8 +7298,12 @@ exports[`object fields > with title and description from both > object 1`] = `
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -7206,10 +7430,15 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -7231,6 +7460,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -7244,10 +7474,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -7355,8 +7585,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -7376,10 +7608,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -7483,8 +7715,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -7522,6 +7756,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -7535,8 +7770,12 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -7663,10 +7902,15 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -7689,6 +7933,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -7703,10 +7948,10 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -7822,6 +8067,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           
           
           
+          
           <!---->
            
           <!---->
@@ -7835,6 +8081,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -7855,6 +8103,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -7869,10 +8118,10 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -7990,6 +8239,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           
           
           
+          
           <!---->
            
           <!---->
@@ -8005,8 +8255,12 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -8133,10 +8387,15 @@ exports[`object fields > with title and description from uiSchema > show add but
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -8158,6 +8417,7 @@ exports[`object fields > with title and description from uiSchema > show add but
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -8171,10 +8431,10 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -8282,8 +8542,10 @@ exports[`object fields > with title and description from uiSchema > show add but
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -8303,10 +8565,10 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -8410,8 +8672,10 @@ exports[`object fields > with title and description from uiSchema > show add but
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -8449,6 +8713,7 @@ exports[`object fields > with title and description from uiSchema > show add but
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -8462,8 +8727,12 @@ exports[`object fields > with title and description from uiSchema > show add but
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -8553,10 +8822,15 @@ exports[`object fields > with title and description with global label off > addi
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -8578,6 +8852,7 @@ exports[`object fields > with title and description with global label off > addi
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -8591,10 +8866,10 @@ exports[`object fields > with title and description with global label off > addi
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -8651,8 +8926,10 @@ exports[`object fields > with title and description with global label off > addi
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -8672,10 +8949,10 @@ exports[`object fields > with title and description with global label off > addi
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -8731,8 +9008,10 @@ exports[`object fields > with title and description with global label off > addi
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -8770,6 +9049,7 @@ exports[`object fields > with title and description with global label off > addi
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -8783,8 +9063,12 @@ exports[`object fields > with title and description with global label off > addi
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -8874,10 +9158,15 @@ exports[`object fields > with title and description with global label off > obje
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -8900,6 +9189,7 @@ exports[`object fields > with title and description with global label off > obje
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -8914,10 +9204,10 @@ exports[`object fields > with title and description with global label off > obje
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -8973,6 +9263,7 @@ exports[`object fields > with title and description with global label off > obje
           
           
           
+          
           <!---->
            
           <!---->
@@ -8986,6 +9277,8 @@ exports[`object fields > with title and description with global label off > obje
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -9006,6 +9299,7 @@ exports[`object fields > with title and description with global label off > obje
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -9020,10 +9314,10 @@ exports[`object fields > with title and description with global label off > obje
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -9081,6 +9375,7 @@ exports[`object fields > with title and description with global label off > obje
           
           
           
+          
           <!---->
            
           <!---->
@@ -9096,8 +9391,12 @@ exports[`object fields > with title and description with global label off > obje
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
@@ -9187,10 +9486,15 @@ exports[`object fields > with title and description with global label off > show
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div
-        class="flex gap-4 flex-col"
+        class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
+        data-slot="field-group"
       >
+        <!---->
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -9212,6 +9516,7 @@ exports[`object fields > with title and description with global label off > show
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -9225,10 +9530,10 @@ exports[`object fields > with title and description with global label off > show
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -9285,8 +9590,10 @@ exports[`object fields > with title and description with global label off > show
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -9306,10 +9613,10 @@ exports[`object fields > with title and description with global label off > show
             <!---->
             <!---->
             <div
-              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
               data-layout="field"
-              data-orientation="responsive"
+              data-orientation="vertical"
               data-slot="field"
               role="group"
             >
@@ -9365,8 +9672,10 @@ exports[`object fields > with title and description with global label off > show
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -9404,6 +9713,7 @@ exports[`object fields > with title and description with global label off > show
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -9417,8 +9727,12 @@ exports[`object fields > with title and description with global label off > show
         
         
         
+        
+        
         <!---->
       </div>
+      
+      
       
       
       
