@@ -1408,7 +1408,7 @@ importers:
   packages/daisyui5-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.0.0-next.6
+        specifier: workspace:^3.0.0-next.7
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -1479,7 +1479,7 @@ importers:
   packages/flowbite3-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.0.0-next.6
+        specifier: workspace:^3.0.0-next.7
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -1631,7 +1631,7 @@ importers:
   packages/shadcn4-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.0.0-next.6
+        specifier: workspace:^3.0.0-next.7
         version: link:../basic-theme
     devDependencies:
       '@internationalized/date':
@@ -1683,7 +1683,7 @@ importers:
   packages/skeleton3-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.0.0-next.6
+        specifier: workspace:^3.0.0-next.7
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
