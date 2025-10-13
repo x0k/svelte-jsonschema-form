@@ -1,5 +1,45 @@
 # @sjsf/form
 
+## 3.0.0-next.7
+
+### Major Changes
+
+- Rename `isObjectProto` to `isRecordProto` ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+
+- Make `event` optional for `form.reset` method ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4490 ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Add schema consistency checks during merge ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- - Change signature of `getSchemaDefinitionByPath` ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+  - Remove `getRootSchemaTitleByPath` function
+  - Change `valueRef` type in `Field` component from `{ value: FieldValue }` to `Ref<FieldValue>`
+
+- Refactor translation types ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+
+- Separate state related functions into queries and commands ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+### Minor Changes
+
+- Add assert adapters for extra fields ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Add `aria` helpers functions ([#214](https://github.com/x0k/svelte-jsonschema-form/pull/214))
+
+- Add `HiddenIdPrefixInput` form component ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+
+### Patch Changes
+
+- Fix generation of default value for additional property ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Fix handling of `dependencies` and `if,then,else` keywords in `getSchemaDefinitionByPath` function ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+
+- Fix combination field logic ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Make `combination` field SRR friendly ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Fix deduplication in intersection algorithms ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
 ## 3.0.0-next.6
 
 ### Patch Changes
