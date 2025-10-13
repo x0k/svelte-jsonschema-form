@@ -12,7 +12,6 @@
 <script lang="ts">
 	import {
 		customInputAttributes,
-		ariaDescribedByProp,
 		getFormContext,
 		handlersAttachment,
 		createId,
