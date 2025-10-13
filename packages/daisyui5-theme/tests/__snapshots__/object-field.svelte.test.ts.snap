@@ -89,6 +89,7 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
@@ -166,6 +167,7 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.foo"
                 name="root.foo"
@@ -358,6 +360,7 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="true"
                 class="input input-bordered w-full input-error"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
@@ -447,6 +450,7 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.foo"
                 name="root.foo"
@@ -640,6 +644,7 @@ exports[`object fields > has errors 1`] = `
               <!---->
               <input
                 aria-describedby="root.name::description root.name::help root.name::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.name"
                 name="root.name"
@@ -821,6 +826,7 @@ exports[`object fields > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.a"
                 name="root.a"
@@ -917,6 +923,7 @@ exports[`object fields > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
                 id="root.b"
                 name="root.b"
@@ -1148,6 +1155,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               >
                 <input
                   aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  aria-invalid="false"
                   class="checkbox"
                   id="root.transform"
                   name="root.transform"
@@ -1285,6 +1293,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               >
                 <input
                   aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  aria-invalid="false"
                   class="checkbox"
                   id="root.paginate"
                   name="root.paginate"
@@ -1381,6 +1390,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               >
                 <input
                   aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  aria-invalid="false"
                   class="checkbox"
                   id="root.createOnOpen"
                   name="root.createOnOpen"
@@ -1609,6 +1619,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               >
                 <input
                   aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                  aria-invalid="false"
                   class="checkbox"
                   id="root.collapseIndexes"
                   name="root.collapseIndexes"
@@ -1705,6 +1716,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               >
                 <input
                   aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                  aria-invalid="false"
                   class="checkbox"
                   id="root.joinPrimitiveArrayValues"
                   name="root.joinPrimitiveArrayValues"
@@ -1801,6 +1813,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               >
                 <input
                   aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                  aria-invalid="false"
                   class="checkbox"
                   id="root.combineArraysOfObjects"
                   name="root.combineArraysOfObjects"
@@ -1897,6 +1910,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               >
                 <input
                   aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                  aria-invalid="false"
                   class="checkbox"
                   id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
                   name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
@@ -2000,6 +2014,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <input
                 aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
                 id="root.proportionalSizeAdjustmentThreshold"
                 min="0"
@@ -2107,6 +2122,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <input
                 aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.cornerCellValue"
                 name="root.cornerCellValue"
@@ -2205,6 +2221,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               >
                 <input
                   aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  aria-invalid="false"
                   class="checkbox"
                   id="root.transform"
                   name="root.transform"
@@ -2342,6 +2359,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               >
                 <input
                   aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  aria-invalid="false"
                   class="checkbox"
                   id="root.paginate"
                   name="root.paginate"
@@ -2438,6 +2456,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               >
                 <input
                   aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  aria-invalid="false"
                   class="checkbox"
                   id="root.createOnOpen"
                   name="root.createOnOpen"
@@ -2604,6 +2623,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <input
                 aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.additionalProperty::key-input"
                 name="root.additionalProperty::key-input"
@@ -2681,6 +2701,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <input
                 aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.additionalProperty"
                 name="root.additionalProperty"
@@ -2899,6 +2920,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
@@ -2976,6 +2998,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.foo"
                 name="root.foo"
@@ -3203,6 +3226,7 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.a"
                 name="root.a"
@@ -3307,6 +3331,7 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
                 id="root.b"
                 name="root.b"
@@ -3502,6 +3527,7 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <input
                 aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.additionalProperty::key-input"
                 name="root.additionalProperty::key-input"
@@ -3579,6 +3605,7 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <input
                 aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.additionalProperty"
                 name="root.additionalProperty"
@@ -3797,6 +3824,7 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
@@ -3874,6 +3902,7 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.foo"
                 name="root.foo"
@@ -4101,6 +4130,7 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.a"
                 name="root.a"
@@ -4205,6 +4235,7 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
                 id="root.b"
                 name="root.b"
@@ -4400,6 +4431,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
@@ -4477,6 +4509,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.foo"
                 name="root.foo"
@@ -4704,6 +4737,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <input
                 aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.a"
                 name="root.a"
@@ -4808,6 +4842,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <input
                 aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
                 id="root.b"
                 name="root.b"
@@ -5003,6 +5038,7 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <input
                 aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.additionalProperty::key-input"
                 name="root.additionalProperty::key-input"
@@ -5080,6 +5116,7 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <input
                 aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.additionalProperty"
                 name="root.additionalProperty"
@@ -5252,6 +5289,7 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
@@ -5310,6 +5348,7 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.foo"
                 name="root.foo"
@@ -5484,6 +5523,7 @@ exports[`object fields > with title and description with global label off > obje
               <!---->
               <input
                 aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.a"
                 name="root.a"
@@ -5561,6 +5601,7 @@ exports[`object fields > with title and description with global label off > obje
               <!---->
               <input
                 aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
                 id="root.b"
                 name="root.b"
@@ -5710,6 +5751,7 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <input
                 aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.additionalProperty::key-input"
                 name="root.additionalProperty::key-input"
@@ -5768,6 +5810,7 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <input
                 aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
                 id="root.additionalProperty"
                 name="root.additionalProperty"

@@ -32,7 +32,7 @@
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 
-	const { Switch, Label } = $derived(themeCtx.components);
+	const { Switch, FieldLabel } = $derived(themeCtx.components);
 
 	let { value = $bindable(), config, handlers }: ComponentProps['switchWidget'] = $props();
 
@@ -41,21 +41,23 @@
 	const id = $derived(createId(ctx, config.path));
 </script>
 
-<Switch
-	bind:checked={() => value ?? false, (v) => (value = v)}
-	{...customInputAttributes(
-		ctx,
-		config,
-		'shadcn4Switch',
-		handlersAttachment(buttonHandlers)({
-			id,
-			name: id,
-			required: config.required,
-			onCheckedChange: () => {
-				oninput?.();
-				onchange?.();
-			}
-		})
-	)}
-/>
-<Label for={id}>{config.title}</Label>
+<div class="flex items-center space-x-3">
+	<Switch
+		bind:checked={() => value ?? false, (v) => (value = v)}
+		{...customInputAttributes(
+			ctx,
+			config,
+			'shadcn4Switch',
+			handlersAttachment(buttonHandlers)({
+				id,
+				name: id,
+				required: config.required,
+				onCheckedChange: () => {
+					oninput?.();
+					onchange?.();
+				}
+			})
+		)}
+	/>
+	<FieldLabel for={id}>{config.title}</FieldLabel>
+</div>

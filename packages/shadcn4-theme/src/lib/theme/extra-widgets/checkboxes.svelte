@@ -2,6 +2,7 @@
 	import '@sjsf/form/fields/extra-widgets/checkboxes';
 
 	import type { CheckboxProps } from '../types/checkbox.js';
+	import '../types/label.js';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -26,7 +27,7 @@
 
 	const themeCtx = getThemeContext();
 
-	const { Checkbox, Label } = $derived(themeCtx.components);
+	const { Checkbox, FieldLabel } = $derived(themeCtx.components);
 
 	let {
 		value = $bindable(),
@@ -63,7 +64,7 @@
 
 {#each options as option, index (option.id)}
 	{@const indexStr = index.toString()}
-	<div class="flex items-center space-x-2">
+	<div class="flex items-center space-x-3">
 		<Checkbox
 			checked={indexes.has(indexStr)}
 			value={indexStr}
@@ -78,6 +79,6 @@
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}
 		/>
-		<Label for={option.id}>{option.label}</Label>
+		<FieldLabel for={option.id}>{option.label}</FieldLabel>
 	</div>
 {/each}

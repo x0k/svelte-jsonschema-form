@@ -1,4 +1,5 @@
 import type {
+  AriaAttributes,
   HTMLButtonAttributes,
   HTMLFormAttributes,
   HTMLInputAttributes,
@@ -14,7 +15,7 @@ import { weakMemoize } from "@/lib/memoize.js";
 import type { Config } from "../config.js";
 import type { FieldPseudoElement } from "../id.js";
 import type { UiOptions } from "../ui-schema.js";
-import { FORM_DISABLED } from "../internals.js";
+import { FORM_DISABLED, FORM_ERRORS } from "../internals.js";
 
 import {
   uiOptionNestedProps,
@@ -159,6 +160,56 @@ export function disabledProp<T, FT>(
   return obj as T & Disabled;
 }
 
+const DEFAULT_DESCRIBE_ELEMENTS: FieldPseudoElement[] = [
+  "description",
+  "help",
+  "errors",
+];
+const DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES =
+  DEFAULT_DESCRIBE_ELEMENTS.concat("examples");
+
+export function ariaInvalidProp<T, FT>(
+  obj: T & AriaAttributes,
+  config: Config,
+  ctx: FormState<FT>
+): T & AriaAttributes {
+  obj["aria-invalid"] = ctx[FORM_ERRORS].has(config.path);
+  return obj;
+}
+
+export function ariaDescribedByProp<T, FT>(
+  obj: T & AriaAttributes,
+  config: Config,
+  ctx: FormState<FT>
+): T & AriaAttributes {
+  obj["aria-describedby"] = (
+    Array.isArray(config.schema.examples)
+      ? DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES
+      : DEFAULT_DESCRIBE_ELEMENTS
+  )
+    .map((el) => createPseudoId(ctx, config.path, el))
+    .join(" ");
+  return obj;
+}
+
+export function ariaReadonlyProp<T, FT>(
+  obj: T & AriaAttributes,
+  config: Config,
+  _: FormState<FT>
+): T & AriaAttributes {
+  obj["aria-readonly"] = config.schema.readOnly;
+  return obj;
+}
+
+export function ariaRequiredProp<T, FT>(
+  obj: T & AriaAttributes,
+  config: Config,
+  _: FormState<FT>
+): T & AriaAttributes {
+  obj["aria-required"] = config.required;
+  return obj;
+}
+
 export function inputType(format: string | undefined) {
   switch (format) {
     case "date-time":
@@ -173,24 +224,6 @@ export function inputType(format: string | undefined) {
     default:
       return undefined;
   }
-}
-
-const DEFAULT_DESCRIBE_ELEMENTS: FieldPseudoElement[] = [
-  "description",
-  "help",
-  "errors",
-];
-const DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES =
-  DEFAULT_DESCRIBE_ELEMENTS.concat("examples");
-
-export function describedBy<T>(ctx: FormState<T>, config: Config) {
-  return (
-    Array.isArray(config.schema.examples)
-      ? DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES
-      : DEFAULT_DESCRIBE_ELEMENTS
-  )
-    .map((el) => createPseudoId(ctx, config.path, el))
-    .join(" ");
 }
 
 export function inputProps<T extends HTMLInputAttributes, FT>(
@@ -218,7 +251,6 @@ export function inputProps<T extends HTMLInputAttributes, FT>(
     ? createPseudoId(ctx, config.path, "examples")
     : undefined;
   props.readonly = schema.readOnly;
-  props["aria-describedby"] = describedBy(ctx, config);
   return props;
 }
 
@@ -235,7 +267,6 @@ export function textareaProps<T extends HTMLTextareaAttributes, FT>(
   props.minlength = schema.minLength;
   props.maxlength = schema.maxLength;
   props.readonly = schema.readOnly;
-  props["aria-describedby"] = describedBy(ctx, config);
   return props;
 }
 
@@ -249,7 +280,6 @@ export function selectProps<T extends HTMLSelectAttributes, FT>(
   props.id = id;
   props.name = id;
   props.required = required;
-  props["aria-describedby"] = describedBy(ctx, config);
   return props;
 }
 
@@ -444,7 +474,17 @@ export function customInputAttributes<T, const O extends keyof ObjectUiOptions>(
   option: O,
   props: NonNullable<UiOptions[O]>
 ) {
-  return composeProps(ctx, config, props, uiOptionProps(option), disabledProp);
+  return composeProps(
+    ctx,
+    config,
+    props,
+    uiOptionProps(option),
+    disabledProp,
+    ariaInvalidProp,
+    ariaDescribedByProp,
+    ariaReadonlyProp,
+    ariaRequiredProp
+  );
 }
 
 export function inputAttributes<T, const O extends keyof ObjectUiOptions>(
@@ -461,7 +501,9 @@ export function inputAttributes<T, const O extends keyof ObjectUiOptions>(
     inputProps,
     handlersAttachment(handlers),
     uiOptionProps(option),
-    disabledProp
+    disabledProp,
+    ariaInvalidProp,
+    ariaDescribedByProp
   );
 }
 
@@ -479,7 +521,9 @@ export function selectAttributes<T, const O extends keyof ObjectUiOptions>(
     selectProps,
     handlersAttachment(handlers),
     uiOptionProps(option),
-    disabledProp
+    disabledProp,
+    ariaInvalidProp,
+    ariaDescribedByProp
   );
 }
 
@@ -497,6 +541,8 @@ export function textareaAttributes<T, const O extends keyof ObjectUiOptions>(
     textareaProps,
     handlersAttachment(handlers),
     uiOptionProps(option),
-    disabledProp
+    disabledProp,
+    ariaInvalidProp,
+    ariaDescribedByProp
   );
 }

@@ -32,6 +32,7 @@
 	import Check from '@lucide/svelte/icons/check';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
 	import {
+		ariaInvalidProp,
 		composeProps,
 		disabledProp,
 		getFormContext,
@@ -115,7 +116,8 @@
 						'aria-expanded': open
 					} satisfies ButtonProps,
 					uiOptionProps('shadcn4ComboboxTrigger'),
-					handlersAttachment(buttonHandlers)
+					handlersAttachment(buttonHandlers),
+					ariaInvalidProp
 				)}
 			>
 				<span>

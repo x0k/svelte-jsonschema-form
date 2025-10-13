@@ -39,7 +39,8 @@
 		{
 			type: 'button',
 			disabled,
-			onclick
+			onclick,
+			variant: 'outline'
 		} satisfies ButtonProps,
 		uiOptionProps('shadcn4Button'),
 		uiOptionNestedProps('shadcn4Buttons', (b) => b[type]),

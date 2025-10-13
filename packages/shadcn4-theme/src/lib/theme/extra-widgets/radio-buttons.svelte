@@ -38,7 +38,8 @@
 		handlersAttachment,
 		createId,
 		uiOptionProps,
-		type ComponentProps
+		type ComponentProps,
+		ariaInvalidProp
 	} from '@sjsf/form';
 
 	import { getThemeContext } from '../context.js';
@@ -68,8 +69,7 @@
 		customInputAttributes(ctx, config, 'shadcn4RadioButtons', {
 			type: 'single',
 			id: createId(ctx, config.path),
-			'aria-required': config.required,
-			'aria-readonly': config.schema.readOnly,
+			variant: 'outline',
 			onValueChange: () => {
 				oninput?.();
 				onchange?.();
@@ -85,11 +85,11 @@
 				ctx,
 				config,
 				{
-					value: index.toString(),
-					disabled: option.disabled
+					value: index.toString()
 				},
 				uiOptionProps('shadcn4RadioButtonsItem'),
-				handlersAttachment(buttonHandles)
+				handlersAttachment(buttonHandles),
+				ariaInvalidProp
 			)}
 		>
 			{option.label}

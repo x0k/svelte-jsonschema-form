@@ -29,6 +29,7 @@
 <script lang="ts">
 	import { getLocalTimeZone, parseDate } from '@internationalized/date';
 	import {
+		ariaInvalidProp,
 		composeProps,
 		customInputAttributes,
 		getFormContext,
@@ -96,7 +97,8 @@
 					config,
 					{},
 					uiOptionProps('shadcn4DatePickerTrigger'),
-					handlersAttachment(buttonHandlers)
+					handlersAttachment(buttonHandlers),
+					ariaInvalidProp
 				)}
 			>
 				{triggerContent}

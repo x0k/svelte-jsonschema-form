@@ -155,6 +155,7 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <input
                 aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-invalid="false"
                 id="root@0"
                 name="root@0"
                 required=""
@@ -320,6 +321,7 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <input
                 aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-invalid="false"
                 id="root@1"
                 name="root@1"
                 required=""
@@ -564,6 +566,7 @@ exports[`array fields > empty errors array 1`] = `
               <!---->
               <input
                 aria-describedby="root.name::description root.name::help root.name::errors"
+                aria-invalid="false"
                 id="root.name"
                 name="root.name"
                 style="flex-grow: 1;"
@@ -702,6 +705,7 @@ exports[`array fields > fixed array 1`] = `
               <!---->
               <input
                 aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-invalid="false"
                 id="root@0"
                 name="root@0"
                 required=""
@@ -780,6 +784,7 @@ exports[`array fields > fixed array 1`] = `
               <!---->
               <input
                 aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-invalid="false"
                 id="root@1"
                 name="root@1"
                 required=""
@@ -1065,6 +1070,7 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <input
                 aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-invalid="false"
                 id="root@0"
                 name="root@0"
                 required=""
@@ -1238,6 +1244,7 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <input
                 aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-invalid="false"
                 id="root@1"
                 name="root@1"
                 required=""
@@ -1522,6 +1529,7 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <input
                 aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-invalid="false"
                 id="root@0"
                 name="root@0"
                 required=""
@@ -1635,6 +1643,7 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <input
                 aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-invalid="false"
                 id="root@1"
                 name="root@1"
                 required=""
@@ -1920,6 +1929,7 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <input
                 aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-invalid="false"
                 id="root@0"
                 name="root@0"
                 required=""
@@ -2093,6 +2103,7 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <input
                 aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-invalid="false"
                 id="root@1"
                 name="root@1"
                 required=""
@@ -2377,6 +2388,7 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <input
                 aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-invalid="false"
                 id="root@0"
                 name="root@0"
                 required=""
@@ -2490,6 +2502,7 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <input
                 aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-invalid="false"
                 id="root@1"
                 name="root@1"
                 required=""
@@ -2775,6 +2788,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <input
                 aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-invalid="false"
                 id="root@0"
                 name="root@0"
                 required=""
@@ -2948,6 +2962,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <input
                 aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-invalid="false"
                 id="root@1"
                 name="root@1"
                 required=""
@@ -3232,6 +3247,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <input
                 aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-invalid="false"
                 id="root@0"
                 name="root@0"
                 required=""
@@ -3345,6 +3361,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <input
                 aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-invalid="false"
                 id="root@1"
                 name="root@1"
                 required=""
@@ -3533,6 +3550,7 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
               <input
                 aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-invalid="false"
                 id="root@0"
                 name="root@0"
                 required=""
@@ -3671,6 +3689,7 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
               <input
                 aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-invalid="false"
                 id="root@1"
                 name="root@1"
                 required=""
@@ -3889,6 +3908,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
               <!---->
               <input
                 aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-invalid="false"
                 id="root@0"
                 name="root@0"
                 required=""
@@ -3967,6 +3987,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
               <!---->
               <input
                 aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-invalid="false"
                 id="root@1"
                 name="root@1"
                 required=""

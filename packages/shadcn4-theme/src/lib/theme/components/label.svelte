@@ -17,13 +17,12 @@
 
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
-
-	const { Label } = $derived(themeCtx.components);
+	const { FieldLabel } = $derived(themeCtx.components);
 </script>
 
-<Label {...labelAttributes(ctx, config, 'shadcn4Label', {})}>
+<FieldLabel {...labelAttributes(ctx, config, 'shadcn4Label', {})}>
 	{title}
 	{#if config.required}
 		<span>*</span>
 	{/if}
-</Label>
+</FieldLabel>

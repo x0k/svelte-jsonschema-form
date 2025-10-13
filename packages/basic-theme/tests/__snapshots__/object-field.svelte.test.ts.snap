@@ -95,6 +95,7 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="false"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
                 required=""
@@ -180,6 +181,7 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 id="root.foo"
                 name="root.foo"
                 style="flex-grow: 1;"
@@ -351,6 +353,7 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="true"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
                 required=""
@@ -448,6 +451,7 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 id="root.foo"
                 name="root.foo"
                 style="flex-grow: 1;"
@@ -618,6 +622,7 @@ exports[`object fields > has errors 1`] = `
               <!---->
               <input
                 aria-describedby="root.name::description root.name::help root.name::errors"
+                aria-invalid="false"
                 id="root.name"
                 name="root.name"
                 style="flex-grow: 1;"
@@ -782,6 +787,7 @@ exports[`object fields > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-invalid="false"
                 id="root.a"
                 name="root.a"
                 style="flex-grow: 1;"
@@ -885,6 +891,7 @@ exports[`object fields > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-invalid="false"
                 id="root.b"
                 name="root.b"
                 step="any"
@@ -1100,6 +1107,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <label>
                 <input
                   aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  aria-invalid="false"
                   id="root.transform"
                   name="root.transform"
                   type="checkbox"
@@ -1239,6 +1247,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <label>
                 <input
                   aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  aria-invalid="false"
                   id="root.paginate"
                   name="root.paginate"
                   type="checkbox"
@@ -1339,6 +1348,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <label>
                 <input
                   aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  aria-invalid="false"
                   id="root.createOnOpen"
                   name="root.createOnOpen"
                   type="checkbox"
@@ -1550,6 +1560,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <label>
                 <input
                   aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                  aria-invalid="false"
                   id="root.collapseIndexes"
                   name="root.collapseIndexes"
                   type="checkbox"
@@ -1650,6 +1661,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <label>
                 <input
                   aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                  aria-invalid="false"
                   id="root.joinPrimitiveArrayValues"
                   name="root.joinPrimitiveArrayValues"
                   type="checkbox"
@@ -1750,6 +1762,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <label>
                 <input
                   aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                  aria-invalid="false"
                   id="root.combineArraysOfObjects"
                   name="root.combineArraysOfObjects"
                   type="checkbox"
@@ -1850,6 +1863,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <label>
                 <input
                   aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                  aria-invalid="false"
                   id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
                   name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
                   type="checkbox"
@@ -1961,6 +1975,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <input
                 aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                aria-invalid="false"
                 id="root.proportionalSizeAdjustmentThreshold"
                 min="0"
                 name="root.proportionalSizeAdjustmentThreshold"
@@ -2075,6 +2090,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <input
                 aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                aria-invalid="false"
                 id="root.cornerCellValue"
                 name="root.cornerCellValue"
                 style="flex-grow: 1;"
@@ -2178,6 +2194,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <label>
                 <input
                   aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  aria-invalid="false"
                   id="root.transform"
                   name="root.transform"
                   type="checkbox"
@@ -2317,6 +2334,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <label>
                 <input
                   aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  aria-invalid="false"
                   id="root.paginate"
                   name="root.paginate"
                   type="checkbox"
@@ -2417,6 +2435,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <label>
                 <input
                   aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  aria-invalid="false"
                   id="root.createOnOpen"
                   name="root.createOnOpen"
                   type="checkbox"
@@ -2567,6 +2586,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <input
                 aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-invalid="false"
                 id="root.additionalProperty::key-input"
                 name="root.additionalProperty::key-input"
                 required=""
@@ -2652,6 +2672,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <input
                 aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-invalid="false"
                 id="root.additionalProperty"
                 name="root.additionalProperty"
                 style="flex-grow: 1;"
@@ -2854,6 +2875,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="false"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
                 required=""
@@ -2939,6 +2961,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 id="root.foo"
                 name="root.foo"
                 style="flex-grow: 1;"
@@ -3148,6 +3171,7 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-invalid="false"
                 id="root.a"
                 name="root.a"
                 style="flex-grow: 1;"
@@ -3259,6 +3283,7 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-invalid="false"
                 id="root.b"
                 name="root.b"
                 step="any"
@@ -3444,6 +3469,7 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <input
                 aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-invalid="false"
                 id="root.additionalProperty::key-input"
                 name="root.additionalProperty::key-input"
                 required=""
@@ -3529,6 +3555,7 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <input
                 aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-invalid="false"
                 id="root.additionalProperty"
                 name="root.additionalProperty"
                 style="flex-grow: 1;"
@@ -3731,6 +3758,7 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="false"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
                 required=""
@@ -3816,6 +3844,7 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 id="root.foo"
                 name="root.foo"
                 style="flex-grow: 1;"
@@ -4025,6 +4054,7 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-invalid="false"
                 id="root.a"
                 name="root.a"
                 style="flex-grow: 1;"
@@ -4136,6 +4166,7 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <input
                 aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-invalid="false"
                 id="root.b"
                 name="root.b"
                 step="any"
@@ -4321,6 +4352,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="false"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
                 required=""
@@ -4406,6 +4438,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 id="root.foo"
                 name="root.foo"
                 style="flex-grow: 1;"
@@ -4615,6 +4648,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <input
                 aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-invalid="false"
                 id="root.a"
                 name="root.a"
                 style="flex-grow: 1;"
@@ -4726,6 +4760,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <input
                 aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-invalid="false"
                 id="root.b"
                 name="root.b"
                 step="any"
@@ -4911,6 +4946,7 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <input
                 aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-invalid="false"
                 id="root.additionalProperty::key-input"
                 name="root.additionalProperty::key-input"
                 required=""
@@ -4996,6 +5032,7 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <input
                 aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-invalid="false"
                 id="root.additionalProperty"
                 name="root.additionalProperty"
                 style="flex-grow: 1;"
@@ -5140,6 +5177,7 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <input
                 aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-invalid="false"
                 id="root.foo::key-input"
                 name="root.foo::key-input"
                 required=""
@@ -5201,6 +5239,7 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <input
                 aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-invalid="false"
                 id="root.foo"
                 name="root.foo"
                 style="flex-grow: 1;"
@@ -5347,6 +5386,7 @@ exports[`object fields > with title and description with global label off > obje
               <!---->
               <input
                 aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-invalid="false"
                 id="root.a"
                 name="root.a"
                 style="flex-grow: 1;"
@@ -5426,6 +5466,7 @@ exports[`object fields > with title and description with global label off > obje
               <!---->
               <input
                 aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-invalid="false"
                 id="root.b"
                 name="root.b"
                 step="any"
@@ -5553,6 +5594,7 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <input
                 aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-invalid="false"
                 id="root.additionalProperty::key-input"
                 name="root.additionalProperty::key-input"
                 required=""
@@ -5614,6 +5656,7 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <input
                 aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-invalid="false"
                 id="root.additionalProperty"
                 name="root.additionalProperty"
                 style="flex-grow: 1;"

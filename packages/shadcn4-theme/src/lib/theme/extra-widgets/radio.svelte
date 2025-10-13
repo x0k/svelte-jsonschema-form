@@ -8,7 +8,7 @@
 	} from 'bits-ui';
 	import '@sjsf/form/fields/extra-widgets/radio';
 
-	import '../types/label';
+	import '../types/label.js';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -27,7 +27,9 @@
 
 <script lang="ts">
 	import {
+		ariaInvalidProp,
 		type ComponentProps,
+		composeProps,
 		customInputAttributes,
 		getFormContext,
 		uiOptionProps
@@ -39,7 +41,7 @@
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 
-	const { RadioGroup, RadioGroupItem, Label } = $derived(themeCtx.components);
+	const { RadioGroup, RadioGroupItem, FieldLabel } = $derived(themeCtx.components);
 
 	let { config, handlers, value = $bindable(), options }: ComponentProps['radioWidget'] = $props();
 
@@ -56,13 +58,15 @@
 	);
 
 	const itemAttributes = $derived(
-		uiOptionProps('shadcn4RadioItem')(
+		composeProps(
+			ctx,
+			config,
 			{
 				onclick: handlers.oninput,
 				onblur: handlers.onblur
 			},
-			config,
-			ctx
+			uiOptionProps('shadcn4RadioItem'),
+			ariaInvalidProp
 		)
 	);
 </script>
@@ -70,14 +74,14 @@
 <RadioGroup bind:value={mapped.value} {...attributes}>
 	{#each options as option, index (option.id)}
 		{@const indexStr = index.toString()}
-		<div class="flex items-center space-x-2">
+		<div class="flex items-center space-x-3">
 			<RadioGroupItem
 				{...itemAttributes}
 				value={indexStr}
 				id={option.id}
 				disabled={option.disabled}
 			/>
-			<Label for={option.id}>{option.label}</Label>
+			<FieldLabel for={option.id}>{option.label}</FieldLabel>
 		</div>
 	{/each}
 </RadioGroup>
