@@ -22,6 +22,7 @@
 	bind:value
 	class="w-full"
 	{...textareaAttributes(ctx, config, 'flowbite3Textarea', handlers, {
-		divClass: 'w-full'
+		// @ts-expect-error NodeNext module resolution problem
+		classes: { div: 'w-full' }
 	})}
 />

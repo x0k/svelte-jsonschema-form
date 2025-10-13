@@ -1498,8 +1498,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.46.2)
       flowbite-svelte:
-        specifier: ^1.13.16
-        version: 1.13.16(rollup@4.46.2)(svelte@5.39.11)(tailwindcss@4.1.13)
+        specifier: ^1.17.4
+        version: 1.17.4(rollup@4.46.2)(svelte@5.39.11)(tailwindcss@4.1.13)
       globals:
         specifier: 'catalog:'
         version: 16.4.0
@@ -4597,6 +4597,12 @@ packages:
 
   flowbite-svelte@1.13.16:
     resolution: {integrity: sha512-G9ZTdAYjjElc8HX57MrwBNK1QkSpwA/k5SY2vm9/087t7k/H1r+DPBadfIeTxzrmyIofaCbs5nTtjW+4OkSlbw==}
+    peerDependencies:
+      svelte: ^5.29.0
+      tailwindcss: ^4.1.4
+
+  flowbite-svelte@1.17.4:
+    resolution: {integrity: sha512-z8e7wJZHgYN+vE6yQT/jH/U3+TkH57UdX52dBg7R2oLkhQFjgA5nAzPqeOPF46+3wZy5mJIFpZ9czxKeCQx0wg==}
     peerDependencies:
       svelte: ^5.29.0
       tailwindcss: ^4.1.4
@@ -10338,21 +10344,6 @@ snapshots:
       svelte: 5.39.11
       tailwind-merge: 3.3.1
 
-  flowbite-svelte@1.13.16(rollup@4.46.2)(svelte@5.39.11)(tailwindcss@4.1.13):
-    dependencies:
-      '@floating-ui/dom': 1.7.4
-      '@floating-ui/utils': 0.2.10
-      apexcharts: 5.3.5
-      clsx: 2.1.1
-      date-fns: 4.1.0
-      flowbite: 3.1.2(rollup@4.46.2)
-      svelte: 5.39.11
-      tailwind-merge: 3.3.1
-      tailwind-variants: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.13)
-      tailwindcss: 4.1.13
-    transitivePeerDependencies:
-      - rollup
-
   flowbite-svelte@1.13.16(rollup@4.46.2)(svelte@5.39.11)(tailwindcss@4.1.14):
     dependencies:
       '@floating-ui/dom': 1.7.4
@@ -10380,6 +10371,22 @@ snapshots:
       tailwind-merge: 3.3.1
       tailwind-variants: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.11)
       tailwindcss: 4.1.11
+    transitivePeerDependencies:
+      - rollup
+
+  flowbite-svelte@1.17.4(rollup@4.46.2)(svelte@5.39.11)(tailwindcss@4.1.13):
+    dependencies:
+      '@floating-ui/dom': 1.7.4
+      '@floating-ui/utils': 0.2.10
+      apexcharts: 5.3.5
+      clsx: 2.1.1
+      date-fns: 4.1.0
+      esm-env: 1.2.2
+      flowbite: 3.1.2(rollup@4.46.2)
+      svelte: 5.39.11
+      tailwind-merge: 3.3.1
+      tailwind-variants: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.13)
+      tailwindcss: 4.1.13
     transitivePeerDependencies:
       - rollup
 
