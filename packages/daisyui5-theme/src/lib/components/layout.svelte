@@ -13,7 +13,14 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, layoutAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		composeProps,
+		getFormContext,
+		layoutAttributes,
+		uiOptionNestedProps,
+		uiOptionProps,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
 
@@ -32,15 +39,16 @@
 {#if (type === 'field-meta' || type === 'field-content' || type === 'array-field-meta' || type === 'object-field-meta') && Object.keys(attributes).length < 2}
 	{@render children()}
 {:else if type === 'field' || type === 'array-field' || type === 'object-field'}
-	{@const attributes = layoutAttributes(
-		ctx,
-		config,
-		'daisyui5FieldsLayout',
-		'daisyui5FieldsLayouts',
-		type,
-		{}
-	)}
-	<fieldset class="fieldset gap-y-2" {...attributes}>
+	<fieldset
+		class="fieldset gap-y-2"
+		{...composeProps(
+			ctx,
+			config,
+			attributes,
+			uiOptionProps('daisyui5FieldsLayout'),
+			uiOptionNestedProps('daisyui5FieldsLayouts', (data) => data[type])
+		)}
+	>
 		{@render children()}
 	</fieldset>
 {:else}
