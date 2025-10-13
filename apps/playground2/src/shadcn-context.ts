@@ -3,7 +3,6 @@ import { setThemeContext } from "@sjsf/shadcn4-theme";
 import { Button } from "$lib/components/ui/button/index.js";
 import { Checkbox } from "$lib/components/ui/checkbox/index.js";
 import { Input } from "$lib/components/ui/input/index.js";
-import { Label } from "$lib/components/ui/label/index.js";
 import {
   Select,
   SelectContent,
@@ -35,14 +34,35 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "$lib/components/ui/popover/index.js";
+import {
+  Field,
+  FieldLabel,
+  FieldContent,
+  FieldError,
+  FieldDescription,
+  FieldGroup,
+  FieldLegend,
+  FieldTitle,
+  FieldSet,
+} from "$lib/components/ui/field/index.js";
+import { ButtonGroup } from '$lib/components/ui/button-group/index.js'
 
 export function setShadcnContext() {
   setThemeContext({
     components: {
+      ButtonGroup,
+      Field,
+      FieldLabel,
+      FieldContent,
+      FieldError,
+      FieldDescription,
+      FieldGroup,
+      FieldLegend,
+      FieldTitle,
+      FieldSet,
       Button,
       Checkbox,
       Input,
-      Label,
       Select,
       SelectContent,
       SelectItem,
@@ -61,7 +81,6 @@ export function setShadcnContext() {
       ToggleGroupItem,
       Slider,
       Switch,
-      // @ts-ignore ???
       Popover,
       PopoverContent,
       PopoverTrigger,
