@@ -1,6 +1,7 @@
 import type { ComponentProps } from "svelte";
 import type {
   HTMLAttributes,
+  HTMLFieldsetAttributes,
   HTMLFormAttributes,
   HTMLInputAttributes,
   HTMLInputTypeAttribute,
@@ -28,6 +29,7 @@ import type {
 } from "bits-ui";
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type { Button } from "@sjsf/shadcn4-theme/new-york";
+import type { ButtonGroupProps, FieldProps } from '@sjsf/shadcn4-theme/components/layout.svelte'
 
 type InputType = Exclude<HTMLInputTypeAttribute, "file">;
 
@@ -80,6 +82,9 @@ export interface UiOptions {
   layouts?: {
     [L in LayoutType]?: HTMLAttributes<HTMLDivElement>;
   };
+  shadcn4ButtonGroup?: ButtonGroupProps;
+  shadcn4Field?: FieldProps;
+  shadcn4FieldSet?: HTMLFieldsetAttributes;
   shadcn4SubmitButton?: ComponentProps<typeof Button>;
   /**
    * Overrides the attributes of the field title
