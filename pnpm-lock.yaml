@@ -184,8 +184,8 @@ importers:
         specifier: ^8.17.1
         version: 8.17.1
       dompurify:
-        specifier: ^3.2.7
-        version: 3.2.7
+        specifier: ^3.3.0
+        version: 3.3.0
       lz-string:
         specifier: ^1.5.0
         version: 1.5.0
@@ -194,8 +194,8 @@ importers:
         version: 3.13.0
     devDependencies:
       '@internationalized/date':
-        specifier: ~3.9.0
-        version: 3.9.0
+        specifier: ~3.10.0
+        version: 3.10.0
       '@lucide/svelte':
         specifier: ^0.544.0
         version: 0.544.0(svelte@5.39.11)
@@ -203,8 +203,8 @@ importers:
         specifier: 'catalog:'
         version: 4.1.14(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
       bits-ui:
-        specifier: ^2.11.1
-        version: 2.11.1(@internationalized/date@3.9.0)(svelte@5.39.11)
+        specifier: ^2.11.5
+        version: 2.11.5(@internationalized/date@3.10.0)(svelte@5.39.11)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -224,8 +224,8 @@ importers:
         specifier: 'catalog:'
         version: 4.1.13
       tw-animate-css:
-        specifier: ^1.3.8
-        version: 1.3.8
+        specifier: ^1.4.0
+        version: 1.4.0
 
   apps/docs2:
     dependencies:
@@ -405,8 +405,8 @@ importers:
         specifier: ^6.5.2
         version: 6.5.2
       '@codemirror/view':
-        specifier: ^6.38.3
-        version: 6.38.3
+        specifier: ^6.38.6
+        version: 6.38.6
       '@ddietr/codemirror-themes':
         specifier: ^1.5.2
         version: 1.5.2
@@ -463,8 +463,8 @@ importers:
         version: 5.0.2(svelte@5.39.11)
     devDependencies:
       '@internationalized/date':
-        specifier: ~3.9.0
-        version: 3.9.0
+        specifier: ~3.10.0
+        version: 3.10.0
       '@lucide/svelte':
         specifier: ^0.544.0
         version: 0.544.0(svelte@5.39.11)
@@ -472,8 +472,8 @@ importers:
         specifier: 'catalog:'
         version: 4.1.14(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
       bits-ui:
-        specifier: ^2.11.1
-        version: 2.11.1(@internationalized/date@3.9.0)(svelte@5.39.11)
+        specifier: ^2.11.5
+        version: 2.11.5(@internationalized/date@3.10.0)(svelte@5.39.11)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -490,8 +490,8 @@ importers:
         specifier: 'catalog:'
         version: 4.1.13
       tw-animate-css:
-        specifier: ^1.3.8
-        version: 1.3.8
+        specifier: ^1.4.0
+        version: 1.4.0
 
   examples/animated-array:
     dependencies:
@@ -2053,8 +2053,8 @@ packages:
   '@codemirror/state@6.5.2':
     resolution: {integrity: sha512-FVqsPqtPWKVVL3dPSxy8wEF/ymIEuVzF1PK3VbUgrxXpJUSHQWWZz4JMToquRxnkw+36LTamCZG2iua2Ptq0fA==}
 
-  '@codemirror/view@6.38.3':
-    resolution: {integrity: sha512-x2t87+oqwB1mduiQZ6huIghjMt4uZKFEdj66IcXw7+a5iBEvv9lh7EWDRHI7crnD4BMGpnyq/RzmCGbiEZLcvQ==}
+  '@codemirror/view@6.38.6':
+    resolution: {integrity: sha512-qiS0z1bKs5WOvHIAC0Cybmv4AJSkAXgX5aD6Mqd2epSLlVJsQl8NG23jCVouIgkh4All/mrbdsf2UOLFnJw0tw==}
 
   '@csstools/color-helpers@5.0.2':
     resolution: {integrity: sha512-JqWH1vsgdGcw2RR6VliXXdA0/59LttzlU8UlRT/iUUsEeWfYq8I+K0yhihEUTTHLRm1EXvpsCx3083EU15ecsA==}
@@ -2527,9 +2527,6 @@ packages:
 
   '@internationalized/date@3.10.0':
     resolution: {integrity: sha512-oxDR/NTEJ1k+UFVQElaNIk65E/Z83HK1z1WI3lQyhTtnNg4R5oVXaPzK3jcpKG8UHKDVuDQHzn+wsxSz8RP3aw==}
-
-  '@internationalized/date@3.9.0':
-    resolution: {integrity: sha512-yaN3brAnHRD+4KyyOsJyk49XUvj2wtbNACSqg0bz3u8t2VuzhC8Q5dfRnrSxjnnbDb+ienBnkn1TzQfE154vyg==}
 
   '@isaacs/fs-minipass@4.0.1':
     resolution: {integrity: sha512-wgm9Ehl2jpeqP3zw/7mo3kRHFp5MEDhqAdwy1fTGkHAwnkGOVsgpvQhL8B5n1qlb01jV3n/bI0ZfZp5lWA1k4w==}
@@ -3870,13 +3867,6 @@ packages:
       '@internationalized/date': ^3.8.1
       svelte: ^5.33.0
 
-  bits-ui@2.11.1:
-    resolution: {integrity: sha512-c05w6nX/uFtRkpSfHNPfeS9qo67eXc9oC3ez4CUB2562uRaZlv/XV1wVuTk6foYGtE6wVRSkQi1IK4U+Fu/6YQ==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      '@internationalized/date': ^3.8.1
-      svelte: ^5.33.0
-
   bits-ui@2.11.5:
     resolution: {integrity: sha512-d7b6HrrCUeK261c777agFz0G5lx13RMA0DT022e4SRuIjI3bZ8ci53YxIZ2/jpXTmeAeqeShyC+Mgibh9OeW9A==}
     engines: {node: '>=20'}
@@ -4365,8 +4355,8 @@ packages:
   dom-accessibility-api@0.5.16:
     resolution: {integrity: sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==}
 
-  dompurify@3.2.7:
-    resolution: {integrity: sha512-WhL/YuveyGXJaerVlMYGWhvQswa7myDG17P7Vu65EWC05o8vfeNbvNf4d/BOvH99+ZW+LlQsc1GDKMa1vNK6dw==}
+  dompurify@3.3.0:
+    resolution: {integrity: sha512-r+f6MYR1gGN1eJv0TVQbhA7if/U7P87cdPl3HN5rikqaBSBxLiCb/b9O+2eG0cxz0ghyU+mU1QkbsOwERMYlWQ==}
 
   dotenv@16.6.1:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
@@ -6353,9 +6343,6 @@ packages:
   tw-animate-css@1.3.6:
     resolution: {integrity: sha512-9dy0R9UsYEGmgf26L8UcHiLmSFTHa9+D7+dAt/G/sF5dCnPePZbfgDYinc7/UzAM7g/baVrmS6m9yEpU46d+LA==}
 
-  tw-animate-css@1.3.8:
-    resolution: {integrity: sha512-Qrk3PZ7l7wUcGYhwZloqfkWCmaXZAoqjkdbIDvzfGshwGtexa/DAs9koXxIkrpEasyevandomzCBAV1Yyop5rw==}
-
   tw-animate-css@1.4.0:
     resolution: {integrity: sha512-7bziOlRqH0hJx80h/3mbicLW7o8qLsH5+RaLR2t+OHM3D0JlWGODQKQ4cxbK7WlvmUxpcj6Kgu6EKqjrGFe3QQ==}
 
@@ -7378,14 +7365,14 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.11.0
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.3
+      '@codemirror/view': 6.38.6
       '@lezer/common': 1.2.3
 
   '@codemirror/commands@6.8.1':
     dependencies:
       '@codemirror/language': 6.11.0
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.3
+      '@codemirror/view': 6.38.6
       '@lezer/common': 1.2.3
 
   '@codemirror/lang-json@6.0.2':
@@ -7396,7 +7383,7 @@ snapshots:
   '@codemirror/language@6.11.0':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.3
+      '@codemirror/view': 6.38.6
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
@@ -7405,20 +7392,20 @@ snapshots:
   '@codemirror/lint@6.8.5':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.3
+      '@codemirror/view': 6.38.6
       crelt: 1.0.6
 
   '@codemirror/search@6.5.11':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.3
+      '@codemirror/view': 6.38.6
       crelt: 1.0.6
 
   '@codemirror/state@6.5.2':
     dependencies:
       '@marijn/find-cluster-break': 1.0.2
 
-  '@codemirror/view@6.38.3':
+  '@codemirror/view@6.38.6':
     dependencies:
       '@codemirror/state': 6.5.2
       crelt: 1.0.6
@@ -7456,7 +7443,7 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.11.0
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.3
+      '@codemirror/view': 6.38.6
       '@lezer/highlight': 1.2.1
 
   '@dnd-kit/abstract@0.1.21':
@@ -7816,10 +7803,6 @@ snapshots:
       '@types/node': 24.5.2
 
   '@internationalized/date@3.10.0':
-    dependencies:
-      '@swc/helpers': 0.5.13
-
-  '@internationalized/date@3.9.0':
     dependencies:
       '@swc/helpers': 0.5.13
 
@@ -9567,17 +9550,6 @@ snapshots:
       svelte-toolbelt: 0.9.3(svelte@5.39.3)
       tabbable: 6.2.0
 
-  bits-ui@2.11.1(@internationalized/date@3.9.0)(svelte@5.39.11):
-    dependencies:
-      '@floating-ui/core': 1.7.3
-      '@floating-ui/dom': 1.7.4
-      '@internationalized/date': 3.9.0
-      esm-env: 1.2.2
-      runed: 0.31.1(svelte@5.39.11)
-      svelte: 5.39.11
-      svelte-toolbelt: 0.10.5(svelte@5.39.11)
-      tabbable: 6.2.0
-
   bits-ui@2.11.5(@internationalized/date@3.10.0)(svelte@5.39.11):
     dependencies:
       '@floating-ui/core': 1.7.3
@@ -9708,7 +9680,7 @@ snapshots:
       '@codemirror/lint': 6.8.5
       '@codemirror/search': 6.5.11
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.3
+      '@codemirror/view': 6.38.6
 
   collapse-white-space@2.1.0: {}
 
@@ -10061,7 +10033,7 @@ snapshots:
 
   dom-accessibility-api@0.5.16: {}
 
-  dompurify@3.2.7:
+  dompurify@3.3.0:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
 
@@ -11257,7 +11229,7 @@ snapshots:
       d3-sankey: 0.12.3
       dagre-d3-es: 7.0.11
       dayjs: 1.11.18
-      dompurify: 3.2.7
+      dompurify: 3.3.0
       katex: 0.16.22
       khroma: 2.1.0
       lodash-es: 4.17.21
@@ -12604,8 +12576,6 @@ snapshots:
       turbo-windows-arm64: 2.5.8
 
   tw-animate-css@1.3.6: {}
-
-  tw-animate-css@1.3.8: {}
 
   tw-animate-css@1.4.0: {}
 

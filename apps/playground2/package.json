@@ -12,7 +12,7 @@
   "dependencies": {
     "@codemirror/lang-json": "^6.0.2",
     "@codemirror/state": "^6.5.2",
-    "@codemirror/view": "^6.38.3",
+    "@codemirror/view": "^6.38.6",
     "@ddietr/codemirror-themes": "^1.5.2",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
@@ -33,15 +33,15 @@
     "svelte-exmarkdown": "^5.0.2"
   },
   "devDependencies": {
-    "@internationalized/date": "~3.9.0",
+    "@internationalized/date": "~3.10.0",
     "@lucide/svelte": "^0.544.0",
     "@tailwindcss/vite": "catalog:",
-    "bits-ui": "^2.11.1",
+    "bits-ui": "^2.11.5",
     "clsx": "^2.1.1",
     "svelte": "catalog:",
     "tailwind-merge": "^3.3.1",
     "tailwind-variants": "^3.1.1",
     "tailwindcss": "catalog:",
-    "tw-animate-css": "^1.3.8"
+    "tw-animate-css": "^1.4.0"
   }
 }
