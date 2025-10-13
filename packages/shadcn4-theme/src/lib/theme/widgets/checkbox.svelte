@@ -11,7 +11,6 @@
 
 <script lang="ts">
 	import {
-		composeProps,
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
@@ -27,7 +26,7 @@
 
 	const themeCtx = getThemeContext();
 
-	const { Checkbox, Label } = $derived(themeCtx.components);
+	const { Checkbox, FieldLabel } = $derived(themeCtx.components);
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 
@@ -51,7 +50,7 @@
 	);
 </script>
 
-<div class="flex items-center space-x-2">
+<div class="flex items-center space-x-3">
 	<Checkbox
 		bind:checked={
 			() => value ?? false,
@@ -61,7 +60,7 @@
 		}
 		{...attributes}
 	/>
-	<Label for={attributes.id}>
+	<FieldLabel for={attributes.id}>
 		{config.title}
-	</Label>
+	</FieldLabel>
 </div>

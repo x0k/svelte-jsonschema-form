@@ -12,7 +12,7 @@
 <script lang="ts">
 	import {
 		customInputAttributes,
-		describedBy,
+		ariaDescribedByProp,
 		getFormContext,
 		handlersAttachment,
 		createId,
@@ -52,8 +52,7 @@
 			showActionButtons: true,
 			autohide: false,
 			onselect: onChange,
-			onclear: onChange,
-			'aria-describedby': describedBy(ctx, config)
+			onclear: onChange
 		})}
 	/>
 </div>

@@ -5,6 +5,6 @@ export type LabelProps = LabelRootProps;
 
 declare module '../context.js' {
 	interface ThemeComponents {
-		Label: Component<LabelRootProps>;
+		FieldLabel: Component<LabelRootProps>;
 	}
 }
