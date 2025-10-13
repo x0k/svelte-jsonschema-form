@@ -81,6 +81,7 @@ export function setShadcnContext() {
       ToggleGroupItem,
       Slider,
       Switch,
+      // @ts-ignore WTF
       Popover,
       PopoverContent,
       PopoverTrigger,
