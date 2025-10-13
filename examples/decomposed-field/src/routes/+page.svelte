@@ -61,7 +61,7 @@
     {@const handlers = makeEventHandlers(
       ctx,
       () => config,
-      () => validateField(ctx, config, valueRef.value)
+      () => validateField(ctx, config, valueRef.current)
     )}
     <Layout type="field" {config} {errors}>
       {#if showMeta && (title || description)}
@@ -78,8 +78,8 @@
         <Widget
           type="widget"
           bind:value={
-            () => valueRef.value as undefined,
-            (v) => (valueRef.value = v || uiOption("stringEmptyValue"))
+            () => valueRef.current as undefined,
+            (v) => (valueRef.current = v || uiOption("stringEmptyValue"))
           }
           {config}
           {errors}

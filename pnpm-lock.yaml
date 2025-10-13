@@ -496,14 +496,14 @@ importers:
   examples/animated-array:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -533,11 +533,11 @@ importers:
   examples/arktype-starter:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       arktype:
         specifier: ^2.1.21
         version: 2.1.21
@@ -567,14 +567,14 @@ importers:
   examples/async-combobox:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -607,14 +607,14 @@ importers:
   examples/basic-starter:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -644,17 +644,17 @@ importers:
   examples/daisyui5-starter:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/daisyui5-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(cally@0.8.0)(daisyui@5.1.10)(pikaday@1.8.2)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(cally@0.8.0)(daisyui@5.1.10)(pikaday@1.8.2)(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -693,14 +693,14 @@ importers:
   examples/decomposed-field:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -730,17 +730,17 @@ importers:
   examples/flowbite3-starter:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/flowbite3-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(flowbite-svelte@1.13.16(rollup@4.46.2)(svelte@5.39.3)(tailwindcss@4.1.11))(flowbite@3.1.2(rollup@4.46.2))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(flowbite-svelte@1.17.4(rollup@4.46.2)(svelte@5.39.3)(tailwindcss@4.1.11))(flowbite@3.1.2(rollup@4.46.2))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -761,8 +761,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.46.2)
       flowbite-svelte:
-        specifier: ^1.13.16
-        version: 1.13.16(rollup@4.46.2)(svelte@5.39.3)(tailwindcss@4.1.11)
+        specifier: ^1.17.0
+        version: 1.17.4(rollup@4.46.2)(svelte@5.39.3)(tailwindcss@4.1.11)
       svelte:
         specifier: ^5.39.0
         version: 5.39.3
@@ -782,14 +782,14 @@ importers:
   examples/formulas:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -822,14 +822,14 @@ importers:
   examples/layout-slots:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -859,14 +859,14 @@ importers:
   examples/markdown-description:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -899,27 +899,27 @@ importers:
   examples/multi-step-native-form:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       '@sjsf/sveltekit':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@sveltejs/kit@2.42.2(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@sveltejs/kit@2.46.4(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^6.1.0
-        version: 6.1.0(@sveltejs/kit@2.42.2(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))
+        version: 6.1.0(@sveltejs/kit@2.46.4(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))
       '@sveltejs/kit':
-        specifier: ^2.42.0
-        version: 2.42.2(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
+        specifier: ^2.46.0
+        version: 2.46.4(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
       '@sveltejs/vite-plugin-svelte':
         specifier: ^6.1.2
         version: 6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
@@ -939,27 +939,27 @@ importers:
   examples/native-form:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       '@sjsf/sveltekit':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@sveltejs/kit@2.42.2(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@sveltejs/kit@2.46.4(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^6.1.0
-        version: 6.1.0(@sveltejs/kit@2.42.2(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))
+        version: 6.1.0(@sveltejs/kit@2.46.4(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))
       '@sveltejs/kit':
-        specifier: ^2.42.0
-        version: 2.42.2(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
+        specifier: ^2.46.0
+        version: 2.46.4(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
       '@sveltejs/vite-plugin-svelte':
         specifier: ^6.1.2
         version: 6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
@@ -979,14 +979,14 @@ importers:
   examples/pattern-properties-validator:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -1016,14 +1016,14 @@ importers:
   examples/preupload-file:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -1053,23 +1053,23 @@ importers:
   examples/shadcn4-starter:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       '@sjsf/shadcn4-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@internationalized/date@3.10.0)(@lucide/svelte@0.501.0(svelte@5.39.3))(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(bits-ui@2.10.0(@internationalized/date@3.10.0)(svelte@5.39.3))(clsx@2.1.1)(svelte@5.39.3)(tailwind-merge@3.3.1)(tailwind-variants@1.0.0(tailwindcss@4.1.11))
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@internationalized/date@3.10.0)(@lucide/svelte@0.501.0(svelte@5.39.3))(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(bits-ui@2.11.5(@internationalized/date@3.10.0)(svelte@5.39.3))(clsx@2.1.1)(svelte@5.39.3)(tailwind-merge@3.3.1)(tailwind-variants@1.0.0(tailwindcss@4.1.11))
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
       bits-ui:
-        specifier: ^2.10.0
-        version: 2.10.0(@internationalized/date@3.10.0)(svelte@5.39.3)
+        specifier: ^2.11.0
+        version: 2.11.5(@internationalized/date@3.10.0)(svelte@5.39.3)
     devDependencies:
       '@lucide/svelte':
         specifier: ^0.501.0
@@ -1117,17 +1117,17 @@ importers:
   examples/skeleton3-starter:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       '@sjsf/skeleton3-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@skeletonlabs/skeleton-svelte@1.5.1(svelte@5.39.3))(@skeletonlabs/skeleton@3.2.0(tailwindcss@4.1.11))(@tailwindcss/forms@0.5.10(tailwindcss@4.1.11))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@skeletonlabs/skeleton-svelte@1.5.1(svelte@5.39.3))(@skeletonlabs/skeleton@3.2.0(tailwindcss@4.1.11))(@tailwindcss/forms@0.5.10(tailwindcss@4.1.11))(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -1215,14 +1215,14 @@ importers:
   examples/tabbed-layout:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -1252,11 +1252,11 @@ importers:
   examples/typebox-starter:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       typebox:
         specifier: ^1.0.7
         version: 1.0.7
@@ -1286,14 +1286,14 @@ importers:
   examples/valibot-starter:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       '@sjsf/valibot-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@valibot/to-json-schema@1.3.0(valibot@1.1.0(typescript@5.9.2)))(valibot@1.1.0(typescript@5.9.2))
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@valibot/to-json-schema@1.3.0(valibot@1.1.0(typescript@5.9.2)))(valibot@1.1.0(typescript@5.9.2))
       '@valibot/to-json-schema':
         specifier: ^1.3.0
         version: 1.3.0(valibot@1.1.0(typescript@5.9.2))
@@ -1326,14 +1326,14 @@ importers:
   examples/zod-starter:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
       '@sjsf/form':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       '@sjsf/zod4-validator':
-        specifier: ^3.0.0-next.6
-        version: 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(zod@4.1.11)
+        specifier: ^3.0.0-next.7
+        version: 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(zod@4.1.11)
       zod:
         specifier: 'catalog:'
         version: 4.1.11
@@ -2799,22 +2799,22 @@ packages:
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
 
-  '@sjsf/ajv8-validator@3.0.0-next.6':
-    resolution: {integrity: sha512-jq4DBMLMVC7KQUO5b1SjW5SY5Vtxbu38F8kz7l74dtsD7UMN6P0R8Y2cpngnM+aN4E6OGQ9dc+AQB/a1HsbJqA==}
+  '@sjsf/ajv8-validator@3.0.0-next.7':
+    resolution: {integrity: sha512-vK0+MdspZb/qTXjzrTbnwWzf44gBd0UDfzcIZFUSBMp81LoK01kg/C5HfbbL86JaaRGGpQp3CXmtV+1UL9j8Mw==}
     peerDependencies:
-      '@sjsf/form': ^3.0.0-next.6
+      '@sjsf/form': ^3.0.0-next.7
       ajv: ^8.17.0
 
-  '@sjsf/basic-theme@3.0.0-next.6':
-    resolution: {integrity: sha512-sRLoI5suTnvjOyq9VCGt+uo6VYiXIVBAOY/p+Grdd6bAbTv9HS02L9Kb3Nz2NG3l0Jk6KwwnYEvF0l/7fqKwlg==}
+  '@sjsf/basic-theme@3.0.0-next.7':
+    resolution: {integrity: sha512-SKVtLCjSw/fcaKp8Fd69vkwiX7ShY+2M+fI5nlboYMQ68kPu4Jjun0p3oLxTbwQe4QCIPWc/yLS6rEfDkD8O5g==}
     peerDependencies:
-      '@sjsf/form': ^3.0.0-next.6
+      '@sjsf/form': ^3.0.0-next.7
       svelte: ^5.39.0
 
-  '@sjsf/daisyui5-theme@3.0.0-next.6':
-    resolution: {integrity: sha512-EWfGt+dHcoxGc6D2GLPWjFG8Omf4eX/rrYMLCiwDduJy3Qg3WSRBvp29ZlhqrNYO/2AltBhQMaevDZ9VJlf5wA==}
+  '@sjsf/daisyui5-theme@3.0.0-next.7':
+    resolution: {integrity: sha512-LcRkL8xFxsNwR/O0a+kNr3yygbQiMxArGfKPhDjsp695SxeDQY5ixD9CkLF/6s8iVOqiQN5VyP9kpCj/G7NDSQ==}
     peerDependencies:
-      '@sjsf/form': ^3.0.0-next.6
+      '@sjsf/form': ^3.0.0-next.7
       cally: ^0.8.0
       daisyui: ^5.1.0
       pikaday: ^1.8.2
@@ -2825,16 +2825,16 @@ packages:
       pikaday:
         optional: true
 
-  '@sjsf/flowbite3-theme@3.0.0-next.6':
-    resolution: {integrity: sha512-+KJP2EqELcLTToGR1aLLc+AOhgiKdM++ff7j+Eyn5WYs1IkYe0+3KZzFn44EH1203b4pJ2dTClxOTmswjZcoAQ==}
+  '@sjsf/flowbite3-theme@3.0.0-next.7':
+    resolution: {integrity: sha512-dZ1sgO8GLY5GX2mlIhFSNHPNcI1AkF8lRLuARhLgBmZvxMyR67nDYGcGjvt0qyDXLa8dxvix5UYjczmiMZy1JQ==}
     peerDependencies:
-      '@sjsf/form': ^3.0.0-next.6
+      '@sjsf/form': ^3.0.0-next.7
       flowbite: ^3.1.0
-      flowbite-svelte: ^1.13.16
+      flowbite-svelte: ^1.17.0
       svelte: ^5.39.0
 
-  '@sjsf/form@3.0.0-next.6':
-    resolution: {integrity: sha512-absJcJeN3p1n//KBt8NJKeXcAAesBouYS1lAlt7KlLCaOM+bWglE9t3W7oDVwZWB1y9Y0+1oN17dC2+32V9qWg==}
+  '@sjsf/form@3.0.0-next.7':
+    resolution: {integrity: sha512-8nCk4OZ3hf5Dvv7bGLknqHGGMjcCLnLzJ1IX0qeddYH8BvENIMEXiE5FktETmMTZQmw9HzBV1sLaLS1tNyeFKA==}
     peerDependencies:
       '@types/json-schema-merge-allof': ^0.6.0
       esm-env: ^1.2.0
@@ -2846,13 +2846,13 @@ packages:
       json-schema-merge-allof:
         optional: true
 
-  '@sjsf/shadcn4-theme@3.0.0-next.6':
-    resolution: {integrity: sha512-V0fo7ItDPhOokmX8RysbNNzOHL92M2UP5F8lgPxlnNR5XJ1B/D2ece6Qbpw8uUe74mXOT+1zEGpiyLVKB2dLdw==}
+  '@sjsf/shadcn4-theme@3.0.0-next.7':
+    resolution: {integrity: sha512-bMoqkB9FJEBogasvPoJEMQ4TYQVkfXsiEEFMXZWFPAv+L7DnKSJ3zTOpbKy1Ibp1fg2CqKw8NxWoecOmS7BcEw==}
     peerDependencies:
       '@internationalized/date': ^3.9.0
       '@lucide/svelte': ^0.501.0
-      '@sjsf/form': ^3.0.0-next.6
-      bits-ui: ^2.10.0
+      '@sjsf/form': ^3.0.0-next.7
+      bits-ui: ^2.11.0
       clsx: ^2.1.0
       svelte: ^5.39.0
       tailwind-merge: ^3.3.0
@@ -2861,10 +2861,10 @@ packages:
       '@internationalized/date':
         optional: true
 
-  '@sjsf/skeleton3-theme@3.0.0-next.6':
-    resolution: {integrity: sha512-iUlGyRZfJKTDLoRswePb3dg/T4WNEldIw/V8Q/CYzZ4JHFP7rjOdIflsv4C3KijYKymVeaSerfE9+6NVNPgzSQ==}
+  '@sjsf/skeleton3-theme@3.0.0-next.7':
+    resolution: {integrity: sha512-voBP3RLA99giW7bKt3z0W55GHp0lOWkPNz3kN8Z8RxokvxQLsQrQrJuzczSjHJ9t06oFys1XI4vT+OKmTPi60g==}
     peerDependencies:
-      '@sjsf/form': ^3.0.0-next.6
+      '@sjsf/form': ^3.0.0-next.7
       '@skeletonlabs/skeleton': ^3.2.0
       '@skeletonlabs/skeleton-svelte': ^1.5.0
       '@tailwindcss/forms': ^0.5.0
@@ -2873,25 +2873,25 @@ packages:
       '@skeletonlabs/skeleton-svelte':
         optional: true
 
-  '@sjsf/sveltekit@3.0.0-next.6':
-    resolution: {integrity: sha512-XCmnBfk2IAddLRh2+4Ed9QEEOUhJDifJG65a3hNmo/a/uy9sum1vGQEYCkBzpRg3SQuAZjaZoSxZnNVwIgWKOA==}
+  '@sjsf/sveltekit@3.0.0-next.7':
+    resolution: {integrity: sha512-Fa+qGXmVSZnNFbjxEMLnYpdFQNOg7t+Pskhlg5JpvuZIPm79lg8D9SysyRnS5SEboP++TUJzgKc5vPPBeU8xtw==}
     peerDependencies:
-      '@sjsf/form': ^3.0.0-next.6
-      '@sveltejs/kit': ^2.42.0
+      '@sjsf/form': ^3.0.0-next.7
+      '@sveltejs/kit': ^2.46.0
       esm-env: ^1.2.0
       svelte: ^5.39.0
 
-  '@sjsf/valibot-validator@3.0.0-next.6':
-    resolution: {integrity: sha512-+3DhpTDSV5MIDYm1IGSRmH8URtqEQFwVJxTmbaDu2fiwB8HG9UU4hwiVWKEuvzvTmmUmILA03EDIi4ZjDqUPeQ==}
+  '@sjsf/valibot-validator@3.0.0-next.7':
+    resolution: {integrity: sha512-BEON93NGORYMyh/uoxRS8B5sK9GyFvTFLMGErv0aa9thL/aelAmf2f5KT740XWXyqyl8T9sZX6LshW4baNiYHg==}
     peerDependencies:
-      '@sjsf/form': ^3.0.0-next.6
+      '@sjsf/form': ^3.0.0-next.7
       '@valibot/to-json-schema': ^1.3.0
       valibot: ^1.1.0
 
-  '@sjsf/zod4-validator@3.0.0-next.6':
-    resolution: {integrity: sha512-Q1x/gVVb54E/IpawjyosMQdc/SOmxQXfmB/0pLjCiVWXRAkRfN9QyQBDwaaNhdnIHdQMVxZJFnBaG3GCX79p8w==}
+  '@sjsf/zod4-validator@3.0.0-next.7':
+    resolution: {integrity: sha512-Q6Mi2zogaJIURIWN5tEpfUEv49kcS+tCWqEKNUF5MN4FQ6pK2nGwPNKJuWXiJaXyzn7miqmQzR4RibXxrmwmNw==}
     peerDependencies:
-      '@sjsf/form': ^3.0.0-next.6
+      '@sjsf/form': ^3.0.0-next.7
       zod: ^4.1.0
 
   '@skeletonlabs/skeleton-svelte@1.5.1':
@@ -3859,13 +3859,6 @@ packages:
   better-path-resolve@1.0.0:
     resolution: {integrity: sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==}
     engines: {node: '>=4'}
-
-  bits-ui@2.10.0:
-    resolution: {integrity: sha512-GOwMUhK0LI+GOMDQKVwd6DdfeAPOpbhvUT/5eUbXF8xRfFTLbax+xlXcbNE8ZUbzKtd8wL6vP6PWSPgT8DYQSg==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      '@internationalized/date': ^3.8.1
-      svelte: ^5.33.0
 
   bits-ui@2.11.5:
     resolution: {integrity: sha512-d7b6HrrCUeK261c777agFz0G5lx13RMA0DT022e4SRuIjI3bZ8ci53YxIZ2/jpXTmeAeqeShyC+Mgibh9OeW9A==}
@@ -6149,12 +6142,6 @@ packages:
     peerDependencies:
       svelte: ^5.30.2
 
-  svelte-toolbelt@0.9.3:
-    resolution: {integrity: sha512-HCSWxCtVmv+c6g1ACb8LTwHVbDqLKJvHpo6J8TaqwUme2hj9ATJCpjCPNISR1OCq2Q4U1KT41if9ON0isINQZw==}
-    engines: {node: '>=18', pnpm: '>=8.7.0'}
-    peerDependencies:
-      svelte: ^5.30.2
-
   svelte2tsx@0.7.44:
     resolution: {integrity: sha512-opuH+bCboss0/ncxnfAO+qt0IAprxc8OqwuC7otafWeO5CHjJ6UAAwvQmu/+xjpCSarX8pQKydXQuoJmbCDcTg==}
     peerDependencies:
@@ -8092,35 +8079,35 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@sjsf/ajv8-validator@3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)':
+  '@sjsf/ajv8-validator@3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(ajv@8.17.1)':
     dependencies:
-      '@sjsf/form': 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+      '@sjsf/form': 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       ajv: 8.17.1
 
-  '@sjsf/basic-theme@3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)':
+  '@sjsf/basic-theme@3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)':
     dependencies:
-      '@sjsf/form': 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+      '@sjsf/form': 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       svelte: 5.39.3
 
-  '@sjsf/daisyui5-theme@3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(cally@0.8.0)(daisyui@5.1.10)(pikaday@1.8.2)(svelte@5.39.3)':
+  '@sjsf/daisyui5-theme@3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(cally@0.8.0)(daisyui@5.1.10)(pikaday@1.8.2)(svelte@5.39.3)':
     dependencies:
-      '@sjsf/basic-theme': 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
-      '@sjsf/form': 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+      '@sjsf/basic-theme': 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+      '@sjsf/form': 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       daisyui: 5.1.10
       svelte: 5.39.3
     optionalDependencies:
       cally: 0.8.0
       pikaday: 1.8.2
 
-  '@sjsf/flowbite3-theme@3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(flowbite-svelte@1.13.16(rollup@4.46.2)(svelte@5.39.3)(tailwindcss@4.1.11))(flowbite@3.1.2(rollup@4.46.2))(svelte@5.39.3)':
+  '@sjsf/flowbite3-theme@3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(flowbite-svelte@1.17.4(rollup@4.46.2)(svelte@5.39.3)(tailwindcss@4.1.11))(flowbite@3.1.2(rollup@4.46.2))(svelte@5.39.3)':
     dependencies:
-      '@sjsf/basic-theme': 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
-      '@sjsf/form': 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+      '@sjsf/basic-theme': 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+      '@sjsf/form': 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       flowbite: 3.1.2(rollup@4.46.2)
-      flowbite-svelte: 1.13.16(rollup@4.46.2)(svelte@5.39.3)(tailwindcss@4.1.11)
+      flowbite-svelte: 1.17.4(rollup@4.46.2)(svelte@5.39.3)(tailwindcss@4.1.11)
       svelte: 5.39.3
 
-  '@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)':
+  '@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)':
     dependencies:
       '@standard-schema/spec': 1.0.0
       '@types/json-schema': 7.0.15
@@ -8131,12 +8118,12 @@ snapshots:
       '@types/json-schema-merge-allof': 0.6.5
       json-schema-merge-allof: 0.8.1
 
-  '@sjsf/shadcn4-theme@3.0.0-next.6(@internationalized/date@3.10.0)(@lucide/svelte@0.501.0(svelte@5.39.3))(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(bits-ui@2.10.0(@internationalized/date@3.10.0)(svelte@5.39.3))(clsx@2.1.1)(svelte@5.39.3)(tailwind-merge@3.3.1)(tailwind-variants@1.0.0(tailwindcss@4.1.11))':
+  '@sjsf/shadcn4-theme@3.0.0-next.7(@internationalized/date@3.10.0)(@lucide/svelte@0.501.0(svelte@5.39.3))(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(bits-ui@2.11.5(@internationalized/date@3.10.0)(svelte@5.39.3))(clsx@2.1.1)(svelte@5.39.3)(tailwind-merge@3.3.1)(tailwind-variants@1.0.0(tailwindcss@4.1.11))':
     dependencies:
       '@lucide/svelte': 0.501.0(svelte@5.39.3)
-      '@sjsf/basic-theme': 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
-      '@sjsf/form': 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
-      bits-ui: 2.10.0(@internationalized/date@3.10.0)(svelte@5.39.3)
+      '@sjsf/basic-theme': 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+      '@sjsf/form': 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+      bits-ui: 2.11.5(@internationalized/date@3.10.0)(svelte@5.39.3)
       clsx: 2.1.1
       svelte: 5.39.3
       tailwind-merge: 3.3.1
@@ -8144,32 +8131,33 @@ snapshots:
     optionalDependencies:
       '@internationalized/date': 3.10.0
 
-  '@sjsf/skeleton3-theme@3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@skeletonlabs/skeleton-svelte@1.5.1(svelte@5.39.3))(@skeletonlabs/skeleton@3.2.0(tailwindcss@4.1.11))(@tailwindcss/forms@0.5.10(tailwindcss@4.1.11))(svelte@5.39.3)':
+  '@sjsf/skeleton3-theme@3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@skeletonlabs/skeleton-svelte@1.5.1(svelte@5.39.3))(@skeletonlabs/skeleton@3.2.0(tailwindcss@4.1.11))(@tailwindcss/forms@0.5.10(tailwindcss@4.1.11))(svelte@5.39.3)':
     dependencies:
-      '@sjsf/basic-theme': 3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
-      '@sjsf/form': 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+      '@sjsf/basic-theme': 3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(svelte@5.39.3)
+      '@sjsf/form': 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       '@skeletonlabs/skeleton': 3.2.0(tailwindcss@4.1.11)
       '@tailwindcss/forms': 0.5.10(tailwindcss@4.1.11)
       svelte: 5.39.3
     optionalDependencies:
       '@skeletonlabs/skeleton-svelte': 1.5.1(svelte@5.39.3)
 
-  '@sjsf/sveltekit@3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@sveltejs/kit@2.42.2(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.39.3)':
+  '@sjsf/sveltekit@3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@sveltejs/kit@2.46.4(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.39.3)':
     dependencies:
-      '@sjsf/form': 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
-      '@sveltejs/kit': 2.42.2(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
+      '@sjsf/form': 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+      '@standard-schema/spec': 1.0.0
+      '@sveltejs/kit': 2.46.4(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
       esm-env: 1.2.2
       svelte: 5.39.3
 
-  '@sjsf/valibot-validator@3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@valibot/to-json-schema@1.3.0(valibot@1.1.0(typescript@5.9.2)))(valibot@1.1.0(typescript@5.9.2))':
+  '@sjsf/valibot-validator@3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(@valibot/to-json-schema@1.3.0(valibot@1.1.0(typescript@5.9.2)))(valibot@1.1.0(typescript@5.9.2))':
     dependencies:
-      '@sjsf/form': 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+      '@sjsf/form': 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       '@valibot/to-json-schema': 1.3.0(valibot@1.1.0(typescript@5.9.2))
       valibot: 1.1.0(typescript@5.9.2)
 
-  '@sjsf/zod4-validator@3.0.0-next.6(@sjsf/form@3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(zod@4.1.11)':
+  '@sjsf/zod4-validator@3.0.0-next.7(@sjsf/form@3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3))(zod@4.1.11)':
     dependencies:
-      '@sjsf/form': 3.0.0-next.6(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
+      '@sjsf/form': 3.0.0-next.7(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.39.3)
       zod: 4.1.11
 
   '@skeletonlabs/skeleton-svelte@1.5.1(svelte@5.39.11)':
@@ -8263,6 +8251,10 @@ snapshots:
     dependencies:
       '@sveltejs/kit': 2.42.2(@sveltejs/vite-plugin-svelte@6.1.4(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
 
+  '@sveltejs/adapter-auto@6.1.0(@sveltejs/kit@2.46.4(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))':
+    dependencies:
+      '@sveltejs/kit': 2.46.4(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
+
   '@sveltejs/adapter-auto@6.1.0(@sveltejs/kit@2.46.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.39.11)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.11)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))':
     dependencies:
       '@sveltejs/kit': 2.46.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.39.11)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.11)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
@@ -8302,6 +8294,25 @@ snapshots:
       esm-env: 1.2.2
       kleur: 4.1.5
       magic-string: 0.30.17
+      mrmime: 2.0.1
+      sade: 1.8.1
+      set-cookie-parser: 2.7.1
+      sirv: 3.0.1
+      svelte: 5.39.3
+      vite: 7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)
+
+  '@sveltejs/kit@2.46.4(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))':
+    dependencies:
+      '@standard-schema/spec': 1.0.0
+      '@sveltejs/acorn-typescript': 1.0.5(acorn@8.15.0)
+      '@sveltejs/vite-plugin-svelte': 6.1.2(svelte@5.39.3)(vite@7.1.9(@types/node@24.5.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.5.1))
+      '@types/cookie': 0.6.0
+      acorn: 8.15.0
+      cookie: 0.6.0
+      devalue: 5.3.2
+      esm-env: 1.2.2
+      kleur: 4.1.5
+      magic-string: 0.30.19
       mrmime: 2.0.1
       sade: 1.8.1
       set-cookie-parser: 2.7.1
@@ -9545,17 +9556,6 @@ snapshots:
     dependencies:
       is-windows: 1.0.2
 
-  bits-ui@2.10.0(@internationalized/date@3.10.0)(svelte@5.39.3):
-    dependencies:
-      '@floating-ui/core': 1.7.3
-      '@floating-ui/dom': 1.7.4
-      '@internationalized/date': 3.10.0
-      esm-env: 1.2.2
-      runed: 0.31.1(svelte@5.39.3)
-      svelte: 5.39.3
-      svelte-toolbelt: 0.9.3(svelte@5.39.3)
-      tabbable: 6.2.0
-
   bits-ui@2.11.5(@internationalized/date@3.10.0)(svelte@5.39.11):
     dependencies:
       '@floating-ui/core': 1.7.3
@@ -9565,6 +9565,17 @@ snapshots:
       runed: 0.31.1(svelte@5.39.11)
       svelte: 5.39.11
       svelte-toolbelt: 0.10.5(svelte@5.39.11)
+      tabbable: 6.2.0
+
+  bits-ui@2.11.5(@internationalized/date@3.10.0)(svelte@5.39.3):
+    dependencies:
+      '@floating-ui/core': 1.7.3
+      '@floating-ui/dom': 1.7.4
+      '@internationalized/date': 3.10.0
+      esm-env: 1.2.2
+      runed: 0.31.1(svelte@5.39.3)
+      svelte: 5.39.3
+      svelte-toolbelt: 0.10.5(svelte@5.39.3)
       tabbable: 6.2.0
 
   blob-to-buffer@1.2.9: {}
@@ -10359,21 +10370,6 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.13.16(rollup@4.46.2)(svelte@5.39.3)(tailwindcss@4.1.11):
-    dependencies:
-      '@floating-ui/dom': 1.7.4
-      '@floating-ui/utils': 0.2.10
-      apexcharts: 5.3.5
-      clsx: 2.1.1
-      date-fns: 4.1.0
-      flowbite: 3.1.2(rollup@4.46.2)
-      svelte: 5.39.3
-      tailwind-merge: 3.3.1
-      tailwind-variants: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.11)
-      tailwindcss: 4.1.11
-    transitivePeerDependencies:
-      - rollup
-
   flowbite-svelte@1.17.4(rollup@4.46.2)(svelte@5.39.11)(tailwindcss@4.1.13):
     dependencies:
       '@floating-ui/dom': 1.7.4
@@ -10387,6 +10383,22 @@ snapshots:
       tailwind-merge: 3.3.1
       tailwind-variants: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.13)
       tailwindcss: 4.1.13
+    transitivePeerDependencies:
+      - rollup
+
+  flowbite-svelte@1.17.4(rollup@4.46.2)(svelte@5.39.3)(tailwindcss@4.1.11):
+    dependencies:
+      '@floating-ui/dom': 1.7.4
+      '@floating-ui/utils': 0.2.10
+      apexcharts: 5.3.5
+      clsx: 2.1.1
+      date-fns: 4.1.0
+      esm-env: 1.2.2
+      flowbite: 3.1.2(rollup@4.46.2)
+      svelte: 5.39.3
+      tailwind-merge: 3.3.1
+      tailwind-variants: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.11)
+      tailwindcss: 4.1.11
     transitivePeerDependencies:
       - rollup
 
@@ -12380,7 +12392,7 @@ snapshots:
       style-to-object: 1.0.9
       svelte: 5.39.11
 
-  svelte-toolbelt@0.9.3(svelte@5.39.3):
+  svelte-toolbelt@0.10.5(svelte@5.39.3):
     dependencies:
       clsx: 2.1.1
       runed: 0.29.2(svelte@5.39.3)

@@ -1,6 +1,6 @@
-import { fail } from "@sveltejs/kit";
 import type { Schema } from "@sjsf/form";
-import { initForm, isValid, createFormHandler } from "@sjsf/sveltekit/server";
+import type { InitialFormData } from "@sjsf/sveltekit";
+import { createAction } from "@sjsf/sveltekit/server";
 
 import * as defaults from "$lib/form-defaults";
 
@@ -33,30 +33,20 @@ interface Value {
   age: number;
 }
 
-const handleForm = createFormHandler({
-  ...defaults,
-  schema,
-  sendData: true,
-});
-
 export const load = async () => {
-  const form = initForm({ schema, sendSchema: true });
-  return { form };
+  return { form: { schema } satisfies InitialFormData };
 };
 
 export const actions = {
-  default: async ({ request }) => {
-    const [form, data] = await handleForm(
-      request.signal,
-      await request.formData()
-    );
-    if (!isValid<Value>(form, data)) {
-      return fail(400, { form });
+  defaults: createAction(
+    {
+      ...defaults,
+      name: "form",
+      schema,
+      sendData: true,
+    },
+    (data: Value) => {
+      console.log(data);
     }
-    // TODO: Do something with `data`
-    console.log(data);
-    return {
-      form,
-    };
-  },
+  ),
 } satisfies Actions;

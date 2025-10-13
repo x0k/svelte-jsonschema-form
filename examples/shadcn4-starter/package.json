@@ -27,11 +27,11 @@
 		"vite": "^7.1.2"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.0.0-next.6",
-		"@sjsf/basic-theme": "^3.0.0-next.6",
-		"@sjsf/form": "^3.0.0-next.6",
-		"@sjsf/shadcn4-theme": "^3.0.0-next.6",
+		"@sjsf/ajv8-validator": "^3.0.0-next.7",
+		"@sjsf/basic-theme": "^3.0.0-next.7",
+		"@sjsf/form": "^3.0.0-next.7",
+		"@sjsf/shadcn4-theme": "^3.0.0-next.7",
 		"ajv": "^8.17.1",
-		"bits-ui": "^2.10.0"
+		"bits-ui": "^2.11.0"
 	}
 }

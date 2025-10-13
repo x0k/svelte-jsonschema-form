@@ -16,7 +16,7 @@
 		"@sveltejs/vite-plugin-svelte": "^6.1.2",
 		"@tailwindcss/vite": "^4.1.11",
 		"flowbite": "^3.1.2",
-		"flowbite-svelte": "^1.13.16",
+		"flowbite-svelte": "^1.17.0",
 		"svelte": "^5.39.0",
 		"svelte-check": "^4.3.1",
 		"tailwindcss": "^4.1.11",
@@ -24,10 +24,10 @@
 		"vite": "^7.1.2"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.0.0-next.6",
-		"@sjsf/basic-theme": "^3.0.0-next.6",
-		"@sjsf/flowbite3-theme": "^3.0.0-next.6",
-		"@sjsf/form": "^3.0.0-next.6",
+		"@sjsf/ajv8-validator": "^3.0.0-next.7",
+		"@sjsf/basic-theme": "^3.0.0-next.7",
+		"@sjsf/flowbite3-theme": "^3.0.0-next.7",
+		"@sjsf/form": "^3.0.0-next.7",
 		"ajv": "^8.17.1"
 	}
 }

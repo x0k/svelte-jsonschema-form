@@ -20,9 +20,9 @@
 		"vite": "^7.1.2"
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "^3.0.0-next.6",
-		"@sjsf/form": "^3.0.0-next.6",
-		"@sjsf/zod4-validator": "^3.0.0-next.6",
+		"@sjsf/basic-theme": "^3.0.0-next.7",
+		"@sjsf/form": "^3.0.0-next.7",
+		"@sjsf/zod4-validator": "^3.0.0-next.7",
 		"zod": "catalog:"
 	}
 }
