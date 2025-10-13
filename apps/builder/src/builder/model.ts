@@ -112,14 +112,14 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
         },
   [Theme.Shadcn4]: (inline) =>
     inline
-      ? {}
-      : {
+      ? {
           layouts: {
             "field-content": {
-              style: "flex-direction: column;",
+              style: "display: flex; gap: 1rem;",
             },
           },
-        },
+        }
+      : {},
 };
 
 export const RADIO_WIDGET_OPTIONS: Record<
@@ -239,7 +239,9 @@ export const FILE_FIELD_NATIVE_MULTIPLE_MODE =
 
 type StripFieldSuffix<T> = T extends `${infer U}Field` ? U : T;
 
-export function fileFieldModeToFields(mode: FileFieldMode): StripFieldSuffix<FieldType>[] {
+export function fileFieldModeToFields(
+  mode: FileFieldMode
+): StripFieldSuffix<FieldType>[] {
   const fields: StripFieldSuffix<FieldType>[] = [];
   if (mode & FILE_FIELD_SINGLE_MODE) {
     fields.push("file");
@@ -256,7 +258,10 @@ export function fileFieldModeToFields(mode: FileFieldMode): StripFieldSuffix<Fie
   return fields;
 }
 
-export const WIDGET_EXTRA_FIELD: Record<WidgetType, StripFieldSuffix<FieldType> | undefined> = {
+export const WIDGET_EXTRA_FIELD: Record<
+  WidgetType,
+  StripFieldSuffix<FieldType> | undefined
+> = {
   textWidget: undefined,
   numberWidget: undefined,
   selectWidget: "enum",
