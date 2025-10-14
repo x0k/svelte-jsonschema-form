@@ -1,6 +1,6 @@
-import { flushSync, getContext, onDestroy, setContext } from "svelte";
+import { createContext, flushSync, onDestroy } from "svelte";
 import type { FormValue, Schema, UiSchema } from "@sjsf/form";
-import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
 import {
@@ -40,7 +40,7 @@ import { Resolver } from "$lib/sjsf/resolver.js";
 import { Icons, ICONS_APP_CSS } from "$lib/sjsf/icons.js";
 import { highlight, type SupportedLanguage } from "$lib/shiki.js";
 import { mergeSchemas } from "$lib/json-schema.js";
-import { addBuilderFormats } from '$lib/ajv.js';
+import { addBuilderFormats } from "$lib/ajv.js";
 
 import {
   type Route,
@@ -70,15 +70,8 @@ import {
   join,
 } from "./code-builders.js";
 
-const BUILDER_CONTEXT = Symbol("builder-context");
-
-export function setBuilderContext(ctx: BuilderContext) {
-  setContext(BUILDER_CONTEXT, ctx);
-}
-
-export function getBuilderContext(): BuilderContext {
-  return getContext(BUILDER_CONTEXT);
-}
+export const [getBuilderContext, setBuilderContext] =
+  createContext<BuilderContext>();
 
 type UniqueId = string | number;
 
@@ -307,7 +300,7 @@ export class BuilderContext {
         theme: this.theme,
         schema: this.schema,
         uiSchema: this.uiSchema,
-        html5Validation: this.html5Validation
+        html5Validation: this.html5Validation,
       })
     )
   );
