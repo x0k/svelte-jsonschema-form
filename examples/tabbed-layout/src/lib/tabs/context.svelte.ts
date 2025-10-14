@@ -1,32 +1,24 @@
-import type { PathTrieRef } from '@sjsf/form'
-import { getContext, setContext, type Snippet } from 'svelte'
+import type { PathTrieRef } from "@sjsf/form";
+import { createContext, type Snippet } from "svelte";
 
 export interface TabsNode {
-  readonly tabs: Snippet[]
-  selectedTab: number
+  readonly tabs: Snippet[];
+  selectedTab: number;
 }
 
-export type TabsContext = PathTrieRef<TabsNode>
+export type TabsContext = PathTrieRef<TabsNode>;
 
-const TABS_CONTEXT = Symbol()
-
-export function getTabsContext(): TabsContext {
-  return getContext(TABS_CONTEXT)
-}
-
-export function setTabsContext(ctx: TabsContext) {
-  setContext(TABS_CONTEXT, ctx)
-}
+export const [getTabsContext, setTabsContext] = createContext<TabsContext>();
 
 export function createTabsNode(initialTab: number): TabsNode {
-  let selectedTab = $state(initialTab)
+  let selectedTab = $state(initialTab);
   return {
     tabs: [],
     get selectedTab() {
-      return selectedTab
+      return selectedTab;
     },
     set selectedTab(v) {
-      selectedTab = v
-    }
-  }
+      selectedTab = v;
+    },
+  };
 }
