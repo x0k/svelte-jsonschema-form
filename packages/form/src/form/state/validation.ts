@@ -74,34 +74,27 @@ export async function validateFileList<T>(
 }
 
 /**
- * @command
+ * @query
  */
 export function validate<T>(ctx: FormState<T>) {
-  return untrack(() => {
-    const validator = ctx[FORM_VALIDATOR];
-    if (!isFormValueValidator(validator)) {
-      throw new InvalidValidatorError(`expected sync from validator`);
-    }
-    return validator.validateFormValue(
-      ctx[FORM_SCHEMA],
-      ctx.value as FormValue
-    );
-  });
+  const validator = ctx[FORM_VALIDATOR];
+  if (!isFormValueValidator(validator)) {
+    throw new InvalidValidatorError(`expected sync from validator`);
+  }
+  return validator.validateFormValue(ctx[FORM_SCHEMA], ctx.value as FormValue);
 }
 
 /**
- * @command
+ * @query
  */
 export function validateAsync<T>(ctx: FormState<T>, signal: AbortSignal) {
-  return untrack(() => {
-    const validator = ctx[FORM_VALIDATOR];
-    if (!isAsyncFormValueValidator(validator)) {
-      throw new InvalidValidatorError(`expected async form validator`);
-    }
-    return validator.validateFormValueAsync(
-      signal,
-      ctx[FORM_SCHEMA],
-      ctx.value as FormValue
-    );
-  });
+  const validator = ctx[FORM_VALIDATOR];
+  if (!isAsyncFormValueValidator(validator)) {
+    throw new InvalidValidatorError(`expected async form validator`);
+  }
+  return validator.validateFormValueAsync(
+    signal,
+    ctx[FORM_SCHEMA],
+    ctx.value as FormValue
+  );
 }
