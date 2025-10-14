@@ -15,14 +15,14 @@
 
 	import { getThemeContext } from '../context.js';
 
-	const { title, type, config }: ComponentProps['title'] = $props();
+	const { title, templateType, config }: ComponentProps['title'] = $props();
 
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 	const { FieldTitle: Title, FieldLegend: Legend } = $derived(themeCtx.components);
 </script>
 
-{#if type === 'field'}
+{#if templateType === 'fieldTemplate'}
 	<Title {...titleAttributes(ctx, config, 'titleAttributes', {})}>
 		{title}
 	</Title>

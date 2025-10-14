@@ -1,4 +1,6 @@
 <script lang="ts" module>
+	import '@sjsf/form/fields/extra-components/label';
+
 	import type { LabelProps } from '../types/label.js';
 
 	declare module '@sjsf/form' {

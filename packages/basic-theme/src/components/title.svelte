@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import type { HTMLAttributes } from "svelte/elements";
+  import "@sjsf/form/fields/extra-components/title";
 
   declare module "@sjsf/form" {
     interface UiOptions {
@@ -18,14 +19,14 @@
     type ComponentProps,
   } from "@sjsf/form";
 
-  const { title, config, type }: ComponentProps["title"] = $props();
+  const { title, config, templateType }: ComponentProps["title"] = $props();
 
   const ctx = getFormContext();
 </script>
 
 <legend
   {...titleAttributes(ctx, config, "titleAttributes", {
-    style: `font-weight: bold; font-size: ${type === "field" ? "unset" : "larger"};`,
+    style: `font-weight: bold; font-size: ${templateType === "fieldTemplate" ? "unset" : "larger"};`,
   })}
 >
   {title}

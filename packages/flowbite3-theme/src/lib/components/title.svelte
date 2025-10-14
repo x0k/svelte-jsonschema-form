@@ -2,13 +2,13 @@
 	import { getFormContext, titleAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/title.svelte';
 
-	const { title, type, config }: ComponentProps['title'] = $props();
+	const { title, templateType, config }: ComponentProps['title'] = $props();
 
 	const ctx = getFormContext();
 </script>
 
 <div
-	class={['text-gray-900 dark:text-white', { 'font-semibold': type !== 'field' }]}
+	class={['text-gray-900 dark:text-white', { 'font-semibold': templateType !== 'fieldTemplate' }]}
 	{...titleAttributes(ctx, config, 'titleAttributes', {})}
 >
 	{title}
