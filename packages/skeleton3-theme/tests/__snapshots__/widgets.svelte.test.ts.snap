@@ -5501,7 +5501,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              disabled=""
               id="radio-group:c18:radio:input:0"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
@@ -5539,7 +5538,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              disabled=""
               id="radio-group:c18:radio:input:1"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
@@ -5577,7 +5575,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              disabled=""
               id="radio-group:c18:radio:input:2"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
@@ -5615,7 +5612,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              disabled=""
               id="radio-group:c18:radio:input:3"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
