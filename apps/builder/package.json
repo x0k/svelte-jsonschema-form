@@ -10,7 +10,7 @@
     "check": "svelte-check --tsconfig tsconfig.json"
   },
   "devDependencies": {
-    "@internationalized/date": "~3.10.0",
+    "@internationalized/date": "^3.10.0",
     "@lucide/svelte": "^0.544.0",
     "@tailwindcss/vite": "catalog:",
     "bits-ui": "^2.11.5",
