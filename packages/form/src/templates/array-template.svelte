@@ -1,3 +1,18 @@
+<script lang="ts" module>
+  import "@/fields/extra-templates/array.js";
+  import "@/fields/extra-components/title.js";
+  import "@/fields/extra-components/description.js";
+  import "@/fields/extra-components/errors-list.js";
+
+  declare module "../fields/components.js" {
+    interface LayoutTypes {
+      "array-field": {};
+      "array-field-meta": {};
+      "array-items": {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     getComponent,
@@ -9,13 +24,15 @@
 
   const ctx = getFormContext();
 
+  const templateType = "arrayTemplate";
+
   const {
     children,
     addButton,
     uiOption,
     config,
     errors,
-  }: ComponentProps["arrayTemplate"] = $props();
+  }: ComponentProps[typeof templateType] = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", config));
   const Title = $derived(getComponent(ctx, "title", config));
@@ -31,10 +48,10 @@
   {#if showMeta && (title || description)}
     <Layout type="array-field-meta" {config} {errors}>
       {#if title}
-        <Title type="array" {title} {config} {errors} />
+        <Title {templateType} {title} {config} {errors} />
       {/if}
       {#if description}
-        <Description type="array" {description} {config} {errors} />
+        <Description {templateType} {description} {config} {errors} />
       {/if}
     </Layout>
   {/if}

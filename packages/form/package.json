@@ -119,6 +119,14 @@
       "types": "./dist/fields/extra-fields/*.d.ts",
       "svelte": "./dist/fields/extra-fields/*"
     },
+    "./fields/extra-templates/*": {
+      "types": "./dist/fields/extra-templates/*.d.ts",
+      "svelte": "./dist/fields/extra-templates/*"
+    },
+    "./fields/extra-components/*": {
+      "types": "./dist/fields/extra-components/*.d.ts",
+      "svelte": "./dist/fields/extra-components/*"
+    },
     "./fields/resolver": {
       "types": "./dist/fields/resolver/index.d.ts",
       "svelte": "./dist/fields/resolver/index.js"

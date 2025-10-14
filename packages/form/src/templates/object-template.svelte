@@ -1,3 +1,18 @@
+<script lang="ts" module>
+  import "@/fields/extra-templates/object.js";
+  import "@/fields/extra-components/title.js";
+  import "@/fields/extra-components/description.js";
+  import "@/fields/extra-components/errors-list.js";
+
+  declare module "../fields/components.js" {
+    interface LayoutTypes {
+      "object-field": {};
+      "object-field-meta": {};
+      "object-properties": {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     getComponent,
@@ -9,13 +24,15 @@
 
   const ctx = getFormContext();
 
+  const templateType = "objectTemplate";
+
   const {
     config,
     children,
     addButton,
     errors,
     uiOption,
-  }: ComponentProps["objectTemplate"] = $props();
+  }: ComponentProps[typeof templateType] = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", config));
   const Title = $derived(getComponent(ctx, "title", config));
@@ -31,10 +48,10 @@
   {#if showMeta && (title || description)}
     <Layout type="object-field-meta" {config} {errors}>
       {#if title}
-        <Title type="object" {config} {title} {errors} />
+        <Title {templateType} {config} {title} {errors} />
       {/if}
       {#if description}
-        <Description type="object" {description} {config} {errors} />
+        <Description {templateType} {description} {config} {errors} />
       {/if}
     </Layout>
   {/if}

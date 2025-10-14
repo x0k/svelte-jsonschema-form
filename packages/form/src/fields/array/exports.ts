@@ -1,4 +1,5 @@
 import "./ui-options.js";
+import "./array-base.svelte";
 
 export type * from "./model.js";
 

@@ -7,39 +7,11 @@ export interface ComponentCommonProps {
   errors: FieldErrors;
 }
 
-export interface ButtonTypes {
-  "object-property-add": {};
-  "object-property-remove": {};
-  "array-item-add": {};
-  "array-item-move-down": {};
-  "array-item-move-up": {};
-  "array-item-copy": {};
-  "array-item-remove": {};
-}
+export interface ButtonTypes {}
 
 export type ButtonType = keyof ButtonTypes;
 
-export interface LayoutTypes {
-  field: {};
-  "field-meta": {};
-  "field-content": {};
-  "object-field": {};
-  "object-field-meta": {};
-  "object-properties": {};
-  "object-property": {};
-  "object-property-key-input": {};
-  "object-property-content": {};
-  "object-property-controls": {};
-  "array-field": {};
-  "array-field-meta": {};
-  "array-items": {};
-  "array-item": {};
-  "array-item-content": {};
-  "array-item-controls": {};
-  "multi-field": {};
-  "multi-field-content": {};
-  "multi-field-controls": {};
-}
+export interface LayoutTypes {}
 
 export type LayoutType = keyof LayoutTypes;
 

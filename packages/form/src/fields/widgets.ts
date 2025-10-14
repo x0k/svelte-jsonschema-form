@@ -1,6 +1,7 @@
 import type { EnumOption } from "@/core/index.js";
 import type {
   ComponentProps,
+  ComponentType,
   Config,
   FieldErrors,
   FoundationalComponentType,
@@ -23,13 +24,18 @@ export interface WidgetCommonProps<V> {
   uiOption: UiOption;
 }
 
-export type FoundationalWidgetType = {
-  [K in FoundationalComponentType]: ComponentProps[K] extends WidgetCommonProps<any>
-    ? WidgetCommonProps<any> extends ComponentProps[K]
-      ? K
-      : never
-    : never;
-}[FoundationalComponentType];
+export type WidgetType = keyof {
+  [T in ComponentType as ComponentProps[T] extends WidgetCommonProps<any>
+    ? T
+    : never]: T;
+};
+
+export type FoundationalWidgetType = keyof {
+  [T in WidgetType &
+    FoundationalComponentType as WidgetCommonProps<any> extends ComponentProps[T]
+    ? T
+    : never]: T;
+};
 
 export interface Options {
   options: EnumOption<SchemaValue>[];

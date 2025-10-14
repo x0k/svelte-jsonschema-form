@@ -1,3 +1,15 @@
+<script lang="ts" module>
+  import "@/fields/extra-templates/array-item.js";
+
+  declare module "../fields/components.js" {
+    interface LayoutTypes {
+      "array-item": {};
+      "array-item-content": {};
+      "array-item-controls": {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     getComponent,

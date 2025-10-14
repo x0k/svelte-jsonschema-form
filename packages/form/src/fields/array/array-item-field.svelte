@@ -1,15 +1,14 @@
 <script lang="ts" module>
-  declare module "../../form/index.js" {
-    interface FoundationalComponents {
-      arrayItemField: {};
-    }
-    interface ComponentProps {
-      arrayItemField: FieldCommonProps<SchemaValue> & {
-        index: number;
-      };
-    }
-    interface ComponentBindings {
-      arrayItemField: "value";
+  import "@/form/extra-fields/array-item.js";
+  import "../extra-templates/array-item.js";
+
+  declare module "../components.js" {
+    interface ButtonTypes {
+      "array-item-add": {};
+      "array-item-move-down": {};
+      "array-item-move-up": {};
+      "array-item-copy": {};
+      "array-item-remove": {};
     }
   }
 </script>
@@ -22,8 +21,6 @@
     getFormContext,
     Text,
     type ComponentProps,
-    type FieldCommonProps,
-    type SchemaValue,
   } from "@/form/index.js";
 
   import { getArrayContext } from "./context.svelte.js";

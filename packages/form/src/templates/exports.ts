@@ -1,5 +1,3 @@
-export type * from "./components.js";
-
 export { default as fieldTemplate } from "./field-template.svelte";
 export { default as objectTemplate } from "./object-template.svelte";
 export { default as objectPropertyTemplate } from "./object-property-template.svelte";

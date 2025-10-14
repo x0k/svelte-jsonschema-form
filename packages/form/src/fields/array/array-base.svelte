@@ -1,3 +1,14 @@
+<script lang="ts" module>
+  import "@/form/extra-fields/array-item.js";
+  import "../extra-templates/array.js";
+
+  declare module "../components.js" {
+    interface ButtonTypes {
+      "array-item-add": {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import { SimpleKeyedArray } from "@/lib/keyed-array.svelte.js";
   import {

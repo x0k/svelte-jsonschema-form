@@ -1,16 +1,10 @@
 <script lang="ts" module>
-  declare module "../../form/index.js" {
-    interface FoundationalComponents {
-      objectPropertyField: {};
-    }
-    interface ComponentProps {
-      objectPropertyField: FieldCommonProps<SchemaValue> & {
-        property: string;
-        isAdditional: boolean;
-      };
-    }
-    interface ComponentBindings {
-      objectPropertyField: "value";
+  import "@/form/extra-fields/object-property.js";
+  import "../extra-templates/object-property.js";
+
+  declare module "../components.js" {
+    interface ButtonTypes {
+      "object-property-remove": {};
     }
   }
 </script>
@@ -24,8 +18,6 @@
     retrieveUiSchema,
     Text,
     type ComponentProps,
-    type FieldCommonProps,
-    type SchemaValue,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.svelte.js";

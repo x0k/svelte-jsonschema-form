@@ -1,3 +1,14 @@
+<script lang="ts" module>
+  import "@/form/extra-fields/object-property.js";
+  import "../extra-templates/object.js";
+
+  declare module "../components.js" {
+    interface ButtonTypes {
+      "object-property-add": {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     Text,

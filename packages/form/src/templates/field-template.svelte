@@ -1,3 +1,18 @@
+<script lang="ts" module>
+  import "@/fields/extra-components/title.js";
+  import "@/fields/extra-components/label.js";
+  import "@/fields/extra-components/description.js";
+  import "@/fields/extra-components/errors-list.js";
+  import "@/fields/extra-components/help.js";
+  declare module "../fields/components.js" {
+    interface LayoutTypes {
+      field: {};
+      "field-meta": {};
+      "field-content": {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     getComponent,
@@ -7,6 +22,8 @@
 
   import { getTemplateProps } from "./get-template-props.js";
 
+  const templateType = "fieldTemplate";
+
   const {
     children,
     config,
@@ -14,7 +31,7 @@
     showTitle,
     useLabel,
     errors,
-  }: ComponentProps["fieldTemplate"] = $props();
+  }: ComponentProps[typeof templateType] = $props();
 
   const ctx = getFormContext();
 
@@ -40,10 +57,10 @@
   {#if showMeta && ((showTitle && title) || description)}
     <Layout type="field-meta" {config} {errors}>
       {#if showTitle && title}
-        <TitleOrLabel type="field" {title} {config} {errors} />
+        <TitleOrLabel {templateType} {title} {config} {errors} />
       {/if}
       {#if description}
-        <Description type="field" {description} {config} {errors} />
+        <Description {templateType} {description} {config} {errors} />
       {/if}
     </Layout>
   {/if}

@@ -28,7 +28,7 @@ export class VirtualKeyedArray implements KeyedFieldValues {
     this.setValue([value]);
   }
 
-  remove(index: number): FieldValue {
+  remove(_: number): FieldValue {
     throw new Error(
       'Method "remove" cannot be called on "VirtualKeyedArray" instance'
     );

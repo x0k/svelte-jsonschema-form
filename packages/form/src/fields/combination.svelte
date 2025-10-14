@@ -1,6 +1,8 @@
 <script lang="ts" module>
   import type { UiSchemaDefinition } from "@/form/index.js";
 
+  import "./extra-templates/multi-field.js";
+
   declare module "../form/index.js" {
     interface UiSchemaContent {
       combinationFieldOptionSelector?: UiSchemaDefinition;

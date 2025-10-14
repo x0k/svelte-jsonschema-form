@@ -1,3 +1,15 @@
+<script lang="ts" module>
+  import "@/fields/extra-templates/object-property.js";
+  declare module "../fields/components.js" {
+    interface LayoutTypes {
+      "object-property": {};
+      "object-property-key-input": {};
+      "object-property-content": {};
+      "object-property-controls": {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     getComponent,

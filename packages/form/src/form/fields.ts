@@ -7,6 +7,7 @@ import type {
 import type { Config } from "./config.js";
 import type {
   ComponentProps,
+  ComponentType,
   FoundationalComponentType,
 } from "./components.js";
 import type { UiOption } from "./ui-schema.js";
@@ -20,13 +21,18 @@ export interface FieldCommonProps<V> {
   translate: Translate;
 }
 
-export type FoundationalFieldType = {
-  [K in FoundationalComponentType]: FieldCommonProps<any> extends ComponentProps[K]
-    ? ComponentProps[K] extends FieldCommonProps<any>
-      ? K
-      : never
-    : never;
-}[FoundationalComponentType];
+export type FieldType = keyof {
+  [T in ComponentType as ComponentProps[T] extends FieldCommonProps<any>
+    ? T
+    : never]: T;
+};
+
+export type FoundationalFieldType = keyof {
+  [K in FieldType &
+    FoundationalComponentType as FieldCommonProps<any> extends ComponentProps[K]
+    ? K
+    : never]: K;
+};
 
 export type ResolveFieldType = (config: Config) => FoundationalFieldType;
 
