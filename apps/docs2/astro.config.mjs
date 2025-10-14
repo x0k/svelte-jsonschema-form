@@ -16,7 +16,7 @@ export default defineConfig({
   integrations: [
     svelte(),
     starlight({
-      title: "svelte-jsonschema-form",
+      title: "svelte-jsonschema-form v3",
       social: [
         {
           icon: "github",
