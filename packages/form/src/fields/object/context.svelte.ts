@@ -1,4 +1,4 @@
-import { getContext, setContext } from "svelte";
+import { createContext } from "svelte";
 
 import {
   getDefaultValueForType,
@@ -41,7 +41,7 @@ import {
   createOriginalKeysOrder,
 } from "./model.js";
 
-export type ObjectContext = {
+export interface ObjectContext {
   errors: () => FieldErrors;
   canExpand: () => boolean;
   propertiesOrder: () => string[];
@@ -56,15 +56,8 @@ export type ObjectContext = {
   ) => Config;
 };
 
-const OBJECT_CONTEXT = Symbol("object-context");
-
-export function getObjectContext(): ObjectContext {
-  return getContext(OBJECT_CONTEXT);
-}
-
-export function setObjectContext(ctx: ObjectContext) {
-  setContext(OBJECT_CONTEXT, ctx);
-}
+export const [getObjectContext, setObjectContext] =
+  createContext<ObjectContext>();
 
 export interface ObjectContextOptions<T> {
   ctx: FormState<T>;
