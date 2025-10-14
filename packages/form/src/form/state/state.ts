@@ -15,8 +15,6 @@ import type {
   FormErrorsMap,
   FormSubmission,
   FieldsValidation,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  InvalidValidatorError,
 } from "../errors.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
