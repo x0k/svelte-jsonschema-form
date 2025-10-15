@@ -1,5 +1,3 @@
-import { untrack } from "svelte";
-
 import type { RPath } from "@/core/index.js";
 
 import {
@@ -17,23 +15,21 @@ import {
 import type { FormState } from "./state.js";
 
 /**
- * @command
+ * @query
  */
 export function createId<T>(ctx: FormState<T>, path: FieldPath): Id {
-  return untrack(() => ctx[FORM_ID_FROM_PATH](path));
+  return ctx[FORM_ID_FROM_PATH](path);
 }
 
 /**
- * @command
+ * @query
  */
 function createPath<T>(ctx: FormState<T>, path: RPath): FieldPath {
-  return untrack(() =>
-    internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path)
-  );
+  return internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path)
 }
 
 /**
- * @command
+ * @query
  */
 export function createChildPath<T>(
   ctx: FormState<T>,
@@ -44,7 +40,7 @@ export function createChildPath<T>(
 }
 
 /**
- * @command
+ * @query
  */
 export function createPseudoPath<T>(
   ctx: FormState<T>,
@@ -55,7 +51,7 @@ export function createPseudoPath<T>(
 }
 
 /**
- * @command
+ * @query
  */
 export function createPseudoId<T>(
   ctx: FormState<T>,
@@ -66,14 +62,14 @@ export function createPseudoId<T>(
 }
 
 /**
- * @command
+ * @query
  */
 export function createIdByPath<T>(ctx: FormState<T>, path: RPath): Id {
   return createId(ctx, createPath(ctx, path));
 }
 
 /**
- * @command
+ * @query
  */
 export function createPseudoIdByPath<T>(
   ctx: FormState<T>,
