@@ -1,5 +1,15 @@
 # @sjsf/form
 
+## 3.0.0-next.8
+
+### Major Changes
+
+- Turn `create*` form methods into `queries` ([#215](https://github.com/x0k/svelte-jsonschema-form/pull/215))
+
+- Turn `validate` and `validateAsync` methods into queries ([#215](https://github.com/x0k/svelte-jsonschema-form/pull/215))
+
+- Use more fine-grained type augmentation ([#215](https://github.com/x0k/svelte-jsonschema-form/pull/215))
+
 ## 3.0.0-next.7
 
 ### Major Changes
