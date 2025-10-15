@@ -63,14 +63,15 @@
       () => config,
       () => validateField(ctx, config, valueRef.current)
     )}
+    {@const templateType = "fieldTemplate"}
     <Layout type="field" {config} {errors}>
       {#if showMeta && (title || description)}
         <Layout type="field-meta" {config} {errors}>
           {#if title}
-            <TitleOrLabel type="field" {title} {config} {errors} />
+            <TitleOrLabel {templateType} {title} {config} {errors} />
           {/if}
           {#if description}
-            <Description type="field" {description} {config} {errors} />
+            <Description {templateType} {description} {config} {errors} />
           {/if}
         </Layout>
       {/if}
