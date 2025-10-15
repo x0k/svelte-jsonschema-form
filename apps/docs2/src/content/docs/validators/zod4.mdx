@@ -18,6 +18,13 @@ You may want to use Zod validator because:
 - You can use Zod schema as a source of truth for the form value type (`z.infer`).
 - This is an easy way to add custom error messages
 
+:::caution
+
+Your schema must be convertible to a JSON schema.
+See the [unrepresentable](https://zod.dev/json-schema#unrepresentable) for details.
+
+:::
+
 ## Installation
 
 <Npm pkg="@sjsf/zod4-validator zod" />
