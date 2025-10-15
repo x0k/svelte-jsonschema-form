@@ -1,1 +1,0 @@
-import"./each.fmg2rbnc.js";import{p as s,a as p}from"./render.DeHagEKI.js";import{r as e}from"./definitions.QuHyn0Ht.js";import{c as a}from"./en.P7LlwGd6.js";import{B as f}from"./basic-form.qmqmN_J1.js";function l(r,o){s(o,!0);const t=e(o,["$$slots","$$events","$$legacy"]),m=a(t);f(r,{get form(){return m}}),p()}export{l as S};
