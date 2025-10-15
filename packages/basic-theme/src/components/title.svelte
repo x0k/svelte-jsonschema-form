@@ -19,15 +19,17 @@
     type ComponentProps,
   } from "@sjsf/form";
 
-  const { title, config, templateType }: ComponentProps["title"] = $props();
+  const { title, config, templateType, append }: ComponentProps["title"] =
+    $props();
 
   const ctx = getFormContext();
 </script>
 
 <legend
   {...titleAttributes(ctx, config, "titleAttributes", {
-    style: `font-weight: bold; font-size: ${templateType === "fieldTemplate" ? "unset" : "larger"};`,
+    style: `display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: ${templateType === "fieldTemplate" ? "unset" : "larger"};`,
   })}
 >
-  {title}
+  <span>{title}</span>
+  {@render append?.()}
 </legend>
