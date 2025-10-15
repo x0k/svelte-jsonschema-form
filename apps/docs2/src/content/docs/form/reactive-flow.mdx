@@ -2,15 +2,8 @@
 title: Reactive flow
 ---
 
-import { FormFlowAnalyzer } from '@/lib/form/analyzer'
-
 import Mermaid from '@/components/mermaid.astro'
 
-import createFormCode from '#/form/src/form/create-form.svelte?raw'
+import code from './reactive-flow.mmd?raw'
 
-export const analyzer = new FormFlowAnalyzer(createFormCode)
-
-<Mermaid code={(analyzer.analyze(), analyzer.generateMermaidFlowchart({
-  collapseLevel: 'none',
-  maxEdges: 400,
-}))} />
+<Mermaid code={code} />

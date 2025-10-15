@@ -1,0 +1,51 @@
+flowchart TD
+  subgraph Options["Options"]
+    schema["schema"]
+    uiSchema["uiSchema"]
+    idPrefix["idPrefix"]
+    uiOptionsRegistry["uiOptionsRegistry"]
+    initialValue["initialValue"]
+    value["value"]
+    initialErrors["initialErrors"]
+    getSnapshot["getSnapshot"]
+  end
+  subgraph Internal["Internal State"]
+    pathsTrieRef["pathsTrieRef"]
+    validator["validator"]
+    merger["merger"]
+    valueRef["valueRef"]
+    idBuilder["idBuilder"]
+    errors["errors"]
+  end
+  subgraph Form["Form State"]
+    formValue["value"]
+    formIsSubmitted["isSubmitted"]
+    formIsChanged["isChanged"]
+  end
+  
+  schema --> pathsTrieRef
+  uiSchema --> validator
+  uiOptionsRegistry --> validator
+  schema --> validator
+  validator --> merger
+  schema --> merger
+  uiSchema --> merger
+  value --> valueRef
+  initialValue --> valueRef
+  schema --> valueRef
+  merger --> valueRef
+  idPrefix --> idBuilder
+  schema --> idBuilder
+  uiSchema --> idBuilder
+  uiOptionsRegistry --> idBuilder
+  merger --> idBuilder
+  validator --> idBuilder
+  valueRef --> idBuilder
+  initialErrors --> errors
+  pathsTrieRef --> errors
+  getSnapshot --> formValue
+  merger --> formValue
+  schema --> formValue
+  validator --> formValue
+  valueRef --> formValue
+  idPrefix --> formIsSubmitted
