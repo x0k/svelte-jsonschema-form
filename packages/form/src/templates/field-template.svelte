@@ -31,6 +31,8 @@
     showTitle,
     useLabel,
     errors,
+    value,
+    action,
   }: ComponentProps[typeof templateType] = $props();
 
   const ctx = getFormContext();
@@ -47,7 +49,7 @@
   const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
   const Help = $derived(getComponent(ctx, "help", config));
 
-  const { title, description, showMeta } = $derived(
+  const { title, description, showMeta, hideContent } = $derived(
     getTemplateProps(uiOption, config)
   );
   const help = $derived(uiOption("help"));
@@ -57,16 +59,24 @@
   {#if showMeta && ((showTitle && title) || description)}
     <Layout type="field-meta" {config} {errors}>
       {#if showTitle && title}
-        <TitleOrLabel {templateType} {title} {config} {errors} />
+        <TitleOrLabel
+          {templateType}
+          {title}
+          {config}
+          {errors}
+          append={action}
+        />
       {/if}
       {#if description}
         <Description {templateType} {description} {config} {errors} />
       {/if}
     </Layout>
   {/if}
-  <Layout type="field-content" {config} {errors}>
-    {@render children()}
-  </Layout>
+  {#if !hideContent?.(config, value)}
+    <Layout type="field-content" {config} {errors}>
+      {@render children()}
+    </Layout>
+  {/if}
   {#if errors.length > 0}
     <ErrorsList {errors} {config} />
   {/if}

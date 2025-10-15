@@ -47,9 +47,11 @@ import {
   FORM_PATHS_TRIE_REF,
   FORM_ROOT_PATH,
   FORM_ID_PREFIX,
+  FORM_FIELD_ACTIONS,
 } from "../internals.js";
 import type { FieldPath, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
+import type { FieldActions } from '../actions.js';
 
 export interface FormState<T> {
   readonly submission: FormSubmission;
@@ -92,6 +94,7 @@ export interface FormState<T> {
   readonly [FORM_RESOLVER]: ResolveFieldType;
   readonly [FORM_THEME]: Theme;
   readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<FieldPath, FieldState>;
+  readonly [FORM_FIELD_ACTIONS]?: FieldActions
 }
 
 export function getFormContext<T>(): FormState<T> {

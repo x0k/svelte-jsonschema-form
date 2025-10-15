@@ -33,6 +33,7 @@
     uiOption,
     config,
     errors,
+    value,
   }: ComponentProps[typeof templateType] = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", config));
@@ -40,7 +41,7 @@
   const Description = $derived(getComponent(ctx, "description", config));
   const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
 
-  const { title, description, showMeta } = $derived(
+  const { title, description, showMeta, hideContent } = $derived(
     getTemplateProps(uiOption, config)
   );
 </script>
@@ -56,10 +57,12 @@
       {/if}
     </Layout>
   {/if}
-  <Layout type="array-items" {config} {errors}>
-    {@render children()}
-  </Layout>
-  {@render addButton?.()}
+  {#if !hideContent?.(config, value)}
+    <Layout type="array-items" {config} {errors}>
+      {@render children()}
+    </Layout>
+    {@render addButton?.()}
+  {/if}
   {#if errors.length > 0}
     <ErrorsList {errors} {config} />
   {/if}
