@@ -30,6 +30,7 @@
     config,
     children,
     addButton,
+    action,
     errors,
     uiOption,
   }: ComponentProps[typeof templateType] = $props();
@@ -48,7 +49,7 @@
   {#if showMeta && (title || description)}
     <Layout type="object-field-meta" {config} {errors}>
       {#if title}
-        <Title {templateType} {config} {title} {errors} />
+        <Title {templateType} {config} {title} {errors} append={action} />
       {/if}
       {#if description}
         <Description {templateType} {description} {config} {errors} />

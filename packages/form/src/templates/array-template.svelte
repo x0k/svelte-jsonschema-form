@@ -29,6 +29,7 @@
   const {
     children,
     addButton,
+    action,
     uiOption,
     config,
     errors,
@@ -48,7 +49,7 @@
   {#if showMeta && (title || description)}
     <Layout type="array-field-meta" {config} {errors}>
       {#if title}
-        <Title {templateType} {title} {config} {errors} />
+        <Title {templateType} {title} {config} {errors} append={action} />
       {/if}
       {#if description}
         <Description {templateType} {description} {config} {errors} />

@@ -11,6 +11,7 @@ declare module "../../form/index.js" {
   interface ComponentProps {
     arrayTemplate: TemplateCommonProps<SchemaArrayValue> & {
       addButton?: Snippet;
+      action?: Snippet;
     };
   }
   interface ComponentBindings {
