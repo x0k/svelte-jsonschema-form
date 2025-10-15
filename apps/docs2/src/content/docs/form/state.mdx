@@ -66,6 +66,51 @@ export interface FormState<T> {
 }
 ```
 
+## Methods
+
+SJSF provides a set of functions to work with the form state that can either **read** (queries) or **modify** (commands) it.
+
+:::note
+  Most of these methods are intended for **internal use** within form components.
+:::
+
+:::note
+  All the methods listed below are marked with `@query` or `@command` in their JSDoc.
+:::
+
+**Queries:**
+`getComponent`, `getFieldComponent`, `getFieldErrors`, `getFieldErrorsByPath`,
+`getFieldsErrors`, `getFieldsErrorsByPath`, `hasErrors`, `getErrors`,
+`hasFieldState`, `hasFieldStateByPath`, `createId`, `createPath`,
+`createChildPath`, `createPseudoPath`, `createPseudoId`, `createIdByPath`,
+`createPseudoIdByPath`, `isSelect`, `isMultiSelect`, `isFilesArray`,
+`retrieveSchema`, `sanitizeDataForNewSchema`, `getClosestMatchingOption`,
+`getDefaultFieldState`, `retrieveUiSchema`, `uiTitleOption`, `retrieveUiOption`,
+`uiOptionProps`, `uiOptionNestedProps`, `retrieveTranslate`, `getFieldTitle`,
+`getFieldsValidationMode`, `validate`, `validateAsync`
+
+**Commands:**
+`updateErrors`, `updateFieldErrors`, `updateFieldErrorsByPath`,
+`setFieldStateByPath`, `validateField`, `validateAdditionalPropertyKey`,
+`validateFileList`
+
+### `query` vs `command`
+
+In addition to the semantic difference, there is also a behavioral one when used in a **reactive context**.
+When a `query` is called, the reactive variables it accesses will be **tracked**.
+When a `command` is called, the accessed variables **will not be tracked**.
+
+### `FieldPath` vs `RPath`
+
+You may have noticed that some methods have alternate versions with the `ByPath` suffix.
+Their signatures differ in the type of the `path` argument: `FieldPath` or `RPath`.
+
+Since JavaScript lacks a primitive for **tuples**, the library uses **uniquified paths**.
+When an `RPath` (a regular array) is passed, it is automatically converted into a `FieldPath` and cached in a **prefix tree**.
+Each identical path returns the same reference, allowing `FieldPath` to serve as a stable **identifier** or **key** in `Map`/`WeakMap`.
+
+Therefore, `ByPath` versions of methods are intended for situations where you **don’t have access to a `FieldPath`** or are working with **dynamically generated paths**.
+
 ## Direct modification of form state
 
 If you are using a [controlled form](../../guides/quickstart/#controlled-form), 
