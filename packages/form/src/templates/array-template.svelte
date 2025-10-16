@@ -4,14 +4,7 @@
   import "@/fields/extra-components/description.js";
   import "@/fields/extra-components/errors-list.js";
 
-  declare module "../fields/components.js" {
-    interface LayoutTypes {
-      "array-field": {};
-      "array-field-meta": {};
-      "array-field-title-row": {};
-      "array-items": {};
-    }
-  }
+  import "./array-layouts.js";
 </script>
 
 <script lang="ts">
@@ -34,7 +27,6 @@
     uiOption,
     config,
     errors,
-    value,
   }: ComponentProps[typeof templateType] = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", config));
@@ -42,7 +34,7 @@
   const Description = $derived(getComponent(ctx, "description", config));
   const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
 
-  const { title, description, showMeta, hideContent } = $derived(
+  const { title, description, showMeta } = $derived(
     getTemplateProps(uiOption, config)
   );
 </script>
@@ -61,12 +53,10 @@
       {/if}
     </Layout>
   {/if}
-  {#if !hideContent?.(config, value)}
-    <Layout type="array-items" {config} {errors}>
-      {@render children()}
-    </Layout>
-    {@render addButton?.()}
-  {/if}
+  <Layout type="array-items" {config} {errors}>
+    {@render children()}
+  </Layout>
+  {@render addButton?.()}
   {#if errors.length > 0}
     <ErrorsList {errors} {config} />
   {/if}

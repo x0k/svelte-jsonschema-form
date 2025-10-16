@@ -5,6 +5,5 @@ export function getTemplateProps(uiOption: UiOption, config: Config) {
     title: config.title,
     showMeta: uiOption("hideTitle") !== true,
     description: uiOption("description") ?? config.schema.description,
-    hideContent: uiOption("hideContent"),
   };
 }

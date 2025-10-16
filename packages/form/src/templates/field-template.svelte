@@ -4,14 +4,8 @@
   import "@/fields/extra-components/description.js";
   import "@/fields/extra-components/errors-list.js";
   import "@/fields/extra-components/help.js";
-  declare module "../fields/components.js" {
-    interface LayoutTypes {
-      field: {};
-      "field-meta": {};
-      "field-title-row": {};
-      "field-content": {};
-    }
-  }
+
+  import "./field-layouts.js";
 </script>
 
 <script lang="ts">
@@ -32,7 +26,6 @@
     showTitle,
     useLabel,
     errors,
-    value,
     action,
   }: ComponentProps[typeof templateType] = $props();
 
@@ -50,7 +43,7 @@
   const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
   const Help = $derived(getComponent(ctx, "help", config));
 
-  const { title, description, showMeta, hideContent } = $derived(
+  const { title, description, showMeta } = $derived(
     getTemplateProps(uiOption, config)
   );
   const help = $derived(uiOption("help"));
@@ -70,11 +63,9 @@
       {/if}
     </Layout>
   {/if}
-  {#if !hideContent?.(config, value)}
-    <Layout type="field-content" {config} {errors}>
-      {@render children()}
-    </Layout>
-  {/if}
+  <Layout type="field-content" {config} {errors}>
+    {@render children()}
+  </Layout>
   {#if errors.length > 0}
     <ErrorsList {errors} {config} />
   {/if}

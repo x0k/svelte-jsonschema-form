@@ -1,4 +1,4 @@
-import type { Config, SchemaValue } from "@/form/index.js";
+import type { SchemaValue } from "@/form/index.js";
 
 declare module "../form/index.js" {
   interface UiOptions {
@@ -24,10 +24,6 @@ declare module "../form/index.js" {
      * @default false
      */
     hideTitle?: boolean;
-    /**
-     * Hide the field content.
-     */
-    hideContent?: (config: Config, value: SchemaValue | undefined) => boolean;
     /**
      * Overrides whether to use the `title` or `label` component in the `field` template
      */
