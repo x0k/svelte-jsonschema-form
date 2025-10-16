@@ -1,5 +1,3 @@
-import type { Snippet } from "svelte";
-
 import type { ComponentCommonProps } from "../components.js";
 
 declare module "../../form/index.js" {
@@ -9,7 +7,6 @@ declare module "../../form/index.js" {
   interface ComponentProps {
     label: ComponentCommonProps & {
       title: string;
-      append?: Snippet;
     };
   }
   interface ComponentBindings {

@@ -8,6 +8,7 @@
     interface LayoutTypes {
       field: {};
       "field-meta": {};
+      "field-title-row": {};
       "field-content": {};
     }
   }
@@ -59,13 +60,10 @@
   {#if showMeta && ((showTitle && title) || description)}
     <Layout type="field-meta" {config} {errors}>
       {#if showTitle && title}
-        <TitleOrLabel
-          {templateType}
-          {title}
-          {config}
-          {errors}
-          append={action}
-        />
+        <Layout type="field-title-row" {config} {errors}>
+          <TitleOrLabel {templateType} {title} {config} {errors} />
+          {@render action?.()}
+        </Layout>
       {/if}
       {#if description}
         <Description {templateType} {description} {config} {errors} />

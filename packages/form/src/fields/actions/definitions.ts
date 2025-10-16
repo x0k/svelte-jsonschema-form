@@ -1,3 +1,9 @@
-import type { FieldAction, FieldActionType } from "@/form/index.js";
+import type {
+  FieldAction,
+  FieldActionType,
+  FieldActionTypes,
+} from "@/form/index.js";
 
-export const definitions = {} as Record<FieldActionType, FieldAction>;
+export const definitions = {} as {
+  [T in FieldActionType]: FieldAction<FieldActionTypes[T]>;
+};

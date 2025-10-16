@@ -21,10 +21,6 @@ export interface Labels {
   "key-input-title": { name: string };
   "additional-property": {};
   "unknown-field-error": { schema: Schema };
-  "edit-optional-object": {};
-  "clear-optional-object": {};
-  "edit-optional-array": {};
-  "clear-optional-array": {};
 }
 
 export type Label = keyof Labels;

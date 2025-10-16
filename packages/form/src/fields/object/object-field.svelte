@@ -1,6 +1,11 @@
 <script lang="ts" module>
   import "@/form/extra-fields/object-property.js";
   import "../extra-templates/object.js";
+  declare module "../../form/index.js" {
+    interface ActionFields {
+      objectField: {};
+    }
+  }
 
   declare module "../components.js" {
     interface ButtonTypes {
@@ -13,6 +18,7 @@
   import {
     Text,
     getComponent,
+    getFieldAction,
     getFormContext,
     retrieveTranslate,
     retrieveUiOption,
@@ -44,6 +50,8 @@
   );
   const Template = $derived(getComponent(ctx, "objectTemplate", config));
   const Button = $derived(getComponent(ctx, "button", config));
+
+  const action = $derived(getFieldAction(ctx, "objectField", config));
 </script>
 
 {#snippet addButton()}
@@ -57,13 +65,29 @@
     <Text {config} id="add-object-property" {translate} />
   </Button>
 {/snippet}
+{#snippet renderAction()}
+  {@render action?.(
+    ctx,
+    config,
+    {
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
+      },
+    },
+    objCtx.errors()
+  )}
+{/snippet}
 <Template
   type="template"
   {value}
   {config}
+  {uiOption}
   errors={objCtx.errors()}
   addButton={objCtx.canExpand() ? addButton : undefined}
-  {uiOption}
+  action={action && renderAction}
 >
   {#each objCtx.propertiesOrder() as property (property)}
     {@const isAdditional = objCtx.isAdditionalProperty(property)}

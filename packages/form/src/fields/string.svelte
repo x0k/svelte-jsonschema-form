@@ -1,5 +1,9 @@
 <script lang="ts" module>
+  const field = "stringField"
   declare module "../form/index.js" {
+    interface ActionFields {
+      [field]: {};
+    }
     interface UiOptions {
       stringEmptyValue?: string;
     }
@@ -15,16 +19,17 @@
     config,
     value = $bindable(),
     uiOption,
-  }: ComponentProps["stringField"] = $props();
+  }: ComponentProps[typeof field] = $props();
 </script>
 
 <FieldBase
+  {field}
   {config}
   {uiOption}
   showTitle
   useLabel
-  widgetType="textWidget"
   bind:value
+  widgetType="textWidget"
   fromValue={(v) => v ?? undefined}
   toValue={(v) => v || uiOption("stringEmptyValue")}
 />

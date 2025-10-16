@@ -1,4 +1,4 @@
-import type { Config, FieldActionType, SchemaValue } from "@/form/index.js";
+import type { Config, SchemaValue } from "@/form/index.js";
 
 declare module "../form/index.js" {
   interface UiOptions {
@@ -24,7 +24,6 @@ declare module "../form/index.js" {
      * @default false
      */
     hideTitle?: boolean;
-    fieldAction?: FieldActionType;
     /**
      * Hide the field content.
      */

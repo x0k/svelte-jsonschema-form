@@ -1,4 +1,5 @@
 <script lang="ts" module>
+  import type { Snippet } from "svelte";
   import "@/fields/extra-templates/object.js";
   import "@/fields/extra-components/title.js";
   import "@/fields/extra-components/description.js";
@@ -8,6 +9,7 @@
     interface LayoutTypes {
       "object-field": {};
       "object-field-meta": {};
+      "object-field-title-row": {};
       "object-properties": {};
     }
   }
@@ -50,7 +52,10 @@
   {#if showMeta && (title || description)}
     <Layout type="object-field-meta" {config} {errors}>
       {#if title}
-        <Title {templateType} {config} {title} {errors} append={action} />
+        <Layout type="object-field-title-row" {config} {errors}>
+          <Title {templateType} {title} {config} {errors} />
+          {@render action?.()}
+        </Layout>
       {/if}
       {#if description}
         <Description {templateType} {description} {config} {errors} />

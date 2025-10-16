@@ -8,6 +8,7 @@
     interface LayoutTypes {
       "array-field": {};
       "array-field-meta": {};
+      "array-field-title-row": {};
       "array-items": {};
     }
   }
@@ -50,7 +51,10 @@
   {#if showMeta && (title || description)}
     <Layout type="array-field-meta" {config} {errors}>
       {#if title}
-        <Title {templateType} {title} {config} {errors} append={action} />
+        <Layout type="array-field-title-row" {config} {errors}>
+          <Title {templateType} {title} {config} {errors} />
+          {@render action?.()}
+        </Layout>
       {/if}
       {#if description}
         <Description {templateType} {description} {config} {errors} />

@@ -4,11 +4,15 @@ import type { RPath } from "@/core/index.js";
 import type {
   CompatibleComponentType,
   ComponentDefinitions,
+  ComponentProps,
   FoundationalComponentType,
 } from "./components.js";
 import type { Config } from "./config.js";
-import type { FieldType } from './fields.js';
-import type { FieldAction, FieldActionType } from './actions.js';
+import type {
+  ActionField,
+  CompatibleFieldActions,
+  FieldAction,
+} from "./actions.js";
 
 export interface UiOptions {}
 
@@ -42,8 +46,11 @@ export interface UiSchemaContent {
       | ComponentDefinitions[T];
   }>;
   "ui:actions"?: Partial<{
-    [T in FieldType]: FieldAction<T> | FieldActionType
-  }>
+    [T in ActionField]:
+      | FieldAction<ComponentProps[T]["value"]>
+      // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+      | CompatibleFieldActions<ComponentProps[T]["value"]>;
+  }>;
   items?: UiSchemaDefinition | UiSchemaDefinition[];
   anyOf?: UiSchemaDefinition[];
   oneOf?: UiSchemaDefinition[];

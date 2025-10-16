@@ -1,5 +1,9 @@
 <script lang="ts" module>
+  const field = "integerField"
   declare module "../form/index.js" {
+    interface ActionFields {
+      [field]: {};
+    }
     interface UiOptions {
       numberEmptyValue?: number;
     }
@@ -16,10 +20,11 @@
     value = $bindable(),
     config,
     uiOption,
-  }: ComponentProps["integerField"] = $props();
+  }: ComponentProps[typeof field] = $props();
 </script>
 
 <FieldBase
+  {field}
   {config}
   {uiOption}
   showTitle

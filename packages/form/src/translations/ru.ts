@@ -7,6 +7,8 @@ export const definitions: TranslatorDefinitions = {
   "array-schema-missing-items": "Отсутствует опция `items`",
   yes: "Да",
   no: "Нет",
+  edit: "Изменить",
+  clear: "Отчистить",
   "multi-schema-option-label-with-title": ({ title, index }) =>
     `${title} опция ${index + 1}`,
   "multi-schema-option-label": ({ index }) => `Опция ${index + 1}`,
