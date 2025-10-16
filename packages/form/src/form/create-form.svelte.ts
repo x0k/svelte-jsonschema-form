@@ -91,8 +91,10 @@ import {
   FORM_PATHS_TRIE_REF,
   internalHasFieldState,
   FORM_ID_PREFIX,
+  FORM_FIELD_ACTIONS,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
+import type { FieldActions } from "./actions.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -170,6 +172,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    */
   idPrefix?: string;
   icons?: Icons;
+  fieldActions?: FieldActions;
   uiSchema?: UiSchemaRoot;
   extraUiOptions?: ExtraUiOptions;
   fieldsValidationMode?: FieldsValidationMode;
@@ -266,7 +269,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * Reset handler
    *
    * Will be called when the form is reset.
-   * 
+   *
    * The event will be `undefined` if `reset` is called manually without passing an event.
    */
   onReset?: (e?: Event) => void;
@@ -615,6 +618,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     get [FORM_ICONS]() {
       return options.icons;
+    },
+    get [FORM_FIELD_ACTIONS]() {
+      return options.fieldActions;
     },
     [FORM_MARK_SCHEMA_CHANGE]() {
       if (isDefaultsInjectionQueued) return;

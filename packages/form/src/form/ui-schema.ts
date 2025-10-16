@@ -7,6 +7,8 @@ import type {
   FoundationalComponentType,
 } from "./components.js";
 import type { Config } from "./config.js";
+import type { FieldType } from './fields.js';
+import type { FieldAction, FieldActionType } from './actions.js';
 
 export interface UiOptions {}
 
@@ -39,6 +41,9 @@ export interface UiSchemaContent {
       | Exclude<CompatibleComponentType<T>, T>
       | ComponentDefinitions[T];
   }>;
+  "ui:actions"?: Partial<{
+    [T in FieldType]: FieldAction<T> | FieldActionType
+  }>
   items?: UiSchemaDefinition | UiSchemaDefinition[];
   anyOf?: UiSchemaDefinition[];
   oneOf?: UiSchemaDefinition[];

@@ -71,16 +71,6 @@
     <Text {config} id="add-array-item" {translate} />
   </Button>
 {/snippet}
-{#snippet actionSnippet()}
-  {@render action?.(ctx, config, {
-    get current() {
-      return value;
-    },
-    set current(v) {
-      value = v;
-    },
-  })}
-{/snippet}
 <Template
   type="template"
   errors={arrayCtx.errors()}
@@ -88,7 +78,6 @@
   {value}
   {uiOption}
   addButton={arrayCtx.canAdd() ? addButton : undefined}
-  action={action && actionSnippet}
 >
   {#each { length: arrayCtx.length() } as _, index (arrayCtx.key(index))}
     {@const cfg = arrayCtx.itemConfig(config, value?.[index], index)}
