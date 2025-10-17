@@ -4,7 +4,7 @@
   import "@/fields/extra-components/description.js";
   import "@/fields/extra-components/errors-list.js";
 
-  import "./shared/object-layouts.js";
+  import "./object-layouts.js";
 </script>
 
 <script lang="ts">
