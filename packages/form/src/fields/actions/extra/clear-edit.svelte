@@ -1,7 +1,10 @@
 <script lang="ts" module>
   import type { Ref } from "@/lib/svelte.svelte.js";
+  import { isNil } from "@/lib/types.js";
+  import { getDefaultValueForType, getSimpleSchemaType } from "@/core/index.js";
   import {
     getComponent,
+    getDefaultFieldState,
     retrieveTranslate,
     Text,
     type Config,
@@ -9,7 +12,6 @@
     type FormState,
     type SchemaValue,
   } from "@/form/index.js";
-  import { isNil } from "@/lib/types.js";
 
   import "@/form/extra-field-actions/clear-edit.js";
 
@@ -40,10 +42,15 @@
     {config}
     disabled={false}
     {errors}
-    onclick={() => {}}
+    onclick={() => {
+      valueRef.current = isNil(valueRef.current)
+        ? (getDefaultFieldState(ctx, config.schema, undefined) ??
+          getDefaultValueForType(getSimpleSchemaType(config.schema)))
+        : undefined;
+    }}
   >
     <Text
-      id={isNil(valueRef.current) ? "clear" : "edit"}
+      id={isNil(valueRef.current) ? "edit" : "clear"}
       {config}
       translate={retrieveTranslate(ctx, config)}
     />

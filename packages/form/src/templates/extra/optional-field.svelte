@@ -1,4 +1,5 @@
 <script lang="ts" module>
+  import "@/fields/extra-templates/optional-field.js";
   import "@/fields/extra-components/title.js";
   import "@/fields/extra-components/label.js";
   import "@/fields/extra-components/description.js";
@@ -9,6 +10,7 @@
 </script>
 
 <script lang="ts">
+  import { isNil } from "@/lib/types.js";
   import {
     getComponent,
     getFormContext,
@@ -64,9 +66,11 @@
       {/if}
     </Layout>
   {/if}
-  <Layout type="field-content" {config} {errors}>
-    {@render children()}
-  </Layout>
+  {#if config.required || !isNil(value)}
+    <Layout type="field-content" {config} {errors}>
+      {@render children()}
+    </Layout>
+  {/if}
   {#if errors.length > 0}
     <ErrorsList {errors} {config} />
   {/if}

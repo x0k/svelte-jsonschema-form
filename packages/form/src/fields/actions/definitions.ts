@@ -6,6 +6,9 @@ import type {
 
 export interface ExtraActions {}
 
-export const definitions = {} as {
-  [T in keyof ExtraActions & FieldActionType]: FieldAction<FieldActionTypes[T]>;
-};
+export const definitions = {} as Pick<
+  {
+    [T in FieldActionType]: FieldAction<FieldActionTypes[T]>;
+  },
+  keyof ExtraActions
+>;

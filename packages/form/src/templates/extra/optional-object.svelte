@@ -8,6 +8,7 @@
 </script>
 
 <script lang="ts">
+  import { isNil } from "@/lib/types.js";
   import {
     getComponent,
     getFormContext,
@@ -27,6 +28,7 @@
     action,
     errors,
     uiOption,
+    value,
   }: ComponentProps[typeof templateType] = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", config));
@@ -53,10 +55,12 @@
       {/if}
     </Layout>
   {/if}
-  <Layout type="object-properties" {config} {errors}>
-    {@render children()}
-  </Layout>
-  {@render addButton?.()}
+  {#if config.required || !isNil(value)}
+    <Layout type="object-properties" {config} {errors}>
+      {@render children()}
+    </Layout>
+    {@render addButton?.()}
+  {/if}
   {#if errors.length > 0}
     <ErrorsList {errors} {config} />
   {/if}

@@ -111,6 +111,14 @@
       "types": "./dist/form/extra-field-actions/*.d.ts",
       "svelte": "./dist/form/extra-field-actions/*"
     },
+    "./fields/actions": {
+      "types": "./dist/fields/actions/index.d.ts",
+      "svelte": "./dist/fields/actions/index.js"
+    },
+    "./fields/actions/extra/*": {
+      "types": "./dist/fields/actions/extra/*.d.ts",
+      "svelte": "./dist/fields/actions/extra/*"
+    },
     "./fields/array/*": {
       "types": "./dist/fields/array/*.d.ts",
       "svelte": "./dist/fields/array/*"

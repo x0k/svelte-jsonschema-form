@@ -55,7 +55,7 @@
       {/if}
     </Layout>
   {/if}
-  {#if !isNil(value)}
+  {#if config.required || !isNil(value)}
     <Layout type="array-items" {config} {errors}>
       {@render children()}
     </Layout>
