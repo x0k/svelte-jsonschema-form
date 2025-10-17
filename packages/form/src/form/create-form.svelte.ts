@@ -94,7 +94,7 @@ import {
   FORM_FIELD_ACTIONS,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
-import type { FieldActions } from "./actions.js";
+import type { FieldActions } from "./field-actions.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 

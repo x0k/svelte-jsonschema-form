@@ -12,7 +12,7 @@ import type {
   ActionField,
   CompatibleFieldActions,
   FieldAction,
-} from "./actions.js";
+} from "./field-actions.js";
 
 export interface UiOptions {}
 

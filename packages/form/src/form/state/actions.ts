@@ -1,4 +1,4 @@
-import type { ActionField, FieldAction } from "../actions.js";
+import type { ActionField, FieldAction } from "../field-actions.js";
 import type { ComponentProps } from "../components.js";
 import type { Config } from "../config.js";
 import { FORM_FIELD_ACTIONS } from "../internals.js";

@@ -3,11 +3,7 @@
   import type { Config, SchemaValue, FormState } from "@/form/index.js";
   import { isNil } from "@/lib/types.js";
 
-  declare module "../../form/index.js" {
-    interface FieldActionTypes {
-      displayPrimitiveValue: Exclude<SchemaValue, object> | undefined;
-    }
-  }
+  import "@/form/extra-field-actions/display-primitive-value.js";
 
   export { displayPrimitiveValue };
 </script>

@@ -103,6 +103,10 @@
       "types": "./dist/form/extra-fields/*.d.ts",
       "svelte": "./dist/form/extra-fields/*"
     },
+    "./extra-field-actions/*": {
+      "types": "./dist/form/extra-field-actions/*.d.ts",
+      "svelte": "./dist/form/extra-field-actions/*"
+    },
     "./fields/array/*": {
       "types": "./dist/fields/array/*.d.ts",
       "svelte": "./dist/fields/array/*"

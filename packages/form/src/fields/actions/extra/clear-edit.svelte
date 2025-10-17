@@ -11,16 +11,15 @@
   } from "@/form/index.js";
   import { isNil } from "@/lib/types.js";
 
-  declare module "../../form/index.js" {
-    interface FieldActionTypes {
-      clearEdit: SchemaValue | undefined;
-    }
+  import "@/form/extra-field-actions/clear-edit.js";
+
+  declare module "../../../form/index.js" {
     interface Labels {
       edit: {};
       clear: {};
     }
   }
-  declare module "../components.js" {
+  declare module "../../components.js" {
     interface ButtonTypes {
       "clear-edit-action": {};
     }

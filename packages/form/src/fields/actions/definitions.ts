@@ -4,6 +4,8 @@ import type {
   FieldActionTypes,
 } from "@/form/index.js";
 
+export interface ExtraActions {}
+
 export const definitions = {} as {
-  [T in FieldActionType]: FieldAction<FieldActionTypes[T]>;
+  [T in keyof ExtraActions & FieldActionType]: FieldAction<FieldActionTypes[T]>;
 };

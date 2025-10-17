@@ -24,7 +24,7 @@ export * from "./merger.js";
 export * from "./id.js";
 export * from "./icons.js";
 export * from "./translation.js";
-export * from "./actions.js";
+export * from "./field-actions.js";
 
 export * from "./state/index.js";
 

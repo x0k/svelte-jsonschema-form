@@ -51,7 +51,7 @@ import {
 } from "../internals.js";
 import type { FieldPath, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
-import type { FieldActions } from '../actions.js';
+import type { FieldActions } from '../field-actions.js';
 
 export interface FormState<T> {
   readonly submission: FormSubmission;
