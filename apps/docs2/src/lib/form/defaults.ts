@@ -1,8 +1,8 @@
 export { resolver } from "@sjsf/form/resolvers/basic";
-import "@sjsf/form/fields/extra-fields/enum-include";
-import "@sjsf/form/fields/extra-fields/multi-enum-include";
-import "@sjsf/form/fields/extra-fields/file-include";
-import "@sjsf/form/fields/extra-fields/unknown-native-file-include";
+import "@sjsf/form/fields/extra/enum-include";
+import "@sjsf/form/fields/extra/multi-enum-include";
+import "@sjsf/form/fields/extra/file-include";
+import "@sjsf/form/fields/extra/unknown-native-file-include";
 
 export { theme } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
