@@ -1,7 +1,5 @@
-import { cast } from '@sjsf/form/lib/component';
-import type { ComponentDefinition } from '@sjsf/form';
-import TagsField from '@sjsf/form/fields/extra-fields/tags.svelte';
 import { s, DEFAULT_SPECS } from 'theme-testing/demo';
+import '@sjsf/form/fields/extra/array-tags-include';
 
 import './extra-widgets/checkboxes-include';
 import './extra-widgets/date-picker-include';
@@ -14,15 +12,6 @@ import './extra-widgets/switch-include';
 import './extra-widgets/tags-include';
 import './extra-widgets/textarea-include';
 import './extra-widgets/toggle-radio-buttons-include.js';
-
-const tagsAsArrayField = cast(TagsField, {
-	value: {
-		transform(props) {
-			s.assertStrings(props.value);
-			return props.value;
-		}
-	}
-}) satisfies ComponentDefinition<'arrayField'>;
 
 export const specs: s.Specs = {
 	...DEFAULT_SPECS,
@@ -115,7 +104,7 @@ export const specs: s.Specs = {
 		s.uniqueArray,
 		{
 			'ui:components': {
-				arrayField: tagsAsArrayField
+				arrayField: 'arrayTagsField'
 			}
 		},
 		{

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import '@sjsf/form/fields/extra-fields/file-include';
-  import '@sjsf/form/fields/extra-fields/native-file-include';
+  import '@sjsf/form/fields/extra/file-include';
+  import '@sjsf/form/fields/extra/native-file-include';
   import '@sjsf/basic-theme/extra-widgets/file-include';
 
   import NativeForm from './native-form.svelte';

@@ -1,9 +1,9 @@
 export { resolver } from '@sjsf/form/resolvers/basic';
-import '@sjsf/form/fields/extra-fields/unknown-native-file-include';
-import '@sjsf/form/fields/extra-fields/enum-include';
-import '@sjsf/form/fields/extra-fields/multi-enum-include';
-import '@sjsf/form/fields/extra-fields/boolean-select-include';
-import '@sjsf/form/fields/extra-fields/file-include';
+import '@sjsf/form/fields/extra/unknown-native-file-include';
+import '@sjsf/form/fields/extra/enum-include';
+import '@sjsf/form/fields/extra/multi-enum-include';
+import '@sjsf/form/fields/extra/boolean-select-include';
+import '@sjsf/form/fields/extra/file-include';
 
 export { translation } from '@sjsf/form/translations/en';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
