@@ -5,4 +5,4 @@ import "../templates/exports.js";
 
 import { definitions } from "./definitions.js";
 
-export const resolver = fromRecord(definitions);
+export const base = fromRecord(definitions);

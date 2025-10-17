@@ -1,9 +1,9 @@
-import { definitions } from "../../resolver/definitions.js";
+import { definitions } from "../../theme/definitions.js";
 
 import OptionalArray from "./optional-array.svelte";
 import "./optional-array.svelte";
 
-declare module "../../resolver/definitions.js" {
+declare module "../../theme/definitions.js" {
   interface ExtraComponents {
     optionalArrayTemplate: {};
   }

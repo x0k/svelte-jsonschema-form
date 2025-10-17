@@ -1,9 +1,9 @@
-import { definitions } from "../../resolver/definitions.js";
+import { definitions } from "../../theme/definitions.js";
 
 import OptionalObject from "./optional-object.svelte";
 import "./optional-object.svelte";
 
-declare module "../../resolver/definitions.js" {
+declare module "../../theme/definitions.js" {
   interface ExtraComponents {
     optionalObjectTemplate: {};
   }

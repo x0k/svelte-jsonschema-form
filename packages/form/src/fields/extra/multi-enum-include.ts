@@ -1,9 +1,9 @@
-import { definitions } from "../../resolver/definitions.js";
+import { definitions } from "../../theme/definitions.js";
 
 import MultiEnum from "./multi-enum.svelte";
 import "./multi-enum.svelte";
 
-declare module "../../resolver/definitions.js" {
+declare module "../../theme/definitions.js" {
   interface ExtraComponents {
     multiEnumField: {};
   }

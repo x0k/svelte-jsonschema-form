@@ -1,9 +1,9 @@
-import { definitions } from "../../resolver/definitions.js";
+import { definitions } from "../../theme/definitions.js";
 
 import File from "./file.svelte";
 import "./file.svelte";
 
-declare module "../../resolver/definitions.js" {
+declare module "../../theme/definitions.js" {
   interface ExtraComponents {
     fileField: {};
   }

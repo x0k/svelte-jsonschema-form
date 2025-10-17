@@ -1,9 +1,9 @@
-import { definitions } from "../../resolver/definitions.js";
+import { definitions } from "../../theme/definitions.js";
 
 import ArrayFiles from "./array-files.svelte";
 import "./array-files.svelte";
 
-declare module "../../resolver/definitions.js" {
+declare module "../../theme/definitions.js" {
   interface ExtraComponents {
     arrayFilesField: {};
   }
