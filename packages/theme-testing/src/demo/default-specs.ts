@@ -5,7 +5,6 @@ import "@sjsf/form/fields/extra/file-include";
 import "@sjsf/form/fields/extra/files-include";
 
 import {
-  assertStrings,
   boolean,
   enumeration,
   file,

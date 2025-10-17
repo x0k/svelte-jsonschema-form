@@ -51,6 +51,20 @@
     title: "Title",
     description: "description",
     properties: {
+      optionalObject: {
+        type: "object",
+        properties: {
+          optionalField: {
+            type: "string",
+          },
+        },
+      },
+      optionalArray: {
+        type: "array",
+        items: {
+          type: "string",
+        },
+      },
       array: {
         type: "array",
         items: [
@@ -72,8 +86,8 @@
                 type: "string",
               },
               foo1: {
-                type: "integer"
-              }
+                type: "integer",
+              },
             },
           },
           {
@@ -83,8 +97,8 @@
                 type: "number",
               },
               bar1: {
-                type: "boolean"
-              }
+                type: "boolean",
+              },
             },
           },
         ],
@@ -96,6 +110,35 @@
   };
 
   const componentsUiSchema: UiSchemaRoot = {
+    optionalObject: {
+      "ui:components": {
+        objectTemplate: "optionalObjectTemplate",
+      },
+      "ui:actions": {
+        objectField: "clearEdit",
+      },
+      optionalField: {
+        "ui:components": {
+          fieldTemplate: "optionalFieldTemplate",
+        },
+        "ui:actions": {
+          stringField: "clearEdit",
+        },
+      },
+    },
+    optionalArray: {
+      "ui:components": {
+        arrayTemplate: "optionalArrayTemplate",
+      },
+      "ui:actions": {
+        arrayField: "clearEdit",
+      },
+      items: {
+        "ui:actions": {
+          stringField: "displayPrimitiveValue",
+        },
+      },
+    },
     array: {
       items: {
         "ui:options": {
@@ -111,6 +154,7 @@
     uiSchema: componentsUiSchema,
     theme,
     initialValue: {
+      optionalArray: ["foo"],
       array: ["fixed", 123],
       additional: "value",
     },
