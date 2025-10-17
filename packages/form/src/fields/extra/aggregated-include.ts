@@ -1,10 +1,10 @@
-import { definitions } from "../resolver/definitions.js";
+import { definitions } from "../../resolver/definitions.js";
 
 import Aggregated from "./aggregated.svelte";
 import "./aggregated.svelte";
 
-declare module "../resolver/definitions.js" {
-  interface ExtraFields {
+declare module "../../resolver/definitions.js" {
+  interface ExtraComponents {
     aggregatedField: {};
   }
 }

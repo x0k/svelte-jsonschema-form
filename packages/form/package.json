@@ -115,9 +115,9 @@
       "types": "./dist/fields/extra-widgets/*.d.ts",
       "svelte": "./dist/fields/extra-widgets/*"
     },
-    "./fields/extra-fields/*": {
-      "types": "./dist/fields/extra-fields/*.d.ts",
-      "svelte": "./dist/fields/extra-fields/*"
+    "./fields/extra/*": {
+      "types": "./dist/fields/extra/*.d.ts",
+      "svelte": "./dist/fields/extra/*"
     },
     "./fields/extra-templates/*": {
       "types": "./dist/fields/extra-templates/*.d.ts",
@@ -127,17 +127,9 @@
       "types": "./dist/fields/extra-components/*.d.ts",
       "svelte": "./dist/fields/extra-components/*"
     },
-    "./fields/resolver": {
-      "types": "./dist/fields/resolver/index.d.ts",
-      "svelte": "./dist/fields/resolver/index.js"
-    },
     "./fields/*": {
       "types": "./dist/fields/*.d.ts",
       "svelte": "./dist/fields/*"
-    },
-    "./templates/resolver": {
-      "types": "./dist/templates/resolver/index.d.ts",
-      "svelte": "./dist/templates/resolver/index.js"
     },
     "./templates/extra/*": {
       "types": "./dist/templates/extra/*.d.ts",
@@ -180,8 +172,8 @@
       "svelte": "./dist/prevent-page-reload.svelte.js"
     },
     "./resolver": {
-      "types": "./dist/resolver.d.ts",
-      "svelte": "./dist/resolver.js"
+      "types": "./dist/resolver/index.d.ts",
+      "svelte": "./dist/resolver/index.js"
     },
     "./static-analysis": {
       "types": "./dist/static-analysis.d.ts",

@@ -15,7 +15,7 @@
 <script lang="ts">
   import type { ComponentProps } from "@/form/index.js";
 
-  import { assertStrings } from "./shared/assert.js";
+  import { assertStrings } from "../assert.js";
   import Tags from './tags.svelte';
 
   let { value = $bindable(), ...rest }: ComponentProps["arrayTagsField"] =

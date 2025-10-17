@@ -14,7 +14,7 @@
 <script lang="ts">
   import type { ComponentProps } from "@/form/index.js";
 
-  import { assertFile } from "./shared/assert.js";
+  import { assertFile } from "../assert.js";
   import NativeFile from "./native-file.svelte";
 
   let {
