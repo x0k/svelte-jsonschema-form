@@ -48,7 +48,6 @@ export interface UiSchemaContent {
   "ui:actions"?: Partial<{
     [T in ActionField]:
       | FieldAction<ComponentProps[T]["value"]>
-      // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
       | CompatibleFieldActions<ComponentProps[T]["value"]>;
   }>;
   items?: UiSchemaDefinition | UiSchemaDefinition[];
