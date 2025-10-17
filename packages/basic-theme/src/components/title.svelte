@@ -19,8 +19,7 @@
     type ComponentProps,
   } from "@sjsf/form";
 
-  const { title, config, templateType, append }: ComponentProps["title"] =
-    $props();
+  const { title, config, templateType }: ComponentProps["title"] = $props();
 
   const ctx = getFormContext();
 </script>
@@ -30,6 +29,5 @@
     style: `display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: ${templateType === "fieldTemplate" ? "unset" : "larger"};`,
   })}
 >
-  <span>{title}</span>
-  {@render append?.()}
+  {title}
 </legend>
