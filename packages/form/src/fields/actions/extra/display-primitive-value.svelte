@@ -14,6 +14,6 @@
   valueRef: Ref<Exclude<SchemaValue, object> | undefined>
 )}
   {#if !isNil(valueRef.current)}
-    <span>{valueRef.current}</span>
+    <span data-display-primitive-value-action>{valueRef.current}</span>
   {/if}
 {/snippet}
