@@ -29,6 +29,11 @@
 			type === 'object-properties'
 	);
 	const isObjectProperty = $derived(type === 'object-property');
+	const isTitleRow = $derived(
+		type === 'field-title-row' ||
+			type === 'array-field-title-row' ||
+			type === 'object-field-title-row'
+	);
 
 	const ctx = getFormContext();
 </script>
@@ -38,7 +43,8 @@
 {:else}
 	<div
 		class={{
-			flex: isItem || isField || isColumn,
+			flex: isItem || isField || isColumn || isTitleRow,
+			'items-center justify-between': isTitleRow,
 			'gap-2': isItem || isField,
 			'gap-4': isColumn,
 			'items-start': isItem,

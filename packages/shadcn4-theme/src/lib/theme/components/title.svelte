@@ -4,7 +4,6 @@
 	declare module '../context.js' {
 		interface ThemeComponents {
 			FieldTitle: Component<HTMLAttributes<HTMLDivElement>>;
-			FieldLegend: Component<HTMLAttributes<HTMLLegendElement>>;
 		}
 	}
 </script>
@@ -19,7 +18,7 @@
 
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
-	const { FieldTitle: Title, FieldLegend: Legend } = $derived(themeCtx.components);
+	const { FieldTitle: Title } = $derived(themeCtx.components);
 </script>
 
 {#if templateType === 'fieldTemplate'}
@@ -27,7 +26,7 @@
 		{title}
 	</Title>
 {:else}
-	<Legend {...titleAttributes(ctx, config, 'titleAttributes', {})}>
+	<div {...titleAttributes(ctx, config, 'titleAttributes', {})}>
 		{title}
-	</Legend>
+	</div>
 {/if}

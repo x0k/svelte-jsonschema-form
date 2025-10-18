@@ -25,8 +25,8 @@
 			ButtonGroup: Component<ButtonGroupProps>;
 			Field: Component<FieldProps>;
 			FieldSet: Component<HTMLFieldsetAttributes>;
+			FieldLegend: Component<HTMLAttributes<HTMLLegendElement>>;
 			FieldGroup: Component<HTMLAttributes<HTMLDivElement>>;
-			FieldContent: Component<HTMLAttributes<HTMLDivElement>>;
 		}
 	}
 </script>
@@ -37,7 +37,7 @@
 
 	import { getThemeContext } from '../context.js';
 
-	const { type, children, config, errors }: ComponentProps['layout'] = $props();
+	const { type, children, config }: ComponentProps['layout'] = $props();
 
 	const isItem = $derived(type === 'array-item');
 	const isGrowable = $derived(
@@ -46,16 +46,19 @@
 			type === 'object-property-content'
 	);
 	const isObjectProperty = $derived(type === 'object-property');
+	const isMeta = $derived(
+		type === 'field-meta' || type === 'array-field-meta' || type === 'object-field-meta'
+	);
 
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 
-	const { ButtonGroup, FieldSet, Field, FieldContent, FieldGroup } = $derived(themeCtx.components);
+	const { ButtonGroup, FieldSet, FieldLegend, Field, FieldGroup } = $derived(themeCtx.components);
 
 	const attributes = $derived(layoutAttributes(ctx, config, 'layout', 'layouts', type, {}));
 </script>
 
-{#if (type === 'field-content' || type === 'array-field-meta' || type === 'object-field-meta') && Object.keys(attributes).length < 2}
+{#if (type === 'field-content' || isMeta) && Object.keys(attributes).length < 2}
 	{@render children()}
 {:else if type === 'array-item-controls'}
 	<ButtonGroup {...attributes} {...uiOptionProps('shadcn4ButtonGroup')({}, config, ctx)}>
@@ -66,17 +69,17 @@
 		{@render children()}
 	</FieldSet>
 {:else if type == 'field'}
-	<Field
-		data-invalid={errors.length > 0}
-		{...attributes}
-		{...uiOptionProps('shadcn4Field')({}, config, ctx)}
-	>
+	<Field {...attributes} {...uiOptionProps('shadcn4Field')({}, config, ctx)}>
 		{@render children()}
 	</Field>
-{:else if type === 'field-meta'}
-	<FieldContent {...attributes}>
+{:else if type === 'field-title-row'}
+	<div class="flex w-full items-center justify-between" {...attributes}>
 		{@render children()}
-	</FieldContent>
+	</div>
+{:else if type === 'array-field-title-row' || type === 'object-field-title-row'}
+	<FieldLegend class="flex w-full items-center justify-between" {...attributes}>
+		{@render children()}
+	</FieldLegend>
 {:else if type === 'array-items' || type === 'object-properties' || type === 'multi-field' || type === 'multi-field-content'}
 	<FieldGroup {...attributes}>
 		{@render children()}

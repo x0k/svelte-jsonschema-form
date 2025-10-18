@@ -19,6 +19,11 @@
 			type === 'array-items' ||
 			type === 'object-properties'
 	);
+	const isTitleRow = $derived(
+		type === 'field-title-row' ||
+			type === 'array-field-title-row' ||
+			type === 'object-field-title-row'
+	);
 
 	const isObjectProperty = $derived(type === 'object-property');
 
@@ -27,7 +32,8 @@
 
 <div
 	class={{
-		flex: isItemOrControls || isField || isColumn,
+		flex: isItemOrControls || isField || isColumn|| isTitleRow,
+		'items-center justify-between': isTitleRow,
 		'gap-2': isItemOrControls || isField,
 		'gap-4': isColumn,
 		'items-start': isItemOrControls,
