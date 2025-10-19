@@ -12,7 +12,7 @@
     type Config,
     type UiOption,
     type ActionField,
-    getFieldAction,
+    retrieveNestedUiOption,
   } from "@/form/index.js";
 
   import type { FoundationalWidgetType } from "./widgets.js";
@@ -54,7 +54,9 @@
 
   const errors = $derived(getFieldErrors(ctx, config.path));
 
-  const action = $derived(getFieldAction(ctx, field, config));
+  const action = $derived(
+    retrieveNestedUiOption(ctx, config, "actions", (a) => a[field])
+  );
 </script>
 
 {#snippet renderAction()}

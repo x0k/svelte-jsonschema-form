@@ -68,6 +68,29 @@ export function retrieveUiOption<T, const O extends keyof UiOptions>(
   );
 }
 
+/**
+ * @query
+ */
+export function retrieveNestedUiOption<T, const O extends keyof UiOptions, R>(
+  ctx: FormState<T>,
+  config: Config,
+  option: O,
+  selector: (data: NonNullable<UiOptions[O]>) => R | undefined
+) {
+  const extraOptions = ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config as never);
+  if (extraOptions) {
+    const selected = selector(extraOptions)
+    if (selected !== undefined) {
+      return selected
+    }
+  }
+  const options = resolveUiOption(ctx, config.uiSchema, option);
+  if (options !== undefined) {
+    return selector(options)
+  }
+  return undefined
+}
+
 export type ObjectUiOptions = ObjectProperties<UiOptions>;
 
 /**

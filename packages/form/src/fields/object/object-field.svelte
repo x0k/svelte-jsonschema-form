@@ -1,9 +1,10 @@
 <script lang="ts" module>
   import "@/form/extra-fields/object-property.js";
   import "../extra-templates/object.js";
+  const field = "objectField";
   declare module "../../form/index.js" {
     interface ActionFields {
-      objectField: {};
+      [field]: {};
     }
   }
 
@@ -18,8 +19,8 @@
   import {
     Text,
     getComponent,
-    getFieldAction,
     getFormContext,
+    retrieveNestedUiOption,
     retrieveTranslate,
     retrieveUiOption,
     type ComponentProps,
@@ -34,7 +35,7 @@
     value = $bindable(),
     uiOption,
     translate,
-  }: ComponentProps["objectField"] = $props();
+  }: ComponentProps[typeof field] = $props();
 
   const objCtx = createObjectContext({
     ctx,
@@ -51,7 +52,9 @@
   const Template = $derived(getComponent(ctx, "objectTemplate", config));
   const Button = $derived(getComponent(ctx, "button", config));
 
-  const action = $derived(getFieldAction(ctx, "objectField", config));
+  const action = $derived(
+    retrieveNestedUiOption(ctx, config, "actions", (a) => a[field])
+  );
 </script>
 
 {#snippet addButton()}

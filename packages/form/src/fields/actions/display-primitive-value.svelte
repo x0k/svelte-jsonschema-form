@@ -3,8 +3,6 @@
   import type { Config, SchemaValue, FormState } from "@/form/index.js";
   import { isNil } from "@/lib/types.js";
 
-  import "@/form/extra-field-actions/display-primitive-value.js";
-
   export { displayPrimitiveValue };
 </script>
 

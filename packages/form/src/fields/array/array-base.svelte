@@ -28,7 +28,7 @@
     retrieveUiOption,
     retrieveTranslate,
     createKeyedArrayDeriver,
-    getFieldAction,
+    retrieveNestedUiOption,
   } from "@/form/index.js";
 
   import {
@@ -68,7 +68,9 @@
   const Template = $derived(getComponent(ctx, "arrayTemplate", config));
   const Button = $derived(getComponent(ctx, "button", config));
 
-  const action = $derived(getFieldAction(ctx, field, config));
+  const action = $derived(
+    retrieveNestedUiOption(ctx, config, "actions", (a) => a[field])
+  );
 </script>
 
 {#snippet addButton()}

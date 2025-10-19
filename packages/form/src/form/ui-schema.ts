@@ -8,13 +8,20 @@ import type {
   FoundationalComponentType,
 } from "./components.js";
 import type { Config } from "./config.js";
-import type {
-  ActionField,
-  CompatibleFieldActions,
-  FieldAction,
-} from "./field-actions.js";
+import type { ActionField, FieldAction } from "./field-actions.js";
+import type { TranslatorDefinitions } from "./translation.js";
 
-export interface UiOptions {}
+export interface UiOptions {
+  /**
+   * Overrides the title of the field.
+   */
+  title?: string;
+
+  translations?: Partial<TranslatorDefinitions>;
+  actions?: Partial<{
+    [T in ActionField]: FieldAction<ComponentProps[T]["value"]>;
+  }>;
+}
 
 export type UiOption = <O extends keyof UiOptions>(opt: O) => UiOptions[O];
 
@@ -44,11 +51,6 @@ export interface UiSchemaContent {
     [T in FoundationalComponentType]:
       | Exclude<CompatibleComponentType<T>, T>
       | ComponentDefinitions[T];
-  }>;
-  "ui:actions"?: Partial<{
-    [T in ActionField]:
-      | FieldAction<ComponentProps[T]["value"]>
-      | CompatibleFieldActions<ComponentProps[T]["value"]>;
   }>;
   items?: UiSchemaDefinition | UiSchemaDefinition[];
   anyOf?: UiSchemaDefinition[];

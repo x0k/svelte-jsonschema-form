@@ -10,10 +10,9 @@
     type SchemaValue,
   } from "@/form/index.js";
 
-  import "@/form/extra-field-actions/clear.js";
   import "@/form/extra-labels/clear.js";
 
-  declare module "../../components.js" {
+  declare module "../components.js" {
     interface ButtonTypes {
       "clear-action": {};
     }
