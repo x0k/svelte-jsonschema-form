@@ -22,7 +22,6 @@ export {
 	Field,
 	FieldLabel,
 	FieldSet,
-	FieldContent,
 	FieldDescription,
 	FieldError,
 	FieldTitle,

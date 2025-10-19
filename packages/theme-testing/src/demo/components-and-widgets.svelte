@@ -7,6 +7,10 @@
     type UiOptionsRegistryOption,
     type UiSchemaRoot,
   } from "@sjsf/form";
+  import {
+    clearEdit,
+    displayPrimitiveValue,
+  } from "@sjsf/form/fields/actions/exports";
 
   import * as defaults from "../components/form-defaults.js";
 
@@ -114,15 +118,19 @@
       "ui:components": {
         objectTemplate: "optionalObjectTemplate",
       },
-      "ui:actions": {
-        objectField: "clearEdit",
+      "ui:options": {
+        actions: {
+          objectField: clearEdit,
+        },
       },
       optionalField: {
         "ui:components": {
           fieldTemplate: "optionalFieldTemplate",
         },
-        "ui:actions": {
-          stringField: "clearEdit",
+        "ui:options": {
+          actions: {
+            stringField: clearEdit,
+          },
         },
       },
     },
@@ -130,12 +138,16 @@
       "ui:components": {
         arrayTemplate: "optionalArrayTemplate",
       },
-      "ui:actions": {
-        arrayField: "clearEdit",
+      "ui:options": {
+        actions: {
+          arrayField: clearEdit,
+        },
       },
       items: {
-        "ui:actions": {
-          stringField: "displayPrimitiveValue",
+        "ui:options": {
+          actions: {
+            stringField: displayPrimitiveValue,
+          },
         },
       },
     },

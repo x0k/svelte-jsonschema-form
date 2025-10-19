@@ -42,7 +42,7 @@
 	const attributes = $derived(layoutAttributes(ctx, config, 'layout', 'layouts', type, {}));
 </script>
 
-{#if type === 'field-content' || type === 'field-meta' && Object.keys(attributes).length < 2}
+{#if type === 'field-content' || (type === 'field-meta' && Object.keys(attributes).length < 2)}
 	{@render children()}
 {:else if isField}
 	<fieldset
@@ -50,7 +50,7 @@
 		{...composeProps(
 			ctx,
 			config,
-			attributes,
+			attributes as HTMLFieldsetAttributes,
 			uiOptionProps('daisyui5FieldsLayout'),
 			uiOptionNestedProps('daisyui5FieldsLayouts', (data) => data[type])
 		)}

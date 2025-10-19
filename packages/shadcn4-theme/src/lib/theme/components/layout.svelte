@@ -65,7 +65,9 @@
 		{@render children()}
 	</ButtonGroup>
 {:else if type === 'array-field' || type === 'object-field'}
-	<FieldSet {...attributes} {...uiOptionProps('shadcn4FieldSet')({}, config, ctx)}>
+	<FieldSet
+		{...uiOptionProps('shadcn4FieldSet')(attributes as HTMLFieldsetAttributes, config, ctx)}
+	>
 		{@render children()}
 	</FieldSet>
 {:else if type == 'field'}
