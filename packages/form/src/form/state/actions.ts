@@ -1,4 +1,8 @@
-import type { ActionField, FieldAction } from "../field-actions.js";
+import type {
+  ActionField,
+  FieldAction,
+  FieldActionType,
+} from "../field-actions.js";
 import type { ComponentProps } from "../components.js";
 import type { Config } from "../config.js";
 import { FORM_FIELD_ACTIONS } from "../internals.js";
@@ -16,10 +20,10 @@ export function getFieldAction<FT, T extends ActionField>(
   const action = config.uiSchema["ui:actions"]?.[field];
   switch (typeof action) {
     case "string":
-      return ctx[FORM_FIELD_ACTIONS]?.(action, config) as
+      return ctx[FORM_FIELD_ACTIONS]?.(action as FieldActionType, config) as
         | FieldAction<ComponentProps[T]["value"]>
         | undefined;
     default:
-      return action;
+      return action as FieldAction<ComponentProps[T]["value"]> | undefined;
   }
 }

@@ -111,6 +111,10 @@
       "types": "./dist/form/extra-field-actions/*.d.ts",
       "svelte": "./dist/form/extra-field-actions/*"
     },
+    "./extra-labels/*": {
+      "types": "./dist/form/extra-labels/*.d.ts",
+      "svelte": "./dist/form/extra-labels/*"
+    },
     "./fields/actions": {
       "types": "./dist/fields/actions/index.d.ts",
       "svelte": "./dist/fields/actions/index.js"

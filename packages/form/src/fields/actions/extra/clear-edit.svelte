@@ -14,13 +14,9 @@
   } from "@/form/index.js";
 
   import "@/form/extra-field-actions/clear-edit.js";
+  import "@/form/extra-labels/clear.js";
+  import "@/form/extra-labels/edit.js";
 
-  declare module "../../../form/index.js" {
-    interface Labels {
-      edit: {};
-      clear: {};
-    }
-  }
   declare module "../../components.js" {
     interface ButtonTypes {
       "clear-edit-action": {};
