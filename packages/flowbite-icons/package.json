@@ -45,6 +45,10 @@
 			"types": "./dist/preset.d.ts",
 			"default": "./dist/preset.js"
 		},
+		"./extra/*": {
+			"types": "./dist/extra/*.d.ts",
+			"svelte": "./dist/extra/*"
+		},
 		"./styles.css": "./dist/styles.css"
 	},
 	"peerDependencies": {
