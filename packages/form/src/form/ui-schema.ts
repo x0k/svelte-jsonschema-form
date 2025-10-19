@@ -1,5 +1,5 @@
 import type { Resolver } from "@/lib/resolver.js";
-import type { RPath } from "@/core/index.js";
+import type { RPath, SchemaValue } from "@/core/index.js";
 
 import type {
   CompatibleComponentType,
@@ -16,8 +16,17 @@ export interface UiOptions {
    * Overrides the title of the field.
    */
   title?: string;
-
+  /**
+   * Overrides form translation
+   */
   translations?: Partial<TranslatorDefinitions>;
+  /**
+   * Field action
+   */
+  action?: FieldAction<SchemaValue | undefined>;
+  /**
+   * A typed field action takes precedence over `action`
+   */
   actions?: Partial<{
     [T in ActionField]: FieldAction<ComponentProps[T]["value"]>;
   }>;

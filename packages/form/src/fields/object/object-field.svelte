@@ -19,8 +19,8 @@
   import {
     Text,
     getComponent,
+    getFieldAction,
     getFormContext,
-    retrieveNestedUiOption,
     retrieveTranslate,
     retrieveUiOption,
     type ComponentProps,
@@ -52,9 +52,7 @@
   const Template = $derived(getComponent(ctx, "objectTemplate", config));
   const Button = $derived(getComponent(ctx, "button", config));
 
-  const action = $derived(
-    retrieveNestedUiOption(ctx, config, "actions", (a) => a[field])
-  );
+  const action = $derived(getFieldAction(ctx, config, field));
 </script>
 
 {#snippet addButton()}
