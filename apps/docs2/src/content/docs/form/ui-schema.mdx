@@ -230,14 +230,24 @@ interface UiOptions {
    */
   useLabel?: boolean;
   /**
-   * Overrides form translation
-   */
-  translations?: Partial<TranslatorDefinitions>;
-  /**
    * Display errors from child elements (applies only to aggregating fields like `tags`).
    * @default false
    */
   collectErrors?: boolean;
+  /**
+   * Overrides form translation
+   */
+  translations?: Partial<TranslatorDefinitions>;
+  /**
+   * Field action
+   */
+  action?: FieldAction<SchemaValue | undefined>;
+  /**
+   * A typed field action, takes precedence over `action`
+   */
+  actions?: Partial<{
+    [T in ActionField]: FieldAction<ComponentProps[T]["value"]>;
+  }>;
 }
 ```
 
