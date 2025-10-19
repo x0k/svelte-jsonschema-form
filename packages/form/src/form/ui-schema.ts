@@ -112,10 +112,11 @@ export function resolveUiOption<O extends keyof UiOptions>(
   uiSchema: UiSchema,
   option: O
 ): UiOptions[O] | undefined {
-  let value = uiSchema["ui:options"]?.[option];
-  if (value === undefined) {
-    value = uiSchemaRoot["ui:globalOptions"]?.[option];
-  }
+  const options = uiSchema["ui:options"];
+  const value =
+    options && option in options
+      ? options[option]
+      : uiSchemaRoot["ui:globalOptions"]?.[option];
   if (typeof value === "string" && value.startsWith("registry:")) {
     return uiOptionsRegistry[value.substring(9) as keyof UiOptionsRegistry];
   }
