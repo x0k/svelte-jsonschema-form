@@ -37,7 +37,6 @@ import {
 import {
   Field,
   FieldLabel,
-  FieldContent,
   FieldError,
   FieldDescription,
   FieldGroup,
@@ -53,7 +52,6 @@ export function setShadcnContext() {
       ButtonGroup,
       Field,
       FieldLabel,
-      FieldContent,
       FieldError,
       FieldDescription,
       FieldGroup,
@@ -81,7 +79,6 @@ export function setShadcnContext() {
       ToggleGroupItem,
       Slider,
       Switch,
-      // @ts-ignore WTF
       Popover,
       PopoverContent,
       PopoverTrigger,
