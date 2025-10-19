@@ -19,9 +19,17 @@ export interface AbstractButton<T extends ButtonType>
   onclick: () => void;
 }
 
+export type ButtonComponentProps = {
+  [T in ButtonType]: AbstractButton<T> & ButtonTypes[T];
+}[ButtonType];
+
 export interface LayoutTypes {}
 
 export type LayoutType = keyof LayoutTypes;
+
+export type LayoutComponentProps = {
+  [T in LayoutType]: AbstractLayout<T> & LayoutTypes[T];
+}[LayoutType];
 
 export interface AbstractLayout<T extends LayoutType>
   extends ComponentCommonProps {
@@ -34,13 +42,10 @@ declare module "../form/index.js" {
     button: {};
     layout: {};
   }
+
   interface ComponentProps {
-    button: {
-      [T in ButtonType]: AbstractButton<T> & ButtonTypes[T];
-    }[ButtonType];
-    layout: {
-      [T in LayoutType]: AbstractLayout<T> & LayoutTypes[T];
-    }[LayoutType];
+    button: ButtonComponentProps;
+    layout: LayoutComponentProps;
   }
   interface ComponentBindings {
     button: "";
