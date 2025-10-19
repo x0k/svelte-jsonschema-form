@@ -82,7 +82,7 @@ export interface UiSchemaRef {
 export type UiSchemaDefinition = UiSchema | UiSchemaRef;
 
 export type UiSchemaRoot = UiSchemaDefinition & {
-  "ui:globalOptions"?: UiOptions;
+  "ui:globalOptions"?: ResolvableUiOptions;
   "ui:definitions"?: Record<string, UiSchema>;
 };
 
