@@ -1,5 +1,9 @@
 <script lang="ts" module>
+  const field = "tagsField";
   declare module "../../form/index.js" {
+    interface ActionFields {
+      [field]: {};
+    }
     interface FoundationalComponents {
       tagsWidget: {};
     }
@@ -10,6 +14,7 @@
   import {
     createChildPath,
     getComponent,
+    getFieldAction,
     getFieldErrors,
     getFieldsErrors,
     getFormContext,
@@ -26,7 +31,7 @@
     config,
     value = $bindable(),
     uiOption,
-  }: ComponentProps["tagsField"] = $props();
+  }: ComponentProps[typeof field] = $props();
 
   const widgetType = "tagsWidget";
 
@@ -60,7 +65,24 @@
   const errors = $derived(
     collectErrors ? getFieldsErrors(ctx, paths) : getFieldErrors(ctx, config.path)
   );
+  const action = $derived(getFieldAction(ctx, config, field));
 </script>
+
+{#snippet renderAction()}
+  {@render action?.(
+    ctx,
+    config,
+    {
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
+      },
+    },
+    errors
+  )}
+{/snippet}
 
 <Template
   type="template"
@@ -71,6 +93,7 @@
   {value}
   {config}
   {errors}
+  action={action && renderAction}
 >
   <Widget
     type="widget"

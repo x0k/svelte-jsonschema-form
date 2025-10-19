@@ -1,3 +1,12 @@
+<script lang="ts" module>
+  const field = "booleanSelectField";
+  declare module "../../form/index.js" {
+    interface ActionFields {
+      [field]: {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     makeEventHandlers,
@@ -9,6 +18,7 @@
     type Schema,
     DEFAULT_BOOLEAN_ENUM,
     createPseudoId,
+    getFieldAction,
   } from "@/form/index.js";
   import "@/form/extra-fields/boolean-select.js";
 
@@ -21,7 +31,7 @@
     value = $bindable(),
     uiOption,
     translate,
-  }: ComponentProps["booleanSelectField"] = $props();
+  }: ComponentProps[typeof field] = $props();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
   const widgetType = "selectWidget";
@@ -78,8 +88,24 @@
     () => validateField(ctx, config, value)
   );
   const errors = $derived(getFieldErrors(ctx, config.path));
+  const action = $derived(getFieldAction(ctx, config, field));
 </script>
 
+{#snippet renderAction()}
+  {@render action?.(
+    ctx,
+    config,
+    {
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
+      },
+    },
+    errors
+  )}
+{/snippet}
 <Template
   type="template"
   showTitle
@@ -89,6 +115,7 @@
   {value}
   {config}
   {errors}
+  action={action && renderAction}
 >
   <Widget
     type="widget"

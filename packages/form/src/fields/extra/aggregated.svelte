@@ -1,7 +1,11 @@
 <script lang="ts" module>
   import { createArrayComparator } from "@/lib/array.js";
-
+  
+  const field = "aggregatedField"
   declare module "../../form/index.js" {
+    interface ActionFields {
+      [field]: {}
+    }
     interface FoundationalComponents {
       aggregatedWidget: {};
     }
@@ -10,6 +14,7 @@
   const comparePaths = createArrayComparator((a: FieldPath, b: FieldPath) =>
     a === b ? 0 : 1
   );
+  
 </script>
 
 <script lang="ts">
@@ -23,6 +28,7 @@
     getFieldErrors,
     type FieldPath,
     createChildPath,
+    getFieldAction,
   } from "@/form/index.js";
   import "@/form/extra-fields/aggregated.js";
 
@@ -32,7 +38,7 @@
     config,
     value = $bindable(),
     uiOption,
-  }: ComponentProps["aggregatedField"] = $props();
+  }: ComponentProps[typeof field] = $props();
 
   const ctx = getFormContext();
 
@@ -66,8 +72,24 @@
       ? getFieldsErrors(ctx, paths)
       : getFieldErrors(ctx, config.path)
   );
+  const action = $derived(getFieldAction(ctx, config, field))
 </script>
 
+{#snippet renderAction()}
+  {@render action?.(
+    ctx,
+    config,
+    {
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
+      },
+    },
+    errors
+  )}
+{/snippet}
 <Template
   type="template"
   showTitle
@@ -77,6 +99,7 @@
   {value}
   {config}
   {errors}
+  action={action && renderAction}
 >
   <Widget
     type="widget"

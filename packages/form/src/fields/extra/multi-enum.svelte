@@ -1,5 +1,9 @@
 <script lang="ts" module>
+  const field = "multiEnumField";
   declare module "../../form/index.js" {
+    interface ActionFields {
+      [field]: {};
+    }
     interface FoundationalComponents {
       checkboxesWidget: {};
     }
@@ -15,6 +19,7 @@
     getFormContext,
     getComponent,
     type ComponentProps,
+    getFieldAction,
   } from "@/form/index.js";
   import "@/form/extra-fields/multi-enum.js";
 
@@ -25,7 +30,7 @@
     config,
     uiOption,
     value = $bindable(),
-  }: ComponentProps["multiEnumField"] = $props();
+  }: ComponentProps[typeof field] = $props();
 
   const ctx = getFormContext();
 
@@ -42,7 +47,24 @@
     return createOptions(ctx, config, uiOption, itemSchema) ?? [];
   });
   const errors = $derived(getFieldErrors(ctx, config.path));
+  const action = $derived(getFieldAction(ctx, config, field));
 </script>
+
+{#snippet renderAction()}
+  {@render action?.(
+    ctx,
+    config,
+    {
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
+      },
+    },
+    errors
+  )}
+{/snippet}
 
 <Template
   type="template"
@@ -53,6 +75,7 @@
   {value}
   {config}
   {errors}
+  action={action && renderAction}
 >
   <Widget
     type="widget"

@@ -1,5 +1,9 @@
 <script lang="ts" module>
+  const field = "fileField";
   declare module "../../form/index.js" {
+    interface ActionFields {
+      [field]: {};
+    }
     interface FoundationalComponents {
       fileWidget: {};
     }
@@ -19,6 +23,7 @@
     type ComponentProps,
     validateFileList,
     FileListValidationError,
+    getFieldAction,
   } from "@/form/index.js";
   import "@/form/extra-fields/file.js";
 
@@ -28,7 +33,7 @@
     config,
     value = $bindable(),
     uiOption,
-  }: ComponentProps["fileField"] = $props();
+  }: ComponentProps[typeof field] = $props();
 
   const ctx = getFormContext();
 
@@ -36,8 +41,10 @@
   const widgetType = "fileWidget";
   const Widget = $derived(getComponent(ctx, widgetType, config));
 
-  const handlers = makeEventHandlers(ctx, () => config, () =>
-    validateField(ctx, config, value)
+  const handlers = makeEventHandlers(
+    ctx,
+    () => config,
+    () => validateField(ctx, config, value)
   );
 
   const files = createAsyncBinding({
@@ -63,8 +70,24 @@
   });
 
   const errors = $derived(getFieldErrors(ctx, config.path));
+  const action = $derived(getFieldAction(ctx, config, field));
 </script>
 
+{#snippet renderAction()}
+  {@render action?.(
+    ctx,
+    config,
+    {
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
+      },
+    },
+    errors
+  )}
+{/snippet}
 <Template
   type="template"
   showTitle
@@ -74,6 +97,7 @@
   {value}
   {config}
   {errors}
+  action={action && renderAction}
 >
   <Widget
     type="widget"
