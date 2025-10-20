@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/radix-icons",
-	"version": "3.0.0-next.9",
+	"version": "3.0.0-next.10",
 	"description": "The svelte-radix based icons set for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -47,7 +47,7 @@
 		}
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^3.0.0-next.9",
+		"@sjsf/form": "workspace:^3.0.0-next.10",
 		"svelte": "^5.41.0",
 		"svelte-radix": "^2.0.0 || ^3.0.0"
 	},

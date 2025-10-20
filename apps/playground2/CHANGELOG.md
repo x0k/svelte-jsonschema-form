@@ -1,5 +1,24 @@
 # playground2
 
+## 1.0.13-next.10
+
+### Patch Changes
+
+- Updated dependencies [[`c303125`](https://github.com/x0k/svelte-jsonschema-form/commit/c3031258573093284c1f0d99cd7a369b8f454834), [`ed0a797`](https://github.com/x0k/svelte-jsonschema-form/commit/ed0a79737c2e02d202e4392923a8d010d3f24dc6), [`b5a5c86`](https://github.com/x0k/svelte-jsonschema-form/commit/b5a5c86705bdc0c26384b2ac4aa76f4de2fca54d)]:
+  - @sjsf/form@3.0.0-next.10
+  - @sjsf/ajv8-validator@3.0.0-next.10
+  - @sjsf/basic-theme@3.0.0-next.10
+  - @sjsf/cfworker-validator@3.0.0-next.10
+  - @sjsf/daisyui5-theme@3.0.0-next.10
+  - @sjsf/flowbite-icons@3.0.0-next.10
+  - @sjsf/flowbite3-theme@3.0.0-next.10
+  - @sjsf/lucide-icons@3.0.0-next.10
+  - @sjsf/moving-icons@3.0.0-next.10
+  - @sjsf/radix-icons@3.0.0-next.10
+  - @sjsf/schemasafe-validator@3.0.0-next.10
+  - @sjsf/shadcn4-theme@3.0.0-next.10
+  - @sjsf/skeleton3-theme@3.0.0-next.10
+
 ## 1.0.13-next.9
 
 ### Patch Changes

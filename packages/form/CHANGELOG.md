@@ -1,5 +1,18 @@
 # @sjsf/form
 
+## 3.0.0-next.10
+
+### Major Changes
+
+- - Reuse merger options definition in `getDefaultFieldState` parameters ([`b5a5c86`](https://github.com/x0k/svelte-jsonschema-form/commit/b5a5c86705bdc0c26384b2ac4aa76f4de2fca54d))
+  - Move `includeUndefinedValues` option from merger instance to `mergeFormDataAndSchemaDefaults` method options
+
+### Patch Changes
+
+- Disable `clear` and `clearEdit` action buttons for read-only fields and disabled forms ([`c303125`](https://github.com/x0k/svelte-jsonschema-form/commit/c3031258573093284c1f0d99cd7a369b8f454834))
+
+- Fix oneOf/anyOf fields ([`ed0a797`](https://github.com/x0k/svelte-jsonschema-form/commit/ed0a79737c2e02d202e4392923a8d010d3f24dc6))
+
 ## 3.0.0-next.9
 
 ### Major Changes
