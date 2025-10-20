@@ -49,7 +49,8 @@
     "zod-starter": "0.0.1",
     "theme-testing": "1.0.13-next.4",
     "validator-testing": "1.0.13-next.4",
-    "sveltekit-starter": "0.0.1"
+    "sveltekit-starter": "0.0.1",
+    "optional-data-controls": "0.0.1"
   },
   "changesets": [
     "afraid-baths-relate",
@@ -74,6 +75,8 @@
     "cute-bags-call",
     "dry-colts-roll",
     "dry-crabs-accept",
+    "dry-masks-spend",
+    "early-pens-push",
     "early-wombats-tap",
     "easy-worlds-win",
     "every-cats-start",
@@ -99,6 +102,7 @@
     "huge-heads-scream",
     "hungry-otters-like",
     "itchy-buttons-thank",
+    "itchy-chefs-tap",
     "kind-rabbits-win",
     "light-apples-love",
     "long-rockets-cough",
