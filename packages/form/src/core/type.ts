@@ -1,7 +1,7 @@
 import { unique } from "@/lib/array.js";
 import { isSchemaObject } from "@/lib/json-schema/index.js";
 
-import { type Schema, type SchemaType } from "./schema.js";
+import type { Schema, SchemaType } from "./schema.js";
 
 export function typeOfValue(
   value: null | boolean | number | string | object
