@@ -197,13 +197,14 @@ The `name` prop has been replaced with `path`.
 
 ### Other changes
 
+- `fields/extra-fields/*` submodule now deprecated, migrate to `fields/extra/*`
 - The `makeEventHandlers` function signature has been changed
 - The `isSubmitted` and `isChanged` properties are now `readonly`
 - `isSubmitted` is reset after successful processing (validation + `onSubmit` handler)
 - `isChanged` becomes `true` after any interaction until
   the form is successfully submitted or reset
-- Removed the `idSeparator` and `idPseudoSeparator` form parameters
-- Removed the following types:
+- The `idSeparator` and `idPseudoSeparator` form parameters moved to `idBuilder`
+- Removed redundant types:
   - `IdPrefixOption`
   - `IdSeparatorOption`
   - `IdPseudoSeparator`
