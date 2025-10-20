@@ -3,7 +3,7 @@
   import Tree from "@sveltejs/svelte-json-tree";
   import { BasicForm, type FormState } from "@sjsf/form";
 
-  import { ShadowHost } from "../components/shadow/index.js";
+  import { ShadowHost } from "../lib/shadow/index.js";
 
   interface Props extends HTMLAttributes<HTMLDivElement> {
     form: FormState<any>

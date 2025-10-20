@@ -3,7 +3,7 @@ import { expect, test } from "vitest";
 import { render } from "vitest-browser-svelte";
 import { DEFAULT_ID_PREFIX, type FormOptions } from "@sjsf/form";
 
-import * as defaults from "../components/form-defaults.js";
+import * as defaults from "../lib/form-defaults.js";
 import DefaultForm from "./form.svelte";
 
 export const idBuilder = defaults.idBuilder({

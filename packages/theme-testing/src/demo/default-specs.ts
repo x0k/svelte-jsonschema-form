@@ -13,7 +13,7 @@ import {
   text,
   uniqueArray,
   type Specs,
-} from "./schemas.js";
+} from "../lib/schemas.js";
 
 export const DEFAULT_SPECS: Specs = {
   checkbox: [

@@ -10,10 +10,10 @@
   import { clearEdit } from "@sjsf/form/fields/actions/clear-edit.svelte";
   import { displayPrimitiveValue } from "@sjsf/form/fields/actions/display-primitive-value.svelte";
 
-  import * as defaults from "../components/form-defaults.js";
+  import * as defaults from "../lib/form-defaults.js";
+  import { createSchemas, type Specs } from "../lib/schemas.js";
 
   import Form from "./form.svelte";
-  import { createSchemas, type Specs } from "./schemas.js";
 
   const {
     theme,

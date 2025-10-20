@@ -7,7 +7,6 @@ import type { Schema, Theme, UiSchema, UiSchemaRoot } from "@sjsf/form";
 import { resolver } from "@sjsf/form/resolvers/compat";
 
 import {
-  idBuilder,
   matchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
@@ -116,7 +115,7 @@ export function arrayFieldTests(
         schema,
         initialErrors: [
           {
-            path:[],
+            path: [],
             message: "error",
           },
         ],

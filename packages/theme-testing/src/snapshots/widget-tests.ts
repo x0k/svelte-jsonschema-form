@@ -7,9 +7,9 @@ import {
   type Validator,
 } from "@sjsf/form";
 
-import * as defaults from "../components/form-defaults.js";
-import * as triggers from "../demo/triggers.js";
-import { s } from "../demo/index.js";
+import * as defaults from "../lib/form-defaults.js";
+import * as triggers from "../lib/triggers.js";
+import * as schemas from "../lib/schemas.js";
 import {
   testMatchSnapshot,
   type MatchSnapshotOptions,
@@ -21,7 +21,7 @@ const ERROR_TEXT = "field_error";
 
 export function widgetTests(
   theme: Theme,
-  specs: s.Specs,
+  specs: schemas.Specs,
   matchOptions?: MatchSnapshotOptions
 ) {
   const snapshot = (
@@ -39,7 +39,7 @@ export function widgetTests(
 
   function testWidget(
     widget: string,
-    [schema, uiSchema, validationTriggers]: s.Specs[string]
+    [schema, uiSchema, validationTriggers]: schemas.Specs[string]
   ) {
     describe(widget, () => {
       describe("snapshots", () => {
@@ -66,8 +66,8 @@ export function widgetTests(
       });
       if (!isRecordEmpty(validationTriggers)) {
         describe(`${widget}: validations mode`, () => {
-          for (const mode of s.FIELD_VALIDATION_MODES) {
-            const modeName = s.FIELD_VALIDATION_MODE_NAMES[mode]!;
+          for (const mode of schemas.FIELD_VALIDATION_MODES) {
+            const modeName = schemas.FIELD_VALIDATION_MODE_NAMES[mode]!;
             const trigger = validationTriggers[modeName];
             if (trigger) {
               test(`${widget}: ${modeName}`, async () => {
