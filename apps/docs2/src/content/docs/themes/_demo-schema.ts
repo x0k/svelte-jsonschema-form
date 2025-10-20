@@ -4,7 +4,7 @@ import { createMatrix, fromMatrix } from "@json-table/core/block-matrix";
 import { makeBlockFactory } from "@json-table/core/json-to-table";
 import { blockToHTML } from "@json-table/core/block-to-html";
 
-import { s } from "theme-testing/demo";
+import { s } from "theme-testing/specs";
 
 import { THEME_PACKAGES, type Theme } from "@/shared";
 
