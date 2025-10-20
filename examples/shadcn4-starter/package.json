@@ -27,10 +27,10 @@
 		"vite": "^7.1.2"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.0.0-next.9",
-		"@sjsf/basic-theme": "^3.0.0-next.9",
-		"@sjsf/form": "^3.0.0-next.9",
-		"@sjsf/shadcn4-theme": "^3.0.0-next.9",
+		"@sjsf/ajv8-validator": "^3.0.0-next.10",
+		"@sjsf/basic-theme": "^3.0.0-next.10",
+		"@sjsf/form": "^3.0.0-next.10",
+		"@sjsf/shadcn4-theme": "^3.0.0-next.10",
 		"ajv": "^8.17.1",
 		"bits-ui": "^2.14.0"
 	}
