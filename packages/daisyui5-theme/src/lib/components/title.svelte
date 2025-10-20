@@ -7,9 +7,9 @@
 	const ctx = getFormContext();
 </script>
 
-<legend
+<div
 	class={['fieldset-legend', { 'text-base': templateType !== 'fieldTemplate' }]}
 	{...titleAttributes(ctx, config, 'titleAttributes', {})}
 >
 	{title}
-</legend>
+</div>

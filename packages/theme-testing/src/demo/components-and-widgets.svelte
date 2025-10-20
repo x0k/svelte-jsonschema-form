@@ -7,6 +7,10 @@
     type UiOptionsRegistryOption,
     type UiSchemaRoot,
   } from "@sjsf/form";
+  import {
+    clearEdit,
+    displayPrimitiveValue,
+  } from "@sjsf/form/fields/actions/exports";
 
   import * as defaults from "../components/form-defaults.js";
 
@@ -51,6 +55,20 @@
     title: "Title",
     description: "description",
     properties: {
+      optionalObject: {
+        type: "object",
+        properties: {
+          optionalField: {
+            type: "string",
+          },
+        },
+      },
+      optionalArray: {
+        type: "array",
+        items: {
+          type: "string",
+        },
+      },
       array: {
         type: "array",
         items: [
@@ -62,7 +80,7 @@
           type: "number",
         },
       },
-      oneOf: {
+      optionalOneOf: {
         type: "object",
         oneOf: [
           {
@@ -72,8 +90,8 @@
                 type: "string",
               },
               foo1: {
-                type: "integer"
-              }
+                type: "integer",
+              },
             },
           },
           {
@@ -83,8 +101,35 @@
                 type: "number",
               },
               bar1: {
-                type: "boolean"
-              }
+                type: "boolean",
+              },
+            },
+          },
+        ],
+      },
+      optionalAnyOf: {
+        type: "object",
+        anyOf: [
+          {
+            title: "Foo",
+            properties: {
+              foo: {
+                type: "string",
+              },
+              foo1: {
+                type: "integer",
+              },
+            },
+          },
+          {
+            title: "Bar",
+            properties: {
+              bar: {
+                type: "number",
+              },
+              bar1: {
+                type: "boolean",
+              },
             },
           },
         ],
@@ -96,6 +141,57 @@
   };
 
   const componentsUiSchema: UiSchemaRoot = {
+    optionalObject: {
+      "ui:components": {
+        objectTemplate: "optionalObjectTemplate",
+      },
+      "ui:options": {
+        action: clearEdit,
+      },
+      optionalField: {
+        "ui:components": {
+          fieldTemplate: "optionalFieldTemplate",
+        },
+        "ui:options": {
+          action: clearEdit,
+        },
+      },
+    },
+    optionalArray: {
+      "ui:components": {
+        arrayTemplate: "optionalArrayTemplate",
+      },
+      "ui:options": {
+        action: clearEdit,
+      },
+      items: {
+        "ui:options": {
+          actions: {
+            stringField: displayPrimitiveValue,
+          },
+        },
+      },
+    },
+    optionalOneOf: {
+      "ui:components": {
+        multiFieldTemplate: "optionalMultiFieldTemplate",
+      },
+      "ui:options": {
+        actions: {
+          oneOfField: clearEdit,
+        },
+      },
+    },
+    optionalAnyOf: {
+      "ui:components": {
+        multiFieldTemplate: "optionalMultiFieldTemplate",
+      },
+      "ui:options": {
+        actions: {
+          anyOfField: clearEdit,
+        },
+      },
+    },
     array: {
       items: {
         "ui:options": {
@@ -111,6 +207,7 @@
     uiSchema: componentsUiSchema,
     theme,
     initialValue: {
+      optionalArray: ["foo"],
       array: ["fixed", 123],
       additional: "value",
     },

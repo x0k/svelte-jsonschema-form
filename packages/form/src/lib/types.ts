@@ -81,3 +81,9 @@ export type DeepPartial<T> = T extends readonly [infer A, ...infer Rest]
     : T extends Record<string, unknown>
       ? { [K in keyof T]?: DeepPartial<T[K]> }
       : T;
+
+export type OmitItems<
+  Args extends unknown[],
+  Bind extends unknown[],
+  Never = never,
+> = Args extends [...Bind, ...infer Rest] ? Rest : Never;

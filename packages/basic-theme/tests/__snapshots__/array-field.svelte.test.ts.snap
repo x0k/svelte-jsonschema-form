@@ -125,16 +125,29 @@ exports[`array fields > array icons 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@0"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                -1 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@0"
+                  style="font-weight: bold;"
+                >
+                  -1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -291,16 +304,29 @@ exports[`array fields > array icons 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@1"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                -2 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@1"
+                  style="font-weight: bold;"
+                >
+                  -2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -539,13 +565,26 @@ exports[`array fields > empty errors array 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.name"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                name 
                 <!---->
-              </label>
+                <label
+                  for="root.name"
+                  style="font-weight: bold;"
+                >
+                  name 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -873,12 +912,25 @@ exports[`with title and description > array 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="array-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -964,12 +1016,25 @@ exports[`with title and description > array icons 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="array-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -1032,16 +1097,29 @@ exports[`with title and description > array icons 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@0"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                Test item-1 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@0"
+                  style="font-weight: bold;"
+                >
+                  Test item-1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -1206,16 +1284,29 @@ exports[`with title and description > array icons 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@1"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                Test item-2 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@1"
+                  style="font-weight: bold;"
+                >
+                  Test item-2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -1423,12 +1514,25 @@ exports[`with title and description > fixed array 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="array-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -1491,16 +1595,29 @@ exports[`with title and description > fixed array 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@0"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                Test item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@0"
+                  style="font-weight: bold;"
+                >
+                  Test item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -1605,16 +1722,29 @@ exports[`with title and description > fixed array 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@1"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                Test item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@1"
+                  style="font-weight: bold;"
+                >
+                  Test item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -1732,12 +1862,25 @@ exports[`with title and description from both > array 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="array-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -1823,12 +1966,25 @@ exports[`with title and description from both > array icons 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="array-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -1891,16 +2047,29 @@ exports[`with title and description from both > array icons 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@0"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item-1 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@0"
+                  style="font-weight: bold;"
+                >
+                  My Item-1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -2065,16 +2234,29 @@ exports[`with title and description from both > array icons 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@1"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item-2 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@1"
+                  style="font-weight: bold;"
+                >
+                  My Item-2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -2282,12 +2464,25 @@ exports[`with title and description from both > fixed array 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="array-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -2350,16 +2545,29 @@ exports[`with title and description from both > fixed array 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@0"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@0"
+                  style="font-weight: bold;"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -2464,16 +2672,29 @@ exports[`with title and description from both > fixed array 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@1"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@1"
+                  style="font-weight: bold;"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -2591,12 +2812,25 @@ exports[`with title and description from uiSchema > array 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="array-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -2682,12 +2916,25 @@ exports[`with title and description from uiSchema > array icons 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="array-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -2750,16 +2997,29 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@0"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item-1 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@0"
+                  style="font-weight: bold;"
+                >
+                  My Item-1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -2924,16 +3184,29 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@1"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item-2 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@1"
+                  style="font-weight: bold;"
+                >
+                  My Item-2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -3141,12 +3414,25 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="array-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -3209,16 +3495,29 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@0"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@0"
+                  style="font-weight: bold;"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -3323,16 +3622,29 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root@1"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root@1"
+                  style="font-weight: bold;"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                

@@ -17,6 +17,8 @@ const definitions: TranslatorDefinitions = {
   "move-array-item-up": "Up",
   "remove-array-item": "Del",
   "remove-object-property": "Del",
+  "edit": "Edit",
+  "clear": "Clear",
   "validation-process-error": ({ error }) => FAILURE_REASONS[error.reason],
   "component-not-found": ({ type }) => `"${type}" component not found`,
   "key-input-title": ({ name }) => `${name} Key`,

@@ -12,6 +12,7 @@ import {
   getUiSchemaByPath,
 } from "../ui-schema.js";
 import { createTranslate } from "../translation.js";
+import type { ActionField } from "../field-actions.js";
 import {
   FORM_UI_EXTRA_OPTIONS,
   FORM_TRANSLATION,
@@ -66,6 +67,30 @@ export function retrieveUiOption<T, const O extends keyof UiOptions>(
     ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config) ??
     resolveUiOption(ctx, config.uiSchema, option)
   );
+}
+
+/**
+ * NOTE: An extra option will take precedence
+ * @query
+ */
+export function retrieveNestedUiOption<T, const O extends keyof UiOptions, R>(
+  ctx: FormState<T>,
+  config: Config,
+  option: O,
+  selector: (data: NonNullable<UiOptions[O]>) => R | undefined
+) {
+  const extraOptions = ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config as never);
+  if (extraOptions) {
+    const selected = selector(extraOptions);
+    if (selected !== undefined) {
+      return selected;
+    }
+  }
+  const options = resolveUiOption(ctx, config.uiSchema, option);
+  if (options !== undefined) {
+    return selector(options);
+  }
+  return undefined;
 }
 
 export type ObjectUiOptions = ObjectProperties<UiOptions>;
@@ -147,4 +172,24 @@ export function getFieldTitle<T>(ctx: FormState<T>, path: RPath) {
     ctx[FORM_VALUE]
   );
   return typeof def === "object" ? def.title : undefined;
+}
+
+/**
+ * @query
+ */
+export function getFieldAction<T, const F extends ActionField>(
+  ctx: FormState<T>,
+  config: Config,
+  field: F,
+) {
+  const action = retrieveNestedUiOption(
+    ctx,
+    config,
+    "actions",
+    (a) => a[field]
+  );
+  if (action !== undefined) {
+    return action;
+  }
+  return retrieveUiOption(ctx, config, "action");
 }

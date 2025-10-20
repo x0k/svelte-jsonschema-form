@@ -4,9 +4,9 @@ import type { FieldPath } from "./id.js";
 import type { UiSchema } from "./ui-schema.js";
 
 export interface Config {
-  path: FieldPath;
-  title: string;
-  schema: Schema;
-  uiSchema: UiSchema;
-  required: boolean;
+  readonly path: FieldPath;
+  readonly title: string;
+  readonly schema: Schema;
+  readonly uiSchema: UiSchema;
+  readonly required: boolean;
 }

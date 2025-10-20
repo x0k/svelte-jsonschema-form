@@ -34,6 +34,7 @@ declare module "../form/index.js" {
       showTitle: boolean;
       useLabel: boolean;
       widgetType: FoundationalComponentType;
+      action?: Snippet;
     };
   }
 

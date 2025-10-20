@@ -1,13 +1,13 @@
-import "@sjsf/form/fields/extra-fields/boolean-select-include";
-import "@sjsf/form/fields/extra-fields/enum-include";
-import "@sjsf/form/fields/extra-fields/file-include";
-import "@sjsf/form/fields/extra-fields/files-include";
-import "@sjsf/form/fields/extra-fields/multi-enum-include";
-import "@sjsf/form/fields/extra-fields/tags-include";
-import "@sjsf/form/fields/extra-fields/array-files-include";
-import "@sjsf/form/fields/extra-fields/unknown-native-file-include";
-import "@sjsf/form/fields/extra-fields/array-native-files-include";
-import "@sjsf/form/fields/extra-fields/array-tags-include";
+import "@sjsf/form/fields/extra/boolean-select-include";
+import "@sjsf/form/fields/extra/enum-include";
+import "@sjsf/form/fields/extra/file-include";
+import "@sjsf/form/fields/extra/files-include";
+import "@sjsf/form/fields/extra/multi-enum-include";
+import "@sjsf/form/fields/extra/tags-include";
+import "@sjsf/form/fields/extra/array-files-include";
+import "@sjsf/form/fields/extra/unknown-native-file-include";
+import "@sjsf/form/fields/extra/array-native-files-include";
+import "@sjsf/form/fields/extra/array-tags-include";
 
 import { theme as basic } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/checkboxes-include";

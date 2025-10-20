@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import type { Expand } from "@/lib/types.js";
+  import type { ActionField } from "@/form/index.js";
   import "@/form/extra-fields/array-item.js";
   import "../extra-templates/array.js";
 
@@ -7,9 +9,16 @@
       "array-item-add": {};
     }
   }
+  type ArrayFields = keyof {
+    [C in ActionField as Expand<ComponentProps[C]> extends Expand<
+      ComponentProps["arrayField"]
+    >
+      ? C
+      : never]: C;
+  };
 </script>
 
-<script lang="ts">
+<script lang="ts" generics="F extends ArrayFields">
   import { SimpleKeyedArray } from "@/lib/keyed-array.svelte.js";
   import {
     getComponent,
@@ -19,6 +28,7 @@
     retrieveUiOption,
     retrieveTranslate,
     createKeyedArrayDeriver,
+    getFieldAction,
   } from "@/form/index.js";
 
   import {
@@ -31,15 +41,17 @@
   let {
     value = $bindable(),
     config,
-    createArrayContext,
+    createContext,
     uiOption,
     translate,
-  }: ComponentProps["arrayField" | "tupleField"] & {
-    createArrayContext: <T>(options: ArrayContextOptions<T>) => ArrayContext;
+    field,
+  }: ComponentProps[F] & {
+    createContext: <T>(options: ArrayContextOptions<T>) => ArrayContext;
+    field: F;
   } = $props();
 
   const ctx = getFormContext();
-  const arrayCtx = createArrayContext({
+  const arrayCtx = createContext({
     ctx,
     config: () => config,
     value: () => value,
@@ -55,6 +67,8 @@
   const ArrayItem = $derived(getComponent(ctx, "arrayItemField", config));
   const Template = $derived(getComponent(ctx, "arrayTemplate", config));
   const Button = $derived(getComponent(ctx, "button", config));
+
+  const action = $derived(getFieldAction(ctx, config, field));
 </script>
 
 {#snippet addButton()}
@@ -68,13 +82,29 @@
     <Text {config} id="add-array-item" {translate} />
   </Button>
 {/snippet}
+{#snippet renderAction()}
+  {@render action?.(
+    ctx,
+    config,
+    {
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
+      },
+    },
+    arrayCtx.errors()
+  )}
+{/snippet}
 <Template
   type="template"
   errors={arrayCtx.errors()}
   {config}
   {value}
-  addButton={arrayCtx.canAdd() ? addButton : undefined}
   {uiOption}
+  addButton={arrayCtx.canAdd() ? addButton : undefined}
+  action={action && renderAction}
 >
   {#each { length: arrayCtx.length() } as _, index (arrayCtx.key(index))}
     {@const cfg = arrayCtx.itemConfig(config, value?.[index], index)}

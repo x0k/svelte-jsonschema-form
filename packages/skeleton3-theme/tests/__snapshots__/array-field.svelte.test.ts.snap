@@ -133,16 +133,26 @@ exports[`array fields > array icons 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  -1 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@0"
+                  >
+                    -1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -284,16 +294,26 @@ exports[`array fields > array icons 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  -2 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@1"
+                  >
+                    -2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -555,13 +575,23 @@ exports[`array fields > empty errors array 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.name"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  name 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.name"
+                  >
+                    name 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -890,10 +920,20 @@ exports[`with title and description > array 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -993,10 +1033,20 @@ exports[`with title and description > array icons 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -1048,16 +1098,26 @@ exports[`with title and description > array icons 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Test item-1 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@0"
+                  >
+                    Test item-1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -1207,16 +1267,26 @@ exports[`with title and description > array icons 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Test item-2 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@1"
+                  >
+                    Test item-2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -1456,10 +1526,20 @@ exports[`with title and description > fixed array 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -1511,16 +1591,26 @@ exports[`with title and description > fixed array 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Test item 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@0"
+                  >
+                    Test item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -1609,16 +1699,26 @@ exports[`with title and description > fixed array 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Test item 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@1"
+                  >
+                    Test item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -1745,10 +1845,20 @@ exports[`with title and description from both > array 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -1848,10 +1958,20 @@ exports[`with title and description from both > array icons 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -1903,16 +2023,26 @@ exports[`with title and description from both > array icons 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item-1 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@0"
+                  >
+                    My Item-1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -2062,16 +2192,26 @@ exports[`with title and description from both > array icons 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item-2 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@1"
+                  >
+                    My Item-2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -2311,10 +2451,20 @@ exports[`with title and description from both > fixed array 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -2366,16 +2516,26 @@ exports[`with title and description from both > fixed array 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@0"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -2464,16 +2624,26 @@ exports[`with title and description from both > fixed array 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@1"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -2600,10 +2770,20 @@ exports[`with title and description from uiSchema > array 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -2703,10 +2883,20 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -2758,16 +2948,26 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item-1 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@0"
+                  >
+                    My Item-1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -2917,16 +3117,26 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item-2 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@1"
+                  >
+                    My Item-2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -3166,10 +3376,20 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -3221,16 +3441,26 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@0"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -3319,16 +3549,26 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root@1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root@1"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  

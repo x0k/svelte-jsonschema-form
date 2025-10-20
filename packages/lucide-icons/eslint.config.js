@@ -15,6 +15,9 @@ export default tseslint.config(
 			globals: {
 				...globals.browser,
 				...globals.node
+			},
+			parserOptions: {
+				tsconfigRootDir: import.meta.dirname
 			}
 		}
 	},
@@ -28,5 +31,10 @@ export default tseslint.config(
 	},
 	{
 		ignores: ['build/', '.svelte-kit/', 'dist/']
+	},
+	{
+		rules: {
+			'@typescript-eslint/no-empty-object-type': 'off'
+		}
 	}
 );

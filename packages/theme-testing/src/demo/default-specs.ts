@@ -1,13 +1,10 @@
-import { cast } from "@sjsf/form/lib/component";
-import type { ComponentDefinition } from "@sjsf/form";
-import FilesField from "@sjsf/form/fields/extra-fields/files.svelte";
-import "@sjsf/form/fields/extra-fields/enum-include";
-import "@sjsf/form/fields/extra-fields/multi-enum-include";
-import "@sjsf/form/fields/extra-fields/file-include";
-import "@sjsf/form/fields/extra-fields/files-include";
+import "@sjsf/form/fields/extra/array-files-include";
+import "@sjsf/form/fields/extra/enum-include";
+import "@sjsf/form/fields/extra/multi-enum-include";
+import "@sjsf/form/fields/extra/file-include";
+import "@sjsf/form/fields/extra/files-include";
 
 import {
-  assertStrings,
   boolean,
   enumeration,
   file,
@@ -17,15 +14,6 @@ import {
   uniqueArray,
   type Specs,
 } from "./schemas.js";
-
-const filesAsArrayField = cast(FilesField, {
-  value: {
-    transform(props) {
-      assertStrings(props.value);
-      return props.value;
-    },
-  },
-}) satisfies ComponentDefinition<"arrayField">;
 
 export const DEFAULT_SPECS: Specs = {
   checkbox: [
@@ -66,7 +54,7 @@ export const DEFAULT_SPECS: Specs = {
     filesArray,
     {
       "ui:components": {
-        arrayField: filesAsArrayField,
+        arrayField: "arrayFilesField",
       },
     },
     {

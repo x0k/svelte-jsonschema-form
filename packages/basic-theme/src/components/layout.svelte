@@ -36,6 +36,8 @@
       case "array-item":
       case "array-item-controls":
         return "display: flex; gap: 0.2rem; align-items: start;";
+      case 'multi-field-controls':
+        return "display: flex; gap: 0.5rem; align-items: center;";
       case "array-item-content":
         return "flex-grow: 1;";
       case "field-content":
@@ -50,6 +52,10 @@
         return "display: flex; flex-direction: column; gap: 0.2rem;";
       case "field-meta":
         return "display: block;";
+      case "field-title-row":
+      case "array-field-title-row":
+      case "object-field-title-row":
+        return "display: flex; justify-content: space-between; align-items: center;";
       case "object-property-key-input":
       case "object-property-content":
         return "flex-grow: 1;";

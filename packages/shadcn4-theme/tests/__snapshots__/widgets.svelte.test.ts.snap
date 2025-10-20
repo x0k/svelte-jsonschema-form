@@ -26,7 +26,6 @@ exports[`widgets > checkbox > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -50,7 +49,7 @@ exports[`widgets > checkbox > snapshots > disabled 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-disabled=""
@@ -79,6 +78,7 @@ exports[`widgets > checkbox > snapshots > disabled 1`] = `
           aria-hidden="true"
           disabled=""
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -187,7 +187,6 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -211,7 +210,7 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="true"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -237,6 +236,7 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -369,7 +369,6 @@ exports[`widgets > checkbox > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -393,7 +392,7 @@ exports[`widgets > checkbox > snapshots > normal 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -419,6 +418,7 @@ exports[`widgets > checkbox > snapshots > normal 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -526,7 +526,6 @@ exports[`widgets > checkbox > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -550,7 +549,7 @@ exports[`widgets > checkbox > snapshots > readonly 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -576,6 +575,7 @@ exports[`widgets > checkbox > snapshots > readonly 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -683,7 +683,6 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -708,7 +707,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-disabled=""
@@ -737,6 +736,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           aria-hidden="true"
           disabled=""
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -776,7 +776,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-disabled=""
@@ -805,6 +805,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           aria-hidden="true"
           disabled=""
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -844,7 +845,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-disabled=""
@@ -873,6 +874,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           aria-hidden="true"
           disabled=""
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -912,7 +914,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-disabled=""
@@ -941,6 +943,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           aria-hidden="true"
           disabled=""
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -1050,7 +1053,6 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -1075,7 +1077,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="true"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -1101,6 +1103,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -1140,7 +1143,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="true"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -1166,6 +1169,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -1205,7 +1209,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="true"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -1231,6 +1235,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -1270,7 +1275,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="true"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -1296,6 +1301,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -1429,7 +1435,6 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -1454,7 +1459,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -1480,6 +1485,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -1519,7 +1525,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -1545,6 +1551,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -1584,7 +1591,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -1610,6 +1617,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -1649,7 +1657,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -1675,6 +1683,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -1783,7 +1792,6 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -1808,7 +1816,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -1834,6 +1842,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -1873,7 +1882,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -1899,6 +1908,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -1938,7 +1948,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -1964,6 +1974,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -2003,7 +2014,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="false"
-          aria-required="false"
+          aria-required="true"
           class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-checkbox-root=""
           data-slot="checkbox"
@@ -2029,6 +2040,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -2137,7 +2149,6 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -2321,7 +2332,6 @@ exports[`widgets > combobox > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -2528,7 +2538,6 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -2710,7 +2719,6 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -2892,7 +2900,6 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -3039,7 +3046,6 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -3210,7 +3216,6 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -3356,7 +3361,6 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -3502,7 +3506,6 @@ exports[`widgets > file > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -3528,6 +3531,7 @@ exports[`widgets > file > snapshots > disabled 1`] = `
         disabled=""
         id="root"
         name="root"
+        required=""
         type="file"
       />
       
@@ -3611,7 +3615,6 @@ exports[`widgets > file > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -3636,6 +3639,7 @@ exports[`widgets > file > snapshots > error 1`] = `
         data-slot="input"
         id="root"
         name="root"
+        required=""
         type="file"
       />
       
@@ -3743,7 +3747,6 @@ exports[`widgets > file > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -3768,6 +3771,7 @@ exports[`widgets > file > snapshots > normal 1`] = `
         data-slot="input"
         id="root"
         name="root"
+        required=""
         type="file"
       />
       
@@ -3850,7 +3854,6 @@ exports[`widgets > file > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -3876,6 +3879,7 @@ exports[`widgets > file > snapshots > readonly 1`] = `
         id="root"
         name="root"
         readonly=""
+        required=""
         type="file"
       />
       
@@ -3958,7 +3962,6 @@ exports[`widgets > multiFile > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -3985,6 +3988,7 @@ exports[`widgets > multiFile > snapshots > disabled 1`] = `
         id="root"
         multiple=""
         name="root"
+        required=""
         type="file"
       />
       
@@ -4068,7 +4072,6 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -4094,6 +4097,7 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
         id="root"
         multiple=""
         name="root"
+        required=""
         type="file"
       />
       
@@ -4201,7 +4205,6 @@ exports[`widgets > multiFile > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -4227,6 +4230,7 @@ exports[`widgets > multiFile > snapshots > normal 1`] = `
         id="root"
         multiple=""
         name="root"
+        required=""
         type="file"
       />
       
@@ -4309,7 +4313,6 @@ exports[`widgets > multiFile > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -4336,6 +4339,7 @@ exports[`widgets > multiFile > snapshots > readonly 1`] = `
         multiple=""
         name="root"
         readonly=""
+        required=""
         type="file"
       />
       
@@ -4418,7 +4422,6 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -4446,7 +4449,7 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
         aria-expanded="false"
         aria-haspopup="listbox"
         aria-invalid="false"
-        aria-required="false"
+        aria-required="true"
         class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
         data-disabled=""
         data-placeholder=""
@@ -4606,7 +4609,6 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -4634,7 +4636,7 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
         aria-expanded="false"
         aria-haspopup="listbox"
         aria-invalid="true"
-        aria-required="false"
+        aria-required="true"
         class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
         data-placeholder=""
         data-select-trigger=""
@@ -4816,7 +4818,6 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -4844,7 +4845,7 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
         aria-expanded="false"
         aria-haspopup="listbox"
         aria-invalid="false"
-        aria-required="false"
+        aria-required="true"
         class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
         data-placeholder=""
         data-select-trigger=""
@@ -5001,7 +5002,6 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -5030,7 +5030,7 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
         aria-haspopup="listbox"
         aria-invalid="false"
         aria-readonly="true"
-        aria-required="false"
+        aria-required="true"
         class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
         data-placeholder=""
         data-select-trigger=""
@@ -5187,7 +5187,6 @@ exports[`widgets > number > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -5211,6 +5210,7 @@ exports[`widgets > number > snapshots > disabled 1`] = `
         disabled=""
         id="root"
         name="root"
+        required=""
         step="any"
         type="number"
       />
@@ -5299,7 +5299,6 @@ exports[`widgets > number > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -5322,6 +5321,7 @@ exports[`widgets > number > snapshots > error 1`] = `
         data-slot="input"
         id="root"
         name="root"
+        required=""
         step="any"
         type="number"
       />
@@ -5434,7 +5434,6 @@ exports[`widgets > number > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -5457,6 +5456,7 @@ exports[`widgets > number > snapshots > normal 1`] = `
         data-slot="input"
         id="root"
         name="root"
+        required=""
         step="any"
         type="number"
       />
@@ -5544,7 +5544,6 @@ exports[`widgets > number > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -5568,6 +5567,7 @@ exports[`widgets > number > snapshots > readonly 1`] = `
         id="root"
         name="root"
         readonly=""
+        required=""
         step="any"
         type="number"
       />
@@ -5655,7 +5655,6 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -5979,7 +5978,6 @@ exports[`widgets > radio > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -6318,7 +6316,6 @@ exports[`widgets > radio > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -6632,7 +6629,6 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -6947,7 +6943,6 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -6967,7 +6962,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
       <div
         aria-describedby="root::description root::help root::errors"
         aria-invalid="false"
-        aria-required="false"
+        aria-required="true"
         class="group/toggle-group data-[variant=outline]:shadow-xs flex w-fit items-center rounded-md"
         data-disabled=""
         data-orientation="horizontal"
@@ -7172,7 +7167,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -7192,7 +7186,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
       <div
         aria-describedby="root::description root::help root::errors"
         aria-invalid="true"
-        aria-required="false"
+        aria-required="true"
         class="group/toggle-group data-[variant=outline]:shadow-xs flex w-fit items-center rounded-md"
         data-orientation="horizontal"
         data-size="default"
@@ -7412,7 +7406,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -7432,7 +7425,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
       <div
         aria-describedby="root::description root::help root::errors"
         aria-invalid="false"
-        aria-required="false"
+        aria-required="true"
         class="group/toggle-group data-[variant=outline]:shadow-xs flex w-fit items-center rounded-md"
         data-orientation="horizontal"
         data-size="default"
@@ -7627,7 +7620,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -7648,7 +7640,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
         aria-describedby="root::description root::help root::errors"
         aria-invalid="false"
         aria-readonly="true"
-        aria-required="false"
+        aria-required="true"
         class="group/toggle-group data-[variant=outline]:shadow-xs flex w-fit items-center rounded-md"
         data-orientation="horizontal"
         data-size="default"
@@ -7843,7 +7835,6 @@ exports[`widgets > range > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -7863,7 +7854,7 @@ exports[`widgets > range > snapshots > disabled 1`] = `
       <span
         aria-describedby="root::description root::help root::errors"
         aria-invalid="false"
-        aria-required="false"
+        aria-required="true"
         class="relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50"
         data-disabled=""
         data-orientation="horizontal"
@@ -8001,7 +7992,6 @@ exports[`widgets > range > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -8021,7 +8011,7 @@ exports[`widgets > range > snapshots > error 1`] = `
       <span
         aria-describedby="root::description root::help root::errors"
         aria-invalid="true"
-        aria-required="false"
+        aria-required="true"
         class="relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50"
         data-orientation="horizontal"
         data-slider-root=""
@@ -8180,7 +8170,6 @@ exports[`widgets > range > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -8200,7 +8189,7 @@ exports[`widgets > range > snapshots > normal 1`] = `
       <span
         aria-describedby="root::description root::help root::errors"
         aria-invalid="false"
-        aria-required="false"
+        aria-required="true"
         class="relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50"
         data-orientation="horizontal"
         data-slider-root=""
@@ -8334,7 +8323,6 @@ exports[`widgets > range > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -8355,7 +8343,7 @@ exports[`widgets > range > snapshots > readonly 1`] = `
         aria-describedby="root::description root::help root::errors"
         aria-invalid="false"
         aria-readonly="true"
-        aria-required="false"
+        aria-required="true"
         class="relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50"
         data-orientation="horizontal"
         data-slider-root=""
@@ -8489,7 +8477,6 @@ exports[`widgets > select > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -8517,7 +8504,7 @@ exports[`widgets > select > snapshots > disabled 1`] = `
         aria-expanded="false"
         aria-haspopup="listbox"
         aria-invalid="false"
-        aria-required="false"
+        aria-required="true"
         class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
         data-disabled=""
         data-select-trigger=""
@@ -8674,7 +8661,6 @@ exports[`widgets > select > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -8702,7 +8688,7 @@ exports[`widgets > select > snapshots > error 1`] = `
         aria-expanded="false"
         aria-haspopup="listbox"
         aria-invalid="true"
-        aria-required="false"
+        aria-required="true"
         class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
         data-select-trigger=""
         data-size="default"
@@ -8881,7 +8867,6 @@ exports[`widgets > select > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -8909,7 +8894,7 @@ exports[`widgets > select > snapshots > normal 1`] = `
         aria-expanded="false"
         aria-haspopup="listbox"
         aria-invalid="false"
-        aria-required="false"
+        aria-required="true"
         class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
         data-select-trigger=""
         data-size="default"
@@ -9063,7 +9048,6 @@ exports[`widgets > select > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -9092,7 +9076,7 @@ exports[`widgets > select > snapshots > readonly 1`] = `
         aria-haspopup="listbox"
         aria-invalid="false"
         aria-readonly="true"
-        aria-required="false"
+        aria-required="true"
         class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
         data-select-trigger=""
         data-size="default"
@@ -9246,7 +9230,6 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -9269,9 +9252,10 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           aria-checked="false"
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
-          aria-required="false"
+          aria-required="true"
           class="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 shadow-xs peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
           data-disabled=""
+          data-required=""
           data-slot="switch"
           data-state="unchecked"
           data-switch-root=""
@@ -9285,6 +9269,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           <span
             class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
             data-disabled=""
+            data-required=""
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
@@ -9304,6 +9289,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           aria-hidden="true"
           disabled=""
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -9412,7 +9398,6 @@ exports[`widgets > switch > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -9435,8 +9420,9 @@ exports[`widgets > switch > snapshots > error 1`] = `
           aria-checked="false"
           aria-describedby="root::description root::help root::errors"
           aria-invalid="true"
-          aria-required="false"
+          aria-required="true"
           class="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 shadow-xs peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-required=""
           data-slot="switch"
           data-state="unchecked"
           data-switch-root=""
@@ -9448,6 +9434,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
           <!---->
           <span
             class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
+            data-required=""
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
@@ -9466,6 +9453,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -9598,7 +9586,6 @@ exports[`widgets > switch > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -9621,8 +9608,9 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           aria-checked="false"
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
-          aria-required="false"
+          aria-required="true"
           class="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 shadow-xs peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-required=""
           data-slot="switch"
           data-state="unchecked"
           data-switch-root=""
@@ -9634,6 +9622,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           <!---->
           <span
             class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
+            data-required=""
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
@@ -9652,6 +9641,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -9759,7 +9749,6 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -9783,8 +9772,9 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           aria-describedby="root::description root::help root::errors"
           aria-invalid="false"
           aria-readonly="true"
-          aria-required="false"
+          aria-required="true"
           class="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 shadow-xs peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-required=""
           data-slot="switch"
           data-state="unchecked"
           data-switch-root=""
@@ -9796,6 +9786,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           <!---->
           <span
             class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
+            data-required=""
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
@@ -9814,6 +9805,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
         <input
           aria-hidden="true"
           name="root"
+          required=""
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
@@ -9921,7 +9913,6 @@ exports[`widgets > text > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -9945,6 +9936,7 @@ exports[`widgets > text > snapshots > disabled 1`] = `
         disabled=""
         id="root"
         name="root"
+        required=""
       />
       
       <!---->
@@ -10031,7 +10023,6 @@ exports[`widgets > text > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -10054,6 +10045,7 @@ exports[`widgets > text > snapshots > error 1`] = `
         data-slot="input"
         id="root"
         name="root"
+        required=""
       />
       
       <!---->
@@ -10164,7 +10156,6 @@ exports[`widgets > text > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -10187,6 +10178,7 @@ exports[`widgets > text > snapshots > normal 1`] = `
         data-slot="input"
         id="root"
         name="root"
+        required=""
       />
       
       <!---->
@@ -10272,7 +10264,6 @@ exports[`widgets > text > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -10296,6 +10287,7 @@ exports[`widgets > text > snapshots > readonly 1`] = `
         id="root"
         name="root"
         readonly=""
+        required=""
       />
       
       <!---->
@@ -10381,7 +10373,6 @@ exports[`widgets > textarea > snapshots > disabled 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -10404,6 +10395,7 @@ exports[`widgets > textarea > snapshots > disabled 1`] = `
         disabled=""
         id="root"
         name="root"
+        required=""
       />
       
       
@@ -10485,7 +10477,6 @@ exports[`widgets > textarea > snapshots > error 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="true"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -10507,6 +10498,7 @@ exports[`widgets > textarea > snapshots > error 1`] = `
         data-slot="textarea"
         id="root"
         name="root"
+        required=""
       />
       
       
@@ -10612,7 +10604,6 @@ exports[`widgets > textarea > snapshots > normal 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -10634,6 +10625,7 @@ exports[`widgets > textarea > snapshots > normal 1`] = `
         data-slot="textarea"
         id="root"
         name="root"
+        required=""
       />
       
       
@@ -10714,7 +10706,6 @@ exports[`widgets > textarea > snapshots > readonly 1`] = `
     <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-      data-invalid="false"
       data-layout="field"
       data-orientation="vertical"
       data-slot="field"
@@ -10737,6 +10728,7 @@ exports[`widgets > textarea > snapshots > readonly 1`] = `
         id="root"
         name="root"
         readonly=""
+        required=""
       />
       
       

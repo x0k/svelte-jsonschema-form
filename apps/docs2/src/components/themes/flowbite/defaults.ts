@@ -1,9 +1,9 @@
 export { translation } from "@sjsf/form/translations/en";
 
 export { resolver } from "@sjsf/form/resolvers/basic";
-import "@sjsf/form/fields/extra-fields/enum-include";
-import "@sjsf/form/fields/extra-fields/multi-enum-include";
-import "@sjsf/form/fields/extra-fields/unknown-native-file-include";
+import "@sjsf/form/fields/extra/enum-include";
+import "@sjsf/form/fields/extra/multi-enum-include";
+import "@sjsf/form/fields/extra/unknown-native-file-include";
 
 export { theme } from "@sjsf/flowbite3-theme";
 import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";

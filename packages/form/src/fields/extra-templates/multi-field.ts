@@ -11,6 +11,7 @@ declare module "../../form/index.js" {
   interface ComponentProps {
     multiFieldTemplate: TemplateCommonProps<SchemaValue> & {
       optionSelector: Snippet;
+      action?: Snippet;
     };
   }
 

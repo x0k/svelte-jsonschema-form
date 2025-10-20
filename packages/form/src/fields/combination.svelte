@@ -37,6 +37,7 @@
     retrieveTranslate,
     createPseudoPath,
     createPseudoId,
+    getFieldAction,
   } from "@/form/index.js";
 
   let {
@@ -220,8 +221,26 @@
   const CombinationField = $derived(
     combinationFieldConfig && getFieldComponent(ctx, combinationFieldConfig)
   );
+  const action = $derived(
+    getFieldAction(ctx, config, `${combinationKey}Field`)
+  );
 </script>
 
+{#snippet renderAction()}
+  {@render action?.(
+    ctx,
+    config,
+    {
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
+      },
+    },
+    errors
+  )}
+{/snippet}
 {#if restFieldConfig}
   <RestSchemaField
     type="field"
@@ -231,7 +250,14 @@
     translate={retrieveTranslate(ctx, restFieldConfig)}
   />
 {/if}
-<Template type="template" {config} {value} {errors} {uiOption}>
+<Template
+  type="template"
+  {config}
+  {value}
+  {errors}
+  {uiOption}
+  action={action && renderAction}
+>
   {#snippet optionSelector()}
     <Widget
       type="widget"

@@ -27,7 +27,7 @@
       uiTitleOption(ctx, ctx[FORM_UI_SCHEMA]) ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,
     uiSchema: ctx[FORM_UI_SCHEMA],
-    required: false,
+    required: true,
   });
 
   const Field = $derived(getFieldComponent(ctx, config));

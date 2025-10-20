@@ -39,11 +39,13 @@ exports[`object fields > additionalProperties 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -68,6 +70,7 @@ exports[`object fields > additionalProperties 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -82,7 +85,6 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -97,13 +99,13 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -127,17 +129,20 @@ exports[`object fields > additionalProperties 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -193,8 +198,10 @@ exports[`object fields > additionalProperties 1`] = `
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -216,7 +223,6 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -231,13 +237,13 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -258,17 +264,20 @@ exports[`object fields > additionalProperties 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -323,8 +332,10 @@ exports[`object fields > additionalProperties 1`] = `
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -364,6 +375,7 @@ exports[`object fields > additionalProperties 1`] = `
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -379,8 +391,10 @@ exports[`object fields > additionalProperties 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -474,11 +488,13 @@ exports[`object fields > additionalProperties with error 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -503,6 +519,7 @@ exports[`object fields > additionalProperties with error 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -517,7 +534,6 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="true"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -532,13 +548,13 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -562,17 +578,20 @@ exports[`object fields > additionalProperties with error 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -653,8 +672,10 @@ exports[`object fields > additionalProperties with error 1`] = `
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -676,7 +697,6 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -691,13 +711,13 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -718,17 +738,20 @@ exports[`object fields > additionalProperties with error 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -783,8 +806,10 @@ exports[`object fields > additionalProperties with error 1`] = `
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -824,6 +849,7 @@ exports[`object fields > additionalProperties with error 1`] = `
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -839,8 +865,10 @@ exports[`object fields > additionalProperties with error 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -934,11 +962,13 @@ exports[`object fields > has errors 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -964,6 +994,7 @@ exports[`object fields > has errors 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -979,7 +1010,6 @@ exports[`object fields > has errors 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -994,13 +1024,13 @@ exports[`object fields > has errors 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -1021,17 +1051,20 @@ exports[`object fields > has errors 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -1086,6 +1119,7 @@ exports[`object fields > has errors 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1103,8 +1137,10 @@ exports[`object fields > has errors 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -1223,11 +1259,13 @@ exports[`object fields > object 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1253,6 +1291,7 @@ exports[`object fields > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1268,7 +1307,6 @@ exports[`object fields > object 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -1283,13 +1321,13 @@ exports[`object fields > object 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -1310,17 +1348,20 @@ exports[`object fields > object 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -1375,6 +1416,7 @@ exports[`object fields > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1389,6 +1431,8 @@ exports[`object fields > object 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1411,6 +1455,7 @@ exports[`object fields > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1426,7 +1471,6 @@ exports[`object fields > object 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -1441,13 +1485,13 @@ exports[`object fields > object 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -1468,17 +1512,20 @@ exports[`object fields > object 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -1535,6 +1582,7 @@ exports[`object fields > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1552,8 +1600,10 @@ exports[`object fields > object 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -1645,18 +1695,40 @@ exports[`object fields > one of defaults > default preset 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="object-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        Options
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          Options
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
       
       
       
+      
+      
+      
+      
+      
       <!---->
        
       <!---->
@@ -1665,6 +1737,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <!---->
@@ -1689,6 +1762,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
         <div
           class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-1.5 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
@@ -1696,6 +1770,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1723,6 +1798,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1737,6 +1813,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1759,6 +1837,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1774,7 +1853,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -1787,37 +1865,20 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
               <!---->
               <!---->
+               
               <!---->
               <!---->
-              <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.transform::description"
               >
+                Apply a transformation to the output data
                 <!---->
-                <!---->
-                <!---->
-                 
-                <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.transform::description"
-                >
-                  Apply a transformation to the output data
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
-                <!---->
-              </div>
+              </p>
               
               
-              
-              
+              <!---->
               
               
               
@@ -1921,6 +1982,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1935,6 +1997,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1951,6 +2015,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1978,6 +2043,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1992,6 +2058,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2014,6 +2082,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -2029,7 +2098,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -2042,37 +2110,20 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
               <!---->
               <!---->
+               
               <!---->
               <!---->
-              <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.paginate::description"
               >
+                Partitioning the input data (object or array) into pages by their keys
                 <!---->
-                <!---->
-                <!---->
-                 
-                <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.paginate::description"
-                >
-                  Partitioning the input data (object or array) into pages by their keys
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
-                <!---->
-              </div>
+              </p>
               
               
-              
-              
+              <!---->
               
               
               
@@ -2176,6 +2227,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2190,6 +2242,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2212,6 +2266,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -2227,7 +2282,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -2240,37 +2294,20 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
               <!---->
               <!---->
+               
               <!---->
               <!---->
-              <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.createOnOpen::description"
               >
+                Creating a table when opening a share link
                 <!---->
-                <!---->
-                <!---->
-                 
-                <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.createOnOpen::description"
-                >
-                  Creating a table when opening a share link
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
-                <!---->
-              </div>
+              </p>
               
               
-              
-              
+              <!---->
               
               
               
@@ -2396,6 +2433,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2413,8 +2451,10 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -2506,18 +2546,40 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="object-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        Options
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          Options
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
       
       
       
+      
+      
+      
+      
+      
       <!---->
        
       <!---->
@@ -2526,6 +2588,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <!---->
@@ -2550,6 +2613,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <!---->
+        <!---->
         <div
           class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-1.5 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
@@ -2557,6 +2621,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2584,6 +2649,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2598,6 +2664,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2620,6 +2688,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -2635,7 +2704,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -2648,37 +2716,20 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <!---->
+               
               <!---->
               <!---->
-              <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.collapseIndexes::description"
               >
+                Combines hierarchical indexes into one cell (1.1, 1.2, ...)
                 <!---->
-                <!---->
-                <!---->
-                 
-                <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.collapseIndexes::description"
-                >
-                  Combines hierarchical indexes into one cell (1.1, 1.2, ...)
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
-                <!---->
-              </div>
+              </p>
               
               
-              
-              
+              <!---->
               
               
               
@@ -2804,6 +2855,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2818,6 +2870,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2840,6 +2894,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -2855,7 +2910,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -2868,37 +2922,20 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <!---->
+               
               <!---->
               <!---->
-              <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.joinPrimitiveArrayValues::description"
               >
+                Combines the values of an array of primitives into one cell (separated by ',')
                 <!---->
-                <!---->
-                <!---->
-                 
-                <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.joinPrimitiveArrayValues::description"
-                >
-                  Combines the values of an array of primitives into one cell (separated by ',')
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
-                <!---->
-              </div>
+              </p>
               
               
-              
-              
+              <!---->
               
               
               
@@ -3024,6 +3061,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3038,6 +3076,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3060,6 +3100,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3075,7 +3116,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -3088,37 +3128,20 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <!---->
+               
               <!---->
               <!---->
-              <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.combineArraysOfObjects::description"
               >
+                Combine arrays of objects into a single object
                 <!---->
-                <!---->
-                <!---->
-                 
-                <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.combineArraysOfObjects::description"
-                >
-                  Combine arrays of objects into a single object
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
-                <!---->
-              </div>
+              </p>
               
               
-              
-              
+              <!---->
               
               
               
@@ -3222,6 +3245,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3236,6 +3260,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3258,6 +3284,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3273,7 +3300,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -3286,37 +3312,20 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <!---->
+               
               <!---->
               <!---->
-              <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
               >
+                Stabilizing the order in which properties are displayed for arrays of objects
                 <!---->
-                <!---->
-                <!---->
-                 
-                <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
-                >
-                  Stabilizing the order in which properties are displayed for arrays of objects
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
-                <!---->
-              </div>
+              </p>
               
               
-              
-              
+              <!---->
               
               
               
@@ -3442,6 +3451,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3456,6 +3466,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3478,6 +3490,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3493,7 +3506,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -3508,13 +3520,13 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -3538,29 +3550,32 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.proportionalSizeAdjustmentThreshold::description"
-                >
-                  Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.proportionalSizeAdjustmentThreshold::description"
+              >
+                Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -3619,6 +3634,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3633,6 +3649,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3655,6 +3673,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3670,7 +3689,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -3685,13 +3703,13 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -3712,29 +3730,32 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.cornerCellValue::description"
-                >
-                  The value of the corner cell.
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.cornerCellValue::description"
+              >
+                The value of the corner cell.
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -3789,6 +3810,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3803,6 +3825,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3825,6 +3849,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3840,7 +3865,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -3853,37 +3877,20 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <!---->
+               
               <!---->
               <!---->
-              <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.transform::description"
               >
+                Apply a transformation to the output data
                 <!---->
-                <!---->
-                <!---->
-                 
-                <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.transform::description"
-                >
-                  Apply a transformation to the output data
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
-                <!---->
-              </div>
+              </p>
               
               
-              
-              
+              <!---->
               
               
               
@@ -3987,6 +3994,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4001,6 +4009,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4017,6 +4027,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4044,6 +4055,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4058,6 +4070,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4080,6 +4094,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -4095,7 +4110,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -4108,37 +4122,20 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <!---->
+               
               <!---->
               <!---->
-              <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.paginate::description"
               >
+                Partitioning the input data (object or array) into pages by their keys
                 <!---->
-                <!---->
-                <!---->
-                 
-                <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.paginate::description"
-                >
-                  Partitioning the input data (object or array) into pages by their keys
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
-                <!---->
-              </div>
+              </p>
               
               
-              
-              
+              <!---->
               
               
               
@@ -4242,6 +4239,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4256,6 +4254,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4278,6 +4278,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -4293,7 +4294,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -4306,37 +4306,20 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <!---->
+               
               <!---->
               <!---->
-              <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.createOnOpen::description"
               >
+                Creating a table when opening a share link
                 <!---->
-                <!---->
-                <!---->
-                 
-                <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.createOnOpen::description"
-                >
-                  Creating a table when opening a share link
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
-                <!---->
-              </div>
+              </p>
               
               
-              
-              
+              <!---->
               
               
               
@@ -4462,6 +4445,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4479,8 +4463,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -4574,11 +4560,13 @@ exports[`object fields > show add button and fields if additionalProperties is t
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4603,6 +4591,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -4617,7 +4606,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -4632,13 +4620,13 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -4662,17 +4650,20 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -4728,8 +4719,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4751,7 +4744,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -4766,13 +4758,13 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -4793,17 +4785,20 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -4858,8 +4853,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4899,6 +4896,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -4914,8 +4912,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -5007,15 +5007,37 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="object-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          Test field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -5046,11 +5068,13 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5075,6 +5099,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -5089,7 +5114,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -5104,13 +5128,13 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -5134,17 +5158,20 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -5200,8 +5227,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5223,7 +5252,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -5238,13 +5266,13 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -5265,17 +5293,20 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -5330,8 +5361,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5371,6 +5404,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -5386,8 +5420,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -5479,15 +5515,37 @@ exports[`object fields > with title and description > object 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="object-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          Test field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -5518,11 +5576,13 @@ exports[`object fields > with title and description > object 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5548,6 +5608,7 @@ exports[`object fields > with title and description > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -5563,7 +5624,6 @@ exports[`object fields > with title and description > object 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -5578,13 +5638,13 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -5605,29 +5665,32 @@ exports[`object fields > with title and description > object 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.a::description"
-                >
-                  A description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.a::description"
+              >
+                A description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -5682,6 +5745,7 @@ exports[`object fields > with title and description > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -5696,6 +5760,8 @@ exports[`object fields > with title and description > object 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5718,6 +5784,7 @@ exports[`object fields > with title and description > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -5733,7 +5800,6 @@ exports[`object fields > with title and description > object 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -5748,13 +5814,13 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -5775,29 +5841,32 @@ exports[`object fields > with title and description > object 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.b::description"
-                >
-                  B description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.b::description"
+              >
+                B description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -5854,6 +5923,7 @@ exports[`object fields > with title and description > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -5871,8 +5941,10 @@ exports[`object fields > with title and description > object 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -5964,15 +6036,37 @@ exports[`object fields > with title and description > show add button and fields
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="object-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          Test field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -6003,11 +6097,13 @@ exports[`object fields > with title and description > show add button and fields
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -6032,6 +6128,7 @@ exports[`object fields > with title and description > show add button and fields
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -6046,7 +6143,6 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -6061,13 +6157,13 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -6091,17 +6187,20 @@ exports[`object fields > with title and description > show add button and fields
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -6157,8 +6256,10 @@ exports[`object fields > with title and description > show add button and fields
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -6180,7 +6281,6 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -6195,13 +6295,13 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -6222,17 +6322,20 @@ exports[`object fields > with title and description > show add button and fields
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -6287,8 +6390,10 @@ exports[`object fields > with title and description > show add button and fields
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -6328,6 +6433,7 @@ exports[`object fields > with title and description > show add button and fields
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -6343,8 +6449,10 @@ exports[`object fields > with title and description > show add button and fields
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -6436,15 +6544,37 @@ exports[`object fields > with title and description from both > additionalProper
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="object-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -6475,11 +6605,13 @@ exports[`object fields > with title and description from both > additionalProper
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -6504,6 +6636,7 @@ exports[`object fields > with title and description from both > additionalProper
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -6518,7 +6651,6 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -6533,13 +6665,13 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -6563,17 +6695,20 @@ exports[`object fields > with title and description from both > additionalProper
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -6629,8 +6764,10 @@ exports[`object fields > with title and description from both > additionalProper
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -6652,7 +6789,6 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -6667,13 +6803,13 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -6694,17 +6830,20 @@ exports[`object fields > with title and description from both > additionalProper
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -6759,8 +6898,10 @@ exports[`object fields > with title and description from both > additionalProper
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -6800,6 +6941,7 @@ exports[`object fields > with title and description from both > additionalProper
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -6815,8 +6957,10 @@ exports[`object fields > with title and description from both > additionalProper
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -6908,15 +7052,37 @@ exports[`object fields > with title and description from both > object 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="object-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -6947,11 +7113,13 @@ exports[`object fields > with title and description from both > object 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -6977,6 +7145,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -6992,7 +7161,6 @@ exports[`object fields > with title and description from both > object 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -7007,13 +7175,13 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -7034,29 +7202,32 @@ exports[`object fields > with title and description from both > object 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.a::description"
-                >
-                  a fancier item A description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.a::description"
+              >
+                a fancier item A description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -7111,6 +7282,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -7125,6 +7297,8 @@ exports[`object fields > with title and description from both > object 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -7147,6 +7321,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -7162,7 +7337,6 @@ exports[`object fields > with title and description from both > object 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -7177,13 +7351,13 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -7204,29 +7378,32 @@ exports[`object fields > with title and description from both > object 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.b::description"
-                >
-                  a fancier item B description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.b::description"
+              >
+                a fancier item B description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -7283,6 +7460,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -7300,8 +7478,10 @@ exports[`object fields > with title and description from both > object 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -7393,15 +7573,37 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="object-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -7432,11 +7634,13 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -7461,6 +7665,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -7475,7 +7680,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -7490,13 +7694,13 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -7520,17 +7724,20 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -7586,8 +7793,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -7609,7 +7818,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -7624,13 +7832,13 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -7651,17 +7859,20 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -7716,8 +7927,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -7757,6 +7970,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -7772,8 +7986,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -7865,15 +8081,37 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="object-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -7904,11 +8142,13 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -7934,6 +8174,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -7949,7 +8190,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -7964,13 +8204,13 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -7991,29 +8231,32 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.a::description"
-                >
-                  a fancier item A description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.a::description"
+              >
+                a fancier item A description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -8068,6 +8311,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           
           
           
+          
           <!---->
            
           <!---->
@@ -8082,6 +8326,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -8104,6 +8350,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -8119,7 +8366,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -8134,13 +8380,13 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -8161,29 +8407,32 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root.b::description"
-                >
-                  a fancier item B description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root.b::description"
+              >
+                a fancier item B description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -8240,6 +8489,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           
           
           
+          
           <!---->
            
           <!---->
@@ -8257,8 +8507,10 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -8350,15 +8602,37 @@ exports[`object fields > with title and description from uiSchema > show add but
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="object-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -8389,11 +8663,13 @@ exports[`object fields > with title and description from uiSchema > show add but
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -8418,6 +8694,7 @@ exports[`object fields > with title and description from uiSchema > show add but
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -8432,7 +8709,6 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -8447,13 +8723,13 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -8477,17 +8753,20 @@ exports[`object fields > with title and description from uiSchema > show add but
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -8543,8 +8822,10 @@ exports[`object fields > with title and description from uiSchema > show add but
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -8566,7 +8847,6 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -8581,13 +8861,13 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -8608,17 +8888,20 @@ exports[`object fields > with title and description from uiSchema > show add but
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -8673,8 +8956,10 @@ exports[`object fields > with title and description from uiSchema > show add but
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -8714,6 +8999,7 @@ exports[`object fields > with title and description from uiSchema > show add but
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -8729,8 +9015,10 @@ exports[`object fields > with title and description from uiSchema > show add but
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -8824,11 +9112,13 @@ exports[`object fields > with title and description with global label off > addi
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -8853,6 +9143,7 @@ exports[`object fields > with title and description with global label off > addi
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -8867,7 +9158,6 @@ exports[`object fields > with title and description with global label off > addi
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -8927,8 +9217,10 @@ exports[`object fields > with title and description with global label off > addi
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -8950,7 +9242,6 @@ exports[`object fields > with title and description with global label off > addi
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -9009,8 +9300,10 @@ exports[`object fields > with title and description with global label off > addi
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -9050,6 +9343,7 @@ exports[`object fields > with title and description with global label off > addi
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -9065,8 +9359,10 @@ exports[`object fields > with title and description with global label off > addi
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -9160,11 +9456,13 @@ exports[`object fields > with title and description with global label off > obje
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -9190,6 +9488,7 @@ exports[`object fields > with title and description with global label off > obje
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -9205,7 +9504,6 @@ exports[`object fields > with title and description with global label off > obje
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -9264,6 +9562,7 @@ exports[`object fields > with title and description with global label off > obje
           
           
           
+          
           <!---->
            
           <!---->
@@ -9278,6 +9577,8 @@ exports[`object fields > with title and description with global label off > obje
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -9300,6 +9601,7 @@ exports[`object fields > with title and description with global label off > obje
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -9315,7 +9617,6 @@ exports[`object fields > with title and description with global label off > obje
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -9376,6 +9677,7 @@ exports[`object fields > with title and description with global label off > obje
           
           
           
+          
           <!---->
            
           <!---->
@@ -9393,8 +9695,10 @@ exports[`object fields > with title and description with global label off > obje
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -9488,11 +9792,13 @@ exports[`object fields > with title and description with global label off > show
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -9517,6 +9823,7 @@ exports[`object fields > with title and description with global label off > show
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -9531,7 +9838,6 @@ exports[`object fields > with title and description with global label off > show
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -9591,8 +9897,10 @@ exports[`object fields > with title and description with global label off > show
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -9614,7 +9922,6 @@ exports[`object fields > with title and description with global label off > show
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -9673,8 +9980,10 @@ exports[`object fields > with title and description with global label off > show
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -9714,6 +10023,7 @@ exports[`object fields > with title and description with global label off > show
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -9729,8 +10039,10 @@ exports[`object fields > with title and description with global label off > show
         
         
         
+        
         <!---->
       </div>
+      
       
       
       

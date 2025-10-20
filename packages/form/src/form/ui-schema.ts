@@ -1,14 +1,36 @@
 import type { Resolver } from "@/lib/resolver.js";
-import type { RPath } from "@/core/index.js";
+import type { RPath, SchemaValue } from "@/core/index.js";
 
 import type {
   CompatibleComponentType,
   ComponentDefinitions,
+  ComponentProps,
   FoundationalComponentType,
 } from "./components.js";
 import type { Config } from "./config.js";
+import type { ActionField, FieldAction } from "./field-actions.js";
+import type { TranslatorDefinitions } from "./translation.js";
 
-export interface UiOptions {}
+export interface UiOptions {
+  /**
+   * Overrides the title of the field.
+   */
+  title?: string;
+  /**
+   * Overrides form translation
+   */
+  translations?: Partial<TranslatorDefinitions>;
+  /**
+   * Field action
+   */
+  action?: FieldAction<SchemaValue | undefined>;
+  /**
+   * A typed field action takes precedence over `action`
+   */
+  actions?: Partial<{
+    [T in ActionField]: FieldAction<ComponentProps[T]["value"]>;
+  }>;
+}
 
 export type UiOption = <O extends keyof UiOptions>(opt: O) => UiOptions[O];
 
@@ -60,7 +82,7 @@ export interface UiSchemaRef {
 export type UiSchemaDefinition = UiSchema | UiSchemaRef;
 
 export type UiSchemaRoot = UiSchemaDefinition & {
-  "ui:globalOptions"?: UiOptions;
+  "ui:globalOptions"?: ResolvableUiOptions;
   "ui:definitions"?: Record<string, UiSchema>;
 };
 
@@ -90,10 +112,11 @@ export function resolveUiOption<O extends keyof UiOptions>(
   uiSchema: UiSchema,
   option: O
 ): UiOptions[O] | undefined {
-  let value = uiSchema["ui:options"]?.[option];
-  if (value === undefined) {
-    value = uiSchemaRoot["ui:globalOptions"]?.[option];
-  }
+  const options = uiSchema["ui:options"];
+  const value =
+    options && option in options
+      ? options[option]
+      : uiSchemaRoot["ui:globalOptions"]?.[option];
   if (typeof value === "string" && value.startsWith("registry:")) {
     return uiOptionsRegistry[value.substring(9) as keyof UiOptionsRegistry];
   }

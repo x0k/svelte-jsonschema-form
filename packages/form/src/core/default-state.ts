@@ -79,7 +79,8 @@ export function getDefaultFormState(
     experimental_defaultFormStateBehavior,
     rawFormData: formData,
     parentDefaults: undefined,
-    required: false,
+    // CHANGED: We use `required: true` at the root instead of `requiredAsRoot`
+    required: true,
     isSchemaRoot: true,
     stack: new Set<string>(),
     shouldMergeDefaultsIntoFormData: true,
@@ -199,14 +200,26 @@ export type Experimental_DefaultFormStateBehavior = {
 };
 
 interface ComputeDefaultsProps<FormData = SchemaValue | undefined> {
+  /** Any defaults provided by the parent field in the schema */
   parentDefaults: SchemaValue | undefined;
+  /** The options root schema, used to primarily to look up `$ref`s */
   rootSchema: Schema;
+  /** The current formData, if any, onto which to provide any missing defaults */
   rawFormData: FormData;
+  /** Optional flag, if true, cause undefined values to be added as defaults.
+   *          If "excludeObjectChildren", cause undefined values for this object and pass `includeUndefinedValues` as
+   *          false when computing defaults for any nested object properties.
+   */
   includeUndefinedValues: boolean | "excludeObjectChildren";
   stack: Set<string>;
+  /** Optional configuration object, if provided, allows users to override default form state behavior */
   experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior;
   isSchemaRoot: boolean;
+  /** Optional flag, if true, indicates this schema was required in the parent schema. */
   required: boolean;
+  /** Optional flag, if true, indicates this schema was required because it is the root. */
+  // CHANGED: We use `required: true` at the root instead of `requiredAsRoot`
+  // requiredAsRoot: boolean;
   /**
    * flag, if true, It will merge defaults into formData.
    * The formData should take precedence unless it's not valid. This is useful when for example the value from formData does not exist in the schema 'enum' property, in such cases we take the value from the defaults because the value from the formData is not valid.
@@ -886,7 +899,9 @@ export function getArrayDefaults(
     computeSkipPopulate(validator, schema, rootSchema) ||
     schema.minItems <= defaultsLength
   ) {
-    arrayDefault = defaults ?? emptyDefault;
+    // we don't want undefined defaults unless it is both not required or not required as root
+    // CHANGED: since we don't use `requiredAsRoot` it's not used here
+    arrayDefault = defaults || !required ? defaults : emptyDefault;
   } else {
     const fillerSchema = getInnerSchemaForArrayItem(
       schema,

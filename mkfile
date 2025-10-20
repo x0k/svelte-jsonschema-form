@@ -378,6 +378,17 @@ e/:
     d:
       pnpm run dev
     popd
+  optional/:
+    pushd optional-data-controls
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   pattern/:
     pushd pattern-properties-validator
     c:

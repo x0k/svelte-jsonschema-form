@@ -1,3 +1,12 @@
+<script lang="ts" module>
+  const field = "booleanField";
+  declare module "../form/index.js" {
+    interface ActionFields {
+      [field]: {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import { identity } from "@/lib/function.js";
   import type { ComponentProps } from "@/form/index.js";
@@ -8,10 +17,11 @@
     config,
     value = $bindable(),
     uiOption,
-  }: ComponentProps["booleanField"] = $props();
+  }: ComponentProps[typeof field] = $props();
 </script>
 
 <FieldBase
+  {field}
   {config}
   {uiOption}
   bind:value

@@ -151,13 +151,13 @@ export function isDisabled<T>(
   return attributes?.disabled || ctx[FORM_DISABLED];
 }
 
-export function disabledProp<T, FT>(
-  obj: T & Partial<Nullable<Disabled>>,
+export function disabledProp<T extends Partial<Nullable<Disabled>>, FT>(
+  obj: T,
   _: Config,
   ctx: FormState<FT>
 ) {
   obj.disabled ||= ctx[FORM_DISABLED];
-  return obj as T & Disabled;
+  return obj;
 }
 
 const DEFAULT_DESCRIBE_ELEMENTS: FieldPseudoElement[] = [
@@ -168,20 +168,20 @@ const DEFAULT_DESCRIBE_ELEMENTS: FieldPseudoElement[] = [
 const DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES =
   DEFAULT_DESCRIBE_ELEMENTS.concat("examples");
 
-export function ariaInvalidProp<T, FT>(
-  obj: T & AriaAttributes,
+export function ariaInvalidProp<T extends AriaAttributes, FT>(
+  obj: T,
   config: Config,
   ctx: FormState<FT>
-): T & AriaAttributes {
+): T {
   obj["aria-invalid"] = ctx[FORM_ERRORS].has(config.path);
   return obj;
 }
 
-export function ariaDescribedByProp<T, FT>(
-  obj: T & AriaAttributes,
+export function ariaDescribedByProp<T extends AriaAttributes, FT>(
+  obj: T,
   config: Config,
   ctx: FormState<FT>
-): T & AriaAttributes {
+): T {
   obj["aria-describedby"] = (
     Array.isArray(config.schema.examples)
       ? DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES
@@ -192,8 +192,8 @@ export function ariaDescribedByProp<T, FT>(
   return obj;
 }
 
-export function ariaReadonlyProp<T, FT>(
-  obj: T & AriaAttributes,
+export function ariaReadonlyProp<T extends AriaAttributes, FT>(
+  obj: T,
   config: Config,
   _: FormState<FT>
 ): T & AriaAttributes {
@@ -201,8 +201,8 @@ export function ariaReadonlyProp<T, FT>(
   return obj;
 }
 
-export function ariaRequiredProp<T, FT>(
-  obj: T & AriaAttributes,
+export function ariaRequiredProp<T extends AriaAttributes, FT>(
+  obj: T,
   config: Config,
   _: FormState<FT>
 ): T & AriaAttributes {
@@ -296,34 +296,32 @@ export function forProp<T, FT>(
   return props;
 }
 
-type WithId<T> = T & {
-  id?: string;
-};
-
 export function idProp(element: FieldPseudoElement) {
-  return <T, FT>(props: WithId<T>, config: Config, ctx: FormState<FT>) => {
+  return <T extends { id?: string }, FT>(
+    props: T,
+    config: Config,
+    ctx: FormState<FT>
+  ) => {
     props.id = createPseudoId(ctx, config.path, element);
     return props;
   };
 }
 
-type WithTabIndex<T> = T & {
-  tabindex?: number;
-};
-
 export function tabindexProp(tabindex: number) {
-  return <T>(props: WithTabIndex<T>) => {
+  return <T extends { tabindex?: number }>(props: T) => {
     props.tabindex = tabindex;
     return props;
   };
 }
 
-type WithDataLayout<T> = T & {
-  "data-layout"?: string;
-};
-
 export function dataLayoutProp(type: string) {
-  return <T>(props: WithDataLayout<T>) => {
+  return <
+    T extends {
+      "data-layout"?: string;
+    },
+  >(
+    props: T
+  ) => {
     props["data-layout"] = type;
     return props;
   };
@@ -444,10 +442,10 @@ export function layoutAttributes<
     props,
     dataLayoutProp(type as string),
     uiOptionProps(option),
-    uiOptionNestedProps<O2, NonNullable<UiOptions[O2]>>(
-      nestedOption,
-      (t) => t[type]
-    )
+    // @ts-expect-error Type `T` is resolved as `never` because this package
+    // lacks suitable definitions for UI options,
+    // but they are available in `theme` packages.
+    uiOptionNestedProps(nestedOption, (t) => t[type])
   );
 }
 

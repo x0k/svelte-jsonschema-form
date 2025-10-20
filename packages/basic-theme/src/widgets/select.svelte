@@ -27,7 +27,7 @@
 
   const attributes = $derived(
     selectAttributes(ctx, config, "select", handlers, {
-      style: "flex-grow: 1",
+      style: "flex-grow: 1; padding: 1px 2px;",
     })
   );
 

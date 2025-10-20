@@ -36,14 +36,18 @@ export function retrieveSchema(
   merger: Merger,
   schema: Schema,
   rootSchema: Schema = {},
-  formData?: SchemaValue
+  formData?: SchemaValue,
+  resolveAnyOfOrOneOfRefs = false
 ): Schema {
   return retrieveSchemaInternal(
     validator,
     merger,
     schema,
     rootSchema,
-    formData
+    formData,
+    undefined,
+    undefined,
+    resolveAnyOfOrOneOfRefs
   )[0]!;
 }
 
@@ -51,7 +55,8 @@ export function resolveAllReferences(
   merger: Merger,
   schema: Schema,
   rootSchema: Schema,
-  stack = new Set<string>()
+  stack = new Set<string>(),
+  resolveAnyOfOrOneOfRefs?: boolean
 ): Schema {
   let resolvedSchema: Schema = schema;
   const ref = resolvedSchema[REF_KEY];
@@ -68,7 +73,8 @@ export function resolveAllReferences(
         ? schemaDef
         : merger.mergeSchemas(schemaDef, resolvedSchemaWithoutRef),
       rootSchema,
-      stack
+      stack,
+      resolveAnyOfOrOneOfRefs
     );
   }
 
@@ -83,7 +89,13 @@ export function resolveAllReferences(
         const stackCopy = new Set(stack);
         resolvedProps.set(
           key,
-          resolveAllReferences(merger, value, rootSchema, stackCopy)
+          resolveAllReferences(
+            merger,
+            value,
+            rootSchema,
+            stackCopy,
+            resolveAnyOfOrOneOfRefs
+          )
         );
         // TODO: Replace stack with an object with a Set of references
         // to use `union` Set method here
@@ -108,8 +120,41 @@ export function resolveAllReferences(
   if (items && !Array.isArray(items) && typeof items !== "boolean") {
     resolvedSchema = {
       ...resolvedSchema,
-      items: resolveAllReferences(merger, items, rootSchema, stack),
+      items: resolveAllReferences(
+        merger,
+        items,
+        rootSchema,
+        stack,
+        resolveAnyOfOrOneOfRefs
+      ),
     };
+  }
+  if (resolveAnyOfOrOneOfRefs) {
+    let key: "anyOf" | "oneOf" | undefined;
+    let schemas: SchemaDefinition[] | undefined;
+    if (ANY_OF_KEY in schema && Array.isArray(schema[ANY_OF_KEY])) {
+      key = ANY_OF_KEY;
+      schemas = resolvedSchema[ANY_OF_KEY];
+    } else if (ONE_OF_KEY in schema && Array.isArray(schema[ONE_OF_KEY])) {
+      key = ONE_OF_KEY;
+      schemas = resolvedSchema[ONE_OF_KEY];
+    }
+    if (key && schemas) {
+      resolvedSchema = {
+        ...resolvedSchema,
+        [key]: schemas.map((s) =>
+          typeof s === "boolean"
+            ? s
+            : resolveAllReferences(
+                merger,
+                s,
+                rootSchema,
+                stack,
+                resolveAnyOfOrOneOfRefs
+              )
+        ),
+      };
+    }
   }
   return resolvedSchema;
 }
@@ -121,13 +166,15 @@ export function resolveReference(
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
+  resolveAnyOfOrOneOfRefs?: boolean
 ): Schema[] {
   const resolvedSchema = resolveAllReferences(
     merger,
     schema,
     rootSchema,
-    stack
+    stack,
+    resolveAnyOfOrOneOfRefs
   );
   if (!isSchemaDeepEqual(schema, resolvedSchema)) {
     return retrieveSchemaInternal(
@@ -137,7 +184,8 @@ export function resolveReference(
       rootSchema,
       formData,
       expandAllBranches,
-      stack
+      stack,
+      resolveAnyOfOrOneOfRefs
     );
   }
   return [schema];
@@ -153,7 +201,8 @@ export function retrieveSchemaInternal(
   rootSchema: Schema,
   formData?: SchemaValue,
   expandAllBranches = false,
-  stack = new Set<string>()
+  stack = new Set<string>(),
+  resolveAnyOfOrOneOfRefs?: boolean
 ): Schema[] {
   const resolvedSchemas = resolveSchema(
     validator,
@@ -162,7 +211,8 @@ export function retrieveSchemaInternal(
     rootSchema,
     expandAllBranches,
     stack,
-    formData
+    formData,
+    resolveAnyOfOrOneOfRefs
   );
   return resolvedSchemas.flatMap((s): Schema | Schema[] => {
     let resolvedSchema = s;
@@ -434,7 +484,8 @@ export function resolveSchema(
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
+  resolveAnyOfOrOneOfRefs?: boolean
 ): Schema[] {
   const updatedSchemas = resolveReference(
     validator,
@@ -443,7 +494,8 @@ export function resolveSchema(
     rootSchema,
     expandAllBranches,
     stack,
-    formData
+    formData,
+    resolveAnyOfOrOneOfRefs
   );
   if (updatedSchemas.length > 1 || updatedSchemas[0] !== schema) {
     return updatedSchemas;

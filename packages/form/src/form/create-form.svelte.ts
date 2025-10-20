@@ -266,7 +266,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * Reset handler
    *
    * Will be called when the form is reset.
-   * 
+   *
    * The event will be `undefined` if `reset` is called manually without passing an event.
    */
   onReset?: (e?: Event) => void;

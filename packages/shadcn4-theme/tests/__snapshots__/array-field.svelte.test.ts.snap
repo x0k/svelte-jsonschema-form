@@ -39,6 +39,7 @@ exports[`array fields > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
@@ -52,6 +53,7 @@ exports[`array fields > array 1`] = `
         
         <!---->
       </div>
+      
       
       
       
@@ -163,11 +165,13 @@ exports[`array fields > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -191,6 +195,7 @@ exports[`array fields > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -206,7 +211,6 @@ exports[`array fields > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -221,13 +225,13 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -251,17 +255,20 @@ exports[`array fields > array icons 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -317,6 +324,7 @@ exports[`array fields > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -431,6 +439,8 @@ exports[`array fields > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -444,6 +454,7 @@ exports[`array fields > array icons 1`] = `
           class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -466,7 +477,6 @@ exports[`array fields > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -481,13 +491,13 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -511,17 +521,20 @@ exports[`array fields > array icons 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -577,6 +590,7 @@ exports[`array fields > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -694,8 +708,10 @@ exports[`array fields > array icons 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -862,11 +878,13 @@ exports[`array fields > empty errors array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="object-properties"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -892,6 +910,7 @@ exports[`array fields > empty errors array 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -907,7 +926,6 @@ exports[`array fields > empty errors array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -922,13 +940,13 @@ exports[`array fields > empty errors array 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -949,17 +967,20 @@ exports[`array fields > empty errors array 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
               
               
               
@@ -1014,6 +1035,7 @@ exports[`array fields > empty errors array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1031,8 +1053,10 @@ exports[`array fields > empty errors array 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -1151,11 +1175,13 @@ exports[`array fields > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1179,6 +1205,7 @@ exports[`array fields > fixed array 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -1194,7 +1221,6 @@ exports[`array fields > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -1254,6 +1280,7 @@ exports[`array fields > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1268,6 +1295,8 @@ exports[`array fields > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1281,6 +1310,7 @@ exports[`array fields > fixed array 1`] = `
           class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1303,7 +1333,6 @@ exports[`array fields > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -1365,6 +1394,7 @@ exports[`array fields > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1382,8 +1412,10 @@ exports[`array fields > fixed array 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -1475,15 +1507,37 @@ exports[`with title and description > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="array-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          Test field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -1514,6 +1568,7 @@ exports[`with title and description > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
@@ -1527,6 +1582,7 @@ exports[`with title and description > array 1`] = `
         
         <!---->
       </div>
+      
       
       
       
@@ -1636,15 +1692,37 @@ exports[`with title and description > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="array-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          Test field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -1675,11 +1753,13 @@ exports[`with title and description > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1703,6 +1783,7 @@ exports[`with title and description > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -1718,7 +1799,6 @@ exports[`with title and description > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -1733,13 +1813,13 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -1763,29 +1843,32 @@ exports[`with title and description > array icons 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@0::description"
-                >
-                  a test item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@0::description"
+              >
+                a test item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -1841,6 +1924,7 @@ exports[`with title and description > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -1955,6 +2039,8 @@ exports[`with title and description > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1968,6 +2054,7 @@ exports[`with title and description > array icons 1`] = `
           class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1990,7 +2077,6 @@ exports[`with title and description > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -2005,13 +2091,13 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -2035,29 +2121,32 @@ exports[`with title and description > array icons 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@1::description"
-                >
-                  a test item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@1::description"
+              >
+                a test item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -2113,6 +2202,7 @@ exports[`with title and description > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2230,8 +2320,10 @@ exports[`with title and description > array icons 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -2396,15 +2488,37 @@ exports[`with title and description > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="array-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          Test field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -2435,11 +2549,13 @@ exports[`with title and description > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2463,6 +2579,7 @@ exports[`with title and description > fixed array 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -2478,7 +2595,6 @@ exports[`with title and description > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -2493,13 +2609,13 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -2523,29 +2639,32 @@ exports[`with title and description > fixed array 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@0::description"
-                >
-                  a test item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@0::description"
+              >
+                a test item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -2601,6 +2720,7 @@ exports[`with title and description > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2615,6 +2735,8 @@ exports[`with title and description > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2628,6 +2750,7 @@ exports[`with title and description > fixed array 1`] = `
           class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2650,7 +2773,6 @@ exports[`with title and description > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -2665,13 +2787,13 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -2695,29 +2817,32 @@ exports[`with title and description > fixed array 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@1::description"
-                >
-                  a test item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@1::description"
+              >
+                a test item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -2775,6 +2900,7 @@ exports[`with title and description > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -2792,8 +2918,10 @@ exports[`with title and description > fixed array 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -2885,15 +3013,37 @@ exports[`with title and description from both > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="array-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -2924,6 +3074,7 @@ exports[`with title and description from both > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
@@ -2937,6 +3088,7 @@ exports[`with title and description from both > array 1`] = `
         
         <!---->
       </div>
+      
       
       
       
@@ -3046,15 +3198,37 @@ exports[`with title and description from both > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="array-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -3085,11 +3259,13 @@ exports[`with title and description from both > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3113,6 +3289,7 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -3128,7 +3305,6 @@ exports[`with title and description from both > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -3143,13 +3319,13 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -3173,29 +3349,32 @@ exports[`with title and description from both > array icons 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@0::description"
-                >
-                  a fancier item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@0::description"
+              >
+                a fancier item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -3251,6 +3430,7 @@ exports[`with title and description from both > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3365,6 +3545,8 @@ exports[`with title and description from both > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3378,6 +3560,7 @@ exports[`with title and description from both > array icons 1`] = `
           class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3400,7 +3583,6 @@ exports[`with title and description from both > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -3415,13 +3597,13 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -3445,29 +3627,32 @@ exports[`with title and description from both > array icons 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@1::description"
-                >
-                  a fancier item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@1::description"
+              >
+                a fancier item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -3523,6 +3708,7 @@ exports[`with title and description from both > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -3640,8 +3826,10 @@ exports[`with title and description from both > array icons 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -3806,15 +3994,37 @@ exports[`with title and description from both > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="array-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -3845,11 +4055,13 @@ exports[`with title and description from both > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3873,6 +4085,7 @@ exports[`with title and description from both > fixed array 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -3888,7 +4101,6 @@ exports[`with title and description from both > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -3903,13 +4115,13 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -3933,29 +4145,32 @@ exports[`with title and description from both > fixed array 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@0::description"
-                >
-                  a fancier item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@0::description"
+              >
+                a fancier item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -4011,6 +4226,7 @@ exports[`with title and description from both > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4025,6 +4241,8 @@ exports[`with title and description from both > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4038,6 +4256,7 @@ exports[`with title and description from both > fixed array 1`] = `
           class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4060,7 +4279,6 @@ exports[`with title and description from both > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -4075,13 +4293,13 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -4105,29 +4323,32 @@ exports[`with title and description from both > fixed array 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@1::description"
-                >
-                  a fancier item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@1::description"
+              >
+                a fancier item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -4185,6 +4406,7 @@ exports[`with title and description from both > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4202,8 +4424,10 @@ exports[`with title and description from both > fixed array 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -4295,15 +4519,37 @@ exports[`with title and description from uiSchema > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="array-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -4334,6 +4580,7 @@ exports[`with title and description from uiSchema > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
@@ -4347,6 +4594,7 @@ exports[`with title and description from uiSchema > array 1`] = `
         
         <!---->
       </div>
+      
       
       
       
@@ -4456,15 +4704,37 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="array-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -4495,11 +4765,13 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4523,6 +4795,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -4538,7 +4811,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -4553,13 +4825,13 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -4583,29 +4855,32 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@0::description"
-                >
-                  a fancier item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@0::description"
+              >
+                a fancier item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -4661,6 +4936,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -4775,6 +5051,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4788,6 +5066,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4810,7 +5089,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -4825,13 +5103,13 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -4855,29 +5133,32 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@1::description"
-                >
-                  a fancier item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@1::description"
+              >
+                a fancier item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -4933,6 +5214,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -5050,8 +5332,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -5216,15 +5500,37 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
       <legend
-        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm"
+        class="mb-3 font-medium data-[variant=legend]:text-base data-[variant=label]:text-sm flex w-full items-center justify-between"
+        data-layout="array-field-title-row"
         data-slot="field-legend"
         data-variant="legend"
-        id="root::title"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <div
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        
         <!---->
       </legend>
+      
+      
+      
+      
+      
       
       
       
@@ -5255,11 +5561,13 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5283,6 +5591,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -5298,7 +5607,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -5313,13 +5621,13 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -5343,29 +5651,32 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@0::description"
-                >
-                  a fancier item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@0::description"
+              >
+                a fancier item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -5421,6 +5732,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -5435,6 +5747,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5448,6 +5762,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5470,7 +5785,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -5485,13 +5799,13 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
+              <!---->
+              <!---->
+              <!---->
               <div
-                class="group/field-content flex flex-1 flex-col gap-1.5 leading-snug"
-                data-layout="field-meta"
-                data-slot="field-content"
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
               >
-                <!---->
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -5515,29 +5829,32 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 
                 
                 
-                
                 <!---->
                  
                 <!---->
-                <!---->
-                <p
-                  class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-                  data-slot="field-description"
-                  id="root@1::description"
-                >
-                  a fancier item description
-                  <!---->
-                </p>
-                
-                
-                <!---->
-                
                 <!---->
               </div>
               
               
               
               
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <p
+                class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                data-slot="field-description"
+                id="root@1::description"
+              >
+                a fancier item description
+                <!---->
+              </p>
+              
+              
+              <!---->
               
               
               
@@ -5595,6 +5912,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -5612,8 +5930,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -5707,6 +6027,7 @@ exports[`with title and description with global label off > array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
@@ -5720,6 +6041,7 @@ exports[`with title and description with global label off > array 1`] = `
         
         <!---->
       </div>
+      
       
       
       
@@ -5831,11 +6153,13 @@ exports[`with title and description with global label off > array icons 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5859,6 +6183,7 @@ exports[`with title and description with global label off > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -5874,7 +6199,6 @@ exports[`with title and description with global label off > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -5934,6 +6258,7 @@ exports[`with title and description with global label off > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -6048,6 +6373,8 @@ exports[`with title and description with global label off > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -6061,6 +6388,7 @@ exports[`with title and description with global label off > array icons 1`] = `
           class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -6083,7 +6411,6 @@ exports[`with title and description with global label off > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -6143,6 +6470,7 @@ exports[`with title and description with global label off > array icons 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -6260,8 +6588,10 @@ exports[`with title and description with global label off > array icons 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       
@@ -6428,11 +6758,13 @@ exports[`with title and description with global label off > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
+      <!---->
       <div
         class="group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4"
         data-layout="array-items"
         data-slot="field-group"
       >
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -6456,6 +6788,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -6471,7 +6804,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -6531,6 +6863,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -6545,6 +6878,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -6558,6 +6893,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
           class="flex items-start gap-1.5"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -6580,7 +6916,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
-              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -6642,6 +6977,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
           
           
           
+          
           <!---->
            
           <!---->
@@ -6659,8 +6995,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
         
         
         
+        
         <!---->
       </div>
+      
       
       
       

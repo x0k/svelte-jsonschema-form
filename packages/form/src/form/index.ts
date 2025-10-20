@@ -6,11 +6,6 @@ export type {
   Path,
 } from "@/core/index.js";
 
-import "./content.module.js";
-import "./form.module.js";
-import "./submit-button.module.js";
-import "./text.module.js";
-
 export * from "./model.js";
 export * from "./components.js";
 export * from "./fields.js";
@@ -24,6 +19,7 @@ export * from "./merger.js";
 export * from "./id.js";
 export * from "./icons.js";
 export * from "./translation.js";
+export * from "./field-actions.js";
 
 export * from "./state/index.js";
 

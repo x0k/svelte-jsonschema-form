@@ -149,7 +149,7 @@ export function buildFormDefaults({
       `export { resolver } from "@sjsf/form/resolvers/${resolver}";`,
       ...Array.from(extraFields).map(
         (f) =>
-          `import "@sjsf/form/fields/extra-fields/${camelToKebabCase(f)}-include";`
+          `import "@sjsf/form/fields/extra/${camelToKebabCase(f)}-include";`
       )
     ),
     join(
