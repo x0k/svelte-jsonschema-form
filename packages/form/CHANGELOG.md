@@ -1,5 +1,17 @@
 # @sjsf/form
 
+## 3.0.0-next.9
+
+### Major Changes
+
+- Add field actions support ([#216](https://github.com/x0k/svelte-jsonschema-form/pull/216))
+
+- - Add `fields/extra/*` submodule ([#216](https://github.com/x0k/svelte-jsonschema-form/pull/216))
+  - Remove the `template` suffix from component names in the `templates/*` submodule
+  - Replace the `fields/resolver` submodule with the `theme` submodule
+
+- Distinguish between missing and `undefined` values in `ui:options` ([#216](https://github.com/x0k/svelte-jsonschema-form/pull/216))
+
 ## 3.0.0-next.8
 
 ### Major Changes
