@@ -1,10 +1,11 @@
 <script lang="ts" module>
-  import "@/fields/extra-templates/multi-field.js";
+  import "@/fields/extra-templates/optional-multi-field.js";
 
-  import "./multi-field-layout.js";
+  import "../multi-field-layout.js";
 </script>
 
 <script lang="ts">
+  import { isNil } from "@/lib/types.js";
   import {
     getComponent,
     getFormContext,
@@ -17,7 +18,8 @@
     config,
     errors,
     action,
-  }: ComponentProps["multiFieldTemplate"] = $props();
+    value,
+  }: ComponentProps["optionalMultiFieldTemplate"] = $props();
 
   const ctx = getFormContext();
 
@@ -29,7 +31,9 @@
     {@render optionSelector()}
     {@render action?.()}
   </Layout>
-  <Layout type="multi-field-content" {config} {errors}>
-    {@render children()}
-  </Layout>
+  {#if config.required || !isNil(value)}
+    <Layout type="multi-field-content" {config} {errors}>
+      {@render children()}
+    </Layout>
+  {/if}
 </Layout>
