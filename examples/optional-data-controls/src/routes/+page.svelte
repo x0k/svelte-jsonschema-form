@@ -2,7 +2,6 @@
   import { chain, fromFactories } from "@sjsf/form/lib/resolver";
   import { getSimpleSchemaType } from "@sjsf/form/core";
   import { createForm, BasicForm, type Schema, type Config } from "@sjsf/form";
-  import { createFormMerger } from "@sjsf/form/mergers/modern";
   import OptionalObjectTemplate from "@sjsf/form/templates/extra/optional-object.svelte";
   import OptionalArrayTemplate from "@sjsf/form/templates/extra/optional-array.svelte";
   import { clearEdit } from "@sjsf/form/fields/actions/clear-edit.svelte";
@@ -184,7 +183,7 @@
     schema,
     extraUiOptions,
     merger: (options) =>
-      createFormMerger({
+      defaults.merger({
         ...options,
         emptyObjectFields: "populateRequiredDefaults",
       }),
