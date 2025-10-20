@@ -36,3 +36,11 @@
   />
   {config.title}
 </label>
+
+<style>
+  label {
+    display: flex;
+    align-items: start;
+    gap: 0.2rem;
+  }
+</style>
