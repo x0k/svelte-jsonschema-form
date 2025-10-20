@@ -82,6 +82,8 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
     import("./examples/multi-step-native-form"),
   [GenericExample.LayoutSlots]: () => import("./examples/layout-slots"),
   [GenericExample.PreuploadFile]: () => import("./examples/preupload-file"),
+  [GenericExample.OptionalDataControls]: () =>
+    import("./examples/optional-data-controls"),
   [ValidatorSpecificExample.ZodStarter]: () => import("./examples/zod-starter"),
   [ValidatorSpecificExample.ValibotStarter]: () =>
     import("./examples/valibot-starter"),

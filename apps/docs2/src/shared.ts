@@ -81,6 +81,7 @@ export enum GenericExample {
   MultiStepNativeForm = "multi-step-native-form",
   LayoutSlots = "layout-slots",
   PreuploadFile = "preupload-file",
+  OptionalDataControls = "optional-data-controls",
 }
 
 export const GENERIC_EXAMPLES = Object.values(GenericExample);
