@@ -1,26 +1,21 @@
-import { extendByRecord } from "@sjsf/form/lib/resolver";
-import { cast } from "@sjsf/form/lib/component";
-import type { SchemaArrayValue } from "@sjsf/form/core";
 import type {
-  ComponentDefinition,
   ComponentProps,
   ComponentType,
   FieldCommonProps,
-  SchemaValue,
   Theme as SJSFTheme,
   UiOptions,
   UiSchema,
 } from "@sjsf/form";
-import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
-import "@sjsf/form/fields/extra-fields/boolean-select-include";
-import "@sjsf/form/fields/extra-fields/enum-include";
-import "@sjsf/form/fields/extra-fields/file-include";
-import "@sjsf/form/fields/extra-fields/multi-enum-include";
-import "@sjsf/form/fields/extra-fields/unknown-native-file-include";
-import "@sjsf/form/fields/extra-fields/array-native-files-include";
-import "@sjsf/form/fields/extra-fields/array-files-include";
-import "@sjsf/form/fields/extra-fields/array-tags-include";
+import "@sjsf/form/fields/extra/boolean-select-include";
+import "@sjsf/form/fields/extra/enum-include";
+import "@sjsf/form/fields/extra/file-include";
+import "@sjsf/form/fields/extra/multi-enum-include";
+import "@sjsf/form/fields/extra/unknown-native-file-include";
+import "@sjsf/form/fields/extra/array-native-files-include";
+import "@sjsf/form/fields/extra/array-files-include";
+import "@sjsf/form/fields/extra/array-tags-include";
 
 import { theme as basic } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/checkboxes-include";

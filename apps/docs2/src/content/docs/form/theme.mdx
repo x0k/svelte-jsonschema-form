@@ -85,7 +85,7 @@ fields, as well as a set of definitions for extra widgets.
 
 ### Fields
 
-Here is a list of extra fields that can be imported from `@sjsf/form/fields/extra-fields/*`.
+Here is a list of extra fields that can be imported from `@sjsf/form/fields/extra/*`.
 
 - `aggregated`
 - `array-files`
@@ -104,13 +104,13 @@ Here is a list of extra fields that can be imported from `@sjsf/form/fields/extr
 To use them you can import them directly
 
 ```ts
-import EnumField from "@sjsf/form/fields/extra-fields/enum";
+import EnumField from "@sjsf/form/fields/extra/enum";
 ```
 
 or use an `include` import
 
 ```ts
-import "@sjsf/form/fields/extra-fields/enum-include";
+import "@sjsf/form/fields/extra/enum-include";
 ```
 
 and replace the compatible field with it in `uiSchema`.
