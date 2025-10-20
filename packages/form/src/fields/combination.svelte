@@ -64,8 +64,8 @@
     const restType = getSimpleSchemaType(restSchema);
     return {
       ...config,
-      schema: restType === "unknown" ? {} : restSchema,
-    };
+      schema: restType === "unknown" ? { type: "object" } : restSchema,
+    } satisfies Config;
   });
   const RestSchemaField = $derived(
     restFieldConfig && getFieldComponent(ctx, restFieldConfig)
