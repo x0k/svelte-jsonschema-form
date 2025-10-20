@@ -12,6 +12,9 @@ export default defineConfig({
     projects: [
       {
         extends: "./vite.config.ts",
+        optimizeDeps: {
+          exclude: ["theme-testing/demo"],
+        },
         test: {
           name: "client",
           environment: "browser",
