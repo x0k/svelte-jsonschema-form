@@ -36,6 +36,8 @@
       case "array-item":
       case "array-item-controls":
         return "display: flex; gap: 0.2rem; align-items: start;";
+      case 'multi-field-controls':
+        return "display: flex; gap: 0.5rem; align-items: center;";
       case "array-item-content":
         return "flex-grow: 1;";
       case "field-content":

@@ -24,6 +24,7 @@
 			type === 'array-field-title-row' ||
 			type === 'object-field-title-row'
 	);
+	const isMultiFieldControls = $derived(type === 'multi-field-controls');
 
 	const isObjectProperty = $derived(type === 'object-property');
 
@@ -32,9 +33,10 @@
 
 <div
 	class={{
-		flex: isItemOrControls || isField || isColumn|| isTitleRow,
-		'items-center justify-between': isTitleRow,
-		'gap-2': isItemOrControls || isField,
+		flex: isItemOrControls || isField || isColumn || isTitleRow || isMultiFieldControls,
+		'items-center': isTitleRow || isMultiFieldControls,
+		'justify-between': isTitleRow,
+		'gap-2': isItemOrControls || isField || isMultiFieldControls,
 		'gap-4': isColumn,
 		'items-start': isItemOrControls,
 		grow: isGrowable,

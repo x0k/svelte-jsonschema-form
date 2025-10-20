@@ -34,6 +34,7 @@
 			type === 'array-field-title-row' ||
 			type === 'object-field-title-row'
 	);
+	const isMultiFieldControls = $derived(type === 'multi-field-controls')
 
 	const ctx = getFormContext();
 </script>
@@ -43,9 +44,10 @@
 {:else}
 	<div
 		class={{
-			flex: isItem || isField || isColumn || isTitleRow,
-			'items-center justify-between': isTitleRow,
-			'gap-2': isItem || isField,
+			flex: isItem || isField || isColumn || isTitleRow || isMultiFieldControls,
+			'items-center': isTitleRow || isMultiFieldControls,
+			'justify-between': isTitleRow,
+			'gap-2': isItem || isField || isMultiFieldControls,
 			'gap-4': isColumn,
 			'items-start': isItem,
 			grow: isGrowable,
