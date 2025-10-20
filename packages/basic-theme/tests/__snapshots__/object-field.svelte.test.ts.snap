@@ -65,16 +65,29 @@ exports[`object fields > additionalProperties 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.foo::key-input"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                foo Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root.foo::key-input"
+                  style="font-weight: bold;"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -154,13 +167,26 @@ exports[`object fields > additionalProperties 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.foo"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                foo 
                 <!---->
-              </label>
+                <label
+                  for="root.foo"
+                  style="font-weight: bold;"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -323,16 +349,29 @@ exports[`object fields > additionalProperties with error 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.foo::key-input"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                foo Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root.foo::key-input"
+                  style="font-weight: bold;"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -424,13 +463,26 @@ exports[`object fields > additionalProperties with error 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.foo"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                foo 
                 <!---->
-              </label>
+                <label
+                  for="root.foo"
+                  style="font-weight: bold;"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -595,13 +647,26 @@ exports[`object fields > has errors 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.name"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                name 
                 <!---->
-              </label>
+                <label
+                  for="root.name"
+                  style="font-weight: bold;"
+                >
+                  name 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -760,13 +825,26 @@ exports[`object fields > object 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.a"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                A 
                 <!---->
-              </label>
+                <label
+                  for="root.a"
+                  style="font-weight: bold;"
+                >
+                  A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -864,13 +942,26 @@ exports[`object fields > object 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.b"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                B 
                 <!---->
-              </label>
+                <label
+                  for="root.b"
+                  style="font-weight: bold;"
+                >
+                  B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -979,12 +1070,25 @@ exports[`object fields > one of defaults > default preset 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="object-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        Options
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          Options
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -1104,7 +1208,9 @@ exports[`object fields > one of defaults > default preset 1`] = `
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="svelte-n43jss"
+              >
                 <input
                   aria-describedby="root.transform::description root.transform::help root.transform::errors"
                   aria-invalid="false"
@@ -1244,7 +1350,9 @@ exports[`object fields > one of defaults > default preset 1`] = `
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="svelte-n43jss"
+              >
                 <input
                   aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
                   aria-invalid="false"
@@ -1345,7 +1453,9 @@ exports[`object fields > one of defaults > default preset 1`] = `
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="svelte-n43jss"
+              >
                 <input
                   aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
                   aria-invalid="false"
@@ -1432,12 +1542,25 @@ exports[`object fields > one of defaults > manual preset 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="object-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        Options
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          Options
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -1557,7 +1680,9 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="svelte-n43jss"
+              >
                 <input
                   aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
                   aria-invalid="false"
@@ -1658,7 +1783,9 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="svelte-n43jss"
+              >
                 <input
                   aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
                   aria-invalid="false"
@@ -1759,7 +1886,9 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="svelte-n43jss"
+              >
                 <input
                   aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
                   aria-invalid="false"
@@ -1860,7 +1989,9 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="svelte-n43jss"
+              >
                 <input
                   aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
                   aria-invalid="false"
@@ -1937,16 +2068,29 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.proportionalSizeAdjustmentThreshold"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                Proportional size adjustment threshold 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root.proportionalSizeAdjustmentThreshold"
+                  style="font-weight: bold;"
+                >
+                  Proportional size adjustment threshold 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -2055,13 +2199,26 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.cornerCellValue"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                Corner cell value 
                 <!---->
-              </label>
+                <label
+                  for="root.cornerCellValue"
+                  style="font-weight: bold;"
+                >
+                  Corner cell value 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -2191,7 +2348,9 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="svelte-n43jss"
+              >
                 <input
                   aria-describedby="root.transform::description root.transform::help root.transform::errors"
                   aria-invalid="false"
@@ -2331,7 +2490,9 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="svelte-n43jss"
+              >
                 <input
                   aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
                   aria-invalid="false"
@@ -2432,7 +2593,9 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="svelte-n43jss"
+              >
                 <input
                   aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
                   aria-invalid="false"
@@ -2556,16 +2719,29 @@ exports[`object fields > show add button and fields if additionalProperties is t
             >
               <!---->
               <!---->
-              <label
-                for="root.additionalProperty::key-input"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                additionalProperty Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root.additionalProperty::key-input"
+                  style="font-weight: bold;"
+                >
+                  additionalProperty Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -2645,13 +2821,26 @@ exports[`object fields > show add button and fields if additionalProperties is t
             >
               <!---->
               <!---->
-              <label
-                for="root.additionalProperty"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                additionalProperty 
                 <!---->
-              </label>
+                <label
+                  for="root.additionalProperty"
+                  style="font-weight: bold;"
+                >
+                  additionalProperty 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -2777,12 +2966,25 @@ exports[`object fields > with title and description > additionalProperties 1`] =
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="object-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -2845,16 +3047,29 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             >
               <!---->
               <!---->
-              <label
-                for="root.foo::key-input"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                foo Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root.foo::key-input"
+                  style="font-weight: bold;"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -2934,13 +3149,26 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             >
               <!---->
               <!---->
-              <label
-                for="root.foo"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                foo 
                 <!---->
-              </label>
+                <label
+                  for="root.foo"
+                  style="font-weight: bold;"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -3066,12 +3294,25 @@ exports[`object fields > with title and description > object 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="object-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -3136,13 +3377,26 @@ exports[`object fields > with title and description > object 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.a"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                A 
                 <!---->
-              </label>
+                <label
+                  for="root.a"
+                  style="font-weight: bold;"
+                >
+                  A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -3248,13 +3502,26 @@ exports[`object fields > with title and description > object 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.b"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                B 
                 <!---->
-              </label>
+                <label
+                  for="root.b"
+                  style="font-weight: bold;"
+                >
+                  B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -3371,12 +3638,25 @@ exports[`object fields > with title and description > show add button and fields
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="object-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -3439,16 +3719,29 @@ exports[`object fields > with title and description > show add button and fields
             >
               <!---->
               <!---->
-              <label
-                for="root.additionalProperty::key-input"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                additionalProperty Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root.additionalProperty::key-input"
+                  style="font-weight: bold;"
+                >
+                  additionalProperty Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -3528,13 +3821,26 @@ exports[`object fields > with title and description > show add button and fields
             >
               <!---->
               <!---->
-              <label
-                for="root.additionalProperty"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                additionalProperty 
                 <!---->
-              </label>
+                <label
+                  for="root.additionalProperty"
+                  style="font-weight: bold;"
+                >
+                  additionalProperty 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -3660,12 +3966,25 @@ exports[`object fields > with title and description from both > additionalProper
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="object-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -3728,16 +4047,29 @@ exports[`object fields > with title and description from both > additionalProper
             >
               <!---->
               <!---->
-              <label
-                for="root.foo::key-input"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                foo Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root.foo::key-input"
+                  style="font-weight: bold;"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -3817,13 +4149,26 @@ exports[`object fields > with title and description from both > additionalProper
             >
               <!---->
               <!---->
-              <label
-                for="root.foo"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                foo 
                 <!---->
-              </label>
+                <label
+                  for="root.foo"
+                  style="font-weight: bold;"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -3949,12 +4294,25 @@ exports[`object fields > with title and description from both > object 1`] = `
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="object-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -4019,13 +4377,26 @@ exports[`object fields > with title and description from both > object 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.a"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item A 
                 <!---->
-              </label>
+                <label
+                  for="root.a"
+                  style="font-weight: bold;"
+                >
+                  My Item A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -4131,13 +4502,26 @@ exports[`object fields > with title and description from both > object 1`] = `
             >
               <!---->
               <!---->
-              <label
-                for="root.b"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item B 
                 <!---->
-              </label>
+                <label
+                  for="root.b"
+                  style="font-weight: bold;"
+                >
+                  My Item B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -4254,12 +4638,25 @@ exports[`object fields > with title and description from uiSchema > additionalPr
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="object-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -4322,16 +4719,29 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             >
               <!---->
               <!---->
-              <label
-                for="root.foo::key-input"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                foo Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root.foo::key-input"
+                  style="font-weight: bold;"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -4411,13 +4821,26 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             >
               <!---->
               <!---->
-              <label
-                for="root.foo"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                foo 
                 <!---->
-              </label>
+                <label
+                  for="root.foo"
+                  style="font-weight: bold;"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -4543,12 +4966,25 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="object-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -4613,13 +5049,26 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             >
               <!---->
               <!---->
-              <label
-                for="root.a"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item A 
                 <!---->
-              </label>
+                <label
+                  for="root.a"
+                  style="font-weight: bold;"
+                >
+                  My Item A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -4725,13 +5174,26 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             >
               <!---->
               <!---->
-              <label
-                for="root.b"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                My Item B 
                 <!---->
-              </label>
+                <label
+                  for="root.b"
+                  style="font-weight: bold;"
+                >
+                  My Item B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -4848,12 +5310,25 @@ exports[`object fields > with title and description from uiSchema > show add but
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <!---->
+      <div
+        class="svelte-w3x0gi"
+        data-layout="object-field-title-row"
+        style="display: flex; justify-content: space-between; align-items: center;"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          id="root::title"
+          style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: larger;"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
       
       <!---->
        
@@ -4916,16 +5391,29 @@ exports[`object fields > with title and description from uiSchema > show add but
             >
               <!---->
               <!---->
-              <label
-                for="root.additionalProperty::key-input"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                additionalProperty Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  for="root.additionalProperty::key-input"
+                  style="font-weight: bold;"
+                >
+                  additionalProperty Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                
@@ -5005,13 +5493,26 @@ exports[`object fields > with title and description from uiSchema > show add but
             >
               <!---->
               <!---->
-              <label
-                for="root.additionalProperty"
-                style="font-weight: bold;"
+              <!---->
+              <div
+                class="svelte-w3x0gi"
+                data-layout="field-title-row"
+                style="display: flex; justify-content: space-between; align-items: center;"
               >
-                additionalProperty 
                 <!---->
-              </label>
+                <label
+                  for="root.additionalProperty"
+                  style="font-weight: bold;"
+                >
+                  additionalProperty 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
               
               <!---->
                

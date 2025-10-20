@@ -57,16 +57,26 @@ exports[`object fields > additionalProperties 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.foo::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.foo::key-input"
+                  >
+                    foo Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -133,13 +143,23 @@ exports[`object fields > additionalProperties 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.foo"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.foo"
+                  >
+                    foo 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -304,16 +324,26 @@ exports[`object fields > additionalProperties with error 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.foo::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.foo::key-input"
+                  >
+                    foo Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -392,13 +422,23 @@ exports[`object fields > additionalProperties with error 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.foo"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.foo"
+                  >
+                    foo 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -565,13 +605,23 @@ exports[`object fields > has errors 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.name"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  name 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.name"
+                  >
+                    name 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -730,13 +780,23 @@ exports[`object fields > object 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.a"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  A 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.a"
+                  >
+                    A 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -818,13 +878,23 @@ exports[`object fields > object 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.b"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  B 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.b"
+                  >
+                    B 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -942,10 +1012,20 @@ exports[`object fields > one of defaults > default preset 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          Options
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            Options
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -1365,10 +1445,20 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          Options
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            Options
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -1811,16 +1901,26 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.proportionalSizeAdjustmentThreshold"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Proportional size adjustment threshold 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.proportionalSizeAdjustmentThreshold"
+                  >
+                    Proportional size adjustment threshold 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -1913,13 +2013,23 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.cornerCellValue"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Corner cell value 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.cornerCellValue"
+                  >
+                    Corner cell value 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -2378,16 +2488,26 @@ exports[`object fields > show add button and fields if additionalProperties is t
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.additionalProperty::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.additionalProperty::key-input"
+                  >
+                    additionalProperty Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -2454,13 +2574,23 @@ exports[`object fields > show add button and fields if additionalProperties is t
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.additionalProperty"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.additionalProperty"
+                  >
+                    additionalProperty 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -2597,10 +2727,20 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -2652,16 +2792,26 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.foo::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.foo::key-input"
+                  >
+                    foo Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -2728,13 +2878,23 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.foo"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.foo"
+                  >
+                    foo 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -2871,10 +3031,20 @@ exports[`object fields > with title and description > object 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -2928,13 +3098,23 @@ exports[`object fields > with title and description > object 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.a"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  A 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.a"
+                  >
+                    A 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -3024,13 +3204,23 @@ exports[`object fields > with title and description > object 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.b"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  B 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.b"
+                  >
+                    B 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -3156,10 +3346,20 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -3211,16 +3411,26 @@ exports[`object fields > with title and description > show add button and fields
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.additionalProperty::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.additionalProperty::key-input"
+                  >
+                    additionalProperty Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -3287,13 +3497,23 @@ exports[`object fields > with title and description > show add button and fields
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.additionalProperty"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.additionalProperty"
+                  >
+                    additionalProperty 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -3430,10 +3650,20 @@ exports[`object fields > with title and description from both > additionalProper
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -3485,16 +3715,26 @@ exports[`object fields > with title and description from both > additionalProper
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.foo::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.foo::key-input"
+                  >
+                    foo Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -3561,13 +3801,23 @@ exports[`object fields > with title and description from both > additionalProper
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.foo"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.foo"
+                  >
+                    foo 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -3704,10 +3954,20 @@ exports[`object fields > with title and description from both > object 1`] = `
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -3761,13 +4021,23 @@ exports[`object fields > with title and description from both > object 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.a"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item A 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.a"
+                  >
+                    My Item A 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -3857,13 +4127,23 @@ exports[`object fields > with title and description from both > object 1`] = `
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.b"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item B 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.b"
+                  >
+                    My Item B 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -3989,10 +4269,20 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -4044,16 +4334,26 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.foo::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.foo::key-input"
+                  >
+                    foo Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -4120,13 +4420,23 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.foo"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.foo"
+                  >
+                    foo 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -4263,10 +4573,20 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -4320,13 +4640,23 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.a"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item A 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.a"
+                  >
+                    My Item A 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -4416,13 +4746,23 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.b"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item B 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.b"
+                  >
+                    My Item B 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -4548,10 +4888,20 @@ exports[`object fields > with title and description from uiSchema > show add but
         <!---->
         <!---->
         <div
-          class="font-bold text-xl"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="font-bold text-xl"
+            id="root::title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
         
         <!---->
@@ -4603,16 +4953,26 @@ exports[`object fields > with title and description from uiSchema > show add but
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.additionalProperty::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.additionalProperty::key-input"
+                  >
+                    additionalProperty Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  
@@ -4679,13 +5039,23 @@ exports[`object fields > with title and description from uiSchema > show add but
               >
                 <!---->
                 <!---->
-                <label
-                  class="label-text"
-                  for="root.additionalProperty"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty 
                   <!---->
-                </label>
+                  <label
+                    class="label-text"
+                    for="root.additionalProperty"
+                  >
+                    additionalProperty 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 <!---->
                  

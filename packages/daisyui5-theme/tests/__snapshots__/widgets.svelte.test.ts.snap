@@ -337,6 +337,7 @@ exports[`widgets > checkbox > snapshots > disabled 1`] = `
           disabled=""
           id="root"
           name="root"
+          required=""
           type="checkbox"
         />
          
@@ -418,6 +419,7 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
           class="checkbox checkbox-error"
           id="root"
           name="root"
+          required=""
           type="checkbox"
         />
          
@@ -510,6 +512,7 @@ exports[`widgets > checkbox > snapshots > normal 1`] = `
           class="checkbox"
           id="root"
           name="root"
+          required=""
           type="checkbox"
         />
          
@@ -591,6 +594,7 @@ exports[`widgets > checkbox > snapshots > readonly 1`] = `
           id="root"
           name="root"
           readonly=""
+          required=""
           type="checkbox"
         />
          
@@ -673,6 +677,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           disabled=""
           id="root::0"
           name="root"
+          required=""
           type="checkbox"
           value="0"
         />
@@ -688,6 +693,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           disabled=""
           id="root::1"
           name="root"
+          required=""
           type="checkbox"
           value="1"
         />
@@ -703,6 +709,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           disabled=""
           id="root::2"
           name="root"
+          required=""
           type="checkbox"
           value="2"
         />
@@ -718,6 +725,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           disabled=""
           id="root::3"
           name="root"
+          required=""
           type="checkbox"
           value="3"
         />
@@ -802,6 +810,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           class="checkbox checkbox-error"
           id="root::0"
           name="root"
+          required=""
           type="checkbox"
           value="0"
         />
@@ -816,6 +825,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           class="checkbox checkbox-error"
           id="root::1"
           name="root"
+          required=""
           type="checkbox"
           value="1"
         />
@@ -830,6 +840,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           class="checkbox checkbox-error"
           id="root::2"
           name="root"
+          required=""
           type="checkbox"
           value="2"
         />
@@ -844,6 +855,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           class="checkbox checkbox-error"
           id="root::3"
           name="root"
+          required=""
           type="checkbox"
           value="3"
         />
@@ -939,6 +951,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           class="checkbox"
           id="root::0"
           name="root"
+          required=""
           type="checkbox"
           value="0"
         />
@@ -953,6 +966,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           class="checkbox"
           id="root::1"
           name="root"
+          required=""
           type="checkbox"
           value="1"
         />
@@ -967,6 +981,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           class="checkbox"
           id="root::2"
           name="root"
+          required=""
           type="checkbox"
           value="2"
         />
@@ -981,6 +996,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           class="checkbox"
           id="root::3"
           name="root"
+          required=""
           type="checkbox"
           value="3"
         />
@@ -1065,6 +1081,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           id="root::0"
           name="root"
           readonly=""
+          required=""
           type="checkbox"
           value="0"
         />
@@ -1080,6 +1097,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           id="root::1"
           name="root"
           readonly=""
+          required=""
           type="checkbox"
           value="1"
         />
@@ -1095,6 +1113,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           id="root::2"
           name="root"
           readonly=""
+          required=""
           type="checkbox"
           value="2"
         />
@@ -1110,6 +1129,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           id="root::3"
           name="root"
           readonly=""
+          required=""
           type="checkbox"
           value="3"
         />
@@ -1190,6 +1210,7 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
         disabled=""
         id="root"
         name="root"
+        required=""
         type="text"
       />
       
@@ -1266,6 +1287,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
         class="input pika-single w-full input-error"
         id="root"
         name="root"
+        required=""
         type="text"
       />
       
@@ -1353,6 +1375,7 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
         class="input pika-single w-full"
         id="root"
         name="root"
+        required=""
         type="text"
       />
       
@@ -1429,6 +1452,7 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
         id="root"
         name="root"
         readonly=""
+        required=""
         type="text"
       />
       
@@ -1507,6 +1531,7 @@ exports[`widgets > file > snapshots > disabled 1`] = `
         disabled=""
         id="root"
         name="root"
+        required=""
         type="file"
       />
       
@@ -1585,6 +1610,7 @@ exports[`widgets > file > snapshots > error 1`] = `
         data-processing="false"
         id="root"
         name="root"
+        required=""
         type="file"
       />
       
@@ -1674,6 +1700,7 @@ exports[`widgets > file > snapshots > normal 1`] = `
         data-processing="false"
         id="root"
         name="root"
+        required=""
         type="file"
       />
       
@@ -1752,6 +1779,7 @@ exports[`widgets > file > snapshots > readonly 1`] = `
         id="root"
         name="root"
         readonly=""
+        required=""
         type="file"
       />
       
@@ -1832,6 +1860,7 @@ exports[`widgets > filterRadioButtons > snapshots > disabled 1`] = `
           disabled=""
           id="root"
           name="root"
+          required=""
           type="radio"
         />
          
@@ -1843,6 +1872,7 @@ exports[`widgets > filterRadioButtons > snapshots > disabled 1`] = `
           disabled=""
           id="root::0"
           name="root"
+          required=""
           type="radio"
           value="0"
         />
@@ -1854,6 +1884,7 @@ exports[`widgets > filterRadioButtons > snapshots > disabled 1`] = `
           disabled=""
           id="root::1"
           name="root"
+          required=""
           type="radio"
           value="1"
         />
@@ -1865,6 +1896,7 @@ exports[`widgets > filterRadioButtons > snapshots > disabled 1`] = `
           disabled=""
           id="root::2"
           name="root"
+          required=""
           type="radio"
           value="2"
         />
@@ -1876,6 +1908,7 @@ exports[`widgets > filterRadioButtons > snapshots > disabled 1`] = `
           disabled=""
           id="root::3"
           name="root"
+          required=""
           type="radio"
           value="3"
         />
@@ -1959,6 +1992,7 @@ exports[`widgets > filterRadioButtons > snapshots > error 1`] = `
           class="btn filter-reset"
           id="root"
           name="root"
+          required=""
           type="radio"
         />
          
@@ -1969,6 +2003,7 @@ exports[`widgets > filterRadioButtons > snapshots > error 1`] = `
           class="btn btn-error"
           id="root::0"
           name="root"
+          required=""
           type="radio"
           value="0"
         />
@@ -1979,6 +2014,7 @@ exports[`widgets > filterRadioButtons > snapshots > error 1`] = `
           class="btn btn-error"
           id="root::1"
           name="root"
+          required=""
           type="radio"
           value="1"
         />
@@ -1989,6 +2025,7 @@ exports[`widgets > filterRadioButtons > snapshots > error 1`] = `
           class="btn btn-error"
           id="root::2"
           name="root"
+          required=""
           type="radio"
           value="2"
         />
@@ -1999,6 +2036,7 @@ exports[`widgets > filterRadioButtons > snapshots > error 1`] = `
           class="btn btn-error"
           id="root::3"
           name="root"
+          required=""
           type="radio"
           value="3"
         />
@@ -2093,6 +2131,7 @@ exports[`widgets > filterRadioButtons > snapshots > normal 1`] = `
           class="btn filter-reset"
           id="root"
           name="root"
+          required=""
           type="radio"
         />
          
@@ -2103,6 +2142,7 @@ exports[`widgets > filterRadioButtons > snapshots > normal 1`] = `
           class="btn"
           id="root::0"
           name="root"
+          required=""
           type="radio"
           value="0"
         />
@@ -2113,6 +2153,7 @@ exports[`widgets > filterRadioButtons > snapshots > normal 1`] = `
           class="btn"
           id="root::1"
           name="root"
+          required=""
           type="radio"
           value="1"
         />
@@ -2123,6 +2164,7 @@ exports[`widgets > filterRadioButtons > snapshots > normal 1`] = `
           class="btn"
           id="root::2"
           name="root"
+          required=""
           type="radio"
           value="2"
         />
@@ -2133,6 +2175,7 @@ exports[`widgets > filterRadioButtons > snapshots > normal 1`] = `
           class="btn"
           id="root::3"
           name="root"
+          required=""
           type="radio"
           value="3"
         />
@@ -2216,6 +2259,7 @@ exports[`widgets > filterRadioButtons > snapshots > readonly 1`] = `
           id="root"
           name="root"
           readonly=""
+          required=""
           type="radio"
         />
          
@@ -2227,6 +2271,7 @@ exports[`widgets > filterRadioButtons > snapshots > readonly 1`] = `
           id="root::0"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="0"
         />
@@ -2238,6 +2283,7 @@ exports[`widgets > filterRadioButtons > snapshots > readonly 1`] = `
           id="root::1"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="1"
         />
@@ -2249,6 +2295,7 @@ exports[`widgets > filterRadioButtons > snapshots > readonly 1`] = `
           id="root::2"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="2"
         />
@@ -2260,6 +2307,7 @@ exports[`widgets > filterRadioButtons > snapshots > readonly 1`] = `
           id="root::3"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="3"
         />
@@ -2342,6 +2390,7 @@ exports[`widgets > multiFile > snapshots > disabled 1`] = `
         id="root"
         multiple=""
         name="root"
+        required=""
         type="file"
       />
       
@@ -2421,6 +2470,7 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
         id="root"
         multiple=""
         name="root"
+        required=""
         type="file"
       />
       
@@ -2511,6 +2561,7 @@ exports[`widgets > multiFile > snapshots > normal 1`] = `
         id="root"
         multiple=""
         name="root"
+        required=""
         type="file"
       />
       
@@ -2590,6 +2641,7 @@ exports[`widgets > multiFile > snapshots > readonly 1`] = `
         multiple=""
         name="root"
         readonly=""
+        required=""
         type="file"
       />
       
@@ -2667,6 +2719,7 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
         id="root"
         multiple=""
         name="root"
+        required=""
       >
         <option
           value="0"
@@ -2765,6 +2818,7 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
         id="root"
         multiple=""
         name="root"
+        required=""
       >
         <option
           value="0"
@@ -2874,6 +2928,7 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
         id="root"
         multiple=""
         name="root"
+        required=""
       >
         <option
           value="0"
@@ -2971,6 +3026,7 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
         id="root"
         multiple=""
         name="root"
+        required=""
       >
         <option
           value="0"
@@ -3068,6 +3124,7 @@ exports[`widgets > number > snapshots > disabled 1`] = `
         disabled=""
         id="root"
         name="root"
+        required=""
         step="any"
         type="number"
       />
@@ -3149,6 +3206,7 @@ exports[`widgets > number > snapshots > error 1`] = `
         class="w-full input input-bordered input-error"
         id="root"
         name="root"
+        required=""
         step="any"
         type="number"
       />
@@ -3241,6 +3299,7 @@ exports[`widgets > number > snapshots > normal 1`] = `
         class="w-full input input-bordered"
         id="root"
         name="root"
+        required=""
         step="any"
         type="number"
       />
@@ -3322,6 +3381,7 @@ exports[`widgets > number > snapshots > readonly 1`] = `
         id="root"
         name="root"
         readonly=""
+        required=""
         step="any"
         type="number"
       />
@@ -3407,6 +3467,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
           disabled=""
           id="root::0"
           name="root"
+          required=""
           type="radio"
           value="0"
         />
@@ -3422,6 +3483,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
           disabled=""
           id="root::1"
           name="root"
+          required=""
           type="radio"
           value="1"
         />
@@ -3437,6 +3499,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
           disabled=""
           id="root::2"
           name="root"
+          required=""
           type="radio"
           value="2"
         />
@@ -3452,6 +3515,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
           disabled=""
           id="root::3"
           name="root"
+          required=""
           type="radio"
           value="3"
         />
@@ -3536,6 +3600,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
           class="radio radio-error"
           id="root::0"
           name="root"
+          required=""
           type="radio"
           value="0"
         />
@@ -3550,6 +3615,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
           class="radio radio-error"
           id="root::1"
           name="root"
+          required=""
           type="radio"
           value="1"
         />
@@ -3564,6 +3630,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
           class="radio radio-error"
           id="root::2"
           name="root"
+          required=""
           type="radio"
           value="2"
         />
@@ -3578,6 +3645,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
           class="radio radio-error"
           id="root::3"
           name="root"
+          required=""
           type="radio"
           value="3"
         />
@@ -3673,6 +3741,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
           class="radio"
           id="root::0"
           name="root"
+          required=""
           type="radio"
           value="0"
         />
@@ -3687,6 +3756,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
           class="radio"
           id="root::1"
           name="root"
+          required=""
           type="radio"
           value="1"
         />
@@ -3701,6 +3771,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
           class="radio"
           id="root::2"
           name="root"
+          required=""
           type="radio"
           value="2"
         />
@@ -3715,6 +3786,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
           class="radio"
           id="root::3"
           name="root"
+          required=""
           type="radio"
           value="3"
         />
@@ -3799,6 +3871,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
           id="root::0"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="0"
         />
@@ -3814,6 +3887,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
           id="root::1"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="1"
         />
@@ -3829,6 +3903,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
           id="root::2"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="2"
         />
@@ -3844,6 +3919,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
           id="root::3"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="3"
         />
@@ -3928,6 +4004,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           disabled=""
           id="root::0"
           name="root"
+          required=""
           type="radio"
           value="0"
         />
@@ -3939,6 +4016,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           disabled=""
           id="root::1"
           name="root"
+          required=""
           type="radio"
           value="1"
         />
@@ -3950,6 +4028,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           disabled=""
           id="root::2"
           name="root"
+          required=""
           type="radio"
           value="2"
         />
@@ -3961,6 +4040,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           disabled=""
           id="root::3"
           name="root"
+          required=""
           type="radio"
           value="3"
         />
@@ -4044,6 +4124,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           class="join-item btn btn-error"
           id="root::0"
           name="root"
+          required=""
           type="radio"
           value="0"
         />
@@ -4054,6 +4135,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           class="join-item btn btn-error"
           id="root::1"
           name="root"
+          required=""
           type="radio"
           value="1"
         />
@@ -4064,6 +4146,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           class="join-item btn btn-error"
           id="root::2"
           name="root"
+          required=""
           type="radio"
           value="2"
         />
@@ -4074,6 +4157,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           class="join-item btn btn-error"
           id="root::3"
           name="root"
+          required=""
           type="radio"
           value="3"
         />
@@ -4168,6 +4252,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           class="join-item btn"
           id="root::0"
           name="root"
+          required=""
           type="radio"
           value="0"
         />
@@ -4178,6 +4263,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           class="join-item btn"
           id="root::1"
           name="root"
+          required=""
           type="radio"
           value="1"
         />
@@ -4188,6 +4274,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           class="join-item btn"
           id="root::2"
           name="root"
+          required=""
           type="radio"
           value="2"
         />
@@ -4198,6 +4285,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           class="join-item btn"
           id="root::3"
           name="root"
+          required=""
           type="radio"
           value="3"
         />
@@ -4281,6 +4369,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           id="root::0"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="0"
         />
@@ -4292,6 +4381,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           id="root::1"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="1"
         />
@@ -4303,6 +4393,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           id="root::2"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="2"
         />
@@ -4314,6 +4405,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           id="root::3"
           name="root"
           readonly=""
+          required=""
           type="radio"
           value="3"
         />
@@ -4393,6 +4485,7 @@ exports[`widgets > range > snapshots > disabled 1`] = `
         disabled=""
         id="root"
         name="root"
+        required=""
         step="any"
         type="range"
       />
@@ -4470,6 +4563,7 @@ exports[`widgets > range > snapshots > error 1`] = `
         class="w-full range range-error"
         id="root"
         name="root"
+        required=""
         step="any"
         type="range"
       />
@@ -4558,6 +4652,7 @@ exports[`widgets > range > snapshots > normal 1`] = `
         class="w-full range"
         id="root"
         name="root"
+        required=""
         step="any"
         type="range"
       />
@@ -4635,6 +4730,7 @@ exports[`widgets > range > snapshots > readonly 1`] = `
         id="root"
         name="root"
         readonly=""
+        required=""
         step="any"
         type="range"
       />
@@ -4715,6 +4811,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
           disabled=""
           id="root::0"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="1"
@@ -4726,6 +4823,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
           disabled=""
           id="root::1"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="2"
@@ -4737,6 +4835,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
           disabled=""
           id="root::2"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="3"
@@ -4748,6 +4847,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
           disabled=""
           id="root::3"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="4"
@@ -4759,6 +4859,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
           disabled=""
           id="root::4"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="5"
@@ -4842,6 +4943,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
           class="mask mask-star"
           id="root::0"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="1"
@@ -4852,6 +4954,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
           class="mask mask-star"
           id="root::1"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="2"
@@ -4862,6 +4965,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
           class="mask mask-star"
           id="root::2"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="3"
@@ -4872,6 +4976,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
           class="mask mask-star"
           id="root::3"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="4"
@@ -4882,6 +4987,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
           class="mask mask-star"
           id="root::4"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="5"
@@ -4976,6 +5082,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
           class="mask mask-star"
           id="root::0"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="1"
@@ -4986,6 +5093,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
           class="mask mask-star"
           id="root::1"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="2"
@@ -4996,6 +5104,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
           class="mask mask-star"
           id="root::2"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="3"
@@ -5006,6 +5115,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
           class="mask mask-star"
           id="root::3"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="4"
@@ -5016,6 +5126,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
           class="mask mask-star"
           id="root::4"
           name="root"
+          required=""
           step="any"
           type="radio"
           value="5"
@@ -5099,6 +5210,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
           id="root::0"
           name="root"
           readonly=""
+          required=""
           step="any"
           type="radio"
           value="1"
@@ -5110,6 +5222,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
           id="root::1"
           name="root"
           readonly=""
+          required=""
           step="any"
           type="radio"
           value="2"
@@ -5121,6 +5234,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
           id="root::2"
           name="root"
           readonly=""
+          required=""
           step="any"
           type="radio"
           value="3"
@@ -5132,6 +5246,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
           id="root::3"
           name="root"
           readonly=""
+          required=""
           step="any"
           type="radio"
           value="4"
@@ -5143,6 +5258,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
           id="root::4"
           name="root"
           readonly=""
+          required=""
           step="any"
           type="radio"
           value="5"
@@ -5223,6 +5339,7 @@ exports[`widgets > select > snapshots > disabled 1`] = `
         disabled=""
         id="root"
         name="root"
+        required=""
       >
         <option
           value="-1"
@@ -5326,6 +5443,7 @@ exports[`widgets > select > snapshots > error 1`] = `
         class="select select-bordered w-full select-error"
         id="root"
         name="root"
+        required=""
       >
         <option
           value="-1"
@@ -5440,6 +5558,7 @@ exports[`widgets > select > snapshots > normal 1`] = `
         class="select select-bordered w-full"
         id="root"
         name="root"
+        required=""
       >
         <option
           value="-1"
@@ -5542,6 +5661,7 @@ exports[`widgets > select > snapshots > readonly 1`] = `
         class="select select-bordered w-full"
         id="root"
         name="root"
+        required=""
       >
         <option
           value="-1"
@@ -5648,6 +5768,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           disabled=""
           id="root"
           name="root"
+          required=""
           type="checkbox"
         />
          
@@ -5729,6 +5850,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
           class="toggle toggle-error"
           id="root"
           name="root"
+          required=""
           type="checkbox"
         />
          
@@ -5821,6 +5943,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           class="toggle"
           id="root"
           name="root"
+          required=""
           type="checkbox"
         />
          
@@ -5902,6 +6025,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           id="root"
           name="root"
           readonly=""
+          required=""
           type="checkbox"
         />
          
@@ -5980,6 +6104,7 @@ exports[`widgets > text > snapshots > disabled 1`] = `
         disabled=""
         id="root"
         name="root"
+        required=""
         type="text"
       />
        
@@ -6060,6 +6185,7 @@ exports[`widgets > text > snapshots > error 1`] = `
         class="input input-bordered w-full input-error"
         id="root"
         name="root"
+        required=""
         type="text"
       />
        
@@ -6151,6 +6277,7 @@ exports[`widgets > text > snapshots > normal 1`] = `
         class="input input-bordered w-full"
         id="root"
         name="root"
+        required=""
         type="text"
       />
        
@@ -6231,6 +6358,7 @@ exports[`widgets > text > snapshots > readonly 1`] = `
         id="root"
         name="root"
         readonly=""
+        required=""
         type="text"
       />
        
@@ -6311,6 +6439,7 @@ exports[`widgets > textarea > snapshots > disabled 1`] = `
         disabled=""
         id="root"
         name="root"
+        required=""
       />
       
       
@@ -6386,6 +6515,7 @@ exports[`widgets > textarea > snapshots > error 1`] = `
         class="textarea textarea-bordered w-full textarea-error"
         id="root"
         name="root"
+        required=""
       />
       
       
@@ -6472,6 +6602,7 @@ exports[`widgets > textarea > snapshots > normal 1`] = `
         class="textarea textarea-bordered w-full"
         id="root"
         name="root"
+        required=""
       />
       
       
@@ -6547,6 +6678,7 @@ exports[`widgets > textarea > snapshots > readonly 1`] = `
         id="root"
         name="root"
         readonly=""
+        required=""
       />
       
       
