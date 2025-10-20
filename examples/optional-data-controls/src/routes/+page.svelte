@@ -1,9 +1,16 @@
 <script lang="ts">
   import { chain, fromFactories } from "@sjsf/form/lib/resolver";
   import { getSimpleSchemaType } from "@sjsf/form/core";
-  import { createForm, BasicForm, type Schema, type Config } from "@sjsf/form";
+  import {
+    createForm,
+    BasicForm,
+    type Schema,
+    type Config,
+    type ActionField,
+  } from "@sjsf/form";
   import OptionalObjectTemplate from "@sjsf/form/templates/extra/optional-object.svelte";
   import OptionalArrayTemplate from "@sjsf/form/templates/extra/optional-array.svelte";
+  import OptionalMultiFieldTemplate from "@sjsf/form/templates/extra/optional-multi-field.svelte";
   import { clearEdit } from "@sjsf/form/fields/actions/clear-edit.svelte";
 
   import * as defaults from "$lib/form-defaults";
@@ -158,19 +165,35 @@
   const theme = chain(
     fromFactories({
       objectTemplate: (cfg: Config) =>
-        !cfg.required ? OptionalObjectTemplate : undefined,
+        !cfg.required && cfg.schema.properties
+          ? OptionalObjectTemplate
+          : undefined,
       arrayTemplate: (cfg: Config) =>
         !cfg.required ? OptionalArrayTemplate : undefined,
+      multiFieldTemplate: (cfg: Config) =>
+        !cfg.required ? OptionalMultiFieldTemplate : undefined,
     }),
     defaults.theme
   );
 
   const extraUiOptions = fromFactories({
-    action: (cfg: Config) => {
-      if (!cfg.required) {
-        const type = getSimpleSchemaType(cfg.schema);
-        if (type === "array" || type === "object") {
-          return clearEdit;
+    actions: ({ required, schema }: Config) => {
+      if (!required) {
+        let key: ActionField | undefined;
+        if (schema.oneOf) {
+          key = "oneOfField";
+        } else if (schema.anyOf) {
+          key = "anyOfField";
+        } else {
+          const type = getSimpleSchemaType(schema);
+          if (type === "array") {
+            key = "arrayField";
+          } else if (type === "object" && schema.properties) {
+            key = "objectField";
+          }
+        }
+        if (key) {
+          return { [key]: clearEdit };
         }
       }
       return undefined;
