@@ -80,9 +80,36 @@
           type: "number",
         },
       },
-      oneOf: {
+      optionalOneOf: {
         type: "object",
         oneOf: [
+          {
+            title: "Foo",
+            properties: {
+              foo: {
+                type: "string",
+              },
+              foo1: {
+                type: "integer",
+              },
+            },
+          },
+          {
+            title: "Bar",
+            properties: {
+              bar: {
+                type: "number",
+              },
+              bar1: {
+                type: "boolean",
+              },
+            },
+          },
+        ],
+      },
+      optionalAnyOf: {
+        type: "object",
+        anyOf: [
           {
             title: "Foo",
             properties: {
@@ -119,18 +146,14 @@
         objectTemplate: "optionalObjectTemplate",
       },
       "ui:options": {
-        actions: {
-          objectField: clearEdit,
-        },
+        action: clearEdit,
       },
       optionalField: {
         "ui:components": {
           fieldTemplate: "optionalFieldTemplate",
         },
         "ui:options": {
-          actions: {
-            stringField: clearEdit,
-          },
+          action: clearEdit,
         },
       },
     },
@@ -139,15 +162,33 @@
         arrayTemplate: "optionalArrayTemplate",
       },
       "ui:options": {
-        actions: {
-          arrayField: clearEdit,
-        },
+        action: clearEdit,
       },
       items: {
         "ui:options": {
           actions: {
             stringField: displayPrimitiveValue,
           },
+        },
+      },
+    },
+    optionalOneOf: {
+      "ui:components": {
+        multiFieldTemplate: "optionalMultiFieldTemplate",
+      },
+      "ui:options": {
+        actions: {
+          oneOfField: clearEdit,
+        },
+      },
+    },
+    optionalAnyOf: {
+      "ui:components": {
+        multiFieldTemplate: "optionalMultiFieldTemplate",
+      },
+      "ui:options": {
+        actions: {
+          anyOfField: clearEdit,
         },
       },
     },
