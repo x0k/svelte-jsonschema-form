@@ -131,6 +131,10 @@
       "types": "./dist/fields/extra/*.d.ts",
       "svelte": "./dist/fields/extra/*"
     },
+    "./fields/extra-fields/*": {
+      "types": "./dist/fields/extra/*.d.ts",
+      "svelte": "./dist/fields/extra/*"
+    },
     "./fields/extra-templates/*": {
       "types": "./dist/fields/extra-templates/*.d.ts",
       "svelte": "./dist/fields/extra-templates/*"
