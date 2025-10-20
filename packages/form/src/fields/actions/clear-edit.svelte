@@ -5,6 +5,7 @@
   import {
     getComponent,
     getDefaultFieldState,
+    isDisabled,
     retrieveTranslate,
     Text,
     type Config,
@@ -35,12 +36,15 @@
   <Button
     type="clear-edit-action"
     {config}
-    disabled={false}
+    disabled={config.schema.readOnly || isDisabled(ctx)}
     {errors}
     onclick={() => {
       valueRef.current = isNil(valueRef.current)
-        ? (getDefaultFieldState(ctx, config.schema, undefined) ??
-          getDefaultValueForType(getSimpleSchemaType(config.schema)))
+        ? (getDefaultFieldState(ctx, {
+            schema: config.schema,
+            formData: undefined,
+            includeUndefinedValues: "excludeObjectChildren",
+          }) ?? getDefaultValueForType(getSimpleSchemaType(config.schema)))
         : undefined;
     }}
   >

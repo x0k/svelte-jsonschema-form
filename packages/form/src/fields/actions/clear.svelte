@@ -2,6 +2,7 @@
   import type { Ref } from "@/lib/svelte.svelte.js";
   import {
     getComponent,
+    isDisabled,
     retrieveTranslate,
     Text,
     type Config,
@@ -31,7 +32,7 @@
   <Button
     type="clear-action"
     {config}
-    disabled={false}
+    disabled={config.schema.readOnly || isDisabled(ctx)}
     {errors}
     onclick={() => {
       valueRef.current = undefined;

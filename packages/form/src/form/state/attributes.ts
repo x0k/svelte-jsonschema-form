@@ -144,6 +144,9 @@ export function assignProps<O>(options: O) {
   return <T extends object>(props: T) => Object.assign(props, options);
 }
 
+/**
+ * @query
+ */
 export function isDisabled<T>(
   ctx: FormState<T>,
   attributes?: Partial<Nullable<Disabled>>
