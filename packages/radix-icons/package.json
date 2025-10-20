@@ -48,14 +48,14 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.0.0-next.8",
-		"svelte": "^5.40.0",
-		"svelte-radix": "^2.0.0"
+		"svelte": "^5.41.0",
+		"svelte-radix": "^2.0.0 || ^3.0.0"
 	},
 	"devDependencies": {
 		"@sjsf/form": "workspace:*",
 		"globals": "catalog:",
 		"svelte": "catalog:",
-		"svelte-radix": "^2.0.2",
+		"svelte-radix": "^3.0.0",
 		"theme-testing": "workspace:*"
 	},
 	"svelte": "./dist/index.js",

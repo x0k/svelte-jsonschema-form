@@ -13,7 +13,7 @@
     "@internationalized/date": "^3.10.0",
     "@lucide/svelte": "^0.544.0",
     "@tailwindcss/vite": "catalog:",
-    "bits-ui": "^2.11.5",
+    "bits-ui": "^2.14.0",
     "clsx": "^2.1.1",
     "svelte": "catalog:",
     "json-schema-to-ts": "^3.1.1",

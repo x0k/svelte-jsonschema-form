@@ -54,13 +54,13 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.0.0-next.8",
 		"flowbite-svelte-icons": "^3.0.0",
-		"svelte": "^5.40.0",
+		"svelte": "^5.41.0",
 		"tailwind-merge": "^3.3.0"
 	},
 	"devDependencies": {
 		"@sjsf/form": "workspace:*",
 		"@tailwindcss/vite": "catalog:",
-		"flowbite-svelte-icons": "~3.0.0",
+		"flowbite-svelte-icons": "^3.0.0",
 		"globals": "catalog:",
 		"svelte": "catalog:",
 		"tailwindcss": "catalog:",

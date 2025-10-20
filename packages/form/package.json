@@ -46,7 +46,7 @@
     "@types/json-schema-merge-allof": "^0.6.0",
     "esm-env": "^1.2.0",
     "json-schema-merge-allof": "^0.8.0",
-    "svelte": "^5.40.0"
+    "svelte": "^5.41.0"
   },
   "peerDependenciesMeta": {
     "@types/json-schema-merge-allof": {

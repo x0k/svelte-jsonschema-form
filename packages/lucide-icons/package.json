@@ -49,7 +49,7 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.0.0-next.8",
 		"@lucide/svelte": "^0.544.0",
-		"svelte": "^5.40.0"
+		"svelte": "^5.41.0"
 	},
 	"devDependencies": {
 		"@lucide/svelte": "^0.544.0",
