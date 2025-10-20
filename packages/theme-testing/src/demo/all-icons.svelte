@@ -1,6 +1,12 @@
 <script lang="ts">
   import type { HTMLAttributes } from "svelte/elements";
-  import type { Config, FieldPath, IconConfig, Icons, Labels } from "@sjsf/form";
+  import type {
+    Config,
+    FieldPath,
+    IconConfig,
+    Icons,
+    Labels,
+  } from "@sjsf/form";
 
   const { icons, ...rest }: { icons: Icons } & HTMLAttributes<HTMLDivElement> =
     $props();
@@ -17,6 +23,8 @@
     "remove-array-item": {},
     "copy-array-item": {},
     "remove-object-property": {},
+    edit: {},
+    clear: {},
   } satisfies Partial<Labels>;
 </script>
 
