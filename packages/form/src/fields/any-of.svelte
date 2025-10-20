@@ -1,3 +1,12 @@
+<script lang="ts" module>
+  const field = "anyOfField";
+  declare module "../form/index.js" {
+    interface ActionFields {
+      [field]: {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import { ANY_OF_KEY } from "@/core/index.js";
   import type { ComponentProps } from "@/form/index.js";
@@ -9,7 +18,7 @@
     config,
     uiOption,
     translate,
-  }: ComponentProps["anyOfField"] = $props();
+  }: ComponentProps[typeof field] = $props();
 </script>
 
 <Combination

@@ -21,6 +21,7 @@
     optionSelector,
     config,
     errors,
+    action,
   }: ComponentProps["multiFieldTemplate"] = $props();
 
   const ctx = getFormContext();
@@ -31,6 +32,7 @@
 <Layout type="multi-field" {config} {errors}>
   <Layout type="multi-field-controls" {config} {errors}>
     {@render optionSelector()}
+    {@render action?.()}
   </Layout>
   <Layout type="multi-field-content" {config} {errors}>
     {@render children()}
