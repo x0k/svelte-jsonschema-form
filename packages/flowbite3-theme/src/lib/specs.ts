@@ -1,4 +1,4 @@
-import { s, DEFAULT_SPECS } from 'theme-testing/demo';
+import { s, DEFAULT_SPECS } from 'theme-testing/specs';
 import '@sjsf/form/fields/extra/array-tags-include';
 
 import './extra-widgets/checkboxes-include';
