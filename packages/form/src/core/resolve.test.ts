@@ -3957,4 +3957,103 @@ describe("retrieveSchema()", () => {
       ]);
     });
   });
+  describe("retrieveSchema() with resolveAnyOfOrOneOfRefs", () => {
+    it("resolves simple ref with no anyOf or oneOfs when false", () => {
+      const priceSchema: Schema = SUPER_SCHEMA.properties?.price as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          priceSchema,
+          SUPER_SCHEMA,
+          {}
+        )
+      ).toEqual({
+        ...(SUPER_SCHEMA.definitions?.price as Schema),
+      });
+    });
+    it("resolves simple ref with no anyOf or oneOfs when true", () => {
+      const priceSchema: Schema = SUPER_SCHEMA.properties?.price as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          priceSchema,
+          SUPER_SCHEMA,
+          {},
+          true
+        )
+      ).toEqual({
+        ...(SUPER_SCHEMA.definitions?.price as Schema),
+      });
+    });
+    it("does not resolves the references inside of anyOfs when false", () => {
+      const anyOfSchema: Schema = SUPER_SCHEMA.properties?.multi as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          anyOfSchema,
+          SUPER_SCHEMA,
+          {}
+        )
+      ).toEqual(anyOfSchema);
+    });
+    it("resolves the references inside of anyOfs when true", () => {
+      const anyOfSchema: Schema = SUPER_SCHEMA.properties?.multi as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          anyOfSchema,
+          SUPER_SCHEMA,
+          {},
+          true
+        )
+      ).toEqual({
+        ...anyOfSchema,
+        anyOf: [
+          {
+            ...(SUPER_SCHEMA.definitions?.foo as Schema),
+          },
+        ],
+      });
+    });
+    it("does not resolves the references inside of oneOfs when false", () => {
+      const oneOfSchema: Schema = SUPER_SCHEMA.properties?.single as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          oneOfSchema,
+          SUPER_SCHEMA,
+          {},
+          false
+        )
+      ).toEqual(oneOfSchema);
+    });
+    it("resolves the references inside of oneOfs when true", () => {
+      const oneOfSchema: Schema = SUPER_SCHEMA.properties?.single as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          oneOfSchema,
+          SUPER_SCHEMA,
+          {},
+          true
+        )
+      ).toEqual({
+        ...oneOfSchema,
+        oneOf: [
+          {
+            ...(SUPER_SCHEMA.definitions?.choice1 as Schema),
+          },
+          {
+            ...(SUPER_SCHEMA.definitions?.choice2 as Schema),
+          },
+        ],
+      });
+    });
+  });
 });
