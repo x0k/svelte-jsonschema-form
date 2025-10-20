@@ -118,7 +118,7 @@ function createItems<T>({
         return;
       }
       keyed.push(
-        getDefaultFieldState(ctx, schema, undefined) ??
+        getDefaultFieldState(ctx, { schema, formData: undefined }) ??
           getDefaultValueForType(getSimpleSchemaType(schema))
       );
       onChange();

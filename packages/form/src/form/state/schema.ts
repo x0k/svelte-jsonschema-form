@@ -9,6 +9,7 @@ import {
   getClosestMatchingOption as getClosestMatchingOptionInternal,
 } from "@/core/index.js";
 
+import type { MergeFormDataAndSchemaDefaultsOptions } from "../merger.js";
 import {
   FORM_MARK_SCHEMA_CHANGE,
   FORM_MERGER,
@@ -115,14 +116,9 @@ export function getClosestMatchingOption<T>(
  */
 export function getDefaultFieldState<T>(
   ctx: FormState<T>,
-  schema: Schema,
-  formData: SchemaValue | undefined
+  options: MergeFormDataAndSchemaDefaultsOptions
 ) {
-  return ctx[FORM_MERGER].mergeFormDataAndSchemaDefaults({
-    formData,
-    schema,
-    initialDefaultsGenerated: false,
-  });
+  return ctx[FORM_MERGER].mergeFormDataAndSchemaDefaults(options);
 }
 
 export function markSchemaChange<T>(ctx: FormState<T>) {

@@ -174,7 +174,6 @@ export function createMerger(): Merger {
 export type FormMergerOptions = Experimental_DefaultFormStateBehavior & {
   validator: Validator;
   schema: Schema;
-  includeUndefinedValues?: boolean | "excludeObjectChildren";
 };
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
@@ -184,7 +183,8 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
     mergeFormDataAndSchemaDefaults({
       formData,
       schema,
-      initialDefaultsGenerated,
+      initialDefaultsGenerated = false,
+      includeUndefinedValues = false
     }) {
       return getDefaultFormState(
         options.validator,
@@ -192,7 +192,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         schema,
         formData,
         options.schema,
-        options.includeUndefinedValues,
+        includeUndefinedValues,
         options,
         initialDefaultsGenerated
       );

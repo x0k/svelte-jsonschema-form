@@ -311,7 +311,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
           merger.mergeFormDataAndSchemaDefaults({
             formData: options.initialValue as FormValue,
             schema: options.schema,
-            initialDefaultsGenerated: false,
           })
         )
   );
@@ -519,7 +518,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     valueRef.current = merger.mergeFormDataAndSchemaDefaults({
       formData: options.initialValue as FormValue,
       schema: options.schema,
-      initialDefaultsGenerated: false,
     });
     options.onReset?.(e);
   }

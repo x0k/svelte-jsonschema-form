@@ -54,7 +54,7 @@ export interface ObjectContext {
     property: string,
     isAdditional: boolean
   ) => Config;
-};
+}
 
 export const [getObjectContext, setObjectContext] =
   createContext<ObjectContext>();
@@ -208,7 +208,10 @@ export function createObjectContext<T>({
         : additionalPropertyKey(newKeyPrefix, 0);
       const additionalPropertySchema = getAdditionalPropertySchema(val, newKey);
       const propValue =
-        getDefaultFieldState(ctx, additionalPropertySchema, undefined) ??
+        getDefaultFieldState(ctx, {
+          schema: additionalPropertySchema,
+          formData: undefined,
+        }) ??
         getDefaultValueForType(getSimpleSchemaType(additionalPropertySchema));
       if (val) {
         val[newKey] = propValue;

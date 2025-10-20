@@ -100,13 +100,14 @@
         previousSelectedOption !== undefined
           ? retrievedOptions[previousSelectedOption]
           : undefined;
-      return getDefaultFieldState(
-        ctx,
-        nextSchema,
-        oldSchema !== undefined
-          ? sanitizeDataForNewSchema(ctx, nextSchema, oldSchema, value)
-          : value
-      );
+      return getDefaultFieldState(ctx, {
+        schema: nextSchema,
+        formData:
+          oldSchema !== undefined
+            ? sanitizeDataForNewSchema(ctx, nextSchema, oldSchema, value)
+            : value,
+        includeUndefinedValues: "excludeObjectChildren",
+      });
     });
     previousSelectedOption = nextSelected;
   });
