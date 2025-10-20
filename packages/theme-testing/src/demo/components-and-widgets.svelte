@@ -11,7 +11,7 @@
   import { displayPrimitiveValue } from "@sjsf/form/fields/actions/display-primitive-value.svelte";
 
   import * as defaults from "../lib/form-defaults.js";
-  import { createSchemas, type Specs } from "../lib/schemas.js";
+  import { s } from "../snapshots/export.js";
 
   import Form from "./form.svelte";
 
@@ -22,11 +22,11 @@
     uiOptionsRegistry,
   }: {
     theme: Theme;
-    specs: Specs;
+    specs: s.Specs;
     append?: Snippet;
   } & UiOptionsRegistryOption = $props();
 
-  const widgetsSchemas = createSchemas(specs);
+  const widgetsSchemas = s.createSchemas(specs);
 
   const widgetsForm = $derived(
     createForm({

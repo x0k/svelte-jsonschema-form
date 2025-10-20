@@ -8,8 +8,8 @@ import {
 } from "@sjsf/form";
 
 import * as defaults from "../lib/form-defaults.js";
-import * as triggers from "../lib/triggers.js";
-import * as schemas from "../lib/schemas.js";
+import * as triggers from "../specs/triggers.js";
+import * as schemas from "../specs/schemas.js";
 import {
   testMatchSnapshot,
   type MatchSnapshotOptions,

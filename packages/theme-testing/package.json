@@ -28,6 +28,10 @@
     "./snapshots/*": {
       "types": "./dist/snapshots/*.d.ts",
       "default": "./dist/snapshots/*.js"
+    },
+    "./specs": {
+      "types": "./dist/specs/index.d.ts",
+      "default": "./dist/specs/index.js"
     }
   }
 }
