@@ -7,6 +7,8 @@
     Icons,
     Labels,
   } from "@sjsf/form";
+  import "@sjsf/form/extra-labels/clear";
+  import "@sjsf/form/extra-labels/edit";
 
   const { icons, ...rest }: { icons: Icons } & HTMLAttributes<HTMLDivElement> =
     $props();

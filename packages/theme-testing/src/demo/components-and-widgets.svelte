@@ -7,10 +7,8 @@
     type UiOptionsRegistryOption,
     type UiSchemaRoot,
   } from "@sjsf/form";
-  import {
-    clearEdit,
-    displayPrimitiveValue,
-  } from "@sjsf/form/fields/actions/exports";
+  import { clearEdit } from "@sjsf/form/fields/actions/clear-edit.svelte";
+  import { displayPrimitiveValue } from "@sjsf/form/fields/actions/display-primitive-value.svelte";
 
   import * as defaults from "../components/form-defaults.js";
 
