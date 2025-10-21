@@ -76,15 +76,23 @@ export enum GenericExample {
   AsyncCombobox = "async-combobox",
   Formulas = "formulas",
   PatternPropertiesValidator = "pattern-properties-validator",
-  NativeForm = "native-form",
   DecomposedField = "decomposed-field",
-  MultiStepNativeForm = "multi-step-native-form",
   LayoutSlots = "layout-slots",
   PreuploadFile = "preupload-file",
   OptionalDataControls = "optional-data-controls",
 }
 
 export const GENERIC_EXAMPLES = Object.values(GenericExample);
+
+export enum SvelteKitExample {
+  FormActions = 'form-actions',
+  FormActionsFlex = 'form-actions-flex',
+  RemoveFunctions = 'remote-functions',
+  NativeForm = "native-form",
+  MultiStepNativeForm = "multi-step-native-form",
+}
+
+export const SVELTE_KIT_EXAMPLES = Object.values(SvelteKitExample);
 
 export enum ValidatorSpecificExample {
   ZodStarter = "zod-starter",
@@ -107,7 +115,7 @@ export const VALIDATOR_SPECIFIC_EXAMPLES = Object.values(
   ValidatorSpecificExample
 );
 
-export type Example = GenericExample | ValidatorSpecificExample;
+export type Example = GenericExample | SvelteKitExample | ValidatorSpecificExample;
 
 export const THEMES = [
   "basic",

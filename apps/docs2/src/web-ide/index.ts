@@ -4,6 +4,7 @@ import lz from "lz-string";
 
 import {
   GenericExample,
+  SvelteKitExample,
   VALIDATOR_DEPENDENCIES,
   validatorPackage,
   VALIDATORS,
@@ -76,14 +77,19 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [GenericExample.Formulas]: () => import("./examples/formulas"),
   [GenericExample.PatternPropertiesValidator]: () =>
     import("./examples/pattern-properties-validator"),
-  [GenericExample.NativeForm]: () => import("./examples/native-form"),
   [GenericExample.DecomposedField]: () => import("./examples/decomposed-field"),
-  [GenericExample.MultiStepNativeForm]: () =>
-    import("./examples/multi-step-native-form"),
   [GenericExample.LayoutSlots]: () => import("./examples/layout-slots"),
   [GenericExample.PreuploadFile]: () => import("./examples/preupload-file"),
   [GenericExample.OptionalDataControls]: () =>
     import("./examples/optional-data-controls"),
+  [SvelteKitExample.NativeForm]: () => import("./examples/native-form"),
+  [SvelteKitExample.MultiStepNativeForm]: () =>
+    import("./examples/multi-step-native-form"),
+  [SvelteKitExample.FormActions]: () => import("./examples/form-actions"),
+  [SvelteKitExample.FormActionsFlex]: () =>
+    import("./examples/form-actions-flex"),
+  [SvelteKitExample.RemoveFunctions]: () =>
+    import("./examples/remote-function"),
   [ValidatorSpecificExample.ZodStarter]: () => import("./examples/zod-starter"),
   [ValidatorSpecificExample.ValibotStarter]: () =>
     import("./examples/valibot-starter"),

@@ -10,6 +10,7 @@
     VALIDATOR_SPECIFIC_EXAMPLES,
     VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
     VALIDATORS,
+    SVELTE_KIT_EXAMPLES,
   } from "@/shared";
   import { openProject, Platform, PLATFORMS } from "@/web-ide";
 
@@ -54,7 +55,7 @@
   </label>
 </div>
 
-<h3>Generic examples</h3>
+<h3>Generic</h3>
 
 <Buttons
   items={GENERIC_EXAMPLES}
@@ -69,7 +70,22 @@
   label={identity}
 />
 
-<h3>Validator specific examples</h3>
+<h3>SvelteKit</h3>
+
+<Buttons
+  items={SVELTE_KIT_EXAMPLES}
+  onClick={(example) => {
+    openProject({
+      platform,
+      example,
+      theme,
+      validator,
+    });
+  }}
+  label={identity}
+/>
+
+<h3>Validator specific</h3>
 <p><em>Validator selector will be ignored</em></p>
 
 <Buttons
