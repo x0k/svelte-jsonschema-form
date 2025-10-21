@@ -47,11 +47,10 @@ export type InitialFormData<T = unknown> = SerializableOptionalFormOptions<T> & 
   uiSchema?: UiSchemaRoot;
 };
 
-export interface ValidatedFormData<SendData extends boolean> {
+export interface ValidatedFormData {
   idPrefix: string;
   isValid: boolean;
-  sendData?: SendData;
-  data: SendData extends true ? SchemaValue | undefined : undefined;
+  data: SchemaValue | undefined;
   errors: ValidationError[];
 }
 
