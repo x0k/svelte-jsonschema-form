@@ -1,10 +1,9 @@
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 
-import * as defaults from "$lib/form-defaults";
 import { form, query } from "$app/server";
-
-import { schema, type FormValue } from "../model";
+import * as defaults from "$lib/form-defaults";
+import { schema, type FormValue } from "$lib/post-model";
 
 export const getInitialData = query(async () => {
   return {

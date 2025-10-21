@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { BROWSER } from "esm-env";
   import { identity } from "@sjsf/form/lib/function";
   import {
     createForm,
@@ -8,7 +7,8 @@
     type UiSchemaRoot,
     type AsyncFormValueValidator,
   } from "@sjsf/form";
-
+  
+  import { browser } from "$app/environment";
   import * as defaults from "$lib/form-defaults";
 
   import { COUNTRIES } from "./countries";
@@ -93,7 +93,7 @@
     },
     // NOTE: the behavior of the `$derived` rune during SSR is different from the browser
     get disabled(): boolean {
-      return BROWSER && form.submission.isProcessed;
+      return browser && form.submission.isProcessed;
     },
     schema,
     uiSchema,

@@ -267,18 +267,6 @@ e/:
     d:
       pnpm run dev
     popd
-  stored/:
-    pushd stored-file
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  
   daisy/:
     pushd daisyui5-starter
     c:
@@ -323,118 +311,8 @@ e/:
     d:
       pnpm run dev
     popd
-  ani/:
-    pushd animated-array
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
   mark/:
     pushd markdown-description
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  tabs/:
-    pushd tabbed-layout
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  async/:
-    pushd async-combobox
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  formulas/:
-    pushd formulas
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  optional/:
-    pushd optional-data-controls
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  pattern/:
-    pushd pattern-properties-validator
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  native/:
-    pushd native-form
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  decomposed/:
-    pushd decomposed-field
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  multi/:
-    pushd multi-step-native-form
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  layout/:
-    pushd layout-slots
     c:
       pnpm run check
     b:

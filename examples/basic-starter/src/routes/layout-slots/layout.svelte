@@ -5,7 +5,7 @@
 
   declare module "@sjsf/form" {
     interface UiOptions {
-      myLayoutSlots: {
+      myLayoutSlots?: {
         [L in LayoutType]?: Partial<{
           beforeLayout: Snippet<[Config]>;
           afterLayout: Snippet<[Config]>;

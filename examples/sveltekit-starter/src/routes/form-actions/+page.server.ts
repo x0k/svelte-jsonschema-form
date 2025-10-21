@@ -3,8 +3,7 @@ import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
 
 import * as defaults from "$lib/form-defaults";
-
-import { schema, type FormValue } from "../model";
+import { schema, type FormValue } from "$lib/post-model";
 
 export const load = async () => {
   return {
