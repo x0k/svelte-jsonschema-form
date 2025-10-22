@@ -24,10 +24,10 @@
 		"vite": "^7.1.2"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.0.0-next.10",
-		"@sjsf/basic-theme": "^3.0.0-next.10",
-		"@sjsf/flowbite3-theme": "^3.0.0-next.10",
-		"@sjsf/form": "^3.0.0-next.10",
+		"@sjsf/ajv8-validator": "workspace:*",
+		"@sjsf/basic-theme": "workspace:*",
+		"@sjsf/flowbite3-theme": "workspace:*",
+		"@sjsf/form": "workspace:*",
 		"ajv": "^8.17.1"
 	}
 }
