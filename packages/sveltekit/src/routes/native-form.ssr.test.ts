@@ -58,7 +58,6 @@ describe.skip('native form SSR', () => {
         form: {
           idPrefix: 'root',
           isValid: false,
-          sendData: true,
           data: 'validated value',
           errors: [
             {
@@ -66,7 +65,7 @@ describe.skip('native form SSR', () => {
               message: 'validation error message'
             }
           ]
-        } satisfies ValidatedFormData<true>
+        } satisfies ValidatedFormData
       }
     });
     expect(body).toContain('Schema title');
@@ -91,7 +90,6 @@ describe.skip('native form SSR', () => {
         form: {
           idPrefix: 'root',
           isValid: true,
-          sendData: true,
           data: 'validated value',
           errors: [
             {
@@ -99,7 +97,7 @@ describe.skip('native form SSR', () => {
               message: 'validation error message'
             }
           ]
-        } satisfies ValidatedFormData<true>
+        } satisfies ValidatedFormData
       }
     });
     expect(body).toContain('Schema title');

@@ -38,7 +38,7 @@ export const load = async () => {
 };
 
 export const actions = {
-  defaults: createAction(
+  default: createAction(
     {
       ...defaults,
       name: "form",
