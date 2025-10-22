@@ -1,5 +1,12 @@
 # validator-testing
 
+## 1.0.13-next.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/form@3.0.0-next.11
+
 ## 1.0.13-next.10
 
 ### Patch Changes

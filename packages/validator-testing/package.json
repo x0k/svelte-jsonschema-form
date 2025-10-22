@@ -1,6 +1,6 @@
 {
   "name": "validator-testing",
-  "version": "1.0.13-next.10",
+  "version": "1.0.13-next.11",
   "license": "(MIT AND Apache-2.0)",
   "private": true,
   "type": "module",

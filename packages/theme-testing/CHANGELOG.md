@@ -1,5 +1,13 @@
 # theme-testing
 
+## 1.0.13-next.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@3.0.0-next.11
+  - @sjsf/form@3.0.0-next.11
+
 ## 1.0.13-next.10
 
 ### Patch Changes

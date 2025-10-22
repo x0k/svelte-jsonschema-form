@@ -1,5 +1,12 @@
 # @sjsf/radix-icons
 
+## 3.0.0-next.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/form@3.0.0-next.11
+
 ## 3.0.0-next.10
 
 ### Patch Changes

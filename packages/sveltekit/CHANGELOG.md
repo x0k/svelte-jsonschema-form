@@ -1,5 +1,18 @@
 # @sjsf/sveltekit
 
+## 3.0.0-next.11
+
+### Major Changes
+
+- Remove `sendData` option from `ValidatedFormData` type ([#219](https://github.com/x0k/svelte-jsonschema-form/pull/219))
+
+- Add `updateData` option to `ValidatedFormData` type ([#219](https://github.com/x0k/svelte-jsonschema-form/pull/219))
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/form@3.0.0-next.11
+
 ## 3.0.0-next.10
 
 ### Patch Changes
