@@ -1,5 +1,28 @@
 # docs
 
+## 1.9.0-next.11
+
+### Patch Changes
+
+- Updated dependencies [[`821f4dc`](https://github.com/x0k/svelte-jsonschema-form/commit/821f4dcfead86869b066551cf500b07a0114ad4b), [`6b764dc`](https://github.com/x0k/svelte-jsonschema-form/commit/6b764dced626e41294cc2cdd3196ad436282a349)]:
+  - @sjsf/sveltekit@3.0.0-next.11
+  - @sjsf/ajv8-validator@3.0.0-next.11
+  - @sjsf/basic-theme@3.0.0-next.11
+  - @sjsf/cfworker-validator@3.0.0-next.11
+  - @sjsf/daisyui5-theme@3.0.0-next.11
+  - @sjsf/flowbite-icons@3.0.0-next.11
+  - @sjsf/flowbite3-theme@3.0.0-next.11
+  - @sjsf/form@3.0.0-next.11
+  - @sjsf/lucide-icons@3.0.0-next.11
+  - @sjsf/moving-icons@3.0.0-next.11
+  - @sjsf/radix-icons@3.0.0-next.11
+  - @sjsf/schemasafe-validator@3.0.0-next.11
+  - @sjsf/shadcn4-theme@3.0.0-next.11
+  - @sjsf/skeleton3-theme@3.0.0-next.11
+  - @sjsf/valibot-validator@3.0.0-next.11
+  - @sjsf/zod4-validator@3.0.0-next.11
+  - theme-testing@1.0.13-next.11
+
 ## 1.9.0-next.10
 
 ### Patch Changes

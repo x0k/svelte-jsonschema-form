@@ -1,5 +1,24 @@
 # builder
 
+## 0.2.0-next.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@3.0.0-next.11
+  - @sjsf/basic-theme@3.0.0-next.11
+  - @sjsf/cfworker-validator@3.0.0-next.11
+  - @sjsf/daisyui5-theme@3.0.0-next.11
+  - @sjsf/flowbite-icons@3.0.0-next.11
+  - @sjsf/flowbite3-theme@3.0.0-next.11
+  - @sjsf/form@3.0.0-next.11
+  - @sjsf/lucide-icons@3.0.0-next.11
+  - @sjsf/moving-icons@3.0.0-next.11
+  - @sjsf/radix-icons@3.0.0-next.11
+  - @sjsf/schemasafe-validator@3.0.0-next.11
+  - @sjsf/shadcn4-theme@3.0.0-next.11
+  - @sjsf/skeleton3-theme@3.0.0-next.11
+
 ## 0.2.0-next.10
 
 ### Patch Changes

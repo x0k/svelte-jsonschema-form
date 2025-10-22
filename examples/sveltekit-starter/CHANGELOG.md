@@ -1,5 +1,15 @@
 # sveltekit-starter
 
+## 0.0.2-next.4
+
+### Patch Changes
+
+- Updated dependencies [[`821f4dc`](https://github.com/x0k/svelte-jsonschema-form/commit/821f4dcfead86869b066551cf500b07a0114ad4b), [`6b764dc`](https://github.com/x0k/svelte-jsonschema-form/commit/6b764dced626e41294cc2cdd3196ad436282a349)]:
+  - @sjsf/sveltekit@3.0.0-next.11
+  - @sjsf/ajv8-validator@3.0.0-next.11
+  - @sjsf/basic-theme@3.0.0-next.11
+  - @sjsf/form@3.0.0-next.11
+
 ## 0.0.2-next.3
 
 ### Patch Changes
