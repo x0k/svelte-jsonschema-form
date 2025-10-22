@@ -15,7 +15,8 @@ import {
   type UiOptionsRegistry,
   type Creatable,
   create,
-  SJSF_ID_PREFIX
+  SJSF_ID_PREFIX,
+  type ValidationResult
 } from '@sjsf/form';
 import {
   type IdOptions,
@@ -62,7 +63,7 @@ function createDefaultReviver(formData: FormData) {
   };
 }
 
-export function createFormHandler({
+export function createFormHandler<T = FormValue>({
   schema,
   uiSchema = {},
   uiOptionsRegistry = {},
@@ -117,12 +118,12 @@ export function createFormHandler({
           merger,
           convertEntry
         });
-    const errors = isAsyncFormValueValidator(validator)
+    const result: ValidationResult<T> = isAsyncFormValueValidator<typeof validator, T>(validator)
       ? await validator.validateFormValueAsync(signal, schema, data)
-      : isFormValueValidator(validator)
+      : isFormValueValidator<typeof validator, T>(validator)
         ? validator.validateFormValue(schema, data)
-        : [];
-    function validated(errors: ValidationError[]) {
+        : { value: data };
+    function validated(errors: ReadonlyArray<ValidationError>) {
       const isValid = errors.length === 0
       return {
         idPrefix: idPrefix as string,
@@ -132,7 +133,8 @@ export function createFormHandler({
         errors
       } satisfies ValidatedFormData;
     }
-    return [validated(errors), data, validated];
+    // TODO: Use `T` in `ValidatedFormData` type
+    return [validated(result.errors ?? []), data, validated];
   };
 }
 

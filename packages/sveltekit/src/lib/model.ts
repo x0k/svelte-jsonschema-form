@@ -52,7 +52,7 @@ export interface ValidatedFormData {
   isValid: boolean;
   updateData: boolean;
   data: SchemaValue | undefined;
-  errors: ValidationError[];
+  errors: ReadonlyArray<ValidationError>;
 }
 
 export type Entry<T> = [key: string, value: T];

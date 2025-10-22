@@ -5,7 +5,8 @@ import {
   type Schema,
   type FormOptions,
   updateErrors,
-  DEFAULT_ID_PREFIX
+  DEFAULT_ID_PREFIX,
+  setValue
 } from '@sjsf/form';
 
 import { page } from '$app/state';
@@ -78,7 +79,7 @@ export function createSvelteKitForm<
       return;
     }
     if (validationData.updateData) {
-      form.value = validationData.data;
+      setValue(form, validationData.data as Meta['__formValue']);
     }
     updateErrors(form, validationData.errors);
   });
