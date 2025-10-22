@@ -38,6 +38,15 @@ Remote functions integration is experimental
 
 ## Known issues
 
+- `experimental.async` does not apply to dependency code -
+  [issue](https://github.com/sveltejs/kit/issues/14788).
+
+  Add this to your `vite.config.js`
+  ```js
+  optimizeDeps: {
+    exclude: ['@sjsf/form', '@sjsf/sveltekit/rf/client'],
+  }
+  ```
 - All validation errors are displayed on the root element -
   [feature request](https://github.com/sveltejs/kit/issues/14688)
 - The `form.value` type on the client side is `unknown` because the `RemoteForm`

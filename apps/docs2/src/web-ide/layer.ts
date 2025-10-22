@@ -20,8 +20,13 @@ export interface VitePluginConfig {
   call: string;
 }
 
+export interface ViteOptimizeDepsConfig {
+  exclude?: string[];
+}
+
 export interface ViteConfig {
   plugins?: Record<string, VitePluginConfig>;
+  optimizeDeps?: ViteOptimizeDepsConfig;
 }
 
 export interface LayerFiles {
@@ -61,12 +66,27 @@ function mergePackageConfigs(
   };
 }
 
+function mergeViteOptimizeDepsConfigs(
+  a: ViteOptimizeDepsConfig,
+  b: ViteOptimizeDepsConfig
+): ViteOptimizeDepsConfig {
+  return {
+    ...a,
+    ...b,
+    exclude: unique([...(a.exclude ?? []), ...(b.exclude ?? [])]),
+  };
+}
+
 function mergeViteConfigs(a: ViteConfig, b: ViteConfig): ViteConfig {
   return {
     plugins: {
       ...a.plugins,
       ...b.plugins,
     },
+    optimizeDeps:
+      a.optimizeDeps && b.optimizeDeps
+        ? mergeViteOptimizeDepsConfigs(a.optimizeDeps, b.optimizeDeps)
+        : (a.optimizeDeps ?? b.optimizeDeps),
   };
 }
 
@@ -101,15 +121,22 @@ export function mergeLayers(a: Layer, b: Layer): Layer {
 }
 
 function buildPackageConfig(config: PackageConfig): string {
-  return JSON.stringify(config, (_, value) => {
-    if (value === "workspace:*") {
-      return VERSION
-    }
-    return value
-  }, 2);
+  return JSON.stringify(
+    config,
+    (_, value) => {
+      if (value === "workspace:*") {
+        return VERSION;
+      }
+      return value;
+    },
+    2
+  );
 }
 
-function buildViteConfig({ plugins = {} }: ViteConfig): string {
+function buildViteConfig({
+  plugins = {},
+  optimizeDeps = {},
+}: ViteConfig): string {
   return `import { defineConfig } from 'vite';
 ${Object.entries(plugins)
   .map(([pkg, p]) => `import ${p.import} from "${pkg}";`)
@@ -117,7 +144,8 @@ ${Object.entries(plugins)
 export default defineConfig({
   plugins: [${Object.values(plugins)
     .map((p) => p.call)
-    .join(", ")}]
+    .join(", ")}],
+  optimizeDeps: ${JSON.stringify(optimizeDeps)}
 })`;
 }
 
