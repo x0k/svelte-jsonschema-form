@@ -83,20 +83,30 @@ export function createValidator({
 
 export interface FormValueValidatorOptions extends ValidatorOptions {}
 
-export function createFormValueValidator(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
-): FormValueValidator {
+): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
-      const { errors } = validator.validate(options.valueToJSON(formValue));
-      return errors.map((unit) => {
-        const path = pathFromLocation(unit.instanceLocation, formValue);
+      const { valid, errors } = validator.validate(
+        options.valueToJSON(formValue)
+      );
+      if (valid) {
         return {
-          path,
-          message: unit.error,
+          value: formValue as T,
         };
-      });
+      }
+      return {
+        value: formValue,
+        errors: errors.map((unit) => {
+          const path = pathFromLocation(unit.instanceLocation, formValue);
+          return {
+            path,
+            message: unit.error,
+          };
+        }),
+      };
     },
   };
 }
@@ -133,7 +143,7 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidator({
+export function createFormValidator<T>({
   factory = (schema) => new CfValidator(schema as CfSchema, "7", false),
   createSchemaValidator = createSchemaValidatorFactory(factory),
   createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
@@ -155,7 +165,7 @@ export function createFormValidator({
   };
   return Object.assign(
     createValidator(options),
-    createFormValueValidator(options),
+    createFormValueValidator<T>(options),
     createFieldValueValidator(options)
   );
 }

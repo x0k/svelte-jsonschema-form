@@ -84,18 +84,18 @@ export interface FormValueValidatorOptions extends ValidatorOptions {
   merger: () => Merger;
 }
 
-export function createFormValueValidator(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
-): FormValueValidator {
+): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
-      const validator = options.createSchemaValidator(rootSchema, rootSchema);
-      validator(options.valueToJSON(formValue));
+      const validate = options.createSchemaValidator(rootSchema, rootSchema);
+      validate(options.valueToJSON(formValue));
       return transformFormErrors(
         createValidator(options),
         options.merger(),
         rootSchema,
-        validator.errors,
+        validate.errors,
         formValue
       );
     },
@@ -124,7 +124,7 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidator({
+export function createFormValidator<T>({
   factory = (schema, rootSchema) =>
     validator(schema as SafeSchema, {
       ...DEFAULT_VALIDATOR_OPTIONS,
@@ -149,7 +149,7 @@ export function createFormValidator({
   };
   return Object.assign(
     createValidator(options),
-    createFormValueValidator(options),
+    createFormValueValidator<T>(options),
     createFieldValueValidator(options)
   );
 }

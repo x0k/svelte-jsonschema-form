@@ -59,16 +59,16 @@ export function createValidator({
 
 export interface FormValueValidatorOptions extends ValidatorOptions {}
 
-export function createFormValueValidator(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
-): FormValueValidator {
+): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
       const valibotSchema = getValibotSchema(
         options.schemaRegistry,
         rootSchema
       );
-      return transformFormErrors(v.safeParse(valibotSchema, formValue));
+      return transformFormErrors(v.safeParse(valibotSchema, formValue), formValue);
     },
   };
 }
@@ -76,9 +76,9 @@ export function createFormValueValidator(
 export interface AsyncFormValueValidatorOptions
   extends SchemaRegistryProvider {}
 
-export function createAsyncFormValueValidator(
+export function createAsyncFormValueValidator<T>(
   options: AsyncFormValueValidatorOptions
-): AsyncFormValueValidator {
+): AsyncFormValueValidator<T> {
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
       const valibotSchema = getValibotSchema(
@@ -86,7 +86,7 @@ export function createAsyncFormValueValidator(
         rootSchema
       );
       const result = await v.safeParseAsync(valibotSchema, formValue);
-      return transformFormErrors(result);
+      return transformFormErrors(result, formValue);
     },
   };
 }
