@@ -14,8 +14,8 @@ async function renderForm(page: Partial<Page>) {
   return form;
 }
 
-// TODO: Create an issue about broken SSR
 // TODO: Enable this test as SSR will be fixes
+// https://github.com/sveltejs/svelte/issues/16832
 describe.skip('native form SSR', () => {
   beforeEach(() => {
     vi.resetModules();
@@ -64,7 +64,8 @@ describe.skip('native form SSR', () => {
               path: [],
               message: 'validation error message'
             }
-          ]
+          ],
+          updateData: true,
         } satisfies ValidatedFormData
       }
     });
@@ -96,7 +97,8 @@ describe.skip('native form SSR', () => {
               path: [],
               message: 'validation error message'
             }
-          ]
+          ],
+          updateData: false,
         } satisfies ValidatedFormData
       }
     });
