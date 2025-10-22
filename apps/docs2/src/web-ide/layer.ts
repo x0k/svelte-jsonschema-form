@@ -3,6 +3,7 @@ import type { SchemaValue } from "@sjsf/form";
 
 import {
   validatorPackage,
+  VERSION,
   type ActualTheme,
   type Resolver,
   type Validator,
@@ -100,7 +101,12 @@ export function mergeLayers(a: Layer, b: Layer): Layer {
 }
 
 function buildPackageConfig(config: PackageConfig): string {
-  return JSON.stringify(config, null, 2);
+  return JSON.stringify(config, (_, value) => {
+    if (value === "workspace:*") {
+      return VERSION
+    }
+    return value
+  }, 2);
 }
 
 function buildViteConfig({ plugins = {} }: ViteConfig): string {
