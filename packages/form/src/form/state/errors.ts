@@ -74,7 +74,7 @@ export function getFieldsErrorsByPath<T>(
 /**
  * @command
  */
-export function updateErrors<T>(ctx: FormState<T>, errors: ValidationError[]) {
+export function updateErrors<T>(ctx: FormState<T>, errors: ReadonlyArray<ValidationError>) {
   untrack(() => {
     internalAssignErrors(ctx[FORM_PATHS_TRIE_REF], ctx[FORM_ERRORS], errors);
   });

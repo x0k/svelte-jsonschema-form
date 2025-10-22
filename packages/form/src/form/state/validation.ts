@@ -16,6 +16,7 @@ import {
 } from "../internals.js";
 import type { FormState } from "./state.js";
 import { updateFieldErrors } from "./errors.js";
+import { getValueSnapshot } from "./value.svelte.js";
 
 /**
  * @query
@@ -78,10 +79,10 @@ export async function validateFileList<T>(
  */
 export function validate<T>(ctx: FormState<T>) {
   const validator = ctx[FORM_VALIDATOR];
-  if (!isFormValueValidator(validator)) {
+  if (!isFormValueValidator<typeof validator, T>(validator)) {
     throw new InvalidValidatorError(`expected sync from validator`);
   }
-  return validator.validateFormValue(ctx[FORM_SCHEMA], ctx.value as FormValue);
+  return validator.validateFormValue(ctx[FORM_SCHEMA], getValueSnapshot(ctx));
 }
 
 /**
@@ -89,12 +90,12 @@ export function validate<T>(ctx: FormState<T>) {
  */
 export function validateAsync<T>(ctx: FormState<T>, signal: AbortSignal) {
   const validator = ctx[FORM_VALIDATOR];
-  if (!isAsyncFormValueValidator(validator)) {
+  if (!isAsyncFormValueValidator<typeof validator, T>(validator)) {
     throw new InvalidValidatorError(`expected async form validator`);
   }
   return validator.validateFormValueAsync(
     signal,
     ctx[FORM_SCHEMA],
-    ctx.value as FormValue
+    getValueSnapshot(ctx)
   );
 }

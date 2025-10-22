@@ -60,7 +60,7 @@ export function internalRegisterFieldPath(
 export function internalAssignErrors(
   ref: PathTrieRef<FieldPath>,
   map: FormErrorsMap,
-  errors: ValidationError[]
+  errors: ReadonlyArray<ValidationError>
 ): FormErrorsMap {
   map.clear();
   for (const { path, message } of errors) {

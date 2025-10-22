@@ -52,17 +52,11 @@ import type { FieldPath, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
 
 export interface FormState<T> {
-  readonly submission: FormSubmission;
+  readonly submission: FormSubmission<T>;
   readonly fieldsValidation: FieldsValidation;
   readonly isChanged: boolean;
   readonly isSubmitted: boolean;
-  /**
-   * An accessor that maintains form state consistency:
-   *
-   * - A snapshot of the form state is returned on access
-   * - Default values from JSON Schema are taken into account during assignment
-   */
-  value: T | undefined;
+
   submit: (e: SubmitEvent) => void;
   reset: (e?: Event) => void;
 

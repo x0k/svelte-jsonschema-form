@@ -1,12 +1,11 @@
 import { tick } from "svelte";
 
 import {
-  type FormValue,
   type Id,
   type FormState,
-  type ValidationError,
   createIdByPath,
   encodePseudoElement,
+  type FailureValidationResult,
 } from "./form/index.js";
 
 export interface GetFocusableElementOptions {
@@ -57,9 +56,8 @@ export function createFocusOnFirstError(
   options: GetFocusableElementOptions = {}
 ) {
   return (
-    errors: ValidationError[],
+    { errors }: FailureValidationResult,
     e: SubmitEvent,
-    _: FormValue,
     ctx: FormState<any>
   ) => {
     if (errors.length === 0) {
