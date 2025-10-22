@@ -77,6 +77,9 @@ export function createSvelteKitForm<
     if (validationData === undefined || formIdPrefix !== validationData.idPrefix) {
       return;
     }
+    if (validationData.updateData) {
+      form.value = validationData.data;
+    }
     updateErrors(form, validationData.errors);
   });
   return form;

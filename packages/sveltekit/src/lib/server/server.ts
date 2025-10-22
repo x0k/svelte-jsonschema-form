@@ -48,7 +48,7 @@ export interface FormHandlerOptions extends IdOptions {
   createEntryConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
   convertUnknownEntry?: UnknownEntryConverter;
   /** @default false */
-  sendData?: boolean;
+  sendData?: boolean | 'withoutClientSideUpdate';
   /** By default, handles conversion of `File` */
   createReviver?: (formData: FormData) => (key: string, value: any) => any;
 }
@@ -73,7 +73,7 @@ export function createFormHandler({
   idSeparator = DEFAULT_ID_SEPARATOR,
   idIndexSeparator = DEFAULT_INDEX_SEPARATOR,
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
-  sendData,
+  sendData = false,
   createReviver = createDefaultReviver
 }: FormHandlerOptions) {
   const validator: Validator = create(createValidator, {
@@ -123,10 +123,12 @@ export function createFormHandler({
         ? validator.validateFormValue(schema, data)
         : [];
     function validated(errors: ValidationError[]) {
+      const isValid = errors.length === 0
       return {
         idPrefix: idPrefix as string,
-        isValid: errors.length === 0,
+        isValid,
         data: sendData ? data : undefined,
+        updateData: !isValid && (sendData === 'withoutClientSideUpdate' ? false : sendData),
         errors
       } satisfies ValidatedFormData;
     }

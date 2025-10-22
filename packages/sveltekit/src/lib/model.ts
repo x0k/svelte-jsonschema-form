@@ -50,6 +50,7 @@ export type InitialFormData<T = unknown> = SerializableOptionalFormOptions<T> & 
 export interface ValidatedFormData {
   idPrefix: string;
   isValid: boolean;
+  updateData: boolean;
   data: SchemaValue | undefined;
   errors: ValidationError[];
 }
