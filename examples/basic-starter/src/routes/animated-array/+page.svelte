@@ -1,6 +1,6 @@
 <script lang="ts">
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
-  import { createForm, BasicForm, type Schema } from "@sjsf/form";
+  import { createForm, BasicForm, type Schema, getValueSnapshot } from "@sjsf/form";
 
   import * as defaults from "$lib/form-defaults";
 
@@ -31,4 +31,4 @@
 
 <BasicForm {form} />
 
-<pre><code>{JSON.stringify(form.value, null, 2)}</code></pre>
+<pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>

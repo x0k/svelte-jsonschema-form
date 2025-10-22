@@ -7,7 +7,7 @@
     type UiSchemaRoot,
     type AsyncFormValueValidator,
   } from "@sjsf/form";
-  
+
   import { browser } from "$app/environment";
   import * as defaults from "$lib/form-defaults";
 
@@ -69,27 +69,32 @@
       return {
         ...defaultValidator,
         async validateFormValueAsync(signal, rootSchema, formValue) {
-          const errors = defaultValidator.validateFormValue(
+          const result = defaultValidator.validateFormValue(
             rootSchema,
             formValue
           );
-          if (errors.length > 0) {
-            return errors;
+          if (result.errors) {
+            return result;
           }
           if (typeof formValue === "string") {
             const countries = await searchFn(signal, formValue);
             if (countries.includes(formValue)) {
-              return [];
+              return {
+                value: formValue,
+              };
             }
           }
-          return [
-            {
-              path: [],
-              message: "invalid country",
-            },
-          ];
+          return {
+            value: formValue,
+            errors: [
+              {
+                path: [],
+                message: "invalid country",
+              },
+            ],
+          };
         },
-      } satisfies AsyncFormValueValidator;
+      } satisfies AsyncFormValueValidator<string>;
     },
     // NOTE: the behavior of the `$derived` rune during SSR is different from the browser
     get disabled(): boolean {

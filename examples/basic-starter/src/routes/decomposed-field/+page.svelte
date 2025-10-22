@@ -5,6 +5,7 @@
     Field,
     getFieldErrors,
     getFormContext,
+    getValueSnapshot,
     makeEventHandlers,
     validateField,
   } from "@sjsf/form";
@@ -99,5 +100,5 @@
 </Field>
 
 <pre>
-  <code>{JSON.stringify(form.value, null, 2)}</code>
+  <code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code>
 </pre>

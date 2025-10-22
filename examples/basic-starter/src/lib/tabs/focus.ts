@@ -1,5 +1,6 @@
 import {
   createIdByPath,
+  type FailureValidationResult,
   type FormState,
   type FormValue,
   type ValidationError,
@@ -17,11 +18,11 @@ export function createTabbedFocusOnFirstError<E>(
 ) {
   const focus = createFocusOnFirstError(options);
   return (
-    errors: ValidationError[],
+    result: FailureValidationResult,
     e: SubmitEvent,
-    snap: FormValue,
     form: FormState<any>
   ) => {
+    const { errors, value: snap } = result;
     if (errors.length === 0) {
       return;
     }
@@ -36,6 +37,6 @@ export function createTabbedFocusOnFirstError<E>(
       }
       children = children.values.get(path[i]);
     }
-    return focus(errors, e, snap, form);
+    return focus(result, e, form);
   };
 }
