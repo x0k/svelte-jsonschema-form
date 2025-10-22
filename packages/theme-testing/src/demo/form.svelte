@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { HTMLAttributes } from "svelte/elements";
   import Tree from "@sveltejs/svelte-json-tree";
-  import { BasicForm, type FormState } from "@sjsf/form";
+  import { BasicForm, getValueSnapshot, type FormState } from "@sjsf/form";
 
   import { ShadowHost } from "../lib/shadow/index.js";
 
@@ -15,7 +15,7 @@
 <div {...rest}>
   <div class="code">
     <ShadowHost>
-      <Tree value={form.value} />
+      <Tree value={getValueSnapshot(form)} />
     </ShadowHost>
   </div>
   <BasicForm {form} />

@@ -69,9 +69,9 @@ export function validatorTests(
   });
 }
 
-export function formValueValidatorTests(
+export function formValueValidatorTests<T>(
   createFormValueValidator: Creatable<
-    FormValueValidator & Validator,
+    FormValueValidator<T> & Validator,
     ValidatorFactoryOptions
   >
 ) {
@@ -88,7 +88,7 @@ export function formValueValidatorTests(
       };
       const { validator } = init({ schema });
 
-      const errors = validator.validateFormValue(schema, ["foo"]);
+      const { errors = [] } = validator.validateFormValue(schema, ["foo"]);
       const error = errors.find(
         ({ path }) => path.length === 1 && path[0] === 0
       );
@@ -120,7 +120,7 @@ export function formValueValidatorTests(
         items: [undefined, "value"],
       };
       const { validator } = init({ schema });
-      const errors = validator.validateFormValue(schema, value);
+      const { errors = [] } = validator.validateFormValue(schema, value);
       expect(errors.length).toBeGreaterThan(1);
     });
   });
