@@ -5,6 +5,7 @@
     BasicForm,
     type Schema,
     type UiSchemaRoot,
+    type Config,
   } from "@sjsf/form";
 
   import * as defaults from "$lib/form-defaults";
@@ -43,7 +44,7 @@
 </script>
 
 <BasicForm {form} />
-{#snippet greeting()}
+{#snippet greeting(_: Config)}
   <p>
     Hi, in this example you can see how you can add text and any other content
     to a form.
