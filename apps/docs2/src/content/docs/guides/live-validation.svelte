@@ -39,10 +39,10 @@
   $effect(() => {
     // NOTE: `validate()` reads the state snapshot,
     // causing `$effect` to subscribe to all changes.
-    const errors = validate(form);
-    untrack(() =>
-      updateErrors(
-        form,
+    const { errors = [] } = validate(form);
+    updateErrors(
+      form,
+      untrack(() =>
         errors.filter((e) =>
           hasFieldStateByPath(form, e.path, FIELD_INTERACTED)
         )

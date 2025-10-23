@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm, type Schema } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot, type Schema } from "@sjsf/form";
   import { createFormValueValidator } from "@sjsf/form/validators/standard-schema";
   import { type } from "arktype";
 
@@ -32,4 +32,4 @@
 
 <BasicForm {form} novalidate />
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), null, 2)}</pre>

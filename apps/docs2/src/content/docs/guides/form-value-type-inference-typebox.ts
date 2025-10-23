@@ -23,6 +23,3 @@ const form = createForm<Static<typeof schema>>({
   schema,
   uiSchema,
 });
-
-// { text: string } | undefined
-form.value;

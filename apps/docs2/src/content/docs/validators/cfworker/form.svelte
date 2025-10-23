@@ -2,6 +2,7 @@
   import {
     BasicForm,
     createForm,
+    getValueSnapshot,
     ON_ARRAY_CHANGE,
     ON_CHANGE,
     ON_INPUT,
@@ -24,4 +25,4 @@
 
 <BasicForm {form} novalidate />
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), null, 2)}</pre>

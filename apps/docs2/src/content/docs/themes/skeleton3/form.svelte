@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fromRecord } from "@sjsf/form/lib/resolver";
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { theme } from "@sjsf/skeleton3-theme";
   import { specs } from "@sjsf/skeleton3-theme/specs";
 
@@ -50,4 +50,4 @@
   />
 {/if}
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), null, 2)}</pre>

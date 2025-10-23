@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
 
@@ -30,4 +30,4 @@
 
 <BasicForm {form} class="flex flex-col gap-4 {astro.darkOrLight}" />
 
-<pre style="padding-top: 1rem;">{JSON.stringify(form.value, withFile, 2)}</pre>
+<pre style="padding-top: 1rem;">{JSON.stringify(getValueSnapshot(form), withFile, 2)}</pre>

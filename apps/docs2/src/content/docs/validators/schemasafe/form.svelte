@@ -5,6 +5,7 @@
     createForm,
     ON_CHANGE,
     ON_ARRAY_CHANGE,
+    getValueSnapshot,
   } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/schemasafe-validator";
 
@@ -24,4 +25,4 @@
 
 <BasicForm {form} novalidate />
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), null, 2)}</pre>

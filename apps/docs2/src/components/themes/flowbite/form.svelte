@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
 
   import { createAstro } from "@/astro.svelte";
 
@@ -26,4 +26,4 @@
 
 <BasicForm {form} class="flex flex-col gap-4 mb-4 {astro.darkOrLight}" />
 
-<pre>{JSON.stringify(form.value, withFile, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), withFile, 2)}</pre>
