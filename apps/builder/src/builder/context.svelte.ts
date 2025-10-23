@@ -566,13 +566,13 @@ export class BuilderContext {
       {
         validateCustomizableNodeOptions(node) {
           const schema = self.nodeSchema(node);
-          const optionsErrors = validator.validateFormValue(
+          const result = validator.validateFormValue(
             schema,
             node.options as FormValue
           );
-          if (optionsErrors.length > 0) {
-            errors.push({ nodeId: node.id, message: "Invalid filed options" });
-            console.error(optionsErrors);
+          if (result.errors) {
+            errors.push({ nodeId: node.id, message: "Invalid field options" });
+            console.error(result.errors);
           }
         },
         addError(node, message) {

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fromRecord } from "@sjsf/form/lib/resolver";
   import { formatFileSize } from "@sjsf/form/validators/file-size";
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { BitsConfig } from "bits-ui";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
@@ -66,6 +66,8 @@
     }
     return value;
   }
+
+  const formValue = $derived(getValueSnapshot(form))
 </script>
 
 <div class="flex flex-col gap-2">
@@ -89,9 +91,9 @@
     {/if}
     <div bind:this={portalEl}></div>
   </ShadowHost>
-  {#if form.value !== undefined}
+  {#if formValue !== undefined}
     <div class="rounded-md border">
-      {@html ctx.highlight("json", JSON.stringify(form.value, withFile, 2))}
+      {@html ctx.highlight("json", JSON.stringify(formValue, withFile, 2))}
     </div>
   {/if}
 </div>
