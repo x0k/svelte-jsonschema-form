@@ -181,3 +181,6 @@ const form = createForm<FormValue>({
 // Obtaining a value with the applied transformation
 const { value } = validate(form)
 ```
+
+You can also use the `withOmitExtraData(defaults.validator)` function from the
+`@sjsf/form/validators/omit-extra-data` module to achieve the same effect.

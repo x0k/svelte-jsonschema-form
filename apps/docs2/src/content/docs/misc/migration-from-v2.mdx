@@ -111,9 +111,16 @@ but they must be accessed via [internal symbols](../../form/state/#internals).
 :::caution
 
 If you were using `ctx.value` in your custom components, replace it with `ctx[FORM_VALUE]`.
-The context now provides the entire `form` object, while `form.value` is a public value accessor.
 
 :::
+
+### The `form.value` property has been removed
+
+The functionality of this property has now been split across several methods:
+
+- Use the `setValue` method to set a new form value.
+- Use the `getValueSnapshot` method to retrieve a snapshot of the internal form state.
+- Use the `validate/validateAsync` method to retrieve a typed value.
 
 ### The `form.errors` property has been removed
 
@@ -121,6 +128,11 @@ Reason — to hide the internal error storage structure from the user for future
 
 You can access form errors and even more by using the following functions:
 `hasErrors`, `getErrors`, `updateErrors`, `getFieldErrors`, `updateFieldErrors`
+
+### The `getSnapshot` form option has been removed
+
+To apply transformations before validation, you now need to augment the validator -
+see [State transformation](../../guides/validation/#state-transformation).
 
 ### `onsubmit` and `onreset` attributes
 
