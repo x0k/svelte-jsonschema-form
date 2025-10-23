@@ -53,6 +53,8 @@ export type AnyFormValueValidator<Output> =
   | FormValueValidator<Output>
   | AsyncFormValueValidator<Output>;
 
+export type FormValidator<Output> = Validator & AnyFormValueValidator<Output>;
+
 export interface FieldValueValidator {
   validateFieldValue: (
     field: Config,

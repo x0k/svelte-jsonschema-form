@@ -16,15 +16,14 @@ import { weakMemoize } from "@/lib/memoize.js";
 import type { Schema, Validator } from "@/core/index.js";
 
 import {
-  isFormValueValidator,
   isFieldValueValidator,
-  isAsyncFormValueValidator,
   isAsyncFieldValueValidator,
   type AsyncFormValueValidator,
   type AsyncFieldValueValidator,
   type ValidationError,
   type ValidationResult,
   type FailureValidationResult,
+  type FormValidator,
 } from "./validator.js";
 import { createTranslate, type Translation } from "./translation.js";
 import {
@@ -35,10 +34,7 @@ import {
 } from "./ui-schema.js";
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
-import type {
-  FormSubmission,
-  FieldsValidation,
-} from "./errors.js";
+import type { FormSubmission, FieldsValidation } from "./errors.js";
 import type { FormMerger } from "./merger.js";
 import {
   DEFAULT_ID_PREFIX,
@@ -157,7 +153,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   translation: Translation;
   resolver: (ctx: FormState<T>) => ResolveFieldType;
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
-  validator: Creatable<Validator, ValidatorFactoryOptions>;
+  validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
@@ -365,16 +361,12 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
 
   const validateForm: AsyncFormValueValidator<T>["validateFormValueAsync"] =
     $derived.by(() => {
-      if (isAsyncFormValueValidator<typeof validator, T>(validator)) {
+      if ("validateFormValueAsync" in validator) {
         return (signal, schema, formValue) =>
           validator.validateFormValueAsync(signal, schema, formValue);
       }
-      if (isFormValueValidator<typeof validator, T>(validator)) {
-        return (_, schema, formValue) =>
-          Promise.resolve(validator.validateFormValue(schema, formValue));
-      }
-      return async (_, _1, formValue) =>
-        Promise.resolve({ value: formValue as T });
+      return (_, schema, formValue) =>
+        Promise.resolve(validator.validateFormValue(schema, formValue));
     });
 
   const submission: FormSubmission<T> = createTask({
