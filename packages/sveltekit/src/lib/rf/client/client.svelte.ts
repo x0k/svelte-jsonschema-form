@@ -123,7 +123,6 @@ export async function connect<
   const initialValue = $derived(await getInitialValue());
 
   const initialErrors = $derived(
-    //@ts-expect-error https://github.com/sveltejs/kit/issues/14687
     fields.allIssues()?.map((i) => ({
       path: [],
       message: i.message
@@ -136,7 +135,6 @@ export async function connect<
     'enhance' in remoteForm
       ? remoteForm.enhance(async ({ submit }) => {
           await submit();
-          //@ts-expect-error https://github.com/sveltejs/kit/issues/14687
           if (fields.allIssues()) {
             return;
           }

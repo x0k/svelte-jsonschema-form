@@ -15,7 +15,6 @@
     ...defaults,
     idPrefix: 'native',
     get initialErrors() {
-      // @ts-expect-error
       return native.fields.allIssues()?.map((i) => ({
         path: [],
         message: i.message
