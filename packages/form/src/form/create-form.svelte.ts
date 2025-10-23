@@ -151,13 +151,6 @@ export interface MergerFactoryOptions {
   uiOptionsRegistry: UiOptionsRegistry;
 }
 
-export interface GetSnapshotOptions {
-  validator: Validator;
-  merger: FormMerger;
-  schema: Schema;
-  value: FormValue;
-}
-
 export interface FormOptions<T> extends UiOptionsRegistryOption {
   schema: Schema;
   theme: Theme;
