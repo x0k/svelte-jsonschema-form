@@ -8,11 +8,7 @@ import type {
 } from "@sjsf/form";
 import * as v from "valibot";
 
-import {
-  createAugmentedId,
-  type SchemaRegistry,
-  type ValibotIssue,
-} from "./model.js";
+import { createAugmentedId, type SchemaRegistry } from "./model.js";
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
 
 function getValibotSchema(
@@ -68,7 +64,10 @@ export function createFormValueValidator<T>(
         options.schemaRegistry,
         rootSchema
       );
-      return transformFormErrors(v.safeParse(valibotSchema, formValue), formValue);
+      return transformFormErrors(
+        v.safeParse(valibotSchema, formValue),
+        formValue
+      );
     },
   };
 }
@@ -125,10 +124,10 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidator(options: FormValidatorOptions) {
+export function createFormValidator<T>(options: FormValidatorOptions) {
   return Object.assign(
     createValidator(options),
-    createFormValueValidator(options),
+    createFormValueValidator<T>(options),
     createFieldValueValidator(options)
   );
 }
@@ -138,10 +137,12 @@ export interface AsyncFormValidatorOptions
     AsyncFormValueValidatorOptions,
     AsyncFieldValueValidatorOptions {}
 
-export function createAsyncFormValidator(options: AsyncFormValidatorOptions) {
+export function createAsyncFormValidator<T>(
+  options: AsyncFormValidatorOptions
+) {
   return Object.assign(
     createValidator(options),
-    createAsyncFormValueValidator(options),
+    createAsyncFormValueValidator<T>(options),
     createAsyncFieldValueValidator(options)
   );
 }
