@@ -17,6 +17,9 @@
     Form,
     Content,
     SubmitButton,
+    type FormValueValidator,
+    type FormValue,
+    getValueSnapshot,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
@@ -63,7 +66,7 @@
   import { themeManager } from "./theme.svelte";
   import SamplePicker from "./sample-picker.svelte";
   import { setShadcnContext } from "./shadcn-context.js";
-  import Debug from './debug.svelte';
+  import Debug from "./debug.svelte";
 
   const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
     schema: {
@@ -180,8 +183,19 @@
     get uiSchema() {
       return data.uiSchema;
     },
-    get validator() {
-      return validators[data.validator];
+    validator: (options) => {
+      const v = validators[data.validator]<FormValue>(options);
+      return {
+        ...v,
+        validateFormValue(rootSchema, formValue) {
+          return v.validateFormValue(
+            rootSchema,
+            data.omitExtraData
+              ? omitExtraData(v, options.merger(), options.schema, formValue)
+              : formValue
+          );
+        },
+      } satisfies FormValueValidator<FormValue>;
     },
     merger: (options) =>
       createFormMerger({
@@ -216,17 +230,11 @@
     onSubmit(value) {
       console.log("submit", value);
     },
-    onSubmitError(errors, e, snap) {
+    onSubmitError(errors, e) {
       if (data.focusOnFirstError) {
-        focusOnFirstError(errors, e, snap, form);
+        focusOnFirstError(errors, e, form);
       }
       console.log("errors", errors);
-    },
-    getSnapshot({ merger, validator, schema, value }) {
-      const snap = $state.snapshot(value);
-      return data.omitExtraData
-        ? omitExtraData(validator, merger, schema, snap)
-        : snap;
     },
   });
   setFormContext(form);
@@ -382,7 +390,7 @@
   <Editor
     class="row-start-3 col-span-2 border rounded-md data-[error=true]:border-red-500 data-[error=true]:outline-none"
     bind:value={
-      () => form.value,
+      () => getValueSnapshot(form),
       (v) => {
         data.initialValue = v;
       }
