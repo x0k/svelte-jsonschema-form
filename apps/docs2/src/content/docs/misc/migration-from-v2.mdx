@@ -100,6 +100,12 @@ This forced users to fill in the `bar` field, even though the `foo` object itsel
 Now, when creating a form, the form state is initialized with an empty object (for this case),
 and the form can be submitted without filling in the `bar` field.
 
+### The `validator` form option now requires `FormValidator<T>`
+
+This means that, in addition to the `isValid` method, an implementation of the form value validation method is now required.
+
+You can use the `noop` validator from the `@sjsf/form/validators/noop` module to skip validation.
+
 ### The `form.context` property has been removed
 
 Previously, the public and internal APIs were split between two objects:
