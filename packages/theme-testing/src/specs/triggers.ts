@@ -1,4 +1,4 @@
-import { userEvent, type Locator } from "@vitest/browser/context";
+import { userEvent, type Locator } from "vitest/browser";
 
 import {
   enumeration,

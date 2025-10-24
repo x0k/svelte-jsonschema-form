@@ -1,4 +1,4 @@
-import type { Locator } from "@vitest/browser/context";
+import type { Locator } from "vitest/browser";
 import type { SchemaArrayValue } from "@sjsf/form/core";
 import {
   ON_BLUR,

@@ -76,6 +76,7 @@ export function createDataURLtoBlob(
         const chunks: Buffer<ArrayBuffer>[] = [];
         for (let i = 0; i < base64content.length; i += chunkSize) {
           const chunkBase64 = base64content.slice(i, i + chunkSize);
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
           chunks.push(Buffer.from(chunkBase64, "base64"));
           await schedulerYield({ signal });
         }
@@ -123,6 +124,7 @@ async function nodeFileToDataURL(
   if (signal.aborted) {
     throw new DOMException("Aborted", "AbortError");
   }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   const base64 = Buffer.from(buffer).toString("base64");
   const mime = file.type || "application/octet-stream";
   return `${DATA_PREFIX}${mime}${base64SeparatorWithNamePart(file.name)}${base64}`;

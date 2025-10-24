@@ -30,8 +30,8 @@
   "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
   "scripts": {
     "dev": "vite",
-    "test": "vitest run --typecheck --exclude '.svelte-kit/**'",
-    "bench": "vitest bench --exclude '.svelte-kit/**'",
+    "test": "vitest run --typecheck",
+    "bench": "vitest bench",
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "format": "prettier --write .",

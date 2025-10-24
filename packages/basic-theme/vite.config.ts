@@ -2,6 +2,7 @@
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
+import { playwright } from "@vitest/browser-playwright";
 
 export default defineConfig({
   plugins: [svelte()],
@@ -19,7 +20,6 @@ export default defineConfig({
         },
         test: {
           name: "client",
-          environment: "browser",
           include: [
             "src/**/*.svelte.{test,spec}.{js,ts}",
             "tests/**/*.svelte.{test,spec}.{js,ts}",
@@ -27,8 +27,8 @@ export default defineConfig({
           exclude: ["src/lib/server/**"],
           setupFiles: ["vitest-browser-svelte"],
           browser: {
+            provider: playwright(),
             enabled: true,
-            provider: "playwright",
             headless: true,
             instances: [
               {

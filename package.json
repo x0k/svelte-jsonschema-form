@@ -28,7 +28,8 @@
     "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@total-typescript/tsconfig": "^1.0.4",
     "@types/node": "^24.9.1",
-    "@vitest/browser": "^3.2.4",
+    "@vitest/browser": "^4.0.2",
+    "@vitest/browser-playwright": "^4.0.2",
     "eslint": "^9.38.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-svelte": "^3.12.5",
@@ -44,7 +45,7 @@
     "typescript-eslint": "^8.46.2",
     "vite": "catalog:",
     "vitest": "catalog:",
-    "vitest-browser-svelte": "^1.1.0"
+    "vitest-browser-svelte": "^2.0.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
