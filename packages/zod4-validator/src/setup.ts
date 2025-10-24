@@ -1,4 +1,4 @@
-import type { FormValidator, Schema, Validator } from "@sjsf/form";
+import type { FormValidator, Schema } from "@sjsf/form";
 import {
   toJSONSchema,
   type $ZodType,
@@ -8,21 +8,29 @@ import {
 import type { AugmentedSchemaFactory, SchemaRegistry } from "./model.js";
 import { createSchemaRegistry } from "./schemas-registry.js";
 
-export interface CreateFormValidatorFactoryOptions<O, V extends Validator> {
+export interface CreateFormValidatorFactoryOptions<
+  F extends <S extends $ZodType>(
+    registry: SchemaRegistry
+  ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
+> {
   createAugmentedSchema: AugmentedSchemaFactory;
-  createFormValidator: (registry: SchemaRegistry, options: Partial<O>) => V;
+  createFormValidator: F;
 }
 
-export function createFormValidatorFactory<O, V extends FormValidator<any>>({
+export function createFormValidatorFactory<
+  F extends <S extends $ZodType>(
+    registry: SchemaRegistry
+  ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
+>({
   createFormValidator,
   createAugmentedSchema,
-}: CreateFormValidatorFactoryOptions<O, V>) {
+}: CreateFormValidatorFactoryOptions<F>) {
   return <S extends $ZodType>(
     zodSchema: S
   ): {
-    schemaRegistry: ReturnType<typeof createSchemaRegistry>;
-    validator: (options?: Partial<O>) => V & FormValidator<InferOutput<S>>;
     schema: Schema;
+    schemaRegistry: SchemaRegistry;
+    validator: ReturnType<typeof createFormValidator<S>>;
   } => {
     const schemaRegistry = createSchemaRegistry({ createAugmentedSchema });
     const schema = toJSONSchema(zodSchema, {
@@ -32,7 +40,7 @@ export function createFormValidatorFactory<O, V extends FormValidator<any>>({
     }) as Schema;
     return {
       schemaRegistry,
-      validator: (options = {}) => createFormValidator(schemaRegistry, options),
+      validator: createFormValidator(schemaRegistry),
       schema,
     };
   };

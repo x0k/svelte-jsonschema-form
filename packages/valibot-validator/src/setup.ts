@@ -1,5 +1,6 @@
-import type { FormValidator, Schema, Validator } from "@sjsf/form";
+import type { FormValidator, Schema } from "@sjsf/form";
 import { toJsonSchema } from "@valibot/to-json-schema";
+import type { InferOutput } from "valibot";
 
 import type { SchemaRegistry, ValibotSchema } from "./model.js";
 import { createSchemaRegistry } from "./schemas-registry.js";
@@ -9,19 +10,20 @@ import {
   type AsyncFormValidatorOptions,
   type FormValidatorOptions,
 } from "./validator.js";
-import type { InferOutput } from "valibot";
 
-export interface CreateFormValidatorFactoryOptions<O> {
-  createFormValidator: <S extends ValibotSchema, V extends FormValidator<S>>(
-    schema: S,
-    registry: SchemaRegistry,
-    options: Partial<O>
-  ) => V;
+export interface CreateFormValidatorFactoryOptions<
+  F extends <S extends ValibotSchema>(
+    registry: SchemaRegistry
+  ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
+> {
+  createFormValidator: F;
 }
 
-function createFormValidatorFactory<O>({
-  createFormValidator,
-}: CreateFormValidatorFactoryOptions<O>) {
+function createFormValidatorFactory<
+  F extends <S extends ValibotSchema>(
+    registry: SchemaRegistry
+  ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
+>({ createFormValidator }: CreateFormValidatorFactoryOptions<F>) {
   return <S extends ValibotSchema>(valibotSchema: S) => {
     const schemaRegistry = createSchemaRegistry();
     const schema = toJsonSchema(valibotSchema, {
@@ -31,40 +33,62 @@ function createFormValidatorFactory<O>({
     return {
       schemaRegistry,
       schema,
-      validator: (options = {}) =>
-        createFormValidator(valibotSchema, schemaRegistry, options),
-    } as const;
+      validator: createFormValidator(schemaRegistry),
+    };
   };
 }
 
-export const adapt = createFormValidatorFactory<
-  Omit<FormValidatorOptions, "schemaRegistry">
->({
-  createFormValidator: (s, schemaRegistry, options) =>
-    createFormValidator<InferOutput<typeof s>>(
+function createSyncValidator<S extends ValibotSchema>(
+  schemaRegistry: SchemaRegistry
+) {
+  return (options: Omit<FormValidatorOptions, "schemaRegistry"> = {}) =>
+    createFormValidator<InferOutput<S>>(
       Object.setPrototypeOf(
         { schemaRegistry } satisfies FormValidatorOptions,
         options
       )
-    ),
+    );
+}
+
+const _adapt = createFormValidatorFactory({
+  createFormValidator: createSyncValidator,
 });
+
+export const adapt = _adapt as unknown as <S extends ValibotSchema>(
+  schema: S
+) => {
+  schema: Schema;
+  schemaRegistry: SchemaRegistry;
+  validator: ReturnType<typeof createSyncValidator<S>>;
+};
 
 // TODO: Remove in v4
 /** @deprecated use `adapt` */
 export const setupFormValidator = adapt;
 
-export const adaptAsync = createFormValidatorFactory({
-  createFormValidator: <Output>(
-    schemaRegistry: SchemaRegistry,
-    options: Omit<FormValidatorOptions, "schemaRegistry">
-  ) =>
-    createAsyncFormValidator<Output>(
+function createAsyncValidator<S extends ValibotSchema>(
+  schemaRegistry: SchemaRegistry
+) {
+  return (options: Omit<AsyncFormValidatorOptions, "schemaRegistry"> = {}) =>
+    createAsyncFormValidator<InferOutput<S>>(
       Object.setPrototypeOf(
         { schemaRegistry } satisfies AsyncFormValidatorOptions,
         options
       )
-    ),
+    );
+}
+
+const _adaptAsync = createFormValidatorFactory({
+  createFormValidator: createAsyncValidator,
 });
+
+export const adaptAsync = _adaptAsync as unknown as <S extends ValibotSchema>(
+  schema: S
+) => {
+  schema: Schema;
+  schemaRegistry: SchemaRegistry;
+  validator: ReturnType<typeof createAsyncValidator<S>>;
+};
 
 // TODO: Remove in v4
 /** @deprecated use `adaptAsync` */
