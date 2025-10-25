@@ -17,6 +17,15 @@ b:
 c:
   pnpm run check $@
 
+p:
+  pnpm run preview
+
+cs:
+  pnpm changeset
+
+h:
+  mk -P targets "*"
+
 f/:
   pushd packages/form
   d:
@@ -378,15 +387,3 @@ e/:
       pnpm run dev
     popd
   popd
-
-p:
-  pnpm run preview
-
-c:
-  pnpm run check
-
-cs:
-  pnpm changeset
-
-h:
-  mk -P targets "*"

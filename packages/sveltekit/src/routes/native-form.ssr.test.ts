@@ -66,7 +66,7 @@ describe.skip('native form SSR', () => {
             }
           ],
           updateData: true,
-        } satisfies ValidatedFormData
+        } satisfies ValidatedFormData<string, true>
       }
     });
     expect(body).toContain('Schema title');
@@ -99,7 +99,7 @@ describe.skip('native form SSR', () => {
             }
           ],
           updateData: false,
-        } satisfies ValidatedFormData
+        } satisfies ValidatedFormData<string, true>
       }
     });
     expect(body).toContain('Schema title');

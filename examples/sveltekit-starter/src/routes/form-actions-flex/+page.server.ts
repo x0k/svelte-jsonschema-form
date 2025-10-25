@@ -1,10 +1,9 @@
 import { fail, type Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
-import { createFormHandler, isValid } from "@sjsf/sveltekit/server";
+import { createFormHandler } from "@sjsf/sveltekit/server";
 
 import * as defaults from "$lib/form-defaults";
 import { type FormValue, schema } from "$lib/post-model";
-
 
 export const load = async () => {
   return {
@@ -16,7 +15,7 @@ export const load = async () => {
   };
 };
 
-const handleForm = createFormHandler({
+const handleForm = createFormHandler<FormValue, true>({
   ...defaults,
   schema,
   sendData: true,
@@ -24,14 +23,14 @@ const handleForm = createFormHandler({
 
 export const actions = {
   default: async ({ request }) => {
-    const [form, data, invalid] = await handleForm(
+    const [form, , invalid] = await handleForm(
       request.signal,
       await request.formData()
     );
-    if (!isValid<FormValue>(form, data)) {
+    if (!form.isValid) {
       return fail(400, { form });
     }
-    const { title, content } = data;
+    const { title, content } = form.data;
     if (title.length > 100) {
       return fail(400, {
         form: invalid([{ path: ["title"], message: "Title is too long" }]),

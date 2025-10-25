@@ -35,7 +35,9 @@ function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
   idPrefix: string
 ): InitialFormData<Meta['__formValue']> | undefined {
   if (isRecord(page.form)) {
-    const validationData = page.form[meta.name] as ValidatedFormData | undefined;
+    const validationData = page.form[meta.name] as
+      | ValidatedFormData<Meta['__formValue'], Meta['__sendData']>
+      | undefined;
     if (
       validationData !== undefined &&
       validationData.idPrefix === idPrefix &&
@@ -74,7 +76,9 @@ export function createSvelteKitForm<
     if (!isRecord(page.form)) {
       return;
     }
-    const validationData = page.form[meta.name] as ValidatedFormData | undefined;
+    const validationData = page.form[meta.name] as
+      | ValidatedFormData<Meta['__formValue'], Meta['__sendData']>
+      | undefined;
     if (validationData === undefined || formIdPrefix !== validationData.idPrefix) {
       return;
     }
