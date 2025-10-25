@@ -7,7 +7,7 @@ import * as defaults from "$lib/form-defaults";
 import { schema, STEP_KEY, stepNames, type Stepped } from "./model";
 import type { Actions } from "./$types";
 
-const handleForm = createFormHandler({
+const handleForm = createFormHandler<Stepped, true>({
   ...defaults,
   schema,
   sendData: true,
@@ -19,27 +19,27 @@ export const load = async () => {
       schema,
       initialValue: {
         [STEP_KEY]: "first",
-      } satisfies Stepped,
+      } satisfies Stepped as Stepped,
     } satisfies InitialFormData,
   };
 };
 
 export const actions = {
   default: async ({ request }) => {
-    const [form, data] = await handleForm(
+    const [form] = await handleForm(
       request.signal,
       await request.formData()
     );
-    if (!isValid<Stepped>(form, data)) {
+    if (!form.isValid) {
       return fail(400, { form });
     }
-    const index = stepNames.indexOf(data[STEP_KEY]);
+    const index = stepNames.indexOf(form.data[STEP_KEY]);
     if (index < stepNames.length - 1) {
-      form.isValid = false;
-      data[STEP_KEY] = stepNames[index + 1];
+      form.isValid = false as true;
+      form.data[STEP_KEY] = stepNames[index + 1];
     } else {
       // all steps completed
-      console.log(data);
+      console.log(form.data);
     }
     return {
       form,
