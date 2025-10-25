@@ -6,6 +6,8 @@
     ON_CHANGE,
     ON_INPUT,
     setFormContext,
+    validate,
+    type FormValueValidator,
   } from "@sjsf/form";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
@@ -26,13 +28,20 @@
   const uiSchema = $derived(ctx.nodeUiSchema(node));
   const form = createForm({
     ...defaults,
-    getSnapshot(ctx) {
-      return omitExtraData(
-        ctx.validator,
-        ctx.merger,
-        schema,
-        $state.snapshot(ctx.value)
-      );
+    validator: (options) => {
+      const v = defaults.validator(options);
+      return {
+        ...v,
+        validateFormValue(rootSchema, formValue) {
+          const cleanData = omitExtraData(
+            v,
+            options.merger(),
+            options.schema,
+            formValue
+          );
+          return v.validateFormValue(rootSchema, cleanData);
+        },
+      } satisfies FormValueValidator<unknown>;
     },
     get initialValue() {
       return untrack(() => $state.snapshot(node.options));
@@ -52,7 +61,8 @@
     if (form.fieldsValidation.isProcessed) {
       return;
     }
-    node.options = form.value as any;
+    const { value } = validate(form)
+    node.options = value as any;
   });
 </script>
 

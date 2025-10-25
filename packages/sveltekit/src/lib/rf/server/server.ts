@@ -141,16 +141,16 @@ export function createServerValidator<R = FormValue>({
     try {
       const idPrefix = parseIdPrefix(input);
       const value = await parseData(request.signal, idPrefix, input);
-      const errors = isAsyncFormValueValidator(validator)
+      const result = isAsyncFormValueValidator<typeof validator, R>(validator)
         ? await validator.validateFormValueAsync(request.signal, schema, value)
-        : isFormValueValidator(validator)
+        : isFormValueValidator<typeof validator, R>(validator)
           ? validator.validateFormValue(schema, value)
-          : [];
-      return errors.length > 0
-        ? { issues: errors }
+          : { value: value as R };
+      return result.errors
+        ? { issues: result.errors }
         : {
             value: {
-              data: value as R,
+              data: result.value,
               idPrefix
             }
           };

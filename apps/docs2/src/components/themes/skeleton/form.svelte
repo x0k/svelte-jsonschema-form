@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
 
   import { createAstro } from "@/astro.svelte";
 
@@ -31,4 +31,4 @@
   data-theme="cerberus"
 />
 
-<pre>{JSON.stringify(form.value, withFile, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), withFile, 2)}</pre>

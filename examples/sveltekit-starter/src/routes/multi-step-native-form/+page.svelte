@@ -1,10 +1,12 @@
 <script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
+  import { isRecord } from '@sjsf/form/lib/object'
   import {
     setFormContext,
     Content,
     SubmitButton,
     type Config,
+    getValueSnapshot,
   } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
@@ -23,11 +25,13 @@
           ? {
               "object-property": {
                 get style(): string {
+                  const snap = getValueSnapshot(form)
+                  const step = isRecord(snap) && snap[STEP_KEY]
                   return `display: ${
                     // NOTE: Remember that each call to form.value causes a new
                     // form state snapshot to be created.
                     // If performance is critical for you can use controlled form
-                    config.path[0] === form.value?.[STEP_KEY] ? "block" : "none"
+                    config.path[0] === step ? "block" : "none"
                   }`;
                 },
               },

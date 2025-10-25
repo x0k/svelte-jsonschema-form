@@ -1,21 +1,25 @@
-import type { ValidationError } from "@sjsf/form";
+import type { FormValue, ValidationResult } from "@sjsf/form";
 import type { $ZodIssue, util } from "zod/v4/core";
 
-export function transformFormErrors(
-  result: util.SafeParseResult<any>
-): ValidationError[] {
+export function transformFormErrors<T>(
+  result: util.SafeParseResult<T>,
+  formData: FormValue
+): ValidationResult<T> {
   if (result.success) {
-    return [];
+    return { value: result.data };
   }
-  return result.error.issues.map((issue) => {
-    const path = issue.path.map((v) =>
-      typeof v === "symbol" ? v.toString() : v
-    );
-    return {
-      path,
-      message: issue.message,
-    };
-  });
+  return {
+    value: formData,
+    errors: result.error.issues.map((issue) => {
+      const path = issue.path.map((v) =>
+        typeof v === "symbol" ? v.toString() : v
+      );
+      return {
+        path,
+        message: issue.message,
+      };
+    }),
+  };
 }
 
 function isRootFieldError(issue: $ZodIssue) {

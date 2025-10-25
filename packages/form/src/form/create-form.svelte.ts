@@ -23,6 +23,8 @@ import {
   type AsyncFormValueValidator,
   type AsyncFieldValueValidator,
   type ValidationError,
+  type ValidationResult,
+  type FailureValidationResult,
 } from "./validator.js";
 import { createTranslate, type Translation } from "./translation.js";
 import {
@@ -36,7 +38,6 @@ import type { FieldsValidationMode } from "./validation.js";
 import type {
   FormSubmission,
   FieldsValidation,
-  FormValidationResult,
 } from "./errors.js";
 import type { FormMerger } from "./merger.js";
 import {
@@ -150,13 +151,6 @@ export interface MergerFactoryOptions {
   uiOptionsRegistry: UiOptionsRegistry;
 }
 
-export interface GetSnapshotOptions {
-  validator: Validator;
-  merger: FormMerger;
-  schema: Schema;
-  value: FormValue;
-}
-
 export interface FormOptions<T> extends UiOptionsRegistryOption {
   schema: Schema;
   theme: Theme;
@@ -182,7 +176,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    */
   submissionCombinator?: TasksCombinator<
     [event: SubmitEvent],
-    FormValidationResult,
+    ValidationResult<T>,
     unknown
   >;
   /**
@@ -214,15 +208,6 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    */
   fieldsValidationTimeoutMs?: number;
   /**
-   * The function to get the form data snapshot
-   *
-   * The snapshot is used to validate the form and passed to
-   * `onSubmit` and `onSubmitError` handlers.
-   *
-   * @default (ctx) => $state.snapshot(ctx.value)
-   */
-  getSnapshot?: (ctx: GetSnapshotOptions) => FormValue;
-  /**
    * Submit handler
    *
    * Will be called when the form is submitted and form data
@@ -240,9 +225,8 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * snapshot is not valid
    */
   onSubmitError?: (
-    errors: ValidationError[],
+    result: FailureValidationResult,
     e: SubmitEvent,
-    snapshot: FormValue,
     form: FormState<T>
   ) => void;
   /**
@@ -363,27 +347,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
           })
   );
   const dataUrlToBlob = $derived(createDataURLtoBlob(schedulerYield));
-  const getSnapshot = $derived.by(() => {
-    const get = options.getSnapshot;
-    if (get === undefined) {
-      return () => $state.snapshot(valueRef.current);
-    }
-    const opts: GetSnapshotOptions = {
-      get merger() {
-        return merger;
-      },
-      get schema() {
-        return options.schema;
-      },
-      get validator() {
-        return validator;
-      },
-      get value() {
-        return valueRef.current;
-      },
-    };
-    return () => get(opts);
-  });
   const translate = $derived(createTranslate(options.translation));
   const fieldsStateMap = new SvelteMap<FieldPath, number>();
   const isChanged = $derived(fieldsStateMap.size > 0);
@@ -400,36 +363,37 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   });
   // STATE END
 
-  const validateForm: AsyncFormValueValidator["validateFormValueAsync"] =
+  const validateForm: AsyncFormValueValidator<T>["validateFormValueAsync"] =
     $derived.by(() => {
-      if (isAsyncFormValueValidator(validator)) {
+      if (isAsyncFormValueValidator<typeof validator, T>(validator)) {
         return (signal, schema, formValue) =>
           validator.validateFormValueAsync(signal, schema, formValue);
       }
-      if (isFormValueValidator(validator)) {
+      if (isFormValueValidator<typeof validator, T>(validator)) {
         return (_, schema, formValue) =>
           Promise.resolve(validator.validateFormValue(schema, formValue));
       }
-      return async () => Promise.resolve([]);
+      return async (_, _1, formValue) =>
+        Promise.resolve({ value: formValue as T });
     });
 
-  const submission: FormSubmission = createTask({
+  const submission: FormSubmission<T> = createTask({
     async execute(signal) {
       setFieldState(formState, rootPath, FIELD_SUBMITTED);
-      const formValue = getSnapshot();
-      return {
-        formValue,
-        formErrors: await validateForm(signal, options.schema, formValue),
-      };
+      return await validateForm(
+        signal,
+        options.schema,
+        $state.snapshot(valueRef.current)
+      );
     },
-    onSuccess({ formValue, formErrors }, event) {
-      updateErrors(formState, formErrors);
-      if (formErrors.length === 0) {
-        options.onSubmit?.(formValue as T, event);
+    onSuccess(result, event) {
+      updateErrors(formState, result.errors ?? []);
+      if (result.errors === undefined) {
+        options.onSubmit?.(result.value, event);
         fieldsStateMap.clear();
         return;
       }
-      options.onSubmitError?.(formErrors, event, formValue, formState);
+      options.onSubmitError?.(result, event, formState);
     },
     onFailure(error, e) {
       updateFieldErrors(formState, rootPath, [
@@ -525,16 +489,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const formState: FormState<T> = {
     submission,
     fieldsValidation,
-    get value() {
-      return getSnapshot() as T | undefined;
-    },
-    set value(v) {
-      valueRef.current = merger.mergeFormDataAndSchemaDefaults({
-        formData: v as FormValue,
-        schema: options.schema,
-        initialDefaultsGenerated: true,
-      });
-    },
     get isSubmitted() {
       return isSubmitted;
     },

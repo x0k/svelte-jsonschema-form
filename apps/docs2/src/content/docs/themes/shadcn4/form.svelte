@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { theme, setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
   import { specs } from "@sjsf/shadcn4-theme/specs";
@@ -27,4 +27,4 @@
   style="margin-bottom: 1rem;"
 />
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), null, 2)}</pre>

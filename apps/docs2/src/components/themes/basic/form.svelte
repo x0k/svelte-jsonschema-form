@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createForm, BasicForm } from "@sjsf/form";
+  import { createForm, BasicForm, getValueSnapshot } from "@sjsf/form";
 
   import {
     schema,
@@ -23,4 +23,4 @@
 
 <BasicForm {form} />
 
-<pre>{JSON.stringify(form.value, withFile, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), withFile, 2)}</pre>

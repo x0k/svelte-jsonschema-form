@@ -30,10 +30,10 @@ export function createClientValidator<T>(form: FormState<T>) {
       version: 1,
       vendor: 'svelte-jsonschema-form',
       validate(): StandardSchemaV1.Result<void> {
-        const issues = validate(form);
-        if (issues.length > 0) {
+        const result = validate(form);
+        if (result.errors) {
           return {
-            issues
+            issues: result.errors
           };
         }
         return {

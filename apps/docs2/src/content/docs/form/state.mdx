@@ -5,14 +5,9 @@ sidebar:
 ---
 
 ```typescript
-export interface FormValidationResult {
-  formValue: FormValue;
-  formErrors: FormErrorsMap;
-}
-
-export type FormSubmission = Task<
+export type FormSubmission<Output> = Task<
   [event: SubmitEvent],
-  FormValidationResult,
+  ValidationResult<Output>,
   unknown
 >;
 
@@ -22,18 +17,13 @@ export type FieldsValidation = Task<
   unknown
 >;
 
+export interface FormState<T> 
 export interface FormState<T> {
-  readonly submission: FormSubmission;
+  readonly submission: FormSubmission<T>;
   readonly fieldsValidation: FieldsValidation;
   readonly isChanged: boolean;
   readonly isSubmitted: boolean;
-  /**
-   * An accessor that maintains form state consistency:
-   *
-   * - A snapshot of the form state is returned on access
-   * - Default values from JSON Schema are taken into account during assignment
-   */
-  value: T | undefined;
+
   submit: (e: SubmitEvent) => void;
   reset: (e?: Event) => void;
 
@@ -88,12 +78,12 @@ SJSF provides a set of functions to work with the form state that can either **r
 `getDefaultFieldState`, `retrieveUiSchema`, `uiTitleOption`, `retrieveUiOption`,
 `retrieveNestedUiOption`, `uiOptionProps`, `uiOptionNestedProps`,
 `retrieveTranslate`, `getFieldTitle`, `getFieldAction`,
-`getFieldsValidationMode`, `validate`, `validateAsync`
+`getFieldsValidationMode`, `validate`, `validateAsync`, `getValueSnapshot`
 
 **Commands:**
 `updateErrors`, `updateFieldErrors`, `updateFieldErrorsByPath`,
 `setFieldStateByPath`, `validateField`, `validateAdditionalPropertyKey`,
-`validateFileList`
+`validateFileList`, `setValue`
 
 ### `query` vs `command`
 

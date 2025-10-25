@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { createFormValidatorFactory } from "@sjsf/ajv8-validator/precompile";
   import { resolver } from "@sjsf/form/resolvers/compat";
 
@@ -19,4 +19,4 @@
 
 <BasicForm {form} novalidate />
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), null, 2)}</pre>

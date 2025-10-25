@@ -26,6 +26,7 @@ import {
   validateAndTransformErrors,
   validateAndTransformErrorsAsync,
 } from "./errors.js";
+import { CAST_FORM_DATA, NO_FILED_ERRORS } from "./internals.js";
 
 export interface ValidatorOptions {
   compileSchema: (schema: Schema, rootSchema: Schema) => ValidateFunction;
@@ -54,15 +55,16 @@ export interface FormValueValidatorOptions
   extends ValidatorOptions,
     ErrorsTransformerOptions {}
 
-export function createFormValueValidator(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
-): FormValueValidator {
+): FormValueValidator<T> {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
       return validateAndTransformErrors(
         options.compileSchema(rootSchema, rootSchema),
         formValue,
+        CAST_FORM_DATA<T>,
         transformErrors
       );
     },
@@ -81,6 +83,7 @@ export function createFieldValueValidator({
       return validateAndTransformErrors(
         compileFieldSchema(config),
         fieldValue,
+        NO_FILED_ERRORS,
         createFieldErrorsTransformer(config)
       );
     },
@@ -95,15 +98,16 @@ export interface AsyncFormValueValidatorOptions
   ) => AsyncValidateFunction;
 }
 
-export function createAsyncFormValueValidator(
+export function createAsyncFormValueValidator<T>(
   options: AsyncFormValueValidatorOptions
-): AsyncFormValueValidator {
+): AsyncFormValueValidator<T> {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
       return validateAndTransformErrorsAsync(
         options.compileAsyncSchema(rootSchema, rootSchema),
         formValue,
+        CAST_FORM_DATA<T>,
         transformErrors
       );
     },
@@ -122,6 +126,7 @@ export function createAsyncFieldValueValidator({
       return validateAndTransformErrorsAsync(
         compileAsyncFieldSchema(config),
         fieldValue,
+        NO_FILED_ERRORS,
         createFieldErrorsTransformer(config)
       );
     },
@@ -133,7 +138,7 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidator({
+export function createFormValidator<T>({
   ajvOptions = DEFAULT_AJV_CONFIG,
   ajvPlugins = addFormComponents,
   ajv = ajvPlugins(new Ajv(ajvOptions)),
@@ -158,7 +163,7 @@ export function createFormValidator({
   };
   return Object.assign(
     createValidator(options),
-    createFormValueValidator(options),
+    createFormValueValidator<T>(options),
     createFieldValueValidator(options)
   );
 }
@@ -168,7 +173,7 @@ export interface AsyncFormValidatorOptions
     AsyncFormValueValidatorOptions,
     AsyncFieldValueValidatorOptions {}
 
-export function createAsyncFormValidator({
+export function createAsyncFormValidator<T>({
   ajv,
   compileSchema = createSchemaCompiler(ajv, false),
   compileAsyncSchema = createSchemaCompiler(ajv, true),
@@ -183,7 +188,7 @@ export function createAsyncFormValidator({
   };
   return Object.assign(
     createValidator(options),
-    createAsyncFormValueValidator(options),
+    createAsyncFormValueValidator<T>(options),
     createAsyncFieldValueValidator(options)
   );
 }

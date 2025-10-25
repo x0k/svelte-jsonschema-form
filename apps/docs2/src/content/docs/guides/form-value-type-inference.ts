@@ -20,6 +20,3 @@ const form = createForm<FromSchema<typeof schema>>({
   ...defaults,
   schema,
 })
-
-// { text: string } | undefined
-form.value

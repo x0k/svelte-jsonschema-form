@@ -63,9 +63,9 @@ export interface FormValueValidatorOptions extends ValidatorOptions {
   merger: () => Merger;
 }
 
-export function createFormValueValidator(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
-): FormValueValidator {
+): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
       const validate = getValidate(options, rootSchema);
@@ -97,7 +97,7 @@ export interface FormValidatorOptions
   extends ValidatorOptions,
     FormValueValidatorOptions {}
 
-export function createFormValidatorFactory({
+export function createFormValidatorFactory<T>({
   // `isJSON` validator option is `false` by default
   valueToJSON = (value) => value as Json,
   ...vOptions
@@ -115,7 +115,7 @@ export function createFormValidatorFactory({
     };
     return Object.assign(
       createValidator(full),
-      createFormValueValidator(full),
+      createFormValueValidator<T>(full),
       createFieldValueValidator(full)
     );
   };

@@ -1,22 +1,28 @@
 import type { Path } from "@sjsf/form/core";
-import type { ValidationError } from "@sjsf/form";
+import type { FormValue, ValidationResult } from "@sjsf/form";
 import * as v from "valibot";
 
 import type { ValibotIssue, ValibotSchema } from "./model.js";
 
-export function transformFormErrors(
-  result: v.SafeParseResult<ValibotSchema>
-): ValidationError[] {
+export function transformFormErrors<T>(
+  result: v.SafeParseResult<ValibotSchema>,
+  formData: FormValue
+): ValidationResult<T> {
   if (result.success) {
-    return [];
-  }
-  return result.issues.map((issue) => {
-    const path = issue.path?.map((v) => v.key as Path[number]) ?? [];
     return {
-      path,
-      message: issue.message,
+      value: result.output as T,
     };
-  });
+  }
+  return {
+    value: formData,
+    errors: result.issues.map((issue) => {
+      const path = issue.path?.map((v) => v.key as Path[number]) ?? [];
+      return {
+        path,
+        message: issue.message,
+      };
+    }),
+  };
 }
 
 function isRootFieldError(issue: ValibotIssue) {

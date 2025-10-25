@@ -2,8 +2,11 @@ import {
   encodePseudoElement,
   getRootUiSchemaTitleByPath,
   type Config,
+  type FailureValidationResult,
+  type FormValue,
   type Schema,
   type UiSchemaRoot,
+  type ValidationResult,
 } from "@sjsf/form";
 import { pathFromLocation, type Path } from "@sjsf/form/core";
 import {
@@ -56,30 +59,33 @@ function errorObjectToMessage(
 export function createFormErrorsTransformer({
   uiSchema = {},
 }: ErrorsTransformerOptions) {
-  return (errors: ErrorObject[], data: unknown) => {
-    return errors.map((error) => {
-      const path = pathFromLocation(error.instancePath, data);
-      return {
-        path: createInstancePath(error, path),
-        message: errorObjectToMessage(
-          error,
-          (missingProperty, parentSchema) => {
-            const uiSchemaTitle = getRootUiSchemaTitleByPath(
-              uiSchema,
-              path.concat(missingProperty)
-            );
-            if (uiSchemaTitle !== undefined) {
-              return uiSchemaTitle;
+  return (errors: ErrorObject[], data: FormValue): FailureValidationResult => {
+    return {
+      value: data,
+      errors: errors.map((error) => {
+        const path = pathFromLocation(error.instancePath, data);
+        return {
+          path: createInstancePath(error, path),
+          message: errorObjectToMessage(
+            error,
+            (missingProperty, parentSchema) => {
+              const uiSchemaTitle = getRootUiSchemaTitleByPath(
+                uiSchema,
+                path.concat(missingProperty)
+              );
+              if (uiSchemaTitle !== undefined) {
+                return uiSchemaTitle;
+              }
+              const prop = parentSchema?.properties?.[missingProperty];
+              if (typeof prop === "object") {
+                return prop.title;
+              }
+              return undefined;
             }
-            const prop = parentSchema?.properties?.[missingProperty];
-            if (typeof prop === "object") {
-              return prop.title;
-            }
-            return undefined;
-          }
-        ),
-      };
-    });
+          ),
+        };
+      }),
+    };
   };
 }
 
@@ -98,27 +104,30 @@ export function createFieldErrorsTransformer(config: Config) {
       .map((error) => errorObjectToMessage(error, () => config.title));
 }
 
-export type TransformErrors<R> = (errors: ErrorObject[], data: unknown) => R[];
+export type TransformInput<T> = (data: FormValue) => T;
+export type TransformErrors<R> = (errors: ErrorObject[], data: FormValue) => R;
 
-export function validateAndTransformErrors<R>(
+export function validateAndTransformErrors<T, R>(
   validate: ValidateFunction,
-  data: unknown,
+  data: FormValue,
+  transformData: TransformInput<T>,
   transformErrors: TransformErrors<R>
-) {
+): T | R {
   validate(data);
   const errors = validate.errors;
   validate.errors = null;
   if (!errors) {
-    return [];
+    return transformData(data);
   }
   return transformErrors(errors, data);
 }
 
-export async function validateAndTransformErrorsAsync<R>(
+export async function validateAndTransformErrorsAsync<T, R>(
   validate: AsyncValidateFunction,
-  data: unknown,
+  data: FormValue,
+  transformInput: TransformInput<T>,
   transformErrors: TransformErrors<R>
-) {
+): Promise<T | R> {
   try {
     await validate(data);
   } catch (e) {
@@ -129,5 +138,5 @@ export async function validateAndTransformErrorsAsync<R>(
   } finally {
     validate.errors = null;
   }
-  return [];
+  return transformInput(data);
 }

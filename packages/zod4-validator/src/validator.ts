@@ -66,13 +66,16 @@ export function createValidator({
 
 export interface FormValueValidatorOptions extends ValidatorOptions {}
 
-export function createFormValueValidator(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
-): FormValueValidator {
+): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
       const zodSchema = getZodSchema(options.schemaRegistry, rootSchema);
-      return transformFormErrors(options.safeParse(zodSchema, formValue));
+      return transformFormErrors(
+        options.safeParse(zodSchema, formValue),
+        formValue
+      );
     },
   };
 }
@@ -81,14 +84,14 @@ export interface AsyncFormValueValidatorOptions
   extends SchemaRegistryProvider,
     SafeParseAsyncProvider {}
 
-export function createAsyncFormValueValidator(
+export function createAsyncFormValueValidator<T>(
   options: AsyncFormValueValidatorOptions
-): AsyncFormValueValidator {
+): AsyncFormValueValidator<T> {
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
       const zodSchema = getZodSchema(options.schemaRegistry, rootSchema);
       const result = await options.safeParseAsync(zodSchema, formValue);
-      return transformFormErrors(result);
+      return transformFormErrors(result, formValue);
     },
   };
 }
@@ -132,10 +135,10 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidator(options: FormValidatorOptions) {
+export function createFormValidator<T>(options: FormValidatorOptions) {
   return Object.assign(
     createValidator(options),
-    createFormValueValidator(options),
+    createFormValueValidator<T>(options),
     createFieldValueValidator(options)
   );
 }
@@ -145,10 +148,12 @@ export interface AsyncFormValidatorOptions
     AsyncFormValueValidatorOptions,
     AsyncFieldValueValidatorOptions {}
 
-export function createAsyncFormValidator(options: AsyncFormValidatorOptions) {
+export function createAsyncFormValidator<T>(
+  options: AsyncFormValidatorOptions
+) {
   return Object.assign(
     createValidator(options),
-    createAsyncFormValueValidator(options),
+    createAsyncFormValueValidator<T>(options),
     createAsyncFieldValueValidator(options)
   );
 }

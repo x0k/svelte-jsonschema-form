@@ -7,7 +7,14 @@ import {
   type Merger,
   type Path,
 } from "@sjsf/form/core";
-import type { Config, FieldValue, Schema, Validator } from "@sjsf/form";
+import type {
+  Config,
+  FieldValue,
+  FormValue,
+  Schema,
+  ValidationResult,
+  Validator,
+} from "@sjsf/form";
 
 function extractKeywordValue(
   validator: Validator,
@@ -55,36 +62,41 @@ function createErrorMessage(keyword: string, details: string | undefined) {
   return details ? `${keyword} (${details})` : keyword;
 }
 
-export function transformFormErrors(
+export function transformFormErrors<T>(
   validator: Validator,
   merger: Merger,
   rootSchema: Schema,
   errors: ValidationError[] | undefined,
-  data: FieldValue
-) {
+  data: FormValue
+): ValidationResult<T> {
   // NOTE: According to the compiled output of `schemasafe`
   // errors can be `null`
-  if (!errors) {
-    return [];
-  }
-  return errors.map((error) => {
-    const { instancePath, schemaPath, keyword } = transformError(error, data);
+  if (!errors || errors.length === 0) {
     return {
-      path: instancePath,
-      message: createErrorMessage(
-        keyword,
-        extractKeywordValue(
-          validator,
-          merger,
-          keyword,
-          rootSchema,
-          instancePath,
-          schemaPath,
-          data
-        )
-      ),
+      value: data as T,
     };
-  });
+  }
+  return {
+    value: data,
+    errors: errors.map((error) => {
+      const { instancePath, schemaPath, keyword } = transformError(error, data);
+      return {
+        path: instancePath,
+        message: createErrorMessage(
+          keyword,
+          extractKeywordValue(
+            validator,
+            merger,
+            keyword,
+            rootSchema,
+            instancePath,
+            schemaPath,
+            data
+          )
+        ),
+      };
+    }),
+  };
 }
 
 function isRootError(error: ValidationError): boolean {
