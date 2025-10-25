@@ -2,7 +2,7 @@ import { getContext, setContext } from "svelte";
 import type { SvelteMap } from "svelte/reactivity";
 
 import type { DataURLToBlob } from "@/lib/file.js";
-import type { Schema, Validator } from "@/core/index.js";
+import type { Schema } from "@/core/index.js";
 
 import type { Translate, Translation } from "../translation.js";
 import {
@@ -50,6 +50,7 @@ import {
 } from "../internals.js";
 import type { FieldPath, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
+import type { FormValidator } from '../validator.js';
 
 export interface FormState<T> {
   readonly submission: FormSubmission<T>;
@@ -76,7 +77,7 @@ export interface FormState<T> {
   readonly [FORM_UI_SCHEMA]: UiSchema;
   readonly [FORM_UI_OPTIONS_REGISTRY]: UiOptionsRegistry;
   readonly [FORM_UI_EXTRA_OPTIONS]?: ExtraUiOptions;
-  readonly [FORM_VALIDATOR]: Validator;
+  readonly [FORM_VALIDATOR]: FormValidator<T>;
   readonly [FORM_MERGER]: FormMerger;
   readonly [FORM_ICONS]?: Icons;
   readonly [FORM_DISABLED]: boolean;

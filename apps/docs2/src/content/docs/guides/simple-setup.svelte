@@ -3,7 +3,8 @@
   import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { createFormIdBuilder } from '@sjsf/form/id-builders/modern';
+  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
+  import { createFormValidator } from "@sjsf/form/validators/noop";
   import { theme } from "@sjsf/basic-theme";
 </script>
 
@@ -24,6 +25,6 @@
   }}
   merger={createFormMerger}
   idBuilder={createFormIdBuilder}
-  validator={() => ({ isValid: () => true })}
-  onSubmit={(v: { text: string }) => window.alert(v.text)}
+  validator={createFormValidator<{ text: string }>}
+  onSubmit={(v) => window.alert(v.text)}
 />

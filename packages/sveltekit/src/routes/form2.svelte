@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm } from '@sjsf/form';
+  import { BasicForm, type ValidatorFactoryOptions } from '@sjsf/form';
 
   import {
     createMeta,
@@ -27,9 +27,9 @@
       }
     },
     onSubmitError: console.warn,
-    validator: (options) =>
+    validator: <T,>(options: ValidatorFactoryOptions) =>
       Object.assign(
-        defaults.validator(options),
+        defaults.validator<T>(options),
         createAdditionalPropertyKeyValidator({
           error({ type, values }) {
             return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
