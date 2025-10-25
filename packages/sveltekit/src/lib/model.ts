@@ -1,42 +1,19 @@
 import type { DeepPartial, MaybePromise } from '@sjsf/form/lib/types';
+import type { RPath, SchemaDefinition } from '@sjsf/form/core';
 import type {
+  FieldValue,
   FormOptions,
+  FormValue,
   Schema,
-  SchemaValue,
   UiSchema,
   UiSchemaRoot,
   ValidationError
 } from '@sjsf/form';
-import type { RPath, SchemaDefinition } from '@sjsf/form/core';
+
+import type { PickOptionalSerializable } from './internal.js';
 
 export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
 export const FORM_DATA_FILE_PREFIX = '__sjsf_sveltekit_file__';
-
-type SerializablePrimitive = string | number | boolean | null | undefined | bigint;
-
-type SerializableSpecial =
-  | Date
-  | RegExp
-  | Map<Serializable, Serializable>
-  | Set<Serializable>
-  | URL
-  | URLSearchParams;
-
-type Serializable =
-  | SerializablePrimitive
-  | SerializableSpecial
-  | Serializable[]
-  | { [key: string | number]: Serializable };
-
-type OptionalKeys<T> = {
-  [K in keyof T]-?: undefined extends T[K] ? K : never;
-}[keyof T];
-
-type SerializableKeys<T> = {
-  [K in keyof T]: NonNullable<T[K]> extends Serializable ? K : never;
-}[keyof T];
-
-type PickOptionalSerializable<T> = Pick<T, Extract<OptionalKeys<T>, SerializableKeys<T>>>;
 
 export type SerializableOptionalFormOptions<T> = PickOptionalSerializable<FormOptions<T>>;
 
@@ -47,13 +24,22 @@ export type InitialFormData<T = unknown> = SerializableOptionalFormOptions<T> & 
   uiSchema?: UiSchemaRoot;
 };
 
-export interface ValidatedFormData {
+export type SendData = boolean | 'withoutClientSideUpdate';
+
+export type ValidatedFormData<T, SD extends SendData> = {
   idPrefix: string;
-  isValid: boolean;
   updateData: boolean;
-  data: SchemaValue | undefined;
   errors: ReadonlyArray<ValidationError>;
-}
+} & (
+  | {
+      isValid: true;
+      data: SD extends false ? undefined : T;
+    }
+  | {
+      isValid: false;
+      data: SD extends false ? undefined : FormValue;
+    }
+);
 
 export type Entry<T> = [key: string, value: T];
 
@@ -69,4 +55,4 @@ export interface EntryConverterOptions<T> {
 export type EntryConverter<T> = (
   signal: AbortSignal,
   options: EntryConverterOptions<T>
-) => MaybePromise<SchemaValue | undefined>;
+) => MaybePromise<FieldValue>;
