@@ -15,7 +15,7 @@ npm install @sjsf/form @sjsf/skeleton3-theme
 
 1. Install Skeleton v3
 
-[Install and configure Skeleton for SvelteKit](https://www.skeleton.dev/docs/get-started/installation/sveltekit)
+[Install and configure Skeleton for SvelteKit](https://v3.skeleton.dev/docs/get-started/installation/sveltekit)
 
 2. Configuration
 
