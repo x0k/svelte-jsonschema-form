@@ -61,8 +61,8 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.0.0-next.11",
-		"@skeletonlabs/skeleton": "^4.1.0",
-		"@skeletonlabs/skeleton-svelte": "^4.1.0",
+		"@skeletonlabs/skeleton": "^4.1.5",
+		"@skeletonlabs/skeleton-svelte": "^4.1.5",
 		"@tailwindcss/forms": "^0.5.0",
 		"svelte": "^5.41.0"
 	},
@@ -74,8 +74,8 @@
 	"devDependencies": {
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
-		"@skeletonlabs/skeleton": "4.1.4",
-		"@skeletonlabs/skeleton-svelte": "^4.1.4",
+		"@skeletonlabs/skeleton": "^4.1.5",
+		"@skeletonlabs/skeleton-svelte": "^4.1.5",
 		"@tailwindcss/forms": "^0.5.10",
 		"@tailwindcss/vite": "catalog:",
 		"ajv": "catalog:",

@@ -1360,11 +1360,11 @@ importers:
         specifier: workspace:*
         version: link:../form
       '@skeletonlabs/skeleton':
-        specifier: 4.1.4
-        version: 4.1.4(tailwindcss@4.1.16)
+        specifier: ^4.1.5
+        version: 4.1.5(tailwindcss@4.1.16)
       '@skeletonlabs/skeleton-svelte':
-        specifier: ^4.1.4
-        version: 4.1.4(@internationalized/date@3.10.0)(svelte@5.41.3)
+        specifier: ^4.1.5
+        version: 4.1.5(@internationalized/date@3.10.0)(svelte@5.41.3)
       '@tailwindcss/forms':
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@4.1.16)
@@ -2453,8 +2453,8 @@ packages:
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
 
-  '@skeletonlabs/skeleton-common@4.1.4':
-    resolution: {integrity: sha512-1n/coJJsb4byFfjT5CxKaKsoYvbjpK/gK95CfQS9gUr9KLsag6uZTaRDdXU+JBThTie+h9IncL/1JxmA+kG+WQ==}
+  '@skeletonlabs/skeleton-common@4.1.5':
+    resolution: {integrity: sha512-h656uXMobDlBFIvRAvA5WMbeFsBAX+HukQ1PlzjyQ/ejtCzLJ1HqckkBnzUJLI9gpLqn6jTF4WngFreE9juf5g==}
 
   '@skeletonlabs/skeleton-svelte@1.5.1':
     resolution: {integrity: sha512-XYvIy0CPYYIGUV6TjGpUrjSkTJcuWxGqT7aKK+zXuMjVUGqNLAWrHabITRgWHvAlQwlo5V10pKxwphrQeunqWA==}
@@ -2466,8 +2466,8 @@ packages:
     peerDependencies:
       svelte: ^5.20.0
 
-  '@skeletonlabs/skeleton-svelte@4.1.4':
-    resolution: {integrity: sha512-c54fj0BdJBbhirlfJx9ZI4sm+HwtmcnJavWeCUZIsCCHeDvl9G4Nd6yLL+UQdJos21ZxVfGeVvGr0iahGMmeEw==}
+  '@skeletonlabs/skeleton-svelte@4.1.5':
+    resolution: {integrity: sha512-N3hsVyOAXSftUpk2p+5vF25WngwT+Hc3p/FWbW+yB500lboZ+Y/ZLUS3Erf6yoaSkvFss1cDwVUOb84Ervxd3A==}
     peerDependencies:
       svelte: ^5.29.0
 
@@ -2481,8 +2481,8 @@ packages:
     peerDependencies:
       tailwindcss: ^4.0.0
 
-  '@skeletonlabs/skeleton@4.1.4':
-    resolution: {integrity: sha512-7NsN3GmMFhVEmZGY2HrC2OorDTAdsXAruRRev2CKgOYEca0rSddADNAE/dXNm1TBOulrWB57aAh/fWper6AVXw==}
+  '@skeletonlabs/skeleton@4.1.5':
+    resolution: {integrity: sha512-j4iaHd1y1RROlMQP4DK6kqWHGflG3LBYftuVzXsbNUEKCM9B9nqsh3/ezv5NOjtDk1She/+OpZeIOPUxZ4KBiA==}
     peerDependencies:
       tailwindcss: ^4.0.0
 
@@ -7862,7 +7862,7 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@skeletonlabs/skeleton-common@4.1.4': {}
+  '@skeletonlabs/skeleton-common@4.1.5': {}
 
   '@skeletonlabs/skeleton-svelte@1.5.1(svelte@5.41.0)':
     dependencies:
@@ -7906,9 +7906,9 @@ snapshots:
       '@zag-js/tooltip': 1.18.3
       svelte: 5.41.3
 
-  '@skeletonlabs/skeleton-svelte@4.1.4(@internationalized/date@3.10.0)(svelte@5.41.3)':
+  '@skeletonlabs/skeleton-svelte@4.1.5(@internationalized/date@3.10.0)(svelte@5.41.3)':
     dependencies:
-      '@skeletonlabs/skeleton-common': 4.1.4
+      '@skeletonlabs/skeleton-common': 4.1.5
       '@zag-js/accordion': 1.26.3
       '@zag-js/avatar': 1.26.3
       '@zag-js/collapsible': 1.26.3
@@ -7944,7 +7944,7 @@ snapshots:
     dependencies:
       tailwindcss: 4.1.16
 
-  '@skeletonlabs/skeleton@4.1.4(tailwindcss@4.1.16)':
+  '@skeletonlabs/skeleton@4.1.5(tailwindcss@4.1.16)':
     dependencies:
       tailwindcss: 4.1.16
 

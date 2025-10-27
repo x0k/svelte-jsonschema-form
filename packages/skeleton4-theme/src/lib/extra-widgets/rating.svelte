@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { ComponentProps as SvelteComponentProps } from 'svelte';
-	import { Rating as SkeletonRating } from '@skeletonlabs/skeleton-svelte';
+	import { RatingGroup as SkeletonRating } from '@skeletonlabs/skeleton-svelte';
 	import '@sjsf/form/fields/extra-widgets/rating';
 
 	declare module '@sjsf/form' {

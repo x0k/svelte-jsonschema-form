@@ -20,7 +20,7 @@
 		type ComponentProps
 	} from '@sjsf/form';
 	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
-	import { Segment } from '@skeletonlabs/skeleton-svelte';
+	import { SegmentedControl } from '@skeletonlabs/skeleton-svelte';
 
 	let {
 		config,
@@ -40,7 +40,7 @@
 	const id = $derived(createId(ctx, config.path))
 </script>
 
-<Segment
+<SegmentedControl
 	value={mapped.value}
 	{...customInputAttributes(ctx, config, 'skeleton4Segment', {
 		ids: {
@@ -56,10 +56,10 @@
 	})}
 >
 	{#each options as option, index (option.id)}
-		<Segment.Item
+		<SegmentedControl.Item
+			value={index.toString()}
 			{...uiOptionProps('skeleton4SegmentItem')(
 				{
-					value: index.toString(),
 					disabled: option.disabled
 				},
 				config,
@@ -67,6 +67,6 @@
 			)}
 		>
 			{option.label}
-		</Segment.Item>
+		</SegmentedControl.Item>
 	{/each}
-</Segment>
+</SegmentedControl>
