@@ -1,8 +1,7 @@
 <script lang="ts" module>
 	import type { ComponentProps as SvelteComponentProps } from 'svelte';
 	import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
-	// NOTE: avoids types collision
-	import { Slider as SkeletonSlider } from '@skeletonlabs/skeleton-svelte';
+	import type { SliderRootProps } from '@skeletonlabs/skeleton-svelte';
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
@@ -12,13 +11,14 @@
 			skeleton4SliderWidget: 'value';
 		}
 		interface UiOptions {
-			skeleton4Slider?: SvelteComponentProps<typeof SkeletonSlider>;
+			skeleton4Slider?: SliderRootProps;
 		}
 	}
 </script>
 
 <script lang="ts">
 	import { getFormContext, type ComponentProps, customInputAttributes, createId } from '@sjsf/form';
+	import { Slider } from '@skeletonlabs/skeleton-svelte';
 
 	let {
 		value = $bindable(),
@@ -32,7 +32,7 @@
 	const id = $derived(createId(ctx, config.path));
 </script>
 
-<SkeletonSlider
+<Slider
 	{...customInputAttributes(ctx, config, 'skeleton4Slider', {
 		ids: {
 			hiddenInput() {
@@ -53,4 +53,13 @@
 		onValueChangeEnd: handlers.onchange,
 		value: value === undefined ? undefined : [value]
 	})}
-/>
+>
+	<Slider.Control>
+		<Slider.Track>
+			<Slider.Range />
+		</Slider.Track>
+		<Slider.Thumb index={0}>
+			<Slider.HiddenInput />
+		</Slider.Thumb>
+	</Slider.Control>
+</Slider>
