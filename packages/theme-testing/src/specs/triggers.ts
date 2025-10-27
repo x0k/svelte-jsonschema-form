@@ -129,10 +129,11 @@ export const inputFlowbiteMultiSelect: FieldValidationTrigger = async (l) => {
   await userEvent.click(option);
 };
 
-export const getFlowbiteRadioButton = (l: Locator) => l.getByText(enumeration.enum[0])
-export const inputFlowbiteRadioButton = click(getFlowbiteRadioButton)
-export const changeFlowbiteRadioButton = inputFlowbiteRadioButton
-export const visitFlowbiteRadioButton = withTab(inputFlowbiteRadioButton)
+export const getFlowbiteRadioButton = (l: Locator) =>
+  l.getByText(enumeration.enum[0]);
+export const inputFlowbiteRadioButton = click(getFlowbiteRadioButton);
+export const changeFlowbiteRadioButton = inputFlowbiteRadioButton;
+export const visitFlowbiteRadioButton = withTab(inputFlowbiteRadioButton);
 
 export const inputShadcnSelect: FieldValidationTrigger = async (l) => {
   const select = getButton(l);
@@ -164,15 +165,20 @@ export const visitShadcnCombobox = withTab(inputShadcnCombobox);
 export const inputSkeletonCombobox: FieldValidationTrigger = async (l) => {
   const select = getButton(l);
   await userEvent.click(select);
-  const option = l.getByText(enumeration.enum[0])
+  const option = l.getByText(enumeration.enum[0]);
   await userEvent.click(option);
 };
 export const changeSkeletonCombobox = inputSkeletonCombobox;
 export const visitSkeletonCombobox = withTab(inputSkeletonCombobox);
 
-export const getRadioButtonLabel = (l: Locator) => l.getByTestId('segment-item').last();
-export const inputSkeletonRadioButton = click(getRadioButtonLabel)
-export const changeSkeletonRadioButton = inputSkeletonRadioButton
+export const getSkeletonRadioButtonLabel = (l: Locator) =>
+  l.getByTestId("segment-item").last();
+export const inputSkeletonRadioButton = click(getSkeletonRadioButtonLabel);
+export const changeSkeletonRadioButton = inputSkeletonRadioButton;
 
-export const getFileInput = (l: Locator) => l.getByRole('button').nth(1)
-export const changeSkeletonFile = uploadFile(getFileInput)
+export const getSkeletonFileInput = (l: Locator) =>
+  l.getByRole("button").nth(1);
+export const changeSkeletonFile = uploadFile(getSkeletonFileInput);
+
+export const getSkeleton4FileInput = (l: Locator) => l.getByTestId('hidden-input');
+export const changeSkeleton4File = uploadFile(getSkeleton4FileInput);

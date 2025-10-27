@@ -51,7 +51,7 @@ export const specs: s.Specs = {
 			}
 		},
 		{
-			onchange: 'changeSkeletonFile'
+			onchange: 'changeSkeleton4File'
 		}
 	],
 	fileUploadMultiple: [
@@ -63,7 +63,7 @@ export const specs: s.Specs = {
 			}
 		},
 		{
-			onchange: 'changeSkeletonFile'
+			onchange: 'changeSkeleton4File'
 		}
 	],
 	multiSelect: [
@@ -91,8 +91,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: 'inputSkeletonRadioButton',
-			onchange: 'changeSkeletonRadioButton'
+			oninput: 'inputFlowbiteRadioButton',
+			onchange: 'changeFlowbiteRadioButton',
+			// onblur: 'visitFlowbiteRadioButton'
 		}
 	],
 	radio: [

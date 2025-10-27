@@ -108,7 +108,7 @@
 	<FileUpload.Dropzone>
 		<span>Select file or drag here.</span>
 		<FileUpload.Trigger>Browse Files</FileUpload.Trigger>
-		<FileUpload.HiddenInput />
+		<FileUpload.HiddenInput data-testid="hidden-input" />
 	</FileUpload.Dropzone>
 	<FileUpload.ItemGroup>
 		<FileUpload.Context>

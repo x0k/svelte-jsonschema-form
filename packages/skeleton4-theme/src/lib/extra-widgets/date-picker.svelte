@@ -42,7 +42,7 @@
 	<DatePicker.Control>
 		<DatePicker.Input
 			required={config.required}
-			{...handlersAttachment(handlers)}
+			{...handlers}
 		/>
 		<DatePicker.Trigger />
 	</DatePicker.Control>
