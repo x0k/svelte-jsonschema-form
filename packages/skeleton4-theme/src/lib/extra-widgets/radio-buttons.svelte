@@ -1,12 +1,14 @@
 <script lang="ts" module>
+	import type {
+		SegmentedControlRootProps,
+		SegmentedControlItemProps
+	} from '@skeletonlabs/skeleton-svelte';
 	import '@sjsf/form/fields/extra-widgets/radio-buttons';
-
-	import type { SegmentProps, SegmentItemProps } from '$lib/segment-types.js';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			skeleton4Segment?: SegmentProps;
-			skeleton4SegmentItem?: SegmentItemProps;
+			skeleton4Segment?: SegmentedControlRootProps;
+			skeleton4SegmentItem?: Omit<SegmentedControlItemProps, 'value'>;
 		}
 	}
 </script>
@@ -37,7 +39,9 @@
 
 	const ctx = getFormContext();
 
-	const id = $derived(createId(ctx, config.path))
+	const id = $derived(createId(ctx, config.path));
+
+	const itemAttributes = $derived(uiOptionProps('skeleton4SegmentItem')({}, config, ctx));
 </script>
 
 <SegmentedControl
@@ -55,18 +59,17 @@
 		}
 	})}
 >
-	{#each options as option, index (option.id)}
-		<SegmentedControl.Item
-			value={index.toString()}
-			{...uiOptionProps('skeleton4SegmentItem')(
-				{
-					disabled: option.disabled
-				},
-				config,
-				ctx
-			)}
-		>
-			{option.label}
-		</SegmentedControl.Item>
-	{/each}
+	<SegmentedControl.Control>
+		<SegmentedControl.Indicator />
+		{#each options as option, index (option.id)}
+			<SegmentedControl.Item
+				value={index.toString()}
+				disabled={option.disabled}
+				{...itemAttributes}
+			>
+				<SegmentedControl.ItemText>{option.label}</SegmentedControl.ItemText>
+				<SegmentedControl.ItemHiddenInput />
+			</SegmentedControl.Item>
+		{/each}
+	</SegmentedControl.Control>
 </SegmentedControl>

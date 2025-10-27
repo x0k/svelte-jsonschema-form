@@ -60,16 +60,12 @@
 				items = originalItems;
 			},
 			onInputValueChange: (event) => {
-				const input = event.inputValue.trim().toLowerCase();
-				if (input.length === 0) {
-					items = originalItems;
+				const input = event.inputValue.toLowerCase().trim();
+				const filtered = originalItems.filter((item) => item.label.toLowerCase().includes(input));
+				if (filtered.length > 0) {
+					items = filtered;
 				} else {
-					const filtered = items.filter((item) => item.label.toLowerCase().includes(input));
-					if (filtered.length > 0) {
-						items = filtered;
-					} else {
-						items = originalItems;
-					}
+					items = originalItems;
 				}
 			},
 			onValueChange: (details) => {
