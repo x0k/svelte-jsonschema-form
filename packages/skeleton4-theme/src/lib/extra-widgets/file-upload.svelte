@@ -1,7 +1,7 @@
 <script lang="ts" module>
-	import { untrack, type ComponentProps as SvelteComponentProps } from 'svelte';
+	import { untrack } from 'svelte';
 	import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
-	import { FileUpload as SkeletonFileUpload } from '@skeletonlabs/skeleton-svelte';
+	import { type FileUploadRootProviderProps, useFileUpload } from '@skeletonlabs/skeleton-svelte';
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
@@ -15,14 +15,14 @@
 			skeleton4FileUploadWidget: 'value';
 		}
 		interface UiOptions {
-			skeleton4FileUpload?: SvelteComponentProps<typeof SkeletonFileUpload>;
+			skeleton4FileUpload?: Omit<FileUploadRootProviderProps, 'value'>;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { type FileUploadApi } from '@skeletonlabs/skeleton-svelte';
 	import { customInputAttributes, getFormContext, createId, type ComponentProps } from '@sjsf/form';
+	import { FileUpload } from '@skeletonlabs/skeleton-svelte';
 
 	let {
 		config,
@@ -36,29 +36,31 @@
 
 	const id = $derived(createId(ctx, config.path));
 
-	let lastFiles: FileList | undefined;
-	const attributes = $derived(
-		customInputAttributes(ctx, config, 'skeleton4FileUpload', {
-			ids: {
-				hiddenInput: id
-			},
-			invalid: errors.length > 0,
-			name: id,
-			required: config.required,
-			maxFiles: config.schema.maxItems ?? (multiple ? Infinity : 1),
-			onFileChange: handlers.onchange,
-			onFileAccept: ({ files }) => {
-				if (files.length === 0 && lastFiles === undefined) {
-					return;
-				}
-				const data = new DataTransfer();
-				for (const file of files) {
-					data.items.add(file);
-				}
-				value = lastFiles = data.files;
+	const componentId = $props.id();
+
+	const api = useFileUpload(() => ({
+		id: componentId,
+		ids: {
+			hiddenInput: id
+		},
+		name: id,
+		invalid: errors.length > 0,
+		required: config.required,
+		maxFiles: config.schema.maxItems ?? (multiple ? Infinity : 1),
+		onFileChange: handlers.onchange,
+		onFileAccept: ({ files }) => {
+			if (files.length === 0 && lastFiles === undefined) {
+				return;
 			}
-		})
-	);
+			const data = new DataTransfer();
+			for (const file of files) {
+				data.items.add(file);
+			}
+			value = lastFiles = data.files;
+		}
+	}));
+
+	let lastFiles: FileList | undefined;
 
 	function areFilesEqual(fl1: FileList | undefined, fl2: FileList | undefined) {
 		if (fl1 === fl2) {
@@ -75,34 +77,50 @@
 		return true;
 	}
 
-	let api: FileUploadApi;
 	$effect(() => {
 		if (areFilesEqual(value, lastFiles)) {
 			return;
 		}
 		untrack(() => {
+			const a = api();
 			if (value === undefined) {
 				lastFiles = undefined;
-				api.clearFiles();
+				a.clearFiles();
 			} else {
 				// Looks like `type` and `lastModified` props are modified by zag,
 				const toAdd = Array.from(value).filter(
 					(fl) =>
-						api.acceptedFiles.find((f) => fl.name === f.name && fl.size === f.size) === undefined
+						a.acceptedFiles.find((f) => fl.name === f.name && fl.size === f.size) === undefined
 				);
 				if (toAdd.length > 0) {
-					api.setFiles(toAdd);
+					a.setFiles(toAdd);
 				}
 			}
 		});
 	});
 </script>
 
-<SkeletonFileUpload
-	classes="w-full"
-	{...attributes}
-	onApiReady={(a) => {
-		api = a;
-		attributes.onApiReady?.(a);
-	}}
-/>
+<FileUpload.Provider
+	class="w-full"
+	value={api}
+	{...customInputAttributes(ctx, config, 'skeleton4FileUpload', {})}
+>
+	<FileUpload.Dropzone>
+		<span>Select file or drag here.</span>
+		<FileUpload.Trigger>Browse Files</FileUpload.Trigger>
+		<FileUpload.HiddenInput />
+	</FileUpload.Dropzone>
+	<FileUpload.ItemGroup>
+		<FileUpload.Context>
+			{#snippet children(fileUpload)}
+				{#each fileUpload().acceptedFiles as file (file)}
+					<FileUpload.Item {file}>
+						<FileUpload.ItemName>{file.name}</FileUpload.ItemName>
+						<FileUpload.ItemSizeText>{file.size} bytes</FileUpload.ItemSizeText>
+						<FileUpload.ItemDeleteTrigger />
+					</FileUpload.Item>
+				{/each}
+			{/snippet}
+		</FileUpload.Context>
+	</FileUpload.ItemGroup>
+</FileUpload.Provider>
