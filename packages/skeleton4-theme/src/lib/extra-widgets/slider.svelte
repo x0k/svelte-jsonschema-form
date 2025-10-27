@@ -1,5 +1,4 @@
 <script lang="ts" module>
-	import type { ComponentProps as SvelteComponentProps } from 'svelte';
 	import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
 	import type { SliderRootProps } from '@skeletonlabs/skeleton-svelte';
 

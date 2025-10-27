@@ -1,23 +1,23 @@
 <script lang="ts" module>
-	import type { ComponentProps as SvelteComponentProps } from 'svelte';
-	import { TagsInput } from '@skeletonlabs/skeleton-svelte';
+	import type { TagsInputRootProps } from '@skeletonlabs/skeleton-svelte';
 	import '@sjsf/form/fields/extra-widgets/tags';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			skeleton4Tags?: SvelteComponentProps<typeof TagsInput>;
+			skeleton4Tags?: TagsInputRootProps;
 		}
 	}
 </script>
 
 <script lang="ts">
 	import { type ComponentProps, customInputAttributes, getFormContext, createId } from '@sjsf/form';
+	import { TagsInput } from '@skeletonlabs/skeleton-svelte';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['tagsWidget'] = $props();
 
 	const ctx = getFormContext();
 
-	const id = $derived(createId(ctx, config.path))
+	const id = $derived(createId(ctx, config.path));
 </script>
 
 <TagsInput
@@ -38,4 +38,23 @@
 		},
 		value
 	})}
-/>
+>
+	<TagsInput.Label>Label</TagsInput.Label>
+	<TagsInput.Control>
+		<TagsInput.Context>
+			{#snippet children(tagsInput)}
+				{#each tagsInput().value as value, index (index)}
+					<TagsInput.Item {value} {index}>
+						<TagsInput.ItemPreview>
+							<TagsInput.ItemText>{value}</TagsInput.ItemText>
+							<TagsInput.ItemDeleteTrigger />
+						</TagsInput.ItemPreview>
+						<TagsInput.ItemInput />
+					</TagsInput.Item>
+				{/each}
+			{/snippet}
+		</TagsInput.Context>
+		<TagsInput.Input placeholder="Add a flavor..." />
+	</TagsInput.Control>
+	<TagsInput.HiddenInput />
+</TagsInput>
