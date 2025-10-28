@@ -54,6 +54,7 @@
       skeleton4Switch: options,
       skeleton4Tags: options,
       skeleton4Combobox: options,
+      skeleton4DatePicker: options,
     }),
     onSubmit: console.log,
     onSubmitError: console.warn,
