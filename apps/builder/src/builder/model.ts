@@ -62,7 +62,7 @@ export const TEXT_WIDGET_OPTIONS: Record<
   [Theme.Basic]: basicTextOptions,
   [Theme.Daisy5]: basicTextOptions,
   [Theme.Flowbite3]: (params) => ({ flowbite3Text: { ...params } }),
-  [Theme.Skeleton3]: basicTextOptions,
+  [Theme.Skeleton4]: basicTextOptions,
   [Theme.Shadcn4]: (params) => ({ shadcn4Text: { ...params } }),
 };
 
@@ -100,7 +100,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
             },
           },
         },
-  [Theme.Skeleton3]: (inline) =>
+  [Theme.Skeleton4]: (inline) =>
     inline
       ? {}
       : {
@@ -280,8 +280,8 @@ export const WIDGET_EXTRA_FIELD: Record<
   comboboxWidget: "enum",
   daisyui5FilterRadioButtonsWidget: "enum",
   daisyui5CallyDatePickerWidget: undefined,
-  skeleton3SliderWidget: undefined,
-  skeleton3FileUploadWidget: undefined,
+  skeleton4SliderWidget: undefined,
+  skeleton4FileUploadWidget: undefined,
   flowbite3ToggleRadioButtonsWidget: "enum",
 };
 
@@ -304,8 +304,8 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
   comboboxWidget: "Combobox",
   daisyui5FilterRadioButtonsWidget: "Filter radio buttons",
   daisyui5CallyDatePickerWidget: "Cally date picker",
-  skeleton3FileUploadWidget: "Drop zone",
-  skeleton3SliderWidget: "Slider",
+  skeleton4FileUploadWidget: "Drop zone",
+  skeleton4SliderWidget: "Slider",
   flowbite3ToggleRadioButtonsWidget: "Toggle radio buttons",
 };
 
@@ -328,8 +328,8 @@ export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
   comboboxWidget: true,
   daisyui5FilterRadioButtonsWidget: false,
   daisyui5CallyDatePickerWidget: true,
-  skeleton3SliderWidget: true,
-  skeleton3FileUploadWidget: true,
+  skeleton4SliderWidget: true,
+  skeleton4FileUploadWidget: true,
   flowbite3ToggleRadioButtonsWidget: false,
 };
 
@@ -348,7 +348,7 @@ export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
   comboboxWidget: "combobox",
   daisyui5FilterRadioButtonsWidget: "filter-radio-buttons",
   daisyui5CallyDatePickerWidget: "cally-date-picker",
-  skeleton3SliderWidget: "slider",
-  skeleton3FileUploadWidget: "file-upload",
+  skeleton4SliderWidget: "slider",
+  skeleton4FileUploadWidget: "file-upload",
   flowbite3ToggleRadioButtonsWidget: "toggle-radio-buttons",
 };

@@ -4,8 +4,8 @@ import type { SchemaValue } from "@sjsf/form";
 import {
   validatorPackage,
   VERSION,
-  type ActualTheme,
   type Resolver,
+  type Theme,
   type Validator,
 } from "@/shared";
 
@@ -34,7 +34,7 @@ export interface LayerFiles {
 }
 
 export interface FormDefaultsConfig {
-  theme?: ActualTheme;
+  theme?: Theme;
   widgets?: string[];
   validator?: Validator;
   resolver?: Resolver;

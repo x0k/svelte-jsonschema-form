@@ -136,7 +136,7 @@ daisy/:
   popd
 
 skel/:
-  pushd packages/skeleton3-theme
+  pushd packages/skeleton4-theme
   c:
     pnpm run check
   b:
@@ -299,7 +299,7 @@ e/:
       pnpm run dev
     popd
   skel/:
-    pushd skeleton3-starter
+    pushd skeleton4-starter
     c:
       pnpm run check
     b:

@@ -122,12 +122,13 @@ export const THEMES = [
   "daisyui5",
   "flowbite3",
   "skeleton3",
+  "skeleton4",
   "shadcn4",
 ] as const;
 
 export type Theme = (typeof THEMES)[number];
 
-export const DEPRECATED_THEMES = [] as const satisfies Theme[];
+export const DEPRECATED_THEMES = ["skeleton3"] as const satisfies Theme[];
 
 export const DEPRECATED_THEMES_SET = new Set<Theme>(DEPRECATED_THEMES);
 
@@ -144,6 +145,7 @@ export const THEME_TITLES = {
   daisyui5: "daisyUI v5",
   flowbite3: "Flowbite Svelte",
   skeleton3: "Skeleton v3",
+  skeleton4: "Skeleton v4",
   shadcn4: "shadcn-svelte",
 } satisfies Record<Theme, string>;
 
@@ -152,6 +154,7 @@ export const THEME_BRAND = {
   daisyui5: "daisyUI",
   flowbite3: "Flowbite",
   skeleton3: "Skeleton",
+  skeleton4: "Skeleton",
   shadcn4: "shadcn-svelte",
 } satisfies Record<Theme, string>;
 
@@ -160,6 +163,7 @@ export const THEME_PACKAGES = {
   daisyui5: "@sjsf/daisyui5-theme",
   flowbite3: "@sjsf/flowbite3-theme",
   skeleton3: "@sjsf/skeleton3-theme",
+  skeleton4: "@sjsf/skeleton4-theme",
   shadcn4: "@sjsf/shadcn4-theme",
 } satisfies Record<Theme, string>;
 

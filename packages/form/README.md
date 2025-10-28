@@ -66,7 +66,7 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 - [Basic](https://x0k.dev/svelte-jsonschema-form/themes/basic/)
 - [daisyUI v5](https://x0k.dev/svelte-jsonschema-form/themes/daisyui5/)
 - [Flowbite Svelte](https://x0k.dev/svelte-jsonschema-form/themes/flowbite3/)
-- [Skeleton v3](https://x0k.dev/svelte-jsonschema-form/themes/skeleton3/)
+- [Skeleton v4](https://x0k.dev/svelte-jsonschema-form/themes/skeleton4/)
 - [shadcn-svelte](https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/)
 
 ## Supported Validators

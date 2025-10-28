@@ -12,6 +12,7 @@ import {
   VERSION,
   type ActualTheme,
   type Example,
+  type Theme,
   type Validator,
 } from "@/shared";
 
@@ -31,7 +32,7 @@ export const PLATFORMS = Object.values(Platform);
 export interface ProjectOptions {
   platform: Platform;
   example: Example;
-  theme: ActualTheme;
+  theme: Theme;
   validator: Validator;
 }
 
@@ -59,12 +60,13 @@ const VALIDATOR_LAYERS = Object.fromEntries(
   })
 ) as Record<Validator, LayerPromise>;
 
-const THEME_LAYERS: Record<ActualTheme, () => LayerPromise[]> = {
+const THEME_LAYERS: Record<Theme, () => LayerPromise[]> = {
   basic: () => [import("./layers/basic")],
   daisyui5: () => [import("./layers/tailwind4"), import("./layers/daisyui5")],
   flowbite3: () => [import("./layers/tailwind4"), import("./layers/flowbite3")],
   shadcn4: () => [import("./layers/tailwind4"), import("./layers/shadcn4")],
   skeleton3: () => [import("./layers/tailwind4"), import("./layers/skeleton3")],
+  skeleton4: () => [import("./layers/tailwind4"), import("./layers/skeleton4")],
 };
 
 const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {

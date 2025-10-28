@@ -39,7 +39,7 @@
     "@sjsf/radix-icons": "workspace:*",
     "@sjsf/schemasafe-validator": "workspace:*",
     "@sjsf/shadcn4-theme": "workspace:*",
-    "@sjsf/skeleton3-theme": "workspace:*",
+    "@sjsf/skeleton4-theme": "workspace:*",
     "ajv": "^8.17.1",
     "dompurify": "^3.3.0",
     "lz-string": "^1.5.0",

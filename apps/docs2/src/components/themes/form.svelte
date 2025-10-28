@@ -7,7 +7,7 @@
   import Daisyui5 from "./daisyui/form.svelte";
   import Flowbite3 from "./flowbite/form.svelte";
   import Shadcn4 from "./shadcn/wrapper.svelte";
-  import Skeleton3 from "./skeleton/form.svelte";
+  import Skeleton4 from "./skeleton4/form.svelte";
 
   let { theme }: { theme: ActualTheme } = $props();
 
@@ -17,7 +17,7 @@
       daisyui5: Daisyui5,
       flowbite3: Flowbite3,
       shadcn4: Shadcn4,
-      skeleton3: Skeleton3,
+      skeleton4: Skeleton4,
     } satisfies Record<ActualTheme, Component>
   )[theme];
 </script>

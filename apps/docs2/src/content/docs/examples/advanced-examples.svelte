@@ -2,7 +2,6 @@
   import { identity } from "@sjsf/form/lib/function";
 
   import {
-    ACTUAL_THEMES,
     GENERIC_EXAMPLES,
     THEME_TITLES,
     type ActualTheme,
@@ -11,6 +10,7 @@
     VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
     VALIDATORS,
     SVELTE_KIT_EXAMPLES,
+    THEMES,
   } from "@/shared";
   import { openProject, Platform, PLATFORMS } from "@/web-ide";
 
@@ -46,7 +46,7 @@
   <label>
     <span>Theme</span>
     <select bind:value={theme}>
-      {#each ACTUAL_THEMES as t (t)}
+      {#each THEMES as t (t)}
         <option value={t}>
           {THEME_TITLES[t]}
         </option>

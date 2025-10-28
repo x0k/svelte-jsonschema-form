@@ -1,33 +1,33 @@
 ---
-title: Skeleton
+title: Skeleton v4
 sidebar:
   order: 3
 ---
 
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/skeleton3-theme/specs';
-import styles from "@sjsf/skeleton3-theme/styles.css?inline";
+import { specs, extraWidgets } from '@sjsf/skeleton4-theme/specs';
+import styles from "@sjsf/skeleton4-theme/styles.css?inline";
 
-import { peerDependencies } from '#/skeleton3-theme/package.json'
+import { peerDependencies } from '#/skeleton4-theme/package.json'
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './skeleton3/form.svelte';
-import uiOptionsCode from './skeleton3/ui-options?raw';
+import Form from './skeleton4/form.svelte';
+import uiOptionsCode from './skeleton4/ui-options?raw';
 import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={themePkg("skeleton3")} />
+<Npm pkg={themePkg("skeleton4")} />
 
 @skeletonlabs/skeleton <code>{peerDependencies['@skeletonlabs/skeleton']}</code> and
 @skeletonlabs/skeleton-svelte <code>{peerDependencies['@skeletonlabs/skeleton-svelte']}</code> are required.
 
-### Install Skeleton v3
+### Install Skeleton v4
 
 <LinkButton href="https://www.skeleton.dev/docs/get-started/installation/sveltekit" variant='secondary' target="_blank" icon="external">
   Install and configure Skeleton for SvelteKit
@@ -38,7 +38,7 @@ export const schemas = createSchemas(specs)
 Register the theme source path by adding the following line to the `app.css` file:.
 
 ```css
-@source "../node_modules/@sjsf/skeleton3-theme/dist";
+@source "../node_modules/@sjsf/skeleton4-theme/dist";
 ```
 
 ## Extra widgets
@@ -53,14 +53,7 @@ or used in the field as the default widget.
 
 :::
 
-:::caution
-
-The following widgets `file-upload` and `file`, `range` and `slider`
-replace each other - use one or import the replacement widget directly.
-
-:::
-
-<Code lang='ts' code={createExtraImports("skeleton3", extraWidgets)} />
+<Code lang='ts' code={createExtraImports("skeleton4", extraWidgets)} />
 
 ## Widgets demo
 
