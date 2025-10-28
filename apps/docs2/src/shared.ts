@@ -155,11 +155,11 @@ export const THEME_TITLES = {
   basic: "basic",
   daisyui: "daisyUI v4",
   daisyui5: "daisyUI v5",
-  flowbite: "Flowbite Svelte v0",
+  flowbite: "Flowbite Svelte tw3",
   flowbite3: "Flowbite Svelte",
   skeleton3: "Skeleton v3",
   skeleton4: "Skeleton v4",
-  shadcn: "shadcn-svelte v0",
+  shadcn: "shadcn-svelte tw3",
   shadcn4: "shadcn-svelte",
 } satisfies Record<Theme, string>;
 
