@@ -1,0 +1,6297 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`widgets > checkbox > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-400 dark:text-gray-500 grayscale contrast-50 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            disabled=""
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="on"
+          />
+           
+          
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="on"
+          />
+           
+          
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="on"
+          />
+           
+          
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+            value="on"
+          />
+           
+          
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-0"
+        >
+          foo 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            disabled=""
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="0"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-1"
+        >
+          bar 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            disabled=""
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="1"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-2"
+        >
+          fuzz 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            disabled=""
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="2"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-3"
+        >
+          qux 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            disabled=""
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="3"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-0"
+        >
+          foo 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="0"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-1"
+        >
+          bar 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="1"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-2"
+        >
+          fuzz 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="2"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-3"
+        >
+          qux 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="3"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-0"
+        >
+          foo 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="0"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-1"
+        >
+          bar 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="1"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-2"
+        >
+          fuzz 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="2"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-3"
+        >
+          qux 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="3"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-0"
+        >
+          foo 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+            value="0"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-1"
+        >
+          bar 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+            value="1"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-2"
+        >
+          fuzz 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+            value="2"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-3"
+        >
+          qux 
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+            value="3"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative "
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full px-4 py-2 text-sm border rounded-md focus:outline-none dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 "
+                disabled=""
+                placeholder="Select date"
+                required=""
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 dark:text-gray-400 focus:outline-none"
+                disabled=""
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative "
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full px-4 py-2 text-sm border rounded-md focus:outline-none dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 "
+                placeholder="Select date"
+                required=""
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 dark:text-gray-400 focus:outline-none"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative "
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full px-4 py-2 text-sm border rounded-md focus:outline-none dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 "
+                placeholder="Select date"
+                required=""
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 dark:text-gray-400 focus:outline-none"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative "
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full px-4 py-2 text-sm border rounded-md focus:outline-none dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 "
+                placeholder="Select date"
+                required=""
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 dark:text-gray-400 focus:outline-none"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 text-sm rounded-lg border !p-0 dark:text-gray-400"
+          data-loading="false"
+          data-processing="true"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          type="file"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 text-sm rounded-lg border !p-0 dark:text-gray-400"
+          data-loading="false"
+          data-processing="true"
+          id="root"
+          name="root"
+          required=""
+          type="file"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 text-sm rounded-lg border !p-0 dark:text-gray-400"
+          data-loading="false"
+          data-processing="true"
+          id="root"
+          name="root"
+          required=""
+          type="file"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 text-sm rounded-lg border !p-0 dark:text-gray-400"
+          data-loading="false"
+          data-processing="true"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          type="file"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 text-sm rounded-lg border !p-0 dark:text-gray-400"
+          data-loading="true"
+          data-processing="false"
+          disabled=""
+          id="root"
+          multiple=""
+          name="root"
+          required=""
+          type="file"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 text-sm rounded-lg border !p-0 dark:text-gray-400"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          required=""
+          type="file"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 text-sm rounded-lg border !p-0 dark:text-gray-400"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          required=""
+          type="file"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 text-sm rounded-lg border !p-0 dark:text-gray-400"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          readonly=""
+          required=""
+          type="file"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="grow"
+          hidden=""
+          id="root"
+          multiple=""
+          name="root"
+          required=""
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+         
+        <div
+          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-none px-3 py-1 min-h-[2.7rem] grow opacity-50 cursor-not-allowed"
+          role="listbox"
+          tabindex="0"
+        >
+          <span
+            class="text-gray-400"
+          >
+            
+          </span>
+          <!---->
+           
+          <span
+            class="flex gap-2 flex-wrap"
+          >
+            <!---->
+          </span>
+           
+          <div
+            class="flex ms-auto gap-2 items-center"
+          >
+            <!---->
+             
+            <div
+              class="w-[1px] bg-gray-300 dark:bg-gray-600"
+            />
+             
+            <svg
+              aria-hidden="true"
+              class="h-3 w-3 ms-1 text-gray-800 dark:text-white cursor-not-allowed"
+              fill="none"
+              viewBox="0 0 10 6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m9 1-4 4-4-4"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
+          class="grow"
+          hidden=""
+          id="root"
+          multiple=""
+          name="root"
+          required=""
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+         
+        <div
+          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-none px-3 py-1 min-h-[2.7rem] grow focus-within:ring-1 focus-within:border-primary-500 dark:focus-within:border-primary-500"
+          role="listbox"
+          tabindex="0"
+        >
+          <span
+            class="text-gray-400"
+          >
+            
+          </span>
+          <!---->
+           
+          <span
+            class="flex gap-2 flex-wrap"
+          >
+            <!---->
+          </span>
+           
+          <div
+            class="flex ms-auto gap-2 items-center"
+          >
+            <!---->
+             
+            <div
+              class="w-[1px] bg-gray-300 dark:bg-gray-600"
+            />
+             
+            <svg
+              aria-hidden="true"
+              class="cursor-pointer h-3 w-3 ms-1 text-gray-800 dark:text-white"
+              fill="none"
+              viewBox="0 0 10 6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m9 1-4 4-4-4"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="grow"
+          hidden=""
+          id="root"
+          multiple=""
+          name="root"
+          required=""
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+         
+        <div
+          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-none px-3 py-1 min-h-[2.7rem] grow focus-within:ring-1 focus-within:border-primary-500 dark:focus-within:border-primary-500"
+          role="listbox"
+          tabindex="0"
+        >
+          <span
+            class="text-gray-400"
+          >
+            
+          </span>
+          <!---->
+           
+          <span
+            class="flex gap-2 flex-wrap"
+          >
+            <!---->
+          </span>
+           
+          <div
+            class="flex ms-auto gap-2 items-center"
+          >
+            <!---->
+             
+            <div
+              class="w-[1px] bg-gray-300 dark:bg-gray-600"
+            />
+             
+            <svg
+              aria-hidden="true"
+              class="cursor-pointer h-3 w-3 ms-1 text-gray-800 dark:text-white"
+              fill="none"
+              viewBox="0 0 10 6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m9 1-4 4-4-4"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="grow"
+          hidden=""
+          id="root"
+          multiple=""
+          name="root"
+          required=""
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+         
+        <div
+          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-none px-3 py-1 min-h-[2.7rem] grow focus-within:ring-1 focus-within:border-primary-500 dark:focus-within:border-primary-500"
+          role="listbox"
+          tabindex="0"
+        >
+          <span
+            class="text-gray-400"
+          >
+            
+          </span>
+          <!---->
+           
+          <span
+            class="flex gap-2 flex-wrap"
+          >
+            <!---->
+          </span>
+           
+          <div
+            class="flex ms-auto gap-2 items-center"
+          >
+            <!---->
+             
+            <div
+              class="w-[1px] bg-gray-300 dark:bg-gray-600"
+            />
+             
+            <svg
+              aria-hidden="true"
+              class="cursor-pointer h-3 w-3 ms-1 text-gray-800 dark:text-white"
+              fill="none"
+              viewBox="0 0 10 6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m9 1-4 4-4-4"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="number"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="number"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="number"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          step="any"
+          type="number"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-400 dark:text-gray-500 grayscale contrast-50 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            disabled=""
+            id="root::0"
+            name="root"
+            required=""
+            type="radio"
+            value="0"
+          />
+           
+          foo
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-400 dark:text-gray-500 grayscale contrast-50 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            disabled=""
+            id="root::1"
+            name="root"
+            required=""
+            type="radio"
+            value="1"
+          />
+           
+          bar
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-400 dark:text-gray-500 grayscale contrast-50 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            disabled=""
+            id="root::2"
+            name="root"
+            required=""
+            type="radio"
+            value="2"
+          />
+           
+          fuzz
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-400 dark:text-gray-500 grayscale contrast-50 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            disabled=""
+            id="root::3"
+            name="root"
+            required=""
+            type="radio"
+            value="3"
+          />
+           
+          qux
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::0"
+            name="root"
+            required=""
+            type="radio"
+            value="0"
+          />
+           
+          foo
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::1"
+            name="root"
+            required=""
+            type="radio"
+            value="1"
+          />
+           
+          bar
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::2"
+            name="root"
+            required=""
+            type="radio"
+            value="2"
+          />
+           
+          fuzz
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::3"
+            name="root"
+            required=""
+            type="radio"
+            value="3"
+          />
+           
+          qux
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::0"
+            name="root"
+            required=""
+            type="radio"
+            value="0"
+          />
+           
+          foo
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::1"
+            name="root"
+            required=""
+            type="radio"
+            value="1"
+          />
+           
+          bar
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::2"
+            name="root"
+            required=""
+            type="radio"
+            value="2"
+          />
+           
+          fuzz
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::3"
+            name="root"
+            required=""
+            type="radio"
+            value="3"
+          />
+           
+          qux
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::0"
+            name="root"
+            readonly=""
+            required=""
+            type="radio"
+            value="0"
+          />
+           
+          foo
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::1"
+            name="root"
+            readonly=""
+            required=""
+            type="radio"
+            value="1"
+          />
+           
+          bar
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::2"
+            name="root"
+            readonly=""
+            required=""
+            type="radio"
+            value="2"
+          />
+           
+          fuzz
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root::3"
+            name="root"
+            readonly=""
+            required=""
+            type="radio"
+            value="3"
+          />
+           
+          qux
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="w-full bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 h-2"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
+          class="w-full bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 h-2"
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="w-full bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 h-2"
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="w-full bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 h-2"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full text-gray-900 disabled:text-gray-400 bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm p-2.5"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+        >
+          <!---->
+          <!---->
+          <!---->
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+           
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+          
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
+          class="block w-full text-gray-900 disabled:text-gray-400 bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm p-2.5"
+          id="root"
+          name="root"
+          required=""
+        >
+          <!---->
+          <!---->
+          <!---->
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+           
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+          
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full text-gray-900 disabled:text-gray-400 bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm p-2.5"
+          id="root"
+          name="root"
+          required=""
+        >
+          <!---->
+          <!---->
+          <!---->
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+           
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+          
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full text-gray-900 disabled:text-gray-400 bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm p-2.5"
+          id="root"
+          name="root"
+          required=""
+        >
+          <!---->
+          <!---->
+          <!---->
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+           
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+          
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium dark:text-gray-500 flex items-center cursor-not-allowed grayscale contrast-50 text-gray-400"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 sr-only peer rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            disabled=""
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value=""
+          />
+           
+          <!---->
+          <!---->
+           
+          <span
+            class="me-3 shrink-0 bg-gray-200 rounded-full peer-focus:ring-4 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:bg-gray-700 dark:border-gray-600 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 peer-checked:bg-primary-600 w-11 h-6 after:top-0.5 after:start-[2px] after:h-5 after:w-5 relative"
+          />
+           
+          
+          <!---->
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium dark:text-gray-300 flex items-center cursor-pointer text-gray-900"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 sr-only peer rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value=""
+          />
+           
+          <!---->
+          <!---->
+           
+          <span
+            class="me-3 shrink-0 bg-gray-200 rounded-full peer-focus:ring-4 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:bg-gray-700 dark:border-gray-600 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 peer-checked:bg-primary-600 w-11 h-6 after:top-0.5 after:start-[2px] after:h-5 after:w-5 relative"
+          />
+           
+          
+          <!---->
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium dark:text-gray-300 flex items-center cursor-pointer text-gray-900"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 sr-only peer rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value=""
+          />
+           
+          <!---->
+          <!---->
+           
+          <span
+            class="me-3 shrink-0 bg-gray-200 rounded-full peer-focus:ring-4 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:bg-gray-700 dark:border-gray-600 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 peer-checked:bg-primary-600 w-11 h-6 after:top-0.5 after:start-[2px] after:h-5 after:w-5 relative"
+          />
+           
+          
+          <!---->
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium dark:text-gray-300 flex items-center cursor-pointer text-gray-900"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 sr-only peer rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+            id="root"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+            value=""
+          />
+           
+          <!---->
+          <!---->
+           
+          <span
+            class="me-3 shrink-0 bg-gray-200 rounded-full peer-focus:ring-4 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:bg-gray-700 dark:border-gray-600 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 peer-checked:bg-primary-600 w-11 h-6 after:top-0.5 after:start-[2px] after:h-5 after:w-5 relative"
+          />
+           
+          
+          <!---->
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          type="text"
+        />
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="w-full rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-600 p-2.5 text-sm focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+        />
+        
+        
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="true"
+          class="w-full rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-600 p-2.5 text-sm focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+          id="root"
+          name="root"
+          required=""
+        />
+        
+        
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="w-full rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-600 p-2.5 text-sm focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+          id="root"
+          name="root"
+          required=""
+        />
+        
+        
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          aria-invalid="false"
+          class="w-full rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-600 p-2.5 text-sm focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+        />
+        
+        
+        <!---->
+         
+        <!---->
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;

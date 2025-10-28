@@ -263,6 +263,56 @@ bl/:
     pnpm run preview
   popd
 
+l/:
+  pushd legacy
+  daisy/:
+    pushd daisyui-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  skel/:
+    pushd skeleton3-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  flow/:
+    pushd flowbite-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  shad/:
+    pushd shadcn-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  popd
+
 e/:
   pushd examples
   basic/:
