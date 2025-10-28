@@ -37,7 +37,7 @@
 
 	import { getThemeContext } from '../context.js';
 
-	const { type, children, config }: ComponentProps['layout'] = $props();
+	const { type, children, config, errors }: ComponentProps['layout'] = $props();
 
 	const isItem = $derived(type === 'array-item');
 	const isGrowable = $derived(
@@ -49,7 +49,7 @@
 	const isMeta = $derived(
 		type === 'field-meta' || type === 'array-field-meta' || type === 'object-field-meta'
 	);
-	const isMultiFieldControls = $derived(type === 'multi-field-controls')
+	const isMultiFieldControls = $derived(type === 'multi-field-controls');
 
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
@@ -62,7 +62,7 @@
 {#if (type === 'field-content' || isMeta) && Object.keys(attributes).length < 2}
 	{@render children()}
 {:else if type === 'array-item-controls'}
-	<ButtonGroup {...attributes} {...uiOptionProps('shadcn4ButtonGroup')({}, config, ctx)}>
+	<ButtonGroup {...uiOptionProps('shadcn4ButtonGroup')(attributes, config, ctx)}>
 		{@render children()}
 	</ButtonGroup>
 {:else if type === 'array-field' || type === 'object-field'}
@@ -72,7 +72,10 @@
 		{@render children()}
 	</FieldSet>
 {:else if type == 'field'}
-	<Field {...attributes} {...uiOptionProps('shadcn4Field')({}, config, ctx)}>
+	<Field
+		data-invalid={errors.length > 0}
+		{...uiOptionProps('shadcn4Field')(attributes, config, ctx)}
+	>
 		{@render children()}
 	</Field>
 {:else if type === 'field-title-row'}

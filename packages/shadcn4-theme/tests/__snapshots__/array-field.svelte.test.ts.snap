@@ -211,6 +211,7 @@ exports[`array fields > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -477,6 +478,7 @@ exports[`array fields > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -926,6 +928,7 @@ exports[`array fields > empty errors array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -1221,6 +1224,7 @@ exports[`array fields > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -1333,6 +1337,7 @@ exports[`array fields > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -1799,6 +1804,7 @@ exports[`with title and description > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -2077,6 +2083,7 @@ exports[`with title and description > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -2595,6 +2602,7 @@ exports[`with title and description > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -2773,6 +2781,7 @@ exports[`with title and description > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -3305,6 +3314,7 @@ exports[`with title and description from both > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -3583,6 +3593,7 @@ exports[`with title and description from both > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -4101,6 +4112,7 @@ exports[`with title and description from both > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -4279,6 +4291,7 @@ exports[`with title and description from both > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -4811,6 +4824,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -5089,6 +5103,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -5607,6 +5622,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -5785,6 +5801,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -6199,6 +6216,7 @@ exports[`with title and description with global label off > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -6411,6 +6429,7 @@ exports[`with title and description with global label off > array icons 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -6804,6 +6823,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
@@ -6916,6 +6936,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
             <!---->
             <div
               class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
               data-layout="field"
               data-orientation="vertical"
               data-slot="field"
