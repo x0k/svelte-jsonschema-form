@@ -7,7 +7,7 @@
   import { createAstro } from "@/astro.svelte";
   import * as defaults from "@/lib/form/defaults";
 
-  import { createSchemas } from "../_demo-schema";
+  import { createSchemas } from "../../_demo-schema";
 
   const astro = createAstro();
 

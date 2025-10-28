@@ -1,43 +1,44 @@
 ---
-title: daisyUI v5
+title: Skeleton v3
 sidebar:
-  order: 1
+  order: 6
 ---
 
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/daisyui5-theme/specs';
-import styles from '@sjsf/daisyui5-theme/styles.css?inline';
+import { specs, extraWidgets } from '@sjsf/skeleton3-theme/specs';
+import styles from "@sjsf/skeleton3-theme/styles.css?inline";
 
-import { peerDependencies } from '#/daisyui5-theme/package.json'
+import { peerDependencies } from '#/skeleton3-theme/package.json'
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './daisyui5/form.svelte'
-import uiOptionsCode from './daisyui5/ui-options?raw';
-import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
+import Form from './skeleton3/form.svelte';
+import uiOptionsCode from './skeleton3/ui-options?raw';
+import { createSchemas, replacer, createExtraImports, validationEvents } from "../_demo-schema";
 
 export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={themePkg("daisyui5")} />
+<Npm pkg={themePkg("skeleton3")} />
 
-daisyUI <code>{peerDependencies.daisyui}</code> is required.
+@skeletonlabs/skeleton <code>{peerDependencies['@skeletonlabs/skeleton']}</code> and
+@skeletonlabs/skeleton-svelte <code>{peerDependencies['@skeletonlabs/skeleton-svelte']}</code> are required.
 
-### Install daisyUI v5
+### Install Skeleton v3
 
-<LinkButton href="https://daisyui.com/docs/install/" variant='secondary' target="_blank" icon="external">
-  Install daisyUI as a Tailwind plugin
+<LinkButton href="https://v3.skeleton.dev/docs/get-started/installation/sveltekit" variant='secondary' target="_blank" icon="external">
+  Install and configure Skeleton for SvelteKit
 </LinkButton>
 
 ### Configuration
 
 Register the theme source path by adding the following line to the `app.css` file:.
 
-```
-@source "../node_modules/@sjsf/daisyui5-theme/dist";
+```css
+@source "../node_modules/@sjsf/skeleton3-theme/dist";
 ```
 
 ## Extra widgets
@@ -52,15 +53,7 @@ or used in the field as the default widget.
 
 :::
 
-:::caution
-
-The following widgets `radio-buttons` and `filter-radio-buttons`,
-`cally-date-picker` and `pikaday-date-picker` replace each other -
-use one or import the replacement widget directly.
-
-:::
-
-<Code lang='ts' code={createExtraImports("daisyui5", extraWidgets)} />
+<Code lang='ts' code={createExtraImports("skeleton3", extraWidgets)} />
 
 ## Widgets demo
 
