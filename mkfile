@@ -299,7 +299,7 @@ e/:
       pnpm run dev
     popd
   skel/:
-    pushd skeleton3-starter
+    pushd skeleton4-starter
     c:
       pnpm run check
     b:
