@@ -9853,23 +9853,6 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
         >
           <!---->
           <!---->
-          <label
-            class="skb:label-text"
-            data-disabled=""
-            data-part="label"
-            data-required=""
-            data-scope="tags-input"
-            dir="ltr"
-            for="root"
-            id="tags-input:c49:label"
-          >
-            Label
-            <!---->
-          </label>
-          
-          <!---->
-           
-          <!---->
           <div
             class="skb:input skb:flex skb:flex-wrap skb:gap-2 skb:p-2"
             data-disabled=""
@@ -9897,7 +9880,6 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
               dir="ltr"
               disabled=""
               id="root"
-              placeholder="Add a flavor..."
             />
             
             <!---->
@@ -10001,23 +9983,6 @@ exports[`widgets > tags > snapshots > error 1`] = `
         >
           <!---->
           <!---->
-          <label
-            class="skb:label-text"
-            data-invalid=""
-            data-part="label"
-            data-required=""
-            data-scope="tags-input"
-            dir="ltr"
-            for="root"
-            id="tags-input:c48:label"
-          >
-            Label
-            <!---->
-          </label>
-          
-          <!---->
-           
-          <!---->
           <div
             class="skb:input skb:flex skb:flex-wrap skb:gap-2 skb:p-2"
             data-invalid=""
@@ -10046,7 +10011,6 @@ exports[`widgets > tags > snapshots > error 1`] = `
               data-scope="tags-input"
               dir="ltr"
               id="root"
-              placeholder="Add a flavor..."
             />
             
             <!---->
@@ -10159,22 +10123,6 @@ exports[`widgets > tags > snapshots > normal 1`] = `
         >
           <!---->
           <!---->
-          <label
-            class="skb:label-text"
-            data-part="label"
-            data-required=""
-            data-scope="tags-input"
-            dir="ltr"
-            for="root"
-            id="tags-input:c47:label"
-          >
-            Label
-            <!---->
-          </label>
-          
-          <!---->
-           
-          <!---->
           <div
             class="skb:input skb:flex skb:flex-wrap skb:gap-2 skb:p-2"
             data-part="control"
@@ -10200,7 +10148,6 @@ exports[`widgets > tags > snapshots > normal 1`] = `
               data-scope="tags-input"
               dir="ltr"
               id="root"
-              placeholder="Add a flavor..."
             />
             
             <!---->
@@ -10303,23 +10250,6 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
         >
           <!---->
           <!---->
-          <label
-            class="skb:label-text"
-            data-part="label"
-            data-readonly=""
-            data-required=""
-            data-scope="tags-input"
-            dir="ltr"
-            for="root"
-            id="tags-input:c50:label"
-          >
-            Label
-            <!---->
-          </label>
-          
-          <!---->
-           
-          <!---->
           <div
             class="skb:input skb:flex skb:flex-wrap skb:gap-2 skb:p-2"
             data-part="control"
@@ -10349,7 +10279,6 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
               dir="ltr"
               disabled=""
               id="root"
-              placeholder="Add a flavor..."
             />
             
             <!---->
