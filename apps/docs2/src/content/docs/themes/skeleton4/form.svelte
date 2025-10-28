@@ -23,12 +23,13 @@
     ...createSchemas(specs),
     theme,
     extraUiOptions: fromRecord({
-      skeleton3Slider: options,
-      skeleton3FileUpload: options,
-      skeleton3Rating: options,
-      skeleton3Segment: options,
-      skeleton3Switch: options,
-      skeleton3Tags: options,
+      skeleton4Slider: options,
+      skeleton4FileUpload: options,
+      skeleton4Rating: options,
+      skeleton4Segment: options,
+      skeleton4Switch: options,
+      skeleton4Tags: options,
+      skeleton4Combobox: options
     }),
   });
 

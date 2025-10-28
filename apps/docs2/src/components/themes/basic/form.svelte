@@ -10,14 +10,14 @@
   } from "../data";
   import * as defaults from "./defaults";
 
-  const form = createForm({
+  const form = createForm<Data>({
     ...defaults,
     // required due to several forms on the page
     idPrefix: "basic",
     initialValue,
     schema,
     uiSchema,
-    onSubmit: ({ name }: Data) => window.alert(`Hello, ${name}`),
+    onSubmit: ({ name }) => window.alert(`Hello, ${name}`),
   });
 </script>
 

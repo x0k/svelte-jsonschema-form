@@ -2,14 +2,14 @@
 title: Validator
 ---
 
-Validator - a set of functions called by the form to check the data:
+Validator - a collection of functions used by the form to validate data:
 
-- `isValid` (called to correctly handle the following keywords `oneOf`, `anyOf` and `if,then,else`, required)
-- `validateFormValue` (optional)
-- `validateFormValueAsync` (optional)
-- `validateFieldValue` (optional)
-- `validateFieldValueAsync` (optional)
-- `validateAdditionalPropertyKey` (optional)
+- `isValid` - required. Used to correctly handle conditional keywords such as `oneOf`, `anyOf`, and `if/then/else`.
+- `validateFormValue` - required unless `validateFormValueAsync` is defined.
+- `validateFormValueAsync` - required unless `validateFormValue` is defined.
+- `validateFieldValue` - optional
+- `validateFieldValueAsync` - optional
+- `validateAdditionalPropertyKey` - optional
 
 You can easily extend/modify the validator to suit your needs.
 
@@ -42,28 +42,44 @@ export interface Validator {
 }
 
 export interface ValidationError {
-  path: Path;
+  path: RPath;
   message: string;
 }
 
-export interface FormValueValidator {
+export interface SuccessValidationResult<Output> {
+  readonly value: Output;
+  readonly errors?: undefined;
+}
+
+export interface FailureValidationResult {
+  readonly value: FormValue;
+  readonly errors: ReadonlyArray<ValidationError>;
+}
+
+export type ValidationResult<Output> =
+  | SuccessValidationResult<Output>
+  | FailureValidationResult;
+
+export interface FormValueValidator<Output> {
   validateFormValue: (
     rootSchema: Schema,
     formValue: FormValue
-  ) => ValidationError[];
+  ) => ValidationResult<Output>;
 }
 
-export interface AsyncFormValueValidator {
+export interface AsyncFormValueValidator<Output> {
   validateFormValueAsync: (
     signal: AbortSignal,
     rootSchema: Schema,
     formValue: FormValue
-  ) => Promise<ValidationError[]>;
+  ) => Promise<ValidationResult<Output>>;
 }
 
-export type AnyFormValueValidator =
-  | FormValueValidator
-  | AsyncFormValueValidator;
+export type AnyFormValueValidator<Output> =
+  | FormValueValidator<Output>
+  | AsyncFormValueValidator<Output>;
+
+export type FormValidator<Output> = Validator & AnyFormValueValidator<Output>;
 
 export type Update<T> = T | ((data: T) => T);
 

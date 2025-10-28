@@ -20,8 +20,8 @@ import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import addFormats from "ajv-formats";
 
-export const validator = (options: ValidatorFactoryOptions) =>
-  createFormValidator({
+export const validator = <T>(options: ValidatorFactoryOptions) =>
+  createFormValidator<T>({
     ...options,
     ajvPlugins: (ajv) => addFormComponents(addFormats(ajv)),
   });

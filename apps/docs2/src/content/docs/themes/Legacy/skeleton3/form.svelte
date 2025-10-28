@@ -29,6 +29,7 @@
       skeleton3Segment: options,
       skeleton3Switch: options,
       skeleton3Tags: options,
+      skeleton3Combobox: options,
     }),
   });
 
