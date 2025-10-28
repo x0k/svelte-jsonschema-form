@@ -40,7 +40,21 @@ export interface FormDefaultsConfig {
   resolver?: Resolver;
 }
 
+export interface SvelteCompilerOptions {
+  runes?: boolean;
+}
+
+export interface SvelteKitConfig {
+  alias?: Record<string, string>;
+}
+
+export interface SvelteConfig {
+  compilerOptions?: SvelteCompilerOptions;
+  kit?: SvelteKitConfig;
+}
+
 export interface Layer {
+  svelte?: SvelteConfig;
   package?: PackageConfig;
   vite?: ViteConfig;
   files?: LayerFiles;
@@ -48,6 +62,43 @@ export interface Layer {
 }
 
 export const BASE_PACKAGES = ["ajv", "@sjsf/ajv8-validator"];
+
+function mergerSvelteCompilerOptions(
+  a: SvelteCompilerOptions,
+  b: SvelteCompilerOptions
+): SvelteCompilerOptions {
+  return {
+    ...a,
+    ...b,
+    runes: a.runes && b.runes,
+  };
+}
+
+function mergeSvelteKitConfig(
+  a: SvelteKitConfig,
+  b: SvelteKitConfig
+): SvelteKitConfig {
+  return {
+    ...a,
+    ...b,
+    alias: {
+      ...a.alias,
+      ...b.alias,
+    },
+  };
+}
+
+function mergeSvelteConfig(a: SvelteConfig, b: SvelteConfig): SvelteConfig {
+  return {
+    ...a,
+    ...b,
+    compilerOptions:
+      a.compilerOptions && b.compilerOptions
+        ? mergerSvelteCompilerOptions(a.compilerOptions, b.compilerOptions)
+        : (a.compilerOptions ?? b.compilerOptions),
+    kit: a.kit && b.kit ? mergeSvelteKitConfig(a.kit, b.kit) : (a.kit ?? b.kit),
+  };
+}
 
 function mergePackageConfigs(
   a: PackageConfig,
@@ -117,6 +168,10 @@ export function mergeLayers(a: Layer, b: Layer): Layer {
       ...a.files,
       ...b.files,
     },
+    svelte:
+      a.svelte && b.svelte
+        ? mergeSvelteConfig(a.svelte, b.svelte)
+        : (a.svelte ?? b.svelte),
   };
 }
 
@@ -174,9 +229,38 @@ export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 ${validatorCode}`;
 }
 
+function buildSvelteConfig(config?: SvelteConfig) {
+  const runes = config?.compilerOptions?.runes ?? true;
+  const kitAlias = config?.kit?.alias ?? {};
+  return `import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+    alias: ${JSON.stringify(kitAlias)},
+  },
+  compilerOptions: {
+    runes: ${runes},
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+`;
+}
+
 export function buildLayer(layer: Layer): LayerFiles {
-  const files = {
+  const files: LayerFiles = {
     ...layer.files,
+    "svelte.config.js": buildSvelteConfig(layer.svelte),
   };
   if (layer.package) {
     files["package.json"] = buildPackageConfig(layer.package);

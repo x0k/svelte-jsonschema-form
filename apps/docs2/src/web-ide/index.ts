@@ -62,11 +62,14 @@ const VALIDATOR_LAYERS = Object.fromEntries(
 
 const THEME_LAYERS: Record<Theme, () => LayerPromise[]> = {
   basic: () => [import("./layers/basic")],
+  daisyui: () => [import("./layers/tailwind3"), import("./layers/daisyui")],
   daisyui5: () => [import("./layers/tailwind4"), import("./layers/daisyui5")],
+  flowbite: () => [import("./layers/tailwind3"), import("./layers/flowbite")],
   flowbite3: () => [import("./layers/tailwind4"), import("./layers/flowbite3")],
-  shadcn4: () => [import("./layers/tailwind4"), import("./layers/shadcn4")],
   skeleton3: () => [import("./layers/tailwind4"), import("./layers/skeleton3")],
   skeleton4: () => [import("./layers/tailwind4"), import("./layers/skeleton4")],
+  shadcn: () => [import("./layers/tailwind3"), import("./layers/shadcn")],
+  shadcn4: () => [import("./layers/tailwind4"), import("./layers/shadcn4")],
 };
 
 const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {

@@ -85,9 +85,9 @@ export enum GenericExample {
 export const GENERIC_EXAMPLES = Object.values(GenericExample);
 
 export enum SvelteKitExample {
-  FormActions = 'form-actions',
-  FormActionsFlex = 'form-actions-flex',
-  RemoveFunctions = 'remote-functions',
+  FormActions = "form-actions",
+  FormActionsFlex = "form-actions-flex",
+  RemoveFunctions = "remote-functions",
   NativeForm = "native-form",
   MultiStepNativeForm = "multi-step-native-form",
 }
@@ -115,20 +115,31 @@ export const VALIDATOR_SPECIFIC_EXAMPLES = Object.values(
   ValidatorSpecificExample
 );
 
-export type Example = GenericExample | SvelteKitExample | ValidatorSpecificExample;
+export type Example =
+  | GenericExample
+  | SvelteKitExample
+  | ValidatorSpecificExample;
 
 export const THEMES = [
   "basic",
+  "daisyui",
   "daisyui5",
+  "flowbite",
   "flowbite3",
   "skeleton3",
   "skeleton4",
+  "shadcn",
   "shadcn4",
 ] as const;
 
 export type Theme = (typeof THEMES)[number];
 
-export const DEPRECATED_THEMES = ["skeleton3"] as const satisfies Theme[];
+export const DEPRECATED_THEMES = [
+  "daisyui",
+  "flowbite",
+  "skeleton3",
+  "shadcn"
+] as const satisfies Theme[];
 
 export const DEPRECATED_THEMES_SET = new Set<Theme>(DEPRECATED_THEMES);
 
@@ -142,28 +153,37 @@ export type ActualTheme = Exclude<Theme, DeprecatedTheme>;
 
 export const THEME_TITLES = {
   basic: "basic",
+  daisyui: "daisyUI v4",
   daisyui5: "daisyUI v5",
+  flowbite: "Flowbite Svelte v0",
   flowbite3: "Flowbite Svelte",
   skeleton3: "Skeleton v3",
   skeleton4: "Skeleton v4",
+  shadcn: "shadcn-svelte v0",
   shadcn4: "shadcn-svelte",
 } satisfies Record<Theme, string>;
 
 export const THEME_BRAND = {
   basic: "",
+  daisyui: "daisyUI",
   daisyui5: "daisyUI",
+  flowbite: "Flowbite",
   flowbite3: "Flowbite",
   skeleton3: "Skeleton",
   skeleton4: "Skeleton",
+  shadcn: "shadcn-svelte",
   shadcn4: "shadcn-svelte",
 } satisfies Record<Theme, string>;
 
 export const THEME_PACKAGES = {
   basic: "@sjsf/basic-theme",
+  daisyui: "@sjsf/daisyui-theme",
   daisyui5: "@sjsf/daisyui5-theme",
+  flowbite: "@sjsf/flowbite-theme",
   flowbite3: "@sjsf/flowbite3-theme",
   skeleton3: "@sjsf/skeleton3-theme",
   skeleton4: "@sjsf/skeleton4-theme",
+  shadcn: "@sjsf/shadcn-theme",
   shadcn4: "@sjsf/shadcn4-theme",
 } satisfies Record<Theme, string>;
 
