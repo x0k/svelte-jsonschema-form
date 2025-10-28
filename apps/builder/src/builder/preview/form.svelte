@@ -47,13 +47,13 @@
       return SJSF_ICONS[ctx.icons];
     },
     extraUiOptions: fromRecord({
-      skeleton3Slider: options,
-      skeleton3FileUpload: options,
-      skeleton3Rating: options,
-      skeleton3Segment: options,
-      skeleton3Switch: options,
-      skeleton3Tags: options,
-      skeleton3Combobox: options,
+      skeleton4Slider: options,
+      skeleton4FileUpload: options,
+      skeleton4Rating: options,
+      skeleton4Segment: options,
+      skeleton4Switch: options,
+      skeleton4Tags: options,
+      skeleton4Combobox: options,
     }),
     onSubmit: console.log,
     onSubmitError: console.warn,
@@ -83,7 +83,7 @@
           novalidate={!ctx.html5Validation}
           class={themeManager.darkOrLight}
           style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
-          data-theme={ctx.theme.startsWith(Theme.Skeleton3)
+          data-theme={ctx.theme.startsWith(Theme.Skeleton4)
             ? "cerberus"
             : themeManager.darkOrLight}
         />
@@ -92,7 +92,7 @@
     <div bind:this={portalEl}></div>
   </ShadowHost>
   {#if formValue !== undefined}
-    <div class="rounded-md border">
+    <div class="rounded-md border">Skeleton$
       {@html ctx.highlight("json", JSON.stringify(formValue, withFile, 2))}
     </div>
   {/if}
