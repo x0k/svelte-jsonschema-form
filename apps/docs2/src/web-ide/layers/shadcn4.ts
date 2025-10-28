@@ -1,7 +1,6 @@
 import packageJson from "%/shadcn4-starter/package.json";
 import appCss from "%/shadcn4-starter/src/app.css?raw";
 import componentsJson from "%/shadcn4-starter/components.json?raw";
-import svelteConfigJs from "%/shadcn4-starter/svelte.config?raw";
 import utilsTs from "%/shadcn4-starter/src/lib/utils?raw";
 import layoutSvelte from "%/shadcn4-starter/src/routes/+layout.svelte?raw";
 
@@ -15,6 +14,5 @@ export const layer = {
     "src/lib/utils.ts": utilsTs,
     "src/app.css": appCss,
     "components.json": componentsJson,
-    "svelte.config.js": svelteConfigJs,
   },
 } satisfies Layer;

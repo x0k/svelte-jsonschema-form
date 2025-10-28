@@ -1,0 +1,110 @@
+{
+	"name": "@sjsf/shadcn-theme",
+	"version": "2.4.0",
+	"description": "The shadcn-svelte based theme for svelte-jsonschema-form",
+	"license": "MIT",
+	"keywords": [
+		"theme",
+		"shadcn-svelte",
+		"form"
+	],
+	"type": "module",
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"publishConfig": {
+		"provenance": true
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
+		"directory": "packages/shadcn-theme"
+	},
+	"bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && sed -i 's/:root \\[data-theme=/:host \\[data-theme=/g' dist/styles.css && sed -i 's/:root{/:host{/g' dist/styles.css && publint",
+		"preview": "vite preview",
+		"test": "npm run test:unit -- --run",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"test:integration": "playwright test",
+		"test:unit": "vitest"
+	},
+	"exports": {
+		"./components/*": {
+			"types": "./dist/theme/components/*.d.ts",
+			"svelte": "./dist/theme/components/*"
+		},
+		"./widgets/*": {
+			"types": "./dist/theme/widgets/*.d.ts",
+			"svelte": "./dist/theme/widgets/*"
+		},
+		"./extra-widgets/*": {
+			"types": "./dist/theme/extra-widgets/*.d.ts",
+			"svelte": "./dist/theme/extra-widgets/*"
+		},
+		".": {
+			"types": "./dist/theme/index.d.ts",
+			"svelte": "./dist/theme/index.js"
+		},
+		"./default": {
+			"types": "./dist/default-ui/index.d.ts",
+			"svelte": "./dist/default-ui/index.js"
+		},
+		"./new-york": {
+			"types": "./dist/new-york-ui/index.d.ts",
+			"svelte": "./dist/new-york-ui/index.js"
+		},
+		"./preset": {
+			"types": "./dist/preset.d.ts",
+			"default": "./dist/preset.js"
+		},
+		"./styles.css": "./dist/styles.css",
+		"./specs": {
+			"types": "./dist/specs.d.ts",
+			"svelte": "./dist/specs.js"
+		}
+	},
+	"dependencies": {
+		"@sjsf/basic-theme": "workspace:^2.4.0"
+	},
+	"peerDependencies": {
+		"@internationalized/date": "^3.8.1",
+		"@sjsf/form": "workspace:^2.4.0",
+		"bits-ui": "^2.2.0",
+		"clsx": "^2.1.0",
+		"@lucide/svelte": "^0.501.0",
+		"svelte": "^5.33.0",
+		"tailwind-merge": "^2.6.0",
+		"tailwind-variants": "^0.3.0"
+	},
+	"peerDependenciesMeta": {
+		"@internationalized/date": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"@internationalized/date": "3.8.1",
+		"@lucide/svelte": "^0.511.0",
+		"@sjsf/form": "workspace:*",
+		"autoprefixer": "catalog:",
+		"bits-ui": "^2.2.0",
+		"clsx": "^2.1.1",
+		"globals": "catalog:",
+		"postcss": "catalog:",
+		"svelte": "catalog:",
+		"tailwind-merge": "^2.6.0",
+		"tailwind-variants": "^0.3.1",
+		"tailwindcss": "catalog:legacy",
+		"tailwindcss-animate": "^1.0.7",
+		"theme-testing": "workspace:*"
+	},
+	"svelte": "./dist/theme/index.js",
+	"types": "./dist/theme/index.d.ts"
+}

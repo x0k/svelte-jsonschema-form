@@ -18,6 +18,11 @@ catalog:
   vite: ^7.1.12
   vitest: ^4.0.2
   zod: 4.1.12
+
+catalogs:
+  legacy:
+    tailwindcss: ^3.4.17
+
 onlyBuiltDependencies:
   - esbuild
   - '@tailwindcss/oxide'
