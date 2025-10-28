@@ -53,8 +53,8 @@
 
 <ButtonToggleGroup
 	{...customInputAttributes(ctx, config, 'flowbite3ToggleRadioButtons', {
-		onSelect(val: string | null) {
-			mapped.value = val ?? '-1';
+		onSelect(val: string | string[] | null) {
+			mapped.value = val as string ?? '-1';
 			handlers.onchange?.();
 		}
 	})}
