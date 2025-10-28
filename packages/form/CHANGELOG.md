@@ -1,5 +1,17 @@
 # @sjsf/form
 
+## 3.0.0-next.12
+
+### Major Changes
+
+- - Remove `form.value` property ([#221](https://github.com/x0k/svelte-jsonschema-form/pull/221))
+  - Remove `getSnapshot` form option
+  - Add `setValue`, `getValueSnapshot` form methods
+  - Use `ValidationResult<Output>` as the return type for `validateFormValue` and
+    `validateFormValueAsync` methods
+
+- Introduce `FormValidator` type ([#222](https://github.com/x0k/svelte-jsonschema-form/pull/222))
+
 ## 3.0.0-next.11
 
 ## 3.0.0-next.10

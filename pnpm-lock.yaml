@@ -1238,7 +1238,7 @@ importers:
   legacy/daisyui-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.4.0
+        specifier: workspace:^3.0.0-next.12
         version: link:../../packages/basic-theme
     devDependencies:
       '@sjsf/form':
@@ -1299,7 +1299,7 @@ importers:
   legacy/shadcn-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.4.0
+        specifier: workspace:^3.0.0-next.12
         version: link:../../packages/basic-theme
     devDependencies:
       '@internationalized/date':
@@ -1348,7 +1348,7 @@ importers:
   legacy/skeleton3-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.0.0-next.11
+        specifier: workspace:^3.0.0-next.12
         version: link:../../packages/basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -1436,7 +1436,7 @@ importers:
   packages/daisyui5-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.0.0-next.11
+        specifier: workspace:^3.0.0-next.12
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -1507,7 +1507,7 @@ importers:
   packages/flowbite3-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.0.0-next.11
+        specifier: workspace:^3.0.0-next.12
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -1659,7 +1659,7 @@ importers:
   packages/shadcn4-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.0.0-next.11
+        specifier: workspace:^3.0.0-next.12
         version: link:../basic-theme
     devDependencies:
       '@internationalized/date':
@@ -1708,7 +1708,7 @@ importers:
   packages/skeleton4-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.0.0-next.11
+        specifier: workspace:^3.0.0-next.12
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
