@@ -83,6 +83,7 @@ exports[`array fields > array 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -537,6 +538,7 @@ exports[`array fields > array icons 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -577,6 +579,7 @@ exports[`array fields > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -781,6 +784,7 @@ exports[`array fields > empty errors array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1021,6 +1025,7 @@ exports[`array fields > fixed array 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -1155,6 +1160,7 @@ exports[`with title and description > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1677,6 +1683,7 @@ exports[`with title and description > array icons 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -1717,6 +1724,7 @@ exports[`with title and description > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2095,6 +2103,7 @@ exports[`with title and description > fixed array 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -2229,6 +2238,7 @@ exports[`with title and description from both > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2751,6 +2761,7 @@ exports[`with title and description from both > array icons 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -2791,6 +2802,7 @@ exports[`with title and description from both > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3169,6 +3181,7 @@ exports[`with title and description from both > fixed array 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -3303,6 +3316,7 @@ exports[`with title and description from uiSchema > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3825,6 +3839,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -3865,6 +3880,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4243,6 +4259,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -4327,6 +4344,7 @@ exports[`with title and description with global label off > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4711,6 +4729,7 @@ exports[`with title and description with global label off > array icons 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -4751,6 +4770,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4989,6 +5009,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>

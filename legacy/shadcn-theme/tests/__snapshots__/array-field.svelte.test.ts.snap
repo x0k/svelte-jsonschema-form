@@ -85,6 +85,7 @@ exports[`default-ui > array fields > array 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -565,6 +566,7 @@ exports[`default-ui > array fields > array icons 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -611,6 +613,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -803,6 +806,7 @@ exports[`default-ui > array fields > empty errors array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1018,6 +1022,7 @@ exports[`default-ui > array fields > fixed array 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -1140,6 +1145,7 @@ exports[`default-ui > with title and description > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1674,6 +1680,7 @@ exports[`default-ui > with title and description > array icons 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -1720,6 +1727,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2069,6 +2077,7 @@ exports[`default-ui > with title and description > fixed array 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -2191,6 +2200,7 @@ exports[`default-ui > with title and description from both > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2725,6 +2735,7 @@ exports[`default-ui > with title and description from both > array icons 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -2771,6 +2782,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3120,6 +3132,7 @@ exports[`default-ui > with title and description from both > fixed array 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -3242,6 +3255,7 @@ exports[`default-ui > with title and description from uiSchema > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3776,6 +3790,7 @@ exports[`default-ui > with title and description from uiSchema > array icons 1`]
   </form>
   
   
+  
 </div>
 `;
 
@@ -3822,6 +3837,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4171,6 +4187,7 @@ exports[`default-ui > with title and description from uiSchema > fixed array 1`]
   </form>
   
   
+  
 </div>
 `;
 
@@ -4257,6 +4274,7 @@ exports[`default-ui > with title and description with global label off > array 1
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4657,6 +4675,7 @@ exports[`default-ui > with title and description with global label off > array i
   </form>
   
   
+  
 </div>
 `;
 
@@ -4703,6 +4722,7 @@ exports[`default-ui > with title and description with global label off > checkbo
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4918,6 +4938,7 @@ exports[`default-ui > with title and description with global label off > fixed a
   </form>
   
   
+  
 </div>
 `;
 
@@ -5004,6 +5025,7 @@ exports[`new-york-ui > array fields > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -5486,6 +5508,7 @@ exports[`new-york-ui > array fields > array icons 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -5532,6 +5555,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -5724,6 +5748,7 @@ exports[`new-york-ui > array fields > empty errors array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -5939,6 +5964,7 @@ exports[`new-york-ui > array fields > fixed array 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -6061,6 +6087,7 @@ exports[`new-york-ui > with title and description > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -6595,6 +6622,7 @@ exports[`new-york-ui > with title and description > array icons 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -6641,6 +6669,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -6990,6 +7019,7 @@ exports[`new-york-ui > with title and description > fixed array 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -7112,6 +7142,7 @@ exports[`new-york-ui > with title and description from both > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -7646,6 +7677,7 @@ exports[`new-york-ui > with title and description from both > array icons 1`] = 
   </form>
   
   
+  
 </div>
 `;
 
@@ -7692,6 +7724,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -8041,6 +8074,7 @@ exports[`new-york-ui > with title and description from both > fixed array 1`] = 
   </form>
   
   
+  
 </div>
 `;
 
@@ -8163,6 +8197,7 @@ exports[`new-york-ui > with title and description from uiSchema > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -8697,6 +8732,7 @@ exports[`new-york-ui > with title and description from uiSchema > array icons 1`
   </form>
   
   
+  
 </div>
 `;
 
@@ -8743,6 +8779,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -9092,6 +9129,7 @@ exports[`new-york-ui > with title and description from uiSchema > fixed array 1`
   </form>
   
   
+  
 </div>
 `;
 
@@ -9178,6 +9216,7 @@ exports[`new-york-ui > with title and description with global label off > array 
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -9578,6 +9617,7 @@ exports[`new-york-ui > with title and description with global label off > array 
   </form>
   
   
+  
 </div>
 `;
 
@@ -9624,6 +9664,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -9837,6 +9878,7 @@ exports[`new-york-ui > with title and description with global label off > fixed 
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
