@@ -14,7 +14,6 @@
 		customInputAttributes,
 		type ComponentProps,
 		createId,
-		handlersAttachment
 	} from '@sjsf/form';
 	import { DatePicker, parseDate, Portal } from '@skeletonlabs/skeleton-svelte';
 

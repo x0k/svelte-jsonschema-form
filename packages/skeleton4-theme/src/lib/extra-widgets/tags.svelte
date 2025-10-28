@@ -39,7 +39,6 @@
 		value
 	})}
 >
-	<TagsInput.Label>Label</TagsInput.Label>
 	<TagsInput.Control>
 		<TagsInput.Context>
 			{#snippet children(tagsInput)}
@@ -54,7 +53,7 @@
 				{/each}
 			{/snippet}
 		</TagsInput.Context>
-		<TagsInput.Input placeholder="Add a flavor..." />
+		<TagsInput.Input />
 	</TagsInput.Control>
 	<TagsInput.HiddenInput />
 </TagsInput>
