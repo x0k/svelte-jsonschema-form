@@ -458,9 +458,9 @@ importers:
       '@sjsf/shadcn4-theme':
         specifier: workspace:*
         version: link:../../packages/shadcn4-theme
-      '@sjsf/skeleton3-theme':
+      '@sjsf/skeleton4-theme':
         specifier: workspace:*
-        version: link:../../legacy/skeleton3-theme
+        version: link:../../packages/skeleton4-theme
       ajv:
         specifier: 'catalog:'
         version: 8.17.1

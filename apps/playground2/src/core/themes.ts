@@ -47,22 +47,22 @@ import "@sjsf/flowbite3-theme/extra-widgets/tags-include";
 import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
 import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
 
-import { theme as skeleton3 } from "@sjsf/skeleton3-theme";
-import skeleton3Styles from "@sjsf/skeleton3-theme/styles.css?inline";
-import "@sjsf/skeleton3-theme/extra-widgets/checkboxes-include";
-import "@sjsf/skeleton3-theme/extra-widgets/date-picker-include";
-import "@sjsf/skeleton3-theme/extra-widgets/file-include";
-import "@sjsf/skeleton3-theme/extra-widgets/multi-select-include";
-import "@sjsf/skeleton3-theme/extra-widgets/radio-buttons-include";
-import "@sjsf/skeleton3-theme/extra-widgets/radio-include";
-import "@sjsf/skeleton3-theme/extra-widgets/range-include";
-import "@sjsf/skeleton3-theme/extra-widgets/rating-include";
-import "@sjsf/skeleton3-theme/extra-widgets/switch-include";
-import "@sjsf/skeleton3-theme/extra-widgets/tags-include";
-import "@sjsf/skeleton3-theme/extra-widgets/textarea-include";
-import "@sjsf/skeleton3-theme/extra-widgets/file-upload-include";
-import "@sjsf/skeleton3-theme/extra-widgets/slider-include";
-import "@sjsf/skeleton3-theme/extra-widgets/combobox-include";
+import { theme as skeleton4 } from "@sjsf/skeleton4-theme";
+import skeleton4Styles from "@sjsf/skeleton4-theme/styles.css?inline";
+import "@sjsf/skeleton4-theme/extra-widgets/checkboxes-include";
+import "@sjsf/skeleton4-theme/extra-widgets/date-picker-include";
+import "@sjsf/skeleton4-theme/extra-widgets/file-include";
+import "@sjsf/skeleton4-theme/extra-widgets/multi-select-include";
+import "@sjsf/skeleton4-theme/extra-widgets/radio-buttons-include";
+import "@sjsf/skeleton4-theme/extra-widgets/radio-include";
+import "@sjsf/skeleton4-theme/extra-widgets/range-include";
+import "@sjsf/skeleton4-theme/extra-widgets/rating-include";
+import "@sjsf/skeleton4-theme/extra-widgets/switch-include";
+import "@sjsf/skeleton4-theme/extra-widgets/tags-include";
+import "@sjsf/skeleton4-theme/extra-widgets/textarea-include";
+import "@sjsf/skeleton4-theme/extra-widgets/file-upload-include";
+import "@sjsf/skeleton4-theme/extra-widgets/slider-include";
+import "@sjsf/skeleton4-theme/extra-widgets/combobox-include";
 
 import { theme as shadcn4 } from "@sjsf/shadcn4-theme";
 import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?inline";
@@ -81,7 +81,7 @@ export const themes = {
   basic,
   daisy5,
   flowbite3,
-  skeleton3,
+  skeleton4,
   shadcn4,
 };
 
@@ -89,6 +89,6 @@ export const themeStyles = {
   basic: "",
   daisy5: daisy5Styles,
   flowbite3: flowbite3Styles,
-  skeleton3: skeleton3Styles,
+  skeleton4: skeleton4Styles,
   shadcn4: shadcn4Styles,
 } satisfies Record<keyof typeof themes, string>;
