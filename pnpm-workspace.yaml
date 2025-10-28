@@ -1,6 +1,7 @@
 packages:
   - examples/*
   - packages/*
+  - legacy/*
   - apps/*
 
 catalog:

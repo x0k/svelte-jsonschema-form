@@ -182,7 +182,7 @@ importers:
         version: link:../../packages/shadcn4-theme
       '@sjsf/skeleton3-theme':
         specifier: workspace:*
-        version: link:../../packages/skeleton3-theme
+        version: link:../../legacy/skeleton3-theme
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -279,7 +279,7 @@ importers:
         version: link:../../packages/shadcn4-theme
       '@sjsf/skeleton3-theme':
         specifier: workspace:*
-        version: link:../../packages/skeleton3-theme
+        version: link:../../legacy/skeleton3-theme
       '@sjsf/skeleton4-theme':
         specifier: workspace:*
         version: link:../../packages/skeleton4-theme
@@ -460,7 +460,7 @@ importers:
         version: link:../../packages/shadcn4-theme
       '@sjsf/skeleton3-theme':
         specifier: workspace:*
-        version: link:../../packages/skeleton3-theme
+        version: link:../../legacy/skeleton3-theme
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
@@ -797,7 +797,7 @@ importers:
         version: link:../../packages/form
       '@sjsf/skeleton3-theme':
         specifier: workspace:*
-        version: link:../../packages/skeleton3-theme
+        version: link:../../legacy/skeleton3-theme
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -1047,6 +1047,49 @@ importers:
       vite:
         specifier: ^7.1.12
         version: 7.1.12(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)
+
+  legacy/skeleton3-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^3.0.0-next.11
+        version: link:../../packages/basic-theme
+    devDependencies:
+      '@sjsf/ajv8-validator':
+        specifier: workspace:*
+        version: link:../../packages/ajv8-validator
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../../packages/form
+      '@skeletonlabs/skeleton':
+        specifier: 3.2.2
+        version: 3.2.2(tailwindcss@4.1.16)
+      '@skeletonlabs/skeleton-svelte':
+        specifier: ^1.5.3
+        version: 1.5.3(svelte@5.41.3)
+      '@tailwindcss/forms':
+        specifier: ^0.5.10
+        version: 0.5.10(tailwindcss@4.1.16)
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.1.16(vite@7.1.12(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1))
+      '@zag-js/radio-group':
+        specifier: ^1.18.3
+        version: 1.26.3
+      ajv:
+        specifier: 'catalog:'
+        version: 8.17.1
+      globals:
+        specifier: 'catalog:'
+        version: 16.4.0
+      svelte:
+        specifier: 'catalog:'
+        version: 5.41.3
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.1.16
+      theme-testing:
+        specifier: workspace:*
+        version: link:../../packages/theme-testing
 
   packages/ajv8-validator:
     devDependencies:
@@ -1364,49 +1407,6 @@ importers:
       tw-animate-css:
         specifier: ^1.4.0
         version: 1.4.0
-
-  packages/skeleton3-theme:
-    dependencies:
-      '@sjsf/basic-theme':
-        specifier: workspace:^3.0.0-next.11
-        version: link:../basic-theme
-    devDependencies:
-      '@sjsf/ajv8-validator':
-        specifier: workspace:*
-        version: link:../ajv8-validator
-      '@sjsf/form':
-        specifier: workspace:*
-        version: link:../form
-      '@skeletonlabs/skeleton':
-        specifier: 3.2.2
-        version: 3.2.2(tailwindcss@4.1.16)
-      '@skeletonlabs/skeleton-svelte':
-        specifier: ^1.5.3
-        version: 1.5.3(svelte@5.41.3)
-      '@tailwindcss/forms':
-        specifier: ^0.5.10
-        version: 0.5.10(tailwindcss@4.1.16)
-      '@tailwindcss/vite':
-        specifier: 'catalog:'
-        version: 4.1.16(vite@7.1.12(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1))
-      '@zag-js/radio-group':
-        specifier: ^1.18.3
-        version: 1.24.2
-      ajv:
-        specifier: 'catalog:'
-        version: 8.17.1
-      globals:
-        specifier: 'catalog:'
-        version: 16.4.0
-      svelte:
-        specifier: 'catalog:'
-        version: 5.41.3
-      tailwindcss:
-        specifier: 'catalog:'
-        version: 4.1.16
-      theme-testing:
-        specifier: workspace:*
-        version: link:../theme-testing
 
   packages/skeleton4-theme:
     dependencies:
