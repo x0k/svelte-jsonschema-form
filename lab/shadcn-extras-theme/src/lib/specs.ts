@@ -1,4 +1,5 @@
 import { s } from 'theme-testing/specs';
+import '@sjsf/form/fields/extra/array-tags-include';
 
 import './theme/extra-widgets/file-drop-zone-include.js';
 import './theme/extra-widgets/ip-v4-address-input-include.js';
@@ -6,6 +7,7 @@ import './theme/extra-widgets/nlp-date-input-include.js';
 import './theme/extra-widgets/password-include.js';
 import './theme/extra-widgets/phone-input-include.js';
 import './theme/extra-widgets/star-rating-include.js';
+import './theme/extra-widgets/tags-input-include.js';
 
 export const specs: s.Specs = {
 	fileDropZone: [
@@ -78,6 +80,16 @@ export const specs: s.Specs = {
 			},
 			'ui:options': {
 				useLabel: false
+			}
+		},
+		{}
+	],
+	tagsInput: [
+		s.uniqueArray,
+		{
+			'ui:components': {
+				arrayField: 'arrayTagsField',
+				tagsWidget: 'shadcnExtrasTagsInputWidget'
 			}
 		},
 		{}

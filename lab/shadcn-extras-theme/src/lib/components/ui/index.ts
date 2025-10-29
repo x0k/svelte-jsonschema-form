@@ -9,3 +9,4 @@ export {
 } from './password/index.js';
 export { PhoneInput } from './phone-input/index.js';
 export { Root as StarRatingRoot, Star as StarRatingStar } from './star-rating/index.js';
+export { TagsInput } from './tags-input/index.js';
