@@ -3,6 +3,7 @@ import { s } from 'theme-testing/specs';
 import './theme/extra-widgets/file-drop-zone-include.js';
 import './theme/extra-widgets/ip-v4-address-input-include.js';
 import './theme/extra-widgets/nlp-date-input-include.js';
+import './theme/extra-widgets/password-include.js';
 
 export const specs: s.Specs = {
 	fileDropZone: [
@@ -45,6 +46,15 @@ export const specs: s.Specs = {
 			},
 			'ui:options': {
 				useLabel: false
+			}
+		},
+		{}
+	],
+	password: [
+		s.text,
+		{
+			'ui:components': {
+				textWidget: 'shadcnExtrasPasswordWidget'
 			}
 		},
 		{}
