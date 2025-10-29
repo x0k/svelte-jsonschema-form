@@ -5,6 +5,7 @@ import './theme/extra-widgets/ip-v4-address-input-include.js';
 import './theme/extra-widgets/nlp-date-input-include.js';
 import './theme/extra-widgets/password-include.js';
 import './theme/extra-widgets/phone-input-include.js';
+import './theme/extra-widgets/star-rating-include.js';
 
 export const specs: s.Specs = {
 	fileDropZone: [
@@ -65,6 +66,18 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				textWidget: 'shadcnExtrasPhoneInputWidget'
+			}
+		},
+		{}
+	],
+	starRating: [
+		s.number,
+		{
+			'ui:components': {
+				numberWidget: 'shadcnExtrasStarRatingWidget'
+			},
+			'ui:options': {
+				useLabel: false
 			}
 		},
 		{}

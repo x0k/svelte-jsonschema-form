@@ -8,3 +8,4 @@ export {
 	ToggleVisibility as PasswordToggleVisibility
 } from './password/index.js';
 export { PhoneInput } from './phone-input/index.js';
+export { Root as StarRatingRoot, Star as StarRatingStar } from './star-rating/index.js';
