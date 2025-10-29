@@ -1,4 +1,5 @@
 import appCss from "%/daisyui-starter/src/app.css?raw";
+import layoutSvelte from '%/daisyui-starter/src/routes/+layout.svelte?raw';
 import postcssConfigJs from '%/daisyui-starter/postcss.config.js?raw'
 
 import type { Layer } from "../layer";
@@ -12,6 +13,7 @@ export const layer = {
   },
   files: {
     "src/app.css": appCss,
+    "src/routes/+layout.svelte": layoutSvelte,
     "postcss.config.js": postcssConfigJs,
   }
 } satisfies Layer;

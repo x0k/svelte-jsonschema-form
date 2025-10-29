@@ -3,6 +3,7 @@ import appCss from "%/shadcn-starter/src/app.css?raw";
 import componentsJson from "%/shadcn-starter/components.json?raw";
 import utilsTs from "%/shadcn-starter/src/lib/utils?raw";
 import layoutSvelte from "%/shadcn-starter/src/routes/+layout.svelte?raw";
+import tailwindConfigJs from '%/shadcn-starter/tailwind.config.js?raw';
 
 import { omitBasePackages, type Layer } from "../layer";
 
@@ -14,5 +15,6 @@ export const layer = {
     "src/lib/utils.ts": utilsTs,
     "src/app.css": appCss,
     "components.json": componentsJson,
+    "tailwind.config.js": tailwindConfigJs,
   },
 } satisfies Layer;

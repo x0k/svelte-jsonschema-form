@@ -246,7 +246,7 @@ const config = {
     alias: ${JSON.stringify(kitAlias)},
   },
   compilerOptions: {
-    runes: ${runes},
+    runes: ${runes? 'true' : 'undefined'},
     experimental: {
       async: true,
     },
