@@ -67,7 +67,7 @@
 		"cally": "^0.8.0",
 		"daisyui": "^5.3.0",
 		"pikaday": "^1.8.2",
-		"svelte": "^5.42.0"
+		"svelte": "^5.43.0"
 	},
 	"peerDependenciesMeta": {
 		"cally": {

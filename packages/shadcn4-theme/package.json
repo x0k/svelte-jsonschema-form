@@ -76,7 +76,7 @@
 		"@sjsf/form": "workspace:^3.0.0-next.12",
 		"bits-ui": "^2.14.0",
 		"clsx": "^2.1.0",
-		"svelte": "^5.42.0",
+		"svelte": "^5.43.0",
 		"tailwind-merge": "^3.3.0",
 		"tailwind-variants": "^1.0.0 || ^2.0.0 || ^3.0.0"
 	},

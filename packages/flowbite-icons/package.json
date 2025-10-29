@@ -54,7 +54,7 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.0.0-next.12",
 		"flowbite-svelte-icons": "^3.0.0",
-		"svelte": "^5.42.0",
+		"svelte": "^5.43.0",
 		"tailwind-merge": "^3.3.0"
 	},
 	"devDependencies": {
