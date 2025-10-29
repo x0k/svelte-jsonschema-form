@@ -1291,6 +1291,9 @@ importers:
       tw-animate-css:
         specifier: ^1.4.0
         version: 1.4.0
+      yeezy-dates:
+        specifier: ^1.0.1
+        version: 1.0.1
 
   legacy/daisyui-theme:
     dependencies:
@@ -4367,6 +4370,10 @@ packages:
   chownr@3.0.0:
     resolution: {integrity: sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==}
     engines: {node: '>=18'}
+
+  chrono-node@2.9.0:
+    resolution: {integrity: sha512-glI4YY2Jy6JII5l3d5FN6rcrIbKSQqKPhWsIRYPK2IK8Mm4Q1ZZFdYIaDqglUNf7gNwG+kWIzTn0omzzE0VkvQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   ci-info@3.9.0:
     resolution: {integrity: sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==}
@@ -7510,6 +7517,9 @@ packages:
   yargs@17.7.2:
     resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
     engines: {node: '>=12'}
+
+  yeezy-dates@1.0.1:
+    resolution: {integrity: sha512-AIHSzAm3QdX15U4qd1tvLQKBeW51UAkhmKtbemzilCFKDdxQV9eNIvc8/tAJKNUdIh/Xhhpu0GDsV+zBGsDhng==}
 
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
@@ -11175,6 +11185,8 @@ snapshots:
 
   chownr@3.0.0: {}
 
+  chrono-node@2.9.0: {}
+
   ci-info@3.9.0: {}
 
   ci-info@4.3.0: {}
@@ -14809,6 +14821,10 @@ snapshots:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 21.1.1
+
+  yeezy-dates@1.0.1:
+    dependencies:
+      chrono-node: 2.9.0
 
   yocto-queue@0.1.0: {}
 
