@@ -3,6 +3,7 @@ packages:
   - packages/*
   - legacy/*
   - apps/*
+  - lab/*
 
 catalog:
   '@exodus/schemasafe': ^1.3.0

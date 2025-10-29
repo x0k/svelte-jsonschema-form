@@ -263,7 +263,7 @@ bl/:
     pnpm run preview
   popd
 
-l/:
+leg/:
   pushd legacy
   daisy/:
     pushd daisyui-theme
@@ -306,6 +306,21 @@ l/:
       pnpm run build
     p:
       pnpm run preview
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  popd
+
+l/:
+  pushd lab
+  shad/:
+    pushd shadcn-extras-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
     d:
       pnpm run dev
     t:
