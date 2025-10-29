@@ -66,8 +66,9 @@ You can create a new component that adapts the interface of the original compone
 ```
 
 Why is this needed? Throwing an error when data formats don't match
-is only one possible approach.  
-You should decide on the adaptation strategy and implement it yourself.
+is just one possible approach. You should define your own adaptation strategy
+and implement it according to your needs.
+
 However, if you're fine with the `assert`-based approach,
 you can use the following prebuilt field components:
 - `array-files`
@@ -75,7 +76,8 @@ you can use the following prebuilt field components:
 - `array-tags`
 - `unknown-native-file`
 
-You can also reduce boilerplate code by using the `cast` utility from `@sjsf/form/lib/component`:
+To reduce boilerplate, you can also use the `cast` utility
+from the `@sjsf/form/lib/component` module:
 
 :::caution
 

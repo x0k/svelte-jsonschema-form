@@ -48,8 +48,6 @@ Remote functions integration is experimental
     exclude: ['@sjsf/form', '@sjsf/sveltekit/rf/client'],
   }
   ```
-- All validation errors are displayed on the root element -
-  [feature request](https://github.com/sveltejs/kit/issues/14688)
 - The `form.value` type on the client side is `unknown` because the `RemoteForm`
   type does not include information about the validator's output type.
   For now, you need to specify the type manually: `createForm<FormValue>(...)`.
