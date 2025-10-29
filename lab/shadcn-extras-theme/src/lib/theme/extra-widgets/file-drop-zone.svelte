@@ -22,7 +22,7 @@
 
 	declare module '@sjsf/shadcn4-theme' {
 		interface ThemeComponents {
-			FileDropZone?: Component<FileDropZoneProps>;
+			FileDropZone: Component<FileDropZoneProps>;
 		}
 	}
 </script>

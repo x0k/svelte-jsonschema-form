@@ -1,6 +1,7 @@
 import { s } from 'theme-testing/specs';
 
 import './theme/extra-widgets/file-drop-zone-include.js';
+import './theme/extra-widgets/ip-v4-address-input-include.js';
 
 export const specs: s.Specs = {
 	fileDropZone: [
@@ -19,6 +20,18 @@ export const specs: s.Specs = {
 			'ui:components': {
 				arrayField: 'arrayFilesField',
 				fileWidget: 'shadcnExtrasFileDropZoneWidget'
+			}
+		},
+		{}
+	],
+	ipV4AddressInput: [
+		s.text,
+		{
+			'ui:components': {
+				textWidget: 'shadcnExtrasIPv4AddressInputWidget'
+			},
+			'ui:options': {
+				useLabel: false
 			}
 		},
 		{}
