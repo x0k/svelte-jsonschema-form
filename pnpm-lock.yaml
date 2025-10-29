@@ -1282,6 +1282,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      country-flag-icons:
+        specifier: ^1.5.21
+        version: 1.5.21
       globals:
         specifier: 'catalog:'
         version: 16.4.0
@@ -1291,6 +1294,9 @@ importers:
       svelte:
         specifier: 'catalog:'
         version: 5.43.0
+      svelte-tel-input:
+        specifier: ^3.6.0
+        version: 3.6.0(svelte@5.43.0)
       svelte-toolbelt:
         specifier: ^0.9.3
         version: 0.9.3(svelte@5.43.0)
@@ -4496,6 +4502,9 @@ packages:
   cose-base@2.2.0:
     resolution: {integrity: sha512-AzlgcsCbUMymkADOJtQm3wO9S3ltPfYOFD5033keQn9NJzIbtnZj+UdBJe7DYml/8TdbtHJW3j58SOnKhWY/5g==}
 
+  country-flag-icons@1.5.21:
+    resolution: {integrity: sha512-0KmU4oeiyAM+F+atzK99ghQDQJKxEY3tiDhnRraVFL4o65rZgrmrx7xKi0b+hxcVpcEpuUbu+KCC6TKTZQTDcA==}
+
   crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
 
@@ -5509,6 +5518,9 @@ packages:
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
+
+  libphonenumber-js@1.10.43:
+    resolution: {integrity: sha512-M/iPACJGsTvEy8QmUY4K0SoIFB71X2j7y2JvUMYzUXUxCNmiU+NTfHdz7gt+dC48BVfBzZi2oO6s9TDGllCfxA==}
 
   lightningcss-android-arm64@1.30.2:
     resolution: {integrity: sha512-BH9sEdOCahSgmkVhBLeU7Hc9DWeZ1Eb6wNS6Da8igvUwAe0sqROHddIlvU06q3WyXVEOYDZ6ykBZQnjTbmo4+A==}
@@ -6781,6 +6793,12 @@ packages:
     resolution: {integrity: sha512-M/Dgrgn6+tOrihDFBG/AA/W7eo+kiiD2h+cUoO2uK3Kx8+5VPCjBoG4mzBA+hCap+/NaU7UA/YZAM+7F/Y6sbg==}
     peerDependencies:
       svelte: ^5.0.0
+
+  svelte-tel-input@3.6.0:
+    resolution: {integrity: sha512-bzgtYVWpO3cke8tqRM2JvcHO94wIp8X0C5E4SItobrmGWT8Do07jzkHN8Z+KU6RaY6Q1aBomH8neJ2LEAZAfqg==}
+    engines: {node: '>= 18', npm: '>= 8', pnpm: '>= 8', yarn: '>= 1'}
+    peerDependencies:
+      svelte: ^3.58.0 || ^4.0.0 || ^5.0.0
 
   svelte-toolbelt@0.10.6:
     resolution: {integrity: sha512-YWuX+RE+CnWYx09yseAe4ZVMM7e7GRFZM6OYWpBKOb++s+SQ8RBIMMe+Bs/CznBMc0QPLjr+vDBxTAkozXsFXQ==}
@@ -11323,6 +11341,8 @@ snapshots:
     dependencies:
       layout-base: 2.0.1
 
+  country-flag-icons@1.5.21: {}
+
   crelt@1.0.6: {}
 
   cross-spawn@7.0.6:
@@ -12551,6 +12571,8 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+
+  libphonenumber-js@1.10.43: {}
 
   lightningcss-android-arm64@1.30.2:
     optional: true
@@ -14135,6 +14157,11 @@ snapshots:
 
   svelte-radix@3.0.0(svelte@5.43.0):
     dependencies:
+      svelte: 5.43.0
+
+  svelte-tel-input@3.6.0(svelte@5.43.0):
+    dependencies:
+      libphonenumber-js: 1.10.43
       svelte: 5.43.0
 
   svelte-toolbelt@0.10.6(@sveltejs/kit@2.42.2(@sveltejs/vite-plugin-svelte@6.1.2(svelte@5.43.0)(vite@7.1.12(@types/node@24.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.0)(vite@7.1.12(@types/node@24.9.2)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.0):

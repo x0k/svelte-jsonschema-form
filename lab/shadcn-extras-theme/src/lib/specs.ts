@@ -4,6 +4,7 @@ import './theme/extra-widgets/file-drop-zone-include.js';
 import './theme/extra-widgets/ip-v4-address-input-include.js';
 import './theme/extra-widgets/nlp-date-input-include.js';
 import './theme/extra-widgets/password-include.js';
+import './theme/extra-widgets/phone-input-include.js';
 
 export const specs: s.Specs = {
 	fileDropZone: [
@@ -55,6 +56,15 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				textWidget: 'shadcnExtrasPasswordWidget'
+			}
+		},
+		{}
+	],
+	phoneInput: [
+		s.text,
+		{
+			'ui:components': {
+				textWidget: 'shadcnExtrasPhoneInputWidget'
 			}
 		},
 		{}

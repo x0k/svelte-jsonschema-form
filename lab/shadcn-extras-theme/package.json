@@ -60,9 +60,11 @@
 		"@zxcvbn-ts/language-common": "^3.0.0",
 		"@zxcvbn-ts/language-en": "^3.0.0",
 		"bits-ui": "^2.14.0",
+		"country-flag-icons": "^1.5.0",
 		"clsx": "^2.1.0",
 		"runed": "^0.31.0",
 		"svelte": "^5.43.0",
+		"svelte-tel-input": "^3.6.0",
 		"svelte-toolbelt": "^0.9.0",
 		"tailwind-merge": "^3.3.0",
 		"tailwind-variants": "^3.1.0",
@@ -92,6 +94,12 @@
 		},
 		"tailwind-variants": {
 			"optional": true
+		},
+		"country-flag-icons": {
+			"optional": true
+		},
+		"svelte-tel-input": {
+			"optional": true
 		}
 	},
 	"devDependencies": {
@@ -106,9 +114,11 @@
 		"ajv": "catalog:",
 		"bits-ui": "^2.14.1",
 		"clsx": "^2.1.1",
+		"country-flag-icons": "^1.5.21",
 		"globals": "catalog:",
 		"runed": "^0.31.1",
 		"svelte": "catalog:",
+		"svelte-tel-input": "^3.6.0",
 		"svelte-toolbelt": "^0.9.3",
 		"tailwind-merge": "^3.3.1",
 		"tailwind-variants": "^3.1.1",

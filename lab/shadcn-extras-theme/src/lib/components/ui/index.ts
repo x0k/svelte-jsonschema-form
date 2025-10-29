@@ -7,3 +7,4 @@ export {
 	Strength as PasswordStrength,
 	ToggleVisibility as PasswordToggleVisibility
 } from './password/index.js';
+export { PhoneInput } from './phone-input/index.js';
