@@ -122,13 +122,6 @@ export async function connect<
   // svelte-ignore await_waterfall
   const initialValue = $derived(await getInitialValue());
 
-  const initialErrors = $derived(
-    fields.allIssues()?.map((i) => ({
-      path: [],
-      message: i.message
-    }))
-  );
-
   let formElement: HTMLFormElement;
   let originalFormElement: HTMLFormElement;
   const enhancedRemoteForm =
@@ -220,7 +213,7 @@ export async function connect<
         return initialValue ?? options.initialValue;
       },
       get initialErrors() {
-        return initialErrors ?? options.initialErrors;
+        return fields.allIssues() ?? options.initialErrors;
       },
       get uiSchema() {
         return uiSchema;
