@@ -1,12 +1,14 @@
 <script lang="ts">
+	import { setThemeContext } from '@sjsf/shadcn4-theme';
 	import { ComponentsAndWidgets } from 'theme-testing/demo';
+	import * as components from '@sjsf/shadcn4-theme/new-york';
 
 	import '../app.css';
-	import { setThemeContext, theme } from '../lib/theme/index.js';
 	import { specs } from '../lib/specs.js';
-	import * as components from '../lib/components/ui/index.js';
+	import * as extraComponents from '../lib/components/ui/index.js';
+	import { theme } from '../lib/theme/index.js'
 
-	setThemeContext({ components });
+	setThemeContext({ components: { ...components, ...extraComponents } });
 </script>
 
 <ComponentsAndWidgets {theme} {specs} />
