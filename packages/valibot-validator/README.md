@@ -3,7 +3,7 @@
 The [Valibot](https://github.com/fabian-hiller/valibot) based validator for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/validators/valibot/)
-- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
+- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground3/)
 
 ## Installation
 
