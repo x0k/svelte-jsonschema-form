@@ -1,6 +1,6 @@
 import type { FormValidator, Schema } from "@sjsf/form";
 import { toJsonSchema } from "@valibot/to-json-schema";
-import type { InferOutput } from "valibot";
+import type { InferOutput, InferInput } from "valibot";
 
 import type { SchemaRegistry, ValibotSchema } from "./model.js";
 import { createSchemaRegistry } from "./schemas-registry.js";
@@ -14,7 +14,9 @@ import {
 export interface CreateFormValidatorFactoryOptions<
   F extends <S extends ValibotSchema>(
     registry: SchemaRegistry
-  ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
+  ) => (
+    options: Partial<Record<string, any>>
+  ) => FormValidator<InferInput<S>, InferOutput<S>>,
 > {
   createFormValidator: F;
 }
@@ -22,7 +24,9 @@ export interface CreateFormValidatorFactoryOptions<
 function createFormValidatorFactory<
   F extends <S extends ValibotSchema>(
     registry: SchemaRegistry
-  ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
+  ) => (
+    options: Partial<Record<string, any>>
+  ) => FormValidator<InferInput<S>, InferOutput<S>>,
 >({ createFormValidator }: CreateFormValidatorFactoryOptions<F>) {
   return <S extends ValibotSchema>(valibotSchema: S) => {
     const schemaRegistry = createSchemaRegistry();
@@ -42,7 +46,7 @@ function createSyncValidator<S extends ValibotSchema>(
   schemaRegistry: SchemaRegistry
 ) {
   return (options: Omit<FormValidatorOptions, "schemaRegistry"> = {}) =>
-    createFormValidator<InferOutput<S>>(
+    createFormValidator<InferInput<S>, InferOutput<S>>(
       Object.setPrototypeOf(
         { schemaRegistry } satisfies FormValidatorOptions,
         options
@@ -70,7 +74,7 @@ function createAsyncValidator<S extends ValibotSchema>(
   schemaRegistry: SchemaRegistry
 ) {
   return (options: Omit<AsyncFormValidatorOptions, "schemaRegistry"> = {}) =>
-    createAsyncFormValidator<InferOutput<S>>(
+    createAsyncFormValidator<InferInput<S>, InferOutput<S>>(
       Object.setPrototypeOf(
         { schemaRegistry } satisfies AsyncFormValidatorOptions,
         options

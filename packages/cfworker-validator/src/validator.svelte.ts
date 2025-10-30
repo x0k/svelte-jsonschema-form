@@ -83,9 +83,9 @@ export function createValidator({
 
 export interface FormValueValidatorOptions extends ValidatorOptions {}
 
-export function createFormValueValidator<T>(
+export function createFormValueValidator<I, O>(
   options: FormValueValidatorOptions
-): FormValueValidator<T> {
+): FormValueValidator<I, O> {
   return {
     validateFormValue(rootSchema, formValue) {
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
@@ -94,7 +94,7 @@ export function createFormValueValidator<T>(
       );
       if (valid) {
         return {
-          value: formValue as T,
+          value: formValue as O,
         };
       }
       return {
@@ -143,7 +143,7 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidator<T>({
+export function createFormValidator<I, O = I>({
   factory = (schema) => new CfValidator(schema as CfSchema, "7", false),
   createSchemaValidator = createSchemaValidatorFactory(factory),
   createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
@@ -165,7 +165,7 @@ export function createFormValidator<T>({
   };
   return Object.assign(
     createValidator(options),
-    createFormValueValidator<T>(options),
+    createFormValueValidator<I, O>(options),
     createFieldValueValidator(options)
   );
 }

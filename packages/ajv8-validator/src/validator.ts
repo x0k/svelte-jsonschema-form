@@ -55,16 +55,16 @@ export interface FormValueValidatorOptions
   extends ValidatorOptions,
     ErrorsTransformerOptions {}
 
-export function createFormValueValidator<T>(
+export function createFormValueValidator<I, O>(
   options: FormValueValidatorOptions
-): FormValueValidator<T> {
+): FormValueValidator<I, O> {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
       return validateAndTransformErrors(
         options.compileSchema(rootSchema, rootSchema),
         formValue,
-        CAST_FORM_DATA<T>,
+        CAST_FORM_DATA<O>,
         transformErrors
       );
     },
@@ -98,16 +98,16 @@ export interface AsyncFormValueValidatorOptions
   ) => AsyncValidateFunction;
 }
 
-export function createAsyncFormValueValidator<T>(
+export function createAsyncFormValueValidator<I, O>(
   options: AsyncFormValueValidatorOptions
-): AsyncFormValueValidator<T> {
+): AsyncFormValueValidator<I, O> {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
       return validateAndTransformErrorsAsync(
         options.compileAsyncSchema(rootSchema, rootSchema),
         formValue,
-        CAST_FORM_DATA<T>,
+        CAST_FORM_DATA<O>,
         transformErrors
       );
     },
@@ -138,7 +138,7 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidator<T>({
+export function createFormValidator<I, O = I>({
   ajvOptions = DEFAULT_AJV_CONFIG,
   ajvPlugins = addFormComponents,
   ajv = ajvPlugins(new Ajv(ajvOptions)),
@@ -163,7 +163,7 @@ export function createFormValidator<T>({
   };
   return Object.assign(
     createValidator(options),
-    createFormValueValidator<T>(options),
+    createFormValueValidator<I, O>(options),
     createFieldValueValidator(options)
   );
 }
@@ -173,7 +173,7 @@ export interface AsyncFormValidatorOptions
     AsyncFormValueValidatorOptions,
     AsyncFieldValueValidatorOptions {}
 
-export function createAsyncFormValidator<T>({
+export function createAsyncFormValidator<I, O = I>({
   ajv,
   compileSchema = createSchemaCompiler(ajv, false),
   compileAsyncSchema = createSchemaCompiler(ajv, true),
@@ -188,7 +188,7 @@ export function createAsyncFormValidator<T>({
   };
   return Object.assign(
     createValidator(options),
-    createAsyncFormValueValidator<T>(options),
+    createAsyncFormValueValidator<I, O>(options),
     createAsyncFieldValueValidator(options)
   );
 }

@@ -2,6 +2,7 @@ import type { FormValidator, Schema } from "@sjsf/form";
 import {
   toJSONSchema,
   type $ZodType,
+  type input as InferInput,
   type output as InferOutput,
 } from "zod/v4/core";
 
@@ -11,7 +12,9 @@ import { createSchemaRegistry } from "./schemas-registry.js";
 export interface CreateFormValidatorFactoryOptions<
   F extends <S extends $ZodType>(
     registry: SchemaRegistry
-  ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
+  ) => (
+    options: Partial<Record<string, any>>
+  ) => FormValidator<InferInput<S>, InferOutput<S>>,
 > {
   createAugmentedSchema: AugmentedSchemaFactory;
   createFormValidator: F;
@@ -20,7 +23,9 @@ export interface CreateFormValidatorFactoryOptions<
 export function createFormValidatorFactory<
   F extends <S extends $ZodType>(
     registry: SchemaRegistry
-  ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
+  ) => (
+    options: Partial<Record<string, any>>
+  ) => FormValidator<InferInput<S>, InferOutput<S>>,
 >({
   createFormValidator,
   createAugmentedSchema,

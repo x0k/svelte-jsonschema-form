@@ -69,9 +69,9 @@ export function validatorTests(
   });
 }
 
-export function formValueValidatorTests<T>(
+export function formValueValidatorTests<I, O>(
   createFormValueValidator: Creatable<
-    FormValueValidator<T> & Validator,
+    FormValueValidator<I, O> & Validator,
     ValidatorFactoryOptions
   >
 ) {

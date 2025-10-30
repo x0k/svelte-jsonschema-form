@@ -1,5 +1,9 @@
 import type { Schema } from "@sjsf/form";
-import type { $ZodType, output as InferOutput } from "zod/v4/core";
+import type {
+  $ZodType,
+  input as InferInput,
+  output as InferOutput,
+} from "zod/v4/core";
 import { safeParse, safeParseAsync, ZodObject } from "zod";
 
 import type { AugmentedSchemaFactory, SchemaRegistry } from "../model.js";
@@ -31,7 +35,7 @@ function createSyncValidator<S extends $ZodType>(
   return (
     options: Omit<FormValidatorOptions, "schemaRegistry" | "safeParse"> = {}
   ) =>
-    createFormValidator<InferOutput<S>>(
+    createFormValidator<InferInput<S>, InferOutput<S>>(
       Object.setPrototypeOf(
         {
           safeParse,
@@ -68,7 +72,7 @@ function createAsyncValidator<S extends $ZodType>(
       "schemaRegistry" | "safeParse" | "safeParseAsync"
     > = {}
   ) =>
-    createAsyncFormValidator<InferOutput<S>>(
+    createAsyncFormValidator<InferInput<S>, InferOutput<S>>(
       Object.setPrototypeOf(
         {
           safeParse,

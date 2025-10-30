@@ -55,9 +55,9 @@ export function createValidator({
 
 export interface FormValueValidatorOptions extends ValidatorOptions {}
 
-export function createFormValueValidator<T>(
+export function createFormValueValidator<I, O>(
   options: FormValueValidatorOptions
-): FormValueValidator<T> {
+): FormValueValidator<I, O> {
   return {
     validateFormValue(rootSchema, formValue) {
       const valibotSchema = getValibotSchema(
@@ -75,9 +75,9 @@ export function createFormValueValidator<T>(
 export interface AsyncFormValueValidatorOptions
   extends SchemaRegistryProvider {}
 
-export function createAsyncFormValueValidator<T>(
+export function createAsyncFormValueValidator<I, O>(
   options: AsyncFormValueValidatorOptions
-): AsyncFormValueValidator<T> {
+): AsyncFormValueValidator<I, O> {
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
       const valibotSchema = getValibotSchema(
@@ -124,10 +124,10 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidator<T>(options: FormValidatorOptions) {
+export function createFormValidator<I, O>(options: FormValidatorOptions) {
   return Object.assign(
     createValidator(options),
-    createFormValueValidator<T>(options),
+    createFormValueValidator<I, O>(options),
     createFieldValueValidator(options)
   );
 }
@@ -137,12 +137,12 @@ export interface AsyncFormValidatorOptions
     AsyncFormValueValidatorOptions,
     AsyncFieldValueValidatorOptions {}
 
-export function createAsyncFormValidator<T>(
+export function createAsyncFormValidator<I, O>(
   options: AsyncFormValidatorOptions
 ) {
   return Object.assign(
     createValidator(options),
-    createAsyncFormValueValidator<T>(options),
+    createAsyncFormValueValidator<I, O>(options),
     createAsyncFieldValueValidator(options)
   );
 }

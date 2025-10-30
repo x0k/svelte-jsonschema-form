@@ -77,16 +77,16 @@ export interface FormValueValidatorOptions
   extends ValidatorOptions,
     ErrorsTransformerOptions {}
 
-export function createFormValueValidator<T>(
+export function createFormValueValidator<I, O>(
   options: FormValueValidatorOptions
-): FormValueValidator<T> {
+): FormValueValidator<I, O> {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
       return validateAndTransformErrors(
         getValidateFunction(options, rootSchema),
         formValue,
-        CAST_FORM_DATA<T>,
+        CAST_FORM_DATA<O>,
         transformErrors
       );
     },
@@ -108,16 +108,16 @@ export function createFieldValueValidator(
   };
 }
 
-export function createAsyncFormValueValidator<T>(
+export function createAsyncFormValueValidator<I, O>(
   options: FormValidatorOptions
-): AsyncFormValueValidator<T> {
+): AsyncFormValueValidator<I, O> {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValueAsync(_, rootSchema, formValue) {
       return validateAndTransformErrorsAsync(
         getValidateFunction(options, rootSchema) as AsyncValidateFunction,
         formValue,
-        CAST_FORM_DATA<T>,
+        CAST_FORM_DATA<O>,
         transformErrors
       );
     },
