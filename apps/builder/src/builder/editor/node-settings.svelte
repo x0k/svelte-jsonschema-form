@@ -41,7 +41,7 @@
           );
           return v.validateFormValue(rootSchema, cleanData);
         },
-      } satisfies FormValueValidator<unknown>;
+      };
     },
     get initialValue() {
       return untrack(() => $state.snapshot(node.options));
