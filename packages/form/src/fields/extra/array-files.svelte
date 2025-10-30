@@ -17,6 +17,7 @@
 
   import { assertStrings } from "../assert.js";
   import Files from "./files.svelte";
+  import './file.svelte'
 
   let { value = $bindable(), ...rest }: ComponentProps["arrayFilesField"] =
     $props();

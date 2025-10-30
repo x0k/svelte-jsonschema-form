@@ -16,6 +16,7 @@
 
   import { assertFile } from "../assert.js";
   import NativeFile from "./native-file.svelte";
+  import './native-file.svelte';
 
   let {
     value = $bindable(),
