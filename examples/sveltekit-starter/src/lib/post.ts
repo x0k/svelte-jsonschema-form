@@ -18,4 +18,4 @@ export const schema = {
   required: ["title", "content"],
 } as const satisfies Schema;
 
-export type FormModel = FromSchema<typeof schema>;
+export type CreatePost = FromSchema<typeof schema>;
