@@ -64,12 +64,13 @@ vt/:
   popd
 
 sjsf/:
+  filter=(--filter="@sjsf/*" --filter="@sjsf-lab/*")
   c:
-    pnpm run check --filter="@sjsf/*" $@
+    pnpm run check ${filter[@]} $@
   t:
-    pnpm run test --filter="@sjsf/*" $@
+    pnpm run test ${filter[@]} $@
   b:
-    pnpm run build --filter="@sjsf/*" $@
+    pnpm run build ${filter[@]} $@
 
 ajv/:
   pushd packages/ajv8-validator

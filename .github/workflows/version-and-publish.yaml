@@ -57,7 +57,7 @@ jobs:
             ${{ runner.os }}-turbo-
 
       - name: Build
-        run: pnpm run ci:build --filter="@sjsf/*"
+        run: pnpm run ci:build --filter="@sjsf/*" --filter="@sjsf-lab/*"
 
       - name: Create and publish versions
         uses: changesets/action@v1
