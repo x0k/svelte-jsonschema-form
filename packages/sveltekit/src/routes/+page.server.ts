@@ -8,8 +8,11 @@ import type { Actions } from './$types.js';
 import { schema, uiSchema } from './model.js';
 import * as defaults from './form-defaults.js';
 
+type Model = Record<string, string>;
+
 const handleForm = createFormHandler({
   ...defaults,
+  validator: defaults.validator<Model>,
   schema,
   uiSchema,
   sendData: true
@@ -19,8 +22,8 @@ export const load = async () => {
   const form = {
     initialValue: { 'newKey::123': 'foo', 'also.333': 'bar' },
     schema,
-    uiSchema,
-  } satisfies InitialFormData
+    uiSchema
+  } satisfies InitialFormData<Model>;
   return { form };
 };
 

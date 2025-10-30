@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Schema, SchemaValue } from '@sjsf/form';
 
-import type { ValidatedFormData, InitialFormData } from '../model.js';
+import type {
+  ValidatedFormData,
+  InitialFormData,
+  ValidFormData
+} from '../model.js';
 
 export interface SvelteKitFormMeta<
   ActionData,
@@ -14,7 +18,8 @@ export interface SvelteKitFormMeta<
   name: Name;
   __actionData: ActionData;
   __pageData: PageData;
-  __formValue: FormValueFromInitialFormData<IFD, FallbackValue>;
+  __input: InputTypeFromInitialFormData<IFD, FallbackValue>;
+  __output: OutputTypeFromValidatedFormData<VFD>;
   __sendSchema: SendSchemaFromInitialFormData<IFD>;
   __sendData: SendDataFromValidatedFormData<VFD>;
 }
@@ -61,11 +66,14 @@ type InitialFromDataFromPageData<PageData, FormName extends PropertyKey> = PageD
   ? PageData[FormName]
   : unknown;
 
-type FormValueFromInitialFormData<IFD, FallbackValue> = unknown extends IFD
+type InputTypeFromInitialFormData<IFD, FallbackValue> = unknown extends IFD
   ? FallbackValue
   : IFD extends InitialFormData<infer T>
     ? T
     : never;
+
+type OutputTypeFromValidatedFormData<VFD> =
+  Extract<VFD, ValidFormData<any, any>> extends ValidFormData<infer Out, any> ? Out : never;
 
 type SendDataFromValidatedFormData<VFD> =
   VFD extends ValidatedFormData<any, infer SendData> ? SendData : false;

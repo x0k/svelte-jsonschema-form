@@ -15,31 +15,35 @@ import type { PickOptionalSerializable } from './internal.js';
 export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
 export const FORM_DATA_FILE_PREFIX = '__sjsf_sveltekit_file__';
 
-export type SerializableOptionalFormOptions<T> = PickOptionalSerializable<FormOptions<T>>;
+export type SerializableOptionalFormOptions<I, O> = PickOptionalSerializable<FormOptions<I, O>>;
 
-export type InitialFormData<T = unknown> = SerializableOptionalFormOptions<T> & {
+export type InitialFormData<Input = unknown, Output = Input> = SerializableOptionalFormOptions<
+  Input,
+  Output
+> & {
   schema?: Schema;
-  initialValue?: DeepPartial<T>;
+  initialValue?: DeepPartial<Input>;
   initialErrors?: ValidationError[];
   uiSchema?: UiSchemaRoot;
 };
 
 export type SendData = boolean | 'withoutClientSideUpdate';
 
-export type ValidatedFormData<T, SD extends SendData> = {
+export interface ValidFormData<Out, SD extends SendData> {
+  isValid: true;
+  data: SD extends false ? undefined : Out;
+}
+
+export interface InvalidFormData<SD extends SendData> {
+  isValid: false;
+  data: SD extends false ? undefined : FormValue;
+}
+
+export type ValidatedFormData<Out, SD extends SendData> = {
   idPrefix: string;
   updateData: boolean;
   errors: ReadonlyArray<ValidationError>;
-} & (
-  | {
-      isValid: true;
-      data: SD extends false ? undefined : T;
-    }
-  | {
-      isValid: false;
-      data: SD extends false ? undefined : FormValue;
-    }
-);
+} & (ValidFormData<Out, SD> | InvalidFormData<SD>);
 
 export type Entry<T> = [key: string, value: T];
 

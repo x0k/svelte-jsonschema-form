@@ -24,7 +24,7 @@ import {
   type SvelteKitDataParserOptions
 } from '../internal/sveltekit-data-parser.js';
 
-export function createClientValidator<T>(form: FormState<T>) {
+export function createClientValidator<I, O>(form: FormState<I, O>) {
   return {
     '~standard': {
       version: 1,
@@ -42,15 +42,6 @@ export function createClientValidator<T>(form: FormState<T>) {
       }
     }
   } satisfies StandardSchemaV1<RemoteFormInput, void>;
-}
-
-export interface EnhanceOptions {
-  /** Pass this options if context is unavailable */
-  form?: FormState<any>;
-  /** By default, handles conversion of `File` */
-  createReplacer?: (formElement: HTMLFormElement) => (key: string, value: any) => any;
-  /** @default 500000 */
-  jsonChunkSize?: number;
 }
 
 const CHUNK_KEY = `${JSON_CHUNKS_KEY}[]`;
@@ -89,14 +80,15 @@ export interface ConnectOptions extends SvelteKitDataParserOptions {
 type RemoteFieldsContainer = Pick<RemoteForm<any, any>, 'fields'>;
 
 export async function connect<
-  T,
+  I,
+  O,
   F extends RemoteForm<any, any> | ReturnType<RemoteForm<any, any>['enhance']>
 >(
   remoteForm: F,
-  options: FormOptions<T> &
+  options: FormOptions<I, O> &
     ConnectOptions &
     (F extends RemoteFieldsContainer ? {} : RemoteFieldsContainer)
-): Promise<FormOptions<T>> {
+): Promise<FormOptions<I, O>> {
   const dataParser = createSvelteKitDataParser(options);
 
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
@@ -117,7 +109,7 @@ export async function connect<
     if (isRecordEmpty(formValue)) {
       return undefined;
     }
-    return (await dataParser(getAbortSignal(), idPrefix, formValue)) as DeepPartial<T>;
+    return (await dataParser(getAbortSignal(), idPrefix, formValue)) as DeepPartial<I>;
   }
   // svelte-ignore await_waterfall
   const initialValue = $derived(await getInitialValue());
@@ -243,7 +235,7 @@ export async function connect<
         formElement.replaceChildren();
         options.onSubmit?.(value, e);
       }
-    } satisfies Partial<FormOptions<T>>,
+    } satisfies Partial<FormOptions<I, O>>,
     options
   );
 }

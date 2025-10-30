@@ -6,17 +6,14 @@ import { isRecord } from '@sjsf/form/lib/object';
 import {
   create,
   createTranslate,
-  isAsyncFormValueValidator,
-  isFormValueValidator,
   SJSF_ID_PREFIX,
   type Creatable,
   type FormMerger,
-  type FormValue,
+  type FormValidator,
   type MergerFactoryOptions,
   type Schema,
   type UiOptionsRegistry,
   type UiSchemaRoot,
-  type Validator,
   type ValidatorFactoryOptions
 } from '@sjsf/form';
 
@@ -34,9 +31,9 @@ import { createSvelteKitDataParser } from '../internal/sveltekit-data-parser.js'
 import { DEFAULT_PSEUDO_PREFIX } from '../id-builder.js';
 import { enServerTranslation, type ServerTranslation } from './translation.js';
 
-export interface SvelteKitFormValidatorOptions {
+export interface SvelteKitFormValidatorOptions<In, Out> {
   schema: Schema;
-  validator: Creatable<Validator, ValidatorFactoryOptions>;
+  validator: Creatable<FormValidator<In, Out>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
@@ -46,11 +43,6 @@ export interface SvelteKitFormValidatorOptions {
   /** By default, handles conversion of `File` */
   createReviver?: (input: Record<string, unknown>) => (key: string, value: any) => any;
   serverTranslation?: ServerTranslation;
-}
-
-interface Output<R> {
-  data: R;
-  idPrefix: string;
 }
 
 class PublicError {
@@ -77,12 +69,12 @@ function createDefaultReviver(input: Record<string, unknown>) {
   };
 }
 
-export interface ValidationResult<R> {
+export interface ValidationResult<Output> {
   idPrefix: string;
-  data: R;
+  data: Output;
 }
 
-export function createServerValidator<R = FormValue>({
+export function createServerValidator<In, Out = In>({
   serverTranslation = enServerTranslation,
   schema,
   uiSchema = {},
@@ -93,17 +85,20 @@ export function createServerValidator<R = FormValue>({
   convertUnknownEntry,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   createReviver = createDefaultReviver
-}: SvelteKitFormValidatorOptions): StandardSchemaV1<RemoteFormInput, ValidationResult<R>> & {
-  validate: (input: unknown) => MaybePromise<StandardSchemaV1.Result<ValidationResult<R>>>;
+}: SvelteKitFormValidatorOptions<In, Out>): StandardSchemaV1<
+  RemoteFormInput,
+  ValidationResult<Out>
+> & {
+  validate: (input: unknown) => MaybePromise<StandardSchemaV1.Result<ValidationResult<Out>>>;
 } {
   const t = createTranslate(serverTranslation);
-  const validator: Validator = create(createValidator, {
+  const validator = create(createValidator, {
     schema: schema,
     uiSchema: uiSchema,
     uiOptionsRegistry,
     merger: () => merger
   });
-  const merger = create(createMerger, {
+  const merger: FormMerger = create(createMerger, {
     schema: schema,
     uiSchema: uiSchema,
     validator,
@@ -133,7 +128,7 @@ export function createServerValidator<R = FormValue>({
     }
     return parseSvelteKitData(signal, idPrefix, input);
   }
-  async function validate(input: unknown): Promise<StandardSchemaV1.Result<Output<R>>> {
+  async function validate(input: unknown): Promise<StandardSchemaV1.Result<ValidationResult<Out>>> {
     if (!isRecord(input)) {
       return failure(t('expected-record', { input }));
     }
@@ -141,11 +136,10 @@ export function createServerValidator<R = FormValue>({
     try {
       const idPrefix = parseIdPrefix(input);
       const value = await parseData(request.signal, idPrefix, input);
-      const result = isAsyncFormValueValidator<typeof validator, R>(validator)
-        ? await validator.validateFormValueAsync(request.signal, schema, value)
-        : isFormValueValidator<typeof validator, R>(validator)
-          ? validator.validateFormValue(schema, value)
-          : { value: value as R };
+      const result =
+        'validateFormValueAsync' in validator
+          ? await validator.validateFormValueAsync(request.signal, schema, value)
+          : validator.validateFormValue(schema, value);
       return result.errors
         ? { issues: result.errors }
         : {

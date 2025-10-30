@@ -27,9 +27,9 @@
       }
     },
     onSubmitError: console.warn,
-    validator: <T,>(options: ValidatorFactoryOptions) =>
+    validator: <I, O>(options: ValidatorFactoryOptions) =>
       Object.assign(
-        defaults.validator<T>(options),
+        defaults.validator<I, O>(options),
         createAdditionalPropertyKeyValidator({
           error({ type, values }) {
             return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;

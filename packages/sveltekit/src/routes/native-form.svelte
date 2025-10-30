@@ -11,6 +11,7 @@
     onSuccess: console.log,
     onFailure: console.error
   });
+
   const form = createSvelteKitForm(meta, {
     ...defaults,
     onSubmit: request.run,

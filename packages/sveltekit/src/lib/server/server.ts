@@ -27,8 +27,10 @@ import {
   FORM_DATA_FILE_PREFIX,
   JSON_CHUNKS_KEY,
   type EntryConverter,
+  type InvalidFormData,
   type SendData,
-  type ValidatedFormData
+  type ValidatedFormData,
+  type ValidFormData
 } from '$lib/model.js';
 
 import { parseSchemaValue } from './schema-value-parser.js';
@@ -38,12 +40,12 @@ import {
   type UnknownEntryConverter
 } from '../internal/convert-form-data-entry.js';
 
-export interface FormHandlerOptions<T, SD extends SendData> extends IdOptions {
+export interface FormHandlerOptions<I, O, SD extends SendData> extends IdOptions {
   schema: Schema;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
   idIndexSeparator?: string;
-  validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
+  validator: Creatable<FormValidator<I, O>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   createEntryConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
   convertUnknownEntry?: UnknownEntryConverter;
@@ -62,7 +64,7 @@ function createDefaultReviver(formData: FormData) {
   };
 }
 
-export function createFormHandler<T, SD extends SendData>({
+export function createFormHandler<I, O = I, SD extends SendData = false>({
   schema,
   uiSchema = {},
   uiOptionsRegistry = {},
@@ -75,7 +77,7 @@ export function createFormHandler<T, SD extends SendData>({
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
   sendData,
   createReviver = createDefaultReviver
-}: FormHandlerOptions<T, SD>) {
+}: FormHandlerOptions<I, O, SD>) {
   const validator = create(createValidator, {
     schema,
     uiSchema,
@@ -100,16 +102,16 @@ export function createFormHandler<T, SD extends SendData>({
     formData: FormData
   ): Promise<
     [
-      ValidatedFormData<T, SD>,
-      T | FormValue,
-      (errors: ValidationError[]) => ValidatedFormData<T, SD>
+      ValidatedFormData<O, SD>,
+      O | FormValue,
+      (errors: ValidationError[]) => ValidatedFormData<O, SD>
     ]
   > => {
     const idPrefix = formData.get(SJSF_ID_PREFIX);
     if (typeof idPrefix !== 'string') {
       throw new Error(`"${SJSF_ID_PREFIX}" key is missing in FormData or not a string`);
     }
-    const data = formData.has(JSON_CHUNKS_KEY)
+    const data: FormValue = formData.has(JSON_CHUNKS_KEY)
       ? JSON.parse(formData.getAll(JSON_CHUNKS_KEY).join(''), createReviver(formData))
       : await parseSchemaValue(signal, {
           idPrefix,
@@ -123,7 +125,7 @@ export function createFormHandler<T, SD extends SendData>({
           merger,
           convertEntry
         });
-    const result: ValidationResult<T> =
+    const result: ValidationResult<O> =
       'validateFormValueAsync' in validator
         ? await validator.validateFormValueAsync(signal, schema, data)
         : validator.validateFormValue(schema, data);
@@ -131,26 +133,32 @@ export function createFormHandler<T, SD extends SendData>({
       const isValid = errors.length === 0;
       return {
         idPrefix: idPrefix as string,
-        isValid,
-        data: sendData ? data : undefined,
         updateData: !isValid && sendData === true,
-        errors
-      } satisfies ValidatedFormData<T, SD>;
+        errors,
+        ...(isValid
+          ? ({
+              isValid,
+              data: sendData ? result.value : undefined
+            } as ValidFormData<O, SD>)
+          : ({
+              isValid,
+              data: sendData ? data : undefined
+            } as InvalidFormData<SD>))
+      } satisfies ValidatedFormData<O, SD>;
     }
-    // TODO: Use `T` in `ValidatedFormData` type
-    return [validated(result.errors ?? []), data, validated];
+    return [validated(result.errors ?? []), result.value, validated];
   };
 }
 
-export function isValid<T, SD extends SendData>(
-  vfd: ValidatedFormData<T, SD>,
+export function isValid<Out, SD extends SendData>(
+  vfd: ValidatedFormData<Out, SD>,
   data: unknown
-): data is T {
+): data is Out {
   return vfd.isValid;
 }
 
-type FormRecord<F extends string, T, SD extends SendData> = {
-  [K in F]: ValidatedFormData<T, SD>;
+type FormRecord<F extends string, Out, SD extends SendData> = {
+  [K in F]: ValidatedFormData<Out, SD>;
 };
 
 interface FormMeta {
@@ -158,17 +166,17 @@ interface FormMeta {
 }
 
 export function createAction<
-  T,
+  O,
   SD extends SendData,
   const F extends string,
   E extends RequestEvent,
   R extends Record<string, any> | void
 >(
-  options: FormHandlerOptions<T, SD> & {
+  options: FormHandlerOptions<any, O, SD> & {
     name: F;
   },
   userAction: (
-    data: T,
+    data: O,
     event: E,
     meta: Readonly<FormMeta>
   ) => MaybePromise<ValidationError[] | R | void>
@@ -176,24 +184,24 @@ export function createAction<
   const handle = createFormHandler(options);
   return async (
     event: E
-  ): Promise<(FormRecord<F, T, SD> & R) | ActionFailure<FormRecord<F, T, SD>>> => {
+  ): Promise<(FormRecord<F, O, SD> & R) | ActionFailure<FormRecord<F, O, SD>>> => {
     const [form, data, validated] = await handle(
       event.request.signal,
       await event.request.formData()
     );
     if (!form.isValid) {
-      return fail(400, { [options.name]: form } as FormRecord<F, T, SD>);
+      return fail(400, { [options.name]: form } as FormRecord<F, O, SD>);
     }
-    let result = await userAction(data as T, event, form);
+    let result = await userAction(data as O, event, form);
     if (Array.isArray(result)) {
       if (result.length > 0) {
         return fail(400, {
           [options.name]: validated(result)
-        } as FormRecord<F, T, SD>);
+        } as FormRecord<F, O, SD>);
       } else {
         result = undefined;
       }
     }
-    return { ...result, [options.name]: form } as FormRecord<F, T, SD> & R;
+    return { ...result, [options.name]: form } as FormRecord<F, O, SD> & R;
   };
 }

@@ -2,7 +2,7 @@
 import { DEV } from 'esm-env';
 import type { ActionResult } from '@sveltejs/kit';
 import { createTask, type TaskOptions } from '@sjsf/form/lib/task.svelte';
-import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX } from '@sjsf/form';
+import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type FormValue } from '@sjsf/form';
 
 import { applyAction, deserialize } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
@@ -12,8 +12,10 @@ import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from '../model.js';
 
 import type { SvelteKitFormMeta } from './meta.js';
 
-export type SveltekitRequestOptions<ActionData, V> = Omit<
-  TaskOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
+// NOTE: We accept `FormValue` rather than `Out` because revalidation (transformation)
+// will be performed on the server.
+export type SveltekitRequestOptions<ActionData, In> = Omit<
+  TaskOptions<[In | FormValue, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
   'execute'
 > & {
   /** @default DEFAULT_ID_PREFIX */
@@ -45,13 +47,13 @@ function createDefaultReplacer(formData: FormData) {
 
 export function createSvelteKitRequest<Meta extends SvelteKitFormMeta<any, any, any, any>>(
   _meta: Meta,
-  options: SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']>
+  options: SveltekitRequestOptions<Meta['__actionData'], Meta['__input']>
 ) {
   const jsonChunkSize = $derived(options.jsonChunkSize ?? 500000);
   const createReplacer = $derived(options.createReplacer ?? createDefaultReplacer);
   return createTask({
     // Based on https://github.com/sveltejs/kit/blob/92b2686314a7dbebee1761c3da7719d599f003c7/packages/kit/src/runtime/app/forms.js
-    async execute(signal: AbortSignal, data: Meta['__formValue'], e: SubmitEvent) {
+    async execute(signal: AbortSignal, data: Meta['__input'] | FormValue, e: SubmitEvent) {
       const formElement = e.currentTarget;
       if (!(formElement instanceof HTMLFormElement)) {
         throw new Error(`Event currentTarget is not an HTMLFormElement`);
