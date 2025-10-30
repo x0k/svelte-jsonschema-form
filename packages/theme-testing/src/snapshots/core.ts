@@ -12,13 +12,13 @@ export const idBuilder = defaults.idBuilder({
 
 type Defaults = keyof typeof defaults;
 
-export type SnapshotFormOptions = Omit<FormOptions<any>, Defaults> &
-  Partial<Pick<FormOptions<any>, Defaults>>;
+export type SnapshotFormOptions = Omit<FormOptions<any, any>, Defaults> &
+  Partial<Pick<FormOptions<any, any>, Defaults>>;
 
-export type TestForm = Component<FormOptions<any>>;
+export type TestForm = Component<FormOptions<any, any>>;
 
 export interface MatchSnapshotOptions {
-  defaultFormOptions?: Partial<FormOptions<any>>;
+  defaultFormOptions?: Partial<FormOptions<any, any>>;
   context?: Map<any, any>;
   Form?: TestForm;
 }

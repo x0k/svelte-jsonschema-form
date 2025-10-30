@@ -3,7 +3,7 @@
 
 	import '../src/app.css';
 
-	const props: FormOptions<any> = $props();
+	const props: FormOptions<any, any> = $props();
 
 	const form = createForm(props);
 </script>

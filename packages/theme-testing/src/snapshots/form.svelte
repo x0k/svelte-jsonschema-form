@@ -6,7 +6,7 @@
     type FormOptions,
   } from "@sjsf/form";
 
-  const props: FormOptions<any> = $props();
+  const props: FormOptions<any, any> = $props();
 
   const form = createForm(props);
   setFormContext(form);
