@@ -1,0 +1,43 @@
+---
+interface Props {
+  peerDependencies: Record<string, string>;
+  peerDependenciesMeta?: Record<string, { optional?: boolean }>;
+  hideOptional?: boolean;
+}
+
+const {
+  peerDependencies,
+  peerDependenciesMeta = {},
+  hideOptional = false,
+} = Astro.props as Props;
+
+const deps = Object.entries(peerDependencies).map(([name, version]) => ({
+  name,
+  version,
+  optional: Boolean(peerDependenciesMeta[name]?.optional),
+  toString() {
+    return `${this.name}@${this.version.replace("workspace:", "").split("||").at(-1)?.trim()}`;
+  },
+}));
+
+const required = deps.filter((d) => !d.optional).join(" ");
+const optional = deps.filter((d) => d.optional).join(" ");
+---
+
+{
+  deps.length > 0 && (
+    <div class="mt-4 border-t border-surface-100 dark:border-surface-800 pt-3 text-sm text-surface-500 dark:text-surface-400 leading-relaxed space-y-1">
+      {required.length > 0 && (
+        <p class="m-0">
+          Required peer dependencies: <code>{required}</code>
+        </p>
+      )}
+
+      {!hideOptional && optional.length > 0 && (
+        <p class="m-0">
+          Optional peer dependencies: <code>{optional}</code>
+        </p>
+      )}
+    </div>
+  )
+}

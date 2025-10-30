@@ -8,11 +8,12 @@ import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/shadcn4-theme/specs';
 import styles from '@sjsf/shadcn4-theme/styles.css?inline';
 
-import { peerDependencies } from '#/shadcn4-theme/package.json'
+import pkg from '#/shadcn4-theme/package.json'
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro'
 
 import Form from './shadcn4/wrapper.svelte';
 import uiOptionsCode from './shadcn4/ui-options?raw';
@@ -24,8 +25,7 @@ export const schemas = createSchemas(specs)
 
 <Npm pkg={themePkg("shadcn4")} />
 
-bits-ui <code>{peerDependencies['bits-ui']}</code> and @internationalized/date
-<code>{peerDependencies['@internationalized/date']}</code> may be required.
+<Deps {...pkg} />
 
 ### Install shadcn-svelte
 

@@ -64,12 +64,13 @@ vt/:
   popd
 
 sjsf/:
+  filter=(--filter="@sjsf/*" --filter="@sjsf-lab/*")
   c:
-    pnpm run check --filter="@sjsf/*" $@
+    pnpm run check ${filter[@]} $@
   t:
-    pnpm run test --filter="@sjsf/*" $@
+    pnpm run test ${filter[@]} $@
   b:
-    pnpm run build --filter="@sjsf/*" $@
+    pnpm run build ${filter[@]} $@
 
 ajv/:
   pushd packages/ajv8-validator
@@ -263,7 +264,7 @@ bl/:
     pnpm run preview
   popd
 
-l/:
+leg/:
   pushd legacy
   daisy/:
     pushd daisyui-theme
@@ -306,6 +307,21 @@ l/:
       pnpm run build
     p:
       pnpm run preview
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  popd
+
+l/:
+  pushd lab
+  shad/:
+    pushd shadcn-extras-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
     d:
       pnpm run dev
     t:

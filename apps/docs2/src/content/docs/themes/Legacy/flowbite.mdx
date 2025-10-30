@@ -1,17 +1,20 @@
 ---
 title: Flowbite tw3
 sidebar:
-  order: 7
+  order: 207
 ---
 
 import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/flowbite-theme/specs';
 import styles from '@sjsf/flowbite-theme/styles.css?inline';
 
+import pkg from 'legacy/flowbite-theme/package.json';
+
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro'
 
 import { createSchemas, replacer, createExtraImports } from "../_demo-schema";
 import Form from './flowbite/form.svelte';
@@ -27,7 +30,7 @@ All rights to the trademark are owned by Bergside Inc.
 
 <Npm pkg={themePkg("flowbite")} />
 
-flowbite-svelte <code>~0.47.0</code> is required.
+<Deps {...pkg} />
 
 ### Install Flowbite Svelte
 

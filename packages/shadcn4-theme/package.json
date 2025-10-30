@@ -41,6 +41,10 @@
 	"svelte": "./dist/theme/index.js",
 	"types": "./dist/theme/index.d.ts",
 	"exports": {
+		"./internal": {
+			"types": "./dist/theme/internal.d.ts",
+			"default": "./dist/theme/internal.js"
+		},
 		"./components/*": {
 			"types": "./dist/theme/components/*.d.ts",
 			"svelte": "./dist/theme/components/*"
@@ -72,7 +76,7 @@
 	},
 	"peerDependencies": {
 		"@internationalized/date": "^3.10.0",
-		"@lucide/svelte": "^0.501.0",
+		"@lucide/svelte": "^0.544.0",
 		"@sjsf/form": "workspace:^3.0.0-next.12",
 		"bits-ui": "^2.14.0",
 		"clsx": "^2.1.0",

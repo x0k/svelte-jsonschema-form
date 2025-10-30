@@ -120,36 +120,41 @@ export type Example =
   | SvelteKitExample
   | ValidatorSpecificExample;
 
-export const THEMES = [
+export const ACTUAL_THEMES = [
   "basic",
-  "daisyui",
   "daisyui5",
-  "flowbite",
   "flowbite3",
-  "skeleton3",
   "skeleton4",
-  "shadcn",
   "shadcn4",
 ] as const;
 
-export type Theme = (typeof THEMES)[number];
+export type ActualTheme = (typeof ACTUAL_THEMES)[number];
 
 export const DEPRECATED_THEMES = [
   "daisyui",
   "flowbite",
   "skeleton3",
-  "shadcn"
-] as const satisfies Theme[];
-
-export const DEPRECATED_THEMES_SET = new Set<Theme>(DEPRECATED_THEMES);
+  "shadcn",
+] as const;
 
 export type DeprecatedTheme = (typeof DEPRECATED_THEMES)[number];
 
-export const ACTUAL_THEMES = THEMES.filter(
-  (t) => !DEPRECATED_THEMES_SET.has(t)
-) as ActualTheme[];
+export const LAB_THEMES = ["shadcn-extras"] as const;
 
-export type ActualTheme = Exclude<Theme, DeprecatedTheme>;
+export type LabTheme = (typeof LAB_THEMES)[number];
+
+const LAB_THEMES_SET = new Set<Theme>(LAB_THEMES);
+export function isLabTheme(theme: Theme): theme is LabTheme {
+  return LAB_THEMES_SET.has(theme);
+}
+
+export const THEMES = [
+  ...ACTUAL_THEMES,
+  ...DEPRECATED_THEMES,
+  ...LAB_THEMES,
+] as const;
+
+export type Theme = (typeof THEMES)[number];
 
 export const THEME_TITLES = {
   basic: "basic",
@@ -161,19 +166,16 @@ export const THEME_TITLES = {
   skeleton4: "Skeleton v4",
   shadcn: "shadcn-svelte tw3",
   shadcn4: "shadcn-svelte",
+  "shadcn-extras": "shadcn-svelte-extras",
 } satisfies Record<Theme, string>;
 
 export const THEME_BRAND = {
   basic: "",
-  daisyui: "daisyUI",
   daisyui5: "daisyUI",
-  flowbite: "Flowbite",
   flowbite3: "Flowbite",
-  skeleton3: "Skeleton",
   skeleton4: "Skeleton",
-  shadcn: "shadcn-svelte",
   shadcn4: "shadcn-svelte",
-} satisfies Record<Theme, string>;
+} satisfies Record<ActualTheme, string>;
 
 export const THEME_PACKAGES = {
   basic: "@sjsf/basic-theme",
@@ -185,6 +187,7 @@ export const THEME_PACKAGES = {
   skeleton4: "@sjsf/skeleton4-theme",
   shadcn: "@sjsf/shadcn-theme",
   shadcn4: "@sjsf/shadcn4-theme",
+  "shadcn-extras": "@sjsf-lab/shadcn-extras-theme",
 } satisfies Record<Theme, string>;
 
 export function isTheme(str: string): str is Theme {
@@ -192,7 +195,7 @@ export function isTheme(str: string): str is Theme {
 }
 
 export function pkg(val: string) {
-  return IS_NEXT_VERSION && val.startsWith("@sjsf/") ? `${val}@next` : val;
+  return IS_NEXT_VERSION && val.startsWith("@sjsf") ? `${val}@next` : val;
 }
 
 export function packages(str: string) {

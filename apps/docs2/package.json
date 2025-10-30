@@ -31,6 +31,7 @@
     "@sjsf/schemasafe-validator": "workspace:*",
     "@sjsf/shadcn-theme": "workspace:*",
     "@sjsf/shadcn4-theme": "workspace:*",
+    "@sjsf-lab/shadcn-extras-theme": "workspace:*",
     "@sjsf/skeleton3-theme": "workspace:*",
     "@sjsf/skeleton4-theme": "workspace:*",
     "@sjsf/sveltekit": "workspace:*",

@@ -1,17 +1,20 @@
 ---
 title: daisyUI v4
 sidebar:
-  order: 6
+  order: 206
 ---
 
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/daisyui-theme/specs';
 import styles from '@sjsf/daisyui-theme/styles.css?inline';
 
+import pkg from 'legacy/daisyui-theme/package.json'
+
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro'
 
 import Form from './daisyui/form.svelte';
 import uiOptionsCode from './daisyui/ui-options?raw';
@@ -23,7 +26,7 @@ export const schemas = createSchemas(specs)
 
 <Npm pkg={themePkg('daisyui')} />
 
-daisyUI <code>^4.12.0</code> is required.
+<Deps {...pkg} />
 
 ### Install daisyUI
 

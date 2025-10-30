@@ -8,11 +8,12 @@ import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/daisyui5-theme/specs';
 import styles from '@sjsf/daisyui5-theme/styles.css?inline';
 
-import { peerDependencies } from '#/daisyui5-theme/package.json'
+import pkg from '#/daisyui5-theme/package.json'
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro'
 
 import Form from './daisyui5/form.svelte'
 import uiOptionsCode from './daisyui5/ui-options?raw';
@@ -24,7 +25,7 @@ export const schemas = createSchemas(specs)
 
 <Npm pkg={themePkg("daisyui5")} />
 
-daisyUI <code>{peerDependencies.daisyui}</code> is required.
+<Deps {...pkg} />
 
 ### Install daisyUI v5
 

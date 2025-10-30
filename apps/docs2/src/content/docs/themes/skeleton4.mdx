@@ -9,11 +9,12 @@ import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/skeleton4-theme/specs';
 import styles from "@sjsf/skeleton4-theme/styles.css?inline";
 
-import { peerDependencies } from '#/skeleton4-theme/package.json'
+import pkg from '#/skeleton4-theme/package.json'
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro'
 
 import Form from './skeleton4/form.svelte';
 import uiOptionsCode from './skeleton4/ui-options?raw';
@@ -25,8 +26,7 @@ export const schemas = createSchemas(specs)
 
 <Npm pkg={themePkg("skeleton4")} />
 
-@skeletonlabs/skeleton <code>{peerDependencies['@skeletonlabs/skeleton']}</code> and
-@skeletonlabs/skeleton-svelte <code>{peerDependencies['@skeletonlabs/skeleton-svelte']}</code> are required.
+<Deps {...pkg} />
 
 ### Install Skeleton v4
 

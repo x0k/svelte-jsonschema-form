@@ -1,16 +1,19 @@
 ---
 title: shadcn-svelte tw3
 sidebar:
-  order: 9
+  order: 209
 ---
 
 import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/shadcn-theme/specs';
 import styles from '@sjsf/shadcn-theme/styles.css?inline';
 
+import pkg from 'legacy/shadcn-theme/package.json';
+
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro'
 
 import Form from './shadcn/form.svelte';
 import uiOptionsCode from './shadcn/ui-options?raw';
@@ -28,8 +31,7 @@ This is `shadcn-svelte` based theme (Tailwind v3).
 
 :::
 
-bits-ui <code>^2.2.0</code> and @internationalized/date
-<code>^3.8.1</code> may be required.
+<Deps {...pkg} />
 
 ### Install shadcn-svelte
 

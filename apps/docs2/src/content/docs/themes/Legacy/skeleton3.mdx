@@ -1,18 +1,19 @@
 ---
 title: Skeleton v3
 sidebar:
-  order: 8
+  order: 208
 ---
 
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/skeleton3-theme/specs';
 import styles from "@sjsf/skeleton3-theme/styles.css?inline";
 
-import { peerDependencies } from 'legacy/skeleton3-theme/package.json'
+import pkg from 'legacy/skeleton3-theme/package.json'
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro'
 
 import Form from './skeleton3/form.svelte';
 import uiOptionsCode from './skeleton3/ui-options?raw';
@@ -24,8 +25,7 @@ export const schemas = createSchemas(specs)
 
 <Npm pkg={themePkg("skeleton3")} />
 
-@skeletonlabs/skeleton <code>{peerDependencies['@skeletonlabs/skeleton']}</code> and
-@skeletonlabs/skeleton-svelte <code>{peerDependencies['@skeletonlabs/skeleton-svelte']}</code> are required.
+<Deps {...pkg} />
 
 ### Install Skeleton v3
 

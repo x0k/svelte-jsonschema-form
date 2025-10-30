@@ -97,6 +97,7 @@ export default defineConfig({
         "#": fileURLToPath(new URL("../../packages", import.meta.url)),
         "%": fileURLToPath(new URL("../../examples", import.meta.url)),
         legacy: fileURLToPath(new URL("../../legacy", import.meta.url)),
+        lab: fileURLToPath(new URL("../../lab", import.meta.url)),
         apps: fileURLToPath(new URL("..", import.meta.url)),
       },
     },
