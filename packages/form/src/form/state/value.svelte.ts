@@ -9,7 +9,7 @@ import type { FormState } from "./state.js";
 /**
  * @command
  */
-export function setValue<T>(ctx: FormState<T>, value: DeepPartial<T>) {
+export function setValue<I, O>(ctx: FormState<I, O>, value: DeepPartial<I>) {
   untrack(() => {
     ctx[FORM_VALUE] = ctx[FORM_MERGER].mergeFormDataAndSchemaDefaults({
       formData: value as FormValue,
@@ -22,6 +22,6 @@ export function setValue<T>(ctx: FormState<T>, value: DeepPartial<T>) {
 /**
  * @query
  */
-export function getValueSnapshot<T>(ctx: FormState<T>): FormValue {
+export function getValueSnapshot<I, O>(ctx: FormState<I, O>): FormValue {
   return $state.snapshot(ctx[FORM_VALUE]);
 }

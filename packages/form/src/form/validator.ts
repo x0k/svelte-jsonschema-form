@@ -22,20 +22,39 @@ export type ValidationResult<Output> =
   | SuccessValidationResult<Output>
   | FailureValidationResult;
 
-export interface FormValueValidator<Output> {
+export interface ValidatorTypes<Input, Output> {
+  input: Input;
+  output: Output;
+}
+
+export interface AbstractFormValueValidator<Input, Output> {
+  types?: ValidatorTypes<Input, Output> | undefined;
+}
+
+export type ValidatorInferInputType<
+  V extends AbstractFormValueValidator<any, any>,
+> = NonNullable<V["types"]>["input"];
+
+export type ValidatorInferOutputType<
+  V extends AbstractFormValueValidator<any, any>,
+> = NonNullable<V["types"]>["output"];
+
+export interface FormValueValidator<Input, Output>
+  extends AbstractFormValueValidator<Input, Output> {
   validateFormValue: (
     rootSchema: Schema,
     formValue: FormValue
   ) => ValidationResult<Output>;
 }
 
-export function isFormValueValidator<V extends Validator, Output>(
+export function isFormValueValidator<V extends Validator, Input, Output>(
   v: V
-): v is V & FormValueValidator<Output> {
+): v is V & FormValueValidator<Input, Output> {
   return "validateFormValue" in v;
 }
 
-export interface AsyncFormValueValidator<Output> {
+export interface AsyncFormValueValidator<Input, Output>
+  extends AbstractFormValueValidator<Input, Output> {
   validateFormValueAsync: (
     signal: AbortSignal,
     rootSchema: Schema,
@@ -43,17 +62,18 @@ export interface AsyncFormValueValidator<Output> {
   ) => Promise<ValidationResult<Output>>;
 }
 
-export function isAsyncFormValueValidator<V extends Validator, Output>(
+export function isAsyncFormValueValidator<V extends Validator, Input, Output>(
   v: V
-): v is V & AsyncFormValueValidator<Output> {
+): v is V & AsyncFormValueValidator<Input, Output> {
   return "validateFormValueAsync" in v;
 }
 
-export type AnyFormValueValidator<Output> =
-  | FormValueValidator<Output>
-  | AsyncFormValueValidator<Output>;
+export type AnyFormValueValidator<Input, Output> =
+  | FormValueValidator<Input, Output>
+  | AsyncFormValueValidator<Input, Output>;
 
-export type FormValidator<Output> = Validator & AnyFormValueValidator<Output>;
+export type FormValidator<Input, Output> = Validator &
+  AnyFormValueValidator<Input, Output>;
 
 export interface FieldValueValidator {
   validateFieldValue: (

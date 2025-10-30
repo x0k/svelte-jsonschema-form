@@ -21,15 +21,15 @@ import { getValueSnapshot } from "./value.svelte.js";
 /**
  * @query
  */
-export function getFieldsValidationMode<T>(ctx: FormState<T>) {
+export function getFieldsValidationMode<I, O>(ctx: FormState<I, O>) {
   return ctx[FORM_FIELDS_VALIDATION_MODE];
 }
 
 /**
  * @command
  */
-export function validateField<T>(
-  ctx: FormState<T>,
+export function validateField<I, O>(
+  ctx: FormState<I, O>,
   config: Config,
   value: FormValue
 ) {
@@ -39,8 +39,8 @@ export function validateField<T>(
 /**
  * @command
  */
-export function validateAdditionalPropertyKey<T>(
-  ctx: FormState<T>,
+export function validateAdditionalPropertyKey<I, O>(
+  ctx: FormState<I, O>,
   config: Config,
   key: string,
   fieldConfig: Config
@@ -58,9 +58,9 @@ export function validateAdditionalPropertyKey<T>(
 /**
  * @command
  */
-export async function validateFileList<T>(
+export async function validateFileList<I, O>(
   signal: AbortSignal,
-  ctx: FormState<T>,
+  ctx: FormState<I, O>,
   config: Config,
   fileList: FileList
 ): Promise<boolean> {
@@ -77,9 +77,9 @@ export async function validateFileList<T>(
 /**
  * @query
  */
-export function validate<T>(ctx: FormState<T>) {
+export function validate<I, O>(ctx: FormState<I, O>) {
   const validator = ctx[FORM_VALIDATOR];
-  if (!isFormValueValidator<typeof validator, T>(validator)) {
+  if (!isFormValueValidator<typeof validator, I, O>(validator)) {
     throw new InvalidValidatorError(`expected sync from validator`);
   }
   return validator.validateFormValue(ctx[FORM_SCHEMA], getValueSnapshot(ctx));
@@ -88,9 +88,9 @@ export function validate<T>(ctx: FormState<T>) {
 /**
  * @query
  */
-export function validateAsync<T>(ctx: FormState<T>, signal: AbortSignal) {
+export function validateAsync<I, O>(ctx: FormState<I, O>, signal: AbortSignal) {
   const validator = ctx[FORM_VALIDATOR];
-  if (!isAsyncFormValueValidator<typeof validator, T>(validator)) {
+  if (!isAsyncFormValueValidator<typeof validator, I, O>(validator)) {
     throw new InvalidValidatorError(`expected async form validator`);
   }
   return validator.validateFormValueAsync(

@@ -17,22 +17,22 @@ import type { FormState } from "./state.js";
 /**
  * @query
  */
-export function createId<T>(ctx: FormState<T>, path: FieldPath): Id {
+export function createId<I, O>(ctx: FormState<I, O>, path: FieldPath): Id {
   return ctx[FORM_ID_FROM_PATH](path);
 }
 
 /**
  * @query
  */
-function createPath<T>(ctx: FormState<T>, path: RPath): FieldPath {
-  return internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path)
+function createPath<I, O>(ctx: FormState<I, O>, path: RPath): FieldPath {
+  return internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path);
 }
 
 /**
  * @query
  */
-export function createChildPath<T>(
-  ctx: FormState<T>,
+export function createChildPath<I, O>(
+  ctx: FormState<I, O>,
   parentPath: FieldPath,
   indexOrProperty: string | number
 ) {
@@ -42,8 +42,8 @@ export function createChildPath<T>(
 /**
  * @query
  */
-export function createPseudoPath<T>(
-  ctx: FormState<T>,
+export function createPseudoPath<I, O>(
+  ctx: FormState<I, O>,
   parentPath: FieldPath,
   element: FieldPseudoElement
 ) {
@@ -53,8 +53,8 @@ export function createPseudoPath<T>(
 /**
  * @query
  */
-export function createPseudoId<T>(
-  ctx: FormState<T>,
+export function createPseudoId<I, O>(
+  ctx: FormState<I, O>,
   path: FieldPath,
   element: FieldPseudoElement
 ): Id {
@@ -64,15 +64,15 @@ export function createPseudoId<T>(
 /**
  * @query
  */
-export function createIdByPath<T>(ctx: FormState<T>, path: RPath): Id {
+export function createIdByPath<I, O>(ctx: FormState<I, O>, path: RPath): Id {
   return createId(ctx, createPath(ctx, path));
 }
 
 /**
  * @query
  */
-export function createPseudoIdByPath<T>(
-  ctx: FormState<T>,
+export function createPseudoIdByPath<I, O>(
+  ctx: FormState<I, O>,
   path: RPath,
   element: FieldPseudoElement
 ): Id {

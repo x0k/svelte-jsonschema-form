@@ -23,7 +23,7 @@
 </script>
 
 {#snippet clear(
-  ctx: FormState<unknown>,
+  ctx: FormState<any, any>,
   config: Config,
   valueRef: Ref<SchemaValue | undefined>,
   errors: FieldErrors

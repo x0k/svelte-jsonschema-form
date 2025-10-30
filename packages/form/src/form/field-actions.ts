@@ -15,5 +15,5 @@ export type ActionField = keyof ActionFields;
 export type FieldActionType = keyof FieldActionTypes;
 
 export type FieldAction<V> = Snippet<
-  [FormState<unknown>, Config, Ref<V>, FieldErrors]
+  [FormState<unknown, unknown>, Config, Ref<V>, FieldErrors]
 >;

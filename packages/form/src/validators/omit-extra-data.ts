@@ -9,7 +9,7 @@ import {
 import { omitExtraData } from "../omit-extra-data.js";
 
 export function withOmitExtraData<
-  V extends FormValueValidator<any> & Validator,
+  V extends FormValueValidator<any, any> & Validator,
 >(validator: Creatable<V, ValidatorFactoryOptions>) {
   return (options: ValidatorFactoryOptions): V => {
     const v = create(validator, options);

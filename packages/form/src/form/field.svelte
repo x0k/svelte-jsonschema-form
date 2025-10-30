@@ -1,4 +1,4 @@
-<script lang="ts" generics="T, P extends JsonPaths<T>">
+<script lang="ts" generics="I, O, P extends JsonPaths<I>">
   import type { Snippet } from "svelte";
   import { DEV } from "esm-env";
 
@@ -37,7 +37,7 @@
   } from "./internals.js";
 
   interface Props {
-    form: FormState<T>;
+    form: FormState<I, O>;
     path: P;
     required?: boolean;
     uiSchema?: UiSchema;

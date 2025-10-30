@@ -58,7 +58,7 @@ export function createFocusOnFirstError(
   return (
     { errors }: FailureValidationResult,
     e: SubmitEvent,
-    ctx: FormState<any>
+    ctx: FormState<any, any>
   ) => {
     if (errors.length === 0) {
       return false;

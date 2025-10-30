@@ -65,21 +65,21 @@ export interface ArrayContext {
 
 export const [getArrayContext, setArrayContext] = createContext<ArrayContext>();
 
-interface ItemsOptions<T> {
-  ctx: FormState<T>;
+interface ItemsOptions<I, O> {
+  ctx: FormState<I, O>;
   config: () => Config;
   value: () => SchemaArrayValue | null | undefined;
   keyedArray: () => KeyedFieldValues;
   itemSchema: () => Schema | undefined;
 }
 
-function createItems<T>({
+function createItems<I, O>({
   ctx,
   config,
   itemSchema,
   keyedArray,
   value,
-}: ItemsOptions<T>) {
+}: ItemsOptions<I, O>) {
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
   function onChange() {
     setFieldState(ctx, config().path, FIELD_CHANGED);
@@ -154,19 +154,19 @@ function createCanAdd(
     maxItems === undefined || length() < maxItems);
 }
 
-export interface ArrayContextOptions<T> {
-  ctx: FormState<T>;
+export interface ArrayContextOptions<I, O> {
+  ctx: FormState<I, O>;
   config: () => Config;
   value: () => SchemaArrayValue | null | undefined;
   keyedArray: () => KeyedFieldValues;
 }
 
-export function createArrayContext<T>({
+export function createArrayContext<I, O>({
   ctx,
   config,
   value,
   keyedArray,
-}: ArrayContextOptions<T>): ArrayContext {
+}: ArrayContextOptions<I, O>): ArrayContext {
   const arr = $derived.by(value);
 
   const itemSchema: Schema = $derived.by(() => {
@@ -234,12 +234,12 @@ export function createArrayContext<T>({
   };
 }
 
-export function createTupleContext<T>({
+export function createTupleContext<I, O>({
   ctx,
   config,
   value,
   keyedArray,
-}: ArrayContextOptions<T>): ArrayContext {
+}: ArrayContextOptions<I, O>): ArrayContext {
   const arr = $derived.by(value);
 
   const itemsSchema = $derived.by(() => {

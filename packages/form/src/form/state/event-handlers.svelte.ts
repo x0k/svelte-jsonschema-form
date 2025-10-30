@@ -29,8 +29,8 @@ import {
 } from "../field-state.js";
 import type { FormState } from "./state.js";
 
-export function setFieldState<T>(
-  ctx: FormState<T>,
+export function setFieldState<I, O>(
+  ctx: FormState<I, O>,
   path: FieldPath,
   state: FieldState
 ) {
@@ -41,8 +41,8 @@ export function setFieldState<T>(
 /**
  * @command
  */
-export function setFieldStateByPath<T>(
-  ctx: FormState<T>,
+export function setFieldStateByPath<I, O>(
+  ctx: FormState<I, O>,
   path: RPath,
   state: FieldState
 ): void {
@@ -58,8 +58,8 @@ export function setFieldStateByPath<T>(
 /**
  * @query
  */
-export function hasFieldState<T>(
-  ctx: FormState<T>,
+export function hasFieldState<I, O>(
+  ctx: FormState<I, O>,
   path: FieldPath,
   state: FieldState
 ) {
@@ -69,8 +69,8 @@ export function hasFieldState<T>(
 /**
  * @query
  */
-export function hasFieldStateByPath<T>(
-  ctx: FormState<T>,
+export function hasFieldStateByPath<I, O>(
+  ctx: FormState<I, O>,
   path: RPath,
   state: FieldState
 ) {
@@ -81,8 +81,8 @@ export function hasFieldStateByPath<T>(
   );
 }
 
-export function makeEventHandlers<T>(
-  ctx: FormState<T>,
+export function makeEventHandlers<I, O>(
+  ctx: FormState<I, O>,
   config: () => Config,
   validate: () => void
 ) {

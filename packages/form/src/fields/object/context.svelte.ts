@@ -59,21 +59,21 @@ export interface ObjectContext {
 export const [getObjectContext, setObjectContext] =
   createContext<ObjectContext>();
 
-export interface ObjectContextOptions<T> {
-  ctx: FormState<T>;
+export interface ObjectContextOptions<I, O> {
+  ctx: FormState<I, O>;
   config: () => Config;
   value: () => SchemaObjectValue | null | undefined;
   setValue: (value: SchemaObjectValue) => void;
   translate: Translate;
 }
 
-export function createObjectContext<T>({
+export function createObjectContext<I, O>({
   ctx,
   config,
   value,
   setValue,
   translate,
-}: ObjectContextOptions<T>): ObjectContext {
+}: ObjectContextOptions<I, O>): ObjectContext {
   // NOTE: This is required for computing a schema which will include all
   // additional properties in the `properties` field with the
   // `ADDITIONAL_PROPERTY_FLAG` flag and `dependencies` resolution.

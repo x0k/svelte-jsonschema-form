@@ -12,8 +12,8 @@ import type { FormState } from "./state.js";
 /**
  * @query
  */
-export function getComponent<FT, T extends FoundationalComponentType>(
-  ctx: FormState<FT>,
+export function getComponent<I, O, T extends FoundationalComponentType>(
+  ctx: FormState<I, O>,
   type: T,
   config: Config
 ): Resolved<T, CompatibleComponentDefinitions> {
@@ -42,6 +42,6 @@ export function getComponent<FT, T extends FoundationalComponentType>(
 /**
  * @query
  */
-export function getFieldComponent<T>(ctx: FormState<T>, config: Config) {
+export function getFieldComponent<I, O>(ctx: FormState<I, O>, config: Config) {
   return getComponent(ctx, ctx[FORM_RESOLVER](config), config);
 }

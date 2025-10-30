@@ -25,8 +25,8 @@ function getAltSchemas(
     : [schema.oneOf, uiSchema.oneOf];
 }
 
-export function createOptions<T>(
-  ctx: FormState<T>,
+export function createOptions<I, O>(
+  ctx: FormState<I, O>,
   config: Config,
   uiOption: UiOption,
   schema: Schema

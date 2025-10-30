@@ -18,7 +18,7 @@ import "../extra-fields/multi-enum.js";
 import "../extra-fields/file.js";
 import "../extra-fields/files.js";
 
-export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
+export function resolver<I, O>(ctx: FormState<I, O>): ResolveFieldType {
   return (config) => {
     const { schema } = config;
     if (isSelect(ctx, schema)) {

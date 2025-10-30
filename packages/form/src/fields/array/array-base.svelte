@@ -46,7 +46,7 @@
     translate,
     field,
   }: ComponentProps[F] & {
-    createContext: <T>(options: ArrayContextOptions<T>) => ArrayContext;
+    createContext: <I, O>(options: ArrayContextOptions<I, O>) => ArrayContext;
     field: F;
   } = $props();
 

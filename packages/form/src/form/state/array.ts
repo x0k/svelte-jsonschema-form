@@ -4,8 +4,8 @@ import type { KeyedFieldValues } from "../model.js";
 import { FORM_KEYED_ARRAYS } from "../internals.js";
 import type { FormState } from "./state.js";
 
-export function createKeyedArrayDeriver<T>(
-  ctx: FormState<T>,
+export function createKeyedArrayDeriver<I, O>(
+  ctx: FormState<I, O>,
   value: () => SchemaArrayValue | null | undefined,
   virtualKeyedArrayFactory: () => KeyedFieldValues,
   keyedArrayFactory: (v: SchemaArrayValue, g: () => number) => KeyedFieldValues

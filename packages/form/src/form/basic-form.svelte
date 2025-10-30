@@ -11,7 +11,7 @@
     form,
     ...attributes
   }: {
-    form: FormState<any>;
+    form: FormState<any, any>;
     ref?: HTMLFormElement | undefined;
   } & HTMLFormAttributes = $props();
 

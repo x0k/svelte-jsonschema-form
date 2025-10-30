@@ -147,13 +147,13 @@ export interface MergerFactoryOptions {
   uiOptionsRegistry: UiOptionsRegistry;
 }
 
-export interface FormOptions<T> extends UiOptionsRegistryOption {
+export interface FormOptions<Input, Output> extends UiOptionsRegistryOption {
   schema: Schema;
   theme: Theme;
   translation: Translation;
-  resolver: (ctx: FormState<T>) => ResolveFieldType;
+  resolver: (ctx: FormState<Input, Output>) => ResolveFieldType;
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
-  validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
+  validator: Creatable<FormValidator<Input, Output>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
@@ -164,15 +164,15 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   extraUiOptions?: ExtraUiOptions;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
-  initialValue?: DeepPartial<T>;
-  value?: Bind<T>;
+  initialValue?: DeepPartial<Input>;
+  value?: Bind<Input>;
   initialErrors?: InitialErrors;
   /**
    * @default waitPrevious
    */
   submissionCombinator?: TasksCombinator<
     [event: SubmitEvent],
-    ValidationResult<T>,
+    ValidationResult<Output>,
     unknown
   >;
   /**
@@ -213,7 +213,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * `formData is T`. So make sure you provide a `T` type that
    * matches the validator check result.
    */
-  onSubmit?: (value: T, e: SubmitEvent) => void;
+  onSubmit?: (value: Output, e: SubmitEvent) => void;
   /**
    * Submit error handler
    *
@@ -223,7 +223,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   onSubmitError?: (
     result: FailureValidationResult,
     e: SubmitEvent,
-    form: FormState<T>
+    form: FormState<Input, Output>
   ) => void;
   /**
    * Form submission error handler
@@ -254,7 +254,9 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   keyedArraysMap?: KeyedArraysMap;
 }
 
-export function createForm<T>(options: FormOptions<T>): FormState<T> {
+export function createForm<I, O = I>(
+  options: FormOptions<I, O>
+): FormState<I, O> {
   // STATE BEGIN
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
@@ -359,7 +361,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   });
   // STATE END
 
-  const validateForm: AsyncFormValueValidator<T>["validateFormValueAsync"] =
+  const validateForm: AsyncFormValueValidator<I, O>["validateFormValueAsync"] =
     $derived.by(() => {
       if ("validateFormValueAsync" in validator) {
         return (signal, schema, formValue) =>
@@ -369,7 +371,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
         Promise.resolve(validator.validateFormValue(schema, formValue));
     });
 
-  const submission: FormSubmission<T> = createTask({
+  const submission: FormSubmission<O> = createTask({
     async execute(signal) {
       setFieldState(formState, rootPath, FIELD_SUBMITTED);
       return await validateForm(
@@ -478,7 +480,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     options.onReset?.(e);
   }
 
-  const formState: FormState<T> = {
+  const formState: FormState<I, O> = {
     submission,
     fieldsValidation,
     get isSubmitted() {
@@ -585,7 +587,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   return formState;
 }
 
-export function handlers<T>(form: FormState<T>): Attachment<HTMLFormElement> {
+export function handlers<I, O>(
+  form: FormState<I, O>
+): Attachment<HTMLFormElement> {
   return (node) => {
     const disposeSubmit = on(node, "submit", form.submit);
     const disposeReset = on(node, "reset", form.reset);

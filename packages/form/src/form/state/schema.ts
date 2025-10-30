@@ -21,7 +21,7 @@ import type { FormState } from "./state.js";
 /**
  * @query
  */
-export function isSelect<T>(ctx: FormState<T>, schema: Schema) {
+export function isSelect<I, O>(ctx: FormState<I, O>, schema: Schema) {
   return isSelectInternal(
     ctx[FORM_VALIDATOR],
     ctx[FORM_MERGER],
@@ -33,7 +33,7 @@ export function isSelect<T>(ctx: FormState<T>, schema: Schema) {
 /**
  * @query
  */
-export function isMultiSelect<T>(ctx: FormState<T>, schema: Schema) {
+export function isMultiSelect<I, O>(ctx: FormState<I, O>, schema: Schema) {
   return isMultiSelectInternal(
     ctx[FORM_VALIDATOR],
     ctx[FORM_MERGER],
@@ -45,7 +45,7 @@ export function isMultiSelect<T>(ctx: FormState<T>, schema: Schema) {
 /**
  * @query
  */
-export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
+export function isFilesArray<I, O>(ctx: FormState<I, O>, schema: Schema) {
   return isFilesArrayInternal(
     ctx[FORM_VALIDATOR],
     ctx[FORM_MERGER],
@@ -57,8 +57,8 @@ export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
 /**
  * @query
  */
-export function retrieveSchema<T>(
-  ctx: FormState<T>,
+export function retrieveSchema<I, O>(
+  ctx: FormState<I, O>,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
@@ -74,8 +74,8 @@ export function retrieveSchema<T>(
 /**
  * @query
  */
-export function sanitizeDataForNewSchema<T>(
-  ctx: FormState<T>,
+export function sanitizeDataForNewSchema<I, O>(
+  ctx: FormState<I, O>,
   newSchema: Schema,
   oldSchema: Schema,
   formData: SchemaValue | undefined
@@ -93,8 +93,8 @@ export function sanitizeDataForNewSchema<T>(
 /**
  * @query
  */
-export function getClosestMatchingOption<T>(
-  ctx: FormState<T>,
+export function getClosestMatchingOption<I, O>(
+  ctx: FormState<I, O>,
   formData: SchemaValue | undefined,
   options: Schema[],
   selectedOption: number,
@@ -114,13 +114,13 @@ export function getClosestMatchingOption<T>(
 /**
  * @query
  */
-export function getDefaultFieldState<T>(
-  ctx: FormState<T>,
+export function getDefaultFieldState<I, O>(
+  ctx: FormState<I, O>,
   options: MergeFormDataAndSchemaDefaultsOptions
 ) {
   return ctx[FORM_MERGER].mergeFormDataAndSchemaDefaults(options);
 }
 
-export function markSchemaChange<T>(ctx: FormState<T>) {
+export function markSchemaChange<I, O>(ctx: FormState<I, O>) {
   ctx[FORM_MARK_SCHEMA_CHANGE]();
 }

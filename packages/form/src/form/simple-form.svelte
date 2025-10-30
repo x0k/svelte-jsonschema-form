@@ -1,8 +1,8 @@
-<script lang="ts" generics="T">
+<script lang="ts" generics="I, O">
   import { createForm, type FormOptions } from "./create-form.svelte.js";
   import BasicForm from "./basic-form.svelte";
 
-  const options: FormOptions<T> = $props();
+  const options: FormOptions<I, O> = $props();
 
   const form = createForm(options);
 </script>

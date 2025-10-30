@@ -35,7 +35,10 @@ function transformErrors<O>(
 
 export function createFormValueValidator<T extends StandardSchemaV1>(
   schema: T
-): FormValueValidator<StandardSchemaV1.InferOutput<T>> {
+): FormValueValidator<
+  StandardSchemaV1.InferInput<T>,
+  StandardSchemaV1.InferOutput<T>
+> {
   return {
     validateFormValue(_, formValue) {
       const result = schema["~standard"].validate(formValue);
@@ -49,7 +52,10 @@ export function createFormValueValidator<T extends StandardSchemaV1>(
 
 export function createAsyncFormValueValidator<T extends StandardSchemaV1>(
   schema: T
-): AsyncFormValueValidator<StandardSchemaV1.InferOutput<T>> {
+): AsyncFormValueValidator<
+  StandardSchemaV1.InferInput<T>,
+  StandardSchemaV1.InferOutput<T>
+> {
   return {
     async validateFormValueAsync(_, _1, formValue) {
       const result = await schema["~standard"].validate(formValue);

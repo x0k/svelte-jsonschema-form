@@ -6,7 +6,7 @@
   const {
     form,
     name = SJSF_ID_PREFIX,
-  }: { form: FormState<any>; name?: string } = $props();
+  }: { form: FormState<any, any>; name?: string } = $props();
 </script>
 
 <input {name} type="hidden" value={form[FORM_ID_PREFIX]} />

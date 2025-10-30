@@ -1,8 +1,8 @@
 import { FORM_DATA_URL_TO_BLOB } from "../internals.js";
 import type { FormState } from "./state.js";
 
-export async function addFile<T>(
-  ctx: FormState<T>,
+export async function addFile<I, O>(
+  ctx: FormState<I, O>,
   signal: AbortSignal,
   data: DataTransfer,
   value: string
@@ -12,8 +12,8 @@ export async function addFile<T>(
   data.items.add(new File([blob], name, { type: blob.type }));
 }
 
-export function addFiles<T>(
-  ctx: FormState<T>,
+export function addFiles<I, O>(
+  ctx: FormState<I, O>,
   signal: AbortSignal,
   data: DataTransfer,
   values: string[]

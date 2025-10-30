@@ -1,9 +1,9 @@
 import type { FormValidator } from "@/form/validator.js";
 
-export const createFormValidator = <T>() =>
+export const createFormValidator = <I, O>() =>
   ({
     isValid: () => true,
     validateFormValue: (_, value) => {
-      return { value: value as T };
+      return { value: value as O };
     },
-  }) satisfies FormValidator<T>;
+  }) satisfies FormValidator<I, O>;

@@ -7,7 +7,7 @@
 </script>
 
 {#snippet displayPrimitiveValue(
-  _: FormState<unknown>,
+  _: FormState<any, any>,
   _1: Config,
   valueRef: Ref<Exclude<SchemaValue, object> | undefined>
 )}

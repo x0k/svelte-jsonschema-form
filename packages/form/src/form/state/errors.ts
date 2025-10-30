@@ -19,8 +19,8 @@ const NO_ERRORS: FieldErrors = [];
 /**
  * @query
  */
-export function getFieldErrors<T>(
-  ctx: FormState<T>,
+export function getFieldErrors<I, O>(
+  ctx: FormState<I, O>,
   path: FieldPath
 ): FieldErrors {
   return ctx[FORM_ERRORS].get(path) ?? NO_ERRORS;
@@ -29,8 +29,8 @@ export function getFieldErrors<T>(
 /**
  * @query
  */
-export function getFieldErrorsByPath<T>(
-  ctx: FormState<T>,
+export function getFieldErrorsByPath<I, O>(
+  ctx: FormState<I, O>,
   path: RPath
 ): FieldErrors {
   return getFieldErrors(
@@ -42,8 +42,8 @@ export function getFieldErrorsByPath<T>(
 /**
  * @query
  */
-export function getFieldsErrors<T>(
-  ctx: FormState<T>,
+export function getFieldsErrors<I, O>(
+  ctx: FormState<I, O>,
   paths: FieldPath[]
 ): string[] {
   const errors: string[] = [];
@@ -61,8 +61,8 @@ export function getFieldsErrors<T>(
 /**
  * @query
  */
-export function getFieldsErrorsByPath<T>(
-  ctx: FormState<T>,
+export function getFieldsErrorsByPath<I, O>(
+  ctx: FormState<I, O>,
   paths: RPath[]
 ): string[] {
   return getFieldsErrors(
@@ -74,7 +74,10 @@ export function getFieldsErrorsByPath<T>(
 /**
  * @command
  */
-export function updateErrors<T>(ctx: FormState<T>, errors: ReadonlyArray<ValidationError>) {
+export function updateErrors<I, O>(
+  ctx: FormState<I, O>,
+  errors: ReadonlyArray<ValidationError>
+) {
   untrack(() => {
     internalAssignErrors(ctx[FORM_PATHS_TRIE_REF], ctx[FORM_ERRORS], errors);
   });
@@ -85,8 +88,8 @@ export function updateErrors<T>(ctx: FormState<T>, errors: ReadonlyArray<Validat
 /**
  * @command
  */
-export function updateFieldErrors<T>(
-  ctx: FormState<T>,
+export function updateFieldErrors<I, O>(
+  ctx: FormState<I, O>,
   path: FieldPath,
   errors: Update<string[]>
 ): boolean {
@@ -107,8 +110,8 @@ export function updateFieldErrors<T>(
 /**
  * @command
  */
-export function updateFieldErrorsByPath<T>(
-  ctx: FormState<T>,
+export function updateFieldErrorsByPath<I, O>(
+  ctx: FormState<I, O>,
   path: RPath,
   errors: Update<string[]>
 ): boolean {
@@ -124,15 +127,15 @@ export function updateFieldErrorsByPath<T>(
 /**
  * @query
  */
-export function hasErrors<T>(ctx: FormState<T>) {
+export function hasErrors<I, O>(ctx: FormState<I, O>) {
   return ctx[FORM_ERRORS].size > 0;
 }
 
 /**
  * @query
  */
-export function getErrors<T>(
-  ctx: FormState<T>
+export function getErrors<I, O>(
+  ctx: FormState<I, O>
 ): Iterable<[FieldPath, string[]]> {
   return ctx[FORM_ERRORS];
 }

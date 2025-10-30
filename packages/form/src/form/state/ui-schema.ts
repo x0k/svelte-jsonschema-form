@@ -28,15 +28,15 @@ import type { FormState } from "./state.js";
 /**
  * @query
  */
-export function retrieveUiSchema<T>(
-  ctx: FormState<T>,
+export function retrieveUiSchema<I, O>(
+  ctx: FormState<I, O>,
   uiSchemaDef: UiSchemaDefinition | undefined
 ) {
   return resolveUiRef(ctx[FORM_UI_SCHEMA_ROOT], uiSchemaDef) ?? {};
 }
 
-function resolveUiOption<T, O extends keyof UiOptions>(
-  ctx: FormState<T>,
+function resolveUiOption<In, Out, O extends keyof UiOptions>(
+  ctx: FormState<In, Out>,
   uiSchema: UiSchema,
   option: O
 ) {
@@ -51,15 +51,15 @@ function resolveUiOption<T, O extends keyof UiOptions>(
 /**
  * @query
  */
-export function uiTitleOption<T>(ctx: FormState<T>, uiSchema: UiSchema) {
+export function uiTitleOption<I, O>(ctx: FormState<I, O>, uiSchema: UiSchema) {
   return resolveUiOption(ctx, uiSchema, "title");
 }
 
 /**
  * @query
  */
-export function retrieveUiOption<T, const O extends keyof UiOptions>(
-  ctx: FormState<T>,
+export function retrieveUiOption<In, Out, const O extends keyof UiOptions>(
+  ctx: FormState<In, Out>,
   config: Config,
   option: O
 ) {
@@ -73,8 +73,8 @@ export function retrieveUiOption<T, const O extends keyof UiOptions>(
  * NOTE: An extra option will take precedence
  * @query
  */
-export function retrieveNestedUiOption<T, const O extends keyof UiOptions, R>(
-  ctx: FormState<T>,
+export function retrieveNestedUiOption<In, Out, const O extends keyof UiOptions, R>(
+  ctx: FormState<In, Out>,
   config: Config,
   option: O,
   selector: (data: NonNullable<UiOptions[O]>) => R | undefined
@@ -101,10 +101,10 @@ export type ObjectUiOptions = ObjectProperties<UiOptions>;
 export function uiOptionProps<const O extends keyof ObjectUiOptions>(
   option: O
 ) {
-  return <T>(
+  return <In, Out>(
     props: NonNullable<UiOptions[O]>,
     config: Config,
-    ctx: FormState<T>
+    ctx: FormState<In, Out>
   ): NonNullable<UiOptions[O]> => {
     return Object.assign(
       props,
@@ -121,7 +121,7 @@ export function uiOptionNestedProps<
   const O extends keyof ObjectUiOptions,
   R extends object,
 >(option: O, selector: (data: NonNullable<UiOptions[O]>) => R | undefined) {
-  return <T>(props: R, config: Config, ctx: FormState<T>): R => {
+  return <In, Out>(props: R, config: Config, ctx: FormState<In, Out>): R => {
     const options = resolveUiOption(ctx, config.uiSchema, option);
     const extraOptions = ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config as never);
     return Object.assign(
@@ -135,7 +135,7 @@ export function uiOptionNestedProps<
 /**
  * @query
  */
-export function retrieveTranslate<T>(ctx: FormState<T>, config: Config) {
+export function retrieveTranslate<I, O>(ctx: FormState<I, O>, config: Config) {
   let translation = ctx[FORM_TRANSLATION];
   const uiOption = resolveUiOption(ctx, config.uiSchema, "translations");
   translation = uiOption
@@ -151,7 +151,7 @@ export function retrieveTranslate<T>(ctx: FormState<T>, config: Config) {
 /**
  * @query
  */
-export function getFieldTitle<T>(ctx: FormState<T>, path: RPath) {
+export function getFieldTitle<I, O>(ctx: FormState<I, O>, path: RPath) {
   const uiSchema = getUiSchemaByPath(
     ctx[FORM_UI_SCHEMA_ROOT],
     ctx[FORM_UI_SCHEMA_ROOT],
@@ -177,8 +177,8 @@ export function getFieldTitle<T>(ctx: FormState<T>, path: RPath) {
 /**
  * @query
  */
-export function getFieldAction<T, const F extends ActionField>(
-  ctx: FormState<T>,
+export function getFieldAction<In, Out, const F extends ActionField>(
+  ctx: FormState<In, Out>,
   config: Config,
   field: F,
 ) {
