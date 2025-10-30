@@ -86,7 +86,7 @@ export function createServerValidator<In, Out = In>({
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   createReviver = createDefaultReviver
 }: SvelteKitFormValidatorOptions<In, Out>): StandardSchemaV1<
-  RemoteFormInput,
+  RemoteFormInput & In,
   ValidationResult<Out>
 > & {
   validate: (input: unknown) => MaybePromise<StandardSchemaV1.Result<ValidationResult<Out>>>;
