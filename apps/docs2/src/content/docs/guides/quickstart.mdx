@@ -6,11 +6,12 @@ sidebar:
 
 import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 
-import { peerDependencies as formPeerDeps } from '#/form/package.json'
+import pkg from '#/form/package.json'
 
 import { createThemeInstall } from '@/shared'
 import FormCard from '@/components/form-card.astro'
 import Npm from "@/components/npm.astro";
+import Deps from '@/components/peer-dependencies.astro'
 
 import SimpleSetupForm from "./simple-setup.svelte";
 import simpleSetupCode from './simple-setup.svelte?raw';
@@ -28,7 +29,7 @@ import controlledFormCode from './controlled-form.svelte?raw';
 
 <Npm pkg={createThemeInstall("basic")} />
 
-Svelte <code>{formPeerDeps.svelte}</code> is required
+<Deps hideOptional {...pkg} />
 
 ## Usage
 

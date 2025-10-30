@@ -10,7 +10,6 @@ import {
   VALIDATORS,
   ValidatorSpecificExample,
   VERSION,
-  type ActualTheme,
   type Example,
   type Theme,
   type Validator,
@@ -70,6 +69,10 @@ const THEME_LAYERS: Record<Theme, () => LayerPromise[]> = {
   skeleton4: () => [import("./layers/tailwind4"), import("./layers/skeleton4")],
   shadcn: () => [import("./layers/tailwind3"), import("./layers/shadcn")],
   shadcn4: () => [import("./layers/tailwind4"), import("./layers/shadcn4")],
+  "shadcn-extras": () => [
+    import("./layers/tailwind4"),
+    import("./layers/shadcn-extras"),
+  ],
 };
 
 const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {

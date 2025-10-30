@@ -1,29 +1,29 @@
 ---
-title: shadcn-svelte
+title: shadcn-svelte-extras
 sidebar:
-  order: 4
+  order: 104
 ---
 
 import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/shadcn4-theme/specs';
-import styles from '@sjsf/shadcn4-theme/styles.css?inline';
+import { specs, extraWidgets } from '@sjsf-lab/shadcn-extras-theme/specs';
+import styles from '@sjsf-lab/shadcn-extras-theme/styles.css?inline';
 
-import pkg from '#/shadcn4-theme/package.json'
+import pkg from 'lab/shadcn-extras-theme/package.json'
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import Deps from '@/components/peer-dependencies.astro';
 
-import Form from './shadcn4/wrapper.svelte';
-import uiOptionsCode from './shadcn4/ui-options?raw';
-import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
+import Form from './shadcn-extras/wrapper.svelte';
+import uiOptionsCode from './shadcn-extras/ui-options?raw';
+import { createSchemas, replacer, createExtraImports, validationEvents } from "../_demo-schema";
 
 export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={themePkg("shadcn4")} />
+<Npm pkg={themePkg("shadcn-extras")} />
 
 <Deps {...pkg} />
 
@@ -38,12 +38,13 @@ export const schemas = createSchemas(specs)
 Register the theme source path by adding the following line to the `app.css` file:.
 
 ```css
-@source "../node_modules/@sjsf/shadcn4-theme/dist";
+@source "../node_modules/@sjsf-lab/shadcn-extras-theme/dist";
 ```
 
 ## Components
 
-Since `shadcn-svelte` is not a component library you should provide your components via `setThemeContext`.
+Since `shadcn-svelte` and `shadcn-svelte-extras` is not a component library
+you should provide your components via `setThemeContext`.
 
 :::note
 
@@ -54,8 +55,9 @@ You should prefer to use components from your code base to avoid code duplicatio
 ```typescript
 import { setThemeContext } from '@sjsf/shadcn4-theme';
 import * as components from '@sjsf/shadcn4-theme/new-york';
+import * as extraComponents from '@sjsf-lab/shadcn-extras-theme/ui';
 
-setThemeContext({ components })
+setThemeContext({ components: { ...components, ...extraComponents } })
 ```
 
 ## Extra widgets
@@ -65,12 +67,12 @@ You can connect extra widgets using the following `include` imports:
 :::note
 
 For a widget to be applied, it must be explicitly specified in the
-[UI schema](../../form/ui-schema/#ui-components)
+[UI schema](../../../form/ui-schema/#ui-components)
 or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("shadcn4", extraWidgets)} />
+<Code lang='ts' code={createExtraImports("shadcn-extras", extraWidgets)} />
 
 ## Widgets demo
 
@@ -88,10 +90,10 @@ or used in the field as the default widget.
   </TabItem>
 </Tabs>
 
-## Supported validation events
+{/* ## Supported validation events
 
 <div set:html={validationEvents(specs)}></div>
 
 ## UI options
 
-<Code code={uiOptionsCode} lang="typescript" />
+<Code code={uiOptionsCode} lang="typescript" /> */}

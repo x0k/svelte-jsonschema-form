@@ -2,6 +2,7 @@ import { unique } from "@sjsf/form/lib/array";
 import type { SchemaValue } from "@sjsf/form";
 
 import {
+  isLabTheme,
   validatorPackage,
   VERSION,
   type Resolver,
@@ -175,11 +176,16 @@ export function mergeLayers(a: Layer, b: Layer): Layer {
   };
 }
 
+const MAJOR_VERSION = VERSION.split(".")[0];
 function buildPackageConfig(config: PackageConfig): string {
   return JSON.stringify(
     config,
-    (_, value) => {
+    (key, value) => {
       if (value === "workspace:*") {
+        if (key.startsWith("@sjsf-lab/")) {
+          return MAJOR_VERSION
+        }
+        // TODO: Consider fixed list from changeset config
         return VERSION;
       }
       return value;
@@ -218,7 +224,7 @@ export { createFormValidator as validator } from "${pkg}";
     : "";
   return `export { resolver } from "@sjsf/form/resolvers/${resolver}";
 
-export { theme } from "@sjsf/${theme}-theme";
+export { theme } from "@sjsf${isLabTheme(theme) ? "-lab" : ""}/${theme}-theme";
 ${widgets.map((w) => `import "@sjsf/${theme}-theme/extra-widgets/${w}-include";`).join("\n")}
 
 export { translation } from "@sjsf/form/translations/en";
@@ -246,7 +252,7 @@ const config = {
     alias: ${JSON.stringify(kitAlias)},
   },
   compilerOptions: {
-    runes: ${runes? 'true' : 'undefined'},
+    runes: ${runes ? "true" : "undefined"},
     experimental: {
       async: true,
     },
