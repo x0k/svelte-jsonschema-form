@@ -1,10 +1,4 @@
-import {
-  createIdByPath,
-  type FailureValidationResult,
-  type FormState,
-  type FormValue,
-  type ValidationError,
-} from "@sjsf/form";
+import { type FailureValidationResult, type FormState } from "@sjsf/form";
 import {
   createFocusOnFirstError,
   type GetFocusableElementOptions,
@@ -12,7 +6,7 @@ import {
 
 import type { TabsContext } from "./context.svelte";
 
-export function createTabbedFocusOnFirstError<E>(
+export function createTabbedFocusOnFirstError(
   ctx: TabsContext,
   options: GetFocusableElementOptions = {}
 ) {
@@ -20,9 +14,9 @@ export function createTabbedFocusOnFirstError<E>(
   return (
     result: FailureValidationResult,
     e: SubmitEvent,
-    form: FormState<any>
+    form: FormState<any, any>
   ) => {
-    const { errors, value: snap } = result;
+    const { errors } = result;
     if (errors.length === 0) {
       return;
     }

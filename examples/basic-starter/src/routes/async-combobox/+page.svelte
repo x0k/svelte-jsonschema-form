@@ -65,7 +65,7 @@
   const form = createForm({
     ...defaults,
     validator: (options) => {
-      const defaultValidator = defaults.validator(options);
+      const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
         async validateFormValueAsync(signal, rootSchema, formValue) {
@@ -94,7 +94,7 @@
             ],
           };
         },
-      } satisfies AsyncFormValueValidator<string>;
+      };
     },
     // NOTE: the behavior of the `$derived` rune during SSR is different from the browser
     get disabled(): boolean {

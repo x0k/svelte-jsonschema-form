@@ -27,14 +27,14 @@ const schema: Schema = {
   required: ["firstName", "lastName", "age"],
 };
 
-interface Value {
+interface Model {
   firstName: string;
   lastName: string;
   age: number;
 }
 
 export const load = async () => {
-  return { form: { schema } satisfies InitialFormData };
+  return { form: { schema } satisfies InitialFormData<Model> };
 };
 
 export const actions = {
@@ -45,7 +45,7 @@ export const actions = {
       schema,
       sendData: true,
     },
-    (data: Value) => {
+    (data: Model) => {
       console.log(data);
     }
   ),

@@ -3,17 +3,17 @@ import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 
 import { form, query } from "$app/server";
 import * as defaults from "$lib/form-defaults";
-import { schema, type FormValue } from "$lib/post-model";
+import { schema, type FormModel } from "$lib/post-model";
 
 export const getInitialData = query(async () => {
   return {
     schema,
-    initialValue: { title: "New post", content: "" } satisfies FormValue,
+    initialValue: { title: "New post", content: "" } satisfies FormModel,
   } satisfies InitialFormData;
 });
 
 export const createPost = form(
-  createServerValidator<FormValue>({
+  createServerValidator<FormModel>({
     ...defaults,
     schema,
   }),

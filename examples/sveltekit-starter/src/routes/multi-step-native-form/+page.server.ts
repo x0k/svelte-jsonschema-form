@@ -1,14 +1,15 @@
 import { fail } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
-import { isValid, createFormHandler } from "@sjsf/sveltekit/server";
+import { createFormHandler } from "@sjsf/sveltekit/server";
 
 import * as defaults from "$lib/form-defaults";
 
 import { schema, STEP_KEY, stepNames, type Stepped } from "./model";
 import type { Actions } from "./$types";
 
-const handleForm = createFormHandler<Stepped, true>({
+const handleForm = createFormHandler({
   ...defaults,
+  validator: defaults.validator<Stepped>,
   schema,
   sendData: true,
 });
