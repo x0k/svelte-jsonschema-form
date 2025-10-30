@@ -20,7 +20,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
-		"directory": "packages/flowbite-theme"
+		"directory": "legacy/flowbite-theme"
 	},
 	"bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
 	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
