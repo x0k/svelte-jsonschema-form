@@ -35,8 +35,8 @@
     retrieveUiOption,
     uiTitleOption,
     retrieveTranslate,
-    createPseudoPath,
-    createPseudoId,
+    getPseudoPath,
+    getPseudoId,
     getFieldAction,
   } from "@/form/index.js";
 
@@ -168,7 +168,7 @@
 
   const enumOptions = $derived<EnumOption<number>[]>(
     optionTitles.map((label, i) => ({
-      id: createPseudoId(ctx, config.path, i),
+      id: getPseudoId(ctx, config.path, i),
       label,
       value: i,
       disabled: false,
@@ -184,7 +184,7 @@
       config.uiSchema.combinationFieldOptionSelector
     );
     return {
-      path: createPseudoPath(ctx, config.path, suffix),
+      path: getPseudoPath(ctx, config.path, suffix),
       title: uiTitleOption(ctx, uiSchema) ?? config.title,
       schema: { type: "integer", default: 0 },
       uiSchema,

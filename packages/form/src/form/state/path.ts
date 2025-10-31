@@ -31,7 +31,7 @@ function getFieldPath<T>(ctx: FormState<T>, path: RPath): FieldPath {
 /**
  * @query
  */
-export function createChildPath<T>(
+export function getChildPath<T>(
   ctx: FormState<T>,
   parentPath: FieldPath,
   indexOrProperty: string | number
@@ -42,39 +42,39 @@ export function createChildPath<T>(
 /**
  * @query
  */
-export function createPseudoPath<T>(
+export function getPseudoPath<T>(
   ctx: FormState<T>,
   parentPath: FieldPath,
   element: FieldPseudoElement
 ) {
-  return createChildPath(ctx, parentPath, encodePseudoElement(element));
+  return getChildPath(ctx, parentPath, encodePseudoElement(element));
 }
 
 /**
  * @query
  */
-export function createPseudoId<T>(
+export function getPseudoId<T>(
   ctx: FormState<T>,
   path: FieldPath,
   element: FieldPseudoElement
 ): Id {
-  return getId(ctx, createPseudoPath(ctx, path, element));
+  return getId(ctx, getPseudoPath(ctx, path, element));
 }
 
 /**
  * @query
  */
-export function createIdByPath<T>(ctx: FormState<T>, path: RPath): Id {
+export function getIdByPath<T>(ctx: FormState<T>, path: RPath): Id {
   return getId(ctx, getFieldPath(ctx, path));
 }
 
 /**
  * @query
  */
-export function createPseudoIdByPath<T>(
+export function getPseudoIdByPath<T>(
   ctx: FormState<T>,
   path: RPath,
   element: FieldPseudoElement
 ): Id {
-  return createIdByPath(ctx, path.concat(encodePseudoElement(element)));
+  return getIdByPath(ctx, path.concat(encodePseudoElement(element)));
 }

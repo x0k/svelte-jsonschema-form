@@ -6,6 +6,6 @@
 - Remove `from.errors` property
 - Remove form `errors` bindable option
 - Replace `idFromPath` with `getId` function
-- Replace `createChildId` with `createChildPath` function
+- Replace `createChildId` with `getChildPath` function
 - Replace `getErrors` with `getFieldErrors` function
 - Add `updateErrors`, `hasErrors`, `getErrors` functions
