@@ -44,15 +44,6 @@ export function createClientValidator<T>(form: FormState<T>) {
   } satisfies StandardSchemaV1<RemoteFormInput, void>;
 }
 
-export interface EnhanceOptions {
-  /** Pass this options if context is unavailable */
-  form?: FormState<any>;
-  /** By default, handles conversion of `File` */
-  createReplacer?: (formElement: HTMLFormElement) => (key: string, value: any) => any;
-  /** @default 500000 */
-  jsonChunkSize?: number;
-}
-
 const CHUNK_KEY = `${JSON_CHUNKS_KEY}[]`;
 
 function createDefaultReplacer(formElement: HTMLFormElement) {
