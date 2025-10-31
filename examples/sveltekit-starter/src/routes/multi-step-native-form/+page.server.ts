@@ -1,17 +1,11 @@
 import { fail } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
-import { isValid, createFormHandler } from "@sjsf/sveltekit/server";
+import { createFormHandler } from "@sjsf/sveltekit/server";
 
 import * as defaults from "$lib/form-defaults";
 
 import { schema, STEP_KEY, stepNames, type Stepped } from "./model";
 import type { Actions } from "./$types";
-
-const handleForm = createFormHandler<Stepped, true>({
-  ...defaults,
-  schema,
-  sendData: true,
-});
 
 export const load = async () => {
   return {
@@ -19,17 +13,20 @@ export const load = async () => {
       schema,
       initialValue: {
         [STEP_KEY]: "first",
-      } satisfies Stepped as Stepped,
-    } satisfies InitialFormData,
+      },
+    } satisfies InitialFormData<Stepped>,
   };
 };
 
+const handleForm = createFormHandler<Stepped, true>({
+  ...defaults,
+  schema,
+  sendData: true,
+});
+
 export const actions = {
   default: async ({ request }) => {
-    const [form] = await handleForm(
-      request.signal,
-      await request.formData()
-    );
+    const [form] = await handleForm(request.signal, await request.formData());
     if (!form.isValid) {
       return fail(400, { form });
     }

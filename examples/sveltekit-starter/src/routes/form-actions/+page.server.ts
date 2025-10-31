@@ -3,15 +3,15 @@ import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
 
 import * as defaults from "$lib/form-defaults";
-import { schema, type FormValue } from "$lib/post-model";
+import { schema, type CreatePost } from "$lib/post";
 
 export const load = async () => {
   return {
     // Should match action name
     form: {
       schema,
-      initialValue: { title: "New post", content: "" } satisfies FormValue,
-    } satisfies InitialFormData,
+      initialValue: { title: "New post", content: "" },
+    } satisfies InitialFormData<CreatePost>,
   };
 };
 
@@ -23,7 +23,7 @@ export const actions = {
       schema,
       sendData: true,
     },
-    ({ title, content }: FormValue) => {
+    ({ title, content }: CreatePost) => {
       if (title.length > 100) {
         return [{ path: ["title"], message: "Title is too long" }];
       }
