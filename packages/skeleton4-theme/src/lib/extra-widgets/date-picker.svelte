@@ -1,9 +1,10 @@
 <script lang="ts" module>
-	import type { DatePickerRootProps } from '@skeletonlabs/skeleton-svelte';
+	import type { DatePickerRootProps, PortalRootProps } from '@skeletonlabs/skeleton-svelte';
 	import '@sjsf/form/fields/extra-widgets/date-picker';
 	declare module '@sjsf/form' {
 		interface UiOptions {
 			skeleton4DatePicker?: DatePickerRootProps;
+			skeleton4DatePickerPortal?: Omit<PortalRootProps, 'children'>;
 		}
 	}
 </script>
@@ -14,6 +15,7 @@
 		customInputAttributes,
 		type ComponentProps,
 		getId,
+		uiOptionProps
 	} from '@sjsf/form';
 	import { DatePicker, parseDate, Portal } from '@skeletonlabs/skeleton-svelte';
 
@@ -35,17 +37,14 @@
 		readOnly: config.schema.readOnly,
 		onValueChange: (details) => {
 			value = details.value[0].toString();
-		},
+		}
 	})}
 >
 	<DatePicker.Control>
-		<DatePicker.Input
-			required={config.required}
-			{...handlers}
-		/>
+		<DatePicker.Input required={config.required} {...handlers} />
 		<DatePicker.Trigger />
 	</DatePicker.Control>
-	<Portal>
+	<Portal {...uiOptionProps('skeleton4DatePickerPortal')({}, config, ctx)}>
 		<DatePicker.Positioner>
 			<DatePicker.Content>
 				<DatePicker.View view="day">

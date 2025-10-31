@@ -1,16 +1,23 @@
 <script lang="ts" module>
-	import type { ComboboxRootProps } from '@skeletonlabs/skeleton-svelte';
+	import type { ComboboxRootProps, PortalRootProps } from '@skeletonlabs/skeleton-svelte';
 	import '@sjsf/form/fields/extra-widgets/combobox';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
 			skeleton4Combobox?: ComboboxRootProps;
+			skeleton4ComboboxPortal?: Omit<PortalRootProps, 'children'>;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, getId, type ComponentProps } from '@sjsf/form';
+	import {
+		customInputAttributes,
+		getFormContext,
+		getId,
+		uiOptionProps,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
 	import { Combobox, Portal, useListCollection } from '@skeletonlabs/skeleton-svelte';
 
@@ -82,7 +89,7 @@
 		<Combobox.Input />
 		<Combobox.Trigger />
 	</Combobox.Control>
-	<Portal>
+	<Portal {...uiOptionProps('skeleton4ComboboxPortal')({}, config, ctx)}>
 		<Combobox.Positioner class="z-1!">
 			<Combobox.Content>
 				{#each items as item (item.value)}
