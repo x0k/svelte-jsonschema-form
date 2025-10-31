@@ -9,7 +9,7 @@
 
   let value = $state("initial");
 
-  const form = createForm({
+  const form = createForm<string>({
     ...defaults,
     schema,
     value: [() => value, (v) => (value = v)],

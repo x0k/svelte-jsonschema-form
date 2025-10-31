@@ -14,8 +14,6 @@
     "multipleChoicesList?": "('foo'|'bar'|'fuzz')[]<=2",
   });
 
-  type Value = typeof schema.infer;
-
   const form = createForm({
     ...defaults,
     schema: schema.toJsonSchema({
@@ -26,7 +24,7 @@
       ...createFormValueValidator(schema),
       isValid: () => true,
     },
-    initialValue: initialValue as Value,
+    initialValue: initialValue,
   });
 </script>
 

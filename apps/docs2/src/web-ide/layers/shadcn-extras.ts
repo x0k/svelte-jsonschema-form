@@ -1,7 +1,7 @@
-import packageJson from "lab/shadcn-extras-starter/package.json";
-import appCss from "lab/shadcn-extras-starter/src/app.css?raw";
-import componentsJson from "lab/shadcn-extras-starter/components.json?raw";
-import layoutSvelte from "lab/shadcn-extras-starter/src/routes/+layout.svelte?raw";
+import packageJson from "%/shadcn-extras-starter/package.json";
+import appCss from "%/shadcn-extras-starter/src/app.css?raw";
+import componentsJson from "%/shadcn-extras-starter/components.json?raw";
+import layoutSvelte from "%/shadcn-extras-starter/src/routes/+layout.svelte?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

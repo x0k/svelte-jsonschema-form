@@ -14,13 +14,13 @@
     {schema}
     initialValue="foo"
     idPrefix="form1"
-    onSubmit={(v: string) => window.alert(v)}
+    onSubmit={(v) => window.alert(v)}
   />
   <SimpleForm
     {...defaults}
     {schema}
     initialValue="bar"
     idPrefix="form2"
-    onSubmit={(v: string) => window.alert(v)}
+    onSubmit={(v) => window.alert(v)}
   />
 </div>

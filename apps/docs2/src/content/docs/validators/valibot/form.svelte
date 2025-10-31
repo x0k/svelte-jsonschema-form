@@ -30,14 +30,13 @@
       v.pipe(v.array(v.picklist(["foo", "bar", "fuzz"])), v.maxLength(2))
     ),
   });
-  type Value = v.InferInput<typeof schema>;
 
   const form = createForm({
     ...defaults,
     ...adapt(schema),
     uiSchema,
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
-    initialValue: initialValue as Value,
+    initialValue: initialValue,
   });
 </script>
 

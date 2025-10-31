@@ -32,6 +32,7 @@
   ],
   "exclude": [
     "dist",
-    "**/*.api.*"
+    "**/*.api.*",
+    "**/validate-functions.js"
   ]
 }

@@ -39,7 +39,7 @@
     timeoutMs: 2000,
   });
 
-  const form = createForm({
+  const form = createForm<Config>({
     ...defaults,
     schema: {
       properties: {
@@ -74,9 +74,7 @@
         },
       },
     },
-    onSubmit(config: Config) {
-      resolve.run(config);
-    },
+    onSubmit: resolve.run,
     get disabled() {
       return resolve.isProcessed;
     },
