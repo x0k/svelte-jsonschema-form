@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { BasicForm, createForm, type FormOptions, type Validator } from '@sjsf/form';
+	import { BasicForm, createForm, type FormOptions } from '@sjsf/form';
 
 	import '../src/app.css';
 
