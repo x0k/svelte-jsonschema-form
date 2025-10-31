@@ -61,7 +61,7 @@ export const schema = {
   },
 } as const satisfies Schema;
 
-export type Data = FromSchema<typeof schema>;
+export type CreateUser = FromSchema<typeof schema>;
 
 export const uiSchema: UiSchemaRoot = {
   "ui:options": {
@@ -158,7 +158,7 @@ export const uiSchema: UiSchemaRoot = {
   },
 };
 
-export const initialValue: Data = {
+export const initialValue: CreateUser = {
   name: "Sarah Johnson",
   email: "sarah.johnson@invalid",
   age: 28,

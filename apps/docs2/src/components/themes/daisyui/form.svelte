@@ -8,11 +8,11 @@
     uiSchema,
     initialValue,
     withFile,
-    type Data,
+    type CreateUser,
   } from "../data";
   import * as defaults from "./defaults";
 
-  const form = createForm<Data>({
+  const form = createForm<CreateUser>({
     ...defaults,
     // required due to several forms on the page
     idPrefix: "daisyui5",

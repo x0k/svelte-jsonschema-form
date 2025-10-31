@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot, type ExtraUiOptions } from "@sjsf/form";
 
   import { createAstro } from "@/astro.svelte";
 
@@ -7,12 +7,14 @@
     schema,
     uiSchema,
     initialValue,
-    type Data,
+    type CreateUser,
     withFile,
   } from "../data";
   import * as defaults from "./defaults";
 
-  const form = createForm<Data>({
+  const { extraUiOptions }: { extraUiOptions: ExtraUiOptions } = $props()
+
+  const form = createForm<CreateUser>({
     ...defaults,
     // required due to several forms on the page
     idPrefix: "skeleton4",
@@ -20,6 +22,7 @@
     schema,
     uiSchema,
     onSubmit: ({ name }) => window.alert(`Hello, ${name}`),
+    extraUiOptions,
   });
   const astro = createAstro();
 </script>

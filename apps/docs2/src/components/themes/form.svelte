@@ -7,7 +7,7 @@
   import Daisyui5 from "./daisyui/form.svelte";
   import Flowbite3 from "./flowbite/form.svelte";
   import Shadcn4 from "./shadcn4/wrapper.svelte";
-  import Skeleton4 from "./skeleton4/form.svelte";
+  import Skeleton4 from "./skeleton4/wrapper.svelte";
 
   let { theme }: { theme: ActualTheme } = $props();
 

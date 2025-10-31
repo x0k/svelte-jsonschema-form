@@ -17,6 +17,7 @@
     theme,
   });
 
+  //@ts-expect-error
   setThemeContext({ components });
 </script>
 

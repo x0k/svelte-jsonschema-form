@@ -24,7 +24,10 @@
       ...createFormValueValidator(schema),
       isValid: () => true,
     },
-    initialValue: initialValue,
+    initialValue: {
+      ...initialValue,
+      id: "123"
+    },
   });
 </script>
 
