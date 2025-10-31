@@ -9,7 +9,7 @@ import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id
 
 import Npm from '@/components/npm.astro';
 
-import modelCode from '%/sveltekit-starter/src/lib/post-model.ts?raw'
+import modelCode from '%/sveltekit-starter/src/lib/post.ts?raw'
 import clientCode from '%/sveltekit-starter/src/routes/form-actions/+page.svelte?raw';
 import serverCode from '%/sveltekit-starter/src/routes/form-actions/+page.server?raw'
 import clientFlexCode from '%/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw';
@@ -53,8 +53,8 @@ export const load = async () => {
     // Should match action name
     form: {
       schema,
-      initialValue: { title: "New post", content: "" } satisfies FormValue,
-    } satisfies InitialFormData,
+      initialValue: { title: "New post", content: "" },
+    } satisfies InitialFormData<CreatePost>,
   };
 };
 ```
@@ -78,7 +78,8 @@ Or use more flexible solution:
 
 The form data type will be inferred from the `PageData` type.
 
-If you did not use `load` function, the third generic parameter of
+If the value of the form cannot be inferred from `action` and
+you did not use `load` function, then the third generic parameter of
 the `createMeta` function will be used as the form data type
 (default type is `SchemaValue`).
 
