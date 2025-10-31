@@ -14,7 +14,7 @@
 	import {
 		customInputAttributes,
 		getFormContext,
-		createId,
+		getId,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -22,7 +22,7 @@
 
 	const ctx = getFormContext();
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 </script>
 
 <SkeletonSwitch

@@ -23,7 +23,7 @@ import {
   type ObjectUiOptions,
 } from "./ui-schema.js";
 import type { FormState } from "./state.js";
-import { createId, createPseudoId } from "./path.js";
+import { getId, createPseudoId } from "./path.js";
 
 interface Disabled {
   disabled: boolean;
@@ -235,7 +235,7 @@ export function inputProps<T extends HTMLInputAttributes, FT>(
   ctx: FormState<FT>
 ) {
   const { required, schema, path } = config;
-  const id = createId(ctx, path);
+  const id = getId(ctx, path);
   props.id = id;
   props.name = id;
   const type = inputType(schema.format);
@@ -263,7 +263,7 @@ export function textareaProps<T extends HTMLTextareaAttributes, FT>(
   ctx: FormState<FT>
 ) {
   const { path, required, schema } = config;
-  const id = createId(ctx, path);
+  const id = getId(ctx, path);
   props.id = id;
   props.name = id;
   props.required = required;
@@ -279,7 +279,7 @@ export function selectProps<T extends HTMLSelectAttributes, FT>(
   ctx: FormState<FT>
 ) {
   const { path, required } = config;
-  const id = createId(ctx, path);
+  const id = getId(ctx, path);
   props.id = id;
   props.name = id;
   props.required = required;
@@ -295,7 +295,7 @@ export function forProp<T, FT>(
   config: Config,
   ctx: FormState<FT>
 ) {
-  props.for = createId(ctx, config.path);
+  props.for = getId(ctx, config.path);
   return props;
 }
 

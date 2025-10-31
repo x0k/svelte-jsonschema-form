@@ -22,7 +22,7 @@
 
 <script lang="ts">
 	import { type FileUploadApi } from '@skeletonlabs/skeleton-svelte';
-	import { customInputAttributes, getFormContext, createId, type ComponentProps } from '@sjsf/form';
+	import { customInputAttributes, getFormContext, getId, type ComponentProps } from '@sjsf/form';
 
 	let {
 		config,
@@ -34,7 +34,7 @@
 
 	const ctx = getFormContext();
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 
 	let lastFiles: FileList | undefined;
 	const attributes = $derived(

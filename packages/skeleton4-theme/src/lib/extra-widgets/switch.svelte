@@ -10,14 +10,14 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, createId, type ComponentProps } from '@sjsf/form';
+	import { customInputAttributes, getFormContext, getId, type ComponentProps } from '@sjsf/form';
 	import { Switch } from '@skeletonlabs/skeleton-svelte';
 
 	let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
 
 	const ctx = getFormContext();
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 </script>
 
 <Switch

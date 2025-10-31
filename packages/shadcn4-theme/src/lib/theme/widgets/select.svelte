@@ -14,7 +14,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
-		createId,
+		getId,
 		type ComponentProps
 	} from '@sjsf/form';
 	import { singleOption, stringIndexMapper } from '@sjsf/form/options.svelte';
@@ -59,7 +59,7 @@
 		return selectAttributes.placeholder;
 	});
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 </script>
 
 <Select bind:value={mapped.value} {...selectAttributes} type="single">

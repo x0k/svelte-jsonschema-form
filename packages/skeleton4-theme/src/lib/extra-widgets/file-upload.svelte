@@ -21,7 +21,7 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, createId, type ComponentProps } from '@sjsf/form';
+	import { customInputAttributes, getFormContext, getId, type ComponentProps } from '@sjsf/form';
 	import { FileUpload } from '@skeletonlabs/skeleton-svelte';
 
 	let {
@@ -34,7 +34,7 @@
 
 	const ctx = getFormContext();
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 
 	const componentId = $props.id();
 

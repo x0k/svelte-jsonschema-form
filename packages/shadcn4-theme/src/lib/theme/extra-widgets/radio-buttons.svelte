@@ -36,7 +36,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
-		createId,
+		getId,
 		uiOptionProps,
 		type ComponentProps,
 		ariaInvalidProp
@@ -68,7 +68,7 @@
 	const attributes = $derived(
 		customInputAttributes(ctx, config, 'shadcn4RadioButtons', {
 			type: 'single',
-			id: createId(ctx, config.path),
+			id: getId(ctx, config.path),
 			variant: 'outline',
 			onValueChange: () => {
 				oninput?.();

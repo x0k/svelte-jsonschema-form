@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, createId, type ComponentProps } from '@sjsf/form';
+	import { customInputAttributes, getFormContext, getId, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
 	import { Combobox, Portal, useListCollection } from '@skeletonlabs/skeleton-svelte';
 
@@ -44,7 +44,7 @@
 		})
 	);
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 
 	const attributes = $derived(
 		customInputAttributes(ctx, config, 'skeleton4Combobox', {

@@ -18,7 +18,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps, customInputAttributes, createId } from '@sjsf/form';
+	import { getFormContext, type ComponentProps, customInputAttributes, getId } from '@sjsf/form';
 
 	let {
 		value = $bindable(),
@@ -29,7 +29,7 @@
 
 	const ctx = getFormContext();
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 </script>
 
 <SkeletonSlider

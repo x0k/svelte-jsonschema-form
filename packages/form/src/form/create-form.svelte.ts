@@ -306,7 +306,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     })
   );
   const idCache = new WeakMap<FieldPath, Id>();
-  const createId = $derived(
+  const idFromPath = $derived(
     weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
   );
   const errors = $derived(
@@ -501,7 +501,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       return pathsTrieRef;
     },
     get [FORM_ID_FROM_PATH]() {
-      return createId;
+      return idFromPath;
     },
     get [FORM_ROOT_PATH]() {
       return rootPath;

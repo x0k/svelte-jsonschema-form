@@ -29,7 +29,7 @@
 
 <script lang="ts">
 	import XIcon from '@lucide/svelte/icons/x';
-	import { createId, customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getId, customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 	import { getThemeContext } from '@sjsf/shadcn4-theme';
 
 	import { displaySize } from '$lib/components/ui/file-drop-zone/index.js';
@@ -45,7 +45,7 @@
 
 	const { Button, FileDropZone } = $derived(themeCtx.components);
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 
 	async function onUpload(files: File[]) {
 		const data = new DataTransfer();

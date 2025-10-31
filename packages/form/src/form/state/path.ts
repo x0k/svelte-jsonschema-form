@@ -17,14 +17,14 @@ import type { FormState } from "./state.js";
 /**
  * @query
  */
-export function createId<T>(ctx: FormState<T>, path: FieldPath): Id {
+export function getId<T>(ctx: FormState<T>, path: FieldPath): Id {
   return ctx[FORM_ID_FROM_PATH](path);
 }
 
 /**
  * @query
  */
-function createPath<T>(ctx: FormState<T>, path: RPath): FieldPath {
+function getFieldPath<T>(ctx: FormState<T>, path: RPath): FieldPath {
   return internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path)
 }
 
@@ -36,7 +36,7 @@ export function createChildPath<T>(
   parentPath: FieldPath,
   indexOrProperty: string | number
 ) {
-  return createPath(ctx, parentPath.concat(indexOrProperty));
+  return getFieldPath(ctx, parentPath.concat(indexOrProperty));
 }
 
 /**
@@ -58,14 +58,14 @@ export function createPseudoId<T>(
   path: FieldPath,
   element: FieldPseudoElement
 ): Id {
-  return createId(ctx, createPseudoPath(ctx, path, element));
+  return getId(ctx, createPseudoPath(ctx, path, element));
 }
 
 /**
  * @query
  */
 export function createIdByPath<T>(ctx: FormState<T>, path: RPath): Id {
-  return createId(ctx, createPath(ctx, path));
+  return getId(ctx, getFieldPath(ctx, path));
 }
 
 /**

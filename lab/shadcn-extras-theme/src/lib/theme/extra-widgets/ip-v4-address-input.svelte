@@ -24,7 +24,7 @@
 </script>
 
 <script lang="ts">
-	import { createId, getFormContext, uiOptionProps, type ComponentProps } from '@sjsf/form';
+	import { getId, getFormContext, uiOptionProps, type ComponentProps } from '@sjsf/form';
 	import { getThemeContext } from '@sjsf/shadcn4-theme';
 
 	let {
@@ -38,7 +38,7 @@
 
 	const { IPv4AddressInput } = $derived(themeCtx.components);
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 </script>
 
 <IPv4AddressInput

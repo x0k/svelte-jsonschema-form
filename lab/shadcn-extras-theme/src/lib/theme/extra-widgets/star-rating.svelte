@@ -26,7 +26,7 @@
 </script>
 
 <script lang="ts">
-	import { createId, customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getId, customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 	import { getThemeContext } from '@sjsf/shadcn4-theme';
 
 	let { config, value = $bindable() }: ComponentProps['shadcnExtrasStarRatingWidget'] = $props();
@@ -36,7 +36,7 @@
 
 	const { StarRatingRoot, StarRatingStar } = $derived(themeCtx.components);
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 </script>
 
 <StarRatingRoot
