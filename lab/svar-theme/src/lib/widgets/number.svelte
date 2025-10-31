@@ -1,39 +1,41 @@
 <script lang="ts" module>
-  import type { HTMLInputAttributes } from "svelte/elements";
+	import type { ComponentProps as SvelteComponentProps } from 'svelte';
+	import { Text as SvarText } from '@svar-ui/svelte-core';
 
-  declare module "@sjsf/form" {
-    interface UiOptions {
-      number?: HTMLInputAttributes;
-    }
-  }
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			svarNumber?: SvelteComponentProps<typeof SvarText>;
+		}
+	}
 </script>
 
 <script lang="ts">
-  import {
-    Datalist,
-    getFormContext,
-    inputAttributes,
-    type ComponentProps,
-  } from "@sjsf/form";
+	import {
+		getFormContext,
+		getId,
+		isDisabled,
+		uiOptionProps,
+		type ComponentProps
+	} from '@sjsf/form';
 
-  let {
-    value = $bindable(),
-    config,
-    handlers,
-  }: ComponentProps["numberWidget"] = $props();
+	let { value = $bindable(), config, errors }: ComponentProps['numberWidget'] = $props();
 
-  const ctx = getFormContext();
+	const ctx = getFormContext();
 
-  const attributes = $derived(
-    inputAttributes(ctx, config, "number", handlers, {
-      type: "number",
-      style: "flex-grow: 1",
-    })
-  );
+	const id = $derived(getId(ctx, config.path));
 </script>
 
-<input
-  bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
-  {...attributes}
+<SvarText
+	type="number"
+	bind:value={() => value ?? '', (v) => (value = (v as number) ?? undefined)}
+	{...uiOptionProps('svarNumber')(
+		{
+			id,
+			readonly: config.schema.readOnly,
+			disabled: isDisabled(ctx),
+			error: errors.length > 0
+		},
+		config,
+		ctx
+	)}
 />
-<Datalist id={attributes.list} {config} />

@@ -1,6 +1,7 @@
 <script lang="ts" module>
 	import type { ComponentProps as SvelteComponentProps } from 'svelte';
 	import { Button as SvarButton } from '@svar-ui/svelte-core';
+	import type { ButtonType } from '@sjsf/form/fields/components';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -21,7 +22,6 @@
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
-	import type { ButtonType } from '@sjsf/form/fields/components';
 
 	const { children, onclick, config, disabled, type }: ComponentProps['button'] = $props();
 

@@ -1,46 +1,39 @@
 <script lang="ts" module>
-  import type { HTMLInputAttributes } from "svelte/elements";
+	import type { ComponentProps as SvelteComponentProps } from 'svelte';
+	import { Checkbox as SvarCheckbox } from '@svar-ui/svelte-core';
 
-  declare module "@sjsf/form" {
-    interface UiOptions {
-      checkbox?: HTMLInputAttributes;
-    }
-  }
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			svarCheckbox?: SvelteComponentProps<typeof SvarCheckbox>;
+		}
+	}
 </script>
 
 <script lang="ts">
-  import {
-    getFormContext,
-    inputAttributes,
-    type ComponentProps,
-  } from "@sjsf/form";
+	import {
+		getFormContext,
+		getId,
+		isDisabled,
+		uiOptionProps,
+		type ComponentProps
+	} from '@sjsf/form';
 
-  let {
-    config,
-    value = $bindable(),
-    handlers,
-  }: ComponentProps["checkboxWidget"] = $props();
+	let { config, value = $bindable() }: ComponentProps['checkboxWidget'] = $props();
 
-  const ctx = getFormContext();
+	const ctx = getFormContext();
 
-  const attributes = $derived(
-    inputAttributes(ctx, config, "checkbox", handlers, { type: "checkbox" })
-  );
+	const id = $derived(getId(ctx, config.path));
 </script>
 
-<label>
-  <input
-    type="checkbox"
-    bind:checked={() => value ?? false, (v) => (value = v)}
-    {...attributes}
-  />
-  {config.title}
-</label>
-
-<style>
-  label {
-    display: flex;
-    align-items: start;
-    gap: 0.2rem;
-  }
-</style>
+<SvarCheckbox
+	bind:value={() => value ?? false, (v) => (value = v)}
+	{...uiOptionProps('svarCheckbox')(
+		{
+			id,
+			label: config.title,
+			disabled: isDisabled(ctx)
+		},
+		config,
+		ctx
+	)}
+/>

@@ -1,52 +1,48 @@
 <script lang="ts" module>
-  import type { HTMLSelectAttributes } from "svelte/elements";
+	import type { ComponentProps as SvelteComponentProps } from 'svelte';
+	import { Select as SvarSelect } from '@svar-ui/svelte-core';
 
-  declare module "@sjsf/form" {
-    interface UiOptions {
-      select?: HTMLSelectAttributes;
-    }
-  }
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			savrSelect?: SvelteComponentProps<typeof SvarSelect>;
+		}
+	}
 </script>
 
 <script lang="ts">
-  import {
-    getFormContext,
-    selectAttributes,
-    type ComponentProps,
-  } from "@sjsf/form";
-  import { indexMapper, singleOption } from "@sjsf/form/options.svelte";
+	import {
+		getFormContext,
+		getId,
+		isDisabled,
+		uiOptionProps,
+		type ComponentProps
+	} from '@sjsf/form';
+	import { idMapper, singleOption, UNDEFINED_ID } from '@sjsf/form/options.svelte';
 
-  let {
-    handlers,
-    value = $bindable(),
-    options,
-    config,
-  }: ComponentProps["selectWidget"] = $props();
+	let { value = $bindable(), options, config, errors }: ComponentProps['selectWidget'] = $props();
 
-  const ctx = getFormContext();
+	const ctx = getFormContext();
 
-  const attributes = $derived(
-    selectAttributes(ctx, config, "select", handlers, {
-      style: "flex-grow: 1; padding: 1px 2px;",
-    })
-  );
-
-  const mapped = $derived(
-    singleOption({
-      mapper: () => indexMapper(options),
-      value: () => value,
-      update: (v) => (value = v),
-    })
-  );
+	const mapped = $derived(
+		singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
+	);
+	const id = $derived(getId(ctx, config.path));
+	const { placeholder = '', ...attributes } = $derived(
+		uiOptionProps('savrSelect')(
+			{ id, disabled: isDisabled(ctx), error: errors.length > 0 },
+			config,
+			ctx
+		)
+	);
+	const items = $derived(
+		config.schema.default === undefined
+			? [{ id: UNDEFINED_ID, label: placeholder }, ...options]
+			: options
+	);
 </script>
 
-<select bind:value={mapped.value} {...attributes}>
-  {#if config.schema.default === undefined}
-    <option value={-1}>{attributes.placeholder}</option>
-  {/if}
-  {#each options as option, index (option.id)}
-    <option value={index} disabled={option.disabled}>
-      {option.label}
-    </option>
-  {/each}
-</select>
+<SvarSelect options={items} bind:value={mapped.value} {...attributes} />
