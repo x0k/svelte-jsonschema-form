@@ -13,7 +13,7 @@
 		getFormContext,
 		customInputAttributes,
 		type ComponentProps,
-		createId,
+		getId,
 	} from '@sjsf/form';
 	import { DatePicker, parseDate, Portal } from '@skeletonlabs/skeleton-svelte';
 
@@ -21,7 +21,7 @@
 
 	const ctx = getFormContext();
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 </script>
 
 <DatePicker

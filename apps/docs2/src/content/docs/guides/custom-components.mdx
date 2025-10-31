@@ -254,7 +254,7 @@ previous category, have the suffix `Attributes`.
       }
     }
 
-    import { customInputAttributes, getFormContext, type ComponentProps, createId } from '@sjsf/form';
+    import { customInputAttributes, getFormContext, type ComponentProps, getId } from '@sjsf/form';
 
     let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
 
@@ -262,7 +262,7 @@ previous category, have the suffix `Attributes`.
 
     const attributes = $derived(customInputAttributes(ctx, config, 'skeleton3Switch', {
       ids: {
-        hiddenInput: createId(ctx, config.path)
+        hiddenInput: getId(ctx, config.path)
       },
       required: config.required,
       readOnly: config.schema.readOnly,

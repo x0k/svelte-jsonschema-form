@@ -31,7 +31,7 @@ import {
   getFieldsValidationMode,
   setFieldState,
   FIELD_CHANGED,
-  createChildPath,
+  getChildPath,
   type FieldErrors,
 } from "@/form/index.js";
 
@@ -194,7 +194,7 @@ export function createObjectContext<T>({
           : (config.uiSchema[property] as UiSchemaDefinition | undefined)
       );
       return {
-        path: createChildPath(ctx, config.path, property),
+        path: getChildPath(ctx, config.path, property),
         title: uiTitleOption(ctx, uiSchema) ?? schema.title ?? property,
         schema,
         uiSchema,

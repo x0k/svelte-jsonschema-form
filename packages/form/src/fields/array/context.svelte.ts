@@ -28,7 +28,7 @@ import {
   type UiOption,
   setFieldState,
   FIELD_CHANGED,
-  createChildPath,
+  getChildPath,
   type FieldErrors,
 } from "@/form/index.js";
 
@@ -219,7 +219,7 @@ export function createArrayContext<T>({
     itemConfig(config, item, index) {
       const schema = retrieveSchema(ctx, itemSchema, item);
       return {
-        path: createChildPath(ctx, config.path, index),
+        path: getChildPath(ctx, config.path, index),
         title: items.itemTitle(
           itemUiTitle ?? schema.title ?? config.title,
           index,
@@ -339,7 +339,7 @@ export function createTupleContext<T>({
             : config.uiSchema.items
       );
       return {
-        path: createChildPath(ctx, config.path, index),
+        path: getChildPath(ctx, config.path, index),
         title: items.itemTitle(
           uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
           index,

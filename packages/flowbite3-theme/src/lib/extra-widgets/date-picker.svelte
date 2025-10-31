@@ -14,7 +14,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
-		createId,
+		getId,
 		type ComponentProps
 	} from '@sjsf/form';
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
@@ -28,7 +28,7 @@
 
 	const ctx = getFormContext();
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 
 	function onChange() {
 		handlers.oninput?.();

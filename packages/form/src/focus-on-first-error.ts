@@ -3,7 +3,7 @@ import { tick } from "svelte";
 import {
   type Id,
   type FormState,
-  createIdByPath,
+  getIdByPath,
   encodePseudoElement,
   type FailureValidationResult,
 } from "./form/index.js";
@@ -70,11 +70,11 @@ export function createFocusOnFirstError(
     }
     const { path } = errors[0]!;
     const focusAction = getFocusAction(
-      getFocusableElement(form, createIdByPath(ctx, path), options),
+      getFocusableElement(form, getIdByPath(ctx, path), options),
       () =>
         getErrorsList(
           form,
-          createIdByPath(ctx, path.concat(encodePseudoElement("errors")))
+          getIdByPath(ctx, path.concat(encodePseudoElement("errors")))
         )
     );
     if (focusAction === null) {

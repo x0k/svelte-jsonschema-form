@@ -27,7 +27,7 @@
     getFieldsErrors,
     getFieldErrors,
     type FieldPath,
-    createChildPath,
+    getChildPath,
     getFieldAction,
   } from "@/form/index.js";
   import "@/form/extra-fields/aggregated.js";
@@ -59,7 +59,7 @@
     const path = config.path;
     const v = value;
     const nextPaths = v
-      ? Object.keys(v).map((k) => createChildPath(ctx, path, k))
+      ? Object.keys(v).map((k) => getChildPath(ctx, path, k))
       : [];
     nextPaths.unshift(path);
     return lastPaths && comparePaths(nextPaths, lastPaths) === 0

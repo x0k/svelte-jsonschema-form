@@ -43,7 +43,7 @@
 	import {
 		buttonAttributes,
 		getFormContext,
-		createId,
+		getId,
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -72,7 +72,7 @@
 		return (date: string) => format.format(new Date(date));
 	});
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 
 	const anchorName = $derived(formatAsCustomPropertyName(id));
 

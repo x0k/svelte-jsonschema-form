@@ -1,5 +1,5 @@
 import {
-  createIdByPath,
+  getIdByPath,
   type FailureValidationResult,
   type FormState,
   type FormValue,

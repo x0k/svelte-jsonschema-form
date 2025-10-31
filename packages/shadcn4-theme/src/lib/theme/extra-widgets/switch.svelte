@@ -23,7 +23,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
-		createId,
+		getId,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -38,7 +38,7 @@
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 </script>
 
 <div class="flex items-center space-x-3">

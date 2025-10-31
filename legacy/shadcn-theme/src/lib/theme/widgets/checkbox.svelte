@@ -11,7 +11,7 @@
 
 <script lang="ts">
 	import {
-		createId,
+		getId,
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
@@ -28,7 +28,7 @@
 
 	const { Checkbox, Label } = $derived(themeCtx.components);
 
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 
 	const { oninput, onchange, ...btuttonHandlers } = $derived(handlers);
 

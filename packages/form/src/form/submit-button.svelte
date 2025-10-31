@@ -1,7 +1,7 @@
 <script lang="ts">
   import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import {
-    createPseudoPath,
+    getPseudoPath,
     getComponent,
     getFormContext,
     retrieveTranslate,
@@ -12,7 +12,7 @@
   const ctx = getFormContext();
 
   const config: Config = $derived({
-    path: createPseudoPath(ctx, ctx[FORM_ROOT_PATH], "submit"),
+    path: getPseudoPath(ctx, ctx[FORM_ROOT_PATH], "submit"),
     title: "",
     schema: ctx[FORM_SCHEMA],
     uiSchema: ctx[FORM_UI_SCHEMA],

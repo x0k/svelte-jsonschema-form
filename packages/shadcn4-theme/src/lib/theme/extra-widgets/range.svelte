@@ -17,7 +17,7 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, createId, type ComponentProps } from '@sjsf/form';
+	import { customInputAttributes, getFormContext, getId, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context.js';
 
@@ -28,7 +28,7 @@
 
 	let { value = $bindable(), config, handlers }: ComponentProps['rangeWidget'] = $props();
 	
-	const id = $derived(createId(ctx, config.path));
+	const id = $derived(getId(ctx, config.path));
 </script>
 
 <Slider

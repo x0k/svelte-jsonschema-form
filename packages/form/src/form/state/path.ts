@@ -17,64 +17,64 @@ import type { FormState } from "./state.js";
 /**
  * @query
  */
-export function createId<T>(ctx: FormState<T>, path: FieldPath): Id {
+export function getId<T>(ctx: FormState<T>, path: FieldPath): Id {
   return ctx[FORM_ID_FROM_PATH](path);
 }
 
 /**
  * @query
  */
-function createPath<T>(ctx: FormState<T>, path: RPath): FieldPath {
+function getFieldPath<T>(ctx: FormState<T>, path: RPath): FieldPath {
   return internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path)
 }
 
 /**
  * @query
  */
-export function createChildPath<T>(
+export function getChildPath<T>(
   ctx: FormState<T>,
   parentPath: FieldPath,
   indexOrProperty: string | number
 ) {
-  return createPath(ctx, parentPath.concat(indexOrProperty));
+  return getFieldPath(ctx, parentPath.concat(indexOrProperty));
 }
 
 /**
  * @query
  */
-export function createPseudoPath<T>(
+export function getPseudoPath<T>(
   ctx: FormState<T>,
   parentPath: FieldPath,
   element: FieldPseudoElement
 ) {
-  return createChildPath(ctx, parentPath, encodePseudoElement(element));
+  return getChildPath(ctx, parentPath, encodePseudoElement(element));
 }
 
 /**
  * @query
  */
-export function createPseudoId<T>(
+export function getPseudoId<T>(
   ctx: FormState<T>,
   path: FieldPath,
   element: FieldPseudoElement
 ): Id {
-  return createId(ctx, createPseudoPath(ctx, path, element));
+  return getId(ctx, getPseudoPath(ctx, path, element));
 }
 
 /**
  * @query
  */
-export function createIdByPath<T>(ctx: FormState<T>, path: RPath): Id {
-  return createId(ctx, createPath(ctx, path));
+export function getIdByPath<T>(ctx: FormState<T>, path: RPath): Id {
+  return getId(ctx, getFieldPath(ctx, path));
 }
 
 /**
  * @query
  */
-export function createPseudoIdByPath<T>(
+export function getPseudoIdByPath<T>(
   ctx: FormState<T>,
   path: RPath,
   element: FieldPseudoElement
 ): Id {
-  return createIdByPath(ctx, path.concat(encodePseudoElement(element)));
+  return getIdByPath(ctx, path.concat(encodePseudoElement(element)));
 }

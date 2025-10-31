@@ -32,7 +32,7 @@
 
 <script lang="ts">
 	import {
-	createId,
+	getId,
 		customInputAttributes,
 		getFormContext,
 		uiOptionProps,
@@ -63,7 +63,7 @@
 	const attributes = $derived(
 		customInputAttributes(ctx, config, 'shadcnRadioButtons', {
 			type: 'single',
-			id: createId(ctx, config.path),
+			id: getId(ctx, config.path),
 			'aria-required': config.required,
 			'aria-readonly': config.schema.readOnly,
 			onValueChange: handlers.onchange

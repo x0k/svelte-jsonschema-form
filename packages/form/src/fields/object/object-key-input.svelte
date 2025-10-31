@@ -9,7 +9,7 @@
     retrieveUiOption,
     uiTitleOption,
     type Translate,
-    createPseudoPath,
+    getPseudoPath,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.svelte.js";
@@ -30,7 +30,7 @@
   const objCtx = getObjectContext();
 
   const config: Config = $derived({
-    path: createPseudoPath(ctx, parent.path, "key-input"),
+    path: getPseudoPath(ctx, parent.path, "key-input"),
     title:
       uiTitleOption(ctx, uiSchema) ??
       translate("key-input-title", { name: property }),

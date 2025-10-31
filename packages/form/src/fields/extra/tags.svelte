@@ -12,7 +12,7 @@
 
 <script lang="ts">
   import {
-    createChildPath,
+    getChildPath,
     getComponent,
     getFieldAction,
     getFieldErrors,
@@ -57,7 +57,7 @@
     }
     const paths = [path];
     for (let i = 0; i < l; i++) {
-      paths.push(createChildPath(ctx, path, i));
+      paths.push(getChildPath(ctx, path, i));
     }
     return paths;
   });
