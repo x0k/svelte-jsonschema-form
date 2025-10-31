@@ -17,6 +17,11 @@
       return rootNode!;
     },
   };
+  const portalProps = {
+    get target() {
+      return divEl
+    }
+  }
 
   const form = createForm({
     ...defaults,
@@ -30,7 +35,9 @@
       skeleton4Switch: options,
       skeleton4Tags: options,
       skeleton4Combobox: options,
-      skeleton4DatePicker: options
+      skeleton4ComboboxPortal: portalProps,
+      skeleton4DatePicker: options,
+      skeleton4DatePickerPortal: portalProps,
     }),
   });
 

@@ -12,6 +12,11 @@
       return rootNode;
     },
   };
+  const portalProps = {
+    get target() {
+      return portalEl
+    }
+  }
 
   const extraUiOptions: ExtraUiOptions = fromRecord({
     skeleton4Slider: options,
@@ -21,7 +26,9 @@
     skeleton4Switch: options,
     skeleton4Tags: options,
     skeleton4DatePicker: options,
+    skeleton4DatePickerPortal: portalProps,
     skeleton4Combobox: options,
+    skeleton4ComboboxPortal: portalProps
   })
 </script>
 
