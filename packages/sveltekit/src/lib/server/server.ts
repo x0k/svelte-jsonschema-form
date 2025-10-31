@@ -27,8 +27,10 @@ import {
   FORM_DATA_FILE_PREFIX,
   JSON_CHUNKS_KEY,
   type EntryConverter,
+  type InvalidFormData,
   type SendData,
-  type ValidatedFormData
+  type ValidatedFormData,
+  type ValidFormData
 } from '$lib/model.js';
 
 import { parseSchemaValue } from './schema-value-parser.js';
@@ -109,7 +111,7 @@ export function createFormHandler<T, SD extends SendData>({
     if (typeof idPrefix !== 'string') {
       throw new Error(`"${SJSF_ID_PREFIX}" key is missing in FormData or not a string`);
     }
-    const data = formData.has(JSON_CHUNKS_KEY)
+    const data: FormValue = formData.has(JSON_CHUNKS_KEY)
       ? JSON.parse(formData.getAll(JSON_CHUNKS_KEY).join(''), createReviver(formData))
       : await parseSchemaValue(signal, {
           idPrefix,
@@ -131,14 +133,20 @@ export function createFormHandler<T, SD extends SendData>({
       const isValid = errors.length === 0;
       return {
         idPrefix: idPrefix as string,
-        isValid,
-        data: sendData ? data : undefined,
         updateData: !isValid && sendData === true,
-        errors
+        errors,
+        ...(isValid
+          ? ({
+              isValid,
+              data: sendData ? result.value : undefined
+            } as ValidFormData<T, SD>)
+          : ({
+              isValid,
+              data: sendData ? data : undefined
+            } as InvalidFormData<SD>))
       } satisfies ValidatedFormData<T, SD>;
     }
-    // TODO: Use `T` in `ValidatedFormData` type
-    return [validated(result.errors ?? []), data, validated];
+    return [validated(result.errors ?? []), result.value, validated];
   };
 }
 

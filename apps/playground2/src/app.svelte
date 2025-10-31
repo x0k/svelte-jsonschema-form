@@ -17,7 +17,6 @@
     Form,
     Content,
     SubmitButton,
-    type FormValueValidator,
     type FormValue,
     getValueSnapshot,
   } from "@sjsf/form";
@@ -195,7 +194,7 @@
               : formValue
           );
         },
-      } satisfies FormValueValidator<FormValue>;
+      };
     },
     merger: (options) =>
       createFormMerger({

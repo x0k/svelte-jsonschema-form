@@ -26,20 +26,21 @@ export type InitialFormData<T = unknown> = SerializableOptionalFormOptions<T> & 
 
 export type SendData = boolean | 'withoutClientSideUpdate';
 
+export interface ValidFormData<T, SD extends SendData> {
+  isValid: true;
+  data: SD extends false ? undefined : T;
+}
+
+export interface InvalidFormData<SD extends SendData> {
+  isValid: false;
+  data: SD extends false ? undefined : FormValue;
+}
+
 export type ValidatedFormData<T, SD extends SendData> = {
   idPrefix: string;
   updateData: boolean;
   errors: ReadonlyArray<ValidationError>;
-} & (
-  | {
-      isValid: true;
-      data: SD extends false ? undefined : T;
-    }
-  | {
-      isValid: false;
-      data: SD extends false ? undefined : FormValue;
-    }
-);
+} & (ValidFormData<T, SD> | InvalidFormData<SD>);
 
 export type Entry<T> = [key: string, value: T];
 

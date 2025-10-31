@@ -6,7 +6,8 @@ import {
   type FormOptions,
   updateErrors,
   DEFAULT_ID_PREFIX,
-  setValue
+  setValue,
+  getValueSnapshot
 } from '@sjsf/form';
 
 import { page } from '$app/state';
@@ -103,6 +104,9 @@ export function setupSvelteKitForm<
   requestOptions: SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']> = formOptions
 ) {
   const request = createSvelteKitRequest(meta, requestOptions);
+  function onSubmit(_: Meta['__formValue'], e: SubmitEvent) {
+    request.run(getValueSnapshot(form), e);
+  }
   const form = createSvelteKitForm(
     meta,
     new Proxy(formOptions, {
@@ -114,7 +118,7 @@ export function setupSvelteKitForm<
       },
       get(target, p, receiver) {
         if (p === 'onSubmit') {
-          return request.run;
+          return onSubmit;
         }
         return Reflect.get(target, p, receiver);
       }

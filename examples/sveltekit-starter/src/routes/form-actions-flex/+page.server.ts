@@ -3,19 +3,19 @@ import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
 
 import * as defaults from "$lib/form-defaults";
-import { type FormValue, schema } from "$lib/post-model";
+import { type CreatePost, schema } from "$lib/post";
 
 export const load = async () => {
   return {
     // Should match action name
     form: {
       schema,
-      initialValue: { title: "New post", content: "" } satisfies FormValue,
-    } satisfies InitialFormData,
+      initialValue: { title: "New post", content: "" },
+    } satisfies InitialFormData<CreatePost>,
   };
 };
 
-const handleForm = createFormHandler<FormValue, true>({
+const handleForm = createFormHandler<CreatePost, true>({
   ...defaults,
   schema,
   sendData: true,

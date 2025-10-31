@@ -7,7 +7,6 @@
     ON_INPUT,
     setFormContext,
     validate,
-    type FormValueValidator,
   } from "@sjsf/form";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
@@ -41,7 +40,7 @@
           );
           return v.validateFormValue(rootSchema, cleanData);
         },
-      } satisfies FormValueValidator<unknown>;
+      };
     },
     get initialValue() {
       return untrack(() => $state.snapshot(node.options));
