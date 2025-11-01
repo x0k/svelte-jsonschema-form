@@ -1,5 +1,5 @@
 import type { DeepPartial, MaybePromise } from '@sjsf/form/lib/types';
-import type { RPath, SchemaDefinition } from '@sjsf/form/core';
+import type { RPath, SchemaDefinition, SchemaValue } from '@sjsf/form/core';
 import type {
   FieldValue,
   FormOptions,
@@ -57,3 +57,5 @@ export type EntryConverter<T> = (
   signal: AbortSignal,
   options: EntryConverterOptions<T>
 ) => MaybePromise<FieldValue>;
+
+export type EnumItemDecoder = (options: SchemaValue[], value: string) => SchemaValue | undefined;

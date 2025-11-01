@@ -3,14 +3,14 @@ import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from '@sjsf/form';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
-import { createFormDataEntryConverter } from '$lib/internal/convert-form-data-entry.js';
+import { createEnumItemDecoder, createFormDataEntryConverter } from '$lib/internal/convert-form-data-entry.js';
 
+import { DEFAULT_PSEUDO_PREFIX, decodeOptionIndex } from '../id-builder.js';
 import {
   parseSchemaValue,
   type Input,
   type SchemaValueParserOptions
 } from './schema-value-parser.js';
-import { DEFAULT_PSEUDO_PREFIX } from '../id-builder.js';
 
 const opts = ({
   idPrefix = DEFAULT_ID_PREFIX,
@@ -24,7 +24,8 @@ const opts = ({
     merger,
     validator,
     rootSchema: schema,
-    rootUiSchema: uiSchema
+    rootUiSchema: uiSchema,
+    enumItemDecoder: createEnumItemDecoder(decodeOptionIndex)
   })
 }: Partial<
   SchemaValueParserOptions<FormDataEntryValue>

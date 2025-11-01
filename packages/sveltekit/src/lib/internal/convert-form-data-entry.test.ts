@@ -3,7 +3,9 @@ import type { RPath, Schema } from '@sjsf/form/core';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
+import { decodeOptionIndex } from '../id-builder.js';
 import {
+  createEnumItemDecoder,
   createFormDataEntryConverter,
   type FormDataConverterOptions
 } from './convert-form-data-entry.js';
@@ -12,7 +14,8 @@ const defaultOptions: FormDataConverterOptions = {
   validator: createFormValidator(),
   merger: createMerger(),
   rootSchema: {},
-  rootUiSchema: {}
+  rootUiSchema: {},
+  enumItemDecoder: createEnumItemDecoder(decodeOptionIndex)
 };
 
 const convert = createFormDataEntryConverter(defaultOptions);
@@ -56,23 +59,22 @@ describe('convertFormDataEntries', async () => {
     await expect(
       convert(c.signal, { schema, uiSchema: {}, path: [], value: 'bar' })
     ).resolves.toEqual('bar');
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path: [], value: 'gas' })
+    ).rejects.toThrow(/does not match the schema/);
   });
-  it('Should return correct value from enum of string numbers', async () => {
+  it('Should return correct value for enum with id mapper', async () => {
     const schema: Schema = {
       type: 'string',
       enum: ['1', '2', '3']
     };
     const path: RPath = [];
-    // First, the value is treated as an index
-    await expect(convert(c.signal, { schema, uiSchema: {}, path, value: '0' })).resolves.toEqual(
-      '1'
-    );
-    // Then we check if there is a value in the enumeration
-    await expect(convert(c.signal, { schema, uiSchema: {}, path, value: '3' })).resolves.toEqual(
-      '3'
-    );
-    // If nothing fits, it's an error
-    await expect(convert(c.signal, { schema, uiSchema: {}, path, value: '4' })).rejects.toThrow();
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path, value: 'root::0' })
+    ).resolves.toEqual('1');
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path, value: 'root::3' })
+    ).rejects.toThrow(/does not match the schema/);
   });
   it('Should return correct value from anyOf', async () => {
     const schema: Schema = {
@@ -97,7 +99,7 @@ describe('convertFormDataEntries', async () => {
       ]
     };
     await expect(
-      convert(c.signal, { schema, uiSchema: {}, path: ['currentColor'], value: '1' })
+      convert(c.signal, { schema, uiSchema: {}, path: ['currentColor'], value: 'root::1' })
     ).resolves.toEqual('#00ff00');
   });
   it('Should return correct value from oneOf', async () => {
@@ -110,13 +112,7 @@ describe('convertFormDataEntries', async () => {
       ]
     };
     await expect(
-      convert(c.signal, { schema, uiSchema: {}, path: ['toggleMask'], value: '0' })
+      convert(c.signal, { schema, uiSchema: {}, path: ['toggleMask'], value: 'root::0' })
     ).resolves.toEqual(true);
-  });
-  it('Should return correct value from enum', async () => {
-    const schema: Schema = { type: 'string', enum: ['foo', 'bar', 'fuzz', 'qux'] };
-    await expect(
-      convert(c.signal, { schema, uiSchema: {}, path: ['multipleChoicesList'], value: '1' })
-    ).resolves.toEqual('bar');
   });
 });

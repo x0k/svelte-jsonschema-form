@@ -1,7 +1,14 @@
-export interface Node<T, V> {
+export interface EmptyNode<T, V> {
   values: Map<T, Node<T, V>>;
-  value: V | undefined;
+  value: undefined;
 }
+
+export interface ValueNode<T, V> {
+  values: Map<T, Node<T, V>>;
+  value: V;
+}
+
+export type Node<T, V> = EmptyNode<T, V> | ValueNode<T, V>;
 
 export type Trie<T, V> = Node<T, V> | undefined;
 
@@ -49,4 +56,15 @@ export function getValueByKeys<T, V>(
   keys: Seq<T>
 ): V | undefined {
   return getNodeByKeys(trie, keys)?.value;
+}
+
+export function getNodeByShortestPrefix<T, V>(
+  trie: Trie<T, V>,
+  keys: Seq<T>
+): Trie<T, V> {
+  let i = 0;
+  while (trie !== undefined && trie.value === undefined && i < keys.length) {
+    trie = trie.values.get(keys[i++]!);
+  }
+  return trie;
 }

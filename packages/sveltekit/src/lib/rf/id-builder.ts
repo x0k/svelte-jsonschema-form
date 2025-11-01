@@ -96,3 +96,14 @@ export function createFormIdBuilder({
     }
   };
 }
+
+export function decodeOptionIndex(value: string): number | undefined {
+  const index = value.lastIndexOf(DEFAULT_PSEUDO_PREFIX);
+  if (index > 0) {
+    const n = Number(value.substring(index + DEFAULT_PSEUDO_PREFIX.length));
+    if (Number.isInteger(n)) {
+      return n;
+    }
+  }
+  return undefined;
+}

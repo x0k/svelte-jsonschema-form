@@ -5,8 +5,12 @@ import { createFormValidator } from '@sjsf/ajv8-validator';
 
 import type { Entries } from '$lib/model.js';
 
+import {
+  createEnumItemDecoder,
+  createFormDataEntryConverter
+} from '../internal/convert-form-data-entry.js';
+import { decodeOptionIndex } from '../id-builder.js';
 import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
-import { createFormDataEntryConverter } from '../internal/convert-form-data-entry.js';
 
 const opts = ({
   schema = {},
@@ -22,7 +26,8 @@ const opts = ({
     merger,
     validator,
     rootSchema: schema,
-    rootUiSchema: uiSchema
+    rootUiSchema: uiSchema,
+    enumItemDecoder: createEnumItemDecoder(decodeOptionIndex)
   })
 }: Partial<
   SchemaValueParserOptions<FormDataEntryValue>

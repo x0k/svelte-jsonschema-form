@@ -27,18 +27,21 @@ import {
   FORM_DATA_FILE_PREFIX,
   JSON_CHUNKS_KEY,
   type EntryConverter,
+  type EnumItemDecoder,
   type InvalidFormData,
   type SendData,
   type ValidatedFormData,
   type ValidFormData
 } from '$lib/model.js';
 
-import { parseSchemaValue } from './schema-value-parser.js';
 import {
+  createEnumItemDecoder,
   createFormDataEntryConverter,
   type FormDataConverterOptions,
   type UnknownEntryConverter
 } from '../internal/convert-form-data-entry.js';
+import { decodeOptionIndex } from '../id-builder.js';
+import { parseSchemaValue } from './schema-value-parser.js';
 
 export interface FormHandlerOptions<T, SD extends SendData> extends IdOptions {
   schema: Schema;
@@ -49,6 +52,7 @@ export interface FormHandlerOptions<T, SD extends SendData> extends IdOptions {
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   createEntryConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
   convertUnknownEntry?: UnknownEntryConverter;
+  enumItemDecoder?: EnumItemDecoder;
   /** @default false */
   sendData?: SD;
   /** By default, handles conversion of `File` */
@@ -76,7 +80,8 @@ export function createFormHandler<T, SD extends SendData>({
   idIndexSeparator = DEFAULT_INDEX_SEPARATOR,
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
   sendData,
-  createReviver = createDefaultReviver
+  createReviver = createDefaultReviver,
+  enumItemDecoder = createEnumItemDecoder(decodeOptionIndex)
 }: FormHandlerOptions<T, SD>) {
   const validator = create(createValidator, {
     schema,
@@ -95,7 +100,8 @@ export function createFormHandler<T, SD extends SendData>({
     merger,
     rootSchema: schema,
     rootUiSchema: uiSchema,
-    convertUnknownEntry
+    convertUnknownEntry,
+    enumItemDecoder
   });
   return async (
     signal: AbortSignal,

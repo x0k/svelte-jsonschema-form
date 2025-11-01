@@ -2,15 +2,17 @@ import { fileToDataURL } from '@sjsf/form/lib/file';
 import {
   getSchemaConstantValue,
   isNullableSchemaType,
+  isSchemaValueDeepEqual,
   isSelect,
   pickSchemaType,
   typeOfSchema,
   type Merger,
+  type SchemaValue,
   type Validator
 } from '@sjsf/form/core';
 import { DEFAULT_BOOLEAN_ENUM, type FieldValue, type Schema, type UiSchemaRoot } from '@sjsf/form';
 
-import type { EntryConverter, EntryConverterOptions } from '../model.js';
+import type { EntryConverter, EntryConverterOptions, EnumItemDecoder } from '../model.js';
 
 export type UnknownEntryConverter = (
   options: EntryConverterOptions<FormDataEntryValue>
@@ -20,16 +22,57 @@ export interface FormDataConverterOptions {
   merger: Merger;
   rootSchema: Schema;
   rootUiSchema: UiSchemaRoot;
+  enumItemDecoder: EnumItemDecoder;
   convertUnknownEntry?: UnknownEntryConverter;
 }
 
-const DEFAULT_BOOLEAN_ENUM_KEYS_SET = new Set(Object.keys(DEFAULT_BOOLEAN_ENUM));
+type JSONParseResult<T, E> =
+  | {
+      ok: true;
+      value: T;
+    }
+  | {
+      ok: false;
+      error: E;
+    };
+
+function parseJson<T, E>(jsonStr: string): JSONParseResult<T, E> {
+  try {
+    return {
+      ok: true,
+      value: JSON.parse(jsonStr)
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      error: error as E
+    };
+  }
+}
+
+export function createEnumItemDecoder(decodeOptionIndex: (value: string) => number | undefined) {
+  return (options: SchemaValue[], value: string) => {
+    const index = decodeOptionIndex(value);
+    if (index !== undefined && index >= 0 && index < options.length) {
+      return structuredClone(options[index]);
+    }
+    if (options.includes(value)) {
+      return value;
+    }
+    const parsed = parseJson<SchemaValue, unknown>(value);
+    if (parsed.ok && options.some((o) => isSchemaValueDeepEqual(o, parsed.value))) {
+      return parsed.value;
+    }
+    return undefined;
+  };
+}
 
 export function createFormDataEntryConverter({
   validator,
   merger,
   rootSchema,
   rootUiSchema,
+  enumItemDecoder,
   convertUnknownEntry
 }: FormDataConverterOptions): EntryConverter<FormDataEntryValue> {
   return async (signal, options) => {
@@ -71,14 +114,11 @@ export function createFormDataEntryConverter({
       if (options === undefined) {
         throw new Error(`Invalid select options: ${JSON.stringify(schema)}`);
       }
-      const num = Number(value);
-      if (Number.isInteger(num) && num >= 0 && num < options.length) {
-        return structuredClone(options[num]);
+      const v = enumItemDecoder(options, value)
+      if (v === undefined) {
+        throw new Error(`Value "${value}" does not match the schema: ${JSON.stringify(schema)}`);
       }
-      if (options.includes(value)) {
-        return value;
-      }
-      throw new Error(`Value "${value}" does not match the schema: ${JSON.stringify(schema)}`);
+      return v
     }
     if (type === 'unknown' && convertUnknownEntry) {
       return await convertUnknownEntry(options);
@@ -94,9 +134,7 @@ export function createFormDataEntryConverter({
         }
         return value;
       case 'boolean':
-        return DEFAULT_BOOLEAN_ENUM_KEYS_SET.has(value)
-          ? DEFAULT_BOOLEAN_ENUM[Number(value)]
-          : value === 'on';
+        return enumItemDecoder(DEFAULT_BOOLEAN_ENUM, value) ?? value === 'on';
       case 'integer':
         return value.trim() === '' ? undefined : parseInt(value, 10);
       case 'number':
