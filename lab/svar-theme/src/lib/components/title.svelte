@@ -1,19 +1,6 @@
-<script lang="ts" module>
-	import type { HTMLAttributes } from 'svelte/elements';
-	import '@sjsf/form/fields/extra-components/title';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			/**
-			 * Overrides the attributes of the field title
-			 */
-			titleAttributes?: HTMLAttributes<HTMLDivElement>;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { getFormContext, titleAttributes, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/title.svelte';
 
 	const { title, config, templateType, errors }: ComponentProps['title'] = $props();
 

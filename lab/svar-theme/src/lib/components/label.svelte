@@ -1,19 +1,6 @@
-<script lang="ts" module>
-	import type { HTMLLabelAttributes } from 'svelte/elements';
-	import '@sjsf/form/fields/extra-components/label';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			/**
-			 * Overrides the attributes of the field label.
-			 */
-			labelAttributes?: HTMLLabelAttributes;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { type ComponentProps, getFormContext, labelAttributes } from '@sjsf/form';
+	import "@sjsf/basic-theme/components/label.svelte"
 
 	const { title, config, errors }: ComponentProps['label'] = $props();
 

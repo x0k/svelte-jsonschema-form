@@ -1,19 +1,6 @@
-<script lang="ts" module>
-	import type { HTMLAttributes } from 'svelte/elements';
-	import '@sjsf/form/fields/extra-components/errors-list';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			/**
-			 * Overrides the attributes of the errors list.
-			 */
-			errorsList?: HTMLAttributes<HTMLUListElement>;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { errorsListAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/errors-list.svelte';
 
 	const { errors, config }: ComponentProps['errorsList'] = $props();
 
