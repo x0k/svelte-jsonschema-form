@@ -3,6 +3,7 @@ import { userEvent, type Locator } from "vitest/browser";
 import {
   enumeration,
   SWITCH_LABEL_TEXT,
+  CHECKBOX_LABEL_TEXT,
   type FieldValidationTrigger,
 } from "./schemas.js";
 
@@ -180,5 +181,18 @@ export const getSkeletonFileInput = (l: Locator) =>
   l.getByRole("button").nth(1);
 export const changeSkeletonFile = uploadFile(getSkeletonFileInput);
 
-export const getSkeleton4FileInput = (l: Locator) => l.getByTestId('hidden-input');
+export const getSkeleton4FileInput = (l: Locator) =>
+  l.getByTestId("hidden-input");
 export const changeSkeleton4File = uploadFile(getSkeleton4FileInput);
+
+export const getSvarCheckbox = (l: Locator) => l.getByText(CHECKBOX_LABEL_TEXT);
+export const inputSvarCheckbox = click(getSvarCheckbox);
+export const changeSvarCheckbox = inputSvarCheckbox;
+
+export const inputSvarMultiSelect: FieldValidationTrigger = async (l) => {
+  const box = l.getByRole('textbox')
+  await userEvent.click(box)
+  const item = l.getByText(enumeration.enum[0])
+  await userEvent.click(item)
+}
+export const changeSvarMultiSelect = inputSvarMultiSelect;
