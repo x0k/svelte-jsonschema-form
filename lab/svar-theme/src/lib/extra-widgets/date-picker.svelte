@@ -1,37 +1,59 @@
 <script lang="ts" module>
-  import type { HTMLInputAttributes } from "svelte/elements";
-  import "@sjsf/form/fields/extra-widgets/date-picker";
+	import type { ComponentProps as SvelteComponentProps } from 'svelte';
+	import { DatePicker as SvarDatePicker } from '@svar-ui/svelte-core';
+	import '@sjsf/form/fields/extra-widgets/date-picker';
 
-  declare module "@sjsf/form" {
-    interface UiOptions {
-      datePicker?: HTMLInputAttributes;
-    }
-  }
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			svarDatePicker?: SvelteComponentProps<typeof SvarDatePicker>;
+		}
+	}
 </script>
 
 <script lang="ts">
-  import {
-    Datalist,
-    getFormContext,
-    inputAttributes,
-    type ComponentProps,
-  } from "@sjsf/form";
+	import {
+		getFormContext,
+		getId,
+		isDisabled,
+		uiOptionProps,
+		type ComponentProps
+	} from '@sjsf/form';
 
-  let {
-    value = $bindable(),
-    config,
-    handlers,
-  }: ComponentProps["datePickerWidget"] = $props();
+	let {
+		value = $bindable(),
+		config,
+		handlers,
+		errors
+	}: ComponentProps['datePickerWidget'] = $props();
 
-  const ctx = getFormContext();
+	const ctx = getFormContext();
 
-  const attributes = $derived(
-    inputAttributes(ctx, config, "datePicker", handlers, {
-      type: "date",
-      style: "flex-grow: 1",
-    })
-  );
+	const id = $derived(getId(ctx, config.path));
+
+	function parseLocalDate(date: string) {
+		const [year, month, day] = date.split('-').map(Number);
+		return new Date(year, month - 1, day);
+	}
+
+	function onchange() {
+		handlers.oninput?.();
+		handlers.onchange?.();
+	}
 </script>
 
-<input bind:value {...attributes} />
-<Datalist id={attributes.list} {config} />
+<SvarDatePicker
+	bind:value={
+		() => (value ? parseLocalDate(value) : undefined),
+		(v) => (value = v?.toLocaleDateString('en-CA'))
+	}
+	{...uiOptionProps('svarDatePicker')(
+		{
+			id,
+			disabled: isDisabled(ctx),
+			error: errors.length > 0,
+			onchange
+		},
+		config,
+		ctx
+	)}
+/>

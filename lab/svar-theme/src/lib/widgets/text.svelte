@@ -18,7 +18,7 @@
 		type ComponentProps
 	} from '@sjsf/form';
 
-	let { value = $bindable(), config, errors }: ComponentProps['textWidget'] = $props();
+	let { value = $bindable(), config, errors, handlers }: ComponentProps['textWidget'] = $props();
 
 	const ctx = getFormContext();
 
@@ -32,7 +32,14 @@
 			id,
 			readonly: config.schema.readOnly,
 			disabled: isDisabled(ctx),
-			error: errors.length > 0
+			error: errors.length > 0,
+			onchange: ({ input }) => {
+				if (input) {
+					handlers.oninput?.();
+				} else {
+					handlers.onchange?.();
+				}
+			}
 		},
 		config,
 		ctx

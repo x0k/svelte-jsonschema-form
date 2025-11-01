@@ -18,11 +18,16 @@
 		type ComponentProps
 	} from '@sjsf/form';
 
-	let { config, value = $bindable() }: ComponentProps['checkboxWidget'] = $props();
+	let { config, value = $bindable(), handlers }: ComponentProps['checkboxWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const id = $derived(getId(ctx, config.path));
+
+	function onchange() {
+		handlers.oninput?.();
+		handlers.onchange?.();
+	}
 </script>
 
 <SvarCheckbox
@@ -31,7 +36,8 @@
 		{
 			id,
 			label: config.title,
-			disabled: isDisabled(ctx)
+			disabled: isDisabled(ctx),
+			onchange
 		},
 		config,
 		ctx

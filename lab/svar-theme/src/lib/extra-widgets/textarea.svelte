@@ -1,34 +1,53 @@
 <script lang="ts" module>
-  import type { HTMLTextareaAttributes } from "svelte/elements";
-  import "@sjsf/form/fields/extra-widgets/textarea";
+	import type { ComponentProps as SvelteComponentProps } from 'svelte';
+	import { TextArea as SvarTextArea } from '@svar-ui/svelte-core';
+	import '@sjsf/form/fields/extra-widgets/textarea';
 
-  declare module "@sjsf/form" {
-    interface UiOptions {
-      textarea?: HTMLTextareaAttributes;
-    }
-  }
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			svarTextarea?: SvelteComponentProps<typeof SvarTextArea>;
+		}
+	}
 </script>
 
 <script lang="ts">
-  import {
-    getFormContext,
-    textareaAttributes,
-    type ComponentProps,
-  } from "@sjsf/form";
+	import {
+		getFormContext,
+		getId,
+		isDisabled,
+		uiOptionProps,
+		type ComponentProps
+	} from '@sjsf/form';
 
-  let {
-    value = $bindable(),
-    config,
-    handlers,
-  }: ComponentProps["textareaWidget"] = $props();
+	let {
+		value = $bindable(),
+		config,
+		handlers,
+		errors
+	}: ComponentProps['textareaWidget'] = $props();
 
-  const ctx = getFormContext();
+	const ctx = getFormContext();
 
-  const attributes = $derived(
-    textareaAttributes(ctx, config, "textarea", handlers, {
-      style: "flex-grow: 1;",
-    })
-  );
+	const id = $derived(getId(ctx, config.path));
 </script>
 
-<textarea bind:value {...attributes}></textarea>
+<SvarTextArea
+	bind:value={() => value ?? '', (v) => (value = v)}
+	{...uiOptionProps('svarTextarea')(
+		{
+			id,
+			disabled: isDisabled(ctx),
+			error: errors.length > 0,
+			readonly: config.schema.readOnly,
+			onchange: ({ input }) => {
+				if (input) {
+					handlers.oninput?.();
+				} else {
+					handlers.onchange?.();
+				}
+			}
+		},
+		config,
+		ctx
+	)}
+/>

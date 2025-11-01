@@ -4,14 +4,15 @@ import '@sjsf/form/fields/extra/array-files-include';
 
 import './extra-widgets/checkboxes-include.js';
 import './extra-widgets/date-picker-include.js';
-import './extra-widgets/file-include.js';
 import './extra-widgets/multi-select-include.js';
 import './extra-widgets/radio-include.js';
 import './extra-widgets/range-include.js';
 import './extra-widgets/textarea-include.js';
 
+const { file: _, multiFile: _1, ...rest } = DEFAULT_SPECS;
+
 export const specs: s.Specs = {
-	...DEFAULT_SPECS,
+	...rest,
 	datePicker: [
 		s.text,
 		{ 'ui:components': { textWidget: 'datePickerWidget' } },

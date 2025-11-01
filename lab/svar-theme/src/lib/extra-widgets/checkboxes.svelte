@@ -1,61 +1,42 @@
 <script lang="ts" module>
-  import type { HTMLInputAttributes } from "svelte/elements";
-  import "@sjsf/form/fields/extra-widgets/checkboxes";
+	import type { ComponentProps as SvelteComponentProps } from 'svelte';
+	import { CheckboxGroup as SvarCheckboxGroup } from '@svar-ui/svelte-core';
+	import '@sjsf/form/fields/extra-widgets/checkboxes';
 
-  declare module "@sjsf/form" {
-    interface UiOptions {
-      checkboxes?: HTMLInputAttributes;
-    }
-  }
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			svarCheckboxes?: SvelteComponentProps<typeof SvarCheckboxGroup>;
+		}
+	}
 </script>
 
 <script lang="ts">
-  import {
-    getFormContext,
-    inputAttributes,
-    type ComponentProps,
-  } from "@sjsf/form";
-  import { indexMapper, multipleOptions } from "@sjsf/form/options.svelte";
+	import { getFormContext, uiOptionProps, type ComponentProps } from '@sjsf/form';
+	import { idMapper, multipleOptions } from '@sjsf/form/options.svelte';
 
-  let {
-    handlers,
-    config,
-    value = $bindable(),
-    options,
-  }: ComponentProps["checkboxesWidget"] = $props();
+	let {
+		value = $bindable(),
+		options,
+		config,
+		handlers
+	}: ComponentProps['checkboxesWidget'] = $props();
 
-  const ctx = getFormContext();
+	const ctx = getFormContext();
 
-  const attributes = $derived(
-    inputAttributes(ctx, config, "checkboxes", handlers, {
-      type: "checkbox",
-    })
-  );
+	const mapped = multipleOptions({
+		mapper: () => idMapper(options),
+		value: () => value,
+		update: (v) => (value = v)
+	});
 
-  const mapped = multipleOptions({
-    mapper: () => indexMapper(options),
-    value: () => value,
-    update: (v) => (value = v),
-  });
+	function onchange() {
+		handlers.oninput?.();
+		handlers.onchange?.();
+	}
 </script>
 
-{#each options as option, index (option.id)}
-  <label>
-    <input
-      bind:group={mapped.value}
-      value={index}
-      {...attributes}
-      id={option.id}
-      disabled={option.disabled || attributes.disabled}
-    />
-    {option.label}
-  </label>
-{/each}
-
-<style>
-  label {
-    display: flex;
-    align-items: start;
-    gap: 0.2rem;
-  }
-</style>
+<SvarCheckboxGroup
+	{options}
+	bind:value={mapped.value}
+	{...uiOptionProps('svarCheckboxes')({ onchange }, config, ctx)}
+/>

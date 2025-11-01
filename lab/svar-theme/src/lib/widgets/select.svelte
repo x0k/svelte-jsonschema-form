@@ -19,7 +19,13 @@
 	} from '@sjsf/form';
 	import { idMapper, singleOption, UNDEFINED_ID } from '@sjsf/form/options.svelte';
 
-	let { value = $bindable(), options, config, errors }: ComponentProps['selectWidget'] = $props();
+	let {
+		value = $bindable(),
+		options,
+		config,
+		errors,
+		handlers
+	}: ComponentProps['selectWidget'] = $props();
 
 	const ctx = getFormContext();
 
@@ -31,9 +37,15 @@
 		})
 	);
 	const id = $derived(getId(ctx, config.path));
+
+	function onchange() {
+		handlers.oninput?.();
+		handlers.onchange?.();
+	}
+
 	const { placeholder = '', ...attributes } = $derived(
 		uiOptionProps('savrSelect')(
-			{ id, disabled: isDisabled(ctx), error: errors.length > 0 },
+			{ id, disabled: isDisabled(ctx), error: errors.length > 0, onchange },
 			config,
 			ctx
 		)
