@@ -11,7 +11,7 @@
 
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	let {
 		config,
@@ -22,7 +22,7 @@
 	}: ComponentProps['radioWidget'] = $props();
 
 	const mapped = singleOption({
-		mapper: () => indexMapper(options),
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
@@ -35,11 +35,11 @@
 </script>
 
 <div class="join">
-	{#each options as option, index (option.id)}
+	{#each options as option (option.id)}
 		<input
 			class={['join-item btn', errors.length > 0 && 'btn-error']}
 			bind:group={mapped.value}
-			value={index}
+			value={option.id}
 			aria-label={option.label}
 			{...attributes}
 			id={option.id}

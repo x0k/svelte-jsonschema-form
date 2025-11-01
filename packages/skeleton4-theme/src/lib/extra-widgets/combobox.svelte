@@ -18,7 +18,7 @@
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
+	import { multipleOptions, idMapper } from '@sjsf/form/options.svelte';
 	import { Combobox, Portal, useListCollection } from '@skeletonlabs/skeleton-svelte';
 
 	let {
@@ -31,13 +31,13 @@
 	const ctx = getFormContext();
 
 	const mapped = multipleOptions({
-		mapper: () => stringIndexMapper(options),
+		mapper: () => idMapper(options),
 		value: () => (value === undefined ? undefined : [value]),
 		update: (v) => (value = v[0])
 	});
 
 	const originalItems = $derived(
-		options.map((o, i) => ({ disabled: o.disabled, label: o.label, value: i.toString() }))
+		options.map((o) => ({ disabled: o.disabled, label: o.label, value: o.id }))
 	);
 
 	let items = $derived(originalItems);

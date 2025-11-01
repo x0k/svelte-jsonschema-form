@@ -28,7 +28,7 @@
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import { idMapper, singleOption, UNDEFINED_ID } from '@sjsf/form/options.svelte';
 
 	let {
 		config,
@@ -37,9 +37,8 @@
 		options
 	}: ComponentProps['flowbite3ToggleRadioButtonsWidget'] = $props();
 
-	const mapper = $derived(stringIndexMapper(options));
 	const mapped = singleOption({
-		mapper: () => mapper,
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
@@ -54,17 +53,14 @@
 <ButtonToggleGroup
 	{...customInputAttributes(ctx, config, 'flowbite3ToggleRadioButtons', {
 		onSelect(val: string | string[] | null) {
-			mapped.value = val as string ?? '-1';
+			mapped.value = (val as string) ?? UNDEFINED_ID;
 			handlers.onchange?.();
 		}
 	})}
 >
-	{#each options as option, index (option.id)}
-		{@const strIndex = index.toString()}
-		<ButtonToggle
-			{...itemAttributes}
-			selected={mapper.fromValue(option.value) === strIndex}
-			value={strIndex}>{option.label}</ButtonToggle
+	{#each options as option (option.id)}
+		<ButtonToggle {...itemAttributes} selected={mapped.value === option.id} value={option.id}
+			>{option.label}</ButtonToggle
 		>
 	{/each}
 </ButtonToggleGroup>

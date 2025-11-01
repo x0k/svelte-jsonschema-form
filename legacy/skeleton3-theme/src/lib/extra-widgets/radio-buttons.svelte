@@ -19,7 +19,7 @@
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 	import { Segment } from '@skeletonlabs/skeleton-svelte';
 
 	let {
@@ -30,7 +30,7 @@
 	}: ComponentProps['radioButtonsWidget'] = $props();
 
 	const mapped = singleOption({
-		mapper: () => stringIndexMapper(options),
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
@@ -55,11 +55,11 @@
 		}
 	})}
 >
-	{#each options as option, index (option.id)}
+	{#each options as option (option.id)}
 		<Segment.Item
 			{...uiOptionProps('skeleton3SegmentItem')(
 				{
-					value: index.toString(),
+					value: option.id,
 					disabled: option.disabled
 				},
 				config,

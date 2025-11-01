@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
+	import { multipleOptions, idMapper } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/extra-widgets/checkboxes.svelte';
 
 	let {
@@ -12,7 +12,7 @@
 	}: ComponentProps['checkboxesWidget'] = $props();
 
 	const mapped = multipleOptions({
-		mapper: () => indexMapper(options),
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
@@ -24,12 +24,12 @@
 	);
 </script>
 
-{#each options as option, index (option.id)}
+{#each options as option (option.id)}
 	<label class="fieldset-label">
 		<input
 			class={['checkbox', errors.length > 0 && 'checkbox-error']}
 			bind:group={mapped.value}
-			value={index}
+			value={option.id}
 			{...attributes}
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}

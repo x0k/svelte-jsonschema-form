@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
-	import { singleOption, indexMapper } from '@sjsf/form/options.svelte';
+	import { singleOption, idMapper, UNDEFINED_ID } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/widgets/select.svelte';
 
 	let {
@@ -11,13 +11,11 @@
 		handlers
 	}: ComponentProps['selectWidget'] = $props();
 
-	const mapped = $derived(
-		singleOption({
-			mapper: () => indexMapper(options),
-			value: () => value,
-			update: (v) => (value = v)
-		})
-	);
+	const mapped = singleOption({
+		mapper: () => idMapper(options),
+		value: () => value,
+		update: (v) => (value = v)
+	});
 
 	const ctx = getFormContext();
 
@@ -30,10 +28,10 @@
 	{...attributes}
 >
 	{#if config.schema.default === undefined}
-		<option value={-1}>{attributes.placeholder}</option>
+		<option value={UNDEFINED_ID}>{attributes.placeholder}</option>
 	{/if}
-	{#each options as option, index (option.id)}
-		<option value={index} disabled={option.disabled}>
+	{#each options as option (option.id)}
+		<option value={option.id} disabled={option.disabled}>
 			{option.label}
 		</option>
 	{/each}

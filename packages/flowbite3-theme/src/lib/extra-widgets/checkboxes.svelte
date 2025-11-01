@@ -11,7 +11,7 @@
 
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
+	import { idMapper, multipleOptions } from '@sjsf/form/options.svelte';
 	import Checkbox from 'flowbite-svelte/Checkbox.svelte';
 
 	let {
@@ -22,28 +22,25 @@
 	}: ComponentProps['checkboxesWidget'] = $props();
 
 	const mapped = multipleOptions({
-		mapper: () => indexMapper(options),
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
-	const indexes = $derived(new Set(mapped.value));
+	const selected = $derived(new Set(mapped.value));
 
 	const ctx = getFormContext();
 
 	const attributes = $derived(inputAttributes(ctx, config, 'flowbite3Checkboxes', handlers, {}));
 </script>
 
-{#each options as option, index (option.id)}
+{#each options as option (option.id)}
 	<Checkbox
 		bind:checked={
-			() => indexes.has(index),
+			() => selected.has(option.id),
 			(v) => {
-				if (v) {
-					mapped.value = Array.from(indexes.add(index));
-				} else {
-					indexes.delete(index);
-					mapped.value = Array.from(indexes);
-				}
+				mapped.value = v
+					? mapped.value.concat(option.id)
+					: mapped.value.filter((id) => id !== option.id);
 			}
 		}
 		{...attributes}

@@ -19,7 +19,7 @@
 		getId,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
+	import { multipleOptions, idMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context.js';
 
@@ -37,12 +37,11 @@
 	}: ComponentProps['checkboxesWidget'] = $props();
 
 	const mapped = multipleOptions({
-		mapper: () => stringIndexMapper(options),
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
-
-	const indexes = $derived(new Set(mapped.value));
+	const selected = $derived(new Set(mapped.value));
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 
@@ -62,16 +61,15 @@
 	);
 </script>
 
-{#each options as option, index (option.id)}
-	{@const indexStr = index.toString()}
+{#each options as option (option.id)}
 	<div class="flex items-center space-x-3">
 		<Checkbox
-			checked={indexes.has(indexStr)}
-			value={indexStr}
+			checked={selected.has(option.id)}
+			value={option.id}
 			onCheckedChange={(v) => {
 				mapped.value = v
-					? mapped.value.concat(indexStr)
-					: mapped.value.filter((index) => index !== indexStr);
+					? mapped.value.concat(option.id)
+					: mapped.value.filter((id) => id !== option.id);
 				oninput?.();
 				onchange?.();
 			}}

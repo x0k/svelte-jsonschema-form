@@ -32,7 +32,7 @@
 		getFormContext,
 		uiOptionProps
 	} from '@sjsf/form';
-	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
 
@@ -44,7 +44,7 @@
 	let { config, handlers, value = $bindable(), options }: ComponentProps['radioWidget'] = $props();
 
 	const mapped = singleOption({
-		mapper: () => stringIndexMapper(options),
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
@@ -68,12 +68,11 @@
 </script>
 
 <RadioGroup bind:value={mapped.value} {...attributes}>
-	{#each options as option, index (option.id)}
-		{@const indexStr = index.toString()}
+	{#each options as option (option.id)}
 		<div class="flex items-center space-x-2">
 			<RadioGroupItem
 				{...itemAttributes}
-				value={indexStr}
+				value={option.id}
 				id={option.id}
 				disabled={option.disabled}
 			/>

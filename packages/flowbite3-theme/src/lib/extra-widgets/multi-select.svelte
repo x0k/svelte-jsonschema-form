@@ -4,14 +4,14 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbite3MultiSelect?: Omit<MultiSelectProps<number>, 'value'>;
+			flowbite3MultiSelect?: Omit<MultiSelectProps<string>, 'value'>;
 		}
 	}
 </script>
 
 <script lang="ts">
 	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
-	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
+	import { multipleOptions, idMapper } from '@sjsf/form/options.svelte';
 	import MultiSelect from 'flowbite-svelte/MultiSelect.svelte';
 
 	let {
@@ -23,17 +23,15 @@
 
 	const ctx = getFormContext();
 
-	const mapped = $derived(
-		multipleOptions({
-			mapper: () => indexMapper(options),
-			value: () => value,
-			update: (v) => (value = v)
-		})
-	);
+	const mapped = multipleOptions({
+		mapper: () => idMapper(options),
+		value: () => value,
+		update: (v) => (value = v)
+	});
 
 	const selectOptions = $derived(
-		options.map((option, i) => ({
-			value: i,
+		options.map((option) => ({
+			value: option.id,
 			name: option.label,
 			disabled: option.disabled
 		}))

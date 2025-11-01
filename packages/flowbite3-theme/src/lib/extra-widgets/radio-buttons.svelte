@@ -19,7 +19,7 @@
 		inputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	let {
 		config,
@@ -28,9 +28,8 @@
 		options
 	}: ComponentProps['radioButtonsWidget'] = $props();
 
-	const mapper = $derived(stringIndexMapper(options));
 	const mapped = singleOption({
-		mapper: () => mapper,
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
@@ -45,11 +44,10 @@
 </script>
 
 <ButtonGroup {...customInputAttributes(ctx, config, 'flowbite3RadioButtons', {})}>
-	{#each options as option, index (option.id)}
-		{@const strIndex = index.toString()}
+	{#each options as option (option.id)}
 		<RadioButton
 			bind:group={mapped.value}
-			value={strIndex}
+			value={option.id}
 			{...attributes}
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}>{option.label}</RadioButton

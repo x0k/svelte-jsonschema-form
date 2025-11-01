@@ -42,7 +42,7 @@
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	import { cn } from '$lib/utils.js';
 
@@ -71,9 +71,10 @@
 		options
 	}: ComponentProps['comboboxWidget'] = $props();
 
+	const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
 	const mapped = $derived(
 		singleOption({
-			mapper: () => indexMapper(options),
+			mapper: () => idMapper(options),
 			value: () => value,
 			update: (v) => (value = v)
 		})
@@ -91,7 +92,7 @@
 
 	const attributes = $derived(inputAttributes(ctx, config, 'shadcn4ComboboxInput', handlers, {}));
 
-	const triggerContent = $derived(options[Number(mapped.value)]?.label ?? attributes.placeholder);
+	const triggerContent = $derived(labels.get(mapped.value) ?? attributes.placeholder);
 
 	const emptyText = $derived(retrieveUiOption(ctx, config, 'shadcn4ComboboxEmptyText'));
 
@@ -135,18 +136,18 @@
 					<CommandEmpty>{emptyText}</CommandEmpty>
 				{/if}
 				<CommandGroup>
-					{#each options as option, index (option.id)}
+					{#each options as option (option.id)}
 						<CommandItem
 							value={option.label}
 							onSelect={() => {
-								mapped.value = index;
+								mapped.value = option.id;
 								oninput?.();
 								onchange?.();
 								closeAndFocusTrigger();
 							}}
 							disabled={option.disabled}
 						>
-							<Check class={cn('mr-2 size-4', index !== mapped.value && 'text-transparent')} />
+							<Check class={cn('mr-2 size-4', mapped.value !== option.id && 'text-transparent')} />
 							{option.label}
 						</CommandItem>
 					{/each}
