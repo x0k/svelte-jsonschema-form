@@ -46,46 +46,6 @@ export function idMapper(
   };
 }
 
-export function indexMapper(
-  options: EnumOption<SchemaValue>[]
-): OptionsMapper<number> {
-  const map = new Map(options.map((option, index) => [option.value, index]));
-  return {
-    fromValue(value: SchemaValue | undefined) {
-      if (value === undefined) {
-        return -1;
-      }
-      const index = map.get(value);
-      if (index !== undefined) {
-        return index;
-      }
-      if (!isObject(value)) {
-        return options.findIndex((option) => option.value === value);
-      }
-      return options.findIndex((option) =>
-        isSchemaValueDeepEqual(option.value, value)
-      );
-    },
-    toValue(index: number) {
-      return options[index]?.value;
-    },
-  };
-}
-
-export function stringIndexMapper(
-  options: EnumOption<SchemaValue>[]
-): OptionsMapper<string> {
-  const { fromValue, toValue } = indexMapper(options);
-  return {
-    fromValue(value) {
-      return String(fromValue(value));
-    },
-    toValue(value) {
-      return toValue(Number(value));
-    },
-  };
-}
-
 export function singleOption<V>({
   mapper,
   value,
