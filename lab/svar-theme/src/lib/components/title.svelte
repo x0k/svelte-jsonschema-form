@@ -1,33 +1,51 @@
 <script lang="ts" module>
-  import type { HTMLAttributes } from "svelte/elements";
-  import "@sjsf/form/fields/extra-components/title";
+	import type { HTMLAttributes } from 'svelte/elements';
+	import '@sjsf/form/fields/extra-components/title';
 
-  declare module "@sjsf/form" {
-    interface UiOptions {
-      /**
-       * Overrides the attributes of the field title
-       */
-      titleAttributes?: HTMLAttributes<HTMLDivElement>;
-    }
-  }
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			/**
+			 * Overrides the attributes of the field title
+			 */
+			titleAttributes?: HTMLAttributes<HTMLDivElement>;
+		}
+	}
 </script>
 
 <script lang="ts">
-  import {
-    getFormContext,
-    titleAttributes,
-    type ComponentProps,
-  } from "@sjsf/form";
+	import { getFormContext, titleAttributes, type ComponentProps } from '@sjsf/form';
 
-  const { title, config, templateType }: ComponentProps["title"] = $props();
+	const { title, config, templateType, errors }: ComponentProps['title'] = $props();
 
-  const ctx = getFormContext();
+	const ctx = getFormContext();
 </script>
 
-<legend
-  {...titleAttributes(ctx, config, "titleAttributes", {
-    style: `display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: ${templateType === "fieldTemplate" ? "unset" : "larger"};`,
-  })}
+<div
+	{...titleAttributes(ctx, config, 'titleAttributes', {
+		'data-template': templateType,
+		'data-error': errors.length > 0
+	})}
 >
-  {title}
-</legend>
+	{title}
+</div>
+
+<style>
+	div {
+		display: block;
+		margin: var(--wx-label-margin);
+		padding: var(--wx-label-padding);
+		font-family: var(--wx-label-font-family);
+		font-size: var(--wx-label-font-size);
+		line-height: var(--wx-label-line-height);
+		font-weight: var(--wx-label-font-weight);
+		color: var(--wx-label-font-color);
+	}
+	div:not([data-template='fieldTemplate']) {
+		font-size: 18px;
+		/* margin: 12px 0; */
+		font-weight: normal;
+	}
+	div[data-template='fieldTemplate'][data-error='true'] {
+		color: var(--wx-color-danger);
+	}
+</style>
