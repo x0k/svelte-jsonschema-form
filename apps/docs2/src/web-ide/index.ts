@@ -73,6 +73,7 @@ const THEME_LAYERS: Record<Theme, () => LayerPromise[]> = {
     import("./layers/tailwind4"),
     import("./layers/shadcn-extras"),
   ],
+  svar: () => [import("./layers/svar")],
 };
 
 const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {

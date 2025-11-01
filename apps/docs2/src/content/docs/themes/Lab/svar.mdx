@@ -1,0 +1,61 @@
+---
+title: SVAR
+sidebar:
+  order: 101
+---
+
+import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { specs, extraWidgets } from '@sjsf-lab/svar-theme/specs';
+import styles from '@sjsf-lab/svar-theme/styles.css?inline';
+
+import { themePkg } from '@/shared';
+import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
+
+import Form from './svar/form.svelte';
+import uiOptionsCode from './svar/ui-options?raw';
+import { createExtraImports, createSchemas, replacer, validationEvents } from "../_demo-schema";
+
+export const schemas = createSchemas(specs)
+
+## Installation
+
+<Npm pkg={themePkg('svar')} />
+
+## Extra widgets
+
+You can connect extra widgets using the following `include` imports:
+
+:::note
+
+For a widget to be applied, it must be explicitly specified in the
+[UI schema](../../../form/ui-schema/#ui-components)
+or used in the field as the default widget.
+
+:::
+
+<Code lang='ts' code={createExtraImports("svar", extraWidgets)} />
+
+## Widgets demo
+
+<Tabs>
+  <TabItem label='Form'>
+    <FormCard>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="JSON Schema" >
+    <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
+  </TabItem>
+  <TabItem label="UI Schema">
+    <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
+  </TabItem>
+</Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+{/* ## UI options
+
+<Code code={uiOptionsCode} lang="typescript" /> */}

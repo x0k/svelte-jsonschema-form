@@ -327,6 +327,17 @@ l/:
     t:
       pnpm run test $@
     popd
+  svar/:
+    pushd svar-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
   popd
 
 e/:

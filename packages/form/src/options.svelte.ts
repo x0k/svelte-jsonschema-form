@@ -12,6 +12,40 @@ export interface OptionsMapper<V> {
   toValue: (value: V) => SchemaValue | undefined;
 }
 
+export const UNDEFINED_ID = "-1";
+
+export function idMapper(
+  options: EnumOption<SchemaValue>[]
+): OptionsMapper<EnumOption<SchemaValue>["id"]> {
+  const idToValue = new Map<string, SchemaValue>();
+  const valueToId = new Map<SchemaValue, string>();
+  for (const o of options) {
+    idToValue.set(o.id, o.value);
+    valueToId.set(o.value, o.id);
+  }
+  return {
+    fromValue(value: SchemaValue | undefined) {
+      if (value === undefined) {
+        return UNDEFINED_ID;
+      }
+      const id = valueToId.get(value);
+      if (id !== undefined) {
+        return id;
+      }
+      if (!isObject(value)) {
+        return options.find((o) => o.value === value)?.id ?? UNDEFINED_ID;
+      }
+      return (
+        options.find((o) => isSchemaValueDeepEqual(o.value, value))?.id ??
+        UNDEFINED_ID
+      );
+    },
+    toValue(value: string) {
+      return idToValue.get(value);
+    },
+  };
+}
+
 export function indexMapper(
   options: EnumOption<SchemaValue>[]
 ): OptionsMapper<number> {

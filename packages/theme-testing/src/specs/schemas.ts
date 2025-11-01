@@ -91,6 +91,7 @@ export type Trigger = keyof {
 };
 
 export const SWITCH_LABEL_TEXT = "switch";
+export const CHECKBOX_LABEL_TEXT = "checkbox";
 
 export type Specs = Record<
   string,
