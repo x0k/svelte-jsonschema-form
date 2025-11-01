@@ -119,7 +119,7 @@ export const changeCallyDatePicker: FieldValidationTrigger = async (l) => {
   await customElements.whenDefined("calendar-month");
   const button = getButton(l);
   await userEvent.click(button);
-  const day = l.getByText("26");
+  const day = l.getByText("19");
   await userEvent.click(day);
 };
 
@@ -148,7 +148,7 @@ export const visitShadcnSelect = withTab(inputShadcnSelect);
 export const inputShadcnDatePicker: FieldValidationTrigger = async (l) => {
   const btn = getButton(l);
   await userEvent.click(btn);
-  const day = l.getByText("26");
+  const day = l.getByText("19");
   await userEvent.click(day);
 };
 export const changeShadcnDatePicker = inputShadcnDatePicker;
