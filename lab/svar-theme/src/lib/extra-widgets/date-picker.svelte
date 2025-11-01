@@ -51,7 +51,8 @@
 			id,
 			disabled: isDisabled(ctx),
 			error: errors.length > 0,
-			onchange
+			onchange,
+			editable: true
 		},
 		config,
 		ctx

@@ -9,17 +9,38 @@ import './extra-widgets/radio-include.js';
 import './extra-widgets/range-include.js';
 import './extra-widgets/textarea-include.js';
 
-const { file: _, multiFile: _1, ...rest } = DEFAULT_SPECS;
+function prepareSpecs(specs: s.Specs) {
+	const copy = structuredClone(specs);
+	delete copy.file;
+	delete copy.multiFile;
+	for (const key of Object.keys(copy)) {
+		const spec = copy[key];
+		delete spec[2].onblur;
+		switch (key) {
+			case 'checkbox': {
+				spec[1]['ui:options'] = { title: 'checkbox' };
+				spec[2] = {
+					oninput: 'inputSvarCheckbox',
+					onchange: 'changeSvarCheckbox'
+				};
+				break;
+			}
+			case 'checkboxes': {
+				spec[2] = {};
+				break;
+			}
+		}
+	}
+	return copy;
+}
 
 export const specs: s.Specs = {
-	...rest,
+	...prepareSpecs(DEFAULT_SPECS),
 	datePicker: [
 		s.text,
 		{ 'ui:components': { textWidget: 'datePickerWidget' } },
 		{
-			oninput: 'inputDate',
-			onchange: 'changeDate',
-			onblur: 'visitDate'
+			onchange: 'changeDate'
 		}
 	],
 	multiSelect: [
@@ -32,9 +53,8 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: true }
 		},
 		{
-			oninput: 'inputMultiSelect',
-			onchange: 'changeMultiSelect',
-			onblur: 'visitMultiSelect'
+			oninput: 'inputSvarMultiSelect',
+			onchange: 'changeSvarMultiSelect'
 		}
 	],
 	radio: [
@@ -47,9 +67,8 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: 'inputRadio',
-			onchange: 'changeRadio',
-			onblur: 'visitRadio'
+			oninput: 'inputFlowbiteRadioButton',
+			onchange: 'changeFlowbiteRadioButton'
 		}
 	],
 	range: [
@@ -57,8 +76,7 @@ export const specs: s.Specs = {
 		{ 'ui:components': { numberWidget: 'rangeWidget' } },
 		{
 			oninput: 'inputSlider',
-			onchange: 'changeSlider',
-			onblur: 'visitSlider'
+			onchange: 'changeSlider'
 		}
 	],
 	textarea: [
@@ -66,8 +84,7 @@ export const specs: s.Specs = {
 		{ 'ui:components': { textWidget: 'textareaWidget' } },
 		{
 			oninput: 'inputText',
-			onchange: 'changeText',
-			onblur: 'visitText'
+			onchange: 'changeText'
 		}
 	]
 };

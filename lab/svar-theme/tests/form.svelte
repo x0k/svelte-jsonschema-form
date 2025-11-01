@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { Willow } from '@svar-ui/svelte-core'
 	import { BasicForm, createForm, type FormOptions } from '@sjsf/form';
-
-	import '../src/app.css';
 
 	const props: FormOptions<any> = $props();
 
 	const form = createForm(props);
 </script>
 
-<BasicForm {form} />
+<Willow>
+	<BasicForm {form} />
+</Willow>
