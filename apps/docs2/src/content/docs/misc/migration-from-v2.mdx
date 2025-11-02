@@ -313,6 +313,13 @@ The theme now requires the `Field*` and `ButtonGroup` components to function pro
 
 ## SvelteKit
 
+Now, for the integration to work correctly,
+you must use ID Builder from the `@sjsf/sveltekit` module.
+
+```ts
+export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit'
+```
+
 The `makeFormDataParser` and `validateForm` functions
 have been replaced with `createFormHandler`.
 See the [integration](../../integrations/sveltekit/#server) page for more information.
@@ -327,7 +334,7 @@ export const load = async () => {
     form: {
       schema,
       initialValue: { ... },
-    } satisfies InitialFormData,
+    } satisfies InitialFormData<Model>,
   };
 };
 ```
@@ -350,4 +357,4 @@ export const load = async () => {
 
 ## Etc.
 
-Feel free to get in touch about migrating to v3 on [GitHub](https://github.com/x0k/svelte-jsonschema-form/discussions).
+Feel free to get in touch about migrating to v3 on [GitHub Discussions](https://github.com/x0k/svelte-jsonschema-form/discussions).

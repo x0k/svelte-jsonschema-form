@@ -91,14 +91,17 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [GenericExample.PreuploadFile]: () => import("./examples/preupload-file"),
   [GenericExample.OptionalDataControls]: () =>
     import("./examples/optional-data-controls"),
-  [SvelteKitExample.NativeForm]: () => import("./examples/native-form"),
+  [SvelteKitExample.FormActionsWithoutJs]: () =>
+    import("./examples/form-actions-without-js"),
   [SvelteKitExample.MultiStepNativeForm]: () =>
     import("./examples/multi-step-native-form"),
   [SvelteKitExample.FormActions]: () => import("./examples/form-actions"),
   [SvelteKitExample.FormActionsFlex]: () =>
     import("./examples/form-actions-flex"),
   [SvelteKitExample.RemoveFunctions]: () =>
-    import("./examples/remote-function"),
+    import("./examples/remote-functions"),
+  [SvelteKitExample.RemoveFunctionsWithoutJs]: () =>
+    import("./examples/remote-functions-without-js"),
   [ValidatorSpecificExample.ZodStarter]: () => import("./examples/zod-starter"),
   [ValidatorSpecificExample.ValibotStarter]: () =>
     import("./examples/valibot-starter"),
