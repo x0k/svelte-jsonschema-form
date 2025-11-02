@@ -749,7 +749,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="0"
+          value="root::0"
         />
         
         
@@ -818,7 +818,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="1"
+          value="root::1"
         />
         
         
@@ -887,7 +887,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="2"
+          value="root::2"
         />
         
         
@@ -956,7 +956,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="3"
+          value="root::3"
         />
         
         
@@ -1118,7 +1118,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="0"
+          value="root::0"
         />
         
         
@@ -1184,7 +1184,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="1"
+          value="root::1"
         />
         
         
@@ -1250,7 +1250,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="2"
+          value="root::2"
         />
         
         
@@ -1316,7 +1316,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="3"
+          value="root::3"
         />
         
         
@@ -1502,7 +1502,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="0"
+          value="root::0"
         />
         
         
@@ -1568,7 +1568,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="1"
+          value="root::1"
         />
         
         
@@ -1634,7 +1634,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="2"
+          value="root::2"
         />
         
         
@@ -1700,7 +1700,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="3"
+          value="root::3"
         />
         
         
@@ -1861,7 +1861,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="0"
+          value="root::0"
         />
         
         
@@ -1927,7 +1927,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="1"
+          value="root::1"
         />
         
         
@@ -1993,7 +1993,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="2"
+          value="root::2"
         />
         
         
@@ -2059,7 +2059,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
           tabindex="-1"
           type="checkbox"
-          value="3"
+          value="root::3"
         />
         
         
@@ -5776,7 +5776,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="0"
+            data-value="root::0"
             disabled=""
             id="root::0"
             role="radio"
@@ -5827,7 +5827,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="1"
+            data-value="root::1"
             disabled=""
             id="root::1"
             role="radio"
@@ -5878,7 +5878,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="2"
+            data-value="root::2"
             disabled=""
             id="root::2"
             role="radio"
@@ -5929,7 +5929,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="3"
+            data-value="root::3"
             disabled=""
             id="root::3"
             role="radio"
@@ -6099,7 +6099,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="0"
+            data-value="root::0"
             id="root::0"
             role="radio"
             tabindex="0"
@@ -6148,7 +6148,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="1"
+            data-value="root::1"
             id="root::1"
             role="radio"
             tabindex="-1"
@@ -6197,7 +6197,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="2"
+            data-value="root::2"
             id="root::2"
             role="radio"
             tabindex="-1"
@@ -6246,7 +6246,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="3"
+            data-value="root::3"
             id="root::3"
             role="radio"
             tabindex="-1"
@@ -6439,7 +6439,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="0"
+            data-value="root::0"
             id="root::0"
             role="radio"
             tabindex="0"
@@ -6488,7 +6488,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="1"
+            data-value="root::1"
             id="root::1"
             role="radio"
             tabindex="-1"
@@ -6537,7 +6537,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="2"
+            data-value="root::2"
             id="root::2"
             role="radio"
             tabindex="-1"
@@ -6586,7 +6586,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="3"
+            data-value="root::3"
             id="root::3"
             role="radio"
             tabindex="-1"
@@ -6755,7 +6755,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="0"
+            data-value="root::0"
             id="root::0"
             role="radio"
             tabindex="0"
@@ -6804,7 +6804,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="1"
+            data-value="root::1"
             id="root::1"
             role="radio"
             tabindex="-1"
@@ -6853,7 +6853,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="2"
+            data-value="root::2"
             id="root::2"
             role="radio"
             tabindex="-1"
@@ -6902,7 +6902,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-radio-group-item=""
             data-slot="radio-group-item"
             data-state="unchecked"
-            data-value="3"
+            data-value="root::3"
             id="root::3"
             role="radio"
             tabindex="-1"
@@ -7072,7 +7072,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="0"
+          data-value="root::0"
           data-variant="outline"
           disabled=""
           id="bits-c1165"
@@ -7099,7 +7099,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="1"
+          data-value="root::1"
           data-variant="outline"
           disabled=""
           id="bits-c1166"
@@ -7126,7 +7126,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="2"
+          data-value="root::2"
           data-variant="outline"
           disabled=""
           id="bits-c1167"
@@ -7153,7 +7153,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="3"
+          data-value="root::3"
           data-variant="outline"
           disabled=""
           id="bits-c1168"
@@ -7296,7 +7296,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="0"
+          data-value="root::0"
           data-variant="outline"
           id="bits-c1160"
           role="radio"
@@ -7321,7 +7321,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="1"
+          data-value="root::1"
           data-variant="outline"
           id="bits-c1161"
           role="radio"
@@ -7346,7 +7346,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="2"
+          data-value="root::2"
           data-variant="outline"
           id="bits-c1162"
           role="radio"
@@ -7371,7 +7371,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="3"
+          data-value="root::3"
           data-variant="outline"
           id="bits-c1163"
           role="radio"
@@ -7537,7 +7537,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="0"
+          data-value="root::0"
           data-variant="outline"
           id="bits-c1155"
           role="radio"
@@ -7562,7 +7562,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="1"
+          data-value="root::1"
           data-variant="outline"
           id="bits-c1156"
           role="radio"
@@ -7587,7 +7587,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="2"
+          data-value="root::2"
           data-variant="outline"
           id="bits-c1157"
           role="radio"
@@ -7612,7 +7612,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="3"
+          data-value="root::3"
           data-variant="outline"
           id="bits-c1158"
           role="radio"
@@ -7754,7 +7754,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="0"
+          data-value="root::0"
           data-variant="outline"
           id="bits-c1170"
           role="radio"
@@ -7779,7 +7779,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="1"
+          data-value="root::1"
           data-variant="outline"
           id="bits-c1171"
           role="radio"
@@ -7804,7 +7804,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="2"
+          data-value="root::2"
           data-variant="outline"
           id="bits-c1172"
           role="radio"
@@ -7829,7 +7829,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-slot="toggle-group-item"
           data-state="off"
           data-toggle-group-item=""
-          data-value="3"
+          data-value="root::3"
           data-variant="outline"
           id="bits-c1173"
           role="radio"
