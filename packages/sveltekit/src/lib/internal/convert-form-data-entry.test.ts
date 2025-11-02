@@ -3,7 +3,7 @@ import type { RPath, Schema } from '@sjsf/form/core';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
-import { decodeOptionIndex } from '../id-builder.js';
+import { createOptionIndexDecoder, DEFAULT_PSEUDO_SEPARATOR } from '../id-builder.js';
 import {
   createEnumItemDecoder,
   createFormDataEntryConverter,
@@ -15,7 +15,7 @@ const defaultOptions: FormDataConverterOptions = {
   merger: createMerger(),
   rootSchema: {},
   rootUiSchema: {},
-  enumItemDecoder: createEnumItemDecoder(decodeOptionIndex)
+  enumItemDecoder: createEnumItemDecoder(createOptionIndexDecoder(DEFAULT_PSEUDO_SEPARATOR))
 };
 
 const convert = createFormDataEntryConverter(defaultOptions);

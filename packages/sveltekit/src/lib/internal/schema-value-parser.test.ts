@@ -1,33 +1,32 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { SJSF_ID_PREFIX, type Schema } from '@sjsf/form';
+import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from '@sjsf/form';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
 import type { Entries } from '$lib/model.js';
 
-import {
-  createEnumItemDecoder,
-  createFormDataEntryConverter
-} from '../internal/convert-form-data-entry.js';
-import { decodeOptionIndex } from '../id-builder.js';
+import { createOptionIndexDecoder } from '../id-builder.js';
+import { createEnumItemDecoder, createFormDataEntryConverter } from './convert-form-data-entry.js';
 import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
+import { createCodec } from './codec.js';
 
 const opts = ({
   schema = {},
   entries = [],
   uiSchema = {},
-  idPrefix = 'root',
+  idPrefix = DEFAULT_ID_PREFIX,
   idSeparator = '.',
   idIndexSeparator = '@',
   idPseudoSeparator = '::',
   validator = createFormValidator(),
   merger = createMerger(),
+  codec = createCodec({ sequencesToEncode: [idSeparator, idIndexSeparator, idPseudoSeparator] }),
   convertEntry = createFormDataEntryConverter({
     merger,
     validator,
     rootSchema: schema,
     rootUiSchema: uiSchema,
-    enumItemDecoder: createEnumItemDecoder(decodeOptionIndex)
+    enumItemDecoder: createEnumItemDecoder(createOptionIndexDecoder(idPseudoSeparator))
   })
 }: Partial<
   SchemaValueParserOptions<FormDataEntryValue>
@@ -41,7 +40,8 @@ const opts = ({
   idPseudoSeparator,
   validator,
   merger,
-  convertEntry: convertEntry
+  convertEntry,
+  codec
 });
 
 describe('parseSchemaValue', async () => {
@@ -213,8 +213,8 @@ describe('parseSchemaValue', async () => {
       ['root.lastName', 'Norris'],
       ['root.assKickCount::key-input', 'assKickCountChanged'],
       ['root.assKickCount', 'infinity'],
-      ['root.new.key::key-input', 'new.keyChanged'],
-      ['root.new.key', 'foo']
+      ['root.new~21akey::key-input', 'new.keyChanged'],
+      ['root.new~21akey', 'foo']
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       firstName: 'Chuck',

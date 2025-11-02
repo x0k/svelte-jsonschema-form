@@ -38,13 +38,15 @@ export function createFormIdBuilder({
   };
 }
 
-export function decodeOptionIndex(value: string): number | undefined {
-  const index = value.lastIndexOf(DEFAULT_PSEUDO_SEPARATOR);
-  if (index > 0) {
-    const n = Number(value.substring(index + DEFAULT_PSEUDO_SEPARATOR.length));
-    if (Number.isInteger(n)) {
-      return n;
+export function createOptionIndexDecoder(pseudoSeparator: string) {
+  return (value: string): number | undefined => {
+    const index = value.lastIndexOf(pseudoSeparator);
+    if (index > 0) {
+      const n = Number(value.substring(index + pseudoSeparator.length));
+      if (Number.isInteger(n)) {
+        return n;
+      }
     }
-  }
-  return undefined;
+    return undefined;
+  };
 }

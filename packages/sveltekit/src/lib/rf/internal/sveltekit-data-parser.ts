@@ -19,8 +19,9 @@ import {
   type UnknownEntryConverter
 } from '$lib/internal/convert-form-data-entry.js';
 
-import { decodeOptionIndex, DEFAULT_PSEUDO_PREFIX } from '../id-builder.js';
+import { createOptionIndexDecoder, DEFAULT_PSEUDO_PREFIX } from '../id-builder.js';
 import { parseSchemaValue, type Input } from './schema-value-parser.js';
+import { decode, encode } from './codec.js';
 
 export interface SvelteKitDataParserOptions {
   schema: Schema;
@@ -42,8 +43,8 @@ export function createSvelteKitDataParser({
   uiOptionsRegistry = {},
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
-  enumItemDecoder = createEnumItemDecoder(decodeOptionIndex),
-  pseudoPrefix = DEFAULT_PSEUDO_PREFIX
+  pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
+  enumItemDecoder = createEnumItemDecoder(createOptionIndexDecoder(encode(pseudoPrefix)))
 }: SvelteKitDataParserOptions) {
   const validator: Validator = create(createValidator, {
     schema: schema,
@@ -78,6 +79,7 @@ export function createSvelteKitDataParser({
       merger,
       schema: schema,
       uiSchema: uiSchema,
-      validator
+      validator,
+      codec: { decode, encode }
     });
 }

@@ -97,13 +97,17 @@ export function createFormIdBuilder({
   };
 }
 
-export function decodeOptionIndex(value: string): number | undefined {
-  const index = value.lastIndexOf(DEFAULT_PSEUDO_PREFIX);
-  if (index > 0) {
-    const n = Number(value.substring(index + DEFAULT_PSEUDO_PREFIX.length));
-    if (Number.isInteger(n)) {
-      return n;
+export function createOptionIndexDecoder(encodedPseudoPrefix: string) {
+  return (value: string): number | undefined => {
+    if (value.startsWith(encodedPseudoPrefix)) {
+      const dotIndex = value.indexOf('.', encodedPseudoPrefix.length + 1);
+      if (dotIndex >= 0) {
+        const n = Number(value.slice(encodedPseudoPrefix.length, dotIndex));
+        if (Number.isInteger(n)) {
+          return n;
+        }
+      }
     }
-  }
-  return undefined;
+    return undefined;
+  };
 }

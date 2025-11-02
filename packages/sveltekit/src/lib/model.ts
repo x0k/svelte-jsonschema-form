@@ -59,3 +59,8 @@ export type EntryConverter<T> = (
 ) => MaybePromise<FieldValue>;
 
 export type EnumItemDecoder = (options: SchemaValue[], value: string) => SchemaValue | undefined;
+
+export interface Codec {
+  encode: (str: string) => string;
+  decode: (encodedStr: string) => string;
+}
