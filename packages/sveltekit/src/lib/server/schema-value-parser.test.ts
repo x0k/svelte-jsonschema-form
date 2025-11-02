@@ -156,16 +156,17 @@ describe('parseSchemaValue', async () => {
       }
     };
     const entries: Entries<string> = [
+      [SJSF_ID_PREFIX, 'root'],
       ['root.title', 'My current tasks'],
-      ['root.tasks.0.title', 'My first task'],
+      ['root.tasks@0.title', 'My first task'],
       [
-        'root.tasks.0.details',
+        'root.tasks@0.details',
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       ],
-      ['root.tasks.0.done', 'on'],
-      ['root.tasks.1.title', 'My second task'],
+      ['root.tasks@0.done', 'on'],
+      ['root.tasks@1.title', 'My second task'],
       [
-        'root.tasks.1.details',
+        'root.tasks@1.details',
         'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
       ]
     ];
@@ -272,6 +273,7 @@ describe('parseSchemaValue', async () => {
       }
     };
     const entries: Entries<string> = [
+      [SJSF_ID_PREFIX, 'root'],
       ['root.shipping_address.street_address', '221B, Baker Street'],
       ['root.shipping_address.city', 'London'],
       ['root.shipping_address.state', 'N/A'],
@@ -279,9 +281,9 @@ describe('parseSchemaValue', async () => {
       ['root.billing_address.city', 'Babel'],
       ['root.billing_address.state', 'Neverland'],
       ['root.tree.name', 'root'],
-      ['root.tree.children.0.name', 'leaf'],
-      ['root.tree.children.0.children.0.name', 'bar'],
-      ['root.tree.children.1.name', 'foo']
+      ['root.tree.children@0.name', 'leaf'],
+      ['root.tree.children@0.children@0.name', 'bar'],
+      ['root.tree.children@1.name', 'foo']
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       tree: {
@@ -515,10 +517,10 @@ describe('parseSchemaValue', async () => {
     };
     const entries: Entries<string> = [
       ['root.age', '123'],
-      ['root.items.0::anyof', '1'],
-      ['root.items.0.bar', 'bar'],
-      ['root.items.1::anyof', '0'],
-      ['root.items.1.foo', 'foo'],
+      ['root.items@0::anyof', '1'],
+      ['root.items@0.bar', 'bar'],
+      ['root.items@1::anyof', '0'],
+      ['root.items@1.foo', 'foo'],
       ['root::anyof', '0'],
       ['root.firstName', 'Chuck'],
       ['root.lastName', '']

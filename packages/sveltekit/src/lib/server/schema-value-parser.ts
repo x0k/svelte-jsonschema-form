@@ -73,7 +73,6 @@ export function parseSchemaValue<T>(
 ): Promise<SchemaValue | undefined> {
   const escapedIdSeparator = escapeRegex(idSeparator);
   const escapedIndexSeparator = escapeRegex(idIndexSeparator);
-  const escapedIdOrIndexSeparator = `(${escapedIdSeparator}|${escapedIndexSeparator})`;
   const escapedPseudoSeparator = escapeRegex(idPseudoSeparator);
 
   const BOUNDARY = `($|${escapedIdSeparator}|${escapedPseudoSeparator}|${escapedIndexSeparator})`;
@@ -275,14 +274,14 @@ export function parseSchemaValue<T>(
       let i = 0;
       if (Array.isArray(items)) {
         for (; i < items.length; i++) {
-          pushFilterAndEntries(escapedIdOrIndexSeparator, i);
+          pushFilterAndEntries(escapedIndexSeparator, i);
           value.push(await parseSchemaDef(items[i], uiIsArray ? uiItems[i] : uiItems, undefined));
           popEntriesAndFilter();
         }
         if (additionalItems !== undefined) {
           const additionalUiSchema = uiSchema.additionalItems ?? {};
           while (entriesStack[entriesStack.length - 1].length > 0) {
-            pushFilterAndEntries(escapedIdOrIndexSeparator, i++);
+            pushFilterAndEntries(escapedIndexSeparator, i++);
             if (i === items.length + 1 && entriesStack[entriesStack.length - 1].length === 0) {
               popEntriesAndFilter();
               break;
@@ -293,7 +292,7 @@ export function parseSchemaValue<T>(
         }
       } else {
         while (entriesStack[entriesStack.length - 1].length > 0) {
-          pushFilterAndEntries(escapedIdOrIndexSeparator, i++);
+          pushFilterAndEntries(escapedIndexSeparator, i++);
           // Special case: array items have no indexes, but they have the same names
           if (i === 1 && entriesStack[entriesStack.length - 1].length === 0) {
             popEntriesAndFilter();
