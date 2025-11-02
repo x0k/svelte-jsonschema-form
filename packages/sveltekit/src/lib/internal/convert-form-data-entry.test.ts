@@ -76,6 +76,32 @@ describe('convertFormDataEntries', async () => {
       convert(c.signal, { schema, uiSchema: {}, path, value: 'root::3' })
     ).rejects.toThrow(/does not match the schema/);
   });
+  it('Should return correct value for enum and raw value', async () => {
+    const schema: Schema = {
+      type: 'string',
+      enum: ['1', '2', '3']
+    };
+    const path: RPath = [];
+    await expect(convert(c.signal, { schema, uiSchema: {}, path, value: '2' })).resolves.toEqual(
+      '2'
+    );
+    await expect(convert(c.signal, { schema, uiSchema: {}, path, value: '4' })).rejects.toThrow(
+      /does not match the schema/
+    );
+  });
+  it('Should return correct value for enum and JSON value', async () => {
+    const schema: Schema = {
+      type: 'string',
+      enum: [{ foo: 0 }, { bar: 1 }, { baz: 2 }]
+    };
+    const path: RPath = [];
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path, value: '{"foo": 0}' })
+    ).resolves.toEqual({ foo: 0 });
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path, value: '{"bar": 0}' })
+    ).rejects.toThrow(/does not match the schema/);
+  });
   it('Should return correct value from anyOf', async () => {
     const schema: Schema = {
       title: 'Color',
