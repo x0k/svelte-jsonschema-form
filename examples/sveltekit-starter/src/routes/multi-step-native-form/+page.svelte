@@ -8,6 +8,8 @@
     type Config,
     getValueSnapshot,
   } from "@sjsf/form";
+  // WARN: You must export this ID Builder in your `defaults` file
+  import { createFormIdBuilder } from "@sjsf/sveltekit";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
   import * as defaults from "$lib/form-defaults";
@@ -19,6 +21,7 @@
 
   const { form } = setupSvelteKitForm(meta, {
     ...defaults,
+    idBuilder: createFormIdBuilder,
     extraUiOptions: fromFactories({
       layouts: (config: Config) =>
         config.path.length === 1
