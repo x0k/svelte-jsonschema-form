@@ -77,12 +77,24 @@ import "@sjsf/shadcn4-theme/extra-widgets/range-include";
 import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 
+import { theme as svar } from "@sjsf-lab/svar-theme";
+import "@sjsf-lab/svar-theme/extra-widgets/checkboxes-include";
+import "@sjsf-lab/svar-theme/extra-widgets/date-picker-include";
+import "@sjsf-lab/svar-theme/extra-widgets/multi-select-include";
+import "@sjsf-lab/svar-theme/extra-widgets/radio-include";
+import "@sjsf-lab/svar-theme/extra-widgets/range-include";
+import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
+
+import picoStyles from "@picocss/pico/css/pico.min.css?inline";
+
 export const themes = {
   basic,
   daisy5,
   flowbite3,
   skeleton4,
   shadcn4,
+  svar,
+  pico: basic,
 };
 
 export const themeStyles = {
@@ -91,4 +103,6 @@ export const themeStyles = {
   flowbite3: flowbite3Styles,
   skeleton4: skeleton4Styles,
   shadcn4: shadcn4Styles,
+  svar: "",
+  pico: picoStyles,
 } satisfies Record<keyof typeof themes, string>;

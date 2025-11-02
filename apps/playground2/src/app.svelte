@@ -1,5 +1,6 @@
 <script lang="ts">
   import { BitsConfig } from "bits-ui";
+  import { Willow, WillowDark } from '@svar-ui/svelte-core'
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
@@ -60,6 +61,7 @@
   import Popup from "./popup.svelte";
   import Bits from "./bits.svelte";
   import Select from "./select.svelte";
+  import Noop from './noop.svelte';
 
   import * as customComponents from "./custom-form-components/index.js";
   import { themeManager } from "./theme.svelte";
@@ -244,6 +246,8 @@
 
   const clearLink = new URL(location.href);
   clearLink.hash = "";
+
+  const SvarProvider = $derived(data.theme === 'svar' ? themeManager.isDark ? WillowDark : Willow : Noop)
 </script>
 
 <div
@@ -401,29 +405,37 @@
     class="col-span-3 row-span-2 overflow-y-auto border border-[var(--global-border)] rounded-md"
     style={`${themeStyle}\n${iconSetStyle}`}
   >
+    <style>
+      .wx-willow-theme, .wx-willow-dark-theme {
+        height: auto !important;
+        min-height: 100%;
+      }
+    </style>
     <BitsConfig defaultPortalTo={portalEl}>
-      <svelte:boundary>
-        <Form
-          attributes={{
-            id: "form",
-            class: themeManager.darkOrLight,
-            style:
-              "min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;",
-            novalidate: !data.html5Validation || undefined,
-            ["data-theme"]: data.theme.startsWith("skeleton")
-              ? "cerberus"
-              : themeManager.darkOrLight,
-          }}
-        >
-          <Content />
-          <SubmitButton />
-          <Debug />
-        </Form>
-        {#snippet failed(error, reset)}
-          {@const _ = setTimeout(reset, 1000)}
-          <p style="color: red; padding: 1rem;">{error}</p>
-        {/snippet}
-      </svelte:boundary>
+      <SvarProvider>
+        <svelte:boundary>
+          <Form
+            attributes={{
+              id: "form",
+              class: themeManager.darkOrLight,
+              style:
+                "min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;",
+              novalidate: !data.html5Validation || undefined,
+              ["data-theme"]: data.theme.startsWith("skeleton")
+                ? "cerberus"
+                : themeManager.darkOrLight,
+            }}
+          >
+            <Content />
+            <SubmitButton />
+            <Debug />
+          </Form>
+          {#snippet failed(error, reset)}
+            {@const _ = setTimeout(reset, 1000)}
+            <p style="color: red; padding: 1rem;">{error}</p>
+          {/snippet}
+        </svelte:boundary>
+      </SvarProvider>
     </BitsConfig>
     <div bind:this={portalEl}></div>
   </ShadowHost>
