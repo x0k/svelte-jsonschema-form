@@ -1,6 +1,6 @@
 export interface EmptyNode<T, V> {
   values: Map<T, Node<T, V>>;
-  value: undefined;
+  value: V | undefined;
 }
 
 export interface ValueNode<T, V> {
