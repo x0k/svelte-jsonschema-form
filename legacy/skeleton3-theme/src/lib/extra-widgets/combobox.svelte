@@ -12,7 +12,7 @@
 
 <script lang="ts">
 	import { customInputAttributes, getFormContext, getId, type ComponentProps } from '@sjsf/form';
-	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
+	import { multipleOptions, idMapper } from '@sjsf/form/options.svelte';
 
 	let {
 		config,
@@ -23,16 +23,15 @@
 
 	const ctx = getFormContext();
 
-	const data = $derived(options.map((o, i) => ({ label: o.label, value: i.toString() })));
+	const data = $derived(options.map((o) => ({ label: o.label, value: o.id })));
 
 	const mapped = multipleOptions({
-		mapper: () => stringIndexMapper(options),
+		mapper: () => idMapper(options),
 		value: () => (value === undefined ? undefined : [value]),
 		update: (v) => (value = v[0])
 	});
 
-
-	const id = $derived(getId(ctx, config.path))
+	const id = $derived(getId(ctx, config.path));
 
 	const attributes = $derived(
 		customInputAttributes(ctx, config, 'skeleton3Combobox', {

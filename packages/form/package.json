@@ -186,10 +186,6 @@
     "./prevent-page-reload.svelte": {
       "types": "./dist/prevent-page-reload.svelte.d.ts",
       "svelte": "./dist/prevent-page-reload.svelte.js"
-    },
-    "./static-analysis": {
-      "types": "./dist/static-analysis.d.ts",
-      "default": "./dist/static-analysis.js"
     }
   }
 }

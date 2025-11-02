@@ -314,7 +314,7 @@ leg/:
     popd
   popd
 
-l/:
+lab/:
   pushd lab
   shad/:
     pushd shadcn-extras-theme

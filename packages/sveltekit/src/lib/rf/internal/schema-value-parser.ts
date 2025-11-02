@@ -25,10 +25,8 @@ import {
   type Validator
 } from '@sjsf/form';
 
-import type { EntryConverter } from '$lib/model.js';
+import type { Codec, EntryConverter } from '$lib/model.js';
 import { ANY_OF, compilePatterns, KEY_INPUT_KEY, ONE_OF } from '$lib/internal.js';
-
-import { decode, encode } from './codec.js';
 
 export type Input<T> = T | { [key: string]: Input<T> } | Input<T>[] | undefined;
 
@@ -41,6 +39,7 @@ export interface SchemaValueParserOptions<T> {
   convertEntry: EntryConverter<T>;
   idPrefix: string;
   pseudoPrefix: string;
+  codec: Codec;
 }
 
 type CombinationIdentifiableElement = typeof ONE_OF | typeof ANY_OF;
@@ -55,7 +54,8 @@ export async function parseSchemaValue<T>(
     merger,
     convertEntry,
     idPrefix,
-    pseudoPrefix
+    pseudoPrefix,
+    codec: { encode, decode }
   }: SchemaValueParserOptions<T>
 ) {
   const path: Path = [];

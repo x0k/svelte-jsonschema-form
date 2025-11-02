@@ -15,7 +15,7 @@
     inputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import { indexMapper, multipleOptions } from "@sjsf/form/options.svelte";
+  import { idMapper, multipleOptions } from "@sjsf/form/options.svelte";
 
   let {
     handlers,
@@ -33,17 +33,17 @@
   );
 
   const mapped = multipleOptions({
-    mapper: () => indexMapper(options),
+    mapper: () => idMapper(options),
     value: () => value,
     update: (v) => (value = v),
   });
 </script>
 
-{#each options as option, index (option.id)}
+{#each options as option (option.id)}
   <label>
     <input
       bind:group={mapped.value}
-      value={index}
+      value={option.id}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}

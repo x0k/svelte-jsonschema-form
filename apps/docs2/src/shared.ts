@@ -87,8 +87,9 @@ export const GENERIC_EXAMPLES = Object.values(GenericExample);
 export enum SvelteKitExample {
   FormActions = "form-actions",
   FormActionsFlex = "form-actions-flex",
+  FormActionsWithoutJs = "form-actions-without-js",
   RemoveFunctions = "remote-functions",
-  NativeForm = "native-form",
+  RemoveFunctionsWithoutJs = "remote-functions-without-js",
   MultiStepNativeForm = "multi-step-native-form",
 }
 

@@ -13,7 +13,7 @@
 
 <script lang="ts">
 	import { getId, customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
-	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
+	import { multipleOptions, idMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
 
@@ -29,13 +29,12 @@
 		config
 	}: ComponentProps['multiSelectWidget'] = $props();
 
-	const mapped = $derived(
-		multipleOptions({
-			mapper: () => stringIndexMapper(options),
-			value: () => value,
-			update: (v) => (value = v)
-		})
-	);
+	const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
+	const mapped = multipleOptions({
+		mapper: () => idMapper(options),
+		value: () => value,
+		update: (v) => (value = v)
+	});
 
 	const selectAttributes = $derived(
 		customInputAttributes(ctx, config, 'shadcnMultiSelect', {
@@ -44,16 +43,9 @@
 		})
 	);
 
-	const triggerContent = $derived.by(() => {
-		const v = mapped.value;
-		if (Array.isArray(v)) {
-			return v.map((i) => options[Number(i)].label).join(', ') || selectAttributes.placeholder;
-		}
-		if (v in options) {
-			return options[Number(v)].label;
-		}
-		return selectAttributes.placeholder;
-	});
+	const triggerContent = $derived(
+		mapped.value.map((id) => labels.get(id)).join(', ') || selectAttributes.placeholder
+	);
 
 	const id = $derived(getId(ctx, config.path));
 </script>
@@ -70,9 +62,8 @@
 		</span>
 	</SelectTrigger>
 	<SelectContent>
-		{#each options as option, index (option.id)}
-			{@const indexStr = index.toString()}
-			<SelectItem value={indexStr} label={option.label} disabled={option.disabled} />
+		{#each options as option (option.id)}
+			<SelectItem value={option.id} label={option.label} disabled={option.disabled} />
 		{/each}
 	</SelectContent>
 </Select>

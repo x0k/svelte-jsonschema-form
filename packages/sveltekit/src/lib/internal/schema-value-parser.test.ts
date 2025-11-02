@@ -1,28 +1,32 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { SJSF_ID_PREFIX, type Schema } from '@sjsf/form';
+import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from '@sjsf/form';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
 import type { Entries } from '$lib/model.js';
 
+import { createOptionIndexDecoder } from '../id-builder.js';
+import { createEnumItemDecoder, createFormDataEntryConverter } from './convert-form-data-entry.js';
 import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
-import { createFormDataEntryConverter } from '../internal/convert-form-data-entry.js';
+import { createCodec } from './codec.js';
 
 const opts = ({
   schema = {},
   entries = [],
   uiSchema = {},
-  idPrefix = 'root',
+  idPrefix = DEFAULT_ID_PREFIX,
   idSeparator = '.',
   idIndexSeparator = '@',
   idPseudoSeparator = '::',
   validator = createFormValidator(),
   merger = createMerger(),
+  codec = createCodec({ sequencesToEncode: [idSeparator, idIndexSeparator, idPseudoSeparator] }),
   convertEntry = createFormDataEntryConverter({
     merger,
     validator,
     rootSchema: schema,
-    rootUiSchema: uiSchema
+    rootUiSchema: uiSchema,
+    enumItemDecoder: createEnumItemDecoder(createOptionIndexDecoder(idPseudoSeparator))
   })
 }: Partial<
   SchemaValueParserOptions<FormDataEntryValue>
@@ -36,7 +40,8 @@ const opts = ({
   idPseudoSeparator,
   validator,
   merger,
-  convertEntry: convertEntry
+  convertEntry,
+  codec
 });
 
 describe('parseSchemaValue', async () => {
@@ -151,16 +156,17 @@ describe('parseSchemaValue', async () => {
       }
     };
     const entries: Entries<string> = [
+      [SJSF_ID_PREFIX, 'root'],
       ['root.title', 'My current tasks'],
-      ['root.tasks.0.title', 'My first task'],
+      ['root.tasks@0.title', 'My first task'],
       [
-        'root.tasks.0.details',
+        'root.tasks@0.details',
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       ],
-      ['root.tasks.0.done', 'on'],
-      ['root.tasks.1.title', 'My second task'],
+      ['root.tasks@0.done', 'on'],
+      ['root.tasks@1.title', 'My second task'],
       [
-        'root.tasks.1.details',
+        'root.tasks@1.details',
         'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
       ]
     ];
@@ -207,8 +213,8 @@ describe('parseSchemaValue', async () => {
       ['root.lastName', 'Norris'],
       ['root.assKickCount::key-input', 'assKickCountChanged'],
       ['root.assKickCount', 'infinity'],
-      ['root.new.key::key-input', 'new.keyChanged'],
-      ['root.new.key', 'foo']
+      ['root.new~21akey::key-input', 'new.keyChanged'],
+      ['root.new~21akey', 'foo']
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       firstName: 'Chuck',
@@ -267,6 +273,7 @@ describe('parseSchemaValue', async () => {
       }
     };
     const entries: Entries<string> = [
+      [SJSF_ID_PREFIX, 'root'],
       ['root.shipping_address.street_address', '221B, Baker Street'],
       ['root.shipping_address.city', 'London'],
       ['root.shipping_address.state', 'N/A'],
@@ -274,9 +281,9 @@ describe('parseSchemaValue', async () => {
       ['root.billing_address.city', 'Babel'],
       ['root.billing_address.state', 'Neverland'],
       ['root.tree.name', 'root'],
-      ['root.tree.children.0.name', 'leaf'],
-      ['root.tree.children.0.children.0.name', 'bar'],
-      ['root.tree.children.1.name', 'foo']
+      ['root.tree.children@0.name', 'leaf'],
+      ['root.tree.children@0.children@0.name', 'bar'],
+      ['root.tree.children@1.name', 'foo']
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       tree: {
@@ -396,11 +403,12 @@ describe('parseSchemaValue', async () => {
       }
     };
     const entries: Entries<string> = [
-      ['root.currentColor', '1'],
-      ['root.colorMask', '2'],
-      ['root.toggleMask', '0'],
-      ['root.colorPalette.0', '0'],
-      ['root.blendMode', '0']
+      [SJSF_ID_PREFIX, 'root'],
+      ['root.currentColor', 'root.currentColor::1'],
+      ['root.colorMask', 'root.colorMask::2'],
+      ['root.toggleMask', 'root.toggleMask::0'],
+      ['root.colorPalette@0', 'root.colorPalette@0::0'],
+      ['root.blendMode', 'root.blendMode::0']
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       colorMask: ['#0000ff'],
@@ -509,10 +517,10 @@ describe('parseSchemaValue', async () => {
     };
     const entries: Entries<string> = [
       ['root.age', '123'],
-      ['root.items.0::anyof', '1'],
-      ['root.items.0.bar', 'bar'],
-      ['root.items.1::anyof', '0'],
-      ['root.items.1.foo', 'foo'],
+      ['root.items@0::anyof', '1'],
+      ['root.items@0.bar', 'bar'],
+      ['root.items@1::anyof', '0'],
+      ['root.items@1.foo', 'foo'],
       ['root::anyof', '0'],
       ['root.firstName', 'Chuck'],
       ['root.lastName', '']
@@ -700,36 +708,37 @@ describe('parseSchemaValue', async () => {
       }
     };
     const entries: Entries<string> = [
-      ['root.listOfStrings.0', 'foo'],
-      ['root.listOfStrings.1', 'bar'],
-      ['root.multipleChoicesList', '0'],
-      ['root.multipleChoicesList', '1'],
-      ['root.fixedItemsList.0', 'Some text'],
-      ['root.fixedItemsList.1', '0'],
-      ['root.fixedItemsList.2', '123'],
-      ['root.minItemsList.0.name', 'Default name'],
-      ['root.minItemsList.1.name', 'Default name'],
-      ['root.minItemsList.2.name', 'Default name'],
-      ['root.defaultsAndMinItems.0', 'carp'],
-      ['root.defaultsAndMinItems.1', 'trout'],
-      ['root.defaultsAndMinItems.2', 'bream'],
-      ['root.defaultsAndMinItems.3', 'unidentified'],
-      ['root.defaultsAndMinItems.4', 'unidentified'],
-      ['root.nestedList.0.0', 'lorem'],
-      ['root.nestedList.0.1', 'ipsum'],
-      ['root.nestedList.1.0', 'dolor'],
-      ['root.unorderable.0', 'one'],
-      ['root.unorderable.1', 'two'],
-      ['root.copyable.0', 'one'],
-      ['root.copyable.1', 'two'],
-      ['root.unremovable.0', 'one'],
-      ['root.unremovable.1', 'two'],
-      ['root.noToolbar.0', 'one'],
-      ['root.noToolbar.1', 'two'],
-      ['root.fixedNoToolbar.0', '42'],
-      ['root.fixedNoToolbar.1', 'on'],
-      ['root.fixedNoToolbar.2', 'additional item one'],
-      ['root.fixedNoToolbar.3', 'additional item two']
+      [SJSF_ID_PREFIX, 'root'],
+      ['root.listOfStrings@0', 'foo'],
+      ['root.listOfStrings@1', 'bar'],
+      ['root.multipleChoicesList', 'root.multipleChoicesList::0'],
+      ['root.multipleChoicesList', 'root.multipleChoicesList::1'],
+      ['root.fixedItemsList@0', 'Some text'],
+      ['root.fixedItemsList@1', 'root.fixedItemsList@1::0'],
+      ['root.fixedItemsList@2', '123'],
+      ['root.minItemsList@0.name', 'Default name'],
+      ['root.minItemsList@1.name', 'Default name'],
+      ['root.minItemsList@2.name', 'Default name'],
+      ['root.defaultsAndMinItems@0', 'carp'],
+      ['root.defaultsAndMinItems@1', 'trout'],
+      ['root.defaultsAndMinItems@2', 'bream'],
+      ['root.defaultsAndMinItems@3', 'unidentified'],
+      ['root.defaultsAndMinItems@4', 'unidentified'],
+      ['root.nestedList@0@0', 'lorem'],
+      ['root.nestedList@0@1', 'ipsum'],
+      ['root.nestedList@1@0', 'dolor'],
+      ['root.unorderable@0', 'one'],
+      ['root.unorderable@1', 'two'],
+      ['root.copyable@0', 'one'],
+      ['root.copyable@1', 'two'],
+      ['root.unremovable@0', 'one'],
+      ['root.unremovable@1', 'two'],
+      ['root.noToolbar@0', 'one'],
+      ['root.noToolbar@1', 'two'],
+      ['root.fixedNoToolbar@0', '42'],
+      ['root.fixedNoToolbar@1', 'on'],
+      ['root.fixedNoToolbar@2', 'additional item one'],
+      ['root.fixedNoToolbar@3', 'additional item two']
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       listOfStrings: ['foo', 'bar'],
@@ -864,16 +873,37 @@ describe('parseSchemaValue', async () => {
       [SJSF_ID_PREFIX, 'root'],
       ['root.simple.name', 'Randy'],
       ['root.simple.credit_card', ''],
-      ['root.conditional.Do you have any pets?', '0'],
-      ['root.arrayOfConditionals@0.Do you have any pets?', '1'],
+      ['root.conditional.Do you have any pets?', 'root.conditional.Do you have any pets?::0'],
+      [
+        'root.arrayOfConditionals@0.Do you have any pets?',
+        'root.arrayOfConditionals@0.Do you have any pets?::1'
+      ],
       ['root.arrayOfConditionals@0.How old is your pet?', '6'],
-      ['root.arrayOfConditionals@1.Do you have any pets?', '2'],
-      ['root.arrayOfConditionals@1.Do you want to get rid of any?', '1'],
-      ['root.fixedArrayOfConditionals@0.Do you have any pets?', '0'],
-      ['root.fixedArrayOfConditionals@1.Do you have any pets?', '1'],
+      [
+        'root.arrayOfConditionals@1.Do you have any pets?',
+        'root.arrayOfConditionals@1.Do you have any pets?::2'
+      ],
+      [
+        'root.arrayOfConditionals@1.Do you want to get rid of any?',
+        'root.arrayOfConditionals@1.Do you want to get rid of any?::1'
+      ],
+      [
+        'root.fixedArrayOfConditionals@0.Do you have any pets?',
+        'root.fixedArrayOfConditionals@0.Do you have any pets?::0'
+      ],
+      [
+        'root.fixedArrayOfConditionals@1.Do you have any pets?',
+        'root.fixedArrayOfConditionals@1.Do you have any pets?::1'
+      ],
       ['root.fixedArrayOfConditionals@1.How old is your pet?', '6'],
-      ['root.fixedArrayOfConditionals@2.Do you have any pets?', '2'],
-      ['root.fixedArrayOfConditionals@2.Do you want to get rid of any?', '0']
+      [
+        'root.fixedArrayOfConditionals@2.Do you have any pets?',
+        'root.fixedArrayOfConditionals@2.Do you have any pets?::2'
+      ],
+      [
+        'root.fixedArrayOfConditionals@2.Do you want to get rid of any?',
+        'root.fixedArrayOfConditionals@2.Do you want to get rid of any?::0'
+      ]
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       conditional: {
@@ -962,9 +992,10 @@ describe('parseSchemaValue', async () => {
       ]
     };
     const entries: Entries<string> = [
-      ['root.animal', '1'],
-      ['root.food', '0'],
-      ['root.water', '1']
+      [SJSF_ID_PREFIX, 'root'],
+      ['root.animal', 'root.animal::1'],
+      ['root.food', 'root.food::0'],
+      ['root.water', 'root.water::1']
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       animal: '1',
@@ -1111,36 +1142,37 @@ describe('parseSchemaValue', async () => {
       }
     };
     const entries: Entries<string> = [
-      ['root.listOfStrings.0', 'foo'],
-      ['root.listOfStrings.1', 'bar'],
-      ['root.multipleChoicesList', '0'],
-      ['root.multipleChoicesList', '1'],
-      ['root.fixedItemsList.0', 'Some text'],
-      ['root.fixedItemsList.1', '0'],
-      ['root.fixedItemsList.2', '123'],
-      ['root.minItemsList.0.name', 'Default name'],
-      ['root.minItemsList.1.name', 'Default name'],
-      ['root.minItemsList.2.name', 'Default name'],
-      ['root.defaultsAndMinItems.0', 'carp'],
-      ['root.defaultsAndMinItems.1', 'trout'],
-      ['root.defaultsAndMinItems.2', 'bream'],
-      ['root.defaultsAndMinItems.3', 'unidentified'],
-      ['root.defaultsAndMinItems.4', 'unidentified'],
-      ['root.nestedList.0.0', 'lorem'],
-      ['root.nestedList.0.1', 'ipsum'],
-      ['root.nestedList.1.0', 'dolor'],
-      ['root.unorderable.0', 'one'],
-      ['root.unorderable.1', 'two'],
-      ['root.copyable.0', 'one'],
-      ['root.copyable.1', 'two'],
-      ['root.unremovable.0', 'one'],
-      ['root.unremovable.1', 'two'],
-      ['root.noToolbar.0', 'one'],
-      ['root.noToolbar.1', 'two'],
-      ['root.fixedNoToolbar.0', '42'],
-      ['root.fixedNoToolbar.1', 'on'],
-      ['root.fixedNoToolbar.2', 'additional item one'],
-      ['root.fixedNoToolbar.3', 'additional item two']
+      [SJSF_ID_PREFIX, 'root'],
+      ['root.listOfStrings@0', 'foo'],
+      ['root.listOfStrings@1', 'bar'],
+      ['root.multipleChoicesList', 'root.multipleChoicesList::0'],
+      ['root.multipleChoicesList', 'root.multipleChoicesList::1'],
+      ['root.fixedItemsList@0', 'Some text'],
+      ['root.fixedItemsList@1', 'root.fixedItemsList@1::0'],
+      ['root.fixedItemsList@2', '123'],
+      ['root.minItemsList@0.name', 'Default name'],
+      ['root.minItemsList@1.name', 'Default name'],
+      ['root.minItemsList@2.name', 'Default name'],
+      ['root.defaultsAndMinItems@0', 'carp'],
+      ['root.defaultsAndMinItems@1', 'trout'],
+      ['root.defaultsAndMinItems@2', 'bream'],
+      ['root.defaultsAndMinItems@3', 'unidentified'],
+      ['root.defaultsAndMinItems@4', 'unidentified'],
+      ['root.nestedList@0@0', 'lorem'],
+      ['root.nestedList@0@1', 'ipsum'],
+      ['root.nestedList@1@0', 'dolor'],
+      ['root.unorderable@0', 'one'],
+      ['root.unorderable@1', 'two'],
+      ['root.copyable@0', 'one'],
+      ['root.copyable@1', 'two'],
+      ['root.unremovable@0', 'one'],
+      ['root.unremovable@1', 'two'],
+      ['root.noToolbar@0', 'one'],
+      ['root.noToolbar@1', 'two'],
+      ['root.fixedNoToolbar@0', '42'],
+      ['root.fixedNoToolbar@1', 'on'],
+      ['root.fixedNoToolbar@2', 'additional item one'],
+      ['root.fixedNoToolbar@3', 'additional item two']
     ];
     await expect(
       parseSchemaValue(
@@ -1172,200 +1204,6 @@ describe('parseSchemaValue', async () => {
       unremovable: ['one', 'two'],
       noToolbar: ['one', 'two'],
       fixedNoToolbar: [42, true, 'additional item one', 'additional item two']
-    });
-  });
-
-  it('Should support modern idBuilder', async () => {
-    const schema: Schema = {
-      definitions: {
-        Thing: {
-          type: 'object',
-          properties: {
-            name: {
-              type: 'string',
-              default: 'Default name'
-            }
-          }
-        }
-      },
-      type: 'object',
-      properties: {
-        listOfStrings: {
-          type: 'array',
-          title: 'A list of strings',
-          items: {
-            type: 'string',
-            default: 'bazinga'
-          }
-        },
-        multipleChoicesList: {
-          type: 'array',
-          title: 'A multiple choices list',
-          items: {
-            type: 'string',
-            enum: ['foo', 'bar', 'fuzz', 'qux']
-          },
-          uniqueItems: true
-        },
-        fixedItemsList: {
-          type: 'array',
-          title: 'A list of fixed items',
-          items: [
-            {
-              title: 'A string value',
-              type: 'string',
-              default: 'lorem ipsum'
-            },
-            {
-              title: 'a boolean value',
-              type: 'boolean'
-            }
-          ],
-          additionalItems: {
-            title: 'Additional item',
-            type: 'number'
-          }
-        },
-        minItemsList: {
-          type: 'array',
-          title: 'A list with a minimal number of items',
-          minItems: 3,
-          items: {
-            $ref: '#/definitions/Thing'
-          }
-        },
-        defaultsAndMinItems: {
-          type: 'array',
-          title: 'List and item level defaults',
-          minItems: 5,
-          default: ['carp', 'trout', 'bream'],
-          items: {
-            type: 'string',
-            default: 'unidentified'
-          }
-        },
-        nestedList: {
-          type: 'array',
-          title: 'Nested list',
-          items: {
-            type: 'array',
-            title: 'Inner list',
-            items: {
-              type: 'string',
-              default: 'lorem ipsum'
-            }
-          }
-        },
-        unorderable: {
-          title: 'Unorderable items',
-          type: 'array',
-          items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
-        },
-        copyable: {
-          title: 'Copyable items',
-          type: 'array',
-          items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
-        },
-        unremovable: {
-          title: 'Unremovable items',
-          type: 'array',
-          items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
-        },
-        noToolbar: {
-          title: 'No add, remove and order buttons',
-          type: 'array',
-          items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
-        },
-        fixedNoToolbar: {
-          title: 'Fixed array without buttons',
-          type: 'array',
-          items: [
-            {
-              title: 'A number',
-              type: 'number',
-              default: 42
-            },
-            {
-              title: 'A boolean',
-              type: 'boolean',
-              default: false
-            }
-          ],
-          additionalItems: {
-            title: 'A string',
-            type: 'string',
-            default: 'lorem ipsum'
-          }
-        }
-      }
-    };
-    const entries: Entries<string> = [
-      ['root.listOfStrings@0', 'foo'],
-      ['root.listOfStrings@1', 'bar'],
-      ['root.multipleChoicesList', '0'],
-      ['root.multipleChoicesList', '1'],
-      ['root.multipleChoicesList', '2'],
-      ['root.fixedItemsList@0', 'Some text'],
-      ['root.fixedItemsList@1', '0'],
-      ['root.fixedItemsList@2', '123'],
-      ['root.minItemsList@0.name', 'Default name'],
-      ['root.minItemsList@1.name', 'Default name'],
-      ['root.minItemsList@2.name', 'Default name'],
-      ['root.defaultsAndMinItems@0', 'carp'],
-      ['root.defaultsAndMinItems@1', 'trout'],
-      ['root.defaultsAndMinItems@2', 'bream'],
-      ['root.defaultsAndMinItems@3', 'unidentified'],
-      ['root.defaultsAndMinItems@4', 'unidentified'],
-      ['root.nestedList@0@0', 'lorem'],
-      ['root.nestedList@0@1', 'ipsum'],
-      ['root.nestedList@1@0', 'dolor'],
-      ['root.unorderable@0', 'one'],
-      ['root.unorderable@1', 'two'],
-      ['root.copyable@0', 'one'],
-      ['root.copyable@1', 'two'],
-      ['root.unremovable@0', 'one'],
-      ['root.unremovable@1', 'two'],
-      ['root.noToolbar@0', 'one'],
-      ['root.noToolbar@1', 'two'],
-      ['root.fixedNoToolbar@0', '42'],
-      ['root.fixedNoToolbar@1', 'on'],
-      ['root.fixedNoToolbar@2', 'additional item one'],
-      ['root.fixedNoToolbar@3', 'additional item two']
-    ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
-      listOfStrings: ['foo', 'bar'],
-      multipleChoicesList: ['foo', 'bar', 'fuzz'],
-      fixedItemsList: ['Some text', true, 123],
-      nestedList: [['lorem', 'ipsum'], ['dolor']],
-      unorderable: ['one', 'two'],
-      copyable: ['one', 'two'],
-      unremovable: ['one', 'two'],
-      noToolbar: ['one', 'two'],
-      fixedNoToolbar: [42, true, 'additional item one', 'additional item two'],
-      minItemsList: [
-        {
-          name: 'Default name'
-        },
-        {
-          name: 'Default name'
-        },
-        {
-          name: 'Default name'
-        }
-      ],
-      defaultsAndMinItems: ['carp', 'trout', 'bream', 'unidentified', 'unidentified']
     });
   });
 

@@ -3,14 +3,18 @@ import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from '@sjsf/form';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
-import { createFormDataEntryConverter } from '$lib/internal/convert-form-data-entry.js';
+import {
+  createEnumItemDecoder,
+  createFormDataEntryConverter
+} from '$lib/internal/convert-form-data-entry.js';
 
+import { DEFAULT_PSEUDO_PREFIX, createOptionIndexDecoder } from '../id-builder.js';
 import {
   parseSchemaValue,
   type Input,
   type SchemaValueParserOptions
 } from './schema-value-parser.js';
-import { DEFAULT_PSEUDO_PREFIX } from '../id-builder.js';
+import { decode, encode } from './codec.js';
 
 const opts = ({
   idPrefix = DEFAULT_ID_PREFIX,
@@ -20,11 +24,13 @@ const opts = ({
   uiSchema = {},
   validator = createFormValidator(),
   merger = createMerger(),
+  codec = { encode, decode },
   convertEntry = createFormDataEntryConverter({
     merger,
     validator,
     rootSchema: schema,
-    rootUiSchema: uiSchema
+    rootUiSchema: uiSchema,
+    enumItemDecoder: createEnumItemDecoder(createOptionIndexDecoder(codec.encode(pseudoPrefix)))
   })
 }: Partial<
   SchemaValueParserOptions<FormDataEntryValue>
@@ -36,7 +42,8 @@ const opts = ({
   merger,
   convertEntry,
   idPrefix,
-  pseudoPrefix
+  pseudoPrefix,
+  codec
 });
 
 describe('parseSchemaValue', async () => {
@@ -465,11 +472,11 @@ describe('parseSchemaValue', async () => {
     };
     const input: Input<FormDataEntryValue> = {
       [DEFAULT_ID_PREFIX]: {
-        currentColor: '1',
-        colorMask: ['2'],
-        toggleMask: '0',
-        colorPalette: ['0'],
-        blendMode: '0'
+        currentColor: 'X21mX21m1.native.currentColor.X21mX21m',
+        colorMask: ['X21mX21m2.native.colorMask.X21mX21m'],
+        toggleMask: 'X21mX21m0.native.toggleMask.X21mX21m',
+        colorPalette: ['X21mX21m0.native.colorPalette[0].X21mX21m'],
+        blendMode: 'X21mX21m0.native.blendMode.X21mX21m'
       }
     };
     await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
@@ -779,7 +786,10 @@ describe('parseSchemaValue', async () => {
     const input: Input<FormDataEntryValue> = {
       [DEFAULT_ID_PREFIX]: {
         listOfStrings: ['foo', 'bar'],
-        multipleChoicesList: ['0', '1'],
+        multipleChoicesList: [
+          'X21mX21m0.native.multipleChoicesList.X21mX21m',
+          'X21mX21m1.native.multipleChoicesList.X21mX21m'
+        ],
         fixedItemsList: ['Some text', 'on', '123'],
         minItemsList: [
           { name: 'Default name' },
@@ -926,27 +936,46 @@ describe('parseSchemaValue', async () => {
       }
     };
     const input: Input<FormDataEntryValue> = {
-      [DEFAULT_ID_PREFIX]: {
+      [SJSF_ID_PREFIX]: 'native',
+      native: {
         simple: { name: 'Randy', credit_card: '' },
-        conditional: { DoX1wyouX1whaveX1wanyX1wpetsX21r: '0' },
+        conditional: {
+          DoX1wyouX1whaveX1wanyX1wpetsX21r:
+            'X21mX21m0.native.conditional.DoX1wyouX1whaveX1wanyX1wpetsX21r.X21mX21m'
+        },
         arrayOfConditionals: [
-          { DoX1wyouX1whaveX1wanyX1wpetsX21r: '1', HowX1woldX1wisX1wyourX1wpetX21r: '6' },
           {
-            DoX1wyouX1whaveX1wanyX1wpetsX21r: '2',
-            DoX1wyouX1wwantX1wtoX1wgetX1wridX1wofX1wanyX21r: '1'
+            DoX1wyouX1whaveX1wanyX1wpetsX21r:
+              'X21mX21m1.native.arrayOfConditionals[0].DoX1wyouX1whaveX1wanyX1wpetsX21r.X21mX21m',
+            HowX1woldX1wisX1wyourX1wpetX21r: '6'
+          },
+          {
+            DoX1wyouX1whaveX1wanyX1wpetsX21r:
+              'X21mX21m2.native.arrayOfConditionals[1].DoX1wyouX1whaveX1wanyX1wpetsX21r.X21mX21m'
           }
         ],
         fixedArrayOfConditionals: [
-          { DoX1wyouX1whaveX1wanyX1wpetsX21r: '0' },
-          { DoX1wyouX1whaveX1wanyX1wpetsX21r: '1', HowX1woldX1wisX1wyourX1wpetX21r: '6' },
           {
-            DoX1wyouX1whaveX1wanyX1wpetsX21r: '2',
-            DoX1wyouX1wwantX1wtoX1wgetX1wridX1wofX1wanyX21r: '0'
+            DoX1wyouX1whaveX1wanyX1wpetsX21r:
+              'X21mX21m0.native.fixedArrayOfConditionals[0].DoX1wyouX1whaveX1wanyX1wpetsX21r.X21mX21m'
+          },
+          {
+            DoX1wyouX1whaveX1wanyX1wpetsX21r:
+              'X21mX21m1.native.fixedArrayOfConditionals[1].DoX1wyouX1whaveX1wanyX1wpetsX21r.X21mX21m',
+            HowX1woldX1wisX1wyourX1wpetX21r: '6'
+          },
+          {
+            DoX1wyouX1whaveX1wanyX1wpetsX21r:
+              'X21mX21m2.native.fixedArrayOfConditionals[2].DoX1wyouX1whaveX1wanyX1wpetsX21r.X21mX21m',
+            DoX1wyouX1wwantX1wtoX1wgetX1wridX1wofX1wanyX21r: 'on'
           }
         ]
-      }
+      },
+      id: 'native'
     };
-    await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, input, idPrefix: input[SJSF_ID_PREFIX] as string }))
+    ).resolves.toEqual({
       conditional: {
         'Do you have any pets?': 'No'
       },
@@ -1033,7 +1062,13 @@ describe('parseSchemaValue', async () => {
         }
       ]
     };
-    const input = { [DEFAULT_ID_PREFIX]: { animal: '1', food: '0', water: '1' } };
+    const input = {
+      [DEFAULT_ID_PREFIX]: {
+        animal: 'X21mX21m1.root.animal.X21mX21m',
+        food: 'X21mX21m0.root.food.X21mX21m',
+        water: 'X21mX21m1.root.water.X21mX21m'
+      }
+    };
     await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
       animal: '1',
       food: 'insect',

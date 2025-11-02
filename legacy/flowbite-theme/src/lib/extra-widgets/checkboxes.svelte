@@ -11,7 +11,7 @@
 
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
+	import { multipleOptions, idMapper } from '@sjsf/form/options.svelte';
 	import Checkbox from 'flowbite-svelte/Checkbox.svelte';
 
 	let {
@@ -22,14 +22,14 @@
 	}: ComponentProps['checkboxesWidget'] = $props();
 
 	const mapped = multipleOptions({
-		mapper: () => stringIndexMapper(options),
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
 
 	const choices = $derived(
-		options.map((option, i) => ({
-			value: String(i),
+		options.map((option) => ({
+			value: option.id,
 			label: option.label
 		}))
 	);

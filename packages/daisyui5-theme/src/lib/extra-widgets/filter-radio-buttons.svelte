@@ -19,7 +19,7 @@
 
 <script lang="ts">
 	import { getFormContext, inputAttributes, uiOptionProps, type ComponentProps } from '@sjsf/form';
-	import { singleOption, indexMapper } from '@sjsf/form/options.svelte';
+	import { singleOption, idMapper } from '@sjsf/form/options.svelte';
 
 	let {
 		value = $bindable(),
@@ -29,13 +29,11 @@
 		handlers
 	}: ComponentProps['daisyui5FilterRadioButtonsWidget'] = $props();
 
-	const mapped = $derived(
-		singleOption({
-			mapper: () => indexMapper(options),
-			value: () => value,
-			update: (v) => (value = v)
-		})
-	);
+	const mapped = singleOption({
+		mapper: () => idMapper(options),
+		value: () => value,
+		update: (v) => (value = v)
+	});
 
 	const ctx = getFormContext();
 
@@ -53,11 +51,11 @@
 		{...itemAttributes}
 		aria-label="Reset"
 	/>
-	{#each options as option, index (option.id)}
+	{#each options as option (option.id)}
 		<input
 			class={['btn', errors.length > 0 && 'btn-error']}
 			bind:group={mapped.value}
-			value={index}
+			value={option.id}
 			aria-label={option.label}
 			{...itemAttributes}
 			id={option.id}

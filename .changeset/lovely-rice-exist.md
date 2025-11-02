@@ -1,5 +1,5 @@
 ---
-"@sjsf/svar-theme": minor
+"@sjsf-lab/svar-theme": minor
 ---
 
 Add SVAR theme

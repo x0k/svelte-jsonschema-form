@@ -144,11 +144,12 @@ export function createTask<
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
 
   if (DEV) {
-    $effect(() => {
-      if (timeoutMs < delayedMs) {
-        throw new Error("timeoutMs must be greater than delayedMs");
-      }
-    });
+    // Disabled due `orphan effect` error in async svelte
+    // $effect(() => {
+    //   if (timeoutMs < delayedMs) {
+    //     throw new Error("timeoutMs must be greater than delayedMs");
+    //   }
+    // });
   }
   const combinator = $derived(options.combinator ?? waitPrevious);
 

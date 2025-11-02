@@ -1,4 +1,5 @@
 const RADIX = 36; // Maximum radix supported by toString/parseInt (0-9, a-z)
+const UTF16_MAX_SINGLE_UNIT = 0xFFFF; 
 
 const FIRST_CHAR_REGEXP = /[a-zA-Z_$]/;
 const CHAR_REGEXP = /[a-zA-Z0-9_]/;
@@ -26,7 +27,7 @@ export function encode(str: string): string {
       const len = codeStr.length.toString(RADIX);
       parts.push(`${ESCAPE_CHAR}${len}${codeStr}`);
 
-      if (code > 0xffff) {
+      if (code > UTF16_MAX_SINGLE_UNIT) {
         i++;
       }
 
@@ -65,7 +66,6 @@ export function decode(encoded: string): string {
           if (i > chunkStart) {
             parts.push(encoded.slice(chunkStart, i));
           }
-
           parts.push(String.fromCodePoint(codeInt));
           i = codeEnd;
           chunkStart = i;

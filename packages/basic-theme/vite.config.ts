@@ -26,6 +26,7 @@ export default defineConfig({
           ],
           exclude: ["src/lib/server/**"],
           setupFiles: ["vitest-browser-svelte"],
+          // testTimeout: 1000,
           browser: {
             provider: playwright(),
             enabled: true,

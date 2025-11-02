@@ -1,6 +1,6 @@
 import packageJson from "%/sveltekit-starter/package.json";
-import pageServerTs from "%/sveltekit-starter/src/routes/native-form/+page.server.ts?raw";
-import pageSvelte from "%/sveltekit-starter/src/routes/native-form/+page.svelte?raw";
+import pageServerTs from "%/sveltekit-starter/src/routes/form-actions-without-js/+page.server.ts?raw";
+import pageSvelte from "%/sveltekit-starter/src/routes/form-actions-without-js/+page.svelte?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

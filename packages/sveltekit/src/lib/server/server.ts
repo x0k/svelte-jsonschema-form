@@ -16,31 +16,35 @@ import {
   type ValidationResult,
   type FormValidator
 } from '@sjsf/form';
-import {
-  type IdOptions,
-  DEFAULT_ID_SEPARATOR,
-  DEFAULT_ID_PSEUDO_SEPARATOR
-} from '@sjsf/form/id-builders/legacy';
-import { DEFAULT_INDEX_SEPARATOR } from '@sjsf/form/id-builders/modern';
 
 import {
   FORM_DATA_FILE_PREFIX,
   JSON_CHUNKS_KEY,
   type EntryConverter,
+  type EnumItemDecoder,
   type InvalidFormData,
   type SendData,
   type ValidatedFormData,
   type ValidFormData
 } from '$lib/model.js';
 
-import { parseSchemaValue } from './schema-value-parser.js';
+import { parseSchemaValue } from '../internal/schema-value-parser.js';
 import {
+  createEnumItemDecoder,
   createFormDataEntryConverter,
   type FormDataConverterOptions,
   type UnknownEntryConverter
 } from '../internal/convert-form-data-entry.js';
+import {
+  createOptionIndexDecoder,
+  DEFAULT_INDEX_SEPARATOR,
+  DEFAULT_PROPERTY_SEPARATOR,
+  DEFAULT_PSEUDO_SEPARATOR,
+  type IdOptions
+} from '../id-builder.js';
+import { createCodec, DEFAULT_ESCAPE_CHAR } from '$lib/internal/codec.js';
 
-export interface FormHandlerOptions<T, SD extends SendData> extends IdOptions {
+export interface FormHandlerOptions<T, SD extends SendData> extends Omit<IdOptions, 'idPrefix'> {
   schema: Schema;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
@@ -49,10 +53,12 @@ export interface FormHandlerOptions<T, SD extends SendData> extends IdOptions {
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   createEntryConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
   convertUnknownEntry?: UnknownEntryConverter;
+  enumItemDecoder?: EnumItemDecoder;
   /** @default false */
   sendData?: SD;
   /** By default, handles conversion of `File` */
   createReviver?: (formData: FormData) => (key: string, value: any) => any;
+  escapeCharacter?: string;
 }
 
 function createDefaultReviver(formData: FormData) {
@@ -72,11 +78,13 @@ export function createFormHandler<T, SD extends SendData>({
   validator: createValidator,
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
-  idSeparator = DEFAULT_ID_SEPARATOR,
-  idIndexSeparator = DEFAULT_INDEX_SEPARATOR,
-  idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
+  propertySeparator = DEFAULT_PROPERTY_SEPARATOR,
+  indexSeparator = DEFAULT_INDEX_SEPARATOR,
+  pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR,
+  escapeCharacter = DEFAULT_ESCAPE_CHAR,
   sendData,
-  createReviver = createDefaultReviver
+  createReviver = createDefaultReviver,
+  enumItemDecoder = createEnumItemDecoder(createOptionIndexDecoder(pseudoSeparator))
 }: FormHandlerOptions<T, SD>) {
   const validator = create(createValidator, {
     schema,
@@ -95,7 +103,8 @@ export function createFormHandler<T, SD extends SendData>({
     merger,
     rootSchema: schema,
     rootUiSchema: uiSchema,
-    convertUnknownEntry
+    convertUnknownEntry,
+    enumItemDecoder,
   });
   return async (
     signal: AbortSignal,
@@ -115,15 +124,19 @@ export function createFormHandler<T, SD extends SendData>({
       ? JSON.parse(formData.getAll(JSON_CHUNKS_KEY).join(''), createReviver(formData))
       : await parseSchemaValue(signal, {
           idPrefix,
-          idSeparator,
-          idIndexSeparator,
-          idPseudoSeparator,
+          idSeparator: propertySeparator,
+          idIndexSeparator: indexSeparator,
+          idPseudoSeparator: pseudoSeparator,
           schema,
           uiSchema,
           entries: Array.from(formData.entries()),
           validator,
           merger,
-          convertEntry
+          convertEntry,
+          codec: createCodec({
+            escapeChar: escapeCharacter,
+            sequencesToEncode: [propertySeparator, indexSeparator, pseudoSeparator]
+          })
         });
     const result: ValidationResult<T> =
       'validateFormValueAsync' in validator

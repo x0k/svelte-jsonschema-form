@@ -35,7 +35,7 @@ See details in the sections below
   <TabItem label='+page.server.ts'>
     <Code code={serverCode} lang='typescript' />
   </TabItem>
-  <TabItem label='model.ts'>
+  <TabItem label='lib/post.ts'>
     <Code code={modelCode} lang='typescript' />
   </TabItem>
 </Tabs>
@@ -72,18 +72,21 @@ you can return an array of `ValidationError` objects.
 On the client side you can use `SvelteKitForm` component ([see example](#example)).
 Or use more flexible solution:
 
-<Code code={clientFlexCode} lang='svelte' />
-
 :::note
 
-The form data type will be inferred from the `PageData` type.
+For correct operation, you must use ID Builder from the `@sjsf/sveltekit` module.
+
+:::
+
+<Code code={clientFlexCode} lang='svelte' />
+
+The form data type will be inferred from the `ActionData` and `PageData` type.
 
 If the value of the form cannot be inferred from `action` and
 you did not use `load` function, then the third generic parameter of
 the `createMeta` function will be used as the form data type
 (default type is `SchemaValue`).
 
-:::
 
 According to Svelte documentation your form should always use `POST` requests.
 
@@ -95,21 +98,3 @@ By default, the form will work even with JavaScript disabled, but you should con
 - Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
 will not expand/switch their state.
 - Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.
-- Conversion from `FormData` to `JSON` can happen with data loss.
-This conversion relies on the field names computation algorithm and
-it may lead to ambiguous results if the following conditions are violated:
-  - Id prefix and separators:
-    - Must be non empty, non numeric string
-    - Must not include each other
-  - Property names and keys of default object values in your schema must not contain the separators.
-    If they do you can change the default separators with `idSeparator` and `isPseudoSeparator` options.
-    Default separator values:
-      - `idSeparator` - <code>{DEFAULT_ID_SEPARATOR}</code>
-      - `isPseudoSeparator` - <code>{DEFAULT_ID_PSEUDO_SEPARATOR}</code>
-  - If your schema contains `additionalProperties`:
-    - Keys of initial object values must not contain the separators.
-  - You may produce these checks at runtime with the `staticAnalysis` and other functions from `@sjsf/form/static-analysis` submodule.
-    Functions from this submodule returns an iterable of errors, so you can:
-    - Throw an error on the first error or list all errors (in a dev environment)
-    - Check if the schema and id separator is correct and save the original form data if there are errors (in a production environment)
-  - Do not specify `stringEmptyValue` through `extraUiOptions`
