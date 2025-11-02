@@ -33,4 +33,15 @@ describe('createCodec', () => {
       ).toBe('foo~21abar~21sbaz~41m1mgas');
     });
   });
+
+  describe('decode', () => {
+    test('decodes escape char', () => {
+      expect(codec.decode('foo~23ibar')).toBe('foo~bar');
+    });
+    test('decodes separators', () => {
+      expect(codec.decode('foo~21abar~21sbaz~41m1mgas')).toBe(
+        `foo${DEFAULT_PROPERTY_SEPARATOR}bar${DEFAULT_INDEX_SEPARATOR}baz${DEFAULT_PSEUDO_SEPARATOR}gas`
+      );
+    });
+  });
 });

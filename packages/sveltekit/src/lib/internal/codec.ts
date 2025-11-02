@@ -12,11 +12,10 @@ export const DEFAULT_ESCAPE_CHAR = '~';
 
 export function createCodec({ escapeChar = DEFAULT_ESCAPE_CHAR, sequencesToEncode }: CodecOptions) {
   const encodeBuffer: string[] = [];
-  let encodedLen = 0;
   function encodeSequence(seq: string) {
     encodeBuffer.length = 0;
     encodeBuffer.push(escapeChar, '');
-    encodedLen = 0;
+    let encodedLen = 0;
     let i = 0;
     while (i < seq.length) {
       const code = seq.codePointAt(i++)!;
@@ -89,6 +88,46 @@ export function createCodec({ escapeChar = DEFAULT_ESCAPE_CHAR, sequencesToEncod
       }
       if (chunkStart < str.length) {
         parts.push(str.slice(chunkStart));
+      }
+      return parts.join('');
+    },
+    decode(encoded: string): string {
+      parts.length = 0;
+      let chunkStart = 0;
+      let i = 0;
+
+      while (i < encoded.length) {
+        const char = encoded[i];
+        const codeStart = i + 2;
+
+        if (char === escapeChar && codeStart < encoded.length) {
+          const lenChar = encoded[i + 1];
+          const codeLen = parseInt(lenChar, RADIX);
+          const codeEnd = codeStart + codeLen;
+
+          if (!isNaN(codeLen) && codeLen >= 1 && codeEnd <= encoded.length) {
+            const code = encoded.slice(codeStart, codeEnd);
+            const decoded = encodedToOriginal.get(code);
+            if (decoded !== undefined) {
+              if (i > chunkStart) {
+                parts.push(encoded.slice(chunkStart, i));
+              }
+              parts.push(decoded);
+              i = codeEnd;
+              chunkStart = i;
+              continue;
+            }
+          }
+          throw new Error(`Invalid encoding "${encoded}"`);
+        }
+        i += char.codePointAt(0)! > UTF16_MAX_SINGLE_UNIT ? 2 : 1;
+      }
+
+      if (chunkStart === 0) {
+        return encoded;
+      }
+      if (chunkStart < encoded.length) {
+        parts.push(encoded.slice(chunkStart));
       }
       return parts.join('');
     }
