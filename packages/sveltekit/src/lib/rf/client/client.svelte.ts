@@ -88,31 +88,6 @@ export async function connect<
     ConnectOptions &
     (F extends RemoteFieldsContainer ? {} : RemoteFieldsContainer)
 ): Promise<FormOptions<T>> {
-  const dataParser = createSvelteKitDataParser(options);
-
-  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
-
-  const fields = $derived.by(() => {
-    if ('fields' in remoteForm) {
-      return remoteForm.fields;
-    } else if ('fields' in options) {
-      return options.fields;
-    } else {
-      throw new Error(
-        '`remoteForm.fields` is undefined, if you use `enhance`, pass `fields` through the form options'
-      );
-    }
-  });
-  async function getInitialValue() {
-    const formValue = fields.value();
-    if (isRecordEmpty(formValue)) {
-      return undefined;
-    }
-    return (await dataParser(getAbortSignal(), idPrefix, formValue)) as DeepPartial<T>;
-  }
-  // svelte-ignore await_waterfall
-  const initialValue = $derived(await getInitialValue());
-
   let formElement: HTMLFormElement;
   let originalFormElement: HTMLFormElement;
   const enhancedRemoteForm =
@@ -138,6 +113,31 @@ export async function connect<
     const attach = enhancedRemoteForm[symbols[0]];
     return attach(formElement);
   });
+
+  const dataParser = createSvelteKitDataParser(options);
+
+  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
+
+  const fields = $derived.by(() => {
+    if ('fields' in remoteForm) {
+      return remoteForm.fields;
+    } else if ('fields' in options) {
+      return options.fields;
+    } else {
+      throw new Error(
+        '`remoteForm.fields` is undefined, if you use `enhance`, pass `fields` through the form options'
+      );
+    }
+  });
+  async function getInitialValue() {
+    const formValue = fields.value();
+    if (isRecordEmpty(formValue)) {
+      return undefined;
+    }
+    return (await dataParser(getAbortSignal(), idPrefix, formValue)) as DeepPartial<T>;
+  }
+  // svelte-ignore await_waterfall
+  const initialValue = $derived(await getInitialValue());
 
   function hiddenInput(name: string, value: string) {
     const input = document.createElement('input');
