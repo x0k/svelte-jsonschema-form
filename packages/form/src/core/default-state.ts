@@ -533,6 +533,7 @@ function maybeAddDefaultToObject(
   computedDefault: SchemaValue | undefined,
   includeUndefinedValues: boolean | "excludeObjectChildren",
   isConst: boolean,
+  isNullType: boolean,
   isSchemaRoot: boolean,
   isParentRequired: boolean,
   requiredFields: Set<string>,
@@ -548,9 +549,10 @@ function maybeAddDefaultToObject(
     // Fix for Issue #4709: When in 'excludeObjectChildren' mode, don't set primitive fields to empty objects
     // Only add the computed default if it's not an empty object placeholder for a primitive field
     if (
-      Array.isArray(computedDefault)
+      (isNullType && computedDefault !== undefined) ||
+      (Array.isArray(computedDefault)
         ? computedDefault.length > 0
-        : !isObject(computedDefault) || !isRecordEmpty(computedDefault)
+        : !isObject(computedDefault) || !isRecordEmpty(computedDefault))
     ) {
       obj.set(key, computedDefault);
     }
@@ -721,6 +723,7 @@ export function getObjectDefaults(
         computedDefault,
         includeUndefinedValues,
         isConst,
+        value.type === "null",
         isSchemaRoot,
         required,
         new Set(retrievedSchema.required),
@@ -772,6 +775,7 @@ export function getObjectDefaults(
         key,
         computedDefault,
         includeUndefinedValues,
+        false,
         false,
         isSchemaRoot,
         required,

@@ -610,6 +610,82 @@ describe("getDefaultFormState()", () => {
       });
     });
 
+    describe("an object with an null-type property and includeUndefinedValues is 'excludeObjectChildren'", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          optionalNullProperty: {
+            type: "null",
+          },
+          requiredProperty: {
+            type: "string",
+            default: "foo",
+          },
+        },
+        required: ["requiredProperty"],
+      };
+      const includeUndefinedValues = "excludeObjectChildren";
+      const expected = {
+        requiredProperty: "foo",
+      };
+
+      test("getDefaultFormState", () => {
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            undefined,
+            schema,
+            includeUndefinedValues
+          )
+        ).toEqual(expected);
+      });
+
+      test("computeDefaults", () => {
+        expect(
+          computeDefaults(testValidator, defaultMerger, schema, {
+            ...defaults,
+            rootSchema: schema,
+            includeUndefinedValues,
+          })
+        ).toEqual(expected);
+      });
+
+      test("getDefaultBasedOnSchemaType", () => {
+        expect(
+          getDefaultBasedOnSchemaType(
+            testValidator,
+            defaultMerger,
+            schema,
+            {
+              ...defaults,
+              rootSchema: schema,
+              includeUndefinedValues,
+            },
+            undefined
+          )
+        ).toEqual(expected);
+      });
+
+      test("getObjectDefaults", () => {
+        expect(
+          getObjectDefaults(
+            testValidator,
+            defaultMerger,
+            schema,
+            {
+              ...defaults,
+              rawFormData: {},
+              rootSchema: schema,
+              includeUndefinedValues,
+            },
+            undefined
+          )
+        ).toEqual(expected);
+      });
+    });
+
     describe("an object with an additionalProperties", () => {
       const schema: Schema = {
         type: "object",
