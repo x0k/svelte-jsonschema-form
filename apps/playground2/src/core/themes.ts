@@ -10,8 +10,9 @@ import "@sjsf/form/fields/extra/array-native-files-include";
 import "@sjsf/form/fields/extra/array-tags-include";
 
 import { theme as basic } from "@sjsf/basic-theme";
-import basicStyles from '@sjsf/basic-theme/styles/basic.css?raw'
-import picoStyles from '@sjsf/basic-theme/styles/pico.css?raw'
+import basicStyles from '@sjsf/basic-theme/css/basic.css?raw'
+import picoStyles from '@picocss/pico/css/pico.css?raw'
+import picoAdapterStyles from '@sjsf/basic-theme/css/pico.css?raw'
 import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 import "@sjsf/basic-theme/extra-widgets/file-include";
@@ -104,5 +105,5 @@ export const themeStyles = {
   skeleton4: skeleton4Styles,
   shadcn4: shadcn4Styles,
   svar: "",
-  pico: picoStyles,
+  pico: `${picoStyles}${picoAdapterStyles}`,
 } satisfies Record<keyof typeof themes, string>;

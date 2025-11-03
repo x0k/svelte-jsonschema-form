@@ -417,7 +417,7 @@
           <Form
             attributes={{
               id: "form",
-              class: themeManager.darkOrLight,
+              class: `${themeManager.darkOrLight} sjsf-form`,
               style:
                 "min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;",
               novalidate: !data.html5Validation || undefined,
