@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "@sjsf/form": "workspace:^3.0.0-next.12",
-    "svelte": "^5.43.0"
+    "svelte": "^5.30.0"
   },
   "devDependencies": {
     "@picocss/pico": "^2.1.1",
