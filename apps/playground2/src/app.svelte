@@ -161,6 +161,11 @@
       return rootNode;
     },
   };
+  const portalOptions = {
+    get target() {
+      return portalEl
+    }
+  }
 
   const focusOnFirstError = createFocusOnFirstError();
   const form = createForm({
@@ -228,7 +233,9 @@
       skeleton4Switch: options,
       skeleton4Tags: options,
       skeleton4DatePicker: options,
+      skeleton4DatePickerPortal: portalOptions,
       skeleton4Combobox: options,
+      skeleton4ComboboxPortal: portalOptions
     }),
     onSubmit(value) {
       console.log("submit", value);
