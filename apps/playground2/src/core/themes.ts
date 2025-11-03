@@ -90,12 +90,12 @@ import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
 
 export const themes = {
   basic,
+  pico: basic,
   daisy5,
   flowbite3,
   skeleton4,
   shadcn4,
   svar,
-  pico: basic,
 };
 
 export const themeStyles = {
