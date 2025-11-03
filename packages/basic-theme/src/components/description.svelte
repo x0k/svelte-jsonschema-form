@@ -26,7 +26,7 @@
 
 <div
   {...descriptionAttributes(ctx, config, "descriptionAttributes", {
-    style: "font-weight: 300;",
+    class: 'sjsf-description'
   })}
 >
   {description}

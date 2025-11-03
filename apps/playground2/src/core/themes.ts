@@ -10,6 +10,9 @@ import "@sjsf/form/fields/extra/array-native-files-include";
 import "@sjsf/form/fields/extra/array-tags-include";
 
 import { theme as basic } from "@sjsf/basic-theme";
+import basicStyles from '@sjsf/basic-theme/css/basic.css?raw'
+import picoStyles from '@picocss/pico/css/pico.css?raw'
+import picoAdapterStyles from '@sjsf/basic-theme/css/pico.css?raw'
 import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 import "@sjsf/basic-theme/extra-widgets/file-include";
@@ -34,7 +37,7 @@ import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
 import "@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons-include";
 
 import { theme as flowbite3 } from "@sjsf/flowbite3-theme";
-import flowbite3Styles from "@sjsf/flowbite3-theme/styles.css?inline";
+import flowbite3Styles from "@sjsf/flowbite3-theme/styles.css?raw";
 import "@sjsf/flowbite3-theme/extra-widgets/checkboxes-include";
 import "@sjsf/flowbite3-theme/extra-widgets/date-picker-include";
 import "@sjsf/flowbite3-theme/extra-widgets/file-include";
@@ -48,7 +51,7 @@ import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
 import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
 
 import { theme as skeleton4 } from "@sjsf/skeleton4-theme";
-import skeleton4Styles from "@sjsf/skeleton4-theme/styles.css?inline";
+import skeleton4Styles from "@sjsf/skeleton4-theme/styles.css?raw";
 import "@sjsf/skeleton4-theme/extra-widgets/checkboxes-include";
 import "@sjsf/skeleton4-theme/extra-widgets/date-picker-include";
 import "@sjsf/skeleton4-theme/extra-widgets/file-include";
@@ -65,7 +68,7 @@ import "@sjsf/skeleton4-theme/extra-widgets/slider-include";
 import "@sjsf/skeleton4-theme/extra-widgets/combobox-include";
 
 import { theme as shadcn4 } from "@sjsf/shadcn4-theme";
-import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?inline";
+import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?raw";
 import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
 import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
 import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
@@ -85,24 +88,22 @@ import "@sjsf-lab/svar-theme/extra-widgets/radio-include";
 import "@sjsf-lab/svar-theme/extra-widgets/range-include";
 import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
 
-import picoStyles from "@picocss/pico/css/pico.min.css?inline";
-
 export const themes = {
   basic,
+  pico: basic,
   daisy5,
   flowbite3,
   skeleton4,
   shadcn4,
   svar,
-  pico: basic,
 };
 
 export const themeStyles = {
-  basic: "",
+  basic: basicStyles,
   daisy5: daisy5Styles,
   flowbite3: flowbite3Styles,
   skeleton4: skeleton4Styles,
   shadcn4: shadcn4Styles,
   svar: "",
-  pico: picoStyles,
+  pico: `${picoStyles}${picoAdapterStyles}`,
 } satisfies Record<keyof typeof themes, string>;

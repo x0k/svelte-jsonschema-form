@@ -28,10 +28,11 @@ import daisyui5DefaultsCode from "./daisyui/defaults.ts?raw";
 import flowbite3DefaultsCode from "./flowbite/defaults.ts?raw";
 import shadcn4DefaultsCode from "./shadcn4/defaults.ts?raw";
 
-import daisyu5Styles from "@sjsf/daisyui5-theme/styles.css?inline";
-import flowbiteStyles from "@sjsf/flowbite3-theme/styles.css?inline";
-import skeleton4Styles from "@sjsf/skeleton4-theme/styles.css?inline";
-import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?inline";
+import basicStyles from "@sjsf/basic-theme/css/basic.css?raw";
+import daisyu5Styles from "@sjsf/daisyui5-theme/styles.css?raw";
+import flowbiteStyles from "@sjsf/flowbite3-theme/styles.css?raw";
+import skeleton4Styles from "@sjsf/skeleton4-theme/styles.css?raw";
+import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?raw";
 
 const CODE = {
   basic: withBasicCode,
@@ -50,7 +51,7 @@ const DEFAULTS = {
 } satisfies Record<ActualTheme, string>;
 
 const STYLES = {
-  basic: "",
+  basic: basicStyles,
   daisyui5: daisyu5Styles,
   flowbite3: flowbiteStyles,
   skeleton4: skeleton4Styles,

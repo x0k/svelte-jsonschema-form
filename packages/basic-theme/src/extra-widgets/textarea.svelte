@@ -26,7 +26,7 @@
 
   const attributes = $derived(
     textareaAttributes(ctx, config, "textarea", handlers, {
-      style: "flex-grow: 1;",
+      class: "sjsf-textarea"
     })
   );
 </script>

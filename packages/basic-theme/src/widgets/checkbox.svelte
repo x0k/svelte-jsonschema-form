@@ -28,7 +28,7 @@
   );
 </script>
 
-<label>
+<label class="sjsf-checkbox" >
   <input
     type="checkbox"
     bind:checked={() => value ?? false, (v) => (value = v)}
@@ -36,11 +36,3 @@
   />
   {config.title}
 </label>
-
-<style>
-  label {
-    display: flex;
-    align-items: start;
-    gap: 0.2rem;
-  }
-</style>

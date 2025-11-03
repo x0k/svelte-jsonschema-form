@@ -27,7 +27,7 @@
 
   const { placeholder, ...attributes } = $derived(
     selectAttributes(ctx, config, "select", handlers, {
-      style: "flex-grow: 1;",
+      class: "sjsf-select"
     })
   );
 

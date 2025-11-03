@@ -39,16 +39,6 @@
   }: ComponentProps["button"] = $props();
 
   const ctx = getFormContext();
-
-  function getStyle(type: ButtonType) {
-    switch (type) {
-      case "object-property-add":
-      case "array-item-add":
-        return "width: 100%; padding: 0.25rem";
-      default:
-        return undefined;
-    }
-  }
 </script>
 
 <button
@@ -58,7 +48,8 @@
     {
       disabled,
       type: "button",
-      style: getStyle(type),
+      "data-type": type,
+      class: "sjsf-button",
       onclick,
     } satisfies HTMLButtonAttributes,
     uiOptionProps("button"),

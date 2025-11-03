@@ -17,6 +17,7 @@ npm install @sjsf/form @sjsf/basic-theme
 <script lang="ts">
   import { createForm } from '@sjsf/form';
   import { theme } from '@sjsf/basic-theme';
+  import '@sjsf/basic-theme/css/basic.css';
 
   const form = createForm({
     theme,

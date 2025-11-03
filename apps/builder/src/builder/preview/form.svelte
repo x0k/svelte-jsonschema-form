@@ -93,7 +93,7 @@
     <div bind:this={portalEl}></div>
   </ShadowHost>
   {#if formValue !== undefined}
-    <div class="rounded-md border">Skeleton$
+    <div class="rounded-md border">
       {@html ctx.highlight("json", JSON.stringify(formValue, withFile, 2))}
     </div>
   {/if}

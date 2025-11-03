@@ -26,7 +26,7 @@
 
 <div
   {...helpAttributes(ctx, config, "helpAttributes", {
-    style: "font-weight: 300;",
+    class: "sjsf-help",
   })}
 >
   {help}
