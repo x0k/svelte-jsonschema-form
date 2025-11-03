@@ -40,7 +40,7 @@
 </script>
 
 {#each options as option (option.id)}
-  <label class="basic-radio" >
+  <label class="sjsf-radio" >
     <input
       bind:group={mapped.value}
       value={option.id}

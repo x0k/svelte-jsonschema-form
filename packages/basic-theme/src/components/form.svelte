@@ -30,7 +30,7 @@
   onsubmit={ctx.submit}
   onreset={ctx.reset}
   {...formAttributes(ctx, config, "form", attributes, {
-    class: "basic-form",
+    class: "sjsf-form",
   })}
 >
   {@render children()}

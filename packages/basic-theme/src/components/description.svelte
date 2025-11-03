@@ -26,7 +26,7 @@
 
 <div
   {...descriptionAttributes(ctx, config, "descriptionAttributes", {
-    class: 'basic-description'
+    class: 'sjsf-description'
   })}
 >
   {description}

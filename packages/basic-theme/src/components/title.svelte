@@ -26,7 +26,7 @@
 
 <legend
   {...titleAttributes(ctx, config, "titleAttributes", {
-    class: "basic-title",
+    class: "sjsf-title",
     "data-template": templateType
   })}
 >

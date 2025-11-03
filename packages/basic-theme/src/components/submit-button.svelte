@@ -22,7 +22,7 @@
 
 <button
   {...buttonAttributes(ctx, config, "submitButton", "submit", {
-    class: "basic-submit-button"
+    class: "sjsf-submit-button"
   })}
 >
   {@render children()}

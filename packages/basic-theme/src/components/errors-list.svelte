@@ -26,7 +26,7 @@
 
 <ul
   {...errorsListAttributes(ctx, config, "errorsList", {
-    class: 'basic-errors-list',
+    class: 'sjsf-errors-list',
   })}
 >
   {#each errors as err}

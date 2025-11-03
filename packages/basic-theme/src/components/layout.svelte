@@ -33,7 +33,7 @@
 
   const attributes = $derived(
     layoutAttributes(ctx, config, "layout", "layouts", type, {
-      class: "basic-layout",
+      class: "sjsf-layout",
     })
   );
 </script>

@@ -28,7 +28,7 @@
 
   const attributes = $derived(
     selectAttributes(ctx, config, "multiSelect", handlers, {
-      class: "basic-multi-select"
+      class: "sjsf-multi-select"
     })
   );
 

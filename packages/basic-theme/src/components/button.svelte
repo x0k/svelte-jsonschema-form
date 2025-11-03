@@ -49,7 +49,7 @@
       disabled,
       type: "button",
       "data-type": type,
-      class: "basic-button",
+      class: "sjsf-button",
       onclick,
     } satisfies HTMLButtonAttributes,
     uiOptionProps("button"),

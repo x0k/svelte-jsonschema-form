@@ -28,7 +28,7 @@
   const attributes = $derived(
     inputAttributes(ctx, config, "datePicker", handlers, {
       type: "date",
-      class: "basic-date-picker"
+      class: "sjsf-date-picker"
     })
   );
 </script>

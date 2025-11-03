@@ -32,14 +32,8 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "peerDependencies": {
-    "@picocss/pico": "^2.1.0",
     "@sjsf/form": "workspace:^3.0.0-next.12",
     "svelte": "^5.43.0"
-  },
-  "peerDependenciesMeta": {
-    "@picocss/pico": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@picocss/pico": "^2.1.1",
@@ -67,7 +61,7 @@
       "types": "./dist/extra-widgets/*.d.ts",
       "svelte": "./dist/extra-widgets/*"
     },
-    "./styles/*.css": "./dist/styles/*.css",
+    "./css/*.css": "./dist/css/*.css",
     "./specs": {
       "types": "./dist/specs.d.ts",
       "svelte": "./dist/specs.js"

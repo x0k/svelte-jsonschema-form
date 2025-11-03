@@ -40,7 +40,7 @@
 </script>
 
 {#each options as option (option.id)}
-  <label class="basic-checkboxes">
+  <label class="sjsf-checkboxes">
     <input
       bind:group={mapped.value}
       value={option.id}
