@@ -1,4 +1,4 @@
-import { createContext } from "svelte";
+import { getContext, setContext } from "svelte";
 
 import { noop } from "@/lib/function.js";
 import {
@@ -63,7 +63,15 @@ export interface ArrayContext {
   removeItem: (index: number) => void;
 }
 
-export const [getArrayContext, setArrayContext] = createContext<ArrayContext>();
+const ARRAY_CONTEXT = Symbol("array-context");
+
+export function getArrayContext(): ArrayContext {
+  return getContext(ARRAY_CONTEXT);
+}
+
+export function setArrayContext(ctx: ArrayContext) {
+  setContext(ARRAY_CONTEXT, ctx);
+}
 
 interface ItemsOptions<T> {
   ctx: FormState<T>;

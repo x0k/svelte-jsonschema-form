@@ -1,4 +1,4 @@
-import { createContext } from "svelte";
+import { getContext, setContext } from "svelte";
 
 import {
   getDefaultValueForType,
@@ -56,8 +56,15 @@ export interface ObjectContext {
   ) => Config;
 }
 
-export const [getObjectContext, setObjectContext] =
-  createContext<ObjectContext>();
+const OBJECT_CONTEXT = Symbol("object-context");
+
+export function getObjectContext(): ObjectContext {
+  return getContext(OBJECT_CONTEXT);
+}
+
+export function setObjectContext(ctx: ObjectContext) {
+  setContext(OBJECT_CONTEXT, ctx);
+}
 
 export interface ObjectContextOptions<T> {
   ctx: FormState<T>;
