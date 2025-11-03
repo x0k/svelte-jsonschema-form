@@ -18,7 +18,13 @@ import {
   type WidgetNode,
   type WidgetNodeType,
 } from "$lib/builder/index.js";
-import { Theme, type FieldType, type WidgetType } from "$lib/sjsf/theme.js";
+import {
+  ActualTheme,
+  LabTheme,
+  type Theme,
+  type FieldType,
+  type WidgetType,
+} from "$lib/sjsf/theme.js";
 
 import type { BuilderDraggable } from "./context.svelte.js";
 
@@ -59,18 +65,22 @@ export const TEXT_WIDGET_OPTIONS: Record<
   Theme,
   (params: TextWidgetParams) => UiOptions
 > = {
-  [Theme.Basic]: basicTextOptions,
-  [Theme.Daisy5]: basicTextOptions,
-  [Theme.Flowbite3]: (params) => ({ flowbite3Text: { ...params } }),
-  [Theme.Skeleton4]: basicTextOptions,
-  [Theme.Shadcn4]: (params) => ({ shadcn4Text: { ...params } }),
+  [ActualTheme.Basic]: basicTextOptions,
+  [ActualTheme.Pico]: basicTextOptions,
+  [ActualTheme.Daisy5]: basicTextOptions,
+  [ActualTheme.Flowbite3]: (params) => ({ flowbite3Text: { ...params } }),
+  [ActualTheme.Skeleton4]: basicTextOptions,
+  [ActualTheme.Shadcn4]: (params) => ({ shadcn4Text: { ...params } }),
+  [LabTheme.Svar]: (params) => ({
+    svarText: { placeholder: params.placeholder, type: params.type as any },
+  }),
 };
 
 export const CHECKBOXES_WIDGET_OPTIONS: Record<
   Theme,
   (inline: boolean) => UiOptions
 > = {
-  [Theme.Basic]: (inline) =>
+  [ActualTheme.Basic]: (inline) =>
     inline
       ? {}
       : {
@@ -80,7 +90,17 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
             },
           },
         },
-  [Theme.Daisy5]: (inline) =>
+  [ActualTheme.Pico]: (inline) =>
+    inline
+      ? {}
+      : {
+          layouts: {
+            "field-content": {
+              style: "display: flex; flex-direction: column; gap: 0.2rem;",
+            },
+          },
+        },
+  [ActualTheme.Daisy5]: (inline) =>
     inline
       ? {
           layouts: {
@@ -90,7 +110,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
           },
         }
       : {},
-  [Theme.Flowbite3]: (inline) =>
+  [ActualTheme.Flowbite3]: (inline) =>
     inline
       ? {}
       : {
@@ -100,7 +120,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
             },
           },
         },
-  [Theme.Skeleton4]: (inline) =>
+  [ActualTheme.Skeleton4]: (inline) =>
     inline
       ? {}
       : {
@@ -110,13 +130,21 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
             },
           },
         },
-  [Theme.Shadcn4]: (inline) =>
+  [ActualTheme.Shadcn4]: (inline) =>
     inline
       ? {
           layouts: {
             "field-content": {
               style: "display: flex; gap: 1rem;",
             },
+          },
+        }
+      : {},
+  [LabTheme.Svar]: (inline) =>
+    inline
+      ? {
+          svarCheckboxes: {
+            type: "inline",
           },
         }
       : {},
@@ -127,11 +155,19 @@ export const RADIO_WIDGET_OPTIONS: Record<
   (inline: boolean) => UiOptions
 > = {
   ...CHECKBOXES_WIDGET_OPTIONS,
-  [Theme.Shadcn4]: (inline) =>
+  [ActualTheme.Shadcn4]: (inline) =>
     inline
       ? {
           shadcn4RadioGroup: {
             style: "grid-auto-flow: column; grid-auto-columns: max-content;",
+          },
+        }
+      : {},
+  [LabTheme.Svar]: (inline) =>
+    inline
+      ? {
+          svarRadio: {
+            type: "inline",
           },
         }
       : {},

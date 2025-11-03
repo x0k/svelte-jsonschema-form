@@ -34,7 +34,12 @@ import {
   type SchemaBuilderContext,
   isFileNode,
 } from "$lib/builder/index.js";
-import { mergeUiSchemas, Theme, type WidgetType } from "$lib/sjsf/theme.js";
+import {
+  ActualTheme,
+  mergeUiSchemas,
+  type Theme,
+  type WidgetType,
+} from "$lib/sjsf/theme.js";
 import { Validator } from "$lib/sjsf/validators.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
 import { Icons, ICONS_APP_CSS } from "$lib/sjsf/icons.js";
@@ -159,7 +164,7 @@ export class BuilderContext {
     }
   });
 
-  theme = $state.raw(Theme.Shadcn4);
+  theme = $state.raw<Theme>(ActualTheme.Shadcn4);
   resolver = $state.raw(Resolver.Basic);
   icons = $state.raw(Icons.None);
   validator = $state.raw(Validator.Ajv);
@@ -412,7 +417,7 @@ export class BuilderContext {
         uiSchema: this.uiSchema ?? {},
         initialValue: null,
         validator: this.validator,
-        theme: this.theme === Theme.Daisy5 ? "daisy5" : this.theme,
+        theme: this.theme === ActualTheme.Daisy5 ? "daisy5" : this.theme,
         resolver: this.resolver,
         icons: this.icons,
         html5Validation: this.html5Validation,

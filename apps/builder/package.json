@@ -25,8 +25,10 @@
   "dependencies": {
     "@dnd-kit/collision": "^0.1.21",
     "@dnd-kit/dom": "^0.1.21",
+    "@picocss/pico": "^2.1.1",
     "@shikijs/langs": "^3.14.0",
     "@shikijs/themes": "^3.14.0",
+    "@sjsf-lab/svar-theme": "workspace:*",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/cfworker-validator": "workspace:*",
@@ -40,6 +42,7 @@
     "@sjsf/schemasafe-validator": "workspace:*",
     "@sjsf/shadcn4-theme": "workspace:*",
     "@sjsf/skeleton4-theme": "workspace:*",
+    "@svar-ui/svelte-core": "^2.3.1",
     "ajv": "^8.17.1",
     "dompurify": "^3.3.0",
     "lz-string": "^1.5.0",

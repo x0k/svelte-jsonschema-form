@@ -3,9 +3,10 @@
   import { formatFileSize } from "@sjsf/form/validators/file-size";
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { BitsConfig } from "bits-ui";
+  import { Willow, WillowDark } from '@svar-ui/svelte-core';
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
-  import { THEME_STYLES, SJSF_THEMES, Theme } from "$lib/sjsf/theme.js";
+  import { THEME_STYLES, SJSF_THEMES, ActualTheme, LabTheme } from "$lib/sjsf/theme.js";
   import * as defaults from "$lib/form/defaults.js";
   import { SJSF_RESOLVERS } from "$lib/sjsf/resolver.js";
   import { ICONS_STYLES, SJSF_ICONS } from "$lib/sjsf/icons.js";
@@ -14,6 +15,8 @@
   import { themeManager } from "../../theme.svelte.js";
 
   import { getBuilderContext } from "../context.svelte.js";
+
+  import Noop from './noop.svelte';
 
   const ctx = getBuilderContext();
 
@@ -25,6 +28,12 @@
       return rootNode;
     },
   };
+
+  const portalOptions = {
+    get target() {
+      return portalEl
+    }
+  }
 
   const form = createForm({
     ...defaults,
@@ -54,7 +63,9 @@
       skeleton4Switch: options,
       skeleton4Tags: options,
       skeleton4Combobox: options,
+      skeleton4ComboboxPortal: portalOptions,
       skeleton4DatePicker: options,
+      skeleton4DatePickerPortal: portalOptions,
     }),
     onSubmit: console.log,
     onSubmitError: console.warn,
@@ -68,26 +79,36 @@
     return value;
   }
 
+  const SvarProvider = $derived(ctx.theme === LabTheme.Svar ? themeManager.isDark ? WillowDark : Willow : Noop)
+
   const formValue = $derived(getValueSnapshot(form))
 </script>
 
 <div class="flex flex-col gap-2">
   <ShadowHost
-    class="rounded border border-[var(--global-border)]"
+    class="rounded border border-(--global-border)"
     style={`${THEME_STYLES[ctx.theme]}\n${ICONS_STYLES[ctx.icons]}`}
   >
+    <style>
+      .wx-willow-theme, .wx-willow-dark-theme {
+        height: auto !important;
+        min-height: 100%;
+      }
+    </style>
     {#if portalEl}
       <BitsConfig defaultPortalTo={portalEl}>
-        <BasicForm
-          id="form"
-          {form}
-          novalidate={!ctx.html5Validation}
-          class={themeManager.darkOrLight}
-          style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
-          data-theme={ctx.theme.startsWith(Theme.Skeleton4)
-            ? "cerberus"
-            : themeManager.darkOrLight}
-        />
+        <SvarProvider>
+          <BasicForm
+            id="form"
+            {form}
+            novalidate={!ctx.html5Validation}
+            class={themeManager.darkOrLight}
+            style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
+            data-theme={ctx.theme.startsWith(ActualTheme.Skeleton4)
+              ? "cerberus"
+              : themeManager.darkOrLight}
+          />
+        </SvarProvider>
       </BitsConfig>
     {/if}
     <div bind:this={portalEl}></div>

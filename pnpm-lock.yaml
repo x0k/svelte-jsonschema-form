@@ -151,12 +151,18 @@ importers:
       '@dnd-kit/dom':
         specifier: ^0.1.21
         version: 0.1.21
+      '@picocss/pico':
+        specifier: ^2.1.1
+        version: 2.1.1
       '@shikijs/langs':
         specifier: ^3.14.0
         version: 3.14.0
       '@shikijs/themes':
         specifier: ^3.14.0
         version: 3.14.0
+      '@sjsf-lab/svar-theme':
+        specifier: workspace:*
+        version: link:../../lab/svar-theme
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
@@ -196,6 +202,9 @@ importers:
       '@sjsf/skeleton4-theme':
         specifier: workspace:*
         version: link:../../packages/skeleton4-theme
+      '@svar-ui/svelte-core':
+        specifier: ^2.3.1
+        version: 2.3.1
       ajv:
         specifier: ^8.17.1
         version: 8.17.1

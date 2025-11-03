@@ -3,7 +3,10 @@ import type { Schema, UiSchema } from "@sjsf/form";
 import { Icons, ICONS_PEER_DEPS } from "$lib/sjsf/icons.js";
 import type { Resolver } from "$lib/sjsf/resolver.js";
 import {
-  Theme,
+  ActualTheme,
+  LabTheme,
+  packageFromTheme,
+  type Theme,
   THEME_OPTIONAL_DEPS,
   THEME_PEER_DEPS,
   type WidgetType,
@@ -32,87 +35,12 @@ function camelToKebabCase(str: string): string {
   return str.replace(/([A-Z])/g, "-$1").toLowerCase();
 }
 
-function capitalize<T extends string>(str: T): Capitalize<T> {
-  return (str.charAt(0).toUpperCase() + str.slice(1)) as Capitalize<T>;
-}
-
 export function join(...args: (string | boolean)[]) {
   return args.filter(Boolean).join("\n");
 }
 
 function join2(...args: (string | boolean)[]) {
   return args.filter(Boolean).join("\n\n");
-}
-
-function declareModule(props: string[], bindings: string[]) {
-  return `declare module "@sjsf/form" {
-  interface ComponentProps {
-    ${props.join("\n    ")}
-  }
-  interface ComponentBindings {
-    ${bindings.join("\n    ")}
-  }
-}`;
-}
-
-const CORE_FORM_TYPES = ["SchemaArrayValue"] as const;
-type CoreFormType = (typeof CORE_FORM_TYPES)[number];
-
-const DIRECT_FORM_TYPES = [
-  "FieldCommonProps",
-  "SchemaValue",
-  "ComponentDefinition",
-] as const;
-type DirectFormTypes = (typeof DIRECT_FORM_TYPES)[number];
-
-const WIDGETS_FORM_TYPES = ["WidgetCommonProps", "Options"] as const;
-type WidgetsFormType = (typeof WIDGETS_FORM_TYPES)[number];
-
-const FORM_TYPES = [
-  ...CORE_FORM_TYPES,
-  ...DIRECT_FORM_TYPES,
-  ...WIDGETS_FORM_TYPES,
-];
-
-type FormType = CoreFormType | DirectFormTypes | WidgetsFormType;
-
-function defineTypeImports(formTypes: Set<FormType>) {
-  if (formTypes.size === 0) {
-    return "";
-  }
-  const present = (t: FormType) => formTypes.has(t);
-  const imports = {
-    "form/core": CORE_FORM_TYPES.filter(present),
-    form: DIRECT_FORM_TYPES.filter(present),
-    "form/fields/widgets": WIDGETS_FORM_TYPES.filter(present),
-  };
-  return Object.entries(imports)
-    .filter((e) => e[1].length > 0)
-    .map(
-      ([k, types]) => `import type {
-  ${types.join(",\n  ")}
-} from "@sjsf/${k}";`
-    )
-    .join("\n");
-}
-
-function createDefinition(definition: string) {
-  const imports = new Set<FormType>();
-  if (definition.length === 0) {
-    return {
-      definition,
-      imports,
-    };
-  }
-  for (const t of FORM_TYPES) {
-    if (definition.includes(t)) {
-      imports.add(t);
-    }
-  }
-  return {
-    definition,
-    imports,
-  };
 }
 
 export function buildFormDefaults({
@@ -153,10 +81,10 @@ export function buildFormDefaults({
       )
     ),
     join(
-      `export { theme } from "@sjsf/${theme}-theme";`,
+      `export { theme } from "${packageFromTheme(theme)}";`,
       ...extraWidgetTypes.map(
         (w) =>
-          `import "@sjsf/${theme}-theme/extra-widgets/${EXTRA_WIDGET_IMPORTS[w]}-include";`
+          `import "${packageFromTheme(theme)}/extra-widgets/${EXTRA_WIDGET_IMPORTS[w]}-include";`
       )
     ),
     iconsExport,
@@ -180,7 +108,8 @@ export function buildFormDotSvelte({
   uiSchema = {},
   html5Validation,
 }: FormDotSvelteOptions): string {
-  const isShadcn = theme === Theme.Shadcn4;
+  const isShadcn = theme === ActualTheme.Shadcn4;
+  const isSvar = theme === LabTheme.Svar;
   const schemaLines = JSON.stringify(schema, null, 2).split("\n");
   const uiSchemaLines = JSON.stringify(uiSchema, null, 2).split("\n");
   return join(
@@ -189,6 +118,7 @@ export function buildFormDotSvelte({
     isShadcn &&
       `  import { setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";`,
+    isSvar && `  import { Willow } from "@svar-ui/svelte-core";`,
     `
   import * as defaults from "$lib/form/defaults.js";
 
@@ -206,7 +136,9 @@ export function buildFormDotSvelte({
       `
   setThemeContext({ components })`,
     `</script>`,
-    `<BasicForm {form}${html5Validation ? "" : " novalidate"} />`
+    isSvar && `<Willow>`,
+    `<BasicForm {form}${html5Validation ? "" : " novalidate"} />`,
+    isSvar && `</Willow>`
   );
 }
 
@@ -234,7 +166,7 @@ export function buildInstallSh({
         .flatMap((s) => s.split(" "))
     )
   );
-  let cmd = `npm i @sjsf/form @sjsf/${theme}-theme @sjsf/${validator}-validator`;
+  let cmd = `npm i @sjsf/form ${packageFromTheme(theme)} @sjsf/${validator}-validator`;
   if (icons !== Icons.None) {
     cmd += ` @sjsf/${icons}-icons`;
   }

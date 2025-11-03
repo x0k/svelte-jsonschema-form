@@ -18,7 +18,9 @@ import "@sjsf/form/fields/extra/array-files-include";
 import "@sjsf/form/fields/extra/array-tags-include";
 
 import { theme as basic } from "@sjsf/basic-theme";
-import basicStyles from '@sjsf/basic-theme/css/basic.css?raw'
+import basicStyles from "@sjsf/basic-theme/css/basic.css?raw";
+import picoStyles from "@picocss/pico/css/pico.css?raw";
+import picoAdapterStyles from "@sjsf/basic-theme/css/pico.css?raw";
 import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 import "@sjsf/basic-theme/extra-widgets/file-include";
@@ -44,7 +46,7 @@ import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
 import "@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons-include";
 
 import { theme as flowbite3 } from "@sjsf/flowbite3-theme";
-import { default as flowbite3Styles } from "@sjsf/flowbite3-theme/styles.css?inline";
+import { default as flowbite3Styles } from "@sjsf/flowbite3-theme/styles.css?raw";
 import "@sjsf/flowbite3-theme/extra-widgets/checkboxes-include";
 import "@sjsf/flowbite3-theme/extra-widgets/date-picker-include";
 import "@sjsf/flowbite3-theme/extra-widgets/file-include";
@@ -58,7 +60,7 @@ import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
 import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
 
 import { theme as skeleton4 } from "@sjsf/skeleton4-theme";
-import { default as skeleton4Styles } from "@sjsf/skeleton4-theme/styles.css?inline";
+import { default as skeleton4Styles } from "@sjsf/skeleton4-theme/styles.css?raw";
 import "@sjsf/skeleton4-theme/extra-widgets/checkboxes-include";
 import "@sjsf/skeleton4-theme/extra-widgets/date-picker-include";
 import "@sjsf/skeleton4-theme/extra-widgets/file-include";
@@ -75,7 +77,7 @@ import "@sjsf/skeleton4-theme/extra-widgets/file-upload-include";
 import "@sjsf/skeleton4-theme/extra-widgets/slider-include";
 
 import { theme as shadcn4 } from "@sjsf/shadcn4-theme";
-import { default as shadcn4Styles } from "@sjsf/shadcn4-theme/styles.css?inline";
+import { default as shadcn4Styles } from "@sjsf/shadcn4-theme/styles.css?raw";
 import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
 import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
 import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
@@ -86,6 +88,14 @@ import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
 import "@sjsf/shadcn4-theme/extra-widgets/range-include";
 import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
+
+import { theme as svar } from "@sjsf-lab/svar-theme";
+import "@sjsf-lab/svar-theme/extra-widgets/checkboxes-include";
+import "@sjsf-lab/svar-theme/extra-widgets/date-picker-include";
+import "@sjsf-lab/svar-theme/extra-widgets/multi-select-include";
+import "@sjsf-lab/svar-theme/extra-widgets/radio-include";
+import "@sjsf-lab/svar-theme/extra-widgets/range-include";
+import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
 
 export type FieldType = {
   [T in ComponentType]: ComponentProps[T] extends FieldCommonProps<any>
@@ -99,32 +109,55 @@ export type WidgetType = {
     : never;
 }[ComponentType];
 
-export enum Theme {
+export enum ActualTheme {
   Basic = "basic",
+  Pico = "pico",
   Daisy5 = "daisyui5",
   Flowbite3 = "flowbite3",
   Skeleton4 = "skeleton4",
   Shadcn4 = "shadcn4",
 }
 
-export const THEMES = Object.values(Theme);
+const ACTUAL_THEMES = Object.values(ActualTheme);
+
+export enum LabTheme {
+  Svar = "svar",
+}
+
+const LAB_THEMES = Object.values(LabTheme);
+const LAB_THEMES_SET = new Set<Theme>(LAB_THEMES);
+
+function isLabTheme(theme: Theme): theme is LabTheme {
+  return LAB_THEMES_SET.has(theme);
+}
+
+export type Theme = ActualTheme | LabTheme;
+
+export const THEMES = [...ACTUAL_THEMES, ...LAB_THEMES];
+
+export function packageFromTheme(theme: Theme): string {
+  return `@sjsf${isLabTheme(theme) ? '-lab' : ''}/${theme}-theme`
+}
 
 export const THEME_TITLES: Record<Theme, string> = {
-  [Theme.Basic]: "Basic",
-  [Theme.Daisy5]: "daisyUI v5",
-  [Theme.Flowbite3]: "Flowbite Svelte",
-  [Theme.Skeleton4]: "Skeleton v4",
-  [Theme.Shadcn4]: "shadcn-svelte",
+  [ActualTheme.Basic]: "Basic",
+  [ActualTheme.Pico]: "Pico",
+  [ActualTheme.Daisy5]: "daisyUI v5",
+  [ActualTheme.Flowbite3]: "Flowbite Svelte",
+  [ActualTheme.Skeleton4]: "Skeleton v4",
+  [ActualTheme.Shadcn4]: "shadcn-svelte",
+  [LabTheme.Svar]: "SVAR",
 };
 
 export const THEME_OPTIONAL_DEPS: Record<
   Theme,
   Record<string, Set<WidgetType>>
 > = {
-  [Theme.Basic]: {},
-  [Theme.Daisy5]: {},
-  [Theme.Flowbite3]: {},
-  [Theme.Skeleton4]: {
+  [ActualTheme.Basic]: {},
+  [ActualTheme.Pico]: {},
+  [ActualTheme.Daisy5]: {},
+  [ActualTheme.Flowbite3]: {},
+  [ActualTheme.Skeleton4]: {
     "@skeletonlabs/skeleton-svelte": new Set([
       "skeleton4FileUploadWidget",
       "skeleton4SliderWidget",
@@ -136,32 +169,41 @@ export const THEME_OPTIONAL_DEPS: Record<
       "tagsWidget",
     ]),
   },
-  [Theme.Shadcn4]: { "@internationalized/date": new Set(["datePickerWidget"]) },
+  [ActualTheme.Shadcn4]: {
+    "@internationalized/date": new Set(["datePickerWidget"]),
+  },
+  [LabTheme.Svar]: {},
 };
 
 export const THEME_PEER_DEPS: Record<Theme, string> = {
-  [Theme.Basic]: "",
-  [Theme.Daisy5]: "daisyui",
-  [Theme.Flowbite3]: "flowbite flowbite-svelte",
-  [Theme.Skeleton4]: "@skeletonlabs/skeleton @tailwindcss/forms",
-  [Theme.Shadcn4]:
+  [ActualTheme.Basic]: "",
+  [ActualTheme.Pico]: "@picocss/pico",
+  [ActualTheme.Daisy5]: "daisyui",
+  [ActualTheme.Flowbite3]: "flowbite flowbite-svelte",
+  [ActualTheme.Skeleton4]: "@skeletonlabs/skeleton @tailwindcss/forms",
+  [ActualTheme.Shadcn4]:
     "@lucide/svelte bits-ui clsx tailwind-merge tailwind-variants",
+  [LabTheme.Svar]: "@svar-ui/svelte-core",
 };
 
 export const SJSF_THEMES: Record<Theme, SJSFTheme> = {
-  [Theme.Basic]: basic,
-  [Theme.Daisy5]: daisy5,
-  [Theme.Flowbite3]: flowbite3,
-  [Theme.Skeleton4]: skeleton4,
-  [Theme.Shadcn4]: shadcn4,
+  [ActualTheme.Basic]: basic,
+  [ActualTheme.Pico]: basic,
+  [ActualTheme.Daisy5]: daisy5,
+  [ActualTheme.Flowbite3]: flowbite3,
+  [ActualTheme.Skeleton4]: skeleton4,
+  [ActualTheme.Shadcn4]: shadcn4,
+  [LabTheme.Svar]: svar,
 };
 
 export const THEME_STYLES: Record<Theme, string> = {
-  [Theme.Basic]: basicStyles,
-  [Theme.Daisy5]: daisy5Styles,
-  [Theme.Flowbite3]: flowbite3Styles,
-  [Theme.Skeleton4]: skeleton4Styles,
-  [Theme.Shadcn4]: shadcn4Styles,
+  [ActualTheme.Basic]: basicStyles,
+  [ActualTheme.Pico]: `${picoStyles}\n${picoAdapterStyles}`,
+  [ActualTheme.Daisy5]: daisy5Styles,
+  [ActualTheme.Flowbite3]: flowbite3Styles,
+  [ActualTheme.Skeleton4]: skeleton4Styles,
+  [ActualTheme.Shadcn4]: shadcn4Styles,
+  [LabTheme.Svar]: "",
 };
 
 interface MergeArraysOptions<T> {
