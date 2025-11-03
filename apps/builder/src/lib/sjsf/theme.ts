@@ -18,6 +18,7 @@ import "@sjsf/form/fields/extra/array-files-include";
 import "@sjsf/form/fields/extra/array-tags-include";
 
 import { theme as basic } from "@sjsf/basic-theme";
+import basicStyles from '@sjsf/basic-theme/css/basic.css?raw'
 import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 import "@sjsf/basic-theme/extra-widgets/file-include";
@@ -156,7 +157,7 @@ export const SJSF_THEMES: Record<Theme, SJSFTheme> = {
 };
 
 export const THEME_STYLES: Record<Theme, string> = {
-  [Theme.Basic]: "",
+  [Theme.Basic]: basicStyles,
   [Theme.Daisy5]: daisy5Styles,
   [Theme.Flowbite3]: flowbite3Styles,
   [Theme.Skeleton4]: skeleton4Styles,
