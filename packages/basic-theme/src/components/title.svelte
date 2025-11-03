@@ -26,7 +26,8 @@
 
 <legend
   {...titleAttributes(ctx, config, "titleAttributes", {
-    style: `display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: ${templateType === "fieldTemplate" ? "unset" : "larger"};`,
+    class: "basic-title",
+    "data-template": templateType
   })}
 >
   {title}

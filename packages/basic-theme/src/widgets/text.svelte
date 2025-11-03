@@ -26,8 +26,8 @@
 
   const attributes = $derived(
     inputAttributes(ctx, config, "text", handlers, {
-      style: "flex-grow: 1",
       type: "text",
+      class: "basic-text"
     })
   );
 </script>

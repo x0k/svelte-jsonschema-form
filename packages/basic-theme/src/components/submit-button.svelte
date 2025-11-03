@@ -22,7 +22,7 @@
 
 <button
   {...buttonAttributes(ctx, config, "submitButton", "submit", {
-    style: "width: 100%; padding: 0.5rem;",
+    class: "basic-submit-button"
   })}
 >
   {@render children()}

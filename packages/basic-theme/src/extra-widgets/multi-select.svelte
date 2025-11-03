@@ -28,7 +28,7 @@
 
   const attributes = $derived(
     selectAttributes(ctx, config, "multiSelect", handlers, {
-      style: "flex-grow: 1",
+      class: "basic-multi-select"
     })
   );
 

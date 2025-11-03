@@ -1642,9 +1642,15 @@ importers:
 
   packages/basic-theme:
     devDependencies:
+      '@picocss/pico':
+        specifier: ^2.1.1
+        version: 2.1.1
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
+      sakura.css:
+        specifier: ^1.5.1
+        version: 1.5.1
       svelte:
         specifier: 'catalog:'
         version: 5.43.0
@@ -6764,6 +6770,9 @@ packages:
 
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
+
+  sakura.css@1.5.1:
+    resolution: {integrity: sha512-MAL13eVLmTuiF6a/SjrzK5PItWQwMrsIIldLq7kVwuJjxoxVyzwGJbP+JNSwLt34VF8Eg9yj3q17GG/h8jhvMA==}
 
   sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
@@ -14106,6 +14115,8 @@ snapshots:
       mri: 1.2.0
 
   safer-buffer@2.1.2: {}
+
+  sakura.css@1.5.1: {}
 
   sax@1.4.1: {}
 

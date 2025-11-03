@@ -1,0 +1,10 @@
+.basic-date-picker,
+.basic-file,
+.basic-multi-select,
+.basic-range,
+.basic-textarea,
+.basic-number,
+.basic-select,
+.basic-text {
+  flex-grow: 1;
+}
