@@ -6,6 +6,7 @@ sidebar:
 
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/basic-theme/specs';
+import styles from '@sjsf/basic-theme/css/basic.css?raw';
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
@@ -20,6 +21,23 @@ export const schemas = createSchemas(specs)
 ## Installation
 
 <Npm pkg={themePkg('basic')} />
+
+### Configuration
+
+Import the CSS:
+
+```ts
+import "@sjsf/basic-theme/css/basic.css";
+```
+
+#### Pico CSS
+
+Usage with [Pico CSS](https://picocss.com/):
+
+```ts
+import "@picocss/pico/css/pico.css";
+import "@sjsf/basic-theme/css/pico.css";
+```
 
 ## Extra widgets
 
@@ -39,7 +57,7 @@ or used in the field as the default widget.
 
 <Tabs>
   <TabItem label='Form'>
-    <FormCard>
+    <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
