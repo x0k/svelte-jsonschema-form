@@ -111,7 +111,7 @@
 .sjsf-checkboxes,
 .sjsf-radio {
   display: flex;
-  align-items: start;
+  align-items: center;
   gap: 0.2rem;
 }
 
