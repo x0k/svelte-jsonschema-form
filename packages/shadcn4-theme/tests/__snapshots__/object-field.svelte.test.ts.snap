@@ -115,7 +115,7 @@ exports[`object fields > additionalProperties 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.foo::key-input"
+                  for="root_foo__key-input"
                   id="bits-c4"
                 >
                   <!---->
@@ -156,12 +156,12 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
               />
               
@@ -254,7 +254,7 @@ exports[`object fields > additionalProperties 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.foo"
+                  for="root_foo"
                   id="bits-c5"
                 >
                   <!---->
@@ -292,12 +292,12 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
               />
               
               <!---->
@@ -567,7 +567,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.foo::key-input"
+                  for="root_foo__key-input"
                   id="bits-c6"
                 >
                   <!---->
@@ -608,12 +608,12 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="true"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
               />
               
@@ -639,7 +639,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                 <ul
                   class="ml-4 flex list-disc flex-col gap-1"
-                  id="root.foo::key-input::errors"
+                  id="root_foo__key-input__errors"
                   tabindex="-1"
                 >
                   <li>
@@ -731,7 +731,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.foo"
+                  for="root_foo"
                   id="bits-c7"
                 >
                   <!---->
@@ -769,12 +769,12 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
               />
               
               <!---->
@@ -1046,7 +1046,7 @@ exports[`object fields > has errors 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.name"
+                  for="root_name"
                   id="bits-c3"
                 >
                   <!---->
@@ -1084,12 +1084,12 @@ exports[`object fields > has errors 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.name::description root.name::help root.name::errors"
+                aria-describedby="root_name__description root_name__help root_name__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.name"
-                name="root.name"
+                id="root_name"
+                name="root_name"
               />
               
               <!---->
@@ -1170,7 +1170,7 @@ exports[`object fields > has errors 1`] = `
         <!---->
         <ul
           class="ml-4 flex list-disc flex-col gap-1"
-          id="root::errors"
+          id="root__errors"
           tabindex="-1"
         >
           <li>
@@ -1345,7 +1345,7 @@ exports[`object fields > object 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.a"
+                  for="root_a"
                   id="bits-c1"
                 >
                   <!---->
@@ -1383,12 +1383,12 @@ exports[`object fields > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
               />
               
               <!---->
@@ -1510,7 +1510,7 @@ exports[`object fields > object 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.b"
+                  for="root_b"
                   id="bits-c2"
                 >
                   <!---->
@@ -1548,12 +1548,12 @@ exports[`object fields > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -1721,7 +1721,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           Options
         </div>
@@ -1883,7 +1883,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.transform::description"
+                id="root_transform__description"
               >
                 Apply a transformation to the output data
                 <!---->
@@ -1907,7 +1907,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <button
                   aria-checked="false"
-                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  aria-describedby="root_transform__description root_transform__help root_transform__errors"
                   aria-invalid="false"
                   aria-readonly="false"
                   aria-required="false"
@@ -1915,7 +1915,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-checkbox-root=""
                   data-slot="checkbox"
                   data-state="unchecked"
-                  id="root.transform"
+                  id="root_transform"
                   role="checkbox"
                   type="button"
                 >
@@ -1935,7 +1935,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <input
                   aria-hidden="true"
-                  name="root.transform"
+                  name="root_transform"
                   style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                   tabindex="-1"
                   type="checkbox"
@@ -1953,7 +1953,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.transform"
+                  for="root_transform"
                   id="bits-c27"
                 >
                   <!---->
@@ -2129,7 +2129,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.paginate::description"
+                id="root_paginate__description"
               >
                 Partitioning the input data (object or array) into pages by their keys
                 <!---->
@@ -2153,7 +2153,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <button
                   aria-checked="false"
-                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
                   aria-invalid="false"
                   aria-readonly="false"
                   aria-required="false"
@@ -2161,7 +2161,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-checkbox-root=""
                   data-slot="checkbox"
                   data-state="unchecked"
-                  id="root.paginate"
+                  id="root_paginate"
                   role="checkbox"
                   type="button"
                 >
@@ -2181,7 +2181,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <input
                   aria-hidden="true"
-                  name="root.paginate"
+                  name="root_paginate"
                   style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                   tabindex="-1"
                   type="checkbox"
@@ -2199,7 +2199,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.paginate"
+                  for="root_paginate"
                   id="bits-c29"
                 >
                   <!---->
@@ -2314,7 +2314,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.createOnOpen::description"
+                id="root_createOnOpen__description"
               >
                 Creating a table when opening a share link
                 <!---->
@@ -2338,7 +2338,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <button
                   aria-checked="true"
-                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
                   aria-invalid="false"
                   aria-readonly="false"
                   aria-required="false"
@@ -2346,7 +2346,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-checkbox-root=""
                   data-slot="checkbox"
                   data-state="checked"
-                  id="root.createOnOpen"
+                  id="root_createOnOpen"
                   role="checkbox"
                   type="button"
                 >
@@ -2388,7 +2388,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <input
                   aria-hidden="true"
-                  name="root.createOnOpen"
+                  name="root_createOnOpen"
                   style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                   tabindex="-1"
                   type="checkbox"
@@ -2406,7 +2406,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.createOnOpen"
+                  for="root_createOnOpen"
                   id="bits-c31"
                 >
                   <!---->
@@ -2576,7 +2576,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           Options
         </div>
@@ -2738,7 +2738,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.collapseIndexes::description"
+                id="root_collapseIndexes__description"
               >
                 Combines hierarchical indexes into one cell (1.1, 1.2, ...)
                 <!---->
@@ -2762,7 +2762,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <button
                   aria-checked="true"
-                  aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                  aria-describedby="root_collapseIndexes__description root_collapseIndexes__help root_collapseIndexes__errors"
                   aria-invalid="false"
                   aria-readonly="false"
                   aria-required="false"
@@ -2770,7 +2770,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-checkbox-root=""
                   data-slot="checkbox"
                   data-state="checked"
-                  id="root.collapseIndexes"
+                  id="root_collapseIndexes"
                   role="checkbox"
                   type="button"
                 >
@@ -2812,7 +2812,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <input
                   aria-hidden="true"
-                  name="root.collapseIndexes"
+                  name="root_collapseIndexes"
                   style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                   tabindex="-1"
                   type="checkbox"
@@ -2830,7 +2830,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.collapseIndexes"
+                  for="root_collapseIndexes"
                   id="bits-c33"
                 >
                   <!---->
@@ -2945,7 +2945,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.joinPrimitiveArrayValues::description"
+                id="root_joinPrimitiveArrayValues__description"
               >
                 Combines the values of an array of primitives into one cell (separated by ',')
                 <!---->
@@ -2969,7 +2969,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <button
                   aria-checked="true"
-                  aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                  aria-describedby="root_joinPrimitiveArrayValues__description root_joinPrimitiveArrayValues__help root_joinPrimitiveArrayValues__errors"
                   aria-invalid="false"
                   aria-readonly="false"
                   aria-required="false"
@@ -2977,7 +2977,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-checkbox-root=""
                   data-slot="checkbox"
                   data-state="checked"
-                  id="root.joinPrimitiveArrayValues"
+                  id="root_joinPrimitiveArrayValues"
                   role="checkbox"
                   type="button"
                 >
@@ -3019,7 +3019,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <input
                   aria-hidden="true"
-                  name="root.joinPrimitiveArrayValues"
+                  name="root_joinPrimitiveArrayValues"
                   style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                   tabindex="-1"
                   type="checkbox"
@@ -3037,7 +3037,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.joinPrimitiveArrayValues"
+                  for="root_joinPrimitiveArrayValues"
                   id="bits-c35"
                 >
                   <!---->
@@ -3152,7 +3152,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.combineArraysOfObjects::description"
+                id="root_combineArraysOfObjects__description"
               >
                 Combine arrays of objects into a single object
                 <!---->
@@ -3176,7 +3176,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <button
                   aria-checked="false"
-                  aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                  aria-describedby="root_combineArraysOfObjects__description root_combineArraysOfObjects__help root_combineArraysOfObjects__errors"
                   aria-invalid="false"
                   aria-readonly="false"
                   aria-required="false"
@@ -3184,7 +3184,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-checkbox-root=""
                   data-slot="checkbox"
                   data-state="unchecked"
-                  id="root.combineArraysOfObjects"
+                  id="root_combineArraysOfObjects"
                   role="checkbox"
                   type="button"
                 >
@@ -3204,7 +3204,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <input
                   aria-hidden="true"
-                  name="root.combineArraysOfObjects"
+                  name="root_combineArraysOfObjects"
                   style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                   tabindex="-1"
                   type="checkbox"
@@ -3222,7 +3222,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.combineArraysOfObjects"
+                  for="root_combineArraysOfObjects"
                   id="bits-c37"
                 >
                   <!---->
@@ -3337,7 +3337,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+                id="root_stabilizeOrderOfPropertiesInArraysOfObjects__description"
               >
                 Stabilizing the order in which properties are displayed for arrays of objects
                 <!---->
@@ -3361,7 +3361,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <button
                   aria-checked="true"
-                  aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                  aria-describedby="root_stabilizeOrderOfPropertiesInArraysOfObjects__description root_stabilizeOrderOfPropertiesInArraysOfObjects__help root_stabilizeOrderOfPropertiesInArraysOfObjects__errors"
                   aria-invalid="false"
                   aria-readonly="false"
                   aria-required="false"
@@ -3369,7 +3369,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-checkbox-root=""
                   data-slot="checkbox"
                   data-state="checked"
-                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  id="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                   role="checkbox"
                   type="button"
                 >
@@ -3411,7 +3411,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <input
                   aria-hidden="true"
-                  name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                   style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                   tabindex="-1"
                   type="checkbox"
@@ -3429,7 +3429,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  for="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                   id="bits-c39"
                 >
                   <!---->
@@ -3555,7 +3555,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.proportionalSizeAdjustmentThreshold"
+                  for="root_proportionalSizeAdjustmentThreshold"
                   id="bits-c40"
                 >
                   <!---->
@@ -3588,7 +3588,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.proportionalSizeAdjustmentThreshold::description"
+                id="root_proportionalSizeAdjustmentThreshold__description"
               >
                 Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
                 <!---->
@@ -3608,13 +3608,13 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                aria-describedby="root_proportionalSizeAdjustmentThreshold__description root_proportionalSizeAdjustmentThreshold__help root_proportionalSizeAdjustmentThreshold__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.proportionalSizeAdjustmentThreshold"
+                id="root_proportionalSizeAdjustmentThreshold"
                 min="0"
-                name="root.proportionalSizeAdjustmentThreshold"
+                name="root_proportionalSizeAdjustmentThreshold"
                 required=""
                 step="any"
                 type="number"
@@ -3739,7 +3739,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.cornerCellValue"
+                  for="root_cornerCellValue"
                   id="bits-c41"
                 >
                   <!---->
@@ -3769,7 +3769,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.cornerCellValue::description"
+                id="root_cornerCellValue__description"
               >
                 The value of the corner cell.
                 <!---->
@@ -3789,12 +3789,12 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                aria-describedby="root_cornerCellValue__description root_cornerCellValue__help root_cornerCellValue__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.cornerCellValue"
-                name="root.cornerCellValue"
+                id="root_cornerCellValue"
+                name="root_cornerCellValue"
               />
               
               <!---->
@@ -3905,7 +3905,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.transform::description"
+                id="root_transform__description"
               >
                 Apply a transformation to the output data
                 <!---->
@@ -3929,7 +3929,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <button
                   aria-checked="false"
-                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  aria-describedby="root_transform__description root_transform__help root_transform__errors"
                   aria-invalid="false"
                   aria-readonly="false"
                   aria-required="false"
@@ -3937,7 +3937,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-checkbox-root=""
                   data-slot="checkbox"
                   data-state="unchecked"
-                  id="root.transform"
+                  id="root_transform"
                   role="checkbox"
                   type="button"
                 >
@@ -3957,7 +3957,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <input
                   aria-hidden="true"
-                  name="root.transform"
+                  name="root_transform"
                   style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                   tabindex="-1"
                   type="checkbox"
@@ -3975,7 +3975,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.transform"
+                  for="root_transform"
                   id="bits-c43"
                 >
                   <!---->
@@ -4151,7 +4151,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.paginate::description"
+                id="root_paginate__description"
               >
                 Partitioning the input data (object or array) into pages by their keys
                 <!---->
@@ -4175,7 +4175,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <button
                   aria-checked="false"
-                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
                   aria-invalid="false"
                   aria-readonly="false"
                   aria-required="false"
@@ -4183,7 +4183,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-checkbox-root=""
                   data-slot="checkbox"
                   data-state="unchecked"
-                  id="root.paginate"
+                  id="root_paginate"
                   role="checkbox"
                   type="button"
                 >
@@ -4203,7 +4203,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <input
                   aria-hidden="true"
-                  name="root.paginate"
+                  name="root_paginate"
                   style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                   tabindex="-1"
                   type="checkbox"
@@ -4221,7 +4221,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.paginate"
+                  for="root_paginate"
                   id="bits-c45"
                 >
                   <!---->
@@ -4336,7 +4336,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.createOnOpen::description"
+                id="root_createOnOpen__description"
               >
                 Creating a table when opening a share link
                 <!---->
@@ -4360,7 +4360,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <button
                   aria-checked="true"
-                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
                   aria-invalid="false"
                   aria-readonly="false"
                   aria-required="false"
@@ -4368,7 +4368,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-checkbox-root=""
                   data-slot="checkbox"
                   data-state="checked"
-                  id="root.createOnOpen"
+                  id="root_createOnOpen"
                   role="checkbox"
                   type="button"
                 >
@@ -4410,7 +4410,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <input
                   aria-hidden="true"
-                  name="root.createOnOpen"
+                  name="root_createOnOpen"
                   style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                   tabindex="-1"
                   type="checkbox"
@@ -4428,7 +4428,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.createOnOpen"
+                  for="root_createOnOpen"
                   id="bits-c47"
                 >
                   <!---->
@@ -4661,7 +4661,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.additionalProperty::key-input"
+                  for="root_additionalProperty__key-input"
                   id="bits-c8"
                 >
                   <!---->
@@ -4702,12 +4702,12 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
               />
               
@@ -4800,7 +4800,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.additionalProperty"
+                  for="root_additionalProperty"
                   id="bits-c9"
                 >
                   <!---->
@@ -4838,12 +4838,12 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
               />
               
               <!---->
@@ -5050,7 +5050,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           Test field
         </div>
@@ -5076,7 +5076,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a test description
         <!---->
@@ -5172,7 +5172,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.foo::key-input"
+                  for="root_foo__key-input"
                   id="bits-c12"
                 >
                   <!---->
@@ -5213,12 +5213,12 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
               />
               
@@ -5311,7 +5311,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.foo"
+                  for="root_foo"
                   id="bits-c13"
                 >
                   <!---->
@@ -5349,12 +5349,12 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
               />
               
               <!---->
@@ -5561,7 +5561,7 @@ exports[`object fields > with title and description > object 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           Test field
         </div>
@@ -5587,7 +5587,7 @@ exports[`object fields > with title and description > object 1`] = `
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a test description
         <!---->
@@ -5685,7 +5685,7 @@ exports[`object fields > with title and description > object 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.a"
+                  for="root_a"
                   id="bits-c10"
                 >
                   <!---->
@@ -5715,7 +5715,7 @@ exports[`object fields > with title and description > object 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.a::description"
+                id="root_a__description"
               >
                 A description
                 <!---->
@@ -5735,12 +5735,12 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
               />
               
               <!---->
@@ -5862,7 +5862,7 @@ exports[`object fields > with title and description > object 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.b"
+                  for="root_b"
                   id="bits-c11"
                 >
                   <!---->
@@ -5892,7 +5892,7 @@ exports[`object fields > with title and description > object 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.b::description"
+                id="root_b__description"
               >
                 B description
                 <!---->
@@ -5912,12 +5912,12 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -6085,7 +6085,7 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           Test field
         </div>
@@ -6111,7 +6111,7 @@ exports[`object fields > with title and description > show add button and fields
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a test description
         <!---->
@@ -6207,7 +6207,7 @@ exports[`object fields > with title and description > show add button and fields
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.additionalProperty::key-input"
+                  for="root_additionalProperty__key-input"
                   id="bits-c14"
                 >
                   <!---->
@@ -6248,12 +6248,12 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
               />
               
@@ -6346,7 +6346,7 @@ exports[`object fields > with title and description > show add button and fields
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.additionalProperty"
+                  for="root_additionalProperty"
                   id="bits-c15"
                 >
                   <!---->
@@ -6384,12 +6384,12 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
               />
               
               <!---->
@@ -6596,7 +6596,7 @@ exports[`object fields > with title and description from both > additionalProper
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           My Field
         </div>
@@ -6622,7 +6622,7 @@ exports[`object fields > with title and description from both > additionalProper
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a fancier description
         <!---->
@@ -6718,7 +6718,7 @@ exports[`object fields > with title and description from both > additionalProper
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.foo::key-input"
+                  for="root_foo__key-input"
                   id="bits-c24"
                 >
                   <!---->
@@ -6759,12 +6759,12 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
               />
               
@@ -6857,7 +6857,7 @@ exports[`object fields > with title and description from both > additionalProper
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.foo"
+                  for="root_foo"
                   id="bits-c25"
                 >
                   <!---->
@@ -6895,12 +6895,12 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
               />
               
               <!---->
@@ -7107,7 +7107,7 @@ exports[`object fields > with title and description from both > object 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           My Field
         </div>
@@ -7133,7 +7133,7 @@ exports[`object fields > with title and description from both > object 1`] = `
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a fancier description
         <!---->
@@ -7231,7 +7231,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.a"
+                  for="root_a"
                   id="bits-c22"
                 >
                   <!---->
@@ -7261,7 +7261,7 @@ exports[`object fields > with title and description from both > object 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.a::description"
+                id="root_a__description"
               >
                 a fancier item A description
                 <!---->
@@ -7281,12 +7281,12 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
               />
               
               <!---->
@@ -7408,7 +7408,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.b"
+                  for="root_b"
                   id="bits-c23"
                 >
                   <!---->
@@ -7438,7 +7438,7 @@ exports[`object fields > with title and description from both > object 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.b::description"
+                id="root_b__description"
               >
                 a fancier item B description
                 <!---->
@@ -7458,12 +7458,12 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -7631,7 +7631,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           My Field
         </div>
@@ -7657,7 +7657,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a fancier description
         <!---->
@@ -7753,7 +7753,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.foo::key-input"
+                  for="root_foo__key-input"
                   id="bits-c18"
                 >
                   <!---->
@@ -7794,12 +7794,12 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
               />
               
@@ -7892,7 +7892,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.foo"
+                  for="root_foo"
                   id="bits-c19"
                 >
                   <!---->
@@ -7930,12 +7930,12 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
               />
               
               <!---->
@@ -8142,7 +8142,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           My Field
         </div>
@@ -8168,7 +8168,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a fancier description
         <!---->
@@ -8266,7 +8266,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.a"
+                  for="root_a"
                   id="bits-c16"
                 >
                   <!---->
@@ -8296,7 +8296,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.a::description"
+                id="root_a__description"
               >
                 a fancier item A description
                 <!---->
@@ -8316,12 +8316,12 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
               />
               
               <!---->
@@ -8443,7 +8443,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.b"
+                  for="root_b"
                   id="bits-c17"
                 >
                   <!---->
@@ -8473,7 +8473,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root.b::description"
+                id="root_b__description"
               >
                 a fancier item B description
                 <!---->
@@ -8493,12 +8493,12 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -8666,7 +8666,7 @@ exports[`object fields > with title and description from uiSchema > show add but
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           My Field
         </div>
@@ -8692,7 +8692,7 @@ exports[`object fields > with title and description from uiSchema > show add but
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a fancier description
         <!---->
@@ -8788,7 +8788,7 @@ exports[`object fields > with title and description from uiSchema > show add but
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.additionalProperty::key-input"
+                  for="root_additionalProperty__key-input"
                   id="bits-c20"
                 >
                   <!---->
@@ -8829,12 +8829,12 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
               />
               
@@ -8927,7 +8927,7 @@ exports[`object fields > with title and description from uiSchema > show add but
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.additionalProperty"
+                  for="root_additionalProperty"
                   id="bits-c21"
                 >
                   <!---->
@@ -8965,12 +8965,12 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
               />
               
               <!---->
@@ -9227,12 +9227,12 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
               />
               
@@ -9312,12 +9312,12 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
               />
               
               <!---->
@@ -9576,12 +9576,12 @@ exports[`object fields > with title and description with global label off > obje
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
               />
               
               <!---->
@@ -9690,12 +9690,12 @@ exports[`object fields > with title and description with global label off > obje
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -9913,12 +9913,12 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
               />
               
@@ -9998,12 +9998,12 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
               />
               
               <!---->

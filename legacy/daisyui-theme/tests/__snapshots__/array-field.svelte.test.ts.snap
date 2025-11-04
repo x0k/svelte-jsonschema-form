@@ -140,7 +140,7 @@ exports[`array fields > array icons 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@0"
+                    for="root_0"
                   >
                     -1 
                     <span>
@@ -169,11 +169,11 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -300,7 +300,7 @@ exports[`array fields > array icons 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@1"
+                    for="root_1"
                   >
                     -2 
                     <span>
@@ -329,11 +329,11 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
@@ -582,7 +582,7 @@ exports[`array fields > empty errors array 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root.name"
+                    for="root_name"
                   >
                     name 
                     <!---->
@@ -608,11 +608,11 @@ exports[`array fields > empty errors array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.name::description root.name::help root.name::errors"
+                  aria-describedby="root_name__description root_name__help root_name__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root.name"
-                  name="root.name"
+                  id="root_name"
+                  name="root_name"
                   type="text"
                 />
                  
@@ -655,7 +655,7 @@ exports[`array fields > empty errors array 1`] = `
       <!---->
       <ul
         class="text-error list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -752,11 +752,11 @@ exports[`array fields > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -819,11 +819,11 @@ exports[`array fields > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
@@ -927,7 +927,7 @@ exports[`with title and description > array 1`] = `
           <!---->
           <div
             class="font-bold text-xl"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -942,7 +942,7 @@ exports[`with title and description > array 1`] = `
         <!---->
         <div
           class="label-text-alt"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -1040,7 +1040,7 @@ exports[`with title and description > array icons 1`] = `
           <!---->
           <div
             class="font-bold text-xl"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -1055,7 +1055,7 @@ exports[`with title and description > array icons 1`] = `
         <!---->
         <div
           class="label-text-alt"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -1105,7 +1105,7 @@ exports[`with title and description > array icons 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@0"
+                    for="root_0"
                   >
                     Test item-1 
                     <span>
@@ -1124,7 +1124,7 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a test item description
                 </div>
@@ -1142,11 +1142,11 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -1273,7 +1273,7 @@ exports[`with title and description > array icons 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@1"
+                    for="root_1"
                   >
                     Test item-2 
                     <span>
@@ -1292,7 +1292,7 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a test item description
                 </div>
@@ -1310,11 +1310,11 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
@@ -1532,7 +1532,7 @@ exports[`with title and description > fixed array 1`] = `
           <!---->
           <div
             class="font-bold text-xl"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -1547,7 +1547,7 @@ exports[`with title and description > fixed array 1`] = `
         <!---->
         <div
           class="label-text-alt"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -1597,7 +1597,7 @@ exports[`with title and description > fixed array 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@0"
+                    for="root_0"
                   >
                     Test item 
                     <span>
@@ -1616,7 +1616,7 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a test item description
                 </div>
@@ -1634,11 +1634,11 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -1704,7 +1704,7 @@ exports[`with title and description > fixed array 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@1"
+                    for="root_1"
                   >
                     Test item 
                     <span>
@@ -1723,7 +1723,7 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a test item description
                 </div>
@@ -1741,11 +1741,11 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
@@ -1849,7 +1849,7 @@ exports[`with title and description from both > array 1`] = `
           <!---->
           <div
             class="font-bold text-xl"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -1864,7 +1864,7 @@ exports[`with title and description from both > array 1`] = `
         <!---->
         <div
           class="label-text-alt"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -1962,7 +1962,7 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
           <div
             class="font-bold text-xl"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -1977,7 +1977,7 @@ exports[`with title and description from both > array icons 1`] = `
         <!---->
         <div
           class="label-text-alt"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -2027,7 +2027,7 @@ exports[`with title and description from both > array icons 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@0"
+                    for="root_0"
                   >
                     My Item-1 
                     <span>
@@ -2046,7 +2046,7 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -2064,11 +2064,11 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -2195,7 +2195,7 @@ exports[`with title and description from both > array icons 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@1"
+                    for="root_1"
                   >
                     My Item-2 
                     <span>
@@ -2214,7 +2214,7 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -2232,11 +2232,11 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
@@ -2454,7 +2454,7 @@ exports[`with title and description from both > fixed array 1`] = `
           <!---->
           <div
             class="font-bold text-xl"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -2469,7 +2469,7 @@ exports[`with title and description from both > fixed array 1`] = `
         <!---->
         <div
           class="label-text-alt"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -2519,7 +2519,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@0"
+                    for="root_0"
                   >
                     My Item 
                     <span>
@@ -2538,7 +2538,7 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -2556,11 +2556,11 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -2626,7 +2626,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@1"
+                    for="root_1"
                   >
                     My Item 
                     <span>
@@ -2645,7 +2645,7 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -2663,11 +2663,11 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
@@ -2771,7 +2771,7 @@ exports[`with title and description from uiSchema > array 1`] = `
           <!---->
           <div
             class="font-bold text-xl"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -2786,7 +2786,7 @@ exports[`with title and description from uiSchema > array 1`] = `
         <!---->
         <div
           class="label-text-alt"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -2884,7 +2884,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
           <div
             class="font-bold text-xl"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -2899,7 +2899,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         <!---->
         <div
           class="label-text-alt"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -2949,7 +2949,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@0"
+                    for="root_0"
                   >
                     My Item-1 
                     <span>
@@ -2968,7 +2968,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -2986,11 +2986,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -3117,7 +3117,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@1"
+                    for="root_1"
                   >
                     My Item-2 
                     <span>
@@ -3136,7 +3136,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -3154,11 +3154,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
@@ -3376,7 +3376,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           <!---->
           <div
             class="font-bold text-xl"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -3391,7 +3391,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         <!---->
         <div
           class="label-text-alt"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -3441,7 +3441,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@0"
+                    for="root_0"
                   >
                     My Item 
                     <span>
@@ -3460,7 +3460,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -3478,11 +3478,11 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -3548,7 +3548,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   <!---->
                   <label
                     class="label-text"
-                    for="root@1"
+                    for="root_1"
                   >
                     My Item 
                     <span>
@@ -3567,7 +3567,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <div
                   class="label-text-alt"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -3585,11 +3585,11 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
@@ -3796,11 +3796,11 @@ exports[`with title and description with global label off > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -3924,11 +3924,11 @@ exports[`with title and description with global label off > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
@@ -4172,11 +4172,11 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -4239,11 +4239,11 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="input input-bordered grow"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"

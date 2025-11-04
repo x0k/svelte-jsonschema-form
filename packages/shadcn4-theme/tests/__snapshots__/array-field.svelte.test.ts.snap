@@ -242,7 +242,7 @@ exports[`array fields > array icons 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@0"
+                  for="root_0"
                   id="bits-c1"
                 >
                   <!---->
@@ -283,12 +283,12 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@0"
-                name="root@0"
+                id="root_0"
+                name="root_0"
                 required=""
               />
               
@@ -509,7 +509,7 @@ exports[`array fields > array icons 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@1"
+                  for="root_1"
                   id="bits-c2"
                 >
                   <!---->
@@ -550,12 +550,12 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@1"
-                name="root@1"
+                id="root_1"
+                name="root_1"
                 required=""
               />
               
@@ -961,7 +961,7 @@ exports[`array fields > empty errors array 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root.name"
+                  for="root_name"
                   id="bits-c3"
                 >
                   <!---->
@@ -999,12 +999,12 @@ exports[`array fields > empty errors array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.name::description root.name::help root.name::errors"
+                aria-describedby="root_name__description root_name__help root_name__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root.name"
-                name="root.name"
+                id="root_name"
+                name="root_name"
               />
               
               <!---->
@@ -1085,7 +1085,7 @@ exports[`array fields > empty errors array 1`] = `
         <!---->
         <ul
           class="ml-4 flex list-disc flex-col gap-1"
-          id="root::errors"
+          id="root__errors"
           tabindex="-1"
         >
           <li>
@@ -1245,12 +1245,12 @@ exports[`array fields > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@0"
-                name="root@0"
+                id="root_0"
+                name="root_0"
                 required=""
               />
               
@@ -1358,12 +1358,12 @@ exports[`array fields > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@1"
-                name="root@1"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
                 type="number"
@@ -1532,7 +1532,7 @@ exports[`with title and description > array 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           Test field
         </div>
@@ -1558,7 +1558,7 @@ exports[`with title and description > array 1`] = `
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a test description
         <!---->
@@ -1718,7 +1718,7 @@ exports[`with title and description > array icons 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           Test field
         </div>
@@ -1744,7 +1744,7 @@ exports[`with title and description > array icons 1`] = `
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a test description
         <!---->
@@ -1840,7 +1840,7 @@ exports[`with title and description > array icons 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@0"
+                  for="root_0"
                   id="bits-c6"
                 >
                   <!---->
@@ -1873,7 +1873,7 @@ exports[`with title and description > array icons 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@0::description"
+                id="root_0__description"
               >
                 a test item description
                 <!---->
@@ -1893,12 +1893,12 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@0"
-                name="root@0"
+                id="root_0"
+                name="root_0"
                 required=""
               />
               
@@ -2119,7 +2119,7 @@ exports[`with title and description > array icons 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@1"
+                  for="root_1"
                   id="bits-c7"
                 >
                   <!---->
@@ -2152,7 +2152,7 @@ exports[`with title and description > array icons 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@1::description"
+                id="root_1__description"
               >
                 a test item description
                 <!---->
@@ -2172,12 +2172,12 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@1"
-                name="root@1"
+                id="root_1"
+                name="root_1"
                 required=""
               />
               
@@ -2518,7 +2518,7 @@ exports[`with title and description > fixed array 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           Test field
         </div>
@@ -2544,7 +2544,7 @@ exports[`with title and description > fixed array 1`] = `
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a test description
         <!---->
@@ -2640,7 +2640,7 @@ exports[`with title and description > fixed array 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@0"
+                  for="root_0"
                   id="bits-c4"
                 >
                   <!---->
@@ -2673,7 +2673,7 @@ exports[`with title and description > fixed array 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@0::description"
+                id="root_0__description"
               >
                 a test item description
                 <!---->
@@ -2693,12 +2693,12 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@0"
-                name="root@0"
+                id="root_0"
+                name="root_0"
                 required=""
               />
               
@@ -2819,7 +2819,7 @@ exports[`with title and description > fixed array 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@1"
+                  for="root_1"
                   id="bits-c5"
                 >
                   <!---->
@@ -2852,7 +2852,7 @@ exports[`with title and description > fixed array 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@1::description"
+                id="root_1__description"
               >
                 a test item description
                 <!---->
@@ -2872,12 +2872,12 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@1"
-                name="root@1"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
                 type="number"
@@ -3046,7 +3046,7 @@ exports[`with title and description from both > array 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           My Field
         </div>
@@ -3072,7 +3072,7 @@ exports[`with title and description from both > array 1`] = `
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a fancier description
         <!---->
@@ -3232,7 +3232,7 @@ exports[`with title and description from both > array icons 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           My Field
         </div>
@@ -3258,7 +3258,7 @@ exports[`with title and description from both > array icons 1`] = `
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a fancier description
         <!---->
@@ -3354,7 +3354,7 @@ exports[`with title and description from both > array icons 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@0"
+                  for="root_0"
                   id="bits-c14"
                 >
                   <!---->
@@ -3387,7 +3387,7 @@ exports[`with title and description from both > array icons 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@0::description"
+                id="root_0__description"
               >
                 a fancier item description
                 <!---->
@@ -3407,12 +3407,12 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@0"
-                name="root@0"
+                id="root_0"
+                name="root_0"
                 required=""
               />
               
@@ -3633,7 +3633,7 @@ exports[`with title and description from both > array icons 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@1"
+                  for="root_1"
                   id="bits-c15"
                 >
                   <!---->
@@ -3666,7 +3666,7 @@ exports[`with title and description from both > array icons 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@1::description"
+                id="root_1__description"
               >
                 a fancier item description
                 <!---->
@@ -3686,12 +3686,12 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@1"
-                name="root@1"
+                id="root_1"
+                name="root_1"
                 required=""
               />
               
@@ -4032,7 +4032,7 @@ exports[`with title and description from both > fixed array 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           My Field
         </div>
@@ -4058,7 +4058,7 @@ exports[`with title and description from both > fixed array 1`] = `
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a fancier description
         <!---->
@@ -4154,7 +4154,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@0"
+                  for="root_0"
                   id="bits-c12"
                 >
                   <!---->
@@ -4187,7 +4187,7 @@ exports[`with title and description from both > fixed array 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@0::description"
+                id="root_0__description"
               >
                 a fancier item description
                 <!---->
@@ -4207,12 +4207,12 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@0"
-                name="root@0"
+                id="root_0"
+                name="root_0"
                 required=""
               />
               
@@ -4333,7 +4333,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@1"
+                  for="root_1"
                   id="bits-c13"
                 >
                   <!---->
@@ -4366,7 +4366,7 @@ exports[`with title and description from both > fixed array 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@1::description"
+                id="root_1__description"
               >
                 a fancier item description
                 <!---->
@@ -4386,12 +4386,12 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@1"
-                name="root@1"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
                 type="number"
@@ -4560,7 +4560,7 @@ exports[`with title and description from uiSchema > array 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           My Field
         </div>
@@ -4586,7 +4586,7 @@ exports[`with title and description from uiSchema > array 1`] = `
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a fancier description
         <!---->
@@ -4746,7 +4746,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           My Field
         </div>
@@ -4772,7 +4772,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a fancier description
         <!---->
@@ -4868,7 +4868,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@0"
+                  for="root_0"
                   id="bits-c10"
                 >
                   <!---->
@@ -4901,7 +4901,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@0::description"
+                id="root_0__description"
               >
                 a fancier item description
                 <!---->
@@ -4921,12 +4921,12 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@0"
-                name="root@0"
+                id="root_0"
+                name="root_0"
                 required=""
               />
               
@@ -5147,7 +5147,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@1"
+                  for="root_1"
                   id="bits-c11"
                 >
                   <!---->
@@ -5180,7 +5180,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@1::description"
+                id="root_1__description"
               >
                 a fancier item description
                 <!---->
@@ -5200,12 +5200,12 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@1"
-                name="root@1"
+                id="root_1"
+                name="root_1"
                 required=""
               />
               
@@ -5546,7 +5546,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         <!---->
         <!---->
         <div
-          id="root::title"
+          id="root__title"
         >
           My Field
         </div>
@@ -5572,7 +5572,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       <p
         class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
         data-slot="field-description"
-        id="root::description"
+        id="root__description"
       >
         a fancier description
         <!---->
@@ -5668,7 +5668,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@0"
+                  for="root_0"
                   id="bits-c8"
                 >
                   <!---->
@@ -5701,7 +5701,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@0::description"
+                id="root_0__description"
               >
                 a fancier item description
                 <!---->
@@ -5721,12 +5721,12 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@0"
-                name="root@0"
+                id="root_0"
+                name="root_0"
                 required=""
               />
               
@@ -5847,7 +5847,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
                   data-label-root=""
                   data-slot="field-label"
-                  for="root@1"
+                  for="root_1"
                   id="bits-c9"
                 >
                   <!---->
@@ -5880,7 +5880,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <p
                 class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
                 data-slot="field-description"
-                id="root@1::description"
+                id="root_1__description"
               >
                 a fancier item description
                 <!---->
@@ -5900,12 +5900,12 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@1"
-                name="root@1"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
                 type="number"
@@ -6251,12 +6251,12 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@0"
-                name="root@0"
+                id="root_0"
+                name="root_0"
                 required=""
               />
               
@@ -6464,12 +6464,12 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@1"
-                name="root@1"
+                id="root_1"
+                name="root_1"
                 required=""
               />
               
@@ -6860,12 +6860,12 @@ exports[`with title and description with global label off > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@0::description root@0::help root@0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@0"
-                name="root@0"
+                id="root_0"
+                name="root_0"
                 required=""
               />
               
@@ -6973,12 +6973,12 @@ exports[`with title and description with global label off > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root@1::description root@1::help root@1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
                 class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                 data-slot="input"
-                id="root@1"
-                name="root@1"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
                 type="number"

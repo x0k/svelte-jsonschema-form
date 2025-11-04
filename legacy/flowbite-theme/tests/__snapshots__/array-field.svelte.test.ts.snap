@@ -168,7 +168,7 @@ exports[`array fields > array icons 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@0"
+                    for="root_0"
                   >
                     -1 
                     <span>
@@ -208,11 +208,11 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -393,7 +393,7 @@ exports[`array fields > array icons 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@1"
+                    for="root_1"
                   >
                     -2 
                     <span>
@@ -433,11 +433,11 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
@@ -768,7 +768,7 @@ exports[`array fields > empty errors array 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root.name"
+                    for="root_name"
                   >
                     name 
                     <!---->
@@ -805,11 +805,11 @@ exports[`array fields > empty errors array 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root.name::description root.name::help root.name::errors"
+                  aria-describedby="root_name__description root_name__help root_name__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root.name"
-                  name="root.name"
+                  id="root_name"
+                  name="root_name"
                   type="text"
                 />
                 <!---->
@@ -865,7 +865,7 @@ exports[`array fields > empty errors array 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -983,11 +983,11 @@ exports[`array fields > fixed array 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -1072,11 +1072,11 @@ exports[`array fields > fixed array 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
@@ -1205,7 +1205,7 @@ exports[`with title and description > array 1`] = `
           <!---->
           <p
             class="text-gray-900 dark:text-white font-semibold"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </p>
@@ -1221,7 +1221,7 @@ exports[`with title and description > array 1`] = `
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -1342,7 +1342,7 @@ exports[`with title and description > array icons 1`] = `
           <!---->
           <p
             class="text-gray-900 dark:text-white font-semibold"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </p>
@@ -1358,7 +1358,7 @@ exports[`with title and description > array icons 1`] = `
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -1416,7 +1416,7 @@ exports[`with title and description > array icons 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@0"
+                    for="root_0"
                   >
                     Test item-1 
                     <span>
@@ -1438,7 +1438,7 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a test item description
                 </div>
@@ -1464,11 +1464,11 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -1649,7 +1649,7 @@ exports[`with title and description > array icons 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@1"
+                    for="root_1"
                   >
                     Test item-2 
                     <span>
@@ -1671,7 +1671,7 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a test item description
                 </div>
@@ -1697,11 +1697,11 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
@@ -1996,7 +1996,7 @@ exports[`with title and description > fixed array 1`] = `
           <!---->
           <p
             class="text-gray-900 dark:text-white font-semibold"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </p>
@@ -2012,7 +2012,7 @@ exports[`with title and description > fixed array 1`] = `
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -2070,7 +2070,7 @@ exports[`with title and description > fixed array 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@0"
+                    for="root_0"
                   >
                     Test item 
                     <span>
@@ -2092,7 +2092,7 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a test item description
                 </div>
@@ -2118,11 +2118,11 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -2206,7 +2206,7 @@ exports[`with title and description > fixed array 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@1"
+                    for="root_1"
                   >
                     Test item 
                     <span>
@@ -2228,7 +2228,7 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a test item description
                 </div>
@@ -2254,11 +2254,11 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
@@ -2387,7 +2387,7 @@ exports[`with title and description from both > array 1`] = `
           <!---->
           <p
             class="text-gray-900 dark:text-white font-semibold"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </p>
@@ -2403,7 +2403,7 @@ exports[`with title and description from both > array 1`] = `
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -2524,7 +2524,7 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
           <p
             class="text-gray-900 dark:text-white font-semibold"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </p>
@@ -2540,7 +2540,7 @@ exports[`with title and description from both > array icons 1`] = `
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -2598,7 +2598,7 @@ exports[`with title and description from both > array icons 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@0"
+                    for="root_0"
                   >
                     My Item-1 
                     <span>
@@ -2620,7 +2620,7 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -2646,11 +2646,11 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -2831,7 +2831,7 @@ exports[`with title and description from both > array icons 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@1"
+                    for="root_1"
                   >
                     My Item-2 
                     <span>
@@ -2853,7 +2853,7 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -2879,11 +2879,11 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
@@ -3178,7 +3178,7 @@ exports[`with title and description from both > fixed array 1`] = `
           <!---->
           <p
             class="text-gray-900 dark:text-white font-semibold"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </p>
@@ -3194,7 +3194,7 @@ exports[`with title and description from both > fixed array 1`] = `
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -3252,7 +3252,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@0"
+                    for="root_0"
                   >
                     My Item 
                     <span>
@@ -3274,7 +3274,7 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -3300,11 +3300,11 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -3388,7 +3388,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@1"
+                    for="root_1"
                   >
                     My Item 
                     <span>
@@ -3410,7 +3410,7 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -3436,11 +3436,11 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
@@ -3569,7 +3569,7 @@ exports[`with title and description from uiSchema > array 1`] = `
           <!---->
           <p
             class="text-gray-900 dark:text-white font-semibold"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </p>
@@ -3585,7 +3585,7 @@ exports[`with title and description from uiSchema > array 1`] = `
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -3706,7 +3706,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
           <p
             class="text-gray-900 dark:text-white font-semibold"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </p>
@@ -3722,7 +3722,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -3780,7 +3780,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@0"
+                    for="root_0"
                   >
                     My Item-1 
                     <span>
@@ -3802,7 +3802,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -3828,11 +3828,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -4013,7 +4013,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@1"
+                    for="root_1"
                   >
                     My Item-2 
                     <span>
@@ -4035,7 +4035,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -4061,11 +4061,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
@@ -4360,7 +4360,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           <!---->
           <p
             class="text-gray-900 dark:text-white font-semibold"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </p>
@@ -4376,7 +4376,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -4434,7 +4434,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@0"
+                    for="root_0"
                   >
                     My Item 
                     <span>
@@ -4456,7 +4456,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -4482,11 +4482,11 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -4570,7 +4570,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   <!---->
                   <label
                     class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
-                    for="root@1"
+                    for="root_1"
                   >
                     My Item 
                     <span>
@@ -4592,7 +4592,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root@1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -4618,11 +4618,11 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
@@ -4883,11 +4883,11 @@ exports[`with title and description with global label off > array icons 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -5069,11 +5069,11 @@ exports[`with title and description with global label off > array icons 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
@@ -5403,11 +5403,11 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@0::description root@0::help root@0::errors"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@0"
-                  name="root@0"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
@@ -5492,11 +5492,11 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 <!---->
                  
                 <input
-                  aria-describedby="root@1::description root@1::help root@1::errors"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
                   aria-invalid="false"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
-                  id="root@1"
-                  name="root@1"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"

@@ -79,7 +79,7 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.foo::key-input"
+                  for="root_foo__key-input"
                 >
                   foo Key 
                   *
@@ -107,11 +107,11 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -176,7 +176,7 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.foo"
+                  for="root_foo"
                 >
                   foo 
                   <!---->
@@ -203,11 +203,11 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -393,7 +393,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.foo::key-input"
+                  for="root_foo__key-input"
                 >
                   foo Key 
                   *
@@ -421,11 +421,11 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="true"
                 class="input input-bordered w-full input-error"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -442,7 +442,7 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <ul
                 class="text-error list-disc list-inside"
-                id="root.foo::key-input::errors"
+                id="root_foo__key-input__errors"
                 tabindex="-1"
               >
                 <li>
@@ -502,7 +502,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.foo"
+                  for="root_foo"
                 >
                   foo 
                   <!---->
@@ -529,11 +529,11 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -721,7 +721,7 @@ exports[`object fields > has errors 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.name"
+                  for="root_name"
                 >
                   name 
                   <!---->
@@ -748,11 +748,11 @@ exports[`object fields > has errors 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.name::description root.name::help root.name::errors"
+                aria-describedby="root_name__description root_name__help root_name__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.name"
-                name="root.name"
+                id="root_name"
+                name="root_name"
                 type="text"
               />
                
@@ -806,7 +806,7 @@ exports[`object fields > has errors 1`] = `
       <!---->
       <ul
         class="text-error list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -926,7 +926,7 @@ exports[`object fields > object 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.a"
+                  for="root_a"
                 >
                   A 
                   <!---->
@@ -953,11 +953,11 @@ exports[`object fields > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -1043,7 +1043,7 @@ exports[`object fields > object 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.b"
+                  for="root_b"
                 >
                   B 
                   <!---->
@@ -1070,11 +1070,11 @@ exports[`object fields > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
                 aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -1200,7 +1200,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <div
             class="fieldset-legend text-base"
-            id="root::title"
+            id="root__title"
           >
             Options
           </div>
@@ -1318,7 +1318,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.transform::description"
+                id="root_transform__description"
               >
                 Apply a transformation to the output data
               </p>
@@ -1337,11 +1337,11 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  aria-describedby="root_transform__description root_transform__help root_transform__errors"
                   aria-invalid="false"
                   class="checkbox"
-                  id="root.transform"
-                  name="root.transform"
+                  id="root_transform"
+                  name="root_transform"
                   type="checkbox"
                 />
                  Transform
@@ -1464,7 +1464,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.paginate::description"
+                id="root_paginate__description"
               >
                 Partitioning the input data (object or array) into pages by their keys
               </p>
@@ -1483,11 +1483,11 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
                   aria-invalid="false"
                   class="checkbox"
-                  id="root.paginate"
-                  name="root.paginate"
+                  id="root_paginate"
+                  name="root_paginate"
                   type="checkbox"
                 />
                  Paginate
@@ -1565,7 +1565,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.createOnOpen::description"
+                id="root_createOnOpen__description"
               >
                 Creating a table when opening a share link
               </p>
@@ -1584,11 +1584,11 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
                   aria-invalid="false"
                   class="checkbox"
-                  id="root.createOnOpen"
-                  name="root.createOnOpen"
+                  id="root_createOnOpen"
+                  name="root_createOnOpen"
                   type="checkbox"
                 />
                  Create on open
@@ -1711,7 +1711,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <div
             class="fieldset-legend text-base"
-            id="root::title"
+            id="root__title"
           >
             Options
           </div>
@@ -1829,7 +1829,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.collapseIndexes::description"
+                id="root_collapseIndexes__description"
               >
                 Combines hierarchical indexes into one cell (1.1, 1.2, ...)
               </p>
@@ -1848,11 +1848,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                  aria-describedby="root_collapseIndexes__description root_collapseIndexes__help root_collapseIndexes__errors"
                   aria-invalid="false"
                   class="checkbox"
-                  id="root.collapseIndexes"
-                  name="root.collapseIndexes"
+                  id="root_collapseIndexes"
+                  name="root_collapseIndexes"
                   type="checkbox"
                 />
                  Combine nested indexes
@@ -1930,7 +1930,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.joinPrimitiveArrayValues::description"
+                id="root_joinPrimitiveArrayValues__description"
               >
                 Combines the values of an array of primitives into one cell (separated by ',')
               </p>
@@ -1949,11 +1949,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                  aria-describedby="root_joinPrimitiveArrayValues__description root_joinPrimitiveArrayValues__help root_joinPrimitiveArrayValues__errors"
                   aria-invalid="false"
                   class="checkbox"
-                  id="root.joinPrimitiveArrayValues"
-                  name="root.joinPrimitiveArrayValues"
+                  id="root_joinPrimitiveArrayValues"
+                  name="root_joinPrimitiveArrayValues"
                   type="checkbox"
                 />
                  Combine simple values
@@ -2031,7 +2031,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.combineArraysOfObjects::description"
+                id="root_combineArraysOfObjects__description"
               >
                 Combine arrays of objects into a single object
               </p>
@@ -2050,11 +2050,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                  aria-describedby="root_combineArraysOfObjects__description root_combineArraysOfObjects__help root_combineArraysOfObjects__errors"
                   aria-invalid="false"
                   class="checkbox"
-                  id="root.combineArraysOfObjects"
-                  name="root.combineArraysOfObjects"
+                  id="root_combineArraysOfObjects"
+                  name="root_combineArraysOfObjects"
                   type="checkbox"
                 />
                  Combine objects
@@ -2132,7 +2132,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+                id="root_stabilizeOrderOfPropertiesInArraysOfObjects__description"
               >
                 Stabilizing the order in which properties are displayed for arrays of objects
               </p>
@@ -2151,11 +2151,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                  aria-describedby="root_stabilizeOrderOfPropertiesInArraysOfObjects__description root_stabilizeOrderOfPropertiesInArraysOfObjects__help root_stabilizeOrderOfPropertiesInArraysOfObjects__errors"
                   aria-invalid="false"
                   class="checkbox"
-                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
-                  name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  id="root_stabilizeOrderOfPropertiesInArraysOfObjects"
+                  name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                   type="checkbox"
                 />
                  Stabilize order of properties
@@ -2239,7 +2239,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.proportionalSizeAdjustmentThreshold"
+                  for="root_proportionalSizeAdjustmentThreshold"
                 >
                   Proportional size adjustment threshold 
                   *
@@ -2259,7 +2259,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.proportionalSizeAdjustmentThreshold::description"
+                id="root_proportionalSizeAdjustmentThreshold__description"
               >
                 Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
               </p>
@@ -2275,12 +2275,12 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                aria-describedby="root_proportionalSizeAdjustmentThreshold__description root_proportionalSizeAdjustmentThreshold__help root_proportionalSizeAdjustmentThreshold__errors"
                 aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.proportionalSizeAdjustmentThreshold"
+                id="root_proportionalSizeAdjustmentThreshold"
                 min="0"
-                name="root.proportionalSizeAdjustmentThreshold"
+                name="root_proportionalSizeAdjustmentThreshold"
                 required=""
                 step="any"
                 type="number"
@@ -2368,7 +2368,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.cornerCellValue"
+                  for="root_cornerCellValue"
                 >
                   Corner cell value 
                   <!---->
@@ -2387,7 +2387,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.cornerCellValue::description"
+                id="root_cornerCellValue__description"
               >
                 The value of the corner cell.
               </p>
@@ -2403,11 +2403,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                aria-describedby="root_cornerCellValue__description root_cornerCellValue__help root_cornerCellValue__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.cornerCellValue"
-                name="root.cornerCellValue"
+                id="root_cornerCellValue"
+                name="root_cornerCellValue"
                 type="text"
               />
                
@@ -2487,7 +2487,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.transform::description"
+                id="root_transform__description"
               >
                 Apply a transformation to the output data
               </p>
@@ -2506,11 +2506,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  aria-describedby="root_transform__description root_transform__help root_transform__errors"
                   aria-invalid="false"
                   class="checkbox"
-                  id="root.transform"
-                  name="root.transform"
+                  id="root_transform"
+                  name="root_transform"
                   type="checkbox"
                 />
                  Transform
@@ -2633,7 +2633,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.paginate::description"
+                id="root_paginate__description"
               >
                 Partitioning the input data (object or array) into pages by their keys
               </p>
@@ -2652,11 +2652,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
                   aria-invalid="false"
                   class="checkbox"
-                  id="root.paginate"
-                  name="root.paginate"
+                  id="root_paginate"
+                  name="root_paginate"
                   type="checkbox"
                 />
                  Paginate
@@ -2734,7 +2734,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.createOnOpen::description"
+                id="root_createOnOpen__description"
               >
                 Creating a table when opening a share link
               </p>
@@ -2753,11 +2753,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
                   aria-invalid="false"
                   class="checkbox"
-                  id="root.createOnOpen"
-                  name="root.createOnOpen"
+                  id="root_createOnOpen"
+                  name="root_createOnOpen"
                   type="checkbox"
                 />
                  Create on open
@@ -2915,7 +2915,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.additionalProperty::key-input"
+                  for="root_additionalProperty__key-input"
                 >
                   additionalProperty Key 
                   *
@@ -2943,11 +2943,11 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
                 type="text"
               />
@@ -3012,7 +3012,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.additionalProperty"
+                  for="root_additionalProperty"
                 >
                   additionalProperty 
                   <!---->
@@ -3039,11 +3039,11 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
                 type="text"
               />
                
@@ -3194,7 +3194,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           <!---->
           <div
             class="fieldset-legend text-base"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -3212,7 +3212,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         <!---->
         <p
           class="fieldset-label"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </p>
@@ -3279,7 +3279,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.foo::key-input"
+                  for="root_foo__key-input"
                 >
                   foo Key 
                   *
@@ -3307,11 +3307,11 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -3376,7 +3376,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.foo"
+                  for="root_foo"
                 >
                   foo 
                   <!---->
@@ -3403,11 +3403,11 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -3558,7 +3558,7 @@ exports[`object fields > with title and description > object 1`] = `
           <!---->
           <div
             class="fieldset-legend text-base"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -3576,7 +3576,7 @@ exports[`object fields > with title and description > object 1`] = `
         <!---->
         <p
           class="fieldset-label"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </p>
@@ -3645,7 +3645,7 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.a"
+                  for="root_a"
                 >
                   A 
                   <!---->
@@ -3664,7 +3664,7 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.a::description"
+                id="root_a__description"
               >
                 A description
               </p>
@@ -3680,11 +3680,11 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -3770,7 +3770,7 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.b"
+                  for="root_b"
                 >
                   B 
                   <!---->
@@ -3789,7 +3789,7 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.b::description"
+                id="root_b__description"
               >
                 B description
               </p>
@@ -3805,11 +3805,11 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
                 aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -3935,7 +3935,7 @@ exports[`object fields > with title and description > show add button and fields
           <!---->
           <div
             class="fieldset-legend text-base"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -3953,7 +3953,7 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
         <p
           class="fieldset-label"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </p>
@@ -4020,7 +4020,7 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.additionalProperty::key-input"
+                  for="root_additionalProperty__key-input"
                 >
                   additionalProperty Key 
                   *
@@ -4048,11 +4048,11 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
                 type="text"
               />
@@ -4117,7 +4117,7 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.additionalProperty"
+                  for="root_additionalProperty"
                 >
                   additionalProperty 
                   <!---->
@@ -4144,11 +4144,11 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
                 type="text"
               />
                
@@ -4299,7 +4299,7 @@ exports[`object fields > with title and description from both > additionalProper
           <!---->
           <div
             class="fieldset-legend text-base"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -4317,7 +4317,7 @@ exports[`object fields > with title and description from both > additionalProper
         <!---->
         <p
           class="fieldset-label"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </p>
@@ -4384,7 +4384,7 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.foo::key-input"
+                  for="root_foo__key-input"
                 >
                   foo Key 
                   *
@@ -4412,11 +4412,11 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -4481,7 +4481,7 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.foo"
+                  for="root_foo"
                 >
                   foo 
                   <!---->
@@ -4508,11 +4508,11 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -4663,7 +4663,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           <!---->
           <div
             class="fieldset-legend text-base"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -4681,7 +4681,7 @@ exports[`object fields > with title and description from both > object 1`] = `
         <!---->
         <p
           class="fieldset-label"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </p>
@@ -4750,7 +4750,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.a"
+                  for="root_a"
                 >
                   My Item A 
                   <!---->
@@ -4769,7 +4769,7 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.a::description"
+                id="root_a__description"
               >
                 a fancier item A description
               </p>
@@ -4785,11 +4785,11 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -4875,7 +4875,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.b"
+                  for="root_b"
                 >
                   My Item B 
                   <!---->
@@ -4894,7 +4894,7 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.b::description"
+                id="root_b__description"
               >
                 a fancier item B description
               </p>
@@ -4910,11 +4910,11 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
                 aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -5040,7 +5040,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           <!---->
           <div
             class="fieldset-legend text-base"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -5058,7 +5058,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         <!---->
         <p
           class="fieldset-label"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </p>
@@ -5125,7 +5125,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.foo::key-input"
+                  for="root_foo__key-input"
                 >
                   foo Key 
                   *
@@ -5153,11 +5153,11 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -5222,7 +5222,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.foo"
+                  for="root_foo"
                 >
                   foo 
                   <!---->
@@ -5249,11 +5249,11 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -5404,7 +5404,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           <!---->
           <div
             class="fieldset-legend text-base"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -5422,7 +5422,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         <!---->
         <p
           class="fieldset-label"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </p>
@@ -5491,7 +5491,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.a"
+                  for="root_a"
                 >
                   My Item A 
                   <!---->
@@ -5510,7 +5510,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <p
                 class="fieldset-label"
-                id="root.a::description"
+                id="root_a__description"
               >
                 a fancier item A description
               </p>
@@ -5526,11 +5526,11 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -5616,7 +5616,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.b"
+                  for="root_b"
                 >
                   My Item B 
                   <!---->
@@ -5635,7 +5635,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <p
                 class="fieldset-label"
-                id="root.b::description"
+                id="root_b__description"
               >
                 a fancier item B description
               </p>
@@ -5651,11 +5651,11 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
                 aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -5781,7 +5781,7 @@ exports[`object fields > with title and description from uiSchema > show add but
           <!---->
           <div
             class="fieldset-legend text-base"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -5799,7 +5799,7 @@ exports[`object fields > with title and description from uiSchema > show add but
         <!---->
         <p
           class="fieldset-label"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </p>
@@ -5866,7 +5866,7 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.additionalProperty::key-input"
+                  for="root_additionalProperty__key-input"
                 >
                   additionalProperty Key 
                   *
@@ -5894,11 +5894,11 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
                 type="text"
               />
@@ -5963,7 +5963,7 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                 <label
                   class="fieldset-legend"
-                  for="root.additionalProperty"
+                  for="root_additionalProperty"
                 >
                   additionalProperty 
                   <!---->
@@ -5990,11 +5990,11 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
                 type="text"
               />
                
@@ -6172,11 +6172,11 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -6233,11 +6233,11 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -6417,11 +6417,11 @@ exports[`object fields > with title and description with global label off > obje
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -6499,11 +6499,11 @@ exports[`object fields > with title and description with global label off > obje
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
                 aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -6656,11 +6656,11 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
                 type="text"
               />
@@ -6717,11 +6717,11 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                 aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
                 type="text"
               />
                

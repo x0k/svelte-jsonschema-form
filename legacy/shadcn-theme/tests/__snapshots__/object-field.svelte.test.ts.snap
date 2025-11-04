@@ -67,7 +67,7 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo::key-input"
+                    for="root_foo__key-input"
                     id="bits-c4"
                   >
                     foo Key 
@@ -103,11 +103,11 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -164,7 +164,7 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo"
+                    for="root_foo"
                     id="bits-c5"
                   >
                     foo 
@@ -197,11 +197,11 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -369,7 +369,7 @@ exports[`default-ui > object fields > additionalProperties with error 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo::key-input"
+                    for="root_foo__key-input"
                     id="bits-c6"
                   >
                     foo Key 
@@ -405,11 +405,11 @@ exports[`default-ui > object fields > additionalProperties with error 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="true"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -427,7 +427,7 @@ exports[`default-ui > object fields > additionalProperties with error 1`] = `
               <!---->
               <ul
                 class="text-destructive list-disc list-inside"
-                id="root.foo::key-input::errors"
+                id="root_foo__key-input__errors"
                 tabindex="-1"
               >
                 <li>
@@ -478,7 +478,7 @@ exports[`default-ui > object fields > additionalProperties with error 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo"
+                    for="root_foo"
                     id="bits-c7"
                   >
                     foo 
@@ -511,11 +511,11 @@ exports[`default-ui > object fields > additionalProperties with error 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -685,7 +685,7 @@ exports[`default-ui > object fields > has errors 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.name"
+                    for="root_name"
                     id="bits-c3"
                   >
                     name 
@@ -718,11 +718,11 @@ exports[`default-ui > object fields > has errors 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.name::description root.name::help root.name::errors"
+                  aria-describedby="root_name__description root_name__help root_name__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.name"
-                  name="root.name"
+                  id="root_name"
+                  name="root_name"
                 />
                 
                 <!---->
@@ -766,7 +766,7 @@ exports[`default-ui > object fields > has errors 1`] = `
       <!---->
       <ul
         class="text-destructive list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -878,7 +878,7 @@ exports[`default-ui > object fields > object 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.a"
+                    for="root_a"
                     id="bits-c1"
                   >
                     A 
@@ -911,11 +911,11 @@ exports[`default-ui > object fields > object 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.a"
-                  name="root.a"
+                  id="root_a"
+                  name="root_a"
                 />
                 
                 <!---->
@@ -987,7 +987,7 @@ exports[`default-ui > object fields > object 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.b"
+                    for="root_b"
                     id="bits-c2"
                   >
                     B 
@@ -1020,11 +1020,11 @@ exports[`default-ui > object fields > object 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.b"
-                  name="root.b"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
@@ -1135,7 +1135,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             Options
           </div>
@@ -1225,7 +1225,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.transform::description"
+                  id="root_transform__description"
                 >
                   Apply a transformation to the output data
                 </div>
@@ -1249,14 +1249,14 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <button
                     aria-checked="false"
-                    aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                    aria-describedby="root_transform__description root_transform__help root_transform__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="unchecked"
-                    id="root.transform"
+                    id="root_transform"
                     role="checkbox"
                     type="button"
                   >
@@ -1297,7 +1297,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.transform"
+                    name="root_transform"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -1314,7 +1314,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.transform"
+                    for="root_transform"
                     id="bits-c27"
                   >
                     Transform
@@ -1415,7 +1415,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.paginate::description"
+                  id="root_paginate__description"
                 >
                   Partitioning the input data (object or array) into pages by their keys
                 </div>
@@ -1439,14 +1439,14 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <button
                     aria-checked="false"
-                    aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                    aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="unchecked"
-                    id="root.paginate"
+                    id="root_paginate"
                     role="checkbox"
                     type="button"
                   >
@@ -1487,7 +1487,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.paginate"
+                    name="root_paginate"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -1504,7 +1504,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.paginate"
+                    for="root_paginate"
                     id="bits-c29"
                   >
                     Paginate
@@ -1572,7 +1572,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.createOnOpen::description"
+                  id="root_createOnOpen__description"
                 >
                   Creating a table when opening a share link
                 </div>
@@ -1596,14 +1596,14 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <button
                     aria-checked="true"
-                    aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                    aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="checked"
-                    id="root.createOnOpen"
+                    id="root_createOnOpen"
                     role="checkbox"
                     type="button"
                   >
@@ -1644,7 +1644,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.createOnOpen"
+                    name="root_createOnOpen"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -1661,7 +1661,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.createOnOpen"
+                    for="root_createOnOpen"
                     id="bits-c31"
                   >
                     Create on open
@@ -1772,7 +1772,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             Options
           </div>
@@ -1862,7 +1862,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.collapseIndexes::description"
+                  id="root_collapseIndexes__description"
                 >
                   Combines hierarchical indexes into one cell (1.1, 1.2, ...)
                 </div>
@@ -1886,14 +1886,14 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="true"
-                    aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                    aria-describedby="root_collapseIndexes__description root_collapseIndexes__help root_collapseIndexes__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="checked"
-                    id="root.collapseIndexes"
+                    id="root_collapseIndexes"
                     role="checkbox"
                     type="button"
                   >
@@ -1934,7 +1934,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.collapseIndexes"
+                    name="root_collapseIndexes"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -1951,7 +1951,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.collapseIndexes"
+                    for="root_collapseIndexes"
                     id="bits-c33"
                   >
                     Combine nested indexes
@@ -2019,7 +2019,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.joinPrimitiveArrayValues::description"
+                  id="root_joinPrimitiveArrayValues__description"
                 >
                   Combines the values of an array of primitives into one cell (separated by ',')
                 </div>
@@ -2043,14 +2043,14 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="true"
-                    aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                    aria-describedby="root_joinPrimitiveArrayValues__description root_joinPrimitiveArrayValues__help root_joinPrimitiveArrayValues__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="checked"
-                    id="root.joinPrimitiveArrayValues"
+                    id="root_joinPrimitiveArrayValues"
                     role="checkbox"
                     type="button"
                   >
@@ -2091,7 +2091,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.joinPrimitiveArrayValues"
+                    name="root_joinPrimitiveArrayValues"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -2108,7 +2108,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.joinPrimitiveArrayValues"
+                    for="root_joinPrimitiveArrayValues"
                     id="bits-c35"
                   >
                     Combine simple values
@@ -2176,7 +2176,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.combineArraysOfObjects::description"
+                  id="root_combineArraysOfObjects__description"
                 >
                   Combine arrays of objects into a single object
                 </div>
@@ -2200,14 +2200,14 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="false"
-                    aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                    aria-describedby="root_combineArraysOfObjects__description root_combineArraysOfObjects__help root_combineArraysOfObjects__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="unchecked"
-                    id="root.combineArraysOfObjects"
+                    id="root_combineArraysOfObjects"
                     role="checkbox"
                     type="button"
                   >
@@ -2248,7 +2248,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.combineArraysOfObjects"
+                    name="root_combineArraysOfObjects"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -2265,7 +2265,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.combineArraysOfObjects"
+                    for="root_combineArraysOfObjects"
                     id="bits-c37"
                   >
                     Combine objects
@@ -2333,7 +2333,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+                  id="root_stabilizeOrderOfPropertiesInArraysOfObjects__description"
                 >
                   Stabilizing the order in which properties are displayed for arrays of objects
                 </div>
@@ -2357,14 +2357,14 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="true"
-                    aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                    aria-describedby="root_stabilizeOrderOfPropertiesInArraysOfObjects__description root_stabilizeOrderOfPropertiesInArraysOfObjects__help root_stabilizeOrderOfPropertiesInArraysOfObjects__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="checked"
-                    id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                    id="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                     role="checkbox"
                     type="button"
                   >
@@ -2405,7 +2405,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                    name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -2422,7 +2422,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                    for="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                     id="bits-c39"
                   >
                     Stabilize order of properties
@@ -2496,7 +2496,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.proportionalSizeAdjustmentThreshold"
+                    for="root_proportionalSizeAdjustmentThreshold"
                     id="bits-c40"
                   >
                     Proportional size adjustment threshold 
@@ -2520,7 +2520,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.proportionalSizeAdjustmentThreshold::description"
+                  id="root_proportionalSizeAdjustmentThreshold__description"
                 >
                   Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
                 </div>
@@ -2540,12 +2540,12 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                  aria-describedby="root_proportionalSizeAdjustmentThreshold__description root_proportionalSizeAdjustmentThreshold__help root_proportionalSizeAdjustmentThreshold__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.proportionalSizeAdjustmentThreshold"
+                  id="root_proportionalSizeAdjustmentThreshold"
                   min="0"
-                  name="root.proportionalSizeAdjustmentThreshold"
+                  name="root_proportionalSizeAdjustmentThreshold"
                   required=""
                   step="any"
                   type="number"
@@ -2620,7 +2620,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.cornerCellValue"
+                    for="root_cornerCellValue"
                     id="bits-c41"
                   >
                     Corner cell value 
@@ -2641,7 +2641,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.cornerCellValue::description"
+                  id="root_cornerCellValue__description"
                 >
                   The value of the corner cell.
                 </div>
@@ -2661,11 +2661,11 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                  aria-describedby="root_cornerCellValue__description root_cornerCellValue__help root_cornerCellValue__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.cornerCellValue"
-                  name="root.cornerCellValue"
+                  id="root_cornerCellValue"
+                  name="root_cornerCellValue"
                 />
                 
                 <!---->
@@ -2731,7 +2731,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.transform::description"
+                  id="root_transform__description"
                 >
                   Apply a transformation to the output data
                 </div>
@@ -2755,14 +2755,14 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="false"
-                    aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                    aria-describedby="root_transform__description root_transform__help root_transform__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="unchecked"
-                    id="root.transform"
+                    id="root_transform"
                     role="checkbox"
                     type="button"
                   >
@@ -2803,7 +2803,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.transform"
+                    name="root_transform"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -2820,7 +2820,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.transform"
+                    for="root_transform"
                     id="bits-c43"
                   >
                     Transform
@@ -2921,7 +2921,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.paginate::description"
+                  id="root_paginate__description"
                 >
                   Partitioning the input data (object or array) into pages by their keys
                 </div>
@@ -2945,14 +2945,14 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="false"
-                    aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                    aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="unchecked"
-                    id="root.paginate"
+                    id="root_paginate"
                     role="checkbox"
                     type="button"
                   >
@@ -2993,7 +2993,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.paginate"
+                    name="root_paginate"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -3010,7 +3010,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.paginate"
+                    for="root_paginate"
                     id="bits-c45"
                   >
                     Paginate
@@ -3078,7 +3078,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.createOnOpen::description"
+                  id="root_createOnOpen__description"
                 >
                   Creating a table when opening a share link
                 </div>
@@ -3102,14 +3102,14 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="true"
-                    aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                    aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="checked"
-                    id="root.createOnOpen"
+                    id="root_createOnOpen"
                     role="checkbox"
                     type="button"
                   >
@@ -3150,7 +3150,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.createOnOpen"
+                    name="root_createOnOpen"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -3167,7 +3167,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.createOnOpen"
+                    for="root_createOnOpen"
                     id="bits-c47"
                   >
                     Create on open
@@ -3311,7 +3311,7 @@ exports[`default-ui > object fields > show add button and fields if additionalPr
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty::key-input"
+                    for="root_additionalProperty__key-input"
                     id="bits-c8"
                   >
                     additionalProperty Key 
@@ -3347,11 +3347,11 @@ exports[`default-ui > object fields > show add button and fields if additionalPr
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                 />
                 
@@ -3408,7 +3408,7 @@ exports[`default-ui > object fields > show add button and fields if additionalPr
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty"
+                    for="root_additionalProperty"
                     id="bits-c9"
                   >
                     additionalProperty 
@@ -3441,11 +3441,11 @@ exports[`default-ui > object fields > show add button and fields if additionalPr
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                 />
                 
                 <!---->
@@ -3580,7 +3580,7 @@ exports[`default-ui > object fields > with title and description > additionalPro
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -3595,7 +3595,7 @@ exports[`default-ui > object fields > with title and description > additionalPro
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -3649,7 +3649,7 @@ exports[`default-ui > object fields > with title and description > additionalPro
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo::key-input"
+                    for="root_foo__key-input"
                     id="bits-c12"
                   >
                     foo Key 
@@ -3685,11 +3685,11 @@ exports[`default-ui > object fields > with title and description > additionalPro
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -3746,7 +3746,7 @@ exports[`default-ui > object fields > with title and description > additionalPro
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo"
+                    for="root_foo"
                     id="bits-c13"
                   >
                     foo 
@@ -3779,11 +3779,11 @@ exports[`default-ui > object fields > with title and description > additionalPro
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -3918,7 +3918,7 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -3933,7 +3933,7 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -3989,7 +3989,7 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.a"
+                    for="root_a"
                     id="bits-c10"
                   >
                     A 
@@ -4010,7 +4010,7 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.a::description"
+                  id="root_a__description"
                 >
                   A description
                 </div>
@@ -4030,11 +4030,11 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.a"
-                  name="root.a"
+                  id="root_a"
+                  name="root_a"
                 />
                 
                 <!---->
@@ -4106,7 +4106,7 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.b"
+                    for="root_b"
                     id="bits-c11"
                   >
                     B 
@@ -4127,7 +4127,7 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.b::description"
+                  id="root_b__description"
                 >
                   B description
                 </div>
@@ -4147,11 +4147,11 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.b"
-                  name="root.b"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
@@ -4262,7 +4262,7 @@ exports[`default-ui > object fields > with title and description > show add butt
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -4277,7 +4277,7 @@ exports[`default-ui > object fields > with title and description > show add butt
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -4331,7 +4331,7 @@ exports[`default-ui > object fields > with title and description > show add butt
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty::key-input"
+                    for="root_additionalProperty__key-input"
                     id="bits-c14"
                   >
                     additionalProperty Key 
@@ -4367,11 +4367,11 @@ exports[`default-ui > object fields > with title and description > show add butt
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                 />
                 
@@ -4428,7 +4428,7 @@ exports[`default-ui > object fields > with title and description > show add butt
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty"
+                    for="root_additionalProperty"
                     id="bits-c15"
                   >
                     additionalProperty 
@@ -4461,11 +4461,11 @@ exports[`default-ui > object fields > with title and description > show add butt
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                 />
                 
                 <!---->
@@ -4600,7 +4600,7 @@ exports[`default-ui > object fields > with title and description from both > add
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -4615,7 +4615,7 @@ exports[`default-ui > object fields > with title and description from both > add
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -4669,7 +4669,7 @@ exports[`default-ui > object fields > with title and description from both > add
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo::key-input"
+                    for="root_foo__key-input"
                     id="bits-c24"
                   >
                     foo Key 
@@ -4705,11 +4705,11 @@ exports[`default-ui > object fields > with title and description from both > add
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -4766,7 +4766,7 @@ exports[`default-ui > object fields > with title and description from both > add
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo"
+                    for="root_foo"
                     id="bits-c25"
                   >
                     foo 
@@ -4799,11 +4799,11 @@ exports[`default-ui > object fields > with title and description from both > add
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -4938,7 +4938,7 @@ exports[`default-ui > object fields > with title and description from both > obj
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -4953,7 +4953,7 @@ exports[`default-ui > object fields > with title and description from both > obj
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -5009,7 +5009,7 @@ exports[`default-ui > object fields > with title and description from both > obj
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.a"
+                    for="root_a"
                     id="bits-c22"
                   >
                     My Item A 
@@ -5030,7 +5030,7 @@ exports[`default-ui > object fields > with title and description from both > obj
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.a::description"
+                  id="root_a__description"
                 >
                   a fancier item A description
                 </div>
@@ -5050,11 +5050,11 @@ exports[`default-ui > object fields > with title and description from both > obj
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.a"
-                  name="root.a"
+                  id="root_a"
+                  name="root_a"
                 />
                 
                 <!---->
@@ -5126,7 +5126,7 @@ exports[`default-ui > object fields > with title and description from both > obj
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.b"
+                    for="root_b"
                     id="bits-c23"
                   >
                     My Item B 
@@ -5147,7 +5147,7 @@ exports[`default-ui > object fields > with title and description from both > obj
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.b::description"
+                  id="root_b__description"
                 >
                   a fancier item B description
                 </div>
@@ -5167,11 +5167,11 @@ exports[`default-ui > object fields > with title and description from both > obj
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.b"
-                  name="root.b"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
@@ -5282,7 +5282,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -5297,7 +5297,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -5351,7 +5351,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo::key-input"
+                    for="root_foo__key-input"
                     id="bits-c18"
                   >
                     foo Key 
@@ -5387,11 +5387,11 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -5448,7 +5448,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo"
+                    for="root_foo"
                     id="bits-c19"
                   >
                     foo 
@@ -5481,11 +5481,11 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -5620,7 +5620,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -5635,7 +5635,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -5691,7 +5691,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.a"
+                    for="root_a"
                     id="bits-c16"
                   >
                     My Item A 
@@ -5712,7 +5712,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.a::description"
+                  id="root_a__description"
                 >
                   a fancier item A description
                 </div>
@@ -5732,11 +5732,11 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.a"
-                  name="root.a"
+                  id="root_a"
+                  name="root_a"
                 />
                 
                 <!---->
@@ -5808,7 +5808,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.b"
+                    for="root_b"
                     id="bits-c17"
                   >
                     My Item B 
@@ -5829,7 +5829,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.b::description"
+                  id="root_b__description"
                 >
                   a fancier item B description
                 </div>
@@ -5849,11 +5849,11 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.b"
-                  name="root.b"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
@@ -5964,7 +5964,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -5979,7 +5979,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -6033,7 +6033,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty::key-input"
+                    for="root_additionalProperty__key-input"
                     id="bits-c20"
                   >
                     additionalProperty Key 
@@ -6069,11 +6069,11 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                 />
                 
@@ -6130,7 +6130,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty"
+                    for="root_additionalProperty"
                     id="bits-c21"
                   >
                     additionalProperty 
@@ -6163,11 +6163,11 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                 />
                 
                 <!---->
@@ -6330,11 +6330,11 @@ exports[`default-ui > object fields > with title and description with global lab
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -6386,11 +6386,11 @@ exports[`default-ui > object fields > with title and description with global lab
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -6555,11 +6555,11 @@ exports[`default-ui > object fields > with title and description with global lab
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.a"
-                  name="root.a"
+                  id="root_a"
+                  name="root_a"
                 />
                 
                 <!---->
@@ -6626,11 +6626,11 @@ exports[`default-ui > object fields > with title and description with global lab
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.b"
-                  name="root.b"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
@@ -6769,11 +6769,11 @@ exports[`default-ui > object fields > with title and description with global lab
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                 />
                 
@@ -6825,11 +6825,11 @@ exports[`default-ui > object fields > with title and description with global lab
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                   aria-invalid="false"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                 />
                 
                 <!---->
@@ -6997,7 +6997,7 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo::key-input"
+                    for="root_foo__key-input"
                     id="bits-c51"
                   >
                     foo Key 
@@ -7033,11 +7033,11 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -7094,7 +7094,7 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo"
+                    for="root_foo"
                     id="bits-c52"
                   >
                     foo 
@@ -7127,11 +7127,11 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -7299,7 +7299,7 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo::key-input"
+                    for="root_foo__key-input"
                     id="bits-c53"
                   >
                     foo Key 
@@ -7335,11 +7335,11 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="true"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -7357,7 +7357,7 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
               <!---->
               <ul
                 class="text-destructive list-disc list-inside"
-                id="root.foo::key-input::errors"
+                id="root_foo__key-input__errors"
                 tabindex="-1"
               >
                 <li>
@@ -7408,7 +7408,7 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo"
+                    for="root_foo"
                     id="bits-c54"
                   >
                     foo 
@@ -7441,11 +7441,11 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -7615,7 +7615,7 @@ exports[`new-york-ui > object fields > has errors 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.name"
+                    for="root_name"
                     id="bits-c50"
                   >
                     name 
@@ -7648,11 +7648,11 @@ exports[`new-york-ui > object fields > has errors 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.name::description root.name::help root.name::errors"
+                  aria-describedby="root_name__description root_name__help root_name__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.name"
-                  name="root.name"
+                  id="root_name"
+                  name="root_name"
                 />
                 
                 <!---->
@@ -7696,7 +7696,7 @@ exports[`new-york-ui > object fields > has errors 1`] = `
       <!---->
       <ul
         class="text-destructive list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -7808,7 +7808,7 @@ exports[`new-york-ui > object fields > object 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.a"
+                    for="root_a"
                     id="bits-c48"
                   >
                     A 
@@ -7841,11 +7841,11 @@ exports[`new-york-ui > object fields > object 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.a"
-                  name="root.a"
+                  id="root_a"
+                  name="root_a"
                 />
                 
                 <!---->
@@ -7917,7 +7917,7 @@ exports[`new-york-ui > object fields > object 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.b"
+                    for="root_b"
                     id="bits-c49"
                   >
                     B 
@@ -7950,11 +7950,11 @@ exports[`new-york-ui > object fields > object 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.b"
-                  name="root.b"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
@@ -8065,7 +8065,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             Options
           </div>
@@ -8155,7 +8155,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.transform::description"
+                  id="root_transform__description"
                 >
                   Apply a transformation to the output data
                 </div>
@@ -8179,14 +8179,14 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <button
                     aria-checked="false"
-                    aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                    aria-describedby="root_transform__description root_transform__help root_transform__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="unchecked"
-                    id="root.transform"
+                    id="root_transform"
                     role="checkbox"
                     type="button"
                   >
@@ -8227,7 +8227,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.transform"
+                    name="root_transform"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -8244,7 +8244,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.transform"
+                    for="root_transform"
                     id="bits-c74"
                   >
                     Transform
@@ -8345,7 +8345,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.paginate::description"
+                  id="root_paginate__description"
                 >
                   Partitioning the input data (object or array) into pages by their keys
                 </div>
@@ -8369,14 +8369,14 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <button
                     aria-checked="false"
-                    aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                    aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="unchecked"
-                    id="root.paginate"
+                    id="root_paginate"
                     role="checkbox"
                     type="button"
                   >
@@ -8417,7 +8417,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.paginate"
+                    name="root_paginate"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -8434,7 +8434,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.paginate"
+                    for="root_paginate"
                     id="bits-c76"
                   >
                     Paginate
@@ -8502,7 +8502,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.createOnOpen::description"
+                  id="root_createOnOpen__description"
                 >
                   Creating a table when opening a share link
                 </div>
@@ -8526,14 +8526,14 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <button
                     aria-checked="true"
-                    aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                    aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="checked"
-                    id="root.createOnOpen"
+                    id="root_createOnOpen"
                     role="checkbox"
                     type="button"
                   >
@@ -8574,7 +8574,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.createOnOpen"
+                    name="root_createOnOpen"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -8591,7 +8591,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.createOnOpen"
+                    for="root_createOnOpen"
                     id="bits-c78"
                   >
                     Create on open
@@ -8702,7 +8702,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             Options
           </div>
@@ -8792,7 +8792,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.collapseIndexes::description"
+                  id="root_collapseIndexes__description"
                 >
                   Combines hierarchical indexes into one cell (1.1, 1.2, ...)
                 </div>
@@ -8816,14 +8816,14 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="true"
-                    aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                    aria-describedby="root_collapseIndexes__description root_collapseIndexes__help root_collapseIndexes__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="checked"
-                    id="root.collapseIndexes"
+                    id="root_collapseIndexes"
                     role="checkbox"
                     type="button"
                   >
@@ -8864,7 +8864,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.collapseIndexes"
+                    name="root_collapseIndexes"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -8881,7 +8881,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.collapseIndexes"
+                    for="root_collapseIndexes"
                     id="bits-c80"
                   >
                     Combine nested indexes
@@ -8949,7 +8949,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.joinPrimitiveArrayValues::description"
+                  id="root_joinPrimitiveArrayValues__description"
                 >
                   Combines the values of an array of primitives into one cell (separated by ',')
                 </div>
@@ -8973,14 +8973,14 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="true"
-                    aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                    aria-describedby="root_joinPrimitiveArrayValues__description root_joinPrimitiveArrayValues__help root_joinPrimitiveArrayValues__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="checked"
-                    id="root.joinPrimitiveArrayValues"
+                    id="root_joinPrimitiveArrayValues"
                     role="checkbox"
                     type="button"
                   >
@@ -9021,7 +9021,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.joinPrimitiveArrayValues"
+                    name="root_joinPrimitiveArrayValues"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -9038,7 +9038,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.joinPrimitiveArrayValues"
+                    for="root_joinPrimitiveArrayValues"
                     id="bits-c82"
                   >
                     Combine simple values
@@ -9106,7 +9106,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.combineArraysOfObjects::description"
+                  id="root_combineArraysOfObjects__description"
                 >
                   Combine arrays of objects into a single object
                 </div>
@@ -9130,14 +9130,14 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="false"
-                    aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                    aria-describedby="root_combineArraysOfObjects__description root_combineArraysOfObjects__help root_combineArraysOfObjects__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="unchecked"
-                    id="root.combineArraysOfObjects"
+                    id="root_combineArraysOfObjects"
                     role="checkbox"
                     type="button"
                   >
@@ -9178,7 +9178,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.combineArraysOfObjects"
+                    name="root_combineArraysOfObjects"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -9195,7 +9195,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.combineArraysOfObjects"
+                    for="root_combineArraysOfObjects"
                     id="bits-c84"
                   >
                     Combine objects
@@ -9263,7 +9263,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+                  id="root_stabilizeOrderOfPropertiesInArraysOfObjects__description"
                 >
                   Stabilizing the order in which properties are displayed for arrays of objects
                 </div>
@@ -9287,14 +9287,14 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="true"
-                    aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                    aria-describedby="root_stabilizeOrderOfPropertiesInArraysOfObjects__description root_stabilizeOrderOfPropertiesInArraysOfObjects__help root_stabilizeOrderOfPropertiesInArraysOfObjects__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="checked"
-                    id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                    id="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                     role="checkbox"
                     type="button"
                   >
@@ -9335,7 +9335,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                    name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -9352,7 +9352,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                    for="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                     id="bits-c86"
                   >
                     Stabilize order of properties
@@ -9426,7 +9426,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.proportionalSizeAdjustmentThreshold"
+                    for="root_proportionalSizeAdjustmentThreshold"
                     id="bits-c87"
                   >
                     Proportional size adjustment threshold 
@@ -9450,7 +9450,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.proportionalSizeAdjustmentThreshold::description"
+                  id="root_proportionalSizeAdjustmentThreshold__description"
                 >
                   Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
                 </div>
@@ -9470,12 +9470,12 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                  aria-describedby="root_proportionalSizeAdjustmentThreshold__description root_proportionalSizeAdjustmentThreshold__help root_proportionalSizeAdjustmentThreshold__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.proportionalSizeAdjustmentThreshold"
+                  id="root_proportionalSizeAdjustmentThreshold"
                   min="0"
-                  name="root.proportionalSizeAdjustmentThreshold"
+                  name="root_proportionalSizeAdjustmentThreshold"
                   required=""
                   step="any"
                   type="number"
@@ -9550,7 +9550,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.cornerCellValue"
+                    for="root_cornerCellValue"
                     id="bits-c88"
                   >
                     Corner cell value 
@@ -9571,7 +9571,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.cornerCellValue::description"
+                  id="root_cornerCellValue__description"
                 >
                   The value of the corner cell.
                 </div>
@@ -9591,11 +9591,11 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                  aria-describedby="root_cornerCellValue__description root_cornerCellValue__help root_cornerCellValue__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.cornerCellValue"
-                  name="root.cornerCellValue"
+                  id="root_cornerCellValue"
+                  name="root_cornerCellValue"
                 />
                 
                 <!---->
@@ -9661,7 +9661,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.transform::description"
+                  id="root_transform__description"
                 >
                   Apply a transformation to the output data
                 </div>
@@ -9685,14 +9685,14 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="false"
-                    aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                    aria-describedby="root_transform__description root_transform__help root_transform__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="unchecked"
-                    id="root.transform"
+                    id="root_transform"
                     role="checkbox"
                     type="button"
                   >
@@ -9733,7 +9733,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.transform"
+                    name="root_transform"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -9750,7 +9750,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.transform"
+                    for="root_transform"
                     id="bits-c90"
                   >
                     Transform
@@ -9851,7 +9851,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.paginate::description"
+                  id="root_paginate__description"
                 >
                   Partitioning the input data (object or array) into pages by their keys
                 </div>
@@ -9875,14 +9875,14 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="false"
-                    aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                    aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="unchecked"
-                    id="root.paginate"
+                    id="root_paginate"
                     role="checkbox"
                     type="button"
                   >
@@ -9923,7 +9923,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.paginate"
+                    name="root_paginate"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -9940,7 +9940,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.paginate"
+                    for="root_paginate"
                     id="bits-c92"
                   >
                     Paginate
@@ -10008,7 +10008,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.createOnOpen::description"
+                  id="root_createOnOpen__description"
                 >
                   Creating a table when opening a share link
                 </div>
@@ -10032,14 +10032,14 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <button
                     aria-checked="true"
-                    aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                    aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
                     aria-invalid="false"
                     aria-readonly="false"
                     aria-required="false"
                     class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
                     data-checkbox-root=""
                     data-state="checked"
-                    id="root.createOnOpen"
+                    id="root_createOnOpen"
                     role="checkbox"
                     type="button"
                   >
@@ -10080,7 +10080,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
-                    name="root.createOnOpen"
+                    name="root_createOnOpen"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
                     tabindex="-1"
                     type="checkbox"
@@ -10097,7 +10097,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.createOnOpen"
+                    for="root_createOnOpen"
                     id="bits-c94"
                   >
                     Create on open
@@ -10241,7 +10241,7 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty::key-input"
+                    for="root_additionalProperty__key-input"
                     id="bits-c55"
                   >
                     additionalProperty Key 
@@ -10277,11 +10277,11 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                 />
                 
@@ -10338,7 +10338,7 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty"
+                    for="root_additionalProperty"
                     id="bits-c56"
                   >
                     additionalProperty 
@@ -10371,11 +10371,11 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                 />
                 
                 <!---->
@@ -10510,7 +10510,7 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -10525,7 +10525,7 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -10579,7 +10579,7 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo::key-input"
+                    for="root_foo__key-input"
                     id="bits-c59"
                   >
                     foo Key 
@@ -10615,11 +10615,11 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -10676,7 +10676,7 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo"
+                    for="root_foo"
                     id="bits-c60"
                   >
                     foo 
@@ -10709,11 +10709,11 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -10848,7 +10848,7 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -10863,7 +10863,7 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -10919,7 +10919,7 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.a"
+                    for="root_a"
                     id="bits-c57"
                   >
                     A 
@@ -10940,7 +10940,7 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.a::description"
+                  id="root_a__description"
                 >
                   A description
                 </div>
@@ -10960,11 +10960,11 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.a"
-                  name="root.a"
+                  id="root_a"
+                  name="root_a"
                 />
                 
                 <!---->
@@ -11036,7 +11036,7 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.b"
+                    for="root_b"
                     id="bits-c58"
                   >
                     B 
@@ -11057,7 +11057,7 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.b::description"
+                  id="root_b__description"
                 >
                   B description
                 </div>
@@ -11077,11 +11077,11 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.b"
-                  name="root.b"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
@@ -11192,7 +11192,7 @@ exports[`new-york-ui > object fields > with title and description > show add but
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             Test field
           </div>
@@ -11207,7 +11207,7 @@ exports[`new-york-ui > object fields > with title and description > show add but
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -11261,7 +11261,7 @@ exports[`new-york-ui > object fields > with title and description > show add but
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty::key-input"
+                    for="root_additionalProperty__key-input"
                     id="bits-c61"
                   >
                     additionalProperty Key 
@@ -11297,11 +11297,11 @@ exports[`new-york-ui > object fields > with title and description > show add but
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                 />
                 
@@ -11358,7 +11358,7 @@ exports[`new-york-ui > object fields > with title and description > show add but
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty"
+                    for="root_additionalProperty"
                     id="bits-c62"
                   >
                     additionalProperty 
@@ -11391,11 +11391,11 @@ exports[`new-york-ui > object fields > with title and description > show add but
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                 />
                 
                 <!---->
@@ -11530,7 +11530,7 @@ exports[`new-york-ui > object fields > with title and description from both > ad
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -11545,7 +11545,7 @@ exports[`new-york-ui > object fields > with title and description from both > ad
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -11599,7 +11599,7 @@ exports[`new-york-ui > object fields > with title and description from both > ad
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo::key-input"
+                    for="root_foo__key-input"
                     id="bits-c71"
                   >
                     foo Key 
@@ -11635,11 +11635,11 @@ exports[`new-york-ui > object fields > with title and description from both > ad
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -11696,7 +11696,7 @@ exports[`new-york-ui > object fields > with title and description from both > ad
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo"
+                    for="root_foo"
                     id="bits-c72"
                   >
                     foo 
@@ -11729,11 +11729,11 @@ exports[`new-york-ui > object fields > with title and description from both > ad
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -11868,7 +11868,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -11883,7 +11883,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -11939,7 +11939,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.a"
+                    for="root_a"
                     id="bits-c69"
                   >
                     My Item A 
@@ -11960,7 +11960,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.a::description"
+                  id="root_a__description"
                 >
                   a fancier item A description
                 </div>
@@ -11980,11 +11980,11 @@ exports[`new-york-ui > object fields > with title and description from both > ob
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.a"
-                  name="root.a"
+                  id="root_a"
+                  name="root_a"
                 />
                 
                 <!---->
@@ -12056,7 +12056,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.b"
+                    for="root_b"
                     id="bits-c70"
                   >
                     My Item B 
@@ -12077,7 +12077,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.b::description"
+                  id="root_b__description"
                 >
                   a fancier item B description
                 </div>
@@ -12097,11 +12097,11 @@ exports[`new-york-ui > object fields > with title and description from both > ob
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.b"
-                  name="root.b"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
@@ -12212,7 +12212,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -12227,7 +12227,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -12281,7 +12281,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo::key-input"
+                    for="root_foo__key-input"
                     id="bits-c65"
                   >
                     foo Key 
@@ -12317,11 +12317,11 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -12378,7 +12378,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.foo"
+                    for="root_foo"
                     id="bits-c66"
                   >
                     foo 
@@ -12411,11 +12411,11 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -12550,7 +12550,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -12565,7 +12565,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -12621,7 +12621,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.a"
+                    for="root_a"
                     id="bits-c63"
                   >
                     My Item A 
@@ -12642,7 +12642,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.a::description"
+                  id="root_a__description"
                 >
                   a fancier item A description
                 </div>
@@ -12662,11 +12662,11 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.a"
-                  name="root.a"
+                  id="root_a"
+                  name="root_a"
                 />
                 
                 <!---->
@@ -12738,7 +12738,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.b"
+                    for="root_b"
                     id="bits-c64"
                   >
                     My Item B 
@@ -12759,7 +12759,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                 <!---->
                 <div
                   class="text-muted-foreground"
-                  id="root.b::description"
+                  id="root_b__description"
                 >
                   a fancier item B description
                 </div>
@@ -12779,11 +12779,11 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.b"
-                  name="root.b"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
@@ -12894,7 +12894,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
           <!---->
           <div
             class="font-medium text-lg"
-            id="root::title"
+            id="root__title"
           >
             My Field
           </div>
@@ -12909,7 +12909,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
         <!---->
         <div
           class="text-muted-foreground"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -12963,7 +12963,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty::key-input"
+                    for="root_additionalProperty__key-input"
                     id="bits-c67"
                   >
                     additionalProperty Key 
@@ -12999,11 +12999,11 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                 />
                 
@@ -13060,7 +13060,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root.additionalProperty"
+                    for="root_additionalProperty"
                     id="bits-c68"
                   >
                     additionalProperty 
@@ -13093,11 +13093,11 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                 />
                 
                 <!---->
@@ -13260,11 +13260,11 @@ exports[`new-york-ui > object fields > with title and description with global la
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                 />
                 
@@ -13316,11 +13316,11 @@ exports[`new-york-ui > object fields > with title and description with global la
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
+                  id="root_foo"
+                  name="root_foo"
                 />
                 
                 <!---->
@@ -13485,11 +13485,11 @@ exports[`new-york-ui > object fields > with title and description with global la
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.a"
-                  name="root.a"
+                  id="root_a"
+                  name="root_a"
                 />
                 
                 <!---->
@@ -13556,11 +13556,11 @@ exports[`new-york-ui > object fields > with title and description with global la
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.b"
-                  name="root.b"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
@@ -13699,11 +13699,11 @@ exports[`new-york-ui > object fields > with title and description with global la
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                 />
                 
@@ -13755,11 +13755,11 @@ exports[`new-york-ui > object fields > with title and description with global la
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
                   aria-invalid="false"
                   class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                 />
                 
                 <!---->
