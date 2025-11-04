@@ -105,6 +105,9 @@ jobs:
           name: apps_v1
           path: ./v1
 
+      - name: List
+        run: ls -l v1
+
       - name: Deploy docs (v1)
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -126,6 +129,10 @@ jobs:
         with:
           name: apps_v2
           path: ./v2
+
+
+      - name: List
+        run: ls -l v2
 
       - name: Deploy docs (v2)
         uses: peaceiris/actions-gh-pages@v4
