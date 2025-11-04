@@ -52,6 +52,9 @@ importers:
 
   .:
     devDependencies:
+      '@changesets/changelog-git':
+        specifier: ^0.2.1
+        version: 0.2.1
       '@changesets/cli':
         specifier: 2.29.7
         version: 2.29.7(@types/node@24.10.0)

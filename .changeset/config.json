@@ -1,11 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.3/schema.json",
-  "changelog": [
-    "@svitejs/changesets-changelog-github-compact",
-    {
-      "repo": "x0k/svelte-jsonschema-form"
-    }
-  ],
+  "changelog": "@changesets/changelog-git",
   "commit": false,
   "fixed": [
     [
