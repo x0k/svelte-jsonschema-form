@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages (v3)
+name: Deploy to GitHub Pages (v2)
 
 on:
   workflow_run:
@@ -16,10 +16,10 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout v3 branch
+      - name: Checkout v2 branch
         uses: actions/checkout@v4
         with:
-          ref: v3
+          ref: v2
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -44,26 +44,26 @@ jobs:
       - name: Build
         run: pnpm run build --filter="./apps/*"
 
-      - name: Deploy docs (v3)
+      - name: Deploy docs (v2)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./apps/docs2/dist
           publish_branch: gh-pages
-          destination_dir: v3
+          destination_dir: v2
 
-      - name: Deploy playground (v3)
+      - name: Deploy playground (v2)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./apps/playground2/dist
-          destination_dir: playground3
+          destination_dir: playground2
           publish_branch: gh-pages
 
-      - name: Deploy builder (v3)
+      - name: Deploy builder (v2)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./apps/builder/dist
-          destination_dir: builder3
+          destination_dir: builder
           publish_branch: gh-pages
