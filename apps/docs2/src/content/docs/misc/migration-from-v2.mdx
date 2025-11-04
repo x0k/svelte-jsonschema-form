@@ -4,6 +4,8 @@ sidebar:
   order: 0
 ---
 
+import Npm from '@/components/npm.astro';
+
 Before migrating, make sure you are using the latest version of SJSF and
 that you are not using any deprecated APIs.
 
@@ -18,6 +20,12 @@ Update your `defaults.ts` file:
 + export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/legacy";
 + export { createFormMerger as merger } from "@sjsf/form/mergers/legacy";
 ```
+
+And install `json-schema-merge-allof`, but I recommend trying to switch
+to a modern merger to get the benefits of bundle size and performance -
+[modern merger setup](../../guides/merger/).
+
+<Npm pkg="json-schema-merge-allof" />
 
 This change should be sufficient for migrating simple projects.
 However, I recommend reviewing the full list of changes,
