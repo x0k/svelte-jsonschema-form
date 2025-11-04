@@ -1,5 +1,124 @@
 # @sjsf/form
 
+## 3.0.0
+
+### Major Changes
+
+- 0201f5e: Bump minimal `svelte` version to `5.39.0`
+- 6e2bdc5: - Added a **required** `path` property to the `Config` type
+  - Updated the `JsonPaths` type to return a union of `Path`s
+  - Replaced the `name` prop with `path` in the `Field` component
+- de99d04: Remove `indexMapper` and `stringIndexMapper` from `form/options.svelte` module
+- 37e4bea: Turn `create*` form methods into `queries`
+- 5b88676: - Add `mergeSchemas` method to the `Merger` interface
+  - Update `resolveAllReferences` and related functions to accept a `Merger` instance for schema merging
+  - Make `merger` form option required
+- fb04cdd: Remove generic validator parameter
+- c4fb2b2: Add support for nullable schemas
+- 2f8e90d: - Added a new **required** `createForm` parameter: `createIdBuilder`
+  - Removed the `idSeparator` and `idPseudoSeparator` parameters
+  - Removed the following types:
+    - `IdPrefixOption`
+    - `IdSeparatorOption`
+    - `IdPseudoSeparator`
+    - `IdOptions`
+    - `PathToIdOptions`
+  - `focus-on-first-error` module changes:
+    - Updated signatures of `getErrorsList` and `getFocusAction`
+    - Removed the `GetFocusActionOptions` type
+- 75f3134: Refactor standard schema validator factory signature
+- 181c3ce: - The `makeEventHandlers` function signature has been updated
+  - Added the `hasFieldState` function to check a field’s state
+  - The `isSubmitted` and `isChanged` properties are now `readonly`
+  - `isSubmitted` is reset after successful processing (validation + `onSubmit` handler)
+  - `isChanged` becomes `true` after any interaction before the form is submitted or reset
+- 880f9b4: Add field actions support
+- d2ac64f: - Add `fields/extra/*` submodule
+  - Remove the `template` suffix from component names in the `templates/*` submodule
+  - Replace the `fields/resolver` submodule with the `theme` submodule
+- 00a9abc: - Replace `id` property with `path` in `Config` type
+  - Remove `from.errors` property
+  - Remove form `errors` bindable option
+  - Replace `idFromPath` with `getId` function
+  - Replace `createChildId` with `getChildPath` function
+  - Replace `getErrors` with `getFieldErrors` function
+  - Add `updateErrors`, `hasErrors`, `getErrors` functions
+- 8d4b2c2: Refactor array field context to make it extendable
+- ae6aae3: Make `itemValue` parameter of `ItemTitle` function required
+- 45ee96d: Rename `isObjectProto` to `isRecordProto`
+- 390b77e: Extract handlers application into `handlersAttachment` helper
+- 2c1922a: - Remove `form.value` property
+  - Remove `getSnapshot` form option
+  - Add `setValue`, `getValueSnapshot` form methods
+  - Use `ValidationResult<Output>` as the return type for `validateFormValue` and
+    `validateFormValueAsync` methods
+- 1c46d22: Make `event` optional for `form.reset` method
+- bc7b50b: Port https://github.com/rjsf-team/react-jsonschema-form/pull/4490
+- 3c90ec2: Remove `@sjsf/form/extra-fields/date-field` extra field definition
+- ebc3038: Distinguish between missing and `undefined` values in `ui:options`
+- f06e616: Remove `create` prefix from creatable form options
+- d8e8922: Rename path form methods (`create*` -> `get*`)
+- 2bf6e64: Refactor `KeyedArray` interface
+- f118bb5: Add schema consistency checks during merge
+- 89f3ae2: - Change signature of `getSchemaDefinitionByPath`
+  - Remove `getRootSchemaTitleByPath` function
+  - Change `valueRef` type in `Field` component from `{ value: FieldValue }` to `Ref<FieldValue>`
+- 4cc459b: Simplify modern ID builder
+- 3653592: Refactor object field context to make it extendable
+- aa9c798: Change the error type to simple `string`
+- 8c389f5: Refactor translation types
+- e84b626: Replace the `validate` and `validateAsync` form methods with separate functions
+- aa34020: Add `length`, `set` and `validate` methods to `ArrayContext` interface
+- 2b810e7: Replace `validator` and `merger` with required `createValidator` and `createMerger` options.
+  Consider all options as reactive.
+- b5a5c86: - Reuse merger options definition in `getDefaultFieldState` parameters
+  - Move `includeUndefinedValues` option from merger instance to `mergeFormDataAndSchemaDefaults` method options
+- 2109e98: Remove `form/static-analysis` module
+- 8c787f2: Turn `validate` and `validateAsync` methods into queries
+- 3ac49c9: Remove `validate` method form `ObjectContext` and `ArrayContext` interfaces
+- c963ca3: Remove deprecated code
+- 763c998: Use more fine-grained type augmentation
+- 24aa0a2: Separate state related functions into queries and commands
+- 3dd688b: Introduce `FormValidator` type
+- b2d6ac6: Add `unknown` schema type
+- 16b68d7: Replace `FormInternalContext` with `FormState`
+
+### Minor Changes
+
+- b9647e0: Add `validate` and `validateAsync` form methods
+- 51997f5: Export `createArrayComparator` and `ascComparator` functions
+- db92385: Add assert adapters for extra fields
+- d315e2b: Add `aria` helpers functions
+- 130ab89: Add `HiddenIdPrefixInput` form component
+- db2518b: Add and implement `collectErrors` UI option for `tags` field
+- 65f4343: Allow to extend `SchemaValue` type
+- 5284bc9: Allow to return update callback from form validator methods
+- e07b994: Add ID options mapper
+- 2b810e7: Add `createValidator` and `createMerger` form options for convenient use as defaults values.
+  Add `errors` option for creating controlled forms.
+  Rename `formHandlers` to `handlers`.
+- 3fca555: Add `AsyncFileListValidator` validator
+- f261cb8: Add node.js support for `lib/file`
+- f60ae1f: Add `nativeFile*` fields
+- ad86d61: Add `validators/file-size` validator
+- 3100b4d: Add `aggregatedField` field and `aggregatedWidget` widget definition
+
+### Patch Changes
+
+- c3a3bcd: Fix generation of default value for additional property
+- b735108: Remove tracking when calling `updateErrors`
+- c303125: Disable `clear` and `clearEdit` action buttons for read-only fields and disabled forms
+- b649510: Fix changes propagation in keyed array
+- cffd71e: Port https://github.com/rjsf-team/react-jsonschema-form/pull/4771
+- ebbebbd: Fix handling of `dependencies` and `if,then,else` keywords in `getSchemaDefinitionByPath` function
+- ca11ecb: Fix field state cleanup
+- 8559a74: Fix combination field logic
+- d60f113: Fix SSR rendering
+- ed0a797: Fix oneOf/anyOf fields
+- 87330b2: Port https://github.com/rjsf-team/react-jsonschema-form/pull/4839
+- 35dd9a4: Make `combination` field SRR friendly
+- 4bcb241: Fix deduplication in intersection algorithms
+
 ## 3.0.0-next.12
 
 ### Major Changes
