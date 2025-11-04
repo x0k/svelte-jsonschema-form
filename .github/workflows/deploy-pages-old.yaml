@@ -105,17 +105,6 @@ jobs:
           name: apps_v1
           path: ./v1
 
-      - name: Debug - Check artifact structure
-        run: |
-          echo "=== Contents of v1/docs ==="
-          ls -la v1/docs/
-          echo ""
-          echo "=== Contents of v1/playground ==="
-          ls -la v1/playground/
-          echo ""
-          echo "=== Check if dist exists ==="
-          ls -la v1/docs/dist/
-
       - name: Deploy docs (v1)
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -137,10 +126,6 @@ jobs:
         with:
           name: apps_v2
           path: ./v2
-
-
-      - name: List
-        run: ls -l v2
 
       - name: Deploy docs (v2)
         uses: peaceiris/actions-gh-pages@v4
