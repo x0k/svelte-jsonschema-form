@@ -11,7 +11,87 @@ permissions:
   pages: write
 
 jobs:
-  deploy:
+  build_v1:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.user.login == 'github-actions[bot]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout v1 branch
+        uses: actions/checkout@v4
+        with:
+          ref: v1
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.3.x'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Build
+        run: pnpm run build --filter="./apps/*"
+
+      - name: Upload apps
+        uses: actions/upload-artifact@v4
+        with:
+          name: apps_v1
+          path: |
+            ./apps/docs/dist
+            ./apps/playground/dist
+
+  build_v2:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.user.login == 'github-actions[bot]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout v2 branch
+        uses: actions/checkout@v4
+        with:
+          ref: v2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.3.x'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Build
+        run: pnpm run build --filter="./apps/*"
+
+      - name: Upload apps
+        uses: actions/upload-artifact@v4
+        with:
+          name: apps_v2
+          path: |
+            ./apps/docs2/dist
+            ./apps/playground2/dist
+            ./apps/builder/dist
+  build_v3:
     if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.user.login == 'github-actions[bot]')
     runs-on: ubuntu-latest
     steps:
@@ -44,10 +124,82 @@ jobs:
       - name: Merge apps build outputs
         run: mv apps/playground2/dist apps/docs2/dist/playground3 && mv apps/builder/dist apps/docs2/dist/builder3
 
-      - name: Deploy apps
+      - name: Upload apps
+        uses: actions/upload-artifact@v4
+        with:
+          name: apps_v3
+          path: |
+            ./apps/docs2/dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs:
+      - build_v1
+      - build_v2
+      - build_v3
+    steps:
+      - name: Download v3 apps
+        uses: actions/download-artifact@v5
+        with:
+          name: apps_v3
+          path: ./v3
+
+      - name: Deploy docs (v3)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./apps/docs2/dist
+          publish_dir: ./v3/docs2/dist
+          publish_branch: gh-pages
           destination_dir: .
+
+      - name: Download v2 apps
+        uses: actions/download-artifact@v5
+        with:
+          name: apps_v2
+          path: ./v2
+
+      - name: Deploy docs (v2)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./v2/docs2/dist
+          publish_branch: gh-pages
+          destination_dir: v2
+
+      - name: Deploy playground (v2)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./v2/playground2/dist
+          destination_dir: playground2
+          publish_branch: gh-pages
+
+      - name: Deploy builder (v2)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./v2/builder/dist
+          destination_dir: builder
+          publish_branch: gh-pages
+      
+      - name: Download v1 apps
+        uses: actions/download-artifact@v5
+        with:
+          name: apps_v1
+          path: ./v1
+
+      - name: Deploy docs (v1)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./v1/docs/dist
+          publish_branch: gh-pages
+          destination_dir: v1
+
+      - name: Deploy playground (v1)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./v1/playground/dist
+          destination_dir: playground
           publish_branch: gh-pages
