@@ -109,7 +109,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./v1/apps/docs/dist
+          publish_dir: ./v1/docs/dist
           publish_branch: gh-pages
           destination_dir: v1
 
@@ -117,7 +117,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./v1/apps/playground/dist
+          publish_dir: ./v1/playground/dist
           destination_dir: playground
           publish_branch: gh-pages
 
@@ -131,7 +131,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./v2/apps/docs2/dist
+          publish_dir: ./v2/docs2/dist
           publish_branch: gh-pages
           destination_dir: v2
 
@@ -139,7 +139,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./v2/apps/playground2/dist
+          publish_dir: ./v2/playground2/dist
           destination_dir: playground2
           publish_branch: gh-pages
 
@@ -147,6 +147,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./v2/apps/builder/dist
+          publish_dir: ./v2/builder/dist
           destination_dir: builder
           publish_branch: gh-pages
