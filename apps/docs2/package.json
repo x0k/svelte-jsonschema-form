@@ -2,7 +2,7 @@
   "name": "docs2",
   "private": true,
   "type": "module",
-  "version": "1.9.0-next.12",
+  "version": "1.9.0-next.13",
   "scripts": {
     "dev": "astro dev",
     "precompile-ajv-validator": "node --experimental-strip-types src/content/docs/validators/ajv/precompile/compile-schema-script.ts",
@@ -40,7 +40,7 @@
     "@sjsf/zod4-validator": "workspace:*",
     "@skeletonlabs/skeleton-svelte": "^1.5.3",
     "@stackblitz/sdk": "^1.11.0",
-		"@svar-ui/svelte-core": "^2.3.1",
+    "@svar-ui/svelte-core": "^2.3.1",
     "@valibot/to-json-schema": "^1.3.0",
     "ajv": "catalog:",
     "ajv-formats": "^3.0.1",

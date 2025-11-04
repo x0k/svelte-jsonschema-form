@@ -1,5 +1,25 @@
 # @sjsf/form
 
+## 3.0.0-next.13
+
+### Major Changes
+
+- Remove `indexMapper` and `stringIndexMapper` from `form/options.svelte` module ([#234](https://github.com/x0k/svelte-jsonschema-form/pull/234))
+
+- Rename path form methods (`create*` -> `get*`) ([#230](https://github.com/x0k/svelte-jsonschema-form/pull/230))
+
+- Simplify modern ID builder ([`4cc459b`](https://github.com/x0k/svelte-jsonschema-form/commit/4cc459b2cb0f93114a673618f9969c0651bc907b))
+
+- Remove `form/static-analysis` module ([#234](https://github.com/x0k/svelte-jsonschema-form/pull/234))
+
+### Minor Changes
+
+- Add ID options mapper ([#232](https://github.com/x0k/svelte-jsonschema-form/pull/232))
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4839 ([#233](https://github.com/x0k/svelte-jsonschema-form/pull/233))
+
 ## 3.0.0-next.12
 
 ### Major Changes
