@@ -39,7 +39,7 @@
     "@internationalized/date": "~3.10.0",
     "@lucide/svelte": "^0.544.0",
     "@tailwindcss/vite": "catalog:",
-    "bits-ui": "^2.14.1",
+    "bits-ui": "^2.14.2",
     "clsx": "^2.1.1",
     "svelte": "catalog:",
     "tailwind-merge": "^3.3.1",

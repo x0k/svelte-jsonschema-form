@@ -95,7 +95,7 @@
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
 		"@tailwindcss/vite": "catalog:",
-		"bits-ui": "^2.14.1",
+		"bits-ui": "^2.14.2",
 		"clsx": "^2.1.1",
 		"globals": "catalog:",
 		"svelte": "catalog:",

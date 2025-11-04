@@ -22,8 +22,8 @@ catalogs:
       specifier: ^1.2.2
       version: 1.2.2
     globals:
-      specifier: 16.4.0
-      version: 16.4.0
+      specifier: 16.5.0
+      version: 16.5.0
     postcss:
       specifier: ^8.5.6
       version: 8.5.6
@@ -228,8 +228,8 @@ importers:
         specifier: 'catalog:'
         version: 4.1.16(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1))
       bits-ui:
-        specifier: ^2.14.1
-        version: 2.14.1(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)
+        specifier: ^2.14.2
+        version: 2.14.2(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -354,8 +354,8 @@ importers:
         specifier: ^0.8.0
         version: 0.8.0
       daisyui:
-        specifier: ^5.3.10
-        version: 5.3.10
+        specifier: ^5.4.3
+        version: 5.4.3
       esbuild:
         specifier: ^0.25.12
         version: 0.25.12
@@ -363,8 +363,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.46.2)
       flowbite-svelte:
-        specifier: 1.19.1
-        version: 1.19.1(rollup@4.46.2)(svelte@5.43.3)(tailwindcss@4.1.16)
+        specifier: 1.22.0
+        version: 1.22.0(rollup@4.46.2)(svelte@5.43.3)(tailwindcss@4.1.16)
       lz-string:
         specifier: ^1.5.0
         version: 1.5.0
@@ -427,8 +427,8 @@ importers:
         specifier: ^2.1.9
         version: 2.1.9
       bits-ui:
-        specifier: 2.14.1
-        version: 2.14.1(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)
+        specifier: 2.14.2
+        version: 2.14.2(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)
       css-tree:
         specifier: ^3.1.0
         version: 3.1.0
@@ -533,8 +533,8 @@ importers:
         specifier: 'catalog:'
         version: 4.1.16(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1))
       bits-ui:
-        specifier: ^2.14.1
-        version: 2.14.1(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)
+        specifier: ^2.14.2
+        version: 2.14.2(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1411,8 +1411,8 @@ importers:
         specifier: 'catalog:'
         version: 8.17.1
       bits-ui:
-        specifier: ^2.14.1
-        version: 2.14.1(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)
+        specifier: ^2.14.2
+        version: 2.14.2(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1421,7 +1421,7 @@ importers:
         version: 1.5.21
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       runed:
         specifier: ^0.31.1
         version: 0.31.1(svelte@5.43.3)
@@ -1473,7 +1473,7 @@ importers:
         version: 8.17.1
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       svelte:
         specifier: 'catalog:'
         version: 5.43.3
@@ -1498,7 +1498,7 @@ importers:
         version: 4.12.24(postcss@8.5.6)
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       postcss:
         specifier: 'catalog:'
         version: 8.5.6
@@ -1528,7 +1528,7 @@ importers:
         version: 0.47.4(rollup@4.46.2)(svelte@5.43.3)
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       postcss:
         specifier: 'catalog:'
         version: 8.5.6
@@ -1568,7 +1568,7 @@ importers:
         version: 2.1.1
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       postcss:
         specifier: 'catalog:'
         version: 8.5.6
@@ -1623,7 +1623,7 @@ importers:
         version: 8.17.1
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       svelte:
         specifier: 'catalog:'
         version: 5.43.3
@@ -1707,11 +1707,11 @@ importers:
         specifier: ~0.8.0
         version: 0.8.0
       daisyui:
-        specifier: ^5.3.10
-        version: 5.3.10
+        specifier: ^5.4.3
+        version: 5.4.3
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       pikaday:
         specifier: ~1.8.2
         version: 1.8.2
@@ -1742,7 +1742,7 @@ importers:
         version: 3.0.0(svelte@5.43.3)
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       svelte:
         specifier: 'catalog:'
         version: 5.43.3
@@ -1775,11 +1775,11 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.46.2)
       flowbite-svelte:
-        specifier: ^1.19.1
-        version: 1.19.1(rollup@4.46.2)(svelte@5.43.3)(tailwindcss@4.1.16)
+        specifier: ^1.22.0
+        version: 1.22.0(rollup@4.46.2)(svelte@5.43.3)(tailwindcss@4.1.16)
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       svelte:
         specifier: 'catalog:'
         version: 5.43.3
@@ -1825,7 +1825,7 @@ importers:
         version: 5.0.0
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       json-schema-compare:
         specifier: ^0.2.2
         version: 0.2.2
@@ -1846,7 +1846,7 @@ importers:
         version: link:../form
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       svelte:
         specifier: 'catalog:'
         version: 5.43.3
@@ -1864,7 +1864,7 @@ importers:
         version: link:../form
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       svelte:
         specifier: 'catalog:'
         version: 5.43.3
@@ -1879,7 +1879,7 @@ importers:
         version: link:../form
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       svelte:
         specifier: 'catalog:'
         version: 5.43.3
@@ -1927,14 +1927,14 @@ importers:
         specifier: 'catalog:'
         version: 4.1.16(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1))
       bits-ui:
-        specifier: ^2.14.1
-        version: 2.14.1(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)
+        specifier: ^2.14.2
+        version: 2.14.2(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       svelte:
         specifier: 'catalog:'
         version: 5.43.3
@@ -1983,7 +1983,7 @@ importers:
         version: 8.17.1
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       svelte:
         specifier: 'catalog:'
         version: 5.43.3
@@ -2020,7 +2020,7 @@ importers:
         version: 1.2.2
       globals:
         specifier: 'catalog:'
-        version: 16.4.0
+        version: 16.5.0
       svelte:
         specifier: 'catalog:'
         version: 5.43.3
@@ -4663,6 +4663,13 @@ packages:
       '@internationalized/date': ^3.8.1
       svelte: ^5.33.0
 
+  bits-ui@2.14.2:
+    resolution: {integrity: sha512-YqpAJj/nRTZjf7IlgUC3QlepVZ7YFiAQWpZaYUOAZFW5Py+g5DYkhEDTdNFI5SReo7l1rct/nRpMK4pfL9Xffw==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@internationalized/date': ^3.8.1
+      svelte: ^5.33.0
+
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
@@ -5056,8 +5063,8 @@ packages:
   daisyui@5.3.1:
     resolution: {integrity: sha512-h2RqYCfavz3ZHoRhkn9xsDjMTSvCqAf44ve1Lh5nZvXWrnxgnzVvwGhhnM/lwvFo42aK3Rfly0wE4d5t9LKhRQ==}
 
-  daisyui@5.3.10:
-    resolution: {integrity: sha512-vmjyPmm0hvFhA95KB6uiGmWakziB2pBv6CUcs5Ka/3iMBMn9S+C3SZYx9G9l2JrgTZ1EFn61F/HrPcwaUm2kLQ==}
+  daisyui@5.4.3:
+    resolution: {integrity: sha512-dfDCJnN4utErGoWfElgdEE252FtfHV9Mxj5Dq1+JzUq3nVkluWdF3JYykP0Xy/y/yArnPXYztO1tLNCow3kjmg==}
 
   data-urls@5.0.0:
     resolution: {integrity: sha512-ZYP5VBHshaDAiVZxjbRVcFJpc+4xGgT0bK3vzy1HLN8jTO975HEbuYzZJcHoQEY5K1a0z8YayJkyVETa08eNTg==}
@@ -5437,8 +5444,8 @@ packages:
       svelte: ^5.29.0
       tailwindcss: ^4.1.4
 
-  flowbite-svelte@1.19.1:
-    resolution: {integrity: sha512-8wa5jnXKvnNkwtq74d/VvzWCcNt4InzIoVxxS460oCiMUNT+VWs/zbeZSA+7c4zR6twlsR5qrHyMUx8AlEoJMQ==}
+  flowbite-svelte@1.22.0:
+    resolution: {integrity: sha512-BVSVi8hbDYosyxFRjocSJ5b2eEkZImX45Arg4ntwwxbWmDSdbROz7a0iKvRwKEMd66EqoSim+i9AsMBe2oH1IA==}
     peerDependencies:
       svelte: ^5.29.0
       tailwindcss: ^4.1.4
@@ -5530,6 +5537,10 @@ packages:
 
   globals@16.4.0:
     resolution: {integrity: sha512-ob/2LcVVaVGCYN+r14cnwnoDPUufjiYgSqRhiFD0Q1iI4Odora5RE8Iv1D24hAz5oMophRGkGz+yuvQmmUMnMw==}
+    engines: {node: '>=18'}
+
+  globals@16.5.0:
+    resolution: {integrity: sha512-c/c15i26VrJ4IRt5Z89DnIzCGDn9EcebibhAOjw5ibqEHsE1wLUgkPn9RDmNcUKyU87GeaL633nyJ+pplFR2ZQ==}
     engines: {node: '>=18'}
 
   globby@11.1.0:
@@ -11702,7 +11713,7 @@ snapshots:
     transitivePeerDependencies:
       - '@sveltejs/kit'
 
-  bits-ui@2.14.1(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3):
+  bits-ui@2.14.2(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3):
     dependencies:
       '@floating-ui/core': 1.7.3
       '@floating-ui/dom': 1.7.4
@@ -11715,7 +11726,7 @@ snapshots:
     transitivePeerDependencies:
       - '@sveltejs/kit'
 
-  bits-ui@2.14.1(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3):
+  bits-ui@2.14.2(@internationalized/date@3.10.0)(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3)(vite@7.1.12(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.43.3):
     dependencies:
       '@floating-ui/core': 1.7.3
       '@floating-ui/dom': 1.7.4
@@ -12147,7 +12158,7 @@ snapshots:
 
   daisyui@5.3.1: {}
 
-  daisyui@5.3.10: {}
+  daisyui@5.4.3: {}
 
   data-urls@5.0.0:
     dependencies:
@@ -12600,7 +12611,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.19.1(rollup@4.46.2)(svelte@5.43.3)(tailwindcss@4.1.16):
+  flowbite-svelte@1.22.0(rollup@4.46.2)(svelte@5.43.3)(tailwindcss@4.1.16):
     dependencies:
       '@floating-ui/dom': 1.7.4
       '@floating-ui/utils': 0.2.10
@@ -12711,6 +12722,8 @@ snapshots:
   globals@15.15.0: {}
 
   globals@16.4.0: {}
+
+  globals@16.5.0: {}
 
   globby@11.1.0:
     dependencies:
