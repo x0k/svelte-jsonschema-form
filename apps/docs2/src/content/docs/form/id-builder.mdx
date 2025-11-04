@@ -5,7 +5,8 @@ sidebar:
 ---
 
 ```ts
-type Id = Brand<"sjsf-id">;
+type Path = Array<string | number>;
+type RPath = Readonly<Path>;
 type FieldPath = Brand<"sjsf-path", RPath>;
 
 interface IdentifiableFieldElement {
