@@ -253,8 +253,6 @@ interface UiOptions {
 
 ### Registry
 
-You can use UI options registry to ensure serializability of the UI schema.
-
 ```typescript
 export interface UiOptionsRegistry {}
 
@@ -271,32 +269,6 @@ export type ResolvableUiOptions = {
 };
 ```
 
-To do this, you need to extend the `UiOptionsRegistry` interface and replace
-the non-serializable value with `registry:${key}` in `UiOptions`.
-Example:
-
-```typescript
-import { type ItemTitle, createForm } from "@sjsf/form"
-
-declare module "@sjsf/form" {
-  interface UiOptionsRegistry {
-    myItemTitle: ItemTitle
-  }
-}
-
-const form = createForm({
-  ...,
-  uiSchema: {
-    "ui:options": {
-      itemTitle: "registry:myItemTitle"
-    }
-  },
-  uiOptionsRegistry: {
-    myItemTitle: (title, index) => `${title} [${index}]`
-  }
-})
-```
-
 ### Conventions
 
 - Each `component`/`widget` in the theme should define at least one UI option
@@ -307,27 +279,3 @@ const form = createForm({
   if their properties are compatible.
 - Using UI options of one component in another (even if they are compatible)
   is forbidden, e.g. `text` and `textarea` widgets must use separate options.
-
-
-Check your theme page for an extended list of UI options:
-
-<LinkCard title="Basic" href="../../themes/basic/#ui-options" />
-<LinkCard title="daisyUI" href="../../themes/daisyui5/#ui-options" />
-<LinkCard title="Flowbite" href="../../themes/flowbite3/#ui-options" />
-<LinkCard title="Skeleton" href="../../themes/skeleton3/#ui-options" />
-<LinkCard title="shadcn-svelte" href="../../themes/shadcn4/#ui-options" />
-
-
-
-## Extra UI options
-
-This property allows you to specify UI options for all components of a certain
-type or set them dynamically.
-
-:::caution
-
-has no effect on the `title` UI option
-
-:::
-
-<Code code={extraUiOptionsCode} lang="typescript" />

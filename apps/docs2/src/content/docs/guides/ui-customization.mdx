@@ -1,0 +1,114 @@
+---
+title: UI customization
+sidebar:
+  order: 55
+  badge: new
+---
+
+import { Code, LinkCard } from '@astrojs/starlight/components'
+
+import FormCard from '@/components/form-card.astro'
+
+import CustomizableText from './customizable-text.svelte'
+import customizableTextCode from './customizable-text.svelte?raw'
+
+import ActionExample from './action-example.svelte'
+import actionExampleCode from './action-example.svelte?raw'
+
+import ExtraUiOptions from './extra-ui-options.svelte'
+import extraUiOptionsCode from './extra-ui-options.svelte?raw'
+
+## Widgets customization
+
+In addition to the [predefined UI options](../../form/ui-schema/#ui-options),
+each widget and theme component extends the `UiOptions` interface
+with at least one property that allows customization.
+
+For example, the `textWidget` from `@sjsf/basic-theme`
+adds the property `text?: HTMLInputAttributes`.
+By specifying it in the UI options,
+you can control the widget's attributes - even reactively.
+
+<Code code={customizableTextCode} lang="svelte" />
+
+<FormCard>
+  <CustomizableText client:only="svelte" />
+</FormCard>
+
+Check your theme page for an extended list of UI options:
+
+<LinkCard title="Basic" href="../../themes/basic/#ui-options" />
+<LinkCard title="daisyUI" href="../../themes/daisyui5/#ui-options" />
+<LinkCard title="Flowbite" href="../../themes/flowbite3/#ui-options" />
+<LinkCard title="Skeleton" href="../../themes/skeleton3/#ui-options" />
+<LinkCard title="shadcn-svelte" href="../../themes/shadcn4/#ui-options" />
+
+## Actions
+
+By specifying `action?: FieldAction<SchemaValue | undefined>` in the UI options,
+your snippet will be rendered on the right side of the field header.
+
+<Code code={actionExampleCode} lang="svelte" />
+
+<FormCard>
+  <ActionExample client:only="svelte" />
+</FormCard>
+
+You can also use the prebuilt actions available in the `@sjsf/form/fields/actions/*` module:
+- `clear-edit.svelte` toggles between `undefined` and default value
+- `clear.svelte` sets value to `undefined`
+- `display-primitive-value.svelte` displays current value
+
+## UI options registry
+
+You can use UI options registry to ensure serializability of the UI schema.
+
+To do this, you need to extend the `UiOptionsRegistry` interface and replace
+the non-serializable value with `registry:${key}` in `UiOptions`.
+Example:
+
+:::note
+
+After adding at least one property to the `UiOptionsRegistry`,
+the `uiOptionsRegistry` parameter becomes required.
+
+:::
+
+```typescript
+import { createForm } from "@sjsf/form"
+import type { ItemTitle } from "@sjsf/form/fields/array/model";
+
+declare module "@sjsf/form" {
+  interface UiOptionsRegistry {
+    myItemTitle: ItemTitle
+  }
+}
+
+const form = createForm({
+  ...,
+  uiSchema: {
+    "ui:options": {
+      itemTitle: "registry:myItemTitle"
+    }
+  },
+  uiOptionsRegistry: {
+    myItemTitle: (title, index) => `${title} [${index}]`
+  }
+})
+```
+
+## Extra UI options
+
+This property allows you to specify UI option for all components or compute it dynamically.
+
+:::caution
+
+Has no effect on the `title` UI option
+
+:::
+
+<Code code={extraUiOptionsCode} lang="svelte" />
+
+<FormCard>
+  <ExtraUiOptions client:only="svelte" />
+</FormCard>
