@@ -37,7 +37,7 @@
         <Button
           variant="ghost"
           size="icon"
-          href="https://x0k.github.io/svelte-jsonschema-form/v3/"
+          href="https://x0k.github.io/svelte-jsonschema-form/"
         >
           <OpenBook class="size-6" />
         </Button>
