@@ -77,9 +77,8 @@
 				</span>
 			</SelectItem>
 		{/if}
-		{#each options as option, index (option.id)}
-			{@const indexStr = index.toString()}
-			<SelectItem value={indexStr} label={option.label} disabled={option.disabled} />
+		{#each options as option (option.id)}
+			<SelectItem value={option.id} label={option.label} disabled={option.disabled} />
 		{/each}
 	</SelectContent>
 </Select>
