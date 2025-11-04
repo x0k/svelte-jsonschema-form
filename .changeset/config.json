@@ -4,7 +4,22 @@
   "commit": false,
   "fixed": [
     [
-      "@sjsf/*"
+      "@sjsf/ajv8-validator",
+      "@sjsf/basic-theme",
+      "@sjsf/daisyui5-theme",
+      "@sjsf/flowbite-icons",
+      "@sjsf/flowbite3-theme",
+      "@sjsf/form",
+      "@sjsf/moving-icons",
+      "@sjsf/schemasafe-validator",
+      "@sjsf/shadcn4-theme",
+      "@sjsf/sveltekit",
+      "@sjsf/valibot-validator",
+      "@sjsf/zod4-validator",
+      "@sjsf/skeleton4-theme",
+      "@sjsf/cfworker-validator",
+      "@sjsf/lucide-icons",
+      "@sjsf/radix-icons"
     ]
   ],
   "linked": [],
