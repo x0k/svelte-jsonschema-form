@@ -1,0 +1,1 @@
+.pickers.svelte-hpgwab{display:grid;grid-auto-flow:column;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr;column-gap:2rem;& select{width:100%;background-color:var(--sl-color-bg);padding:.5rem;border-radius:.5rem;color:inherit}}
