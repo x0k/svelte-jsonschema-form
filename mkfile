@@ -2,6 +2,9 @@
 
 set -xe
 
+update:
+  pnpm -w update --no-save
+
 d:
   pnpm run dev
 
