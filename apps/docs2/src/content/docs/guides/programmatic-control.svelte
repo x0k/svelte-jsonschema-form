@@ -3,11 +3,11 @@
     Content,
     createForm,
     Form,
-    setFormContext2,
+    setFormContext,
     type Schema,
   } from "@sjsf/form";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   const schema: Schema = {
     type: "string",
@@ -20,7 +20,7 @@
     initialValue: "initial",
     onSubmit: (v) => window.alert(v),
   });
-  setFormContext2(form);
+  setFormContext(form);
 
   let ref: HTMLFormElement | undefined;
 </script>

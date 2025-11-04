@@ -5,9 +5,10 @@ sidebar:
 ---
 
 ```typescript
-export type InitialErrors<V extends Validator> =
-  | ValidationError<PossibleError<V>>[]
-  | Iterable<readonly [Id, FieldError<PossibleError<V>>[]]>;
+export type InitialErrors =
+  | ValidationError[]
+  // WARN: This should't be an array
+  | Iterable<readonly [FieldPath, string[]]>;
 
 const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
 
@@ -19,44 +20,68 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
       [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
 
-// from '@sjsf/form/lib/svelte.svelte'
-type Bind<T> = [get: () => T, set: (v: T) => void];
+export interface IdBuilderFactoryOptions {
+  idPrefix: string;
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
+  validator: Validator;
+  merger: FormMerger;
+  valueRef: Ref<FormValue>;
+}
 
-export interface FormOptions<T, V extends Validator>
-  extends UiOptionsRegistryOption {
-  validator: V;
+export interface ValidatorFactoryOptions {
+  idBuilder: FormIdBuilder;
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
+  /**
+   * This is a getter that can be used to access the Merger lazily.
+   */
+  merger: () => FormMerger;
+}
+
+export interface MergerFactoryOptions {
+  validator: Validator;
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
+}
+
+// from '@sjsf/form/lib/svelte.svelte'
+export type Bind<T> = [get: () => T, set: (v: T) => void];
+
+export type Creatable<Result, Options> =
+  | ((options: Options) => Result)
+  | (() => Result)
+  | Result;
+
+export interface FormOptions<T> extends UiOptionsRegistryOption {
   schema: Schema;
   theme: Theme;
   translation: Translation;
-  resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
-  icons?: Icons;
-  uiSchema?: UiSchemaRoot;
-  extraUiOptions?: ExtraUiOptions;
-  merger?: FormMerger;
-  fieldsValidationMode?: FieldsValidationMode;
-  disabled?: boolean;
+  resolver: (ctx: FormState<T>) => ResolveFieldType;
+  idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
+  validator: Creatable<Validator, ValidatorFactoryOptions>;
+  merger: Creatable<FormMerger, MergerFactoryOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
    */
   idPrefix?: string;
-  /**
-   * @default DEFAULT_ID_SEPARATOR
-   */
-  idSeparator?: string;
-  /**
-   * @default DEFAULT_ID_PSEUDO_SEPARATOR
-   */
-  idPseudoSeparator?: string;
-  //
+  icons?: Icons;
+  uiSchema?: UiSchemaRoot;
+  extraUiOptions?: ExtraUiOptions;
+  fieldsValidationMode?: FieldsValidationMode;
+  disabled?: boolean;
+  initialValue?: DeepPartial<T>;
   value?: Bind<T>;
-  initialValue?: InitialValue<T>;
-  initialErrors?: InitialErrors<V>;
+  initialErrors?: InitialErrors;
   /**
    * @default waitPrevious
    */
   submissionCombinator?: TasksCombinator<
     [event: SubmitEvent],
-    FormValidationResult<AnyFormValueValidatorError<V>>,
+    FormValidationResult,
     unknown
   >;
   /**
@@ -76,7 +101,7 @@ export interface FormOptions<T, V extends Validator>
    */
   fieldsValidationCombinator?: TasksCombinator<
     [Config, FormValue],
-    FieldError<AnyFieldValueValidatorError<V>>[],
+    Update<string[]>,
     unknown
   >;
   /**
@@ -87,15 +112,6 @@ export interface FormOptions<T, V extends Validator>
    * @default 8000
    */
   fieldsValidationTimeoutMs?: number;
-  /**
-   * The function to get the form data snapshot
-   *
-   * The snapshot is used to validate the form and passed to
-   * `onSubmit` and `onSubmitError` handlers.
-   *
-   * @default (ctx) => $state.snapshot(ctx.value)
-   */
-  getSnapshot?: (ctx: FormInternalContext<V>) => FormValue;
   /**
    * Submit handler
    *
@@ -114,9 +130,9 @@ export interface FormOptions<T, V extends Validator>
    * snapshot is not valid
    */
   onSubmitError?: (
-    errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
+    result: FailureValidationResult,
     e: SubmitEvent,
-    snapshot: FormValue
+    form: FormState<T>
   ) => void;
   /**
    * Form submission error handler
@@ -139,8 +155,10 @@ export interface FormOptions<T, V extends Validator>
    * Reset handler
    *
    * Will be called when the form is reset.
+   * 
+   * The event will be `undefined` if `reset` is called manually without passing an event.
    */
-  onReset?: (e: Event) => void;
+  onReset?: (e?: Event) => void;
   schedulerYield?: SchedulerYield;
   keyedArraysMap?: KeyedArraysMap;
 }

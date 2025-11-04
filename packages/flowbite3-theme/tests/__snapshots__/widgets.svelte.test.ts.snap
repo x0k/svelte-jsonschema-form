@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`widgets > checkbox > disabled 1`] = `
+exports[`widgets > checkbox > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -8,6 +8,13 @@ exports[`widgets > checkbox > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -26,31 +33,28 @@ exports[`widgets > checkbox > disabled 1`] = `
         <!---->
         <!---->
         <!---->
-        <div
-          class="flex items-center cursor-not-allowed opacity-70"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center cursor-not-allowed opacity-70"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+            disabled=""
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
-              disabled=""
-              id="root"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            
-            
-            <!---->
-            <!---->
-          </label>
+          
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         
         
@@ -67,7 +71,7 @@ exports[`widgets > checkbox > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -95,10 +99,11 @@ exports[`widgets > checkbox > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > checkbox > error 1`] = `
+exports[`widgets > checkbox > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -106,6 +111,13 @@ exports[`widgets > checkbox > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -124,30 +136,27 @@ exports[`widgets > checkbox > error 1`] = `
         <!---->
         <!---->
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            
-            
-            <!---->
-            <!---->
-          </label>
+          
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         
         
@@ -159,7 +168,7 @@ exports[`widgets > checkbox > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -176,7 +185,7 @@ exports[`widgets > checkbox > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -203,10 +212,11 @@ exports[`widgets > checkbox > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > checkbox > normal 1`] = `
+exports[`widgets > checkbox > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -214,6 +224,13 @@ exports[`widgets > checkbox > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -232,30 +249,27 @@ exports[`widgets > checkbox > normal 1`] = `
         <!---->
         <!---->
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            
-            
-            <!---->
-            <!---->
-          </label>
+          
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         
         
@@ -272,7 +286,7 @@ exports[`widgets > checkbox > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -299,10 +313,11 @@ exports[`widgets > checkbox > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > checkbox > readonly 1`] = `
+exports[`widgets > checkbox > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -310,6 +325,13 @@ exports[`widgets > checkbox > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -328,31 +350,28 @@ exports[`widgets > checkbox > readonly 1`] = `
         <!---->
         <!---->
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root"
-              name="root"
-              readonly=""
-              type="checkbox"
-            />
-             
-            <!---->
-            
-            
-            <!---->
-            <!---->
-          </label>
+          
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         
         
@@ -369,7 +388,7 @@ exports[`widgets > checkbox > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -396,10 +415,11 @@ exports[`widgets > checkbox > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > checkboxes > disabled 1`] = `
+exports[`widgets > checkboxes > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -407,6 +427,13 @@ exports[`widgets > checkboxes > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -426,112 +453,100 @@ exports[`widgets > checkboxes > disabled 1`] = `
         <!---->
         <!---->
         <!---->
-        <div
-          class="flex items-center cursor-not-allowed opacity-70"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center cursor-not-allowed opacity-70"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+            disabled=""
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
-              disabled=""
-              id="root::0"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            foo
-            
-            <!---->
-            <!---->
-          </label>
+          foo
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center cursor-not-allowed opacity-70"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center cursor-not-allowed opacity-70"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+            disabled=""
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
-              disabled=""
-              id="root::1"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            bar
-            
-            <!---->
-            <!---->
-          </label>
+          bar
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center cursor-not-allowed opacity-70"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center cursor-not-allowed opacity-70"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+            disabled=""
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
-              disabled=""
-              id="root::2"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            fuzz
-            
-            <!---->
-            <!---->
-          </label>
+          fuzz
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center cursor-not-allowed opacity-70"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center cursor-not-allowed opacity-70"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+            disabled=""
+            id="root__3"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
-              disabled=""
-              id="root::3"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            qux
-            
-            <!---->
-            <!---->
-          </label>
+          qux
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         
         
@@ -549,7 +564,7 @@ exports[`widgets > checkboxes > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -577,10 +592,11 @@ exports[`widgets > checkboxes > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > checkboxes > error 1`] = `
+exports[`widgets > checkboxes > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -588,6 +604,13 @@ exports[`widgets > checkboxes > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -607,108 +630,96 @@ exports[`widgets > checkboxes > error 1`] = `
         <!---->
         <!---->
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::0"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            foo
-            
-            <!---->
-            <!---->
-          </label>
+          foo
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::1"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            bar
-            
-            <!---->
-            <!---->
-          </label>
+          bar
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::2"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            fuzz
-            
-            <!---->
-            <!---->
-          </label>
+          fuzz
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__3"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::3"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            qux
-            
-            <!---->
-            <!---->
-          </label>
+          qux
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         
         
@@ -721,7 +732,7 @@ exports[`widgets > checkboxes > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -738,7 +749,7 @@ exports[`widgets > checkboxes > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -765,10 +776,11 @@ exports[`widgets > checkboxes > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > checkboxes > normal 1`] = `
+exports[`widgets > checkboxes > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -776,6 +788,13 @@ exports[`widgets > checkboxes > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -795,108 +814,96 @@ exports[`widgets > checkboxes > normal 1`] = `
         <!---->
         <!---->
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::0"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            foo
-            
-            <!---->
-            <!---->
-          </label>
+          foo
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::1"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            bar
-            
-            <!---->
-            <!---->
-          </label>
+          bar
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::2"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            fuzz
-            
-            <!---->
-            <!---->
-          </label>
+          fuzz
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__3"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::3"
-              name="root"
-              type="checkbox"
-            />
-             
-            <!---->
-            qux
-            
-            <!---->
-            <!---->
-          </label>
+          qux
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         
         
@@ -914,7 +921,7 @@ exports[`widgets > checkboxes > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -941,10 +948,11 @@ exports[`widgets > checkboxes > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > checkboxes > readonly 1`] = `
+exports[`widgets > checkboxes > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -952,6 +960,13 @@ exports[`widgets > checkboxes > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -971,112 +986,100 @@ exports[`widgets > checkboxes > readonly 1`] = `
         <!---->
         <!---->
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__0"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::0"
-              name="root"
-              readonly=""
-              type="checkbox"
-            />
-             
-            <!---->
-            foo
-            
-            <!---->
-            <!---->
-          </label>
+          foo
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__1"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::1"
-              name="root"
-              readonly=""
-              type="checkbox"
-            />
-             
-            <!---->
-            bar
-            
-            <!---->
-            <!---->
-          </label>
+          bar
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__2"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::2"
-              name="root"
-              readonly=""
-              type="checkbox"
-            />
-             
-            <!---->
-            fuzz
-            
-            <!---->
-            <!---->
-          </label>
+          fuzz
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         <!---->
-        <div
-          class="flex items-center"
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
         >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root__3"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+          />
+           
           <!---->
-          <label
-            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-          >
-            <input
-              aria-describedby="root::description root::help root::errors"
-              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-              id="root::3"
-              name="root"
-              readonly=""
-              type="checkbox"
-            />
-             
-            <!---->
-            qux
-            
-            <!---->
-            <!---->
-          </label>
+          qux
           
           <!---->
-        </div>
+          <!---->
+        </label>
+        
         
         
         
@@ -1094,7 +1097,7 @@ exports[`widgets > checkboxes > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1121,10 +1124,11 @@ exports[`widgets > checkboxes > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > datePicker > disabled 1`] = `
+exports[`widgets > datePicker > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -1132,6 +1136,13 @@ exports[`widgets > datePicker > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1162,8 +1173,11 @@ exports[`widgets > datePicker > disabled 1`] = `
                 aria-haspopup="dialog"
                 class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 border-gray-300 bg-gray-50 text-gray-900 focus:ring-primary-500 dark:focus:ring-primary-400"
                 disabled=""
+                id="root"
                 inputmode="none"
+                name="root"
                 placeholder="Select date"
+                required=""
                 type="text"
               />
                
@@ -1207,7 +1221,7 @@ exports[`widgets > datePicker > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1235,10 +1249,11 @@ exports[`widgets > datePicker > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > datePicker > error 1`] = `
+exports[`widgets > datePicker > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -1246,6 +1261,13 @@ exports[`widgets > datePicker > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1275,8 +1297,11 @@ exports[`widgets > datePicker > error 1`] = `
               <input
                 aria-haspopup="dialog"
                 class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 border-gray-300 bg-gray-50 text-gray-900 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="root"
                 inputmode="none"
+                name="root"
                 placeholder="Select date"
+                required=""
                 type="text"
               />
                
@@ -1314,7 +1339,7 @@ exports[`widgets > datePicker > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -1331,7 +1356,7 @@ exports[`widgets > datePicker > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1358,10 +1383,11 @@ exports[`widgets > datePicker > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > datePicker > normal 1`] = `
+exports[`widgets > datePicker > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -1369,6 +1395,13 @@ exports[`widgets > datePicker > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1398,8 +1431,11 @@ exports[`widgets > datePicker > normal 1`] = `
               <input
                 aria-haspopup="dialog"
                 class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 border-gray-300 bg-gray-50 text-gray-900 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="root"
                 inputmode="none"
+                name="root"
                 placeholder="Select date"
+                required=""
                 type="text"
               />
                
@@ -1442,7 +1478,7 @@ exports[`widgets > datePicker > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1469,10 +1505,11 @@ exports[`widgets > datePicker > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > datePicker > readonly 1`] = `
+exports[`widgets > datePicker > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -1480,6 +1517,13 @@ exports[`widgets > datePicker > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1509,8 +1553,11 @@ exports[`widgets > datePicker > readonly 1`] = `
               <input
                 aria-haspopup="dialog"
                 class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 border-gray-300 bg-gray-50 text-gray-900 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="root"
                 inputmode="none"
+                name="root"
                 placeholder="Select date"
+                required=""
                 type="text"
               />
                
@@ -1553,7 +1600,7 @@ exports[`widgets > datePicker > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1580,10 +1627,11 @@ exports[`widgets > datePicker > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > file > disabled 1`] = `
+exports[`widgets > file > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -1591,6 +1639,13 @@ exports[`widgets > file > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1612,13 +1667,15 @@ exports[`widgets > file > disabled 1`] = `
           class="relative w-full"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
             data-loading="false"
             data-processing="false"
             disabled=""
             id="root"
             name="root"
+            required=""
             type="file"
           />
            
@@ -1639,7 +1696,7 @@ exports[`widgets > file > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1667,10 +1724,11 @@ exports[`widgets > file > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > file > error 1`] = `
+exports[`widgets > file > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -1678,6 +1736,13 @@ exports[`widgets > file > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1699,12 +1764,14 @@ exports[`widgets > file > error 1`] = `
           class="relative w-full"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
             class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
             data-loading="false"
             data-processing="false"
             id="root"
             name="root"
+            required=""
             type="file"
           />
            
@@ -1720,7 +1787,7 @@ exports[`widgets > file > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -1737,7 +1804,7 @@ exports[`widgets > file > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1764,10 +1831,11 @@ exports[`widgets > file > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > file > normal 1`] = `
+exports[`widgets > file > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -1775,6 +1843,13 @@ exports[`widgets > file > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1796,12 +1871,14 @@ exports[`widgets > file > normal 1`] = `
           class="relative w-full"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
             data-loading="false"
             data-processing="false"
             id="root"
             name="root"
+            required=""
             type="file"
           />
            
@@ -1822,7 +1899,7 @@ exports[`widgets > file > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1849,10 +1926,11 @@ exports[`widgets > file > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > file > readonly 1`] = `
+exports[`widgets > file > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -1860,6 +1938,13 @@ exports[`widgets > file > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1881,13 +1966,15 @@ exports[`widgets > file > readonly 1`] = `
           class="relative w-full"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
             data-loading="false"
             data-processing="false"
             id="root"
             name="root"
             readonly=""
+            required=""
             type="file"
           />
            
@@ -1908,7 +1995,7 @@ exports[`widgets > file > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1935,10 +2022,11 @@ exports[`widgets > file > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > multiFile > disabled 1`] = `
+exports[`widgets > multiFile > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -1946,6 +2034,13 @@ exports[`widgets > multiFile > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1967,7 +2062,8 @@ exports[`widgets > multiFile > disabled 1`] = `
           class="relative w-full"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
             data-loading="true"
             data-processing="false"
@@ -1975,6 +2071,7 @@ exports[`widgets > multiFile > disabled 1`] = `
             id="root"
             multiple=""
             name="root"
+            required=""
             type="file"
           />
            
@@ -1995,7 +2092,7 @@ exports[`widgets > multiFile > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2023,10 +2120,11 @@ exports[`widgets > multiFile > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > multiFile > error 1`] = `
+exports[`widgets > multiFile > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -2034,6 +2132,13 @@ exports[`widgets > multiFile > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2055,13 +2160,15 @@ exports[`widgets > multiFile > error 1`] = `
           class="relative w-full"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
             class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
             data-loading="true"
             data-processing="false"
             id="root"
             multiple=""
             name="root"
+            required=""
             type="file"
           />
            
@@ -2077,7 +2184,7 @@ exports[`widgets > multiFile > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -2094,7 +2201,7 @@ exports[`widgets > multiFile > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2121,10 +2228,11 @@ exports[`widgets > multiFile > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > multiFile > normal 1`] = `
+exports[`widgets > multiFile > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -2132,6 +2240,13 @@ exports[`widgets > multiFile > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2153,13 +2268,15 @@ exports[`widgets > multiFile > normal 1`] = `
           class="relative w-full"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
             data-loading="true"
             data-processing="false"
             id="root"
             multiple=""
             name="root"
+            required=""
             type="file"
           />
            
@@ -2180,7 +2297,7 @@ exports[`widgets > multiFile > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2207,10 +2324,11 @@ exports[`widgets > multiFile > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > multiFile > readonly 1`] = `
+exports[`widgets > multiFile > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -2218,6 +2336,13 @@ exports[`widgets > multiFile > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2239,7 +2364,8 @@ exports[`widgets > multiFile > readonly 1`] = `
           class="relative w-full"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
             data-loading="true"
             data-processing="false"
@@ -2247,6 +2373,7 @@ exports[`widgets > multiFile > readonly 1`] = `
             multiple=""
             name="root"
             readonly=""
+            required=""
             type="file"
           />
            
@@ -2267,7 +2394,7 @@ exports[`widgets > multiFile > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2294,10 +2421,11 @@ exports[`widgets > multiFile > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > multiSelect > disabled 1`] = `
+exports[`widgets > multiSelect > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -2305,6 +2433,13 @@ exports[`widgets > multiSelect > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2326,24 +2461,25 @@ exports[`widgets > multiSelect > disabled 1`] = `
           hidden=""
           multiple=""
           name="root"
+          required=""
         >
           <option
-            value="0"
+            value="root__0"
           >
             foo
           </option>
           <option
-            value="1"
+            value="root__1"
           >
             bar
           </option>
           <option
-            value="2"
+            value="root__2"
           >
             fuzz
           </option>
           <option
-            value="3"
+            value="root__3"
           >
             qux
           </option>
@@ -2351,8 +2487,9 @@ exports[`widgets > multiSelect > disabled 1`] = `
         </select>
          
         <div
-          aria-describedby="root::description root::help root::errors"
-          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm cursor-not-allowed opacity-50 pointer-events-none grow"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm cursor-not-allowed opacity-50 pointer-events-none rounded-lg grow"
           id="root"
           role="listbox"
           tabindex="0"
@@ -2365,7 +2502,7 @@ exports[`widgets > multiSelect > disabled 1`] = `
           <!---->
            
           <span
-            class="flex flex-wrap gap-2"
+            class="rounded-lg"
           >
             <!---->
           </span>
@@ -2409,7 +2546,7 @@ exports[`widgets > multiSelect > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2437,10 +2574,11 @@ exports[`widgets > multiSelect > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > multiSelect > error 1`] = `
+exports[`widgets > multiSelect > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -2448,6 +2586,13 @@ exports[`widgets > multiSelect > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2469,24 +2614,25 @@ exports[`widgets > multiSelect > error 1`] = `
           hidden=""
           multiple=""
           name="root"
+          required=""
         >
           <option
-            value="0"
+            value="root__0"
           >
             foo
           </option>
           <option
-            value="1"
+            value="root__1"
           >
             bar
           </option>
           <option
-            value="2"
+            value="root__2"
           >
             fuzz
           </option>
           <option
-            value="3"
+            value="root__3"
           >
             qux
           </option>
@@ -2494,8 +2640,9 @@ exports[`widgets > multiSelect > error 1`] = `
         </select>
          
         <div
-          aria-describedby="root::description root::help root::errors"
-          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 grow"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 rounded-lg grow"
           id="root"
           role="listbox"
           tabindex="0"
@@ -2508,7 +2655,7 @@ exports[`widgets > multiSelect > error 1`] = `
           <!---->
            
           <span
-            class="flex flex-wrap gap-2"
+            class="rounded-lg"
           >
             <!---->
           </span>
@@ -2547,7 +2694,7 @@ exports[`widgets > multiSelect > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -2564,7 +2711,7 @@ exports[`widgets > multiSelect > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2591,10 +2738,11 @@ exports[`widgets > multiSelect > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > multiSelect > normal 1`] = `
+exports[`widgets > multiSelect > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -2602,6 +2750,13 @@ exports[`widgets > multiSelect > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2623,24 +2778,25 @@ exports[`widgets > multiSelect > normal 1`] = `
           hidden=""
           multiple=""
           name="root"
+          required=""
         >
           <option
-            value="0"
+            value="root__0"
           >
             foo
           </option>
           <option
-            value="1"
+            value="root__1"
           >
             bar
           </option>
           <option
-            value="2"
+            value="root__2"
           >
             fuzz
           </option>
           <option
-            value="3"
+            value="root__3"
           >
             qux
           </option>
@@ -2648,8 +2804,9 @@ exports[`widgets > multiSelect > normal 1`] = `
         </select>
          
         <div
-          aria-describedby="root::description root::help root::errors"
-          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 grow"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 rounded-lg grow"
           id="root"
           role="listbox"
           tabindex="0"
@@ -2662,7 +2819,7 @@ exports[`widgets > multiSelect > normal 1`] = `
           <!---->
            
           <span
-            class="flex flex-wrap gap-2"
+            class="rounded-lg"
           >
             <!---->
           </span>
@@ -2706,7 +2863,7 @@ exports[`widgets > multiSelect > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2733,10 +2890,11 @@ exports[`widgets > multiSelect > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > multiSelect > readonly 1`] = `
+exports[`widgets > multiSelect > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -2744,6 +2902,13 @@ exports[`widgets > multiSelect > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2765,24 +2930,25 @@ exports[`widgets > multiSelect > readonly 1`] = `
           hidden=""
           multiple=""
           name="root"
+          required=""
         >
           <option
-            value="0"
+            value="root__0"
           >
             foo
           </option>
           <option
-            value="1"
+            value="root__1"
           >
             bar
           </option>
           <option
-            value="2"
+            value="root__2"
           >
             fuzz
           </option>
           <option
-            value="3"
+            value="root__3"
           >
             qux
           </option>
@@ -2790,8 +2956,9 @@ exports[`widgets > multiSelect > readonly 1`] = `
         </select>
          
         <div
-          aria-describedby="root::description root::help root::errors"
-          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 grow"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 rounded-lg grow"
           id="root"
           role="listbox"
           tabindex="0"
@@ -2804,7 +2971,7 @@ exports[`widgets > multiSelect > readonly 1`] = `
           <!---->
            
           <span
-            class="flex flex-wrap gap-2"
+            class="rounded-lg"
           >
             <!---->
           </span>
@@ -2848,7 +3015,7 @@ exports[`widgets > multiSelect > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2875,10 +3042,11 @@ exports[`widgets > multiSelect > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > number > disabled 1`] = `
+exports[`widgets > number > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -2886,6 +3054,13 @@ exports[`widgets > number > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2908,25 +3083,19 @@ exports[`widgets > number > disabled 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
-          aria-describedby="root::description root::help root::errors"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           disabled=""
           id="root"
           name="root"
+          required=""
           step="any"
           type="number"
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -2949,7 +3118,7 @@ exports[`widgets > number > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2977,10 +3146,11 @@ exports[`widgets > number > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > number > error 1`] = `
+exports[`widgets > number > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -2988,6 +3158,13 @@ exports[`widgets > number > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3010,24 +3187,18 @@ exports[`widgets > number > error 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
-          aria-describedby="root::description root::help root::errors"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
+          required=""
           step="any"
           type="number"
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -3045,7 +3216,7 @@ exports[`widgets > number > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -3062,7 +3233,7 @@ exports[`widgets > number > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3089,10 +3260,11 @@ exports[`widgets > number > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > number > normal 1`] = `
+exports[`widgets > number > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -3100,6 +3272,13 @@ exports[`widgets > number > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3122,24 +3301,18 @@ exports[`widgets > number > normal 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
-          aria-describedby="root::description root::help root::errors"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
+          required=""
           step="any"
           type="number"
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -3162,7 +3335,7 @@ exports[`widgets > number > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3189,10 +3362,11 @@ exports[`widgets > number > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > number > readonly 1`] = `
+exports[`widgets > number > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -3200,6 +3374,13 @@ exports[`widgets > number > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3222,25 +3403,19 @@ exports[`widgets > number > readonly 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
-          aria-describedby="root::description root::help root::errors"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
           readonly=""
+          required=""
           step="any"
           type="number"
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -3263,7 +3438,7 @@ exports[`widgets > number > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3290,10 +3465,11 @@ exports[`widgets > number > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > radio > disabled 1`] = `
+exports[`widgets > radio > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -3301,6 +3477,13 @@ exports[`widgets > radio > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3324,13 +3507,15 @@ exports[`widgets > radio > disabled 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
             disabled=""
-            id="root::0"
+            id="root__0"
             name="root"
+            required=""
             type="radio"
-            value="0"
+            value="root__0"
           />
            
           foo
@@ -3343,13 +3528,15 @@ exports[`widgets > radio > disabled 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
             disabled=""
-            id="root::1"
+            id="root__1"
             name="root"
+            required=""
             type="radio"
-            value="1"
+            value="root__1"
           />
            
           bar
@@ -3362,13 +3549,15 @@ exports[`widgets > radio > disabled 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
             disabled=""
-            id="root::2"
+            id="root__2"
             name="root"
+            required=""
             type="radio"
-            value="2"
+            value="root__2"
           />
            
           fuzz
@@ -3381,13 +3570,15 @@ exports[`widgets > radio > disabled 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
             disabled=""
-            id="root::3"
+            id="root__3"
             name="root"
+            required=""
             type="radio"
-            value="3"
+            value="root__3"
           />
            
           qux
@@ -3411,7 +3602,7 @@ exports[`widgets > radio > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3439,10 +3630,11 @@ exports[`widgets > radio > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > radio > error 1`] = `
+exports[`widgets > radio > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -3450,6 +3642,13 @@ exports[`widgets > radio > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3473,12 +3672,14 @@ exports[`widgets > radio > error 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::0"
+            id="root__0"
             name="root"
+            required=""
             type="radio"
-            value="0"
+            value="root__0"
           />
            
           foo
@@ -3491,12 +3692,14 @@ exports[`widgets > radio > error 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::1"
+            id="root__1"
             name="root"
+            required=""
             type="radio"
-            value="1"
+            value="root__1"
           />
            
           bar
@@ -3509,12 +3712,14 @@ exports[`widgets > radio > error 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::2"
+            id="root__2"
             name="root"
+            required=""
             type="radio"
-            value="2"
+            value="root__2"
           />
            
           fuzz
@@ -3527,12 +3732,14 @@ exports[`widgets > radio > error 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::3"
+            id="root__3"
             name="root"
+            required=""
             type="radio"
-            value="3"
+            value="root__3"
           />
            
           qux
@@ -3551,7 +3758,7 @@ exports[`widgets > radio > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -3568,7 +3775,7 @@ exports[`widgets > radio > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3595,10 +3802,11 @@ exports[`widgets > radio > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > radio > normal 1`] = `
+exports[`widgets > radio > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -3606,6 +3814,13 @@ exports[`widgets > radio > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3629,12 +3844,14 @@ exports[`widgets > radio > normal 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::0"
+            id="root__0"
             name="root"
+            required=""
             type="radio"
-            value="0"
+            value="root__0"
           />
            
           foo
@@ -3647,12 +3864,14 @@ exports[`widgets > radio > normal 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::1"
+            id="root__1"
             name="root"
+            required=""
             type="radio"
-            value="1"
+            value="root__1"
           />
            
           bar
@@ -3665,12 +3884,14 @@ exports[`widgets > radio > normal 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::2"
+            id="root__2"
             name="root"
+            required=""
             type="radio"
-            value="2"
+            value="root__2"
           />
            
           fuzz
@@ -3683,12 +3904,14 @@ exports[`widgets > radio > normal 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::3"
+            id="root__3"
             name="root"
+            required=""
             type="radio"
-            value="3"
+            value="root__3"
           />
            
           qux
@@ -3712,7 +3935,7 @@ exports[`widgets > radio > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3739,10 +3962,11 @@ exports[`widgets > radio > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > radio > readonly 1`] = `
+exports[`widgets > radio > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -3750,6 +3974,13 @@ exports[`widgets > radio > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3773,13 +4004,15 @@ exports[`widgets > radio > readonly 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::0"
+            id="root__0"
             name="root"
             readonly=""
+            required=""
             type="radio"
-            value="0"
+            value="root__0"
           />
            
           foo
@@ -3792,13 +4025,15 @@ exports[`widgets > radio > readonly 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::1"
+            id="root__1"
             name="root"
             readonly=""
+            required=""
             type="radio"
-            value="1"
+            value="root__1"
           />
            
           bar
@@ -3811,13 +4046,15 @@ exports[`widgets > radio > readonly 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::2"
+            id="root__2"
             name="root"
             readonly=""
+            required=""
             type="radio"
-            value="2"
+            value="root__2"
           />
            
           fuzz
@@ -3830,13 +4067,15 @@ exports[`widgets > radio > readonly 1`] = `
           class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
         >
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
-            id="root::3"
+            id="root__3"
             name="root"
             readonly=""
+            required=""
             type="radio"
-            value="3"
+            value="root__3"
           />
            
           qux
@@ -3860,7 +4099,7 @@ exports[`widgets > radio > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3887,10 +4126,11 @@ exports[`widgets > radio > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > radioButtons > disabled 1`] = `
+exports[`widgets > radioButtons > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -3898,6 +4138,13 @@ exports[`widgets > radioButtons > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3916,98 +4163,123 @@ exports[`widgets > radioButtons > disabled 1`] = `
         <!---->
         <!---->
         <div
-          class="inline"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-required="true"
+          class="inline-flex rounded-lg shadow-xs"
+          role="group"
         >
-          <div
-            aria-label="toggle-group"
-            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
-            disabled="true"
-            role="radiogroup"
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg inline-flex"
           >
             <!---->
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  foo
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  bar
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  fuzz
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  qux
-                  <!---->
-                </span>
-              </div>
-            </button>
-            
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              disabled=""
+              id="root__0"
+              name="root"
+              required=""
+              type="radio"
+              value="root__0"
+            />
+             
+            foo
             <!---->
-          </div>
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              disabled=""
+              id="root__1"
+              name="root"
+              required=""
+              type="radio"
+              value="root__1"
+            />
+             
+            bar
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              disabled=""
+              id="root__2"
+              name="root"
+              required=""
+              type="radio"
+              value="root__2"
+            />
+             
+            fuzz
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              disabled=""
+              id="root__3"
+              name="root"
+              required=""
+              type="radio"
+              value="root__3"
+            />
+             
+            qux
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          
+          <!---->
         </div>
         
         
@@ -4024,7 +4296,7 @@ exports[`widgets > radioButtons > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4052,10 +4324,11 @@ exports[`widgets > radioButtons > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > radioButtons > error 1`] = `
+exports[`widgets > radioButtons > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -4063,6 +4336,13 @@ exports[`widgets > radioButtons > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4081,98 +4361,119 @@ exports[`widgets > radioButtons > error 1`] = `
         <!---->
         <!---->
         <div
-          class="inline"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          aria-required="true"
+          class="inline-flex rounded-lg shadow-xs"
+          role="group"
         >
-          <div
-            aria-label="toggle-group"
-            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
-            disabled="false"
-            role="radiogroup"
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
           >
             <!---->
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  foo
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  bar
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  fuzz
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  qux
-                  <!---->
-                </span>
-              </div>
-            </button>
-            
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="true"
+              class="sr-only"
+              id="root__0"
+              name="root"
+              required=""
+              type="radio"
+              value="root__0"
+            />
+             
+            foo
             <!---->
-          </div>
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="true"
+              class="sr-only"
+              id="root__1"
+              name="root"
+              required=""
+              type="radio"
+              value="root__1"
+            />
+             
+            bar
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="true"
+              class="sr-only"
+              id="root__2"
+              name="root"
+              required=""
+              type="radio"
+              value="root__2"
+            />
+             
+            fuzz
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="true"
+              class="sr-only"
+              id="root__3"
+              name="root"
+              required=""
+              type="radio"
+              value="root__3"
+            />
+             
+            qux
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          
+          <!---->
         </div>
         
         
@@ -4184,7 +4485,7 @@ exports[`widgets > radioButtons > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -4201,7 +4502,7 @@ exports[`widgets > radioButtons > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4228,10 +4529,11 @@ exports[`widgets > radioButtons > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > radioButtons > normal 1`] = `
+exports[`widgets > radioButtons > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -4239,6 +4541,13 @@ exports[`widgets > radioButtons > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4257,98 +4566,119 @@ exports[`widgets > radioButtons > normal 1`] = `
         <!---->
         <!---->
         <div
-          class="inline"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-required="true"
+          class="inline-flex rounded-lg shadow-xs"
+          role="group"
         >
-          <div
-            aria-label="toggle-group"
-            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
-            disabled="false"
-            role="radiogroup"
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
           >
             <!---->
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  foo
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  bar
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  fuzz
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  qux
-                  <!---->
-                </span>
-              </div>
-            </button>
-            
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              id="root__0"
+              name="root"
+              required=""
+              type="radio"
+              value="root__0"
+            />
+             
+            foo
             <!---->
-          </div>
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              id="root__1"
+              name="root"
+              required=""
+              type="radio"
+              value="root__1"
+            />
+             
+            bar
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              id="root__2"
+              name="root"
+              required=""
+              type="radio"
+              value="root__2"
+            />
+             
+            fuzz
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              id="root__3"
+              name="root"
+              required=""
+              type="radio"
+              value="root__3"
+            />
+             
+            qux
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          
+          <!---->
         </div>
         
         
@@ -4365,7 +4695,7 @@ exports[`widgets > radioButtons > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4392,10 +4722,11 @@ exports[`widgets > radioButtons > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > radioButtons > readonly 1`] = `
+exports[`widgets > radioButtons > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -4403,6 +4734,13 @@ exports[`widgets > radioButtons > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4421,98 +4759,124 @@ exports[`widgets > radioButtons > readonly 1`] = `
         <!---->
         <!---->
         <div
-          class="inline"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="true"
+          aria-required="true"
+          class="inline-flex rounded-lg shadow-xs"
+          role="group"
         >
-          <div
-            aria-label="toggle-group"
-            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
-            disabled="false"
-            role="radiogroup"
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
           >
             <!---->
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  foo
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  bar
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  fuzz
-                  <!---->
-                </span>
-              </div>
-            </button>
-            <button
-              aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
-              data-selected="false"
-              role="radio"
-              type="button"
-            >
-              <div
-                class="flex items-center w-full overflow-hidden relative"
-              >
-                <!---->
-                 
-                <span
-                  class="transition-all duration-200 ml-0"
-                >
-                  qux
-                  <!---->
-                </span>
-              </div>
-            </button>
-            
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              id="root__0"
+              name="root"
+              readonly=""
+              required=""
+              type="radio"
+              value="root__0"
+            />
+             
+            foo
             <!---->
-          </div>
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              id="root__1"
+              name="root"
+              readonly=""
+              required=""
+              type="radio"
+              value="root__1"
+            />
+             
+            bar
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              id="root__2"
+              name="root"
+              readonly=""
+              required=""
+              type="radio"
+              value="root__2"
+            />
+             
+            fuzz
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <label
+            class="text-center font-medium items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg inline-flex"
+          >
+            <!---->
+            <input
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              class="sr-only"
+              id="root__3"
+              name="root"
+              readonly=""
+              required=""
+              type="radio"
+              value="root__3"
+            />
+             
+            qux
+            <!---->
+            
+            
+          </label>
+          
+          
+          
+          
+          <!---->
         </div>
         
         
@@ -4529,7 +4893,7 @@ exports[`widgets > radioButtons > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4556,10 +4920,11 @@ exports[`widgets > radioButtons > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > range > disabled 1`] = `
+exports[`widgets > range > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -4567,6 +4932,13 @@ exports[`widgets > range > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4585,11 +4957,13 @@ exports[`widgets > range > disabled 1`] = `
         <!---->
         <!---->
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           class="w-full bg-gray-200 rounded-lg cursor-pointer dark:bg-gray-700 h-2 appearance-none"
           disabled=""
           id="root"
           name="root"
+          required=""
           step="any"
           type="range"
         />
@@ -4608,7 +4982,7 @@ exports[`widgets > range > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4636,10 +5010,11 @@ exports[`widgets > range > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > range > error 1`] = `
+exports[`widgets > range > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -4647,6 +5022,13 @@ exports[`widgets > range > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4665,10 +5047,12 @@ exports[`widgets > range > error 1`] = `
         <!---->
         <!---->
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
           class="w-full bg-gray-200 rounded-lg cursor-pointer dark:bg-gray-700 h-2 appearance-none"
           id="root"
           name="root"
+          required=""
           step="any"
           type="range"
         />
@@ -4682,7 +5066,7 @@ exports[`widgets > range > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -4699,7 +5083,7 @@ exports[`widgets > range > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4726,10 +5110,11 @@ exports[`widgets > range > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > range > normal 1`] = `
+exports[`widgets > range > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -4737,6 +5122,13 @@ exports[`widgets > range > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4755,10 +5147,12 @@ exports[`widgets > range > normal 1`] = `
         <!---->
         <!---->
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           class="w-full bg-gray-200 rounded-lg cursor-pointer dark:bg-gray-700 h-2 appearance-none"
           id="root"
           name="root"
+          required=""
           step="any"
           type="range"
         />
@@ -4777,7 +5171,7 @@ exports[`widgets > range > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4804,10 +5198,11 @@ exports[`widgets > range > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > range > readonly 1`] = `
+exports[`widgets > range > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -4815,6 +5210,13 @@ exports[`widgets > range > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4833,11 +5235,13 @@ exports[`widgets > range > readonly 1`] = `
         <!---->
         <!---->
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           class="w-full bg-gray-200 rounded-lg cursor-pointer dark:bg-gray-700 h-2 appearance-none"
           id="root"
           name="root"
           readonly=""
+          required=""
           step="any"
           type="range"
         />
@@ -4856,7 +5260,7 @@ exports[`widgets > range > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4883,10 +5287,11 @@ exports[`widgets > range > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > select > disabled 1`] = `
+exports[`widgets > select > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -4894,6 +5299,13 @@ exports[`widgets > select > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4912,14 +5324,16 @@ exports[`widgets > select > disabled 1`] = `
         <!---->
         <!---->
         <div
-          class="relative flex-1"
+          class="relative w-full rounded-lg flex-1"
         >
           <select
-            aria-describedby="root::description root::help root::errors"
-            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5 cursor-not-allowed opacity-50"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5 cursor-not-allowed opacity-50 rounded-lg"
             disabled=""
             id="root"
             name="root"
+            required=""
           >
             <!---->
             <!---->
@@ -4933,22 +5347,22 @@ exports[`widgets > select > disabled 1`] = `
             <!---->
              
             <option
-              value="0"
+              value="root__0"
             >
               foo
             </option>
             <option
-              value="1"
+              value="root__1"
             >
               bar
             </option>
             <option
-              value="2"
+              value="root__2"
             >
               fuzz
             </option>
             <option
-              value="3"
+              value="root__3"
             >
               qux
             </option>
@@ -4974,7 +5388,7 @@ exports[`widgets > select > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5002,10 +5416,11 @@ exports[`widgets > select > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > select > error 1`] = `
+exports[`widgets > select > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -5013,6 +5428,13 @@ exports[`widgets > select > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5031,13 +5453,15 @@ exports[`widgets > select > error 1`] = `
         <!---->
         <!---->
         <div
-          class="relative flex-1"
+          class="relative w-full rounded-lg flex-1"
         >
           <select
-            aria-describedby="root::description root::help root::errors"
-            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5 rounded-lg"
             id="root"
             name="root"
+            required=""
           >
             <!---->
             <!---->
@@ -5051,22 +5475,22 @@ exports[`widgets > select > error 1`] = `
             <!---->
              
             <option
-              value="0"
+              value="root__0"
             >
               foo
             </option>
             <option
-              value="1"
+              value="root__1"
             >
               bar
             </option>
             <option
-              value="2"
+              value="root__2"
             >
               fuzz
             </option>
             <option
-              value="3"
+              value="root__3"
             >
               qux
             </option>
@@ -5087,7 +5511,7 @@ exports[`widgets > select > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -5104,7 +5528,7 @@ exports[`widgets > select > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5131,10 +5555,11 @@ exports[`widgets > select > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > select > normal 1`] = `
+exports[`widgets > select > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -5142,6 +5567,13 @@ exports[`widgets > select > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5160,13 +5592,15 @@ exports[`widgets > select > normal 1`] = `
         <!---->
         <!---->
         <div
-          class="relative flex-1"
+          class="relative w-full rounded-lg flex-1"
         >
           <select
-            aria-describedby="root::description root::help root::errors"
-            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5 rounded-lg"
             id="root"
             name="root"
+            required=""
           >
             <!---->
             <!---->
@@ -5180,22 +5614,22 @@ exports[`widgets > select > normal 1`] = `
             <!---->
              
             <option
-              value="0"
+              value="root__0"
             >
               foo
             </option>
             <option
-              value="1"
+              value="root__1"
             >
               bar
             </option>
             <option
-              value="2"
+              value="root__2"
             >
               fuzz
             </option>
             <option
-              value="3"
+              value="root__3"
             >
               qux
             </option>
@@ -5221,7 +5655,7 @@ exports[`widgets > select > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5248,10 +5682,11 @@ exports[`widgets > select > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > select > readonly 1`] = `
+exports[`widgets > select > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -5259,6 +5694,13 @@ exports[`widgets > select > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5277,13 +5719,15 @@ exports[`widgets > select > readonly 1`] = `
         <!---->
         <!---->
         <div
-          class="relative flex-1"
+          class="relative w-full rounded-lg flex-1"
         >
           <select
-            aria-describedby="root::description root::help root::errors"
-            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5 rounded-lg"
             id="root"
             name="root"
+            required=""
           >
             <!---->
             <!---->
@@ -5297,22 +5741,22 @@ exports[`widgets > select > readonly 1`] = `
             <!---->
              
             <option
-              value="0"
+              value="root__0"
             >
               foo
             </option>
             <option
-              value="1"
+              value="root__1"
             >
               bar
             </option>
             <option
-              value="2"
+              value="root__2"
             >
               fuzz
             </option>
             <option
-              value="3"
+              value="root__3"
             >
               qux
             </option>
@@ -5338,7 +5782,7 @@ exports[`widgets > select > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5365,10 +5809,11 @@ exports[`widgets > select > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > switch > disabled 1`] = `
+exports[`widgets > switch > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -5376,6 +5821,13 @@ exports[`widgets > switch > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5401,11 +5853,13 @@ exports[`widgets > switch > disabled 1`] = `
           <!---->
            
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 rounded-sm dark:bg-gray-700 dark:border-gray-600 sr-only peer"
             disabled=""
             id="root"
             name="root"
+            required=""
             type="checkbox"
           />
            
@@ -5414,7 +5868,7 @@ exports[`widgets > switch > disabled 1`] = `
           />
            
           <!---->
-          
+          switch
           
           <!---->
           <!---->
@@ -5435,7 +5889,7 @@ exports[`widgets > switch > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5463,10 +5917,11 @@ exports[`widgets > switch > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > switch > error 1`] = `
+exports[`widgets > switch > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -5474,6 +5929,13 @@ exports[`widgets > switch > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5499,10 +5961,12 @@ exports[`widgets > switch > error 1`] = `
           <!---->
            
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
             class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 rounded-sm dark:bg-gray-700 dark:border-gray-600 sr-only peer"
             id="root"
             name="root"
+            required=""
             type="checkbox"
           />
            
@@ -5511,7 +5975,7 @@ exports[`widgets > switch > error 1`] = `
           />
            
           <!---->
-          
+          switch
           
           <!---->
           <!---->
@@ -5527,7 +5991,7 @@ exports[`widgets > switch > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -5544,7 +6008,7 @@ exports[`widgets > switch > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5571,10 +6035,11 @@ exports[`widgets > switch > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > switch > normal 1`] = `
+exports[`widgets > switch > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -5582,6 +6047,13 @@ exports[`widgets > switch > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5607,10 +6079,12 @@ exports[`widgets > switch > normal 1`] = `
           <!---->
            
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 rounded-sm dark:bg-gray-700 dark:border-gray-600 sr-only peer"
             id="root"
             name="root"
+            required=""
             type="checkbox"
           />
            
@@ -5619,7 +6093,7 @@ exports[`widgets > switch > normal 1`] = `
           />
            
           <!---->
-          
+          switch
           
           <!---->
           <!---->
@@ -5640,7 +6114,7 @@ exports[`widgets > switch > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5667,10 +6141,11 @@ exports[`widgets > switch > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > switch > readonly 1`] = `
+exports[`widgets > switch > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -5678,6 +6153,13 @@ exports[`widgets > switch > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5703,11 +6185,13 @@ exports[`widgets > switch > readonly 1`] = `
           <!---->
            
           <input
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 rounded-sm dark:bg-gray-700 dark:border-gray-600 sr-only peer"
             id="root"
             name="root"
             readonly=""
+            required=""
             type="checkbox"
           />
            
@@ -5716,7 +6200,7 @@ exports[`widgets > switch > readonly 1`] = `
           />
            
           <!---->
-          
+          switch
           
           <!---->
           <!---->
@@ -5737,7 +6221,7 @@ exports[`widgets > switch > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5764,10 +6248,11 @@ exports[`widgets > switch > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > tags > disabled 1`] = `
+exports[`widgets > tags > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -5775,6 +6260,13 @@ exports[`widgets > tags > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5797,9 +6289,13 @@ exports[`widgets > tags > disabled 1`] = `
          
         <!---->
          
+        <!---->
+         
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
-          disabled="true"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-required="true"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
         >
           <!---->
            
@@ -5808,7 +6304,10 @@ exports[`widgets > tags > disabled 1`] = `
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              disabled=""
+              id="root"
+              name="root"
               placeholder="Enter tags"
               type="text"
             />
@@ -5831,7 +6330,7 @@ exports[`widgets > tags > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5859,10 +6358,11 @@ exports[`widgets > tags > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > tags > error 1`] = `
+exports[`widgets > tags > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -5870,6 +6370,13 @@ exports[`widgets > tags > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5892,9 +6399,13 @@ exports[`widgets > tags > error 1`] = `
          
         <!---->
          
+        <!---->
+         
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
-          disabled="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          aria-required="true"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
         >
           <!---->
            
@@ -5903,7 +6414,9 @@ exports[`widgets > tags > error 1`] = `
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              id="root"
+              name="root"
               placeholder="Enter tags"
               type="text"
             />
@@ -5921,7 +6434,7 @@ exports[`widgets > tags > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -5938,7 +6451,7 @@ exports[`widgets > tags > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5965,10 +6478,11 @@ exports[`widgets > tags > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > tags > normal 1`] = `
+exports[`widgets > tags > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -5976,6 +6490,13 @@ exports[`widgets > tags > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5998,9 +6519,13 @@ exports[`widgets > tags > normal 1`] = `
          
         <!---->
          
+        <!---->
+         
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
-          disabled="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-required="true"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
         >
           <!---->
            
@@ -6009,7 +6534,9 @@ exports[`widgets > tags > normal 1`] = `
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              id="root"
+              name="root"
               placeholder="Enter tags"
               type="text"
             />
@@ -6032,7 +6559,7 @@ exports[`widgets > tags > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6059,10 +6586,11 @@ exports[`widgets > tags > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > tags > readonly 1`] = `
+exports[`widgets > tags > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -6070,6 +6598,13 @@ exports[`widgets > tags > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6092,9 +6627,14 @@ exports[`widgets > tags > readonly 1`] = `
          
         <!---->
          
+        <!---->
+         
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
-          disabled="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="true"
+          aria-required="true"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
         >
           <!---->
            
@@ -6103,7 +6643,9 @@ exports[`widgets > tags > readonly 1`] = `
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              id="root"
+              name="root"
               placeholder="Enter tags"
               type="text"
             />
@@ -6126,7 +6668,7 @@ exports[`widgets > tags > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6153,10 +6695,11 @@ exports[`widgets > tags > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > text > disabled 1`] = `
+exports[`widgets > text > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -6164,6 +6707,13 @@ exports[`widgets > text > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6186,24 +6736,18 @@ exports[`widgets > text > disabled 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
-          aria-describedby="root::description root::help root::errors"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           disabled=""
           id="root"
           name="root"
+          required=""
           type="text"
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -6226,7 +6770,7 @@ exports[`widgets > text > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6254,10 +6798,11 @@ exports[`widgets > text > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > text > error 1`] = `
+exports[`widgets > text > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -6265,6 +6810,13 @@ exports[`widgets > text > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6287,23 +6839,17 @@ exports[`widgets > text > error 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
-          aria-describedby="root::description root::help root::errors"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
+          required=""
           type="text"
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -6321,7 +6867,7 @@ exports[`widgets > text > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -6338,7 +6884,7 @@ exports[`widgets > text > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6365,10 +6911,11 @@ exports[`widgets > text > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > text > normal 1`] = `
+exports[`widgets > text > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -6376,6 +6923,13 @@ exports[`widgets > text > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6398,23 +6952,17 @@ exports[`widgets > text > normal 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
-          aria-describedby="root::description root::help root::errors"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
+          required=""
           type="text"
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -6437,7 +6985,7 @@ exports[`widgets > text > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6464,10 +7012,11 @@ exports[`widgets > text > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > text > readonly 1`] = `
+exports[`widgets > text > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -6475,6 +7024,13 @@ exports[`widgets > text > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6497,24 +7053,18 @@ exports[`widgets > text > readonly 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
-          aria-describedby="root::description root::help root::errors"
-          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
           id="root"
           name="root"
           readonly=""
+          required=""
           type="text"
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -6537,7 +7087,7 @@ exports[`widgets > text > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6564,10 +7114,11 @@ exports[`widgets > text > readonly 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > textarea > disabled 1`] = `
+exports[`widgets > textarea > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -6575,6 +7126,13 @@ exports[`widgets > textarea > disabled 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6596,11 +7154,13 @@ exports[`widgets > textarea > disabled 1`] = `
           class="relative w-full"
         >
           <textarea
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 w-full"
             disabled=""
             id="root"
             name="root"
+            required=""
           />
           <!---->
            
@@ -6621,7 +7181,7 @@ exports[`widgets > textarea > disabled 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6649,10 +7209,11 @@ exports[`widgets > textarea > disabled 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > textarea > error 1`] = `
+exports[`widgets > textarea > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -6660,6 +7221,13 @@ exports[`widgets > textarea > error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6681,10 +7249,12 @@ exports[`widgets > textarea > error 1`] = `
           class="relative w-full"
         >
           <textarea
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
             class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 w-full"
             id="root"
             name="root"
+            required=""
           />
           <!---->
            
@@ -6700,7 +7270,7 @@ exports[`widgets > textarea > error 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -6717,7 +7287,7 @@ exports[`widgets > textarea > error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6744,10 +7314,11 @@ exports[`widgets > textarea > error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > textarea > normal 1`] = `
+exports[`widgets > textarea > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -6755,6 +7326,13 @@ exports[`widgets > textarea > normal 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6776,10 +7354,12 @@ exports[`widgets > textarea > normal 1`] = `
           class="relative w-full"
         >
           <textarea
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 w-full"
             id="root"
             name="root"
+            required=""
           />
           <!---->
            
@@ -6800,7 +7380,7 @@ exports[`widgets > textarea > normal 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6827,10 +7407,11 @@ exports[`widgets > textarea > normal 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
-exports[`widgets > textarea > readonly 1`] = `
+exports[`widgets > textarea > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -6838,6 +7419,13 @@ exports[`widgets > textarea > readonly 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6859,11 +7447,13 @@ exports[`widgets > textarea > readonly 1`] = `
           class="relative w-full"
         >
           <textarea
-            aria-describedby="root::description root::help root::errors"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
             class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 w-full"
             id="root"
             name="root"
             readonly=""
+            required=""
           />
           <!---->
            
@@ -6884,7 +7474,7 @@ exports[`widgets > textarea > readonly 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6909,6 +7499,725 @@ exports[`widgets > textarea > readonly 1`] = `
     <!---->
     <!---->
   </form>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > toggleRadioButtons > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="inline"
+        >
+          <div
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-label="toggle-group"
+            aria-required="true"
+            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
+            disabled="true"
+            role="radiogroup"
+          >
+            <!---->
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              disabled=""
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  foo
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              disabled=""
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  bar
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              disabled=""
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  fuzz
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              disabled=""
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  qux
+                  <!---->
+                </span>
+              </div>
+            </button>
+            
+            <!---->
+          </div>
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+       
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > toggleRadioButtons > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="inline"
+        >
+          <div
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            aria-label="toggle-group"
+            aria-required="true"
+            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
+            disabled="false"
+            role="radiogroup"
+          >
+            <!---->
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  foo
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  bar
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  fuzz
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  qux
+                  <!---->
+                </span>
+              </div>
+            </button>
+            
+            <!---->
+          </div>
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+       
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > toggleRadioButtons > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="inline"
+        >
+          <div
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-label="toggle-group"
+            aria-required="true"
+            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
+            disabled="false"
+            role="radiogroup"
+          >
+            <!---->
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  foo
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  bar
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  fuzz
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  qux
+                  <!---->
+                </span>
+              </div>
+            </button>
+            
+            <!---->
+          </div>
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+       
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > toggleRadioButtons > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="inline"
+        >
+          <div
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-label="toggle-group"
+            aria-readonly="true"
+            aria-required="true"
+            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
+            disabled="false"
+            role="radiogroup"
+          >
+            <!---->
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  foo
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  bar
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  fuzz
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  qux
+                  <!---->
+                </span>
+              </div>
+            </button>
+            
+            <!---->
+          </div>
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+       
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
   
   
 </div>

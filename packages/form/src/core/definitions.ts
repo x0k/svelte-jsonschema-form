@@ -7,7 +7,7 @@ import jsonpointer from "jsonpointer";
 import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import { REF_KEY, type Schema, type SchemaDefinition } from "./schema.js";
-import { mergeSchemas } from "./merge.js";
+import type { Merger } from "./merger.js";
 
 export function resolveRef(ref: string, rootSchema: Schema) {
   if (!ref.startsWith("#")) {
@@ -25,6 +25,7 @@ export function resolveRef(ref: string, rootSchema: Schema) {
 }
 
 export function findSchemaDefinition(
+  merger: Merger,
   ref: string,
   rootSchema: Schema,
   stack = new Set<string>()
@@ -50,6 +51,7 @@ export function findSchemaDefinition(
       );
     }
     const subSchema = findSchemaDefinition(
+      merger,
       nextRef,
       rootSchema,
       new Set(stack).add(ref)
@@ -58,7 +60,7 @@ export function findSchemaDefinition(
       return subSchema;
     }
     const { [REF_KEY]: _, ...currentSchema } = current;
-    return mergeSchemas(currentSchema, subSchema);
+    return merger.mergeSchemas(currentSchema, subSchema);
   }
   return current;
 }

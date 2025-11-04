@@ -1,4 +1,4 @@
-import pageSvelte from "%/pattern-properties-validator/src/routes/+page.svelte?raw";
+import pageSvelte from "%/basic-starter/src/routes/pattern-properties-validator/+page.svelte?raw";
 
 import type { Layer } from "../layer";
 

@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { SvelteMap } from "svelte/reactivity";
   import { BitsConfig } from "bits-ui";
+  import { Willow, WillowDark } from '@svar-ui/svelte-core'
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
+  import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
+  import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import {
     ON_BLUR,
     ON_CHANGE,
@@ -10,17 +12,20 @@
     AFTER_SUBMITTED,
     AFTER_TOUCHED,
     createForm,
-    BasicForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
-    createFormMerger,
+    setFormContext,
+    Form,
+    Content,
+    SubmitButton,
     type FormValue,
-    type Validator,
+    getValueSnapshot,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
-  import { setThemeContext } from "@sjsf/shadcn4-theme";
+  import { createFormMerger } from "@sjsf/form/mergers/modern";
+  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import {
     compressToEncodedURIComponent,
     decompressFromEncodedURIComponent,
@@ -56,11 +61,13 @@
   import Popup from "./popup.svelte";
   import Bits from "./bits.svelte";
   import Select from "./select.svelte";
+  import Noop from './noop.svelte';
 
   import * as customComponents from "./custom-form-components/index.js";
   import { themeManager } from "./theme.svelte";
   import SamplePicker from "./sample-picker.svelte";
   import { setShadcnContext } from "./shadcn-context.js";
+  import Debug from "./debug.svelte";
 
   const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
     schema: {
@@ -115,7 +122,7 @@
 
   let callbackId: number | undefined;
   $effect(() => {
-    Object.values(data);
+    $state.snapshot(data);
     clearTimeout(callbackId);
     callbackId = setTimeout(() => {
       const url = new URL(location.href);
@@ -126,7 +133,6 @@
 
   const theme = $derived(extendByRecord(themes[data.theme], customComponents));
   const themeStyle = $derived(themeStyles[data.theme]);
-  const validator = $derived(validators[data.validator]());
   const iconsSet = $derived(data.icons && icons[data.icons]);
   const iconSetStyle = $derived(data.icons && iconsStyles[data.icons]);
   const fieldsValidationCount = $derived.by(() => {
@@ -140,19 +146,12 @@
     }
     return count;
   });
-  const resolver = $derived(resolvers[data.resolver]);
-  const merger = $derived(
-    createFormMerger(validator, data.schema, {
-      allOf: data.allOf,
-      arrayMinItems: {
-        populate: data.arrayMinItemsPopulate,
-        mergeExtraDefaults: data.arrayMinItemsMergeExtraDefaults,
-      },
-      constAsDefaults: data.constAsDefault,
-      emptyObjectFields: data.emptyObjectFields,
-      mergeDefaultsIntoFormData: data.mergeDefaultsIntoFormData,
-    })
-  );
+
+  const { compareSchemaDefinitions, compareSchemaValues } = createComparator();
+  const jsonSchemaMerger = createMerger({
+    intersectJson: createIntersector(compareSchemaValues),
+    deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
+  });
 
   let portalEl = $state.raw() as HTMLDivElement;
   const rootNode = $derived(portalEl?.getRootNode());
@@ -162,13 +161,24 @@
       return rootNode;
     },
   };
+  const portalOptions = {
+    get target() {
+      return portalEl
+    }
+  }
 
   const focusOnFirstError = createFocusOnFirstError();
-  const form = createForm<FormValue, Validator>({
+  const form = createForm({
+    idBuilder: createFormIdBuilder,
     get resolver() {
-      return resolver;
+      return resolvers[data.resolver];
     },
-    initialValue: data.initialValue,
+    value: [
+      () => data.initialValue,
+      (v) => {
+        data.initialValue = v;
+      },
+    ],
     translation,
     get theme() {
       return theme;
@@ -179,12 +189,33 @@
     get uiSchema() {
       return data.uiSchema;
     },
-    get validator() {
-      return validator;
+    validator: (options) => {
+      const v = validators[data.validator]<FormValue>(options);
+      return {
+        ...v,
+        validateFormValue(rootSchema, formValue) {
+          return v.validateFormValue(
+            rootSchema,
+            data.omitExtraData
+              ? omitExtraData(v, options.merger(), options.schema, formValue)
+              : formValue
+          );
+        },
+      };
     },
-    get merger() {
-      return merger;
-    },
+    merger: (options) =>
+      createFormMerger({
+        ...options,
+        jsonSchemaMerger,
+        allOf: data.allOf,
+        arrayMinItems: {
+          populate: data.arrayMinItemsPopulate,
+          mergeExtraDefaults: data.arrayMinItemsMergeExtraDefaults,
+        },
+        constAsDefaults: data.constAsDefault,
+        emptyObjectFields: data.emptyObjectFields,
+        mergeDefaultsIntoFormData: data.mergeDefaultsIntoFormData,
+      }),
     get disabled() {
       return data.disabled;
     },
@@ -194,39 +225,36 @@
     get icons() {
       return iconsSet;
     },
-    getSnapshot(ctx) {
-      const snap = $state.snapshot(ctx.value);
-      return data.omitExtraData
-        ? omitExtraData(validator, merger, data.schema, snap)
-        : snap;
-    },
     extraUiOptions: fromRecord({
-      skeleton3Slider: options,
-      skeleton3FileUpload: options,
-      skeleton3Rating: options,
-      skeleton3Segment: options,
-      skeleton3Switch: options,
-      skeleton3Tags: options,
+      skeleton4Slider: options,
+      skeleton4FileUpload: options,
+      skeleton4Rating: options,
+      skeleton4Segment: options,
+      skeleton4Switch: options,
+      skeleton4Tags: options,
+      skeleton4DatePicker: options,
+      skeleton4DatePickerPortal: portalOptions,
+      skeleton4Combobox: options,
+      skeleton4ComboboxPortal: portalOptions
     }),
     onSubmit(value) {
       console.log("submit", value);
     },
     onSubmitError(errors, e) {
       if (data.focusOnFirstError) {
-        focusOnFirstError(errors, e);
+        focusOnFirstError(errors, e, form);
       }
       console.log("errors", errors);
     },
   });
-
-  $effect(() => {
-    data.initialValue = form.value;
-  });
+  setFormContext(form);
 
   setShadcnContext();
 
   const clearLink = new URL(location.href);
   clearLink.hash = "";
+
+  const SvarProvider = $derived(data.theme === 'svar' ? themeManager.isDark ? WillowDark : Willow : Noop)
 </script>
 
 <div
@@ -239,8 +267,6 @@
     <SamplePicker
       onSelect={(sample) => {
         Object.assign(data, sample);
-        form.value = sample.initialValue;
-        form.errors = new SvelteMap();
       }}
     />
     <Popup>
@@ -375,26 +401,49 @@
   />
   <Editor
     class="row-start-3 col-span-2 border rounded-md data-[error=true]:border-red-500 data-[error=true]:outline-none"
-    bind:value={form.value}
+    bind:value={
+      () => getValueSnapshot(form),
+      (v) => {
+        data.initialValue = v;
+      }
+    }
   />
   <ShadowHost
     class="col-span-3 row-span-2 overflow-y-auto border border-[var(--global-border)] rounded-md"
     style={`${themeStyle}\n${iconSetStyle}`}
   >
-    {#if portalEl}
-      <BitsConfig defaultPortalTo={portalEl}>
-        <BasicForm
-          id="form"
-          {form}
-          class={themeManager.darkOrLight}
-          style="min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;"
-          novalidate={!data.html5Validation || undefined}
-          data-theme={data.theme.startsWith("skeleton")
-            ? "cerberus"
-            : themeManager.darkOrLight}
-        />
-      </BitsConfig>
-    {/if}
+    <style>
+      .wx-willow-theme, .wx-willow-dark-theme {
+        height: auto !important;
+        min-height: 100%;
+      }
+    </style>
+    <BitsConfig defaultPortalTo={portalEl}>
+      <SvarProvider>
+        <svelte:boundary>
+          <Form
+            attributes={{
+              id: "form",
+              class: themeManager.darkOrLight,
+              style:
+                "min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;",
+              novalidate: !data.html5Validation || undefined,
+              ["data-theme"]: data.theme.startsWith("skeleton")
+                ? "cerberus"
+                : themeManager.darkOrLight,
+            }}
+          >
+            <Content />
+            <SubmitButton />
+            <Debug />
+          </Form>
+          {#snippet failed(error, reset)}
+            {@const _ = setTimeout(reset, 1000)}
+            <p style="color: red; padding: 1rem;">{error}</p>
+          {/snippet}
+        </svelte:boundary>
+      </SvarProvider>
+    </BitsConfig>
     <div bind:this={portalEl}></div>
   </ShadowHost>
 </div>

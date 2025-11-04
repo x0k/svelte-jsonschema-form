@@ -1,19 +1,13 @@
 <script lang="ts" module>
-  import { getContext, setContext, type Snippet } from "svelte";
-
-  const INDEX_CONTEXT = Symbol("index-context");
+  import { createContext, type Snippet } from "svelte";
 
   export interface IndexContext {
     current: number;
   }
 
-  export function getIndexContext(): IndexContext {
-    return getContext(INDEX_CONTEXT);
-  }
+  const [getIndexContext, setIndexContext] = createContext<IndexContext>();
 
-  function setIndexContext(ctx: IndexContext) {
-    setContext(INDEX_CONTEXT, ctx);
-  }
+  export { getIndexContext };
 </script>
 
 <script lang="ts">

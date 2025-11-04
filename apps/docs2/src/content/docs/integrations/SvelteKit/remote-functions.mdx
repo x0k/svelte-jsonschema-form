@@ -1,0 +1,55 @@
+---
+title: Remote functions
+sidebar:
+  order: 1
+  badge:
+    text: exp
+    variant: caution
+---
+
+import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
+
+import Npm from '@/components/npm.astro';
+
+import modelCode from '%/sveltekit-starter/src/lib/post.ts?raw'
+import clientCode from '%/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw';
+import serverCode from '%/sveltekit-starter/src/routes/remote-functions/data.remote?raw'
+
+:::caution
+
+Remote functions integration is experimental
+
+:::
+
+## Installation
+
+<Npm pkg="@sjsf/sveltekit" />
+
+## Example
+
+<Tabs>
+  <TabItem label='+page.svelte' >
+    <Code code={clientCode} lang='svelte' />
+  </TabItem>
+  <TabItem label='data.remote.ts'>
+    <Code code={serverCode} lang='typescript' />
+  </TabItem>
+  <TabItem label='model.ts'>
+    <Code code={modelCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+## Known issues
+
+- `experimental.async` does not apply to dependency code -
+  [issue](https://github.com/sveltejs/kit/issues/14788).
+
+  Add this to your `vite.config.js`
+  ```js
+  optimizeDeps: {
+    exclude: ['@sjsf/form', '@sjsf/sveltekit/rf/client'],
+  }
+  ```
+- The `form.value` type on the client side is `unknown` because the `RemoteForm`
+  type does not include information about the validator's output type.
+  For now, you need to specify the type manually: `createForm<FormValue>(...)`.

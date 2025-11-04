@@ -13,7 +13,14 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, layoutAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		composeProps,
+		getFormContext,
+		layoutAttributes,
+		uiOptionNestedProps,
+		uiOptionProps,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
 
@@ -23,32 +30,46 @@
 	const isColumn = $derived(
 		type === 'array-items' || type === 'object-properties' || type === 'multi-field'
 	);
+	const isField = $derived(type === 'field' || type === 'array-field' || type === 'object-field');
+	const isTitleRow = $derived(
+		type === 'field-title-row' ||
+			type === 'array-field-title-row' ||
+			type === 'object-field-title-row'
+	);
+	const isMultiFieldControls = $derived(type === 'multi-field-controls')
 
 	const ctx = getFormContext();
 
 	const attributes = $derived(layoutAttributes(ctx, config, 'layout', 'layouts', type, {}));
 </script>
 
-{#if (type === 'field-meta' || type === 'field-content' || type === 'array-field-meta' || type === 'object-field-meta') && Object.keys(attributes).length < 2}
+{#if type === 'field-content' || (type === 'field-meta' && Object.keys(attributes).length < 2)}
 	{@render children()}
-{:else if type === 'field' || type === 'array-field' || type === 'object-field'}
-	{@const attributes = layoutAttributes(
-		ctx,
-		config,
-		'daisyui5FieldsLayout',
-		'daisyui5FieldsLayouts',
-		type,
-		{}
-	)}
-	<fieldset class="fieldset gap-y-2" {...attributes}>
+{:else if isField}
+	<fieldset
+		class="fieldset gap-y-2"
+		{...composeProps(
+			ctx,
+			config,
+			attributes as HTMLFieldsetAttributes,
+			uiOptionProps('daisyui5FieldsLayout'),
+			uiOptionNestedProps('daisyui5FieldsLayouts', (data) => data[type])
+		)}
+	>
 		{@render children()}
 	</fieldset>
+{:else if type === 'array-field-meta' || type === 'object-field-meta'}
+	<legend class="w-full" {...attributes}>
+		{@render children()}
+	</legend>
 {:else}
 	<div
 		class={{
-			flex: isItem || isControls || isColumn || type === 'multi-field-controls',
-			'gap-2': isItem || isColumn,
+			flex: isItem || isControls || isColumn || isTitleRow || isMultiFieldControls,
+			'gap-2': isItem || isColumn || isMultiFieldControls,
 			'items-start': isItem || isControls,
+			'items-center': isTitleRow || isMultiFieldControls,
+			'justify-between': isTitleRow,
 			join: isControls,
 			grow:
 				type === 'array-item-content' ||

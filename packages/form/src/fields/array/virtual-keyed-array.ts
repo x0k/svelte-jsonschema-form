@@ -4,14 +4,13 @@ import type { FieldValue, KeyedFieldValues } from "@/form/index.js";
 export class VirtualKeyedArray implements KeyedFieldValues {
   constructor(protected readonly setValue: (v: SchemaArrayValue) => void) {}
 
-  key(): number {
-    throw new Error(
-      'Method "key" cannot be called on "VirtualKeyedArray" instance'
-    );
+  key(index: number): number {
+    return index;
   }
 
-  push(value: FieldValue): void {
+  push(value: FieldValue) {
     this.setValue([value]);
+    return 1;
   }
 
   swap(): void {
@@ -29,7 +28,7 @@ export class VirtualKeyedArray implements KeyedFieldValues {
     this.setValue([value]);
   }
 
-  remove(): void {
+  remove(_: number): FieldValue {
     throw new Error(
       'Method "remove" cannot be called on "VirtualKeyedArray" instance'
     );

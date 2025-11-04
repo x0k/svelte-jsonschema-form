@@ -1,0 +1,1633 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`widgets > fileDropZone > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > fileDropZone > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > fileDropZone > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > fileDropZone > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > fileDropZoneMultiple > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > fileDropZoneMultiple > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > fileDropZoneMultiple > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > fileDropZoneMultiple > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > ipV4AddressInput > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > ipV4AddressInput > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > ipV4AddressInput > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > ipV4AddressInput > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > nlpDateInput > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > nlpDateInput > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > nlpDateInput > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > nlpDateInput > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > password > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > password > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > password > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > password > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > phoneInput > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > phoneInput > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > phoneInput > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > phoneInput > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > starRating > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > starRating > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > starRating > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > starRating > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > tagsInput > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > tagsInput > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > tagsInput > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > tagsInput > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;

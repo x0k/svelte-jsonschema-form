@@ -8,6 +8,13 @@ exports[`array fields > array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -25,8 +32,6 @@ exports[`array fields > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
@@ -61,7 +66,7 @@ exports[`array fields > array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -86,6 +91,7 @@ exports[`array fields > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -99,6 +105,13 @@ exports[`array fields > array icons 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -120,7 +133,6 @@ exports[`array fields > array icons 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="flex gap-2 items-start"
           data-layout="array-item"
@@ -149,17 +161,29 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  -1 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_0"
+                  >
+                    -1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -183,24 +207,17 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.0"
-                  name="root.0"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -233,7 +250,7 @@ exports[`array fields > array icons 1`] = `
           <!---->
           <!---->
           <div
-            class="inline-flex rounded-lg shadow-xs scale-100"
+            class="inline-flex rounded-lg shadow-xs"
             role="group"
           >
             <!---->
@@ -364,17 +381,29 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  -2 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_1"
+                  >
+                    -2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -398,24 +427,17 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.1"
-                  name="root.1"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -448,7 +470,7 @@ exports[`array fields > array icons 1`] = `
           <!---->
           <!---->
           <div
-            class="inline-flex rounded-lg shadow-xs scale-100"
+            class="inline-flex rounded-lg shadow-xs"
             role="group"
           >
             <!---->
@@ -543,7 +565,6 @@ exports[`array fields > array icons 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -582,7 +603,7 @@ exports[`array fields > array icons 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -607,6 +628,7 @@ exports[`array fields > array icons 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -620,12 +642,19 @@ exports[`array fields > checkboxes 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <pre
       style="color: red;"
     >
       "multiEnumField" component not found
     </pre>
-    
+    <!---->
     <!---->
      
     <!---->
@@ -652,6 +681,7 @@ exports[`array fields > checkboxes 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -663,6 +693,13 @@ exports[`array fields > empty errors array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -678,7 +715,6 @@ exports[`array fields > empty errors array 1`] = `
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -715,14 +751,26 @@ exports[`array fields > empty errors array 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.name"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  name 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_name"
+                  >
+                    name 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -746,23 +794,16 @@ exports[`array fields > empty errors array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.name::description root.name::help root.name::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.name"
-                  name="root.name"
+                  aria-describedby="root_name__description root_name__help root_name__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_name"
+                  name="root_name"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -795,7 +836,6 @@ exports[`array fields > empty errors array 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -812,7 +852,7 @@ exports[`array fields > empty errors array 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -827,7 +867,7 @@ exports[`array fields > empty errors array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -852,6 +892,7 @@ exports[`array fields > empty errors array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -865,6 +906,13 @@ exports[`array fields > fixed array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -886,7 +934,6 @@ exports[`array fields > fixed array 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="flex gap-2 items-start"
           data-layout="array-item"
@@ -921,24 +968,17 @@ exports[`array fields > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.0"
-                  name="root.0"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -1013,25 +1053,18 @@ exports[`array fields > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.1"
-                  name="root.1"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -1064,7 +1097,6 @@ exports[`array fields > fixed array 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -1084,7 +1116,7 @@ exports[`array fields > fixed array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1109,6 +1141,7 @@ exports[`array fields > fixed array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1122,6 +1155,13 @@ exports[`with title and description > array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1137,19 +1177,31 @@ exports[`with title and description > array 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -1168,8 +1220,6 @@ exports[`with title and description > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
@@ -1204,7 +1254,7 @@ exports[`with title and description > array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1229,6 +1279,7 @@ exports[`with title and description > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1242,6 +1293,13 @@ exports[`with title and description > array icons 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1257,19 +1315,31 @@ exports[`with title and description > array icons 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -1292,7 +1362,6 @@ exports[`with title and description > array icons 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="flex gap-2 items-start"
           data-layout="array-item"
@@ -1321,17 +1390,29 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Test item-1 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_0"
+                  >
+                    Test item-1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -1339,7 +1420,7 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.0::description"
+                  id="root_0__description"
                 >
                   a test item description
                 </div>
@@ -1363,24 +1444,17 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.0"
-                  name="root.0"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -1413,7 +1487,7 @@ exports[`with title and description > array icons 1`] = `
           <!---->
           <!---->
           <div
-            class="inline-flex rounded-lg shadow-xs scale-100"
+            class="inline-flex rounded-lg shadow-xs"
             role="group"
           >
             <!---->
@@ -1544,17 +1618,29 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Test item-2 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_1"
+                  >
+                    Test item-2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -1562,7 +1648,7 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.1::description"
+                  id="root_1__description"
                 >
                   a test item description
                 </div>
@@ -1586,24 +1672,17 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.1"
-                  name="root.1"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -1636,7 +1715,7 @@ exports[`with title and description > array icons 1`] = `
           <!---->
           <!---->
           <div
-            class="inline-flex rounded-lg shadow-xs scale-100"
+            class="inline-flex rounded-lg shadow-xs"
             role="group"
           >
             <!---->
@@ -1731,7 +1810,6 @@ exports[`with title and description > array icons 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -1770,7 +1848,7 @@ exports[`with title and description > array icons 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1795,6 +1873,7 @@ exports[`with title and description > array icons 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1808,12 +1887,19 @@ exports[`with title and description > checkboxes 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <pre
       style="color: red;"
     >
       "multiEnumField" component not found
     </pre>
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1840,6 +1926,7 @@ exports[`with title and description > checkboxes 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -1851,6 +1938,13 @@ exports[`with title and description > fixed array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1866,19 +1960,31 @@ exports[`with title and description > fixed array 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -1901,7 +2007,6 @@ exports[`with title and description > fixed array 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="flex gap-2 items-start"
           data-layout="array-item"
@@ -1930,17 +2035,29 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Test item 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_0"
+                  >
+                    Test item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -1948,7 +2065,7 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.0::description"
+                  id="root_0__description"
                 >
                   a test item description
                 </div>
@@ -1972,24 +2089,17 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.0"
-                  name="root.0"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2058,17 +2168,29 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Test item 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_1"
+                  >
+                    Test item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -2076,7 +2198,7 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.1::description"
+                  id="root_1__description"
                 >
                   a test item description
                 </div>
@@ -2100,25 +2222,18 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.1"
-                  name="root.1"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2151,7 +2266,6 @@ exports[`with title and description > fixed array 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -2171,7 +2285,7 @@ exports[`with title and description > fixed array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2196,6 +2310,7 @@ exports[`with title and description > fixed array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2209,6 +2324,13 @@ exports[`with title and description from both > array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2224,19 +2346,31 @@ exports[`with title and description from both > array 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -2255,8 +2389,6 @@ exports[`with title and description from both > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
@@ -2291,7 +2423,7 @@ exports[`with title and description from both > array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2316,6 +2448,7 @@ exports[`with title and description from both > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2329,6 +2462,13 @@ exports[`with title and description from both > array icons 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2344,19 +2484,31 @@ exports[`with title and description from both > array icons 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -2379,7 +2531,6 @@ exports[`with title and description from both > array icons 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="flex gap-2 items-start"
           data-layout="array-item"
@@ -2408,17 +2559,29 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item-1 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_0"
+                  >
+                    My Item-1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -2426,7 +2589,7 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -2450,24 +2613,17 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.0"
-                  name="root.0"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2500,7 +2656,7 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
           <!---->
           <div
-            class="inline-flex rounded-lg shadow-xs scale-100"
+            class="inline-flex rounded-lg shadow-xs"
             role="group"
           >
             <!---->
@@ -2631,17 +2787,29 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item-2 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_1"
+                  >
+                    My Item-2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -2649,7 +2817,7 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -2673,24 +2841,17 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.1"
-                  name="root.1"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2723,7 +2884,7 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
           <!---->
           <div
-            class="inline-flex rounded-lg shadow-xs scale-100"
+            class="inline-flex rounded-lg shadow-xs"
             role="group"
           >
             <!---->
@@ -2818,7 +2979,6 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -2857,7 +3017,7 @@ exports[`with title and description from both > array icons 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2882,6 +3042,7 @@ exports[`with title and description from both > array icons 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2895,12 +3056,19 @@ exports[`with title and description from both > checkboxes 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <pre
       style="color: red;"
     >
       "multiEnumField" component not found
     </pre>
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2925,6 +3093,7 @@ exports[`with title and description from both > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2938,6 +3107,13 @@ exports[`with title and description from both > fixed array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2953,19 +3129,31 @@ exports[`with title and description from both > fixed array 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -2988,7 +3176,6 @@ exports[`with title and description from both > fixed array 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="flex gap-2 items-start"
           data-layout="array-item"
@@ -3017,17 +3204,29 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_0"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -3035,7 +3234,7 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -3059,24 +3258,17 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.0"
-                  name="root.0"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3145,17 +3337,29 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_1"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -3163,7 +3367,7 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -3187,25 +3391,18 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.1"
-                  name="root.1"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3238,7 +3435,6 @@ exports[`with title and description from both > fixed array 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -3258,7 +3454,7 @@ exports[`with title and description from both > fixed array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3283,6 +3479,7 @@ exports[`with title and description from both > fixed array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3296,6 +3493,13 @@ exports[`with title and description from uiSchema > array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3311,19 +3515,31 @@ exports[`with title and description from uiSchema > array 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -3342,8 +3558,6 @@ exports[`with title and description from uiSchema > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
@@ -3378,7 +3592,7 @@ exports[`with title and description from uiSchema > array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3403,6 +3617,7 @@ exports[`with title and description from uiSchema > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3416,6 +3631,13 @@ exports[`with title and description from uiSchema > array icons 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3431,19 +3653,31 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -3466,7 +3700,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="flex gap-2 items-start"
           data-layout="array-item"
@@ -3495,17 +3728,29 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item-1 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_0"
+                  >
+                    My Item-1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -3513,7 +3758,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -3537,24 +3782,17 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.0"
-                  name="root.0"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3587,7 +3825,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
           <!---->
           <div
-            class="inline-flex rounded-lg shadow-xs scale-100"
+            class="inline-flex rounded-lg shadow-xs"
             role="group"
           >
             <!---->
@@ -3718,17 +3956,29 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item-2 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_1"
+                  >
+                    My Item-2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -3736,7 +3986,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -3760,24 +4010,17 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.1"
-                  name="root.1"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3810,7 +4053,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
           <!---->
           <div
-            class="inline-flex rounded-lg shadow-xs scale-100"
+            class="inline-flex rounded-lg shadow-xs"
             role="group"
           >
             <!---->
@@ -3905,7 +4148,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -3944,7 +4186,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3969,6 +4211,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3982,12 +4225,19 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <pre
       style="color: red;"
     >
       "multiEnumField" component not found
     </pre>
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4014,6 +4264,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -4025,6 +4276,13 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4040,19 +4298,31 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -4075,7 +4345,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="flex gap-2 items-start"
           data-layout="array-item"
@@ -4104,17 +4373,29 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.0"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_0"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -4122,7 +4403,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.0::description"
+                  id="root_0__description"
                 >
                   a fancier item description
                 </div>
@@ -4146,24 +4427,17 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.0"
-                  name="root.0"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4232,17 +4506,29 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.1"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_1"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -4250,7 +4536,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.1::description"
+                  id="root_1__description"
                 >
                   a fancier item description
                 </div>
@@ -4274,25 +4560,18 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.1"
-                  name="root.1"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4325,7 +4604,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -4345,7 +4623,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4370,6 +4648,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4383,6 +4662,13 @@ exports[`with title and description with global label off > array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4400,8 +4686,6 @@ exports[`with title and description with global label off > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
@@ -4436,7 +4720,7 @@ exports[`with title and description with global label off > array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4461,6 +4745,7 @@ exports[`with title and description with global label off > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4474,6 +4759,13 @@ exports[`with title and description with global label off > array icons 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4495,7 +4787,6 @@ exports[`with title and description with global label off > array icons 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="flex gap-2 items-start"
           data-layout="array-item"
@@ -4530,24 +4821,17 @@ exports[`with title and description with global label off > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.0"
-                  name="root.0"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4580,7 +4864,7 @@ exports[`with title and description with global label off > array icons 1`] = `
           <!---->
           <!---->
           <div
-            class="inline-flex rounded-lg shadow-xs scale-100"
+            class="inline-flex rounded-lg shadow-xs"
             role="group"
           >
             <!---->
@@ -4717,24 +5001,17 @@ exports[`with title and description with global label off > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.1"
-                  name="root.1"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4767,7 +5044,7 @@ exports[`with title and description with global label off > array icons 1`] = `
           <!---->
           <!---->
           <div
-            class="inline-flex rounded-lg shadow-xs scale-100"
+            class="inline-flex rounded-lg shadow-xs"
             role="group"
           >
             <!---->
@@ -4862,7 +5139,6 @@ exports[`with title and description with global label off > array icons 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -4901,7 +5177,7 @@ exports[`with title and description with global label off > array icons 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4926,6 +5202,7 @@ exports[`with title and description with global label off > array icons 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4939,12 +5216,19 @@ exports[`with title and description with global label off > checkboxes 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <pre
       style="color: red;"
     >
       "multiEnumField" component not found
     </pre>
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4971,6 +5255,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -4982,6 +5267,13 @@ exports[`with title and description with global label off > fixed array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5003,7 +5295,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="flex gap-2 items-start"
           data-layout="array-item"
@@ -5038,24 +5329,17 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.0"
-                  name="root.0"
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_0"
+                  name="root_0"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5130,25 +5414,18 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.1"
-                  name="root.1"
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_1"
+                  name="root_1"
                   required=""
                   step="any"
                   type="number"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5181,7 +5458,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -5201,7 +5477,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5226,6 +5502,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>

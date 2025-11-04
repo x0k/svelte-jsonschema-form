@@ -2,6 +2,9 @@
 
 set -xe
 
+update:
+  pnpm -w update --no-save
+
 d:
   pnpm run dev
 
@@ -17,13 +20,60 @@ b:
 c:
   pnpm run check $@
 
-sjsf/:
-  c:
-    pnpm run check --filter="@sjsf/*" $@
-  t:
-    pnpm run test --filter="@sjsf/*" $@
+p:
+  pnpm run preview
+
+cs:
+  pnpm changeset
+
+h:
+  mk -P targets "*"
+
+f/:
+  pushd packages/form
+  d:
+    pnpm run dev
   b:
-    pnpm run build --filter="@sjsf/*" $@
+    pnpm run build
+  ben:
+    pnpm run bench $@
+  c:
+    pnpm run check
+  t:
+    pnpm run test $@
+  l:
+    pnpm run lint
+  f:
+    pnpm run format
+  tui:
+    pnpm run test:ui
+  popd
+
+tt/:
+  pushd packages/theme-testing
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  popd
+
+
+vt/:
+  pushd packages/validator-testing
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  popd
+
+sjsf/:
+  filter=(--filter="@sjsf/*" --filter="@sjsf-lab/*")
+  c:
+    pnpm run check ${filter[@]} $@
+  t:
+    pnpm run test ${filter[@]} $@
+  b:
+    pnpm run build ${filter[@]} $@
 
 ajv/:
   pushd packages/ajv8-validator
@@ -65,62 +115,6 @@ safe/:
     pnpm run test
   popd
 
-f/:
-  pushd packages/form
-  d:
-    pnpm run dev
-  b:
-    pnpm run build
-  ben:
-    pnpm run bench $@
-  c:
-    pnpm run check
-  t:
-    pnpm run test $@
-  l:
-    pnpm run lint
-  f:
-    pnpm run format
-  tui:
-    pnpm run test:ui
-  popd
-
-docs/:
-  pushd apps/docs2
-  c:
-    pnpm run check
-  d:
-    pnpm run dev
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  popd
-
-pl/:
-  pushd apps/playground2
-  d:
-    pnpm run dev
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  popd
-
-bl/:
-  pushd apps/builder
-  d:
-    pnpm run dev
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  popd
-
 basic/:
   pushd packages/basic-theme
   c:
@@ -133,16 +127,6 @@ basic/:
     pnpm run test $@
   popd
 
-daisy4/:
-  pushd packages/daisyui-theme
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  popd
-
 daisy/:
   pushd packages/daisyui5-theme
   c:
@@ -151,16 +135,20 @@ daisy/:
     pnpm run build
   d:
     pnpm run dev
+  t:
+    pnpm run test $@
   popd
 
 skel/:
-  pushd packages/skeleton3-theme
+  pushd packages/skeleton4-theme
   c:
     pnpm run check
   b:
     pnpm run build
   d:
     pnpm run dev
+  t:
+    pnpm run test $@
   popd
 
 flow/:
@@ -171,6 +159,8 @@ flow/:
     pnpm run build
   d:
     pnpm run dev
+  t:
+    pnpm run test $@
   popd
 
 flowi/:
@@ -223,14 +213,8 @@ shad/:
     pnpm run preview
   d:
     pnpm run dev
-  popd
-
-ts/:
-  pushd packages/testing
-  c:
-    pnpm run check
-  b:
-    pnpm run build
+  t:
+    pnpm run test $@
   popd
 
 sv/:
@@ -245,6 +229,118 @@ sv/:
     pnpm run dev
   t:
     pnpm run test $@
+  popd
+
+docs/:
+  pushd apps/docs2
+  c:
+    pnpm run check
+  d:
+    pnpm run dev
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
+  popd
+
+pl/:
+  pushd apps/playground2
+  d:
+    pnpm run dev
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
+  popd
+
+bl/:
+  pushd apps/builder
+  d:
+    pnpm run dev
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
+  popd
+
+leg/:
+  pushd legacy
+  daisy/:
+    pushd daisyui-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  skel/:
+    pushd skeleton3-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  flow/:
+    pushd flowbite-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  shad/:
+    pushd shadcn-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  popd
+
+lab/:
+  pushd lab
+  shad/:
+    pushd shadcn-extras-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  svar/:
+    pushd svar-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
   popd
 
 e/:
@@ -283,7 +379,7 @@ e/:
       pnpm run dev
     popd
   skel/:
-    pushd skeleton3-starter
+    pushd skeleton4-starter
     c:
       pnpm run check
     b:
@@ -304,17 +400,6 @@ e/:
     d:
       pnpm run dev
     popd
-  ani/:
-    pushd animated-array
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
   mark/:
     pushd markdown-description
     c:
@@ -326,8 +411,8 @@ e/:
     d:
       pnpm run dev
     popd
-  tabs/:
-    pushd tabbed-layout
+  zod/:
+    pushd zod-starter
     c:
       pnpm run check
     b:
@@ -337,8 +422,8 @@ e/:
     d:
       pnpm run dev
     popd
-  async/:
-    pushd async-combobox
+  valibot/:
+    pushd valibot-starter
     c:
       pnpm run check
     b:
@@ -348,8 +433,8 @@ e/:
     d:
       pnpm run dev
     popd
-  comp/:
-    pushd formulas
+  ark/:
+    pushd arktype-starter
     c:
       pnpm run check
     b:
@@ -359,8 +444,8 @@ e/:
     d:
       pnpm run dev
     popd
-  pattern/:
-    pushd pattern-properties-validator
+  type/:
+    pushd typebox-starter
     c:
       pnpm run check
     b:
@@ -370,41 +455,8 @@ e/:
     d:
       pnpm run dev
     popd
-  native/:
-    pushd native-form
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  decomposed/:
-    pushd decomposed-field
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  multi/:
-    pushd multi-step-native-form
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  layout/:
-    pushd layout-slots
+  sv/:
+    pushd sveltekit-starter
     c:
       pnpm run check
     b:
@@ -415,15 +467,3 @@ e/:
       pnpm run dev
     popd
   popd
-
-p:
-  pnpm run preview
-
-c:
-  pnpm run check
-
-cs:
-  pnpm changeset
-
-h:
-  mk -P targets "*"

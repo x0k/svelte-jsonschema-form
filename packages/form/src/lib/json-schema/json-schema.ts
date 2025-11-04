@@ -1,6 +1,26 @@
-import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
+import type {
+  JSONSchema7,
+  JSONSchema7TypeName,
+  JSONSchema7Definition,
+} from "json-schema";
 
 import { isRecordEmpty } from "@/lib/object.js";
+
+export const JSON_SCHEMA_TYPE_NAMES: string[] = [
+  "array",
+  "boolean",
+  "integer",
+  "null",
+  "number",
+  "object",
+  "string",
+] as const satisfies JSONSchema7TypeName[];
+
+export const SET_OF_JSON_SCHEMA_TYPE_NAMES = new Set(JSON_SCHEMA_TYPE_NAMES);
+
+export function isJsonSchemaType(type: string): type is JSONSchema7TypeName {
+  return SET_OF_JSON_SCHEMA_TYPE_NAMES.has(type);
+}
 
 type SchemaKeys = Array<keyof JSONSchema7>;
 

@@ -32,7 +32,7 @@ To disable HTML5 validation pass `novalidate` attribute to the form element.
 
 :::
 
-## Live validation (not recommended)
+## Live validation
 
 You can easily implement live validation by utilizing Svelte 5 reactivity
 
@@ -67,19 +67,17 @@ This behavior can be changed using the `fieldsValidationDebounceMs` option.
 
 The form in the example above, will validate fields on `input` and `change` events.
 
-<LinkCard title="Fields validation mode API reference" href="../../form/fields-validation-mode/" />
+<LinkCard title="Fields validation mode" href="../../form/fields/#validation-mode" />
 
 ## Async validation
 
-The form supports asynchronous validation.
-
-:::note
-
-By default
+The form supports asynchronous validation. By default:
 
 - a new form validation process can only be started after the previous one is completed;
 - a new fields validation process aborts the previous one;
 - fields validation abort errors are not displayed.
+
+:::note
 
 You can change this behavior by passing the `submissionCombinator` and `fieldsValidationCombinator` options.
 
@@ -126,3 +124,63 @@ If necessary, you can create a list of errors
 <FormCard>
   <ErrorsList client:only="svelte" />
 </FormCard>
+
+## State transformation
+
+In some cases it may be necessary to transform the form state before it is passed to the validator.
+
+You can do this by extending the validator.
+
+### Omit extra data
+
+One of the transformation options you can apply is deleting unnecessary data.
+
+For this you can use `omitExtraData` function.
+
+:::note
+
+The `omitExtraData` function does not perform data validation!
+
+:::
+
+```ts
+import { createForm, type FormValueValidator } from "@sjsf/form";
+import { omitExtraData } from "@sjsf/form/omit-extra-data";
+
+import * as defaults from '@/lib/form/defaults'
+
+import { schema, type FormValue } from "./schema";
+
+const form = createForm<FormValue>({
+  ...defaults,
+  validator: (options) => {
+    const v = defaults.validator<FormValue>(options)
+    return {
+      ...v,
+      validateFormValue(rootSchema, formValue) {
+        const cleanData = omitExtraData(
+          v,
+          options.merger(),
+          options.schema,
+          formValue
+        );
+        return v.validateFormValue(rootSchema, cleanData);
+      },
+    } satisfies FormValueValidator<FormValue>;
+  },
+  schema,
+  onSubmit(value) {
+    console.log("transformed", value);
+  },
+  onSubmitError({ value, errors }) {
+    console.log("transformed", value);
+    console.log("errors", errors);
+  }
+})
+
+// Obtaining a value with the applied transformation
+const { value } = validate(form)
+```
+
+You can also use the `withOmitExtraData(defaults.validator)` function from the
+`@sjsf/form/validators/omit-extra-data` module to achieve the same effect.

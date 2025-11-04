@@ -4,7 +4,8 @@ export { theme } from "@sjsf/shadcn4-theme";
 
 export { translation } from "@sjsf/form/translations/en";
 
-import { createFormValidator } from "@sjsf/ajv8-validator";
+export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 
-// NOTE: One validator will be used for all forms
-export const validator = createFormValidator();
+export { createFormValidator as validator } from "@sjsf/ajv8-validator";
+
+export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";

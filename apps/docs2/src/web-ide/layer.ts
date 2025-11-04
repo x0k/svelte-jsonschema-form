@@ -1,9 +1,12 @@
+import { unique } from "@sjsf/form/lib/array";
 import type { SchemaValue } from "@sjsf/form";
 
 import {
+  isLabTheme,
   validatorPackage,
-  type ActualTheme,
+  VERSION,
   type Resolver,
+  type Theme,
   type Validator,
 } from "@/shared";
 
@@ -18,8 +21,13 @@ export interface VitePluginConfig {
   call: string;
 }
 
+export interface ViteOptimizeDepsConfig {
+  exclude?: string[];
+}
+
 export interface ViteConfig {
   plugins?: Record<string, VitePluginConfig>;
+  optimizeDeps?: ViteOptimizeDepsConfig;
 }
 
 export interface LayerFiles {
@@ -27,12 +35,27 @@ export interface LayerFiles {
 }
 
 export interface FormDefaultsConfig {
-  theme?: ActualTheme;
+  theme?: Theme;
+  widgets?: string[];
   validator?: Validator;
   resolver?: Resolver;
 }
 
+export interface SvelteCompilerOptions {
+  runes?: boolean;
+}
+
+export interface SvelteKitConfig {
+  alias?: Record<string, string>;
+}
+
+export interface SvelteConfig {
+  compilerOptions?: SvelteCompilerOptions;
+  kit?: SvelteKitConfig;
+}
+
 export interface Layer {
+  svelte?: SvelteConfig;
   package?: PackageConfig;
   vite?: ViteConfig;
   files?: LayerFiles;
@@ -40,6 +63,43 @@ export interface Layer {
 }
 
 export const BASE_PACKAGES = ["ajv", "@sjsf/ajv8-validator"];
+
+function mergerSvelteCompilerOptions(
+  a: SvelteCompilerOptions,
+  b: SvelteCompilerOptions
+): SvelteCompilerOptions {
+  return {
+    ...a,
+    ...b,
+    runes: a.runes && b.runes,
+  };
+}
+
+function mergeSvelteKitConfig(
+  a: SvelteKitConfig,
+  b: SvelteKitConfig
+): SvelteKitConfig {
+  return {
+    ...a,
+    ...b,
+    alias: {
+      ...a.alias,
+      ...b.alias,
+    },
+  };
+}
+
+function mergeSvelteConfig(a: SvelteConfig, b: SvelteConfig): SvelteConfig {
+  return {
+    ...a,
+    ...b,
+    compilerOptions:
+      a.compilerOptions && b.compilerOptions
+        ? mergerSvelteCompilerOptions(a.compilerOptions, b.compilerOptions)
+        : (a.compilerOptions ?? b.compilerOptions),
+    kit: a.kit && b.kit ? mergeSvelteKitConfig(a.kit, b.kit) : (a.kit ?? b.kit),
+  };
+}
 
 function mergePackageConfigs(
   a: PackageConfig,
@@ -58,12 +118,27 @@ function mergePackageConfigs(
   };
 }
 
+function mergeViteOptimizeDepsConfigs(
+  a: ViteOptimizeDepsConfig,
+  b: ViteOptimizeDepsConfig
+): ViteOptimizeDepsConfig {
+  return {
+    ...a,
+    ...b,
+    exclude: unique([...(a.exclude ?? []), ...(b.exclude ?? [])]),
+  };
+}
+
 function mergeViteConfigs(a: ViteConfig, b: ViteConfig): ViteConfig {
   return {
     plugins: {
       ...a.plugins,
       ...b.plugins,
     },
+    optimizeDeps:
+      a.optimizeDeps && b.optimizeDeps
+        ? mergeViteOptimizeDepsConfigs(a.optimizeDeps, b.optimizeDeps)
+        : (a.optimizeDeps ?? b.optimizeDeps),
   };
 }
 
@@ -74,6 +149,7 @@ function mergeFormDefaultsConfig(
   return {
     ...a,
     ...b,
+    widgets: unique([...(a.widgets ?? []), ...(b.widgets ?? [])]),
   };
 }
 
@@ -93,14 +169,35 @@ export function mergeLayers(a: Layer, b: Layer): Layer {
       ...a.files,
       ...b.files,
     },
+    svelte:
+      a.svelte && b.svelte
+        ? mergeSvelteConfig(a.svelte, b.svelte)
+        : (a.svelte ?? b.svelte),
   };
 }
 
+const MAJOR_VERSION = VERSION.split(".")[0];
 function buildPackageConfig(config: PackageConfig): string {
-  return JSON.stringify(config, null, 2);
+  return JSON.stringify(
+    config,
+    (key, value) => {
+      if (value === "workspace:*") {
+        if (key.startsWith("@sjsf-lab/")) {
+          return MAJOR_VERSION
+        }
+        // TODO: Consider fixed list from changeset config
+        return VERSION;
+      }
+      return value;
+    },
+    2
+  );
 }
 
-function buildViteConfig({ plugins = {} }: ViteConfig): string {
+function buildViteConfig({
+  plugins = {},
+  optimizeDeps = {},
+}: ViteConfig): string {
   return `import { defineConfig } from 'vite';
 ${Object.entries(plugins)
   .map(([pkg, p]) => `import ${p.import} from "${pkg}";`)
@@ -108,7 +205,8 @@ ${Object.entries(plugins)
 export default defineConfig({
   plugins: [${Object.values(plugins)
     .map((p) => p.call)
-    .join(", ")}]
+    .join(", ")}],
+  optimizeDeps: ${JSON.stringify(optimizeDeps)}
 })`;
 }
 
@@ -116,27 +214,59 @@ function buildFormDefaultsConfig({
   resolver = "basic",
   theme = "basic",
   validator = "Ajv",
+  widgets = [],
 }: FormDefaultsConfig): string {
   const pkg = validatorPackage(validator);
   const validatorCode = pkg
     ? `
-import { createFormValidator } from "${pkg}";
-
-// NOTE: One validator will be used for all forms
-export const validator = createFormValidator();
+export { createFormValidator as validator } from "${pkg}";
 `
     : "";
   return `export { resolver } from "@sjsf/form/resolvers/${resolver}";
 
-export { theme } from "@sjsf/${theme}-theme";
+export { theme } from "@sjsf${isLabTheme(theme) ? "-lab" : ""}/${theme}-theme";
+${widgets.map((w) => `import "@sjsf/${theme}-theme/extra-widgets/${w}-include";`).join("\n")}
 
 export { translation } from "@sjsf/form/translations/en";
+
+export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+
+export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 ${validatorCode}`;
 }
 
+function buildSvelteConfig(config?: SvelteConfig) {
+  const runes = config?.compilerOptions?.runes ?? true;
+  const kitAlias = config?.kit?.alias ?? {};
+  return `import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+    alias: ${JSON.stringify(kitAlias)},
+  },
+  compilerOptions: {
+    runes: ${runes ? "true" : "undefined"},
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+`;
+}
+
 export function buildLayer(layer: Layer): LayerFiles {
-  const files = {
+  const files: LayerFiles = {
     ...layer.files,
+    "svelte.config.js": buildSvelteConfig(layer.svelte),
   };
   if (layer.package) {
     files["package.json"] = buildPackageConfig(layer.package);

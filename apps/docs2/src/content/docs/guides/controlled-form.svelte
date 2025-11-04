@@ -1,7 +1,7 @@
 <script lang="ts">
   import { BasicForm, createForm, type Schema } from "@sjsf/form";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   const schema: Schema = {
     type: "string",
@@ -9,7 +9,7 @@
 
   let value = $state("initial");
 
-  const form = createForm({
+  const form = createForm<string>({
     ...defaults,
     schema,
     value: [() => value, (v) => (value = v)],

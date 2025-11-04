@@ -1,0 +1,9 @@
+export { translation } from "@sjsf/form/translations/en";
+export { resolver } from "@sjsf/form/resolvers/basic";
+import "@sjsf/form/templates/extra/optional-object-include";
+import "@sjsf/form/templates/extra/optional-field-include";
+import "@sjsf/form/templates/extra/optional-array-include";
+import "@sjsf/form/templates/extra/optional-multi-field-include";
+export { createFormValidator as validator } from "@sjsf/ajv8-validator";
+export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
+export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";

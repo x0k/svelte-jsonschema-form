@@ -1,5 +1,6 @@
 import type { Resolver } from "@/lib/resolver.js";
 import type { FailedTask } from "@/lib/task.svelte.js";
+import type { Schema } from "@/core/index.js";
 
 export interface Labels {
   submit: {};
@@ -19,21 +20,20 @@ export interface Labels {
   "component-not-found": { type: string };
   "key-input-title": { name: string };
   "additional-property": {};
+  "unknown-field-error": { schema: Schema };
 }
 
 export type Label = keyof Labels;
 
-export type Translator<L extends Label> =
-  | string
-  | ((params: Labels[L]) => string);
+export type Translator<Params> = string | ((params: Params) => string);
 
-export type TranslatorDefinitions = {
-  [K in Label]: Translator<K>;
+export type TranslatorDefinitions<R = Labels> = {
+  [K in keyof R]: Translator<R[K]>;
 };
 
 export type Translation = Resolver<
   Partial<Labels>,
-  Partial<TranslatorDefinitions>
+  Partial<TranslatorDefinitions<Labels>>
 >;
 
 export type Translate = <L extends Label>(
@@ -41,9 +41,14 @@ export type Translate = <L extends Label>(
   params: Labels[L]
 ) => string;
 
-export function createTranslate(translation: Translation) {
-  return <L extends Label>(label: L, params: Labels[L]) => {
-    const translator: Translator<L> | undefined = translation(label, params);
+export function createTranslate<Ls>(
+  translation: Resolver<Partial<Ls>, Partial<TranslatorDefinitions<Ls>>>
+) {
+  return <L extends keyof Ls & string>(label: L, params: Ls[L]) => {
+    const translator: Translator<Ls[L]> | undefined = translation(
+      label,
+      params
+    );
     if (translator === undefined) {
       return `Label "${label}" is not translated`;
     }

@@ -1,8 +1,8 @@
 import type { Schema } from "@sjsf/form";
-import { ZodMiniObject, partial, safeParse, safeParseAsync } from "zod/v4-mini";
+import type { $ZodType, output as InferOutput } from "zod/v4/core";
+import { ZodMiniObject, partial, safeParse, safeParseAsync } from "zod/mini";
 
-import type { AugmentedSchemaFactory } from "../model.js";
-import { createSchemaRegistry } from "../schemas-registry.js";
+import type { AugmentedSchemaFactory, SchemaRegistry } from "../model.js";
 import {
   createAsyncFormValidator,
   createFormValidator,
@@ -32,13 +32,13 @@ export const createAugmentedSchema: AugmentedSchemaFactory = (schema) => {
   });
 };
 
-export const setupFormValidator = createFormValidatorFactory({
-  createAugmentedSchema,
-  createFormValidator: (
-    schemaRegistry,
-    options: Omit<FormValidatorOptions, "schemaRegistry" | "safeParse">
+function createSyncValidator<S extends $ZodType>(
+  schemaRegistry: SchemaRegistry
+) {
+  return (
+    options: Omit<FormValidatorOptions, "schemaRegistry" | "safeParse"> = {}
   ) =>
-    createFormValidator(
+    createFormValidator<InferOutput<S>>(
       Object.setPrototypeOf(
         {
           safeParse,
@@ -46,19 +46,36 @@ export const setupFormValidator = createFormValidatorFactory({
         } satisfies FormValidatorOptions,
         options
       )
-    ),
+    );
+}
+
+const _adapt = createFormValidatorFactory({
+  createAugmentedSchema,
+  createFormValidator: createSyncValidator,
 });
 
-export const setupAsyncFormValidator = createFormValidatorFactory({
-  createAugmentedSchema,
-  createFormValidator: (
-    schemaRegistry,
+export const adapt = _adapt as unknown as <S extends $ZodType>(
+  zodSchema: S
+) => {
+  schema: Schema;
+  schemaRegistry: SchemaRegistry;
+  validator: ReturnType<typeof createSyncValidator<S>>;
+};
+
+// TODO: Remove in v4
+/** @deprecated use `adapt` */
+export const setupFormValidator = adapt;
+
+function createAsyncValidator<S extends $ZodType>(
+  schemaRegistry: SchemaRegistry
+) {
+  return (
     options: Omit<
       FormValidatorOptions,
       "schemaRegistry" | "safeParse" | "safeParseAsync"
-    >
+    > = {}
   ) =>
-    createAsyncFormValidator(
+    createAsyncFormValidator<InferOutput<S>>(
       Object.setPrototypeOf(
         {
           safeParse,
@@ -67,5 +84,22 @@ export const setupAsyncFormValidator = createFormValidatorFactory({
         } satisfies AsyncFormValidatorOptions,
         options
       )
-    ),
+    );
+}
+
+const _adaptAsync = createFormValidatorFactory({
+  createAugmentedSchema,
+  createFormValidator: createAsyncValidator,
 });
+
+export const adaptAsync = _adaptAsync as unknown as <S extends $ZodType>(
+  zodSchema: S
+) => {
+  schema: Schema;
+  schemaRegistry: SchemaRegistry;
+  validator: ReturnType<typeof createSyncValidator<S>>;
+};
+
+// TODO: Remove in v4
+/** @deprecated use `adaptAsync` */
+export const setupAsyncFormValidator = adaptAsync;

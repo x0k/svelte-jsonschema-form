@@ -1,20 +1,12 @@
 import type { StandardSchemaV1 } from "@standard-schema/spec";
 
-import type { Path, Schema } from "@/core/index.js";
-import {
-  getRootSchemaTitleByPath,
-  getRootUiSchemaTitleByPath,
-  pathToId,
-  type AsyncFormValueValidator,
-  type FormValueValidator,
-  type PathToIdOptions,
-  type UiSchemaRoot,
-  type ValidationError,
+import type { Path } from "@/core/index.js";
+import type {
+  AsyncFormValueValidator,
+  FormValue,
+  FormValueValidator,
+  ValidationResult,
 } from "@/form/main.js";
-
-export interface ErrorsTransformerOptions extends PathToIdOptions {
-  uiSchema?: UiSchemaRoot;
-}
 
 function issueToPath({ path }: StandardSchemaV1.Issue): Path {
   if (!path) {
@@ -23,60 +15,45 @@ function issueToPath({ path }: StandardSchemaV1.Issue): Path {
   return path.map((val) => (typeof val === "object" ? val.key : val) as string);
 }
 
-function createErrorsTransformer(options: ErrorsTransformerOptions) {
-  return <O>(
-    { issues }: StandardSchemaV1.Result<O>,
-    rootSchema: Schema
-  ): ValidationError<StandardSchemaV1.Issue>[] => {
-    if (!issues) {
-      return [];
-    }
-    return issues.map((issue) => {
-      const path = issueToPath(issue);
-      const instanceId = pathToId(path, options);
-      const propertyTitle =
-        getRootUiSchemaTitleByPath(options.uiSchema ?? {}, path) ??
-        getRootSchemaTitleByPath(rootSchema, path) ??
-        path[path.length - 1] ??
-        instanceId;
-      return {
-        instanceId,
-        propertyTitle: String(propertyTitle),
-        message: issue.message,
-        error: issue,
-      };
-    });
+function transformErrors<O>(
+  formValue: FormValue,
+  result: StandardSchemaV1.Result<O>
+): ValidationResult<O> {
+  if (result.issues === undefined) {
+    return {
+      value: result.value,
+    };
+  }
+  return {
+    value: formValue,
+    errors: result.issues.map((issue) => ({
+      path: issueToPath(issue),
+      message: issue.message,
+    })),
   };
 }
 
-export interface FormValidatorOptions<T extends StandardSchemaV1>
-  extends ErrorsTransformerOptions {
-  schema: T;
-}
-
 export function createFormValueValidator<T extends StandardSchemaV1>(
-  options: FormValidatorOptions<T>
-): FormValueValidator<StandardSchemaV1.Issue> {
-  const transform = createErrorsTransformer(options);
+  schema: T
+): FormValueValidator<StandardSchemaV1.InferOutput<T>> {
   return {
-    validateFormValue(rootSchema, formValue) {
-      const result = options.schema["~standard"].validate(formValue);
+    validateFormValue(_, formValue) {
+      const result = schema["~standard"].validate(formValue);
       if (result instanceof Promise) {
         throw new TypeError("Schema validation must be synchronous");
       }
-      return transform(result, rootSchema);
+      return transformErrors(formValue, result);
     },
   };
 }
 
 export function createAsyncFormValueValidator<T extends StandardSchemaV1>(
-  options: FormValidatorOptions<T>
-): AsyncFormValueValidator<StandardSchemaV1.Issue> {
-  const transform = createErrorsTransformer(options);
+  schema: T
+): AsyncFormValueValidator<StandardSchemaV1.InferOutput<T>> {
   return {
-    async validateFormValueAsync(_, rootSchema, formValue) {
-      const result = await options.schema["~standard"].validate(formValue);
-      return transform(result, rootSchema);
+    async validateFormValueAsync(_, _1, formValue) {
+      const result = await schema["~standard"].validate(formValue);
+      return transformErrors(formValue, result);
     },
   };
 }

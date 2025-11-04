@@ -1,3 +1,11 @@
+<script lang="ts" module>
+  declare module "../../form/index.js" {
+    interface ActionFields {
+      arrayField: {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import type { ComponentProps } from "@/form/index.js";
 
@@ -14,9 +22,10 @@
 
 <ArrayBase
   type="field"
+  field="arrayField"
   bind:value
   {config}
   {uiOption}
   {translate}
-  {createArrayContext}
+  createContext={createArrayContext}
 />

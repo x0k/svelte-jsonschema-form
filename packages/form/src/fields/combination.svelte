@@ -1,6 +1,8 @@
 <script lang="ts" module>
   import type { UiSchemaDefinition } from "@/form/index.js";
 
+  import "./extra-templates/multi-field.js";
+
   declare module "../form/index.js" {
     interface UiSchemaContent {
       combinationFieldOptionSelector?: UiSchemaDefinition;
@@ -22,11 +24,10 @@
     type Config,
     getClosestMatchingOption,
     getDefaultFieldState,
-    getErrors,
+    getFieldErrors,
     retrieveSchema,
     sanitizeDataForNewSchema,
     getFormContext,
-    createPseudoId,
     getComponent,
     type ComponentProps,
     getFieldComponent,
@@ -34,6 +35,9 @@
     retrieveUiOption,
     uiTitleOption,
     retrieveTranslate,
+    getPseudoPath,
+    getPseudoId,
+    getFieldAction,
   } from "@/form/index.js";
 
   let {
@@ -53,13 +57,15 @@
 
   const restFieldConfig = $derived.by(() => {
     const { [combinationKey]: _, ...restSchema } = config.schema;
-    const restSchemaType = getSimpleSchemaType(restSchema);
-    return restSchemaType !== "null"
-      ? {
-          ...config,
-          schema: restSchema,
-        }
-      : null;
+    const currentType = getSimpleSchemaType(config.schema);
+    if (currentType !== "object") {
+      return null;
+    }
+    const restType = getSimpleSchemaType(restSchema);
+    return {
+      ...config,
+      schema: restType === "unknown" ? { type: "object" } : restSchema,
+    } satisfies Config;
   });
   const RestSchemaField = $derived(
     restFieldConfig && getFieldComponent(ctx, restFieldConfig)
@@ -70,19 +76,19 @@
     )
   );
 
-  let readableSelectedOption = $state(0);
-  let writableSelectedOption = $derived(
+  let previousSelectedOption = $state.raw<number>();
+  let nextSelectedOption = $derived(
     getClosestMatchingOption(
       ctx,
       value,
       retrievedOptions,
-      readableSelectedOption,
+      previousSelectedOption ?? 0,
       getDiscriminatorFieldFromSchema(config.schema)
     )
   );
   $effect(() => {
-    const nextSelected = writableSelectedOption;
-    if (readableSelectedOption === nextSelected) {
+    const nextSelected = nextSelectedOption;
+    if (previousSelectedOption === nextSelected) {
       return;
     }
     value = untrack(() => {
@@ -90,16 +96,20 @@
       if (nextSchema === undefined) {
         return undefined;
       }
-      const oldSchema = retrievedOptions[readableSelectedOption];
-      return getDefaultFieldState(
-        ctx,
-        nextSchema,
-        oldSchema !== undefined
-          ? sanitizeDataForNewSchema(ctx, nextSchema, oldSchema, value)
-          : value
-      );
+      const oldSchema =
+        previousSelectedOption !== undefined
+          ? retrievedOptions[previousSelectedOption]
+          : undefined;
+      return getDefaultFieldState(ctx, {
+        schema: nextSchema,
+        formData:
+          oldSchema !== undefined
+            ? sanitizeDataForNewSchema(ctx, nextSchema, oldSchema, value)
+            : value,
+        includeUndefinedValues: "excludeObjectChildren",
+      });
     });
-    readableSelectedOption = nextSelected;
+    previousSelectedOption = nextSelected;
   });
 
   const optionsUiSchemas = $derived.by(() => {
@@ -158,7 +168,7 @@
 
   const enumOptions = $derived<EnumOption<number>[]>(
     optionTitles.map((label, i) => ({
-      id: createPseudoId(config.id, i, ctx),
+      id: getPseudoId(ctx, config.path, i),
       label,
       value: i,
       disabled: false,
@@ -174,17 +184,17 @@
       config.uiSchema.combinationFieldOptionSelector
     );
     return {
-      id: createPseudoId(config.id, suffix, ctx),
+      path: getPseudoPath(ctx, config.path, suffix),
       title: uiTitleOption(ctx, uiSchema) ?? config.title,
       schema: { type: "integer", default: 0 },
       uiSchema,
       required: true,
     };
   });
-  const errors = $derived(getErrors(ctx, config.id));
+  const errors = $derived(getFieldErrors(ctx, config.path));
 
   const combinationFieldConfig: Config | null = $derived.by(() => {
-    const selected = readableSelectedOption;
+    const selected = previousSelectedOption ?? nextSelectedOption;
     if (selected < 0) {
       return null;
     }
@@ -203,7 +213,7 @@
         ? optionsUiSchemas[selected]!
         : config.uiSchema;
     return {
-      id: config.id,
+      path: config.path,
       title: "",
       schema: optionSchema,
       uiSchema: optionUiSchema,
@@ -214,8 +224,26 @@
   const CombinationField = $derived(
     combinationFieldConfig && getFieldComponent(ctx, combinationFieldConfig)
   );
+  const action = $derived(
+    getFieldAction(ctx, config, `${combinationKey}Field`)
+  );
 </script>
 
+{#snippet renderAction()}
+  {@render action?.(
+    ctx,
+    config,
+    {
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
+      },
+    },
+    errors
+  )}
+{/snippet}
 {#if restFieldConfig}
   <RestSchemaField
     type="field"
@@ -225,7 +253,14 @@
     translate={retrieveTranslate(ctx, restFieldConfig)}
   />
 {/if}
-<Template type="template" {config} {value} {errors} {uiOption}>
+<Template
+  type="template"
+  {config}
+  {value}
+  {errors}
+  {uiOption}
+  action={action && renderAction}
+>
   {#snippet optionSelector()}
     <Widget
       type="widget"
@@ -235,7 +270,8 @@
       uiOption={(opt) => retrieveUiOption(ctx, widgetConfig, opt)}
       options={enumOptions}
       bind:value={
-        () => readableSelectedOption, (v) => (writableSelectedOption = v)
+        () => previousSelectedOption ?? nextSelectedOption,
+        (v) => (nextSelectedOption = v)
       }
     />
   {/snippet}

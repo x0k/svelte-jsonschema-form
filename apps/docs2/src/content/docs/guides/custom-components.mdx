@@ -1,10 +1,12 @@
 ---
 title: Custom components
 sidebar:
-  order: 12
+  order: 13
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
+
+import attributesTypesCode from '#/form/dist/form/state/attributes.d.ts?raw'
 
 You can create your own form components. Any built-in component can be replaced
 with a custom one, giving you full control over rendering and behavior.
@@ -51,7 +53,7 @@ import { theme } from "@sjsf/some-theme";
 
 import MyNumberWidget from "./my-number-widget";
 
-// Register a new component
+/** Register a new component **/
 
 declare module "@sjsf/form" {
   interface ComponentProps {
@@ -66,7 +68,7 @@ declare module "@sjsf/form" {
 
 export const myTheme = extendByRecord(theme, { myNumberWidget: MyNumberWidget });
 
-// Override the default component
+/** Override the default component **/
 
 export const myTheme = overrideByRecord(theme, { numberWidget: MyNumberWidget })
 ```
@@ -155,55 +157,64 @@ into two categories based on their level of abstraction:
 1. **properties**
 
 These functions are designed to form a set of properties by combining them in the
-desired order, have the suffix `Prop` or `Props`. Example:
-
-```ts
-import type { HTMLButtonAttributes } from "svelte/elements";
-
-import {
-  composeProps,
-  disabledProp,
-  getFormContext,
-  uiOptionProps,
-  uiOptionNestedProps,
-  type ComponentProps,
-} from "@sjsf/form";
-import type { ButtonType } from "@sjsf/form/fields/components";
-
-declare module "@sjsf/form" {
-  interface UiOptions {
-    button?: HTMLButtonAttributes;
-    buttons?: {
-      [B in ButtonType]?: HTMLButtonAttributes;
-    };
-  }
-}
-
-const { type, onclick, config, disabled }: ComponentProps["button"] = $props();
-
-const ctx = getFormContext();
-
-const props = $derived(composeProps(
-  ctx,
-  config,
-  {
-    disabled,
-    type: "button",
-    onclick,
-  } satisfies HTMLButtonAttributes,
-  uiOptionProps("button"),
-  uiOptionNestedProps("buttons", (p) => p[type]),
-  disabledProp
-))
-```
+desired order, have the suffix `Prop`, `Props` or `Attachment`.
 
 2. **attributes**
 
 These functions are pre-prepared compositions of functions from the
-previous category, have the suffix `Attributes`. Examples:
+previous category, have the suffix `Attributes`.
 
 <Tabs>
-  <TabItem label="Number widget">
+  <TabItem label="List">
+    <Code lang='ts' code={attributesTypesCode
+      .split('\n')
+      .filter(l => l.startsWith("export declare"))
+      .map(l => l.substring(15))
+      .join('\n')}
+    />
+  </TabItem>
+  <TabItem label="Properties usage">
+    ```ts
+    import type { HTMLButtonAttributes } from "svelte/elements";
+
+    import {
+      composeProps,
+      disabledProp,
+      getFormContext,
+      uiOptionProps,
+      uiOptionNestedProps,
+      type ComponentProps,
+    } from "@sjsf/form";
+    import type { ButtonType } from "@sjsf/form/fields/components";
+
+    declare module "@sjsf/form" {
+      interface UiOptions {
+        button?: HTMLButtonAttributes;
+        buttons?: {
+          [B in ButtonType]?: HTMLButtonAttributes;
+        };
+      }
+    }
+
+    const { type, onclick, config, disabled }: ComponentProps["button"] = $props();
+
+    const ctx = getFormContext();
+
+    const props = $derived(composeProps(
+      ctx,
+      config,
+      {
+        disabled,
+        type: "button",
+        onclick,
+      } satisfies HTMLButtonAttributes,
+      uiOptionProps("button"),
+      uiOptionNestedProps("buttons", (p) => p[type]),
+      disabledProp
+    ))
+    ```
+  </TabItem>
+  <TabItem label="inputAttributes">
     ```ts
     import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -231,7 +242,7 @@ previous category, have the suffix `Attributes`. Examples:
     );
     ```
   </TabItem>
-  <TabItem label="Custom widget">
+  <TabItem label="customInputAttributes">
     ```ts
     import type { ComponentProps as SvelteComponentProps } from 'svelte';
     import { Switch as SkeletonSwitch } from '@skeletonlabs/skeleton-svelte';
@@ -243,7 +254,7 @@ previous category, have the suffix `Attributes`. Examples:
       }
     }
 
-    import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+    import { customInputAttributes, getFormContext, type ComponentProps, getId } from '@sjsf/form';
 
     let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
 
@@ -251,7 +262,7 @@ previous category, have the suffix `Attributes`. Examples:
 
     const attributes = $derived(customInputAttributes(ctx, config, 'skeleton3Switch', {
       ids: {
-        hiddenInput: config.id
+        hiddenInput: getId(ctx, config.path)
       },
       required: config.required,
       readOnly: config.schema.readOnly,

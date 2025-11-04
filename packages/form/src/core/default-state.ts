@@ -20,11 +20,7 @@ import { findSchemaDefinition } from "./definitions.js";
 import { isFixedItems } from "./is-fixed-items.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { isSchemaObjectValue, isSchemaValueEmpty } from "./value.js";
-import {
-  mergeDefaultsWithFormData,
-  mergeSchemaObjects,
-  mergeSchemas,
-} from "./merge.js";
+import { mergeDefaultsWithFormData, mergeSchemaObjects } from "./merge.js";
 import {
   getSimpleSchemaType,
   isPrimitiveSchemaType,
@@ -52,9 +48,7 @@ export function getDefaultValueForType(type: SchemaType) {
     case "null":
       return null;
     default: {
-      const n: never = type;
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      throw new Error(`Unsupported schema type: ${n}`);
+      return undefined;
     }
   }
 }
@@ -66,7 +60,8 @@ export function getDefaultFormState(
   formData: SchemaValue | undefined = undefined,
   rootSchema: Schema = {},
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
-  experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior = {}
+  experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior = {},
+  initialDefaultsGenerated = false
 ): SchemaValue | undefined {
   const schema = retrieveSchema(
     validator,
@@ -84,10 +79,12 @@ export function getDefaultFormState(
     experimental_defaultFormStateBehavior,
     rawFormData: formData,
     parentDefaults: undefined,
-    required: false,
+    // CHANGED: We use `required: true` at the root instead of `requiredAsRoot`
+    required: true,
     isSchemaRoot: true,
     stack: new Set<string>(),
     shouldMergeDefaultsIntoFormData: true,
+    initialDefaultsGenerated,
   });
 
   // WARN: How about fixed arrays?
@@ -203,19 +200,33 @@ export type Experimental_DefaultFormStateBehavior = {
 };
 
 interface ComputeDefaultsProps<FormData = SchemaValue | undefined> {
+  /** Any defaults provided by the parent field in the schema */
   parentDefaults: SchemaValue | undefined;
+  /** The options root schema, used to primarily to look up `$ref`s */
   rootSchema: Schema;
+  /** The current formData, if any, onto which to provide any missing defaults */
   rawFormData: FormData;
+  /** Optional flag, if true, cause undefined values to be added as defaults.
+   *          If "excludeObjectChildren", cause undefined values for this object and pass `includeUndefinedValues` as
+   *          false when computing defaults for any nested object properties.
+   */
   includeUndefinedValues: boolean | "excludeObjectChildren";
   stack: Set<string>;
+  /** Optional configuration object, if provided, allows users to override default form state behavior */
   experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior;
   isSchemaRoot: boolean;
+  /** Optional flag, if true, indicates this schema was required in the parent schema. */
   required: boolean;
+  /** Optional flag, if true, indicates this schema was required because it is the root. */
+  // CHANGED: We use `required: true` at the root instead of `requiredAsRoot`
+  // requiredAsRoot: boolean;
   /**
    * flag, if true, It will merge defaults into formData.
    * The formData should take precedence unless it's not valid. This is useful when for example the value from formData does not exist in the schema 'enum' property, in such cases we take the value from the defaults because the value from the formData is not valid.
    */
   shouldMergeDefaultsIntoFormData: boolean;
+  /** Indicates whether initial defaults have been generated */
+  initialDefaultsGenerated: boolean;
 }
 
 export function computeDefaults(
@@ -234,6 +245,7 @@ export function computeDefaults(
     required,
     isSchemaRoot,
     shouldMergeDefaultsIntoFormData,
+    initialDefaultsGenerated,
   } = computeDefaultsProps;
   const rawDataIsObject = isSchemaObjectValue(rawFormData);
   const formData: SchemaObjectValue = rawDataIsObject ? rawFormData : {};
@@ -277,7 +289,7 @@ export function computeDefaults(
     // Use referenced schema defaults for this node.
     if (!stack.has(schemaRef)) {
       nextStack = new Set(stack).add(schemaRef);
-      schemaToCompute = findSchemaDefinition(schemaRef, rootSchema);
+      schemaToCompute = findSchemaDefinition(merger, schemaRef, rootSchema);
     }
     // If the referenced schema exists and parentDefaults is not set
     // Then set the defaults from the current schema for the referenced schema
@@ -334,6 +346,8 @@ export function computeDefaults(
         required,
         isSchemaRoot: false,
         shouldMergeDefaultsIntoFormData,
+        // CHANGED: this property is not provided in the original code
+        initialDefaultsGenerated,
       })
     );
   } else if (schemaOneOf !== undefined) {
@@ -369,7 +383,9 @@ export function computeDefaults(
     if (typeof nextSchema === "boolean") {
       return undefined;
     }
-    schemaToCompute = mergeSchemas(remaining, nextSchema);
+    schemaToCompute = isRecordEmpty(remaining)
+      ? nextSchema
+      : merger.mergeSchemas(remaining, nextSchema);
   } else if (schemaAnyOf !== undefined) {
     const { anyOf: _, ...remaining } = schema;
     if (schemaAnyOf.length === 0) {
@@ -390,7 +406,9 @@ export function computeDefaults(
     if (typeof nextSchema === "boolean") {
       return undefined;
     }
-    schemaToCompute = mergeSchemas(remaining, nextSchema);
+    schemaToCompute = isRecordEmpty(remaining)
+      ? nextSchema
+      : merger.mergeSchemas(remaining, nextSchema);
   }
 
   if (schemaToCompute) {
@@ -404,6 +422,7 @@ export function computeDefaults(
       rawFormData: rawFormData ?? schemaToComputeFormData,
       required,
       shouldMergeDefaultsIntoFormData,
+      initialDefaultsGenerated,
     });
   }
 
@@ -488,12 +507,33 @@ export function ensureFormDataMatchingSchema(
   return validFormData;
 }
 
+/** Checks if the given `schema` contains the `null` type along with another type AND if the `default` contained within
+ * the schema is `null` AND the `computedDefault` is empty. If all of those conditions are true, then the `schema`'s
+ * default should be `null` rather than `computedDefault`.
+ *
+ * @param schema - The schema to inspect
+ * @param computedDefault - The computed default for the schema
+ * @returns - Flag indicating whether a null should be returned instead of the computedDefault
+ */
+export function computeDefaultBasedOnSchemaTypeAndDefaults<
+  T extends SchemaValue,
+>(schema: Schema, computedDefault: T | undefined) {
+  const { default: schemaDefault, type } = schema;
+  const shouldReturnNullAsDefault =
+    Array.isArray(type) &&
+    type.includes("null") &&
+    isSchemaValueEmpty(computedDefault) &&
+    schemaDefault === null;
+  return shouldReturnNullAsDefault ? null : computedDefault;
+}
+
 function maybeAddDefaultToObject(
   obj: Map<string, SchemaValue | undefined>,
   key: string,
   computedDefault: SchemaValue | undefined,
   includeUndefinedValues: boolean | "excludeObjectChildren",
   isConst: boolean,
+  isNullType: boolean,
   isSchemaRoot: boolean,
   isParentRequired: boolean,
   requiredFields: Set<string>,
@@ -509,9 +549,10 @@ function maybeAddDefaultToObject(
     // Fix for Issue #4709: When in 'excludeObjectChildren' mode, don't set primitive fields to empty objects
     // Only add the computed default if it's not an empty object placeholder for a primitive field
     if (
-      Array.isArray(computedDefault)
+      (isNullType && computedDefault !== undefined) ||
+      (Array.isArray(computedDefault)
         ? computedDefault.length > 0
-        : !isObject(computedDefault) || !isRecordEmpty(computedDefault)
+        : !isObject(computedDefault) || !isRecordEmpty(computedDefault))
     ) {
       obj.set(key, computedDefault);
     }
@@ -637,9 +678,10 @@ export function getObjectDefaults(
     isSchemaRoot,
     rawFormData: formData,
     shouldMergeDefaultsIntoFormData,
+    initialDefaultsGenerated,
   }: ComputeDefaultsProps<SchemaObjectValue>,
   defaults: SchemaValue | undefined
-): SchemaObjectValue {
+): SchemaObjectValue | null {
   // This is a custom addition that fixes this issue:
   // https://github.com/rjsf-team/react-jsonschema-form/issues/3832
   const retrievedSchema =
@@ -670,6 +712,7 @@ export function getObjectDefaults(
         required: retrievedSchemaRequired.has(key),
         isSchemaRoot: false,
         shouldMergeDefaultsIntoFormData,
+        initialDefaultsGenerated,
       });
       const isConst =
         (value.const !== undefined || parentConstObject[key] !== undefined) &&
@@ -680,6 +723,7 @@ export function getObjectDefaults(
         computedDefault,
         includeUndefinedValues,
         isConst,
+        value.type === "null",
         isSchemaRoot,
         required,
         new Set(retrievedSchema.required),
@@ -688,7 +732,7 @@ export function getObjectDefaults(
     }
   }
   const schemaAdditionalProperties = retrievedSchema.additionalProperties;
-  if (schemaAdditionalProperties !== undefined) {
+  if (schemaAdditionalProperties !== undefined && !initialDefaultsGenerated) {
     let keys = new Set(
       isSchemaObjectValue(defaults)
         ? schemaProperties === undefined
@@ -722,6 +766,7 @@ export function getObjectDefaults(
           required: retrievedSchemaRequired.has(key),
           isSchemaRoot,
           shouldMergeDefaultsIntoFormData,
+          initialDefaultsGenerated,
         }
       );
       // Since these are additional properties we don't need to add the `experimental_defaultFormStateBehavior` prop
@@ -731,6 +776,7 @@ export function getObjectDefaults(
         computedDefault,
         includeUndefinedValues,
         false,
+        false,
         isSchemaRoot,
         required,
         formDataRequired,
@@ -738,7 +784,10 @@ export function getObjectDefaults(
       );
     });
   }
-  return Object.fromEntries(objDefaults);
+  return computeDefaultBasedOnSchemaTypeAndDefaults(
+    schema,
+    Object.fromEntries(objDefaults)
+  )!;
 }
 
 export function getArrayDefaults(
@@ -752,9 +801,10 @@ export function getArrayDefaults(
     experimental_defaultFormStateBehavior,
     required,
     shouldMergeDefaultsIntoFormData,
+    initialDefaultsGenerated,
   }: ComputeDefaultsProps,
   defaults: SchemaArrayValue | undefined
-): SchemaArrayValue | undefined {
+): SchemaArrayValue | null | undefined {
   const {
     populate: arrayMinItemsPopulate,
     mergeExtraDefaults: arrayMergeExtraDefaults,
@@ -792,6 +842,7 @@ export function getArrayDefaults(
         rawFormData: undefined,
         isSchemaRoot: false,
         shouldMergeDefaultsIntoFormData,
+        initialDefaultsGenerated,
       });
     });
   }
@@ -813,6 +864,7 @@ export function getArrayDefaults(
           includeUndefinedValues: false,
           isSchemaRoot: false,
           shouldMergeDefaultsIntoFormData,
+          initialDefaultsGenerated,
         });
       });
       // If the populate 'requiredOnly' flag is set then we only merge and include extra defaults if they are required.
@@ -843,6 +895,7 @@ export function getArrayDefaults(
     }
   }
 
+  let arrayDefault: SchemaArrayValue | undefined;
   const defaultsLength = defaults?.length ?? 0;
   if (
     !schema.minItems ||
@@ -850,31 +903,37 @@ export function getArrayDefaults(
     computeSkipPopulate(validator, schema, rootSchema) ||
     schema.minItems <= defaultsLength
   ) {
-    return defaults ?? emptyDefault;
+    // we don't want undefined defaults unless it is both not required or not required as root
+    // CHANGED: since we don't use `requiredAsRoot` it's not used here
+    arrayDefault = defaults || !required ? defaults : emptyDefault;
+  } else {
+    const fillerSchema = getInnerSchemaForArrayItem(
+      schema,
+      AdditionalItemsHandling.Invert
+    );
+    const fillerDefault = fillerSchema.default;
+
+    // Calculate filler entries for remaining items (minItems - existing raw data/defaults)
+    const fillerEntries = Array.from(
+      { length: schema.minItems - defaultsLength },
+      () =>
+        computeDefaults(validator, merger, fillerSchema, {
+          parentDefaults: fillerDefault,
+          rootSchema,
+          stack,
+          experimental_defaultFormStateBehavior,
+          includeUndefinedValues: false,
+          rawFormData: undefined,
+          isSchemaRoot: false,
+          required,
+          shouldMergeDefaultsIntoFormData,
+          initialDefaultsGenerated,
+        })
+    );
+    // then fill up the rest with either the item default or empty, up to minItems
+    arrayDefault = defaultsLength
+      ? defaults!.concat(fillerEntries)
+      : fillerEntries;
   }
-
-  const fillerSchema = getInnerSchemaForArrayItem(
-    schema,
-    AdditionalItemsHandling.Invert
-  );
-  const fillerDefault = fillerSchema.default;
-
-  // Calculate filler entries for remaining items (minItems - existing raw data/defaults)
-  const fillerEntries = Array.from(
-    { length: schema.minItems - defaultsLength },
-    () =>
-      computeDefaults(validator, merger, fillerSchema, {
-        parentDefaults: fillerDefault,
-        rootSchema,
-        stack: stack,
-        experimental_defaultFormStateBehavior,
-        required,
-        includeUndefinedValues: false,
-        rawFormData: undefined,
-        isSchemaRoot: false,
-        shouldMergeDefaultsIntoFormData,
-      })
-  );
-  // then fill up the rest with either the item default or empty, up to minItems
-  return defaultsLength ? defaults!.concat(fillerEntries) : fillerEntries;
+  return computeDefaultBasedOnSchemaTypeAndDefaults(schema, arrayDefault);
 }

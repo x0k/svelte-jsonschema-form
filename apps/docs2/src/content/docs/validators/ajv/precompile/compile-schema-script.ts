@@ -3,6 +3,7 @@ import path from "node:path";
 
 import Ajv from "ajv";
 import standaloneCode from "ajv/dist/standalone/index.js";
+import addFormats from "ajv-formats"
 
 import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from '@sjsf/form';
 import {
@@ -41,7 +42,7 @@ const ajv = new Ajv({
     esm: true,
   },
 });
-const modules = standaloneCode(addFormComponents(ajv));
+const modules = standaloneCode(addFormComponents(addFormats(ajv)));
 
 // https://github.com/ajv-validator/ajv/issues/2209#issuecomment-2580172967
 const { outputFiles } = await build({
@@ -49,10 +50,12 @@ const { outputFiles } = await build({
   bundle: true,
   write: false,
   format: "esm",
+  platform: "browser",
+  target: ["es2020"],
   sourcemap: false,
   stdin: {
     contents: modules,
-    resolveDir: "/",
+    resolveDir: process.cwd(),
     sourcefile: "input.js",
     loader: "js",
   },

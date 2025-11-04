@@ -1,7 +1,7 @@
 ---
 title: Manual mode
 sidebar:
-  order: 9
+  order: 10
 ---
 
 import { Code } from '@astrojs/starlight/components';
@@ -27,7 +27,7 @@ To make the field names inference work - it is necessary to define
 the type of form value, for example, like this:
 
 ```ts
-const form = createForm<ValueType, typeof validator>(...)
+const form = createForm<ValueType>(...)
 ```
 
 ### Nested structures
@@ -62,7 +62,7 @@ Calculating the value of the `required` property from the JSON schema can be tri
 if it is calculated incorrectly - specify it manually.
 
 ```svelte
-<Field {form} name="foo" required />
+<Field {form} path={["foo"]} required />
 ```
 
 ### Form context

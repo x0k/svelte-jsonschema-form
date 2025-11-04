@@ -1,8 +1,15 @@
 <script lang="ts" module>
 	import type { HTMLAttributes, HTMLInputAttributes } from 'svelte/elements';
-	import '@sjsf/form/fields/extra-widgets/radio-buttons';
+	import type { SchemaValue } from '@sjsf/form';
+	import type { Options, WidgetCommonProps } from '@sjsf/form/fields/widgets';
 
 	declare module '@sjsf/form' {
+		interface ComponentProps {
+			daisyui5FilterRadioButtonsWidget: WidgetCommonProps<SchemaValue> & Options;
+		}
+		interface ComponentBindings {
+			daisyui5FilterRadioButtonsWidget: 'value';
+		}
 		interface UiOptions {
 			daisyui5Filter?: HTMLAttributes<HTMLDivElement>;
 			daisyui5FilterItem?: HTMLInputAttributes;
@@ -12,7 +19,7 @@
 
 <script lang="ts">
 	import { getFormContext, inputAttributes, uiOptionProps, type ComponentProps } from '@sjsf/form';
-	import { singleOption, indexMapper } from '@sjsf/form/options.svelte';
+	import { singleOption, idMapper } from '@sjsf/form/options.svelte';
 
 	let {
 		value = $bindable(),
@@ -20,15 +27,13 @@
 		config,
 		errors,
 		handlers
-	}: ComponentProps['radioButtonsWidget'] = $props();
+	}: ComponentProps['daisyui5FilterRadioButtonsWidget'] = $props();
 
-	const mapped = $derived(
-		singleOption({
-			mapper: () => indexMapper(options),
-			value: () => value,
-			update: (v) => (value = v)
-		})
-	);
+	const mapped = singleOption({
+		mapper: () => idMapper(options),
+		value: () => value,
+		update: (v) => (value = v)
+	});
 
 	const ctx = getFormContext();
 
@@ -46,11 +51,11 @@
 		{...itemAttributes}
 		aria-label="Reset"
 	/>
-	{#each options as option, index (option.id)}
+	{#each options as option (option.id)}
 		<input
 			class={['btn', errors.length > 0 && 'btn-error']}
 			bind:group={mapped.value}
-			value={index}
+			value={option.id}
 			aria-label={option.label}
 			{...itemAttributes}
 			id={option.id}

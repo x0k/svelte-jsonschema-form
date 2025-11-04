@@ -1,17 +1,35 @@
-import type { Component as SvelteComponent } from "svelte";
+import type { Snippet, Component as SvelteComponent } from "svelte";
+import type { HTMLFormAttributes } from "svelte/elements";
 
 import type { Expand } from "@/lib/types.js";
 import type { Resolver } from "@/lib/resolver.js";
 
 import type { Config } from "./config.js";
 
-export interface ComponentProps {}
+export interface ComponentProps {
+  form: {
+    config: Config;
+    ref?: HTMLFormElement | undefined;
+    children: Snippet;
+    attributes?: HTMLFormAttributes | undefined;
+  };
+  submitButton: {
+    config: Config;
+    children: Snippet;
+  };
+}
 
-export interface ComponentBindings {}
+export interface ComponentBindings {
+  form: "ref";
+  submitButton: "";
+}
 
 export type ComponentType = keyof ComponentProps;
 
-export interface FoundationalComponents {}
+export interface FoundationalComponents {
+  form: {};
+  submitButton: {};
+}
 
 export type FoundationalComponentType = keyof FoundationalComponents &
   ComponentType;

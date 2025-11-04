@@ -8,6 +8,13 @@ exports[`array fields > array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -21,18 +28,18 @@ exports[`array fields > array 1`] = `
        
       <!---->
       <!---->
+      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
       </div>
+      
       
       
       <!---->
@@ -57,7 +64,7 @@ exports[`array fields > array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -74,6 +81,7 @@ exports[`array fields > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -87,6 +95,13 @@ exports[`array fields > array icons 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -98,6 +113,7 @@ exports[`array fields > array icons 1`] = `
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -119,6 +135,7 @@ exports[`array fields > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -139,14 +156,30 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.0"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                -1 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_0"
+                >
+                  -1 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -161,10 +194,11 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root_0"
+                name="root_0"
                 required=""
                 type="text"
               />
@@ -193,8 +227,10 @@ exports[`array fields > array icons 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -260,6 +296,7 @@ exports[`array fields > array icons 1`] = `
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -268,6 +305,8 @@ exports[`array fields > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -280,6 +319,7 @@ exports[`array fields > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -300,14 +340,30 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.1"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                -2 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_1"
+                >
+                  -2 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -322,10 +378,11 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.1"
-                name="root.1"
+                id="root_1"
+                name="root_1"
                 required=""
                 type="text"
               />
@@ -354,8 +411,10 @@ exports[`array fields > array icons 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -418,6 +477,7 @@ exports[`array fields > array icons 1`] = `
             
             <!---->
           </div>
+          
           
           
           
@@ -434,6 +494,7 @@ exports[`array fields > array icons 1`] = `
         
         <!---->
       </div>
+      
       
       
       <!---->
@@ -458,7 +519,7 @@ exports[`array fields > array icons 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -475,6 +536,7 @@ exports[`array fields > array icons 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -488,12 +550,19 @@ exports[`array fields > checkboxes 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <pre
       style="color: red;"
     >
       "multiEnumField" component not found
     </pre>
-    
+    <!---->
     <!---->
      
     <!---->
@@ -512,6 +581,7 @@ exports[`array fields > checkboxes 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -523,6 +593,13 @@ exports[`array fields > empty errors array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -534,6 +611,7 @@ exports[`array fields > empty errors array 1`] = `
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -557,6 +635,7 @@ exports[`array fields > empty errors array 1`] = `
            
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -577,13 +656,29 @@ exports[`array fields > empty errors array 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.name"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                name 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_name"
+                >
+                  name 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -598,10 +693,11 @@ exports[`array fields > empty errors array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.name::description root.name::help root.name::errors"
+                aria-describedby="root_name__description root_name__help root_name__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.name"
-                name="root.name"
+                id="root_name"
+                name="root_name"
                 type="text"
               />
                
@@ -629,6 +725,7 @@ exports[`array fields > empty errors array 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -646,6 +743,7 @@ exports[`array fields > empty errors array 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -653,7 +751,7 @@ exports[`array fields > empty errors array 1`] = `
       <!---->
       <ul
         class="text-error list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -669,7 +767,7 @@ exports[`array fields > empty errors array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -686,6 +784,7 @@ exports[`array fields > empty errors array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -699,6 +798,13 @@ exports[`array fields > fixed array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -710,6 +816,7 @@ exports[`array fields > fixed array 1`] = `
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -728,6 +835,7 @@ exports[`array fields > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -753,10 +861,11 @@ exports[`array fields > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root_0"
+                name="root_0"
                 required=""
                 type="text"
               />
@@ -785,6 +894,7 @@ exports[`array fields > fixed array 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -795,6 +905,8 @@ exports[`array fields > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -804,6 +916,7 @@ exports[`array fields > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -829,10 +942,11 @@ exports[`array fields > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.1"
-                name="root.1"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
                 type="number"
@@ -862,6 +976,7 @@ exports[`array fields > fixed array 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -879,6 +994,7 @@ exports[`array fields > fixed array 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -890,7 +1006,7 @@ exports[`array fields > fixed array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -907,6 +1023,7 @@ exports[`array fields > fixed array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -920,6 +1037,13 @@ exports[`with title and description > array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -933,30 +1057,55 @@ exports[`with title and description > array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="array-field-meta"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a test description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a test description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -965,12 +1114,11 @@ exports[`with title and description > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
       </div>
+      
       
       
       <!---->
@@ -995,7 +1143,7 @@ exports[`with title and description > array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1012,6 +1160,7 @@ exports[`with title and description > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1025,6 +1174,13 @@ exports[`with title and description > array icons 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1038,30 +1194,55 @@ exports[`with title and description > array icons 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="array-field-meta"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a test description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a test description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -1083,6 +1264,7 @@ exports[`with title and description > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -1103,21 +1285,37 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.0"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                Test item-1 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_0"
+                >
+                  Test item-1 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root_0__description"
               >
                 a test item description
               </p>
@@ -1133,10 +1331,11 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root_0"
+                name="root_0"
                 required=""
                 type="text"
               />
@@ -1165,8 +1364,10 @@ exports[`with title and description > array icons 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1232,6 +1433,7 @@ exports[`with title and description > array icons 1`] = `
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -1240,6 +1442,8 @@ exports[`with title and description > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1252,6 +1456,7 @@ exports[`with title and description > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -1272,21 +1477,37 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.1"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                Test item-2 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_1"
+                >
+                  Test item-2 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root_1__description"
               >
                 a test item description
               </p>
@@ -1302,10 +1523,11 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.1"
-                name="root.1"
+                id="root_1"
+                name="root_1"
                 required=""
                 type="text"
               />
@@ -1334,8 +1556,10 @@ exports[`with title and description > array icons 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1398,6 +1622,7 @@ exports[`with title and description > array icons 1`] = `
             
             <!---->
           </div>
+          
           
           
           
@@ -1414,6 +1639,7 @@ exports[`with title and description > array icons 1`] = `
         
         <!---->
       </div>
+      
       
       
       <!---->
@@ -1438,7 +1664,7 @@ exports[`with title and description > array icons 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1455,6 +1681,7 @@ exports[`with title and description > array icons 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1468,12 +1695,19 @@ exports[`with title and description > checkboxes 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <pre
       style="color: red;"
     >
       "multiEnumField" component not found
     </pre>
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1490,6 +1724,7 @@ exports[`with title and description > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1503,6 +1738,13 @@ exports[`with title and description > fixed array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1516,30 +1758,55 @@ exports[`with title and description > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="array-field-meta"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a test description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a test description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -1558,6 +1825,7 @@ exports[`with title and description > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1581,21 +1849,37 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.0"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                Test item 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_0"
+                >
+                  Test item 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root_0__description"
               >
                 a test item description
               </p>
@@ -1611,10 +1895,11 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root_0"
+                name="root_0"
                 required=""
                 type="text"
               />
@@ -1643,6 +1928,7 @@ exports[`with title and description > fixed array 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1653,6 +1939,8 @@ exports[`with title and description > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1662,6 +1950,7 @@ exports[`with title and description > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -1685,21 +1974,37 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.1"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                Test item 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_1"
+                >
+                  Test item 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root_1__description"
               >
                 a test item description
               </p>
@@ -1715,10 +2020,11 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.1"
-                name="root.1"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
                 type="number"
@@ -1748,6 +2054,7 @@ exports[`with title and description > fixed array 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1765,6 +2072,7 @@ exports[`with title and description > fixed array 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -1776,7 +2084,7 @@ exports[`with title and description > fixed array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1793,6 +2101,7 @@ exports[`with title and description > fixed array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1806,6 +2115,13 @@ exports[`with title and description from both > array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1819,30 +2135,55 @@ exports[`with title and description from both > array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="array-field-meta"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a fancier description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -1851,12 +2192,11 @@ exports[`with title and description from both > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
       </div>
+      
       
       
       <!---->
@@ -1881,7 +2221,7 @@ exports[`with title and description from both > array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1898,6 +2238,7 @@ exports[`with title and description from both > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -1911,6 +2252,13 @@ exports[`with title and description from both > array icons 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1924,30 +2272,55 @@ exports[`with title and description from both > array icons 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="array-field-meta"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a fancier description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -1969,6 +2342,7 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -1989,21 +2363,37 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.0"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item-1 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_0"
+                >
+                  My Item-1 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root_0__description"
               >
                 a fancier item description
               </p>
@@ -2019,10 +2409,11 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root_0"
+                name="root_0"
                 required=""
                 type="text"
               />
@@ -2051,8 +2442,10 @@ exports[`with title and description from both > array icons 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2118,6 +2511,7 @@ exports[`with title and description from both > array icons 1`] = `
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -2126,6 +2520,8 @@ exports[`with title and description from both > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2138,6 +2534,7 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -2158,21 +2555,37 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.1"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item-2 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_1"
+                >
+                  My Item-2 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root_1__description"
               >
                 a fancier item description
               </p>
@@ -2188,10 +2601,11 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.1"
-                name="root.1"
+                id="root_1"
+                name="root_1"
                 required=""
                 type="text"
               />
@@ -2220,8 +2634,10 @@ exports[`with title and description from both > array icons 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2284,6 +2700,7 @@ exports[`with title and description from both > array icons 1`] = `
             
             <!---->
           </div>
+          
           
           
           
@@ -2300,6 +2717,7 @@ exports[`with title and description from both > array icons 1`] = `
         
         <!---->
       </div>
+      
       
       
       <!---->
@@ -2324,7 +2742,7 @@ exports[`with title and description from both > array icons 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2341,6 +2759,7 @@ exports[`with title and description from both > array icons 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2354,12 +2773,19 @@ exports[`with title and description from both > checkboxes 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <pre
       style="color: red;"
     >
       "multiEnumField" component not found
     </pre>
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2376,6 +2802,7 @@ exports[`with title and description from both > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2389,6 +2816,13 @@ exports[`with title and description from both > fixed array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2402,30 +2836,55 @@ exports[`with title and description from both > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="array-field-meta"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a fancier description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -2444,6 +2903,7 @@ exports[`with title and description from both > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2467,21 +2927,37 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.0"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_0"
+                >
+                  My Item 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root_0__description"
               >
                 a fancier item description
               </p>
@@ -2497,10 +2973,11 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root_0"
+                name="root_0"
                 required=""
                 type="text"
               />
@@ -2529,6 +3006,7 @@ exports[`with title and description from both > fixed array 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -2539,6 +3017,8 @@ exports[`with title and description from both > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2548,6 +3028,7 @@ exports[`with title and description from both > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2571,21 +3052,37 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.1"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_1"
+                >
+                  My Item 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root_1__description"
               >
                 a fancier item description
               </p>
@@ -2601,10 +3098,11 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.1"
-                name="root.1"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
                 type="number"
@@ -2634,6 +3132,7 @@ exports[`with title and description from both > fixed array 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -2651,6 +3150,7 @@ exports[`with title and description from both > fixed array 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -2662,7 +3162,7 @@ exports[`with title and description from both > fixed array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2679,6 +3179,7 @@ exports[`with title and description from both > fixed array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2692,6 +3193,13 @@ exports[`with title and description from uiSchema > array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2705,30 +3213,55 @@ exports[`with title and description from uiSchema > array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="array-field-meta"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a fancier description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -2737,12 +3270,11 @@ exports[`with title and description from uiSchema > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
       </div>
+      
       
       
       <!---->
@@ -2767,7 +3299,7 @@ exports[`with title and description from uiSchema > array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2784,6 +3316,7 @@ exports[`with title and description from uiSchema > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2797,6 +3330,13 @@ exports[`with title and description from uiSchema > array icons 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2810,30 +3350,55 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="array-field-meta"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a fancier description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -2855,6 +3420,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -2875,21 +3441,37 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.0"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item-1 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_0"
+                >
+                  My Item-1 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root_0__description"
               >
                 a fancier item description
               </p>
@@ -2905,10 +3487,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root_0"
+                name="root_0"
                 required=""
                 type="text"
               />
@@ -2937,8 +3520,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3004,6 +3589,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -3012,6 +3598,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3024,6 +3612,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -3044,21 +3633,37 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.1"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item-2 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_1"
+                >
+                  My Item-2 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root_1__description"
               >
                 a fancier item description
               </p>
@@ -3074,10 +3679,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.1"
-                name="root.1"
+                id="root_1"
+                name="root_1"
                 required=""
                 type="text"
               />
@@ -3106,8 +3712,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3170,6 +3778,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             
             <!---->
           </div>
+          
           
           
           
@@ -3186,6 +3795,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         
         <!---->
       </div>
+      
       
       
       <!---->
@@ -3210,7 +3820,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3227,6 +3837,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3240,12 +3851,19 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <pre
       style="color: red;"
     >
       "multiEnumField" component not found
     </pre>
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3262,6 +3880,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3275,6 +3894,13 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3288,30 +3914,55 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="array-field-meta"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a fancier description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -3330,6 +3981,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3353,21 +4005,37 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.0"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_0"
+                >
+                  My Item 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root_0__description"
               >
                 a fancier item description
               </p>
@@ -3383,10 +4051,11 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root_0"
+                name="root_0"
                 required=""
                 type="text"
               />
@@ -3415,6 +4084,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -3425,6 +4095,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3434,6 +4106,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3457,21 +4130,37 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.1"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_1"
+                >
+                  My Item 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root_1__description"
               >
                 a fancier item description
               </p>
@@ -3487,10 +4176,11 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.1"
-                name="root.1"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
                 type="number"
@@ -3520,6 +4210,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -3537,6 +4228,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -3548,7 +4240,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3565,6 +4257,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3578,6 +4271,13 @@ exports[`with title and description with global label off > array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3591,18 +4291,18 @@ exports[`with title and description with global label off > array 1`] = `
        
       <!---->
       <!---->
+      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
       </div>
+      
       
       
       <!---->
@@ -3627,7 +4327,7 @@ exports[`with title and description with global label off > array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3644,6 +4344,7 @@ exports[`with title and description with global label off > array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3657,6 +4358,13 @@ exports[`with title and description with global label off > array icons 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3668,6 +4376,7 @@ exports[`with title and description with global label off > array icons 1`] = `
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -3689,6 +4398,7 @@ exports[`with title and description with global label off > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -3711,10 +4421,11 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root_0"
+                name="root_0"
                 required=""
                 type="text"
               />
@@ -3743,8 +4454,10 @@ exports[`with title and description with global label off > array icons 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3810,6 +4523,7 @@ exports[`with title and description with global label off > array icons 1`] = `
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -3818,6 +4532,8 @@ exports[`with title and description with global label off > array icons 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3830,6 +4546,7 @@ exports[`with title and description with global label off > array icons 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -3852,10 +4569,11 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.1"
-                name="root.1"
+                id="root_1"
+                name="root_1"
                 required=""
                 type="text"
               />
@@ -3884,8 +4602,10 @@ exports[`with title and description with global label off > array icons 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3948,6 +4668,7 @@ exports[`with title and description with global label off > array icons 1`] = `
             
             <!---->
           </div>
+          
           
           
           
@@ -3964,6 +4685,7 @@ exports[`with title and description with global label off > array icons 1`] = `
         
         <!---->
       </div>
+      
       
       
       <!---->
@@ -3988,7 +4710,7 @@ exports[`with title and description with global label off > array icons 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4005,6 +4727,7 @@ exports[`with title and description with global label off > array icons 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4018,12 +4741,19 @@ exports[`with title and description with global label off > checkboxes 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <pre
       style="color: red;"
     >
       "multiEnumField" component not found
     </pre>
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4042,6 +4772,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -4053,6 +4784,13 @@ exports[`with title and description with global label off > fixed array 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4064,6 +4802,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -4082,6 +4821,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4107,10 +4847,11 @@ exports[`with title and description with global label off > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root_0"
+                name="root_0"
                 required=""
                 type="text"
               />
@@ -4139,6 +4880,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -4149,6 +4891,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4158,6 +4902,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4183,10 +4928,11 @@ exports[`with title and description with global label off > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.1"
-                name="root.1"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
                 type="number"
@@ -4216,6 +4962,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -4233,6 +4980,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -4244,7 +4992,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4261,6 +5009,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>

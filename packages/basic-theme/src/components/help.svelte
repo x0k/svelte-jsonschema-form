@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import type { HTMLAttributes } from "svelte/elements";
+  import "@sjsf/form/fields/extra-components/help";
 
   declare module "@sjsf/form" {
     interface UiOptions {
@@ -25,7 +26,7 @@
 
 <div
   {...helpAttributes(ctx, config, "helpAttributes", {
-    style: "font-weight: 300;",
+    class: "sjsf-help",
   })}
 >
   {help}

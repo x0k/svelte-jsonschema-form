@@ -18,6 +18,13 @@ You may want to use Valibot validator because:
 - You can use Valibot schema as a source of truth for the form value type (`v.InferInput`).
 - This is an easy way to add custom error messages
 
+:::caution
+
+Your schema must be convertible to a JSON schema.
+See the [supported features](https://github.com/fabian-hiller/valibot/blob/main/packages/to-json-schema/README.md#supported-features) for details.
+
+:::
+
 ## Installation
 
 <Npm pkg="@sjsf/valibot-validator @valibot/to-json-schema valibot" />

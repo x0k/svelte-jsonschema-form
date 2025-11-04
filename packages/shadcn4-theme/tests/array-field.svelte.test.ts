@@ -1,4 +1,4 @@
-import { arrayFieldTests } from 'testing/snapshots/array-field-tests';
+import { arrayFieldTests } from 'theme-testing/snapshots/array-field-tests';
 
 import * as components from '../src/lib/components/ui/index.js';
 import { THEME_CONTEXT } from '../src/lib/theme/internal.js';

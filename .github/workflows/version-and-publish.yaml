@@ -13,7 +13,7 @@ permissions:
   pull-requests: write
 
 env:
-  PLAYWRIGHT_VERSION: "1.52.0"
+  PLAYWRIGHT_VERSION: "1.54.1"
 
 jobs:
   version:
@@ -57,7 +57,7 @@ jobs:
             ${{ runner.os }}-turbo-
 
       - name: Build
-        run: pnpm run ci:build --filter="@sjsf/*"
+        run: pnpm run ci:build --filter="@sjsf/*" --filter="@sjsf-lab/*"
 
       - name: Create and publish versions
         uses: changesets/action@v1

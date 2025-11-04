@@ -4,28 +4,20 @@ import {
   type Schema as CfSchema,
 } from "@cfworker/json-schema";
 import { weakMemoize } from "@sjsf/form/lib/memoize";
-import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   ID_KEY,
   prefixSchemaRefs,
-  refToPath,
   ROOT_SCHEMA_PREFIX,
-  type Path,
   type SchemaValue,
   type Validator,
+  pathFromLocation,
 } from "@sjsf/form/core";
-import {
-  pathToId,
-  type Config,
-  type Schema,
-  type FieldValueValidator,
-  type FormValueValidator,
-  type UiSchemaRoot,
-  type IdPrefixOption,
-  type IdSeparatorOption,
-  getRootSchemaTitleByPath,
-  type FormValue,
-  getRootUiSchemaTitleByPath,
+import type {
+  Config,
+  Schema,
+  FieldValueValidator,
+  FormValueValidator,
+  FormValue,
 } from "@sjsf/form";
 
 export interface ValueToJSON {
@@ -89,65 +81,32 @@ export function createValidator({
   };
 }
 
-interface ErrorsTransformerOptions extends IdPrefixOption, IdSeparatorOption {
-  uiSchema?: UiSchemaRoot;
-}
+export interface FormValueValidatorOptions extends ValidatorOptions {}
 
-function createErrorsTransformer(options: ErrorsTransformerOptions) {
-  const extractPropertyTitle = (
-    unit: OutputUnit,
-    rootSchema: Schema,
-    path: Path,
-    instanceId: string
-  ): string => {
-    const title = getRootUiSchemaTitleByPath(options.uiSchema ?? {}, path);
-    if (title !== undefined) {
-      return title;
-    }
-    const schemaPath = refToPath(unit.keywordLocation).slice(0, -1);
-    const schema = getValueByPath(rootSchema, schemaPath);
-    if (
-      schema &&
-      typeof schema === "object" &&
-      "title" in schema &&
-      typeof schema.title === "string"
-    ) {
-      return schema.title;
-    }
-    return (
-      getRootSchemaTitleByPath(rootSchema, path) ??
-      path[path.length - 1]?.toString() ??
-      instanceId
-    );
-  };
-  return (rootSchema: Schema, errors: OutputUnit[]) =>
-    errors.map((unit) => {
-      const path = refToPath(unit.instanceLocation);
-      const instanceId = pathToId(path, options);
-      return {
-        instanceId,
-        propertyTitle: extractPropertyTitle(unit, rootSchema, path, instanceId),
-        message: unit.error,
-        error: unit,
-      };
-    });
-}
-
-export interface FormValueValidatorOptions
-  extends ValidatorOptions,
-    ErrorsTransformerOptions {}
-
-export function createFormValueValidator(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
-): FormValueValidator<OutputUnit> {
-  const errorsTransformer = createErrorsTransformer(options);
+): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
-      return errorsTransformer(
-        rootSchema,
-        validator.validate(options.valueToJSON(formValue)).errors
+      const { valid, errors } = validator.validate(
+        options.valueToJSON(formValue)
       );
+      if (valid) {
+        return {
+          value: formValue as T,
+        };
+      }
+      return {
+        value: formValue,
+        errors: errors.map((unit) => {
+          const path = pathFromLocation(unit.instanceLocation, formValue);
+          return {
+            path,
+            message: unit.error,
+          };
+        }),
+      };
     },
   };
 }
@@ -167,19 +126,14 @@ function isRootNonTypeError(error: OutputUnit): boolean {
 export function createFieldValueValidator({
   createFieldSchemaValidator,
   valueToJSON,
-}: FieldValueValidatorOptions): FieldValueValidator<OutputUnit> {
+}: FieldValueValidatorOptions): FieldValueValidator {
   return {
     validateFieldValue(config, fieldValue) {
       const validator = createFieldSchemaValidator(config);
       const errors = validator.validate(valueToJSON(fieldValue)).errors;
       return errors
         .filter(config.required ? isRootError : isRootNonTypeError)
-        .map((unit) => ({
-          instanceId: config.id,
-          propertyTitle: config.title,
-          message: unit.error,
-          error: unit,
-        }));
+        .map((unit) => unit.error);
     },
   };
 }
@@ -189,7 +143,7 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidator({
+export function createFormValidator<T>({
   factory = (schema) => new CfValidator(schema as CfSchema, "7", false),
   createSchemaValidator = createSchemaValidatorFactory(factory),
   createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
@@ -197,8 +151,8 @@ export function createFormValidator({
     v === undefined || v === null
       ? null
       : typeof v === "object"
-      ? JSON.parse(JSON.stringify(v))
-      : v,
+        ? JSON.parse(JSON.stringify(v))
+        : v,
   ...rest
 }: Partial<FormValidatorOptions> & {
   factory?: CfValidatorFactory;
@@ -211,7 +165,7 @@ export function createFormValidator({
   };
   return Object.assign(
     createValidator(options),
-    createFormValueValidator(options),
+    createFormValueValidator<T>(options),
     createFieldValueValidator(options)
   );
 }

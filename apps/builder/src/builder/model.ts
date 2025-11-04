@@ -1,10 +1,5 @@
-import type {
-  ComponentProps,
-  ComponentType,
-  UiOptions,
-  UiSchema,
-} from "@sjsf/form";
-import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
+import type { UiOptions, UiSchema } from "@sjsf/form";
 
 import { constant } from "$lib/function.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
@@ -23,10 +18,15 @@ import {
   type WidgetNode,
   type WidgetNodeType,
 } from "$lib/builder/index.js";
-import { Theme, type WidgetType } from "$lib/sjsf/theme.js";
+import {
+  ActualTheme,
+  LabTheme,
+  type Theme,
+  type FieldType,
+  type WidgetType,
+} from "$lib/sjsf/theme.js";
 
 import type { BuilderDraggable } from "./context.svelte.js";
-import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 
 export interface NodeProps<T extends NodeType> {
   node: Extract<Node, AbstractNode<T>>;
@@ -65,18 +65,22 @@ export const TEXT_WIDGET_OPTIONS: Record<
   Theme,
   (params: TextWidgetParams) => UiOptions
 > = {
-  [Theme.Basic]: basicTextOptions,
-  [Theme.Daisy5]: basicTextOptions,
-  [Theme.Flowbite3]: (params) => ({ flowbite3Text: params }),
-  [Theme.Skeleton3]: basicTextOptions,
-  [Theme.Shadcn4]: (params) => ({ shadcn4Text: { ...params } }),
+  [ActualTheme.Basic]: basicTextOptions,
+  [ActualTheme.Pico]: basicTextOptions,
+  [ActualTheme.Daisy5]: basicTextOptions,
+  [ActualTheme.Flowbite3]: (params) => ({ flowbite3Text: { ...params } }),
+  [ActualTheme.Skeleton4]: basicTextOptions,
+  [ActualTheme.Shadcn4]: (params) => ({ shadcn4Text: { ...params } }),
+  [LabTheme.Svar]: (params) => ({
+    svarText: { placeholder: params.placeholder, type: params.type as any },
+  }),
 };
 
 export const CHECKBOXES_WIDGET_OPTIONS: Record<
   Theme,
   (inline: boolean) => UiOptions
 > = {
-  [Theme.Basic]: (inline) =>
+  [ActualTheme.Basic]: (inline) =>
     inline
       ? {}
       : {
@@ -86,7 +90,17 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
             },
           },
         },
-  [Theme.Daisy5]: (inline) =>
+  [ActualTheme.Pico]: (inline) =>
+    inline
+      ? {}
+      : {
+          layouts: {
+            "field-content": {
+              style: "display: flex; flex-direction: column; gap: 0.2rem;",
+            },
+          },
+        },
+  [ActualTheme.Daisy5]: (inline) =>
     inline
       ? {
           layouts: {
@@ -96,7 +110,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
           },
         }
       : {},
-  [Theme.Flowbite3]: (inline) =>
+  [ActualTheme.Flowbite3]: (inline) =>
     inline
       ? {}
       : {
@@ -106,7 +120,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
             },
           },
         },
-  [Theme.Skeleton3]: (inline) =>
+  [ActualTheme.Skeleton4]: (inline) =>
     inline
       ? {}
       : {
@@ -116,16 +130,24 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
             },
           },
         },
-  [Theme.Shadcn4]: (inline) =>
+  [ActualTheme.Shadcn4]: (inline) =>
     inline
-      ? {}
-      : {
+      ? {
           layouts: {
             "field-content": {
-              style: "flex-direction: column;",
+              style: "display: flex; gap: 1rem;",
             },
           },
-        },
+        }
+      : {},
+  [LabTheme.Svar]: (inline) =>
+    inline
+      ? {
+          svarCheckboxes: {
+            type: "inline",
+          },
+        }
+      : {},
 };
 
 export const RADIO_WIDGET_OPTIONS: Record<
@@ -133,11 +155,19 @@ export const RADIO_WIDGET_OPTIONS: Record<
   (inline: boolean) => UiOptions
 > = {
   ...CHECKBOXES_WIDGET_OPTIONS,
-  [Theme.Shadcn4]: (inline) =>
+  [ActualTheme.Shadcn4]: (inline) =>
     inline
       ? {
           shadcn4RadioGroup: {
             style: "grid-auto-flow: column; grid-auto-columns: max-content;",
+          },
+        }
+      : {},
+  [LabTheme.Svar]: (inline) =>
+    inline
+      ? {
+          svarRadio: {
+            type: "inline",
           },
         }
       : {},
@@ -168,15 +198,21 @@ export const DEFAULT_COMPONENTS: Record<
     [NodeType.File]: (node): UiSchema["ui:components"] => {
       if (node.options.multiple) {
         return {
-          arrayField: "filesFieldWrapper",
+          arrayField: node.options.native
+            ? "arrayNativeFilesField"
+            : "arrayFilesField",
         };
       }
-      return {
-        stringField: "fileField",
-      };
+      return node.options.native
+        ? {
+            unknownField: "unknownNativeFileField",
+          }
+        : {
+            stringField: "fileField",
+          };
     },
     [NodeType.Tags]: constant({
-      arrayField: "tagsFieldWrapper",
+      arrayField: "arrayTagsField",
     }),
   },
   [Resolver.Compat]: {
@@ -185,9 +221,20 @@ export const DEFAULT_COMPONENTS: Record<
     [NodeType.String]: constant(undefined),
     [NodeType.Number]: constant(undefined),
     [NodeType.Boolean]: constant(undefined),
-    [NodeType.File]: constant(undefined),
+    [NodeType.File]: (node): UiSchema["ui:components"] => {
+      if (!node.options.native) {
+        return undefined;
+      }
+      return node.options.multiple
+        ? {
+            arrayField: "arrayNativeFilesField",
+          }
+        : {
+            unknownField: "unknownNativeFileField",
+          };
+    },
     [NodeType.Tags]: constant({
-      arrayField: "tagsFieldWrapper",
+      arrayField: "arrayTagsField",
     }),
   },
 };
@@ -217,72 +264,61 @@ export function isBaseWidget(w: WidgetType): w is BaseWidgetType {
   return BASE_WIDGETS_SET.has(w);
 }
 
-const EPHEMERAL_WIDGETS = [
-  "filterRadioButtonsWidget",
-  "pikadayDatePickerWidget",
-  "fileUploadWidget",
-  "sliderWidget",
-] as const satisfies WidgetType[];
-
-export type EphemeralWidgetType = (typeof EPHEMERAL_WIDGETS)[number];
-
-export type ExtraWidgetType = Exclude<
-  WidgetType,
-  BaseWidgetType | EphemeralWidgetType
->;
-
-const EPHEMERAL_WIDGETS_SET = new Set<WidgetType>(EPHEMERAL_WIDGETS);
-
-export function isEphemeralWidget(w: WidgetType): w is EphemeralWidgetType {
-  return EPHEMERAL_WIDGETS_SET.has(w);
-}
-
-const EPHEMERAL_FIELDS = ["files", "tags"] as const;
-
-export type EphemeralFieldType = (typeof EPHEMERAL_FIELDS)[number];
-
-const EPHEMERAL_FIELDS_SET = new Set<string>(EPHEMERAL_FIELDS);
-
-export function isEphemeralField(field: string): field is EphemeralFieldType {
-  return EPHEMERAL_FIELDS_SET.has(field);
-}
+export type ExtraWidgetType = Exclude<WidgetType, BaseWidgetType>;
 
 export type FileFieldMode = number;
 export const FILE_FIELD_SINGLE_MODE = 1;
 export const FILE_FIELD_MULTIPLE_MODE = FILE_FIELD_SINGLE_MODE << 1;
+export const FILE_FIELD_NATIVE_SINGLE_MODE = FILE_FIELD_MULTIPLE_MODE << 1;
+export const FILE_FIELD_NATIVE_MULTIPLE_MODE =
+  FILE_FIELD_NATIVE_SINGLE_MODE << 1;
 
-export function fileFieldModeToFields(mode: FileFieldMode): string[] {
-  const fields: string[] = [];
+type StripFieldSuffix<T> = T extends `${infer U}Field` ? U : T;
+
+export function fileFieldModeToFields(
+  mode: FileFieldMode
+): StripFieldSuffix<FieldType>[] {
+  const fields: StripFieldSuffix<FieldType>[] = [];
   if (mode & FILE_FIELD_SINGLE_MODE) {
     fields.push("file");
   }
   if (mode & FILE_FIELD_MULTIPLE_MODE) {
     fields.push("files");
   }
+  if (mode & FILE_FIELD_NATIVE_SINGLE_MODE) {
+    fields.push("unknownNativeFile");
+  }
+  if (mode & FILE_FIELD_NATIVE_MULTIPLE_MODE) {
+    fields.push("arrayNativeFiles");
+  }
   return fields;
 }
 
-export const WIDGET_EXTRA_FIELD: Record<WidgetType, string | undefined> = {
+export const WIDGET_EXTRA_FIELD: Record<
+  WidgetType,
+  StripFieldSuffix<FieldType> | undefined
+> = {
   textWidget: undefined,
   numberWidget: undefined,
   selectWidget: "enum",
   checkboxWidget: undefined,
   fileWidget: undefined,
-  checkboxesWidget: "multi-enum",
+  checkboxesWidget: "multiEnum",
   tagsWidget: "tags",
   datePickerWidget: undefined,
-  multiSelectWidget: "multi-enum",
+  multiSelectWidget: "multiEnum",
   radioWidget: "enum",
-  sliderWidget: undefined,
   rangeWidget: undefined,
   textareaWidget: undefined,
   radioButtonsWidget: "enum",
   ratingWidget: undefined,
   switchWidget: undefined,
   comboboxWidget: "enum",
-  filterRadioButtonsWidget: "enum",
-  pikadayDatePickerWidget: undefined,
-  fileUploadWidget: undefined,
+  daisyui5FilterRadioButtonsWidget: "enum",
+  daisyui5CallyDatePickerWidget: undefined,
+  skeleton4SliderWidget: undefined,
+  skeleton4FileUploadWidget: undefined,
+  flowbite3ToggleRadioButtonsWidget: "enum",
 };
 
 export const WIDGET_NAMES: Record<WidgetType, string> = {
@@ -296,16 +332,17 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
   datePickerWidget: "Date picker",
   multiSelectWidget: "Multi Select",
   radioWidget: "Radio group",
-  sliderWidget: "Slider",
   rangeWidget: "Range",
   textareaWidget: "Textarea",
   radioButtonsWidget: "Radio buttons",
   ratingWidget: "Rating",
   switchWidget: "Switch",
   comboboxWidget: "Combobox",
-  filterRadioButtonsWidget: "Radio buttons 2",
-  pikadayDatePickerWidget: "Pikaday date picker",
-  fileUploadWidget: "Drop zone",
+  daisyui5FilterRadioButtonsWidget: "Filter radio buttons",
+  daisyui5CallyDatePickerWidget: "Cally date picker",
+  skeleton4FileUploadWidget: "Drop zone",
+  skeleton4SliderWidget: "Slider",
+  flowbite3ToggleRadioButtonsWidget: "Toggle radio buttons",
 };
 
 export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
@@ -319,16 +356,17 @@ export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
   datePickerWidget: true,
   multiSelectWidget: true,
   radioWidget: false,
-  sliderWidget: true,
   rangeWidget: true,
   textareaWidget: true,
   radioButtonsWidget: false,
   ratingWidget: false,
   switchWidget: true,
   comboboxWidget: true,
-  filterRadioButtonsWidget: false,
-  pikadayDatePickerWidget: true,
-  fileUploadWidget: true,
+  daisyui5FilterRadioButtonsWidget: false,
+  daisyui5CallyDatePickerWidget: true,
+  skeleton4SliderWidget: true,
+  skeleton4FileUploadWidget: true,
+  flowbite3ToggleRadioButtonsWidget: false,
 };
 
 export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
@@ -344,23 +382,9 @@ export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
   ratingWidget: "rating",
   switchWidget: "switch",
   comboboxWidget: "combobox",
+  daisyui5FilterRadioButtonsWidget: "filter-radio-buttons",
+  daisyui5CallyDatePickerWidget: "cally-date-picker",
+  skeleton4SliderWidget: "slider",
+  skeleton4FileUploadWidget: "file-upload",
+  flowbite3ToggleRadioButtonsWidget: "toggle-radio-buttons",
 };
-
-export const EPHEMERAL_WIDGET_IMPORTS: Record<EphemeralWidgetType, string> = {
-  filterRadioButtonsWidget: "filter-radio-buttons",
-  pikadayDatePickerWidget: "pikaday-date-picker",
-  fileUploadWidget: "file-upload",
-  sliderWidget: "slider",
-};
-
-export const EPHEMERAL_WIDGET_DEFINITIONS: Record<EphemeralWidgetType, string> =
-  {
-    filterRadioButtonsWidget: "WidgetCommonProps<SchemaValue> & Options",
-    pikadayDatePickerWidget: "WidgetCommonProps<string>",
-    fileUploadWidget: `WidgetCommonProps<FileList> & {
-      multiple: boolean;
-      loading: boolean;
-      processing: boolean;
-    }`,
-    sliderWidget: "WidgetCommonProps<number>",
-  };

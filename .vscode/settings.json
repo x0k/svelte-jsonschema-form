@@ -1,0 +1,7 @@
+{
+  "search.exclude": {
+    "**/.direnv": true,
+    "**/node_modules": true,
+    "**/.turbo": true
+  }
+}

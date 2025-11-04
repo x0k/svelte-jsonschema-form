@@ -1,50 +1,50 @@
-<script lang="ts" generics="T, V extends Validator, N extends JsonPaths<T>">
+<script lang="ts" generics="T, P extends JsonPaths<T>">
   import type { Snippet } from "svelte";
   import { DEV } from "esm-env";
 
+  import type { Ref } from '@/lib/svelte.svelte.js';
   import type { JsonPaths } from "@/lib/types.js";
   import { isObject } from "@/lib/object.js";
-  import { getSchemaDefinitionByPath, type Validator } from "@/core/index.js";
+  import { getSchemaDefinitionByPath, isSchemaObjectValue } from "@/core/index.js";
 
   import {
-    FORM_CONTEXT,
     getFieldComponent,
     retrieveSchema,
     retrieveTranslate,
     retrieveUiOption,
+    setFormContext,
     uiTitleOption,
-  } from "./context/index.js";
-  import { setFormContext2, type FormState } from "./create-form.svelte.js";
+    type FormState,
+  } from "./state/index.js";
   import type { FieldValue } from "./model.js";
   import {
     getUiSchemaByPath,
     type UiOption,
     type UiSchema,
   } from "./ui-schema.js";
-  import { pathToId } from "./id.js";
   import type { Config } from "./config.js";
   import type { ComponentProps } from "./components.js";
   import type { FoundationalFieldType } from "./fields.js";
+  import {
+    FORM_MERGER,
+    FORM_PATHS_TRIE_REF,
+    FORM_SCHEMA,
+    FORM_UI_SCHEMA,
+    FORM_UI_SCHEMA_ROOT,
+    FORM_VALIDATOR,
+    FORM_VALUE,
+    internalRegisterFieldPath,
+  } from "./internals.js";
 
   interface Props {
-    form: FormState<T, V>;
-    name: N;
+    form: FormState<T>;
+    path: P;
     required?: boolean;
     uiSchema?: UiSchema;
     render?: Snippet<
       [
         Omit<ComponentProps[FoundationalFieldType], "value"> & {
-          valueRef: { value: FieldValue };
-        },
-      ]
-    >;
-    /**
-     * @deprecated use `render` instead
-     */
-    children?: Snippet<
-      [
-        Omit<ComponentProps[FoundationalFieldType], "value"> & {
-          valueRef: { value: FieldValue };
+          valueRef: Ref<FieldValue>;
         },
       ]
     >;
@@ -52,51 +52,55 @@
 
   const {
     form,
-    name,
+    path: providedPath,
     required: requiredOverride,
     uiSchema: uiSchemaOverride,
     render,
-    children,
   }: Props = $props();
-
-  const ctx = form[FORM_CONTEXT];
 
   if (DEV) {
     $effect(() => {
-      if (name === "" && render === undefined) {
+      if (providedPath.length === 0 && render === undefined) {
         console.warn('Use `<Content />` instead of `<Field name="" />`');
       }
     });
   }
 
-  const valuePath = $derived(name === "" ? [] : name.split("."));
+  const path = $derived(
+    internalRegisterFieldPath(form[FORM_PATHS_TRIE_REF], providedPath)
+  );
 
-  const id = $derived(pathToId(valuePath, ctx));
-
-  const valueRef: { value: FieldValue } = $derived.by(() => {
-    if (valuePath.length === 0) {
-      return ctx;
+  const valueRef: Ref<FieldValue> = $derived.by(() => {
+    if (path.length === 0) {
+      return {
+        get current() {
+          return form[FORM_VALUE];
+        },
+        set current(v) {
+          form[FORM_VALUE] = v;
+        },
+      };
     }
-    let node = ctx.value;
+    let node = form[FORM_VALUE];
     let i = -1;
-    const lastIndex = valuePath.length - 1;
+    const lastIndex = path.length - 1;
     while (isObject(node) && ++i < lastIndex) {
       // @ts-expect-error
-      node = node[valuePath[i]];
+      node = node[path[i]];
     }
     if (i !== lastIndex) {
-      console.error("Current form state", $state.snapshot(ctx.value));
+      console.error("Current form state", $state.snapshot(form[FORM_VALUE]));
       throw new Error(
-        `Path "${name}" is not populated or invalid, check current form state`
+        `Path "[${path.join(", ")}]" is not populated or invalid, check current form state`
       );
     }
-    const lastKey = valuePath[lastIndex]!;
+    const lastKey = path[lastIndex]!;
     return {
-      get value() {
+      get current() {
         //@ts-expect-error
         return node[lastKey];
       },
-      set value(v) {
+      set current(v) {
         //@ts-expect-error
         node[lastKey] = v;
       },
@@ -104,35 +108,57 @@
   });
 
   const parentSchema = $derived.by(() => {
-    const len = valuePath.length;
+    const len = path.length;
     if (len < 2) {
-      return ctx.schema;
+      return form[FORM_SCHEMA];
     }
     const def = getSchemaDefinitionByPath(
-      ctx.schema,
-      ctx.schema,
-      valuePath.slice(0, -1)
+      form[FORM_VALIDATOR],
+      form[FORM_MERGER],
+      form[FORM_SCHEMA],
+      form[FORM_SCHEMA],
+      path.slice(0, -1),
+      valueRef.current
     );
     return def === undefined || typeof def === "boolean" ? {} : def;
   });
 
   const schema = $derived.by(() => {
-    if (valuePath.length === 0) {
-      return ctx.schema;
+    if (path.length === 0) {
+      return form[FORM_SCHEMA];
+    }
+    let val: FieldValue = valueRef.current;
+    const parentPath = path.slice(0, -1)
+    for (let i = 0; i < parentPath.length && val !== undefined; i++) {
+      const p = parentPath[i]!;
+      if (typeof p === 'number') {
+        val = Array.isArray(val) ? val[p] : undefined
+      } else {
+        val = isSchemaObjectValue(val) ? val[p] : undefined
+      }
     }
     const def = getSchemaDefinitionByPath(
-      ctx.schema,
+      form[FORM_VALIDATOR],
+      form[FORM_MERGER],
+      form[FORM_SCHEMA],
       parentSchema,
-      valuePath.slice(-1)
+      path.slice(-1),
+      val
     );
     return def === undefined || typeof def === "boolean" ? {} : def;
   });
 
-  const retrievedSchema = $derived(retrieveSchema(ctx, schema, valueRef.value));
+  const retrievedSchema = $derived(
+    retrieveSchema(form, schema, valueRef.current)
+  );
 
   const uiSchema = $derived(
     uiSchemaOverride ??
-      getUiSchemaByPath(ctx.uiSchemaRoot, ctx.uiSchema, valuePath) ??
+      getUiSchemaByPath(
+        form[FORM_UI_SCHEMA_ROOT],
+        form[FORM_UI_SCHEMA],
+        path
+      ) ??
       {}
   );
 
@@ -140,13 +166,13 @@
     if (requiredOverride !== undefined) {
       return requiredOverride;
     }
-    if (valuePath.length === 0) {
+    if (path.length === 0) {
       return false;
     }
-    const property = valuePath[valuePath.length - 1]!;
+    const property = path[path.length - 1]!;
     const { required, items, minItems } = parentSchema;
     if (Array.isArray(required)) {
-      return required.includes(property);
+      return required.includes(property as string);
     }
     const num = Number(property);
     if (Number.isInteger(num) && num >= 0) {
@@ -161,22 +187,20 @@
   });
 
   const config: Config = $derived({
-    id,
-    title: uiTitleOption(ctx, uiSchema) ?? retrievedSchema.title ?? "",
+    path,
+    title: uiTitleOption(form, uiSchema) ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,
     uiSchema,
     required,
   });
-  const translate = $derived(retrieveTranslate(ctx, config));
-  const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config, opt);
+  const translate = $derived(retrieveTranslate(form, config));
+  const uiOption: UiOption = (opt) => retrieveUiOption(form, config, opt);
 
-  const renderField = $derived(render ?? children);
-
-  setFormContext2(form);
+  setFormContext(form);
 </script>
 
-{#if renderField}
-  {@render renderField({
+{#if render}
+  {@render render({
     type: "field",
     config,
     translate,
@@ -184,10 +208,10 @@
     valueRef,
   })}
 {:else}
-  {@const Field = getFieldComponent(ctx, config)}
+  {@const Field = getFieldComponent(form, config)}
   <Field
     type="field"
-    bind:value={valueRef.value as undefined}
+    bind:value={valueRef.current as undefined}
     {config}
     {uiOption}
     {translate}

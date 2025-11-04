@@ -7,7 +7,9 @@ test("JsonPaths", () => {
     name: string;
     email?: string;
   }
-  expectTypeOf<JsonPaths<SimpleFields>>().toEqualTypeOf<keyof SimpleFields>();
+  expectTypeOf<JsonPaths<SimpleFields>>().toEqualTypeOf<
+    ["id"] | ["name"] | ["email"]
+  >();
 
   interface TuplesAndArrays {
     tuple: [number, boolean];
@@ -15,16 +17,25 @@ test("JsonPaths", () => {
     tags?: string[];
   }
   expectTypeOf<JsonPaths<TuplesAndArrays>>().toEqualTypeOf<
-    | "tuple"
-    | "tuple.0"
-    | "tuple.1"
-    | "coordinates"
-    | "coordinates.0"
-    | "coordinates.1"
-    | "coordinates.2"
-    | "tags"
-    | `tags.${number}`
+    | ["tuple"]
+    | ["tuple", 0]
+    | ["tuple", 1]
+    | ["coordinates"]
+    | ["coordinates", 0]
+    | ["coordinates", 1]
+    | ["coordinates", 2]
+    | ["tags"]
+    | ["tags", number]
   >();
+
+  type Tuple2 = {
+    tuple: [{ a: number }];
+  };
+
+  expectTypeOf<JsonPaths<Tuple2>>().toEqualTypeOf<
+    ["tuple"] | ["tuple", 0] | ["tuple", 0, "a"]
+  >();
+
   interface Nested {
     metadata?: {
       createdAt: string;
@@ -36,12 +47,12 @@ test("JsonPaths", () => {
     };
   }
   expectTypeOf<JsonPaths<Nested>>().toEqualTypeOf<
-    | "metadata"
-    | "metadata.createdAt"
-    | "metadata.updatedAt"
-    | "metadata.author"
-    | "metadata.author.name"
-    | "metadata.author.avatar"
+    | ["metadata"]
+    | ["metadata", "createdAt"]
+    | ["metadata", "updatedAt"]
+    | ["metadata", "author"]
+    | ["metadata", "author", "name"]
+    | ["metadata", "author", "avatar"]
   >();
 
   interface TooDeep {
@@ -56,9 +67,20 @@ test("JsonPaths", () => {
     };
   }
   expectTypeOf<JsonPaths<TooDeep, 3>>().toEqualTypeOf<
-    | "nested1"
-    | "nested1.nested2"
-    | "nested1.nested2.nested3"
-    | "nested1.nested2.nested3.nested4"
+    | ["nested1"]
+    | ["nested1", "nested2"]
+    | ["nested1", "nested2", "nested3"]
+    | ["nested1", "nested2", "nested3", "nested4"]
+  >();
+
+  type Nullable = {
+    user?: {
+      name: string | null;
+    };
+    foo: { bar: null } | null;
+  };
+
+  expectTypeOf<JsonPaths<Nullable>>().toEqualTypeOf<
+    ["user"] | ["user", "name"] | ["foo"] | ["foo", "bar"]
   >();
 });

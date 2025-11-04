@@ -8,7 +8,7 @@
 	} from 'bits-ui';
 	import '@sjsf/form/fields/extra-widgets/radio';
 
-	import '../types/label';
+	import '../types/label.js';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -27,24 +27,26 @@
 
 <script lang="ts">
 	import {
+		ariaInvalidProp,
 		type ComponentProps,
+		composeProps,
 		customInputAttributes,
 		getFormContext,
 		uiOptionProps
 	} from '@sjsf/form';
-	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context.js';
 
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 
-	const { RadioGroup, RadioGroupItem, Label } = $derived(themeCtx.components);
+	const { RadioGroup, RadioGroupItem, FieldLabel } = $derived(themeCtx.components);
 
 	let { config, handlers, value = $bindable(), options }: ComponentProps['radioWidget'] = $props();
 
 	const mapped = singleOption({
-		mapper: () => stringIndexMapper(options),
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
@@ -56,28 +58,29 @@
 	);
 
 	const itemAttributes = $derived(
-		uiOptionProps('shadcn4RadioItem')(
+		composeProps(
+			ctx,
+			config,
 			{
 				onclick: handlers.oninput,
 				onblur: handlers.onblur
 			},
-			config,
-			ctx
+			uiOptionProps('shadcn4RadioItem'),
+			ariaInvalidProp
 		)
 	);
 </script>
 
 <RadioGroup bind:value={mapped.value} {...attributes}>
-	{#each options as option, index (option.id)}
-		{@const indexStr = index.toString()}
-		<div class="flex items-center space-x-2">
+	{#each options as option (option.id)}
+		<div class="flex items-center space-x-3">
 			<RadioGroupItem
 				{...itemAttributes}
-				value={indexStr}
+				value={option.id}
 				id={option.id}
 				disabled={option.disabled}
 			/>
-			<Label for={option.id}>{option.label}</Label>
+			<FieldLabel for={option.id}>{option.label}</FieldLabel>
 		</div>
 	{/each}
 </RadioGroup>

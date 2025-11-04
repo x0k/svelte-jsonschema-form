@@ -230,9 +230,24 @@ interface UiOptions {
    */
   useLabel?: boolean;
   /**
+   * Display errors from child elements (applies only to aggregating fields like `tags`).
+   * @default false
+   */
+  collectErrors?: boolean;
+  /**
    * Overrides form translation
    */
   translations?: Partial<TranslatorDefinitions>;
+  /**
+   * Field action
+   */
+  action?: FieldAction<SchemaValue | undefined>;
+  /**
+   * A typed field action, takes precedence over `action`
+   */
+  actions?: Partial<{
+    [T in ActionField]: FieldAction<ComponentProps[T]["value"]>;
+  }>;
 }
 ```
 
@@ -245,9 +260,9 @@ export interface UiOptionsRegistry {}
 
 export type ResolvableUiOption<T> =
   | {
-      [K in keyof UiOptionsRegistry]: UiOptionsRegistry[K] extends T
-        ? `registry:${K}`
-        : never;
+      [K in keyof UiOptionsRegistry as UiOptionsRegistry[K] extends T
+        ? K
+        : never]: `registry:${K}`;
     }[keyof UiOptionsRegistry]
   | T;
 

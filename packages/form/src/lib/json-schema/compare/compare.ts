@@ -6,9 +6,13 @@ import type {
   JSONSchema7Object,
 } from "json-schema";
 
-import type { Comparator } from "@/lib/ord.js";
+import { type Comparator, ascComparator } from "@/lib/ord.js";
 import { isAllowAnySchema, isSchemaObject } from "@/lib/json-schema/index.js";
-import { createDeduplicator, isArrayEmpty } from "@/lib/array.js";
+import {
+  createArrayComparator,
+  createDeduplicator,
+  isArrayEmpty,
+} from "@/lib/array.js";
 import { isRecordEmpty } from "@/lib/object.js";
 import { weakMemoize } from "@/lib/memoize.js";
 
@@ -34,14 +38,6 @@ const PRIMITIVE_TYPE_ORDER: Record<
   string: 2,
 };
 
-function compareSameTypeSchemaPrimitives<
-  T extends SchemaPrimitiveTypeExceptNull,
->(a: T, b: T) {
-  if (a < b) return -1;
-  if (a > b) return 1;
-  return 0;
-}
-
 function compareSchemaPrimitive(
   a: SchemaPrimitiveTypeExceptNull,
   b: SchemaPrimitiveTypeExceptNull
@@ -49,26 +45,8 @@ function compareSchemaPrimitive(
   const ta = typeof a as SchemaPrimitiveTypeExceptNullType;
   const tb = typeof b as SchemaPrimitiveTypeExceptNullType;
   return ta === tb
-    ? compareSameTypeSchemaPrimitives(a, b)
+    ? ascComparator(a, b)
     : PRIMITIVE_TYPE_ORDER[ta] - PRIMITIVE_TYPE_ORDER[tb];
-}
-
-function createArrayComparator<T>(compare: (a: T, b: T) => number) {
-  return (a: T[], b: T[]) => {
-    const d = a.length - b.length;
-    if (d !== 0) {
-      return d;
-    }
-    for (let i = 0; i < a.length; i++) {
-      if (a[i] !== b[i]) {
-        const d = compare(a[i]!, b[i]!);
-        if (d !== 0) {
-          return d;
-        }
-      }
-    }
-    return 0;
-  };
 }
 
 function insertUniqueValues<K>(mutableTarget: K[], mutableSource: K[]): K[] {
@@ -132,9 +110,8 @@ function createArrayOrItemComparator<T, T1>(
   return createCmpMatcher<T | T1[], T1[]>(Array.isArray, compare, compareArray);
 }
 
-const compareOptionalSameTypeSchemaPrimitives = createOptionalComparator(
-  compareSameTypeSchemaPrimitives
-);
+const compareOptionalSameTypeSchemaPrimitives =
+  createOptionalComparator(ascComparator);
 
 const compareNumbersWithZeroDefault = createNarrowingOptionalComparator(
   (v: number): v is 0 => v === 0,
@@ -162,7 +139,7 @@ export function createComparator({
       const bKeys = getSortedKeys(b);
       const l = Math.min(aKeys.length, bKeys.length);
       for (let i = 0; i < l; i++) {
-        const cmp = compareSameTypeSchemaPrimitives(aKeys[i]!, bKeys[i]!);
+        const cmp = ascComparator(aKeys[i]!, bKeys[i]!);
         if (cmp !== 0) {
           return cmp;
         }
@@ -193,7 +170,7 @@ export function createComparator({
   }
 
   const compareArrayOfSameTypePrimitivesWithDeduplication =
-    createArrayComparatorWithDeduplication(compareSameTypeSchemaPrimitives);
+    createArrayComparatorWithDeduplication(ascComparator);
 
   function compareSchemaDefinitions(
     a: JSONSchema7Definition,
@@ -223,7 +200,7 @@ export function createComparator({
     if (isSchemaObject(b)) {
       return a === true && isRecordEmpty(b) ? 0 : -1;
     }
-    return compareSameTypeSchemaPrimitives(a, b);
+    return ascComparator(a, b);
   }
 
   const compareOptionalSchemaValues =
@@ -324,7 +301,7 @@ export function createComparator({
       const isAArr = Array.isArray(a);
       const isBArr = Array.isArray(b);
       if (!isAArr && !isBArr) {
-        return compareSameTypeSchemaPrimitives(a, b);
+        return ascComparator(a, b);
       }
       return compareArrayOfSameTypePrimitivesWithDeduplication(
         isAArr ? a : [a],

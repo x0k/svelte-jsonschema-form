@@ -2,7 +2,8 @@
   import type { Snippet } from "svelte";
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import { getComponent, getFormContext } from "./context/index.js";
+  import { getPseudoPath, getComponent, getFormContext } from "./state/index.js";
+  import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import type { Config } from "./config.js";
 
   let {
@@ -18,11 +19,10 @@
   const ctx = getFormContext();
 
   const config: Config = $derived({
-    id: ctx.rootId,
-    name: "form",
+    path: getPseudoPath(ctx, ctx[FORM_ROOT_PATH], 'form'),
     title: "",
-    schema: ctx.schema,
-    uiSchema: ctx.uiSchema,
+    schema: ctx[FORM_SCHEMA],
+    uiSchema: ctx[FORM_UI_SCHEMA],
     required: false,
   });
 

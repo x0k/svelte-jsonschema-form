@@ -1,6 +1,7 @@
 ---
 import { Card } from "@astrojs/starlight/components";
 import { parse, walk, generate } from "css-tree";
+import defaultStyles from "@sjsf/basic-theme/css/basic.css?raw";
 
 export interface Props {
   style?: string;
@@ -65,7 +66,7 @@ const extractPropertiesWithCSSTree = (cssContent: string) => {
 };
 
 const { properties, remainingStyles } = extractPropertiesWithCSSTree(
-  Astro.props.style ?? ""
+  Astro.props.style ?? defaultStyles
 );
 ---
 

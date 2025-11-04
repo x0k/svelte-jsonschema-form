@@ -1,13 +1,21 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
 
   import { createAstro } from "@/astro.svelte";
 
-  import { schema, uiSchema, initialValue } from "../data";
+  import {
+    schema,
+    uiSchema,
+    initialValue,
+    type CreateUser,
+    withFile,
+  } from "../data";
   import * as defaults from "./defaults";
 
-  const form = createForm({
+  const form = createForm<CreateUser>({
     ...defaults,
+    // required due to several forms on the page
+    idPrefix: "flowbite3",
     initialValue,
     schema,
     uiSchema,
@@ -18,4 +26,4 @@
 
 <BasicForm {form} class="flex flex-col gap-4 mb-4 {astro.darkOrLight}" />
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), withFile, 2)}</pre>

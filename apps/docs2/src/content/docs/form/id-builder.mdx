@@ -1,0 +1,29 @@
+---
+title: ID Builder
+sidebar:
+  badge: new
+---
+
+```ts
+type Id = Brand<"sjsf-id">;
+type FieldPath = Brand<"sjsf-path", RPath>;
+
+interface IdentifiableFieldElement {
+  help: {};
+  "key-input": {};
+  examples: {};
+  title: {};
+  description: {};
+  errors: {};
+  oneof: {};
+  anyof: {};
+  form: {};
+  submit: {};
+}
+
+type FieldPseudoElement = keyof IdentifiableFieldElement | number;
+
+interface FormIdBuilder {
+  fromPath: (path: FieldPath) => string;
+}
+```

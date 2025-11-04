@@ -2,12 +2,15 @@
   import { identity } from "@sjsf/form/lib/function";
 
   import {
-    ACTUAL_THEMES,
-    EXAMPLES,
+    GENERIC_EXAMPLES,
     THEME_TITLES,
-    VALIDATORS,
     type ActualTheme,
     type Validator,
+    VALIDATOR_SPECIFIC_EXAMPLES,
+    VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
+    VALIDATORS,
+    SVELTE_KIT_EXAMPLES,
+    THEMES,
   } from "@/shared";
   import { openProject, Platform, PLATFORMS } from "@/web-ide";
 
@@ -43,7 +46,7 @@
   <label>
     <span>Theme</span>
     <select bind:value={theme}>
-      {#each ACTUAL_THEMES as t (t)}
+      {#each THEMES as t (t)}
         <option value={t}>
           {THEME_TITLES[t]}
         </option>
@@ -52,14 +55,47 @@
   </label>
 </div>
 
+<h3>Generic</h3>
+
 <Buttons
-  items={EXAMPLES}
+  items={GENERIC_EXAMPLES}
   onClick={(example) => {
     openProject({
       platform,
       example,
       theme,
       validator,
+    });
+  }}
+  label={identity}
+/>
+
+<h3>SvelteKit</h3>
+
+<Buttons
+  items={SVELTE_KIT_EXAMPLES}
+  onClick={(example) => {
+    openProject({
+      platform,
+      example,
+      theme,
+      validator,
+    });
+  }}
+  label={identity}
+/>
+
+<h3>Validator specific</h3>
+<p><em>Validator selector will be ignored</em></p>
+
+<Buttons
+  items={VALIDATOR_SPECIFIC_EXAMPLES}
+  onClick={(example) => {
+    openProject({
+      platform,
+      example,
+      theme,
+      validator: VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
     });
   }}
   label={identity}
@@ -72,7 +108,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
     column-gap: 2rem;
-    & select {
+    & :global(select) {
       width: 100%;
       background-color: var(--sl-color-bg);
       padding: 0.5rem;

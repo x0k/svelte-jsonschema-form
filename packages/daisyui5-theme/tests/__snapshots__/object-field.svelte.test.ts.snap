@@ -8,6 +8,13 @@ exports[`object fields > additionalProperties 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -19,6 +26,7 @@ exports[`object fields > additionalProperties 1`] = `
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -37,6 +45,7 @@ exports[`object fields > additionalProperties 1`] = `
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -60,14 +69,30 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.foo::key-input"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                foo Key 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_foo__key-input"
+                >
+                  foo Key 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -82,10 +107,11 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -114,8 +140,10 @@ exports[`object fields > additionalProperties 1`] = `
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -138,13 +166,29 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.foo"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                foo 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_foo"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -159,10 +203,11 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -190,8 +235,10 @@ exports[`object fields > additionalProperties 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -216,6 +263,7 @@ exports[`object fields > additionalProperties 1`] = `
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -231,6 +279,7 @@ exports[`object fields > additionalProperties 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -242,7 +291,7 @@ exports[`object fields > additionalProperties 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -261,6 +310,7 @@ exports[`object fields > additionalProperties 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -272,6 +322,13 @@ exports[`object fields > additionalProperties with error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -283,6 +340,7 @@ exports[`object fields > additionalProperties with error 1`] = `
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -301,6 +359,7 @@ exports[`object fields > additionalProperties with error 1`] = `
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -324,14 +383,30 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.foo::key-input"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                foo Key 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_foo__key-input"
+                >
+                  foo Key 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -346,10 +421,11 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="true"
                 class="input input-bordered w-full input-error"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -366,7 +442,7 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <ul
                 class="text-error list-disc list-inside"
-                id="root.foo::key-input::errors"
+                id="root_foo__key-input__errors"
                 tabindex="-1"
               >
                 <li>
@@ -390,8 +466,10 @@ exports[`object fields > additionalProperties with error 1`] = `
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -414,13 +492,29 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.foo"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                foo 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_foo"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -435,10 +529,11 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -466,8 +561,10 @@ exports[`object fields > additionalProperties with error 1`] = `
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -492,6 +589,7 @@ exports[`object fields > additionalProperties with error 1`] = `
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -507,6 +605,7 @@ exports[`object fields > additionalProperties with error 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -518,7 +617,7 @@ exports[`object fields > additionalProperties with error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -537,6 +636,7 @@ exports[`object fields > additionalProperties with error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -548,6 +648,13 @@ exports[`object fields > has errors 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -559,6 +666,7 @@ exports[`object fields > has errors 1`] = `
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -582,6 +690,7 @@ exports[`object fields > has errors 1`] = `
            
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -602,13 +711,29 @@ exports[`object fields > has errors 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.name"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                name 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_name"
+                >
+                  name 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -623,10 +748,11 @@ exports[`object fields > has errors 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.name::description root.name::help root.name::errors"
+                aria-describedby="root_name__description root_name__help root_name__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.name"
-                name="root.name"
+                id="root_name"
+                name="root_name"
                 type="text"
               />
                
@@ -654,6 +780,7 @@ exports[`object fields > has errors 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -671,6 +798,7 @@ exports[`object fields > has errors 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -678,7 +806,7 @@ exports[`object fields > has errors 1`] = `
       <!---->
       <ul
         class="text-error list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -694,7 +822,7 @@ exports[`object fields > has errors 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -713,6 +841,7 @@ exports[`object fields > has errors 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -724,6 +853,13 @@ exports[`object fields > object 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -735,6 +871,7 @@ exports[`object fields > object 1`] = `
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -758,6 +895,7 @@ exports[`object fields > object 1`] = `
            
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -778,13 +916,29 @@ exports[`object fields > object 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.a"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                A 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_a"
+                >
+                  A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -799,10 +953,11 @@ exports[`object fields > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -830,6 +985,7 @@ exports[`object fields > object 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -840,6 +996,8 @@ exports[`object fields > object 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -852,6 +1010,7 @@ exports[`object fields > object 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -874,13 +1033,29 @@ exports[`object fields > object 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.b"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                B 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_b"
+                >
+                  B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -895,10 +1070,11 @@ exports[`object fields > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -927,6 +1103,7 @@ exports[`object fields > object 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -944,6 +1121,7 @@ exports[`object fields > object 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -955,7 +1133,7 @@ exports[`object fields > object 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -974,6 +1152,7 @@ exports[`object fields > object 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -985,6 +1164,13 @@ exports[`object fields > one of defaults > default preset 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -998,22 +1184,47 @@ exports[`object fields > one of defaults > default preset 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="object-field-meta"
       >
-        Options
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            Options
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -1037,6 +1248,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
            
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1054,6 +1266,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1064,6 +1277,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1076,6 +1291,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -1102,7 +1318,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.transform::description"
+                id="root_transform__description"
               >
                 Apply a transformation to the output data
               </p>
@@ -1121,10 +1337,11 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  aria-describedby="root_transform__description root_transform__help root_transform__errors"
+                  aria-invalid="false"
                   class="checkbox"
-                  id="root.transform"
-                  name="root.transform"
+                  id="root_transform"
+                  name="root_transform"
                   type="checkbox"
                 />
                  Transform
@@ -1150,6 +1367,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1160,6 +1378,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1172,6 +1392,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -1191,6 +1412,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1201,6 +1423,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1213,6 +1437,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -1239,7 +1464,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.paginate::description"
+                id="root_paginate__description"
               >
                 Partitioning the input data (object or array) into pages by their keys
               </p>
@@ -1258,10 +1483,11 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
+                  aria-invalid="false"
                   class="checkbox"
-                  id="root.paginate"
-                  name="root.paginate"
+                  id="root_paginate"
+                  name="root_paginate"
                   type="checkbox"
                 />
                  Paginate
@@ -1287,6 +1513,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1297,6 +1524,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1309,6 +1538,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -1335,7 +1565,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.createOnOpen::description"
+                id="root_createOnOpen__description"
               >
                 Creating a table when opening a share link
               </p>
@@ -1354,10 +1584,11 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
+                  aria-invalid="false"
                   class="checkbox"
-                  id="root.createOnOpen"
-                  name="root.createOnOpen"
+                  id="root_createOnOpen"
+                  name="root_createOnOpen"
                   type="checkbox"
                 />
                  Create on open
@@ -1383,6 +1614,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1400,6 +1632,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -1411,7 +1644,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1430,6 +1663,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -1441,6 +1675,13 @@ exports[`object fields > one of defaults > manual preset 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1454,22 +1695,47 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="object-field-meta"
       >
-        Options
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            Options
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -1493,6 +1759,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
            
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1510,6 +1777,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1520,6 +1788,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1532,6 +1802,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -1558,7 +1829,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.collapseIndexes::description"
+                id="root_collapseIndexes__description"
               >
                 Combines hierarchical indexes into one cell (1.1, 1.2, ...)
               </p>
@@ -1577,10 +1848,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                  aria-describedby="root_collapseIndexes__description root_collapseIndexes__help root_collapseIndexes__errors"
+                  aria-invalid="false"
                   class="checkbox"
-                  id="root.collapseIndexes"
-                  name="root.collapseIndexes"
+                  id="root_collapseIndexes"
+                  name="root_collapseIndexes"
                   type="checkbox"
                 />
                  Combine nested indexes
@@ -1606,6 +1878,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1616,6 +1889,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1628,6 +1903,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -1654,7 +1930,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.joinPrimitiveArrayValues::description"
+                id="root_joinPrimitiveArrayValues__description"
               >
                 Combines the values of an array of primitives into one cell (separated by ',')
               </p>
@@ -1673,10 +1949,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                  aria-describedby="root_joinPrimitiveArrayValues__description root_joinPrimitiveArrayValues__help root_joinPrimitiveArrayValues__errors"
+                  aria-invalid="false"
                   class="checkbox"
-                  id="root.joinPrimitiveArrayValues"
-                  name="root.joinPrimitiveArrayValues"
+                  id="root_joinPrimitiveArrayValues"
+                  name="root_joinPrimitiveArrayValues"
                   type="checkbox"
                 />
                  Combine simple values
@@ -1702,6 +1979,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1712,6 +1990,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1724,6 +2004,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -1750,7 +2031,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.combineArraysOfObjects::description"
+                id="root_combineArraysOfObjects__description"
               >
                 Combine arrays of objects into a single object
               </p>
@@ -1769,10 +2050,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                  aria-describedby="root_combineArraysOfObjects__description root_combineArraysOfObjects__help root_combineArraysOfObjects__errors"
+                  aria-invalid="false"
                   class="checkbox"
-                  id="root.combineArraysOfObjects"
-                  name="root.combineArraysOfObjects"
+                  id="root_combineArraysOfObjects"
+                  name="root_combineArraysOfObjects"
                   type="checkbox"
                 />
                  Combine objects
@@ -1798,6 +2080,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1808,6 +2091,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1820,6 +2105,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -1846,7 +2132,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+                id="root_stabilizeOrderOfPropertiesInArraysOfObjects__description"
               >
                 Stabilizing the order in which properties are displayed for arrays of objects
               </p>
@@ -1865,10 +2151,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                  aria-describedby="root_stabilizeOrderOfPropertiesInArraysOfObjects__description root_stabilizeOrderOfPropertiesInArraysOfObjects__help root_stabilizeOrderOfPropertiesInArraysOfObjects__errors"
+                  aria-invalid="false"
                   class="checkbox"
-                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
-                  name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  id="root_stabilizeOrderOfPropertiesInArraysOfObjects"
+                  name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                   type="checkbox"
                 />
                  Stabilize order of properties
@@ -1894,6 +2181,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -1904,6 +2192,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -1916,6 +2206,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -1938,21 +2229,37 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.proportionalSizeAdjustmentThreshold"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                Proportional size adjustment threshold 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_proportionalSizeAdjustmentThreshold"
+                >
+                  Proportional size adjustment threshold 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.proportionalSizeAdjustmentThreshold::description"
+                id="root_proportionalSizeAdjustmentThreshold__description"
               >
                 Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
               </p>
@@ -1968,11 +2275,12 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                aria-describedby="root_proportionalSizeAdjustmentThreshold__description root_proportionalSizeAdjustmentThreshold__help root_proportionalSizeAdjustmentThreshold__errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.proportionalSizeAdjustmentThreshold"
+                id="root_proportionalSizeAdjustmentThreshold"
                 min="0"
-                name="root.proportionalSizeAdjustmentThreshold"
+                name="root_proportionalSizeAdjustmentThreshold"
                 required=""
                 step="any"
                 type="number"
@@ -2002,6 +2310,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -2012,6 +2321,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2024,6 +2335,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -2046,20 +2358,36 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.cornerCellValue"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                Corner cell value 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_cornerCellValue"
+                >
+                  Corner cell value 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.cornerCellValue::description"
+                id="root_cornerCellValue__description"
               >
                 The value of the corner cell.
               </p>
@@ -2075,10 +2403,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                aria-describedby="root_cornerCellValue__description root_cornerCellValue__help root_cornerCellValue__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.cornerCellValue"
-                name="root.cornerCellValue"
+                id="root_cornerCellValue"
+                name="root_cornerCellValue"
                 type="text"
               />
                
@@ -2106,6 +2435,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -2116,6 +2446,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2128,6 +2460,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -2154,7 +2487,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.transform::description"
+                id="root_transform__description"
               >
                 Apply a transformation to the output data
               </p>
@@ -2173,10 +2506,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  aria-describedby="root_transform__description root_transform__help root_transform__errors"
+                  aria-invalid="false"
                   class="checkbox"
-                  id="root.transform"
-                  name="root.transform"
+                  id="root_transform"
+                  name="root_transform"
                   type="checkbox"
                 />
                  Transform
@@ -2202,6 +2536,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -2212,6 +2547,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2224,6 +2561,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -2243,6 +2581,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -2253,6 +2592,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2265,6 +2606,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -2291,7 +2633,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.paginate::description"
+                id="root_paginate__description"
               >
                 Partitioning the input data (object or array) into pages by their keys
               </p>
@@ -2310,10 +2652,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
+                  aria-invalid="false"
                   class="checkbox"
-                  id="root.paginate"
-                  name="root.paginate"
+                  id="root_paginate"
+                  name="root_paginate"
                   type="checkbox"
                 />
                  Paginate
@@ -2339,6 +2682,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -2349,6 +2693,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -2361,6 +2707,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -2387,7 +2734,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.createOnOpen::description"
+                id="root_createOnOpen__description"
               >
                 Creating a table when opening a share link
               </p>
@@ -2406,10 +2753,11 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 class="fieldset-label"
               >
                 <input
-                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
+                  aria-invalid="false"
                   class="checkbox"
-                  id="root.createOnOpen"
-                  name="root.createOnOpen"
+                  id="root_createOnOpen"
+                  name="root_createOnOpen"
                   type="checkbox"
                 />
                  Create on open
@@ -2435,6 +2783,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -2452,6 +2801,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -2463,7 +2813,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2480,6 +2830,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2493,6 +2844,13 @@ exports[`object fields > show add button and fields if additionalProperties is t
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2504,6 +2862,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -2522,6 +2881,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2545,14 +2905,30 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.additionalProperty::key-input"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                additionalProperty Key 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_additionalProperty__key-input"
+                >
+                  additionalProperty Key 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -2567,10 +2943,11 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
                 type="text"
               />
@@ -2599,8 +2976,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -2623,13 +3002,29 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.additionalProperty"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                additionalProperty 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_additionalProperty"
+                >
+                  additionalProperty 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -2644,10 +3039,11 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
                 type="text"
               />
                
@@ -2675,8 +3071,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2701,6 +3099,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -2716,6 +3115,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -2727,7 +3127,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2744,6 +3144,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2757,6 +3158,13 @@ exports[`object fields > with title and description > additionalProperties 1`] =
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2770,30 +3178,55 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="object-field-meta"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a test description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a test description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -2812,6 +3245,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2835,14 +3269,30 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.foo::key-input"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                foo Key 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_foo__key-input"
+                >
+                  foo Key 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -2857,10 +3307,11 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -2889,8 +3340,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -2913,13 +3366,29 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.foo"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                foo 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_foo"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -2934,10 +3403,11 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -2965,8 +3435,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -2991,6 +3463,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -3006,6 +3479,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -3017,7 +3491,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3036,6 +3510,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
   </form>
   
   
+  
 </div>
 `;
 
@@ -3047,6 +3522,13 @@ exports[`object fields > with title and description > object 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3060,30 +3542,55 @@ exports[`object fields > with title and description > object 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="object-field-meta"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a test description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a test description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -3107,6 +3614,7 @@ exports[`object fields > with title and description > object 1`] = `
            
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3127,20 +3635,36 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.a"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                A 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_a"
+                >
+                  A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.a::description"
+                id="root_a__description"
               >
                 A description
               </p>
@@ -3156,10 +3680,11 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -3187,6 +3712,7 @@ exports[`object fields > with title and description > object 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -3197,6 +3723,8 @@ exports[`object fields > with title and description > object 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -3209,6 +3737,7 @@ exports[`object fields > with title and description > object 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -3231,20 +3760,36 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.b"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                B 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_b"
+                >
+                  B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.b::description"
+                id="root_b__description"
               >
                 B description
               </p>
@@ -3260,10 +3805,11 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -3292,6 +3838,7 @@ exports[`object fields > with title and description > object 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -3309,6 +3856,7 @@ exports[`object fields > with title and description > object 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -3320,7 +3868,7 @@ exports[`object fields > with title and description > object 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3337,6 +3885,7 @@ exports[`object fields > with title and description > object 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3350,6 +3899,13 @@ exports[`object fields > with title and description > show add button and fields
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3363,30 +3919,55 @@ exports[`object fields > with title and description > show add button and fields
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="object-field-meta"
       >
-        Test field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a test description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a test description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -3405,6 +3986,7 @@ exports[`object fields > with title and description > show add button and fields
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3428,14 +4010,30 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.additionalProperty::key-input"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                additionalProperty Key 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_additionalProperty__key-input"
+                >
+                  additionalProperty Key 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -3450,10 +4048,11 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
                 type="text"
               />
@@ -3482,8 +4081,10 @@ exports[`object fields > with title and description > show add button and fields
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -3506,13 +4107,29 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.additionalProperty"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                additionalProperty 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_additionalProperty"
+                >
+                  additionalProperty 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -3527,10 +4144,11 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
                 type="text"
               />
                
@@ -3558,8 +4176,10 @@ exports[`object fields > with title and description > show add button and fields
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3584,6 +4204,7 @@ exports[`object fields > with title and description > show add button and fields
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -3599,6 +4220,7 @@ exports[`object fields > with title and description > show add button and fields
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -3610,7 +4232,7 @@ exports[`object fields > with title and description > show add button and fields
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3627,6 +4249,7 @@ exports[`object fields > with title and description > show add button and fields
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3640,6 +4263,13 @@ exports[`object fields > with title and description from both > additionalProper
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3653,30 +4283,55 @@ exports[`object fields > with title and description from both > additionalProper
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="object-field-meta"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a fancier description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -3695,6 +4350,7 @@ exports[`object fields > with title and description from both > additionalProper
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3718,14 +4374,30 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.foo::key-input"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                foo Key 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_foo__key-input"
+                >
+                  foo Key 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -3740,10 +4412,11 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -3772,8 +4445,10 @@ exports[`object fields > with title and description from both > additionalProper
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -3796,13 +4471,29 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.foo"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                foo 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_foo"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -3817,10 +4508,11 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -3848,8 +4540,10 @@ exports[`object fields > with title and description from both > additionalProper
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -3874,6 +4568,7 @@ exports[`object fields > with title and description from both > additionalProper
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -3889,6 +4584,7 @@ exports[`object fields > with title and description from both > additionalProper
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -3900,7 +4596,7 @@ exports[`object fields > with title and description from both > additionalProper
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3917,6 +4613,7 @@ exports[`object fields > with title and description from both > additionalProper
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3930,6 +4627,13 @@ exports[`object fields > with title and description from both > object 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3943,30 +4647,55 @@ exports[`object fields > with title and description from both > object 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="object-field-meta"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a fancier description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -3990,6 +4719,7 @@ exports[`object fields > with title and description from both > object 1`] = `
            
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -4010,20 +4740,36 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.a"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item A 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_a"
+                >
+                  My Item A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.a::description"
+                id="root_a__description"
               >
                 a fancier item A description
               </p>
@@ -4039,10 +4785,11 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -4070,6 +4817,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -4080,6 +4828,8 @@ exports[`object fields > with title and description from both > object 1`] = `
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4092,6 +4842,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -4114,20 +4865,36 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.b"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item B 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_b"
+                >
+                  My Item B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.b::description"
+                id="root_b__description"
               >
                 a fancier item B description
               </p>
@@ -4143,10 +4910,11 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -4175,6 +4943,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -4192,6 +4961,7 @@ exports[`object fields > with title and description from both > object 1`] = `
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -4203,7 +4973,7 @@ exports[`object fields > with title and description from both > object 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4220,6 +4990,7 @@ exports[`object fields > with title and description from both > object 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4233,6 +5004,13 @@ exports[`object fields > with title and description from uiSchema > additionalPr
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4246,30 +5024,55 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="object-field-meta"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a fancier description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -4288,6 +5091,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4311,14 +5115,30 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.foo::key-input"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                foo Key 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_foo__key-input"
+                >
+                  foo Key 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -4333,10 +5153,11 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -4365,8 +5186,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -4389,13 +5212,29 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.foo"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                foo 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_foo"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -4410,10 +5249,11 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -4441,8 +5281,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4467,6 +5309,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -4482,6 +5325,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -4493,7 +5337,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4512,6 +5356,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
   </form>
   
   
+  
 </div>
 `;
 
@@ -4523,6 +5368,13 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4536,30 +5388,55 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="object-field-meta"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a fancier description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -4583,6 +5460,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
            
           <!---->
           <!---->
+          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -4603,20 +5481,36 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.a"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item A 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_a"
+                >
+                  My Item A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.a::description"
+                id="root_a__description"
               >
                 a fancier item A description
               </p>
@@ -4632,10 +5526,11 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -4663,6 +5558,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -4673,6 +5569,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -4685,6 +5583,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -4707,20 +5606,36 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.b"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                My Item B 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_b"
+                >
+                  My Item B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
               <!---->
               <p
                 class="fieldset-label"
-                id="root.b::description"
+                id="root_b__description"
               >
                 a fancier item B description
               </p>
@@ -4736,10 +5651,11 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -4768,6 +5684,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -4785,6 +5702,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -4796,7 +5714,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4813,6 +5731,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4826,6 +5745,13 @@ exports[`object fields > with title and description from uiSchema > show add but
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4839,30 +5765,55 @@ exports[`object fields > with title and description from uiSchema > show add but
       <!---->
       <!---->
       <!---->
-      <!---->
       <legend
-        class="fieldset-legend text-base"
-        id="root::title"
+        class="w-full"
+        data-layout="object-field-meta"
       >
-        My Field
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="fieldset-legend text-base"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <p
+          class="fieldset-label"
+          id="root__description"
+        >
+          a fancier description
+        </p>
+        
+        <!---->
+        <!---->
       </legend>
       
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
       
       
       
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -4881,6 +5832,7 @@ exports[`object fields > with title and description from uiSchema > show add but
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -4904,14 +5856,30 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.additionalProperty::key-input"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                additionalProperty Key 
-                *
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_additionalProperty__key-input"
+                >
+                  additionalProperty Key 
+                  *
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -4926,10 +5894,11 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
                 type="text"
               />
@@ -4958,8 +5927,10 @@ exports[`object fields > with title and description from uiSchema > show add but
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -4982,13 +5953,29 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
               <!---->
-              <label
-                class="fieldset-legend"
-                for="root.additionalProperty"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex items-center justify-between"
+                data-layout="field-title-row"
               >
-                additionalProperty 
                 <!---->
-              </label>
+                <label
+                  class="fieldset-legend"
+                  for="root_additionalProperty"
+                >
+                  additionalProperty 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               <!---->
                
@@ -5003,10 +5990,11 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
                 type="text"
               />
                
@@ -5034,8 +6022,10 @@ exports[`object fields > with title and description from uiSchema > show add but
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5060,6 +6050,7 @@ exports[`object fields > with title and description from uiSchema > show add but
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -5075,6 +6066,7 @@ exports[`object fields > with title and description from uiSchema > show add but
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -5086,7 +6078,7 @@ exports[`object fields > with title and description from uiSchema > show add but
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5103,6 +6095,7 @@ exports[`object fields > with title and description from uiSchema > show add but
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -5116,6 +6109,13 @@ exports[`object fields > with title and description with global label off > addi
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5127,6 +6127,7 @@ exports[`object fields > with title and description with global label off > addi
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -5145,6 +6146,7 @@ exports[`object fields > with title and description with global label off > addi
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5170,10 +6172,11 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
                 type="text"
               />
@@ -5202,8 +6205,10 @@ exports[`object fields > with title and description with global label off > addi
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -5228,10 +6233,11 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.foo"
-                name="root.foo"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -5259,8 +6265,10 @@ exports[`object fields > with title and description with global label off > addi
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5285,6 +6293,7 @@ exports[`object fields > with title and description with global label off > addi
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -5300,6 +6309,7 @@ exports[`object fields > with title and description with global label off > addi
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -5311,7 +6321,7 @@ exports[`object fields > with title and description with global label off > addi
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5330,6 +6340,7 @@ exports[`object fields > with title and description with global label off > addi
   </form>
   
   
+  
 </div>
 `;
 
@@ -5341,6 +6352,13 @@ exports[`object fields > with title and description with global label off > obje
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5352,6 +6370,7 @@ exports[`object fields > with title and description with global label off > obje
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -5373,6 +6392,7 @@ exports[`object fields > with title and description with global label off > obje
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -5397,10 +6417,11 @@ exports[`object fields > with title and description with global label off > obje
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
+                aria-describedby="root_a__description root_a__help root_a__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.a"
-                name="root.a"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -5428,6 +6449,7 @@ exports[`object fields > with title and description with global label off > obje
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -5438,6 +6460,8 @@ exports[`object fields > with title and description with global label off > obje
         
         
         
+        
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -5450,6 +6474,7 @@ exports[`object fields > with title and description with global label off > obje
           <!---->
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -5474,10 +6499,11 @@ exports[`object fields > with title and description with global label off > obje
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
+                aria-describedby="root_b__description root_b__help root_b__errors"
+                aria-invalid="false"
                 class="w-full input input-bordered"
-                id="root.b"
-                name="root.b"
+                id="root_b"
+                name="root_b"
                 step="any"
                 type="number"
               />
@@ -5506,6 +6532,7 @@ exports[`object fields > with title and description with global label off > obje
           </div>
           
           
+          
           <!---->
            
           <!---->
@@ -5523,6 +6550,7 @@ exports[`object fields > with title and description with global label off > obje
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -5534,7 +6562,7 @@ exports[`object fields > with title and description with global label off > obje
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5553,6 +6581,7 @@ exports[`object fields > with title and description with global label off > obje
   </form>
   
   
+  
 </div>
 `;
 
@@ -5564,6 +6593,13 @@ exports[`object fields > with title and description with global label off > show
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5575,6 +6611,7 @@ exports[`object fields > with title and description with global label off > show
       <!---->
       <!---->
        
+      <!---->
       <!---->
       <!---->
       <div
@@ -5593,6 +6630,7 @@ exports[`object fields > with title and description with global label off > show
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
         >
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5618,10 +6656,11 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
                 type="text"
               />
@@ -5650,8 +6689,10 @@ exports[`object fields > with title and description with global label off > show
           
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <div
@@ -5676,10 +6717,11 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                aria-invalid="false"
                 class="input input-bordered w-full"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
                 type="text"
               />
                
@@ -5707,8 +6749,10 @@ exports[`object fields > with title and description with global label off > show
           </div>
           
           
+          
           <!---->
            
+          <!---->
           <!---->
           <!---->
           <!---->
@@ -5733,6 +6777,7 @@ exports[`object fields > with title and description with global label off > show
           
           
           
+          
           <!---->
           <!---->
         </div>
@@ -5748,6 +6793,7 @@ exports[`object fields > with title and description with global label off > show
       </div>
       
       
+      
       <!---->
        
       <!---->
@@ -5759,7 +6805,7 @@ exports[`object fields > with title and description with global label off > show
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5776,6 +6822,7 @@ exports[`object fields > with title and description with global label off > show
     <!---->
     <!---->
   </form>
+  
   
   
 </div>

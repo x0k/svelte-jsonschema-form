@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { InputProps, InputValue } from 'flowbite-svelte';
+	import type { InputProps, InputValue } from 'flowbite-svelte/types';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -19,7 +19,6 @@
 	const attributes = $derived(
 		inputAttributes(ctx, config, 'flowbite3Number', handlers, {
 			type: 'number',
-			wrapperClass: 'w-full',
 			onBlur: handlers.onblur,
 			onInput: handlers.oninput,
 		})

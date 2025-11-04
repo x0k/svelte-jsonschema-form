@@ -4,7 +4,7 @@
 	import '@sjsf/form/fields/extra-widgets/combobox';
 
 	import type { ButtonProps } from '../types/button.js';
-	import '../types/popover';
+	import '../types/popover.js';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -32,13 +32,17 @@
 	import Check from '@lucide/svelte/icons/check';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
 	import {
+		ariaInvalidProp,
+		composeProps,
+		disabledProp,
 		getFormContext,
+		handlersAttachment,
 		inputAttributes,
 		retrieveUiOption,
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	import { cn } from '$lib/utils.js';
 
@@ -67,9 +71,10 @@
 		options
 	}: ComponentProps['comboboxWidget'] = $props();
 
+	const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
 	const mapped = $derived(
 		singleOption({
-			mapper: () => indexMapper(options),
+			mapper: () => idMapper(options),
 			value: () => value,
 			update: (v) => (value = v)
 		})
@@ -87,29 +92,38 @@
 
 	const attributes = $derived(inputAttributes(ctx, config, 'shadcn4ComboboxInput', handlers, {}));
 
-	const triggerContent = $derived(
-		options[Number(mapped.value)]?.label ?? attributes.placeholder ?? ''
-	);
+	const triggerContent = $derived(labels.get(mapped.value) ?? attributes.placeholder);
 
 	const emptyText = $derived(retrieveUiOption(ctx, config, 'shadcn4ComboboxEmptyText'));
+
+	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 </script>
 
 <Popover bind:open>
-	<PopoverTrigger class="w-full justify-between" bind:ref={triggerRef} disabled={ctx.disabled}>
+	<PopoverTrigger
+		class="w-full justify-between"
+		bind:ref={triggerRef}
+		{...disabledProp({}, config, ctx)}
+	>
 		{#snippet child({ props })}
 			<Button
-				{...uiOptionProps('shadcn4ComboboxTrigger')(
+				{...composeProps(
+					ctx,
+					config,
 					{
 						variant: 'outline',
 						...props,
 						role: 'combobox',
 						'aria-expanded': open
-					},
-					config,
-					ctx
+					} satisfies ButtonProps,
+					uiOptionProps('shadcn4ComboboxTrigger'),
+					handlersAttachment(buttonHandlers),
+					ariaInvalidProp
 				)}
 			>
-				{triggerContent}
+				<span>
+					{triggerContent}
+				</span>
 				<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
 			</Button>
 		{/snippet}
@@ -122,16 +136,18 @@
 					<CommandEmpty>{emptyText}</CommandEmpty>
 				{/if}
 				<CommandGroup>
-					{#each options as option, index (option.id)}
+					{#each options as option (option.id)}
 						<CommandItem
 							value={option.label}
 							onSelect={() => {
-								mapped.value = index;
+								mapped.value = option.id;
+								oninput?.();
+								onchange?.();
 								closeAndFocusTrigger();
 							}}
 							disabled={option.disabled}
 						>
-							<Check class={cn('mr-2 size-4', index !== mapped.value && 'text-transparent')} />
+							<Check class={cn('mr-2 size-4', mapped.value !== option.id && 'text-transparent')} />
 							{option.label}
 						</CommandItem>
 					{/each}

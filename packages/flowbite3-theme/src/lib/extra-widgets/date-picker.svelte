@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { DatepickerProps } from 'flowbite-svelte';
+	import type { DatepickerProps } from 'flowbite-svelte/types';
 	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	declare module '@sjsf/form' {
@@ -12,8 +12,9 @@
 <script lang="ts">
 	import {
 		customInputAttributes,
-		describedBy,
 		getFormContext,
+		handlersAttachment,
+		getId,
 		type ComponentProps
 	} from '@sjsf/form';
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
@@ -26,6 +27,13 @@
 	}
 
 	const ctx = getFormContext();
+
+	const id = $derived(getId(ctx, config.path));
+
+	function onChange() {
+		handlers.oninput?.();
+		handlers.onchange?.();
+	}
 </script>
 
 <div class="w-full">
@@ -35,13 +43,15 @@
 			(v) => (value = v?.toLocaleDateString('en-CA'))
 		}
 		{...customInputAttributes(ctx, config, 'flowbite3Datepicker', {
-			id: config.id,
+			inputProps: handlersAttachment(handlers)({
+				id,
+				name: id
+			}),
 			required: config.required,
 			showActionButtons: true,
 			autohide: false,
-			onselect: handlers.onchange,
-			onclear: handlers.onchange,
-			'aria-describedby': describedBy(ctx, config)
+			onselect: onChange,
+			onclear: onChange
 		})}
 	/>
 </div>

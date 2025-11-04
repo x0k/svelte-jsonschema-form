@@ -1,4 +1,5 @@
-import type { Json, Validate, ValidationError } from "@exodus/schemasafe";
+import type { Json, Validate } from "@exodus/schemasafe";
+import type { Merger } from "@sjsf/form/core";
 import type {
   FieldValueValidator,
   FormValueValidator,
@@ -8,11 +9,7 @@ import type {
 import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
 
 import type { ValueToJSON } from "../validator.js";
-import {
-  createErrorsTransformer,
-  transformFieldErrors,
-  type ErrorsTransformerOptions,
-} from "../errors.js";
+import { transformFormErrors, transformFieldErrors } from "../errors.js";
 
 export type CompiledValidateFunction = (data: unknown) => boolean;
 
@@ -62,31 +59,36 @@ export function createValidator(options: ValidatorOptions): Validator {
   };
 }
 
-export interface FormValueValidatorOptions
-  extends ValidatorOptions,
-    ErrorsTransformerOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {
+  merger: () => Merger;
+}
 
-export function createFormValueValidator(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
-): FormValueValidator<ValidationError> {
-  const transform = createErrorsTransformer(options);
+): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
       const validate = getValidate(options, rootSchema);
       validate(options.valueToJSON(formValue));
-      return transform(rootSchema, validate.errors);
+      return transformFormErrors(
+        createValidator(options),
+        options.merger(),
+        rootSchema,
+        validate.errors,
+        formValue
+      );
     },
   };
 }
 
 export function createFieldValueValidator(
   options: ValidatorOptions
-): FieldValueValidator<ValidationError> {
+): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
       const validate = getValidate(options, field.schema);
       validate(options.valueToJSON(fieldValue));
-      return transformFieldErrors(field, validate.errors);
+      return transformFieldErrors(field, validate.errors, fieldValue);
     },
   };
 }
@@ -95,18 +97,26 @@ export interface FormValidatorOptions
   extends ValidatorOptions,
     FormValueValidatorOptions {}
 
-export function createFormValidator({
+export function createFormValidatorFactory<T>({
   // `isJSON` validator option is `false` by default
   valueToJSON = (value) => value as Json,
-  ...rest
-}: Omit<FormValidatorOptions, keyof ValueToJSON> & Partial<ValueToJSON>) {
-  const options: FormValidatorOptions = {
-    ...rest,
-    valueToJSON,
+  ...vOptions
+}: Omit<ValidatorOptions, keyof ValueToJSON> & Partial<ValueToJSON>) {
+  return (
+    options: Omit<
+      FormValidatorOptions,
+      keyof ValueToJSON | keyof ValidatorOptions
+    >
+  ) => {
+    const full: FormValidatorOptions = {
+      valueToJSON,
+      ...vOptions,
+      ...options,
+    };
+    return Object.assign(
+      createValidator(full),
+      createFormValueValidator<T>(full),
+      createFieldValueValidator(full)
+    );
   };
-  return Object.assign(
-    createValidator(options),
-    createFormValueValidator(options),
-    createFieldValueValidator(options)
-  );
 }

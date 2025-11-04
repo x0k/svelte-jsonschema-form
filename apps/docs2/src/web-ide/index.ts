@@ -3,12 +3,15 @@ import sdk from "@stackblitz/sdk";
 import lz from "lz-string";
 
 import {
-  Example,
+  GenericExample,
+  SvelteKitExample,
   VALIDATOR_DEPENDENCIES,
   validatorPackage,
   VALIDATORS,
+  ValidatorSpecificExample,
   VERSION,
-  type ActualTheme,
+  type Example,
+  type Theme,
   type Validator,
 } from "@/shared";
 
@@ -28,7 +31,7 @@ export const PLATFORMS = Object.values(Platform);
 export interface ProjectOptions {
   platform: Platform;
   example: Example;
-  theme: ActualTheme;
+  theme: Theme;
   validator: Validator;
 }
 
@@ -56,29 +59,56 @@ const VALIDATOR_LAYERS = Object.fromEntries(
   })
 ) as Record<Validator, LayerPromise>;
 
-const THEME_LAYERS: Record<ActualTheme, () => LayerPromise[]> = {
+const THEME_LAYERS: Record<Theme, () => LayerPromise[]> = {
   basic: () => [import("./layers/basic")],
+  daisyui: () => [import("./layers/tailwind3"), import("./layers/daisyui")],
   daisyui5: () => [import("./layers/tailwind4"), import("./layers/daisyui5")],
+  flowbite: () => [import("./layers/tailwind3"), import("./layers/flowbite")],
   flowbite3: () => [import("./layers/tailwind4"), import("./layers/flowbite3")],
-  shadcn4: () => [import("./layers/tailwind4"), import("./layers/shadcn4")],
   skeleton3: () => [import("./layers/tailwind4"), import("./layers/skeleton3")],
+  skeleton4: () => [import("./layers/tailwind4"), import("./layers/skeleton4")],
+  shadcn: () => [import("./layers/tailwind3"), import("./layers/shadcn")],
+  shadcn4: () => [import("./layers/tailwind4"), import("./layers/shadcn4")],
+  "shadcn-extras": () => [
+    import("./layers/tailwind4"),
+    import("./layers/shadcn-extras"),
+  ],
+  svar: () => [import("./layers/svar")],
 };
 
 const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
-  [Example.Starter]: () => import("./examples/starter"),
-  [Example.AnimatedArray]: () => import("./examples/animated-array"),
-  [Example.MarkdownDescription]: () =>
+  [GenericExample.Starter]: () => import("./examples/starter"),
+  [GenericExample.AnimatedArray]: () => import("./examples/animated-array"),
+  [GenericExample.MarkdownDescription]: () =>
     import("./examples/markdown-description"),
-  [Example.TabbedLayout]: () => import("./examples/tabbed-layout"),
-  [Example.AsyncCombobox]: () => import("./examples/async-combobox"),
-  [Example.Formulas]: () => import("./examples/formulas"),
-  [Example.PatternPropertiesValidator]: () =>
+  [GenericExample.TabbedLayout]: () => import("./examples/tabbed-layout"),
+  [GenericExample.AsyncCombobox]: () => import("./examples/async-combobox"),
+  [GenericExample.Formulas]: () => import("./examples/formulas"),
+  [GenericExample.PatternPropertiesValidator]: () =>
     import("./examples/pattern-properties-validator"),
-  [Example.NativeForm]: () => import("./examples/native-form"),
-  [Example.DecomposedField]: () => import("./examples/decomposed-field"),
-  [Example.MultiStepNativeForm]: () =>
+  [GenericExample.DecomposedField]: () => import("./examples/decomposed-field"),
+  [GenericExample.LayoutSlots]: () => import("./examples/layout-slots"),
+  [GenericExample.PreuploadFile]: () => import("./examples/preupload-file"),
+  [GenericExample.OptionalDataControls]: () =>
+    import("./examples/optional-data-controls"),
+  [SvelteKitExample.FormActionsWithoutJs]: () =>
+    import("./examples/form-actions-without-js"),
+  [SvelteKitExample.MultiStepNativeForm]: () =>
     import("./examples/multi-step-native-form"),
-  [Example.LayoutSlots]: () => import("./examples/layout-slots"),
+  [SvelteKitExample.FormActions]: () => import("./examples/form-actions"),
+  [SvelteKitExample.FormActionsFlex]: () =>
+    import("./examples/form-actions-flex"),
+  [SvelteKitExample.RemoveFunctions]: () =>
+    import("./examples/remote-functions"),
+  [SvelteKitExample.RemoveFunctionsWithoutJs]: () =>
+    import("./examples/remote-functions-without-js"),
+  [ValidatorSpecificExample.ZodStarter]: () => import("./examples/zod-starter"),
+  [ValidatorSpecificExample.ValibotStarter]: () =>
+    import("./examples/valibot-starter"),
+  [ValidatorSpecificExample.ArkTypeStarter]: () =>
+    import("./examples/arktype-starter"),
+  [ValidatorSpecificExample.TypeBoxStarter]: () =>
+    import("./examples/typebox-starter"),
 };
 
 export async function openProject({

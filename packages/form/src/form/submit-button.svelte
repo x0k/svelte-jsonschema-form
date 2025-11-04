@@ -1,20 +1,21 @@
 <script lang="ts">
+  import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import {
+    getPseudoPath,
     getComponent,
     getFormContext,
     retrieveTranslate,
-  } from "./context/index.js";
+  } from "./state/index.js";
   import type { Config } from "./config.js";
   import Text from "./text.svelte";
 
   const ctx = getFormContext();
 
   const config: Config = $derived({
-    id: ctx.rootId,
-    name: "submit-button",
+    path: getPseudoPath(ctx, ctx[FORM_ROOT_PATH], "submit"),
     title: "",
-    schema: ctx.schema,
-    uiSchema: ctx.uiSchema,
+    schema: ctx[FORM_SCHEMA],
+    uiSchema: ctx[FORM_UI_SCHEMA],
     required: false,
   });
 

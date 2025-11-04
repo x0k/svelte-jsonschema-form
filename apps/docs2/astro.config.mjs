@@ -16,7 +16,7 @@ export default defineConfig({
   integrations: [
     svelte(),
     starlight({
-      title: "svelte-jsonschema-form",
+      title: "svelte-jsonschema-form v3",
       social: [
         {
           icon: "github",
@@ -46,13 +46,8 @@ export default defineConfig({
         },
         {
           label: "Examples",
-          autogenerate: { directory: "examples" }
+          autogenerate: { directory: "examples" },
         },
-        // {
-        //   label: "Examples",
-        //   autogenerate: { directory: "examples" },
-        //   collapsed: true
-        // },
         {
           label: "Themes",
           autogenerate: { directory: "themes" },
@@ -74,7 +69,7 @@ export default defineConfig({
           autogenerate: { directory: "changelogs" },
           collapsed: true,
         },
-        { label: "Documentation v1", link: "/v1/" },
+        { label: "Documentation v2", link: "/v2/" },
       ],
       components: {
         // Head: "./src/components/custom-head.astro",
@@ -85,17 +80,19 @@ export default defineConfig({
     }),
   ],
   vite: {
-    // optimizeDeps: {
-    //   exclude: ['flowbite-svelte-icons']
-    // },
+    optimizeDeps: {
+      exclude: ["@jis3r/icons"],
+    },
     ssr: {
-      noExternal: ["lucide-svelte"],
+      noExternal: ["lucide-svelte", "zod"],
     },
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
         "#": fileURLToPath(new URL("../../packages", import.meta.url)),
         "%": fileURLToPath(new URL("../../examples", import.meta.url)),
+        legacy: fileURLToPath(new URL("../../legacy", import.meta.url)),
+        lab: fileURLToPath(new URL("../../lab", import.meta.url)),
         apps: fileURLToPath(new URL("..", import.meta.url)),
       },
     },

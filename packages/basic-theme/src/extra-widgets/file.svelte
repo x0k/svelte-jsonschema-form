@@ -30,7 +30,7 @@
   const attributes = $derived(
     inputAttributes(ctx, config, "file", handlers, {
       multiple,
-      style: "flex-grow: 1",
+      class: "sjsf-file",
       "data-loading": loading,
       "data-processing": processing,
     })

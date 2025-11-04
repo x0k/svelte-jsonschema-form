@@ -1,6 +1,6 @@
-import { flushSync, getContext, onDestroy, setContext } from "svelte";
-import { mergeSchemas } from "@sjsf/form/core";
+import { createContext, flushSync, onDestroy } from "svelte";
 import type { FormValue, Schema, UiSchema } from "@sjsf/form";
+import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
 import {
@@ -34,12 +34,18 @@ import {
   type SchemaBuilderContext,
   isFileNode,
 } from "$lib/builder/index.js";
-import { mergeUiSchemas, Theme, type WidgetType } from "$lib/sjsf/theme.js";
-import { validator } from "$lib/form/defaults.js";
+import {
+  ActualTheme,
+  mergeUiSchemas,
+  type Theme,
+  type WidgetType,
+} from "$lib/sjsf/theme.js";
 import { Validator } from "$lib/sjsf/validators.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
 import { Icons, ICONS_APP_CSS } from "$lib/sjsf/icons.js";
 import { highlight, type SupportedLanguage } from "$lib/shiki.js";
+import { mergeSchemas } from "$lib/json-schema.js";
+import { addBuilderFormats } from "$lib/ajv.js";
 
 import {
   type Route,
@@ -47,6 +53,8 @@ import {
   DEFAULT_COMPONENTS,
   DEFAULT_WIDGETS,
   FILE_FIELD_MULTIPLE_MODE,
+  FILE_FIELD_NATIVE_MULTIPLE_MODE,
+  FILE_FIELD_NATIVE_SINGLE_MODE,
   FILE_FIELD_SINGLE_MODE,
   RADIO_WIDGET_OPTIONS,
   RouteName,
@@ -67,15 +75,8 @@ import {
   join,
 } from "./code-builders.js";
 
-const BUILDER_CONTEXT = Symbol("builder-context");
-
-export function setBuilderContext(ctx: BuilderContext) {
-  setContext(BUILDER_CONTEXT, ctx);
-}
-
-export function getBuilderContext(): BuilderContext {
-  return getContext(BUILDER_CONTEXT);
-}
+export const [getBuilderContext, setBuilderContext] =
+  createContext<BuilderContext>();
 
 type UniqueId = string | number;
 
@@ -163,7 +164,7 @@ export class BuilderContext {
     }
   });
 
-  theme = $state.raw(Theme.Shadcn4);
+  theme = $state.raw<Theme>(ActualTheme.Shadcn4);
   resolver = $state.raw(Resolver.Basic);
   icons = $state.raw(Icons.None);
   validator = $state.raw(Validator.Ajv);
@@ -246,9 +247,13 @@ export class BuilderContext {
           propertiesOrder: [],
           uiComponents: (node) => {
             if (isFileNode(node)) {
-              fileFieldMode |= node.options.multiple
-                ? FILE_FIELD_MULTIPLE_MODE
-                : FILE_FIELD_SINGLE_MODE;
+              fileFieldMode |= node.options.native
+                ? node.options.multiple
+                  ? FILE_FIELD_NATIVE_MULTIPLE_MODE
+                  : FILE_FIELD_NATIVE_SINGLE_MODE
+                : node.options.multiple
+                  ? FILE_FIELD_MULTIPLE_MODE
+                  : FILE_FIELD_SINGLE_MODE;
             }
             const widget = node.options.widget as WidgetType;
             widgets.add(widget);
@@ -300,6 +305,7 @@ export class BuilderContext {
         theme: this.theme,
         schema: this.schema,
         uiSchema: this.uiSchema,
+        html5Validation: this.html5Validation,
       })
     )
   );
@@ -411,7 +417,7 @@ export class BuilderContext {
         uiSchema: this.uiSchema ?? {},
         initialValue: null,
         validator: this.validator,
-        theme: this.theme === Theme.Daisy5 ? "daisy5" : this.theme,
+        theme: this.theme === ActualTheme.Daisy5 ? "daisy5" : this.theme,
         resolver: this.resolver,
         icons: this.icons,
         html5Validation: this.html5Validation,
@@ -548,6 +554,9 @@ export class BuilderContext {
     if (this.rootNode === undefined) {
       return false;
     }
+    const validator = createFormValidator({
+      ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv)),
+    });
     const registries: {
       [K in keyof ValidatorRegistries]: Array<ValidatorRegistries[K]>;
     } = {
@@ -562,13 +571,13 @@ export class BuilderContext {
       {
         validateCustomizableNodeOptions(node) {
           const schema = self.nodeSchema(node);
-          const optionsErrors = validator.validateFormValue(
+          const result = validator.validateFormValue(
             schema,
             node.options as FormValue
           );
-          if (optionsErrors.length > 0) {
-            errors.push({ nodeId: node.id, message: "Invalid filed options" });
-            console.error(optionsErrors);
+          if (result.errors) {
+            errors.push({ nodeId: node.id, message: "Invalid field options" });
+            console.error(result.errors);
           }
         },
         addError(node, message) {

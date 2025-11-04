@@ -1,0 +1,132 @@
+.sjsf {
+  .sjsf-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sjsf-button {
+    &[data-type="object-property-add"],
+    &[data-type="array-item-add"] {
+      width: 100%;
+      padding: 0.25rem;
+    }
+  }
+
+  .sjsf-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: larger;
+    &[data-template="fieldTemplate"] {
+      font-size: unset;
+    }
+  }
+
+  .sjsf-description,
+  .sjsf-help {
+    font-weight: 300;
+  }
+
+  .sjsf-errors-list {
+    color: red;
+    list-style-position: inside;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sjsf-label {
+    font-weight: bold;
+  }
+
+  .sjsf-submit-button {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .sjsf-layout {
+    &[data-layout="object-property"] {
+      display: grid;
+      grid-template-rows: 1fr;
+      align-items: start;
+      column-gap: 0.2rem;
+    }
+    &[data-layout="array-item"],
+    &[data-layout="array-item-controls"] {
+      display: flex;
+      gap: 0.2rem;
+      align-items: start;
+    }
+    &[data-layout="multi-field-controls"] {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    &[data-layout="array-item-content"] {
+      flex-grow: 1;
+    }
+    &[data-layout="field-content"] {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    &[data-layout="array-items"],
+    &[data-layout="object-properties"],
+    &[data-layout="array-field"],
+    &[data-layout="object-field"],
+    &[data-layout="multi-field"] {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    &[data-layout="field"] {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    &[data-layout="field-title-row"],
+    &[data-layout="array-field-title-row"],
+    &[data-layout="object-field-title-row"] {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &[data-layout="object-property-key-input"],
+    &[data-layout="object-property-content"] {
+      flex-grow: 1;
+    }
+    &[data-layout="object-field-meta"],
+    &[data-layout="array-field-meta"] {
+      padding: 0;
+    }
+    &[data-layout="object-property"] {
+      grid-template-columns: 1fr;
+    }
+    &[data-layout="object-property"]:has(> :nth-child(2)) {
+      grid-template-columns: 1fr 1fr auto;
+    }
+  }
+
+  .sjsf-checkbox,
+  .sjsf-checkboxes,
+  .sjsf-radio {
+    display: flex;
+    align-items: start;
+    gap: 0.2rem;
+  }
+
+  .sjsf-date-picker,
+  .sjsf-file,
+  .sjsf-multi-select,
+  .sjsf-range,
+  .sjsf-textarea,
+  .sjsf-number,
+  .sjsf-select,
+  .sjsf-text {
+    flex-grow: 1;
+  }
+  .sjsf-select {
+    padding: 1px 2px;
+  }
+}

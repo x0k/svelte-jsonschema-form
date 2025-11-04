@@ -2,6 +2,7 @@
 	import '@sjsf/form/fields/extra-widgets/checkboxes';
 
 	import type { CheckboxProps } from '../types/checkbox.js';
+	import '../types/label.js';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -11,8 +12,14 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
-	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
+	import {
+		customInputAttributes,
+		getFormContext,
+		handlersAttachment,
+		getId,
+		type ComponentProps
+	} from '@sjsf/form';
+	import { multipleOptions, idMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context.js';
 
@@ -20,7 +27,7 @@
 
 	const themeCtx = getThemeContext();
 
-	const { Checkbox, Label } = $derived(themeCtx.components);
+	const { Checkbox, FieldLabel } = $derived(themeCtx.components);
 
 	let {
 		value = $bindable(),
@@ -30,37 +37,47 @@
 	}: ComponentProps['checkboxesWidget'] = $props();
 
 	const mapped = multipleOptions({
-		mapper: () => stringIndexMapper(options),
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
 
-	const indexes = $derived(new Set(mapped.value));
+	const selected = $derived(new Set(mapped.value));
+
+	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
+
+	const id = $derived(getId(ctx, config.path));
 
 	const attributes = $derived(
-		customInputAttributes(ctx, config, 'shadcn4Checkboxes', {
-			...handlers,
-			name: config.id,
-			required: config.required
-		})
+		customInputAttributes(
+			ctx,
+			config,
+			'shadcn4Checkboxes',
+			handlersAttachment(buttonHandlers)({
+				...handlers,
+				name: id,
+				required: config.required
+			})
+		)
 	);
 </script>
 
-{#each options as option, index (option.id)}
-	{@const indexStr = index.toString()}
-	<div class="flex items-center space-x-2">
+{#each options as option (option.id)}
+	<div class="flex items-center space-x-3">
 		<Checkbox
-			checked={indexes.has(indexStr)}
-			value={indexStr}
+			checked={selected.has(option.id)}
+			value={option.id}
 			onCheckedChange={(v) => {
 				mapped.value = v
-					? mapped.value.concat(indexStr)
-					: mapped.value.filter((index) => index !== indexStr);
+					? mapped.value.concat(option.id)
+					: mapped.value.filter((id) => id !== option.id);
+				oninput?.();
+				onchange?.();
 			}}
 			{...attributes}
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}
 		/>
-		<Label for={option.id}>{option.label}</Label>
+		<FieldLabel for={option.id}>{option.label}</FieldLabel>
 	</div>
 {/each}

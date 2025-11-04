@@ -1,0 +1,37 @@
+{
+  "name": "theme-testing",
+  "version": "1.0.13-next.12",
+  "license": "(MIT AND Apache-2.0)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "svelte-package && publint",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "peerDependencies": {
+    "svelte": "^5.30.0"
+  },
+  "dependencies": {
+    "@sjsf/ajv8-validator": "workspace:*",
+    "@sjsf/form": "workspace:*",
+    "@sveltejs/svelte-json-tree": "^2.2.1",
+    "ajv": "catalog:"
+  },
+  "devDependencies": {
+    "svelte": "catalog:"
+  },
+  "exports": {
+    "./demo": {
+      "types": "./dist/demo/index.d.ts",
+      "svelte": "./dist/demo/index.js"
+    },
+    "./snapshots/*": {
+      "types": "./dist/snapshots/*.d.ts",
+      "default": "./dist/snapshots/*.js"
+    },
+    "./specs": {
+      "types": "./dist/specs/index.d.ts",
+      "default": "./dist/specs/index.js"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { isObject } from "@/lib/object.js";
+import { isRecord } from "@/lib/object.js";
 import type { Visitor } from "@/lib/traverser.js";
 
 import type { SchemaValue } from "./schema.js";
@@ -54,7 +54,7 @@ export function* traverseSchemaValue<R>(
       c.path[c.path.length - 1] = index;
       yield* traverseSchemaValue(value[index]!, visitor, c);
     }
-  } else if (isObject(value)) {
+  } else if (isRecord<SchemaValue | undefined>(value)) {
     const c: RecordSchemaValueTraverserContext = {
       type: "record",
       key: "",

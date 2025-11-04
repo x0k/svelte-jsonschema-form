@@ -6,74 +6,80 @@ import type {
   UiSchemaRoot,
 } from "@sjsf/form";
 
-import { Theme, type WidgetType } from "$lib/sjsf/theme.js";
+import {
+  ActualTheme,
+  LabTheme,
+  type Theme,
+  type WidgetType,
+} from "$lib/sjsf/theme.js";
 import { NodeType } from "$lib/builder/index.js";
 
 import { WIDGET_NAMES } from "./model.js";
 
+const basicThemeSchema: { [T in NodeType]?: Schema } = {
+  [NodeType.Enum]: {
+    properties: {
+      widget: {
+        enum: [
+          "selectWidget",
+          "radioWidget",
+        ] satisfies CompatibleComponentType<"selectWidget">[],
+      },
+    },
+  },
+  [NodeType.MultiEnum]: {
+    properties: {
+      widget: {
+        enum: [
+          "checkboxesWidget",
+          "multiSelectWidget",
+        ] satisfies CompatibleComponentType<"checkboxesWidget">[],
+      },
+    },
+  },
+  [NodeType.String]: {
+    properties: {
+      widget: {
+        enum: [
+          "textWidget",
+          "textareaWidget",
+          "datePickerWidget",
+        ] satisfies CompatibleComponentType<"textWidget">[],
+      },
+    },
+  },
+  [NodeType.Number]: {
+    properties: {
+      widget: {
+        enum: [
+          "numberWidget",
+          "rangeWidget",
+        ] satisfies CompatibleComponentType<"numberWidget">[],
+      },
+    },
+  },
+  [NodeType.Boolean]: {
+    properties: {
+      widget: {
+        enum: [
+          "checkboxWidget",
+        ] satisfies CompatibleComponentType<"checkboxWidget">[],
+      },
+    },
+  },
+  [NodeType.File]: {
+    properties: {
+      widget: {
+        enum: ["fileWidget"] satisfies CompatibleComponentType<"fileWidget">[],
+      },
+    },
+  },
+};
+
 export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
-  [Theme.Basic]: {
-    [NodeType.Enum]: {
-      properties: {
-        widget: {
-          enum: [
-            "selectWidget",
-            "radioWidget",
-          ] satisfies CompatibleComponentType<"selectWidget">[],
-        },
-      },
-    },
-    [NodeType.MultiEnum]: {
-      properties: {
-        widget: {
-          enum: [
-            "checkboxesWidget",
-            "multiSelectWidget",
-          ] satisfies CompatibleComponentType<"checkboxesWidget">[],
-        },
-      },
-    },
-    [NodeType.String]: {
-      properties: {
-        widget: {
-          enum: [
-            "textWidget",
-            "textareaWidget",
-            "datePickerWidget",
-          ] satisfies CompatibleComponentType<"textWidget">[],
-        },
-      },
-    },
-    [NodeType.Number]: {
-      properties: {
-        widget: {
-          enum: [
-            "numberWidget",
-            "rangeWidget",
-          ] satisfies CompatibleComponentType<"numberWidget">[],
-        },
-      },
-    },
-    [NodeType.Boolean]: {
-      properties: {
-        widget: {
-          enum: [
-            "checkboxWidget",
-          ] satisfies CompatibleComponentType<"checkboxWidget">[],
-        },
-      },
-    },
-    [NodeType.File]: {
-      properties: {
-        widget: {
-          enum: [
-            "fileWidget",
-          ] satisfies CompatibleComponentType<"fileWidget">[],
-        },
-      },
-    },
-  },
-  [Theme.Daisy5]: {
+  [ActualTheme.Basic]: basicThemeSchema,
+  [ActualTheme.Pico]: basicThemeSchema,
+  [ActualTheme.Daisy5]: {
     [NodeType.Enum]: {
       properties: {
         widget: {
@@ -81,7 +87,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
             "selectWidget",
             "radioWidget",
             "radioButtonsWidget",
-            "filterRadioButtonsWidget",
+            "daisyui5FilterRadioButtonsWidget",
           ] satisfies CompatibleComponentType<"selectWidget">[],
         },
       },
@@ -103,7 +109,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
             "textWidget",
             "textareaWidget",
             "datePickerWidget",
-            "pikadayDatePickerWidget",
+            "daisyui5CallyDatePickerWidget",
           ] satisfies CompatibleComponentType<"textWidget">[],
         },
       },
@@ -139,7 +145,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
       },
     },
   },
-  [Theme.Flowbite3]: {
+  [ActualTheme.Flowbite3]: {
     [NodeType.Enum]: {
       properties: {
         widget: {
@@ -147,6 +153,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
             "selectWidget",
             "radioWidget",
             "radioButtonsWidget",
+            "flowbite3ToggleRadioButtonsWidget",
           ] satisfies CompatibleComponentType<"selectWidget">[],
         },
       },
@@ -211,7 +218,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
       },
     },
   },
-  [Theme.Skeleton3]: {
+  [ActualTheme.Skeleton4]: {
     [NodeType.Enum]: {
       properties: {
         widget: {
@@ -219,6 +226,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
             "selectWidget",
             "radioWidget",
             "radioButtonsWidget",
+            "comboboxWidget",
           ] satisfies CompatibleComponentType<"selectWidget">[],
         },
       },
@@ -250,7 +258,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
           enum: [
             "numberWidget",
             "rangeWidget",
-            "sliderWidget",
+            "skeleton4SliderWidget",
             "ratingWidget",
           ] satisfies CompatibleComponentType<"numberWidget">[],
         },
@@ -271,7 +279,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
         widget: {
           enum: [
             "fileWidget",
-            "fileUploadWidget",
+            "skeleton4FileUploadWidget",
           ] satisfies CompatibleComponentType<"fileWidget">[],
         },
       },
@@ -286,7 +294,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
       },
     },
   },
-  [Theme.Shadcn4]: {
+  [ActualTheme.Shadcn4]: {
     [NodeType.Enum]: {
       properties: {
         widget: {
@@ -349,6 +357,58 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
       },
     },
   },
+  [LabTheme.Svar]: {
+    [NodeType.Enum]: {
+      properties: {
+        widget: {
+          enum: [
+            "selectWidget",
+            "radioWidget",
+          ] satisfies CompatibleComponentType<"selectWidget">[],
+        },
+      },
+    },
+    [NodeType.MultiEnum]: {
+      properties: {
+        widget: {
+          enum: [
+            "checkboxesWidget",
+            "multiSelectWidget",
+          ] satisfies CompatibleComponentType<"checkboxesWidget">[],
+        },
+      },
+    },
+    [NodeType.String]: {
+      properties: {
+        widget: {
+          enum: [
+            "textWidget",
+            "textareaWidget",
+            "datePickerWidget",
+          ] satisfies CompatibleComponentType<"textWidget">[],
+        },
+      },
+    },
+    [NodeType.Number]: {
+      properties: {
+        widget: {
+          enum: [
+            "numberWidget",
+            "rangeWidget",
+          ] satisfies CompatibleComponentType<"numberWidget">[],
+        },
+      },
+    },
+    [NodeType.Boolean]: {
+      properties: {
+        widget: {
+          enum: [
+            "checkboxWidget",
+          ] satisfies CompatibleComponentType<"checkboxWidget">[],
+        },
+      },
+    },
+  },
 };
 
 export const THEME_UI_SCHEMAS: Record<
@@ -357,11 +417,17 @@ export const THEME_UI_SCHEMAS: Record<
     [T in NodeType]?: UiSchemaRoot;
   }
 > = {
-  [Theme.Basic]: schemasToEnumNames(THEME_SCHEMAS[Theme.Basic]),
-  [Theme.Daisy5]: schemasToEnumNames(THEME_SCHEMAS[Theme.Daisy5]),
-  [Theme.Flowbite3]: schemasToEnumNames(THEME_SCHEMAS[Theme.Flowbite3]),
-  [Theme.Skeleton3]: schemasToEnumNames(THEME_SCHEMAS[Theme.Skeleton3]),
-  [Theme.Shadcn4]: schemasToEnumNames(THEME_SCHEMAS[Theme.Shadcn4]),
+  [ActualTheme.Basic]: schemasToEnumNames(THEME_SCHEMAS[ActualTheme.Basic]),
+  [ActualTheme.Pico]: schemasToEnumNames(THEME_SCHEMAS[ActualTheme.Pico]),
+  [ActualTheme.Daisy5]: schemasToEnumNames(THEME_SCHEMAS[ActualTheme.Daisy5]),
+  [ActualTheme.Flowbite3]: schemasToEnumNames(
+    THEME_SCHEMAS[ActualTheme.Flowbite3]
+  ),
+  [ActualTheme.Skeleton4]: schemasToEnumNames(
+    THEME_SCHEMAS[ActualTheme.Skeleton4]
+  ),
+  [ActualTheme.Shadcn4]: schemasToEnumNames(THEME_SCHEMAS[ActualTheme.Shadcn4]),
+  [LabTheme.Svar]: schemasToEnumNames(THEME_SCHEMAS[LabTheme.Svar]),
 };
 
 function schemaToEnumNames(schema: Schema): UiSchema | undefined {
@@ -396,17 +462,24 @@ function schemasToEnumNames(schemas: Partial<Record<NodeType, Schema>>) {
 }
 
 export const THEME_MISSING_FIELDS: Record<Theme, Set<NodeType>> = {
-  [Theme.Basic]: new Set([NodeType.Tags]),
-  [Theme.Daisy5]: new Set([NodeType.Tags]),
-  [Theme.Flowbite3]: new Set([]),
-  [Theme.Skeleton3]: new Set([]),
-  [Theme.Shadcn4]: new Set([NodeType.Tags]),
+  [ActualTheme.Basic]: new Set([NodeType.Tags]),
+  [ActualTheme.Pico]: new Set([NodeType.Tags]),
+  [ActualTheme.Daisy5]: new Set([NodeType.Tags]),
+  [ActualTheme.Flowbite3]: new Set([]),
+  [ActualTheme.Skeleton4]: new Set([]),
+  [ActualTheme.Shadcn4]: new Set([NodeType.Tags]),
+  [LabTheme.Svar]: new Set([NodeType.Tags, NodeType.File]),
 };
 
 export const THEME_APP_CSS: Record<Theme, string> = {
-  [Theme.Basic]: "",
-  [Theme.Daisy5]: '@source "../node_modules/@sjsf/daisyui5-theme/dist";',
-  [Theme.Flowbite3]: '@source "../node_modules/@sjsf/flowbite3-theme/dist";',
-  [Theme.Skeleton3]: '@source "../node_modules/@sjsf/skeleton3-theme/dist";',
-  [Theme.Shadcn4]: '@source "../node_modules/@sjsf/shadcn4-theme/dist";',
+  [ActualTheme.Basic]: "@import '@sjsf/basic-theme/css/basic.css';",
+  [ActualTheme.Pico]:
+    "@import '@picocss/pico/css/pico.css';\n@import '@sjsf/basic-theme/css/pico.css';",
+  [ActualTheme.Daisy5]: '@source "../node_modules/@sjsf/daisyui5-theme/dist";',
+  [ActualTheme.Flowbite3]:
+    '@source "../node_modules/@sjsf/flowbite3-theme/dist";',
+  [ActualTheme.Skeleton4]:
+    '@source "../node_modules/@sjsf/skeleton3-theme/dist";',
+  [ActualTheme.Shadcn4]: '@source "../node_modules/@sjsf/shadcn4-theme/dist";',
+  [LabTheme.Svar]: "",
 };

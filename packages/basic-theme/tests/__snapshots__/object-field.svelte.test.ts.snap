@@ -3,72 +3,76 @@
 exports[`object fields > additionalProperties 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-key-input"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.foo::key-input"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                foo Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_foo__key-input"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -76,23 +80,21 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -103,7 +105,89 @@ exports[`object fields > additionalProperties 1`] = `
               
               <!---->
             </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <div
+          class="sjsf-layout"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
+              >
+                <!---->
+                <label
+                  class="sjsf-label"
+                  for="root_foo"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
             
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_foo"
+                name="root_foo"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
             <!---->
              
             <!---->
@@ -117,111 +201,29 @@ exports[`object fields > additionalProperties 1`] = `
           
           <!---->
         </div>
-        
-        
         <!---->
          
         <!---->
         <div
-          class="svelte-e9ah86"
-          data-layout="object-property-content"
-          style="flex-grow: 1;"
+          class="sjsf-layout"
+          data-layout="object-property-controls"
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-e9ah86"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          <button
+            class="sjsf-button"
+            data-type="object-property-remove"
+            type="button"
           >
             <!---->
-            <!---->
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-meta"
-              style="display: block;"
-            >
-              <!---->
-              <!---->
-              <label
-                for="root.foo"
-                style="font-weight: bold;"
-              >
-                foo 
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
+            Del
             
             <!---->
-             
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                id="root.foo"
-                name="root.foo"
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
+          </button>
           
           
           <!---->
         </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          type="button"
-        >
-          <!---->
-          Del
-          
-          <!---->
-        </button>
-        
-        
-        
-        
         
         <!---->
         <!---->
@@ -231,11 +233,8 @@ exports[`object fields > additionalProperties 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -245,7 +244,7 @@ exports[`object fields > additionalProperties 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -254,72 +253,76 @@ exports[`object fields > additionalProperties 1`] = `
 exports[`object fields > additionalProperties with error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-key-input"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.foo::key-input"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                foo Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_foo__key-input"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -327,23 +330,21 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="true"
+                class="sjsf-text"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -354,13 +355,12 @@ exports[`object fields > additionalProperties with error 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
             <ul
-              id="root.foo::key-input::errors"
-              style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+              class="sjsf-errors-list"
+              id="root_foo__key-input__errors"
               tabindex="-1"
             >
               <li>
@@ -377,46 +377,48 @@ exports[`object fields > additionalProperties with error 1`] = `
           
           
           
-          
           <!---->
         </div>
         
-        
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.foo"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                foo 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_foo"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -424,22 +426,20 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                id="root.foo"
-                name="root.foo"
-                style="flex-grow: 1;"
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_foo"
+                name="root_foo"
                 type="text"
               />
                
@@ -450,7 +450,6 @@ exports[`object fields > additionalProperties with error 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -462,29 +461,31 @@ exports[`object fields > additionalProperties with error 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          type="button"
+        <div
+          class="sjsf-layout"
+          data-layout="object-property-controls"
         >
           <!---->
-          Del
+          <!---->
+          <button
+            class="sjsf-button"
+            data-type="object-property-remove"
+            type="button"
+          >
+            <!---->
+            Del
+            
+            <!---->
+          </button>
+          
           
           <!---->
-        </button>
-        
-        
-        
-        
+        </div>
         
         <!---->
         <!---->
@@ -494,11 +495,8 @@ exports[`object fields > additionalProperties with error 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -508,7 +506,7 @@ exports[`object fields > additionalProperties with error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -517,71 +515,75 @@ exports[`object fields > additionalProperties with error 1`] = `
 exports[`object fields > has errors 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.name"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                name 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_name"
+                >
+                  name 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -589,22 +591,20 @@ exports[`object fields > has errors 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.name::description root.name::help root.name::errors"
-                id="root.name"
-                name="root.name"
-                style="flex-grow: 1;"
+                aria-describedby="root_name__description root_name__help root_name__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_name"
+                name="root_name"
                 type="text"
               />
                
@@ -615,7 +615,6 @@ exports[`object fields > has errors 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -627,10 +626,8 @@ exports[`object fields > has errors 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -641,19 +638,16 @@ exports[`object fields > has errors 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -667,7 +661,7 @@ exports[`object fields > has errors 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -676,71 +670,75 @@ exports[`object fields > has errors 1`] = `
 exports[`object fields > object 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.a"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                A 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_a"
+                >
+                  A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -748,22 +746,20 @@ exports[`object fields > object 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
-                id="root.a"
-                name="root.a"
-                style="flex-grow: 1;"
+                aria-describedby="root_a__description root_a__help root_a__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -774,7 +770,6 @@ exports[`object fields > object 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -786,10 +781,8 @@ exports[`object fields > object 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -798,52 +791,53 @@ exports[`object fields > object 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.b"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                B 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_b"
+                >
+                  B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -851,23 +845,21 @@ exports[`object fields > object 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
-                id="root.b"
-                name="root.b"
+                aria-describedby="root_b__description root_b__help root_b__errors"
+                aria-invalid="false"
+                class="sjsf-number"
+                id="root_b"
+                name="root_b"
                 step="any"
-                style="flex-grow: 1;"
                 type="number"
               />
                
@@ -878,7 +870,6 @@ exports[`object fields > object 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -890,10 +881,8 @@ exports[`object fields > object 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -904,11 +893,8 @@ exports[`object fields > object 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -918,7 +904,7 @@ exports[`object fields > object 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -927,30 +913,44 @@ exports[`object fields > object 1`] = `
 exports[`object fields > one of defaults > default preset 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="object-field-title-row"
       >
-        Options
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="objectTemplate"
+          id="root__title"
+        >
+          Options
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
@@ -958,35 +958,27 @@ exports[`object fields > one of defaults > default preset 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
@@ -999,7 +991,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1008,50 +999,41 @@ exports[`object fields > one of defaults > default preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
                
               <!---->
               <div
-                id="root.transform::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_transform__description"
               >
                 Apply a transformation to the output data
               </div>
@@ -1060,22 +1042,22 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="sjsf-checkbox"
+              >
                 <input
-                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
-                  id="root.transform"
-                  name="root.transform"
+                  aria-describedby="root_transform__description root_transform__help root_transform__errors"
+                  aria-invalid="false"
+                  id="root_transform"
+                  name="root_transform"
                   type="checkbox"
                 />
                  Transform
@@ -1084,7 +1066,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1096,10 +1077,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1108,24 +1087,19 @@ exports[`object fields > one of defaults > default preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
@@ -1138,7 +1112,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1147,50 +1120,41 @@ exports[`object fields > one of defaults > default preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
                
               <!---->
               <div
-                id="root.paginate::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_paginate__description"
               >
                 Partitioning the input data (object or array) into pages by their keys
               </div>
@@ -1199,22 +1163,22 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="sjsf-checkbox"
+              >
                 <input
-                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
-                  id="root.paginate"
-                  name="root.paginate"
+                  aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
+                  aria-invalid="false"
+                  id="root_paginate"
+                  name="root_paginate"
                   type="checkbox"
                 />
                  Paginate
@@ -1223,7 +1187,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1235,10 +1198,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1247,50 +1208,41 @@ exports[`object fields > one of defaults > default preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
                
               <!---->
               <div
-                id="root.createOnOpen::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_createOnOpen__description"
               >
                 Creating a table when opening a share link
               </div>
@@ -1299,22 +1251,22 @@ exports[`object fields > one of defaults > default preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="sjsf-checkbox"
+              >
                 <input
-                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
-                  id="root.createOnOpen"
-                  name="root.createOnOpen"
+                  aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
+                  aria-invalid="false"
+                  id="root_createOnOpen"
+                  name="root_createOnOpen"
                   type="checkbox"
                 />
                  Create on open
@@ -1323,7 +1275,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1335,10 +1286,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1349,11 +1298,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1363,7 +1309,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -1372,30 +1318,44 @@ exports[`object fields > one of defaults > default preset 1`] = `
 exports[`object fields > one of defaults > manual preset 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="object-field-title-row"
       >
-        Options
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="objectTemplate"
+          id="root__title"
+        >
+          Options
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
@@ -1403,35 +1363,27 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
@@ -1444,7 +1396,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1453,50 +1404,41 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
                
               <!---->
               <div
-                id="root.collapseIndexes::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_collapseIndexes__description"
               >
                 Combines hierarchical indexes into one cell (1.1, 1.2, ...)
               </div>
@@ -1505,22 +1447,22 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="sjsf-checkbox"
+              >
                 <input
-                  aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
-                  id="root.collapseIndexes"
-                  name="root.collapseIndexes"
+                  aria-describedby="root_collapseIndexes__description root_collapseIndexes__help root_collapseIndexes__errors"
+                  aria-invalid="false"
+                  id="root_collapseIndexes"
+                  name="root_collapseIndexes"
                   type="checkbox"
                 />
                  Combine nested indexes
@@ -1529,7 +1471,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1541,10 +1482,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1553,50 +1492,41 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
                
               <!---->
               <div
-                id="root.joinPrimitiveArrayValues::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_joinPrimitiveArrayValues__description"
               >
                 Combines the values of an array of primitives into one cell (separated by ',')
               </div>
@@ -1605,22 +1535,22 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="sjsf-checkbox"
+              >
                 <input
-                  aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
-                  id="root.joinPrimitiveArrayValues"
-                  name="root.joinPrimitiveArrayValues"
+                  aria-describedby="root_joinPrimitiveArrayValues__description root_joinPrimitiveArrayValues__help root_joinPrimitiveArrayValues__errors"
+                  aria-invalid="false"
+                  id="root_joinPrimitiveArrayValues"
+                  name="root_joinPrimitiveArrayValues"
                   type="checkbox"
                 />
                  Combine simple values
@@ -1629,7 +1559,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1641,10 +1570,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1653,50 +1580,41 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
                
               <!---->
               <div
-                id="root.combineArraysOfObjects::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_combineArraysOfObjects__description"
               >
                 Combine arrays of objects into a single object
               </div>
@@ -1705,22 +1623,22 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="sjsf-checkbox"
+              >
                 <input
-                  aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
-                  id="root.combineArraysOfObjects"
-                  name="root.combineArraysOfObjects"
+                  aria-describedby="root_combineArraysOfObjects__description root_combineArraysOfObjects__help root_combineArraysOfObjects__errors"
+                  aria-invalid="false"
+                  id="root_combineArraysOfObjects"
+                  name="root_combineArraysOfObjects"
                   type="checkbox"
                 />
                  Combine objects
@@ -1729,7 +1647,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1741,10 +1658,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1753,50 +1668,41 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
                
               <!---->
               <div
-                id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_stabilizeOrderOfPropertiesInArraysOfObjects__description"
               >
                 Stabilizing the order in which properties are displayed for arrays of objects
               </div>
@@ -1805,22 +1711,22 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="sjsf-checkbox"
+              >
                 <input
-                  aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
-                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
-                  name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  aria-describedby="root_stabilizeOrderOfPropertiesInArraysOfObjects__description root_stabilizeOrderOfPropertiesInArraysOfObjects__help root_stabilizeOrderOfPropertiesInArraysOfObjects__errors"
+                  aria-invalid="false"
+                  id="root_stabilizeOrderOfPropertiesInArraysOfObjects"
+                  name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                   type="checkbox"
                 />
                  Stabilize order of properties
@@ -1829,7 +1735,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1841,10 +1746,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1853,62 +1756,63 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.proportionalSizeAdjustmentThreshold"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                Proportional size adjustment threshold 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_proportionalSizeAdjustmentThreshold"
+                >
+                  Proportional size adjustment threshold 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.proportionalSizeAdjustmentThreshold::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_proportionalSizeAdjustmentThreshold__description"
               >
                 Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
               </div>
@@ -1917,25 +1821,23 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
-                id="root.proportionalSizeAdjustmentThreshold"
+                aria-describedby="root_proportionalSizeAdjustmentThreshold__description root_proportionalSizeAdjustmentThreshold__help root_proportionalSizeAdjustmentThreshold__errors"
+                aria-invalid="false"
+                class="sjsf-number"
+                id="root_proportionalSizeAdjustmentThreshold"
                 min="0"
-                name="root.proportionalSizeAdjustmentThreshold"
+                name="root_proportionalSizeAdjustmentThreshold"
                 required=""
                 step="any"
-                style="flex-grow: 1;"
                 type="number"
               />
                
@@ -1946,7 +1848,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1958,10 +1859,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1970,59 +1869,60 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.cornerCellValue"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                Corner cell value 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_cornerCellValue"
+                >
+                  Corner cell value 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.cornerCellValue::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_cornerCellValue__description"
               >
                 The value of the corner cell.
               </div>
@@ -2031,22 +1931,20 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
-                id="root.cornerCellValue"
-                name="root.cornerCellValue"
-                style="flex-grow: 1;"
+                aria-describedby="root_cornerCellValue__description root_cornerCellValue__help root_cornerCellValue__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_cornerCellValue"
+                name="root_cornerCellValue"
                 type="text"
               />
                
@@ -2057,7 +1955,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -2069,10 +1966,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -2081,50 +1976,41 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
                
               <!---->
               <div
-                id="root.transform::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_transform__description"
               >
                 Apply a transformation to the output data
               </div>
@@ -2133,22 +2019,22 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="sjsf-checkbox"
+              >
                 <input
-                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
-                  id="root.transform"
-                  name="root.transform"
+                  aria-describedby="root_transform__description root_transform__help root_transform__errors"
+                  aria-invalid="false"
+                  id="root_transform"
+                  name="root_transform"
                   type="checkbox"
                 />
                  Transform
@@ -2157,7 +2043,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -2169,10 +2054,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -2181,24 +2064,19 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
@@ -2211,7 +2089,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -2220,50 +2097,41 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
                
               <!---->
               <div
-                id="root.paginate::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_paginate__description"
               >
                 Partitioning the input data (object or array) into pages by their keys
               </div>
@@ -2272,22 +2140,22 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="sjsf-checkbox"
+              >
                 <input
-                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
-                  id="root.paginate"
-                  name="root.paginate"
+                  aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
+                  aria-invalid="false"
+                  id="root_paginate"
+                  name="root_paginate"
                   type="checkbox"
                 />
                  Paginate
@@ -2296,7 +2164,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -2308,10 +2175,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -2320,50 +2185,41 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
                
               <!---->
               <div
-                id="root.createOnOpen::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_createOnOpen__description"
               >
                 Creating a table when opening a share link
               </div>
@@ -2372,22 +2228,22 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
-              <label>
+              <label
+                class="sjsf-checkbox"
+              >
                 <input
-                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
-                  id="root.createOnOpen"
-                  name="root.createOnOpen"
+                  aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
+                  aria-invalid="false"
+                  id="root_createOnOpen"
+                  name="root_createOnOpen"
                   type="checkbox"
                 />
                  Create on open
@@ -2396,7 +2252,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -2408,10 +2263,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -2422,11 +2275,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2436,7 +2286,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -2445,72 +2295,76 @@ exports[`object fields > one of defaults > manual preset 1`] = `
 exports[`object fields > show add button and fields if additionalProperties is true and not an object 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-key-input"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.additionalProperty::key-input"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                additionalProperty Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_additionalProperty__key-input"
+                >
+                  additionalProperty Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -2518,23 +2372,21 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -2545,7 +2397,89 @@ exports[`object fields > show add button and fields if additionalProperties is t
               
               <!---->
             </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <div
+          class="sjsf-layout"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
+              >
+                <!---->
+                <label
+                  class="sjsf-label"
+                  for="root_additionalProperty"
+                >
+                  additionalProperty 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
             
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
             <!---->
              
             <!---->
@@ -2559,111 +2493,29 @@ exports[`object fields > show add button and fields if additionalProperties is t
           
           <!---->
         </div>
-        
-        
         <!---->
          
         <!---->
         <div
-          class="svelte-e9ah86"
-          data-layout="object-property-content"
-          style="flex-grow: 1;"
+          class="sjsf-layout"
+          data-layout="object-property-controls"
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-e9ah86"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          <button
+            class="sjsf-button"
+            data-type="object-property-remove"
+            type="button"
           >
             <!---->
-            <!---->
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-meta"
-              style="display: block;"
-            >
-              <!---->
-              <!---->
-              <label
-                for="root.additionalProperty"
-                style="font-weight: bold;"
-              >
-                additionalProperty 
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
+            Del
             
             <!---->
-             
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
+          </button>
           
           
           <!---->
         </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          type="button"
-        >
-          <!---->
-          Del
-          
-          <!---->
-        </button>
-        
-        
-        
-        
         
         <!---->
         <!---->
@@ -2673,11 +2525,8 @@ exports[`object fields > show add button and fields if additionalProperties is t
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2687,7 +2536,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -2696,37 +2545,51 @@ exports[`object fields > show add button and fields if additionalProperties is t
 exports[`object fields > with title and description > additionalProperties 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="object-field-title-row"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="objectTemplate"
+          id="root__title"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a test description
       </div>
@@ -2735,64 +2598,62 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-key-input"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.foo::key-input"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                foo Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_foo__key-input"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -2800,23 +2661,21 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -2827,7 +2686,89 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               
               <!---->
             </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <div
+          class="sjsf-layout"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
+              >
+                <!---->
+                <label
+                  class="sjsf-label"
+                  for="root_foo"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
             
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_foo"
+                name="root_foo"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
             <!---->
              
             <!---->
@@ -2841,111 +2782,29 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           
           <!---->
         </div>
-        
-        
         <!---->
          
         <!---->
         <div
-          class="svelte-e9ah86"
-          data-layout="object-property-content"
-          style="flex-grow: 1;"
+          class="sjsf-layout"
+          data-layout="object-property-controls"
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-e9ah86"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          <button
+            class="sjsf-button"
+            data-type="object-property-remove"
+            type="button"
           >
             <!---->
-            <!---->
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-meta"
-              style="display: block;"
-            >
-              <!---->
-              <!---->
-              <label
-                for="root.foo"
-                style="font-weight: bold;"
-              >
-                foo 
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
+            Del
             
             <!---->
-             
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                id="root.foo"
-                name="root.foo"
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
+          </button>
           
           
           <!---->
         </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          type="button"
-        >
-          <!---->
-          Del
-          
-          <!---->
-        </button>
-        
-        
-        
-        
         
         <!---->
         <!---->
@@ -2955,11 +2814,8 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2969,7 +2825,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -2978,37 +2834,51 @@ exports[`object fields > with title and description > additionalProperties 1`] =
 exports[`object fields > with title and description > object 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="object-field-title-row"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="objectTemplate"
+          id="root__title"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a test description
       </div>
@@ -3017,70 +2887,68 @@ exports[`object fields > with title and description > object 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.a"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                A 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_a"
+                >
+                  A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.a::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_a__description"
               >
                 A description
               </div>
@@ -3089,22 +2957,20 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
-                id="root.a"
-                name="root.a"
-                style="flex-grow: 1;"
+                aria-describedby="root_a__description root_a__help root_a__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -3115,7 +2981,6 @@ exports[`object fields > with title and description > object 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -3127,10 +2992,8 @@ exports[`object fields > with title and description > object 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -3139,59 +3002,60 @@ exports[`object fields > with title and description > object 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.b"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                B 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_b"
+                >
+                  B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.b::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_b__description"
               >
                 B description
               </div>
@@ -3200,23 +3064,21 @@ exports[`object fields > with title and description > object 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
-                id="root.b"
-                name="root.b"
+                aria-describedby="root_b__description root_b__help root_b__errors"
+                aria-invalid="false"
+                class="sjsf-number"
+                id="root_b"
+                name="root_b"
                 step="any"
-                style="flex-grow: 1;"
                 type="number"
               />
                
@@ -3227,7 +3089,6 @@ exports[`object fields > with title and description > object 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -3239,10 +3100,8 @@ exports[`object fields > with title and description > object 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -3253,11 +3112,8 @@ exports[`object fields > with title and description > object 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -3267,7 +3123,7 @@ exports[`object fields > with title and description > object 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -3276,37 +3132,51 @@ exports[`object fields > with title and description > object 1`] = `
 exports[`object fields > with title and description > show add button and fields if additionalProperties is true and not an object 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="object-field-title-row"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="objectTemplate"
+          id="root__title"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a test description
       </div>
@@ -3315,64 +3185,62 @@ exports[`object fields > with title and description > show add button and fields
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-key-input"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.additionalProperty::key-input"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                additionalProperty Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_additionalProperty__key-input"
+                >
+                  additionalProperty Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -3380,23 +3248,21 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -3407,7 +3273,89 @@ exports[`object fields > with title and description > show add button and fields
               
               <!---->
             </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <div
+          class="sjsf-layout"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
+              >
+                <!---->
+                <label
+                  class="sjsf-label"
+                  for="root_additionalProperty"
+                >
+                  additionalProperty 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
             
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
             <!---->
              
             <!---->
@@ -3421,111 +3369,29 @@ exports[`object fields > with title and description > show add button and fields
           
           <!---->
         </div>
-        
-        
         <!---->
          
         <!---->
         <div
-          class="svelte-e9ah86"
-          data-layout="object-property-content"
-          style="flex-grow: 1;"
+          class="sjsf-layout"
+          data-layout="object-property-controls"
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-e9ah86"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          <button
+            class="sjsf-button"
+            data-type="object-property-remove"
+            type="button"
           >
             <!---->
-            <!---->
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-meta"
-              style="display: block;"
-            >
-              <!---->
-              <!---->
-              <label
-                for="root.additionalProperty"
-                style="font-weight: bold;"
-              >
-                additionalProperty 
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
+            Del
             
             <!---->
-             
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
+          </button>
           
           
           <!---->
         </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          type="button"
-        >
-          <!---->
-          Del
-          
-          <!---->
-        </button>
-        
-        
-        
-        
         
         <!---->
         <!---->
@@ -3535,11 +3401,8 @@ exports[`object fields > with title and description > show add button and fields
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -3549,7 +3412,7 @@ exports[`object fields > with title and description > show add button and fields
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -3558,37 +3421,51 @@ exports[`object fields > with title and description > show add button and fields
 exports[`object fields > with title and description from both > additionalProperties 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="object-field-title-row"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="objectTemplate"
+          id="root__title"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a fancier description
       </div>
@@ -3597,64 +3474,62 @@ exports[`object fields > with title and description from both > additionalProper
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-key-input"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.foo::key-input"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                foo Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_foo__key-input"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -3662,23 +3537,21 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -3689,7 +3562,89 @@ exports[`object fields > with title and description from both > additionalProper
               
               <!---->
             </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <div
+          class="sjsf-layout"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
+              >
+                <!---->
+                <label
+                  class="sjsf-label"
+                  for="root_foo"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
             
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_foo"
+                name="root_foo"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
             <!---->
              
             <!---->
@@ -3703,111 +3658,29 @@ exports[`object fields > with title and description from both > additionalProper
           
           <!---->
         </div>
-        
-        
         <!---->
          
         <!---->
         <div
-          class="svelte-e9ah86"
-          data-layout="object-property-content"
-          style="flex-grow: 1;"
+          class="sjsf-layout"
+          data-layout="object-property-controls"
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-e9ah86"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          <button
+            class="sjsf-button"
+            data-type="object-property-remove"
+            type="button"
           >
             <!---->
-            <!---->
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-meta"
-              style="display: block;"
-            >
-              <!---->
-              <!---->
-              <label
-                for="root.foo"
-                style="font-weight: bold;"
-              >
-                foo 
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
+            Del
             
             <!---->
-             
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                id="root.foo"
-                name="root.foo"
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
+          </button>
           
           
           <!---->
         </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          type="button"
-        >
-          <!---->
-          Del
-          
-          <!---->
-        </button>
-        
-        
-        
-        
         
         <!---->
         <!---->
@@ -3817,11 +3690,8 @@ exports[`object fields > with title and description from both > additionalProper
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -3831,7 +3701,7 @@ exports[`object fields > with title and description from both > additionalProper
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -3840,37 +3710,51 @@ exports[`object fields > with title and description from both > additionalProper
 exports[`object fields > with title and description from both > object 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="object-field-title-row"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="objectTemplate"
+          id="root__title"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a fancier description
       </div>
@@ -3879,70 +3763,68 @@ exports[`object fields > with title and description from both > object 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.a"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item A 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_a"
+                >
+                  My Item A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.a::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_a__description"
               >
                 a fancier item A description
               </div>
@@ -3951,22 +3833,20 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
-                id="root.a"
-                name="root.a"
-                style="flex-grow: 1;"
+                aria-describedby="root_a__description root_a__help root_a__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -3977,7 +3857,6 @@ exports[`object fields > with title and description from both > object 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -3989,10 +3868,8 @@ exports[`object fields > with title and description from both > object 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -4001,59 +3878,60 @@ exports[`object fields > with title and description from both > object 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.b"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item B 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_b"
+                >
+                  My Item B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.b::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_b__description"
               >
                 a fancier item B description
               </div>
@@ -4062,23 +3940,21 @@ exports[`object fields > with title and description from both > object 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
-                id="root.b"
-                name="root.b"
+                aria-describedby="root_b__description root_b__help root_b__errors"
+                aria-invalid="false"
+                class="sjsf-number"
+                id="root_b"
+                name="root_b"
                 step="any"
-                style="flex-grow: 1;"
                 type="number"
               />
                
@@ -4089,7 +3965,6 @@ exports[`object fields > with title and description from both > object 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -4101,10 +3976,8 @@ exports[`object fields > with title and description from both > object 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -4115,11 +3988,8 @@ exports[`object fields > with title and description from both > object 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -4129,7 +3999,7 @@ exports[`object fields > with title and description from both > object 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -4138,37 +4008,51 @@ exports[`object fields > with title and description from both > object 1`] = `
 exports[`object fields > with title and description from uiSchema > additionalProperties 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="object-field-title-row"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="objectTemplate"
+          id="root__title"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a fancier description
       </div>
@@ -4177,64 +4061,62 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-key-input"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.foo::key-input"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                foo Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_foo__key-input"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -4242,23 +4124,21 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -4269,7 +4149,89 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               
               <!---->
             </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <div
+          class="sjsf-layout"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
+              >
+                <!---->
+                <label
+                  class="sjsf-label"
+                  for="root_foo"
+                >
+                  foo 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
             
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_foo"
+                name="root_foo"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
             <!---->
              
             <!---->
@@ -4283,111 +4245,29 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           
           <!---->
         </div>
-        
-        
         <!---->
          
         <!---->
         <div
-          class="svelte-e9ah86"
-          data-layout="object-property-content"
-          style="flex-grow: 1;"
+          class="sjsf-layout"
+          data-layout="object-property-controls"
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-e9ah86"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          <button
+            class="sjsf-button"
+            data-type="object-property-remove"
+            type="button"
           >
             <!---->
-            <!---->
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-meta"
-              style="display: block;"
-            >
-              <!---->
-              <!---->
-              <label
-                for="root.foo"
-                style="font-weight: bold;"
-              >
-                foo 
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
+            Del
             
             <!---->
-             
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                id="root.foo"
-                name="root.foo"
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
+          </button>
           
           
           <!---->
         </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          type="button"
-        >
-          <!---->
-          Del
-          
-          <!---->
-        </button>
-        
-        
-        
-        
         
         <!---->
         <!---->
@@ -4397,11 +4277,8 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -4411,7 +4288,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -4420,37 +4297,51 @@ exports[`object fields > with title and description from uiSchema > additionalPr
 exports[`object fields > with title and description from uiSchema > object 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="object-field-title-row"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="objectTemplate"
+          id="root__title"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a fancier description
       </div>
@@ -4459,70 +4350,68 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.a"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item A 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_a"
+                >
+                  My Item A 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.a::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_a__description"
               >
                 a fancier item A description
               </div>
@@ -4531,22 +4420,20 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
-                id="root.a"
-                name="root.a"
-                style="flex-grow: 1;"
+                aria-describedby="root_a__description root_a__help root_a__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -4557,7 +4444,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -4569,10 +4455,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -4581,59 +4465,60 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.b"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item B 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_b"
+                >
+                  My Item B 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.b::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_b__description"
               >
                 a fancier item B description
               </div>
@@ -4642,23 +4527,21 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
-                id="root.b"
-                name="root.b"
+                aria-describedby="root_b__description root_b__help root_b__errors"
+                aria-invalid="false"
+                class="sjsf-number"
+                id="root_b"
+                name="root_b"
                 step="any"
-                style="flex-grow: 1;"
                 type="number"
               />
                
@@ -4669,7 +4552,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -4681,10 +4563,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -4695,11 +4575,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -4709,7 +4586,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -4718,37 +4595,51 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
 exports[`object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="object-field-title-row"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="objectTemplate"
+          id="root__title"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a fancier description
       </div>
@@ -4757,64 +4648,62 @@ exports[`object fields > with title and description from uiSchema > show add but
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-key-input"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.additionalProperty::key-input"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                additionalProperty Key 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_additionalProperty__key-input"
+                >
+                  additionalProperty Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -4822,23 +4711,21 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -4849,7 +4736,89 @@ exports[`object fields > with title and description from uiSchema > show add but
               
               <!---->
             </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <div
+          class="sjsf-layout"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
+              >
+                <!---->
+                <label
+                  class="sjsf-label"
+                  for="root_additionalProperty"
+                >
+                  additionalProperty 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
             
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
             <!---->
              
             <!---->
@@ -4863,111 +4832,29 @@ exports[`object fields > with title and description from uiSchema > show add but
           
           <!---->
         </div>
-        
-        
         <!---->
          
         <!---->
         <div
-          class="svelte-e9ah86"
-          data-layout="object-property-content"
-          style="flex-grow: 1;"
+          class="sjsf-layout"
+          data-layout="object-property-controls"
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-e9ah86"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          <button
+            class="sjsf-button"
+            data-type="object-property-remove"
+            type="button"
           >
             <!---->
-            <!---->
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-meta"
-              style="display: block;"
-            >
-              <!---->
-              <!---->
-              <label
-                for="root.additionalProperty"
-                style="font-weight: bold;"
-              >
-                additionalProperty 
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
+            Del
             
             <!---->
-             
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
+          </button>
           
           
           <!---->
         </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          type="button"
-        >
-          <!---->
-          Del
-          
-          <!---->
-        </button>
-        
-        
-        
-        
         
         <!---->
         <!---->
@@ -4977,11 +4864,8 @@ exports[`object fields > with title and description from uiSchema > show add but
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -4991,7 +4875,7 @@ exports[`object fields > with title and description from uiSchema > show add but
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -5000,69 +4884,64 @@ exports[`object fields > with title and description from uiSchema > show add but
 exports[`object fields > with title and description with global label off > additionalProperties 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-key-input"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                id="root.foo::key-input"
-                name="root.foo::key-input"
+                aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_foo__key-input"
+                name="root_foo__key-input"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -5073,7 +4952,58 @@ exports[`object fields > with title and description with global label off > addi
               
               <!---->
             </div>
-            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <div
+          class="sjsf-layout"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_foo"
+                name="root_foo"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
             <!---->
              
             <!---->
@@ -5087,87 +5017,29 @@ exports[`object fields > with title and description with global label off > addi
           
           <!---->
         </div>
-        
-        
         <!---->
          
         <!---->
         <div
-          class="svelte-e9ah86"
-          data-layout="object-property-content"
-          style="flex-grow: 1;"
+          class="sjsf-layout"
+          data-layout="object-property-controls"
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-e9ah86"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          <button
+            class="sjsf-button"
+            data-type="object-property-remove"
+            type="button"
           >
             <!---->
-            <!---->
-             
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                id="root.foo"
-                name="root.foo"
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
+            Del
             
             <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
+          </button>
           
           
           <!---->
         </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          type="button"
-        >
-          <!---->
-          Del
-          
-          <!---->
-        </button>
-        
-        
-        
-        
         
         <!---->
         <!---->
@@ -5177,11 +5049,8 @@ exports[`object fields > with title and description with global label off > addi
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -5191,7 +5060,7 @@ exports[`object fields > with title and description with global label off > addi
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -5200,70 +5069,65 @@ exports[`object fields > with title and description with global label off > addi
 exports[`object fields > with title and description with global label off > object 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.a::description root.a::help root.a::errors"
-                id="root.a"
-                name="root.a"
-                style="flex-grow: 1;"
+                aria-describedby="root_a__description root_a__help root_a__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_a"
+                name="root_a"
                 type="text"
               />
                
@@ -5274,7 +5138,6 @@ exports[`object fields > with title and description with global label off > obje
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -5286,10 +5149,8 @@ exports[`object fields > with title and description with global label off > obje
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -5298,52 +5159,44 @@ exports[`object fields > with title and description with global label off > obje
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.b::description root.b::help root.b::errors"
-                id="root.b"
-                name="root.b"
+                aria-describedby="root_b__description root_b__help root_b__errors"
+                aria-invalid="false"
+                class="sjsf-number"
+                id="root_b"
+                name="root_b"
                 step="any"
-                style="flex-grow: 1;"
                 type="number"
               />
                
@@ -5354,7 +5207,6 @@ exports[`object fields > with title and description with global label off > obje
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -5366,10 +5218,8 @@ exports[`object fields > with title and description with global label off > obje
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -5380,11 +5230,8 @@ exports[`object fields > with title and description with global label off > obje
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -5394,7 +5241,7 @@ exports[`object fields > with title and description with global label off > obje
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -5403,69 +5250,64 @@ exports[`object fields > with title and description with global label off > obje
 exports[`object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-key-input"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                id="root.additionalProperty::key-input"
-                name="root.additionalProperty::key-input"
+                aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_additionalProperty__key-input"
+                name="root_additionalProperty__key-input"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -5476,7 +5318,58 @@ exports[`object fields > with title and description with global label off > show
               
               <!---->
             </div>
-            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <div
+          class="sjsf-layout"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_additionalProperty"
+                name="root_additionalProperty"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
             <!---->
              
             <!---->
@@ -5490,87 +5383,29 @@ exports[`object fields > with title and description with global label off > show
           
           <!---->
         </div>
-        
-        
         <!---->
          
         <!---->
         <div
-          class="svelte-e9ah86"
-          data-layout="object-property-content"
-          style="flex-grow: 1;"
+          class="sjsf-layout"
+          data-layout="object-property-controls"
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-e9ah86"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          <button
+            class="sjsf-button"
+            data-type="object-property-remove"
+            type="button"
           >
             <!---->
-            <!---->
-             
-            <!---->
-            <div
-              class="svelte-e9ah86"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                id="root.additionalProperty"
-                name="root.additionalProperty"
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
+            Del
             
             <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
+          </button>
           
           
           <!---->
         </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          type="button"
-        >
-          <!---->
-          Del
-          
-          <!---->
-        </button>
-        
-        
-        
-        
         
         <!---->
         <!---->
@@ -5580,11 +5415,8 @@ exports[`object fields > with title and description with global label off > show
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -5594,7 +5426,7 @@ exports[`object fields > with title and description with global label off > show
   </div>
   
   
-  
+  <!---->
   
   
 </div>

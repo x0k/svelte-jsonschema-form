@@ -1,3 +1,4 @@
+import { unique } from "@/lib/array.js";
 import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import type { Schema, SchemaType } from "./schema.js";
@@ -21,7 +22,7 @@ export function typeOfValue(
     case "string":
       return type;
     default:
-      throw new Error(`Unsupported schema type: ${type}`);
+      return "unknown";
   }
 }
 
@@ -41,7 +42,7 @@ export function typeOfSchema(schema: Schema): SchemaType | SchemaType[] {
     return "object";
   }
   if (Array.isArray(schema.enum) && schema.enum.length > 0) {
-    return Array.from(new Set(schema.enum.map(typeOfValue)));
+    return unique(schema.enum.map(typeOfValue));
   }
   const alt = schema.allOf ?? schema.anyOf ?? schema.oneOf;
   if (alt) {
@@ -53,9 +54,9 @@ export function typeOfSchema(schema: Schema): SchemaType | SchemaType[] {
       }
       types = types.concat(typeOfSchema(item));
     }
-    return Array.from(new Set(types));
+    return unique(types);
   }
-  return "null";
+  return "unknown";
 }
 
 export function isNullableSchemaType(type: SchemaType | SchemaType[]): boolean {

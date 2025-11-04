@@ -1,5 +1,144 @@
 # @sjsf/sveltekit
 
+## 3.0.0-next.12
+
+### Major Changes
+
+- Consider `sendData` option in `ValidatedFormData` type ([#224](https://github.com/x0k/svelte-jsonschema-form/pull/224))
+
+### Patch Changes
+
+- Updated dependencies [[`2c1922a`](https://github.com/x0k/svelte-jsonschema-form/commit/2c1922a8f9e57137cffed7b4e53d6e072b451045), [`3dd688b`](https://github.com/x0k/svelte-jsonschema-form/commit/3dd688b85b0a3069cd106edcad1956f9667a4f57)]:
+  - @sjsf/form@3.0.0-next.12
+
+## 3.0.0-next.11
+
+### Major Changes
+
+- Remove `sendData` option from `ValidatedFormData` type ([#219](https://github.com/x0k/svelte-jsonschema-form/pull/219))
+
+- Add `updateData` option to `ValidatedFormData` type ([#219](https://github.com/x0k/svelte-jsonschema-form/pull/219))
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/form@3.0.0-next.11
+
+## 3.0.0-next.10
+
+### Patch Changes
+
+- Updated dependencies [[`c303125`](https://github.com/x0k/svelte-jsonschema-form/commit/c3031258573093284c1f0d99cd7a369b8f454834), [`ed0a797`](https://github.com/x0k/svelte-jsonschema-form/commit/ed0a79737c2e02d202e4392923a8d010d3f24dc6), [`b5a5c86`](https://github.com/x0k/svelte-jsonschema-form/commit/b5a5c86705bdc0c26384b2ac4aa76f4de2fca54d)]:
+  - @sjsf/form@3.0.0-next.10
+
+## 3.0.0-next.9
+
+### Patch Changes
+
+- Updated dependencies [[`880f9b4`](https://github.com/x0k/svelte-jsonschema-form/commit/880f9b4036a79a352c8d39ae7c09e4c0c5a2dc05), [`d2ac64f`](https://github.com/x0k/svelte-jsonschema-form/commit/d2ac64f268e88b15f436db5e6139c783fbbb1011), [`ebc3038`](https://github.com/x0k/svelte-jsonschema-form/commit/ebc303805d521ce03ecde95888f1f659dbe3e9e8)]:
+  - @sjsf/form@3.0.0-next.9
+
+## 3.0.0-next.8
+
+### Patch Changes
+
+- Updated dependencies [[`37e4bea`](https://github.com/x0k/svelte-jsonschema-form/commit/37e4bead300296df2c1d87e1fb9d154a2c826cb4), [`8c787f2`](https://github.com/x0k/svelte-jsonschema-form/commit/8c787f28b7757ea0e2994805f5c31713a591e611), [`763c998`](https://github.com/x0k/svelte-jsonschema-form/commit/763c998cb2e3848baf211d5d13c30b6e93e9dc9e)]:
+  - @sjsf/form@3.0.0-next.8
+
+## 3.0.0-next.7
+
+### Major Changes
+
+- Add support for `modern` ID Builder ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Fix several issues with form data conversion ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Remove `identifiableInputElementsTrie` schema value parser option ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Consider `idPrefix` as form id ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Refactor form data entry converter ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Remove `initForm` function ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+
+### Minor Changes
+
+- Add `createAction` function ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+### Patch Changes
+
+- Updated dependencies [[`c3a3bcd`](https://github.com/x0k/svelte-jsonschema-form/commit/c3a3bcdbe7c07674b139023b36bf2e648f892ae7), [`db92385`](https://github.com/x0k/svelte-jsonschema-form/commit/db92385c62cc2b45c7b9fc625d82cc1af684c6fc), [`d315e2b`](https://github.com/x0k/svelte-jsonschema-form/commit/d315e2b0de3e60b022277e10c918ede65662a672), [`130ab89`](https://github.com/x0k/svelte-jsonschema-form/commit/130ab89c8d3695b5ee29634a379992500edbbb7f), [`45ee96d`](https://github.com/x0k/svelte-jsonschema-form/commit/45ee96dbe675cb79112a3ff14a83225e7b5ada52), [`1c46d22`](https://github.com/x0k/svelte-jsonschema-form/commit/1c46d22c5a733fad4e711bd91664b12e7bbcfc8a), [`bc7b50b`](https://github.com/x0k/svelte-jsonschema-form/commit/bc7b50b55b4531253f1610c7b7e8832554979810), [`ebbebbd`](https://github.com/x0k/svelte-jsonschema-form/commit/ebbebbd52c45493c648dd6f29554a7bffe22ba11), [`f118bb5`](https://github.com/x0k/svelte-jsonschema-form/commit/f118bb5641a4f255feccb42f85e3bcb1707fe2b3), [`89f3ae2`](https://github.com/x0k/svelte-jsonschema-form/commit/89f3ae271bbdd8a30f79464dc4162199be983023), [`8c389f5`](https://github.com/x0k/svelte-jsonschema-form/commit/8c389f5293ad404509303c4866815431ee8e6e72), [`8559a74`](https://github.com/x0k/svelte-jsonschema-form/commit/8559a747a88bc7617625cb167f321b283a0fdb86), [`24aa0a2`](https://github.com/x0k/svelte-jsonschema-form/commit/24aa0a2502ebd353b02d2bd93246e118bc93c81a), [`35dd9a4`](https://github.com/x0k/svelte-jsonschema-form/commit/35dd9a4760a31fe07895e63eae4479a42f433acc), [`4bcb241`](https://github.com/x0k/svelte-jsonschema-form/commit/4bcb2415b782ec85fab89ec86eeaca2480a95301)]:
+  - @sjsf/form@3.0.0-next.7
+
+## 3.0.0-next.6
+
+### Patch Changes
+
+- Updated dependencies [[`b735108`](https://github.com/x0k/svelte-jsonschema-form/commit/b735108aa2b29ebe2db824a92364a478644e9780)]:
+  - @sjsf/form@3.0.0-next.6
+
+## 3.0.0-next.5
+
+### Major Changes
+
+- Update form handler factory options ([#208](https://github.com/x0k/svelte-jsonschema-form/pull/208))
+
+### Patch Changes
+
+- Updated dependencies [[`6e2bdc5`](https://github.com/x0k/svelte-jsonschema-form/commit/6e2bdc5af2bd726d04aca65698012607472cf32f), [`fb04cdd`](https://github.com/x0k/svelte-jsonschema-form/commit/fb04cddf6835196935c85ecfeca1f6bb5918a119), [`2f8e90d`](https://github.com/x0k/svelte-jsonschema-form/commit/2f8e90ddd47ecb5c7b84504c2a190dc0e9761e29), [`00a9abc`](https://github.com/x0k/svelte-jsonschema-form/commit/00a9abc51b99e280175852adb4cbd2ed0bd6cb94), [`5284bc9`](https://github.com/x0k/svelte-jsonschema-form/commit/5284bc90d1a9b61e480b9f94304eec443e97788b), [`f06e616`](https://github.com/x0k/svelte-jsonschema-form/commit/f06e6167c9acb209dc4cfdb716c98498f48e51ef), [`aa9c798`](https://github.com/x0k/svelte-jsonschema-form/commit/aa9c798acc0ffdaaba6f0c722582ca05b0477b84), [`e84b626`](https://github.com/x0k/svelte-jsonschema-form/commit/e84b6262d58a897f9416b03cecad8057789a8f95)]:
+  - @sjsf/form@3.0.0-next.5
+
+## 3.0.0-next.4
+
+### Patch Changes
+
+- Updated dependencies [[`ca11ecb`](https://github.com/x0k/svelte-jsonschema-form/commit/ca11ecbc71f18ce0c043e8a55a34a4b4b5010c67)]:
+  - @sjsf/form@3.0.0-next.4
+
+## 3.0.0-next.3
+
+### Patch Changes
+
+- Omit empty files during FormData parsing ([`a42eafe`](https://github.com/x0k/svelte-jsonschema-form/commit/a42eafe46cc3e51cd7930ac386d87186d336b2a2))
+
+- Updated dependencies [[`d60f113`](https://github.com/x0k/svelte-jsonschema-form/commit/d60f1131132613571b2ce3bd1fcf70ef24aae1a4)]:
+  - @sjsf/form@3.0.0-next.3
+
+## 3.0.0-next.2
+
+### Major Changes
+
+- Bump minimal `@sveltejs/kit` version to `2.42.0` ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+### Patch Changes
+
+- Updated dependencies [[`0201f5e`](https://github.com/x0k/svelte-jsonschema-form/commit/0201f5e8d0574103eb0f5dd0bfa97d2648706166), [`c4fb2b2`](https://github.com/x0k/svelte-jsonschema-form/commit/c4fb2b2f95470e78bda46436b86d27861ca555b9), [`51997f5`](https://github.com/x0k/svelte-jsonschema-form/commit/51997f535b192d68fba514a993759489b2974ed4), [`75f3134`](https://github.com/x0k/svelte-jsonschema-form/commit/75f3134829181eb51eeccc84a6226d627ecdfda7), [`181c3ce`](https://github.com/x0k/svelte-jsonschema-form/commit/181c3ce45c6897a0fffc6c73d0ed2db838dc83c1), [`ae6aae3`](https://github.com/x0k/svelte-jsonschema-form/commit/ae6aae3f13d6aebf13c218f474399ec1d53f74fa), [`390b77e`](https://github.com/x0k/svelte-jsonschema-form/commit/390b77ed55a673ba6025239b01861563a45dd5e2), [`db2518b`](https://github.com/x0k/svelte-jsonschema-form/commit/db2518bef264d2bc81a3fdcdd545f662ea9c0a1e), [`cffd71e`](https://github.com/x0k/svelte-jsonschema-form/commit/cffd71e578dcb46c06725b2c65c12672c7967634), [`3c90ec2`](https://github.com/x0k/svelte-jsonschema-form/commit/3c90ec22f934f28862c6515987e367c3078e21d8), [`3ac49c9`](https://github.com/x0k/svelte-jsonschema-form/commit/3ac49c954675ded403ac1a25e2dd4782fc223600), [`3100b4d`](https://github.com/x0k/svelte-jsonschema-form/commit/3100b4d109798494a157a453f46c0e1cf2d746ae)]:
+  - @sjsf/form@3.0.0-next.2
+
+## 3.0.0-next.1
+
+### Major Changes
+
+- - Reshape API for convenient use with `defaults.ts` ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+  - Support for using native `File` values
+  - Fix `initialValue` type inference
+
+### Patch Changes
+
+- Updated dependencies [[`b649510`](https://github.com/x0k/svelte-jsonschema-form/commit/b649510948cb89d62568e2624bd008a30832c6b2), [`65f4343`](https://github.com/x0k/svelte-jsonschema-form/commit/65f4343fd0323a6189cfa5983b5fc93a3ed2ef51), [`3fca555`](https://github.com/x0k/svelte-jsonschema-form/commit/3fca555123de0e0f8fbf51718471134dc89b6248), [`f261cb8`](https://github.com/x0k/svelte-jsonschema-form/commit/f261cb8147726d31ae5a469d11cbaf8ad5efa49e), [`f60ae1f`](https://github.com/x0k/svelte-jsonschema-form/commit/f60ae1f63416e9b4464f3ba1d09bfe1351003c4e), [`ad86d61`](https://github.com/x0k/svelte-jsonschema-form/commit/ad86d619f0f6e9636f8b364d7126fb614fe2669a), [`b2d6ac6`](https://github.com/x0k/svelte-jsonschema-form/commit/b2d6ac6157988590c3ec833e49e8c122eaf3fc25)]:
+  - @sjsf/form@3.0.0-next.1
+
+## 3.0.0-next.0
+
+### Major Changes
+
+- Allow to pass any serializable optional form option to `initForm` function ([#186](https://github.com/x0k/svelte-jsonschema-form/pull/186))
+
+### Patch Changes
+
+- Updated dependencies [[`b9647e0`](https://github.com/x0k/svelte-jsonschema-form/commit/b9647e04d524c10fb9b840b60db58c413c8a86aa), [`5b88676`](https://github.com/x0k/svelte-jsonschema-form/commit/5b886769563ab3ea7cc044fb312b6616baa77622), [`8d4b2c2`](https://github.com/x0k/svelte-jsonschema-form/commit/8d4b2c2d9c524a34fcc472594d654db5fa75d0c6), [`2bf6e64`](https://github.com/x0k/svelte-jsonschema-form/commit/2bf6e643cfe9c0f8fcc0a17b374a9a73ec599a2e), [`2b810e7`](https://github.com/x0k/svelte-jsonschema-form/commit/2b810e742d861c05cf91a020f7ef5af43a649ec0), [`3653592`](https://github.com/x0k/svelte-jsonschema-form/commit/36535929efaec32701299c0b3fc39a99af1c1cc0), [`aa34020`](https://github.com/x0k/svelte-jsonschema-form/commit/aa3402024c082a715a600e4a16a9e766bf4f2da3), [`2b810e7`](https://github.com/x0k/svelte-jsonschema-form/commit/2b810e742d861c05cf91a020f7ef5af43a649ec0), [`c963ca3`](https://github.com/x0k/svelte-jsonschema-form/commit/c963ca3aae90ffc692dce13c06345dee59ae1610), [`16b68d7`](https://github.com/x0k/svelte-jsonschema-form/commit/16b68d74f51740c754edced8ae77fd10c357356f)]:
+  - @sjsf/form@3.0.0-next.0
+
 ## 2.4.0
 
 ### Minor Changes

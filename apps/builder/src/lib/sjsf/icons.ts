@@ -29,7 +29,7 @@ export const ICONS_TITLES: Record<Icons, string> = {
 export const ICONS_PEER_DEPS: Record<Icons, string> = {
   [Icons.None]: "",
   [Icons.Flowbite]: "flowbite-svelte-icons",
-  [Icons.Moving]: "",
+  [Icons.Moving]: "@jis3r/icons",
   [Icons.Lucide]: "@lucide/svelte",
   [Icons.Radix]: "svelte-radix",
 }

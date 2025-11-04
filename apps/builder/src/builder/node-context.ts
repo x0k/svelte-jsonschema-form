@@ -1,15 +1,7 @@
-import { getContext, setContext } from 'svelte';
-
-const NODE_CONTEXT = Symbol("node-context");
+import { createContext } from "svelte";
 
 export interface NodeContext {
   isDragged: boolean;
 }
 
-export function setNodeContext(ctx: NodeContext) {
-    setContext(NODE_CONTEXT, ctx);
-}
-
-export function getNodeContext(): NodeContext {
-  return getContext(NODE_CONTEXT);
-}
+export const [getNodeContext, setNodeContext] = createContext<NodeContext>();

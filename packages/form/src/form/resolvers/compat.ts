@@ -2,16 +2,15 @@ import {
   getSimpleSchemaType,
   isFileSchema,
   isFixedItems,
-  type Validator,
 } from "@/core/index.js";
 
 import {
-  type FormInternalContext,
   isFilesArray,
   isMultiSelect,
   isSelect,
   retrieveUiOption,
-} from "../context/index.js";
+  type FormState,
+} from "../state/index.js";
 import type { ResolveFieldType } from "../fields.js";
 
 import "../extra-fields/enum.js";
@@ -19,9 +18,7 @@ import "../extra-fields/multi-enum.js";
 import "../extra-fields/file.js";
 import "../extra-fields/files.js";
 
-export function resolver<V extends Validator>(
-  ctx: FormInternalContext<V>
-): ResolveFieldType {
+export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
   return (config) => {
     const { schema } = config;
     if (isSelect(ctx, schema)) {

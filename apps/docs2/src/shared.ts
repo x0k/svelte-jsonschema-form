@@ -2,11 +2,16 @@ import type { StarlightIcon } from "@astrojs/starlight/types";
 
 import { version } from "#/form/package.json";
 
+// NOTE: Required for correct UiSchema augmentation
+import "@sjsf/basic-theme";
+
 export const VERSION = version;
+
+export const IS_NEXT_VERSION = VERSION.includes("next");
 
 export const FORM_PACKAGE = `@sjsf/form`;
 
-export const AJV_PACKAGE_V = "ajv@8";
+export const AJV_PACKAGE_WITH_TAG = "ajv@8";
 
 export const AJV_VALIDATOR_PACKAGE = `@sjsf/ajv8-validator`;
 
@@ -24,6 +29,12 @@ export const VALIDATORS = [
 ] as const;
 
 export type Validator = (typeof VALIDATORS)[number];
+
+export const JSON_SCHEMA_VALIDATORS: Validator[] = [
+  "Ajv",
+  "@cfworker/json-schema",
+  "@exodus/schemasafe",
+];
 
 const VALIDATOR_TO_PACKAGE_PREFIX: Partial<Record<Validator, string>> = {
   Ajv: "ajv8",
@@ -49,7 +60,7 @@ export const VALIDATOR_DEPENDENCIES: Record<
   "@exodus/schemasafe": {
     "@exodus/schemasafe": "^1.3.0",
   },
-  Zod: { zod: "^4.0.0" },
+  Zod: { zod: "^4.1.0" },
   Valibot: {
     valibot: "^1.1.0",
     "@valibot/to-json-schema": "^1.3.0",
@@ -57,7 +68,7 @@ export const VALIDATOR_DEPENDENCIES: Record<
   "Standard Schema": {},
 };
 
-export enum Example {
+export enum GenericExample {
   Starter = "starter",
   AnimatedArray = "animated-array",
   MarkdownDescription = "markdown-description",
@@ -65,68 +76,108 @@ export enum Example {
   AsyncCombobox = "async-combobox",
   Formulas = "formulas",
   PatternPropertiesValidator = "pattern-properties-validator",
-  NativeForm = "native-form",
   DecomposedField = "decomposed-field",
-  MultiStepNativeForm = "multi-step-native-form",
   LayoutSlots = "layout-slots",
+  PreuploadFile = "preupload-file",
+  OptionalDataControls = "optional-data-controls",
 }
 
-export const EXAMPLES = Object.values(Example);
+export const GENERIC_EXAMPLES = Object.values(GenericExample);
 
-export const THEMES = [
+export enum SvelteKitExample {
+  FormActions = "form-actions",
+  FormActionsFlex = "form-actions-flex",
+  FormActionsWithoutJs = "form-actions-without-js",
+  RemoveFunctions = "remote-functions",
+  RemoveFunctionsWithoutJs = "remote-functions-without-js",
+  MultiStepNativeForm = "multi-step-native-form",
+}
+
+export const SVELTE_KIT_EXAMPLES = Object.values(SvelteKitExample);
+
+export enum ValidatorSpecificExample {
+  ZodStarter = "zod-starter",
+  ValibotStarter = "valibot-starter",
+  ArkTypeStarter = "arktype-starter",
+  TypeBoxStarter = "typebox-starter",
+}
+
+export const VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS: Record<
+  ValidatorSpecificExample,
+  Validator
+> = {
+  [ValidatorSpecificExample.ZodStarter]: "Zod",
+  [ValidatorSpecificExample.ValibotStarter]: "Valibot",
+  [ValidatorSpecificExample.ArkTypeStarter]: "Standard Schema",
+  [ValidatorSpecificExample.TypeBoxStarter]: "Standard Schema",
+};
+
+export const VALIDATOR_SPECIFIC_EXAMPLES = Object.values(
+  ValidatorSpecificExample
+);
+
+export type Example =
+  | GenericExample
+  | SvelteKitExample
+  | ValidatorSpecificExample;
+
+export const ACTUAL_THEMES = [
   "basic",
-  "daisyui",
   "daisyui5",
-  "flowbite",
   "flowbite3",
-  "skeleton",
-  "skeleton3",
-  "shadcn",
+  "skeleton4",
   "shadcn4",
 ] as const;
 
-export type Theme = (typeof THEMES)[number];
+export type ActualTheme = (typeof ACTUAL_THEMES)[number];
 
 export const DEPRECATED_THEMES = [
   "daisyui",
   "flowbite",
-  "skeleton",
+  "skeleton3",
   "shadcn",
-] as const satisfies Theme[];
-
-export const DEPRECATED_THEMES_SET = new Set<Theme>(DEPRECATED_THEMES);
+] as const;
 
 export type DeprecatedTheme = (typeof DEPRECATED_THEMES)[number];
 
-export const ACTUAL_THEMES = THEMES.filter(
-  (t) => !DEPRECATED_THEMES_SET.has(t)
-) as ActualTheme[];
+export const LAB_THEMES = ["shadcn-extras", "svar"] as const;
 
-export type ActualTheme = Exclude<Theme, DeprecatedTheme>;
+export type LabTheme = (typeof LAB_THEMES)[number];
+
+const LAB_THEMES_SET = new Set<Theme>(LAB_THEMES);
+export function isLabTheme(theme: Theme): theme is LabTheme {
+  return LAB_THEMES_SET.has(theme);
+}
+
+export const THEMES = [
+  ...ACTUAL_THEMES,
+  ...DEPRECATED_THEMES,
+  ...LAB_THEMES,
+] as const;
+
+export type Theme = (typeof THEMES)[number];
 
 export const THEME_TITLES = {
   basic: "basic",
   daisyui: "daisyUI v4",
   daisyui5: "daisyUI v5",
-  flowbite: "Flowbite",
+  flowbite: "Flowbite Svelte tw3",
   flowbite3: "Flowbite Svelte",
-  skeleton: "Skeleton v3 RC1",
   skeleton3: "Skeleton v3",
-  shadcn: "shadcn-svelte",
+  skeleton4: "Skeleton v4",
+  shadcn: "shadcn-svelte tw3",
   shadcn4: "shadcn-svelte",
+  "shadcn-extras": "shadcn-svelte-extras",
+  svar: "SVAR",
 } satisfies Record<Theme, string>;
 
 export const THEME_BRAND = {
   basic: "",
-  daisyui: "daisyUi",
   daisyui5: "daisyUI",
-  flowbite: "Flowbite",
   flowbite3: "Flowbite",
-  skeleton: "Skeleton",
-  skeleton3: "Skeleton",
-  shadcn: "shadcn-svelte",
+  skeleton4: "Skeleton",
   shadcn4: "shadcn-svelte",
-} satisfies Record<Theme, string>;
+} satisfies Record<ActualTheme, string>;
 
 export const THEME_PACKAGES = {
   basic: "@sjsf/basic-theme",
@@ -134,24 +185,34 @@ export const THEME_PACKAGES = {
   daisyui5: "@sjsf/daisyui5-theme",
   flowbite: "@sjsf/flowbite-theme",
   flowbite3: "@sjsf/flowbite3-theme",
-  skeleton: "@sjsf/skeleton-theme",
   skeleton3: "@sjsf/skeleton3-theme",
+  skeleton4: "@sjsf/skeleton4-theme",
   shadcn: "@sjsf/shadcn-theme",
   shadcn4: "@sjsf/shadcn4-theme",
+  "shadcn-extras": "@sjsf-lab/shadcn-extras-theme",
+  svar: "@sjsf-lab/svar-theme",
 } satisfies Record<Theme, string>;
 
 export function isTheme(str: string): str is Theme {
   return str in THEME_TITLES;
 }
 
-export function withTag(theme: Theme) {
+export function pkg(val: string) {
+  return IS_NEXT_VERSION && val.startsWith("@sjsf") ? `${val}@next` : val;
+}
+
+export function packages(str: string) {
+  return str.split(/\s+/).map(pkg).join(" ");
+}
+
+export function themePkg(theme: Theme) {
   return THEME_PACKAGES[theme];
 }
 
 export function createThemeInstall(theme: Theme) {
-  return `${FORM_PACKAGE} ${AJV_VALIDATOR_PACKAGE} ${AJV_PACKAGE_V} ${withTag(
-    theme
-  )}`;
+  return `${FORM_PACKAGE} ${AJV_VALIDATOR_PACKAGE} ${AJV_PACKAGE_WITH_TAG} ${
+    THEME_PACKAGES[theme]
+  }`;
 }
 
 export const ICONS_PACKAGES = [
@@ -162,6 +223,10 @@ export const ICONS_PACKAGES = [
 ] as const;
 
 export type IconsPackage = (typeof ICONS_PACKAGES)[number];
+
+export function iconsPkg(icons: IconsPackage) {
+  return ICONS_PACKAGE_NAMES[icons];
+}
 
 export const ICONS_PACKAGE_NAMES = {
   flowbite: "@sjsf/flowbite-icons",

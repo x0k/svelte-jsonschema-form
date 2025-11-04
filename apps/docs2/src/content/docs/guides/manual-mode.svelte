@@ -1,8 +1,14 @@
 <script lang="ts">
-  import { type Schema, createForm, Field, formHandlers } from "@sjsf/form";
+  import {
+    type Schema,
+    createForm,
+    Field,
+    handlers,
+    HiddenIdPrefixInput,
+  } from "@sjsf/form";
   import type { FromSchema } from "json-schema-to-ts";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   const schema = {
     type: "object",
@@ -22,10 +28,10 @@
     additionalProperties: false,
   } as const satisfies Schema;
 
-  const form = createForm({
+  const form = createForm<FromSchema<typeof schema>>({
     ...defaults,
     schema,
-    onSubmit(value: FromSchema<typeof schema>) {
+    onSubmit(value) {
       console.log(value);
     },
   });
@@ -33,13 +39,15 @@
 
 <form
   novalidate
-  {@attach formHandlers(form)}
+  {@attach handlers(form)}
   style="display: flex; flex-direction: column; gap: 1rem;"
 >
-  <Field {form} name="login" />
+  <!-- Use this component if you plan to use SvelteKit integration. -->
+  <HiddenIdPrefixInput {form} />
+  <Field {form} path={["login"]} />
   <Field
     {form}
-    name="password"
+    path={["password"]}
     uiSchema={{ "ui:options": { text: { type: "password" } } }}
   />
   <button type="submit">Submit</button>

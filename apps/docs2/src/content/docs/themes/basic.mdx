@@ -6,20 +6,38 @@ sidebar:
 
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/basic-theme/specs';
+import styles from '@sjsf/basic-theme/css/basic.css?raw';
 
-import { withTag } from '@/shared';
+import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './basic/form.svelte';
 import uiOptionsCode from './basic/ui-options?raw';
-import { createExtraImports, createSchemas, replacer } from "./_demo-schema";
+import { createExtraImports, createSchemas, replacer, validationEvents } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={withTag('basic')} />
+<Npm pkg={themePkg('basic')} />
+
+### Configuration
+
+Import the CSS:
+
+```ts
+import "@sjsf/basic-theme/css/basic.css";
+```
+
+#### Pico CSS
+
+Usage with [Pico CSS](https://picocss.com/):
+
+```ts
+import "@picocss/pico/css/pico.css";
+import "@sjsf/basic-theme/css/pico.css";
+```
 
 ## Extra widgets
 
@@ -35,15 +53,11 @@ or used in the field as the default widget.
 
 <Code lang='ts' code={createExtraImports("basic", extraWidgets)} />
 
-## UI options
-
-<Code code={uiOptionsCode} lang="typescript" />
-
 ## Widgets demo
 
 <Tabs>
   <TabItem label='Form'>
-    <FormCard>
+    <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
@@ -54,3 +68,11 @@ or used in the field as the default widget.
     <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
   </TabItem>
 </Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

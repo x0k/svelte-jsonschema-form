@@ -2,6 +2,9 @@
   import { SimpleForm } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
+  import { createFormMerger } from "@sjsf/form/mergers/modern";
+  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
+  import { createFormValidator } from "@sjsf/form/validators/noop";
   import { theme } from "@sjsf/basic-theme";
 </script>
 
@@ -11,7 +14,7 @@
   {resolver}
   schema={{
     type: "object",
-    title: 'Form title',
+    title: "Form title",
     properties: {
       text: {
         type: "string",
@@ -20,6 +23,8 @@
     },
     required: ["text"],
   }}
-  validator={{ isValid: () => true }}
-  onSubmit={(v: { text: string }) => window.alert(v.text)}
+  merger={createFormMerger}
+  idBuilder={createFormIdBuilder}
+  validator={createFormValidator<{ text: string }>}
+  onSubmit={(v) => window.alert(v.text)}
 />

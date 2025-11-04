@@ -9,12 +9,11 @@ import {
 import {
   type UiSchema,
   type UiSchemaDefinition,
-  type Validator,
-  type FormInternalContext,
   retrieveUiSchema,
-  createPseudoId,
   type Config,
   type UiOption,
+  type FormState,
+  getPseudoId,
 } from "@/form/index.js";
 
 function getAltSchemas(
@@ -26,8 +25,8 @@ function getAltSchemas(
     : [schema.oneOf, uiSchema.oneOf];
 }
 
-export function createOptions<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function createOptions<T>(
+  ctx: FormState<T>,
   config: Config,
   uiOption: UiOption,
   schema: Schema
@@ -39,7 +38,7 @@ export function createOptions<V extends Validator>(
     return enumValues.map((value, index) => {
       const label = enumNames?.[index] ?? schemaValueToString(value);
       return {
-        id: createPseudoId(config.id, index, ctx),
+        id: getPseudoId(ctx, config.path, index),
         label,
         value,
         disabled: disabledValues.has(value),
@@ -59,7 +58,7 @@ export function createOptions<V extends Validator>(
         altSchemaDef.title ??
         schemaValueToString(value);
       return {
-        id: createPseudoId(config.id, index, ctx),
+        id: getPseudoId(ctx, config.path, index),
         schema: altSchemaDef,
         label,
         value,

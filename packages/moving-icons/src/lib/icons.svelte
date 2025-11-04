@@ -1,8 +1,5 @@
 <script lang="ts" module>
-	import ArrowDown from './arrow-down.svelte';
-	import ArrowUp from './arrow-up.svelte';
-	import Copy from './copy.svelte';
-	import Trash from './trash.svelte';
+	import { ArrowUp, ArrowDown, Trash, Copy } from '@jis3r/icons';
 
 	export { arrowDownOutline, arrowUpOutline, trashBinOutline, fileCopyOutline };
 </script>

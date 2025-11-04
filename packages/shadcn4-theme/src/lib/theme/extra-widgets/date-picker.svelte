@@ -29,8 +29,11 @@
 <script lang="ts">
 	import { getLocalTimeZone, parseDate } from '@internationalized/date';
 	import {
+		ariaInvalidProp,
+		composeProps,
 		customInputAttributes,
 		getFormContext,
+		handlersAttachment,
 		retrieveUiOption,
 		uiOptionProps,
 		type ComponentProps
@@ -47,10 +50,15 @@
 
 	let { value = $bindable(), config, handlers }: ComponentProps['datePickerWidget'] = $props();
 
+	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
+
 	const attributes = $derived(
 		customInputAttributes(ctx, config, 'shadcn4DatePicker', {
 			initialFocus: true,
-			onValueChange: handlers.onchange
+			onValueChange: () => {
+				oninput?.();
+				onchange?.();
+			}
 		})
 	);
 
@@ -84,7 +92,14 @@
 			<Button
 				{...props}
 				class={['w-full', parsedDate === undefined && 'text-muted-foreground']}
-				{...uiOptionProps('shadcn4DatePickerTrigger')({}, config, ctx)}
+				{...composeProps(
+					ctx,
+					config,
+					{},
+					uiOptionProps('shadcn4DatePickerTrigger'),
+					handlersAttachment(buttonHandlers),
+					ariaInvalidProp
+				)}
 			>
 				{triggerContent}
 			</Button>

@@ -51,9 +51,9 @@ export function intersection<T>(a: T[], b: T[]): T[] {
   }
 
   const setB = new Set(b);
-  for (let i = 0; i < a.length; i++) {
+  for (let i = 0; i < a.length && setB.size > 0; i++) {
     const val = a[i]!;
-    if (setB.has(val)) {
+    if (setB.delete(val)) {
       result.push(val);
     }
   }
@@ -63,6 +63,24 @@ export function intersection<T>(a: T[], b: T[]): T[] {
 
 export function isArrayEmpty<T>(arr: T[]): arr is [] {
   return arr.length === 0;
+}
+
+export function createArrayComparator<T>(compare: (a: T, b: T) => number) {
+  return (a: T[], b: T[]) => {
+    const d = a.length - b.length;
+    if (d !== 0) {
+      return d;
+    }
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) {
+        const d = compare(a[i]!, b[i]!);
+        if (d !== 0) {
+          return d;
+        }
+      }
+    }
+    return 0;
+  };
 }
 
 export type Deduplicator<T> = (data: T[]) => T[];
@@ -115,15 +133,7 @@ export function createDeduplicator<T>(
 
 export type Intersector<T> = (a: T[], b: T[]) => T[];
 
-export interface IntersectorOptions {
-  /** @default 50 */
-  threshold?: number;
-}
-
-export function createIntersector<T>(
-  compare: Comparator<T>,
-  { threshold = 50 }: IntersectorOptions = {}
-): Intersector<T> {
+export function createIntersector<T>(compare: Comparator<T>): Intersector<T> {
   return (a, b) => {
     const result: T[] = [];
     let al = a.length;
@@ -140,23 +150,6 @@ export function createIntersector<T>(
       const tmpL = al;
       al = bl;
       bl = tmpL;
-    }
-
-    if (al * bl <= threshold) {
-      for (let i = 0; i < al; i++) {
-        const ai = a[i]!;
-        for (let j = 0; j < bl; j++) {
-          const bi = b[j]!;
-          if (compare(ai, bi) === 0) {
-            const rl = result.length;
-            if (rl === 0 || compare(result[rl - 1]!, ai) !== 0) {
-              result.push(ai);
-            }
-            break;
-          }
-        }
-      }
-      return result;
     }
 
     const aSorted = [...a].sort(compare);

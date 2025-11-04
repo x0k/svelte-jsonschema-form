@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/flowbite-icons",
-	"version": "2.4.0",
+	"version": "3.0.0-next.12",
 	"description": "The flowbite based icons set for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -45,22 +45,26 @@
 			"types": "./dist/preset.d.ts",
 			"default": "./dist/preset.js"
 		},
+		"./extra/*": {
+			"types": "./dist/extra/*.d.ts",
+			"svelte": "./dist/extra/*"
+		},
 		"./styles.css": "./dist/styles.css"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^2.4.0",
-		"flowbite-svelte-icons": "^2.2.0 || ^3.0.0",
-		"svelte": "^5.33.0",
+		"@sjsf/form": "workspace:^3.0.0-next.12",
+		"flowbite-svelte-icons": "^3.0.0",
+		"svelte": "^5.30.0",
 		"tailwind-merge": "^3.3.0"
 	},
 	"devDependencies": {
 		"@sjsf/form": "workspace:*",
 		"@tailwindcss/vite": "catalog:",
-		"flowbite-svelte-icons": "~3.0.0",
+		"flowbite-svelte-icons": "^3.0.0",
 		"globals": "catalog:",
 		"svelte": "catalog:",
 		"tailwindcss": "catalog:",
-		"testing": "workspace:*"
+		"theme-testing": "workspace:*"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts"

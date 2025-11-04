@@ -1,5 +1,241 @@
 # @sjsf/form
 
+## 3.0.0-next.12
+
+### Major Changes
+
+- - Remove `form.value` property ([#221](https://github.com/x0k/svelte-jsonschema-form/pull/221))
+  - Remove `getSnapshot` form option
+  - Add `setValue`, `getValueSnapshot` form methods
+  - Use `ValidationResult<Output>` as the return type for `validateFormValue` and
+    `validateFormValueAsync` methods
+
+- Introduce `FormValidator` type ([#222](https://github.com/x0k/svelte-jsonschema-form/pull/222))
+
+## 3.0.0-next.11
+
+## 3.0.0-next.10
+
+### Major Changes
+
+- - Reuse merger options definition in `getDefaultFieldState` parameters ([`b5a5c86`](https://github.com/x0k/svelte-jsonschema-form/commit/b5a5c86705bdc0c26384b2ac4aa76f4de2fca54d))
+  - Move `includeUndefinedValues` option from merger instance to `mergeFormDataAndSchemaDefaults` method options
+
+### Patch Changes
+
+- Disable `clear` and `clearEdit` action buttons for read-only fields and disabled forms ([`c303125`](https://github.com/x0k/svelte-jsonschema-form/commit/c3031258573093284c1f0d99cd7a369b8f454834))
+
+- Fix oneOf/anyOf fields ([`ed0a797`](https://github.com/x0k/svelte-jsonschema-form/commit/ed0a79737c2e02d202e4392923a8d010d3f24dc6))
+
+## 3.0.0-next.9
+
+### Major Changes
+
+- Add field actions support ([#216](https://github.com/x0k/svelte-jsonschema-form/pull/216))
+
+- - Add `fields/extra/*` submodule ([#216](https://github.com/x0k/svelte-jsonschema-form/pull/216))
+  - Remove the `template` suffix from component names in the `templates/*` submodule
+  - Replace the `fields/resolver` submodule with the `theme` submodule
+
+- Distinguish between missing and `undefined` values in `ui:options` ([#216](https://github.com/x0k/svelte-jsonschema-form/pull/216))
+
+## 3.0.0-next.8
+
+### Major Changes
+
+- Turn `create*` form methods into `queries` ([#215](https://github.com/x0k/svelte-jsonschema-form/pull/215))
+
+- Turn `validate` and `validateAsync` methods into queries ([#215](https://github.com/x0k/svelte-jsonschema-form/pull/215))
+
+- Use more fine-grained type augmentation ([#215](https://github.com/x0k/svelte-jsonschema-form/pull/215))
+
+## 3.0.0-next.7
+
+### Major Changes
+
+- Rename `isObjectProto` to `isRecordProto` ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+
+- Make `event` optional for `form.reset` method ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4490 ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Add schema consistency checks during merge ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- - Change signature of `getSchemaDefinitionByPath` ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+  - Remove `getRootSchemaTitleByPath` function
+  - Change `valueRef` type in `Field` component from `{ value: FieldValue }` to `Ref<FieldValue>`
+
+- Refactor translation types ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+
+- Separate state related functions into queries and commands ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+### Minor Changes
+
+- Add assert adapters for extra fields ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Add `aria` helpers functions ([#214](https://github.com/x0k/svelte-jsonschema-form/pull/214))
+
+- Add `HiddenIdPrefixInput` form component ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+
+### Patch Changes
+
+- Fix generation of default value for additional property ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Fix handling of `dependencies` and `if,then,else` keywords in `getSchemaDefinitionByPath` function ([#213](https://github.com/x0k/svelte-jsonschema-form/pull/213))
+
+- Fix combination field logic ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Make `combination` field SRR friendly ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+- Fix deduplication in intersection algorithms ([#211](https://github.com/x0k/svelte-jsonschema-form/pull/211))
+
+## 3.0.0-next.6
+
+### Patch Changes
+
+- Remove tracking when calling `updateErrors` ([`b735108`](https://github.com/x0k/svelte-jsonschema-form/commit/b735108aa2b29ebe2db824a92364a478644e9780))
+
+## 3.0.0-next.5
+
+### Major Changes
+
+- - Added a **required** `path` property to the `Config` type ([#207](https://github.com/x0k/svelte-jsonschema-form/pull/207))
+  - Updated the `JsonPaths` type to return a union of `Path`s
+  - Replaced the `name` prop with `path` in the `Field` component
+
+- Remove generic validator parameter ([#207](https://github.com/x0k/svelte-jsonschema-form/pull/207))
+
+- - Added a new **required** `createForm` parameter: `createIdBuilder` ([#205](https://github.com/x0k/svelte-jsonschema-form/pull/205))
+  - Removed the `idSeparator` and `idPseudoSeparator` parameters
+  - Removed the following types:
+    - `IdPrefixOption`
+    - `IdSeparatorOption`
+    - `IdPseudoSeparator`
+    - `IdOptions`
+    - `PathToIdOptions`
+  - `focus-on-first-error` module changes:
+    - Updated signatures of `getErrorsList` and `getFocusAction`
+    - Removed the `GetFocusActionOptions` type
+
+- - Replace `id` property with `path` in `Config` type ([#209](https://github.com/x0k/svelte-jsonschema-form/pull/209))
+  - Remove `from.errors` property
+  - Remove form `errors` bindable option
+  - Replace `idFromPath` with `createId` function
+  - Replace `createChildId` with `createChildPath` function
+  - Replace `getErrors` with `getFieldErrors` function
+  - Add `updateErrors`, `hasErrors`, `getErrors` functions
+
+- Remove `create` prefix from creatable form options ([#208](https://github.com/x0k/svelte-jsonschema-form/pull/208))
+
+- Change the error type to simple `string` ([#207](https://github.com/x0k/svelte-jsonschema-form/pull/207))
+
+- Replace the `validate` and `validateAsync` form methods with separate functions ([#209](https://github.com/x0k/svelte-jsonschema-form/pull/209))
+
+### Minor Changes
+
+- Allow to return update callback from form validator methods ([#207](https://github.com/x0k/svelte-jsonschema-form/pull/207))
+
+## 3.0.0-next.4
+
+### Patch Changes
+
+- Fix field state cleanup ([`ca11ecb`](https://github.com/x0k/svelte-jsonschema-form/commit/ca11ecbc71f18ce0c043e8a55a34a4b4b5010c67))
+
+## 3.0.0-next.3
+
+### Patch Changes
+
+- Fix SSR rendering ([`d60f113`](https://github.com/x0k/svelte-jsonschema-form/commit/d60f1131132613571b2ce3bd1fcf70ef24aae1a4))
+
+## 3.0.0-next.2
+
+### Major Changes
+
+- Bump minimal `svelte` version to `5.39.0` ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Add support for nullable schemas ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Refactor standard schema validator factory signature ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- - The `makeEventHandlers` function signature has been updated ([`181c3ce`](https://github.com/x0k/svelte-jsonschema-form/commit/181c3ce45c6897a0fffc6c73d0ed2db838dc83c1))
+  - Added the `hasFieldState` function to check a field’s state
+  - The `isSubmitted` and `isChanged` properties are now `readonly`
+  - `isSubmitted` is reset after successful processing (validation + `onSubmit` handler)
+  - `isChanged` becomes `true` after any interaction before the form is submitted or reset
+
+- Make `itemValue` parameter of `ItemTitle` function required ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Extract handlers application into `handlersAttachment` helper ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Remove `@sjsf/form/extra-fields/date-field` extra field definition ([`3c90ec2`](https://github.com/x0k/svelte-jsonschema-form/commit/3c90ec22f934f28862c6515987e367c3078e21d8))
+
+- Remove `validate` method form `ObjectContext` and `ArrayContext` interfaces ([`3ac49c9`](https://github.com/x0k/svelte-jsonschema-form/commit/3ac49c954675ded403ac1a25e2dd4782fc223600))
+
+### Minor Changes
+
+- Export `createArrayComparator` and `ascComparator` functions ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Add and implement `collectErrors` UI option for `tags` field ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Add `aggregatedField` field and `aggregatedWidget` widget definition ([`3100b4d`](https://github.com/x0k/svelte-jsonschema-form/commit/3100b4d109798494a157a453f46c0e1cf2d746ae))
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4771 ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+## 3.0.0-next.1
+
+### Major Changes
+
+- Add `unknown` schema type ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+### Minor Changes
+
+- Allow to extend `SchemaValue` type ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+- Add `AsyncFileListValidator` validator ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+- Add node.js support for `lib/file` ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+- Add `nativeFile*` fields ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+- Add `validators/file-size` validator ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+### Patch Changes
+
+- Fix changes propagation in keyed array ([`b649510`](https://github.com/x0k/svelte-jsonschema-form/commit/b649510948cb89d62568e2624bd008a30832c6b2))
+
+## 3.0.0-next.0
+
+### Major Changes
+
+- - Add `mergeSchemas` method to the `Merger` interface ([#177](https://github.com/x0k/svelte-jsonschema-form/pull/177))
+  - Update `resolveAllReferences` and related functions to accept a `Merger` instance for schema merging
+  - Make `merger` form option required
+
+- Refactor array field context to make it extendable ([#198](https://github.com/x0k/svelte-jsonschema-form/pull/198))
+
+- Refactor `KeyedArray` interface ([#198](https://github.com/x0k/svelte-jsonschema-form/pull/198))
+
+- Refactor object field context to make it extendable ([#198](https://github.com/x0k/svelte-jsonschema-form/pull/198))
+
+- Add `length`, `set` and `validate` methods to `ArrayContext` interface ([#198](https://github.com/x0k/svelte-jsonschema-form/pull/198))
+
+- Replace `validator` and `merger` with required `createValidator` and `createMerger` options. ([#177](https://github.com/x0k/svelte-jsonschema-form/pull/177))
+  Consider all options as reactive.
+
+- Remove deprecated code ([#196](https://github.com/x0k/svelte-jsonschema-form/pull/196))
+
+- Replace `FormInternalContext` with `FormState` ([#197](https://github.com/x0k/svelte-jsonschema-form/pull/197))
+
+### Minor Changes
+
+- Add `validate` and `validateAsync` form methods ([#198](https://github.com/x0k/svelte-jsonschema-form/pull/198))
+
+- Add `createValidator` and `createMerger` form options for convenient use as defaults values. ([#177](https://github.com/x0k/svelte-jsonschema-form/pull/177))
+  Add `errors` option for creating controlled forms.
+  Rename `formHandlers` to `handlers`.
+
 ## 2.4.0
 
 ### Minor Changes

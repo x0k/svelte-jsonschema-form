@@ -1,0 +1,119 @@
+---
+title: Component casting
+sidebar:
+  badge: new
+  order: 14
+---
+
+SJSF provides a rich set of interchangeable components,
+but some of them cannot be used directly out of the box
+(`tagsField`, `filesField`, `nativeFileField`, etc.).
+Let's look at a few ways to work with them.
+
+## Ignore errors (not recommended)
+
+You can suppress typing errors if you just want to quickly test an idea
+or see how a component looks in place.
+
+```ts
+const uiSchema: UiSchema = {
+  "ui:components": {
+    // @ts-expect-error
+    arrayField: "tagsField"
+  }
+}
+```
+
+## Create an adapter component
+
+You can create a new component that adapts the interface of the original component
+(for example, `arrayField`) to the interface of the replacement component (`tagsField`).
+
+```svelte
+<script lang="ts" module>
+	import type { SchemaArrayValue } from '@sjsf/form/core';
+	import type { FieldCommonProps } from '@sjsf/form';
+
+	declare module '@sjsf/form' {
+		interface ComponentProps {
+			arrayTagsField: FieldCommonProps<SchemaArrayValue>;
+		}
+		interface ComponentBindings {
+			arrayTagsField: 'value';
+		}
+	}
+</script>
+
+<script lang="ts">
+	import type { ComponentProps } from '@sjsf/form';
+	import TagsField from '@sjsf/form/fields/extra/tags.svelte';
+
+	import { assertStrings } from '$lib/form/cast';
+
+	let { value = $bindable(), ...rest }: ComponentProps['arrayTagsField'] = $props();
+</script>
+
+<TagsField
+	{...rest}
+	bind:value={
+		() => {
+			assertStrings(value);
+			return value;
+		},
+		(v) => (value = v)
+	}
+/>
+```
+
+Why is this needed? Throwing an error when data formats don't match
+is just one possible approach. You should define your own adaptation strategy
+and implement it according to your needs.
+
+However, if you're fine with the `assert`-based approach,
+you can use the following prebuilt field components:
+- `array-files`
+- `array-native-files`
+- `array-tags`
+- `unknown-native-file`
+
+To reduce boilerplate, you can also use the `cast` utility
+from the `@sjsf/form/lib/component` module:
+
+:::caution
+
+This utility relies on internal details of Svelte 5 that may change even in a patch release.
+Use it with care.
+
+:::
+
+```ts
+import { cast } from "@sjsf/form/lib/component";
+import type { ComponentDefinition } from "@sjsf/form";
+import TagsField from "@sjsf/form/fields/extra/tags.svelte";
+ 
+import { assertStrings } from '$lib/form/cast';
+
+declare module "@sjsf/form" {
+  interface ComponentProps {
+    arrayTagsField: FieldCommonProps<SchemaArrayValue>;
+  }
+  interface ComponentBinding {
+    arrayTagsField: "value";
+  }
+}
+
+const arrayTagsField = cast(TagsField, {
+  value: {
+    transform(props) {
+      assertStrings(props.value);
+      return props.value;
+    },
+  },
+}) satisfies ComponentDefinition<"arrayField">;
+```
+
+## Extend the resolver
+
+Instead of proving component compatibility at the type level,
+you can extend the resolver so that components are applied automatically
+to suitable JSON Schemas.

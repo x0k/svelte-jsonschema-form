@@ -1,6 +1,8 @@
 <script lang="ts">
-  import * as Command from "$lib/components/ui/command/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
+  import ExternalLink from "@lucide/svelte/icons/external-link";
+
+  import * as Dialog from "$lib/components/ui/dialog/index.js";
+  import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
   import type { Sample } from "./core/sample.js";
 
   interface Props {
@@ -17,23 +19,27 @@
   let open = $state.raw(false);
 </script>
 
-<Button variant="outline" onclick={() => (open = true)}>
-  <span>Examples</span>
-</Button>
-<Command.Dialog bind:open>
-  <Command.Input placeholder="Search..." />
-  <Command.List>
-    <Command.Empty>No results found.</Command.Empty>
-    <Command.Group heading="Examples">
+<Dialog.Root bind:open>
+  <Dialog.Trigger class={buttonVariants({ variant: "outline" })}
+    >Examples</Dialog.Trigger
+  >
+  <Dialog.Content>
+    <Dialog.Header>
+      <Dialog.Title>Examples</Dialog.Title>
+    </Dialog.Header>
+    <div class="flex gap-2 flex-wrap justify-center">
       {#each Object.entries(samples) as [path, loadSample] (path)}
         {@const name = path.substring(10, path.length - 3)}
-        <Command.Item
-          onSelect={async () => {
-            open = false;
-            onSelect((await loadSample()) as Sample);
-          }}>{name}</Command.Item
-        >
+        <Button variant="secondary" onclick={async () => {
+          open = false
+          onSelect(await loadSample() as Sample)
+        }}>
+          {name}
+        </Button>
       {/each}
-    </Command.Group>
-  </Command.List>
-</Command.Dialog>
+    </div>
+    <Dialog.Footer>
+      <Button variant="link" href="../examples/advanced/">Advanced examples <ExternalLink tabindex={-1} /> </Button>
+    </Dialog.Footer>
+  </Dialog.Content>
+</Dialog.Root>

@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import { insertValue } from "@/lib/trie.js";
-import { mergeSchemas, pathFromRef } from "@/core/index.js";
+import { createMerger } from "@/lib/json-schema/index.js";
+import { pathFromRef } from "@/core/index.js";
 import {
   ON_ARRAY_CHANGE,
   ON_INPUT,
@@ -71,6 +72,18 @@ function subSchemas(data: Record<string, SchemaMeta>): SubSchemas {
   return trie;
 }
 
+const { mergeSchemaDefinitions: mergeSchemas } = createMerger({
+  mergers: {
+    oneOf: (a, b) => {
+      const copy = a.slice();
+      for (let i = 0; i < b.length; i++) {
+        copy[i] = mergeSchemas(a[i]!, b[i]!);
+      }
+      return copy;
+    },
+  },
+});
+
 describe("insertSubSchemaIds", () => {
   it("should insert ids properly", () => {
     expect(insertSubSchemaIds(inputSchema)).toEqual({
@@ -79,23 +92,19 @@ describe("insertSubSchemaIds", () => {
         "#/oneOf/0": { id: "v1", combinationBranch: true },
         "#/definitions/second": { id: "v2", combinationBranch: true },
       }),
-      schema: mergeSchemas(
-        inputSchema,
-        {
-          $id: "v0",
-          definitions: {
-            second: {
-              $id: "v2",
-            },
+      schema: mergeSchemas(inputSchema, {
+        $id: "v0",
+        definitions: {
+          second: {
+            $id: "v2",
           },
-          oneOf: [
-            {
-              $id: "v1",
-            },
-          ],
-        } satisfies Schema,
-        { arraySubSchemasMergeType: "override" }
-      ),
+        },
+        oneOf: [
+          {
+            $id: "v1",
+          },
+        ],
+      } satisfies Schema),
     });
   });
   it("should inset ids properly 2", () => {
@@ -112,31 +121,27 @@ describe("insertSubSchemaIds", () => {
         },
         "#/definitions/second": { id: "v4", combinationBranch: true },
       }),
-      schema: mergeSchemas(
-        inputSchema,
-        {
-          $id: "v0",
-          definitions: {
-            test: {
-              $id: "v1",
-            },
-            second: {
-              $id: "v4",
-            },
+      schema: mergeSchemas(inputSchema, {
+        $id: "v0",
+        definitions: {
+          test: {
+            $id: "v1",
           },
-          oneOf: [
-            {
-              properties: {
-                firstName: {
-                  $id: "v3",
-                },
+          second: {
+            $id: "v4",
+          },
+        },
+        oneOf: [
+          {
+            properties: {
+              firstName: {
+                $id: "v3",
               },
-              $id: "v2",
             },
-          ],
-        } satisfies Schema,
-        { arraySubSchemasMergeType: "override" }
-      ),
+            $id: "v2",
+          },
+        ],
+      } satisfies Schema),
     });
   });
   it("should inset ids properly 3", () => {
@@ -152,28 +157,24 @@ describe("insertSubSchemaIds", () => {
         "#/oneOf/0": { id: "v2", combinationBranch: true },
         "#/definitions/second": { id: "v3", combinationBranch: true },
       }),
-      schema: mergeSchemas(
-        inputSchema,
-        {
-          $id: "v0",
-          definitions: {
-            second: {
-              $id: "v3",
-              properties: {
-                items: {
-                  $id: "v1",
-                },
+      schema: mergeSchemas(inputSchema, {
+        $id: "v0",
+        definitions: {
+          second: {
+            $id: "v3",
+            properties: {
+              items: {
+                $id: "v1",
               },
             },
           },
-          oneOf: [
-            {
-              $id: "v2",
-            },
-          ],
-        } satisfies Schema,
-        { arraySubSchemasMergeType: "override" }
-      ),
+        },
+        oneOf: [
+          {
+            $id: "v2",
+          },
+        ],
+      } satisfies Schema),
     });
   });
   it("should inset ids properly 4", () => {
@@ -191,28 +192,24 @@ describe("insertSubSchemaIds", () => {
         "#/oneOf/0": { id: "v3", combinationBranch: true },
         "#/definitions/second": { id: "v1", combinationBranch: true },
       }),
-      schema: mergeSchemas(
-        inputSchema,
-        {
-          $id: "v0",
-          definitions: {
-            second: {
-              $id: "v1",
-              properties: {
-                props: {
-                  $id: "v2",
-                },
+      schema: mergeSchemas(inputSchema, {
+        $id: "v0",
+        definitions: {
+          second: {
+            $id: "v1",
+            properties: {
+              props: {
+                $id: "v2",
               },
             },
           },
-          oneOf: [
-            {
-              $id: "v3",
-            },
-          ],
-        } satisfies Schema,
-        { arraySubSchemasMergeType: "override" }
-      ),
+        },
+        oneOf: [
+          {
+            $id: "v3",
+          },
+        ],
+      } satisfies Schema),
     });
   });
 });

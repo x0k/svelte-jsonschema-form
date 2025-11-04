@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import type { HTMLLabelAttributes } from "svelte/elements";
+  import "@sjsf/form/fields/extra-components/label";
 
   declare module "@sjsf/form" {
     interface UiOptions {
@@ -25,7 +26,7 @@
 
 <label
   {...labelAttributes(ctx, config, "labelAttributes", {
-    style: "font-weight: bold;",
+    class: "sjsf-label"
   })}
 >
   {title}

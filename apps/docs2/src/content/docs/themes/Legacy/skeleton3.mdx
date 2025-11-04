@@ -1,0 +1,80 @@
+---
+title: Skeleton v3
+sidebar:
+  order: 208
+---
+
+import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
+import { specs, extraWidgets } from '@sjsf/skeleton3-theme/specs';
+import styles from "@sjsf/skeleton3-theme/styles.css?inline";
+
+import pkg from 'legacy/skeleton3-theme/package.json'
+
+import { themePkg } from '@/shared';
+import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro'
+
+import Form from './skeleton3/form.svelte';
+import uiOptionsCode from './skeleton3/ui-options?raw';
+import { createSchemas, replacer, createExtraImports, validationEvents } from "../_demo-schema";
+
+export const schemas = createSchemas(specs)
+
+## Installation
+
+<Npm pkg={themePkg("skeleton3")} />
+
+<Deps {...pkg} />
+
+### Install Skeleton v3
+
+<LinkButton href="https://v3.skeleton.dev/docs/get-started/installation/sveltekit" variant='secondary' target="_blank" icon="external">
+  Install and configure Skeleton for SvelteKit
+</LinkButton>
+
+### Configuration
+
+Register the theme source path by adding the following line to the `app.css` file:.
+
+```css
+@source "../node_modules/@sjsf/skeleton3-theme/dist";
+```
+
+## Extra widgets
+
+You can connect extra widgets using the following `include` imports:
+
+:::note
+
+For a widget to be applied, it must be explicitly specified in the
+[UI schema](../../../form/ui-schema/#ui-components)
+or used in the field as the default widget.
+
+:::
+
+<Code lang='ts' code={createExtraImports("skeleton3", extraWidgets)} />
+
+## Widgets demo
+
+<Tabs>
+  <TabItem label='Form'>
+    <FormCard style={styles}>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="JSON Schema" >
+    <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
+  </TabItem>
+  <TabItem label="UI Schema">
+    <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
+  </TabItem>
+</Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

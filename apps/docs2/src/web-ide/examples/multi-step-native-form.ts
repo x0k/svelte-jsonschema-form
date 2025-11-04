@@ -1,7 +1,7 @@
-import packageJson from "%/multi-step-native-form/package.json";
-import pageServerTs from "%/multi-step-native-form/src/routes/+page.server.ts?raw";
-import pageSvelte from "%/multi-step-native-form/src/routes/+page.svelte?raw";
-import modelTs from "%/multi-step-native-form/src/routes/model.ts?raw";
+import packageJson from "%/sveltekit-starter/package.json";
+import pageServerTs from "%/sveltekit-starter/src/routes/multi-step-native-form/+page.server.ts?raw";
+import pageSvelte from "%/sveltekit-starter/src/routes/multi-step-native-form/+page.svelte?raw";
+import modelTs from "%/sveltekit-starter/src/routes/multi-step-native-form/model.ts?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

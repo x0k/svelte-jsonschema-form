@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import type { HTMLAttributes } from "svelte/elements";
+  import "@sjsf/form/fields/extra-components/errors-list";
 
   declare module "@sjsf/form" {
     interface UiOptions {
@@ -25,10 +26,10 @@
 
 <ul
   {...errorsListAttributes(ctx, config, "errorsList", {
-    style: "color: red; list-style-position: inside; padding: 0; margin: 0;",
+    class: 'sjsf-errors-list',
   })}
 >
   {#each errors as err}
-    <li>{err.message}</li>
+    <li>{err}</li>
   {/each}
 </ul>

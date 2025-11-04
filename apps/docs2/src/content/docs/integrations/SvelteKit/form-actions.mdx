@@ -1,0 +1,100 @@
+---
+title: Form actions
+sidebar:
+  order: 0
+---
+
+import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
+import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id-builders/legacy';
+
+import Npm from '@/components/npm.astro';
+
+import modelCode from '%/sveltekit-starter/src/lib/post.ts?raw'
+import clientCode from '%/sveltekit-starter/src/routes/form-actions/+page.svelte?raw';
+import serverCode from '%/sveltekit-starter/src/routes/form-actions/+page.server?raw'
+import clientFlexCode from '%/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw';
+import serverFlexCode from '%/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw';
+
+Since this is a `Svelte` library, you may want to use it with the `SvelteKit`.
+
+With this package you will be able to perform server-side validation of the form data
+even if the user has `JavaScript` disabled.
+
+## Installation
+
+<Npm pkg="@sjsf/sveltekit" />
+
+## Example
+
+See details in the sections below
+
+<Tabs>
+  <TabItem label='+page.svelte' >
+    <Code code={clientCode} lang='svelte' />
+  </TabItem>
+  <TabItem label='+page.server.ts'>
+    <Code code={serverCode} lang='typescript' />
+  </TabItem>
+  <TabItem label='lib/post.ts'>
+    <Code code={modelCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+## Server
+
+If you want to populate the form from the database,
+you can return `InitialFormData` object inside the `load` function.
+
+```typescript
+import type { InitialFormData } from "@sjsf/sveltekit";
+
+export const load = async () => {
+  return {
+    // Should match action name
+    form: {
+      schema,
+      initialValue: { title: "New post", content: "" },
+    } satisfies InitialFormData<CreatePost>,
+  };
+};
+```
+
+You can define an [action](https://svelte.dev/docs/kit/form-actions)
+using the `createAction` function.
+In this case, the callback provided as the second argument
+will only be called if the form data passes validation successfully.
+
+If any errors occur during processing,
+you can return an array of `ValidationError` objects.
+
+## Client
+
+On the client side you can use `SvelteKitForm` component ([see example](#example)).
+Or use more flexible solution:
+
+:::note
+
+For correct operation, you must use ID Builder from the `@sjsf/sveltekit` module.
+
+:::
+
+<Code code={clientFlexCode} lang='svelte' />
+
+The form data type will be inferred from the `ActionData` and `PageData` type.
+
+If the value of the form cannot be inferred from `action` and
+you did not use `load` function, then the third generic parameter of
+the `createMeta` function will be used as the form data type
+(default type is `SchemaValue`).
+
+
+According to Svelte documentation your form should always use `POST` requests.
+
+### Progressive enhancement
+
+By default, the form will work even with JavaScript disabled, but you should consider the following limitations of this mode of operation:
+
+- `action` should be created with `sendData: true` to persist form data between page updates
+- Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
+will not expand/switch their state.
+- Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.

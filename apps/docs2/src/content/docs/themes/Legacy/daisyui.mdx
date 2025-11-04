@@ -1,0 +1,93 @@
+---
+title: daisyUI v4
+sidebar:
+  order: 206
+---
+
+import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
+import { specs, extraWidgets } from '@sjsf/daisyui-theme/specs';
+import styles from '@sjsf/daisyui-theme/styles.css?inline';
+
+import pkg from 'legacy/daisyui-theme/package.json'
+
+import { themePkg } from '@/shared';
+import Npm from '@/components/npm.astro';
+import Picker from '@/components/picker.astro';
+import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro'
+
+import Form from './daisyui/form.svelte';
+import uiOptionsCode from './daisyui/ui-options?raw';
+import { createSchemas, replacer, createExtraImports } from "../_demo-schema";
+
+export const schemas = createSchemas(specs)
+
+## Installation
+
+<Npm pkg={themePkg('daisyui')} />
+
+<Deps {...pkg} />
+
+### Install daisyUI
+
+<LinkButton href="https://v4.daisyui.com/docs/install/" variant='secondary' target="_blank" icon="external">
+  Install daisyUI as a Tailwind CSS plugin
+</LinkButton>
+
+### Setup styles
+
+There is two ways to setup styles:
+
+1. Use tailwindcss config
+
+```typescript
+import daisyui from 'daisyui';
+import { THEME_CONTENT } from '@sjsf/daisyui-theme/preset'
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT],
+  plugins: [daisyui],
+}
+```
+
+2. Inject prepared styles (not recommended)
+
+```typescript
+// Inject them as you like
+import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
+```
+
+## Extra widgets
+
+You can connect extra widgets using the following `include` imports:
+
+:::note
+
+For a widget to be applied, it must be explicitly specified in the
+[UI schema](../../../form/ui-schema/#ui-components)
+or used in the field as the default widget.
+
+:::
+
+<Code lang='ts' code={createExtraImports("daisyui", extraWidgets)} />
+
+## Widgets demo
+
+<Tabs>
+  <TabItem label='Form'>
+    <FormCard style={styles}>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="JSON Schema" >
+    <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
+  </TabItem>
+  <TabItem label="UI Schema">
+    <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
+  </TabItem>
+</Tabs>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

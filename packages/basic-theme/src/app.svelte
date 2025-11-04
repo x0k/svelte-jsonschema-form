@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { ComponentsAndWidgets } from "testing/demo";
+  import { ComponentsAndWidgets } from "theme-testing/demo";
+
+  // import "@picocss/pico/css/pico.css"
+  // import './css/pico.css'
+  import './css/basic.css';
 
   import { theme } from "./index.js";
-  import { specs } from './specs.js';
+  import { specs } from "./specs.js";
 </script>
 
-<ComponentsAndWidgets
-  {theme}
-  additionalSpecs={specs}
-/>
+<ComponentsAndWidgets {theme} {specs} />

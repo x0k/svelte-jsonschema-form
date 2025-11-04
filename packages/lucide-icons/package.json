@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/lucide-icons",
-	"version": "2.4.0",
+	"version": "3.0.0-next.12",
 	"description": "The lucide based icons set for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -40,19 +40,23 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
+		},
+		"./extra/*": {
+			"types": "./dist/extra/*.d.ts",
+			"svelte": "./dist/extra/*"
 		}
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^2.4.0",
-		"@lucide/svelte": "^0.487.0",
-		"svelte": "^5.33.0"
+		"@sjsf/form": "workspace:^3.0.0-next.12",
+		"@lucide/svelte": ">=0.479.0 <0.553.0",
+		"svelte": "^5.30.0"
 	},
 	"devDependencies": {
-		"@lucide/svelte": "^0.539.0",
+		"@lucide/svelte": "^0.544.0",
 		"@sjsf/form": "workspace:*",
 		"globals": "catalog:",
 		"svelte": "catalog:",
-		"testing": "workspace:*"
+		"theme-testing": "workspace:*"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts"

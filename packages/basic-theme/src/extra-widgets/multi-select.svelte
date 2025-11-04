@@ -15,7 +15,7 @@
     selectAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import { indexMapper, multipleOptions } from "@sjsf/form/options.svelte";
+  import { idMapper, multipleOptions } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -28,22 +28,20 @@
 
   const attributes = $derived(
     selectAttributes(ctx, config, "multiSelect", handlers, {
-      style: "flex-grow: 1",
+      class: "sjsf-multi-select"
     })
   );
 
-  const mapped = $derived(
-    multipleOptions({
-      mapper: () => indexMapper(options),
+  const mapped = multipleOptions({
+      mapper: () => idMapper(options),
       value: () => value,
       update: (v) => (value = v),
     })
-  );
 </script>
 
 <select multiple bind:value={mapped.value} {...attributes}>
-  {#each options as option, index (option.id)}
-    <option value={index} disabled={option.disabled}>
+  {#each options as option (option.id)}
+    <option value={option.id} disabled={option.disabled}>
       {option.label}
     </option>
   {/each}

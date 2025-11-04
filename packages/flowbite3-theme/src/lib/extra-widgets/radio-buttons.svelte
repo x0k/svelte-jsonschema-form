@@ -1,24 +1,25 @@
 <script lang="ts" module>
-	import type { ButtonToggleGroupProps, ButtonToggleProps } from 'flowbite-svelte';
+	import type { ButtonGroupProps, RadioButtonProps } from 'flowbite-svelte/types';
 	import '@sjsf/form/fields/extra-widgets/radio-buttons';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbite3RadioButtons?: Omit<ButtonToggleGroupProps, 'children'>;
-			flowbite3RadioButtonsItem?: Partial<ButtonToggleProps>;
+			flowbite3RadioButtons?: Omit<ButtonGroupProps, 'children'>;
+			flowbite3RadioButtonsItem?: Partial<RadioButtonProps<string>>;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { ButtonToggle, ButtonToggleGroup } from 'flowbite-svelte';
+	import RadioButton from 'flowbite-svelte/RadioButton.svelte';
+	import ButtonGroup from 'flowbite-svelte/ButtonGroup.svelte';
 	import {
 		customInputAttributes,
 		getFormContext,
-		uiOptionProps,
+		inputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	let {
 		config,
@@ -27,32 +28,29 @@
 		options
 	}: ComponentProps['radioButtonsWidget'] = $props();
 
-	const mapper = $derived(stringIndexMapper(options));
 	const mapped = singleOption({
-		mapper: () => mapper,
+		mapper: () => idMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
 
 	const ctx = getFormContext();
 
-	const itemAttributes = $derived(uiOptionProps('flowbite3RadioButtonsItem')({}, config, ctx));
+	const attributes = $derived(
+		inputAttributes(ctx, config, 'flowbite3RadioButtonsItem', handlers, {
+			checkedClass: 'outline-1 outline-primary-500'
+		})
+	);
 </script>
 
-<ButtonToggleGroup
-	{...customInputAttributes(ctx, config, 'flowbite3RadioButtons', {
-		onSelect(val: string | null) {
-			mapped.value = val ?? '-1';
-			handlers.onchange?.();
-		}
-	})}
->
-	{#each options as option, index (option.id)}
-		{@const strIndex = index.toString()}
-		<ButtonToggle
-			{...itemAttributes}
-			selected={mapper.fromValue(option.value) === strIndex}
-			value={strIndex}>{option.label}</ButtonToggle
+<ButtonGroup {...customInputAttributes(ctx, config, 'flowbite3RadioButtons', {})}>
+	{#each options as option (option.id)}
+		<RadioButton
+			bind:group={mapped.value}
+			value={option.id}
+			{...attributes}
+			id={option.id}
+			disabled={option.disabled || attributes.disabled}>{option.label}</RadioButton
 		>
 	{/each}
-</ButtonToggleGroup>
+</ButtonGroup>

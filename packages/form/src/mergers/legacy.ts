@@ -164,6 +164,7 @@ export function mergeSchemas(
 
 export function createMerger(): Merger {
   return {
+    mergeSchemas,
     mergeAllOf(schema) {
       return mergeAllOf(schema, { deep: false } as Options) as Schema;
     },
@@ -173,22 +174,27 @@ export function createMerger(): Merger {
 export type FormMergerOptions = Experimental_DefaultFormStateBehavior & {
   validator: Validator;
   schema: Schema;
-  includeUndefinedValues?: boolean | "excludeObjectChildren";
 };
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
   const merger = createMerger();
   return {
     ...merger,
-    mergeFormDataAndSchemaDefaults(formData, schema) {
+    mergeFormDataAndSchemaDefaults({
+      formData,
+      schema,
+      initialDefaultsGenerated = false,
+      includeUndefinedValues = false
+    }) {
       return getDefaultFormState(
         options.validator,
         merger,
         schema,
         formData,
         options.schema,
-        options.includeUndefinedValues,
-        options
+        includeUndefinedValues,
+        options,
+        initialDefaultsGenerated
       );
     },
   };

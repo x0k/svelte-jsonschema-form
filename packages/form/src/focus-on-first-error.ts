@@ -1,12 +1,12 @@
 import { tick } from "svelte";
 
 import {
-  createPseudoId,
-  DEFAULT_ID_SEPARATOR,
-  type FieldErrorsMap,
   type Id,
-  type IdPseudoSeparatorOption,
-} from "./form/main.js";
+  type FormState,
+  getIdByPath,
+  encodePseudoElement,
+  type FailureValidationResult,
+} from "./form/index.js";
 
 export interface GetFocusableElementOptions {
   /**
@@ -33,30 +33,18 @@ export function getFocusableElement(
   return null;
 }
 
-export function getErrorsList(
-  form: HTMLElement,
-  instanceId: Id,
-  options: Required<IdPseudoSeparatorOption>
-) {
-  return form.querySelector(
-    `#${createPseudoId(instanceId, "errors", options)}`
-  );
+export function getErrorsList(form: HTMLElement, pseudoId: Id) {
+  return form.querySelector(`#${pseudoId}`);
 }
 
-export interface GetFocusActionOptions
-  extends Required<IdPseudoSeparatorOption>,
-    Partial<GetFocusableElementOptions> {}
-
 export function getFocusAction(
-  form: HTMLElement,
-  instanceId: Id,
-  options: GetFocusActionOptions
+  focusableElement: ReturnType<typeof getFocusableElement>,
+  getErrorsList: () => Element | null
 ) {
-  const focusableElement = getFocusableElement(form, instanceId, options);
   if (focusableElement !== null) {
     return () => focusableElement.focus();
   }
-  const errorsList = getErrorsList(form, instanceId, options);
+  const errorsList = getErrorsList();
   if (errorsList !== null) {
     return () =>
       errorsList.scrollIntoView({ behavior: "auto", block: "center" });
@@ -64,16 +52,15 @@ export function getFocusAction(
   return null;
 }
 
-export function createFocusOnFirstError({
-  idPseudoSeparator = DEFAULT_ID_SEPARATOR,
-  checkVisibility = false,
-}: Partial<GetFocusActionOptions> = {}) {
-  const options: Required<GetFocusActionOptions> = {
-    idPseudoSeparator,
-    checkVisibility,
-  };
-  return <E>(errors: FieldErrorsMap<E>, e: SubmitEvent) => {
-    if (errors.size === 0) {
+export function createFocusOnFirstError(
+  options: GetFocusableElementOptions = {}
+) {
+  return (
+    { errors }: FailureValidationResult,
+    e: SubmitEvent,
+    ctx: FormState<any>
+  ) => {
+    if (errors.length === 0) {
       return false;
     }
     const form = e.target;
@@ -81,11 +68,15 @@ export function createFocusOnFirstError({
       console.warn("Expected form to be an HTMLElement, got", form);
       return false;
     }
-    const error = errors.entries().next().value;
-    if (error === undefined || error[1].length === 0) {
-      return false;
-    }
-    const focusAction = getFocusAction(form, error[0], options);
+    const { path } = errors[0]!;
+    const focusAction = getFocusAction(
+      getFocusableElement(form, getIdByPath(ctx, path), options),
+      () =>
+        getErrorsList(
+          form,
+          getIdByPath(ctx, path.concat(encodePseudoElement("errors")))
+        )
+    );
     if (focusAction === null) {
       return false;
     }

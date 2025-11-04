@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { theme } from "@sjsf/flowbite3-theme";
   import { specs } from '@sjsf/flowbite3-theme/specs'
 
   import { createAstro } from "@/astro.svelte";
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   import { createSchemas } from "../_demo-schema";
 
@@ -23,4 +23,4 @@
   class="flex flex-col gap-4 mb-4 {astro.darkOrLight}"
 />
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), null, 2)}</pre>

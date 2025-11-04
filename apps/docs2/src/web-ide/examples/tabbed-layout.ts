@@ -1,13 +1,13 @@
-import contextSvelteTs from "%/tabbed-layout/src/lib/tabs/context.svelte.ts?raw";
-import tabsLayoutSvelte from "%/tabbed-layout/src/lib/tabs/layout.svelte?raw";
-import schemaTs from "%/tabbed-layout/src/lib/tabs/schema.ts?raw";
-import tabsSvelte from "%/tabbed-layout/src/lib/tabs/tabs.svelte?raw";
-import focusTs from "%/tabbed-layout/src/lib/tabs/focus.ts?raw";
-import tabSvelte from "%/tabbed-layout/src/lib/tabs/tab.svelte?raw";
-import tabsIndexTs from "%/tabbed-layout/src/lib/tabs/index.ts?raw";
-import subTabsSvelte from "%/tabbed-layout/src/routes/sub-tabs.svelte?raw";
-import pageSvelte from "%/tabbed-layout/src/routes/+page.svelte?raw";
-import topTabsSvelte from "%/tabbed-layout/src/routes/top-tabs.svelte?raw";
+import contextSvelteTs from "%/basic-starter/src/lib/tabs/context.svelte.ts?raw";
+import tabsLayoutSvelte from "%/basic-starter/src/lib/tabs/layout.svelte?raw";
+import schemaTs from "%/basic-starter/src/lib/tabs/schema.ts?raw";
+import tabsSvelte from "%/basic-starter/src/lib/tabs/tabs.svelte?raw";
+import focusTs from "%/basic-starter/src/lib/tabs/focus.ts?raw";
+import tabSvelte from "%/basic-starter/src/lib/tabs/tab.svelte?raw";
+import tabsIndexTs from "%/basic-starter/src/lib/tabs/index.ts?raw";
+import subTabsSvelte from "%/basic-starter/src/routes/tabbed-layout/sub-tabs.svelte?raw";
+import pageSvelte from "%/basic-starter/src/routes/tabbed-layout/+page.svelte?raw";
+import topTabsSvelte from "%/basic-starter/src/routes/tabbed-layout/top-tabs.svelte?raw";
 
 import type { Layer } from "../layer";
 

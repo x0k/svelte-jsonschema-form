@@ -1,11 +1,19 @@
 <script lang="ts">
-  import { createForm, BasicForm } from "@sjsf/form";
+  import { createForm, BasicForm, getValueSnapshot } from "@sjsf/form";
 
-  import { schema, uiSchema, initialValue } from "../data";
+  import {
+    schema,
+    uiSchema,
+    initialValue,
+    type CreateUser,
+    withFile,
+  } from "../data";
   import * as defaults from "./defaults";
 
-  const form = createForm({
+  const form = createForm<CreateUser>({
     ...defaults,
+    // required due to several forms on the page
+    idPrefix: "basic",
     initialValue,
     schema,
     uiSchema,
@@ -15,4 +23,4 @@
 
 <BasicForm {form} />
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), withFile, 2)}</pre>

@@ -1,0 +1,367 @@
+---
+title: Migration from v2
+sidebar:
+  order: 0
+---
+
+Before migrating, make sure you are using the latest version of SJSF and
+that you are not using any deprecated APIs.
+
+## TL;DR
+
+Update your `defaults.ts` file:
+
+```diff
+- import { createFormValidator } from "@sjsf/ajv8-validator";
+- export const validator = createFormValidator();
++ export { createFormValidator as validator } from "@sjsf/ajv8-validator";
++ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/legacy";
++ export { createFormMerger as merger } from "@sjsf/form/mergers/legacy";
+```
+
+This change should be sufficient for migrating simple projects.
+However, I recommend reviewing the full list of changes,
+as you might find opportunities to improve or simplify your current solution.
+
+## Form
+
+### Form options overhaul
+
+- Introduced a new `idBuilder` option, replacing the former `idSeparator` and `idPseudoSeparator` properties
+- The `merger` option is now required
+- The `idBuilder`, `merger`, and `validator` options can now also be provided as factory functions
+
+This change addresses several issues:
+
+- A single validator instance was shared across all forms
+- Form parameters had to be passed manually to validator and merger (`uiSchema`, `idPrefix`, etc.)
+- The default merger relied on a [heavy library](https://github.com/x0k/svelte-jsonschema-form/issues/147)
+as a dependency
+- Uncontrolled ID generation system
+
+Now:
+
+- Each form creates its own validator and merger instances, passing the necessary parameters automatically
+- The merger is specified explicitly, making it easy to replace if needed
+- A new merger is available with significant improvements in both performance and bundle size
+(`@sjsf/form/mergers/modern`)
+- A controlled and configurable ID generation system
+
+### All form options now can be reactive
+
+All form options now support reactivity. For example:
+
+```ts
+import { createForm } from '@sjsf/form';
+
+import { getInitialData } from './data.remote';
+
+const initialData = $derived(await getInitialData())
+
+const form = createForm({
+  get initialValue() {
+    return initialData;
+  },
+  get initialErrors() {
+    initialData;
+    return undefined;
+  }
+  /// ...
+})
+```
+
+When `initialData` changes, the form state will be updated!
+
+### Changed default values population behavior
+
+Previously, objects and tuples were always initialized with a value,
+even when they were not required. For example:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "foo": {
+      "type": "object",
+      "properties": {
+        "bar": {
+          "type": "string"
+        }
+      },
+      "required": ["bar"]
+    }
+  }
+}
+```
+
+The `foo` object used to be initialized as an empty object (unless another initial value was provided).
+This forced users to fill in the `bar` field, even though the `foo` object itself was optional.
+
+Now, when creating a form, the form state is initialized with an empty object (for this case),
+and the form can be submitted without filling in the `bar` field.
+
+### The `validator` form option now requires `FormValidator<T>`
+
+This means that, in addition to the `isValid` method, an implementation of the form value validation method is now required.
+
+You can use the `noop` validator from the `@sjsf/form/validators/noop` module to skip validation.
+
+### The `form.context` property has been removed
+
+Previously, the public and internal APIs were split between two objects:
+`form` and `form.context`.
+In v3, `form.context` and `FormInternalContext` no longer exist.
+All internal fields and methods have been moved directly into `form`,
+but they must be accessed via [internal symbols](../../form/state/#internals).
+
+:::caution
+
+If you were using `ctx.value` in your custom components, replace it with `ctx[FORM_VALUE]`.
+
+:::
+
+### The `form.value` property has been removed
+
+The functionality of this property has now been split across several methods:
+
+- Use the `setValue` method to set a new form value.
+- Use the `getValueSnapshot` method to retrieve a snapshot of the internal form state.
+- Use the `validate/validateAsync` method to retrieve a typed value.
+
+### The `form.errors` property has been removed
+
+Reason — to hide the internal error storage structure from the user for future optimization.
+
+You can access form errors and even more by using the following functions:
+`hasErrors`, `getErrors`, `updateErrors`, `getFieldErrors`, `updateFieldErrors`
+
+### The `getSnapshot` form option has been removed
+
+To apply transformations before validation, you now need to augment the validator -
+see [State transformation](../../guides/validation/#state-transformation).
+
+### `onsubmit` and `onreset` attributes
+
+The `onsubmit` and `onreset` attributes applied to `Form`, `BasicForm`,
+or via `uiSchema` override the default handlers.
+
+If you need additional handlers, use `attachments`
+or call `form.submit(e)` in your handler.
+
+### Custom components
+
+#### `ArrayContext` and `ObjectContext` objects update
+
+Context constructors now accept an options object instead of a list of arguments:
+
+```ts
+const objCtx = createObjectContext({
+  ctx,
+  config: () => config,
+  value: () => value,
+  translate,
+});
+```
+
+These interfaces now only include methods, making them easier to extend:
+
+```ts
+const myObjCtx = {
+  ...objCtx,
+  canExpand() => someCondition && objCtx.canExpand(),
+}
+setObjectContext(myObjCtx)
+```
+
+#### Forced support for nullable fields
+
+The `FieldCommonProps` interface has been updated:
+```diff
+export interface FieldCommonProps<V> {
+  ...
+- value: V | undefined;
++ value: V | null | undefined;
+}
+```
+
+This change introduces explicit support for nullable fields ([example](https://x0k.dev/svelte-jsonschema-form/playground3/#N4IgzgxgFgpgtgQxALlAFwJZoDYxSAMQHsAnOAAgHcspyA7AV22wQCNdyAzDGbAEzBUoGaOQQkY9JtnKsAnuT4xOCJmhAAaEGjkAHPMhBFWAKxgR1W3SSL6SmGGBShGzNrgDyp82gDqNABFlVWx1VG0sXHwAOWl3SS8zC01tPQMAbRBXbBTjJPUAXS0lFTUUbIBfLWz4gEESEgQ5fzQoINLQ5wicAxBYt3ZJesa5FJ19FEzslPERkCKQEpCw7K0seCdw8d6wNBIMOgBzEAqqrLjBxJ8W2DhdHQA1BGwGA3RI3v6WQfIr5K1tpNzsxct5kgUzjVBgBlPYHY5bD4xC4cWH7I5jNJA6ZaXbo44LJZlZCVaoomCxOCsGAkLqYHrIgYcSnU2kArHIKbSFKMKk0+bFYLEyqnLQMDDQ6DwJDhKGeMF+Gjwe5yJ4vN4gcXIZWPZ6vcrSUUgA5YDDPNX62Xkv6K1rtZYG5hkpkwYZNG724XSZ3fXBo+GO7A++Is-kkw3FDBgeJ8FAqbBgGBaKBoODYACsaowfAQmCIdDjz0TWk4RAgDDAHjoBAwJF2AFEGqQUHtXloiHAsPWAB57BABXMy+PFkDcXgCLM5vN0ACyRCUKAADFoAG7PbO55uGBAmFcADjGt16rAQYBEKRE+c2WXzeC0EjARGwK7DIAgHd0uZmDSaM4OAEk0A2AAFWwmFzXpnhyLRZl-ACgLgMAZxpQ4YB7PtPVCTZhyTEAoI8Th8DAABrDBdEwtAnC0d86F2WowAo-BnkoJoqJAHU5BtGtx2vXQwJYIDamYCi2LgFCYBE-86DQIhiDIAc0BlTVEzkuAFIQf9OGAh8YGkk4gA)).
+
+In most cases, it’s enough to update your widget’s value binding from:
+
+`bind:value` to `bind:value={() => value ?? undefined, (v) => (value = v)}`
+
+#### Using `attachment` for attaching event handlers
+
+Previously, helper functions like `inputProps`, `selectProps`, and `textareaProps`
+passed event handlers as attributes, which in some cases could be overwritten by the user.
+Now, instead of attributes, they use `attachment`,
+where handlers are added via `addEventListener`.
+
+If your component does not support `attachment`,
+or attaches handlers to the wrong DOM node,
+you should map the attributes manually:
+
+```ts
+inputAttributes(ctx, config, "text", handlers, {
+  // spread handlers as attributes
+  ...handlers,
+  type: "text",
+});
+```
+
+### `Field` component update
+
+The `name` prop has been replaced with `path`.
+
+### Other changes
+
+- `fields/extra-fields/*` submodule now deprecated, migrate to `fields/extra/*`
+- The `makeEventHandlers` function signature has been changed
+- The `isSubmitted` and `isChanged` properties are now `readonly`
+- `isSubmitted` is reset after successful processing (validation + `onSubmit` handler)
+- `isChanged` becomes `true` after any interaction until
+  the form is successfully submitted or reset
+- The `idSeparator` and `idPseudoSeparator` form parameters moved to `idBuilder`
+- Removed redundant types:
+  - `IdPrefixOption`
+  - `IdSeparatorOption`
+  - `IdPseudoSeparator`
+  - `IdOptions`
+  - `PathToIdOptions`
+- `focus-on-first-error` module changes:
+  - Updated signatures of `getErrorsList` and `getFocusAction`
+  - Removed the `GetFocusActionOptions` type
+- Replace `id` property with `path` in `Config` type
+- Replace `idFromPath` with `getId` function
+- Replace `createChildId` with `getChildPath` function
+- Replace `getErrors` with `getFieldErrors` function
+
+## Validators
+
+### Zod and Valibot
+
+The `setupFormValidator` and `setupAsyncFormValidator` functions have been renamed
+to `adapt` and `adaptAsync`.
+They can now be used directly when calling `createForm`:
+
+```ts
+const form = createForm({
+  ...defaults,
+  ...adapt(schema),
+});
+```
+
+### Ajv and @exodus/schemasafe
+
+In the `precompile` submodules, the `createFormValidator` functions
+have been replaced with `createFormValidatorFactory`.
+
+For convenient use with `createForm`:
+
+```ts
+  const form = createForm({
+    ...defaults,
+    schema,
+    validator: createFormValidatorFactory({ validateFunctions }),
+  });
+```
+
+### Standard schema
+
+The signatures of `createFormValueValidator` and `createAsyncFormValueValidator`
+from the `@sjsf/form/validators/standard-schema` module have changed.
+
+Now, the Standard Schema is passed as the first argument,
+followed by the remaining options.
+
+## Themes
+
+### Basic
+
+Now you need to import the CSS:
+
+```ts
+import "@sjsf/basic-theme/css/basic.css";
+```
+
+### daisyUI v5
+
+File renames:
+- `@sjsf/daisyui5-theme/extra-widgets/pikaday-date-picker.svelte` → `@sjsf/daisyui5-theme/extra-widgets/date-picker.svelte`
+- `@sjsf/daisyui5-theme/extra-widgets/pikaday-date-picker-include` → `@sjsf/daisyui5-theme/extra-widgets/date-picker-include`
+
+Widget changes:
+- `@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include`
+  now includes `daisyui5CallyDatePickerWidget` instead of `datePickerWidget`
+- `@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons-include`
+  now includes `daisyui5FilterRadioButtonsWidget` instead of `radioButtonsWidget`
+
+### Flowbite
+
+The `radioButtons` widget now uses [RadioButton](https://flowbite-svelte.com/docs/forms/radio#radiobutton) instead of [Button Toggle](https://flowbite-svelte.com/docs/extend/button-toggle) component.
+
+To preserve the previous behavior you can use the following import,
+witch includes `flowbite3ToggleRadioButtonsWidget` widget:
+
+```ts
+import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
+```
+
+### Skeleton v3
+
+Widget changes:
+- `@sjsf/skeleton3-theme/extra-widgets/file-upload-include`
+  now includes `skeleton3FileUploadWidget` instead of `fileWidget`
+- `@sjsf/skeleton3-theme/extra-widgets/slider-include`
+  now includes `skeleton3SliderWidget` instead of `rangeWidget`
+
+### shadcn-svelte
+
+The theme now requires the `Field*` and `ButtonGroup` components to function properly.
+
+## SvelteKit
+
+Now, for the integration to work correctly,
+you must use ID Builder from the `@sjsf/sveltekit` module.
+
+```ts
+export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit'
+```
+
+The `makeFormDataParser` and `validateForm` functions
+have been replaced with `createFormHandler`.
+See the [integration](../../integrations/sveltekit/#server) page for more information.
+
+The `initForm` function has been removed — specify initial values directly instead.
+
+```ts
+import type { InitialFormData } from "@sjsf/sveltekit";
+
+export const load = async () => {
+  return {
+    form: {
+      schema,
+      initialValue: { ... },
+    } satisfies InitialFormData<Model>,
+  };
+};
+```
+
+## Dependency versions have been updated
+
+- `@sveltejs/kit@^2.48.3` (`@sjsf/sveltekit`)
+- `daisyui@^5.4.0` (`@sjsf/daisyui5-theme`)
+- `flowbite-svelte-icons@^3.0.0` (`@sjsf/flowbite-icons`)
+- `flowbite-svelte@^1.22.0` (`@sjsf/flowbite3-theme`)
+- `bits-ui@^2.14.0` (`@sjsf/shadcn4-theme`)
+- New peer dependency `@jis3r/icons@^1.1.0` (`@sjsf/moving-icons`)
+- `zod@^4.1.0` (`@sjsf/zod4-validator`)
+
+## Deprecated packages were removed
+
+- `@sjsf/zod-validator` (v3)
+- `@sjsf/skeleton-theme` (tw3)
+
+## Etc.
+
+Feel free to get in touch about migrating to v3 on [GitHub Discussions](https://github.com/x0k/svelte-jsonschema-form/discussions).

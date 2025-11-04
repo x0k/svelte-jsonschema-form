@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ComponentsAndWidgets } from 'testing/demo';
+	import { ComponentsAndWidgets } from 'theme-testing/demo';
 
 	import '../app.css';
 	import { setThemeContext, theme } from '../lib/theme/index.js';
@@ -9,4 +9,4 @@
 	setThemeContext({ components });
 </script>
 
-<ComponentsAndWidgets {theme} additionalSpecs={specs} />
+<ComponentsAndWidgets {theme} {specs} />

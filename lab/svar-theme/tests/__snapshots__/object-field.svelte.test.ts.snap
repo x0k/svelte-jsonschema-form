@@ -1,0 +1,7307 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`object fields > additionalProperties 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-key-input"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root.foo::key-input"
+                    >
+                      foo Key
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo::key-input"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.foo"
+                    >
+                      foo
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="wx-button  svelte-1hpw1i9"
+              title=""
+            >
+              <!---->
+               
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > additionalProperties with error 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-key-input"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="true"
+                      data-required="true"
+                      for="root.foo::key-input"
+                    >
+                      foo Key
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg wx-error"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo::key-input"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <ul
+                  class="svelte-ulrohq"
+                  id="root.foo::key-input::errors"
+                  tabindex="-1"
+                >
+                  <li>
+                    error
+                  </li>
+                  
+                </ul>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.foo"
+                    >
+                      foo
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="wx-button  svelte-1hpw1i9"
+              title=""
+            >
+              <!---->
+               
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > has errors 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.name"
+                    >
+                      name
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.name"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <ul
+          class="svelte-ulrohq"
+          id="root::errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > object 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.a"
+                    >
+                      A
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.a"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.b"
+                    >
+                      B
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.b"
+                      placeholder=""
+                      style=""
+                      title=""
+                      type="number"
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > one of defaults > default preset 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-field-meta"
+          style="padding-bottom: 0px;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-template="objectTemplate"
+              id="root::title"
+            >
+              Options
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <pre
+                style="color: red;"
+              >
+                "enumField" component not found
+              </pre>
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.transform::description"
+                    style="font-weight: 300;"
+                  >
+                    Apply a transformation to the output data
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-checkbox svelte-2blbp2"
+                    style=""
+                  >
+                    <input
+                      class="svelte-2blbp2"
+                      id="root.transform"
+                      type="checkbox"
+                      value=""
+                    />
+                     
+                    <label
+                      class="svelte-2blbp2"
+                      for="root.transform"
+                    >
+                      <span
+                        class="svelte-2blbp2"
+                      />
+                       
+                      <span
+                        class="svelte-2blbp2"
+                      >
+                        Transform
+                      </span>
+                      <!---->
+                    </label>
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <pre
+                style="color: red;"
+              >
+                "enumField" component not found
+              </pre>
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.paginate::description"
+                    style="font-weight: 300;"
+                  >
+                    Partitioning the input data (object or array) into pages by their keys
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-checkbox svelte-2blbp2"
+                    style=""
+                  >
+                    <input
+                      class="svelte-2blbp2"
+                      id="root.paginate"
+                      type="checkbox"
+                      value=""
+                    />
+                     
+                    <label
+                      class="svelte-2blbp2"
+                      for="root.paginate"
+                    >
+                      <span
+                        class="svelte-2blbp2"
+                      />
+                       
+                      <span
+                        class="svelte-2blbp2"
+                      >
+                        Paginate
+                      </span>
+                      <!---->
+                    </label>
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.createOnOpen::description"
+                    style="font-weight: 300;"
+                  >
+                    Creating a table when opening a share link
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-checkbox svelte-2blbp2"
+                    style=""
+                  >
+                    <input
+                      class="svelte-2blbp2"
+                      id="root.createOnOpen"
+                      type="checkbox"
+                      value=""
+                    />
+                     
+                    <label
+                      class="svelte-2blbp2"
+                      for="root.createOnOpen"
+                    >
+                      <span
+                        class="svelte-2blbp2"
+                      />
+                       
+                      <span
+                        class="svelte-2blbp2"
+                      >
+                        Create on open
+                      </span>
+                      <!---->
+                    </label>
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > one of defaults > manual preset 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-field-meta"
+          style="padding-bottom: 0px;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-template="objectTemplate"
+              id="root::title"
+            >
+              Options
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <pre
+                style="color: red;"
+              >
+                "enumField" component not found
+              </pre>
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.collapseIndexes::description"
+                    style="font-weight: 300;"
+                  >
+                    Combines hierarchical indexes into one cell (1.1, 1.2, ...)
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-checkbox svelte-2blbp2"
+                    style=""
+                  >
+                    <input
+                      class="svelte-2blbp2"
+                      id="root.collapseIndexes"
+                      type="checkbox"
+                      value=""
+                    />
+                     
+                    <label
+                      class="svelte-2blbp2"
+                      for="root.collapseIndexes"
+                    >
+                      <span
+                        class="svelte-2blbp2"
+                      />
+                       
+                      <span
+                        class="svelte-2blbp2"
+                      >
+                        Combine nested indexes
+                      </span>
+                      <!---->
+                    </label>
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.joinPrimitiveArrayValues::description"
+                    style="font-weight: 300;"
+                  >
+                    Combines the values of an array of primitives into one cell (separated by ',')
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-checkbox svelte-2blbp2"
+                    style=""
+                  >
+                    <input
+                      class="svelte-2blbp2"
+                      id="root.joinPrimitiveArrayValues"
+                      type="checkbox"
+                      value=""
+                    />
+                     
+                    <label
+                      class="svelte-2blbp2"
+                      for="root.joinPrimitiveArrayValues"
+                    >
+                      <span
+                        class="svelte-2blbp2"
+                      />
+                       
+                      <span
+                        class="svelte-2blbp2"
+                      >
+                        Combine simple values
+                      </span>
+                      <!---->
+                    </label>
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.combineArraysOfObjects::description"
+                    style="font-weight: 300;"
+                  >
+                    Combine arrays of objects into a single object
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-checkbox svelte-2blbp2"
+                    style=""
+                  >
+                    <input
+                      class="svelte-2blbp2"
+                      id="root.combineArraysOfObjects"
+                      type="checkbox"
+                      value=""
+                    />
+                     
+                    <label
+                      class="svelte-2blbp2"
+                      for="root.combineArraysOfObjects"
+                    >
+                      <span
+                        class="svelte-2blbp2"
+                      />
+                       
+                      <span
+                        class="svelte-2blbp2"
+                      >
+                        Combine objects
+                      </span>
+                      <!---->
+                    </label>
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+                    style="font-weight: 300;"
+                  >
+                    Stabilizing the order in which properties are displayed for arrays of objects
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-checkbox svelte-2blbp2"
+                    style=""
+                  >
+                    <input
+                      class="svelte-2blbp2"
+                      id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                      type="checkbox"
+                      value=""
+                    />
+                     
+                    <label
+                      class="svelte-2blbp2"
+                      for="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                    >
+                      <span
+                        class="svelte-2blbp2"
+                      />
+                       
+                      <span
+                        class="svelte-2blbp2"
+                      >
+                        Stabilize order of properties
+                      </span>
+                      <!---->
+                    </label>
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root.proportionalSizeAdjustmentThreshold"
+                    >
+                      Proportional size adjustment threshold
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.proportionalSizeAdjustmentThreshold::description"
+                    style="font-weight: 300;"
+                  >
+                    Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.proportionalSizeAdjustmentThreshold"
+                      placeholder=""
+                      style=""
+                      title=""
+                      type="number"
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.cornerCellValue"
+                    >
+                      Corner cell value
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.cornerCellValue::description"
+                    style="font-weight: 300;"
+                  >
+                    The value of the corner cell.
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.cornerCellValue"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.transform::description"
+                    style="font-weight: 300;"
+                  >
+                    Apply a transformation to the output data
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-checkbox svelte-2blbp2"
+                    style=""
+                  >
+                    <input
+                      class="svelte-2blbp2"
+                      id="root.transform"
+                      type="checkbox"
+                      value=""
+                    />
+                     
+                    <label
+                      class="svelte-2blbp2"
+                      for="root.transform"
+                    >
+                      <span
+                        class="svelte-2blbp2"
+                      />
+                       
+                      <span
+                        class="svelte-2blbp2"
+                      >
+                        Transform
+                      </span>
+                      <!---->
+                    </label>
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <pre
+                style="color: red;"
+              >
+                "enumField" component not found
+              </pre>
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.paginate::description"
+                    style="font-weight: 300;"
+                  >
+                    Partitioning the input data (object or array) into pages by their keys
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-checkbox svelte-2blbp2"
+                    style=""
+                  >
+                    <input
+                      class="svelte-2blbp2"
+                      id="root.paginate"
+                      type="checkbox"
+                      value=""
+                    />
+                     
+                    <label
+                      class="svelte-2blbp2"
+                      for="root.paginate"
+                    >
+                      <span
+                        class="svelte-2blbp2"
+                      />
+                       
+                      <span
+                        class="svelte-2blbp2"
+                      >
+                        Paginate
+                      </span>
+                      <!---->
+                    </label>
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.createOnOpen::description"
+                    style="font-weight: 300;"
+                  >
+                    Creating a table when opening a share link
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-checkbox svelte-2blbp2"
+                    style=""
+                  >
+                    <input
+                      class="svelte-2blbp2"
+                      id="root.createOnOpen"
+                      type="checkbox"
+                      value=""
+                    />
+                     
+                    <label
+                      class="svelte-2blbp2"
+                      for="root.createOnOpen"
+                    >
+                      <span
+                        class="svelte-2blbp2"
+                      />
+                       
+                      <span
+                        class="svelte-2blbp2"
+                      >
+                        Create on open
+                      </span>
+                      <!---->
+                    </label>
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-key-input"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root.additionalProperty::key-input"
+                    >
+                      additionalProperty Key
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.additionalProperty::key-input"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.additionalProperty"
+                    >
+                      additionalProperty
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.additionalProperty"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="wx-button  svelte-1hpw1i9"
+              title=""
+            >
+              <!---->
+               
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description > additionalProperties 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-field-meta"
+          style="padding-bottom: 0px;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-template="objectTemplate"
+              id="root::title"
+            >
+              Test field
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            id="root::description"
+            style="font-weight: 300;"
+          >
+            a test description
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-key-input"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root.foo::key-input"
+                    >
+                      foo Key
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo::key-input"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.foo"
+                    >
+                      foo
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="wx-button  svelte-1hpw1i9"
+              title=""
+            >
+              <!---->
+               
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description > object 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-field-meta"
+          style="padding-bottom: 0px;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-template="objectTemplate"
+              id="root::title"
+            >
+              Test field
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            id="root::description"
+            style="font-weight: 300;"
+          >
+            a test description
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.a"
+                    >
+                      A
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.a::description"
+                    style="font-weight: 300;"
+                  >
+                    A description
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.a"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.b"
+                    >
+                      B
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.b::description"
+                    style="font-weight: 300;"
+                  >
+                    B description
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.b"
+                      placeholder=""
+                      style=""
+                      title=""
+                      type="number"
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-field-meta"
+          style="padding-bottom: 0px;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-template="objectTemplate"
+              id="root::title"
+            >
+              Test field
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            id="root::description"
+            style="font-weight: 300;"
+          >
+            a test description
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-key-input"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root.additionalProperty::key-input"
+                    >
+                      additionalProperty Key
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.additionalProperty::key-input"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.additionalProperty"
+                    >
+                      additionalProperty
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.additionalProperty"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="wx-button  svelte-1hpw1i9"
+              title=""
+            >
+              <!---->
+               
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from both > additionalProperties 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-field-meta"
+          style="padding-bottom: 0px;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-template="objectTemplate"
+              id="root::title"
+            >
+              My Field
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            id="root::description"
+            style="font-weight: 300;"
+          >
+            a fancier description
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-key-input"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root.foo::key-input"
+                    >
+                      foo Key
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo::key-input"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.foo"
+                    >
+                      foo
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="wx-button  svelte-1hpw1i9"
+              title=""
+            >
+              <!---->
+               
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from both > object 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-field-meta"
+          style="padding-bottom: 0px;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-template="objectTemplate"
+              id="root::title"
+            >
+              My Field
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            id="root::description"
+            style="font-weight: 300;"
+          >
+            a fancier description
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.a"
+                    >
+                      My Item A
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.a::description"
+                    style="font-weight: 300;"
+                  >
+                    a fancier item A description
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.a"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.b"
+                    >
+                      My Item B
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.b::description"
+                    style="font-weight: 300;"
+                  >
+                    a fancier item B description
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.b"
+                      placeholder=""
+                      style=""
+                      title=""
+                      type="number"
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from uiSchema > additionalProperties 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-field-meta"
+          style="padding-bottom: 0px;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-template="objectTemplate"
+              id="root::title"
+            >
+              My Field
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            id="root::description"
+            style="font-weight: 300;"
+          >
+            a fancier description
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-key-input"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root.foo::key-input"
+                    >
+                      foo Key
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo::key-input"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.foo"
+                    >
+                      foo
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="wx-button  svelte-1hpw1i9"
+              title=""
+            >
+              <!---->
+               
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from uiSchema > object 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-field-meta"
+          style="padding-bottom: 0px;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-template="objectTemplate"
+              id="root::title"
+            >
+              My Field
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            id="root::description"
+            style="font-weight: 300;"
+          >
+            a fancier description
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.a"
+                    >
+                      My Item A
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.a::description"
+                    style="font-weight: 300;"
+                  >
+                    a fancier item A description
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.a"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.b"
+                    >
+                      My Item B
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    id="root.b::description"
+                    style="font-weight: 300;"
+                  >
+                    a fancier item B description
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.b"
+                      placeholder=""
+                      style=""
+                      title=""
+                      type="number"
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-field-meta"
+          style="padding-bottom: 0px;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-template="objectTemplate"
+              id="root::title"
+            >
+              My Field
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            id="root::description"
+            style="font-weight: 300;"
+          >
+            a fancier description
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-key-input"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root.additionalProperty::key-input"
+                    >
+                      additionalProperty Key
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.additionalProperty::key-input"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="false"
+                      for="root.additionalProperty"
+                    >
+                      additionalProperty
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.additionalProperty"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="wx-button  svelte-1hpw1i9"
+              title=""
+            >
+              <!---->
+               
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description with global label off > additionalProperties 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-key-input"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo::key-input"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.foo"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="wx-button  svelte-1hpw1i9"
+              title=""
+            >
+              <!---->
+               
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description with global label off > object 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.a"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.b"
+                      placeholder=""
+                      style=""
+                      title=""
+                      type="number"
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="object-field"
+        style="display: flex; flex-direction: column; gap: 1rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="object-properties"
+          style="display: flex; flex-direction: column; gap: 1rem;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="object-property"
+            style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-key-input"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.additionalProperty::key-input"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-1fixc4e"
+              data-layout="object-property-content"
+              style="flex-grow: 1;"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-text  svelte-1gktjgg"
+                  >
+                    <!---->
+                    <input
+                      class="svelte-1gktjgg"
+                      id="root.additionalProperty"
+                      placeholder=""
+                      style=""
+                      title=""
+                    />
+                    
+                    <!---->
+                     
+                    <!---->
+                    
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="wx-button  svelte-1hpw1i9"
+              title=""
+            >
+              <!---->
+               
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;

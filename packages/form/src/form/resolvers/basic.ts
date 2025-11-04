@@ -1,15 +1,9 @@
-import {
-  getSimpleSchemaType,
-  isFixedItems,
-  type Validator,
-} from "@/core/index.js";
+import { getSimpleSchemaType, isFixedItems } from "@/core/index.js";
 
-import type { FormInternalContext } from "../context/index.js";
+import type { FormState } from "../state/index.js";
 import type { ResolveFieldType } from "../fields.js";
 
-export function resolver<V extends Validator>(
-  _: FormInternalContext<V>
-): ResolveFieldType {
+export function resolver<T>(_: FormState<T>): ResolveFieldType {
   return ({ schema }) => {
     if (schema.oneOf !== undefined) {
       return "oneOfField";

@@ -1,33 +1,40 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`widgets > checkbox > disabled 1`] = `
+exports[`widgets > checkbox > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-checkbox"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           disabled=""
           id="root"
           name="root"
+          required=""
           type="checkbox"
         />
          
@@ -36,7 +43,6 @@ exports[`widgets > checkbox > disabled 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -46,39 +52,46 @@ exports[`widgets > checkbox > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > checkbox > error 1`] = `
+exports[`widgets > checkbox > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-checkbox"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
           id="root"
           name="root"
+          required=""
           type="checkbox"
         />
          
@@ -87,13 +100,12 @@ exports[`widgets > checkbox > error 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -109,39 +121,46 @@ exports[`widgets > checkbox > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > checkbox > normal 1`] = `
+exports[`widgets > checkbox > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-checkbox"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           id="root"
           name="root"
+          required=""
           type="checkbox"
         />
          
@@ -150,7 +169,6 @@ exports[`widgets > checkbox > normal 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -160,40 +178,47 @@ exports[`widgets > checkbox > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > checkbox > readonly 1`] = `
+exports[`widgets > checkbox > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-checkbox"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           id="root"
           name="root"
           readonly=""
+          required=""
           type="checkbox"
         />
          
@@ -202,7 +227,6 @@ exports[`widgets > checkbox > readonly 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -212,76 +236,95 @@ exports[`widgets > checkbox > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > checkboxes > disabled 1`] = `
+exports[`widgets > checkboxes > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           disabled=""
-          id="root::0"
+          id="root__0"
           name="root"
+          required=""
           type="checkbox"
-          value="0"
+          value="root__0"
         />
          foo
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           disabled=""
-          id="root::1"
+          id="root__1"
           name="root"
+          required=""
           type="checkbox"
-          value="1"
+          value="root__1"
         />
          bar
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           disabled=""
-          id="root::2"
+          id="root__2"
           name="root"
+          required=""
           type="checkbox"
-          value="2"
+          value="root__2"
         />
          fuzz
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           disabled=""
-          id="root::3"
+          id="root__3"
           name="root"
+          required=""
           type="checkbox"
-          value="3"
+          value="root__3"
         />
          qux
       </label>
@@ -290,7 +333,6 @@ exports[`widgets > checkboxes > disabled 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -300,72 +342,91 @@ exports[`widgets > checkboxes > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > checkboxes > error 1`] = `
+exports[`widgets > checkboxes > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::0"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          id="root__0"
           name="root"
+          required=""
           type="checkbox"
-          value="0"
+          value="root__0"
         />
          foo
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::1"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          id="root__1"
           name="root"
+          required=""
           type="checkbox"
-          value="1"
+          value="root__1"
         />
          bar
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::2"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          id="root__2"
           name="root"
+          required=""
           type="checkbox"
-          value="2"
+          value="root__2"
         />
          fuzz
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::3"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          id="root__3"
           name="root"
+          required=""
           type="checkbox"
-          value="3"
+          value="root__3"
         />
          qux
       </label>
@@ -374,13 +435,12 @@ exports[`widgets > checkboxes > error 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -396,72 +456,91 @@ exports[`widgets > checkboxes > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > checkboxes > normal 1`] = `
+exports[`widgets > checkboxes > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::0"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__0"
           name="root"
+          required=""
           type="checkbox"
-          value="0"
+          value="root__0"
         />
          foo
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::1"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__1"
           name="root"
+          required=""
           type="checkbox"
-          value="1"
+          value="root__1"
         />
          bar
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::2"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__2"
           name="root"
+          required=""
           type="checkbox"
-          value="2"
+          value="root__2"
         />
          fuzz
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::3"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__3"
           name="root"
+          required=""
           type="checkbox"
-          value="3"
+          value="root__3"
         />
          qux
       </label>
@@ -470,7 +549,6 @@ exports[`widgets > checkboxes > normal 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -480,76 +558,95 @@ exports[`widgets > checkboxes > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > checkboxes > readonly 1`] = `
+exports[`widgets > checkboxes > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::0"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__0"
           name="root"
           readonly=""
+          required=""
           type="checkbox"
-          value="0"
+          value="root__0"
         />
          foo
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::1"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__1"
           name="root"
           readonly=""
+          required=""
           type="checkbox"
-          value="1"
+          value="root__1"
         />
          bar
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::2"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__2"
           name="root"
           readonly=""
+          required=""
           type="checkbox"
-          value="2"
+          value="root__2"
         />
          fuzz
       </label>
-      <label>
+      <label
+        class="sjsf-checkboxes"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::3"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__3"
           name="root"
           readonly=""
+          required=""
           type="checkbox"
-          value="3"
+          value="root__3"
         />
          qux
       </label>
@@ -558,7 +655,6 @@ exports[`widgets > checkboxes > readonly 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -568,40 +664,45 @@ exports[`widgets > checkboxes > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > datePicker > disabled 1`] = `
+exports[`widgets > datePicker > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-date-picker"
         disabled=""
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="date"
       />
        
@@ -612,7 +713,6 @@ exports[`widgets > datePicker > disabled 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -622,39 +722,44 @@ exports[`widgets > datePicker > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > datePicker > error 1`] = `
+exports[`widgets > datePicker > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="true"
+        class="sjsf-date-picker"
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="date"
       />
        
@@ -665,13 +770,12 @@ exports[`widgets > datePicker > error 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -687,39 +791,44 @@ exports[`widgets > datePicker > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > datePicker > normal 1`] = `
+exports[`widgets > datePicker > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-date-picker"
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="date"
       />
        
@@ -730,7 +839,6 @@ exports[`widgets > datePicker > normal 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -740,40 +848,45 @@ exports[`widgets > datePicker > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > datePicker > readonly 1`] = `
+exports[`widgets > datePicker > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-date-picker"
         id="root"
         name="root"
         readonly=""
-        style="flex-grow: 1;"
+        required=""
         type="date"
       />
        
@@ -784,7 +897,6 @@ exports[`widgets > datePicker > readonly 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -794,49 +906,53 @@ exports[`widgets > datePicker > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > file > disabled 1`] = `
+exports[`widgets > file > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-file"
         data-loading="false"
         data-processing="false"
         disabled=""
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="file"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -846,54 +962,58 @@ exports[`widgets > file > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > file > error 1`] = `
+exports[`widgets > file > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="true"
+        class="sjsf-file"
         data-loading="false"
         data-processing="false"
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="file"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -909,48 +1029,52 @@ exports[`widgets > file > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > file > normal 1`] = `
+exports[`widgets > file > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-file"
         data-loading="false"
         data-processing="false"
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="file"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -960,49 +1084,53 @@ exports[`widgets > file > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > file > readonly 1`] = `
+exports[`widgets > file > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-file"
         data-loading="false"
         data-processing="false"
         id="root"
         name="root"
         readonly=""
-        style="flex-grow: 1;"
+        required=""
         type="file"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1012,50 +1140,54 @@ exports[`widgets > file > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > multiFile > disabled 1`] = `
+exports[`widgets > multiFile > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-file"
         data-loading="true"
         data-processing="false"
         disabled=""
         id="root"
         multiple=""
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="file"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1065,55 +1197,59 @@ exports[`widgets > multiFile > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > multiFile > error 1`] = `
+exports[`widgets > multiFile > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="true"
+        class="sjsf-file"
         data-loading="true"
         data-processing="false"
         id="root"
         multiple=""
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="file"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -1129,49 +1265,53 @@ exports[`widgets > multiFile > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > multiFile > normal 1`] = `
+exports[`widgets > multiFile > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-file"
         data-loading="true"
         data-processing="false"
         id="root"
         multiple=""
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="file"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1181,50 +1321,54 @@ exports[`widgets > multiFile > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > multiFile > readonly 1`] = `
+exports[`widgets > multiFile > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-file"
         data-loading="true"
         data-processing="false"
         id="root"
         multiple=""
         name="root"
         readonly=""
-        style="flex-grow: 1;"
+        required=""
         type="file"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1234,59 +1378,64 @@ exports[`widgets > multiFile > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > multiSelect > disabled 1`] = `
+exports[`widgets > multiSelect > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <select
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-multi-select"
         disabled=""
         id="root"
         multiple=""
         name="root"
-        style="flex-grow: 1;"
+        required=""
       >
         <option
-          value="0"
+          value="root__0"
         >
           foo
         </option>
         <option
-          value="1"
+          value="root__1"
         >
           bar
         </option>
         <option
-          value="2"
+          value="root__2"
         >
           fuzz
         </option>
         <option
-          value="3"
+          value="root__3"
         >
           qux
         </option>
@@ -1296,7 +1445,6 @@ exports[`widgets > multiSelect > disabled 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1306,58 +1454,63 @@ exports[`widgets > multiSelect > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > multiSelect > error 1`] = `
+exports[`widgets > multiSelect > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <select
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="true"
+        class="sjsf-multi-select"
         id="root"
         multiple=""
         name="root"
-        style="flex-grow: 1;"
+        required=""
       >
         <option
-          value="0"
+          value="root__0"
         >
           foo
         </option>
         <option
-          value="1"
+          value="root__1"
         >
           bar
         </option>
         <option
-          value="2"
+          value="root__2"
         >
           fuzz
         </option>
         <option
-          value="3"
+          value="root__3"
         >
           qux
         </option>
@@ -1367,13 +1520,12 @@ exports[`widgets > multiSelect > error 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -1389,58 +1541,63 @@ exports[`widgets > multiSelect > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > multiSelect > normal 1`] = `
+exports[`widgets > multiSelect > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <select
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-multi-select"
         id="root"
         multiple=""
         name="root"
-        style="flex-grow: 1;"
+        required=""
       >
         <option
-          value="0"
+          value="root__0"
         >
           foo
         </option>
         <option
-          value="1"
+          value="root__1"
         >
           bar
         </option>
         <option
-          value="2"
+          value="root__2"
         >
           fuzz
         </option>
         <option
-          value="3"
+          value="root__3"
         >
           qux
         </option>
@@ -1450,7 +1607,6 @@ exports[`widgets > multiSelect > normal 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1460,58 +1616,63 @@ exports[`widgets > multiSelect > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > multiSelect > readonly 1`] = `
+exports[`widgets > multiSelect > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <select
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-multi-select"
         id="root"
         multiple=""
         name="root"
-        style="flex-grow: 1;"
+        required=""
       >
         <option
-          value="0"
+          value="root__0"
         >
           foo
         </option>
         <option
-          value="1"
+          value="root__1"
         >
           bar
         </option>
         <option
-          value="2"
+          value="root__2"
         >
           fuzz
         </option>
         <option
-          value="3"
+          value="root__3"
         >
           qux
         </option>
@@ -1521,7 +1682,6 @@ exports[`widgets > multiSelect > readonly 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1531,41 +1691,46 @@ exports[`widgets > multiSelect > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > number > disabled 1`] = `
+exports[`widgets > number > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-number"
         disabled=""
         id="root"
         name="root"
+        required=""
         step="any"
-        style="flex-grow: 1;"
         type="number"
       />
        
@@ -1576,7 +1741,6 @@ exports[`widgets > number > disabled 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1586,40 +1750,45 @@ exports[`widgets > number > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > number > error 1`] = `
+exports[`widgets > number > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="true"
+        class="sjsf-number"
         id="root"
         name="root"
+        required=""
         step="any"
-        style="flex-grow: 1;"
         type="number"
       />
        
@@ -1630,13 +1799,12 @@ exports[`widgets > number > error 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -1652,40 +1820,45 @@ exports[`widgets > number > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > number > normal 1`] = `
+exports[`widgets > number > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-number"
         id="root"
         name="root"
+        required=""
         step="any"
-        style="flex-grow: 1;"
         type="number"
       />
        
@@ -1696,7 +1869,6 @@ exports[`widgets > number > normal 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1706,41 +1878,46 @@ exports[`widgets > number > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > number > readonly 1`] = `
+exports[`widgets > number > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-number"
         id="root"
         name="root"
         readonly=""
+        required=""
         step="any"
-        style="flex-grow: 1;"
         type="number"
       />
        
@@ -1751,7 +1928,6 @@ exports[`widgets > number > readonly 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1761,76 +1937,95 @@ exports[`widgets > number > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > radio > disabled 1`] = `
+exports[`widgets > radio > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           disabled=""
-          id="root::0"
+          id="root__0"
           name="root"
+          required=""
           type="radio"
-          value="0"
+          value="root__0"
         />
          foo
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           disabled=""
-          id="root::1"
+          id="root__1"
           name="root"
+          required=""
           type="radio"
-          value="1"
+          value="root__1"
         />
          bar
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           disabled=""
-          id="root::2"
+          id="root__2"
           name="root"
+          required=""
           type="radio"
-          value="2"
+          value="root__2"
         />
          fuzz
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
           disabled=""
-          id="root::3"
+          id="root__3"
           name="root"
+          required=""
           type="radio"
-          value="3"
+          value="root__3"
         />
          qux
       </label>
@@ -1839,7 +2034,6 @@ exports[`widgets > radio > disabled 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1849,72 +2043,91 @@ exports[`widgets > radio > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > radio > error 1`] = `
+exports[`widgets > radio > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::0"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          id="root__0"
           name="root"
+          required=""
           type="radio"
-          value="0"
+          value="root__0"
         />
          foo
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::1"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          id="root__1"
           name="root"
+          required=""
           type="radio"
-          value="1"
+          value="root__1"
         />
          bar
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::2"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          id="root__2"
           name="root"
+          required=""
           type="radio"
-          value="2"
+          value="root__2"
         />
          fuzz
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::3"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          id="root__3"
           name="root"
+          required=""
           type="radio"
-          value="3"
+          value="root__3"
         />
          qux
       </label>
@@ -1923,13 +2136,12 @@ exports[`widgets > radio > error 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -1945,72 +2157,91 @@ exports[`widgets > radio > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > radio > normal 1`] = `
+exports[`widgets > radio > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::0"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__0"
           name="root"
+          required=""
           type="radio"
-          value="0"
+          value="root__0"
         />
          foo
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::1"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__1"
           name="root"
+          required=""
           type="radio"
-          value="1"
+          value="root__1"
         />
          bar
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::2"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__2"
           name="root"
+          required=""
           type="radio"
-          value="2"
+          value="root__2"
         />
          fuzz
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::3"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__3"
           name="root"
+          required=""
           type="radio"
-          value="3"
+          value="root__3"
         />
          qux
       </label>
@@ -2019,7 +2250,6 @@ exports[`widgets > radio > normal 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2029,76 +2259,95 @@ exports[`widgets > radio > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > radio > readonly 1`] = `
+exports[`widgets > radio > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <!---->
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::0"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__0"
           name="root"
           readonly=""
+          required=""
           type="radio"
-          value="0"
+          value="root__0"
         />
          foo
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::1"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__1"
           name="root"
           readonly=""
+          required=""
           type="radio"
-          value="1"
+          value="root__1"
         />
          bar
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::2"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__2"
           name="root"
           readonly=""
+          required=""
           type="radio"
-          value="2"
+          value="root__2"
         />
          fuzz
       </label>
-      <label>
+      <label
+        class="sjsf-radio"
+      >
         <input
-          aria-describedby="root::description root::help root::errors"
-          id="root::3"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root__3"
           name="root"
           readonly=""
+          required=""
           type="radio"
-          value="3"
+          value="root__3"
         />
          qux
       </label>
@@ -2107,7 +2356,6 @@ exports[`widgets > radio > readonly 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2117,48 +2365,52 @@ exports[`widgets > radio > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > range > disabled 1`] = `
+exports[`widgets > range > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-range"
         disabled=""
         id="root"
         name="root"
+        required=""
         step="any"
-        style="flex-grow: 1;"
         type="range"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2168,53 +2420,57 @@ exports[`widgets > range > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > range > error 1`] = `
+exports[`widgets > range > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="true"
+        class="sjsf-range"
         id="root"
         name="root"
+        required=""
         step="any"
-        style="flex-grow: 1;"
         type="range"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -2230,47 +2486,51 @@ exports[`widgets > range > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > range > normal 1`] = `
+exports[`widgets > range > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-range"
         id="root"
         name="root"
+        required=""
         step="any"
-        style="flex-grow: 1;"
         type="range"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2280,48 +2540,52 @@ exports[`widgets > range > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > range > readonly 1`] = `
+exports[`widgets > range > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-range"
         id="root"
         name="root"
         readonly=""
+        required=""
         step="any"
-        style="flex-grow: 1;"
         type="range"
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2331,40 +2595,45 @@ exports[`widgets > range > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > select > disabled 1`] = `
+exports[`widgets > select > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <select
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-select"
         disabled=""
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
       >
         <option
           value="-1"
@@ -2373,22 +2642,22 @@ exports[`widgets > select > disabled 1`] = `
         </option>
         <!---->
         <option
-          value="0"
+          value="root__0"
         >
           foo
         </option>
         <option
-          value="1"
+          value="root__1"
         >
           bar
         </option>
         <option
-          value="2"
+          value="root__2"
         >
           fuzz
         </option>
         <option
-          value="3"
+          value="root__3"
         >
           qux
         </option>
@@ -2398,7 +2667,6 @@ exports[`widgets > select > disabled 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2408,39 +2676,44 @@ exports[`widgets > select > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > select > error 1`] = `
+exports[`widgets > select > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <select
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="true"
+        class="sjsf-select"
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
       >
         <option
           value="-1"
@@ -2449,22 +2722,22 @@ exports[`widgets > select > error 1`] = `
         </option>
         <!---->
         <option
-          value="0"
+          value="root__0"
         >
           foo
         </option>
         <option
-          value="1"
+          value="root__1"
         >
           bar
         </option>
         <option
-          value="2"
+          value="root__2"
         >
           fuzz
         </option>
         <option
-          value="3"
+          value="root__3"
         >
           qux
         </option>
@@ -2474,13 +2747,12 @@ exports[`widgets > select > error 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -2496,39 +2768,44 @@ exports[`widgets > select > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > select > normal 1`] = `
+exports[`widgets > select > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <select
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-select"
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
       >
         <option
           value="-1"
@@ -2537,22 +2814,22 @@ exports[`widgets > select > normal 1`] = `
         </option>
         <!---->
         <option
-          value="0"
+          value="root__0"
         >
           foo
         </option>
         <option
-          value="1"
+          value="root__1"
         >
           bar
         </option>
         <option
-          value="2"
+          value="root__2"
         >
           fuzz
         </option>
         <option
-          value="3"
+          value="root__3"
         >
           qux
         </option>
@@ -2562,7 +2839,6 @@ exports[`widgets > select > normal 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2572,39 +2848,44 @@ exports[`widgets > select > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > select > readonly 1`] = `
+exports[`widgets > select > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <select
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-select"
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
       >
         <option
           value="-1"
@@ -2613,22 +2894,22 @@ exports[`widgets > select > readonly 1`] = `
         </option>
         <!---->
         <option
-          value="0"
+          value="root__0"
         >
           foo
         </option>
         <option
-          value="1"
+          value="root__1"
         >
           bar
         </option>
         <option
-          value="2"
+          value="root__2"
         >
           fuzz
         </option>
         <option
-          value="3"
+          value="root__3"
         >
           qux
         </option>
@@ -2638,7 +2919,6 @@ exports[`widgets > select > readonly 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2648,40 +2928,45 @@ exports[`widgets > select > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > text > disabled 1`] = `
+exports[`widgets > text > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-text"
         disabled=""
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="text"
       />
        
@@ -2692,7 +2977,6 @@ exports[`widgets > text > disabled 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2702,39 +2986,44 @@ exports[`widgets > text > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > text > error 1`] = `
+exports[`widgets > text > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="true"
+        class="sjsf-text"
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="text"
       />
        
@@ -2745,13 +3034,12 @@ exports[`widgets > text > error 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -2767,39 +3055,44 @@ exports[`widgets > text > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > text > normal 1`] = `
+exports[`widgets > text > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-text"
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
         type="text"
       />
        
@@ -2810,7 +3103,6 @@ exports[`widgets > text > normal 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2820,40 +3112,45 @@ exports[`widgets > text > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > text > readonly 1`] = `
+exports[`widgets > text > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <input
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-text"
         id="root"
         name="root"
         readonly=""
-        style="flex-grow: 1;"
+        required=""
         type="text"
       />
        
@@ -2864,7 +3161,6 @@ exports[`widgets > text > readonly 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2874,46 +3170,50 @@ exports[`widgets > text > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > textarea > disabled 1`] = `
+exports[`widgets > textarea > snapshots > disabled 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <textarea
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-textarea"
         disabled=""
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2923,51 +3223,55 @@ exports[`widgets > textarea > disabled 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > textarea > error 1`] = `
+exports[`widgets > textarea > snapshots > error 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <textarea
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="true"
+        class="sjsf-textarea"
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -2983,45 +3287,49 @@ exports[`widgets > textarea > error 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > textarea > normal 1`] = `
+exports[`widgets > textarea > snapshots > normal 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <textarea
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-textarea"
         id="root"
         name="root"
-        style="flex-grow: 1;"
+        required=""
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -3031,46 +3339,50 @@ exports[`widgets > textarea > normal 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
 `;
 
-exports[`widgets > textarea > readonly 1`] = `
+exports[`widgets > textarea > snapshots > readonly 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="field"
-    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="field-content"
-      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
       <textarea
-        aria-describedby="root::description root::help root::errors"
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        class="sjsf-textarea"
         id="root"
         name="root"
         readonly=""
-        style="flex-grow: 1;"
+        required=""
       />
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -3080,7 +3392,7 @@ exports[`widgets > textarea > readonly 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>

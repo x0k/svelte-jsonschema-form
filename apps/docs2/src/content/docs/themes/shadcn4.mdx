@@ -8,36 +8,24 @@ import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/shadcn4-theme/specs';
 import styles from '@sjsf/shadcn4-theme/styles.css?inline';
 
-import { peerDependencies } from '#/shadcn4-theme/package.json'
+import pkg from '#/shadcn4-theme/package.json'
 
-import { withTag } from '@/shared';
+import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
-import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro'
 
-import Form from './shadcn4/form.svelte';
+import Form from './shadcn4/wrapper.svelte';
 import uiOptionsCode from './shadcn4/ui-options?raw';
-import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
+import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
-<Picker>
-  <a href="../shadcn/" data-active={false}>tw3</a>
-  <a href="." data-active={true}>tw4</a>
-</Picker>
-
 ## Installation
 
-<Npm pkg={withTag("shadcn4")} />
+<Npm pkg={themePkg("shadcn4")} />
 
-:::note
-
-This is `shadcn-svelte` based theme (Tailwind v4).
-
-:::
-
-bits-ui <code>{peerDependencies['bits-ui']}</code> and @internationalized/date
-<code>{peerDependencies['@internationalized/date']}</code> may be required.
+<Deps {...pkg} />
 
 ### Install shadcn-svelte
 
@@ -84,10 +72,6 @@ or used in the field as the default widget.
 
 <Code lang='ts' code={createExtraImports("shadcn4", extraWidgets)} />
 
-## UI options
-
-<Code code={uiOptionsCode} lang="typescript" />
-
 ## Widgets demo
 
 <Tabs>
@@ -103,3 +87,11 @@ or used in the field as the default widget.
     <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
   </TabItem>
 </Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

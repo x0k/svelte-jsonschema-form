@@ -17,11 +17,15 @@ export interface MergerOptions {
 
 export function createMerger({
   jsonSchemaMerger: {
+    mergeSchemaDefinitions,
     mergeArrayOfSchemaDefinitions,
   } = createJsonSchemaMerger(),
   jsonSchemaAllOfMerge = createShallowAllOfMerge(mergeArrayOfSchemaDefinitions),
 }: MergerOptions = {}): Merger {
   return {
+    mergeSchemas(a, b) {
+      return mergeSchemaDefinitions(a, b) as Schema;
+    },
     mergeAllOf(schema) {
       return jsonSchemaAllOfMerge(schema) as Schema;
     },
@@ -33,22 +37,27 @@ export interface FormMergerOptions
     MergerOptions {
   validator: Validator;
   schema: Schema;
-  includeUndefinedValues?: boolean | "excludeObjectChildren";
 }
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
   const merger = createMerger(options);
   return {
     ...merger,
-    mergeFormDataAndSchemaDefaults(formData, schema) {
+    mergeFormDataAndSchemaDefaults({
+      formData,
+      schema,
+      initialDefaultsGenerated = false,
+      includeUndefinedValues = false
+    }) {
       return getDefaultFormState(
         options.validator,
         merger,
         schema,
         formData,
         options.schema,
-        options.includeUndefinedValues,
-        options
+        includeUndefinedValues,
+        options,
+        initialDefaultsGenerated
       );
     },
   };

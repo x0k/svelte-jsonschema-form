@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { defaultMerger } from "@sjsf/form/core";
+  import { untrack } from "svelte";
   import {
     Content,
     createForm,
     ON_CHANGE,
     ON_INPUT,
-    setFormContext2,
+    setFormContext,
+    validate,
   } from "@sjsf/form";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
@@ -22,28 +23,45 @@
 
   const ctx = getBuilderContext();
 
-  const schema = ctx.nodeSchema(node);
-  const uiSchema = ctx.nodeUiSchema(node);
+  const schema = $derived(ctx.nodeSchema(node));
+  const uiSchema = $derived(ctx.nodeUiSchema(node));
   const form = createForm({
     ...defaults,
-    initialValue: node.options,
-    schema,
-    uiSchema,
+    validator: (options) => {
+      const v = defaults.validator(options);
+      return {
+        ...v,
+        validateFormValue(rootSchema, formValue) {
+          const cleanData = omitExtraData(
+            v,
+            options.merger(),
+            options.schema,
+            formValue
+          );
+          return v.validateFormValue(rootSchema, cleanData);
+        },
+      };
+    },
+    get initialValue() {
+      return untrack(() => $state.snapshot(node.options));
+    },
+    get schema() {
+      return schema;
+    },
+    get uiSchema() {
+      return uiSchema;
+    },
     fieldsValidationMode: ON_INPUT | ON_CHANGE,
     fieldsValidationDebounceMs: 200,
   });
-  setFormContext2(form);
+  setFormContext(form);
 
   $effect(() => {
     if (form.fieldsValidation.isProcessed) {
       return;
     }
-    node.options = omitExtraData(
-      defaults.validator,
-      defaultMerger,
-      schema,
-      form.value as any
-    ) as any;
+    const { value } = validate(form)
+    node.options = value as any;
   });
 </script>
 

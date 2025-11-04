@@ -1,19 +1,12 @@
 import { some } from '@sjsf/form/lib/array';
+import { isSchemaObject } from '@sjsf/form/lib/json-schema';
+import { isArrayOrObjectSchemaType, isPrimitiveSchemaType, typeOfSchema } from '@sjsf/form/core';
 import {
-  isArrayOrObjectSchemaType,
-  isPrimitiveSchemaType,
-  isSchema,
-  typeOfSchema
-} from '@sjsf/form/core';
-import {
-  DEFAULT_ID_SEPARATOR,
-  DEFAULT_ID_PSEUDO_SEPARATOR,
   type IdentifiableFieldElement,
   type Schema,
   type AdditionalPropertyKeyValidator
 } from '@sjsf/form';
-
-import { IDENTIFIABLE_INPUT_ELEMENTS } from '../model.js';
+import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id-builders/legacy';
 
 export enum AdditionalPropertyKeyValidationErrorType {
   ForbiddenSequence = 'forbidden-sequence',
@@ -33,6 +26,13 @@ export interface AdditionalPropertyKeyValidatorOptions {
   identifiableFieldElements?: (keyof IdentifiableFieldElement)[];
   error: string | ((ctx: ErrorFactoryOptions) => string);
 }
+
+const IDENTIFIABLE_INPUT_ELEMENTS: (keyof IdentifiableFieldElement)[] = [
+  'key-input',
+  'anyof',
+  'oneof'
+];
+
 
 export function createAdditionalPropertyKeyValidator({
   idSeparator = DEFAULT_ID_SEPARATOR,
@@ -64,7 +64,7 @@ export function createAdditionalPropertyKeyValidator({
               })
         );
       // TODO: handle `$ref` in `additionalProperties`
-      const types = isSchema(additionalProperties) ? typeOfSchema(additionalProperties) : [];
+      const types = isSchemaObject(additionalProperties) ? typeOfSchema(additionalProperties) : [];
       for (const separator of separators) {
         if (!key.includes(separator)) {
           continue;

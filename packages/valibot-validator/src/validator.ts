@@ -8,16 +8,8 @@ import type {
 } from "@sjsf/form";
 import * as v from "valibot";
 
-import {
-  createAugmentedId,
-  type SchemaRegistry,
-  type ValibotIssue,
-} from "./model.js";
-import {
-  createErrorsTransformer,
-  transformFieldErrors,
-  type ErrorsTransformerOptions,
-} from "./errors.js";
+import { createAugmentedId, type SchemaRegistry } from "./model.js";
+import { transformFormErrors, transformFieldErrors } from "./errors.js";
 
 function getValibotSchema(
   registry: SchemaRegistry,
@@ -61,33 +53,31 @@ export function createValidator({
   };
 }
 
-export interface FormValueValidatorOptions
-  extends ValidatorOptions,
-    ErrorsTransformerOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {}
 
-export function createFormValueValidator(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
-): FormValueValidator<ValibotIssue> {
-  const transform = createErrorsTransformer(options);
+): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
       const valibotSchema = getValibotSchema(
         options.schemaRegistry,
         rootSchema
       );
-      return transform(v.safeParse(valibotSchema, formValue), rootSchema);
+      return transformFormErrors(
+        v.safeParse(valibotSchema, formValue),
+        formValue
+      );
     },
   };
 }
 
 export interface AsyncFormValueValidatorOptions
-  extends SchemaRegistryProvider,
-    ErrorsTransformerOptions {}
+  extends SchemaRegistryProvider {}
 
-export function createAsyncFormValueValidator(
+export function createAsyncFormValueValidator<T>(
   options: AsyncFormValueValidatorOptions
-): AsyncFormValueValidator<ValibotIssue> {
-  const transform = createErrorsTransformer(options);
+): AsyncFormValueValidator<T> {
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
       const valibotSchema = getValibotSchema(
@@ -95,7 +85,7 @@ export function createAsyncFormValueValidator(
         rootSchema
       );
       const result = await v.safeParseAsync(valibotSchema, formValue);
-      return transform(result, rootSchema);
+      return transformFormErrors(result, formValue);
     },
   };
 }
@@ -104,12 +94,12 @@ export interface FieldValueValidatorOptions extends SchemaRegistryProvider {}
 
 export function createFieldValueValidator({
   schemaRegistry,
-}: FieldValueValidatorOptions): FieldValueValidator<ValibotIssue> {
+}: FieldValueValidatorOptions): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
       const valibotSchema = getValibotSchema(schemaRegistry, field.schema);
       const result = v.safeParse(valibotSchema, fieldValue);
-      return transformFieldErrors(field, result);
+      return transformFieldErrors(result);
     },
   };
 }
@@ -119,12 +109,12 @@ export interface AsyncFieldValueValidatorOptions
 
 export function createAsyncFieldValueValidator({
   schemaRegistry,
-}: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator<ValibotIssue> {
+}: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator {
   return {
     async validateFieldValueAsync(_, field, fieldValue) {
       const valibotSchema = getValibotSchema(schemaRegistry, field.schema);
       const result = await v.safeParseAsync(valibotSchema, fieldValue);
-      return transformFieldErrors(field, result);
+      return transformFieldErrors(result);
     },
   };
 }
@@ -134,10 +124,10 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidator(options: FormValidatorOptions) {
+export function createFormValidator<T>(options: FormValidatorOptions) {
   return Object.assign(
     createValidator(options),
-    createFormValueValidator(options),
+    createFormValueValidator<T>(options),
     createFieldValueValidator(options)
   );
 }
@@ -147,10 +137,12 @@ export interface AsyncFormValidatorOptions
     AsyncFormValueValidatorOptions,
     AsyncFieldValueValidatorOptions {}
 
-export function createAsyncFormValidator(options: AsyncFormValidatorOptions) {
+export function createAsyncFormValidator<T>(
+  options: AsyncFormValidatorOptions
+) {
   return Object.assign(
     createValidator(options),
-    createAsyncFormValueValidator(options),
+    createAsyncFormValueValidator<T>(options),
     createAsyncFieldValueValidator(options)
   );
 }

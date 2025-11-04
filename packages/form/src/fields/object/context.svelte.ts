@@ -1,4 +1,4 @@
-import { getContext, setContext, untrack } from "svelte";
+import { getContext, setContext } from "svelte";
 
 import {
   getDefaultValueForType,
@@ -17,20 +17,22 @@ import {
   validateField,
   type Config,
   type Schema,
-  type FormInternalContext,
-  type Validator,
   validateAdditionalPropertyKey,
   retrieveSchema,
-  getErrors,
-  type FieldError,
-  type PossibleError,
-  createChildId,
+  getFieldErrors,
   retrieveUiSchema,
   type UiSchemaDefinition,
   type UiOption,
   retrieveUiOption,
   uiTitleOption,
   type Translate,
+  markSchemaChange,
+  type FormState,
+  getFieldsValidationMode,
+  setFieldState,
+  FIELD_CHANGED,
+  getChildPath,
+  type FieldErrors,
 } from "@/form/index.js";
 
 import {
@@ -39,38 +41,46 @@ import {
   createOriginalKeysOrder,
 } from "./model.js";
 
-export type ObjectContext<V extends Validator> = {
-  readonly errors: FieldError<PossibleError<V>>[];
-  readonly canExpand: boolean;
-  readonly propertiesOrder: string[];
-  addProperty(): void;
-  renameProperty(oldProp: string, newProp: string, config: Config): void;
-  removeProperty(prop: string): void;
-  isAdditionalProperty(property: string): boolean;
-  propertyConfig(
+export interface ObjectContext {
+  errors: () => FieldErrors;
+  canExpand: () => boolean;
+  propertiesOrder: () => string[];
+  addProperty: () => void;
+  renameProperty: (oldProp: string, newProp: string, config: Config) => void;
+  removeProperty: (prop: string) => void;
+  isAdditionalProperty: (property: string) => boolean;
+  propertyConfig: (
     config: Config,
     property: string,
     isAdditional: boolean
-  ): Config;
-};
+  ) => Config;
+}
 
 const OBJECT_CONTEXT = Symbol("object-context");
 
-export function getObjectContext<V extends Validator>(): ObjectContext<V> {
+export function getObjectContext(): ObjectContext {
   return getContext(OBJECT_CONTEXT);
 }
 
-export function setObjectContext<V extends Validator>(ctx: ObjectContext<V>) {
+export function setObjectContext(ctx: ObjectContext) {
   setContext(OBJECT_CONTEXT, ctx);
 }
 
-export function createObjectContext<V extends Validator>(
-  ctx: FormInternalContext<V>,
-  config: () => Config,
-  value: () => SchemaObjectValue | undefined,
-  setValue: (v: SchemaObjectValue) => void,
-  translate: Translate
-): ObjectContext<V> {
+export interface ObjectContextOptions<T> {
+  ctx: FormState<T>;
+  config: () => Config;
+  value: () => SchemaObjectValue | null | undefined;
+  setValue: (value: SchemaObjectValue) => void;
+  translate: Translate;
+}
+
+export function createObjectContext<T>({
+  ctx,
+  config,
+  value,
+  setValue,
+  translate,
+}: ObjectContextOptions<T>): ObjectContext {
   // NOTE: This is required for computing a schema which will include all
   // additional properties in the `properties` field with the
   // `ADDITIONAL_PROPERTY_FLAG` flag and `dependencies` resolution.
@@ -80,8 +90,6 @@ export function createObjectContext<V extends Validator>(
 
   let lastSchemaProperties: Schema["properties"] = undefined;
   const schemaProperties = $derived.by(() => {
-    // TODO: Remove unnecessary allocations after this issue will be resolved
-    // https://github.com/sveltejs/svelte/issues/16658
     const snap = $state.snapshot(retrievedSchema.properties);
     if (!isSchemaDeepEqual(lastSchemaProperties, snap)) {
       lastSchemaProperties = snap;
@@ -93,16 +101,7 @@ export function createObjectContext<V extends Validator>(
   $effect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     schemaProperties;
-    setValue(
-      untrack(
-        () =>
-          getDefaultFieldState(
-            ctx,
-            retrievedSchema,
-            value()
-          ) as SchemaObjectValue
-      )
-    );
+    markSchemaChange(ctx);
   });
 
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
@@ -119,32 +118,39 @@ export function createObjectContext<V extends Validator>(
   const requiredProperties = $derived(new Set(retrievedSchema.required));
 
   const getAdditionalPropertySchema = $derived.by(
-    (): ((val: SchemaObjectValue | undefined, key: string) => Schema) => {
+    (): ((
+      val: SchemaObjectValue | null | undefined,
+      key: string
+    ) => Schema) => {
       const { additionalProperties, patternProperties } = retrievedSchema;
 
+      let patterns: string[];
+      if (
+        patternProperties !== undefined &&
+        ((patterns = Object.keys(patternProperties)), patterns.length > 0)
+      ) {
+        const pairs = patterns.map((pattern) => {
+          const property = patternProperties[pattern]!;
+          return [
+            new RegExp(pattern),
+            typeof property === "boolean" ? {} : property,
+          ] as const;
+        });
+        const getDefaultSchema = isSchemaObjectValue(additionalProperties)
+          ? (val: SchemaObjectValue | null | undefined) =>
+              retrieveSchema(ctx, additionalProperties, val)
+          : () => pairs[0]![1];
+        return (val, key) =>
+          retrieveSchema(
+            ctx,
+            pairs.find(([p]) => p.test(key))?.[1] ?? getDefaultSchema(val),
+            val
+          );
+      }
       if (isSchemaObjectValue(additionalProperties)) {
         return (val) => retrieveSchema(ctx, additionalProperties, val);
       }
-      let patterns: string[];
-      if (
-        patternProperties === undefined ||
-        ((patterns = Object.keys(patternProperties)), patterns.length === 0)
-      ) {
-        return () => ({});
-      }
-      const pairs = patterns.map((pattern) => {
-        const property = patternProperties[pattern]!;
-        return [
-          new RegExp(pattern),
-          typeof property === "boolean" ? {} : property,
-        ] as const;
-      });
-      return (val, key) =>
-        retrieveSchema(
-          ctx,
-          pairs.find(([p]) => p.test(key))?.[1] ?? pairs[0]![1],
-          val
-        );
+      return () => ({});
     }
   );
 
@@ -153,12 +159,13 @@ export function createObjectContext<V extends Validator>(
       isSchemaExpandable(retrievedSchema, value())
   );
 
-  const errors = $derived(getErrors(ctx, config().id));
+  const errors = $derived(getFieldErrors(ctx, config().path));
 
   const newKeyPrefix = $derived(translate("additional-property", {}));
 
-  function validate(val: SchemaObjectValue) {
-    const m = ctx.fieldsValidationMode;
+  function onChange(val: SchemaObjectValue | null | undefined) {
+    setFieldState(ctx, config().path, FIELD_CHANGED);
+    const m = getFieldsValidationMode(ctx);
     if (!(m & ON_OBJECT_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
       return;
     }
@@ -170,13 +177,13 @@ export function createObjectContext<V extends Validator>(
   );
 
   return {
-    get errors() {
+    errors() {
       return errors;
     },
-    get canExpand() {
+    canExpand() {
       return canExpand;
     },
-    get propertiesOrder() {
+    propertiesOrder() {
       return schemaPropertiesOrder;
     },
     isAdditionalProperty(property) {
@@ -192,8 +199,7 @@ export function createObjectContext<V extends Validator>(
           : (config.uiSchema[property] as UiSchemaDefinition | undefined)
       );
       return {
-        id: createChildId(config.id, property, ctx),
-        name: property,
+        path: getChildPath(ctx, config.path, property),
         title: uiTitleOption(ctx, uiSchema) ?? schema.title ?? property,
         schema,
         uiSchema,
@@ -201,28 +207,36 @@ export function createObjectContext<V extends Validator>(
       };
     },
     addProperty() {
-      const val = value();
-      if (val === undefined) {
-        return;
-      }
-      const newKey = generateNewKey(val, newKeyPrefix, additionalPropertyKey);
+      let val = value();
+      const newKey = val
+        ? generateNewKey(val, newKeyPrefix, additionalPropertyKey)
+        : additionalPropertyKey(newKeyPrefix, 0);
       const additionalPropertySchema = getAdditionalPropertySchema(val, newKey);
-      val[newKey] =
-        getDefaultFieldState(ctx, additionalPropertySchema, undefined) ??
+      const propValue =
+        getDefaultFieldState(ctx, {
+          schema: additionalPropertySchema,
+          formData: undefined,
+        }) ??
         getDefaultValueForType(getSimpleSchemaType(additionalPropertySchema));
-      validate(val);
+      if (val) {
+        val[newKey] = propValue;
+      } else {
+        val = { [newKey]: propValue };
+        setValue(val);
+      }
+      onChange(val);
     },
     removeProperty(prop) {
       const val = value();
-      if (val === undefined) {
+      if (!val) {
         return;
       }
       delete val[prop];
-      validate(val);
+      onChange(val);
     },
     renameProperty(oldProp, newProp, fieldConfig) {
       const val = value();
-      if (val === undefined) {
+      if (!val) {
         return;
       }
       const newKey = generateNewKey(val, newProp, additionalPropertyKey);
@@ -231,7 +245,7 @@ export function createObjectContext<V extends Validator>(
       }
       val[newKey] = val[oldProp];
       delete val[oldProp];
-      validate(val);
+      onChange(val);
     },
   };
 }

@@ -7,22 +7,23 @@ sidebar:
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
-import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './zod4/form.svelte';
 import formCode from './zod4/form.svelte?raw';
 import sharedCode from './shared/index.ts?raw';
 
-<Picker>
-  <a href="../zod/" data-active={false}>v3</a>
-  <a href="." data-active={true}>v4</a>
-</Picker>
-
 You may want to use Zod validator because:
 
 - You can use Zod schema as a source of truth for the form value type (`z.infer`).
 - This is an easy way to add custom error messages
+
+:::caution
+
+Your schema must be convertible to a JSON schema.
+See the [unrepresentable](https://zod.dev/json-schema#unrepresentable) for details.
+
+:::
 
 ## Installation
 
@@ -32,7 +33,7 @@ You may want to use Zod validator because:
 
 :::tip
 
-Use `@sjsf/zod4-validator/mini` to work with `zod/v4-mini`
+Use `@sjsf/zod4-validator/mini` to work with `zod/mini`
 
 :::
 

@@ -3,37 +3,38 @@
 exports[`array fields > array 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
-      <!---->
-      
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <button
-      style="width: 100%; padding: 0.25rem;"
+      class="sjsf-button"
+      data-type="array-item-add"
       type="button"
     >
       <!---->
@@ -49,7 +50,7 @@ exports[`array fields > array 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -58,72 +59,76 @@ exports[`array fields > array 1`] = `
 exports[`array fields > array icons 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.0"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                -1 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_0"
+                >
+                  -1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -131,23 +136,21 @@ exports[`array fields > array icons 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_0"
+                name="root_0"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -158,7 +161,6 @@ exports[`array fields > array icons 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -170,23 +172,21 @@ exports[`array fields > array icons 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
         >
           <!---->
           <!---->
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-move-up"
             disabled=""
             type="button"
           >
@@ -198,6 +198,8 @@ exports[`array fields > array icons 1`] = `
           <!---->
            
           <button
+            class="sjsf-button"
+            data-type="array-item-move-down"
             type="button"
           >
             <!---->
@@ -210,6 +212,8 @@ exports[`array fields > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-copy"
             type="button"
           >
             <!---->
@@ -222,6 +226,8 @@ exports[`array fields > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-remove"
             type="button"
           >
             <!---->
@@ -235,60 +241,60 @@ exports[`array fields > array icons 1`] = `
           <!---->
         </div>
         
-        
         <!---->
         <!---->
       </div>
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.1"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                -2 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_1"
+                >
+                  -2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -296,23 +302,21 @@ exports[`array fields > array icons 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_1"
+                name="root_1"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -323,7 +327,6 @@ exports[`array fields > array icons 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -335,23 +338,21 @@ exports[`array fields > array icons 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
         >
           <!---->
           <!---->
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-move-up"
             type="button"
           >
             <!---->
@@ -362,6 +363,8 @@ exports[`array fields > array icons 1`] = `
           <!---->
            
           <button
+            class="sjsf-button"
+            data-type="array-item-move-down"
             disabled=""
             type="button"
           >
@@ -375,6 +378,8 @@ exports[`array fields > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-copy"
             type="button"
           >
             <!---->
@@ -387,6 +392,8 @@ exports[`array fields > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-remove"
             type="button"
           >
             <!---->
@@ -400,12 +407,9 @@ exports[`array fields > array icons 1`] = `
           <!---->
         </div>
         
-        
         <!---->
         <!---->
       </div>
-      
-      
       
       
       
@@ -413,12 +417,12 @@ exports[`array fields > array icons 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <button
-      style="width: 100%; padding: 0.25rem;"
+      class="sjsf-button"
+      data-type="array-item-add"
       type="button"
     >
       <!---->
@@ -434,7 +438,7 @@ exports[`array fields > array icons 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -443,11 +447,19 @@ exports[`array fields > array icons 1`] = `
 exports[`array fields > checkboxes 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
+  <!---->
+   
   <pre
     style="color: red;"
   >
     "multiEnumField" component not found
   </pre>
+  <!---->
   
   
 </div>
@@ -456,71 +468,75 @@ exports[`array fields > checkboxes 1`] = `
 exports[`array fields > empty errors array 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="object-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="object-properties"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="object-property"
-        style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
         <!---->
         <!---->
          
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="object-property-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.name"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                name 
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_name"
+                >
+                  name 
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
@@ -528,22 +544,20 @@ exports[`array fields > empty errors array 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.name::description root.name::help root.name::errors"
-                id="root.name"
-                name="root.name"
-                style="flex-grow: 1;"
+                aria-describedby="root_name__description root_name__help root_name__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_name"
+                name="root_name"
                 type="text"
               />
                
@@ -554,7 +568,6 @@ exports[`array fields > empty errors array 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -566,10 +579,8 @@ exports[`array fields > empty errors array 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -580,19 +591,16 @@ exports[`array fields > empty errors array 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
      
     <!---->
     <ul
-      id="root::errors"
-      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      class="sjsf-errors-list"
+      id="root__errors"
       tabindex="-1"
     >
       <li>
@@ -606,7 +614,7 @@ exports[`array fields > empty errors array 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -615,69 +623,64 @@ exports[`array fields > empty errors array 1`] = `
 exports[`array fields > fixed array 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_0"
+                name="root_0"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -688,7 +691,6 @@ exports[`array fields > fixed array 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -700,10 +702,8 @@ exports[`array fields > fixed array 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -712,51 +712,43 @@ exports[`array fields > fixed array 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                class="sjsf-number"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
-                style="flex-grow: 1;"
                 type="number"
               />
                
@@ -767,7 +759,6 @@ exports[`array fields > fixed array 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -779,10 +770,8 @@ exports[`array fields > fixed array 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -793,11 +782,8 @@ exports[`array fields > fixed array 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -807,7 +793,7 @@ exports[`array fields > fixed array 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -816,37 +802,51 @@ exports[`array fields > fixed array 1`] = `
 exports[`with title and description > array 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="array-field-title-row"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="arrayTemplate"
+          id="root__title"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a test description
       </div>
@@ -855,29 +855,24 @@ exports[`with title and description > array 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
-      <!---->
-      
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <button
-      style="width: 100%; padding: 0.25rem;"
+      class="sjsf-button"
+      data-type="array-item-add"
       type="button"
     >
       <!---->
@@ -893,7 +888,7 @@ exports[`with title and description > array 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -902,37 +897,51 @@ exports[`with title and description > array 1`] = `
 exports[`with title and description > array icons 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="array-field-title-row"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="arrayTemplate"
+          id="root__title"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a test description
       </div>
@@ -941,71 +950,69 @@ exports[`with title and description > array icons 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.0"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                Test item-1 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_0"
+                >
+                  Test item-1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.0::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_0__description"
               >
                 a test item description
               </div>
@@ -1014,23 +1021,21 @@ exports[`with title and description > array icons 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_0"
+                name="root_0"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -1041,7 +1046,6 @@ exports[`with title and description > array icons 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1053,23 +1057,21 @@ exports[`with title and description > array icons 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
         >
           <!---->
           <!---->
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-move-up"
             disabled=""
             type="button"
           >
@@ -1081,6 +1083,8 @@ exports[`with title and description > array icons 1`] = `
           <!---->
            
           <button
+            class="sjsf-button"
+            data-type="array-item-move-down"
             type="button"
           >
             <!---->
@@ -1093,6 +1097,8 @@ exports[`with title and description > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-copy"
             type="button"
           >
             <!---->
@@ -1105,6 +1111,8 @@ exports[`with title and description > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-remove"
             type="button"
           >
             <!---->
@@ -1118,67 +1126,67 @@ exports[`with title and description > array icons 1`] = `
           <!---->
         </div>
         
-        
         <!---->
         <!---->
       </div>
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.1"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                Test item-2 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_1"
+                >
+                  Test item-2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.1::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_1__description"
               >
                 a test item description
               </div>
@@ -1187,23 +1195,21 @@ exports[`with title and description > array icons 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_1"
+                name="root_1"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -1214,7 +1220,6 @@ exports[`with title and description > array icons 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1226,23 +1231,21 @@ exports[`with title and description > array icons 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
         >
           <!---->
           <!---->
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-move-up"
             type="button"
           >
             <!---->
@@ -1253,6 +1256,8 @@ exports[`with title and description > array icons 1`] = `
           <!---->
            
           <button
+            class="sjsf-button"
+            data-type="array-item-move-down"
             disabled=""
             type="button"
           >
@@ -1266,6 +1271,8 @@ exports[`with title and description > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-copy"
             type="button"
           >
             <!---->
@@ -1278,6 +1285,8 @@ exports[`with title and description > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-remove"
             type="button"
           >
             <!---->
@@ -1291,12 +1300,9 @@ exports[`with title and description > array icons 1`] = `
           <!---->
         </div>
         
-        
         <!---->
         <!---->
       </div>
-      
-      
       
       
       
@@ -1304,12 +1310,12 @@ exports[`with title and description > array icons 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <button
-      style="width: 100%; padding: 0.25rem;"
+      class="sjsf-button"
+      data-type="array-item-add"
       type="button"
     >
       <!---->
@@ -1325,7 +1331,7 @@ exports[`with title and description > array icons 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -1334,11 +1340,19 @@ exports[`with title and description > array icons 1`] = `
 exports[`with title and description > checkboxes 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
+  <!---->
+   
   <pre
     style="color: red;"
   >
     "multiEnumField" component not found
   </pre>
+  <!---->
   
   
 </div>
@@ -1347,37 +1361,51 @@ exports[`with title and description > checkboxes 1`] = `
 exports[`with title and description > fixed array 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="array-field-title-row"
       >
-        Test field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="arrayTemplate"
+          id="root__title"
+        >
+          Test field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a test description
       </div>
@@ -1386,71 +1414,69 @@ exports[`with title and description > fixed array 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.0"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                Test item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_0"
+                >
+                  Test item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.0::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_0__description"
               >
                 a test item description
               </div>
@@ -1459,23 +1485,21 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_0"
+                name="root_0"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -1486,7 +1510,6 @@ exports[`with title and description > fixed array 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1498,10 +1521,8 @@ exports[`with title and description > fixed array 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1510,60 +1531,61 @@ exports[`with title and description > fixed array 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.1"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                Test item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_1"
+                >
+                  Test item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.1::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_1__description"
               >
                 a test item description
               </div>
@@ -1572,24 +1594,22 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                class="sjsf-number"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
-                style="flex-grow: 1;"
                 type="number"
               />
                
@@ -1600,7 +1620,6 @@ exports[`with title and description > fixed array 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1612,10 +1631,8 @@ exports[`with title and description > fixed array 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -1626,11 +1643,8 @@ exports[`with title and description > fixed array 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -1640,7 +1654,7 @@ exports[`with title and description > fixed array 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -1649,37 +1663,51 @@ exports[`with title and description > fixed array 1`] = `
 exports[`with title and description from both > array 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="array-field-title-row"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="arrayTemplate"
+          id="root__title"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a fancier description
       </div>
@@ -1688,29 +1716,24 @@ exports[`with title and description from both > array 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
-      <!---->
-      
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <button
-      style="width: 100%; padding: 0.25rem;"
+      class="sjsf-button"
+      data-type="array-item-add"
       type="button"
     >
       <!---->
@@ -1726,7 +1749,7 @@ exports[`with title and description from both > array 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -1735,37 +1758,51 @@ exports[`with title and description from both > array 1`] = `
 exports[`with title and description from both > array icons 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="array-field-title-row"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="arrayTemplate"
+          id="root__title"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a fancier description
       </div>
@@ -1774,71 +1811,69 @@ exports[`with title and description from both > array icons 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.0"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item-1 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_0"
+                >
+                  My Item-1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.0::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_0__description"
               >
                 a fancier item description
               </div>
@@ -1847,23 +1882,21 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_0"
+                name="root_0"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -1874,7 +1907,6 @@ exports[`with title and description from both > array icons 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -1886,23 +1918,21 @@ exports[`with title and description from both > array icons 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
         >
           <!---->
           <!---->
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-move-up"
             disabled=""
             type="button"
           >
@@ -1914,6 +1944,8 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
            
           <button
+            class="sjsf-button"
+            data-type="array-item-move-down"
             type="button"
           >
             <!---->
@@ -1926,6 +1958,8 @@ exports[`with title and description from both > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-copy"
             type="button"
           >
             <!---->
@@ -1938,6 +1972,8 @@ exports[`with title and description from both > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-remove"
             type="button"
           >
             <!---->
@@ -1951,67 +1987,67 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
         </div>
         
-        
         <!---->
         <!---->
       </div>
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.1"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item-2 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_1"
+                >
+                  My Item-2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.1::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_1__description"
               >
                 a fancier item description
               </div>
@@ -2020,23 +2056,21 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_1"
+                name="root_1"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -2047,7 +2081,6 @@ exports[`with title and description from both > array icons 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -2059,23 +2092,21 @@ exports[`with title and description from both > array icons 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
         >
           <!---->
           <!---->
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-move-up"
             type="button"
           >
             <!---->
@@ -2086,6 +2117,8 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
            
           <button
+            class="sjsf-button"
+            data-type="array-item-move-down"
             disabled=""
             type="button"
           >
@@ -2099,6 +2132,8 @@ exports[`with title and description from both > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-copy"
             type="button"
           >
             <!---->
@@ -2111,6 +2146,8 @@ exports[`with title and description from both > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-remove"
             type="button"
           >
             <!---->
@@ -2124,12 +2161,9 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
         </div>
         
-        
         <!---->
         <!---->
       </div>
-      
-      
       
       
       
@@ -2137,12 +2171,12 @@ exports[`with title and description from both > array icons 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <button
-      style="width: 100%; padding: 0.25rem;"
+      class="sjsf-button"
+      data-type="array-item-add"
       type="button"
     >
       <!---->
@@ -2158,7 +2192,7 @@ exports[`with title and description from both > array icons 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -2167,11 +2201,19 @@ exports[`with title and description from both > array icons 1`] = `
 exports[`with title and description from both > checkboxes 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
+  <!---->
+   
   <pre
     style="color: red;"
   >
     "multiEnumField" component not found
   </pre>
+  <!---->
   
   
 </div>
@@ -2180,37 +2222,51 @@ exports[`with title and description from both > checkboxes 1`] = `
 exports[`with title and description from both > fixed array 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="array-field-title-row"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="arrayTemplate"
+          id="root__title"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a fancier description
       </div>
@@ -2219,71 +2275,69 @@ exports[`with title and description from both > fixed array 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.0"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_0"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.0::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_0__description"
               >
                 a fancier item description
               </div>
@@ -2292,23 +2346,21 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_0"
+                name="root_0"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -2319,7 +2371,6 @@ exports[`with title and description from both > fixed array 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -2331,10 +2382,8 @@ exports[`with title and description from both > fixed array 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -2343,60 +2392,61 @@ exports[`with title and description from both > fixed array 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.1"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_1"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.1::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_1__description"
               >
                 a fancier item description
               </div>
@@ -2405,24 +2455,22 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                class="sjsf-number"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
-                style="flex-grow: 1;"
                 type="number"
               />
                
@@ -2433,7 +2481,6 @@ exports[`with title and description from both > fixed array 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -2445,10 +2492,8 @@ exports[`with title and description from both > fixed array 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -2459,11 +2504,8 @@ exports[`with title and description from both > fixed array 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -2473,7 +2515,7 @@ exports[`with title and description from both > fixed array 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -2482,37 +2524,51 @@ exports[`with title and description from both > fixed array 1`] = `
 exports[`with title and description from uiSchema > array 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="array-field-title-row"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="arrayTemplate"
+          id="root__title"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a fancier description
       </div>
@@ -2521,29 +2577,24 @@ exports[`with title and description from uiSchema > array 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
-      <!---->
-      
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <button
-      style="width: 100%; padding: 0.25rem;"
+      class="sjsf-button"
+      data-type="array-item-add"
       type="button"
     >
       <!---->
@@ -2559,7 +2610,7 @@ exports[`with title and description from uiSchema > array 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -2568,37 +2619,51 @@ exports[`with title and description from uiSchema > array 1`] = `
 exports[`with title and description from uiSchema > array icons 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="array-field-title-row"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="arrayTemplate"
+          id="root__title"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a fancier description
       </div>
@@ -2607,71 +2672,69 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.0"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item-1 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_0"
+                >
+                  My Item-1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.0::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_0__description"
               >
                 a fancier item description
               </div>
@@ -2680,23 +2743,21 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_0"
+                name="root_0"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -2707,7 +2768,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -2719,23 +2779,21 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
         >
           <!---->
           <!---->
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-move-up"
             disabled=""
             type="button"
           >
@@ -2747,6 +2805,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
            
           <button
+            class="sjsf-button"
+            data-type="array-item-move-down"
             type="button"
           >
             <!---->
@@ -2759,6 +2819,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-copy"
             type="button"
           >
             <!---->
@@ -2771,6 +2833,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-remove"
             type="button"
           >
             <!---->
@@ -2784,67 +2848,67 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
         </div>
         
-        
         <!---->
         <!---->
       </div>
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.1"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item-2 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_1"
+                >
+                  My Item-2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.1::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_1__description"
               >
                 a fancier item description
               </div>
@@ -2853,23 +2917,21 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_1"
+                name="root_1"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -2880,7 +2942,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -2892,23 +2953,21 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
         >
           <!---->
           <!---->
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-move-up"
             type="button"
           >
             <!---->
@@ -2919,6 +2978,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
            
           <button
+            class="sjsf-button"
+            data-type="array-item-move-down"
             disabled=""
             type="button"
           >
@@ -2932,6 +2993,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-copy"
             type="button"
           >
             <!---->
@@ -2944,6 +3007,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-remove"
             type="button"
           >
             <!---->
@@ -2957,12 +3022,9 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           <!---->
         </div>
         
-        
         <!---->
         <!---->
       </div>
-      
-      
       
       
       
@@ -2970,12 +3032,12 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <button
-      style="width: 100%; padding: 0.25rem;"
+      class="sjsf-button"
+      data-type="array-item-add"
       type="button"
     >
       <!---->
@@ -2991,7 +3053,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -3000,11 +3062,19 @@ exports[`with title and description from uiSchema > array icons 1`] = `
 exports[`with title and description from uiSchema > checkboxes 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
+  <!---->
+   
   <pre
     style="color: red;"
   >
     "multiEnumField" component not found
   </pre>
+  <!---->
   
   
 </div>
@@ -3013,37 +3083,51 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
 exports[`with title and description from uiSchema > fixed array 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
     >
       <!---->
       <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
+      <div
+        class="sjsf-layout"
+        data-layout="array-field-title-row"
       >
-        My Field
-      </legend>
+        <!---->
+        <legend
+          class="sjsf-title"
+          data-template="arrayTemplate"
+          id="root__title"
+        >
+          My Field
+        </legend>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
       
       <!---->
        
       <!---->
       <div
-        id="root::description"
-        style="font-weight: 300;"
+        class="sjsf-description"
+        id="root__description"
       >
         a fancier description
       </div>
@@ -3052,71 +3136,69 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       <!---->
     </div>
     
-    
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.0"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_0"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.0::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_0__description"
               >
                 a fancier item description
               </div>
@@ -3125,23 +3207,21 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_0"
+                name="root_0"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -3152,7 +3232,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -3164,10 +3243,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -3176,60 +3253,61 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-meta"
-              style="display: block;"
             >
               <!---->
               <!---->
-              <label
-                for="root.1"
-                style="font-weight: bold;"
+              <div
+                class="sjsf-layout"
+                data-layout="field-title-row"
               >
-                My Item 
-                <span>
-                  *
-                </span>
                 <!---->
-              </label>
+                <label
+                  class="sjsf-label"
+                  for="root_1"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
               
               <!---->
                
               <!---->
               <div
-                id="root.1::description"
-                style="font-weight: 300;"
+                class="sjsf-description"
+                id="root_1__description"
               >
                 a fancier item description
               </div>
@@ -3238,24 +3316,22 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
             </div>
             
-            
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                class="sjsf-number"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
-                style="flex-grow: 1;"
                 type="number"
               />
                
@@ -3266,7 +3342,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -3278,10 +3353,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -3292,11 +3365,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -3306,7 +3376,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -3315,37 +3385,38 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
 exports[`with title and description with global label off > array 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
-      <!---->
-      
       
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <button
-      style="width: 100%; padding: 0.25rem;"
+      class="sjsf-button"
+      data-type="array-item-add"
       type="button"
     >
       <!---->
@@ -3361,7 +3432,7 @@ exports[`with title and description with global label off > array 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -3370,69 +3441,64 @@ exports[`with title and description with global label off > array 1`] = `
 exports[`with title and description with global label off > array icons 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_0"
+                name="root_0"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -3443,7 +3509,6 @@ exports[`with title and description with global label off > array icons 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -3455,23 +3520,21 @@ exports[`with title and description with global label off > array icons 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
         >
           <!---->
           <!---->
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-move-up"
             disabled=""
             type="button"
           >
@@ -3483,6 +3546,8 @@ exports[`with title and description with global label off > array icons 1`] = `
           <!---->
            
           <button
+            class="sjsf-button"
+            data-type="array-item-move-down"
             type="button"
           >
             <!---->
@@ -3495,6 +3560,8 @@ exports[`with title and description with global label off > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-copy"
             type="button"
           >
             <!---->
@@ -3507,6 +3574,8 @@ exports[`with title and description with global label off > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-remove"
             type="button"
           >
             <!---->
@@ -3520,57 +3589,48 @@ exports[`with title and description with global label off > array icons 1`] = `
           <!---->
         </div>
         
-        
         <!---->
         <!---->
       </div>
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_1"
+                name="root_1"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -3581,7 +3641,6 @@ exports[`with title and description with global label off > array icons 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -3593,23 +3652,21 @@ exports[`with title and description with global label off > array icons 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
         >
           <!---->
           <!---->
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-move-up"
             type="button"
           >
             <!---->
@@ -3620,6 +3677,8 @@ exports[`with title and description with global label off > array icons 1`] = `
           <!---->
            
           <button
+            class="sjsf-button"
+            data-type="array-item-move-down"
             disabled=""
             type="button"
           >
@@ -3633,6 +3692,8 @@ exports[`with title and description with global label off > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-copy"
             type="button"
           >
             <!---->
@@ -3645,6 +3706,8 @@ exports[`with title and description with global label off > array icons 1`] = `
            
           <!---->
           <button
+            class="sjsf-button"
+            data-type="array-item-remove"
             type="button"
           >
             <!---->
@@ -3658,12 +3721,9 @@ exports[`with title and description with global label off > array icons 1`] = `
           <!---->
         </div>
         
-        
         <!---->
         <!---->
       </div>
-      
-      
       
       
       
@@ -3671,12 +3731,12 @@ exports[`with title and description with global label off > array icons 1`] = `
       
       <!---->
     </div>
-    
     <!---->
      
     <!---->
     <button
-      style="width: 100%; padding: 0.25rem;"
+      class="sjsf-button"
+      data-type="array-item-add"
       type="button"
     >
       <!---->
@@ -3692,7 +3752,7 @@ exports[`with title and description with global label off > array icons 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>
@@ -3701,11 +3761,19 @@ exports[`with title and description with global label off > array icons 1`] = `
 exports[`with title and description with global label off > checkboxes 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
+  <!---->
+   
   <pre
     style="color: red;"
   >
     "multiEnumField" component not found
   </pre>
+  <!---->
   
   
 </div>
@@ -3714,69 +3782,64 @@ exports[`with title and description with global label off > checkboxes 1`] = `
 exports[`with title and description with global label off > fixed array 1`] = `
 <div>
   <!---->
+  <input
+    name="__sjsf_id_prefix"
+    type="hidden"
+    value="root"
+  />
   <!---->
+   
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="sjsf-layout"
     data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
   >
     <!---->
     <!---->
      
-    <!---->
     <div
-      class="svelte-e9ah86"
+      class="sjsf-layout"
       data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
     >
       <!---->
       <!---->
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                class="sjsf-text"
+                id="root_0"
+                name="root_0"
                 required=""
-                style="flex-grow: 1;"
                 type="text"
               />
                
@@ -3787,7 +3850,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -3799,10 +3861,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -3811,51 +3871,43 @@ exports[`with title and description with global label off > fixed array 1`] = `
       
       
       
-      
-      <!---->
       <!---->
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="sjsf-layout"
         data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
       >
         <!---->
-        <!---->
         <div
-          class="svelte-e9ah86"
+          class="sjsf-layout"
           data-layout="array-item-content"
-          style="flex-grow: 1;"
         >
           <!---->
           <!---->
           <!---->
           <!---->
-          <!---->
           <div
-            class="svelte-e9ah86"
+            class="sjsf-layout"
             data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
             <!---->
             <!---->
              
-            <!---->
             <div
-              class="svelte-e9ah86"
+              class="sjsf-layout"
               data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                class="sjsf-number"
+                id="root_1"
+                name="root_1"
                 required=""
                 step="any"
-                style="flex-grow: 1;"
                 type="number"
               />
                
@@ -3866,7 +3918,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
               
               <!---->
             </div>
-            
             <!---->
              
             <!---->
@@ -3878,10 +3929,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
           
           
           
-          
           <!---->
         </div>
-        
         <!---->
          
         <!---->
@@ -3892,11 +3941,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
       
       
       
-      
-      
       <!---->
     </div>
-    
     <!---->
      
     <!---->
@@ -3906,7 +3952,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
   </div>
   
   
-  
+  <!---->
   
   
 </div>

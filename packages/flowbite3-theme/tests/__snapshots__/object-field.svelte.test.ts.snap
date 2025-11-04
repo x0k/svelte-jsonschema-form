@@ -8,6 +8,13 @@ exports[`object fields > additionalProperties 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -23,7 +30,6 @@ exports[`object fields > additionalProperties 1`] = `
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -58,17 +64,29 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.foo::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_foo__key-input"
+                  >
+                    foo Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -92,24 +110,17 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -162,14 +173,26 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.foo"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_foo"
+                  >
+                    foo 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -193,23 +216,16 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo"
-                  name="root.foo"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo"
+                  name="root_foo"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -278,7 +294,6 @@ exports[`object fields > additionalProperties 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -292,7 +307,7 @@ exports[`object fields > additionalProperties 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -319,6 +334,7 @@ exports[`object fields > additionalProperties 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -330,6 +346,13 @@ exports[`object fields > additionalProperties with error 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -345,7 +368,6 @@ exports[`object fields > additionalProperties with error 1`] = `
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -380,17 +402,29 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.foo::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_foo__key-input"
+                  >
+                    foo Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -414,24 +448,17 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                  aria-invalid="true"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -449,7 +476,7 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <ul
                 class="text-red-700 dark:text-red-500 list-disc list-inside"
-                id="root.foo::key-input::errors"
+                id="root_foo__key-input__errors"
                 tabindex="-1"
               >
                 <li>
@@ -496,14 +523,26 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.foo"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_foo"
+                  >
+                    foo 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -527,23 +566,16 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo"
-                  name="root.foo"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo"
+                  name="root_foo"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -612,7 +644,6 @@ exports[`object fields > additionalProperties with error 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -626,7 +657,7 @@ exports[`object fields > additionalProperties with error 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -653,6 +684,7 @@ exports[`object fields > additionalProperties with error 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -664,6 +696,13 @@ exports[`object fields > has errors 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -679,7 +718,6 @@ exports[`object fields > has errors 1`] = `
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -716,14 +754,26 @@ exports[`object fields > has errors 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.name"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  name 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_name"
+                  >
+                    name 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -747,23 +797,16 @@ exports[`object fields > has errors 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.name::description root.name::help root.name::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.name"
-                  name="root.name"
+                  aria-describedby="root_name__description root_name__help root_name__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_name"
+                  name="root_name"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -796,7 +839,6 @@ exports[`object fields > has errors 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -813,7 +855,7 @@ exports[`object fields > has errors 1`] = `
       <!---->
       <ul
         class="text-red-700 dark:text-red-500 list-disc list-inside"
-        id="root::errors"
+        id="root__errors"
         tabindex="-1"
       >
         <li>
@@ -828,7 +870,7 @@ exports[`object fields > has errors 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -855,6 +897,7 @@ exports[`object fields > has errors 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -866,6 +909,13 @@ exports[`object fields > object 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -887,7 +937,6 @@ exports[`object fields > object 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
@@ -918,14 +967,26 @@ exports[`object fields > object 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.a"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  A 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_a"
+                  >
+                    A 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -949,23 +1010,16 @@ exports[`object fields > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.a"
-                  name="root.a"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_a"
+                  name="root_a"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -1036,14 +1090,26 @@ exports[`object fields > object 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.b"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  B 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_b"
+                  >
+                    B 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -1067,24 +1133,17 @@ exports[`object fields > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.b"
-                  name="root.b"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -1117,7 +1176,6 @@ exports[`object fields > object 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -1137,7 +1195,7 @@ exports[`object fields > object 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1164,6 +1222,7 @@ exports[`object fields > object 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -1175,6 +1234,13 @@ exports[`object fields > one of defaults > default preset 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1190,12 +1256,24 @@ exports[`object fields > one of defaults > default preset 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          Options
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            Options
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
@@ -1211,7 +1289,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1288,7 +1365,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.transform::description"
+                  id="root_transform__description"
                 >
                   Apply a transformation to the output data
                 </div>
@@ -1308,30 +1385,26 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <div
-                  class="flex items-center"
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
                 >
+                  <input
+                    aria-describedby="root_transform__description root_transform__help root_transform__errors"
+                    aria-invalid="false"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                    id="root_transform"
+                    name="root_transform"
+                    type="checkbox"
+                  />
+                   
                   <!---->
-                  <label
-                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  >
-                    <input
-                      aria-describedby="root.transform::description root.transform::help root.transform::errors"
-                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                      id="root.transform"
-                      name="root.transform"
-                      type="checkbox"
-                    />
-                     
-                    <!---->
-                    Transform
-                    
-                    <!---->
-                    <!---->
-                  </label>
+                  Transform
                   
                   <!---->
-                </div>
+                  <!---->
+                </label>
+                
                 
                 
                 
@@ -1436,7 +1509,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.paginate::description"
+                  id="root_paginate__description"
                 >
                   Partitioning the input data (object or array) into pages by their keys
                 </div>
@@ -1456,30 +1529,26 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <div
-                  class="flex items-center"
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
                 >
+                  <input
+                    aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
+                    aria-invalid="false"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                    id="root_paginate"
+                    name="root_paginate"
+                    type="checkbox"
+                  />
+                   
                   <!---->
-                  <label
-                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  >
-                    <input
-                      aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
-                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                      id="root.paginate"
-                      name="root.paginate"
-                      type="checkbox"
-                    />
-                     
-                    <!---->
-                    Paginate
-                    
-                    <!---->
-                    <!---->
-                  </label>
+                  Paginate
                   
                   <!---->
-                </div>
+                  <!---->
+                </label>
+                
                 
                 
                 
@@ -1547,7 +1616,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.createOnOpen::description"
+                  id="root_createOnOpen__description"
                 >
                   Creating a table when opening a share link
                 </div>
@@ -1567,30 +1636,26 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <div
-                  class="flex items-center"
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
                 >
+                  <input
+                    aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
+                    aria-invalid="false"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                    id="root_createOnOpen"
+                    name="root_createOnOpen"
+                    type="checkbox"
+                  />
+                   
                   <!---->
-                  <label
-                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  >
-                    <input
-                      aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
-                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                      id="root.createOnOpen"
-                      name="root.createOnOpen"
-                      type="checkbox"
-                    />
-                     
-                    <!---->
-                    Create on open
-                    
-                    <!---->
-                    <!---->
-                  </label>
+                  Create on open
                   
                   <!---->
-                </div>
+                  <!---->
+                </label>
+                
                 
                 
                 
@@ -1623,7 +1688,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -1637,7 +1701,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -1664,6 +1728,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -1675,6 +1740,13 @@ exports[`object fields > one of defaults > manual preset 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -1690,12 +1762,24 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          Options
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            Options
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
@@ -1711,7 +1795,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1788,7 +1871,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.collapseIndexes::description"
+                  id="root_collapseIndexes__description"
                 >
                   Combines hierarchical indexes into one cell (1.1, 1.2, ...)
                 </div>
@@ -1808,30 +1891,26 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <div
-                  class="flex items-center"
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
                 >
+                  <input
+                    aria-describedby="root_collapseIndexes__description root_collapseIndexes__help root_collapseIndexes__errors"
+                    aria-invalid="false"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                    id="root_collapseIndexes"
+                    name="root_collapseIndexes"
+                    type="checkbox"
+                  />
+                   
                   <!---->
-                  <label
-                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  >
-                    <input
-                      aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
-                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                      id="root.collapseIndexes"
-                      name="root.collapseIndexes"
-                      type="checkbox"
-                    />
-                     
-                    <!---->
-                    Combine nested indexes
-                    
-                    <!---->
-                    <!---->
-                  </label>
+                  Combine nested indexes
                   
                   <!---->
-                </div>
+                  <!---->
+                </label>
+                
                 
                 
                 
@@ -1899,7 +1978,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.joinPrimitiveArrayValues::description"
+                  id="root_joinPrimitiveArrayValues__description"
                 >
                   Combines the values of an array of primitives into one cell (separated by ',')
                 </div>
@@ -1919,30 +1998,26 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <div
-                  class="flex items-center"
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
                 >
+                  <input
+                    aria-describedby="root_joinPrimitiveArrayValues__description root_joinPrimitiveArrayValues__help root_joinPrimitiveArrayValues__errors"
+                    aria-invalid="false"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                    id="root_joinPrimitiveArrayValues"
+                    name="root_joinPrimitiveArrayValues"
+                    type="checkbox"
+                  />
+                   
                   <!---->
-                  <label
-                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  >
-                    <input
-                      aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
-                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                      id="root.joinPrimitiveArrayValues"
-                      name="root.joinPrimitiveArrayValues"
-                      type="checkbox"
-                    />
-                     
-                    <!---->
-                    Combine simple values
-                    
-                    <!---->
-                    <!---->
-                  </label>
+                  Combine simple values
                   
                   <!---->
-                </div>
+                  <!---->
+                </label>
+                
                 
                 
                 
@@ -2010,7 +2085,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.combineArraysOfObjects::description"
+                  id="root_combineArraysOfObjects__description"
                 >
                   Combine arrays of objects into a single object
                 </div>
@@ -2030,30 +2105,26 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <div
-                  class="flex items-center"
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
                 >
+                  <input
+                    aria-describedby="root_combineArraysOfObjects__description root_combineArraysOfObjects__help root_combineArraysOfObjects__errors"
+                    aria-invalid="false"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                    id="root_combineArraysOfObjects"
+                    name="root_combineArraysOfObjects"
+                    type="checkbox"
+                  />
+                   
                   <!---->
-                  <label
-                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  >
-                    <input
-                      aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
-                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                      id="root.combineArraysOfObjects"
-                      name="root.combineArraysOfObjects"
-                      type="checkbox"
-                    />
-                     
-                    <!---->
-                    Combine objects
-                    
-                    <!---->
-                    <!---->
-                  </label>
+                  Combine objects
                   
                   <!---->
-                </div>
+                  <!---->
+                </label>
+                
                 
                 
                 
@@ -2121,7 +2192,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+                  id="root_stabilizeOrderOfPropertiesInArraysOfObjects__description"
                 >
                   Stabilizing the order in which properties are displayed for arrays of objects
                 </div>
@@ -2141,30 +2212,26 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <div
-                  class="flex items-center"
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
                 >
+                  <input
+                    aria-describedby="root_stabilizeOrderOfPropertiesInArraysOfObjects__description root_stabilizeOrderOfPropertiesInArraysOfObjects__help root_stabilizeOrderOfPropertiesInArraysOfObjects__errors"
+                    aria-invalid="false"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                    id="root_stabilizeOrderOfPropertiesInArraysOfObjects"
+                    name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
+                    type="checkbox"
+                  />
+                   
                   <!---->
-                  <label
-                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  >
-                    <input
-                      aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
-                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                      id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
-                      name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
-                      type="checkbox"
-                    />
-                     
-                    <!---->
-                    Stabilize order of properties
-                    
-                    <!---->
-                    <!---->
-                  </label>
+                  Stabilize order of properties
                   
                   <!---->
-                </div>
+                  <!---->
+                </label>
+                
                 
                 
                 
@@ -2229,17 +2296,29 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.proportionalSizeAdjustmentThreshold"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Proportional size adjustment threshold 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_proportionalSizeAdjustmentThreshold"
+                  >
+                    Proportional size adjustment threshold 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -2247,7 +2326,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.proportionalSizeAdjustmentThreshold::description"
+                  id="root_proportionalSizeAdjustmentThreshold__description"
                 >
                   Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
                 </div>
@@ -2271,26 +2350,19 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.proportionalSizeAdjustmentThreshold"
+                  aria-describedby="root_proportionalSizeAdjustmentThreshold__description root_proportionalSizeAdjustmentThreshold__help root_proportionalSizeAdjustmentThreshold__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_proportionalSizeAdjustmentThreshold"
                   min="0"
-                  name="root.proportionalSizeAdjustmentThreshold"
+                  name="root_proportionalSizeAdjustmentThreshold"
                   required=""
                   step="any"
                   type="number"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2361,14 +2433,26 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.cornerCellValue"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  Corner cell value 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_cornerCellValue"
+                  >
+                    Corner cell value 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -2376,7 +2460,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.cornerCellValue::description"
+                  id="root_cornerCellValue__description"
                 >
                   The value of the corner cell.
                 </div>
@@ -2400,23 +2484,16 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.cornerCellValue"
-                  name="root.cornerCellValue"
+                  aria-describedby="root_cornerCellValue__description root_cornerCellValue__help root_cornerCellValue__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_cornerCellValue"
+                  name="root_cornerCellValue"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2490,7 +2567,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.transform::description"
+                  id="root_transform__description"
                 >
                   Apply a transformation to the output data
                 </div>
@@ -2510,30 +2587,26 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <div
-                  class="flex items-center"
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
                 >
+                  <input
+                    aria-describedby="root_transform__description root_transform__help root_transform__errors"
+                    aria-invalid="false"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                    id="root_transform"
+                    name="root_transform"
+                    type="checkbox"
+                  />
+                   
                   <!---->
-                  <label
-                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  >
-                    <input
-                      aria-describedby="root.transform::description root.transform::help root.transform::errors"
-                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                      id="root.transform"
-                      name="root.transform"
-                      type="checkbox"
-                    />
-                     
-                    <!---->
-                    Transform
-                    
-                    <!---->
-                    <!---->
-                  </label>
+                  Transform
                   
                   <!---->
-                </div>
+                  <!---->
+                </label>
+                
                 
                 
                 
@@ -2638,7 +2711,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.paginate::description"
+                  id="root_paginate__description"
                 >
                   Partitioning the input data (object or array) into pages by their keys
                 </div>
@@ -2658,30 +2731,26 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <div
-                  class="flex items-center"
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
                 >
+                  <input
+                    aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
+                    aria-invalid="false"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                    id="root_paginate"
+                    name="root_paginate"
+                    type="checkbox"
+                  />
+                   
                   <!---->
-                  <label
-                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  >
-                    <input
-                      aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
-                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                      id="root.paginate"
-                      name="root.paginate"
-                      type="checkbox"
-                    />
-                     
-                    <!---->
-                    Paginate
-                    
-                    <!---->
-                    <!---->
-                  </label>
+                  Paginate
                   
                   <!---->
-                </div>
+                  <!---->
+                </label>
+                
                 
                 
                 
@@ -2749,7 +2818,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.createOnOpen::description"
+                  id="root_createOnOpen__description"
                 >
                   Creating a table when opening a share link
                 </div>
@@ -2769,30 +2838,26 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <div
-                  class="flex items-center"
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
                 >
+                  <input
+                    aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
+                    aria-invalid="false"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                    id="root_createOnOpen"
+                    name="root_createOnOpen"
+                    type="checkbox"
+                  />
+                   
                   <!---->
-                  <label
-                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  >
-                    <input
-                      aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
-                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                      id="root.createOnOpen"
-                      name="root.createOnOpen"
-                      type="checkbox"
-                    />
-                     
-                    <!---->
-                    Create on open
-                    
-                    <!---->
-                    <!---->
-                  </label>
+                  Create on open
                   
                   <!---->
-                </div>
+                  <!---->
+                </label>
+                
                 
                 
                 
@@ -2825,7 +2890,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -2839,7 +2903,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -2864,6 +2928,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -2877,6 +2942,13 @@ exports[`object fields > show add button and fields if additionalProperties is t
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -2892,7 +2964,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2927,17 +2998,29 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.additionalProperty::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_additionalProperty__key-input"
+                  >
+                    additionalProperty Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -2961,24 +3044,17 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3031,14 +3107,26 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.additionalProperty"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_additionalProperty"
+                  >
+                    additionalProperty 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -3062,23 +3150,16 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3147,7 +3228,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
         
         
         
-        
         <!---->
       </div>
       
@@ -3161,7 +3241,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3186,6 +3266,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -3199,6 +3280,13 @@ exports[`object fields > with title and description > additionalProperties 1`] =
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3214,19 +3302,31 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -3243,7 +3343,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3278,17 +3377,29 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.foo::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_foo__key-input"
+                  >
+                    foo Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -3312,24 +3423,17 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3382,14 +3486,26 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.foo"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_foo"
+                  >
+                    foo 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -3413,23 +3529,16 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo"
-                  name="root.foo"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo"
+                  name="root_foo"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3498,7 +3607,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         
         
         
-        
         <!---->
       </div>
       
@@ -3512,7 +3620,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3539,6 +3647,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
   </form>
   
   
+  
 </div>
 `;
 
@@ -3550,6 +3659,13 @@ exports[`object fields > with title and description > object 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3565,19 +3681,31 @@ exports[`object fields > with title and description > object 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -3594,7 +3722,6 @@ exports[`object fields > with title and description > object 1`] = `
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3631,14 +3758,26 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.a"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  A 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_a"
+                  >
+                    A 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -3646,7 +3785,7 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.a::description"
+                  id="root_a__description"
                 >
                   A description
                 </div>
@@ -3670,23 +3809,16 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.a"
-                  name="root.a"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_a"
+                  name="root_a"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3757,14 +3889,26 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.b"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  B 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_b"
+                  >
+                    B 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -3772,7 +3916,7 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.b::description"
+                  id="root_b__description"
                 >
                   B description
                 </div>
@@ -3796,24 +3940,17 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.b"
-                  name="root.b"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3852,7 +3989,6 @@ exports[`object fields > with title and description > object 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -3866,7 +4002,7 @@ exports[`object fields > with title and description > object 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -3893,6 +4029,7 @@ exports[`object fields > with title and description > object 1`] = `
   </form>
   
   
+  
 </div>
 `;
 
@@ -3904,6 +4041,13 @@ exports[`object fields > with title and description > show add button and fields
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -3919,19 +4063,31 @@ exports[`object fields > with title and description > show add button and fields
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          Test field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a test description
         </div>
@@ -3954,7 +4110,6 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
@@ -3983,17 +4138,29 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.additionalProperty::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_additionalProperty__key-input"
+                  >
+                    additionalProperty Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -4017,24 +4184,17 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4087,14 +4247,26 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.additionalProperty"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_additionalProperty"
+                  >
+                    additionalProperty 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -4118,23 +4290,16 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4203,7 +4368,6 @@ exports[`object fields > with title and description > show add button and fields
         
         
         
-        
         <!---->
       </div>
       
@@ -4217,7 +4381,7 @@ exports[`object fields > with title and description > show add button and fields
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4242,6 +4406,7 @@ exports[`object fields > with title and description > show add button and fields
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4255,6 +4420,13 @@ exports[`object fields > with title and description from both > additionalProper
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4270,19 +4442,31 @@ exports[`object fields > with title and description from both > additionalProper
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -4299,7 +4483,6 @@ exports[`object fields > with title and description from both > additionalProper
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4334,17 +4517,29 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.foo::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_foo__key-input"
+                  >
+                    foo Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -4368,24 +4563,17 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4438,14 +4626,26 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.foo"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_foo"
+                  >
+                    foo 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -4469,23 +4669,16 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo"
-                  name="root.foo"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo"
+                  name="root_foo"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4554,7 +4747,6 @@ exports[`object fields > with title and description from both > additionalProper
         
         
         
-        
         <!---->
       </div>
       
@@ -4568,7 +4760,7 @@ exports[`object fields > with title and description from both > additionalProper
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4593,6 +4785,7 @@ exports[`object fields > with title and description from both > additionalProper
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4606,6 +4799,13 @@ exports[`object fields > with title and description from both > object 1`] = `
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4621,19 +4821,31 @@ exports[`object fields > with title and description from both > object 1`] = `
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -4650,7 +4862,6 @@ exports[`object fields > with title and description from both > object 1`] = `
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4687,14 +4898,26 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.a"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item A 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_a"
+                  >
+                    My Item A 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -4702,7 +4925,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.a::description"
+                  id="root_a__description"
                 >
                   a fancier item A description
                 </div>
@@ -4726,23 +4949,16 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.a"
-                  name="root.a"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_a"
+                  name="root_a"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4813,14 +5029,26 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.b"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item B 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_b"
+                  >
+                    My Item B 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -4828,7 +5056,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.b::description"
+                  id="root_b__description"
                 >
                   a fancier item B description
                 </div>
@@ -4852,24 +5080,17 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.b"
-                  name="root.b"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4908,7 +5129,6 @@ exports[`object fields > with title and description from both > object 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -4922,7 +5142,7 @@ exports[`object fields > with title and description from both > object 1`] = `
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -4947,6 +5167,7 @@ exports[`object fields > with title and description from both > object 1`] = `
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -4960,6 +5181,13 @@ exports[`object fields > with title and description from uiSchema > additionalPr
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -4975,19 +5203,31 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -5004,7 +5244,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5039,17 +5278,29 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.foo::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_foo__key-input"
+                  >
+                    foo Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -5073,24 +5324,17 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5143,14 +5387,26 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.foo"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  foo 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_foo"
+                  >
+                    foo 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -5174,23 +5430,16 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo"
-                  name="root.foo"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo"
+                  name="root_foo"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5259,7 +5508,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         
         
         
-        
         <!---->
       </div>
       
@@ -5273,7 +5521,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5300,6 +5548,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
   </form>
   
   
+  
 </div>
 `;
 
@@ -5311,6 +5560,13 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5326,19 +5582,31 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -5355,7 +5623,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5392,14 +5659,26 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.a"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item A 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_a"
+                  >
+                    My Item A 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -5407,7 +5686,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.a::description"
+                  id="root_a__description"
                 >
                   a fancier item A description
                 </div>
@@ -5431,23 +5710,16 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.a"
-                  name="root.a"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_a"
+                  name="root_a"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5518,14 +5790,26 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.b"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  My Item B 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_b"
+                  >
+                    My Item B 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -5533,7 +5817,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                 <div
                   class="text-sm opacity-70"
-                  id="root.b::description"
+                  id="root_b__description"
                 >
                   a fancier item B description
                 </div>
@@ -5557,24 +5841,17 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.b"
-                  name="root.b"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5613,7 +5890,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         
         
         
-        
         <!---->
       </div>
       
@@ -5627,7 +5903,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -5654,6 +5930,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
   </form>
   
   
+  
 </div>
 `;
 
@@ -5665,6 +5942,13 @@ exports[`object fields > with title and description from uiSchema > show add but
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -5680,19 +5964,31 @@ exports[`object fields > with title and description from uiSchema > show add but
       >
         <!---->
         <!---->
+        <!---->
         <div
-          class="text-gray-900 dark:text-white font-semibold"
-          id="root::title"
+          class="flex items-center justify-between"
+          data-layout="object-field-title-row"
         >
-          My Field
+          <!---->
+          <div
+            class="text-gray-900 dark:text-white font-semibold"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
         </div>
+        
         
         <!---->
          
         <!---->
         <div
           class="text-sm opacity-70"
-          id="root::description"
+          id="root__description"
         >
           a fancier description
         </div>
@@ -5715,7 +6011,6 @@ exports[`object fields > with title and description from uiSchema > show add but
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
@@ -5744,17 +6039,29 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.additionalProperty::key-input"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty Key 
-                  <span>
-                    *
-                  </span>
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_additionalProperty__key-input"
+                  >
+                    additionalProperty Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -5778,24 +6085,17 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5848,14 +6148,26 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                 <!---->
                 <!---->
-                <label
-                  class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
-                  for="root.additionalProperty"
+                <div
+                  class="flex items-center justify-between"
+                  data-layout="field-title-row"
                 >
-                  additionalProperty 
                   <!---->
                   <!---->
-                </label>
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                    for="root_additionalProperty"
+                  >
+                    additionalProperty 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
                 
                 
                 <!---->
@@ -5879,23 +6191,16 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5964,7 +6269,6 @@ exports[`object fields > with title and description from uiSchema > show add but
         
         
         
-        
         <!---->
       </div>
       
@@ -5978,7 +6282,7 @@ exports[`object fields > with title and description from uiSchema > show add but
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6003,6 +6307,7 @@ exports[`object fields > with title and description from uiSchema > show add but
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -6016,6 +6321,13 @@ exports[`object fields > with title and description with global label off > addi
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6031,7 +6343,6 @@ exports[`object fields > with title and description with global label off > addi
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -6072,24 +6383,17 @@ exports[`object fields > with title and description with global label off > addi
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -6148,23 +6452,16 @@ exports[`object fields > with title and description with global label off > addi
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.foo"
-                  name="root.foo"
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_foo"
+                  name="root_foo"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -6233,7 +6530,6 @@ exports[`object fields > with title and description with global label off > addi
         
         
         
-        
         <!---->
       </div>
       
@@ -6247,7 +6543,7 @@ exports[`object fields > with title and description with global label off > addi
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6272,6 +6568,7 @@ exports[`object fields > with title and description with global label off > addi
     <!---->
     <!---->
   </form>
+  
   
   
 </div>
@@ -6285,6 +6582,13 @@ exports[`object fields > with title and description with global label off > obje
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6306,7 +6610,6 @@ exports[`object fields > with title and description with global label off > obje
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
@@ -6343,23 +6646,16 @@ exports[`object fields > with title and description with global label off > obje
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.a"
-                  name="root.a"
+                  aria-describedby="root_a__description root_a__help root_a__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_a"
+                  name="root_a"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -6436,24 +6732,17 @@ exports[`object fields > with title and description with global label off > obje
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.b"
-                  name="root.b"
+                  aria-describedby="root_b__description root_b__help root_b__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_b"
+                  name="root_b"
                   step="any"
                   type="number"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -6486,7 +6775,6 @@ exports[`object fields > with title and description with global label off > obje
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -6506,7 +6794,7 @@ exports[`object fields > with title and description with global label off > obje
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6533,6 +6821,7 @@ exports[`object fields > with title and description with global label off > obje
   </form>
   
   
+  
 </div>
 `;
 
@@ -6544,6 +6833,13 @@ exports[`object fields > with title and description with global label off > show
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <!---->
@@ -6559,7 +6855,6 @@ exports[`object fields > with title and description with global label off > show
         class="flex gap-4 flex-col"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -6600,24 +6895,17 @@ exports[`object fields > with title and description with global label off > show
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
                   required=""
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -6676,23 +6964,16 @@ exports[`object fields > with title and description with global label off > show
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                  aria-invalid="false"
+                  class="relative w-full rounded-lg block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
                   type="text"
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -6761,7 +7042,6 @@ exports[`object fields > with title and description with global label off > show
         
         
         
-        
         <!---->
       </div>
       
@@ -6775,7 +7055,7 @@ exports[`object fields > with title and description with global label off > show
     
     
     
-    
+    <!---->
     <!---->
      
     <!---->
@@ -6800,6 +7080,7 @@ exports[`object fields > with title and description with global label off > show
     <!---->
     <!---->
   </form>
+  
   
   
 </div>

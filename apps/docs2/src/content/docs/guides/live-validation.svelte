@@ -1,29 +1,53 @@
 <script lang="ts">
-  import { createForm, BasicForm, type Schema, groupErrors } from "@sjsf/form";
-  import { resolver } from "@sjsf/form/resolvers/basic";
-  import { translation } from "@sjsf/form/translations/en";
-  import { theme } from "@sjsf/basic-theme";
-  import { createFormValidator } from "@sjsf/ajv8-validator";
+  import { untrack } from "svelte";
+  import {
+    createForm,
+    BasicForm,
+    hasFieldStateByPath,
+    type Schema,
+    FIELD_INTERACTED,
+    updateErrors,
+    validate,
+  } from "@sjsf/form";
 
-  const validator = createFormValidator();
+  import * as defaults from "@/lib/form/defaults";
 
   const schema: Schema = {
-    type: "string",
-    minLength: 10,
+    title: "Live validation",
+    properties: {
+      foo: {
+        type: "string",
+        minLength: 10,
+      },
+      bar: {
+        type: "number",
+        minimum: 1000,
+      },
+    },
   };
 
   const form = createForm({
-    theme,
-    initialValue: "initial",
+    ...defaults,
+    initialValue: {
+      foo: "initial",
+      bar: 1,
+    },
     schema,
-    resolver,
-    validator,
-    translation,
     onSubmit: console.log,
   });
 
   $effect(() => {
-    form.errors = groupErrors(validator.validateFormValue(schema, form.value));
+    // NOTE: `validate()` reads the state snapshot,
+    // causing `$effect` to subscribe to all changes.
+    const { errors = [] } = validate(form);
+    updateErrors(
+      form,
+      untrack(() =>
+        errors.filter((e) =>
+          hasFieldStateByPath(form, e.path, FIELD_INTERACTED)
+        )
+      )
+    );
   });
 </script>
 

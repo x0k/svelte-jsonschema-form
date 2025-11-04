@@ -1,5 +1,5 @@
-import pageSvelte from "%/layout-slots/src/routes/+page.svelte?raw";
-import layoutSvelte from "%/layout-slots/src/routes/layout.svelte?raw";
+import pageSvelte from "%/basic-starter/src/routes/layout-slots/+page.svelte?raw";
+import layoutSvelte from "%/basic-starter/src/routes/layout-slots/layout.svelte?raw";
 
 import type { Layer } from "../layer";
 

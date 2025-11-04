@@ -1,7 +1,11 @@
 import { vitePreprocess } from "@astrojs/svelte";
 
-const injectedCss = ["moving-icons", "basic"];
-const nonRunic = ["svelte-json-tree", "flowbite-svelte@0.47"];
+const injectedCss = ["@jis3r/icons", "basic", "svar"];
+const nonRunic = [
+  "svelte-json-tree",
+  "flowbite-svelte@0.47",
+  "svelte-tel-input",
+];
 
 export default {
   // Consult https://svelte.dev/docs#compile-time-svelte-preprocess

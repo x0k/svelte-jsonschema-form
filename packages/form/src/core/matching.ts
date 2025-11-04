@@ -216,7 +216,7 @@ export function getClosestMatchingOption(
   }
   // First resolve any refs in the options
   const resolvedOptions = options.map((option) => {
-    return resolveAllReferences(option, rootSchema);
+    return resolveAllReferences(merger, option, rootSchema);
   });
 
   const simpleDiscriminatorMatch = getOptionMatchingSimpleDiscriminator(

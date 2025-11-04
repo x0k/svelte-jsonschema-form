@@ -1,37 +1,42 @@
 <script
   lang="ts"
-  generics="V extends FieldValue, T extends FoundationalWidgetType"
+  generics="F extends ActionField, T extends FoundationalWidgetType"
 >
   import {
     makeEventHandlers,
-    getErrors,
+    getFieldErrors,
     validateField,
     getFormContext,
     getComponent,
     type ComponentProps,
     type Config,
-    type FieldValue,
     type UiOption,
+    type ActionField,
+    getFieldAction,
   } from "@/form/index.js";
 
   import type { FoundationalWidgetType } from "./widgets.js";
 
   const ctx = getFormContext();
 
+  type V = ComponentProps[F]["value"];
+
   let {
+    field,
+    widgetType,
     value = $bindable(),
     config,
     uiOption,
     fromValue,
     toValue,
-    widgetType,
     showTitle,
     useLabel,
   }: {
+    field: F;
+    widgetType: T;
     config: Config;
     uiOption: UiOption;
     value: V;
-    widgetType: T;
     fromValue: (v: V) => ComponentProps[T]["value"];
     toValue: (v: ComponentProps[T]["value"]) => V;
     showTitle: boolean;
@@ -41,13 +46,31 @@
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
   const Widget = $derived(getComponent(ctx, widgetType, config));
 
-  const handlers = makeEventHandlers(ctx, () =>
-    validateField(ctx, config, value)
+  const handlers = makeEventHandlers(
+    ctx,
+    () => config,
+    () => validateField(ctx, config, value)
   );
 
-  const errors = $derived(getErrors(ctx, config.id));
+  const errors = $derived(getFieldErrors(ctx, config.path));
+  const action = $derived(getFieldAction(ctx, config, field));
 </script>
 
+{#snippet renderAction()}
+  {@render action?.(
+    ctx,
+    config,
+    {
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
+      },
+    },
+    errors
+  )}
+{/snippet}
 <Template
   type="template"
   {showTitle}
@@ -57,6 +80,7 @@
   {value}
   {config}
   {errors}
+  action={action && renderAction}
 >
   <Widget
     type="widget"

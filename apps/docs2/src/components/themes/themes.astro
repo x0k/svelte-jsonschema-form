@@ -17,27 +17,28 @@ import Form from "./form.svelte";
 
 import schemaCode from "./data?raw";
 import withBasicCode from "./basic/form.svelte?raw";
-import withSkeleton3Code from "./skeleton/form.svelte?raw";
+import withSkeleton4Code from "./skeleton4/form.svelte?raw";
 import withDaisyui5Code from "./daisyui/form.svelte?raw";
 import withFlowbite3Code from "./flowbite/form.svelte?raw";
-import withShadcn4Code from "./shadcn/form.svelte?raw";
+import withShadcn4Code from "./shadcn4/form.svelte?raw";
 
 import basicDefaultsCode from "./basic/defaults.ts?raw";
-import skeleton3DefaultsCode from "./skeleton/defaults.ts?raw";
+import skeleton4DefaultsCode from "./skeleton4/defaults.ts?raw";
 import daisyui5DefaultsCode from "./daisyui/defaults.ts?raw";
 import flowbite3DefaultsCode from "./flowbite/defaults.ts?raw";
-import shadcn4DefaultsCode from "./shadcn/defaults.ts?raw";
+import shadcn4DefaultsCode from "./shadcn4/defaults.ts?raw";
 
-import daisyu5Styles from "@sjsf/daisyui5-theme/styles.css?inline";
-import flowbiteStyles from "@sjsf/flowbite3-theme/styles.css?inline";
-import skeleton3Styles from "@sjsf/skeleton3-theme/styles.css?inline";
-import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?inline";
+import basicStyles from "@sjsf/basic-theme/css/basic.css?raw";
+import daisyu5Styles from "@sjsf/daisyui5-theme/styles.css?raw";
+import flowbiteStyles from "@sjsf/flowbite3-theme/styles.css?raw";
+import skeleton4Styles from "@sjsf/skeleton4-theme/styles.css?raw";
+import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?raw";
 
 const CODE = {
   basic: withBasicCode,
   daisyui5: withDaisyui5Code,
   flowbite3: withFlowbite3Code,
-  skeleton3: withSkeleton3Code,
+  skeleton4: withSkeleton4Code,
   shadcn4: withShadcn4Code,
 } satisfies Record<ActualTheme, string>;
 
@@ -45,15 +46,15 @@ const DEFAULTS = {
   basic: basicDefaultsCode,
   daisyui5: daisyui5DefaultsCode,
   flowbite3: flowbite3DefaultsCode,
-  skeleton3: skeleton3DefaultsCode,
+  skeleton4: skeleton4DefaultsCode,
   shadcn4: shadcn4DefaultsCode,
 } satisfies Record<ActualTheme, string>;
 
 const STYLES = {
-  basic: "",
+  basic: basicStyles,
   daisyui5: daisyu5Styles,
   flowbite3: flowbiteStyles,
-  skeleton3: skeleton3Styles,
+  skeleton4: skeleton4Styles,
   shadcn4: shadcn4Styles,
 } satisfies Record<ActualTheme, string>;
 

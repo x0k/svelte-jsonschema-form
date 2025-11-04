@@ -1,12 +1,13 @@
 <script lang="ts">
-  import { ON_CHANGE, ON_INPUT } from "@sjsf/form";
+  import { ON_CHANGE, ON_INPUT, SimpleForm } from "@sjsf/form";
 
-  import MyForm from "@/components/my-form.svelte";
+  import * as defaults from "@/lib/form/defaults";
 
   import { objectSchema, objectUiSchema } from "./demo-schemas";
 </script>
 
-<MyForm
+<SimpleForm
+  {...defaults}
   schema={objectSchema}
   uiSchema={objectUiSchema}
   fieldsValidationMode={ON_INPUT | ON_CHANGE}

@@ -76,7 +76,7 @@
       variant="ghost"
       class="flex items-center gap-2"
       onclick={() => {
-        const url = `https://x0k.github.io/svelte-jsonschema-form/playground2#${ctx.createPlaygroundState()}`;
+        const url = `https://x0k.github.io/svelte-jsonschema-form/playground3#${ctx.createPlaygroundState()}`;
         window.open(url);
       }}
       >Playground <div><ExternalLink tabindex={-1} /></div></Button

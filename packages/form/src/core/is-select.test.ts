@@ -8,12 +8,15 @@ import type { Schema } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { isMultiSelect, isSelect } from "./is-select.js";
 import { createValidator } from "./test-validator.js";
-import { defaultMerger } from "./merger.js";
+import type { Merger } from "./merger.js";
+import { createMerger } from "./test-merger.js";
 
 let testValidator: Validator;
+let defaultMerger: Merger;
 
 beforeEach(() => {
   testValidator = createValidator();
+  defaultMerger = createMerger();
 });
 
 describe("isSelect2()", () => {
@@ -47,6 +50,21 @@ describe("isSelect2()", () => {
       },
       $ref: "#/definitions/FooItem",
     };
+    defaultMerger = createMerger({
+      merges: [
+        {
+          left: { type: "string", enum: ["foo"] },
+          right: {
+            definitions: { FooItem: { type: "string", enum: ["foo"] } },
+          },
+          result: {
+            type: "string",
+            enum: ["foo"],
+            definitions: { FooItem: { type: "string", enum: ["foo"] } },
+          },
+        },
+      ],
+    });
     expect(isSelect(testValidator, defaultMerger, schema, schema)).toBe(true);
   });
 });

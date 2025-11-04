@@ -1,0 +1,50 @@
+---
+const { code } = Astro.props;
+---
+
+<pre class="mermaid" set:text={code} />
+
+<script>
+  import mermaid from "mermaid";
+  import panzoom from "panzoom";
+
+  const theme = document.documentElement.getAttribute("data-theme") || "light";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: theme === "light" ? "default" : "dark",
+  });
+  document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+      const containers = document.querySelectorAll("pre.mermaid");
+      for (const c of containers) {
+        if (!(c instanceof HTMLElement)) {
+          continue;
+        }
+        const { svg } = await mermaid.render(
+          `diagram_${Date.now().toString(16)}`,
+          c.textContent
+        );
+        c.innerHTML = svg;
+        const el = c.firstElementChild;
+        if (el instanceof SVGElement) {
+          panzoom(el);
+        }
+      }
+    },
+    { once: true }
+  );
+</script>
+
+<style is:global>
+  pre.mermaid {
+    display: flex;
+    justify-content: center; /* horizontal centering */
+    align-items: center; /* vertical centering */
+    width: 100%;
+  }
+  pre.mermaid svg {
+    max-width: 100%;
+    height: auto; /* preserve aspect ratio */
+  }
+</style>

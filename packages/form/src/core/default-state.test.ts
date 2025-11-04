@@ -29,14 +29,18 @@ import {
   getDefaultFormState,
   getInnerSchemaForArrayItem,
   getObjectDefaults,
+  computeDefaultBasedOnSchemaTypeAndDefaults,
   type Experimental_DefaultFormStateBehavior,
 } from "./default-state.js";
-import { defaultMerger } from "./merger.js";
+import type { Merger } from "./merger.js";
+import { createMerger } from "./test-merger.js";
 
 let testValidator: Validator;
+let defaultMerger: Merger;
 
 beforeEach(() => {
   testValidator = createValidator();
+  defaultMerger = createMerger();
 });
 
 const defaults = {
@@ -44,14 +48,16 @@ const defaults = {
   rootSchema: {},
   includeUndefinedValues: false,
   stack: new Set<string>(),
-  required: false,
+  // CHANGED: We use `required: true` at the root instead of `requiredAsRoot`
+  required: true,
   parentDefaults: undefined,
   experimental_defaultFormStateBehavior: {},
   rawFormData: undefined,
   shouldMergeDefaultsIntoFormData: false,
+  initialDefaultsGenerated: false,
 };
 
-describe("getDefaultFormState2()", () => {
+describe("getDefaultFormState()", () => {
   let consoleWarnSpy: MockInstance<typeof console.warn>;
   beforeAll(() => {
     consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => {}); // mock this to avoid actually warning in the tests
@@ -84,6 +90,36 @@ describe("getDefaultFormState2()", () => {
       };
 
       test("getDefaultFormState", () => {
+        defaultMerger = createMerger({
+          merges: [
+            {
+              left: {
+                type: "object",
+                properties: { foo: { $ref: "#/definitions/foo" } },
+              },
+              right: {
+                definitions: {
+                  foo: { type: "number", default: 42 },
+                  testdef: {
+                    type: "object",
+                    properties: { foo: { $ref: "#/definitions/foo" } },
+                  },
+                },
+              },
+              result: {
+                type: "object",
+                properties: { foo: { $ref: "#/definitions/foo" } },
+                definitions: {
+                  foo: { type: "number", default: 42 },
+                  testdef: {
+                    type: "object",
+                    properties: { foo: { $ref: "#/definitions/foo" } },
+                  },
+                },
+              },
+            },
+          ],
+        });
         expect(
           getDefaultFormState(
             testValidator,
@@ -574,6 +610,82 @@ describe("getDefaultFormState2()", () => {
       });
     });
 
+    describe("an object with an null-type property and includeUndefinedValues is 'excludeObjectChildren'", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          optionalNullProperty: {
+            type: "null",
+          },
+          requiredProperty: {
+            type: "string",
+            default: "foo",
+          },
+        },
+        required: ["requiredProperty"],
+      };
+      const includeUndefinedValues = "excludeObjectChildren";
+      const expected = {
+        requiredProperty: "foo",
+      };
+
+      test("getDefaultFormState", () => {
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            undefined,
+            schema,
+            includeUndefinedValues
+          )
+        ).toEqual(expected);
+      });
+
+      test("computeDefaults", () => {
+        expect(
+          computeDefaults(testValidator, defaultMerger, schema, {
+            ...defaults,
+            rootSchema: schema,
+            includeUndefinedValues,
+          })
+        ).toEqual(expected);
+      });
+
+      test("getDefaultBasedOnSchemaType", () => {
+        expect(
+          getDefaultBasedOnSchemaType(
+            testValidator,
+            defaultMerger,
+            schema,
+            {
+              ...defaults,
+              rootSchema: schema,
+              includeUndefinedValues,
+            },
+            undefined
+          )
+        ).toEqual(expected);
+      });
+
+      test("getObjectDefaults", () => {
+        expect(
+          getObjectDefaults(
+            testValidator,
+            defaultMerger,
+            schema,
+            {
+              ...defaults,
+              rawFormData: {},
+              rootSchema: schema,
+              includeUndefinedValues,
+            },
+            undefined
+          )
+        ).toEqual(expected);
+      });
+    });
+
     describe("an object with an additionalProperties", () => {
       const schema: Schema = {
         type: "object",
@@ -1025,6 +1137,56 @@ describe("getDefaultFormState2()", () => {
               },
             ],
           });
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: {
+                  type: "object",
+                  properties: {
+                    first: {
+                      type: "string",
+                      enum: ["no", "yes"],
+                      default: "no",
+                    },
+                  },
+                },
+                right: {
+                  properties: {
+                    second: {
+                      type: "object",
+                      properties: {
+                        deeplyNestedThird: {
+                          type: "string",
+                          enum: ["before", "after"],
+                          default: "before",
+                        },
+                      },
+                    },
+                  },
+                },
+                result: {
+                  type: "object",
+                  properties: {
+                    first: {
+                      type: "string",
+                      enum: ["no", "yes"],
+                      default: "no",
+                    },
+                    second: {
+                      type: "object",
+                      properties: {
+                        deeplyNestedThird: {
+                          type: "string",
+                          enum: ["before", "after"],
+                          default: "before",
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            ],
+          });
         });
 
         const schema: Schema = {
@@ -1234,6 +1396,47 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           // NOTE: `includeUndefinedValues` is not used L861
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: {
+                  type: "object",
+                  properties: {
+                    name: { title: "Name", type: "string", default: "" },
+                    children: { $ref: "#/definitions/@enum" },
+                  },
+                },
+                right: {
+                  definitions: {
+                    "@enum": {
+                      type: "object",
+                      properties: {
+                        name: { title: "Name", type: "string", default: "" },
+                        children: { $ref: "#/definitions/@enum" },
+                      },
+                    },
+                  },
+                },
+                result: {
+                  type: "object",
+                  properties: {
+                    name: { title: "Name", type: "string", default: "" },
+                    children: { $ref: "#/definitions/@enum" },
+                  },
+
+                  definitions: {
+                    "@enum": {
+                      type: "object",
+                      properties: {
+                        name: { title: "Name", type: "string", default: "" },
+                        children: { $ref: "#/definitions/@enum" },
+                      },
+                    },
+                  },
+                },
+              },
+            ],
+          });
           expect(
             getDefaultFormState(
               testValidator,
@@ -1610,6 +1813,46 @@ describe("getDefaultFormState2()", () => {
             },
           ],
         });
+        defaultMerger = createMerger({
+          merges: [
+            {
+              left: {
+                type: "object",
+                properties: { animal: { enum: ["Cat", "Fish"] } },
+              },
+              right: {
+                properties: {
+                  food: {
+                    type: "string",
+                    enum: ["insect", "worms"],
+                    default: "worms",
+                  },
+                  water: {
+                    type: "string",
+                    enum: ["lake", "sea"],
+                    default: "sea",
+                  },
+                },
+              },
+              result: {
+                type: "object",
+                properties: {
+                  animal: { enum: ["Cat", "Fish"] },
+                  food: {
+                    type: "string",
+                    enum: ["insect", "worms"],
+                    default: "worms",
+                  },
+                  water: {
+                    type: "string",
+                    enum: ["lake", "sea"],
+                    default: "sea",
+                  },
+                },
+              },
+            },
+          ],
+        });
       });
 
       const schema: Schema = {
@@ -1868,6 +2111,19 @@ describe("getDefaultFormState2()", () => {
         };
 
         test("getDefaultFormState", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             getDefaultFormState(
               testValidator,
@@ -1882,6 +2138,19 @@ describe("getDefaultFormState2()", () => {
         });
 
         test("computeDefaults", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             computeDefaults(testValidator, defaultMerger, schema, {
               ...defaults,
@@ -1892,6 +2161,19 @@ describe("getDefaultFormState2()", () => {
         });
 
         test("getDefaultBasedOnSchemaType", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             getDefaultBasedOnSchemaType(
               testValidator,
@@ -1908,6 +2190,19 @@ describe("getDefaultFormState2()", () => {
         });
 
         test("getObjectDefaults", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             getObjectDefaults(
               testValidator,
@@ -1933,6 +2228,19 @@ describe("getDefaultFormState2()", () => {
         const expected = {};
 
         test("getDefaultFormState", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             getDefaultFormState(
               testValidator,
@@ -1947,6 +2255,19 @@ describe("getDefaultFormState2()", () => {
         });
 
         test("computeDefaults", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             computeDefaults(testValidator, defaultMerger, schema, {
               ...defaults,
@@ -1957,6 +2278,19 @@ describe("getDefaultFormState2()", () => {
         });
 
         test("getDefaultBasedOnSchemaType", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             getDefaultBasedOnSchemaType(
               testValidator,
@@ -1973,6 +2307,19 @@ describe("getDefaultFormState2()", () => {
         });
 
         test("getObjectDefaults", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             getObjectDefaults(
               testValidator,
@@ -1998,6 +2345,19 @@ describe("getDefaultFormState2()", () => {
         const expected = {};
 
         test("getDefaultFormState", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             getDefaultFormState(
               testValidator,
@@ -2012,6 +2372,19 @@ describe("getDefaultFormState2()", () => {
         });
 
         test("computeDefaults", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             computeDefaults(testValidator, defaultMerger, schema, {
               ...defaults,
@@ -2022,6 +2395,19 @@ describe("getDefaultFormState2()", () => {
         });
 
         test("getDefaultBasedOnSchemaType", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             getDefaultBasedOnSchemaType(
               testValidator,
@@ -2038,6 +2424,19 @@ describe("getDefaultFormState2()", () => {
         });
 
         test("getObjectDefaults", () => {
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: { title: "One Of Field", type: "string" },
+                right: { const: "username", title: "Username and password" },
+                result: {
+                  title: "One Of Field",
+                  type: "string",
+                  const: "username",
+                },
+              },
+            ],
+          });
           expect(
             getObjectDefaults(
               testValidator,
@@ -2445,38 +2844,87 @@ describe("getDefaultFormState2()", () => {
         ).toEqual(expected);
       });
 
-      test("computeDefaults", () => {
-        expect(
-          computeDefaults(testValidator, defaultMerger, schema, {
-            ...defaults,
-            rootSchema: schema,
-            includeUndefinedValues,
-          })
-        ).toEqual(expected);
+      describe("computeDefaults", () => {
+        test("required = true", () => {
+          expect(
+            computeDefaults(testValidator, defaultMerger, schema, {
+              ...defaults,
+              rootSchema: schema,
+              includeUndefinedValues,
+            })
+          ).toEqual(expected);
+        });
+
+        test("required = false", () => {
+          expect(
+            computeDefaults(testValidator, defaultMerger, schema, {
+              ...defaults,
+              required: false,
+              rootSchema: schema,
+              includeUndefinedValues,
+            })
+          ).toBeUndefined();
+        });
       });
 
-      test("getDefaultBasedOnSchemaType", () => {
-        expect(
-          getDefaultBasedOnSchemaType(
-            testValidator,
-            defaultMerger,
-            schema,
-            { ...defaults, rootSchema: schema, includeUndefinedValues },
-            undefined
-          )
-        ).toEqual(expected);
+      describe("getDefaultBasedOnSchemaType", () => {
+        test("required = true", () => {
+          expect(
+            getDefaultBasedOnSchemaType(
+              testValidator,
+              defaultMerger,
+              schema,
+              { ...defaults, rootSchema: schema, includeUndefinedValues },
+              undefined
+            )
+          ).toEqual(expected);
+        });
+        test("required = false", () => {
+          expect(
+            getDefaultBasedOnSchemaType(
+              testValidator,
+              defaultMerger,
+              schema,
+              {
+                ...defaults,
+                rootSchema: schema,
+                includeUndefinedValues,
+                required: false,
+              },
+              undefined
+            )
+          ).toBeUndefined();
+        });
       });
 
-      test("getArrayDefaults", () => {
-        expect(
-          getArrayDefaults(
-            testValidator,
-            defaultMerger,
-            schema,
-            { ...defaults, rootSchema: schema, includeUndefinedValues },
-            undefined
-          )
-        ).toEqual(expected);
+      describe("getArrayDefaults", () => {
+        test("required = true", () => {
+          expect(
+            getArrayDefaults(
+              testValidator,
+              defaultMerger,
+              schema,
+              { ...defaults, rootSchema: schema, includeUndefinedValues },
+              undefined
+            )
+          ).toEqual(expected);
+        });
+        test("required = false", () => {
+          expect(
+            getArrayDefaults(
+              testValidator,
+              defaultMerger,
+              schema,
+              {
+                ...defaults,
+                rootSchema: schema,
+                includeUndefinedValues,
+                required: false,
+              },
+              undefined
+            )
+          ).toBeUndefined();
+        });
       });
     });
 
@@ -2490,34 +2938,72 @@ describe("getDefaultFormState2()", () => {
         ).toEqual(expected);
       });
 
-      test("computeDefaults", () => {
-        expect(
-          computeDefaults(testValidator, defaultMerger, schema, defaults)
-        ).toEqual(expected);
+      describe("computeDefaults", () => {
+        test("required = true", () => {
+          expect(
+            computeDefaults(testValidator, defaultMerger, schema, defaults)
+          ).toEqual(expected);
+        });
+
+        test("required = false", () => {
+          expect(
+            computeDefaults(testValidator, defaultMerger, schema, {
+              ...defaults,
+              required: false,
+            })
+          ).toBeUndefined();
+        });
       });
 
-      test("getDefaultBasedOnSchemaType", () => {
-        expect(
-          getDefaultBasedOnSchemaType(
-            testValidator,
-            defaultMerger,
-            schema,
-            defaults,
-            undefined
-          )
-        ).toEqual(expected);
+      describe("getDefaultBasedOnSchemaType", () => {
+        test("required = true", () => {
+          expect(
+            getDefaultBasedOnSchemaType(
+              testValidator,
+              defaultMerger,
+              schema,
+              defaults,
+              undefined
+            )
+          ).toEqual(expected);
+        });
+
+        test("required = false", () => {
+          expect(
+            getDefaultBasedOnSchemaType(
+              testValidator,
+              defaultMerger,
+              schema,
+              { ...defaults, required: false },
+              undefined
+            )
+          ).toBeUndefined();
+        });
       });
 
-      test("getArrayDefaults", () => {
-        expect(
-          getArrayDefaults(
-            testValidator,
-            defaultMerger,
-            schema,
-            defaults,
-            undefined
-          )
-        ).toEqual(expected);
+      describe("getArrayDefaults", () => {
+        test("required = true", () => {
+          expect(
+            getArrayDefaults(
+              testValidator,
+              defaultMerger,
+              schema,
+              defaults,
+              undefined
+            )
+          ).toEqual(expected);
+        });
+        test("required = false", () => {
+          expect(
+            getArrayDefaults(
+              testValidator,
+              defaultMerger,
+              schema,
+              { ...defaults, required: false },
+              undefined
+            )
+          ).toBeUndefined();
+        });
       });
     });
   });
@@ -2530,6 +3016,156 @@ describe("getDefaultFormState2()", () => {
         0
       )
     ).toEqual({});
+  });
+
+  describe("computeDefaultBasedOnSchemaTypeAndDefaults()", () => {
+    let schema: Schema;
+    describe("Object", () => {
+      beforeAll(() => {
+        schema = {
+          type: "object",
+          default: null,
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeUndefined();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(computeDefaultBasedOnSchemaTypeAndDefaults(schema, {})).toEqual(
+          {}
+        );
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = { foo: "bar" };
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
+    describe("Nullable Object", () => {
+      beforeAll(() => {
+        schema = {
+          type: ["null", "object"],
+          default: null,
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeNull();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, {})
+        ).toBeNull();
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = { foo: "bar" };
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
+    describe("Array", () => {
+      beforeAll(() => {
+        schema = {
+          type: "array",
+          default: null,
+          items: { type: "string" },
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeUndefined();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(computeDefaultBasedOnSchemaTypeAndDefaults(schema, [])).toEqual(
+          []
+        );
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = ["bar"];
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
+    describe("Nullable Array", () => {
+      beforeAll(() => {
+        schema = {
+          type: ["null", "array"],
+          default: null,
+          items: { type: "string" },
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeNull();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, [])
+        ).toBeNull();
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = ["bar"];
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
+    describe("Nullable String", () => {
+      beforeAll(() => {
+        schema = {
+          type: "string",
+          default: null,
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeUndefined();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(computeDefaultBasedOnSchemaTypeAndDefaults(schema, "")).toEqual(
+          ""
+        );
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = "bar";
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
+    describe("Nullable String", () => {
+      beforeAll(() => {
+        schema = {
+          type: ["null", "string"],
+          default: null,
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeNull();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, "")
+        ).toBeNull();
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = "bar";
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
   });
 
   describe("getValidFormData", () => {
@@ -4294,7 +4930,38 @@ describe("getDefaultFormState2()", () => {
         $ref: "#/definitions/testdef",
         default: { foo: 42 },
       };
-
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              type: "object",
+              properties: { foo: { $ref: "#/definitions/foo" } },
+            },
+            right: {
+              definitions: {
+                foo: { type: "number" },
+                testdef: {
+                  type: "object",
+                  properties: { foo: { $ref: "#/definitions/foo" } },
+                },
+              },
+              default: { foo: 42 },
+            },
+            result: {
+              type: "object",
+              properties: { foo: { $ref: "#/definitions/foo" } },
+              definitions: {
+                foo: { type: "number" },
+                testdef: {
+                  type: "object",
+                  properties: { foo: { $ref: "#/definitions/foo" } },
+                },
+              },
+              default: { foo: 42 },
+            },
+          },
+        ],
+      });
       expect(
         getDefaultFormState(
           testValidator,
@@ -4393,6 +5060,90 @@ describe("getDefaultFormState2()", () => {
             },
             value: { barProp: "barProp" },
             result: true,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              definitions: {
+                foo: {
+                  type: "object",
+                  properties: {
+                    fooProp: { type: "string" },
+                    fooProp2: { type: "string", default: "fooProp2" },
+                  },
+                },
+                bar: {
+                  type: "object",
+                  properties: {
+                    barProp: { type: "string" },
+                    barProp2: { type: "string", default: "barProp2" },
+                  },
+                },
+              },
+            },
+            right: { $ref: "#/definitions/foo" },
+            result: {
+              $ref: "#/definitions/foo",
+              definitions: {
+                foo: {
+                  type: "object",
+                  properties: {
+                    fooProp: { type: "string" },
+                    fooProp2: { type: "string", default: "fooProp2" },
+                  },
+                },
+                bar: {
+                  type: "object",
+                  properties: {
+                    barProp: { type: "string" },
+                    barProp2: { type: "string", default: "barProp2" },
+                  },
+                },
+              },
+            },
+          },
+          {
+            left: {
+              definitions: {
+                foo: {
+                  type: "object",
+                  properties: {
+                    fooProp: { type: "string" },
+                    fooProp2: { type: "string", default: "fooProp2" },
+                  },
+                },
+                bar: {
+                  type: "object",
+                  properties: {
+                    barProp: { type: "string" },
+                    barProp2: { type: "string", default: "barProp2" },
+                  },
+                },
+              },
+            },
+            right: { $ref: "#/definitions/bar" },
+            result: {
+              $ref: "#/definitions/bar",
+              definitions: {
+                foo: {
+                  type: "object",
+                  properties: {
+                    fooProp: { type: "string" },
+                    fooProp2: { type: "string", default: "fooProp2" },
+                  },
+                },
+                bar: {
+                  type: "object",
+                  properties: {
+                    barProp: { type: "string" },
+                    barProp2: { type: "string", default: "barProp2" },
+                  },
+                },
+              },
+            },
           },
         ],
       });
@@ -4541,7 +5292,29 @@ describe("getDefaultFormState2()", () => {
         array: ["foo", "qux"],
       });
     });
-    it("returns empty defaults when no item defaults are defined", () => {
+    it("returns empty defaults when no item defaults are defined for required array", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          array: {
+            type: "array",
+            minItems: 1,
+            uniqueItems: true,
+            items: {
+              type: "string",
+              enum: ["foo", "bar", "fuzz", "qux"],
+            },
+          },
+        },
+        required: ["array"],
+      };
+      expect(
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
+      ).toEqual({
+        array: [],
+      });
+    });
+    it("returns undefined defaults when no item defaults are defined for optional array", () => {
       const schema: Schema = {
         type: "object",
         properties: {
@@ -4558,9 +5331,7 @@ describe("getDefaultFormState2()", () => {
       };
       expect(
         getDefaultFormState(testValidator, defaultMerger, schema, {})
-      ).toEqual({
-        array: [],
-      });
+      ).toEqual({});
     });
     it("returns explicit defaults along with auto-fill when provided", () => {
       const schema: Schema = {
@@ -4610,7 +5381,28 @@ describe("getDefaultFormState2()", () => {
         },
         type: "object",
       };
-
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                { properties: { first: { title: "First", type: "string" } } },
+                { properties: { second: { title: "Second", type: "string" } } },
+              ],
+              default: { second: "Second 2!" },
+              type: "object",
+            },
+            result: {
+              default: { second: "Second 2!" },
+              type: "object",
+              properties: {
+                first: { title: "First", type: "string" },
+                second: { title: "Second", type: "string" },
+              },
+            },
+          },
+        ],
+      });
       expect(
         getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
@@ -4666,6 +5458,48 @@ describe("getDefaultFormState2()", () => {
             },
           ],
         });
+        defaultMerger = createMerger({
+          allOfMerges: [
+            {
+              input: {
+                properties: {
+                  animal: {
+                    type: "string",
+                    default: "Cat",
+                    enum: ["Cat", "Fish"],
+                  },
+                },
+                allOf: [
+                  {
+                    properties: {
+                      food: {
+                        type: "string",
+                        default: "meat",
+                        enum: ["meat", "grass", "fish"],
+                      },
+                    },
+                    required: ["food"],
+                  },
+                ],
+              },
+              result: {
+                properties: {
+                  animal: {
+                    type: "string",
+                    default: "Cat",
+                    enum: ["Cat", "Fish"],
+                  },
+                  food: {
+                    type: "string",
+                    default: "meat",
+                    enum: ["meat", "grass", "fish"],
+                  },
+                },
+                required: ["food"],
+              },
+            },
+          ],
+        });
         expect(
           computeDefaults(testValidator, defaultMerger, schema, {
             ...defaults,
@@ -4718,6 +5552,18 @@ describe("getDefaultFormState2()", () => {
           },
         },
       };
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "string" },
+            right: { type: "string", default: "a" },
+            result: {
+              type: "string",
+              default: "a",
+            },
+          },
+        ],
+      });
       expect(
         getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
@@ -4774,6 +5620,21 @@ describe("getDefaultFormState2()", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { default: { second: "Second 2!" }, type: "object" },
+            right: {
+              properties: { second: { title: "Second", type: "string" } },
+            },
+            result: {
+              type: "object",
+              properties: { second: { title: "Second", type: "string" } },
+              default: { second: "Second 2!" },
+            },
+          },
+        ],
+      });
 
       expect(getDefaultFormState(testValidator, defaultMerger, schema)).toEqual(
         {
@@ -4803,6 +5664,18 @@ describe("getDefaultFormState2()", () => {
             },
             value: {},
             result: false,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object" },
+            right: { properties: { name: { type: "string", default: "a" } } },
+            result: {
+              type: "object",
+              properties: { name: { type: "string", default: "a" } },
+            },
           },
         ],
       });
@@ -4841,6 +5714,21 @@ describe("getDefaultFormState2()", () => {
           },
         },
       };
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object" },
+            right: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+            },
+            result: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+            },
+          },
+        ],
+      });
       expect(
         getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
@@ -4868,6 +5756,21 @@ describe("getDefaultFormState2()", () => {
           },
         },
       };
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object" },
+            right: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+            },
+            result: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+            },
+          },
+        ],
+      });
       expect(
         getDefaultFormState(
           testValidator,
@@ -4907,6 +5810,22 @@ describe("getDefaultFormState2()", () => {
           },
         },
       };
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object", required: ["first"] },
+            right: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+            },
+            result: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+              required: ["first"],
+            },
+          },
+        ],
+      });
       expect(
         getDefaultFormState(
           testValidator,
@@ -4942,6 +5861,33 @@ describe("getDefaultFormState2()", () => {
             },
             value: {},
             result: false,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              type: "object",
+              required: ["foo", "bar"],
+              properties: { foo: { type: "string", default: "fooVal" } },
+            },
+            right: {
+              properties: {
+                bar: { type: "number" },
+                baz: { default: "bazIsRequired" },
+              },
+              required: ["baz"],
+            },
+            result: {
+              type: "object",
+              properties: {
+                foo: { type: "string", default: "fooVal" },
+                bar: { type: "number" },
+                baz: { default: "bazIsRequired" },
+              },
+              required: ["foo", "bar", "baz"],
+            },
           },
         ],
       });
@@ -5002,6 +5948,18 @@ describe("getDefaultFormState2()", () => {
             },
             value: { name: "Name" },
             result: true,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object", properties: { name: { type: "string" } } },
+            right: { properties: { grade: { default: "A" } } },
+            result: {
+              type: "object",
+              properties: { name: { type: "string" }, grade: { default: "A" } },
+            },
           },
         ],
       });
@@ -5115,6 +6073,18 @@ describe("getDefaultFormState2()", () => {
           },
         },
       };
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "string" },
+            right: { type: "string", default: "a" },
+            result: {
+              type: "string",
+              default: "a",
+            },
+          },
+        ],
+      });
       expect(
         getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
@@ -5171,6 +6141,21 @@ describe("getDefaultFormState2()", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { default: { second: "Second 2!" }, type: "object" },
+            right: {
+              properties: { second: { title: "Second", type: "string" } },
+            },
+            result: {
+              type: "object",
+              properties: { second: { title: "Second", type: "string" } },
+              default: { second: "Second 2!" },
+            },
+          },
+        ],
+      });
 
       expect(getDefaultFormState(testValidator, defaultMerger, schema)).toEqual(
         {
@@ -5196,6 +6181,21 @@ describe("getDefaultFormState2()", () => {
           },
         },
       };
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object" },
+            right: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+            },
+            result: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+            },
+          },
+        ],
+      });
       expect(
         getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
@@ -5223,6 +6223,21 @@ describe("getDefaultFormState2()", () => {
           },
         },
       };
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object" },
+            right: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+            },
+            result: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+            },
+          },
+        ],
+      });
       expect(
         getDefaultFormState(
           testValidator,
@@ -5262,6 +6277,22 @@ describe("getDefaultFormState2()", () => {
           },
         },
       };
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object", required: ["first"] },
+            right: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+            },
+            result: {
+              type: "object",
+              properties: { first: { type: "string", default: "First Name" } },
+              required: ["first"],
+            },
+          },
+        ],
+      });
       expect(
         getDefaultFormState(
           testValidator,
@@ -5297,6 +6328,33 @@ describe("getDefaultFormState2()", () => {
             },
             value: {},
             result: false,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              type: "object",
+              required: ["foo", "bar"],
+              properties: { foo: { type: "string", default: "fooVal" } },
+            },
+            right: {
+              properties: {
+                bar: { type: "number" },
+                baz: { default: "bazIsRequired" },
+              },
+              required: ["baz"],
+            },
+            result: {
+              type: "object",
+              required: ["foo", "bar", "baz"],
+              properties: {
+                foo: { type: "string", default: "fooVal" },
+                bar: { type: "number" },
+                baz: { default: "bazIsRequired" },
+              },
+            },
           },
         ],
       });
@@ -5357,6 +6415,21 @@ describe("getDefaultFormState2()", () => {
             },
             value: { name: "Name" },
             result: true,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object", properties: { name: { type: "string" } } },
+            right: { properties: { grade: { type: "string", default: "A" } } },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                grade: { type: "string", default: "A" },
+              },
+            },
           },
         ],
       });
@@ -5457,6 +6530,21 @@ describe("getDefaultFormState2()", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object", properties: { name: { type: "string" } } },
+            right: { properties: { grade: { type: "string", default: "A" } } },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                grade: { type: "string", default: "A" },
+              },
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {
@@ -5501,6 +6589,21 @@ describe("getDefaultFormState2()", () => {
             },
             value: { name: "Name" },
             result: true,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object", properties: { name: { type: "string" } } },
+            right: { properties: { grade: { type: "string", default: "A" } } },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                grade: { type: "string", default: "A" },
+              },
+            },
           },
         ],
       });
@@ -5555,6 +6658,21 @@ describe("getDefaultFormState2()", () => {
             },
             value: { name: "Name" },
             result: true,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object", properties: { name: { type: "string" } } },
+            right: { properties: { grade: { type: "string", default: "A" } } },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                grade: { type: "string", default: "A" },
+              },
+            },
           },
         ],
       });
@@ -5656,6 +6774,32 @@ describe("getDefaultFormState2()", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object", properties: { name: { type: "string" } } },
+            right: { properties: { grade: { type: "string", default: "A" } } },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                grade: { type: "string", default: "A" },
+              },
+            },
+          },
+          {
+            left: { type: "object", properties: { name: { type: "string" } } },
+            right: { properties: { grade: { type: "string", default: "B" } } },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                grade: { type: "string", default: "B" },
+              },
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         type: "array",
         items: {
@@ -5751,6 +6895,21 @@ describe("getDefaultFormState2()", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object", properties: { name: { type: "string" } } },
+            right: { properties: { grade: { type: "string", default: "A" } } },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                grade: { type: "string", default: "A" },
+              },
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {
@@ -5818,6 +6977,113 @@ describe("getDefaultFormState2()", () => {
             schema: { properties: { credentialType: { const: "secret" } } },
             value: { credentialType: "username" },
             result: false,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              title: "Credential type",
+              type: "string",
+              default: "username",
+            },
+            right: { const: "username", title: "Username and password" },
+            result: {
+              title: "Credential type",
+              type: "string",
+              default: "username",
+              const: "username",
+            },
+          },
+          {
+            left: {
+              title: "Authentication",
+              type: "object",
+              properties: {
+                credentialType: {
+                  title: "Credential type",
+                  type: "string",
+                  default: "username",
+                  oneOf: [
+                    { const: "username", title: "Username and password" },
+                    { const: "secret", title: "SSO" },
+                  ],
+                },
+              },
+            },
+            right: {
+              properties: {
+                usernameAndPassword: {
+                  type: "object",
+                  properties: {
+                    username: { type: "string", title: "Username" },
+                    password: { type: "string", title: "Password" },
+                  },
+                  required: ["username", "password"],
+                },
+              },
+              required: ["usernameAndPassword"],
+            },
+            result: {
+              title: "Authentication",
+              type: "object",
+              properties: {
+                credentialType: {
+                  title: "Credential type",
+                  type: "string",
+                  default: "username",
+                  oneOf: [
+                    { const: "username", title: "Username and password" },
+                    { const: "secret", title: "SSO" },
+                  ],
+                },
+                usernameAndPassword: {
+                  type: "object",
+                  properties: {
+                    username: { type: "string", title: "Username" },
+                    password: { type: "string", title: "Password" },
+                  },
+                  required: ["username", "password"],
+                },
+              },
+              required: ["usernameAndPassword"],
+            },
+          },
+        ],
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                {
+                  properties: {
+                    usernameAndPassword: {
+                      type: "object",
+                      properties: {
+                        username: { type: "string", title: "Username" },
+                        password: { type: "string", title: "Password" },
+                      },
+                      required: ["username", "password"],
+                    },
+                  },
+                  required: ["usernameAndPassword"],
+                },
+                {},
+              ],
+            },
+            result: {
+              properties: {
+                usernameAndPassword: {
+                  type: "object",
+                  properties: {
+                    username: { type: "string", title: "Username" },
+                    password: { type: "string", title: "Password" },
+                  },
+                  required: ["username", "password"],
+                },
+              },
+              required: ["usernameAndPassword"],
+            },
           },
         ],
       });
@@ -5922,6 +7188,39 @@ describe("getDefaultFormState2()", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              title: "Physical",
+              description: "XYZ",
+              type: "object",
+              properties: {
+                bit_rate_cfg_mode: {
+                  title: "Sub title",
+                  description: "XYZ",
+                  type: "integer",
+                  default: 0,
+                },
+              },
+            },
+            right: { properties: {} },
+            result: {
+              title: "Physical",
+              description: "XYZ",
+              type: "object",
+              properties: {
+                bit_rate_cfg_mode: {
+                  title: "Sub title",
+                  description: "XYZ",
+                  type: "integer",
+                  default: 0,
+                },
+              },
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {
@@ -5978,6 +7277,39 @@ describe("getDefaultFormState2()", () => {
             },
             value: { bit_rate_cfg_mode: 0 },
             result: true,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              title: "Physical",
+              description: "XYZ",
+              type: "object",
+              properties: {
+                bit_rate_cfg_mode: {
+                  title: "Sub title",
+                  description: "XYZ",
+                  type: "integer",
+                  default: 0,
+                },
+              },
+            },
+            right: { properties: {} },
+            result: {
+              title: "Physical",
+              description: "XYZ",
+              type: "object",
+              properties: {
+                bit_rate_cfg_mode: {
+                  title: "Sub title",
+                  description: "XYZ",
+                  type: "integer",
+                  default: 0,
+                },
+              },
+            },
           },
         ],
       });

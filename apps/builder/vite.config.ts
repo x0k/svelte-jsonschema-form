@@ -5,12 +5,16 @@ import tailwindcss from "@tailwindcss/vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 
 export default defineConfig({
-  base: "/svelte-jsonschema-form/builder/",
+  base: "/svelte-jsonschema-form/builder3/",
   plugins: [tailwindcss(), svelte()],
   resolve: {
     alias: {
       $lib: resolve("./src/lib"),
       $apps: fileURLToPath(new URL("..", import.meta.url)),
     },
+  },
+  optimizeDeps: {
+    exclude: ["@jis3r/icons"],
+    include: ['@svar-ui/svelte-core']
   },
 });

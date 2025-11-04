@@ -1,4 +1,10 @@
-export type { Schema, SchemaValue, Validator } from "@/core/index.js";
+export type {
+  Schema,
+  SchemaValue,
+  Validator,
+  RPath,
+  Path,
+} from "@/core/index.js";
 
 export * from "./model.js";
 export * from "./components.js";
@@ -12,3 +18,4 @@ export * from "./merger.js";
 export * from "./id.js";
 export * from "./icons.js";
 export * from "./translation.js";
+export * from "./field-actions.js";

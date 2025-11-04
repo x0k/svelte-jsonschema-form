@@ -1,37 +1,26 @@
-import { extendByRecord } from "@sjsf/form/lib/resolver";
-import { cast } from "@sjsf/form/lib/component";
-import type { SchemaArrayValue } from "@sjsf/form/core";
 import type {
-  ComponentDefinition,
   ComponentProps,
   ComponentType,
   FieldCommonProps,
-  SchemaValue,
   Theme as SJSFTheme,
   UiOptions,
   UiSchema,
 } from "@sjsf/form";
-import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
-import "@sjsf/form/fields/extra-fields/boolean-select-include";
-import "@sjsf/form/fields/extra-fields/enum-include";
-import "@sjsf/form/fields/extra-fields/file-include";
-import "@sjsf/form/fields/extra-fields/multi-enum-include";
-import FilesField from "@sjsf/form/fields/extra-fields/files.svelte";
-import TagsField from "@sjsf/form/fields/extra-fields/tags.svelte";
-
-declare module "@sjsf/form" {
-  interface ComponentProps {
-    filesFieldWrapper: FieldCommonProps<SchemaArrayValue>;
-    tagsFieldWrapper: FieldCommonProps<SchemaArrayValue>;
-  }
-  interface ComponentBinding {
-    filesFieldWrapper: "value";
-    tagsFieldWrapper: "value";
-  }
-}
+import "@sjsf/form/fields/extra/boolean-select-include";
+import "@sjsf/form/fields/extra/enum-include";
+import "@sjsf/form/fields/extra/file-include";
+import "@sjsf/form/fields/extra/multi-enum-include";
+import "@sjsf/form/fields/extra/unknown-native-file-include";
+import "@sjsf/form/fields/extra/array-native-files-include";
+import "@sjsf/form/fields/extra/array-files-include";
+import "@sjsf/form/fields/extra/array-tags-include";
 
 import { theme as basic } from "@sjsf/basic-theme";
+import basicStyles from "@sjsf/basic-theme/css/basic.css?raw";
+import picoStyles from "@picocss/pico/css/pico.css?raw";
+import picoAdapterStyles from "@sjsf/basic-theme/css/pico.css?raw";
 import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 import "@sjsf/basic-theme/extra-widgets/file-include";
@@ -40,11 +29,11 @@ import "@sjsf/basic-theme/extra-widgets/radio-include";
 import "@sjsf/basic-theme/extra-widgets/range-include";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
 
-import { theme as daisy5base } from "@sjsf/daisyui5-theme";
+import { theme as daisy5 } from "@sjsf/daisyui5-theme";
 import { default as daisy5Styles } from "@sjsf/daisyui5-theme/styles.css?raw";
 
-import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
 import "@sjsf/daisyui5-theme/extra-widgets/checkboxes-include";
+import "@sjsf/daisyui5-theme/extra-widgets/date-picker-include";
 import "@sjsf/daisyui5-theme/extra-widgets/file-include";
 import "@sjsf/daisyui5-theme/extra-widgets/multi-select-include";
 import "@sjsf/daisyui5-theme/extra-widgets/radio-buttons-include";
@@ -53,27 +42,11 @@ import "@sjsf/daisyui5-theme/extra-widgets/range-include";
 import "@sjsf/daisyui5-theme/extra-widgets/rating-include";
 import "@sjsf/daisyui5-theme/extra-widgets/switch-include";
 import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
-import FilterRadioButtons from "@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons.svelte";
-import PikadayDatePicker from "@sjsf/daisyui5-theme/extra-widgets/pikaday-date-picker.svelte";
-
-declare module "@sjsf/form" {
-  interface ComponentProps {
-    filterRadioButtonsWidget: WidgetCommonProps<SchemaValue> & Options;
-    pikadayDatePickerWidget: WidgetCommonProps<string>;
-  }
-  interface ComponentBinding {
-    filterRadioButtonsWidget: "value";
-    pikadayDatePickerWidget: "value";
-  }
-}
-
-const daisy5 = extendByRecord(daisy5base, {
-  filterRadioButtonsWidget: FilterRadioButtons,
-  pikadayDatePickerWidget: PikadayDatePicker,
-});
+import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
+import "@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons-include";
 
 import { theme as flowbite3 } from "@sjsf/flowbite3-theme";
-import { default as flowbite3Styles } from "@sjsf/flowbite3-theme/styles.css?inline";
+import { default as flowbite3Styles } from "@sjsf/flowbite3-theme/styles.css?raw";
 import "@sjsf/flowbite3-theme/extra-widgets/checkboxes-include";
 import "@sjsf/flowbite3-theme/extra-widgets/date-picker-include";
 import "@sjsf/flowbite3-theme/extra-widgets/file-include";
@@ -84,45 +57,27 @@ import "@sjsf/flowbite3-theme/extra-widgets/range-include";
 import "@sjsf/flowbite3-theme/extra-widgets/switch-include";
 import "@sjsf/flowbite3-theme/extra-widgets/tags-include";
 import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
+import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
 
-import { theme as skeleton3base } from "@sjsf/skeleton3-theme";
-import { default as skeleton3Styles } from "@sjsf/skeleton3-theme/styles.css?inline";
-import "@sjsf/skeleton3-theme/extra-widgets/checkboxes-include";
-import "@sjsf/skeleton3-theme/extra-widgets/date-picker-include";
-import "@sjsf/skeleton3-theme/extra-widgets/file-include";
-import "@sjsf/skeleton3-theme/extra-widgets/multi-select-include";
-import "@sjsf/skeleton3-theme/extra-widgets/radio-buttons-include";
-import "@sjsf/skeleton3-theme/extra-widgets/radio-include";
-import "@sjsf/skeleton3-theme/extra-widgets/range-include";
-import "@sjsf/skeleton3-theme/extra-widgets/rating-include";
-import "@sjsf/skeleton3-theme/extra-widgets/switch-include";
-import "@sjsf/skeleton3-theme/extra-widgets/tags-include";
-import "@sjsf/skeleton3-theme/extra-widgets/textarea-include";
-import FileUpload from "@sjsf/skeleton3-theme/extra-widgets/file-upload.svelte";
-import Slider from "@sjsf/skeleton3-theme/extra-widgets/slider.svelte";
-
-declare module "@sjsf/form" {
-  interface ComponentProps {
-    fileUploadWidget: WidgetCommonProps<FileList> & {
-      multiple: boolean;
-      loading: boolean;
-      processing: boolean;
-    };
-    sliderWidget: WidgetCommonProps<number>;
-  }
-  interface ComponentBindings {
-    fileUploadWidget: "value";
-    sliderWidget: "value";
-  }
-}
-
-const skeleton3 = extendByRecord(skeleton3base, {
-  fileUploadWidget: FileUpload,
-  sliderWidget: Slider,
-});
+import { theme as skeleton4 } from "@sjsf/skeleton4-theme";
+import { default as skeleton4Styles } from "@sjsf/skeleton4-theme/styles.css?raw";
+import "@sjsf/skeleton4-theme/extra-widgets/checkboxes-include";
+import "@sjsf/skeleton4-theme/extra-widgets/date-picker-include";
+import "@sjsf/skeleton4-theme/extra-widgets/file-include";
+import "@sjsf/skeleton4-theme/extra-widgets/multi-select-include";
+import "@sjsf/skeleton4-theme/extra-widgets/radio-buttons-include";
+import "@sjsf/skeleton4-theme/extra-widgets/radio-include";
+import "@sjsf/skeleton4-theme/extra-widgets/range-include";
+import "@sjsf/skeleton4-theme/extra-widgets/rating-include";
+import "@sjsf/skeleton4-theme/extra-widgets/switch-include";
+import "@sjsf/skeleton4-theme/extra-widgets/tags-include";
+import "@sjsf/skeleton4-theme/extra-widgets/textarea-include";
+import "@sjsf/skeleton4-theme/extra-widgets/combobox-include";
+import "@sjsf/skeleton4-theme/extra-widgets/file-upload-include";
+import "@sjsf/skeleton4-theme/extra-widgets/slider-include";
 
 import { theme as shadcn4 } from "@sjsf/shadcn4-theme";
-import { default as shadcn4Styles } from "@sjsf/shadcn4-theme/styles.css?inline";
+import { default as shadcn4Styles } from "@sjsf/shadcn4-theme/styles.css?raw";
 import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
 import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
 import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
@@ -134,111 +89,121 @@ import "@sjsf/shadcn4-theme/extra-widgets/range-include";
 import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 
+import { theme as svar } from "@sjsf-lab/svar-theme";
+import "@sjsf-lab/svar-theme/extra-widgets/checkboxes-include";
+import "@sjsf-lab/svar-theme/extra-widgets/date-picker-include";
+import "@sjsf-lab/svar-theme/extra-widgets/multi-select-include";
+import "@sjsf-lab/svar-theme/extra-widgets/radio-include";
+import "@sjsf-lab/svar-theme/extra-widgets/range-include";
+import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
+
+export type FieldType = {
+  [T in ComponentType]: ComponentProps[T] extends FieldCommonProps<any>
+    ? T
+    : never;
+}[ComponentType];
+
 export type WidgetType = {
   [T in ComponentType]: ComponentProps[T] extends WidgetCommonProps<any>
     ? T
     : never;
 }[ComponentType];
 
-export enum Theme {
+export enum ActualTheme {
   Basic = "basic",
+  Pico = "pico",
   Daisy5 = "daisyui5",
   Flowbite3 = "flowbite3",
-  Skeleton3 = "skeleton3",
+  Skeleton4 = "skeleton4",
   Shadcn4 = "shadcn4",
 }
 
-export const THEMES = Object.values(Theme);
+const ACTUAL_THEMES = Object.values(ActualTheme);
+
+export enum LabTheme {
+  Svar = "svar",
+}
+
+const LAB_THEMES = Object.values(LabTheme);
+const LAB_THEMES_SET = new Set<Theme>(LAB_THEMES);
+
+function isLabTheme(theme: Theme): theme is LabTheme {
+  return LAB_THEMES_SET.has(theme);
+}
+
+export type Theme = ActualTheme | LabTheme;
+
+export const THEMES = [...ACTUAL_THEMES, ...LAB_THEMES];
+
+export function packageFromTheme(theme: Theme): string {
+  return `@sjsf${isLabTheme(theme) ? '-lab' : ''}/${theme}-theme`
+}
 
 export const THEME_TITLES: Record<Theme, string> = {
-  [Theme.Basic]: "Basic",
-  [Theme.Daisy5]: "daisyUI v5",
-  [Theme.Flowbite3]: "Flowbite Svelte",
-  [Theme.Skeleton3]: "Skeleton v3",
-  [Theme.Shadcn4]: "shadcn-svelte",
+  [ActualTheme.Basic]: "Basic",
+  [ActualTheme.Pico]: "Pico",
+  [ActualTheme.Daisy5]: "daisyUI v5",
+  [ActualTheme.Flowbite3]: "Flowbite Svelte",
+  [ActualTheme.Skeleton4]: "Skeleton v4",
+  [ActualTheme.Shadcn4]: "shadcn-svelte",
+  [LabTheme.Svar]: "SVAR",
 };
 
 export const THEME_OPTIONAL_DEPS: Record<
   Theme,
   Record<string, Set<WidgetType>>
 > = {
-  [Theme.Basic]: {},
-  [Theme.Daisy5]: {},
-  [Theme.Flowbite3]: {},
-  [Theme.Skeleton3]: {
+  [ActualTheme.Basic]: {},
+  [ActualTheme.Pico]: {},
+  [ActualTheme.Daisy5]: {},
+  [ActualTheme.Flowbite3]: {},
+  [ActualTheme.Skeleton4]: {
     "@skeletonlabs/skeleton-svelte": new Set([
-      "fileUploadWidget",
+      "skeleton4FileUploadWidget",
+      "skeleton4SliderWidget",
       "radioButtonsWidget",
+      "comboboxWidget",
       "ratingWidget",
       "rangeWidget",
       "switchWidget",
       "tagsWidget",
     ]),
   },
-  [Theme.Shadcn4]: { "@internationalized/date": new Set(["datePickerWidget"]) },
+  [ActualTheme.Shadcn4]: {
+    "@internationalized/date": new Set(["datePickerWidget"]),
+  },
+  [LabTheme.Svar]: {},
 };
 
 export const THEME_PEER_DEPS: Record<Theme, string> = {
-  [Theme.Basic]: "",
-  [Theme.Daisy5]: "daisyui",
-  [Theme.Flowbite3]: "flowbite flowbite-svelte",
-  [Theme.Skeleton3]: "@skeletonlabs/skeleton @tailwindcss/forms",
-  [Theme.Shadcn4]:
+  [ActualTheme.Basic]: "",
+  [ActualTheme.Pico]: "@picocss/pico",
+  [ActualTheme.Daisy5]: "daisyui",
+  [ActualTheme.Flowbite3]: "flowbite flowbite-svelte",
+  [ActualTheme.Skeleton4]: "@skeletonlabs/skeleton @tailwindcss/forms",
+  [ActualTheme.Shadcn4]:
     "@lucide/svelte bits-ui clsx tailwind-merge tailwind-variants",
+  [LabTheme.Svar]: "@svar-ui/svelte-core",
 };
 
-const SJSF_THEMES: Record<Theme, SJSFTheme> = {
-  [Theme.Basic]: basic,
-  [Theme.Daisy5]: daisy5,
-  [Theme.Flowbite3]: flowbite3,
-  [Theme.Skeleton3]: skeleton3,
-  [Theme.Shadcn4]: shadcn4,
+export const SJSF_THEMES: Record<Theme, SJSFTheme> = {
+  [ActualTheme.Basic]: basic,
+  [ActualTheme.Pico]: basic,
+  [ActualTheme.Daisy5]: daisy5,
+  [ActualTheme.Flowbite3]: flowbite3,
+  [ActualTheme.Skeleton4]: skeleton4,
+  [ActualTheme.Shadcn4]: shadcn4,
+  [LabTheme.Svar]: svar,
 };
-
-function assertStrings(
-  arr: SchemaArrayValue | undefined
-): asserts arr is string[] | undefined {
-  if (
-    arr !== undefined &&
-    arr.find((item) => {
-      return item !== undefined && typeof item !== "string";
-    })
-  ) {
-    throw new TypeError("expected array of strings");
-  }
-}
-
-const filesFieldWrapper = cast(FilesField, {
-  value: {
-    transform(props) {
-      assertStrings(props.value);
-      return props.value;
-    },
-  },
-}) satisfies ComponentDefinition<"arrayField">;
-
-const tagsFieldWrapper = cast(TagsField, {
-  value: {
-    transform(props) {
-      assertStrings(props.value);
-      return props.value;
-    },
-  },
-}) satisfies ComponentDefinition<"arrayField">;
-
-export function sjsfTheme(theme: Theme): SJSFTheme {
-  return extendByRecord(SJSF_THEMES[theme], {
-    filesFieldWrapper,
-    tagsFieldWrapper,
-  });
-}
 
 export const THEME_STYLES: Record<Theme, string> = {
-  [Theme.Basic]: "",
-  [Theme.Daisy5]: daisy5Styles,
-  [Theme.Flowbite3]: flowbite3Styles,
-  [Theme.Skeleton3]: skeleton3Styles,
-  [Theme.Shadcn4]: shadcn4Styles,
+  [ActualTheme.Basic]: basicStyles,
+  [ActualTheme.Pico]: `${picoStyles}\n${picoAdapterStyles}`,
+  [ActualTheme.Daisy5]: daisy5Styles,
+  [ActualTheme.Flowbite3]: flowbite3Styles,
+  [ActualTheme.Skeleton4]: skeleton4Styles,
+  [ActualTheme.Shadcn4]: shadcn4Styles,
+  [LabTheme.Svar]: "",
 };
 
 interface MergeArraysOptions<T> {

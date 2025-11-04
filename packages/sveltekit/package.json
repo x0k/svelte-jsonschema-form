@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/sveltekit",
-	"version": "2.4.0",
+	"version": "3.0.0-next.12",
 	"description": "The SvelteKit integration for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -39,8 +39,8 @@
 	},
 	"exports": {
 		".": {
-			"types": "./dist/model.d.ts",
-			"svelte": "./dist/model.js"
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
 		},
 		"./client": {
 			"types": "./dist/client/index.d.ts",
@@ -49,13 +49,25 @@
 		"./server": {
 			"types": "./dist/server/index.d.ts",
 			"svelte": "./dist/server/index.js"
+		},
+		"./rf": {
+			"types": "./dist/rf/index.d.ts",
+			"svelte": "./dist/rf/index.js"
+		},
+		"./rf/client": {
+			"types": "./dist/rf/client/index.d.ts",
+			"svelte": "./dist/rf/client/index.js"
+		},
+		"./rf/server": {
+			"types": "./dist/rf/server/index.d.ts",
+			"svelte": "./dist/rf/server/index.js"
 		}
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^2.4.0",
-		"@sveltejs/kit": "^2.20.0",
+		"@sjsf/form": "workspace:^3.0.0-next.12",
+		"@sveltejs/kit": "^2.48.3",
 		"esm-env": "^1.2.0",
-		"svelte": "^5.33.0"
+		"svelte": "^5.30.0"
 	},
 	"devDependencies": {
 		"@sjsf/ajv8-validator": "workspace:*",
@@ -65,8 +77,11 @@
 		"esm-env": "catalog:",
 		"globals": "catalog:",
 		"svelte": "catalog:",
-		"testing": "workspace:*"
+		"theme-testing": "workspace:*"
 	},
-	"svelte": "./dist/model.js",
-	"types": "./dist/model.d.ts"
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"dependencies": {
+		"@standard-schema/spec": "^1.0.0"
+	}
 }

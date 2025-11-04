@@ -1,7 +1,7 @@
 {
 	"name": "daisyui5-starter",
 	"private": true,
-	"version": "0.0.1",
+	"version": "0.0.2-next.1",
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
@@ -12,21 +12,21 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^6.1.0",
-		"@sveltejs/kit": "^2.28.0",
+		"@sveltejs/kit": "^2.42.0",
 		"@sveltejs/vite-plugin-svelte": "^6.1.2",
 		"@tailwindcss/vite": "^4.1.11",
-		"daisyui": "^5.0.50",
-		"svelte": "^5.38.1",
+		"daisyui": "^5.3.0",
+		"svelte": "^5.30.0",
 		"svelte-check": "^4.3.1",
 		"tailwindcss": "^4.1.11",
 		"typescript": "^5.9.2",
 		"vite": "^7.1.2"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^2.2.1",
-		"@sjsf/basic-theme": "^2.2.1",
-		"@sjsf/daisyui5-theme": "^2.2.1",
-		"@sjsf/form": "^2.2.1",
+		"@sjsf/ajv8-validator": "workspace:*",
+		"@sjsf/basic-theme": "workspace:*",
+		"@sjsf/daisyui5-theme": "workspace:*",
+		"@sjsf/form": "workspace:*",
 		"ajv": "^8.17.1"
 	}
 }

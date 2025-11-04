@@ -48,29 +48,42 @@ export type JsonPaths<T, D extends number = 10> = D extends -1
     ? never
     : T extends readonly any[]
       ? number extends T["length"]
-        ? // Handle arrays
+        ? // non-tuple arrays like T[]
           T extends readonly (infer U)[]
           ? U extends JsonPrimitive
-            ? `${number}`
-            : `${number}` | `${number}.${JsonPaths<U, Prev[D]>}`
+            ? [number]
+            : [number] | [number, ...JsonPaths<U, Prev[D]>]
           : never
-        : // Handle tuples
+        : // fixed-length tuple
           {
-            [K in Indices<T>]: K extends `${number}`
+            [K in Indices<T>]: K extends `${infer N extends number}`
               ? T[K] extends JsonPrimitive
-                ? K
-                : K | `${K}.${JsonPaths<T[K], Prev[D]>}`
+                ? [N]
+                : [N] | [N, ...JsonPaths<T[K], Prev[D]>]
               : never;
           }[Indices<T>]
       : T extends object
-        ? // Handle objects (including optional properties)
-          NonNullable<
+        ? NonNullable<
             {
               [K in keyof T]: K extends string | number
                 ? T[K] extends JsonPrimitive | undefined
-                  ? `${K}`
-                  : `${K}` | `${K}.${JsonPaths<NonNullable<T[K]>, Prev[D]>}`
+                  ? [K]
+                  : [K] | [K, ...JsonPaths<NonNullable<T[K]>, Prev[D]>]
                 : never;
             }[keyof T]
           >
         : never;
+
+export type DeepPartial<T> = T extends readonly [infer A, ...infer Rest]
+  ? readonly [DeepPartial<A>, ...DeepPartial<Rest>]
+  : T extends readonly (infer U)[]
+    ? readonly DeepPartial<U>[]
+    : T extends Record<string, unknown>
+      ? { [K in keyof T]?: DeepPartial<T[K]> }
+      : T;
+
+export type OmitItems<
+  Args extends unknown[],
+  Bind extends unknown[],
+  Never = never,
+> = Args extends [...Bind, ...infer Rest] ? Rest : Never;

@@ -3,7 +3,8 @@
 // Modifications made by Roman Krasilnikov.
 
 import { array } from "@/lib/array.js";
-import { isSchemaObject } from "@/lib/json-schema/index.js";
+import { isRecordEmpty } from "@/lib/object.js";
+import { isJsonSchemaType, isSchemaObject } from "@/lib/json-schema/index.js";
 
 import {
   ADDITIONAL_PROPERTY_FLAG,
@@ -24,7 +25,6 @@ import {
 import { findSchemaDefinition } from "./definitions.js";
 import type { Validator } from "./validator.js";
 import type { Merger } from "./merger.js";
-import { mergeSchemas } from "./merge.js";
 import { typeOfValue } from "./type.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { getFirstMatchingOption } from "./matching.js";
@@ -36,21 +36,27 @@ export function retrieveSchema(
   merger: Merger,
   schema: Schema,
   rootSchema: Schema = {},
-  formData?: SchemaValue
+  formData?: SchemaValue,
+  resolveAnyOfOrOneOfRefs = false
 ): Schema {
   return retrieveSchemaInternal(
     validator,
     merger,
     schema,
     rootSchema,
-    formData
+    formData,
+    undefined,
+    undefined,
+    resolveAnyOfOrOneOfRefs
   )[0]!;
 }
 
 export function resolveAllReferences(
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
-  stack = new Set<string>()
+  stack = new Set<string>(),
+  resolveAnyOfOrOneOfRefs?: boolean
 ): Schema {
   let resolvedSchema: Schema = schema;
   const ref = resolvedSchema[REF_KEY];
@@ -60,13 +66,15 @@ export function resolveAllReferences(
     }
     stack.add(ref);
     const { [REF_KEY]: _, ...resolvedSchemaWithoutRef } = resolvedSchema;
+    const schemaDef = findSchemaDefinition(merger, ref, rootSchema);
     return resolveAllReferences(
-      mergeSchemas(
-        findSchemaDefinition(ref, rootSchema),
-        resolvedSchemaWithoutRef
-      ),
+      merger,
+      isRecordEmpty(resolvedSchemaWithoutRef)
+        ? schemaDef
+        : merger.mergeSchemas(schemaDef, resolvedSchemaWithoutRef),
       rootSchema,
-      stack
+      stack,
+      resolveAnyOfOrOneOfRefs
     );
   }
 
@@ -81,7 +89,13 @@ export function resolveAllReferences(
         const stackCopy = new Set(stack);
         resolvedProps.set(
           key,
-          resolveAllReferences(value, rootSchema, stackCopy)
+          resolveAllReferences(
+            merger,
+            value,
+            rootSchema,
+            stackCopy,
+            resolveAnyOfOrOneOfRefs
+          )
         );
         // TODO: Replace stack with an object with a Set of references
         // to use `union` Set method here
@@ -106,8 +120,41 @@ export function resolveAllReferences(
   if (items && !Array.isArray(items) && typeof items !== "boolean") {
     resolvedSchema = {
       ...resolvedSchema,
-      items: resolveAllReferences(items, rootSchema, stack),
+      items: resolveAllReferences(
+        merger,
+        items,
+        rootSchema,
+        stack,
+        resolveAnyOfOrOneOfRefs
+      ),
     };
+  }
+  if (resolveAnyOfOrOneOfRefs) {
+    let key: "anyOf" | "oneOf" | undefined;
+    let schemas: SchemaDefinition[] | undefined;
+    if (ANY_OF_KEY in schema && Array.isArray(schema[ANY_OF_KEY])) {
+      key = ANY_OF_KEY;
+      schemas = resolvedSchema[ANY_OF_KEY];
+    } else if (ONE_OF_KEY in schema && Array.isArray(schema[ONE_OF_KEY])) {
+      key = ONE_OF_KEY;
+      schemas = resolvedSchema[ONE_OF_KEY];
+    }
+    if (key && schemas) {
+      resolvedSchema = {
+        ...resolvedSchema,
+        [key]: schemas.map((s) =>
+          typeof s === "boolean"
+            ? s
+            : resolveAllReferences(
+                merger,
+                s,
+                rootSchema,
+                stack,
+                resolveAnyOfOrOneOfRefs
+              )
+        ),
+      };
+    }
   }
   return resolvedSchema;
 }
@@ -119,9 +166,16 @@ export function resolveReference(
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
+  resolveAnyOfOrOneOfRefs?: boolean
 ): Schema[] {
-  const resolvedSchema = resolveAllReferences(schema, rootSchema, stack);
+  const resolvedSchema = resolveAllReferences(
+    merger,
+    schema,
+    rootSchema,
+    stack,
+    resolveAnyOfOrOneOfRefs
+  );
   if (!isSchemaDeepEqual(schema, resolvedSchema)) {
     return retrieveSchemaInternal(
       validator,
@@ -130,7 +184,8 @@ export function resolveReference(
       rootSchema,
       formData,
       expandAllBranches,
-      stack
+      stack,
+      resolveAnyOfOrOneOfRefs
     );
   }
   return [schema];
@@ -146,7 +201,8 @@ export function retrieveSchemaInternal(
   rootSchema: Schema,
   formData?: SchemaValue,
   expandAllBranches = false,
-  stack = new Set<string>()
+  stack = new Set<string>(),
+  resolveAnyOfOrOneOfRefs?: boolean
 ): Schema[] {
   const resolvedSchemas = resolveSchema(
     validator,
@@ -155,7 +211,8 @@ export function retrieveSchemaInternal(
     rootSchema,
     expandAllBranches,
     stack,
-    formData
+    formData,
+    resolveAnyOfOrOneOfRefs
   );
   return resolvedSchemas.flatMap((s): Schema | Schema[] => {
     let resolvedSchema = s;
@@ -314,9 +371,11 @@ export function resolveCondition(
     }
   }
   if (schemas.length) {
-    resolvedSchemas = schemas.map((s) =>
-      mergeSchemas(resolvedSchemaLessConditional, s)
-    );
+    resolvedSchemas = isRecordEmpty(resolvedSchemaLessConditional)
+      ? schemas
+      : schemas.map((s) =>
+          merger.mergeSchemas(resolvedSchemaLessConditional, s)
+        );
   }
   return resolvedSchemas.flatMap((s) =>
     retrieveSchemaInternal(
@@ -395,7 +454,8 @@ export function stubExistingAdditionalProperties(
     if (isArbitraryAdditionalProperty) {
       const value = formData?.[key];
       if (value !== undefined) {
-        return { type: typeOfValue(value) };
+        const type = typeOfValue(value);
+        return isJsonSchemaType(type) ? { type } : {};
       }
     }
     return { type: "null" };
@@ -424,7 +484,8 @@ export function resolveSchema(
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
+  resolveAnyOfOrOneOfRefs?: boolean
 ): Schema[] {
   const updatedSchemas = resolveReference(
     validator,
@@ -433,7 +494,8 @@ export function resolveSchema(
     rootSchema,
     expandAllBranches,
     stack,
-    formData
+    formData,
+    resolveAnyOfOrOneOfRefs
   );
   if (updatedSchemas.length > 1 || updatedSchemas[0] !== schema) {
     return updatedSchemas;
@@ -496,6 +558,7 @@ export function resolveDependencies(
   const { dependencies, ...remainingSchema } = schema;
   const resolvedSchemas = resolveAnyOrOneOfSchemas(
     validator,
+    merger,
     remainingSchema,
     rootSchema,
     expandAllBranches,
@@ -517,6 +580,7 @@ export function resolveDependencies(
 
 export function resolveAnyOrOneOfSchemas(
   validator: Validator,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
@@ -537,7 +601,7 @@ export function resolveAnyOrOneOfSchemas(
     anyOrOneOf = anyOrOneOf.map((s) => {
       // Due to anyOf/oneOf possibly using the same $ref we always pass a fresh recurse list array so that each option
       // can resolve recursive references independently
-      return resolveAllReferences(s, rootSchema);
+      return resolveAllReferences(merger, s, rootSchema);
     });
     // Call this to trigger the set of isValid() calls that the schema parser will need
     const option = getFirstMatchingOption(
@@ -547,10 +611,15 @@ export function resolveAnyOrOneOfSchemas(
       rootSchema,
       discriminator
     );
+    const isRemainingEmpty = isRecordEmpty(remaining);
     if (expandAllBranches) {
-      return anyOrOneOf.map((item) => mergeSchemas(remaining, item));
+      return isRemainingEmpty
+        ? anyOrOneOf
+        : anyOrOneOf.map((item) => merger.mergeSchemas(remaining, item));
     }
-    schema = mergeSchemas(remaining, anyOrOneOf[option]!);
+    schema = isRemainingEmpty
+      ? anyOrOneOf[option]!
+      : merger.mergeSchemas(remaining, anyOrOneOf[option]!);
   }
   return [schema];
 }
@@ -585,7 +654,9 @@ export function processDependencies(
     const { [dependencyKey]: dependencyValue, ...remainingDependencies } =
       dependencies;
     if (Array.isArray(dependencyValue)) {
-      schemas[0] = mergeSchemas(resolvedSchema, { required: dependencyValue });
+      schemas[0] = merger.mergeSchemas(resolvedSchema, {
+        required: dependencyValue,
+      });
     } else if (typeof dependencyValue !== "boolean" && dependencyValue) {
       schemas = withDependentSchema(
         validator,
@@ -637,7 +708,9 @@ export function withDependentSchema(
   );
   return dependentSchemas.flatMap((dependent) => {
     const { oneOf, ...dependentSchema } = dependent;
-    const mergedSchema = mergeSchemas(schema, dependentSchema);
+    const mergedSchema = isRecordEmpty(dependentSchema)
+      ? schema
+      : merger.mergeSchemas(schema, dependentSchema);
     // Since it does not contain oneOf, we return the original schema.
     if (oneOf === undefined) {
       return mergedSchema;
@@ -730,7 +803,7 @@ export function withExactlyOneSubSchema(
       expandAllBranches,
       stack
     );
-    return schemas.map((s) => mergeSchemas(schema, s));
+    return schemas.map((s) => merger.mergeSchemas(schema, s));
   });
 }
 

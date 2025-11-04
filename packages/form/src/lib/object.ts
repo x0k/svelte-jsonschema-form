@@ -1,9 +1,18 @@
 export function isObject(value: unknown): value is object {
-  return typeof value === "object" && value !== null;
+  return value !== null && typeof value === "object";
+}
+
+const objProto = Object.prototype;
+
+export function isRecordProto<T>(
+  value: object
+): value is Record<PropertyKey, T> {
+  const p: unknown = Object.getPrototypeOf(value);
+  return p === objProto || p === null;
 }
 
 export function isRecord<T>(value: unknown): value is Record<PropertyKey, T> {
-  return isObject(value) && !Array.isArray(value);
+  return isObject(value) && isRecordProto(value);
 }
 
 export function isRecordEmpty<R extends Record<string, any>>(
@@ -16,10 +25,6 @@ export function isRecordEmpty<R extends Record<string, any>>(
   }
   return true;
 }
-
-// TODO: Remove in v3
-/** @deprecated use `isRecordEmpty` */
-export const isEmptyRecord = isRecordEmpty;
 
 export function getValueByPath<T, R>(
   from: T,

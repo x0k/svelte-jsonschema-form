@@ -1,20 +1,22 @@
 import { render } from 'svelte/server';
 import type { Page } from '@sveltejs/kit';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { pathToId } from '@sjsf/form';
 
-import type { ValidatedFormData } from '$lib/model.js';
-import { initForm } from '$lib/server/server.js';
+import type { InitialFormData, ValidatedFormData } from '$lib/model.js';
 
 async function renderForm(page: Partial<Page>) {
   vi.doMock('$app/state', () => ({
     page
   }));
   const m = await import('./native-form.svelte');
-  return render(m.default);
+  // Prevent async SSR
+  const form = render(m.default);
+  return form;
 }
 
-describe('native form SSR', () => {
+// TODO: Enable this test as SSR will be fixes
+// https://github.com/sveltejs/svelte/issues/16832
+describe.skip('native form SSR', () => {
   beforeEach(() => {
     vi.resetModules();
     vi.clearAllMocks();
@@ -22,19 +24,16 @@ describe('native form SSR', () => {
   it('should render initial values', async () => {
     const { body } = await renderForm({
       data: {
-        form: initForm({
-          sendSchema: true,
+        form: {
           schema: { title: 'Schema title', type: 'string' },
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: pathToId([]),
-              propertyTitle: 'Property',
-              message: 'error message',
-              error: null
+              path: [],
+              message: 'error message'
             }
           ]
-        })
+        } satisfies InitialFormData
       }
     });
     expect(body).toContain('Schema title');
@@ -44,34 +43,30 @@ describe('native form SSR', () => {
   it('should render action result', async () => {
     const { body } = await renderForm({
       data: {
-        form: initForm({
-          sendSchema: true,
+        form: {
           schema: { title: 'Schema title', type: 'string' },
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: pathToId([]),
-              propertyTitle: 'Property',
-              message: 'error message',
-              error: null
+              path: [],
+              message: 'error message'
             }
           ]
-        })
+        } satisfies InitialFormData
       },
       form: {
         form: {
+          idPrefix: 'root',
           isValid: false,
-          sendData: true,
           data: 'validated value',
           errors: [
             {
-              instanceId: pathToId([]),
-              propertyTitle: 'Validated property',
-              message: 'validation error message',
-              error: null
+              path: [],
+              message: 'validation error message'
             }
-          ]
-        } satisfies ValidatedFormData<null, true>
+          ],
+          updateData: true,
+        } satisfies ValidatedFormData<string, true>
       }
     });
     expect(body).toContain('Schema title');
@@ -81,34 +76,30 @@ describe('native form SSR', () => {
   it('should display the initial values if the validation was successful', async () => {
     const { body } = await renderForm({
       data: {
-        form: initForm({
-          sendSchema: true,
+        form: {
           schema: { title: 'Schema title', type: 'string' },
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: pathToId([]),
-              propertyTitle: 'Property',
-              message: 'error message',
-              error: null
+              path: [],
+              message: 'error message'
             }
           ]
-        })
+        } satisfies InitialFormData
       },
       form: {
         form: {
+          idPrefix: 'root',
           isValid: true,
-          sendData: true,
           data: 'validated value',
           errors: [
             {
-              instanceId: pathToId([]),
-              propertyTitle: 'Validated property',
-              message: 'validation error message',
-              error: null
+              path: [],
+              message: 'validation error message'
             }
-          ]
-        } satisfies ValidatedFormData<null, true>
+          ],
+          updateData: false,
+        } satisfies ValidatedFormData<string, true>
       }
     });
     expect(body).toContain('Schema title');

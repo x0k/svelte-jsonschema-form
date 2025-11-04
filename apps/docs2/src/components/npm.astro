@@ -1,5 +1,5 @@
 ---
-import { PKG_MANGERS } from "@/shared";
+import { PKG_MANGERS, packages } from "@/shared";
 import {
   PackageManagers,
   type PackageManagersProps,
@@ -8,4 +8,4 @@ import {
 export type Props = PackageManagersProps;
 ---
 
-<PackageManagers pkgManagers={[...PKG_MANGERS]} {...Astro.props} />
+<PackageManagers pkgManagers={[...PKG_MANGERS]} {...Astro.props} pkg={Astro.props.pkg && packages(Astro.props.pkg)} />

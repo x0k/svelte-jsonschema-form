@@ -28,5 +28,10 @@ declare module "../form/index.js" {
      * Overrides whether to use the `title` or `label` component in the `field` template
      */
     useLabel?: boolean;
+    /**
+     * Display errors from child elements (applies only to aggregating fields like `tags`).
+     * @default false
+     */
+    collectErrors?: boolean;
   }
 }

@@ -3,7 +3,7 @@
 The [daisyUI](https://github.com/saadeghi/daisyui) v5 based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/daisyui5/)
-- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
+- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground3/)
 
 ## Installation
 

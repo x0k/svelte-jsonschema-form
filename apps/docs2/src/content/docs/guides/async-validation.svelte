@@ -4,9 +4,9 @@
     addFormComponents,
     createAsyncFormValidator,
   } from "@sjsf/ajv8-validator";
-  import { ON_INPUT, BasicForm, createForm } from "@sjsf/form";
+  import { ON_INPUT, BasicForm, createForm, hasErrors } from "@sjsf/form";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   const ajv = addFormComponents(new Ajv());
   const validate: SchemaValidateFunction = async (schema, data) => {
@@ -35,7 +35,7 @@
 
   const form = createForm({
     ...defaults,
-    validator: createAsyncFormValidator({ ajv }),
+    validator: (options) => createAsyncFormValidator({ ...options, ajv }),
     schema,
     fieldsValidationMode: ON_INPUT,
     onSubmit: console.log,
@@ -49,6 +49,6 @@
 </p>
 <p>
   form validation: {form.submission.status}, fields validation: {form
-    .fieldsValidation.status}, errors: {form.errors.size > 0}
+    .fieldsValidation.status}, errors: {hasErrors(form)}
 </p>
 <BasicForm {form} novalidate autocomplete="off" />

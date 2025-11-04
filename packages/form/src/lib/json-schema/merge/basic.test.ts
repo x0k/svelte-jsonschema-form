@@ -440,7 +440,7 @@ describe("basic", () => {
       });
 
       expect(result).toEqual({
-        enum: ["string", {}, [1]],
+        enum: ["string", [1], {}],
       });
     });
 
@@ -1529,8 +1529,9 @@ describe("basic", () => {
       });
     });
 
+    // CHANGED: This merge produces invalid schema
     it("merges all allOf", () => {
-      expect(
+      expect(() =>
         merger(
           {
             properties: {
@@ -1594,19 +1595,20 @@ describe("basic", () => {
           },
           true
         )
-      ).toEqual({
-        properties: {
-          name: {
-            pattern: "^.+$",
-          },
-          added: {
-            type: "integer",
-            title: "pri1",
-            minimum: 15,
-            maximum: 10,
-          },
-        },
-      });
+      ).toThrow(/are conflicting/);
+      // .toEqual({
+      //   properties: {
+      //     name: {
+      //       pattern: "^.+$",
+      //     },
+      //     added: {
+      //       type: "integer",
+      //       title: "pri1",
+      //       minimum: 15,
+      //       maximum: 10,
+      //     },
+      //   },
+      // });
     });
   });
 

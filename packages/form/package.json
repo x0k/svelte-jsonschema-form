@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/form",
-  "version": "2.4.0",
+  "version": "3.0.0-next.12",
   "description": "Svelte 5 library for creating forms based on JSON schema.",
   "license": "(MIT AND Apache-2.0)",
   "keywords": [
@@ -12,7 +12,9 @@
   "files": [
     "dist",
     "LICENSE-APACHE",
+    "!fixtures",
     "!app.*",
+    "!dist/**/*.bench.*",
     "!dist/**/*.test.*",
     "!dist/**/*.spec.*"
   ],
@@ -28,8 +30,8 @@
   "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
   "scripts": {
     "dev": "vite",
-    "test": "vitest run --typecheck --exclude '.svelte-kit/**'",
-    "bench": "vitest bench --exclude '.svelte-kit/**'",
+    "test": "vitest run --typecheck",
+    "bench": "vitest bench",
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "format": "prettier --write .",
@@ -38,21 +40,31 @@
   "dependencies": {
     "@standard-schema/spec": "^1.0.0",
     "@types/json-schema": "^7.0.15",
-    "@types/json-schema-merge-allof": "^0.6.5",
-    "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1"
   },
   "peerDependencies": {
+    "@types/json-schema-merge-allof": "^0.6.0",
     "esm-env": "^1.2.0",
-    "svelte": "^5.33.0"
+    "json-schema-merge-allof": "^0.8.0",
+    "svelte": "^5.30.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/json-schema-merge-allof": {
+      "optional": true
+    },
+    "json-schema-merge-allof": {
+      "optional": true
+    }
   },
   "devDependencies": {
+    "@types/json-schema-merge-allof": "^0.6.5",
     "@types/json-schema-compare": "^0.2.4",
     "ajv": "catalog:",
     "allof-merge": "^0.6.7",
-    "deep-freeze-es6": "^4.0.1",
+    "deep-freeze-es6": "^5.0.0",
     "globals": "catalog:",
     "json-schema-compare": "^0.2.2",
+    "json-schema-merge-allof": "^0.8.1",
     "svelte": "catalog:"
   },
   "types": "./dist/form/index.d.ts",
@@ -74,6 +86,14 @@
       "types": "./dist/core/index.d.ts",
       "default": "./dist/core/index.js"
     },
+    "./internals": {
+      "types": "./dist/form/internals.d.ts",
+      "default": "./dist/form/internals.js"
+    },
+    "./theme": {
+      "types": "./dist/theme/index.d.ts",
+      "svelte": "./dist/theme/index.js"
+    },
     ".": {
       "types": "./dist/form/index.d.ts",
       "svelte": "./dist/form/index.js",
@@ -87,6 +107,14 @@
       "types": "./dist/form/extra-fields/*.d.ts",
       "svelte": "./dist/form/extra-fields/*"
     },
+    "./extra-labels/*": {
+      "types": "./dist/form/extra-labels/*.d.ts",
+      "svelte": "./dist/form/extra-labels/*"
+    },
+    "./fields/actions/*": {
+      "types": "./dist/fields/actions/*.d.ts",
+      "svelte": "./dist/fields/actions/*"
+    },
     "./fields/array/*": {
       "types": "./dist/fields/array/*.d.ts",
       "svelte": "./dist/fields/array/*"
@@ -99,17 +127,29 @@
       "types": "./dist/fields/extra-widgets/*.d.ts",
       "svelte": "./dist/fields/extra-widgets/*"
     },
-    "./fields/extra-fields/*": {
-      "types": "./dist/fields/extra-fields/*.d.ts",
-      "svelte": "./dist/fields/extra-fields/*"
+    "./fields/extra/*": {
+      "types": "./dist/fields/extra/*.d.ts",
+      "svelte": "./dist/fields/extra/*"
     },
-    "./fields/resolver": {
-      "types": "./dist/fields/resolver/index.d.ts",
-      "svelte": "./dist/fields/resolver/index.js"
+    "./fields/extra-fields/*": {
+      "types": "./dist/fields/extra/*.d.ts",
+      "svelte": "./dist/fields/extra/*"
+    },
+    "./fields/extra-templates/*": {
+      "types": "./dist/fields/extra-templates/*.d.ts",
+      "svelte": "./dist/fields/extra-templates/*"
+    },
+    "./fields/extra-components/*": {
+      "types": "./dist/fields/extra-components/*.d.ts",
+      "svelte": "./dist/fields/extra-components/*"
     },
     "./fields/*": {
       "types": "./dist/fields/*.d.ts",
       "svelte": "./dist/fields/*"
+    },
+    "./templates/extra/*": {
+      "types": "./dist/templates/extra/*.d.ts",
+      "svelte": "./dist/templates/extra/*"
     },
     "./templates/*": {
       "types": "./dist/templates/*.d.ts",
@@ -127,6 +167,10 @@
       "types": "./dist/mergers/*.d.ts",
       "default": "./dist/mergers/*.js"
     },
+    "./id-builders/*": {
+      "types": "./dist/id-builders/*.d.ts",
+      "default": "./dist/id-builders/*.js"
+    },
     "./focus-on-first-error": {
       "types": "./dist/focus-on-first-error.d.ts",
       "svelte": "./dist/focus-on-first-error.js"
@@ -142,10 +186,6 @@
     "./prevent-page-reload.svelte": {
       "types": "./dist/prevent-page-reload.svelte.d.ts",
       "svelte": "./dist/prevent-page-reload.svelte.js"
-    },
-    "./static-analysis": {
-      "types": "./dist/static-analysis.d.ts",
-      "default": "./dist/static-analysis.js"
     }
   }
 }

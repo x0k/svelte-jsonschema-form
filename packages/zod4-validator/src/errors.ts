@@ -1,45 +1,24 @@
-import {
-  getRootSchemaTitleByPath,
-  getRootUiSchemaTitleByPath,
-  pathToId,
-  type Config,
-  type PathToIdOptions,
-  type Schema,
-  type UiSchemaRoot,
-  type ValidationError,
-} from "@sjsf/form";
+import type { FormValue, ValidationResult } from "@sjsf/form";
 import type { $ZodIssue, util } from "zod/v4/core";
 
-export interface ErrorsTransformerOptions extends PathToIdOptions {
-  uiSchema?: UiSchemaRoot;
-}
-
-export function createErrorsTransformer(options: ErrorsTransformerOptions) {
-  return (
-    result: util.SafeParseResult<any>,
-    rootSchema: Schema
-  ): ValidationError<$ZodIssue>[] => {
-    if (result.success) {
-      return [];
-    }
-    return result.error.issues.map((issue) => {
-      const issuePath = issue.path.map((v) =>
+export function transformFormErrors<T>(
+  result: util.SafeParseResult<T>,
+  formData: FormValue
+): ValidationResult<T> {
+  if (result.success) {
+    return { value: result.data };
+  }
+  return {
+    value: formData,
+    errors: result.error.issues.map((issue) => {
+      const path = issue.path.map((v) =>
         typeof v === "symbol" ? v.toString() : v
       );
-      const instanceId = pathToId(issuePath, options);
-      const propertyTitle =
-        getRootUiSchemaTitleByPath(options.uiSchema ?? {}, issuePath) ??
-        // TODO: Retrieve title from Zod metadata registry
-        getRootSchemaTitleByPath(rootSchema, issuePath) ??
-        issue.path[issue.path.length - 1] ??
-        instanceId;
       return {
-        instanceId,
-        propertyTitle: String(propertyTitle),
+        path,
         message: issue.message,
-        error: issue,
       };
-    });
+    }),
   };
 }
 
@@ -52,9 +31,8 @@ function isRootFieldError(issue: $ZodIssue) {
 // }
 
 export function transformFieldErrors(
-  config: Config,
   result: util.SafeParseResult<any>
-): ValidationError<$ZodIssue>[] {
+): string[] {
   if (result.success) {
     return [];
   }
@@ -63,11 +41,6 @@ export function transformFieldErrors(
     issues
       // .filter(config.required ? isRootFieldError : isRootAndNonTypeError)
       .filter(isRootFieldError)
-      .map((issue) => ({
-        instanceId: config.id,
-        propertyTitle: config.title,
-        message: issue.message,
-        error: issue,
-      }))
+      .map((issue) => issue.message)
   );
 }

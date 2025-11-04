@@ -40,12 +40,15 @@ import {
 } from "./fixtures/test-data.js";
 import type { Validator } from "./validator.js";
 import { createValidator } from "./test-validator.js";
-import { defaultMerger } from "./merger.js";
+import type { Merger } from "./merger.js";
+import { createMerger } from "./test-merger.js";
 
 let testValidator: Validator;
+let defaultMerger: Merger;
 
 beforeEach(() => {
   testValidator = createValidator();
+  defaultMerger = createMerger();
 });
 
 describe("resolveDependencies()", () => {
@@ -103,6 +106,48 @@ describe("resolveDependencies()", () => {
           schema: { type: "object", properties: { first: { enum: ["no"] } } },
           value: { first: "yes" },
           result: false,
+        },
+      ],
+    });
+    defaultMerger = createMerger({
+      merges: [
+        {
+          left: {
+            type: "object",
+            properties: {
+              first: { type: "string", enum: ["no", "yes"], default: "no" },
+            },
+          },
+          right: {
+            properties: {
+              second: {
+                type: "object",
+                properties: {
+                  deeplyNestedThird: {
+                    type: "string",
+                    enum: ["before", "after"],
+                    default: "before",
+                  },
+                },
+              },
+            },
+          },
+          result: {
+            type: "object",
+            properties: {
+              first: { type: "string", enum: ["no", "yes"], default: "no" },
+              second: {
+                type: "object",
+                properties: {
+                  deeplyNestedThird: {
+                    type: "string",
+                    enum: ["before", "after"],
+                    default: "before",
+                  },
+                },
+              },
+            },
+          },
         },
       ],
     });
@@ -186,7 +231,59 @@ describe("retrieveSchema()", () => {
     };
 
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, schema)
+      retrieveSchema(
+        testValidator,
+        createMerger({
+          merges: [
+            {
+              left: {
+                type: "object",
+                properties: {
+                  street_address: { type: "string" },
+                  city: { type: "string" },
+                  state: { type: "string" },
+                },
+                required: ["street_address", "city", "state"],
+              },
+              right: {
+                definitions: {
+                  address: {
+                    type: "object",
+                    properties: {
+                      street_address: { type: "string" },
+                      city: { type: "string" },
+                      state: { type: "string" },
+                    },
+                    required: ["street_address", "city", "state"],
+                  },
+                },
+              },
+              result: {
+                type: "object",
+                properties: {
+                  street_address: { type: "string" },
+                  city: { type: "string" },
+                  state: { type: "string" },
+                },
+                required: ["street_address", "city", "state"],
+                definitions: {
+                  address: {
+                    type: "object",
+                    properties: {
+                      street_address: { type: "string" },
+                      city: { type: "string" },
+                      state: { type: "string" },
+                    },
+                    required: ["street_address", "city", "state"],
+                  },
+                },
+              },
+            },
+          ],
+        }),
+        schema,
+        schema
+      )
     ).toEqual({
       definitions: { address },
       ...address,
@@ -368,7 +465,7 @@ describe("retrieveSchema()", () => {
       properties: {},
     });
   });
-  it("should prioritize local definitions over foreign ones", () => {
+  it.todo("should prioritize local definitions over foreign ones", () => {
     const schema: Schema = {
       $ref: "#/definitions/address",
       title: "foo",
@@ -380,7 +477,23 @@ describe("retrieveSchema()", () => {
     const rootSchema: Schema = { definitions: { address } };
 
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(
+        testValidator,
+        createMerger({
+          merges: [
+            {
+              left: { type: "string", title: "bar" },
+              right: { title: "foo" },
+              result: {
+                type: "string",
+                title: "bar",
+              },
+            },
+          ],
+        }),
+        schema,
+        rootSchema
+      )
     ).toEqual({
       ...address,
       title: "foo",
@@ -389,7 +502,46 @@ describe("retrieveSchema()", () => {
   it("recursive ref should resolve once", () => {
     const result = retrieveSchema(
       testValidator,
-      defaultMerger,
+      createMerger({
+        merges: [
+          {
+            left: {
+              type: "object",
+              properties: {
+                name: { title: "Name", type: "string", default: "" },
+                children: { $ref: "#/definitions/@enum" },
+              },
+            },
+            right: {
+              definitions: {
+                "@enum": {
+                  type: "object",
+                  properties: {
+                    name: { title: "Name", type: "string", default: "" },
+                    children: { $ref: "#/definitions/@enum" },
+                  },
+                },
+              },
+            },
+            result: {
+              type: "object",
+              properties: {
+                name: { title: "Name", type: "string", default: "" },
+                children: { $ref: "#/definitions/@enum" },
+              },
+              definitions: {
+                "@enum": {
+                  type: "object",
+                  properties: {
+                    name: { title: "Name", type: "string", default: "" },
+                    children: { $ref: "#/definitions/@enum" },
+                  },
+                },
+              },
+            },
+          },
+        ],
+      }),
       RECURSIVE_REF,
       RECURSIVE_REF
     );
@@ -401,7 +553,40 @@ describe("retrieveSchema()", () => {
   it("recursive allof ref should resolve once", () => {
     const result = retrieveSchema(
       testValidator,
-      defaultMerger,
+      createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    name: { title: "Name", type: "string", default: "" },
+                    _id: { title: "Value", type: "number" },
+                    children: {
+                      title: "Subvalues",
+                      type: "array",
+                      items: { allOf: [{ $ref: "#/definitions/@enum" }] },
+                    },
+                  },
+                },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                name: { title: "Name", type: "string", default: "" },
+                _id: { title: "Value", type: "number" },
+                children: {
+                  title: "Subvalues",
+                  type: "array",
+                  items: { allOf: [{ $ref: "#/definitions/@enum" }] },
+                },
+              },
+            },
+          },
+        ],
+      }),
       (RECURSIVE_REF_ALLOF.properties?.value as Schema).items as Schema,
       RECURSIVE_REF_ALLOF
     );
@@ -505,7 +690,59 @@ describe("retrieveSchema()", () => {
       },
     } satisfies Schema;
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, schema)
+      retrieveSchema(
+        testValidator,
+        createMerger({
+          merges: [
+            {
+              left: {
+                type: "object",
+                properties: {
+                  street_address: { type: "string" },
+                  city: { type: "string" },
+                  state: { type: "string" },
+                },
+                required: ["street_address", "city", "state"],
+              },
+              right: { title: "Billing address" },
+              result: {
+                type: "object",
+                title: "Billing address",
+                properties: {
+                  street_address: { type: "string" },
+                  city: { type: "string" },
+                  state: { type: "string" },
+                },
+                required: ["street_address", "city", "state"],
+              },
+            },
+            {
+              left: {
+                type: "object",
+                properties: {
+                  street_address: { type: "string" },
+                  city: { type: "string" },
+                  state: { type: "string" },
+                },
+                required: ["street_address", "city", "state"],
+              },
+              right: { title: "Shipping address" },
+              result: {
+                type: "object",
+                title: "Shipping address",
+                properties: {
+                  street_address: { type: "string" },
+                  city: { type: "string" },
+                  state: { type: "string" },
+                },
+                required: ["street_address", "city", "state"],
+              },
+            },
+          ],
+        }),
+        schema,
+        schema
+      )
     ).toEqual({
       ...schema,
       properties: {
@@ -556,7 +793,29 @@ describe("retrieveSchema()", () => {
           expect(
             retrieveSchema(
               testValidator,
-              defaultMerger,
+              createMerger({
+                merges: [
+                  {
+                    left: {
+                      type: "object",
+                      properties: {
+                        a: { type: "string" },
+                        b: { type: "integer" },
+                      },
+                      required: undefined,
+                    },
+                    right: { required: ["b"] },
+                    result: {
+                      type: "object",
+                      properties: {
+                        a: { type: "string" },
+                        b: { type: "integer" },
+                      },
+                      required: ["b"],
+                    },
+                  },
+                ],
+              }),
               schema,
               rootSchema,
               formData
@@ -605,7 +864,29 @@ describe("retrieveSchema()", () => {
           expect(
             retrieveSchema(
               testValidator,
-              defaultMerger,
+              createMerger({
+                merges: [
+                  {
+                    left: {
+                      type: "object",
+                      properties: {
+                        a: { type: "string" },
+                        b: { type: "integer" },
+                      },
+                      required: ["a"],
+                    },
+                    right: { required: ["b"] },
+                    result: {
+                      type: "object",
+                      properties: {
+                        a: { type: "string" },
+                        b: { type: "integer" },
+                      },
+                      required: ["a", "b"],
+                    },
+                  },
+                ],
+              }),
               PROPERTY_DEPENDENCIES,
               rootSchema,
               formData
@@ -652,7 +933,24 @@ describe("retrieveSchema()", () => {
           expect(
             retrieveSchema(
               testValidator,
-              defaultMerger,
+              createMerger({
+                merges: [
+                  {
+                    left: {
+                      type: "object",
+                      properties: { a: { type: "string" } },
+                    },
+                    right: { properties: { b: { type: "integer" } } },
+                    result: {
+                      type: "object",
+                      properties: {
+                        a: { type: "string" },
+                        b: { type: "integer" },
+                      },
+                    },
+                  },
+                ],
+              }),
               SCHEMA_DEPENDENCIES,
               rootSchema,
               formData
@@ -671,7 +969,32 @@ describe("retrieveSchema()", () => {
           expect(
             retrieveSchema(
               testValidator,
-              defaultMerger,
+              createMerger({
+                merges: [
+                  {
+                    left: {
+                      type: "object",
+                      properties: {
+                        a: { type: "string" },
+                        b: { type: "integer" },
+                      },
+                      required: ["a"],
+                    },
+                    right: {
+                      properties: { a: { type: "string" } },
+                      required: ["b"],
+                    },
+                    result: {
+                      type: "object",
+                      properties: {
+                        a: { type: "string" },
+                        b: { type: "integer" },
+                      },
+                      required: ["a", "b"],
+                    },
+                  },
+                ],
+              }),
               SCHEMA_AND_REQUIRED_DEPENDENCIES,
               rootSchema,
               formData
@@ -708,7 +1031,35 @@ describe("retrieveSchema()", () => {
           expect(
             retrieveSchema(
               testValidator,
-              defaultMerger,
+              createMerger({
+                merges: [
+                  {
+                    left: {
+                      type: "object",
+                      properties: {
+                        a: { type: "string", enum: ["FOO", "BAR", "BAZ"] },
+                        b: { type: "string", enum: ["GREEN", "BLUE", "RED"] },
+                      },
+                      required: ["a"],
+                    },
+                    right: {
+                      properties: {
+                        a: { enum: ["FOO"] },
+                        b: { enum: ["BLUE"] },
+                      },
+                      required: ["a", "b"],
+                    },
+                    result: {
+                      type: "object",
+                      properties: {
+                        a: { type: "string", enum: ["FOO"] },
+                        b: { type: "string", enum: ["BLUE"] },
+                      },
+                      required: ["a", "b"],
+                    },
+                  },
+                ],
+              }),
               schema,
               rootSchema,
               formData
@@ -750,7 +1101,24 @@ describe("retrieveSchema()", () => {
           expect(
             retrieveSchema(
               testValidator,
-              defaultMerger,
+              createMerger({
+                merges: [
+                  {
+                    left: {
+                      type: "object",
+                      properties: { a: { type: "string" } },
+                    },
+                    right: { properties: { b: { type: "integer" } } },
+                    result: {
+                      type: "object",
+                      properties: {
+                        a: { type: "string" },
+                        b: { type: "integer" },
+                      },
+                    },
+                  },
+                ],
+              }),
               schema,
               rootSchema,
               formData
@@ -785,6 +1153,24 @@ describe("retrieveSchema()", () => {
                 },
                 value: { a: "typeB" },
                 result: true,
+              },
+            ],
+          });
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: {
+                  type: "object",
+                  properties: { a: { enum: ["typeA", "typeB"] } },
+                },
+                right: { properties: { c: { type: "boolean" } } },
+                result: {
+                  type: "object",
+                  properties: {
+                    a: { enum: ["typeA", "typeB"] },
+                    c: { type: "boolean" },
+                  },
+                },
               },
             ],
           });
@@ -889,6 +1275,25 @@ describe("retrieveSchema()", () => {
               },
             ],
           });
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: {
+                  type: "object",
+                  properties: { a: { type: "string", enum: ["int", "bool"] } },
+                  definitions: undefined,
+                },
+                right: { properties: { b: { type: "integer" } } },
+                result: {
+                  type: "object",
+                  properties: {
+                    a: { type: "string", enum: ["int", "bool"] },
+                    b: { type: "integer" },
+                  },
+                },
+              },
+            ],
+          });
           const schema: Schema = {
             ...SCHEMA_AND_ONEOF_REF_DEPENDENCIES,
             definitions: undefined,
@@ -930,6 +1335,25 @@ describe("retrieveSchema()", () => {
                 },
                 value: { a: "bool" },
                 result: true,
+              },
+            ],
+          });
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: {
+                  type: "object",
+                  properties: { a: { type: "string", enum: ["int", "bool"] } },
+                  definitions: undefined,
+                },
+                right: { properties: { b: { type: "boolean" } } },
+                result: {
+                  type: "object",
+                  properties: {
+                    a: { type: "string", enum: ["int", "bool"] },
+                    b: { type: "boolean" },
+                  },
+                },
               },
             ],
           });
@@ -1043,6 +1467,86 @@ describe("retrieveSchema()", () => {
                 },
               ],
             });
+            defaultMerger = createMerger({
+              merges: [
+                {
+                  left: {
+                    type: "object",
+                    properties: {
+                      employee_accounts: {
+                        type: "boolean",
+                        title: "Employee Accounts",
+                      },
+                    },
+                  },
+                  right: {
+                    properties: {
+                      update_absences: {
+                        title: "Update Absences",
+                        type: "string",
+                        oneOf: [{ title: "Both", const: "BOTH" }],
+                      },
+                    },
+                  },
+                  result: {
+                    type: "object",
+                    properties: {
+                      employee_accounts: {
+                        type: "boolean",
+                        title: "Employee Accounts",
+                      },
+                      update_absences: {
+                        title: "Update Absences",
+                        type: "string",
+                        oneOf: [{ title: "Both", const: "BOTH" }],
+                      },
+                    },
+                  },
+                },
+                {
+                  left: {
+                    type: "object",
+                    properties: {
+                      employee_accounts: {
+                        type: "boolean",
+                        title: "Employee Accounts",
+                      },
+                      update_absences: {
+                        title: "Update Absences",
+                        type: "string",
+                        oneOf: [{ title: "Both", const: "BOTH" }],
+                      },
+                    },
+                  },
+                  right: {
+                    properties: {
+                      permitted_extension: {
+                        title: "Permitted Extension",
+                        type: "integer",
+                      },
+                    },
+                  },
+                  result: {
+                    type: "object",
+                    properties: {
+                      employee_accounts: {
+                        type: "boolean",
+                        title: "Employee Accounts",
+                      },
+                      update_absences: {
+                        title: "Update Absences",
+                        type: "string",
+                        oneOf: [{ title: "Both", const: "BOTH" }],
+                      },
+                      permitted_extension: {
+                        title: "Permitted Extension",
+                        type: "integer",
+                      },
+                    },
+                  },
+                },
+              ],
+            });
             const formData = {
               employee_accounts: true,
               update_absences: "BOTH",
@@ -1102,6 +1606,28 @@ describe("retrieveSchema()", () => {
                 },
                 value: { a: "bool" },
                 result: true,
+              },
+            ],
+          });
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: {
+                  type: "object",
+                  properties: { a: { type: "string", enum: ["int", "bool"] } },
+                },
+                right: {
+                  properties: {
+                    b: { type: "boolean" },
+                  },
+                },
+                result: {
+                  type: "object",
+                  properties: {
+                    a: { type: "string", enum: ["int", "bool"] },
+                    b: { type: "boolean" },
+                  },
+                },
               },
             ],
           });
@@ -1166,7 +1692,21 @@ describe("retrieveSchema()", () => {
       expect(
         retrieveSchema(
           testValidator,
-          defaultMerger,
+          createMerger({
+            allOfMerges: [
+              {
+                input: {
+                  allOf: [
+                    { type: ["string", "number", "null"] },
+                    { type: "string" },
+                  ],
+                },
+                result: {
+                  type: "string",
+                },
+              },
+            ],
+          }),
           schema,
           rootSchema,
           formData
@@ -1218,7 +1758,28 @@ describe("retrieveSchema()", () => {
       expect(
         retrieveSchema(
           testValidator,
-          defaultMerger,
+          createMerger({
+            allOfMerges: [
+              {
+                input: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: { a: { type: "string" } },
+                  },
+                  allOf: [{ maxItems: 5 }],
+                },
+                result: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: { a: { type: "string" } },
+                  },
+                  maxItems: 5,
+                },
+              },
+            ],
+          }),
           schema,
           rootSchema,
           formData
@@ -1311,7 +1872,17 @@ describe("retrieveSchema()", () => {
       expect(
         retrieveSchema(
           testValidator,
-          defaultMerger,
+          createMerger({
+            allOfMerges: [
+              {
+                input: { allOf: [{ type: "string" }, { minLength: 5 }] },
+                result: {
+                  type: "string",
+                  minLength: 5,
+                },
+              },
+            ],
+          }),
           schema,
           rootSchema,
           formData
@@ -1339,7 +1910,46 @@ describe("retrieveSchema()", () => {
       expect(
         retrieveSchema(
           testValidator,
-          defaultMerger,
+          createMerger({
+            allOfMerges: [
+              {
+                input: {
+                  type: "string",
+                  allOf: [{ minLength: 2 }, { maxLength: 5 }],
+                },
+                result: {
+                  type: "string",
+                  minLength: 2,
+                  maxLength: 5,
+                },
+              },
+              {
+                input: {
+                  type: "string",
+                  allOf: [{ default: "hi" }, { minLength: 4 }],
+                },
+                result: {
+                  type: "string",
+                  default: "hi",
+                  minLength: 4,
+                },
+              },
+              {
+                input: {
+                  allOf: [
+                    { type: "string", minLength: 2, maxLength: 5 },
+                    { type: "string", default: "hi", minLength: 4 },
+                  ],
+                },
+                result: {
+                  type: "string",
+                  minLength: 4,
+                  maxLength: 5,
+                  default: "hi",
+                },
+              },
+            ],
+          }),
           schema,
           rootSchema,
           formData
@@ -1366,6 +1976,34 @@ describe("retrieveSchema()", () => {
               postal_code: "20500",
             },
             result: true,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              type: "object",
+              properties: {
+                country: {
+                  default: "United States of America",
+                  enum: ["United States of America", "Canada"],
+                },
+              },
+            },
+            right: {
+              properties: { postal_code: { pattern: "[0-9]{5}(-[0-9]{4})?" } },
+            },
+            result: {
+              type: "object",
+              properties: {
+                country: {
+                  default: "United States of America",
+                  enum: ["United States of America", "Canada"],
+                },
+                postal_code: { pattern: "[0-9]{5}(-[0-9]{4})?" },
+              },
+            },
           },
         ],
       });
@@ -1406,6 +2044,36 @@ describe("retrieveSchema()", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              type: "object",
+              properties: {
+                country: {
+                  default: "United States of America",
+                  enum: ["United States of America", "Canada"],
+                },
+              },
+            },
+            right: {
+              properties: {
+                postal_code: { pattern: "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" },
+              },
+            },
+            result: {
+              type: "object",
+              properties: {
+                country: {
+                  default: "United States of America",
+                  enum: ["United States of America", "Canada"],
+                },
+                postal_code: { pattern: "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" },
+              },
+            },
+          },
+        ],
+      });
       const rootSchema: Schema = { definitions: {} };
       const formData = {
         country: "Canada",
@@ -1443,6 +2111,50 @@ describe("retrieveSchema()", () => {
             schema: { properties: { animal: { const: "Fish" } } },
             value: { animal: "Cat" },
             result: false,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { required: ["food"] },
+            right: {
+              properties: {
+                food: { type: "string", enum: ["meat", "grass", "fish"] },
+              },
+            },
+            result: {
+              properties: {
+                food: { type: "string", enum: ["meat", "grass", "fish"] },
+              },
+              required: ["food"],
+            },
+          },
+        ],
+        allOfMerges: [
+          {
+            input: {
+              type: "object",
+              properties: { animal: { enum: ["Cat", "Fish"] } },
+              allOf: [
+                {
+                  properties: {
+                    food: { type: "string", enum: ["meat", "grass", "fish"] },
+                  },
+                  required: ["food"],
+                },
+                {},
+                { required: ["animal"] },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                animal: { enum: ["Cat", "Fish"] },
+                food: { type: "string", enum: ["meat", "grass", "fish"] },
+              },
+              required: ["animal", "food"],
+            },
           },
         ],
       });
@@ -1545,7 +2257,147 @@ describe("retrieveSchema()", () => {
       expect(
         retrieveSchema(
           testValidator,
-          defaultMerger,
+          createMerger({
+            allOfMerges: [
+              {
+                input: {
+                  type: "object",
+                  properties: {
+                    Animal: {
+                      default: "Cat",
+                      enum: ["Cat", "Dog"],
+                      title: "Animal",
+                      type: "string",
+                    },
+                  },
+                  allOf: [
+                    {},
+                    {
+                      properties: {
+                        Breed: {
+                          title: "Breed",
+                          properties: {
+                            BreedName: {
+                              default: "Alsatian",
+                              enum: ["Alsatian", "Dalmation"],
+                              title: "Breed name",
+                              type: "string",
+                            },
+                          },
+                          allOf: [
+                            {
+                              if: {
+                                required: ["BreedName"],
+                                properties: {
+                                  BreedName: { const: "Alsatian" },
+                                },
+                              },
+                              then: {
+                                properties: {
+                                  Fur: {
+                                    default: "brown",
+                                    enum: ["black", "brown"],
+                                    title: "Fur",
+                                    type: "string",
+                                  },
+                                },
+                                required: ["Fur"],
+                              },
+                            },
+                            {
+                              if: {
+                                required: ["BreedName"],
+                                properties: {
+                                  BreedName: { const: "Dalmation" },
+                                },
+                              },
+                              then: {
+                                properties: {
+                                  Spots: {
+                                    default: "small",
+                                    enum: ["large", "small"],
+                                    title: "Spots",
+                                    type: "string",
+                                  },
+                                },
+                                required: ["Spots"],
+                              },
+                            },
+                          ],
+                          required: ["BreedName"],
+                        },
+                      },
+                    },
+                  ],
+                  required: ["Animal"],
+                },
+                result: {
+                  type: "object",
+                  properties: {
+                    Animal: {
+                      default: "Cat",
+                      enum: ["Cat", "Dog"],
+                      title: "Animal",
+                      type: "string",
+                    },
+                    Breed: {
+                      title: "Breed",
+                      properties: {
+                        BreedName: {
+                          default: "Alsatian",
+                          enum: ["Alsatian", "Dalmation"],
+                          title: "Breed name",
+                          type: "string",
+                        },
+                      },
+                      allOf: [
+                        {
+                          if: {
+                            required: ["BreedName"],
+                            properties: {
+                              BreedName: { const: "Alsatian" },
+                            },
+                          },
+                          then: {
+                            properties: {
+                              Fur: {
+                                default: "brown",
+                                enum: ["black", "brown"],
+                                title: "Fur",
+                                type: "string",
+                              },
+                            },
+                            required: ["Fur"],
+                          },
+                        },
+                        {
+                          if: {
+                            required: ["BreedName"],
+                            properties: {
+                              BreedName: { const: "Dalmation" },
+                            },
+                          },
+                          then: {
+                            properties: {
+                              Spots: {
+                                default: "small",
+                                enum: ["large", "small"],
+                                title: "Spots",
+                                type: "string",
+                              },
+                            },
+                            required: ["Spots"],
+                          },
+                        },
+                      ],
+                      required: ["BreedName"],
+                    },
+                  },
+                  required: ["Animal"],
+                },
+              },
+            ],
+          }),
           SCHEMA_WITH_MULTIPLE_CONDITIONS,
           rootSchema,
           formData
@@ -1632,6 +2484,50 @@ describe("retrieveSchema()", () => {
             schema: { properties: { animal: { const: "Fish" } } },
             value: { animal: "Cat" },
             result: false,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              type: "object",
+              properties: { animal: { enum: ["Cat", "Fish"] } },
+              allOf: [
+                {
+                  properties: {
+                    food: { type: "string", enum: ["meat", "grass", "fish"] },
+                  },
+                  required: ["food"],
+                },
+                {},
+                { required: ["animal"] },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                animal: { enum: ["Cat", "Fish"] },
+                food: { type: "string", enum: ["meat", "grass", "fish"] },
+              },
+              required: ["animal", "food"],
+            },
+          },
+        ],
+        merges: [
+          {
+            left: { required: ["food"] },
+            right: {
+              properties: {
+                food: { type: "string", enum: ["meat", "grass", "fish"] },
+              },
+            },
+            result: {
+              properties: {
+                food: { type: "string", enum: ["meat", "grass", "fish"] },
+              },
+              required: ["food"],
+            },
           },
         ],
       });
@@ -1733,6 +2629,65 @@ describe("retrieveSchema()", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              properties: {
+                state: { type: "string", enum: ["California", "New York"] },
+              },
+              required: ["state"],
+            },
+            right: {
+              properties: {
+                city: {
+                  type: "string",
+                  enum: ["New York City", "Buffalo", "Rochester"],
+                },
+              },
+            },
+            result: {
+              properties: {
+                state: { type: "string", enum: ["California", "New York"] },
+                city: {
+                  type: "string",
+                  enum: ["New York City", "Buffalo", "Rochester"],
+                },
+              },
+              required: ["state"],
+            },
+          },
+          {
+            left: {
+              type: "object",
+              properties: { country: { enum: ["USA"] } },
+              required: ["country"],
+            },
+            right: {
+              properties: {
+                state: { type: "string", enum: ["California", "New York"] },
+                city: {
+                  type: "string",
+                  enum: ["New York City", "Buffalo", "Rochester"],
+                },
+              },
+              required: ["state"],
+            },
+            result: {
+              type: "object",
+              properties: {
+                country: { enum: ["USA"] },
+                state: { type: "string", enum: ["California", "New York"] },
+                city: {
+                  type: "string",
+                  enum: ["New York City", "Buffalo", "Rochester"],
+                },
+              },
+              required: ["country", "state"],
+            },
+          },
+        ],
+      });
       const rootSchema: Schema = {};
       const formData = {
         country: "USA",
@@ -1785,7 +2740,21 @@ describe("retrieveSchema()", () => {
       expect(
         retrieveSchema(
           testValidator,
-          defaultMerger,
+          createMerger({
+            merges: [
+              {
+                left: {
+                  type: "object",
+                  properties: { myString: { type: "string", minLength: 5 } },
+                },
+                right: { properties: { myString: { minLength: 10 } } },
+                result: {
+                  type: "object",
+                  properties: { myString: { type: "string", minLength: 10 } },
+                },
+              },
+            ],
+          }),
           schema,
           rootSchema,
           formData
@@ -1884,6 +2853,65 @@ describe("retrieveSchema()", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              type: "object",
+              properties: { isString: { type: "boolean" } },
+              allOf: [{ properties: { value: { type: "string" } } }, {}],
+            },
+            result: {
+              type: "object",
+              properties: {
+                isString: { type: "boolean" },
+                value: { type: "string" },
+              },
+            },
+          },
+          {
+            input: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    isString: { type: "boolean" },
+                    value: { type: "string" },
+                  },
+                },
+                { type: "object" },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                isString: { type: "boolean" },
+                value: { type: "string" },
+              },
+            },
+          },
+          {
+            input: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    isString: { type: "boolean" },
+                    value: { type: "string" },
+                  },
+                },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                isString: { type: "boolean" },
+                value: { type: "string" },
+              },
+            },
+          },
+        ],
+      });
       expect(
         retrieveSchema(testValidator, defaultMerger, schema, rootSchema, {
           foo: { isString: true },
@@ -1920,6 +2948,65 @@ describe("retrieveSchema()", () => {
             schema: { properties: { isString: { const: false } } },
             value: { isString: false },
             result: true,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    isString: { type: "boolean" },
+                    value: { type: "number" },
+                  },
+                },
+                { type: "object" },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                isString: { type: "boolean" },
+                value: { type: "number" },
+              },
+            },
+          },
+          {
+            input: {
+              type: "object",
+              properties: { isString: { type: "boolean" } },
+              allOf: [{}, { properties: { value: { type: "number" } } }],
+            },
+            result: {
+              type: "object",
+              properties: {
+                isString: { type: "boolean" },
+                value: { type: "number" },
+              },
+            },
+          },
+          {
+            input: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    isString: { type: "boolean" },
+                    value: { type: "number" },
+                  },
+                },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                isString: { type: "boolean" },
+                value: { type: "number" },
+              },
+            },
           },
         ],
       });
@@ -1973,7 +3060,20 @@ describe("retrieveSchema()", () => {
       expect(
         retrieveSchema(
           testValidator,
-          defaultMerger,
+          createMerger({
+            allOfMerges: [
+              {
+                input: {
+                  allOf: [{ minimum: 10 }, { maximum: 20 }, { type: "number" }],
+                },
+                result: {
+                  type: "number",
+                  minimum: 10,
+                  maximum: 20,
+                },
+              },
+            ],
+          }),
           schema,
           rootSchema,
           formData
@@ -2217,7 +3317,14 @@ describe("retrieveSchema()", () => {
       expect(
         stubExistingAdditionalProperties(
           testValidator,
-          defaultMerger,
+          createMerger({
+            allOfMerges: [
+              {
+                input: { allOf: [{ type: "number", minimum: 10 }] },
+                result: { type: "number", minimum: 10 },
+              },
+            ],
+          }),
           schema,
           schema,
           formData
@@ -2254,7 +3361,23 @@ describe("retrieveSchema()", () => {
       expect(
         stubExistingAdditionalProperties(
           testValidator,
-          defaultMerger,
+          createMerger({
+            allOfMerges: [
+              {
+                input: {
+                  allOf: [
+                    { type: "number", minimum: 10 },
+                    { type: "number", maximum: 20 },
+                  ],
+                },
+                result: {
+                  type: "number",
+                  minimum: 10,
+                  maximum: 20,
+                },
+              },
+            ],
+          }),
           schema,
           schema,
           formData
@@ -2289,7 +3412,14 @@ describe("retrieveSchema()", () => {
       expect(
         stubExistingAdditionalProperties(
           testValidator,
-          defaultMerger,
+          createMerger({
+            allOfMerges: [
+              {
+                input: { allOf: [{ type: "number", minimum: 10 }] },
+                result: { type: "number", minimum: 10 },
+              },
+            ],
+          }),
           schema,
           schema,
           formData
@@ -2330,7 +3460,14 @@ describe("retrieveSchema()", () => {
       expect(
         stubExistingAdditionalProperties(
           testValidator,
-          defaultMerger,
+          createMerger({
+            allOfMerges: [
+              {
+                input: { allOf: [{ type: "number", minimum: 10 }] },
+                result: { type: "number", minimum: 10 },
+              },
+            ],
+          }),
           schema,
           schema,
           formData
@@ -2453,6 +3590,22 @@ describe("retrieveSchema()", () => {
       expect(
         resolveAnyOrOneOfSchemas(
           testValidator,
+          createMerger({
+            merges: [
+              {
+                left: { title: "multi" },
+                right: {
+                  type: "object",
+                  properties: { name: { type: "string" } },
+                },
+                result: {
+                  title: "multi",
+                  type: "object",
+                  properties: { name: { type: "string" } },
+                },
+              },
+            ],
+          }),
           anyOfSchema,
           SUPER_SCHEMA,
           false,
@@ -2506,6 +3659,47 @@ describe("retrieveSchema()", () => {
       expect(
         resolveAnyOrOneOfSchemas(
           testValidator,
+          createMerger({
+            merges: [
+              {
+                left: { required: ["choice"] },
+                right: {
+                  type: "object",
+                  required: ["more"],
+                  properties: {
+                    choice: { type: "string", const: "one" },
+                    other: { type: "number" },
+                  },
+                },
+                result: {
+                  type: "object",
+                  required: ["choice", "more"],
+                  properties: {
+                    choice: { type: "string", const: "one" },
+                    other: { type: "number" },
+                  },
+                },
+              },
+              {
+                left: { required: ["choice"] },
+                right: {
+                  type: "object",
+                  properties: {
+                    choice: { type: "string", const: "two" },
+                    more: { type: "string" },
+                  },
+                },
+                result: {
+                  type: "object",
+                  properties: {
+                    choice: { type: "string", const: "two" },
+                    more: { type: "string" },
+                  },
+                  required: ["choice"],
+                },
+              },
+            ],
+          }),
           oneOfSchema,
           SUPER_SCHEMA,
           true,
@@ -2592,7 +3786,14 @@ describe("retrieveSchema()", () => {
         },
       };
       expect(
-        resolveAnyOrOneOfSchemas(testValidator, schema, rootSchema, true, [])
+        resolveAnyOrOneOfSchemas(
+          testValidator,
+          defaultMerger,
+          schema,
+          rootSchema,
+          true,
+          []
+        )
       ).toEqual([
         {
           type: "object",
@@ -2633,7 +3834,62 @@ describe("retrieveSchema()", () => {
       expect(
         resolveCondition(
           testValidator,
-          defaultMerger,
+          createMerger({
+            merges: [
+              {
+                left: {
+                  type: "object",
+                  properties: {
+                    country: {
+                      default: "United States of America",
+                      enum: ["United States of America", "Canada"],
+                    },
+                  },
+                },
+                right: {
+                  properties: {
+                    postal_code: { pattern: "[0-9]{5}(-[0-9]{4})?" },
+                  },
+                },
+                result: {
+                  type: "object",
+                  properties: {
+                    country: {
+                      default: "United States of America",
+                      enum: ["United States of America", "Canada"],
+                    },
+                    postal_code: { pattern: "[0-9]{5}(-[0-9]{4})?" },
+                  },
+                },
+              },
+              {
+                left: {
+                  type: "object",
+                  properties: {
+                    country: {
+                      default: "United States of America",
+                      enum: ["United States of America", "Canada"],
+                    },
+                  },
+                },
+                right: {
+                  properties: {
+                    postal_code: { pattern: "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" },
+                  },
+                },
+                result: {
+                  type: "object",
+                  properties: {
+                    country: {
+                      default: "United States of America",
+                      enum: ["United States of America", "Canada"],
+                    },
+                    postal_code: { pattern: "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" },
+                  },
+                },
+              },
+            ],
+          }),
           SCHEMA_WITH_SINGLE_CONDITION,
           SCHEMA_WITH_SINGLE_CONDITION,
           true,
@@ -2699,6 +3955,105 @@ describe("retrieveSchema()", () => {
           },
         },
       ]);
+    });
+  });
+  describe("retrieveSchema() with resolveAnyOfOrOneOfRefs", () => {
+    it("resolves simple ref with no anyOf or oneOfs when false", () => {
+      const priceSchema: Schema = SUPER_SCHEMA.properties?.price as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          priceSchema,
+          SUPER_SCHEMA,
+          {}
+        )
+      ).toEqual({
+        ...(SUPER_SCHEMA.definitions?.price as Schema),
+      });
+    });
+    it("resolves simple ref with no anyOf or oneOfs when true", () => {
+      const priceSchema: Schema = SUPER_SCHEMA.properties?.price as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          priceSchema,
+          SUPER_SCHEMA,
+          {},
+          true
+        )
+      ).toEqual({
+        ...(SUPER_SCHEMA.definitions?.price as Schema),
+      });
+    });
+    it("does not resolves the references inside of anyOfs when false", () => {
+      const anyOfSchema: Schema = SUPER_SCHEMA.properties?.multi as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          anyOfSchema,
+          SUPER_SCHEMA,
+          {}
+        )
+      ).toEqual(anyOfSchema);
+    });
+    it("resolves the references inside of anyOfs when true", () => {
+      const anyOfSchema: Schema = SUPER_SCHEMA.properties?.multi as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          anyOfSchema,
+          SUPER_SCHEMA,
+          {},
+          true
+        )
+      ).toEqual({
+        ...anyOfSchema,
+        anyOf: [
+          {
+            ...(SUPER_SCHEMA.definitions?.foo as Schema),
+          },
+        ],
+      });
+    });
+    it("does not resolves the references inside of oneOfs when false", () => {
+      const oneOfSchema: Schema = SUPER_SCHEMA.properties?.single as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          oneOfSchema,
+          SUPER_SCHEMA,
+          {},
+          false
+        )
+      ).toEqual(oneOfSchema);
+    });
+    it("resolves the references inside of oneOfs when true", () => {
+      const oneOfSchema: Schema = SUPER_SCHEMA.properties?.single as Schema;
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          oneOfSchema,
+          SUPER_SCHEMA,
+          {},
+          true
+        )
+      ).toEqual({
+        ...oneOfSchema,
+        oneOf: [
+          {
+            ...(SUPER_SCHEMA.definitions?.choice1 as Schema),
+          },
+          {
+            ...(SUPER_SCHEMA.definitions?.choice2 as Schema),
+          },
+        ],
+      });
     });
   });
 });

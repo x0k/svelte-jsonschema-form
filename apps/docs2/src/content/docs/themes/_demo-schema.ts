@@ -1,18 +1,12 @@
-import { cast } from "@sjsf/form/lib/component";
-import type { ComponentDefinition, Schema, UiSchema } from "@sjsf/form";
-import FilesField from "@sjsf/form/fields/extra-fields/files.svelte";
-import { s } from "testing/demo";
+import type { UiSchema } from "@sjsf/form";
+import { transpose } from "@json-table/core/lib/matrix";
+import { createMatrix, fromMatrix } from "@json-table/core/block-matrix";
+import { makeBlockFactory } from "@json-table/core/json-to-table";
+import { blockToHTML } from "@json-table/core/block-to-html";
+
+import { s } from "theme-testing/specs";
 
 import { THEME_PACKAGES, type Theme } from "@/shared";
-
-const filesAsArrayField = cast(FilesField, {
-  value: {
-    transform(props) {
-      s.assertStrings(props.value);
-      return props.value;
-    },
-  },
-}) satisfies ComponentDefinition<"arrayField">;
 
 const WIDGET_USED_AS_DEFAULT_IN_FIELDS: Record<string, string[] | undefined> = {
   checkboxes: ["multiEnumField"],
@@ -34,51 +28,60 @@ export function createExtraImports(theme: Theme, widgets: string[]) {
     .join("\n");
 }
 
-export function createSchemas(specs: Record<string, [Schema, UiSchema]> = {}) {
-  return s.createSchemas({
-    checkbox: [s.boolean, {}],
-    checkboxes: [
-      s.uniqueArray,
-      {
-        "ui:components": {
-          arrayField: "multiEnumField",
+export function createSchemas(specs: s.Specs = {}) {
+  const clone: s.Specs = {};
+  for (const [k, v] of Object.entries(specs)) {
+    clone[k] = v.with(1, {
+      ...v[1],
+      "ui:options": {
+        ...v[1]["ui:options"],
+        title: k,
+      },
+    }) as typeof v;
+  }
+  const schemas = s.createSchemas(clone);
+  const ui = schemas.uiSchema as UiSchema;
+  for (const key of Object.keys(ui)) {
+    ui[key] = {
+      ...ui[key],
+      "ui:options": {
+        ...(ui[key] as UiSchema)?.["ui:options"],
+        layouts: {
+          "object-properties": {
+            style:
+              "display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;",
+          },
         },
       },
-    ],
-    file: [
-      s.file,
-      {
-        "ui:components": {
-          stringField: "fileField",
-        },
-      },
-    ],
-    multiFile: [
-      {
-        type: "array",
-        items: s.file,
-      },
-      {
-        "ui:components": {
-          arrayField: filesAsArrayField,
-        },
-      },
-    ],
-    number: [s.number, {}],
-    select: [
-      s.enumeration,
-      {
-        "ui:components": {
-          stringField: "enumField",
-        },
-      },
-    ],
-    text: [s.text, {}],
-    ...specs,
-  });
+    };
+  }
+  return schemas;
 }
 
-export function replacer(key: string, value: any) {
+const createBlock = makeBlockFactory({
+  cornerCellValue: "№",
+  joinPrimitiveArrayValues: true,
+});
+
+export function validationEvents(specs: s.Specs) {
+  const data = Object.fromEntries(
+    Object.entries(specs).map(([k, [, , e]]) => [
+      k,
+      Object.keys(e).join(", ") ?? "none",
+    ])
+  );
+  let block = createBlock(data);
+  let matrix = createMatrix(block, ({ type, value }) => ({ type, value }));
+  matrix = transpose(matrix);
+  block = fromMatrix(
+    matrix,
+    ({ type }) => type,
+    ({ value }) => value
+  );
+  return blockToHTML(block);
+}
+
+export function replacer(_: string, value: any) {
   if (typeof value === "function") {
     return `<function: ${value.name || "anonymous"}>`;
   }

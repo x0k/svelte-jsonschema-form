@@ -1,45 +1,8 @@
 import type { Brand } from "@/lib/types.js";
-import type { Path } from "@/core/index.js";
-
-export const DEFAULT_ID_PREFIX = "root";
-
-export const DEFAULT_ID_SEPARATOR = ".";
-
-export const DEFAULT_ID_PSEUDO_SEPARATOR = "::";
+import type { RPath } from "@/core/index.js";
 
 export type Id = Brand<"sjsf-id">;
-
-export interface IdPrefixOption {
-  idPrefix?: string;
-}
-
-export interface IdSeparatorOption {
-  idSeparator?: string;
-}
-
-export interface IdPseudoSeparatorOption {
-  idPseudoSeparator?: string;
-}
-
-export type IdOptions = IdPrefixOption &
-  IdSeparatorOption &
-  IdPseudoSeparatorOption;
-
-export type PathToIdOptions = IdPrefixOption & IdSeparatorOption;
-
-export function pathToId(
-  path: Path,
-  {
-    idPrefix = DEFAULT_ID_PREFIX,
-    idSeparator = DEFAULT_ID_SEPARATOR,
-  }: PathToIdOptions = {}
-) {
-  return (
-    path.length === 0
-      ? idPrefix
-      : `${idPrefix}${idSeparator}${path.join(idSeparator)}`
-  ) as Id;
-}
+export type FieldPath = Brand<"sjsf-path", RPath>;
 
 export interface IdentifiableFieldElement {
   help: {};
@@ -50,22 +13,46 @@ export interface IdentifiableFieldElement {
   errors: {};
   oneof: {};
   anyof: {};
+  form: {};
+  submit: {};
 }
 
-export function createPseudoId(
-  instanceId: Id,
-  element: keyof IdentifiableFieldElement | number,
-  {
-    idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
-  }: IdPseudoSeparatorOption = {}
-) {
-  return `${instanceId}${idPseudoSeparator}${element}` as Id;
+export type FieldPseudoElement = keyof IdentifiableFieldElement | number;
+
+export interface FormIdBuilder {
+  fromPath: (path: FieldPath) => string;
 }
 
-export function createChildId(
-  arrayOrObjectId: Id,
-  indexOrProperty: number | string,
-  { idSeparator = DEFAULT_ID_SEPARATOR }: IdSeparatorOption = {}
-): Id {
-  return `${arrayOrObjectId}${idSeparator}${indexOrProperty}` as Id;
+export const SJSF_ID_PREFIX = '__sjsf_id_prefix'
+export const DEFAULT_ID_PREFIX = "root";
+
+const PSEUDO_PREFIX = "__sjsf_pseudo_element";
+const PSEUDO_PREFIX_LEN = PSEUDO_PREFIX.length;
+const STRING_SUFFIX = "S";
+const NUMBER_SUFFIX = "N";
+
+export function encodePseudoElement(element: FieldPseudoElement): string {
+  return `${PSEUDO_PREFIX}${typeof element === "string" ? STRING_SUFFIX : NUMBER_SUFFIX}${element}`;
+}
+
+export function decodePseudoElement(
+  pathElement: RPath[number]
+): FieldPseudoElement | undefined {
+  if (
+    typeof pathElement !== "string" ||
+    !pathElement.startsWith(PSEUDO_PREFIX)
+  ) {
+    return;
+  }
+  const token = pathElement.substring(PSEUDO_PREFIX_LEN + 1);
+  switch (pathElement[PSEUDO_PREFIX_LEN]) {
+    case STRING_SUFFIX:
+      return token as FieldPseudoElement;
+    case NUMBER_SUFFIX:
+      return Number(token);
+    default:
+      throw new Error(
+        `Unexpected pseudo element suffix "${pathElement[PSEUDO_PREFIX_LEN]}", expected "${STRING_SUFFIX}" or "${NUMBER_SUFFIX}"`
+      );
+  }
 }

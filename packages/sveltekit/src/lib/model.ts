@@ -1,30 +1,66 @@
+import type { DeepPartial, MaybePromise } from '@sjsf/form/lib/types';
+import type { RPath, SchemaDefinition, SchemaValue } from '@sjsf/form/core';
 import type {
-  IdentifiableFieldElement,
+  FieldValue,
+  FormOptions,
+  FormValue,
   Schema,
-  SchemaValue,
+  UiSchema,
   UiSchemaRoot,
   ValidationError
 } from '@sjsf/form';
 
+import type { PickOptionalSerializable } from './internal.js';
+
 export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
+export const FORM_DATA_FILE_PREFIX = '__sjsf_sveltekit_file__';
 
-export interface InitialFormData<T, E, SendSchema extends boolean> {
-  initialValue: T | undefined;
-  initialErrors: ValidationError<E>[];
-  schema: SendSchema extends true ? Schema : undefined;
-  uiSchema: UiSchemaRoot | undefined;
+export type SerializableOptionalFormOptions<T> = PickOptionalSerializable<FormOptions<T>>;
+
+export type InitialFormData<T = unknown> = SerializableOptionalFormOptions<T> & {
+  schema?: Schema;
+  initialValue?: DeepPartial<T>;
+  initialErrors?: ValidationError[];
+  uiSchema?: UiSchemaRoot;
+};
+
+export type SendData = boolean | 'withoutClientSideUpdate';
+
+export interface ValidFormData<T, SD extends SendData> {
+  isValid: true;
+  data: SD extends false ? undefined : T;
 }
 
-export interface ValidatedFormData<E, SendData extends boolean> {
-  isValid: boolean;
-  sendData?: SendData;
-  data: SendData extends true ? SchemaValue | undefined : undefined;
-  errors: ValidationError<E>[];
+export interface InvalidFormData<SD extends SendData> {
+  isValid: false;
+  data: SD extends false ? undefined : FormValue;
 }
 
-export const IDENTIFIABLE_INPUT_ELEMENTS: (keyof IdentifiableFieldElement)[] = [
-  // NOTE: We use the value of `key-input` to infer new key value
-  // 'key-input',
-  'anyof',
-  'oneof'
-];
+export type ValidatedFormData<T, SD extends SendData> = {
+  idPrefix: string;
+  updateData: boolean;
+  errors: ReadonlyArray<ValidationError>;
+} & (ValidFormData<T, SD> | InvalidFormData<SD>);
+
+export type Entry<T> = [key: string, value: T];
+
+export type Entries<T> = Entry<T>[];
+
+export interface EntryConverterOptions<T> {
+  schema: SchemaDefinition;
+  uiSchema: UiSchema;
+  path: RPath;
+  value: T | undefined;
+}
+
+export type EntryConverter<T> = (
+  signal: AbortSignal,
+  options: EntryConverterOptions<T>
+) => MaybePromise<FieldValue>;
+
+export type EnumItemDecoder = (options: SchemaValue[], value: string) => SchemaValue | undefined;
+
+export interface Codec {
+  encode: (str: string) => string;
+  decode: (encodedStr: string) => string;
+}

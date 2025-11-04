@@ -3,10 +3,13 @@ import {
   type Schema as SafeSchema,
   type Json,
   type Validate,
-  type ValidationError,
 } from "@exodus/schemasafe";
 import { weakMemoize } from "@sjsf/form/lib/memoize";
-import { prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
+import {
+  prefixSchemaRefs,
+  ROOT_SCHEMA_PREFIX,
+  type Merger,
+} from "@sjsf/form/core";
 import type {
   Config,
   FieldValueValidator,
@@ -16,11 +19,7 @@ import type {
   Validator,
 } from "@sjsf/form";
 
-import {
-  createErrorsTransformer,
-  transformFieldErrors,
-  type ErrorsTransformerOptions,
-} from "./errors.js";
+import { transformFormErrors, transformFieldErrors } from "./errors.js";
 import { DEFAULT_VALIDATOR_OPTIONS } from "./model.js";
 
 export type ValidateFactory = (schema: Schema, rootSchema: Schema) => Validate;
@@ -81,19 +80,24 @@ export function createValidator({
   };
 }
 
-export interface FormValueValidatorOptions
-  extends ValidatorOptions,
-    ErrorsTransformerOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {
+  merger: () => Merger;
+}
 
-export function createFormValueValidator(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
-): FormValueValidator<ValidationError> {
-  const transform = createErrorsTransformer(options);
+): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
-      const validator = options.createSchemaValidator(rootSchema, rootSchema);
-      validator(options.valueToJSON(formValue));
-      return transform(rootSchema, validator.errors);
+      const validate = options.createSchemaValidator(rootSchema, rootSchema);
+      validate(options.valueToJSON(formValue));
+      return transformFormErrors(
+        createValidator(options),
+        options.merger(),
+        rootSchema,
+        validate.errors,
+        formValue
+      );
     },
   };
 }
@@ -105,12 +109,12 @@ export interface FieldValueValidatorOptions extends ValueToJSON {
 export function createFieldValueValidator({
   createFieldSchemaValidator,
   valueToJSON,
-}: FieldValueValidatorOptions): FieldValueValidator<ValidationError> {
+}: FieldValueValidatorOptions): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
       const validate = createFieldSchemaValidator(field);
       validate(valueToJSON(fieldValue));
-      return transformFieldErrors(field, validate.errors);
+      return transformFieldErrors(field, validate.errors, fieldValue);
     },
   };
 }
@@ -120,7 +124,7 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidator({
+export function createFormValidator<T>({
   factory = (schema, rootSchema) =>
     validator(schema as SafeSchema, {
       ...DEFAULT_VALIDATOR_OPTIONS,
@@ -135,7 +139,8 @@ export function createFormValidator({
   ...rest
 }: Partial<FormValidatorOptions> & {
   factory?: ValidateFactory;
-} = {}) {
+  merger: () => Merger;
+}) {
   const options: FormValidatorOptions = {
     ...rest,
     valueToJSON,
@@ -144,7 +149,7 @@ export function createFormValidator({
   };
   return Object.assign(
     createValidator(options),
-    createFormValueValidator(options),
+    createFormValueValidator<T>(options),
     createFieldValueValidator(options)
   );
 }

@@ -52,4 +52,4 @@ export const initialValue = {
   id: "Invalid",
   skills: ["karate", "budo", "aikido"],
   multipleChoicesList: ["foo", "bar", "fuzz"],
-};
+} as const;

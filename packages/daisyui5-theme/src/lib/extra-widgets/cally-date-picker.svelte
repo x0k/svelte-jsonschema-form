@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import type { ClassValue, HTMLButtonAttributes } from 'svelte/elements';
 	import type { CalendarRangeProps, CalendarMonthProps, CalendarDateProps } from 'cally';
-	import '@sjsf/form/fields/extra-widgets/date-picker';
+	import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
 
 	type MapEvents<T> = {
 		[K in keyof T as K extends `on${infer E}` ? `on:${Lowercase<E>}` : K]: T[K];
@@ -24,6 +24,12 @@
 	}
 
 	declare module '@sjsf/form' {
+		interface ComponentProps {
+			daisyui5CallyDatePickerWidget: WidgetCommonProps<string>;
+		}
+		interface ComponentBindings {
+			daisyui5CallyDatePickerWidget: 'value';
+		}
 		interface UiOptions {
 			daisyui5CallyCalendarDateFormatter?: (date: string) => string;
 			daisyui5CallyCalendarTrigger?: HTMLButtonAttributes;
@@ -37,7 +43,7 @@
 	import {
 		buttonAttributes,
 		getFormContext,
-		retrieveUiOption,
+		getId,
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -47,13 +53,14 @@
 		value = $bindable(),
 		config,
 		errors,
-		handlers
-	}: ComponentProps['datePickerWidget'] = $props();
+		handlers,
+		uiOption
+	}: ComponentProps['daisyui5CallyDatePickerWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const formatDate = $derived.by(() => {
-		const formatDate = retrieveUiOption(ctx, config, 'daisyui5CallyCalendarDateFormatter');
+		const formatDate = uiOption('daisyui5CallyCalendarDateFormatter');
 		if (formatDate !== undefined) {
 			return formatDate;
 		}
@@ -65,7 +72,7 @@
 		return (date: string) => format.format(new Date(date));
 	});
 
-	const id = $derived(config.id);
+	const id = $derived(getId(ctx, config.path));
 
 	const anchorName = $derived(formatAsCustomPropertyName(id));
 

@@ -1,56 +1,57 @@
-import { createFormValidator } from '@sjsf/ajv8-validator';
+import { fail } from '@sveltejs/kit';
 
-import { initForm, makeFormDataParser, validateForm } from '$lib/server/index.js';
+import { isValid, createFormHandler, createAction } from '$lib/server/index.js';
+import type { InitialFormData } from '$lib/model.js';
 
 import type { Actions } from './$types.js';
-import { schema } from './model.js';
+import { schema, uiSchema } from './model.js';
+import * as defaults from './form-defaults.js';
 
-const validator = createFormValidator();
-
-const parseFormData = makeFormDataParser({
-  validator
-});
+type Model = Record<string, string>
 
 export const load = async () => {
-  const form = initForm({
+  const form = {
     initialValue: { 'newKey::123': 'foo', 'also.333': 'bar' },
-    sendSchema: true,
     schema,
-    uiSchema: {
-      firstName: {
-        'ui:options': {
-          description: 'First name description'
-        }
-      }
-    }
-  });
+    uiSchema,
+  } satisfies InitialFormData<Model>
   return { form };
 };
 
+const handleForm = createFormHandler<Model, true>({
+  ...defaults,
+  schema,
+  uiSchema,
+  sendData: true
+});
+
 export const actions = {
   first: async ({ request }) => {
-    const data = await parseFormData({
-      request,
-      schema
-    });
+    const [form, data] = await handleForm(request.signal, await request.formData());
+    if (!isValid(form, data)) {
+      return fail(400, { form });
+    }
+    console.log(data);
     return {
-      form: await validateForm({
-        request,
-        schema,
-        validator,
-        data,
-        sendData: true
-      })
+      form
     };
   },
   second: async ({ request }) => {
+    const [form2] = await handleForm(request.signal, await request.formData());
     return {
-      form2: await validateForm({
-        request,
-        schema,
-        validator,
-        data: { field: '123' }
-      })
+      form2
     };
-  }
+  },
+  third: createAction(
+    {
+      ...defaults,
+      name: 'form3',
+      schema,
+      uiSchema,
+      sendData: true
+    },
+    (data: Model) => {
+      console.log(data);
+    }
+  )
 } satisfies Actions;

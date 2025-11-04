@@ -1,17 +1,10 @@
-import { getContext, setContext } from "svelte";
+import { createContext } from "svelte";
 
-import type { Node, NodeId } from "$lib/builder/index.js";
-
-const OBJECT_CONTEXT = Symbol("object-context");
-
-export function setObjectContext(ctx: ObjectContext) {
-  setContext(OBJECT_CONTEXT, ctx);
-}
-
-export function getObjectContext(): ObjectContext {
-  return getContext(OBJECT_CONTEXT);
-}
+import type { NodeId } from "$lib/builder/index.js";
 
 export interface ObjectContext {
   complementary: NodeId | undefined;
 }
+
+export const [getObjectContext, setObjectContext] =
+  createContext<ObjectContext>();

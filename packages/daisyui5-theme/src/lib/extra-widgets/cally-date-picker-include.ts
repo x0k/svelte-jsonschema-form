@@ -4,10 +4,10 @@ import { definitions } from '../definitions.js';
 
 export type * as __preserveCallyTypes from './cally-date-picker.svelte';
 
-declare module "../definitions.js" {
-  interface ExtraWidgets {
-    datePickerWidget: {}
-  }
+declare module '../definitions.js' {
+	interface ExtraWidgets {
+		daisyui5CallyDatePickerWidget: {};
+	}
 }
 
-definitions.datePickerWidget = clientOnly(() => import('./cally-date-picker.svelte'));
+definitions.daisyui5CallyDatePickerWidget = clientOnly(() => import('./cally-date-picker.svelte'));

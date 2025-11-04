@@ -1,0 +1,135 @@
+---
+title: File handling
+sidebar:
+  badge: new
+  order: 8
+---
+
+import { Code, Card, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+
+import FormCard from '@/components/form-card.astro'
+
+import CustomKeywordForm from './file-handling/custom-keyword.svelte'
+import customKeywordCode from './file-handling/custom-keyword.svelte?raw'
+
+import FileSizeValidatorForm from './file-handling/file-size-validator.svelte'
+import fileSizeValidatorCode from './file-handling/file-size-validator.svelte?raw'
+
+SJSF provides several ways of working with files.
+
+## Data URL
+
+When using `file` or `files` fields, the form automatically converts
+uploaded files into Data URL strings.
+
+**Advantages:**
+
+- Easy-to-use format compatible with JSON Schema validators
+- Files can be provided from the server (as initial values or when re-sending form data after a server-side validation error)
+
+**Disadvantages:**
+
+- Base64 encoding increases file size by about 30%
+- Requires encoding/decoding steps to work with the actual file
+- Some metadata is lost
+
+You can use the `createDataURLtoBlob` and `fileToDataURL` functions
+(available in both browser and server environments) from
+the `@sjsf/form/lib/file` module to convert files to and from Data URLs.
+
+## Native File
+
+When using `native-file` or `native-files` fields, uploaded files are
+represented directly as `File` objects.
+
+**Advantages:**
+
+- No encoding/decoding required
+- File metadata is preserved
+
+**Disadvantages:**
+
+- Cannot be provided from the server
+- May cause issues for JSON-oriented tools (e.g. JSON Schema validators)
+
+### SvelteKit
+
+With any file handling method, you must set `enctype="multipart/form-data"` on the form.
+
+For native file handling, add the following `transport` hook in your `hooks.ts` file:
+
+```ts
+import type { Transport } from '@sveltejs/kit';
+
+export const transport: Transport = {
+  File: {
+    encode: (v) => v instanceof File && 'file',
+    decode: () => undefined
+  }
+};
+```
+
+## Preloading files
+
+Another approach is to **preload files** into a storage backend as soon as the user selects them.
+Instead of embedding file data in the form, the form value only stores a lightweight file identifier (ID).
+
+This avoids the drawbacks of Data URLs and native `File` objects:
+- Smaller payloads
+- No `base64` overhead
+- Files can be validated or processed on the server before submission
+- Files can be provided from the server
+
+See the [advanced example](../../examples/advanced/) `preupload-file` for more information.
+
+## Validation
+
+SJSF provides several options for validating files.
+
+### Custom keyword
+
+The most flexible approach is to add a **custom JSON Schema keyword**.
+This method works consistently on both the server and the client,
+and the timing of validation can be controlled with the `fieldsValidationMode` option.
+
+<Tabs>
+  <TabItem label="Form">
+    <FormCard>
+      <CustomKeywordForm client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="form.svelte">
+    <Code code={customKeywordCode} lang="svelte" />
+  </TabItem>
+</Tabs>
+
+However, not all validators support custom keywords,
+and file storage formats other than `File`
+may require additional preprocessing before validation.
+
+### FileList validator
+
+Alternatively, you can implement the `AsyncFileListValidator` interface for your validator.
+This validator runs **right after the user selects files,
+but before the form state is updated**.
+
+:::caution
+
+If you use this validator, you must also implement equivalent validation on the server.
+
+:::
+
+A practical example is the `createFileSizeValidator` helper
+from the `@sjsf/form/validators/file-size` module, which checks maximum file size.
+Once this module is included, you can set the `maxFileSizeBytes` UI option on file fields.
+
+<Tabs>
+  <TabItem label="Form">
+    <FormCard>
+      <FileSizeValidatorForm client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="form.svelte">
+    <Code code={fileSizeValidatorCode} lang="svelte" />
+  </TabItem>
+</Tabs>

@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { isRecord } from '@sjsf/form/lib/object';
-import type { Validator } from '@sjsf/form/core';
 import {
   createForm,
   type Schema,
   type FormOptions,
-  groupErrors,
-  type PossibleError
+  updateErrors,
+  DEFAULT_ID_PREFIX,
+  setValue,
+  getValueSnapshot
 } from '@sjsf/form';
 
 import { page } from '$app/state';
@@ -24,41 +25,41 @@ type SchemaOption<SendSchema> = SendSchema extends true
       schema: Schema;
     };
 
-export type SvelteKitFormOptions<T, V extends Validator, SendSchema extends boolean> = Omit<
-  FormOptions<T, V>,
-  'schema'
-> &
-  SchemaOption<SendSchema>;
+export type SvelteKitFormOptions<
+  T,
+  SendSchema extends boolean,
+  ToOmit extends keyof FormOptions<T> = never
+> = Omit<FormOptions<T>, 'schema' | ToOmit> & SchemaOption<SendSchema>;
 
 function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
-  meta: Meta
-):
-  | InitialFormData<Meta['__formValue'], Meta['__validationError'], Meta['__sendSchema']>
-  | undefined {
+  meta: Meta,
+  idPrefix: string
+): InitialFormData<Meta['__formValue']> | undefined {
   if (isRecord(page.form)) {
     const validationData = page.form[meta.name] as
-      | ValidatedFormData<Meta['__validationError'], Meta['__sendData']>
+      | ValidatedFormData<Meta['__formValue'], Meta['__sendData']>
       | undefined;
-    if (validationData !== undefined) {
-      return validationData.isValid
-        ? page.data[meta.name]
-        : {
-            schema: page.data[meta.name].schema,
-            uiSchema: page.data[meta.name].uiSchema,
-            initialValue: validationData.data,
-            initialErrors: validationData.errors
-          };
+    if (
+      validationData !== undefined &&
+      validationData.idPrefix === idPrefix &&
+      !validationData.isValid
+    ) {
+      return {
+        ...page.data[meta.name],
+        initialValue: validationData.data,
+        initialErrors: validationData.errors
+      };
     }
-  } else {
-    return page.data[meta.name];
   }
+  return page.data[meta.name];
 }
 
 export function createSvelteKitForm<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
-  Options extends SvelteKitFormOptions<Meta['__formValue'], Validator, Meta['__sendSchema']>
+  Options extends SvelteKitFormOptions<Meta['__formValue'], Meta['__sendSchema']>
 >(meta: Meta, options: Options) {
-  const defaults = initialFormData(meta) ?? {};
+  const formIdPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
+  const defaults = initialFormData(meta, formIdPrefix) ?? {};
   const form = createForm(
     new Proxy(options, {
       has(target, p) {
@@ -70,31 +71,29 @@ export function createSvelteKitForm<
         }
         return Reflect.get(target, p, receiver);
       }
-    }) as unknown as FormOptions<Meta['__formValue'], Options['validator']>
+    }) as unknown as FormOptions<Meta['__formValue']>
   );
   $effect(() => {
     if (!isRecord(page.form)) {
       return;
     }
     const validationData = page.form[meta.name] as
-      | ValidatedFormData<PossibleError<Options['validator']>, Meta['__sendData']>
+      | ValidatedFormData<Meta['__formValue'], Meta['__sendData']>
       | undefined;
-    if (validationData === undefined) {
+    if (validationData === undefined || formIdPrefix !== validationData.idPrefix) {
       return;
     }
-    if (validationData.sendData && form.isSubmitted) {
-      form.value = validationData.data;
+    if (validationData.updateData) {
+      setValue(form, validationData.data as Meta['__formValue']);
     }
-    form.errors = groupErrors(validationData.errors);
+    updateErrors(form, validationData.errors);
   });
   return form;
 }
 
-export type SvelteKitFormSetupOptions<Meta extends SvelteKitFormMeta<any, any, string, any>> = Omit<
-  SvelteKitFormOptions<Meta['__formValue'], Validator, Meta['__sendSchema']>,
-  'onSubmit'
-> &
-  SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']>;
+export type SvelteKitFormSetupOptions<Meta extends SvelteKitFormMeta<any, any, string, any>> =
+  SvelteKitFormOptions<Meta['__formValue'], Meta['__sendSchema'], 'onSubmit'> &
+    SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']>;
 
 export function setupSvelteKitForm<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
@@ -105,6 +104,9 @@ export function setupSvelteKitForm<
   requestOptions: SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']> = formOptions
 ) {
   const request = createSvelteKitRequest(meta, requestOptions);
+  function onSubmit(_: Meta['__formValue'], e: SubmitEvent) {
+    request.run(getValueSnapshot(form), e);
+  }
   const form = createSvelteKitForm(
     meta,
     new Proxy(formOptions, {
@@ -116,7 +118,7 @@ export function setupSvelteKitForm<
       },
       get(target, p, receiver) {
         if (p === 'onSubmit') {
-          return request.run;
+          return onSubmit;
         }
         return Reflect.get(target, p, receiver);
       }

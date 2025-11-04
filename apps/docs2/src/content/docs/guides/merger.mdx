@@ -1,0 +1,141 @@
+---
+title: Merger Setup
+sidebar:
+  badge: new
+  order: 4
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+import Npm from "@/components/npm.astro";
+
+## Overview
+
+Starting with version 3, a `merger` option is required when creating a form.
+The merger is responsible for combining and processing JSON Schemas used within the form.
+
+<LinkCard title="Form Merger API Reference" href="../../form/merger/" />
+
+## Basic Configuration
+
+The following configuration will work for most projects:
+
+```ts
+import { createFormMerger } from "@sjsf/form/mergers/modern";
+
+const form = createForm({
+  merger: createFormMerger,
+  // ... other form options
+});
+```
+
+For projects with specific requirements, you may need to customize the `createFormMerger` options to achieve the desired behavior.
+
+## Advanced Configurations
+
+### $ref Properties Override
+
+Sometimes you need to override properties of a referenced schema. For example, when you have a schema like this:
+
+```json
+{
+  "title": "bar",
+  "$ref": "#/definitions/foo"
+}
+```
+
+**Option 1: Override the `mergeSchemas` method**
+
+```ts
+import { createFormMerger } from "@sjsf/form/mergers/modern";
+import { mergeSchemas } from "@sjsf/form/mergers/legacy";
+
+export const merger = (options: MergerFactoryOptions) => {
+  return {
+    ...createFormMerger(options),
+    mergeSchemas,
+  }
+}
+```
+
+**Option 2: Provide a custom merger for specific properties**
+
+```ts
+import { createMerger as createJsonSchemaMerger } from "@sjsf/lib/json-schema";
+import { createFormMerger } from "@sjsf/form/mergers/modern";
+
+export const merger = (options: MergerFactoryOptions) => createFormMerger({
+  ...options,
+  jsonSchemaMerger: createJsonSchemaMerger({
+    mergers: {
+      title: (_, r) => r, // Always use the rightmost non-undefined value
+    }
+  })
+})
+```
+
+:::caution[Property Override Behavior]
+
+When using the custom property merger approach, the `title` property will always receive the last non-`undefined` value in the merge chain.
+
+:::
+
+### Handling `allOf` Keyword
+
+The modern merger (recommended since v3) can be extended to handle specific scenarios involving the `allOf` keyword.
+
+**Deduplication for Complex Schemas**
+
+When merging schemas containing `oneOf`, `anyOf`, or `not` within `allOf` keywords, you may encounter duplicates in the merged result. The same issue can occur with `enum` keywords containing non-primitive values.
+
+To resolve this, configure JSON schema deduplication and intersection functions:
+
+```ts
+import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
+import { createComparator, createMerger as createJsonSchemaMerger } from "@sjsf/lib/json-schema";
+import { createFormMerger } from "@sjsf/form/mergers/modern";
+
+const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
+
+export const merger = (options: MergerFactoryOptions) => createFormMerger({
+  ...options,
+  jsonSchemaMerger: createJsonSchemaMerger({
+    intersectJson: createIntersector(compareSchemaValues),
+    deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
+  })
+})
+```
+
+**What this configuration does:**
+- `intersectJson`: Handles intersection of JSON values
+- `deduplicateJsonSchemaDef`: Removes duplicate schema definitions
+
+### Form State Behavior
+
+To customize how default values are handled in your forms, you can configure the default form state behavior:
+
+<LinkCard
+  target="_blank"
+  title="experimental_defaultFormStateBehavior"
+  href="https://rjsf-team.github.io/react-jsonschema-form/docs/api-reference/form-props/#experimental_defaultformstatebehavior"
+  description="Learn about configuring default form state behavior in React JSON Schema Form"
+/>
+
+## Legacy Merger
+
+If you need to preserve v2 behavior during migration or have compatibility requirements,
+you can use the legacy merger. However, this approach is not recommended for new projects.
+
+### Setup
+
+The legacy merger requires additional dependencies:
+
+<Npm pkg="json-schema-merge-allof @types/json-schema-merge-allof" />
+
+```ts
+import { createFormMerger } from "@sjsf/form/mergers/legacy";
+
+const form = createForm({
+  merger: createFormMerger,
+  // ... other form options
+});
+```

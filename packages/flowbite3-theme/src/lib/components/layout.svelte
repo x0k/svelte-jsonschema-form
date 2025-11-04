@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { ButtonGroupProps } from 'flowbite-svelte';
+	import type { ButtonGroupProps } from 'flowbite-svelte/types';
 	import '@sjsf/basic-theme/components/layout.svelte';
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -29,6 +29,12 @@
 			type === 'object-properties'
 	);
 	const isObjectProperty = $derived(type === 'object-property');
+	const isTitleRow = $derived(
+		type === 'field-title-row' ||
+			type === 'array-field-title-row' ||
+			type === 'object-field-title-row'
+	);
+	const isMultiFieldControls = $derived(type === 'multi-field-controls')
 
 	const ctx = getFormContext();
 </script>
@@ -38,8 +44,10 @@
 {:else}
 	<div
 		class={{
-			flex: isItem || isField || isColumn,
-			'gap-2': isItem || isField,
+			flex: isItem || isField || isColumn || isTitleRow || isMultiFieldControls,
+			'items-center': isTitleRow || isMultiFieldControls,
+			'justify-between': isTitleRow,
+			'gap-2': isItem || isField || isMultiFieldControls,
 			'gap-4': isColumn,
 			'items-start': isItem,
 			grow: isGrowable,

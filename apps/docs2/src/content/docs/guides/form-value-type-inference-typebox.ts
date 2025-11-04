@@ -1,7 +1,7 @@
-import { Type, type Static } from "@sinclair/typebox";
+import { Type, type Static } from "typebox";
 import { createForm, type UiSchema } from "@sjsf/form";
 
-import * as defaults from "@/components/form-defaults";
+import * as defaults from "@/lib/form/defaults";
 
 const schema = Type.Object({
   text: Type.String(),
@@ -18,14 +18,8 @@ const uiSchema: UiSchema = {
   },
 };
 
-const form = createForm({
+const form = createForm<Static<typeof schema>>({
   ...defaults,
   schema,
   uiSchema,
-  onSubmit: (value: Static<typeof schema>) => {
-    console.log(value);
-  },
 });
-
-// { text: string } | undefined
-form.value;

@@ -1,9 +1,9 @@
 import type { Brand } from "@sjsf/form/lib/types";
-import { mergeSchemas } from "@sjsf/form/core";
 import type { Schema, UiOptions, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 import { mergeUiSchemas } from "$lib/sjsf/theme.js";
+import { mergeSchemas } from '$lib/json-schema.js';
 
 import {
   OperatorType,
@@ -161,7 +161,6 @@ export const OBJECT_NODE_OPTIONS_SCHEMA = {
   title: "Group options",
   type: "object",
   properties: {},
-  additionalProperties: false,
 } as const satisfies Schema;
 
 export type ObjectOptions = FromSchema<typeof OBJECT_NODE_OPTIONS_SCHEMA>;
@@ -196,7 +195,6 @@ export const ARRAY_NODE_OPTIONS_SCHEMA = {
       type: "boolean",
     },
   },
-  additionalProperties: false,
 } as const satisfies Schema;
 
 export type ArrayNodeOptions = FromSchema<typeof ARRAY_NODE_OPTIONS_SCHEMA>;
@@ -232,7 +230,6 @@ export const GRID_NODE_OPTIONS_SCHEMA = {
     },
   },
   required: ["cellSize", "gap"],
-  additionalProperties: false,
 } as const satisfies Schema;
 
 export type GridNodeOptions = FromSchema<typeof GRID_NODE_OPTIONS_SCHEMA>;
@@ -504,7 +501,6 @@ export const NUMBER_NODE_OPTIONS_SCHEMA = {
     },
   },
   required: ["widget"],
-  additionalProperties: false,
 } as const satisfies Schema;
 
 export type NumberOptions = FromSchema<typeof NUMBER_NODE_OPTIONS_SCHEMA>;
@@ -531,7 +527,6 @@ export const BOOLEAN_NODE_OPTIONS_SCHEMA = {
     },
   },
   required: ["widget"],
-  additionalProperties: false,
 } as const satisfies Schema;
 
 export type BooleanOptions = FromSchema<typeof BOOLEAN_NODE_OPTIONS_SCHEMA>;
@@ -551,6 +546,10 @@ export const FILE_NODE_OPTIONS_SCHEMA = {
     help: {
       title: "Help",
       type: "string",
+    },
+    native: {
+      title: "Native",
+      type: "boolean"
     },
     multiple: {
       title: "Multiple",
@@ -633,7 +632,6 @@ export const TAGS_NODE_OPTIONS_SCHEMA = {
     },
   },
   required: ["widget"],
-  additionalProperties: false,
 } as const satisfies Schema;
 
 export type TagsOptions = FromSchema<typeof TAGS_NODE_OPTIONS_SCHEMA>;
@@ -837,7 +835,7 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
     },
   }),
   [NodeType.File]: mergeUiSchemas(COMMON_UI_SCHEMA, {
-    "ui:options": order("widget", "multiple", "*"),
+    "ui:options": order("widget", "native", "multiple", "*", "help"),
   }),
   [NodeType.Tags]: COMMON_UI_SCHEMA,
 } satisfies Record<CustomizableNodeType, UiSchemaRoot>;

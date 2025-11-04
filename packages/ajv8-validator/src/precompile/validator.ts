@@ -1,9 +1,4 @@
-import type {
-  Ajv,
-  AsyncValidateFunction,
-  ErrorObject,
-  ValidateFunction,
-} from "ajv";
+import type { Ajv, AsyncValidateFunction, ValidateFunction } from "ajv";
 import type {
   AsyncFieldValueValidator,
   AsyncFormValueValidator,
@@ -21,6 +16,7 @@ import {
   validateAndTransformErrors,
   validateAndTransformErrorsAsync,
 } from "../errors.js";
+import { CAST_FORM_DATA, NO_FILED_ERRORS } from '../internals.js';
 
 export type CompiledValidateFunction = {
   (this: Ajv | any, data: any): boolean;
@@ -81,15 +77,16 @@ export interface FormValueValidatorOptions
   extends ValidatorOptions,
     ErrorsTransformerOptions {}
 
-export function createFormValueValidator(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
-): FormValueValidator<ErrorObject> {
+): FormValueValidator<T> {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
       return validateAndTransformErrors(
         getValidateFunction(options, rootSchema),
         formValue,
+        CAST_FORM_DATA<T>,
         transformErrors
       );
     },
@@ -98,27 +95,29 @@ export function createFormValueValidator(
 
 export function createFieldValueValidator(
   options: ValidatorOptions
-): FieldValueValidator<ErrorObject> {
+): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
       return validateAndTransformErrors(
         getValidateFunction(options, field.schema),
         fieldValue,
+        NO_FILED_ERRORS,
         createFieldErrorsTransformer(field)
       );
     },
   };
 }
 
-export function createAsyncFormValueValidator(
+export function createAsyncFormValueValidator<T>(
   options: FormValidatorOptions
-): AsyncFormValueValidator<ErrorObject> {
+): AsyncFormValueValidator<T> {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValueAsync(_, rootSchema, formValue) {
       return validateAndTransformErrorsAsync(
         getValidateFunction(options, rootSchema) as AsyncValidateFunction,
         formValue,
+        CAST_FORM_DATA<T>,
         transformErrors
       );
     },
@@ -127,12 +126,13 @@ export function createAsyncFormValueValidator(
 
 export function createAsyncFieldValueValidator(
   options: ValidatorOptions
-): AsyncFieldValueValidator<ErrorObject> {
+): AsyncFieldValueValidator {
   return {
     validateFieldValueAsync(_, field, fieldValue) {
       return validateAndTransformErrorsAsync(
         getValidateFunction(options, field.schema) as AsyncValidateFunction,
         fieldValue,
+        NO_FILED_ERRORS,
         createFieldErrorsTransformer(field)
       );
     },
@@ -143,18 +143,30 @@ export interface FormValidatorOptions
   extends ValidatorOptions,
     FormValueValidatorOptions {}
 
-export function createFormValidator(options: FormValidatorOptions) {
-  return Object.assign(
-    createValidator(options),
-    createFormValueValidator(options),
-    createFieldValueValidator(options)
-  );
+export function createFormValidatorFactory(vOptions: ValidatorOptions) {
+  return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
+    const full = {
+      ...vOptions,
+      ...options,
+    };
+    return Object.assign(
+      createValidator(full),
+      createFormValueValidator(full),
+      createFieldValueValidator(full)
+    );
+  };
 }
 
-export function createAsyncFormValidator(options: FormValidatorOptions) {
-  return Object.assign(
-    createValidator(options),
-    createAsyncFormValueValidator(options),
-    createAsyncFieldValueValidator(options)
-  );
+export function createAsyncFormValidatorFactory(vOptions: ValidatorOptions) {
+  return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
+    const full = {
+      ...vOptions,
+      ...options,
+    };
+    return Object.assign(
+      createValidator(full),
+      createAsyncFormValueValidator(full),
+      createAsyncFieldValueValidator(full)
+    );
+  };
 }

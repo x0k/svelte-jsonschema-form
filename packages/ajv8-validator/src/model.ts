@@ -1,6 +1,6 @@
 import type { Ajv, Options } from "ajv";
 
-import { ADDITIONAL_PROPERTY_FLAG } from "@sjsf/form/core";
+import { ADDITIONAL_PROPERTY_FLAG, DATA_URL_FORMAT } from "@sjsf/form/core";
 
 export const DEFAULT_AJV_CONFIG = {
   allErrors: true,
@@ -18,7 +18,7 @@ export const DATA_URL_FORMAT_REGEX =
 
 export function addFormFormats(ajv: Ajv) {
   ajv.addFormat("color", COLOR_FORMAT_REGEX);
-  ajv.addFormat("data-url", DATA_URL_FORMAT_REGEX);
+  ajv.addFormat(DATA_URL_FORMAT, DATA_URL_FORMAT_REGEX);
   return ajv;
 }
 

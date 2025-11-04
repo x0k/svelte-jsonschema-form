@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { theme } from "@sjsf/basic-theme";
   import { specs } from '@sjsf/basic-theme/specs';
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   import { createSchemas } from "../_demo-schema";
 
@@ -16,4 +16,4 @@
 
 <BasicForm {form} novalidate />
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), null, 2)}</pre>

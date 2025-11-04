@@ -16,13 +16,14 @@ import type {
   InputProps,
   LabelProps,
   MultiSelectProps,
+  RadioButtonProps,
   RadioProps,
   RangeProps,
   SelectProps,
   TagsProps,
   TextareaProps,
   ToggleProps,
-} from "flowbite-svelte3";
+} from "flowbite-svelte";
 
 type ButtonProps = Extract<
   ButtonPropsUnion,
@@ -83,8 +84,8 @@ export interface UiOptions {
 
   flowbite3MultiSelect?: Omit<MultiSelectProps<number>, "value">;
 
-  flowbite3RadioButtons?: Omit<ButtonToggleGroupProps, 'children'>;
-  flowbite3RadioButtonsItem?: Partial<ButtonToggleProps>;
+  flowbite3RadioButtons?: Omit<ButtonGroupProps, "children">;
+  flowbite3RadioButtonsItem?: Partial<RadioButtonProps<string>>;
 
   flowbite3Radio?: RadioProps<number>;
 
@@ -95,4 +96,7 @@ export interface UiOptions {
   flowbite3Tags?: Omit<TagsProps, "value">;
 
   flowbite3Textarea?: TextareaProps;
+
+  flowbite3ToggleRadioButtons?: Omit<ButtonToggleGroupProps, "children">;
+  flowbite3ToggleRadioButtonsItem?: Partial<ButtonToggleProps>;
 }

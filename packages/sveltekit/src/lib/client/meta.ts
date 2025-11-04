@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { SchemaValue } from '@sjsf/form';
+import type { Schema, SchemaValue } from '@sjsf/form';
 
-import type { ValidatedFormData, InitialFormData } from '../model.js';
+import type { ValidatedFormData, InitialFormData, ValidFormData } from '../model.js';
 
 export interface SvelteKitFormMeta<
   ActionData,
@@ -14,8 +14,10 @@ export interface SvelteKitFormMeta<
   name: Name;
   __actionData: ActionData;
   __pageData: PageData;
-  __formValue: FormValueFromInitialFormData<IFD, FallbackValue>;
-  __validationError: ValidatorErrorFromValidatedFormData<VFD>;
+  __formValue: FormValueFromValidatedFormData<
+    VFD,
+    FormValueFromInitialFormData<IFD, FallbackValue>
+  >;
   __sendSchema: SendSchemaFromInitialFormData<IFD>;
   __sendData: SendDataFromValidatedFormData<VFD>;
 }
@@ -56,23 +58,26 @@ type ValidatedFormDataFromActionDataUnion<
   FormName extends keyof ActionData
 > = ActionData extends any ? ValidatedFormDataFromActionDataBranch<ActionData, FormName> : never;
 
-type ValidatorErrorFromValidatedFormData<VFD> =
-  VFD extends ValidatedFormData<infer E, any> ? E : never;
-
 type InitialFromDataFromPageData<PageData, FormName extends PropertyKey> = PageData extends {
-  [K in FormName]: InitialFormData<any, any, any>;
+  [K in FormName]: InitialFormData<any>;
 }
   ? PageData[FormName]
   : unknown;
 
+type FormValueFromValidatedFormData<VFD, FallbackValue> =
+  Extract<VFD, ValidFormData<any, any>> extends ValidFormData<infer T, any>
+    ? unknown extends T
+      ? FallbackValue
+      : T
+    : never;
+
 type FormValueFromInitialFormData<IFD, FallbackValue> = unknown extends IFD
   ? FallbackValue
-  : IFD extends InitialFormData<infer T, any, any>
+  : IFD extends InitialFormData<infer T>
     ? T
     : never;
 
 type SendDataFromValidatedFormData<VFD> =
   VFD extends ValidatedFormData<any, infer SendData> ? SendData : false;
 
-type SendSchemaFromInitialFormData<IFD> =
-  IFD extends InitialFormData<any, any, infer SendSchema> ? SendSchema : false;
+type SendSchemaFromInitialFormData<IFD> = IFD extends { schema: Schema } ? true : false;

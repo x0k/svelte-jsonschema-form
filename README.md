@@ -5,7 +5,7 @@ Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-js
 
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/)
 - [Form Builder](https://x0k.github.io/svelte-jsonschema-form/builder)
-- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
+- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground3/)
 
 ## Installation
 
@@ -22,10 +22,10 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
   import { createForm, BasicForm, type Schema } from '@sjsf/form';
   import { resolver } from '@sjsf/form/resolvers/basic';
   import { translation } from '@sjsf/form/translations/en';
-  import { theme } from '@sjsf/basic-theme';
+  import { createFormMerger } from "@sjsf/form/mergers/modern";
+  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { createFormValidator } from "@sjsf/ajv8-validator";
-
-  const validator = createFormValidator();
+  import { theme } from '@sjsf/basic-theme';
 
   const schema: Schema = {
     title: 'Tasks',
@@ -50,8 +50,10 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
     theme,
     schema,
     resolver,
-    validator,
     translation,
+    merger: createFormMerger,
+    validator: createFormValidator,
+    idBuilder: createFormIdBuilder,
     onSubmit: console.log
   })
 </script>
@@ -64,7 +66,7 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 - [Basic](https://x0k.dev/svelte-jsonschema-form/themes/basic/)
 - [daisyUI v5](https://x0k.dev/svelte-jsonschema-form/themes/daisyui5/)
 - [Flowbite Svelte](https://x0k.dev/svelte-jsonschema-form/themes/flowbite3/)
-- [Skeleton v3](https://x0k.dev/svelte-jsonschema-form/themes/skeleton3/)
+- [Skeleton v4](https://x0k.dev/svelte-jsonschema-form/themes/skeleton4/)
 - [shadcn-svelte](https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/)
 
 ## Supported Validators

@@ -1,33 +1,47 @@
-import type { Schema, Validator } from "@sjsf/form";
-import { toJSONSchema, type $ZodType } from "zod/v4/core";
+import type { FormValidator, Schema } from "@sjsf/form";
+import {
+  toJSONSchema,
+  type $ZodType,
+  type output as InferOutput,
+} from "zod/v4/core";
 
 import type { AugmentedSchemaFactory, SchemaRegistry } from "./model.js";
 import { createSchemaRegistry } from "./schemas-registry.js";
 
-export interface CreateFormValidatorFactoryOptions<O, V extends Validator> {
+export interface CreateFormValidatorFactoryOptions<
+  F extends <S extends $ZodType>(
+    registry: SchemaRegistry
+  ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
+> {
   createAugmentedSchema: AugmentedSchemaFactory;
-  createFormValidator: (registry: SchemaRegistry, options: Partial<O>) => V;
+  createFormValidator: F;
 }
 
-export function createFormValidatorFactory<O, V extends Validator>({
+export function createFormValidatorFactory<
+  F extends <S extends $ZodType>(
+    registry: SchemaRegistry
+  ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
+>({
   createFormValidator,
   createAugmentedSchema,
-}: CreateFormValidatorFactoryOptions<O, V>) {
-  return (
-    zodSchema: $ZodType,
-    options: Partial<O> = {}
+}: CreateFormValidatorFactoryOptions<F>) {
+  return <S extends $ZodType>(
+    zodSchema: S
   ): {
-    schemaRegistry: ReturnType<typeof createSchemaRegistry>;
-    validator: V;
     schema: Schema;
+    schemaRegistry: SchemaRegistry;
+    validator: ReturnType<typeof createFormValidator<S>>;
   } => {
     const schemaRegistry = createSchemaRegistry({ createAugmentedSchema });
-    const validator = createFormValidator(schemaRegistry, options);
     const schema = toJSONSchema(zodSchema, {
       target: "draft-7",
       override: schemaRegistry.register,
       io: "input",
     }) as Schema;
-    return { schemaRegistry, validator, schema };
+    return {
+      schemaRegistry,
+      validator: createFormValidator(schemaRegistry),
+      schema,
+    };
   };
 }

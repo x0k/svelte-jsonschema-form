@@ -1,15 +1,15 @@
 <script
   lang="ts"
-  generics="Meta extends SvelteKitFormMeta<any, any, string, any>, Options extends SvelteKitFormSetupOptions<Meta>"
+  generics="Meta extends SvelteKitFormMeta<any, any, string, any>"
 >
   import { BasicForm } from '@sjsf/form';
 
   import type { SvelteKitFormMeta } from './meta.js';
   import { setupSvelteKitForm, type SvelteKitFormSetupOptions } from './form.svelte.js';
 
-  type Props = {
+  type Props = SvelteKitFormSetupOptions<Meta> & {
     meta: Meta;
-  } & Options;
+  };
 
   const props: Props = $props();
 

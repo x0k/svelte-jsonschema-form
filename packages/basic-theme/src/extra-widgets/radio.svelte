@@ -15,7 +15,7 @@
     getFormContext,
     type ComponentProps,
   } from "@sjsf/form";
-  import { indexMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
 
   let {
     handlers,
@@ -33,17 +33,17 @@
   );
 
   const mapped = singleOption({
-    mapper: () => indexMapper(options),
+    mapper: () => idMapper(options),
     value: () => value,
     update: (v) => (value = v),
   });
 </script>
 
-{#each options as option, index (option.id)}
-  <label>
+{#each options as option (option.id)}
+  <label class="sjsf-radio" >
     <input
       bind:group={mapped.value}
-      value={index}
+      value={option.id}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}

@@ -1,3 +1,4 @@
+import { formatFileSize } from "@sjsf/form/validators/file-size";
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
@@ -42,7 +43,7 @@ export const schema = {
         enum: ["HTML", "CSS", "JS/TS", "Svelte"],
       },
       uniqueItems: true,
-      maxItems: 3,
+      minItems: 4
     },
     bio: {
       type: "string",
@@ -55,14 +56,12 @@ export const schema = {
       format: "date",
     },
     resume: {
-      type: "string",
       title: "Upload Resume",
-      format: "data-url",
     },
   },
 } as const satisfies Schema;
 
-export type FormValue = FromSchema<typeof schema>;
+export type CreateUser = FromSchema<typeof schema>;
 
 export const uiSchema: UiSchemaRoot = {
   "ui:options": {
@@ -81,7 +80,7 @@ export const uiSchema: UiSchemaRoot = {
       text: {
         autocomplete: "name",
       },
-      flowbiteText: {
+      flowbite3Text: {
         autocomplete: "name",
       },
     },
@@ -125,7 +124,7 @@ export const uiSchema: UiSchemaRoot = {
       textarea: {
         rows: 5,
       },
-      flowbiteTextarea: {
+      flowbite3Textarea: {
         rows: 5,
       },
     },
@@ -154,18 +153,25 @@ export const uiSchema: UiSchemaRoot = {
   },
   resume: {
     "ui:components": {
-      stringField: "fileField",
+      unknownField: "unknownNativeFileField",
     },
   },
 };
 
-export const initialValue: FormValue = {
+export const initialValue: CreateUser = {
   name: "Sarah Johnson",
   email: "sarah.johnson@invalid",
   age: 28,
   country: "CA",
-  skills: ["Svelte"],
+  skills: ["HTML", "CSS", "JS/TS", "Svelte"],
   experience: "intermediate",
   startDate: new Date().toLocaleDateString("en-CA"),
   bio: "Bio",
 };
+
+export function withFile(_: string, value: any) {
+  if (value instanceof File) {
+    return `File(${value.name}, ${formatFileSize(value.size)})`;
+  }
+  return value;
+}

@@ -8,16 +8,16 @@ import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/flowbite3-theme/specs';
 import styles from '@sjsf/flowbite3-theme/styles.css?inline';
 
-import { peerDependencies } from '#/flowbite3-theme/package.json'
+import pkg from '#/flowbite3-theme/package.json'
 
-import { withTag } from '@/shared';
+import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
-import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro'
 
 import Form from './flowbite3/form.svelte';
 import uiOptionsCode from './flowbite3/ui-options?raw';
-import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
+import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
@@ -25,16 +25,11 @@ export const schemas = createSchemas(specs)
 This website is not affiliated with, endorsed by, or sponsored by Bergside Inc.
 All rights to the trademark are owned by Bergside Inc.
 
-<Picker>
-  <a href="../flowbite/" data-active={false}>v2</a>
-  <a href="." data-active={true}>v3</a>
-</Picker>
-
 ## Installation
 
-<Npm pkg={withTag("flowbite3")} />
+<Npm pkg={themePkg("flowbite3")} />
 
-flowbite-svelte <code>{peerDependencies['flowbite-svelte']}</code> is required.
+<Deps {...pkg} />
 
 ### Install Flowbite Svelte v3
 
@@ -64,10 +59,6 @@ or used in the field as the default widget.
 
 <Code lang='ts' code={createExtraImports("flowbite3", extraWidgets)} />
 
-## UI options
-
-<Code code={uiOptionsCode} lang="typescript" />
-
 ## Widgets demo
 
 <Tabs>
@@ -83,3 +74,11 @@ or used in the field as the default widget.
     <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
   </TabItem>
 </Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

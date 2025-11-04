@@ -1,7 +1,13 @@
 <script lang="ts">
-  import { BasicForm, createForm, type Schema } from "@sjsf/form";
+  import {
+    BasicForm,
+    createForm,
+    getErrors,
+    getValueSnapshot,
+    type Schema,
+  } from "@sjsf/form";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   const schema: Schema = {
     type: "string",
@@ -19,7 +25,7 @@
 <BasicForm {form} novalidate />
 
 <pre>{JSON.stringify(
-    { value: form.value, errors: Object.fromEntries(form.errors) },
+    { value: getValueSnapshot(form), errors: Array.from(getErrors(form)) },
     null,
     2
   )}</pre>

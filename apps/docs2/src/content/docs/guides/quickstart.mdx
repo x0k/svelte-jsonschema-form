@@ -6,11 +6,12 @@ sidebar:
 
 import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 
-import { peerDependencies as formPeerDeps } from '#/form/package.json'
+import pkg from '#/form/package.json'
 
 import { createThemeInstall } from '@/shared'
 import FormCard from '@/components/form-card.astro'
 import Npm from "@/components/npm.astro";
+import Deps from '@/components/peer-dependencies.astro'
 
 import SimpleSetupForm from "./simple-setup.svelte";
 import simpleSetupCode from './simple-setup.svelte?raw';
@@ -28,7 +29,7 @@ import controlledFormCode from './controlled-form.svelte?raw';
 
 <Npm pkg={createThemeInstall("basic")} />
 
-Svelte <code>{formPeerDeps.svelte}</code> is required
+<Deps hideOptional {...pkg} />
 
 ## Usage
 
@@ -60,7 +61,7 @@ With the `uiSchema` parameter you can customize the appearance of the form.
 
 :::note
 
-We'll talk about `MyForm` component in the [Reusable defaults](../reusable-defaults/) guide.
+We'll talk about `* as defaults` in the [Reusable defaults](../reusable-defaults/) guide.
 
 :::
 
@@ -78,7 +79,7 @@ Use a factory to create a form to access its state.
 
 :::tip
 
-Use getters to pass reactive parameters to the `createForm` function.
+Use getters to pass reactive parameters.
 
 :::
 
