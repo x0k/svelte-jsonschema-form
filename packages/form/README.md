@@ -4,7 +4,7 @@ Svelte 5 library for creating forms based on JSON schema.
 Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form).
 
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/)
-- [Form Builder](https://x0k.github.io/svelte-jsonschema-form/builder)
+- [Form Builder](https://x0k.github.io/svelte-jsonschema-form/builder3)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground3/)
 
 ## Installation
@@ -22,10 +22,11 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
   import { createForm, BasicForm, type Schema } from '@sjsf/form';
   import { resolver } from '@sjsf/form/resolvers/basic';
   import { translation } from '@sjsf/form/translations/en';
-  import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
-  import { createFormValidator } from "@sjsf/ajv8-validator";
+  import { createFormMerger } from '@sjsf/form/mergers/modern';
+  import { createFormIdBuilder } from '@sjsf/form/id-builders/modern';
+  import { createFormValidator } from '@sjsf/ajv8-validator';
   import { theme } from '@sjsf/basic-theme';
+  import '@sjsf/basic-theme/css/basic.css';
 
   const schema: Schema = {
     title: 'Tasks',
@@ -64,10 +65,12 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 ## Supported Themes
 
 - [Basic](https://x0k.dev/svelte-jsonschema-form/themes/basic/)
+  - [Pico CSS](https://x0k.dev/svelte-jsonschema-form/themes/basic/#pico-css)
 - [daisyUI v5](https://x0k.dev/svelte-jsonschema-form/themes/daisyui5/)
 - [Flowbite Svelte](https://x0k.dev/svelte-jsonschema-form/themes/flowbite3/)
 - [Skeleton v4](https://x0k.dev/svelte-jsonschema-form/themes/skeleton4/)
 - [shadcn-svelte](https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/)
+- [SVAR](https://x0k.dev/svelte-jsonschema-form/themes/lab/svar/) (experimental)
 
 ## Supported Validators
 
