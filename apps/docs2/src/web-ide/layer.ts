@@ -101,7 +101,7 @@ function mergeSvelteConfig(a: SvelteConfig, b: SvelteConfig): SvelteConfig {
   };
 }
 
-function mergePackageConfigs(
+export function mergePackageConfigs(
   a: PackageConfig,
   b: PackageConfig
 ): PackageConfig {

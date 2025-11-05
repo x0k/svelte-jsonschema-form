@@ -131,6 +131,12 @@ export const ACTUAL_THEMES = [
 
 export type ActualTheme = (typeof ACTUAL_THEMES)[number];
 
+export const SUB_THEMES = [
+  'pico'
+] as const
+
+export type SubThemes = (typeof SUB_THEMES)[number];
+
 export const DEPRECATED_THEMES = [
   "daisyui",
   "flowbite",
@@ -151,6 +157,7 @@ export function isLabTheme(theme: Theme): theme is LabTheme {
 
 export const THEMES = [
   ...ACTUAL_THEMES,
+  ...SUB_THEMES,
   ...DEPRECATED_THEMES,
   ...LAB_THEMES,
 ] as const;
@@ -159,6 +166,7 @@ export type Theme = (typeof THEMES)[number];
 
 export const THEME_TITLES = {
   basic: "basic",
+  pico: "pico",
   daisyui: "daisyUI v4",
   daisyui5: "daisyUI v5",
   flowbite: "Flowbite Svelte tw3",
@@ -181,6 +189,7 @@ export const THEME_BRAND = {
 
 export const THEME_PACKAGES = {
   basic: "@sjsf/basic-theme",
+  pico: "@sjsf/basic-theme",
   daisyui: "@sjsf/daisyui-theme",
   daisyui5: "@sjsf/daisyui5-theme",
   flowbite: "@sjsf/flowbite-theme",
