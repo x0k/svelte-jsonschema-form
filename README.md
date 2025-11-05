@@ -22,10 +22,11 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
   import { createForm, BasicForm, type Schema } from '@sjsf/form';
   import { resolver } from '@sjsf/form/resolvers/basic';
   import { translation } from '@sjsf/form/translations/en';
-  import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
-  import { createFormValidator } from "@sjsf/ajv8-validator";
+  import { createFormMerger } from '@sjsf/form/mergers/modern';
+  import { createFormIdBuilder } from '@sjsf/form/id-builders/modern';
+  import { createFormValidator } from '@sjsf/ajv8-validator';
   import { theme } from '@sjsf/basic-theme';
+  import '@sjsf/basic-theme/css/basic.css';
 
   const schema: Schema = {
     title: 'Tasks',
@@ -64,6 +65,7 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 ## Supported Themes
 
 - [Basic](https://x0k.dev/svelte-jsonschema-form/themes/basic/)
+  - [Pico CSS](https://x0k.dev/svelte-jsonschema-form/themes/basic/#pico-css)
 - [daisyUI v5](https://x0k.dev/svelte-jsonschema-form/themes/daisyui5/)
 - [Flowbite Svelte](https://x0k.dev/svelte-jsonschema-form/themes/flowbite3/)
 - [Skeleton v4](https://x0k.dev/svelte-jsonschema-form/themes/skeleton4/)
