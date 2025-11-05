@@ -82,11 +82,13 @@ export default defineConfig({
   vite: {
     optimizeDeps: {
       exclude: ["@jis3r/icons"],
+      include: ["bits-ui"],
     },
     ssr: {
       noExternal: ["lucide-svelte", "zod"],
     },
     resolve: {
+      dedupe: ["bits-ui"],
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
         "#": fileURLToPath(new URL("../../packages", import.meta.url)),

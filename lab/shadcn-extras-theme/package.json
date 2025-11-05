@@ -112,7 +112,7 @@
 		"@zxcvbn-ts/language-common": "^3.0.4",
 		"@zxcvbn-ts/language-en": "^3.0.2",
 		"ajv": "catalog:",
-		"bits-ui": "^2.14.2",
+		"bits-ui": "catalog:",
 		"clsx": "^2.1.1",
 		"country-flag-icons": "^1.5.21",
 		"globals": "catalog:",

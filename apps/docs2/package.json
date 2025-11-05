@@ -72,7 +72,7 @@
     "@skeletonlabs/skeleton-svelte4": "npm:@skeletonlabs/skeleton-svelte@^4.2.0",
     "astro": "^5.15.3",
     "astro-vtbot": "^2.1.9",
-    "bits-ui": "2.14.2",
+    "bits-ui": "catalog:",
     "css-tree": "^3.1.0",
     "flowbite-svelte2": "npm:flowbite-svelte@0.47",
     "json-schema-to-ts": "^3.1.1",
