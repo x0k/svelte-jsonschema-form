@@ -98,3 +98,103 @@ By default, the form will work even with JavaScript disabled, but you should con
 - Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
 will not expand/switch their state.
 - Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.
+
+## Comparison with Superforms
+
+Unlike [Superforms](https://github.com/ciscoheat/sveltekit-superforms),
+SJSF focuses on generating forms from JSON Schemas and managing their state,
+while the SvelteKit integration is just an additional layer.
+However, feel free to [open feature requests](https://github.com/x0k/svelte-jsonschema-form/issues/new/choose)
+if something important is still missing.
+
+### Missing features
+
+- [Status messages](https://superforms.rocks/concepts/messages)
+- [Snapshots](https://superforms.rocks/concepts/snapshots)
+
+### Tainted fields
+
+SJSF does not track the difference between the current and initial form state.
+The `form.isChanged` property becomes `true` after any interaction with a form field
+until the form is either successfully submitted or reset.
+
+You can use the following code to check whether any changes have been made.
+
+```ts
+import { isSchemaValueDeepEqual } from '@sjsf/form/core';
+import { getValueSnapshot } from '@sjsf/form';
+import { preventPageReload } from '@sjsf/form/prevent-page-reload.svelte';
+
+preventPageReload({
+  get isChanged() {
+    return form.isChanged && isSchemaValueDeepEqual(initialValue, getValueSnapshot(form))
+  }
+})
+```
+
+### Available events
+
+- `onSuccess` — triggered when a request completes successfully,
+receiving an `ActionResult<NonNullable<ActionData>>` as the result
+- `onFailure` — triggered when a request fails,
+receiving a `FailedTask<unknown>` as the argument
+- `onSubmitError` — triggered when client-side validation errors are present
+- `onSubmissionFailure` — triggered when an error occurs during validation
+
+### Loading timers
+
+Use `request.isProcessed` and `request.isDelayed` to access loading timers.
+
+```ts
+const { form, request } = setupSvelteKitForm(meta, {
+  delayedMs: 500,
+  timeoutMs: 8000,
+  ...,
+})
+```
+
+### Multiple forms
+
+Use `idPrefix` to create multiple forms.
+
+**Client**
+
+```ts
+const { form, request } = setupSvelteKitForm(meta, {
+  idPrefix: "foo",
+  ...,
+})
+```
+
+**Server**
+
+```ts
+export const actions = {
+  default: createAction(
+    {
+      /* options */
+    },
+    (data: Model, _event, { idPrefix }) => {
+      console.log(idPrefix, data);
+    }
+  )
+} satisfies Actions
+```
+
+### Submit behavior
+
+Use the `combinator` option to control the behavior of multiple form submissions.
+
+- `forgetPrevious`
+- `abortPrevious`
+- `waitPrevious`
+- `throttle`
+
+```ts
+import { waitPrevious } from '@sjsf/form/lib/task.svelte'
+
+const { form, request } = setupSvelteKitForm(meta, {
+  combinator: waitPrevious
+  ...,
+})
+```
