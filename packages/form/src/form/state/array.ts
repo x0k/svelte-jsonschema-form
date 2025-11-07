@@ -1,14 +1,13 @@
 import type { SchemaArrayValue } from "@/core/index.js";
-
-import type { KeyedFieldValues } from "../model.js";
 import { FORM_KEYED_ARRAYS } from "../internals.js";
+import type { KeyedFieldValues } from "../model.js";
 import type { FormState } from "./state.js";
 
 export function createKeyedArrayDeriver<T>(
   ctx: FormState<T>,
   value: () => SchemaArrayValue | null | undefined,
   virtualKeyedArrayFactory: () => KeyedFieldValues,
-  keyedArrayFactory: (v: SchemaArrayValue, g: () => number) => KeyedFieldValues
+  keyedArrayFactory: (v: SchemaArrayValue, g: () => number) => KeyedFieldValues,
 ) {
   let lastKey = Number.MIN_SAFE_INTEGER;
   return () => {

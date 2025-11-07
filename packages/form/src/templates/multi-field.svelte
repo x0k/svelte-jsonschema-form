@@ -6,9 +6,9 @@
 
 <script lang="ts">
   import {
+    type ComponentProps,
     getComponent,
     getFormContext,
-    type ComponentProps,
   } from "@/form/index.js";
 
   const {

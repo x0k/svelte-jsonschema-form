@@ -75,7 +75,7 @@ export const PROPERTY_NAME_KEY = "propertyName";
 export const DATA_URL_FORMAT = "data-url";
 
 export function isSchemaWithProperties(
-  schema: Schema
+  schema: Schema,
 ): schema is SchemaWithProperties {
   return schema.properties !== undefined;
 }

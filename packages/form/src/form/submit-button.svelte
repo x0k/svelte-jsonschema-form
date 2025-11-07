@@ -1,12 +1,12 @@
 <script lang="ts">
+  import type { Config } from "./config.js";
   import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import {
-    getPseudoPath,
     getComponent,
     getFormContext,
+    getPseudoPath,
     retrieveTranslate,
   } from "./state/index.js";
-  import type { Config } from "./config.js";
   import Text from "./text.svelte";
 
   const ctx = getFormContext();

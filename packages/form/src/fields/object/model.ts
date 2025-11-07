@@ -1,16 +1,16 @@
-import { isSchemaObject } from "@/lib/json-schema/index.js";
 import {
   ADDITIONAL_PROPERTY_FLAG,
   type Schema,
   type SchemaObjectValue,
 } from "@/core/index.js";
+import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 export type AdditionalPropertyKey = (key: string, attempt: number) => string;
 
 export function generateNewKey(
   value: SchemaObjectValue,
   preferredKey: string,
-  additionalPropertyKey: AdditionalPropertyKey
+  additionalPropertyKey: AdditionalPropertyKey,
 ) {
   let index = 0;
   let newKey: string;
@@ -22,13 +22,13 @@ export function generateNewKey(
 
 export function createAdditionalPropertyKey(
   preferredKey: string,
-  attempt: number
+  attempt: number,
 ) {
   return attempt === 0 ? preferredKey : `${preferredKey}-${attempt}`;
 }
 
 export function createOriginalKeysOrder(
-  properties: Exclude<Schema["properties"], undefined>
+  properties: Exclude<Schema["properties"], undefined>,
 ): string[] {
   const order: string[] = [];
   const keys = Object.keys(properties);

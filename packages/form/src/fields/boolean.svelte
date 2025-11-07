@@ -8,12 +8,12 @@
 </script>
 
 <script lang="ts">
-  import { identity } from "@/lib/function.js";
   import type { ComponentProps } from "@/form/index.js";
+  import { identity } from "@/lib/function.js";
 
   import FieldBase from "./field-base.svelte";
 
-  let {
+  const {
     config,
     value = $bindable(),
     uiOption,

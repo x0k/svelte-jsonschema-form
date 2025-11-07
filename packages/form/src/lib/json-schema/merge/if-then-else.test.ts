@@ -2,15 +2,14 @@
 // MIT © Martin Hansen
 // Modifications made by Roman Krasilnikov.
 
-import { describe, it, expect } from "vitest";
-
-import { createMerger } from "./merge.js";
+import { describe, expect, it } from "vitest";
 import { createShallowAllOfMerge } from "./all-of-merge.js";
+import { createMerger } from "./merge.js";
 
 const { mergeArrayOfSchemaDefinitions } = createMerger();
 const mergeAllOf = createShallowAllOfMerge(mergeArrayOfSchemaDefinitions);
 
-describe("if then else", function () {
+describe("if then else", () => {
   it("moves the if then else to the base schema if none there", () => {
     const result = mergeAllOf({
       allOf: [

@@ -5,9 +5,8 @@
 import jsonpointer from "jsonpointer";
 
 import { isSchemaObject } from "@/lib/json-schema/index.js";
-
-import { REF_KEY, type Schema, type SchemaDefinition } from "./schema.js";
 import type { Merger } from "./merger.js";
+import { REF_KEY, type Schema, type SchemaDefinition } from "./schema.js";
 
 export function resolveRef(ref: string, rootSchema: Schema) {
   if (!ref.startsWith("#")) {
@@ -16,7 +15,7 @@ export function resolveRef(ref: string, rootSchema: Schema) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const schemaDef: SchemaDefinition | undefined = jsonpointer.get(
     rootSchema,
-    decodeURIComponent(ref.substring(1))
+    decodeURIComponent(ref.substring(1)),
   );
   if (schemaDef === undefined) {
     throw new Error(`Could not find a definition for ${ref}.`);
@@ -28,7 +27,7 @@ export function findSchemaDefinition(
   merger: Merger,
   ref: string,
   rootSchema: Schema,
-  stack = new Set<string>()
+  stack = new Set<string>(),
 ): Schema {
   const current = resolveRef(ref, rootSchema);
   if (!isSchemaObject(current)) {
@@ -46,15 +45,15 @@ export function findSchemaDefinition(
       refs.push(ref, firstRef);
       throw new Error(
         `Definition for ${firstRef} contains a circular reference through ${refs.join(
-          " -> "
-        )}`
+          " -> ",
+        )}`,
       );
     }
     const subSchema = findSchemaDefinition(
       merger,
       nextRef,
       rootSchema,
-      new Set(stack).add(ref)
+      new Set(stack).add(ref),
     );
     if (Object.keys(current).length < 2) {
       return subSchema;

@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import * as patternsMergers from "./patterns.js";
 
 interface TestCase {
@@ -670,7 +670,7 @@ describe("Pattern Mergers", () => {
 
             expect(
               result,
-              `${mergerName} with patterns "${testCase.left}" + "${testCase.right}" testing "${data.value}"`
+              `${mergerName} with patterns "${testCase.left}" + "${testCase.right}" testing "${data.value}"`,
             ).toBe(data.expected[mergerName as keyof typeof patternsMergers]);
           });
         });

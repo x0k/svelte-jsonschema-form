@@ -21,7 +21,7 @@ const NO_ERRORS: FieldErrors = [];
  */
 export function getFieldErrors<T>(
   ctx: FormState<T>,
-  path: FieldPath
+  path: FieldPath,
 ): FieldErrors {
   return ctx[FORM_ERRORS].get(path) ?? NO_ERRORS;
 }
@@ -31,11 +31,11 @@ export function getFieldErrors<T>(
  */
 export function getFieldErrorsByPath<T>(
   ctx: FormState<T>,
-  path: RPath
+  path: RPath,
 ): FieldErrors {
   return getFieldErrors(
     ctx,
-    internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path)
+    internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
   );
 }
 
@@ -44,7 +44,7 @@ export function getFieldErrorsByPath<T>(
  */
 export function getFieldsErrors<T>(
   ctx: FormState<T>,
-  paths: FieldPath[]
+  paths: FieldPath[],
 ): string[] {
   const errors: string[] = [];
   for (let i = 0; i < paths.length; i++) {
@@ -63,18 +63,21 @@ export function getFieldsErrors<T>(
  */
 export function getFieldsErrorsByPath<T>(
   ctx: FormState<T>,
-  paths: RPath[]
+  paths: RPath[],
 ): string[] {
   return getFieldsErrors(
     ctx,
-    paths.map((p) => internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], p))
+    paths.map((p) => internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], p)),
   );
 }
 
 /**
  * @command
  */
-export function updateErrors<T>(ctx: FormState<T>, errors: ReadonlyArray<ValidationError>) {
+export function updateErrors<T>(
+  ctx: FormState<T>,
+  errors: ReadonlyArray<ValidationError>,
+) {
   untrack(() => {
     internalAssignErrors(ctx[FORM_PATHS_TRIE_REF], ctx[FORM_ERRORS], errors);
   });
@@ -88,7 +91,7 @@ export function updateErrors<T>(ctx: FormState<T>, errors: ReadonlyArray<Validat
 export function updateFieldErrors<T>(
   ctx: FormState<T>,
   path: FieldPath,
-  errors: Update<string[]>
+  errors: Update<string[]>,
 ): boolean {
   return untrack(() => {
     if (typeof errors === "function") {
@@ -110,14 +113,14 @@ export function updateFieldErrors<T>(
 export function updateFieldErrorsByPath<T>(
   ctx: FormState<T>,
   path: RPath,
-  errors: Update<string[]>
+  errors: Update<string[]>,
 ): boolean {
   return untrack(() =>
     updateFieldErrors(
       ctx,
       internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
-      errors
-    )
+      errors,
+    ),
   );
 }
 
@@ -132,7 +135,7 @@ export function hasErrors<T>(ctx: FormState<T>) {
  * @query
  */
 export function getErrors<T>(
-  ctx: FormState<T>
+  ctx: FormState<T>,
 ): Iterable<[FieldPath, string[]]> {
   return ctx[FORM_ERRORS];
 }

@@ -1,10 +1,10 @@
 <script lang="ts">
   import {
+    type ComponentProps,
+    ErrorMessage,
     getComponent,
     getFieldErrors,
     getFormContext,
-    type ComponentProps,
-    ErrorMessage,
   } from "@/form/index.js";
 
   const {

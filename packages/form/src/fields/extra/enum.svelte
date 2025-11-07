@@ -9,19 +9,19 @@
 
 <script lang="ts">
   import {
-    makeEventHandlers,
-    getFieldErrors,
-    validateField,
-    getFormContext,
-    getComponent,
     type ComponentProps,
+    getComponent,
     getFieldAction,
+    getFieldErrors,
+    getFormContext,
+    makeEventHandlers,
+    validateField,
   } from "@/form/index.js";
   import "@/form/extra-fields/enum.js";
 
   import { createOptions } from "../enum.js";
 
-  let {
+  const {
     config,
     value = $bindable(),
     uiOption,

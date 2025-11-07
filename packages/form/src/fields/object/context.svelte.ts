@@ -12,33 +12,33 @@ import {
 } from "@/core/index.js";
 import {
   AFTER_SUBMITTED,
-  getDefaultFieldState,
-  ON_OBJECT_CHANGE,
-  validateField,
   type Config,
-  type Schema,
-  validateAdditionalPropertyKey,
-  retrieveSchema,
-  getFieldErrors,
-  retrieveUiSchema,
-  type UiSchemaDefinition,
-  type UiOption,
-  retrieveUiOption,
-  uiTitleOption,
-  type Translate,
-  markSchemaChange,
-  type FormState,
-  getFieldsValidationMode,
-  setFieldState,
   FIELD_CHANGED,
-  getChildPath,
   type FieldErrors,
+  type FormState,
+  getChildPath,
+  getDefaultFieldState,
+  getFieldErrors,
+  getFieldsValidationMode,
+  markSchemaChange,
+  ON_OBJECT_CHANGE,
+  retrieveSchema,
+  retrieveUiOption,
+  retrieveUiSchema,
+  type Schema,
+  setFieldState,
+  type Translate,
+  type UiOption,
+  type UiSchemaDefinition,
+  uiTitleOption,
+  validateAdditionalPropertyKey,
+  validateField,
 } from "@/form/index.js";
 
 import {
   createAdditionalPropertyKey,
-  generateNewKey,
   createOriginalKeysOrder,
+  generateNewKey,
 } from "./model.js";
 
 export interface ObjectContext {
@@ -52,7 +52,7 @@ export interface ObjectContext {
   propertyConfig: (
     config: Config,
     property: string,
-    isAdditional: boolean
+    isAdditional: boolean,
   ) => Config;
 }
 
@@ -85,10 +85,10 @@ export function createObjectContext<T>({
   // additional properties in the `properties` field with the
   // `ADDITIONAL_PROPERTY_FLAG` flag and `dependencies` resolution.
   const retrievedSchema = $derived(
-    retrieveSchema(ctx, config().schema, value())
+    retrieveSchema(ctx, config().schema, value()),
   );
 
-  let lastSchemaProperties: Schema["properties"] = undefined;
+  let lastSchemaProperties: Schema["properties"];
   const schemaProperties = $derived.by(() => {
     const snap = $state.snapshot(retrievedSchema.properties);
     if (!isSchemaDeepEqual(lastSchemaProperties, snap)) {
@@ -110,9 +110,9 @@ export function createObjectContext<T>({
     isSchemaObjectValue(schemaProperties)
       ? orderProperties(
           schemaProperties,
-          uiOption("order") ?? createOriginalKeysOrder(schemaProperties)
+          uiOption("order") ?? createOriginalKeysOrder(schemaProperties),
         )
-      : []
+      : [],
   );
 
   const requiredProperties = $derived(new Set(retrievedSchema.required));
@@ -120,7 +120,7 @@ export function createObjectContext<T>({
   const getAdditionalPropertySchema = $derived.by(
     (): ((
       val: SchemaObjectValue | null | undefined,
-      key: string
+      key: string,
     ) => Schema) => {
       const { additionalProperties, patternProperties } = retrievedSchema;
 
@@ -144,19 +144,19 @@ export function createObjectContext<T>({
           retrieveSchema(
             ctx,
             pairs.find(([p]) => p.test(key))?.[1] ?? getDefaultSchema(val),
-            val
+            val,
           );
       }
       if (isSchemaObjectValue(additionalProperties)) {
         return (val) => retrieveSchema(ctx, additionalProperties, val);
       }
       return () => ({});
-    }
+    },
   );
 
   const canExpand = $derived(
     uiOption("expandable") !== false &&
-      isSchemaExpandable(retrievedSchema, value())
+      isSchemaExpandable(retrievedSchema, value()),
   );
 
   const errors = $derived(getFieldErrors(ctx, config().path));
@@ -173,7 +173,7 @@ export function createObjectContext<T>({
   }
 
   const additionalPropertyKey = $derived(
-    uiOption("additionalPropertyKey") ?? createAdditionalPropertyKey
+    uiOption("additionalPropertyKey") ?? createAdditionalPropertyKey,
   );
 
   return {
@@ -196,7 +196,7 @@ export function createObjectContext<T>({
         ctx,
         isAdditional
           ? config.uiSchema.additionalProperties
-          : (config.uiSchema[property] as UiSchemaDefinition | undefined)
+          : (config.uiSchema[property] as UiSchemaDefinition | undefined),
       );
       return {
         path: getChildPath(ctx, config.path, property),

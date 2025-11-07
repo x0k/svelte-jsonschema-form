@@ -10,13 +10,13 @@ import {
   oneOfSchema,
   SECOND_ONE_OF,
 } from "./fixtures/test-data.js";
-import type { Validator } from "./validator.js";
-import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema.js";
-import { retrieveSchema } from "./resolve.js";
-import type { Schema } from "./schema.js";
-import { createValidator } from "./test-validator.js";
 import type { Merger } from "./merger.js";
+import { retrieveSchema } from "./resolve.js";
+import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema.js";
+import type { Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
+import { createValidator } from "./test-validator.js";
+import type { Validator } from "./validator.js";
 
 let testValidator: Validator;
 let defaultMerger: Merger;
@@ -35,8 +35,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         {},
         {},
-        undefined
-      )
+        undefined,
+      ),
     ).toBeUndefined();
   });
   // it('returns input formData when the old schema is not an object', () => {
@@ -97,7 +97,7 @@ describe("sanitizeDataForNewSchema", () => {
         ],
       }),
       SECOND_ONE_OF,
-      oneOfSchema
+      oneOfSchema,
     );
     expect(
       sanitizeDataForNewSchema(
@@ -106,8 +106,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         {},
-        oneOfData
-      )
+        oneOfData,
+      ),
     ).toEqual(oneOfData);
   });
   it("returns input formData when the new schema matches the data for the new schema rather than the old", () => {
@@ -164,7 +164,7 @@ describe("sanitizeDataForNewSchema", () => {
         ],
       }),
       SECOND_ONE_OF,
-      oneOfSchema
+      oneOfSchema,
     );
     const oldSchema = structuredClone(
       retrieveSchema(
@@ -218,8 +218,8 @@ describe("sanitizeDataForNewSchema", () => {
           ],
         }),
         FIRST_ONE_OF,
-        oneOfSchema
-      )
+        oneOfSchema,
+      ),
     );
     // Change the type of name to trigger a fall-thru
     // @ts-expect-error hack for test
@@ -233,8 +233,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        oneOfData
-      )
+        oneOfData,
+      ),
     ).toEqual(expected);
   });
   it("returns input formData when the new schema and old schema match on a default", () => {
@@ -273,8 +273,8 @@ describe("sanitizeDataForNewSchema", () => {
           notInEitherSchema: "keep",
           defaultField: "myData",
           anotherField: true,
-        }
-      )
+        },
+      ),
     ).toEqual({ notInEitherSchema: "keep", defaultField: "myData" });
   });
   it("returns new schema const in formData when the old schema default matches in the formData", () => {
@@ -312,8 +312,8 @@ describe("sanitizeDataForNewSchema", () => {
         {
           defaultField: "myData",
           anotherField: true,
-        }
-      )
+        },
+      ),
     ).toEqual({ defaultField: "yourData" });
   });
   it("returns input formData when the old schema default does not match in the formData", () => {
@@ -351,8 +351,8 @@ describe("sanitizeDataForNewSchema", () => {
         {
           defaultField: "fooData",
           anotherField: true,
-        }
-      )
+        },
+      ),
     ).toEqual({ defaultField: "fooData" });
   });
   it("returns empty formData when the old schema default does not match in the formData, and new schema default is readOnly", () => {
@@ -391,8 +391,8 @@ describe("sanitizeDataForNewSchema", () => {
         {
           defaultField: "fooData",
           anotherField: true,
-        }
-      )
+        },
+      ),
     ).toEqual({});
   });
   it("returns input formData when the new schema and old schema match on a const", () => {
@@ -431,8 +431,8 @@ describe("sanitizeDataForNewSchema", () => {
           notInEitherSchema: "keep",
           constField: "myData",
           anotherField: true,
-        }
-      )
+        },
+      ),
     ).toEqual({ notInEitherSchema: "keep", constField: "myData" });
   });
   it("returns new schema const in formData when the old schema const matches in the formData", () => {
@@ -470,8 +470,8 @@ describe("sanitizeDataForNewSchema", () => {
         {
           constField: "myData",
           anotherField: true,
-        }
-      )
+        },
+      ),
     ).toEqual({ constField: "yourData" });
   });
   it("returns empty formData when the old schema const does not match in the formData", () => {
@@ -509,8 +509,8 @@ describe("sanitizeDataForNewSchema", () => {
         {
           constField: "fooData",
           anotherField: true,
-        }
-      )
+        },
+      ),
     ).toEqual({});
   });
   it("returns empty formData after resolving schema refs", () => {
@@ -547,8 +547,8 @@ describe("sanitizeDataForNewSchema", () => {
         rootSchema,
         newSchema,
         oldSchema,
-        { oldField: "test" }
-      )
+        { oldField: "test" },
+      ),
     ).toEqual({});
   });
   it("returns data when two arrays have same boolean items", () => {
@@ -567,8 +567,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        [1]
-      )
+        [1],
+      ),
     ).toEqual([1]);
   });
   it("returns undefined when two arrays have differing boolean items", () => {
@@ -587,8 +587,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        [1]
-      )
+        [1],
+      ),
     ).toBeUndefined();
   });
   it("returns undefined when one array has boolean items", () => {
@@ -607,8 +607,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        [1]
-      )
+        [1],
+      ),
     ).toBeUndefined();
   });
   it("returns undefined when both arrays has array items", () => {
@@ -627,8 +627,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        [1]
-      )
+        [1],
+      ),
     ).toBeUndefined();
   });
   it("returns undefined when one arrays has array items", () => {
@@ -647,8 +647,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        [1]
-      )
+        [1],
+      ),
     ).toBeUndefined();
   });
   it("returns undefined when the arrays has array items of different types", () => {
@@ -667,8 +667,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        [1]
-      )
+        [1],
+      ),
     ).toBeUndefined();
   });
   it("returns trimmed array when the new schema has maxItems < size for simple type", () => {
@@ -688,8 +688,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        ["1", "2"]
-      )
+        ["1", "2"],
+      ),
     ).toEqual(["1"]);
   });
   it("returns whole array when the new schema does not have maxItems for simple type", () => {
@@ -716,8 +716,8 @@ describe("sanitizeDataForNewSchema", () => {
         rootSchema,
         newSchema,
         oldSchema,
-        ["1", "2"]
-      )
+        ["1", "2"],
+      ),
     ).toEqual(["1", "2"]);
   });
   it("returns trimmed array when the new schema has maxItems < size for object type", () => {
@@ -737,8 +737,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        [{ foo: "1" }, { foo: "2" }]
-      )
+        [{ foo: "1" }, { foo: "2" }],
+      ),
     ).toEqual([{ foo: "1" }]);
   });
   it("returns whole array when the new schema does not have maxItems for object type", () => {
@@ -758,8 +758,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        [{ foo: "1" }, { foo: "2" }]
-      )
+        [{ foo: "1" }, { foo: "2" }],
+      ),
     ).toEqual([{ foo: "1" }, { foo: "2" }]);
   });
   it("returns undefined object values when the new schema has different object type", () => {
@@ -778,8 +778,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        [{ foo: "1" }, { foo: "2" }]
-      )
+        [{ foo: "1" }, { foo: "2" }],
+      ),
     ).toEqual([{ foo: undefined }, { foo: undefined }]);
   });
   it("returns undefined object values when the new schema has array with different object types", () => {
@@ -800,8 +800,8 @@ describe("sanitizeDataForNewSchema", () => {
         oldSchema,
         {
           foo: ["1"],
-        }
-      )
+        },
+      ),
     ).toEqual({ foo: undefined });
   });
   it("returns formData when the new schema has field that is not in the old schema", () => {
@@ -821,8 +821,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        formData
-      )
+        formData,
+      ),
     ).toEqual(formData);
   });
   it('returns empty object when the old schema is of type string and the new contains "property" field', () => {
@@ -841,8 +841,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        "qwerty"
-      )
+        "qwerty",
+      ),
     ).toEqual({});
   });
   it('returns empty object when the old schema is of type array and the new contains "property" field', () => {
@@ -866,8 +866,8 @@ describe("sanitizeDataForNewSchema", () => {
         oneOfSchema,
         newSchema,
         oldSchema,
-        ["qwerty", "asdfg"]
-      )
+        ["qwerty", "asdfg"],
+      ),
     ).toEqual({});
   });
 });

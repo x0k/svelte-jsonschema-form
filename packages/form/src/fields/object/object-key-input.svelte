@@ -1,15 +1,15 @@
 <script lang="ts">
   import {
-    type UiSchema,
     type Config,
+    getComponent,
     getFieldErrors,
     getFormContext,
-    getComponent,
-    type UiOption,
-    retrieveUiOption,
-    uiTitleOption,
-    type Translate,
     getPseudoPath,
+    retrieveUiOption,
+    type Translate,
+    type UiOption,
+    type UiSchema,
+    uiTitleOption,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.svelte.js";
@@ -43,7 +43,7 @@
   const widgetType = "textWidget";
   const Widget = $derived(getComponent(ctx, widgetType, config));
 
-  let key = $derived<string | undefined>(property);
+  const key = $derived<string | undefined>(property);
 
   const handlers = {
     onblur: () => {

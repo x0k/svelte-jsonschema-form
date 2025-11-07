@@ -19,7 +19,7 @@
   import Tags from './tags.svelte';
   import './tags.svelte'
 
-  let { value = $bindable(), ...rest }: ComponentProps["arrayTagsField"] =
+  const { value = $bindable(), ...rest }: ComponentProps["arrayTagsField"] =
     $props();
 </script>
 

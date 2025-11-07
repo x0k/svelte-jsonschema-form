@@ -21,7 +21,7 @@ export function insertValue<T, V>(
   trie: Trie<T, V>,
   keys: Seq<T>,
   value: V,
-  index = 0
+  index = 0,
 ): Node<T, V> {
   if (trie === undefined) {
     trie = {
@@ -34,7 +34,7 @@ export function insertValue<T, V>(
   } else {
     trie.values.set(
       keys[index]!,
-      insertValue(trie.values.get(keys[index]!), keys, value, index + 1)
+      insertValue(trie.values.get(keys[index]!), keys, value, index + 1),
     );
   }
   return trie;
@@ -42,7 +42,7 @@ export function insertValue<T, V>(
 
 export function getNodeByKeys<T, V>(
   trie: Trie<T, V>,
-  keys: Seq<T>
+  keys: Seq<T>,
 ): Trie<T, V> {
   let i = 0;
   while (trie !== undefined && i < keys.length) {
@@ -53,14 +53,14 @@ export function getNodeByKeys<T, V>(
 
 export function getValueByKeys<T, V>(
   trie: Trie<T, V>,
-  keys: Seq<T>
+  keys: Seq<T>,
 ): V | undefined {
   return getNodeByKeys(trie, keys)?.value;
 }
 
 export function getNodeByShortestPrefix<T, V>(
   trie: Trie<T, V>,
-  keys: Seq<T>
+  keys: Seq<T>,
 ): Trie<T, V> {
   let i = 0;
   while (trie !== undefined && trie.value === undefined && i < keys.length) {

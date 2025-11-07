@@ -1,13 +1,12 @@
 import type { SvelteMap } from "svelte/reactivity";
-
-import { getNodeByKeys, insertValue } from "@/lib/trie.js";
 import type { RPath } from "@/core/index.js";
+import { getNodeByKeys, insertValue } from "@/lib/trie.js";
 
 import type { FormErrorsMap } from "./errors.js";
-import type { ValidationError } from "./validator.js";
-import type { PathTrieRef } from "./model.js";
-import type { FieldPath } from "./id.js";
 import type { FieldState } from "./field-state.js";
+import type { FieldPath } from "./id.js";
+import type { PathTrieRef } from "./model.js";
+import type { ValidationError } from "./validator.js";
 
 export const FORM_CONTEXT = Symbol("form-context");
 
@@ -20,7 +19,7 @@ export const FORM_PATHS_TRIE_REF = Symbol("form-paths-trie-ref");
 export const FORM_MARK_SCHEMA_CHANGE = Symbol("form-mark-schema-change");
 export const FORM_KEYED_ARRAYS = Symbol("form-keyed-arrays");
 export const FORM_FIELDS_VALIDATION_MODE = Symbol(
-  "form-fields-validation-mode"
+  "form-fields-validation-mode",
 );
 export const FORM_SCHEMA = Symbol("form-schema");
 export const FORM_ROOT_PATH = Symbol("form-root-path");
@@ -41,7 +40,7 @@ export const FORM_FIELDS_STATE_MAP = Symbol("form-fields-state-map");
 
 export function internalRegisterFieldPath(
   ref: PathTrieRef<FieldPath>,
-  path: RPath
+  path: RPath,
 ): FieldPath {
   const p = path as unknown as FieldPath;
   const node = getNodeByKeys(ref.current, path);
@@ -60,7 +59,7 @@ export function internalRegisterFieldPath(
 export function internalAssignErrors(
   ref: PathTrieRef<FieldPath>,
   map: FormErrorsMap,
-  errors: ReadonlyArray<ValidationError>
+  errors: ReadonlyArray<ValidationError>,
 ): FormErrorsMap {
   map.clear();
   for (const { path, message } of errors) {
@@ -78,7 +77,7 @@ export function internalAssignErrors(
 export function internalHasFieldState(
   map: SvelteMap<FieldPath, FieldState>,
   path: FieldPath,
-  state: FieldState
+  state: FieldState,
 ) {
   return ((map.get(path) ?? 0) & state) > 0;
 }

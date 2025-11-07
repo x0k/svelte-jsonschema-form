@@ -1,7 +1,4 @@
 import { describe, expect, it } from "vitest";
-
-import { insertValue } from "@/lib/trie.js";
-import { createMerger } from "@/lib/json-schema/index.js";
 import { pathFromRef } from "@/core/index.js";
 import {
   ON_ARRAY_CHANGE,
@@ -9,6 +6,8 @@ import {
   ON_OBJECT_CHANGE,
   type Schema,
 } from "@/form/main.js";
+import { createMerger } from "@/lib/json-schema/index.js";
+import { insertValue } from "@/lib/trie.js";
 
 import {
   fragmentSchema,
@@ -109,7 +108,7 @@ describe("insertSubSchemaIds", () => {
   });
   it("should inset ids properly 2", () => {
     expect(
-      insertSubSchemaIds(inputSchema, { fieldsValidationMode: ON_INPUT })
+      insertSubSchemaIds(inputSchema, { fieldsValidationMode: ON_INPUT }),
     ).toEqual({
       subSchemas: subSchemas({
         "#": { id: "v0", combinationBranch: false },
@@ -146,7 +145,9 @@ describe("insertSubSchemaIds", () => {
   });
   it("should inset ids properly 3", () => {
     expect(
-      insertSubSchemaIds(inputSchema, { fieldsValidationMode: ON_ARRAY_CHANGE })
+      insertSubSchemaIds(inputSchema, {
+        fieldsValidationMode: ON_ARRAY_CHANGE,
+      }),
     ).toEqual({
       subSchemas: subSchemas({
         "#": { id: "v0", combinationBranch: false },
@@ -181,7 +182,7 @@ describe("insertSubSchemaIds", () => {
     expect(
       insertSubSchemaIds(inputSchema, {
         fieldsValidationMode: ON_OBJECT_CHANGE,
-      })
+      }),
     ).toEqual({
       subSchemas: subSchemas({
         "#": { id: "v0", combinationBranch: false },

@@ -88,18 +88,20 @@ type PropsCast<
     }>
   >;
 
-export type PropertiesCast<From extends AnyComponent, To extends AnyComponent> =
-  From extends Component<infer FromProps, any, any>
-    ? To extends Component<infer ToProps, any, infer ToBindings>
-      ? PropsCast<FromProps, ToProps, ToBindings>
-      : never
-    : never;
+export type PropertiesCast<
+  From extends AnyComponent,
+  To extends AnyComponent,
+> = From extends Component<infer FromProps, any, any>
+  ? To extends Component<infer ToProps, any, infer ToBindings>
+    ? PropsCast<FromProps, ToProps, ToBindings>
+    : never
+  : never;
 
 export function cast<From extends AnyComponent, To extends AnyComponent>(
   Component: To,
-  propsCast: PropertiesCast<From, To>
+  propsCast: PropertiesCast<From, To>,
 ): From {
-  return function (internals, props) {
+  return ((internals, props) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const proxy = new Proxy(props, {
       get(target, p, receiver) {
@@ -136,5 +138,5 @@ export function cast<From extends AnyComponent, To extends AnyComponent>(
     });
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return Component(internals, proxy);
-  } as From;
+  }) as From;
 }

@@ -1,15 +1,14 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { tick } from "svelte";
-
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { noop } from "./function.js";
 import {
   abortPrevious,
-  forgetPrevious,
-  waitPrevious,
-  createTask,
   CompletionError,
+  createTask,
+  forgetPrevious,
   InitializationError,
+  waitPrevious,
 } from "./task.svelte.js";
-import { noop } from "./function.js";
 
 describe("createTask", () => {
   beforeEach(() => {
@@ -107,7 +106,7 @@ describe("createTask", () => {
             setTimeout(() => {
               resolve(0);
             }, 100);
-          })
+          }),
       );
       const task = createTask({
         execute: impl,

@@ -1,5 +1,5 @@
-import { isRecordProto } from "@/lib/object.js";
 import type { SchemaValue } from "@/core/index.js";
+import { isRecordProto } from "@/lib/object.js";
 
 import type { FieldValue, KeyedArraysMap } from "./model.js";
 
@@ -8,7 +8,7 @@ export const UNCHANGED = Symbol("unchanged");
 export function createSchemaValuesReconciler(keyedArraysMap: KeyedArraysMap) {
   return function reconcile(
     target: SchemaValue | undefined,
-    source: SchemaValue | undefined
+    source: SchemaValue | undefined,
   ): SchemaValue | undefined | typeof UNCHANGED {
     if (target === source) {
       return UNCHANGED;

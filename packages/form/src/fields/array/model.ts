@@ -4,13 +4,13 @@ export type ItemTitle = (
   title: string,
   index: number,
   fixedItemsCount: number,
-  itemValue: SchemaValue | undefined
+  itemValue: SchemaValue | undefined,
 ) => string;
 
 export function titleWithIndex(
   title: string,
   index: number,
-  fixedItemsCount: number
+  fixedItemsCount: number,
 ) {
   return index >= fixedItemsCount
     ? `${title}-${index - fixedItemsCount + 1}`

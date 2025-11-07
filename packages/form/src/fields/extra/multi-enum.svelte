@@ -13,20 +13,20 @@
 <script lang="ts">
   import { isSchemaObjectValue } from "@/core/index.js";
   import {
-    makeEventHandlers,
-    getFieldErrors,
-    validateField,
-    getFormContext,
-    getComponent,
     type ComponentProps,
+    getComponent,
     getFieldAction,
+    getFieldErrors,
+    getFormContext,
+    makeEventHandlers,
+    validateField,
   } from "@/form/index.js";
   import "@/form/extra-fields/multi-enum.js";
 
   import { createOptions } from "../enum.js";
   import "../extra-widgets/checkboxes.js";
 
-  let {
+  const {
     config,
     uiOption,
     value = $bindable(),

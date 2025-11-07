@@ -19,6 +19,6 @@ export function partialSnippet<
       // @ts-expect-error hack
       internals,
       ...getters,
-      ...args
+      ...args,
     )) as unknown as Snippet<Rest>;
 }

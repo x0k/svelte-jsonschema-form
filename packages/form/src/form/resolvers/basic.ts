@@ -1,7 +1,6 @@
 import { getSimpleSchemaType, isFixedItems } from "@/core/index.js";
-
-import type { FormState } from "../state/index.js";
 import type { ResolveFieldType } from "../fields.js";
+import type { FormState } from "../state/index.js";
 
 export function resolver<T>(_: FormState<T>): ResolveFieldType {
   return ({ schema }) => {

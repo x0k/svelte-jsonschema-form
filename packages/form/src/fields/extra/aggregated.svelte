@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import { createArrayComparator } from "@/lib/array.js";
+
   
   const field = "aggregatedField"
   declare module "../../form/index.js" {
@@ -20,21 +21,21 @@
 <script lang="ts">
   import {
     type ComponentProps,
+    type FieldPath,
+    getChildPath,
     getComponent,
+    getFieldAction,
+    getFieldErrors,
+    getFieldsErrors,
     getFormContext,
     makeEventHandlers,
     validateField,
-    getFieldsErrors,
-    getFieldErrors,
-    type FieldPath,
-    getChildPath,
-    getFieldAction,
   } from "@/form/index.js";
   import "@/form/extra-fields/aggregated.js";
 
   import "../extra-widgets/aggregated.js";
 
-  let {
+  const {
     config,
     value = $bindable(),
     uiOption,

@@ -12,6 +12,8 @@
 
 <script lang="ts">
   import {
+    type ComponentProps,
+    type FieldPath,
     getChildPath,
     getComponent,
     getFieldAction,
@@ -20,14 +22,12 @@
     getFormContext,
     makeEventHandlers,
     validateField,
-    type ComponentProps,
-    type FieldPath,
   } from "@/form/index.js";
   import "@/form/extra-fields/tags.js";
 
   import "../extra-widgets/tags.js";
 
-  let {
+  const {
     config,
     value = $bindable(),
     uiOption,

@@ -10,9 +10,9 @@
 
 <script lang="ts">
   import {
+    type ComponentProps,
     getComponent,
     getFormContext,
-    type ComponentProps,
   } from "@/form/index.js";
 
   import { getTemplateProps } from "./get-template-props.js";

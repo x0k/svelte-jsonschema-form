@@ -1,20 +1,20 @@
 <script lang="ts">
+  import type { Config } from "./config.js";
+  import HiddenIdPrefixInput from "./hidden-id-prefix-input.svelte";
   import {
     FORM_ROOT_PATH,
     FORM_SCHEMA,
     FORM_UI_SCHEMA,
     FORM_VALUE,
   } from "./internals.js";
-  import type { Config } from "./config.js";
   import {
-    retrieveSchema,
-    getFormContext,
     getFieldComponent,
+    getFormContext,
+    retrieveSchema,
+    retrieveTranslate,
     retrieveUiOption,
     uiTitleOption,
-    retrieveTranslate,
   } from "./state/index.js";
-  import HiddenIdPrefixInput from "./hidden-id-prefix-input.svelte";
 
   const ctx = getFormContext();
 

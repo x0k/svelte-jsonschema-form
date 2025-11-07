@@ -1,6 +1,6 @@
 import {
-  resolveUiOption,
   type AsyncFileListValidator,
+  resolveUiOption,
   type UiOptionsRegistry,
   type UiSchemaRoot,
 } from "@/form/main.js";
@@ -26,7 +26,7 @@ export function createFileSizeValidator(
   {
     uiSchema: uiSchemaRoot = {},
     uiOptionsRegistry = {},
-  }: FileSizeValidatorOptions = {}
+  }: FileSizeValidatorOptions = {},
 ): AsyncFileListValidator {
   return {
     validateFileListAsync(_, fileList, config) {
@@ -35,7 +35,7 @@ export function createFileSizeValidator(
         uiSchemaRoot,
         uiOptionsRegistry,
         config.uiSchema,
-        "maxFileSizeBytes"
+        "maxFileSizeBytes",
       );
       if (maxSizeBytes !== undefined) {
         for (const file of Array.from(fileList)) {
@@ -44,7 +44,7 @@ export function createFileSizeValidator(
               error({
                 file,
                 maxSizeBytes,
-              })
+              }),
             );
           }
         }

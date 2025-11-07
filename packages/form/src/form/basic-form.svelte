@@ -1,12 +1,11 @@
 <script lang="ts">
   import type { HTMLFormAttributes } from "svelte/elements";
-
-  import { type FormState, setFormContext } from "./state/index.js";
-  import Form from "./form.svelte";
   import Content from "./content.svelte";
+  import Form from "./form.svelte";
+  import { type FormState, setFormContext } from "./state/index.js";
   import SubmitButton from "./submit-button.svelte";
 
-  let {
+  const {
     ref = $bindable(),
     form,
     ...attributes

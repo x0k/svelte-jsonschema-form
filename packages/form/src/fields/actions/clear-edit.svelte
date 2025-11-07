@@ -1,18 +1,18 @@
 <script lang="ts" module>
-  import type { Ref } from "@/lib/svelte.svelte.js";
-  import { isNil } from "@/lib/types.js";
   import { getDefaultValueForType, getSimpleSchemaType } from "@/core/index.js";
   import {
+    type Config,
+    type FieldErrors,
+    type FormState,
     getComponent,
     getDefaultFieldState,
     isDisabled,
     retrieveTranslate,
-    Text,
-    type Config,
-    type FieldErrors,
-    type FormState,
     type SchemaValue,
+    Text,
   } from "@/form/index.js";
+  import type { Ref } from "@/lib/svelte.svelte.js";
+  import { isNil } from "@/lib/types.js";
 
   import "@/form/extra-labels/clear.js";
   import "@/form/extra-labels/edit.js";
@@ -23,7 +23,7 @@
     }
   }
 
-  export { clearEdit };
+  export type { clearEdit };
 </script>
 
 {#snippet clearEdit(

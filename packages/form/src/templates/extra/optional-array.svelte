@@ -8,12 +8,12 @@
 </script>
 
 <script lang="ts">
-  import { isNil } from "@/lib/types.js";
   import {
+    type ComponentProps,
     getComponent,
     getFormContext,
-    type ComponentProps,
   } from "@/form/index.js";
+  import { isNil } from "@/lib/types.js";
 
   import { getTemplateProps } from "../get-template-props.js";
 

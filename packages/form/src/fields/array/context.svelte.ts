@@ -1,6 +1,4 @@
 import { getContext, setContext } from "svelte";
-
-import { noop } from "@/lib/function.js";
 import {
   getDefaultValueForType,
   getSimpleSchemaType,
@@ -12,27 +10,28 @@ import {
 } from "@/core/index.js";
 import {
   AFTER_SUBMITTED,
+  type Config,
+  FIELD_CHANGED,
+  type FieldErrors,
+  type FieldValue,
+  type FormState,
+  getChildPath,
   getDefaultFieldState,
   getFieldErrors,
   getFieldsValidationMode,
+  type KeyedFieldValues,
   ON_ARRAY_CHANGE,
   retrieveSchema,
   retrieveUiOption,
   retrieveUiSchema,
+  setFieldState,
+  type UiOption,
   uiTitleOption,
   validateField,
-  type Config,
-  type FormState,
-  type FieldValue,
-  type KeyedFieldValues,
-  type UiOption,
-  setFieldState,
-  FIELD_CHANGED,
-  getChildPath,
-  type FieldErrors,
 } from "@/form/index.js";
+import { noop } from "@/lib/function.js";
 
-import { titleWithIndex, type ItemTitle } from "./model.js";
+import { type ItemTitle, titleWithIndex } from "./model.js";
 
 export interface ArrayContext {
   config: () => Config;
@@ -54,7 +53,7 @@ export interface ArrayContext {
   itemConfig: (
     config: Config,
     item: SchemaValue | undefined,
-    index: number
+    index: number,
   ) => Config;
   pushItem: () => void;
   moveItemUp: (index: number) => void;
@@ -127,7 +126,7 @@ function createItems<T>({
       }
       keyed.push(
         getDefaultFieldState(ctx, { schema, formData: undefined }) ??
-          getDefaultValueForType(getSimpleSchemaType(schema))
+          getDefaultValueForType(getSimpleSchemaType(schema)),
       );
       onChange();
     },
@@ -153,7 +152,7 @@ function createItems<T>({
 function createCanAdd(
   config: () => Config,
   length: () => number,
-  addable: () => boolean
+  addable: () => boolean,
 ) {
   let maxItems;
   return () =>
@@ -232,7 +231,7 @@ export function createArrayContext<T>({
           itemUiTitle ?? schema.title ?? config.title,
           index,
           0,
-          item
+          item,
         ),
         schema,
         uiSchema: itemUiSchema,
@@ -256,7 +255,7 @@ export function createTupleContext<T>({
       ? items.map((item, i) => {
           if (typeof item === "boolean") {
             throw new Error(
-              "Invalid schema: items must be an array of schemas"
+              "Invalid schema: items must be an array of schemas",
             );
           }
           return retrieveSchema(ctx, item, arr?.[i]);
@@ -288,8 +287,8 @@ export function createTupleContext<T>({
     createCanAdd(
       config,
       length,
-      () => items.addable() && schemaAdditionalItems !== undefined
-    )
+      () => items.addable() && schemaAdditionalItems !== undefined,
+    ),
   );
 
   function initTuple(onInit: (arr: SchemaArrayValue) => void = noop) {
@@ -336,7 +335,7 @@ export function createTupleContext<T>({
       const schema = retrieveSchema(
         ctx,
         (additional ? schemaAdditionalItems : itemsSchema[index])!,
-        item
+        item,
       );
       const uiSchema = retrieveUiSchema(
         ctx,
@@ -344,7 +343,7 @@ export function createTupleContext<T>({
           ? config.uiSchema.additionalItems
           : Array.isArray(config.uiSchema.items)
             ? config.uiSchema.items[index]
-            : config.uiSchema.items
+            : config.uiSchema.items,
       );
       return {
         path: getChildPath(ctx, config.path, index),
@@ -352,7 +351,7 @@ export function createTupleContext<T>({
           uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
           index,
           itemsSchema.length,
-          item
+          item,
         ),
         schema,
         uiSchema,

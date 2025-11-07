@@ -3,15 +3,14 @@
 // Modifications made by Roman Krasilnikov.
 
 import { isSchemaObject } from "@/lib/json-schema/index.js";
-
-import type { Schema, SchemaValue } from "./schema.js";
-import type { Validator } from "./validator.js";
-import { retrieveSchema } from "./resolve.js";
 import {
   getSchemaConstantValue,
   isSchemaOfConstantValue,
 } from "./constant-schema.js";
 import type { Merger } from "./merger.js";
+import { retrieveSchema } from "./resolve.js";
+import type { Schema, SchemaValue } from "./schema.js";
+import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
 /**
@@ -44,7 +43,7 @@ export function isSelect(
   validator: Validator,
   merger: Merger,
   theSchema: Schema,
-  rootSchema: Schema
+  rootSchema: Schema,
 ) {
   const schema = retrieveSchema(validator, merger, theSchema, rootSchema);
   if (Array.isArray(schema.enum)) {
@@ -54,7 +53,7 @@ export function isSelect(
   if (Array.isArray(altSchemas)) {
     return altSchemas.every(
       (altSchemas) =>
-        typeof altSchemas !== "boolean" && isSchemaOfConstantValue(altSchemas)
+        typeof altSchemas !== "boolean" && isSchemaOfConstantValue(altSchemas),
     );
   }
   return false;
@@ -103,7 +102,7 @@ export function isMultiSelect(
   validator: Validator,
   merger: Merger,
   { items, uniqueItems }: Schema,
-  rootSchema: Schema
+  rootSchema: Schema,
 ): boolean {
   return (
     uniqueItems === true &&

@@ -14,30 +14,30 @@
   import { untrack } from "svelte";
 
   import {
-    ANY_OF_KEY,
+    type ANY_OF_KEY,
+    type EnumOption,
     getDiscriminatorFieldFromSchema,
     getSimpleSchemaType,
-    ONE_OF_KEY,
-    type EnumOption,
+    type ONE_OF_KEY,
   } from "@/core/index.js";
   import {
+    type ComponentProps,
     type Config,
     getClosestMatchingOption,
-    getDefaultFieldState,
-    getFieldErrors,
-    retrieveSchema,
-    sanitizeDataForNewSchema,
-    getFormContext,
     getComponent,
-    type ComponentProps,
-    getFieldComponent,
-    retrieveUiSchema,
-    retrieveUiOption,
-    uiTitleOption,
-    retrieveTranslate,
-    getPseudoPath,
-    getPseudoId,
+    getDefaultFieldState,
     getFieldAction,
+    getFieldComponent,
+    getFieldErrors,
+    getFormContext,
+    getPseudoId,
+    getPseudoPath,
+    retrieveSchema,
+    retrieveTranslate,
+    retrieveUiOption,
+    retrieveUiSchema,
+    sanitizeDataForNewSchema,
+    uiTitleOption,
   } from "@/form/index.js";
 
   let {
@@ -77,7 +77,7 @@
   );
 
   let previousSelectedOption = $state.raw<number>();
-  let nextSelectedOption = $derived(
+  const nextSelectedOption = $derived(
     getClosestMatchingOption(
       ctx,
       value,

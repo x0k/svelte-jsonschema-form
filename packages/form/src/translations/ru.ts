@@ -1,6 +1,6 @@
+import type { TranslatorDefinitions } from "@/form/translation.js";
 import { fromRecord } from "@/lib/resolver.js";
 import type { TaskFailureReason } from "@/lib/task.svelte.js";
-import type { TranslatorDefinitions } from "@/form/translation.js";
 
 export const definitions: TranslatorDefinitions = {
   submit: "Продолжить",

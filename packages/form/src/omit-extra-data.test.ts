@@ -1,10 +1,9 @@
-import { describe, expect, it, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import type { Merger, Schema, Validator } from "./core/index.js";
-import { createValidator } from "./core/test-validator.js";
-
-import { omitExtraData } from "./omit-extra-data.js";
 import { createMerger } from "./core/test-merger.js";
+import { createValidator } from "./core/test-validator.js";
+import { omitExtraData } from "./omit-extra-data.js";
 
 let validator: Validator;
 let defaultMerger: Merger;
@@ -364,10 +363,10 @@ describe("omitExtraData", () => {
     };
     expect(omitExtraData(validator, defaultMerger, schema, null)).toBe(null);
     expect(omitExtraData(validator, defaultMerger, schema, undefined)).toBe(
-      undefined
+      undefined,
     );
     expect(omitExtraData(validator, defaultMerger, schema, "null")).toBe(
-      "null"
+      "null",
     );
   });
 
@@ -444,7 +443,7 @@ describe("omitExtraData", () => {
 
       expect(omitExtraData(validator, defaultMerger, schema, {})).toEqual({});
       expect(
-        omitExtraData(validator, defaultMerger, schema, { extra: "field" })
+        omitExtraData(validator, defaultMerger, schema, { extra: "field" }),
       ).toEqual({});
     });
 
@@ -636,13 +635,13 @@ describe("omitExtraData", () => {
       };
 
       expect(
-        omitExtraData(validator, defaultMerger, schema, "direct string")
+        omitExtraData(validator, defaultMerger, schema, "direct string"),
       ).toBe("direct string");
       expect(
         omitExtraData(validator, defaultMerger, schema, {
           value: "test",
           extra: true,
-        })
+        }),
       ).toEqual({
         value: "test",
       });
@@ -683,7 +682,7 @@ describe("omitExtraData", () => {
     it("should handle empty schema", () => {
       const schema = {};
       expect(
-        omitExtraData(validator, defaultMerger, schema, { any: "value" })
+        omitExtraData(validator, defaultMerger, schema, { any: "value" }),
       ).toEqual({ any: "value" });
     });
 
@@ -696,10 +695,10 @@ describe("omitExtraData", () => {
       };
 
       expect(omitExtraData(validator, defaultMerger, schema, undefined)).toBe(
-        undefined
+        undefined,
       );
       expect(omitExtraData(validator, defaultMerger, schema, null)).toBe(
-        undefined
+        undefined,
       );
     });
   });
@@ -721,7 +720,7 @@ describe("omitExtraData", () => {
       };
 
       expect(omitExtraData(validator, defaultMerger, schema, "test")).toBe(
-        "test"
+        "test",
       );
       expect(omitExtraData(validator, defaultMerger, schema, 42)).toBe(42);
       // Validation is not our responsibility
@@ -816,16 +815,16 @@ describe("omitExtraData", () => {
         omitExtraData(validator, defaultMerger, schema, {
           name: "John",
           extra: true,
-        })
+        }),
       ).toEqual({ name: "John" });
       expect(
         omitExtraData(validator, defaultMerger, schema, {
           id: 123,
           extra: true,
-        })
+        }),
       ).toEqual({ id: 123 });
       expect(
-        omitExtraData(validator, defaultMerger, schema, { extra: true })
+        omitExtraData(validator, defaultMerger, schema, { extra: true }),
       ).toEqual({});
     });
   });
@@ -986,7 +985,7 @@ describe("omitExtraData", () => {
         omitExtraData(validator, defaultMerger, schema, {
           multiple: false,
           uniqueItems: true,
-        })
+        }),
       ).toEqual({
         multiple: false,
       });
@@ -1086,7 +1085,7 @@ describe("omitExtraData", () => {
           type: "user",
           username: "john",
           extra: true,
-        })
+        }),
       ).toEqual({
         type: "user",
         username: "john",
@@ -1097,7 +1096,7 @@ describe("omitExtraData", () => {
           type: "admin",
           adminId: 123,
           extra: true,
-        })
+        }),
       ).toEqual({
         type: "admin",
         adminId: 123,
@@ -1153,14 +1152,14 @@ describe("omitExtraData", () => {
       };
 
       expect(
-        omitExtraData(validator, defaultMerger, schema, ["a", "b", "c"])
+        omitExtraData(validator, defaultMerger, schema, ["a", "b", "c"]),
       ).toEqual(["a", "b", "c"]);
       expect(
-        omitExtraData(validator, defaultMerger, schema, [1, 2, 3])
+        omitExtraData(validator, defaultMerger, schema, [1, 2, 3]),
       ).toEqual([1, 2, 3]);
       // Validation is not our responsibility
       expect(
-        omitExtraData(validator, defaultMerger, schema, ["a", 1, "b"])
+        omitExtraData(validator, defaultMerger, schema, ["a", 1, "b"]),
       ).toEqual(["a", 1, "b"]);
     });
   });
@@ -1174,7 +1173,7 @@ describe("omitExtraData", () => {
       expect(omitExtraData(validator, defaultMerger, schema, 42)).toBe(42);
       // Validation is not our responsibility
       expect(omitExtraData(validator, defaultMerger, schema, "test")).toBe(
-        "test"
+        "test",
       );
     });
 
@@ -1199,7 +1198,7 @@ describe("omitExtraData", () => {
           type: "test",
           value: "simple value",
           extra: true,
-        })
+        }),
       ).toEqual({
         type: "test",
         value: "simple value",
@@ -1211,7 +1210,7 @@ describe("omitExtraData", () => {
         omitExtraData(validator, defaultMerger, schema, {
           type: "test",
           value: { forbidden: true },
-        })
+        }),
       ).toEqual({
         type: "test",
         value: { forbidden: true },
@@ -1303,7 +1302,7 @@ describe("omitExtraData", () => {
           id: 1,
           name: "John",
           extra: true,
-        })
+        }),
       ).toEqual({
         id: 1,
         name: "John",
@@ -1314,7 +1313,7 @@ describe("omitExtraData", () => {
           id: 2,
           username: "john_doe",
           extra: true,
-        })
+        }),
       ).toEqual({
         id: 2,
         username: "john_doe",
@@ -1361,7 +1360,7 @@ describe("omitExtraData", () => {
       };
 
       expect(omitExtraData(validator, defaultMerger, schema, "test")).toBe(
-        "test"
+        "test",
       );
       validator = createValidator({
         cases: [
@@ -1407,7 +1406,7 @@ describe("omitExtraData", () => {
         omitExtraData(validator, defaultMerger, schema, {
           age: 25,
           extra: true,
-        })
+        }),
       ).toEqual({ age: 25 });
       validator = createValidator({
         cases: [
@@ -1452,7 +1451,7 @@ describe("omitExtraData", () => {
         omitExtraData(validator, defaultMerger, schema, {
           year: 1990,
           extra: true,
-        })
+        }),
       ).toEqual({ year: 1990 });
     });
 
@@ -1646,7 +1645,7 @@ describe("omitExtraData", () => {
           type: "user",
           name: "John",
           extra: true,
-        })
+        }),
       ).toEqual({
         type: "user",
         name: "John",
@@ -1657,7 +1656,7 @@ describe("omitExtraData", () => {
           type: "user",
           id: 123,
           extra: true,
-        })
+        }),
       ).toEqual({
         type: "user",
         id: 123,
@@ -1668,7 +1667,7 @@ describe("omitExtraData", () => {
           type: "system",
           code: "ABC",
           extra: true,
-        })
+        }),
       ).toEqual({
         type: "system",
         code: "ABC",

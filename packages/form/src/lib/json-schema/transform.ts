@@ -2,30 +2,29 @@ import type {
   JSONSchema7 as Schema,
   JSONSchema7Definition as SchemaDefinition,
 } from "json-schema";
-
+import {
+  type AnySubSchemaKey,
+  ARRAYS_OF_SUB_SCHEMAS,
+  isSchemaObject,
+  RECORDS_OF_SUB_SCHEMAS,
+  SUB_SCHEMAS,
+  type TransformedSchema,
+  type TransformedSchemaDefinition,
+} from "@/lib/json-schema/index.js";
 import type {
   ArraySchemaTraverserContext,
   RecordSchemaTraverserContext,
   SchemaTraverserContext,
   SubSchemaTraverserContext,
 } from "@/lib/json-schema/traverse.js";
-import {
-  SUB_SCHEMAS,
-  RECORDS_OF_SUB_SCHEMAS,
-  ARRAYS_OF_SUB_SCHEMAS,
-  isSchemaObject,
-  type AnySubSchemaKey,
-  type TransformedSchemaDefinition,
-  type TransformedSchema,
-} from "@/lib/json-schema/index.js";
 
 export function transformSchemaDefinition<R>(
   schema: SchemaDefinition,
   transform: (
     shallowCopy: TransformedSchemaDefinition<R, Schema>,
-    ctx: SchemaTraverserContext<AnySubSchemaKey>
+    ctx: SchemaTraverserContext<AnySubSchemaKey>,
   ) => R,
-  ctx: SchemaTraverserContext<AnySubSchemaKey> = { type: "root", path: [] }
+  ctx: SchemaTraverserContext<AnySubSchemaKey> = { type: "root", path: [] },
 ): R {
   if (!isSchemaObject(schema)) {
     return transform(schema, ctx);

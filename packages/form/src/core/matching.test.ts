@@ -2,23 +2,22 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { beforeEach, describe, expect, it } from "vitest";
 import {
-  oneOfData,
-  oneOfSchema,
   ONE_OF_SCHEMA_DATA,
+  ONE_OF_SCHEMA_OPTIONS,
   OPTIONAL_ONE_OF_DATA,
   OPTIONAL_ONE_OF_SCHEMA,
-  ONE_OF_SCHEMA_OPTIONS,
   OPTIONAL_ONE_OF_SCHEMA_ONEOF,
+  oneOfData,
+  oneOfSchema,
 } from "./fixtures/test-data.js";
-
-import type { Schema } from "./schema.js";
 import { calculateIndexScore, getClosestMatchingOption } from "./matching.js";
-import { beforeEach, describe, expect, it } from "vitest";
-import type { Validator } from "./validator.js";
-import { createValidator } from "./test-validator.js";
 import type { Merger } from "./merger.js";
+import type { Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
+import { createValidator } from "./test-validator.js";
+import type { Validator } from "./validator.js";
 
 const firstOption = oneOfSchema.definitions.first_option_def satisfies Schema;
 const secondOption = oneOfSchema.definitions.second_option_def satisfies Schema;
@@ -34,7 +33,7 @@ beforeEach(() => {
 describe("calculateIndexScore", () => {
   it("returns 0 when schema is not specified", () => {
     expect(
-      calculateIndexScore(testValidator, defaultMerger, OPTIONAL_ONE_OF_SCHEMA)
+      calculateIndexScore(testValidator, defaultMerger, OPTIONAL_ONE_OF_SCHEMA),
     ).toEqual(0);
   });
   it("returns 0 when schema.properties is undefined", () => {
@@ -43,8 +42,8 @@ describe("calculateIndexScore", () => {
         testValidator,
         defaultMerger,
         OPTIONAL_ONE_OF_SCHEMA,
-        {}
-      )
+        {},
+      ),
     ).toEqual(0);
   });
   it("returns 0 when schema.properties is not an object", () => {
@@ -55,8 +54,8 @@ describe("calculateIndexScore", () => {
         OPTIONAL_ONE_OF_SCHEMA,
         {
           properties: "foo",
-        } as unknown as Schema
-      )
+        } as unknown as Schema,
+      ),
     ).toEqual(0);
   });
   it("returns 0 when properties type is boolean", () => {
@@ -67,8 +66,8 @@ describe("calculateIndexScore", () => {
         OPTIONAL_ONE_OF_SCHEMA,
         {
           properties: { foo: true },
-        }
-      )
+        },
+      ),
     ).toEqual(0);
   });
   it("returns 0 when formData is empty object", () => {
@@ -78,8 +77,8 @@ describe("calculateIndexScore", () => {
         defaultMerger,
         oneOfSchema,
         firstOption,
-        {}
-      )
+        {},
+      ),
     ).toEqual(0);
   });
   it("returns 1 for first option in oneOf schema", () => {
@@ -89,8 +88,8 @@ describe("calculateIndexScore", () => {
         defaultMerger,
         oneOfSchema,
         firstOption,
-        ONE_OF_SCHEMA_DATA
-      )
+        ONE_OF_SCHEMA_DATA,
+      ),
       // CHANGED: This is a bug in original implementation it this condition
       // `if (propertySchema.default) {`.
       // But we use this `if (propertySchema.default !== undefined) {`
@@ -104,8 +103,8 @@ describe("calculateIndexScore", () => {
         defaultMerger,
         oneOfSchema,
         secondOption,
-        ONE_OF_SCHEMA_DATA
-      )
+        ONE_OF_SCHEMA_DATA,
+      ),
       // CHANGED: The same as above (i guess)
     ).toEqual(8);
   });
@@ -116,8 +115,8 @@ describe("calculateIndexScore", () => {
         defaultMerger,
         oneOfSchema,
         { type: "boolean" },
-        true
-      )
+        true,
+      ),
     ).toEqual(1);
   });
   it("returns 2 for a schema that has a const matching the formData value", () => {
@@ -127,8 +126,8 @@ describe("calculateIndexScore", () => {
         defaultMerger,
         oneOfSchema,
         { properties: { foo: { type: "string", const: "constValue" } } },
-        { foo: "constValue" }
-      )
+        { foo: "constValue" },
+      ),
     ).toEqual(2);
   });
   it("returns 0 for a schema that has a const that does not match the formData value", () => {
@@ -138,8 +137,8 @@ describe("calculateIndexScore", () => {
         defaultMerger,
         oneOfSchema,
         { properties: { foo: { type: "string", const: "constValue" } } },
-        { foo: "aValue" }
-      )
+        { foo: "aValue" },
+      ),
     ).toEqual(0);
   });
 });
@@ -151,8 +150,8 @@ describe("oneOfMatchingOption", () => {
         defaultMerger,
         oneOfSchema,
         oneOfData,
-        []
-      )
+        [],
+      ),
     ).toEqual(-1);
   });
   it("oneOfSchema, no data, 2 options, returns -1", () => {
@@ -162,8 +161,8 @@ describe("oneOfMatchingOption", () => {
         defaultMerger,
         oneOfSchema,
         undefined,
-        [{ type: "string" }, { type: "number" }]
-      )
+        [{ type: "string" }, { type: "number" }],
+      ),
     ).toEqual(-1);
   });
   it("oneOfSchema, oneOfData, no options, selectedOption 2, returns 2", () => {
@@ -174,8 +173,8 @@ describe("oneOfMatchingOption", () => {
         oneOfSchema,
         oneOfData,
         [],
-        2
-      )
+        2,
+      ),
     ).toEqual(2);
   });
   it("oneOfSchema, no data, 2 options, returns -1", () => {
@@ -186,8 +185,8 @@ describe("oneOfMatchingOption", () => {
         oneOfSchema,
         undefined,
         [{ type: "string" }, { type: "number" }],
-        2
-      )
+        2,
+      ),
     ).toEqual(2);
   });
   it("returns the first option, which kind of matches the data", () => {
@@ -417,8 +416,8 @@ describe("oneOfMatchingOption", () => {
         defaultMerger,
         oneOfSchema,
         { flag: true },
-        ONE_OF_SCHEMA_OPTIONS
-      )
+        ONE_OF_SCHEMA_OPTIONS,
+      ),
       // CHANGED: Our implementation of `calculateIndexScore` has fixed
       // the `falsy` handling of constant values, so different result
       // ).toEqual(0);
@@ -668,8 +667,8 @@ describe("oneOfMatchingOption", () => {
         defaultMerger,
         oneOfSchema,
         ONE_OF_SCHEMA_DATA,
-        ONE_OF_SCHEMA_OPTIONS
-      )
+        ONE_OF_SCHEMA_OPTIONS,
+      ),
     ).toEqual(1);
   });
   it("returns the first matching option (i.e. second index) when data is ambiguous", () => {
@@ -756,8 +755,8 @@ describe("oneOfMatchingOption", () => {
         defaultMerger,
         OPTIONAL_ONE_OF_SCHEMA,
         formData,
-        OPTIONAL_ONE_OF_SCHEMA_ONEOF
-      )
+        OPTIONAL_ONE_OF_SCHEMA_ONEOF,
+      ),
     ).toEqual(1);
   });
   it("returns the third index when data is clear", () => {
@@ -843,8 +842,8 @@ describe("oneOfMatchingOption", () => {
         defaultMerger,
         OPTIONAL_ONE_OF_SCHEMA,
         OPTIONAL_ONE_OF_DATA,
-        OPTIONAL_ONE_OF_SCHEMA_ONEOF
-      )
+        OPTIONAL_ONE_OF_SCHEMA_ONEOF,
+      ),
     ).toEqual(2);
   });
   it("returns the second option when data matches for oneOf", () => {
@@ -929,8 +928,8 @@ describe("oneOfMatchingOption", () => {
         defaultMerger,
         schema as unknown as Schema,
         formData,
-        oneOf
-      )
+        oneOf,
+      ),
     ).toEqual(1);
   });
   it("returns the second option when data matches for anyOf", () => {
@@ -1014,8 +1013,8 @@ describe("oneOfMatchingOption", () => {
         defaultMerger,
         schema,
         formData,
-        anyOf
-      )
+        anyOf,
+      ),
     ).toEqual(1);
   });
   it("should return 0 when schema has discriminator but no matching data", () => {
@@ -1064,8 +1063,8 @@ describe("oneOfMatchingOption", () => {
         undefined,
         options,
         -1,
-        "code"
-      )
+        "code",
+      ),
     ).toEqual(-1);
   });
   it("should return Bar when schema has discriminator for bar", () => {
@@ -1117,8 +1116,8 @@ describe("oneOfMatchingOption", () => {
         formData,
         options,
         0,
-        "code"
-      )
+        "code",
+      ),
     ).toEqual(1);
   });
 });

@@ -1,95 +1,93 @@
 import type { Attachment } from "svelte/attachments";
-import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
-
-import type { DeepPartial } from "@/lib/types.js";
-import type { SchedulerYield } from "@/lib/scheduler.js";
-import { refFromBind, type Bind, type Ref } from "@/lib/svelte.svelte.js";
+import { SvelteMap } from "svelte/reactivity";
+import type { Schema, Validator } from "@/core/index.js";
 import { createDataURLtoBlob } from "@/lib/file.js";
+import { weakMemoize } from "@/lib/memoize.js";
+import type { SchedulerYield } from "@/lib/scheduler.js";
+import { type Bind, type Ref, refFromBind } from "@/lib/svelte.svelte.js";
 import {
   abortPrevious,
   createTask,
-  type TasksCombinator,
   type FailedTask,
+  type TasksCombinator,
 } from "@/lib/task.svelte.js";
-import { weakMemoize } from "@/lib/memoize.js";
-import type { Schema, Validator } from "@/core/index.js";
-
-import {
-  isFieldValueValidator,
-  isAsyncFieldValueValidator,
-  type AsyncFormValueValidator,
-  type AsyncFieldValueValidator,
-  type ValidationError,
-  type ValidationResult,
-  type FailureValidationResult,
-  type FormValidator,
-} from "./validator.js";
-import { createTranslate, type Translation } from "./translation.js";
-import {
-  resolveUiRef,
-  type ExtraUiOptions,
-  type UiOptionsRegistry,
-  type UiSchemaRoot,
-} from "./ui-schema.js";
+import type { DeepPartial } from "@/lib/types.js";
+import type { Theme } from "./components.js";
+import type { Config } from "./config.js";
+import type { FieldsValidation, FormSubmission } from "./errors.js";
+import { FIELD_SUBMITTED } from "./field-state.js";
+import type { ResolveFieldType } from "./fields.js";
 import type { Icons } from "./icons.js";
-import type { FieldsValidationMode } from "./validation.js";
-import type { FormSubmission, FieldsValidation } from "./errors.js";
-import type { FormMerger } from "./merger.js";
 import {
   DEFAULT_ID_PREFIX,
   type FieldPath,
   type FormIdBuilder,
   type Id,
 } from "./id.js";
-import type { Config } from "./config.js";
-import type { Theme } from "./components.js";
 import {
-  create,
+  FORM_DATA_URL_TO_BLOB,
+  FORM_DISABLED,
+  FORM_ERRORS,
+  FORM_FIELDS_STATE_MAP,
+  FORM_FIELDS_VALIDATION_MODE,
+  FORM_ICONS,
+  FORM_ID_FROM_PATH,
+  FORM_ID_PREFIX,
+  FORM_KEYED_ARRAYS,
+  FORM_MARK_SCHEMA_CHANGE,
+  FORM_MERGER,
+  FORM_PATHS_TRIE_REF,
+  FORM_RESOLVER,
+  FORM_ROOT_PATH,
+  FORM_SCHEMA,
+  FORM_THEME,
+  FORM_TRANSLATE,
+  FORM_TRANSLATION,
+  FORM_UI_EXTRA_OPTIONS,
+  FORM_UI_OPTIONS_REGISTRY,
+  FORM_UI_SCHEMA,
+  FORM_UI_SCHEMA_ROOT,
+  FORM_VALIDATOR,
+  FORM_VALUE,
+  internalAssignErrors,
+  internalHasFieldState,
+  internalRegisterFieldPath,
+} from "./internals.js";
+import type { FormMerger } from "./merger.js";
+import {
   type Creatable,
+  create,
   type FormValue,
   type KeyedArraysMap,
   type PathTrieRef,
   type Update,
 } from "./model.js";
-import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
 import {
+  type FormState,
   setFieldState,
   updateErrors,
   updateFieldErrors,
-  type FormState,
 } from "./state/index.js";
+import { createTranslate, type Translation } from "./translation.js";
 import {
-  FORM_DATA_URL_TO_BLOB,
-  FORM_UI_EXTRA_OPTIONS,
-  FORM_FIELDS_VALIDATION_MODE,
-  FORM_KEYED_ARRAYS,
-  FORM_SCHEMA,
-  FORM_UI_SCHEMA,
-  FORM_UI_SCHEMA_ROOT,
-  FORM_VALUE,
-  FORM_UI_OPTIONS_REGISTRY,
-  FORM_DISABLED,
-  FORM_VALIDATOR,
-  FORM_MERGER,
-  FORM_RESOLVER,
-  FORM_THEME,
-  FORM_TRANSLATION,
-  FORM_TRANSLATE,
-  FORM_ICONS,
-  FORM_MARK_SCHEMA_CHANGE,
-  FORM_FIELDS_STATE_MAP,
-  FORM_ID_FROM_PATH,
-  internalRegisterFieldPath,
-  internalAssignErrors,
-  FORM_ROOT_PATH,
-  FORM_ERRORS,
-  FORM_PATHS_TRIE_REF,
-  internalHasFieldState,
-  FORM_ID_PREFIX,
-} from "./internals.js";
-import { FIELD_SUBMITTED } from "./field-state.js";
+  type ExtraUiOptions,
+  resolveUiRef,
+  type UiOptionsRegistry,
+  type UiSchemaRoot,
+} from "./ui-schema.js";
+import type { FieldsValidationMode } from "./validation.js";
+import {
+  type AsyncFieldValueValidator,
+  type AsyncFormValueValidator,
+  type FailureValidationResult,
+  type FormValidator,
+  isAsyncFieldValueValidator,
+  isFieldValueValidator,
+  type ValidationError,
+  type ValidationResult,
+} from "./validator.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -223,7 +221,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   onSubmitError?: (
     result: FailureValidationResult,
     e: SubmitEvent,
-    form: FormState<T>
+    form: FormState<T>,
   ) => void;
   /**
    * Form submission error handler
@@ -240,7 +238,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   onFieldsValidationFailure?: (
     state: FailedTask<unknown>,
     config: Config,
-    value: FormValue
+    value: FormValue,
   ) => void;
   /**
    * Reset handler
@@ -274,7 +272,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       uiOptionsRegistry,
       schema: options.schema,
       merger: (): FormMerger => merger,
-    })
+    }),
   );
   const merger = $derived(
     create(options.merger, {
@@ -282,7 +280,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       schema: options.schema,
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
-    })
+    }),
   );
   const valueRef = $derived(
     options.value
@@ -291,8 +289,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
           merger.mergeFormDataAndSchemaDefaults({
             formData: options.initialValue as FormValue,
             schema: options.schema,
-          })
-        )
+          }),
+        ),
   );
   const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
@@ -303,28 +301,28 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       merger: merger,
       validator: validator,
       valueRef,
-    })
+    }),
   );
   const idCache = new WeakMap<FieldPath, Id>();
   const idFromPath = $derived(
-    weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
+    weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id),
   );
   const errors = $derived(
     Array.isArray(options.initialErrors)
       ? internalAssignErrors(
           pathsTrieRef,
           new SvelteMap(),
-          options.initialErrors
+          options.initialErrors,
         )
-      : new SvelteMap(options.initialErrors)
+      : new SvelteMap(options.initialErrors),
   );
   const disabled = $derived(options.disabled ?? false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
   const keyedArrays: KeyedArraysMap = $derived(
-    options.keyedArraysMap ?? new WeakMap()
+    options.keyedArraysMap ?? new WeakMap(),
   );
   const reconcileSchemaValues = $derived(
-    createSchemaValuesReconciler(keyedArrays)
+    createSchemaValuesReconciler(keyedArrays),
   );
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
@@ -340,14 +338,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
                 resolve();
               }
             }, 0);
-          })
+          }),
   );
   const dataUrlToBlob = $derived(createDataURLtoBlob(schedulerYield));
   const translate = $derived(createTranslate(options.translation));
   const fieldsStateMap = new SvelteMap<FieldPath, number>();
   const isChanged = $derived(fieldsStateMap.size > 0);
   const isSubmitted = $derived(
-    internalHasFieldState(fieldsStateMap, rootPath, FIELD_SUBMITTED)
+    internalHasFieldState(fieldsStateMap, rootPath, FIELD_SUBMITTED),
   );
   let isFirstRender = true;
   let initialDefaultsGenerated = $derived.by(() => {
@@ -375,7 +373,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       return await validateForm(
         signal,
         options.schema,
-        $state.snapshot(valueRef.current)
+        $state.snapshot(valueRef.current),
       );
     },
     onSuccess(result, event) {
@@ -432,7 +430,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       const onAbort = () => {
         clearTimeout(id);
         promise.reject(
-          new DOMException("field validation has been aborted", "AbortError")
+          new DOMException("field validation has been aborted", "AbortError"),
         );
       };
       signal.addEventListener("abort", onAbort);

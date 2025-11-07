@@ -15,7 +15,7 @@ export function isFilesArray(
   validator: Validator,
   merger: Merger,
   schema: Schema,
-  rootSchema?: Schema
+  rootSchema?: Schema,
 ) {
   const { items } = schema;
   if (isNormalArrayItems(items)) {

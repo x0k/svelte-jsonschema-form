@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import type { JSONSchema7 } from "json-schema";
+import { describe, expect, it } from "vitest";
 
 import { makeSchemaDefinitionTraverser } from "./traverse.js";
 
@@ -67,8 +67,8 @@ describe("traverseSchemaDefinition", () => {
           *onLeave(_, ctx) {
             yield `leave::${ctx.path.join("/")}`;
           },
-        })(schema)
-      )
+        })(schema),
+      ),
     ).toEqual([
       "enter::",
       "enter::properties/animal",

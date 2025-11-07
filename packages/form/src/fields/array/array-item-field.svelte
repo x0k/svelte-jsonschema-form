@@ -15,17 +15,17 @@
 
 <script lang="ts">
   import {
+    type ComponentProps,
     getComponent,
-    getFieldErrors,
     getFieldComponent,
+    getFieldErrors,
     getFormContext,
     Text,
-    type ComponentProps,
   } from "@/form/index.js";
 
   import { getArrayContext } from "./context.svelte.js";
 
-  let {
+  const {
     index,
     value = $bindable(),
     config,

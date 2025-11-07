@@ -6,7 +6,7 @@ export interface MapLike<K, V> {
 
 export function memoize<Arg, Return>(
   cache: MapLike<Arg, Return>,
-  func: (arg: Arg) => Return
+  func: (arg: Arg) => Return,
 ): (arg: Arg) => Return {
   return (arg: Arg) => {
     if (cache.has(arg)) {
@@ -20,5 +20,5 @@ export function memoize<Arg, Return>(
 
 export const weakMemoize = memoize as <Arg extends object, Return>(
   cache: WeakMap<Arg, Return>,
-  fn: (arg: Arg) => Return
+  fn: (arg: Arg) => Return,
 ) => (arg: Arg) => Return;

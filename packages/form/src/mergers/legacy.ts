@@ -1,29 +1,28 @@
 import mergeAllOf, { type Options } from "json-schema-merge-allof";
-
+import {
+  DEPENDENCIES_KEY,
+  type Experimental_DefaultFormStateBehavior,
+  getDefaultFormState,
+  ITEMS_KEY,
+  isSchemaObjectValue,
+  type Merger,
+  REQUIRED_KEY,
+  type Schema,
+  type SchemaDefinition,
+  type Validator,
+} from "@/core/index.js";
+import type { FormMerger } from "@/form/index.js";
 import { unique as uniqueItems } from "@/lib/array.js";
 import {
   ARRAYS_OF_SUB_SCHEMAS,
   RECORDS_OF_SUB_SCHEMAS,
   SUB_SCHEMAS,
 } from "@/lib/json-schema/index.js";
-import {
-  DEPENDENCIES_KEY,
-  getDefaultFormState,
-  isSchemaObjectValue,
-  ITEMS_KEY,
-  REQUIRED_KEY,
-  type Experimental_DefaultFormStateBehavior,
-  type Merger,
-  type Schema,
-  type SchemaDefinition,
-  type Validator,
-} from "@/core/index.js";
-import type { FormMerger } from "@/form/index.js";
 
 function mergeRecords<T>(
   left: Record<string, T>,
   right: Record<string, T>,
-  merge: (l: T, r: T) => T
+  merge: (l: T, r: T) => T,
 ) {
   const target = Object.assign({}, left);
   for (const [key, value] of Object.entries(right)) {
@@ -47,7 +46,7 @@ interface MergeArraysOptions<T> {
 function mergeArrays<T>(
   left: T[],
   right: T[],
-  { merge, unique }: MergeArraysOptions<T> = {}
+  { merge, unique }: MergeArraysOptions<T> = {},
 ) {
   let merged: T[];
   if (merge) {
@@ -69,7 +68,7 @@ function mergeArrays<T>(
 function mergeSchemaDefinitions(
   left: SchemaDefinition,
   right: SchemaDefinition,
-  options: MergeSchemasOptions
+  options: MergeSchemasOptions,
 ) {
   if (typeof left === "boolean" || typeof right === "boolean") {
     return right;
@@ -80,7 +79,7 @@ function mergeSchemaDefinitions(
 function mergeSchemaDependencies(
   left: SchemaDefinition | string[],
   right: SchemaDefinition | string[],
-  options: MergeSchemasOptions
+  options: MergeSchemasOptions,
 ) {
   if (Array.isArray(left) || Array.isArray(right)) {
     return right;
@@ -98,7 +97,7 @@ interface MergeSchemasOptions {
 export function mergeSchemas(
   left: Schema,
   right: Schema,
-  options: MergeSchemasOptions = {}
+  options: MergeSchemasOptions = {},
 ): Schema {
   const merged = Object.assign({}, left, right);
   for (const key of RECORDS_OF_SUB_SCHEMAS) {
@@ -109,7 +108,7 @@ export function mergeSchemas(
     const r = right[key];
     if (l && r) {
       merged[key] = mergeRecords(l, r, (l, r) =>
-        mergeSchemaDefinitions(l, r, options)
+        mergeSchemaDefinitions(l, r, options),
       );
     }
   }
@@ -124,7 +123,7 @@ export function mergeSchemas(
     merged[DEPENDENCIES_KEY] = mergeRecords(
       left[DEPENDENCIES_KEY],
       right[DEPENDENCIES_KEY],
-      (l, r) => mergeSchemaDependencies(l, r, options)
+      (l, r) => mergeSchemaDependencies(l, r, options),
     );
   }
   for (const key of SUB_SCHEMAS) {
@@ -156,7 +155,7 @@ export function mergeSchemas(
     merged[REQUIRED_KEY] = mergeArrays(
       left[REQUIRED_KEY],
       right[REQUIRED_KEY],
-      { unique: true }
+      { unique: true },
     );
   }
   return merged;
@@ -184,7 +183,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
       formData,
       schema,
       initialDefaultsGenerated = false,
-      includeUndefinedValues = false
+      includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
         options.validator,
@@ -194,7 +193,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         options.schema,
         includeUndefinedValues,
         options,
-        initialDefaultsGenerated
+        initialDefaultsGenerated,
       );
     },
   };

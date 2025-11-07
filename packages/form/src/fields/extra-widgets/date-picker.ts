@@ -1,5 +1,5 @@
-import { chain, fromFactories } from "@/lib/resolver.js";
 import type { Config, Theme } from "@/form/index.js";
+import { chain, fromFactories } from "@/lib/resolver.js";
 
 import type { WidgetCommonProps } from "../widgets.js";
 
@@ -20,6 +20,6 @@ export function useDatePickerForDateFormat(theme: Theme) {
           ? theme("datePickerWidget", config)
           : undefined,
     }),
-    theme
+    theme,
   ) satisfies Theme;
 }

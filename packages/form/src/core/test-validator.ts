@@ -10,7 +10,9 @@ interface TestCase {
 
 export function createValidator({
   cases = [],
-}: { cases?: TestCase[] } = {}): Validator {
+}: {
+  cases?: TestCase[];
+} = {}): Validator {
   return {
     isValid(schema, _, value) {
       if (typeof schema === "boolean") {
@@ -19,11 +21,11 @@ export function createValidator({
       const c = cases.find(
         (c) =>
           isSchemaDeepEqual(c.schema, schema) &&
-          isSchemaValueDeepEqual(c.value, value)
+          isSchemaValueDeepEqual(c.value, value),
       );
       if (c === undefined) {
         throw new Error(
-          `Cannot find test case with ${JSON.stringify({ schema, value })}`
+          `Cannot find test case with ${JSON.stringify({ schema, value })}`,
         );
       }
       return c.result;

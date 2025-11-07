@@ -1,5 +1,5 @@
-import type { Brand } from "@/lib/types.js";
 import type { RPath } from "@/core/index.js";
+import type { Brand } from "@/lib/types.js";
 
 export type Id = Brand<"sjsf-id">;
 export type FieldPath = Brand<"sjsf-path", RPath>;
@@ -23,7 +23,7 @@ export interface FormIdBuilder {
   fromPath: (path: FieldPath) => string;
 }
 
-export const SJSF_ID_PREFIX = '__sjsf_id_prefix'
+export const SJSF_ID_PREFIX = "__sjsf_id_prefix";
 export const DEFAULT_ID_PREFIX = "root";
 
 const PSEUDO_PREFIX = "__sjsf_pseudo_element";
@@ -36,7 +36,7 @@ export function encodePseudoElement(element: FieldPseudoElement): string {
 }
 
 export function decodePseudoElement(
-  pathElement: RPath[number]
+  pathElement: RPath[number],
 ): FieldPseudoElement | undefined {
   if (
     typeof pathElement !== "string" ||
@@ -52,7 +52,7 @@ export function decodePseudoElement(
       return Number(token);
     default:
       throw new Error(
-        `Unexpected pseudo element suffix "${pathElement[PSEUDO_PREFIX_LEN]}", expected "${STRING_SUFFIX}" or "${NUMBER_SUFFIX}"`
+        `Unexpected pseudo element suffix "${pathElement[PSEUDO_PREFIX_LEN]}", expected "${STRING_SUFFIX}" or "${NUMBER_SUFFIX}"`,
       );
   }
 }

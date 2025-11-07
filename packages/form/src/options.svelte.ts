@@ -1,11 +1,10 @@
-import { isObject } from "@/lib/object.js";
-
 import {
-  isSchemaValueDeepEqual,
   type EnumOption,
+  isSchemaValueDeepEqual,
   type SchemaArrayValue,
   type SchemaValue,
 } from "@/core/index.js";
+import { isObject } from "@/lib/object.js";
 
 export interface OptionsMapper<V> {
   fromValue: (value: SchemaValue | undefined) => V;
@@ -15,7 +14,7 @@ export interface OptionsMapper<V> {
 export const UNDEFINED_ID = "-1";
 
 export function idMapper(
-  options: EnumOption<SchemaValue>[]
+  options: EnumOption<SchemaValue>[],
 ): OptionsMapper<EnumOption<SchemaValue>["id"]> {
   const idToValue = new Map<string, SchemaValue>();
   const valueToId = new Map<SchemaValue, string>();

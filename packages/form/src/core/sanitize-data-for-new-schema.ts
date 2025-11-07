@@ -2,6 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import type { Merger } from "./merger.js";
+import { retrieveSchema } from "./resolve.js";
 import {
   REF_KEY,
   type Schema,
@@ -9,9 +11,7 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
 } from "./schema.js";
-import { retrieveSchema } from "./resolve.js";
 import type { Validator } from "./validator.js";
-import type { Merger } from "./merger.js";
 import { isSchemaObjectValue } from "./value.js";
 
 const NO_VALUE = Symbol("no Value");
@@ -21,7 +21,7 @@ function retrieveIfNeeded(
   merger: Merger,
   schema: Schema,
   rootSchema: Schema,
-  formData?: SchemaValue
+  formData?: SchemaValue,
 ) {
   return schema[REF_KEY] !== undefined
     ? retrieveSchema(validator, merger, schema, rootSchema, formData)
@@ -35,7 +35,7 @@ function sanitizeArrays(
   validator: Validator,
   merger: Merger,
   rootSchema: Schema,
-  data: SchemaArrayValue
+  data: SchemaArrayValue,
 ) {
   const oldSchemaType = oldSchemaItems.type;
   const newSchemaType = newSchemaItems.type;
@@ -49,7 +49,7 @@ function sanitizeArrays(
           rootSchema,
           newSchemaItems,
           oldSchemaItems,
-          aValue
+          aValue,
         );
         if (
           itemValue !== undefined &&
@@ -74,7 +74,7 @@ export function sanitizeDataForNewSchema(
   rootSchema: Schema,
   newSchema: Schema,
   oldSchema: Schema,
-  data: SchemaValue | undefined
+  data: SchemaValue | undefined,
 ): SchemaValue | undefined {
   let newFormData;
   const newSchemaProperties = newSchema.properties;
@@ -104,14 +104,14 @@ export function sanitizeDataForNewSchema(
         merger,
         oldKeyedSchema,
         rootSchema,
-        formValue
+        formValue,
       );
       newKeyedSchema = retrieveIfNeeded(
         validator,
         merger,
         newKeyedSchema,
         rootSchema,
-        formValue
+        formValue,
       );
 
       const oldSchemaTypeForKey = oldKeyedSchema.type;
@@ -130,7 +130,7 @@ export function sanitizeDataForNewSchema(
             rootSchema,
             newKeyedSchema,
             oldKeyedSchema,
-            formValue
+            formValue,
           );
           if (itemData !== undefined || newSchemaTypeForKey === "array") {
             nestedData[key] = itemData;
@@ -181,7 +181,7 @@ export function sanitizeDataForNewSchema(
         validator,
         merger,
         rootSchema,
-        data
+        data,
       );
       if (newFormDataArray !== NO_VALUE) {
         newFormData = newFormDataArray;

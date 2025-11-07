@@ -11,20 +11,20 @@
 </script>
 
 <script lang="ts">
+  import {
+    addFile,
+    type ComponentProps,
+    FileListValidationError,
+    getComponent,
+    getFieldAction,
+    getFieldErrors,
+    getFormContext,
+    makeEventHandlers,
+    validateField,
+    validateFileList,
+  } from "@/form/index.js";
   import { fileToDataURL } from "@/lib/file.js";
   import { createAsyncBinding } from "@/lib/svelte.svelte.js";
-  import {
-    makeEventHandlers,
-    getFieldErrors,
-    validateField,
-    getFormContext,
-    addFile,
-    getComponent,
-    type ComponentProps,
-    validateFileList,
-    FileListValidationError,
-    getFieldAction,
-  } from "@/form/index.js";
   import "@/form/extra-fields/file.js";
 
   import "../extra-widgets/file.js";

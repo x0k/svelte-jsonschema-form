@@ -2,18 +2,17 @@ import type {
   JSONSchema7 as Schema,
   JSONSchema7Definition as SchemaDefinition,
 } from "json-schema";
-
-import type { Visitor } from "@/lib/traverser.js";
 import {
+  type AnySubSchemaKey,
   isSchemaObject,
   isSubSchemaKey,
   isSubSchemasArrayKey,
   isSubSchemasRecordKey,
-  type AnySubSchemaKey,
   type SubSchemaKey,
   type SubSchemasArrayKey,
   type SubSchemasRecordKey,
 } from "@/lib/json-schema/index.js";
+import type { Visitor } from "@/lib/traverser.js";
 
 export type SchemaTraverserContextType = "array" | "record" | "sub" | "root";
 
@@ -65,7 +64,7 @@ export function makeSchemaDefinitionTraverser<
 >(keys: ReadonlyArray<K>, visitor: SchemaDefinitionVisitor<K, R>) {
   return function* traverse(
     schema: SchemaDefinition,
-    ctx: SchemaTraverserContext<K> = { type: "root", path: [] }
+    ctx: SchemaTraverserContext<K> = { type: "root", path: [] },
   ): Generator<R> {
     if (visitor.onEnter) {
       yield* visitor.onEnter(schema, ctx);

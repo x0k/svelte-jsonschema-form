@@ -2,9 +2,17 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isRecordEmpty, isObject } from "@/lib/object.js";
 import { isSchemaObject } from "@/lib/json-schema/index.js";
-
+import { isObject, isRecordEmpty } from "@/lib/object.js";
+import { isSchemaOfConstantValue } from "./constant-schema.js";
+import { isSchemaValueDeepEqual } from "./deep-equal.js";
+import { findSchemaDefinition } from "./definitions.js";
+import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
+import { isFixedItems } from "./is-fixed-items.js";
+import { getSelectOptionValues, isMultiSelect, isSelect } from "./is-select.js";
+import { getClosestMatchingOption } from "./matching.js";
+import { mergeDefaultsWithFormData, mergeSchemaObjects } from "./merge.js";
+import type { Merger } from "./merger.js";
 import { resolveDependencies, retrieveSchema } from "./resolve.js";
 import {
   ALL_OF_KEY,
@@ -15,22 +23,13 @@ import {
   type SchemaType,
   type SchemaValue,
 } from "./schema.js";
-import type { Validator } from "./validator.js";
-import { findSchemaDefinition } from "./definitions.js";
-import { isFixedItems } from "./is-fixed-items.js";
-import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
-import { isSchemaObjectValue, isSchemaValueEmpty } from "./value.js";
-import { mergeDefaultsWithFormData, mergeSchemaObjects } from "./merge.js";
 import {
   getSimpleSchemaType,
   isPrimitiveSchemaType,
   typeOfSchema,
 } from "./type.js";
-import { getSelectOptionValues, isMultiSelect, isSelect } from "./is-select.js";
-import { getClosestMatchingOption } from "./matching.js";
-import type { Merger } from "./merger.js";
-import { isSchemaOfConstantValue } from "./constant-schema.js";
-import { isSchemaValueDeepEqual } from "./deep-equal.js";
+import type { Validator } from "./validator.js";
+import { isSchemaObjectValue, isSchemaValueEmpty } from "./value.js";
 
 export function getDefaultValueForType(type: SchemaType) {
   switch (type) {
@@ -61,14 +60,14 @@ export function getDefaultFormState(
   rootSchema: Schema = {},
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
   experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior = {},
-  initialDefaultsGenerated = false
+  initialDefaultsGenerated = false,
 ): SchemaValue | undefined {
   const schema = retrieveSchema(
     validator,
     merger,
     theSchema,
     rootSchema,
-    formData
+    formData,
   );
   // Get the computed defaults with 'shouldMergeDefaultsIntoFormData' set to true to merge defaults into formData.
   // This is done when for example the value from formData does not exist in the schema 'enum' property, in such
@@ -113,7 +112,7 @@ export function getDefaultFormState(
       formData,
       true, // set to true to add any additional default array entries.
       defaultSupersedesUndefined,
-      true // set to true to override formData with defaults if they exist.
+      true, // set to true to override formData with defaults if they exist.
     );
     return result;
   }
@@ -141,7 +140,7 @@ export type Experimental_ArrayMinItems = {
   computeSkipPopulate?: (
     validator: Validator,
     schema: Schema,
-    rootSchema?: Schema
+    rootSchema?: Schema,
   ) => boolean;
   /** When `formData` is provided and does not contain `minItems` worth of data, this flag (`false` by default) controls
    * whether the extra data provided by the defaults is appended onto the existing `formData` items to ensure the
@@ -233,7 +232,7 @@ export function computeDefaults(
   validator: Validator,
   merger: Merger,
   rawSchema: Schema,
-  computeDefaultsProps: ComputeDefaultsProps
+  computeDefaultsProps: ComputeDefaultsProps,
 ): SchemaValue | undefined {
   const {
     parentDefaults,
@@ -317,7 +316,7 @@ export function computeDefaults(
           ...computeDefaultsProps,
           rawFormData: formData,
         },
-        defaults
+        defaults,
       ),
       ...formData,
     };
@@ -329,7 +328,7 @@ export function computeDefaults(
       rootSchema,
       false,
       new Set(),
-      defaultFormData
+      defaultFormData,
     );
     schemaToCompute = resolvedSchema[0]!; // pick the first element from resolve dependencies
   } else if (isFixedItems(schema)) {
@@ -348,7 +347,7 @@ export function computeDefaults(
         shouldMergeDefaultsIntoFormData,
         // CHANGED: this property is not provided in the original code
         initialDefaultsGenerated,
-      })
+      }),
     );
   } else if (schemaOneOf !== undefined) {
     const { oneOf: _, ...remaining } = schema;
@@ -377,7 +376,7 @@ export function computeDefaults(
           rawFormData ?? schemaDefault,
           schemaOneOf.filter(isSchemaObject),
           0,
-          getDiscriminatorFieldFromSchema(schema)
+          getDiscriminatorFieldFromSchema(schema),
         )
       ]!;
     if (typeof nextSchema === "boolean") {
@@ -400,7 +399,7 @@ export function computeDefaults(
           rawFormData ?? schemaDefault,
           schemaAnyOf.filter(isSchemaObject),
           0,
-          getDiscriminatorFieldFromSchema(schema)
+          getDiscriminatorFieldFromSchema(schema),
         )
       ]!;
     if (typeof nextSchema === "boolean") {
@@ -437,7 +436,7 @@ export function computeDefaults(
       merger,
       schema,
       computeDefaultsProps,
-      defaults
+      defaults,
     ) ?? defaults;
   // if shouldMergeDefaultsIntoFormData is true, then merge the defaults into the formData.
   if (shouldMergeDefaultsIntoFormData) {
@@ -450,14 +449,14 @@ export function computeDefaults(
       schema,
       rootSchema,
       rawFormData,
-      experimental_defaultFormStateBehavior
+      experimental_defaultFormStateBehavior,
     );
     if (!isSchemaObjectValue(rawFormData) || schemaAllOf !== undefined) {
       defaultsWithFormData = mergeDefaultsWithFormData(
         defaultsWithFormData,
         matchingFormData,
         mergeExtraDefaults,
-        true
+        true,
       );
     }
   }
@@ -481,7 +480,7 @@ export function ensureFormDataMatchingSchema(
   schema: Schema,
   rootSchema: Schema,
   formData: SchemaValue | undefined,
-  experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior
+  experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior,
 ): SchemaValue | undefined {
   let validFormData = formData;
   const isSelectField =
@@ -491,7 +490,7 @@ export function ensureFormDataMatchingSchema(
   if (isSelectField) {
     const selectOptionValues = getSelectOptionValues(schema);
     const isValid = selectOptionValues?.some((v) =>
-      isSchemaValueDeepEqual(v, formData)
+      isSchemaValueDeepEqual(v, formData),
     );
     validFormData = isValid ? formData : undefined;
   }
@@ -537,7 +536,7 @@ function maybeAddDefaultToObject(
   isSchemaRoot: boolean,
   isParentRequired: boolean,
   requiredFields: Set<string>,
-  experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior
+  experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior,
 ) {
   const { emptyObjectFields = "populateAllDefaults" } =
     experimental_defaultFormStateBehavior;
@@ -604,7 +603,7 @@ export enum AdditionalItemsHandling {
 export function getInnerSchemaForArrayItem(
   schema: Schema,
   additionalItems: AdditionalItemsHandling = AdditionalItemsHandling.Ignore,
-  idx = -1
+  idx = -1,
 ): Schema {
   if (idx >= 0) {
     if (Array.isArray(schema.items) && idx < schema.items.length) {
@@ -634,7 +633,7 @@ export function getDefaultBasedOnSchemaType(
   merger: Merger,
   rawSchema: Schema,
   computeDefaultsProps: ComputeDefaultsProps,
-  defaults: SchemaValue | undefined
+  defaults: SchemaValue | undefined,
 ): SchemaValue | undefined {
   switch (getSimpleSchemaType(rawSchema)) {
     // We need to recurse for object schema inner default values.
@@ -648,7 +647,7 @@ export function getDefaultBasedOnSchemaType(
           ...computeDefaultsProps,
           rawFormData: isSchemaObjectValue(rawFormData) ? rawFormData : {},
         },
-        defaults
+        defaults,
       );
     }
     case "array": {
@@ -657,7 +656,7 @@ export function getDefaultBasedOnSchemaType(
         merger,
         rawSchema,
         computeDefaultsProps,
-        Array.isArray(defaults) ? defaults : undefined
+        Array.isArray(defaults) ? defaults : undefined,
       );
     }
     default:
@@ -680,7 +679,7 @@ export function getObjectDefaults(
     shouldMergeDefaultsIntoFormData,
     initialDefaultsGenerated,
   }: ComputeDefaultsProps<SchemaObjectValue>,
-  defaults: SchemaValue | undefined
+  defaults: SchemaValue | undefined,
 ): SchemaObjectValue | null {
   // This is a custom addition that fixes this issue:
   // https://github.com/rjsf-team/react-jsonschema-form/issues/3832
@@ -727,7 +726,7 @@ export function getObjectDefaults(
         isSchemaRoot,
         required,
         new Set(retrievedSchema.required),
-        experimental_defaultFormStateBehavior
+        experimental_defaultFormStateBehavior,
       );
     }
   }
@@ -738,13 +737,13 @@ export function getObjectDefaults(
         ? schemaProperties === undefined
           ? Object.keys(defaults)
           : Object.keys(defaults).filter((key) => !(key in schemaProperties))
-        : undefined
+        : undefined,
     );
     const formDataKeys = Object.keys(formData);
     const formDataRequired = new Set(
       schemaProperties === undefined
         ? formDataKeys
-        : formDataKeys.filter((key) => !(key in schemaProperties))
+        : formDataKeys.filter((key) => !(key in schemaProperties)),
     );
     keys = keys.union(formDataRequired);
     const additionalPropertySchema =
@@ -767,7 +766,7 @@ export function getObjectDefaults(
           isSchemaRoot,
           shouldMergeDefaultsIntoFormData,
           initialDefaultsGenerated,
-        }
+        },
       );
       // Since these are additional properties we don't need to add the `experimental_defaultFormStateBehavior` prop
       maybeAddDefaultToObject(
@@ -780,13 +779,13 @@ export function getObjectDefaults(
         isSchemaRoot,
         required,
         formDataRequired,
-        {}
+        {},
       );
     });
   }
   return computeDefaultBasedOnSchemaTypeAndDefaults(
     schema,
-    Object.fromEntries(objDefaults)
+    Object.fromEntries(objDefaults),
   )!;
 }
 
@@ -803,7 +802,7 @@ export function getArrayDefaults(
     shouldMergeDefaultsIntoFormData,
     initialDefaultsGenerated,
   }: ComputeDefaultsProps,
-  defaults: SchemaArrayValue | undefined
+  defaults: SchemaArrayValue | undefined,
 ): SchemaArrayValue | null | undefined {
   const {
     populate: arrayMinItemsPopulate,
@@ -830,7 +829,7 @@ export function getArrayDefaults(
       const schemaItem = getInnerSchemaForArrayItem(
         schema,
         AdditionalItemsHandling.Fallback,
-        idx
+        idx,
       );
       return computeDefaults(validator, merger, schemaItem, {
         rootSchema,
@@ -875,7 +874,7 @@ export function getArrayDefaults(
       defaults = mergeDefaultsWithFormData(
         defaults,
         itemDefaults,
-        mergeExtraDefaults
+        mergeExtraDefaults,
       );
     }
   }
@@ -909,7 +908,7 @@ export function getArrayDefaults(
   } else {
     const fillerSchema = getInnerSchemaForArrayItem(
       schema,
-      AdditionalItemsHandling.Invert
+      AdditionalItemsHandling.Invert,
     );
     const fillerDefault = fillerSchema.default;
 
@@ -928,7 +927,7 @@ export function getArrayDefaults(
           required,
           shouldMergeDefaultsIntoFormData,
           initialDefaultsGenerated,
-        })
+        }),
     );
     // then fill up the rest with either the item default or empty, up to minItems
     arrayDefault = defaultsLength

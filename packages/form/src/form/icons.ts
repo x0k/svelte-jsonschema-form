@@ -1,9 +1,8 @@
 import type { Snippet } from "svelte";
 
 import type { Resolver } from "@/lib/resolver.js";
-
-import type { Label, Labels } from "./translation.js";
 import type { Config } from "./config.js";
+import type { Label, Labels } from "./translation.js";
 
 export interface IconConfig<L extends Label> {
   config: Config;

@@ -15,14 +15,14 @@ export class VirtualKeyedArray implements KeyedFieldValues {
 
   swap(): void {
     throw new Error(
-      'Method "swap" cannot be called on "VirtualKeyedArray" instance'
+      'Method "swap" cannot be called on "VirtualKeyedArray" instance',
     );
   }
 
   insert(index: number, value: FieldValue): void {
     if (index !== 0) {
       throw new Error(
-        `Method "insert" cannot be called on "VirtualKeyedArray" instance with those args (index=${index}), expected (0)`
+        `Method "insert" cannot be called on "VirtualKeyedArray" instance with those args (index=${index}), expected (0)`,
       );
     }
     this.setValue([value]);
@@ -30,14 +30,14 @@ export class VirtualKeyedArray implements KeyedFieldValues {
 
   remove(_: number): FieldValue {
     throw new Error(
-      'Method "remove" cannot be called on "VirtualKeyedArray" instance'
+      'Method "remove" cannot be called on "VirtualKeyedArray" instance',
     );
   }
 
   splice(start: number, count: number, ...items: FieldValue[]): FieldValue[] {
     if (start !== 0 || count !== 0) {
       throw new Error(
-        `Method "splice" cannot be called on "VirtualKeyedArray" instance with those args(start=${start}, count=${count}) expected (0, 0)`
+        `Method "splice" cannot be called on "VirtualKeyedArray" instance with those args(start=${start}, count=${count}) expected (0, 0)`,
       );
     }
     this.setValue(items);

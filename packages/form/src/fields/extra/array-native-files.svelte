@@ -19,7 +19,7 @@
   import NativeFiles from "./native-files.svelte";
   import './native-files.svelte'
 
-  let {
+  const {
     value = $bindable(),
     ...rest
   }: ComponentProps["arrayNativeFilesField"] = $props();

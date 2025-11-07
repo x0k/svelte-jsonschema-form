@@ -5,7 +5,7 @@ export function isObject(value: unknown): value is object {
 const objProto = Object.prototype;
 
 export function isRecordProto<T>(
-  value: object
+  value: object,
 ): value is Record<PropertyKey, T> {
   const p: unknown = Object.getPrototypeOf(value);
   return p === objProto || p === null;
@@ -16,10 +16,10 @@ export function isRecord<T>(value: unknown): value is Record<PropertyKey, T> {
 }
 
 export function isRecordEmpty<R extends Record<string, any>>(
-  rec: R | Record<string, never>
+  rec: R | Record<string, never>,
 ): rec is Record<string, never> {
   for (const key in rec) {
-    if (Object.prototype.hasOwnProperty.call(rec, key)) {
+    if (Object.hasOwn(rec, key)) {
       return false;
     }
   }
@@ -29,7 +29,7 @@ export function isRecordEmpty<R extends Record<string, any>>(
 export function getValueByPath<T, R>(
   from: T,
   path: PropertyKey[],
-  defaultValue?: R
+  defaultValue?: R,
 ): R | undefined {
   let result = from as unknown;
   for (const k of path) {

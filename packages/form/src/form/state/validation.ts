@@ -1,21 +1,21 @@
 import { untrack } from "svelte";
 
 import type { Config } from "../config.js";
-import {
-  isAdditionalPropertyKeyValidator,
-  isAsyncFileListValidator,
-  isAsyncFormValueValidator,
-  isFormValueValidator,
-} from "../validator.js";
-import type { FormValue } from "../model.js";
 import { InvalidValidatorError } from "../errors.js";
 import {
   FORM_FIELDS_VALIDATION_MODE,
   FORM_SCHEMA,
   FORM_VALIDATOR,
 } from "../internals.js";
-import type { FormState } from "./state.js";
+import type { FormValue } from "../model.js";
+import {
+  isAdditionalPropertyKeyValidator,
+  isAsyncFileListValidator,
+  isAsyncFormValueValidator,
+  isFormValueValidator,
+} from "../validator.js";
 import { updateFieldErrors } from "./errors.js";
+import type { FormState } from "./state.js";
 import { getValueSnapshot } from "./value.svelte.js";
 
 /**
@@ -31,7 +31,7 @@ export function getFieldsValidationMode<T>(ctx: FormState<T>) {
 export function validateField<T>(
   ctx: FormState<T>,
   config: Config,
-  value: FormValue
+  value: FormValue,
 ) {
   ctx.fieldsValidation.run(config, value);
 }
@@ -43,7 +43,7 @@ export function validateAdditionalPropertyKey<T>(
   ctx: FormState<T>,
   config: Config,
   key: string,
-  fieldConfig: Config
+  fieldConfig: Config,
 ) {
   return untrack(() => {
     const validator = ctx[FORM_VALIDATOR];
@@ -62,7 +62,7 @@ export async function validateFileList<T>(
   signal: AbortSignal,
   ctx: FormState<T>,
   config: Config,
-  fileList: FileList
+  fileList: FileList,
 ): Promise<boolean> {
   const errors = await untrack(() => {
     const validator = ctx[FORM_VALIDATOR];
@@ -96,6 +96,6 @@ export function validateAsync<T>(ctx: FormState<T>, signal: AbortSignal) {
   return validator.validateFormValueAsync(
     signal,
     ctx[FORM_SCHEMA],
-    getValueSnapshot(ctx)
+    getValueSnapshot(ctx),
   );
 }

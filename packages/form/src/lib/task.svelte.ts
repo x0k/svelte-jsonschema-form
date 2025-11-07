@@ -41,7 +41,7 @@ export type TaskState<T, R, E> =
 export type TasksCombinatorDecision = boolean | "abort" | "untrack";
 
 export type TasksCombinator<T, R, E> = (
-  state: TaskState<T, R, E>
+  state: TaskState<T, R, E>,
 ) => TasksCombinatorDecision;
 
 export interface TaskOptions<T extends ReadonlyArray<any>, R, E> {
@@ -81,7 +81,7 @@ export const waitPrevious: TasksCombinator<any, any, any> = ({ status }) =>
 
 export function throttle<T, R, E>(
   combinator: TasksCombinator<T, R, E>,
-  delayedMs: number
+  delayedMs: number,
 ): TasksCombinator<T, R, E> {
   let nextCallAfter = 0;
   return (state) => {
@@ -109,7 +109,7 @@ export interface Task<T extends ReadonlyArray<any>, R, E> {
   readonly isProcessed: boolean;
   readonly isDelayed: boolean;
   matches<S extends Status>(
-    status: S
+    status: S,
   ): this is Task<T, R, E> & {
     status: S;
     state: Readonly<Extract<TaskState<T, R, E>, AbstractTaskState<S>>>;
@@ -214,7 +214,7 @@ export function createTask<
         });
         // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
         return Promise.reject(error);
-      }
+      },
     );
     state = {
       status: "processing",
@@ -267,7 +267,7 @@ export function createTask<
       return state.status === "processing" && state.delayed;
     },
     matches<S extends Status>(
-      status: S
+      status: S,
     ): this is Task<T, R, E> & {
       status: S;
       state: Readonly<Extract<TaskState<T, R, E>, AbstractTaskState<S>>>;

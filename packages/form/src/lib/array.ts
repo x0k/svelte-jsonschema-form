@@ -6,7 +6,7 @@ export function array<R>(count: number, factory: (index: number) => R): R[] {
 
 export function some<T>(
   data: T | T[],
-  predicate: (item: T) => boolean
+  predicate: (item: T) => boolean,
 ): boolean {
   return Array.isArray(data) ? data.some(predicate) : predicate(data);
 }
@@ -92,7 +92,7 @@ export interface DeduplicatorOptions {
 
 export function createDeduplicator<T>(
   compare: Comparator<T>,
-  { threshold = 12 }: DeduplicatorOptions = {}
+  { threshold = 12 }: DeduplicatorOptions = {},
 ): Deduplicator<T> {
   return (arr) => {
     const al = arr.length;

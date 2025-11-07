@@ -1,9 +1,9 @@
 <script lang="ts" module>
+  import type { Config, FormState, SchemaValue } from "@/form/index.js";
   import type { Ref } from "@/lib/svelte.svelte.js";
-  import type { Config, SchemaValue, FormState } from "@/form/index.js";
   import { isNil } from "@/lib/types.js";
 
-  export { displayPrimitiveValue };
+  export type { displayPrimitiveValue };
 </script>
 
 {#snippet displayPrimitiveValue(

@@ -4,7 +4,7 @@ import { isSchemaObject } from "@/lib/json-schema/index.js";
 import type { Schema, SchemaType } from "./schema.js";
 
 export function typeOfValue(
-  value: null | boolean | number | string | object
+  value: null | boolean | number | string | object,
 ): SchemaType {
   if (value === null) {
     return "null";

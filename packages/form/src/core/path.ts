@@ -6,15 +6,11 @@ import {
 import { isRecord } from "@/lib/object.js";
 
 import { resolveRef } from "./definitions.js";
-import {
-  type Schema,
-  type SchemaDefinition,
-  type SchemaValue,
-} from "./schema.js";
-import type { Validator } from "./validator.js";
-import type { Merger } from "./merger.js";
-import { getClosestMatchingOption } from "./matching.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
+import { getClosestMatchingOption } from "./matching.js";
+import type { Merger } from "./merger.js";
+import type { Schema, SchemaDefinition, SchemaValue } from "./schema.js";
+import type { Validator } from "./validator.js";
 import { isSchemaArrayValue, isSchemaObjectValue } from "./value.js";
 
 export type Path = Array<string | number>;
@@ -42,7 +38,7 @@ export function pathFromRef(ref: string): Path {
       }
     }
     parentIsArrayOfSubSchemas = SET_OF_ARRAYS_OF_SUB_SCHEMAS.has(
-      p as SubSchemasArrayKey
+      p as SubSchemasArrayKey,
     );
     return p;
   });
@@ -76,16 +72,16 @@ export function getSchemaDefinitionByPath(
   rootSchema: Schema,
   schema: SchemaDefinition | undefined,
   path: RPath,
-  value: SchemaValue | undefined
+  value: SchemaValue | undefined,
 ) {
   function pickSubSchema(
     schemaDefs: SchemaDefinition[],
     schema: Schema,
     path: RPath,
-    value: SchemaValue | undefined
+    value: SchemaValue | undefined,
   ) {
     const schemas: Schema[] = schemaDefs.map((s) =>
-      typeof s === "boolean" ? (s ? {} : { not: {} }) : s
+      typeof s === "boolean" ? (s ? {} : { not: {} }) : s,
     );
 
     const index = getClosestMatchingOption(
@@ -95,7 +91,7 @@ export function getSchemaDefinitionByPath(
       value,
       schemas,
       -1,
-      getDiscriminatorFieldFromSchema(schema)
+      getDiscriminatorFieldFromSchema(schema),
     );
 
     const subSchema = getSchemaDefinition(schemas[index], path, value);
@@ -123,7 +119,7 @@ export function getSchemaDefinitionByPath(
   function getSchemaDefinition(
     schema: SchemaDefinition | undefined,
     path: RPath,
-    value: SchemaValue | undefined
+    value: SchemaValue | undefined,
   ): SchemaDefinition | undefined {
     for (let i = 0; i < path.length; i++) {
       if (schema === undefined || !isSchemaObject(schema)) {
@@ -133,7 +129,7 @@ export function getSchemaDefinitionByPath(
         return getSchemaDefinition(
           resolveRef(schema.$ref, rootSchema),
           path.slice(i),
-          value
+          value,
         );
       }
       if (schema.allOf) {
@@ -177,7 +173,7 @@ export function getSchemaDefinitionByPath(
           (properties && properties[k as string]) ??
           (patternProperties &&
             Object.entries(patternProperties).find(([p]) =>
-              new RegExp(p).test(k as string)
+              new RegExp(p).test(k as string),
             )?.[1]) ??
           additionalProperties ??
           (dependencies &&
@@ -185,14 +181,14 @@ export function getSchemaDefinitionByPath(
               Object.values(dependencies).filter(isRecord),
               schema,
               path.slice(i),
-              value
+              value,
             )) ??
           ((then || otherwise) &&
             pickSubSchema(
               [then, otherwise].filter(isRecord),
               schema,
               path.slice(i),
-              value
+              value,
             ));
         value = isSchemaObjectValue(value) ? value[k] : undefined;
         continue;

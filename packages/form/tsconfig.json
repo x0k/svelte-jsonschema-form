@@ -8,7 +8,7 @@
       "ESNext.Disposable",
       "ESNext.Collection",
       "ESNext.Iterator",
-      "DOM",
+      "DOM"
     ],
     "rootDir": "src",
     "types": ["node", "vite/client"],

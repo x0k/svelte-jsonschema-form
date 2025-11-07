@@ -1,18 +1,17 @@
-import { bench, describe } from "vitest";
+import { merge as allOfMerge } from "allof-merge";
 import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 import jsonSchemaMergeAllOf, { type Options } from "json-schema-merge-allof";
-import { merge as allOfMerge } from "allof-merge";
+import { bench, describe } from "vitest";
 
 import { createDeduplicator, createIntersector } from "@/lib/array.js";
 import { createComparator } from "@/lib/json-schema/compare/index.js";
-
-import testData from "./fixtures/data.json" with { type: "json" };
-import userSchema from "./fixtures/user-schema.json" with { type: "json" };
-import { createMerger } from "./merge.js";
 import {
   createDeepAllOfMerge,
   createShallowAllOfMerge,
 } from "./all-of-merge.js";
+import testData from "./fixtures/data.json" with { type: "json" };
+import userSchema from "./fixtures/user-schema.json" with { type: "json" };
+import { createMerger } from "./merge.js";
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
 
@@ -21,7 +20,7 @@ const { mergeArrayOfSchemaDefinitions } = createMerger({
   deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
 });
 const shallowAllOfMerge = createShallowAllOfMerge(
-  mergeArrayOfSchemaDefinitions
+  mergeArrayOfSchemaDefinitions,
 );
 
 const {
@@ -33,7 +32,7 @@ const {
   checks: [],
 });
 const shallowAllOfMergeWithoutChecks = createShallowAllOfMerge(
-  mergeArrayOfSchemaDefinitionsWithoutChecks
+  mergeArrayOfSchemaDefinitionsWithoutChecks,
 );
 const deepAllOfMerge = createDeepAllOfMerge(shallowAllOfMergeWithoutChecks);
 

@@ -1,10 +1,9 @@
-import { SvelteMap } from "svelte/reactivity";
+import type { SvelteMap } from "svelte/reactivity";
 
 import type { Task } from "@/lib/task.svelte.js";
-
-import type { FieldValue, Update } from "./model.js";
 import type { Config } from "./config.js";
 import type { FieldPath } from "./id.js";
+import type { FieldValue, Update } from "./model.js";
 import type { ValidationResult } from "./validator.js";
 
 export class FileListValidationError {}

@@ -2,8 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { weakMemoize } from "@/lib/memoize.js";
 import { isSchemaObject } from "@/lib/json-schema/index.js";
+import { weakMemoize } from "@/lib/memoize.js";
 
 import {
   getDiscriminatorFieldFromSchema,
@@ -50,7 +50,7 @@ export const AUGMENTED_SCHEMAS_CACHE = new WeakMap<
 >();
 const memoizedAugmentSchema = weakMemoize(
   AUGMENTED_SCHEMAS_CACHE,
-  createAugmentSchema
+  createAugmentSchema,
 );
 
 function isOptionMatching(
@@ -59,7 +59,7 @@ function isOptionMatching(
   formData: SchemaValue,
   rootSchema: Schema,
   discriminatorField: string | undefined,
-  discriminatorFormData: SchemaValue | undefined
+  discriminatorFormData: SchemaValue | undefined,
 ): boolean {
   // NOTE: This is possibly a bug since schema can be combinatorial (oneOf, anyOf)
   if (!isSchemaWithProperties(option)) {
@@ -81,7 +81,7 @@ export function getFirstMatchingOption(
   formData: SchemaValue | undefined,
   options: Schema[],
   rootSchema: Schema,
-  discriminatorField?: string
+  discriminatorField?: string,
 ): number {
   // For performance, skip validating subschemas if formData is undefined. We just
   // want to get the first option in that case.
@@ -92,7 +92,7 @@ export function getFirstMatchingOption(
   const simpleDiscriminatorMatch = getOptionMatchingSimpleDiscriminator(
     formData,
     options,
-    discriminatorField
+    discriminatorField,
   );
   if (simpleDiscriminatorMatch !== undefined) {
     return simpleDiscriminatorMatch;
@@ -108,7 +108,7 @@ export function getFirstMatchingOption(
         formData,
         rootSchema,
         isDiscriminatorActual ? discriminatorField : undefined,
-        isDiscriminatorActual ? formData[discriminatorField] : undefined
+        isDiscriminatorActual ? formData[discriminatorField] : undefined,
       )
     ) {
       return i;
@@ -122,7 +122,7 @@ export function calculateIndexScore(
   merger: Merger,
   rootSchema: Schema,
   schema?: Schema,
-  formData?: SchemaValue
+  formData?: SchemaValue,
 ): number {
   let totalScore = 0;
   if (schema) {
@@ -139,14 +139,14 @@ export function calculateIndexScore(
             merger,
             propertySchema,
             rootSchema,
-            formValue
+            formValue,
           );
           totalScore += calculateIndexScore(
             validator,
             merger,
             rootSchema,
             newSchema,
-            formValue
+            formValue,
           );
           continue;
         }
@@ -160,7 +160,7 @@ export function calculateIndexScore(
             formValue,
             altSchemas.filter(isSchemaObject),
             -1,
-            discriminator
+            discriminator,
           );
           continue;
         }
@@ -173,7 +173,7 @@ export function calculateIndexScore(
             merger,
             rootSchema,
             propertySchema,
-            formValue
+            formValue,
           );
           continue;
         }
@@ -187,8 +187,6 @@ export function calculateIndexScore(
           if (defaultOrConst !== undefined) {
             totalScore += formValue === defaultOrConst ? 1 : -1;
           }
-          // TODO eventually, deal with enums/arrays
-          continue;
         }
       }
     } else if (
@@ -209,7 +207,7 @@ export function getClosestMatchingOption(
   formData: SchemaValue | undefined,
   options: Schema[],
   selectedOption = -1,
-  discriminatorField?: string
+  discriminatorField?: string,
 ): number {
   if (options.length === 0) {
     return selectedOption;
@@ -222,7 +220,7 @@ export function getClosestMatchingOption(
   const simpleDiscriminatorMatch = getOptionMatchingSimpleDiscriminator(
     formData,
     options,
-    discriminatorField
+    discriminatorField,
   );
   if (typeof simpleDiscriminatorMatch === "number") {
     return simpleDiscriminatorMatch;
@@ -242,7 +240,7 @@ export function getClosestMatchingOption(
           formData,
           rootSchema,
           canDiscriminatorBeApplied ? discriminatorField : undefined,
-          canDiscriminatorBeApplied ? formData[discriminatorField] : undefined
+          canDiscriminatorBeApplied ? formData[discriminatorField] : undefined,
         )
       ) {
         allValidIndexes.push(i);
@@ -272,7 +270,7 @@ export function getClosestMatchingOption(
       merger,
       rootSchema,
       option,
-      formData
+      formData,
     );
     scoreCount.add(score);
     if (score > bestScore) {

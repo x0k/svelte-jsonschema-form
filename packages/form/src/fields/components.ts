@@ -7,7 +7,7 @@ export interface ComponentCommonProps {
   errors: FieldErrors;
 }
 
-export interface ButtonTypes {}
+export type ButtonTypes = {};
 
 export type ButtonType = keyof ButtonTypes;
 
@@ -23,7 +23,7 @@ export type ButtonComponentProps = {
   [T in ButtonType]: AbstractButton<T> & ButtonTypes[T];
 }[ButtonType];
 
-export interface LayoutTypes {}
+export type LayoutTypes = {};
 
 export type LayoutType = keyof LayoutTypes;
 

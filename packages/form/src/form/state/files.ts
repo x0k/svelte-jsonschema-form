@@ -5,7 +5,7 @@ export async function addFile<T>(
   ctx: FormState<T>,
   signal: AbortSignal,
   data: DataTransfer,
-  value: string
+  value: string,
 ) {
   // TODO: cache this operation
   const { name, blob } = await ctx[FORM_DATA_URL_TO_BLOB](signal, value);
@@ -16,7 +16,7 @@ export function addFiles<T>(
   ctx: FormState<T>,
   signal: AbortSignal,
   data: DataTransfer,
-  values: string[]
+  values: string[],
 ) {
   const promises: Promise<void>[] = [];
   for (const value of values) {

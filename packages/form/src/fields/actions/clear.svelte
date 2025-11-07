@@ -1,15 +1,15 @@
 <script lang="ts" module>
-  import type { Ref } from "@/lib/svelte.svelte.js";
   import {
-    getComponent,
-    isDisabled,
-    retrieveTranslate,
-    Text,
     type Config,
     type FieldErrors,
     type FormState,
+    getComponent,
+    isDisabled,
+    retrieveTranslate,
     type SchemaValue,
+    Text,
   } from "@/form/index.js";
+  import type { Ref } from "@/lib/svelte.svelte.js";
 
   import "@/form/extra-labels/clear.js";
 
@@ -19,7 +19,7 @@
     }
   }
 
-  export { clear };
+  export type { clear };
 </script>
 
 {#snippet clear(

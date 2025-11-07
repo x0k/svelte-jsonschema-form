@@ -9,14 +9,14 @@ const errorPropList = (arr: string[]) =>
 
 export function orderProperties(
   properties: Exclude<Schema["properties"], undefined>,
-  order: string[] | undefined
+  order: string[] | undefined,
 ): string[] {
   const keys = Object.keys(properties);
   if (order === undefined) {
     return keys;
   }
   const orderFiltered = order.filter(
-    (prop) => prop === "*" || properties[prop]
+    (prop) => prop === "*" || properties[prop],
   );
   const orderSet = new Set(orderFiltered);
 
@@ -25,7 +25,7 @@ export function orderProperties(
   if (restIndex === -1) {
     if (rest.length) {
       throw new Error(
-        `uiSchema order list does not contain ${errorPropList(rest)}`
+        `uiSchema order list does not contain ${errorPropList(rest)}`,
       );
     }
     return orderFiltered;

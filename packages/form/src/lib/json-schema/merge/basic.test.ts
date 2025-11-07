@@ -8,12 +8,11 @@ import { describe, expect, it } from "vitest";
 
 import { createDeduplicator, createIntersector } from "@/lib/array.js";
 import { createComparator } from "@/lib/json-schema/compare/index.js";
-
-import { createMerger } from "./merge.js";
 import {
   createDeepAllOfMerge,
   createShallowAllOfMerge,
 } from "./all-of-merge.js";
+import { createMerger } from "./merge.js";
 import { legacyPatternsMerger } from "./patterns.js";
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
@@ -25,7 +24,7 @@ const { mergeArrayOfSchemaDefinitions } = createMerger({
 });
 
 const shallowAllOfMerge = createShallowAllOfMerge(
-  mergeArrayOfSchemaDefinitions
+  mergeArrayOfSchemaDefinitions,
 );
 const deepAllOfMerge = createDeepAllOfMerge(shallowAllOfMerge);
 
@@ -65,7 +64,7 @@ describe("basic", () => {
         },
         allOf: [commonSchema],
       },
-      true
+      true,
     );
 
     expect(result).toEqual({
@@ -348,7 +347,7 @@ describe("basic", () => {
               uniqueItems: false,
             },
           ],
-        })
+        }),
       ).toEqual({
         uniqueItems: false,
       });
@@ -670,7 +669,7 @@ describe("basic", () => {
             },
           ],
         },
-        true
+        true,
       );
 
       expect(result).toEqual({
@@ -801,7 +800,7 @@ describe("basic", () => {
             },
           ],
         },
-        true
+        true,
       );
 
       expect(result).toEqual({
@@ -847,7 +846,7 @@ describe("basic", () => {
               },
             ],
           },
-          true
+          true,
         );
       }).toThrow(/incompatible/);
 
@@ -1187,7 +1186,7 @@ describe("basic", () => {
               multipleOf: 3,
             },
           ],
-        })
+        }),
       ).toEqual({
         multipleOf: 60,
       });
@@ -1205,7 +1204,7 @@ describe("basic", () => {
               multipleOf: 1,
             },
           ],
-        })
+        }),
       ).toEqual({
         multipleOf: 21,
       });
@@ -1220,7 +1219,7 @@ describe("basic", () => {
               multipleOf: 2,
             },
           ],
-        })
+        }),
       ).toEqual({
         multipleOf: 2,
       });
@@ -1238,7 +1237,7 @@ describe("basic", () => {
               multipleOf: 1,
             },
           ],
-        })
+        }),
       ).toEqual({
         multipleOf: 3,
       });
@@ -1256,7 +1255,7 @@ describe("basic", () => {
               multipleOf: 1,
             },
           ],
-        })
+        }),
       ).toEqual({
         multipleOf: 21,
       });
@@ -1274,7 +1273,7 @@ describe("basic", () => {
               multipleOf: 3,
             },
           ],
-        })
+        }),
       ).toEqual({
         multipleOf: 42,
       });
@@ -1292,7 +1291,7 @@ describe("basic", () => {
               multipleOf: 1,
             },
           ],
-        })
+        }),
       ).toEqual({
         multipleOf: 13,
       });
@@ -1310,7 +1309,7 @@ describe("basic", () => {
               multipleOf: 500000,
             },
           ],
-        })
+        }),
       ).toEqual({
         multipleOf: 1000000,
       });
@@ -1327,7 +1326,7 @@ describe("basic", () => {
               required: ["prop2", "prop1"],
             },
           ],
-        })
+        }),
       ).toEqual({
         required: ["prop2", "prop1"],
       });
@@ -1347,7 +1346,7 @@ describe("basic", () => {
               default: ["prop2", "prop1"],
             },
           ],
-        })
+        }),
       ).toEqual({
         default: [
           "prop2",
@@ -1369,7 +1368,7 @@ describe("basic", () => {
               default: ["prop2", "prop1"],
             },
           ],
-        })
+        }),
       ).toEqual({
         default: {
           foo: "bar",
@@ -1408,7 +1407,7 @@ describe("basic", () => {
               },
             },
           ],
-        })
+        }),
       ).toEqual({
         properties: {
           name: {
@@ -1448,7 +1447,7 @@ describe("basic", () => {
               },
             },
           ],
-        })
+        }),
       ).toEqual({
         properties: {
           name: {
@@ -1484,7 +1483,7 @@ describe("basic", () => {
               },
             },
           ],
-        })
+        }),
       ).toEqual({
         properties: {
           name: false,
@@ -1496,7 +1495,7 @@ describe("basic", () => {
       expect(
         merger({
           allOf: [true, false],
-        })
+        }),
       ).toEqual(false);
       expect(
         merger({
@@ -1518,7 +1517,7 @@ describe("basic", () => {
               },
             },
           ],
-        })
+        }),
       ).toEqual({
         properties: {
           name: false,
@@ -1593,8 +1592,8 @@ describe("basic", () => {
               },
             ],
           },
-          true
-        )
+          true,
+        ),
       ).toThrow(/are conflicting/);
       // .toEqual({
       //   properties: {
@@ -1769,7 +1768,7 @@ describe("basic", () => {
             },
           ],
         },
-        true
+        true,
       );
 
       expect(result).toEqual({
@@ -1837,7 +1836,7 @@ describe("basic", () => {
             },
           ],
         },
-        true
+        true,
       );
 
       expect(result).toEqual({

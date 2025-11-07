@@ -18,7 +18,7 @@
   import NativeFile from "./native-file.svelte";
   import './native-file.svelte';
 
-  let {
+  const {
     value = $bindable(),
     ...rest
   }: ComponentProps["unknownNativeFileField"] = $props();

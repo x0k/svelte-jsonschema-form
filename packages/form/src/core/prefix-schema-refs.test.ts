@@ -3,9 +3,8 @@
 // Modifications made by Roman Krasilnikov.
 
 import { describe, expect, it } from "vitest";
-
-import { ROOT_SCHEMA_PREFIX, type Schema } from "./schema.js";
 import { prefixSchemaRefs } from "./prefix-schema-refs.js";
+import { ROOT_SCHEMA_PREFIX, type Schema } from "./schema.js";
 
 describe("prefixSchemaRefs()", () => {
   it("should recursively add id prefix to all refs", () => {

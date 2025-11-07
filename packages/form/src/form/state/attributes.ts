@@ -1,3 +1,4 @@
+import { type Attachment, createAttachmentKey } from "svelte/attachments";
 import type {
   AriaAttributes,
   HTMLButtonAttributes,
@@ -6,24 +7,21 @@ import type {
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
 } from "svelte/elements";
-import { createAttachmentKey, type Attachment } from "svelte/attachments";
 import { on } from "svelte/events";
-
-import type { Nullable, ObjectProperties } from "@/lib/types.js";
 import { weakMemoize } from "@/lib/memoize.js";
+import type { Nullable, ObjectProperties } from "@/lib/types.js";
 
 import type { Config } from "../config.js";
 import type { FieldPseudoElement } from "../id.js";
-import type { UiOptions } from "../ui-schema.js";
 import { FORM_DISABLED, FORM_ERRORS } from "../internals.js";
-
+import type { UiOptions } from "../ui-schema.js";
+import { getId, getPseudoId } from "./path.js";
+import type { FormState } from "./state.js";
 import {
+  type ObjectUiOptions,
   uiOptionNestedProps,
   uiOptionProps,
-  type ObjectUiOptions,
 } from "./ui-schema.js";
-import type { FormState } from "./state.js";
-import { getId, getPseudoId } from "./path.js";
 
 interface Disabled {
   disabled: boolean;
@@ -69,26 +67,26 @@ export const handlersAttachment = weakMemoize(
       (props as Attachable)[key] = attachment;
       return props;
     };
-  }
+  },
 );
 
 export function composeProps<T, A>(
   ctx: FormState<T>,
   config: Config,
-  props: A
+  props: A,
 ): A;
 export function composeProps<T, A, B>(
   ctx: FormState<T>,
   config: Config,
   props: A,
-  ab: (props: A, config: Config, ctx: FormState<T>) => B
+  ab: (props: A, config: Config, ctx: FormState<T>) => B,
 ): B;
 export function composeProps<T, A, B, C>(
   ctx: FormState<T>,
   config: Config,
   props: A,
   ab: (props: A, config: Config, ctx: FormState<T>) => B,
-  bc: (props: B, config: Config, ctx: FormState<T>) => C
+  bc: (props: B, config: Config, ctx: FormState<T>) => C,
 ): C;
 export function composeProps<T, A, B, C, D>(
   ctx: FormState<T>,
@@ -96,7 +94,7 @@ export function composeProps<T, A, B, C, D>(
   props: A,
   ab: (props: A, config: Config, ctx: FormState<T>) => B,
   bc: (props: B, config: Config, ctx: FormState<T>) => C,
-  cd: (props: C, config: Config, ctx: FormState<T>) => D
+  cd: (props: C, config: Config, ctx: FormState<T>) => D,
 ): D;
 export function composeProps<T, A, B, C, D, E>(
   ctx: FormState<T>,
@@ -105,7 +103,7 @@ export function composeProps<T, A, B, C, D, E>(
   ab: (props: A, config: Config, ctx: FormState<T>) => B,
   bc: (props: B, config: Config, ctx: FormState<T>) => C,
   cd: (props: C, config: Config, ctx: FormState<T>) => D,
-  de: (props: D, config: Config, ctx: FormState<T>) => E
+  de: (props: D, config: Config, ctx: FormState<T>) => E,
 ): E;
 export function composeProps<T, A, B, C, D, E, F>(
   ctx: FormState<T>,
@@ -115,7 +113,7 @@ export function composeProps<T, A, B, C, D, E, F>(
   bc: (props: B, config: Config, ctx: FormState<T>) => C,
   cd: (props: C, config: Config, ctx: FormState<T>) => D,
   de: (props: D, config: Config, ctx: FormState<T>) => E,
-  ef: (props: E, config: Config, ctx: FormState<T>) => F
+  ef: (props: E, config: Config, ctx: FormState<T>) => F,
 ): F;
 export function composeProps<T, A, B, C, D, E, F, G>(
   ctx: FormState<T>,
@@ -126,7 +124,7 @@ export function composeProps<T, A, B, C, D, E, F, G>(
   cd: (props: C, config: Config, ctx: FormState<T>) => D,
   de: (props: D, config: Config, ctx: FormState<T>) => E,
   ef: (props: E, config: Config, ctx: FormState<T>) => F,
-  fg: (props: F, config: Config, ctx: FormState<T>) => G
+  fg: (props: F, config: Config, ctx: FormState<T>) => G,
 ): G;
 export function composeProps<T, R>(
   ctx: FormState<T>,
@@ -149,7 +147,7 @@ export function assignProps<O>(options: O) {
  */
 export function isDisabled<T>(
   ctx: FormState<T>,
-  attributes?: Partial<Nullable<Disabled>>
+  attributes?: Partial<Nullable<Disabled>>,
 ) {
   return attributes?.disabled || ctx[FORM_DISABLED];
 }
@@ -157,7 +155,7 @@ export function isDisabled<T>(
 export function disabledProp<T extends Partial<Nullable<Disabled>>, FT>(
   obj: T,
   _: Config,
-  ctx: FormState<FT>
+  ctx: FormState<FT>,
 ) {
   obj.disabled ||= ctx[FORM_DISABLED];
   return obj;
@@ -174,7 +172,7 @@ const DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES =
 export function ariaInvalidProp<T extends AriaAttributes, FT>(
   obj: T,
   config: Config,
-  ctx: FormState<FT>
+  ctx: FormState<FT>,
 ): T {
   obj["aria-invalid"] = ctx[FORM_ERRORS].has(config.path);
   return obj;
@@ -183,7 +181,7 @@ export function ariaInvalidProp<T extends AriaAttributes, FT>(
 export function ariaDescribedByProp<T extends AriaAttributes, FT>(
   obj: T,
   config: Config,
-  ctx: FormState<FT>
+  ctx: FormState<FT>,
 ): T {
   obj["aria-describedby"] = (
     Array.isArray(config.schema.examples)
@@ -198,7 +196,7 @@ export function ariaDescribedByProp<T extends AriaAttributes, FT>(
 export function ariaReadonlyProp<T extends AriaAttributes, FT>(
   obj: T,
   config: Config,
-  _: FormState<FT>
+  _: FormState<FT>,
 ): T & AriaAttributes {
   obj["aria-readonly"] = config.schema.readOnly;
   return obj;
@@ -207,7 +205,7 @@ export function ariaReadonlyProp<T extends AriaAttributes, FT>(
 export function ariaRequiredProp<T extends AriaAttributes, FT>(
   obj: T,
   config: Config,
-  _: FormState<FT>
+  _: FormState<FT>,
 ): T & AriaAttributes {
   obj["aria-required"] = config.required;
   return obj;
@@ -232,7 +230,7 @@ export function inputType(format: string | undefined) {
 export function inputProps<T extends HTMLInputAttributes, FT>(
   props: T,
   config: Config,
-  ctx: FormState<FT>
+  ctx: FormState<FT>,
 ) {
   const { required, schema, path } = config;
   const id = getId(ctx, path);
@@ -260,7 +258,7 @@ export function inputProps<T extends HTMLInputAttributes, FT>(
 export function textareaProps<T extends HTMLTextareaAttributes, FT>(
   props: T,
   config: Config,
-  ctx: FormState<FT>
+  ctx: FormState<FT>,
 ) {
   const { path, required, schema } = config;
   const id = getId(ctx, path);
@@ -276,7 +274,7 @@ export function textareaProps<T extends HTMLTextareaAttributes, FT>(
 export function selectProps<T extends HTMLSelectAttributes, FT>(
   props: T,
   config: Config,
-  ctx: FormState<FT>
+  ctx: FormState<FT>,
 ) {
   const { path, required } = config;
   const id = getId(ctx, path);
@@ -293,7 +291,7 @@ type WithFor<T> = T & {
 export function forProp<T, FT>(
   props: WithFor<T>,
   config: Config,
-  ctx: FormState<FT>
+  ctx: FormState<FT>,
 ) {
   props.for = getId(ctx, config.path);
   return props;
@@ -303,7 +301,7 @@ export function idProp(element: FieldPseudoElement) {
   return <T extends { id?: string }, FT>(
     props: T,
     config: Config,
-    ctx: FormState<FT>
+    ctx: FormState<FT>,
   ) => {
     props.id = getPseudoId(ctx, config.path, element);
     return props;
@@ -323,7 +321,7 @@ export function dataLayoutProp(type: string) {
       "data-layout"?: string;
     },
   >(
-    props: T
+    props: T,
   ) => {
     props["data-layout"] = type;
     return props;
@@ -331,7 +329,7 @@ export function dataLayoutProp(type: string) {
 }
 
 export function buttonTypeProp(
-  type: Exclude<HTMLButtonAttributes["type"], undefined>
+  type: Exclude<HTMLButtonAttributes["type"], undefined>,
 ) {
   return <T>(props: T & HTMLButtonAttributes) => {
     props.type = type;
@@ -343,14 +341,14 @@ export function descriptionAttributes<T, const O extends keyof ObjectUiOptions>(
   ctx: FormState<T>,
   config: Config,
   option: O,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(
     ctx,
     config,
     props,
     idProp("description"),
-    uiOptionProps(option)
+    uiOptionProps(option),
   );
 }
 
@@ -358,7 +356,7 @@ export function errorsListAttributes<T, const O extends keyof ObjectUiOptions>(
   ctx: FormState<T>,
   config: Config,
   option: O,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(
     ctx,
@@ -366,7 +364,7 @@ export function errorsListAttributes<T, const O extends keyof ObjectUiOptions>(
     props,
     idProp("errors"),
     tabindexProp(-1),
-    uiOptionProps(option)
+    uiOptionProps(option),
   );
 }
 
@@ -375,14 +373,14 @@ export function formAttributes<T, const O extends keyof ObjectUiOptions>(
   config: Config,
   option: O,
   attributes: HTMLFormAttributes | undefined,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(
     ctx,
     config,
     props,
     uiOptionProps(option),
-    assignProps(attributes)
+    assignProps(attributes),
   );
 }
 
@@ -390,14 +388,14 @@ export function helpAttributes<T, const O extends keyof ObjectUiOptions>(
   ctx: FormState<T>,
   config: Config,
   option: O,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(
     ctx,
     config,
     props,
     idProp("help"),
-    uiOptionProps(option)
+    uiOptionProps(option),
   );
 }
 
@@ -405,7 +403,7 @@ export function labelAttributes<T, const O extends keyof ObjectUiOptions>(
   ctx: FormState<T>,
   config: Config,
   option: O,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(ctx, config, props, forProp, uiOptionProps(option));
 }
@@ -414,14 +412,14 @@ export function titleAttributes<T, const O extends keyof ObjectUiOptions>(
   ctx: FormState<T>,
   config: Config,
   option: O,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(
     ctx,
     config,
     props,
     idProp("title"),
-    uiOptionProps(option)
+    uiOptionProps(option),
   );
 }
 
@@ -437,7 +435,7 @@ export function layoutAttributes<
   option: O,
   nestedOption: O2,
   type: T,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(
     ctx,
@@ -448,7 +446,7 @@ export function layoutAttributes<
     // @ts-expect-error Type `T` is resolved as `never` because this package
     // lacks suitable definitions for UI options,
     // but they are available in `theme` packages.
-    uiOptionNestedProps(nestedOption, (t) => t[type])
+    uiOptionNestedProps(nestedOption, (t) => t[type]),
   );
 }
 
@@ -457,7 +455,7 @@ export function buttonAttributes<T, const O extends keyof ObjectUiOptions>(
   config: Config,
   option: O,
   type: Exclude<HTMLButtonAttributes["type"], undefined>,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(
     ctx,
@@ -465,7 +463,7 @@ export function buttonAttributes<T, const O extends keyof ObjectUiOptions>(
     props,
     buttonTypeProp(type),
     uiOptionProps(option),
-    disabledProp
+    disabledProp,
   );
 }
 
@@ -473,7 +471,7 @@ export function customInputAttributes<T, const O extends keyof ObjectUiOptions>(
   ctx: FormState<T>,
   config: Config,
   option: O,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(
     ctx,
@@ -484,7 +482,7 @@ export function customInputAttributes<T, const O extends keyof ObjectUiOptions>(
     ariaInvalidProp,
     ariaDescribedByProp,
     ariaReadonlyProp,
-    ariaRequiredProp
+    ariaRequiredProp,
   );
 }
 
@@ -493,7 +491,7 @@ export function inputAttributes<T, const O extends keyof ObjectUiOptions>(
   config: Config,
   option: O,
   handlers: Handlers,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(
     ctx,
@@ -504,7 +502,7 @@ export function inputAttributes<T, const O extends keyof ObjectUiOptions>(
     uiOptionProps(option),
     disabledProp,
     ariaInvalidProp,
-    ariaDescribedByProp
+    ariaDescribedByProp,
   );
 }
 
@@ -513,7 +511,7 @@ export function selectAttributes<T, const O extends keyof ObjectUiOptions>(
   config: Config,
   option: O,
   handlers: Handlers,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(
     ctx,
@@ -524,7 +522,7 @@ export function selectAttributes<T, const O extends keyof ObjectUiOptions>(
     uiOptionProps(option),
     disabledProp,
     ariaInvalidProp,
-    ariaDescribedByProp
+    ariaDescribedByProp,
   );
 }
 
@@ -533,7 +531,7 @@ export function textareaAttributes<T, const O extends keyof ObjectUiOptions>(
   config: Config,
   option: O,
   handlers: Handlers,
-  props: NonNullable<UiOptions[O]>
+  props: NonNullable<UiOptions[O]>,
 ) {
   return composeProps(
     ctx,
@@ -544,6 +542,6 @@ export function textareaAttributes<T, const O extends keyof ObjectUiOptions>(
     uiOptionProps(option),
     disabledProp,
     ariaInvalidProp,
-    ariaDescribedByProp
+    ariaDescribedByProp,
   );
 }

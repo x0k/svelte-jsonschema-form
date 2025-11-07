@@ -10,11 +10,23 @@ import {
   describe,
   expect,
   it,
-  vi,
   type MockInstance,
+  vi,
 } from "vitest";
-
-import { type Schema, ADDITIONAL_PROPERTY_FLAG } from "./schema.js";
+import {
+  PROPERTY_DEPENDENCIES,
+  RECURSIVE_REF,
+  RECURSIVE_REF_ALLOF,
+  SCHEMA_AND_ONEOF_REF_DEPENDENCIES,
+  SCHEMA_AND_REQUIRED_DEPENDENCIES,
+  SCHEMA_DEPENDENCIES,
+  SCHEMA_WITH_MULTIPLE_CONDITIONS,
+  SCHEMA_WITH_NESTED_CONDITIONS,
+  SCHEMA_WITH_ONEOF_NESTED_DEPENDENCIES,
+  SCHEMA_WITH_SINGLE_CONDITION,
+  SUPER_SCHEMA,
+} from "./fixtures/test-data.js";
+import type { Merger } from "./merger.js";
 import {
   getAllPermutationsOfXxxOf,
   resolveAnyOrOneOfSchemas,
@@ -25,23 +37,10 @@ import {
   stubExistingAdditionalProperties,
   withExactlyOneSubSchema,
 } from "./resolve.js";
-import {
-  PROPERTY_DEPENDENCIES,
-  RECURSIVE_REF,
-  RECURSIVE_REF_ALLOF,
-  SCHEMA_DEPENDENCIES,
-  SCHEMA_AND_REQUIRED_DEPENDENCIES,
-  SCHEMA_AND_ONEOF_REF_DEPENDENCIES,
-  SCHEMA_WITH_ONEOF_NESTED_DEPENDENCIES,
-  SCHEMA_WITH_SINGLE_CONDITION,
-  SCHEMA_WITH_MULTIPLE_CONDITIONS,
-  SCHEMA_WITH_NESTED_CONDITIONS,
-  SUPER_SCHEMA,
-} from "./fixtures/test-data.js";
-import type { Validator } from "./validator.js";
-import { createValidator } from "./test-validator.js";
-import type { Merger } from "./merger.js";
+import { ADDITIONAL_PROPERTY_FLAG, type Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
+import { createValidator } from "./test-validator.js";
+import type { Validator } from "./validator.js";
 
 let testValidator: Validator;
 let defaultMerger: Merger;
@@ -161,8 +160,8 @@ describe("resolveDependencies()", () => {
         new Set(),
         {
           first: "yes",
-        }
-      )
+        },
+      ),
     ).toEqual([
       {
         type: "object",
@@ -212,7 +211,7 @@ describe("retrieveSchema()", () => {
     const rootSchema: Schema = { definitions: { address } };
 
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema),
     ).toEqual(address);
   });
   it("should `resolve` a schema which contains definitions not in `#/definitions`", () => {
@@ -282,8 +281,8 @@ describe("retrieveSchema()", () => {
           ],
         }),
         schema,
-        schema
-      )
+        schema,
+      ),
     ).toEqual({
       definitions: { address },
       ...address,
@@ -305,7 +304,7 @@ describe("retrieveSchema()", () => {
     };
 
     expect(() =>
-      retrieveSchema(testValidator, defaultMerger, schema, schema)
+      retrieveSchema(testValidator, defaultMerger, schema, schema),
     ).toThrowError("Invalid reference: ");
   });
   it("should give an error when JSON pointer does not point to anything", () => {
@@ -315,7 +314,7 @@ describe("retrieveSchema()", () => {
     };
 
     expect(() =>
-      retrieveSchema(testValidator, defaultMerger, schema, schema)
+      retrieveSchema(testValidator, defaultMerger, schema, schema),
     ).toThrowError("Could not find a definition");
   });
   it("should `resolve` escaped JSON Pointers", () => {
@@ -326,7 +325,7 @@ describe("retrieveSchema()", () => {
     };
 
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema),
     ).toEqual(address);
   });
   it("should `resolve` and stub out a schema which contains an `additionalProperties` with a definition", () => {
@@ -351,7 +350,13 @@ describe("retrieveSchema()", () => {
     const formData = { newKey: {} };
 
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, rootSchema, formData)
+      retrieveSchema(
+        testValidator,
+        defaultMerger,
+        schema,
+        rootSchema,
+        formData,
+      ),
     ).toEqual({
       ...schema,
       properties: {
@@ -378,7 +383,13 @@ describe("retrieveSchema()", () => {
     const formData = { newKey: {} };
 
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, rootSchema, formData)
+      retrieveSchema(
+        testValidator,
+        defaultMerger,
+        schema,
+        rootSchema,
+        formData,
+      ),
     ).toEqual({
       ...schema,
       properties: {
@@ -407,7 +418,7 @@ describe("retrieveSchema()", () => {
 
     const formData = { newKey: {} };
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, {}, formData)
+      retrieveSchema(testValidator, defaultMerger, schema, {}, formData),
     ).toEqual({
       ...schema,
       properties: {
@@ -437,7 +448,7 @@ describe("retrieveSchema()", () => {
 
     const formData = { newKey: {} };
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, {}, formData)
+      retrieveSchema(testValidator, defaultMerger, schema, {}, formData),
     ).toEqual({
       ...schema,
       properties: {
@@ -459,7 +470,7 @@ describe("retrieveSchema()", () => {
 
     const formData = null;
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, {}, formData)
+      retrieveSchema(testValidator, defaultMerger, schema, {}, formData),
     ).toEqual({
       ...schema,
       properties: {},
@@ -492,8 +503,8 @@ describe("retrieveSchema()", () => {
           ],
         }),
         schema,
-        rootSchema
-      )
+        rootSchema,
+      ),
     ).toEqual({
       ...address,
       title: "foo",
@@ -543,7 +554,7 @@ describe("retrieveSchema()", () => {
         ],
       }),
       RECURSIVE_REF,
-      RECURSIVE_REF
+      RECURSIVE_REF,
     );
     expect(result).toEqual({
       definitions: RECURSIVE_REF.definitions,
@@ -588,7 +599,7 @@ describe("retrieveSchema()", () => {
         ],
       }),
       (RECURSIVE_REF_ALLOF.properties?.value as Schema).items as Schema,
-      RECURSIVE_REF_ALLOF
+      RECURSIVE_REF_ALLOF,
     );
     expect(result).toEqual({
       ...(RECURSIVE_REF_ALLOF.definitions!["@enum"] as Schema),
@@ -605,7 +616,7 @@ describe("retrieveSchema()", () => {
       type: "object",
     };
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema),
     ).toEqual(schema);
   });
   it("should `resolve` refs inside of a properties key", () => {
@@ -628,7 +639,7 @@ describe("retrieveSchema()", () => {
       },
     };
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema),
     ).toEqual({
       type: "object",
       properties: {
@@ -656,7 +667,7 @@ describe("retrieveSchema()", () => {
       },
     };
     expect(
-      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema),
     ).toEqual({
       type: "array",
       items: {
@@ -741,8 +752,8 @@ describe("retrieveSchema()", () => {
           ],
         }),
         schema,
-        schema
-      )
+        schema,
+      ),
     ).toEqual({
       ...schema,
       properties: {
@@ -768,8 +779,8 @@ describe("retrieveSchema()", () => {
             defaultMerger,
             PROPERTY_DEPENDENCIES,
             rootSchema,
-            formData
-          )
+            formData,
+          ),
         ).toEqual({
           type: "object",
           properties: {
@@ -818,8 +829,8 @@ describe("retrieveSchema()", () => {
               }),
               schema,
               rootSchema,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -845,8 +856,8 @@ describe("retrieveSchema()", () => {
               defaultMerger,
               schema,
               rootSchema,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -889,8 +900,8 @@ describe("retrieveSchema()", () => {
               }),
               PROPERTY_DEPENDENCIES,
               rootSchema,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -915,8 +926,8 @@ describe("retrieveSchema()", () => {
               defaultMerger,
               SCHEMA_DEPENDENCIES,
               rootSchema,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -953,8 +964,8 @@ describe("retrieveSchema()", () => {
               }),
               SCHEMA_DEPENDENCIES,
               rootSchema,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -997,8 +1008,8 @@ describe("retrieveSchema()", () => {
               }),
               SCHEMA_AND_REQUIRED_DEPENDENCIES,
               rootSchema,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -1062,8 +1073,8 @@ describe("retrieveSchema()", () => {
               }),
               schema,
               rootSchema,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -1121,8 +1132,8 @@ describe("retrieveSchema()", () => {
               }),
               schema,
               rootSchema,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -1211,8 +1222,8 @@ describe("retrieveSchema()", () => {
               defaultMerger,
               schema,
               rootSchema,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -1241,8 +1252,8 @@ describe("retrieveSchema()", () => {
               defaultMerger,
               schema,
               SCHEMA_AND_ONEOF_REF_DEPENDENCIES,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -1305,8 +1316,8 @@ describe("retrieveSchema()", () => {
               defaultMerger,
               schema,
               SCHEMA_AND_ONEOF_REF_DEPENDENCIES,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -1368,8 +1379,8 @@ describe("retrieveSchema()", () => {
               defaultMerger,
               schema,
               SCHEMA_AND_ONEOF_REF_DEPENDENCIES,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -1411,8 +1422,8 @@ describe("retrieveSchema()", () => {
                 defaultMerger,
                 schema,
                 rootSchema,
-                formData
-              )
+                formData,
+              ),
             ).toEqual({
               type: "object",
               properties: {
@@ -1423,7 +1434,7 @@ describe("retrieveSchema()", () => {
               },
             });
             expect(consoleWarnSpy).toHaveBeenCalledWith(
-              "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid"
+              "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid",
             );
           });
 
@@ -1557,8 +1568,8 @@ describe("retrieveSchema()", () => {
                 defaultMerger,
                 schema,
                 rootSchema,
-                formData
-              )
+                formData,
+              ),
             ).toEqual({
               type: "object",
               properties: {
@@ -1669,8 +1680,8 @@ describe("retrieveSchema()", () => {
               defaultMerger,
               schema,
               rootSchema,
-              formData
-            )
+              formData,
+            ),
           ).toEqual({
             type: "object",
             properties: {
@@ -1709,8 +1720,8 @@ describe("retrieveSchema()", () => {
           }),
           schema,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         type: "string",
       });
@@ -1782,8 +1793,8 @@ describe("retrieveSchema()", () => {
           }),
           schema,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         type: "array",
         items: {
@@ -1831,12 +1842,12 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           schema,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({});
       expect(consoleWarnSpy).toBeCalledWith(
         expect.stringMatching(/could not merge subschemas in allOf/),
-        expect.any(Error)
+        expect.any(Error),
       );
     });
     it("should return allOf and top level schemas when expand all", () => {
@@ -1854,8 +1865,8 @@ describe("retrieveSchema()", () => {
           schema,
           rootSchema,
           formData,
-          true
-        )
+          true,
+        ),
       ).toEqual([...allOf!, restOfSchema]);
     });
     it("should merge types with $ref in them", () => {
@@ -1885,8 +1896,8 @@ describe("retrieveSchema()", () => {
           }),
           schema,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         type: "string",
         minLength: 5,
@@ -1952,8 +1963,8 @@ describe("retrieveSchema()", () => {
           }),
           schema,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         type: "string",
         minLength: 4,
@@ -2018,8 +2029,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           SCHEMA_WITH_SINGLE_CONDITION,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         type: "object",
         properties: {
@@ -2085,8 +2096,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           SCHEMA_WITH_SINGLE_CONDITION,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         type: "object",
         properties: {
@@ -2211,8 +2222,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           schema,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         type: "object",
         properties: {
@@ -2400,8 +2411,8 @@ describe("retrieveSchema()", () => {
           }),
           SCHEMA_WITH_MULTIPLE_CONDITIONS,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         type: "object",
         properties: {
@@ -2595,8 +2606,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           schema,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         type: "object",
         properties: {
@@ -2700,8 +2711,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           SCHEMA_WITH_NESTED_CONDITIONS,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         type: "object",
         properties: {
@@ -2757,8 +2768,8 @@ describe("retrieveSchema()", () => {
           }),
           schema,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         type: "object",
         properties: {
@@ -2789,8 +2800,8 @@ describe("retrieveSchema()", () => {
           "bar",
           oneOf,
           false,
-          new Set()
-        )
+          new Set(),
+        ),
       ).toEqual([schema]);
     });
   });
@@ -2916,7 +2927,7 @@ describe("retrieveSchema()", () => {
         retrieveSchema(testValidator, defaultMerger, schema, rootSchema, {
           foo: { isString: true },
           bar: { isString: true },
-        })
+        }),
       ).toEqual({
         ...schema,
         properties: {
@@ -3014,7 +3025,7 @@ describe("retrieveSchema()", () => {
         retrieveSchema(testValidator, defaultMerger, schema, rootSchema, {
           foo: { isString: false },
           bar: { isString: false },
-        })
+        }),
       ).toEqual({
         ...schema,
         properties: {
@@ -3076,8 +3087,8 @@ describe("retrieveSchema()", () => {
           }),
           schema,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         ...schema,
         properties: {
@@ -3102,8 +3113,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           schema,
           schema,
-          {}
-        )
+          {},
+        ),
       ).toEqual({
         ...schema,
         properties: {},
@@ -3136,8 +3147,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           schema,
           schema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         ...schema,
         properties: {
@@ -3171,8 +3182,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           schema,
           schema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         ...schema,
         properties: {
@@ -3196,8 +3207,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           schema,
           schema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         ...schema,
         properties: {
@@ -3220,8 +3231,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           schema,
           schema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         ...schema,
         properties: {
@@ -3257,8 +3268,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           schema,
           rootSchema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         ...schema,
         properties: {
@@ -3288,8 +3299,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           schema,
           schema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         ...schema,
         properties: {
@@ -3327,8 +3338,8 @@ describe("retrieveSchema()", () => {
           }),
           schema,
           schema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         ...schema,
         properties: {
@@ -3380,8 +3391,8 @@ describe("retrieveSchema()", () => {
           }),
           schema,
           schema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         ...schema,
         properties: {
@@ -3422,8 +3433,8 @@ describe("retrieveSchema()", () => {
           }),
           schema,
           schema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         ...schema,
         properties: {
@@ -3470,8 +3481,8 @@ describe("retrieveSchema()", () => {
           }),
           schema,
           schema,
-          formData
-        )
+          formData,
+        ),
       ).toEqual({
         ...schema,
         properties: {
@@ -3609,8 +3620,8 @@ describe("retrieveSchema()", () => {
           anyOfSchema,
           SUPER_SCHEMA,
           false,
-          []
-        )
+          [],
+        ),
       ).toEqual([
         {
           ...(SUPER_SCHEMA.definitions?.foo as Schema),
@@ -3703,8 +3714,8 @@ describe("retrieveSchema()", () => {
           oneOfSchema,
           SUPER_SCHEMA,
           true,
-          []
-        )
+          [],
+        ),
       ).toEqual([
         {
           ...(SUPER_SCHEMA.definitions?.choice1 as Schema),
@@ -3792,8 +3803,8 @@ describe("retrieveSchema()", () => {
           schema,
           rootSchema,
           true,
-          []
-        )
+          [],
+        ),
       ).toEqual([
         {
           type: "object",
@@ -3893,8 +3904,8 @@ describe("retrieveSchema()", () => {
           SCHEMA_WITH_SINGLE_CONDITION,
           SCHEMA_WITH_SINGLE_CONDITION,
           true,
-          new Set()
-        )
+          new Set(),
+        ),
       ).toEqual([
         {
           type: "object",
@@ -3945,8 +3956,8 @@ describe("retrieveSchema()", () => {
           schema,
           schema,
           true,
-          new Set()
-        )
+          new Set(),
+        ),
       ).toEqual([
         {
           type: "object",
@@ -3966,8 +3977,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           priceSchema,
           SUPER_SCHEMA,
-          {}
-        )
+          {},
+        ),
       ).toEqual({
         ...(SUPER_SCHEMA.definitions?.price as Schema),
       });
@@ -3981,8 +3992,8 @@ describe("retrieveSchema()", () => {
           priceSchema,
           SUPER_SCHEMA,
           {},
-          true
-        )
+          true,
+        ),
       ).toEqual({
         ...(SUPER_SCHEMA.definitions?.price as Schema),
       });
@@ -3995,8 +4006,8 @@ describe("retrieveSchema()", () => {
           defaultMerger,
           anyOfSchema,
           SUPER_SCHEMA,
-          {}
-        )
+          {},
+        ),
       ).toEqual(anyOfSchema);
     });
     it("resolves the references inside of anyOfs when true", () => {
@@ -4008,8 +4019,8 @@ describe("retrieveSchema()", () => {
           anyOfSchema,
           SUPER_SCHEMA,
           {},
-          true
-        )
+          true,
+        ),
       ).toEqual({
         ...anyOfSchema,
         anyOf: [
@@ -4028,8 +4039,8 @@ describe("retrieveSchema()", () => {
           oneOfSchema,
           SUPER_SCHEMA,
           {},
-          false
-        )
+          false,
+        ),
       ).toEqual(oneOfSchema);
     });
     it("resolves the references inside of oneOfs when true", () => {
@@ -4041,8 +4052,8 @@ describe("retrieveSchema()", () => {
           oneOfSchema,
           SUPER_SCHEMA,
           {},
-          true
-        )
+          true,
+        ),
       ).toEqual({
         ...oneOfSchema,
         oneOf: [

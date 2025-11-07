@@ -1,6 +1,6 @@
+import type { Schema } from "@/core/index.js";
 import type { Resolver } from "@/lib/resolver.js";
 import type { FailedTask } from "@/lib/task.svelte.js";
-import type { Schema } from "@/core/index.js";
 
 export interface Labels {
   submit: {};
@@ -38,16 +38,16 @@ export type Translation = Resolver<
 
 export type Translate = <L extends Label>(
   label: L,
-  params: Labels[L]
+  params: Labels[L],
 ) => string;
 
 export function createTranslate<Ls>(
-  translation: Resolver<Partial<Ls>, Partial<TranslatorDefinitions<Ls>>>
+  translation: Resolver<Partial<Ls>, Partial<TranslatorDefinitions<Ls>>>,
 ) {
   return <L extends keyof Ls & string>(label: L, params: Ls[L]) => {
     const translator: Translator<Ls[L]> | undefined = translation(
       label,
-      params
+      params,
     );
     if (translator === undefined) {
       return `Label "${label}" is not translated`;

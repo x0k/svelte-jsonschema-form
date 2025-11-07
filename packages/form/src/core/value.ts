@@ -1,4 +1,4 @@
-import { isRecord, isObject, isRecordEmpty } from "@/lib/object.js";
+import { isObject, isRecord, isRecordEmpty } from "@/lib/object.js";
 
 import type {
   SchemaArrayValue,
@@ -7,7 +7,7 @@ import type {
 } from "./schema.js";
 
 export function isSchemaObjectValue(
-  value: unknown
+  value: unknown,
 ): value is SchemaObjectValue {
   return isRecord(value);
 }
@@ -21,7 +21,7 @@ export function isSchemaArrayValue(value: unknown): value is SchemaArrayValue {
  * Anything that doesn’t match known categories is treated as empty.
  */
 export function isSchemaValueEmpty<V extends SchemaValue>(
-  value: V | undefined
+  value: V | undefined,
 ) {
   if (typeof value === "string" || Array.isArray(value)) {
     return value.length === 0;
@@ -37,7 +37,7 @@ export function isSchemaValueEmpty<V extends SchemaValue>(
   if (proto === Object.prototype || proto === null) {
     return isRecordEmpty(value);
   }
-  if (Object.prototype.hasOwnProperty.call(proto, "size")) {
+  if (Object.hasOwn(proto, "size")) {
     return value.size === 0;
   }
   return true;

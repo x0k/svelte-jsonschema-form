@@ -22,7 +22,7 @@ describe("getDiscriminatorFieldFromSchema()", () => {
   });
   it("returns the propertyName when discriminator is present", () => {
     expect(getDiscriminatorFieldFromSchema(GOOD_DISCRIMINATOR)).toEqual(
-      PROPERTY_NAME
+      PROPERTY_NAME,
     );
   });
   // describe('bad discriminator', () => {
@@ -46,13 +46,13 @@ describe("getOptionMatchingSimpleDiscriminator()", () => {
   describe("returns undefined if no option matches discriminator", () => {
     test("no options with no data", () => {
       expect(getOptionMatchingSimpleDiscriminator({}, [], "id")).toEqual(
-        undefined
+        undefined,
       );
     });
 
     test("no options with data", () => {
       expect(
-        getOptionMatchingSimpleDiscriminator({ foo: "foo" }, [], "id")
+        getOptionMatchingSimpleDiscriminator({ foo: "foo" }, [], "id"),
       ).toEqual(undefined);
     });
 
@@ -61,8 +61,8 @@ describe("getOptionMatchingSimpleDiscriminator()", () => {
         getOptionMatchingSimpleDiscriminator(
           {},
           [{ type: "object", properties: { foo: { const: "foo" } } }],
-          "id"
-        )
+          "id",
+        ),
       ).toEqual(undefined);
     });
 
@@ -70,7 +70,7 @@ describe("getOptionMatchingSimpleDiscriminator()", () => {
       expect(
         getOptionMatchingSimpleDiscriminator({ foo: "foo" }, [
           { type: "object", properties: { foo: { const: "foo" } } },
-        ])
+        ]),
       ).toEqual(undefined);
     });
 
@@ -79,8 +79,8 @@ describe("getOptionMatchingSimpleDiscriminator()", () => {
         getOptionMatchingSimpleDiscriminator(
           { foo: "foo" },
           [{ type: "object", properties: { foo: { const: "foo" } } }],
-          "bar"
-        )
+          "bar",
+        ),
       ).toEqual(undefined);
     });
   });
@@ -91,8 +91,8 @@ describe("getOptionMatchingSimpleDiscriminator()", () => {
         getOptionMatchingSimpleDiscriminator(
           { foo: "foo" },
           [{}, { type: "object", properties: { foo: { const: "foo" } } }],
-          "foo"
-        )
+          "foo",
+        ),
       ).toEqual(1);
     });
 
@@ -104,8 +104,8 @@ describe("getOptionMatchingSimpleDiscriminator()", () => {
             {},
             { type: "object", properties: { foo: { enum: ["bar", "foo"] } } },
           ],
-          "foo"
-        )
+          "foo",
+        ),
       ).toEqual(1);
     });
   });
@@ -116,8 +116,8 @@ describe("getOptionMatchingSimpleDiscriminator()", () => {
         getOptionMatchingSimpleDiscriminator(
           { foo: "foo" },
           [{}, { type: "object", properties: { foo: { type: "object" } } }],
-          "foo"
-        )
+          "foo",
+        ),
       ).toEqual(undefined);
     });
 
@@ -126,8 +126,8 @@ describe("getOptionMatchingSimpleDiscriminator()", () => {
         getOptionMatchingSimpleDiscriminator(
           { foo: "foo" },
           [{}, { type: "object", properties: { foo: { type: "array" } } }],
-          "foo"
-        )
+          "foo",
+        ),
       ).toEqual(undefined);
     });
   });

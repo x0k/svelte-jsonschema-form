@@ -4,7 +4,7 @@ import type { Schema, SchemaValue } from "./schema.js";
 
 export function isSchemaValueDeepEqual(
   a: SchemaValue | undefined,
-  b: SchemaValue | undefined
+  b: SchemaValue | undefined,
 ): boolean {
   if (a === b) {
     return true;
@@ -34,7 +34,7 @@ export function isSchemaValueDeepEqual(
       return false;
     }
     const aKeys = Object.keys(a);
-    let key;
+    let key: string;
     for (let i = aKeys.length; i-- !== 0; ) {
       key = aKeys[i]!;
       if (!isSchemaValueDeepEqual(a[key], b[key])) {
@@ -48,5 +48,5 @@ export function isSchemaValueDeepEqual(
 
 export const isSchemaDeepEqual = isSchemaValueDeepEqual as (
   a: Schema | undefined,
-  b: Schema | undefined
+  b: Schema | undefined,
 ) => boolean;

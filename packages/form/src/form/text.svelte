@@ -1,9 +1,9 @@
 <script lang="ts" generics="L extends Label">
-  import type { Label, Labels, Translate } from "./translation.js";
   import type { Config } from "./config.js";
   import type { IconConfig, IconDefinition } from "./icons.js";
-  import { getFormContext } from "./state/index.js";
     import { FORM_ICONS } from './internals.js';
+  import { getFormContext } from "./state/index.js";
+  import type { Label, Labels, Translate } from "./translation.js";
 
   const ctx = getFormContext();
 

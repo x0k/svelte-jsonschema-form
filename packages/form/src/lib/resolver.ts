@@ -31,19 +31,19 @@ export function chain<
   R2 extends Resolver<any, any>,
 >(
   source: R1,
-  fallback: R2
+  fallback: R2,
 ): Resolver<
   Chain<ResolverConfigs<R1>, ResolverConfigs<R2>>,
   Chain<ResolverResults<R1>, ResolverResults<R2>>
 > {
   return <T extends keyof Chain<ResolverConfigs<R1>, ResolverConfigs<R2>>>(
     type: T,
-    c: Chain<ResolverConfigs<R1>, ResolverConfigs<R2>>[T]
+    c: Chain<ResolverConfigs<R1>, ResolverConfigs<R2>>[T],
   ) => source(type, c) ?? fallback(type, c);
 }
 
 export function fromRecord<R extends Record<PropertyKey, any>>(
-  record: R
+  record: R,
 ): Resolver<Record<keyof R, any>, R> {
   return (type) => record[type];
 }
@@ -51,7 +51,7 @@ export function fromRecord<R extends Record<PropertyKey, any>>(
 export function fromFactories<
   R extends Record<PropertyKey, (config: any) => any>,
 >(
-  factories: R
+  factories: R,
 ): Resolver<
   {
     [K in keyof R]: Parameters<R[K]>[0];

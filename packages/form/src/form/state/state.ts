@@ -1,56 +1,54 @@
 import { getContext, setContext } from "svelte";
 import type { SvelteMap } from "svelte/reactivity";
-
-import type { DataURLToBlob } from "@/lib/file.js";
 import type { Schema } from "@/core/index.js";
-
-import type { Translate, Translation } from "../translation.js";
-import {
-  type ExtraUiOptions,
-  type UiOptionsRegistry,
-  type UiSchema,
-  type UiSchemaRoot,
-} from "../ui-schema.js";
+import type { DataURLToBlob } from "@/lib/file.js";
+import type { Theme } from "../components.js";
 import type {
+  FieldsValidation,
   FormErrorsMap,
   FormSubmission,
-  FieldsValidation,
 } from "../errors.js";
-import type { Icons } from "../icons.js";
-import type { FormMerger } from "../merger.js";
-import type { Theme } from "../components.js";
-import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";
+import type { FieldState } from "../field-state.js";
 import type { ResolveFieldType } from "../fields.js";
+import type { Icons } from "../icons.js";
+import type { FieldPath, Id } from "../id.js";
 import {
   FORM_CONTEXT,
   FORM_DATA_URL_TO_BLOB,
   FORM_DISABLED,
-  FORM_UI_EXTRA_OPTIONS,
-  FORM_RESOLVER,
+  FORM_ERRORS,
+  FORM_FIELDS_STATE_MAP,
   FORM_FIELDS_VALIDATION_MODE,
   FORM_ICONS,
+  FORM_ID_FROM_PATH,
+  FORM_ID_PREFIX,
   FORM_KEYED_ARRAYS,
   FORM_MARK_SCHEMA_CHANGE,
   FORM_MERGER,
+  FORM_PATHS_TRIE_REF,
+  FORM_RESOLVER,
+  FORM_ROOT_PATH,
   FORM_SCHEMA,
   FORM_THEME,
   FORM_TRANSLATE,
   FORM_TRANSLATION,
+  FORM_UI_EXTRA_OPTIONS,
   FORM_UI_OPTIONS_REGISTRY,
   FORM_UI_SCHEMA,
   FORM_UI_SCHEMA_ROOT,
   FORM_VALIDATOR,
   FORM_VALUE,
-  FORM_FIELDS_STATE_MAP,
-  FORM_ID_FROM_PATH,
-  FORM_ERRORS,
-  FORM_PATHS_TRIE_REF,
-  FORM_ROOT_PATH,
-  FORM_ID_PREFIX,
 } from "../internals.js";
-import type { FieldPath, Id } from "../id.js";
-import type { FieldState } from "../field-state.js";
-import type { FormValidator } from '../validator.js';
+import type { FormMerger } from "../merger.js";
+import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";
+import type { Translate, Translation } from "../translation.js";
+import type {
+  ExtraUiOptions,
+  UiOptionsRegistry,
+  UiSchema,
+  UiSchemaRoot,
+} from "../ui-schema.js";
+import type { FormValidator } from "../validator.js";
 
 export interface FormState<T> {
   readonly submission: FormSubmission<T>;

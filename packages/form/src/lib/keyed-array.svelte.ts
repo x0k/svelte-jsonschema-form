@@ -19,7 +19,7 @@ export class SimpleKeyedArray<K, T> implements KeyedArray<K, T> {
 
   constructor(
     protected readonly array: T[],
-    protected readonly nextKey: () => K
+    protected readonly nextKey: () => K,
   ) {
     const keys = new Array<K>(array.length);
     for (let i = 0; i < array.length; i++) {

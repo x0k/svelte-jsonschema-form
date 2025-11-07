@@ -1,12 +1,11 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import type { HTMLFormAttributes } from "svelte/elements";
-
-  import { getPseudoPath, getComponent, getFormContext } from "./state/index.js";
-  import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import type { Config } from "./config.js";
+  import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
+  import { getComponent, getFormContext, getPseudoPath } from "./state/index.js";
 
-  let {
+  const {
     ref = $bindable(),
     children,
     attributes,

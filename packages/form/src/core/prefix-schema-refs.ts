@@ -3,7 +3,7 @@ import {
   transformSchemaDefinition,
 } from "@/lib/json-schema/index.js";
 
-import { type SchemaDefinition, type Schema, REF_KEY } from "./schema.js";
+import { REF_KEY, type Schema, type SchemaDefinition } from "./schema.js";
 
 export function prefixSchemaRefs(schema: Schema, prefix: string): Schema {
   return transformSchemaDefinition<SchemaDefinition>(schema, (node) => {
@@ -11,7 +11,7 @@ export function prefixSchemaRefs(schema: Schema, prefix: string): Schema {
       return node;
     }
     const ref = node[REF_KEY];
-    if (ref !== undefined && ref.startsWith("#")) {
+    if (ref?.startsWith("#")) {
       node[REF_KEY] = `${prefix}${ref}`;
     }
     return node;

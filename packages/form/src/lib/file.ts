@@ -12,7 +12,7 @@ export interface NamedBlob {
 
 export type DataURLToBlob = (
   signal: AbortSignal,
-  dataURILike: string
+  dataURILike: string,
 ) => Promise<NamedBlob>;
 
 const NAME_PREFIX = "name=";
@@ -47,7 +47,7 @@ function extractPartsFromDataURL(dataUrl: string, defaultFileName = "unknown") {
 
 export function createDataURLtoBlob(
   schedulerYield: SchedulerYield,
-  chunkSize = CHUNK_SIZE
+  chunkSize = CHUNK_SIZE,
 ): DataURLToBlob {
   return BROWSER
     ? async (signal, dataUrl) => {
@@ -106,7 +106,7 @@ function browserFileToDataURL(signal: AbortSignal, file: File) {
       }
       result = result.replace(
         BASE64_SEPARATOR,
-        base64SeparatorWithNamePart(file.name)
+        base64SeparatorWithNamePart(file.name),
       );
       resolve(result);
     };
@@ -118,7 +118,7 @@ function browserFileToDataURL(signal: AbortSignal, file: File) {
 
 async function nodeFileToDataURL(
   signal: AbortSignal,
-  file: File
+  file: File,
 ): Promise<string> {
   const buffer = await file.arrayBuffer();
   if (signal.aborted) {

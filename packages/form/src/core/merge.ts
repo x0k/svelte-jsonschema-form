@@ -7,12 +7,12 @@ import { isNil } from "@/lib/types.js";
 import type { SchemaObjectValue } from "./schema.js";
 import { isSchemaObjectValue } from "./value.js";
 
-export function mergeDefaultsWithFormData<T = any>(
+export function mergeDefaultsWithFormData<T>(
   defaults?: T,
   formData?: T,
   mergeExtraArrayDefaults = false,
   defaultsSupersedesUndefined = false,
-  overrideFormDataWithDefaults = false
+  overrideFormDataWithDefaults = false,
 ): T | undefined {
   if (Array.isArray(formData)) {
     const defaultsArray: unknown[] = Array.isArray(defaults) ? defaults : [];
@@ -32,7 +32,7 @@ export function mergeDefaultsWithFormData<T = any>(
           formData[idx],
           mergeExtraArrayDefaults,
           defaultsSupersedesUndefined,
-          overrideFormDataWithDefaults
+          overrideFormDataWithDefaults,
         );
       }
       return value;
@@ -48,7 +48,7 @@ export function mergeDefaultsWithFormData<T = any>(
     return mapped as unknown as T;
   }
   if (isSchemaObjectValue(formData)) {
-    const acc: { [key in keyof T]: any } = Object.assign({}, defaults); // Prevent mutation of source object.
+    const acc: { [key in keyof T]: unknown } = Object.assign({}, defaults); // Prevent mutation of source object.
     const defaultsObject: SchemaObjectValue = isSchemaObjectValue(defaults)
       ? defaults
       : {};
@@ -79,16 +79,16 @@ export function mergeDefaultsWithFormData<T = any>(
         // CHANGED: key is always in form data, maybe this condition should be value === undefined
         // overrideFormDataWithDefaults &&
         //   (keyExistsInDefaults || !keyExistsInFormData)
-        overrideFormDataWithDefaults && keyExistsInDefaults
+        overrideFormDataWithDefaults && keyExistsInDefaults,
       );
     }
-    return acc;
+    return acc as T;
   }
 
   if (
     (defaultsSupersedesUndefined &&
       ((!(defaults === undefined) && isNil(formData)) ||
-        (typeof formData === "number" && isNaN(formData)))) ||
+        (typeof formData === "number" && Number.isNaN(formData)))) ||
     (overrideFormDataWithDefaults && !isNil(formData))
     // NOTE: The above condition is inherited from RJSF to maintain tests compatibility
     // but i would prefer more simple one
@@ -114,7 +114,7 @@ export function mergeSchemaObjects<
       acc[key] = left.concat(
         concatArrays === "preventDuplicates"
           ? right.filter((v) => !left.includes(v))
-          : right
+          : right,
       );
     } else {
       acc[key] = right;

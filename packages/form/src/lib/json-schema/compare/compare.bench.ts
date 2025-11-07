@@ -1,6 +1,6 @@
-import { bench, describe } from "vitest";
 import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 import jsonSchemaCompare from "json-schema-compare";
+import { bench, describe } from "vitest";
 
 import { createComparator } from "./compare.js";
 

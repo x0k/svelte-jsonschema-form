@@ -75,7 +75,7 @@ declare global {
      */
     postTask<T>(
       callback: () => T,
-      options?: SchedulerPostTaskOptions
+      options?: SchedulerPostTaskOptions,
     ): Promise<T>;
     /**
      * Returns a promise that yields to the event loop when awaited. Optionally specify a priority and/or a signal for aborting the task.

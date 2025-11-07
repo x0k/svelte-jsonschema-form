@@ -3,15 +3,14 @@ import {
   isFileSchema,
   isFixedItems,
 } from "@/core/index.js";
-
+import type { ResolveFieldType } from "../fields.js";
 import {
+  type FormState,
   isFilesArray,
   isMultiSelect,
   isSelect,
   retrieveUiOption,
-  type FormState,
 } from "../state/index.js";
-import type { ResolveFieldType } from "../fields.js";
 
 import "../extra-fields/enum.js";
 import "../extra-fields/multi-enum.js";

@@ -12,7 +12,7 @@
   import ArrayBase from "./array-base.svelte";
   import { createArrayContext } from "./context.svelte.js";
 
-  let {
+  const {
     value = $bindable(),
     config,
     uiOption,

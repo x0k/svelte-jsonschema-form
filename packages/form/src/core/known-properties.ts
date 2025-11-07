@@ -6,7 +6,7 @@ import type { Schema } from "./schema.js";
 export function* getKnownProperties(
   { $ref: ref, properties, dependencies, oneOf, allOf, anyOf }: Schema,
   rootSchema: Schema,
-  stack = new Set<string>()
+  stack = new Set<string>(),
 ): Generator<string> {
   if (ref) {
     if (stack.has(ref)) {

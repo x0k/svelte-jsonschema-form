@@ -1,28 +1,28 @@
-import type { ObjectProperties } from "@/lib/types.js";
-import { overrideByRecord } from "@/lib/resolver.js";
 import { getSchemaDefinitionByPath, type RPath } from "@/core/path.js";
+import { overrideByRecord } from "@/lib/resolver.js";
+import type { ObjectProperties } from "@/lib/types.js";
 
 import type { Config } from "../config.js";
-import {
-  resolveUiRef,
-  type UiSchema,
-  type UiSchemaDefinition,
-  resolveUiOption as resolveUiOptionInternal,
-  type UiOptions,
-  getUiSchemaByPath,
-} from "../ui-schema.js";
-import { createTranslate } from "../translation.js";
 import type { ActionField } from "../field-actions.js";
 import {
-  FORM_UI_EXTRA_OPTIONS,
+  FORM_MERGER,
+  FORM_SCHEMA,
   FORM_TRANSLATION,
+  FORM_UI_EXTRA_OPTIONS,
   FORM_UI_OPTIONS_REGISTRY,
   FORM_UI_SCHEMA_ROOT,
-  FORM_SCHEMA,
   FORM_VALIDATOR,
-  FORM_MERGER,
   FORM_VALUE,
 } from "../internals.js";
+import { createTranslate } from "../translation.js";
+import {
+  getUiSchemaByPath,
+  resolveUiOption as resolveUiOptionInternal,
+  resolveUiRef,
+  type UiOptions,
+  type UiSchema,
+  type UiSchemaDefinition,
+} from "../ui-schema.js";
 import type { FormState } from "./state.js";
 
 /**
@@ -30,7 +30,7 @@ import type { FormState } from "./state.js";
  */
 export function retrieveUiSchema<T>(
   ctx: FormState<T>,
-  uiSchemaDef: UiSchemaDefinition | undefined
+  uiSchemaDef: UiSchemaDefinition | undefined,
 ) {
   return resolveUiRef(ctx[FORM_UI_SCHEMA_ROOT], uiSchemaDef) ?? {};
 }
@@ -38,13 +38,13 @@ export function retrieveUiSchema<T>(
 function resolveUiOption<T, O extends keyof UiOptions>(
   ctx: FormState<T>,
   uiSchema: UiSchema,
-  option: O
+  option: O,
 ) {
   return resolveUiOptionInternal(
     ctx[FORM_UI_SCHEMA_ROOT],
     ctx[FORM_UI_OPTIONS_REGISTRY],
     uiSchema,
-    option
+    option,
   );
 }
 
@@ -61,7 +61,7 @@ export function uiTitleOption<T>(ctx: FormState<T>, uiSchema: UiSchema) {
 export function retrieveUiOption<T, const O extends keyof UiOptions>(
   ctx: FormState<T>,
   config: Config,
-  option: O
+  option: O,
 ) {
   return (
     ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config) ??
@@ -77,7 +77,7 @@ export function retrieveNestedUiOption<T, const O extends keyof UiOptions, R>(
   ctx: FormState<T>,
   config: Config,
   option: O,
-  selector: (data: NonNullable<UiOptions[O]>) => R | undefined
+  selector: (data: NonNullable<UiOptions[O]>) => R | undefined,
 ) {
   const extraOptions = ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config as never);
   if (extraOptions) {
@@ -99,17 +99,17 @@ export type ObjectUiOptions = ObjectProperties<UiOptions>;
  * @query
  */
 export function uiOptionProps<const O extends keyof ObjectUiOptions>(
-  option: O
+  option: O,
 ) {
   return <T>(
     props: NonNullable<UiOptions[O]>,
     config: Config,
-    ctx: FormState<T>
+    ctx: FormState<T>,
   ): NonNullable<UiOptions[O]> => {
     return Object.assign(
       props,
       resolveUiOption(ctx, config.uiSchema, option),
-      ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config as never)
+      ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config as never),
     );
   };
 }
@@ -127,7 +127,7 @@ export function uiOptionNestedProps<
     return Object.assign(
       props,
       options && selector(options),
-      extraOptions && selector(extraOptions)
+      extraOptions && selector(extraOptions),
     );
   };
 }
@@ -155,7 +155,7 @@ export function getFieldTitle<T>(ctx: FormState<T>, path: RPath) {
   const uiSchema = getUiSchemaByPath(
     ctx[FORM_UI_SCHEMA_ROOT],
     ctx[FORM_UI_SCHEMA_ROOT],
-    path
+    path,
   );
   if (uiSchema !== undefined) {
     const resolved = resolveUiOption(ctx, uiSchema, "title");
@@ -169,7 +169,7 @@ export function getFieldTitle<T>(ctx: FormState<T>, path: RPath) {
     ctx[FORM_SCHEMA],
     ctx[FORM_SCHEMA],
     path,
-    ctx[FORM_VALUE]
+    ctx[FORM_VALUE],
   );
   return typeof def === "object" ? def.title : undefined;
 }
@@ -186,7 +186,7 @@ export function getFieldAction<T, const F extends ActionField>(
     ctx,
     config,
     "actions",
-    (a) => a[field]
+    (a) => a[field],
   );
   if (action !== undefined) {
     return action;

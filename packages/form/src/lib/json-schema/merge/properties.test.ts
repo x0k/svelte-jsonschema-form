@@ -2,12 +2,11 @@
 // MIT © Martin Hansen
 // Modifications made by Roman Krasilnikov.
 
+import { Ajv } from "ajv";
 import type { JSONSchema7Definition } from "json-schema";
 import { describe, expect, it } from "vitest";
-import { Ajv } from "ajv";
-
-import { createMerger } from "./merge.js";
 import { createShallowAllOfMerge } from "./all-of-merge.js";
+import { createMerger } from "./merge.js";
 import { legacyPatternsMerger } from "./patterns.js";
 
 const { mergeSchemaDefinitions, mergeArrayOfSchemaDefinitions } = createMerger({
@@ -19,7 +18,7 @@ const mergeAllOf = createShallowAllOfMerge(mergeArrayOfSchemaDefinitions);
 function testMerger(
   a: JSONSchema7Definition,
   b: JSONSchema7Definition,
-  expected: JSONSchema7Definition
+  expected: JSONSchema7Definition,
 ) {
   const result = mergeSchemaDefinitions(a, b);
   expect(result).toEqual(expected);
@@ -34,7 +33,7 @@ const ajv = new Ajv({
 function validateInputOutput<O>(
   schema: JSONSchema7Definition,
   transformedSchema: JSONSchema7Definition,
-  obj: O
+  obj: O,
 ) {
   const validOriginal = ajv.validate(schema, obj);
   const validNew = ajv.validate(transformedSchema, obj);
@@ -68,7 +67,7 @@ describe("properties", () => {
               minLength: 7,
             },
           },
-        }
+        },
       );
     });
   });
@@ -84,7 +83,7 @@ describe("properties", () => {
         },
         {
           additionalProperties: false,
-        }
+        },
       );
     });
 
@@ -107,7 +106,7 @@ describe("properties", () => {
             bar: true,
           },
           additionalProperties: false,
-        }
+        },
       );
     });
 
@@ -138,7 +137,7 @@ describe("properties", () => {
             ".+\\d+$": true,
           },
           additionalProperties: false,
-        }
+        },
       );
     });
 
@@ -165,7 +164,7 @@ describe("properties", () => {
             foo123: true,
           },
           additionalProperties: false,
-        }
+        },
       );
     });
 
@@ -208,7 +207,7 @@ describe("properties", () => {
             },
           },
           additionalProperties: false,
-        }
+        },
       );
     });
 
@@ -251,7 +250,7 @@ describe("properties", () => {
             [legacyPatternsMerger(lPattern, rPattern)]: true,
           },
           additionalProperties: false,
-        }
+        },
       );
       [
         {
@@ -321,7 +320,7 @@ describe("properties", () => {
             "^bar": true,
             ".+\\d+$": true,
           },
-        }
+        },
       );
       [
         {
@@ -351,7 +350,7 @@ describe("properties", () => {
         {
           foo234: "testffdsafdsads",
         },
-      ].forEach(function (val) {
+      ].forEach((val) => {
         validateInputOutput({ allOf: [lSchema, rSchema] }, result, val);
       });
     });
@@ -390,7 +389,7 @@ describe("properties", () => {
             ".+\\d+$": true,
           },
           additionalProperties: false,
-        }
+        },
       );
       [
         {
@@ -420,7 +419,7 @@ describe("properties", () => {
         {
           foo234: "testffdsafdsads",
         },
-      ].forEach(function (val) {
+      ].forEach((val) => {
         validateInputOutput({ allOf: [lSchema, rSchema] }, result, val);
       });
     });
@@ -442,7 +441,7 @@ describe("properties", () => {
         },
         {
           additionalProperties: false,
-        }
+        },
       );
     });
 

@@ -9,16 +9,16 @@
 
 <script lang="ts">
   import {
-    makeEventHandlers,
-    getFieldErrors,
-    validateField,
-    getFormContext,
-    getComponent,
     type ComponentProps,
-    type Schema,
     DEFAULT_BOOLEAN_ENUM,
-    getPseudoId,
+    getComponent,
     getFieldAction,
+    getFieldErrors,
+    getFormContext,
+    getPseudoId,
+    makeEventHandlers,
+    type Schema,
+    validateField,
   } from "@/form/index.js";
   import "@/form/extra-fields/boolean-select.js";
 
@@ -26,7 +26,7 @@
 
   const ctx = getFormContext();
 
-  let {
+  const {
     config,
     value = $bindable(),
     uiOption,

@@ -1,21 +1,20 @@
 import {
-  type Schema,
-  type SchemaValue,
-  isSelect as isSelectInternal,
+  getClosestMatchingOption as getClosestMatchingOptionInternal,
   isFilesArray as isFilesArrayInternal,
   isMultiSelect as isMultiSelectInternal,
+  isSelect as isSelectInternal,
   retrieveSchema as retrieveSchemaInternal,
+  type Schema,
+  type SchemaValue,
   sanitizeDataForNewSchema as sanitizeDataForNewSchemaInternal,
-  getClosestMatchingOption as getClosestMatchingOptionInternal,
 } from "@/core/index.js";
-
-import type { MergeFormDataAndSchemaDefaultsOptions } from "../merger.js";
 import {
   FORM_MARK_SCHEMA_CHANGE,
   FORM_MERGER,
   FORM_SCHEMA,
   FORM_VALIDATOR,
 } from "../internals.js";
+import type { MergeFormDataAndSchemaDefaultsOptions } from "../merger.js";
 import type { FormState } from "./state.js";
 
 /**
@@ -26,7 +25,7 @@ export function isSelect<T>(ctx: FormState<T>, schema: Schema) {
     ctx[FORM_VALIDATOR],
     ctx[FORM_MERGER],
     schema,
-    ctx[FORM_SCHEMA]
+    ctx[FORM_SCHEMA],
   );
 }
 
@@ -38,7 +37,7 @@ export function isMultiSelect<T>(ctx: FormState<T>, schema: Schema) {
     ctx[FORM_VALIDATOR],
     ctx[FORM_MERGER],
     schema,
-    ctx[FORM_SCHEMA]
+    ctx[FORM_SCHEMA],
   );
 }
 
@@ -50,7 +49,7 @@ export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
     ctx[FORM_VALIDATOR],
     ctx[FORM_MERGER],
     schema,
-    ctx[FORM_SCHEMA]
+    ctx[FORM_SCHEMA],
   );
 }
 
@@ -60,14 +59,14 @@ export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
 export function retrieveSchema<T>(
   ctx: FormState<T>,
   schema: Schema,
-  formData: SchemaValue | undefined
+  formData: SchemaValue | undefined,
 ) {
   return retrieveSchemaInternal(
     ctx[FORM_VALIDATOR],
     ctx[FORM_MERGER],
     schema,
     ctx[FORM_SCHEMA],
-    formData
+    formData,
   );
 }
 
@@ -78,7 +77,7 @@ export function sanitizeDataForNewSchema<T>(
   ctx: FormState<T>,
   newSchema: Schema,
   oldSchema: Schema,
-  formData: SchemaValue | undefined
+  formData: SchemaValue | undefined,
 ) {
   return sanitizeDataForNewSchemaInternal(
     ctx[FORM_VALIDATOR],
@@ -86,7 +85,7 @@ export function sanitizeDataForNewSchema<T>(
     ctx[FORM_SCHEMA],
     newSchema,
     oldSchema,
-    formData
+    formData,
   );
 }
 
@@ -98,7 +97,7 @@ export function getClosestMatchingOption<T>(
   formData: SchemaValue | undefined,
   options: Schema[],
   selectedOption: number,
-  discriminatorField: string | undefined
+  discriminatorField: string | undefined,
 ) {
   return getClosestMatchingOptionInternal(
     ctx[FORM_VALIDATOR],
@@ -107,7 +106,7 @@ export function getClosestMatchingOption<T>(
     formData,
     options,
     selectedOption,
-    discriminatorField
+    discriminatorField,
   );
 }
 
@@ -116,7 +115,7 @@ export function getClosestMatchingOption<T>(
  */
 export function getDefaultFieldState<T>(
   ctx: FormState<T>,
-  options: MergeFormDataAndSchemaDefaultsOptions
+  options: MergeFormDataAndSchemaDefaultsOptions,
 ) {
   return ctx[FORM_MERGER].mergeFormDataAndSchemaDefaults(options);
 }

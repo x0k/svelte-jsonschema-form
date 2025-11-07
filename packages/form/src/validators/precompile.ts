@@ -1,30 +1,30 @@
-import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
-import {
-  makeSchemaDefinitionTraverser,
-  ALL_SUB_SCHEMA_KEYS,
-  type AnySubSchemaKey,
-  type SchemaTraverserContext,
-  transformSchemaDefinition,
-} from "@/lib/json-schema/index.js";
 import {
   createAugmentSchema,
   isPrimitiveSchemaType,
   isSchemaWithProperties,
+  type Path,
   pathFromRef,
   pickSchemaType,
-  type Path,
   type SchemaDefinition,
   type SchemaType,
 } from "@/core/index.js";
 import {
+  type FieldsValidationMode,
   ON_ARRAY_CHANGE,
   ON_BLUR,
   ON_CHANGE,
   ON_INPUT,
   ON_OBJECT_CHANGE,
-  type FieldsValidationMode,
   type Schema,
 } from "@/form/main.js";
+import {
+  ALL_SUB_SCHEMA_KEYS,
+  type AnySubSchemaKey,
+  makeSchemaDefinitionTraverser,
+  type SchemaTraverserContext,
+  transformSchemaDefinition,
+} from "@/lib/json-schema/index.js";
+import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
 
 export interface SchemaMeta {
   id: string;
@@ -47,7 +47,7 @@ const FIELDS_VALIDATION =
   INPUTS_VALIDATION | ARRAY_VALIDATION | OBJECT_VALIDATION;
 
 export function isCombinationBranch(
-  ctx: SchemaTraverserContext<AnySubSchemaKey>
+  ctx: SchemaTraverserContext<AnySubSchemaKey>,
 ) {
   return ctx.type === "array" && (ctx.key === "anyOf" || ctx.key === "oneOf");
 }
@@ -55,7 +55,7 @@ export function isCombinationBranch(
 export function isValidatableNode(
   validationMode: FieldsValidationMode,
   ctx: SchemaTraverserContext<AnySubSchemaKey>,
-  node: Schema
+  node: Schema,
 ): boolean {
   if (ctx.type === "root" || (ctx.type === "sub" && ctx.key === "if")) {
     return true;
@@ -94,7 +94,7 @@ export interface InsertSubSchemaIdsOptions {
    */
   createId?: (
     schema: Schema,
-    ctx: SchemaTraverserContext<AnySubSchemaKey>
+    ctx: SchemaTraverserContext<AnySubSchemaKey>,
   ) => string;
 }
 
@@ -104,11 +104,12 @@ export function insertSubSchemaIds(
   {
     createId = createIdFactory(),
     fieldsValidationMode = 0,
-  }: InsertSubSchemaIdsOptions = {}
+  }: InsertSubSchemaIdsOptions = {},
 ) {
   let subSchemas: SubSchemas;
   Array.from(
     makeSchemaDefinitionTraverser(ALL_SUB_SCHEMA_KEYS, {
+      // biome-ignore lint/correctness/useYield: not needed
       *onEnter(node, ctx) {
         const combinationBranch = isCombinationBranch(ctx);
         if (
@@ -133,7 +134,7 @@ export function insertSubSchemaIds(
           });
         }
       },
-    })(schema)
+    })(schema),
   );
   return {
     subSchemas,
@@ -180,7 +181,7 @@ export function fragmentSchema({
           if (!copy.required?.length) {
             if (augmentedSchema.allOf?.[0] === undefined) {
               throw new Error(
-                "Schema augmentation algorithm was changed, but not synchronized with this function, please report this error"
+                "Schema augmentation algorithm was changed, but not synchronized with this function, please report this error",
               );
             }
             augmentedSchema.allOf[0] = refSchema;
@@ -193,7 +194,7 @@ export function fragmentSchema({
         copy.$ref = `${rootId}${copy.$ref}`;
       }
       return copy;
-    }) as Schema
+    }) as Schema,
   );
   return schemas;
 }

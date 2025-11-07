@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
 import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 import legacyIsEqual from "json-schema-compare";
+import { describe, expect, it } from "vitest";
 
 import type { Brand } from "@/lib/types.js";
 
@@ -20,7 +20,7 @@ function compare(
   a: JSONSchema7Definition,
   b: JSONSchema7Definition,
   expected: boolean,
-  match: Match = true as Match
+  match: Match = true as Match,
 ) {
   expect(isEqual(a, b)).toBe(expected);
   expect(legacyIsEqual(a, b)).toBe(match ? expected : !expected);
@@ -52,7 +52,7 @@ describe("comparison", () => {
             },
           },
         },
-        false
+        false,
       );
     });
 
@@ -68,7 +68,7 @@ describe("comparison", () => {
         {
           required: ["rest", "test", "rest"],
         },
-        true
+        true,
       );
     });
 
@@ -78,7 +78,7 @@ describe("comparison", () => {
           required: [],
         },
         {},
-        true
+        true,
       );
 
       compare(
@@ -86,7 +86,7 @@ describe("comparison", () => {
           required: ["fds"],
         },
         {},
-        false
+        false,
       );
     });
 
@@ -96,7 +96,7 @@ describe("comparison", () => {
           properties: {},
         },
         {},
-        true
+        true,
       );
     });
 
@@ -116,7 +116,7 @@ describe("comparison", () => {
             },
           },
         },
-        true
+        true,
       );
     });
 
@@ -126,7 +126,7 @@ describe("comparison", () => {
           patternProperties: {},
         },
         {},
-        true
+        true,
       );
     });
 
@@ -136,7 +136,7 @@ describe("comparison", () => {
           dependencies: {},
         },
         {},
-        true
+        true,
       );
     });
 
@@ -148,7 +148,7 @@ describe("comparison", () => {
         {
           type: ["array", "string", "array"],
         },
-        true
+        true,
       );
 
       compare({}, { type: [] }, false);
@@ -171,7 +171,7 @@ describe("comparison", () => {
         {
           title: "foobar",
         },
-        false
+        false,
       );
     });
 
@@ -184,7 +184,7 @@ describe("comparison", () => {
         {
           type: ["string"],
         },
-        false
+        false,
       );
     });
 
@@ -210,7 +210,7 @@ describe("comparison", () => {
             },
           ],
         },
-        true
+        true,
       );
 
       compare(
@@ -240,7 +240,7 @@ describe("comparison", () => {
             },
           ],
         },
-        false
+        false,
       );
 
       compare(
@@ -264,7 +264,7 @@ describe("comparison", () => {
             },
           ],
         },
-        false
+        false,
       );
 
       compare(
@@ -291,7 +291,7 @@ describe("comparison", () => {
             },
           ],
         },
-        true
+        true,
       );
     });
 
@@ -317,7 +317,7 @@ describe("comparison", () => {
             },
           ],
         },
-        true
+        true,
       );
 
       compare(
@@ -347,7 +347,7 @@ describe("comparison", () => {
             },
           ],
         },
-        false
+        false,
       );
 
       compare(
@@ -371,7 +371,7 @@ describe("comparison", () => {
             },
           ],
         },
-        false
+        false,
       );
 
       compare(
@@ -398,7 +398,7 @@ describe("comparison", () => {
             },
           ],
         },
-        true
+        true,
       );
     });
 
@@ -424,7 +424,7 @@ describe("comparison", () => {
             },
           ],
         },
-        true
+        true,
       );
 
       compare(
@@ -454,7 +454,7 @@ describe("comparison", () => {
             },
           ],
         },
-        false
+        false,
       );
 
       compare(
@@ -478,7 +478,7 @@ describe("comparison", () => {
             },
           ],
         },
-        false
+        false,
       );
 
       compare(
@@ -505,7 +505,7 @@ describe("comparison", () => {
             },
           ],
         },
-        true
+        true,
       );
     });
 
@@ -517,7 +517,7 @@ describe("comparison", () => {
         {
           enum: ["123", "abc", "abc"],
         },
-        true
+        true,
       );
     });
 
@@ -533,7 +533,7 @@ describe("comparison", () => {
             foo: ["123", "abc", "abc"],
           },
         },
-        true
+        true,
       );
     });
 
@@ -545,7 +545,7 @@ describe("comparison", () => {
         {
           items: [true, true],
         },
-        false
+        false,
       );
 
       compare(
@@ -555,7 +555,7 @@ describe("comparison", () => {
         {
           items: [true, false],
         },
-        true
+        true,
       );
     });
 
@@ -565,7 +565,7 @@ describe("comparison", () => {
           uniqueItems: false,
         },
         {},
-        true
+        true,
       );
     });
 
@@ -575,7 +575,7 @@ describe("comparison", () => {
           minLength: 0,
         },
         {},
-        true
+        true,
       );
     });
 
@@ -585,7 +585,7 @@ describe("comparison", () => {
           minItems: 0,
         },
         {},
-        true
+        true,
       );
     });
 
@@ -595,7 +595,7 @@ describe("comparison", () => {
           minProperties: 0,
         },
         {},
-        true
+        true,
       );
     });
   });
@@ -675,7 +675,7 @@ describe("comparison", () => {
         {
           anyOf: [{ type: "number" }, { type: "string" }],
         },
-        true
+        true,
       );
     });
 
@@ -688,7 +688,7 @@ describe("comparison", () => {
           enum: [false, 0, "", null, 3, 2, 1],
         },
         true,
-        DOES_NOT_MATCH
+        DOES_NOT_MATCH,
       );
 
       compare(
@@ -699,7 +699,7 @@ describe("comparison", () => {
           enum: [{ b: 2 }, { a: 1 }],
         },
         true,
-        DOES_NOT_MATCH
+        DOES_NOT_MATCH,
       );
     });
 
@@ -711,7 +711,7 @@ describe("comparison", () => {
         {
           type: ["null", "boolean", "number", "string"],
         },
-        true
+        true,
       );
 
       compare(
@@ -721,7 +721,7 @@ describe("comparison", () => {
         {
           type: ["object", "array", "array"],
         },
-        true
+        true,
       );
     });
 
@@ -749,7 +749,7 @@ describe("comparison", () => {
             },
           },
         },
-        true
+        true,
       );
 
       compare(
@@ -764,7 +764,7 @@ describe("comparison", () => {
           },
         },
         false,
-        DOES_NOT_MATCH
+        DOES_NOT_MATCH,
       );
     });
 
@@ -776,7 +776,7 @@ describe("comparison", () => {
         {
           additionalProperties: {},
         },
-        true
+        true,
       );
 
       compare(
@@ -786,7 +786,7 @@ describe("comparison", () => {
         {
           additionalProperties: false,
         },
-        true
+        true,
       );
 
       compare(
@@ -796,7 +796,7 @@ describe("comparison", () => {
         {
           additionalProperties: { type: "string" },
         },
-        true
+        true,
       );
 
       compare(
@@ -806,7 +806,7 @@ describe("comparison", () => {
         {
           additionalProperties: { type: "number" },
         },
-        false
+        false,
       );
     });
 
@@ -818,7 +818,7 @@ describe("comparison", () => {
         {
           additionalItems: {},
         },
-        true
+        true,
       );
 
       compare(
@@ -828,7 +828,7 @@ describe("comparison", () => {
         {
           additionalItems: false,
         },
-        true
+        true,
       );
 
       compare(
@@ -838,7 +838,7 @@ describe("comparison", () => {
         {
           additionalItems: { type: "string" },
         },
-        true
+        true,
       );
     });
 
@@ -856,7 +856,7 @@ describe("comparison", () => {
             "^S_": { type: "string" },
           },
         },
-        true
+        true,
       );
 
       compare(
@@ -870,7 +870,7 @@ describe("comparison", () => {
             "^S_": { type: "number" },
           },
         },
-        false
+        false,
       );
     });
 
@@ -884,7 +884,7 @@ describe("comparison", () => {
           type: "string",
           format: "email",
         },
-        true
+        true,
       );
 
       compare(
@@ -896,7 +896,7 @@ describe("comparison", () => {
           type: "string",
           format: "uri",
         },
-        false
+        false,
       );
 
       compare(
@@ -907,7 +907,7 @@ describe("comparison", () => {
           type: "string",
           format: undefined,
         },
-        true
+        true,
       );
     });
 
@@ -925,7 +925,7 @@ describe("comparison", () => {
           maximum: 100,
           multipleOf: 5,
         },
-        true
+        true,
       );
 
       compare(
@@ -939,7 +939,7 @@ describe("comparison", () => {
           minimum: 0,
           exclusiveMinimum: 1,
         },
-        true
+        true,
       );
 
       compare(
@@ -951,7 +951,7 @@ describe("comparison", () => {
           type: "number",
           minimum: 1,
         },
-        false
+        false,
       );
     });
 
@@ -969,7 +969,7 @@ describe("comparison", () => {
           maxLength: 100,
           pattern: "^[a-zA-Z]+$",
         },
-        true
+        true,
       );
 
       compare(
@@ -981,7 +981,7 @@ describe("comparison", () => {
           type: "string",
           pattern: "^[0-9]+$",
         },
-        false
+        false,
       );
     });
 
@@ -999,7 +999,7 @@ describe("comparison", () => {
           maxItems: 10,
           uniqueItems: true,
         },
-        true
+        true,
       );
 
       compare(
@@ -1011,7 +1011,7 @@ describe("comparison", () => {
           type: "array",
           items: [{ type: "string" }, { type: "number" }],
         },
-        true
+        true,
       );
 
       compare(
@@ -1023,7 +1023,7 @@ describe("comparison", () => {
           type: "array",
           items: { type: "string" },
         },
-        true
+        true,
       );
     });
 
@@ -1039,7 +1039,7 @@ describe("comparison", () => {
           minProperties: 1,
           maxProperties: 10,
         },
-        true
+        true,
       );
 
       compare(
@@ -1051,7 +1051,7 @@ describe("comparison", () => {
           type: "object",
           minProperties: 2,
         },
-        false
+        false,
       );
     });
 
@@ -1063,7 +1063,7 @@ describe("comparison", () => {
         {
           $ref: "#/definitions/User",
         },
-        true
+        true,
       );
 
       compare(
@@ -1073,7 +1073,7 @@ describe("comparison", () => {
         {
           $id: "http://example.com/schema.json",
         },
-        true
+        true,
       );
 
       compare(
@@ -1083,7 +1083,7 @@ describe("comparison", () => {
         {
           $ref: "#/definitions/Person",
         },
-        false
+        false,
       );
     });
 
@@ -1095,7 +1095,7 @@ describe("comparison", () => {
         {
           const: "fixed-value",
         },
-        true
+        true,
       );
 
       compare(
@@ -1105,7 +1105,7 @@ describe("comparison", () => {
         {
           const: { a: 1, b: 2 },
         },
-        true
+        true,
       );
 
       compare(
@@ -1115,7 +1115,7 @@ describe("comparison", () => {
         {
           const: "value2",
         },
-        false
+        false,
       );
     });
 
@@ -1131,7 +1131,7 @@ describe("comparison", () => {
           then: { required: ["baz"] },
           else: { required: ["qux"] },
         },
-        true
+        true,
       );
 
       compare(
@@ -1143,7 +1143,7 @@ describe("comparison", () => {
           if: { properties: { foo: { const: "bar" } } },
           then: { required: ["different"] },
         },
-        false
+        false,
       );
     });
 

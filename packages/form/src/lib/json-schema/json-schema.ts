@@ -1,7 +1,7 @@
 import type {
   JSONSchema7,
-  JSONSchema7TypeName,
   JSONSchema7Definition,
+  JSONSchema7TypeName,
 } from "json-schema";
 
 import { isRecordEmpty } from "@/lib/object.js";
@@ -102,13 +102,13 @@ export type TransformedSchemaDefinition<R, S> =
   | boolean;
 
 export function isSchemaObject<D extends JSONSchema7Definition>(
-  schemaDef: D
+  schemaDef: D,
 ): schemaDef is Exclude<D, boolean> {
   return typeof schemaDef === "object";
 }
 
 export function isAllowAnySchema(
-  def: JSONSchema7Definition
+  def: JSONSchema7Definition,
 ): def is true | Record<string, never> {
   return isSchemaObject(def) ? isRecordEmpty(def) : def === true;
 }

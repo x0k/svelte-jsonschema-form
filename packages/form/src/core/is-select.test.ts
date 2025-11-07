@@ -2,14 +2,13 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { beforeEach, describe, it, expect } from "vitest";
-
-import type { Schema } from "./schema.js";
-import type { Validator } from "./validator.js";
+import { beforeEach, describe, expect, it } from "vitest";
 import { isMultiSelect, isSelect } from "./is-select.js";
-import { createValidator } from "./test-validator.js";
 import type { Merger } from "./merger.js";
+import type { Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
+import { createValidator } from "./test-validator.js";
+import type { Validator } from "./validator.js";
 
 let testValidator: Validator;
 let defaultMerger: Merger;
@@ -30,7 +29,7 @@ describe("isSelect2()", () => {
         anyOf: [{ type: "string", enum: ["Foo"] }, { type: "string" }],
       };
       expect(isSelect(testValidator, defaultMerger, schema, schema)).toBe(
-        false
+        false,
       );
     });
     it("should be true if oneOf/anyOf schemas are all constants", () => {
@@ -78,21 +77,21 @@ describe("isMultiSelect2()", () => {
           uniqueItems: true,
         };
         expect(
-          isMultiSelect(testValidator, defaultMerger, schema, schema)
+          isMultiSelect(testValidator, defaultMerger, schema, schema),
         ).toBe(true);
       });
     });
     it("should be false if items is undefined", () => {
       const schema: Schema = {};
       expect(isMultiSelect(testValidator, defaultMerger, schema, schema)).toBe(
-        false
+        false,
       );
     });
     describe("schema items enum is not an array", () => {
       it("should be false if oneOf/anyOf is not in items schema", () => {
         const schema: Schema = { items: {}, uniqueItems: true };
         expect(
-          isMultiSelect(testValidator, defaultMerger, schema, schema)
+          isMultiSelect(testValidator, defaultMerger, schema, schema),
         ).toBe(false);
       });
       it("should be false if oneOf/anyOf schemas are not all constants", () => {
@@ -103,7 +102,7 @@ describe("isMultiSelect2()", () => {
           uniqueItems: true,
         };
         expect(
-          isMultiSelect(testValidator, defaultMerger, schema, schema)
+          isMultiSelect(testValidator, defaultMerger, schema, schema),
         ).toBe(false);
       });
       it("should be true if oneOf/anyOf schemas are all constants", () => {
@@ -117,7 +116,7 @@ describe("isMultiSelect2()", () => {
           uniqueItems: true,
         };
         expect(
-          isMultiSelect(testValidator, defaultMerger, schema, schema)
+          isMultiSelect(testValidator, defaultMerger, schema, schema),
         ).toBe(true);
       });
     });
@@ -130,7 +129,7 @@ describe("isMultiSelect2()", () => {
         uniqueItems: true,
       };
       expect(isMultiSelect(testValidator, defaultMerger, schema, schema)).toBe(
-        true
+        true,
       );
     });
   });
@@ -140,7 +139,7 @@ describe("isMultiSelect2()", () => {
       uniqueItems: false,
     };
     expect(isMultiSelect(testValidator, defaultMerger, schema, schema)).toBe(
-      false
+      false,
     );
   });
 });

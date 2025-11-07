@@ -11,19 +11,19 @@
 
 <script lang="ts">
   import {
+    type ComponentProps,
     getComponent,
-    getFieldErrors,
     getFieldComponent,
+    getFieldErrors,
     getFormContext,
     retrieveUiSchema,
     Text,
-    type ComponentProps,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.svelte.js";
   import ObjectKeyInput from "./object-key-input.svelte";
 
-  let {
+  const {
     config,
     property,
     isAdditional,

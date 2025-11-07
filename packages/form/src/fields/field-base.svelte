@@ -3,16 +3,16 @@
   generics="F extends ActionField, T extends FoundationalWidgetType"
 >
   import {
-    makeEventHandlers,
-    getFieldErrors,
-    validateField,
-    getFormContext,
-    getComponent,
+    type ActionField,
     type ComponentProps,
     type Config,
-    type UiOption,
-    type ActionField,
+    getComponent,
     getFieldAction,
+    getFieldErrors,
+    getFormContext,
+    makeEventHandlers,
+    type UiOption,
+    validateField,
   } from "@/form/index.js";
 
   import type { FoundationalWidgetType } from "./widgets.js";
@@ -21,7 +21,7 @@
 
   type V = ComponentProps[F]["value"];
 
-  let {
+  const {
     field,
     widgetType,
     value = $bindable(),

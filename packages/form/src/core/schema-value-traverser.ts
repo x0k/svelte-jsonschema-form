@@ -1,8 +1,7 @@
 import { isRecord } from "@/lib/object.js";
 import type { Visitor } from "@/lib/traverser.js";
-
-import type { SchemaValue } from "./schema.js";
 import type { Path } from "./path.js";
+import type { SchemaValue } from "./schema.js";
 
 export type SchemaValueTraverserContextType = "root" | "array" | "record";
 
@@ -38,7 +37,7 @@ export type SchemaValueVisitor<R> = Visitor<
 export function* traverseSchemaValue<R>(
   value: SchemaValue,
   visitor: SchemaValueVisitor<R>,
-  ctx: SchemaValueTraverserContext = { type: "root", path: [] }
+  ctx: SchemaValueTraverserContext = { type: "root", path: [] },
 ): Generator<R> {
   if (visitor.onEnter) {
     yield* visitor.onEnter(value, ctx);

@@ -1,11 +1,11 @@
 import { tick } from "svelte";
 
 import {
-  type Id,
-  type FormState,
-  getIdByPath,
   encodePseudoElement,
   type FailureValidationResult,
+  type FormState,
+  getIdByPath,
+  type Id,
 } from "./form/index.js";
 
 export interface GetFocusableElementOptions {
@@ -18,7 +18,7 @@ export interface GetFocusableElementOptions {
 export function getFocusableElement(
   form: HTMLElement,
   instanceId: Id,
-  { checkVisibility = false }: GetFocusableElementOptions = {}
+  { checkVisibility = false }: GetFocusableElementOptions = {},
 ) {
   const item = form.querySelector(`[id="${instanceId}"]`);
   if (
@@ -39,7 +39,7 @@ export function getErrorsList(form: HTMLElement, pseudoId: Id) {
 
 export function getFocusAction(
   focusableElement: ReturnType<typeof getFocusableElement>,
-  getErrorsList: () => Element | null
+  getErrorsList: () => Element | null,
 ) {
   if (focusableElement !== null) {
     return () => focusableElement.focus();
@@ -53,12 +53,12 @@ export function getFocusAction(
 }
 
 export function createFocusOnFirstError(
-  options: GetFocusableElementOptions = {}
+  options: GetFocusableElementOptions = {},
 ) {
   return (
     { errors }: FailureValidationResult,
     e: SubmitEvent,
-    ctx: FormState<any>
+    ctx: FormState<any>,
   ) => {
     if (errors.length === 0) {
       return false;
@@ -74,8 +74,8 @@ export function createFocusOnFirstError(
       () =>
         getErrorsList(
           form,
-          getIdByPath(ctx, path.concat(encodePseudoElement("errors")))
-        )
+          getIdByPath(ctx, path.concat(encodePseudoElement("errors"))),
+        ),
     );
     if (focusAction === null) {
       return false;

@@ -1,12 +1,12 @@
 import type { SchemaArrayValue, SchemaValue } from "@/core/index.js";
 
 type ArrayAssert<T extends SchemaValue> = (
-  arr: SchemaArrayValue | null | undefined
+  arr: SchemaArrayValue | null | undefined,
 ) => asserts arr is T[] | undefined;
 
 function createArrayAssert<T extends SchemaValue>(
   itemName: string,
-  isItem: (v: SchemaValue) => v is T
+  isItem: (v: SchemaValue) => v is T,
 ): ArrayAssert<T> {
   return (arr) => {
     const index =
@@ -14,7 +14,7 @@ function createArrayAssert<T extends SchemaValue>(
     if (index >= 0) {
       const item = arr![index];
       throw new TypeError(
-        `Expected array of "${itemName}" or "undefined", but got (${typeof item}: ${JSON.stringify(item)})`
+        `Expected array of "${itemName}" or "undefined", but got (${typeof item}: ${JSON.stringify(item)})`,
       );
     }
   };
@@ -22,18 +22,18 @@ function createArrayAssert<T extends SchemaValue>(
 
 export const assertStrings: ArrayAssert<string> = createArrayAssert(
   "string",
-  (v: SchemaValue): v is string => typeof v === "string"
+  (v: SchemaValue): v is string => typeof v === "string",
 );
 
 export const assertFiles: ArrayAssert<File> = createArrayAssert(
   "File",
-  (v): v is File => v instanceof File
+  (v): v is File => v instanceof File,
 );
 
 export function assertFile(v: unknown): asserts v is File | undefined {
   if (v !== undefined && !(v instanceof File)) {
     throw new Error(
-      `expected "File" or "undefined", but got (${typeof v}: ${JSON.stringify(v)})`
+      `expected "File" or "undefined", but got (${typeof v}: ${JSON.stringify(v)})`,
     );
   }
 }

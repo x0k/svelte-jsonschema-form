@@ -18,6 +18,6 @@ export interface FormMerger extends Merger {
    * Merges defaults of `schema` into `formData`
    */
   mergeFormDataAndSchemaDefaults(
-    options: MergeFormDataAndSchemaDefaultsOptions
+    options: MergeFormDataAndSchemaDefaultsOptions,
   ): SchemaValue | undefined;
 }

@@ -19,7 +19,7 @@
   import Files from "./files.svelte";
   import './file.svelte'
 
-  let { value = $bindable(), ...rest }: ComponentProps["arrayFilesField"] =
+  const { value = $bindable(), ...rest }: ComponentProps["arrayFilesField"] =
     $props();
 </script>
 

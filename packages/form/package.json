@@ -33,9 +33,8 @@
     "test": "vitest run --typecheck",
     "bench": "vitest bench",
     "build": "svelte-package && publint",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
-    "format": "prettier --write .",
-    "lint": "prettier --check . && eslint ."
+    "check": "biome check && svelte-check --tsconfig ./tsconfig.json",
+    "format": "biome check --write --diagnostic-level=error"
   },
   "dependencies": {
     "@standard-schema/spec": "^1.0.0",

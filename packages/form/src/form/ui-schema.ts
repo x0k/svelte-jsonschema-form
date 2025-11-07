@@ -1,5 +1,5 @@
-import type { Resolver } from "@/lib/resolver.js";
 import type { RPath, SchemaValue } from "@/core/index.js";
+import type { Resolver } from "@/lib/resolver.js";
 
 import type {
   CompatibleComponentType,
@@ -34,7 +34,7 @@ export interface UiOptions {
 
 export type UiOption = <O extends keyof UiOptions>(opt: O) => UiOptions[O];
 
-export interface UiOptionsRegistry {}
+export type UiOptionsRegistry = {};
 
 export type ResolvableUiOption<T> =
   | {
@@ -92,14 +92,14 @@ export type ExtraUiOptions = Resolver<
 >;
 
 export function isUiSchemaRef(
-  def: UiSchemaDefinition | undefined
+  def: UiSchemaDefinition | undefined,
 ): def is UiSchemaRef {
   return typeof def?.$ref === "string";
 }
 
 export function resolveUiRef(
   rootSchema: UiSchemaRoot,
-  schemaDef: UiSchemaDefinition | undefined
+  schemaDef: UiSchemaDefinition | undefined,
 ): UiSchema | undefined {
   return isUiSchemaRef(schemaDef)
     ? rootSchema["ui:definitions"]?.[schemaDef.$ref]
@@ -110,7 +110,7 @@ export function resolveUiOption<O extends keyof UiOptions>(
   uiSchemaRoot: UiSchemaRoot,
   uiOptionsRegistry: UiOptionsRegistry,
   uiSchema: UiSchema,
-  option: O
+  option: O,
 ): UiOptions[O] | undefined {
   const options = uiSchema["ui:options"];
   const value =
@@ -126,7 +126,7 @@ export function resolveUiOption<O extends keyof UiOptions>(
 export function getUiSchemaByPath(
   rootSchema: UiSchemaRoot,
   schemaDef: UiSchemaDefinition | undefined,
-  path: RPath
+  path: RPath,
 ): UiSchema | undefined {
   let schema = resolveUiRef(rootSchema, schemaDef);
   for (let i = 0; i < path.length; i++) {
@@ -153,7 +153,7 @@ export function getUiSchemaByPath(
       (schema[k as string] as UiSchema) ??
         (Array.isArray(items) ? items[k as number] : items) ??
         additionalProperties ??
-        additionalItems
+        additionalItems,
     );
   }
   return schema;
@@ -161,7 +161,7 @@ export function getUiSchemaByPath(
 
 export function getRootUiSchemaTitleByPath(
   uiSchemaRoot: UiSchemaRoot,
-  path: RPath
+  path: RPath,
 ) {
   return getUiSchemaByPath(uiSchemaRoot, uiSchemaRoot, path)?.["ui:options"]
     ?.title;

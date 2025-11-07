@@ -13,7 +13,7 @@
 
   import Combination from "./combination.svelte";
 
-  let {
+  const {
     config,
     uiOption,
     value = $bindable(),

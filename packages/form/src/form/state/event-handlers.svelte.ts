@@ -1,24 +1,6 @@
 import { onMount, untrack } from "svelte";
 
 import type { RPath } from "@/core/index.js";
-
-import {
-  AFTER_SUBMITTED,
-  AFTER_CHANGED,
-  AFTER_TOUCHED,
-  ON_INPUT,
-  ON_CHANGE,
-  ON_BLUR,
-} from "../validation.js";
-import {
-  FORM_ERRORS,
-  FORM_FIELDS_STATE_MAP,
-  FORM_FIELDS_VALIDATION_MODE,
-  FORM_PATHS_TRIE_REF,
-  internalHasFieldState,
-  internalRegisterFieldPath,
-} from "../internals.js";
-import type { FieldPath } from "../id.js";
 import type { Config } from "../config.js";
 import {
   FIELD_BLURRED,
@@ -27,12 +9,29 @@ import {
   FIELD_INPUTTED,
   type FieldState,
 } from "../field-state.js";
+import type { FieldPath } from "../id.js";
+import {
+  FORM_ERRORS,
+  FORM_FIELDS_STATE_MAP,
+  FORM_FIELDS_VALIDATION_MODE,
+  FORM_PATHS_TRIE_REF,
+  internalHasFieldState,
+  internalRegisterFieldPath,
+} from "../internals.js";
+import {
+  AFTER_CHANGED,
+  AFTER_SUBMITTED,
+  AFTER_TOUCHED,
+  ON_BLUR,
+  ON_CHANGE,
+  ON_INPUT,
+} from "../validation.js";
 import type { FormState } from "./state.js";
 
 export function setFieldState<T>(
   ctx: FormState<T>,
   path: FieldPath,
-  state: FieldState
+  state: FieldState,
 ) {
   const currentFlags = ctx[FORM_FIELDS_STATE_MAP].get(path) ?? 0;
   ctx[FORM_FIELDS_STATE_MAP].set(path, currentFlags | state);
@@ -44,13 +43,13 @@ export function setFieldState<T>(
 export function setFieldStateByPath<T>(
   ctx: FormState<T>,
   path: RPath,
-  state: FieldState
+  state: FieldState,
 ): void {
   untrack(() => {
     setFieldState(
       ctx,
       internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
-      state
+      state,
     );
   });
 }
@@ -61,7 +60,7 @@ export function setFieldStateByPath<T>(
 export function hasFieldState<T>(
   ctx: FormState<T>,
   path: FieldPath,
-  state: FieldState
+  state: FieldState,
 ) {
   return internalHasFieldState(ctx[FORM_FIELDS_STATE_MAP], path, state);
 }
@@ -72,19 +71,19 @@ export function hasFieldState<T>(
 export function hasFieldStateByPath<T>(
   ctx: FormState<T>,
   path: RPath,
-  state: FieldState
+  state: FieldState,
 ) {
   return hasFieldState(
     ctx,
     internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
-    state
+    state,
   );
 }
 
 export function makeEventHandlers<T>(
   ctx: FormState<T>,
   config: () => Config,
-  validate: () => void
+  validate: () => void,
 ) {
   const path = $derived(config().path);
 

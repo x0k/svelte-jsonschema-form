@@ -12,7 +12,7 @@
   import ArrayBase from "./array-base.svelte";
   import { createTupleContext } from "./context.svelte.js";
 
-  let {
+  const {
     value = $bindable(),
     config,
     uiOption,

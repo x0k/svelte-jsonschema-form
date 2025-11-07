@@ -15,7 +15,7 @@
 
   import FieldBase from "./field-base.svelte";
 
-  let {
+  const {
     value = $bindable(),
     config,
     uiOption,

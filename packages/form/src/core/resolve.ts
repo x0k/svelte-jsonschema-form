@@ -3,9 +3,13 @@
 // Modifications made by Roman Krasilnikov.
 
 import { array } from "@/lib/array.js";
-import { isRecordEmpty } from "@/lib/object.js";
 import { isJsonSchemaType, isSchemaObject } from "@/lib/json-schema/index.js";
-
+import { isRecordEmpty } from "@/lib/object.js";
+import { isSchemaDeepEqual } from "./deep-equal.js";
+import { findSchemaDefinition } from "./definitions.js";
+import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
+import { getFirstMatchingOption } from "./matching.js";
+import type { Merger } from "./merger.js";
 import {
   ADDITIONAL_PROPERTY_FLAG,
   ALL_OF_KEY,
@@ -22,14 +26,9 @@ import {
   type SchemaValue,
   type SchemaWithProperties,
 } from "./schema.js";
-import { findSchemaDefinition } from "./definitions.js";
-import type { Validator } from "./validator.js";
-import type { Merger } from "./merger.js";
 import { typeOfValue } from "./type.js";
-import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
-import { getFirstMatchingOption } from "./matching.js";
+import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
-import { isSchemaDeepEqual } from "./deep-equal.js";
 
 export function retrieveSchema(
   validator: Validator,
@@ -37,7 +36,7 @@ export function retrieveSchema(
   schema: Schema,
   rootSchema: Schema = {},
   formData?: SchemaValue,
-  resolveAnyOfOrOneOfRefs = false
+  resolveAnyOfOrOneOfRefs = false,
 ): Schema {
   return retrieveSchemaInternal(
     validator,
@@ -47,7 +46,7 @@ export function retrieveSchema(
     formData,
     undefined,
     undefined,
-    resolveAnyOfOrOneOfRefs
+    resolveAnyOfOrOneOfRefs,
   )[0]!;
 }
 
@@ -56,7 +55,7 @@ export function resolveAllReferences(
   schema: Schema,
   rootSchema: Schema,
   stack = new Set<string>(),
-  resolveAnyOfOrOneOfRefs?: boolean
+  resolveAnyOfOrOneOfRefs?: boolean,
 ): Schema {
   let resolvedSchema: Schema = schema;
   const ref = resolvedSchema[REF_KEY];
@@ -74,7 +73,7 @@ export function resolveAllReferences(
         : merger.mergeSchemas(schemaDef, resolvedSchemaWithoutRef),
       rootSchema,
       stack,
-      resolveAnyOfOrOneOfRefs
+      resolveAnyOfOrOneOfRefs,
     );
   }
 
@@ -94,8 +93,8 @@ export function resolveAllReferences(
             value,
             rootSchema,
             stackCopy,
-            resolveAnyOfOrOneOfRefs
-          )
+            resolveAnyOfOrOneOfRefs,
+          ),
         );
         // TODO: Replace stack with an object with a Set of references
         // to use `union` Set method here
@@ -125,7 +124,7 @@ export function resolveAllReferences(
         items,
         rootSchema,
         stack,
-        resolveAnyOfOrOneOfRefs
+        resolveAnyOfOrOneOfRefs,
       ),
     };
   }
@@ -150,8 +149,8 @@ export function resolveAllReferences(
                 s,
                 rootSchema,
                 stack,
-                resolveAnyOfOrOneOfRefs
-              )
+                resolveAnyOfOrOneOfRefs,
+              ),
         ),
       };
     }
@@ -167,14 +166,14 @@ export function resolveReference(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  resolveAnyOfOrOneOfRefs?: boolean
+  resolveAnyOfOrOneOfRefs?: boolean,
 ): Schema[] {
   const resolvedSchema = resolveAllReferences(
     merger,
     schema,
     rootSchema,
     stack,
-    resolveAnyOfOrOneOfRefs
+    resolveAnyOfOrOneOfRefs,
   );
   if (!isSchemaDeepEqual(schema, resolvedSchema)) {
     return retrieveSchemaInternal(
@@ -185,7 +184,7 @@ export function resolveReference(
       formData,
       expandAllBranches,
       stack,
-      resolveAnyOfOrOneOfRefs
+      resolveAnyOfOrOneOfRefs,
     );
   }
   return [schema];
@@ -202,7 +201,7 @@ export function retrieveSchemaInternal(
   formData?: SchemaValue,
   expandAllBranches = false,
   stack = new Set<string>(),
-  resolveAnyOfOrOneOfRefs?: boolean
+  resolveAnyOfOrOneOfRefs?: boolean,
 ): Schema[] {
   const resolvedSchemas = resolveSchema(
     validator,
@@ -212,7 +211,7 @@ export function retrieveSchemaInternal(
     expandAllBranches,
     stack,
     formData,
-    resolveAnyOfOrOneOfRefs
+    resolveAnyOfOrOneOfRefs,
   );
   return resolvedSchemas.flatMap((s): Schema | Schema[] => {
     let resolvedSchema = s;
@@ -224,7 +223,7 @@ export function retrieveSchemaInternal(
         rootSchema,
         expandAllBranches,
         stack,
-        formData
+        formData,
       );
     }
     const resolvedAllOf = resolvedSchema.allOf;
@@ -280,7 +279,7 @@ export function retrieveSchemaInternal(
       for (const key of Object.keys(properties)) {
         const matchingProperties = getMatchingPatternProperties(
           patternProperties,
-          key
+          key,
         );
         if (matchingProperties.length > 0) {
           matchingProperties.push(properties[key]!);
@@ -289,7 +288,7 @@ export function retrieveSchemaInternal(
             merger,
             { allOf: matchingProperties },
             rootSchema,
-            formDataIsSchemaObjectValue ? formData[key] : undefined
+            formDataIsSchemaObjectValue ? formData[key] : undefined,
           );
         }
       }
@@ -302,7 +301,7 @@ export function retrieveSchemaInternal(
         properties,
       },
       rootSchema,
-      formDataIsSchemaObjectValue ? formData : undefined
+      formDataIsSchemaObjectValue ? formData : undefined,
     );
   });
 }
@@ -314,7 +313,7 @@ export function resolveCondition(
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
 ): Schema[] {
   const {
     if: expression,
@@ -337,8 +336,8 @@ export function resolveCondition(
           rootSchema,
           formData,
           expandAllBranches,
-          stack
-        )
+          stack,
+        ),
       );
     }
     if (otherwise && typeof otherwise !== "boolean") {
@@ -350,8 +349,8 @@ export function resolveCondition(
           rootSchema,
           formData,
           expandAllBranches,
-          stack
-        )
+          stack,
+        ),
       );
     }
   } else {
@@ -365,8 +364,8 @@ export function resolveCondition(
           rootSchema,
           formData,
           expandAllBranches,
-          stack
-        )
+          stack,
+        ),
       );
     }
   }
@@ -374,7 +373,7 @@ export function resolveCondition(
     resolvedSchemas = isRecordEmpty(resolvedSchemaLessConditional)
       ? schemas
       : schemas.map((s) =>
-          merger.mergeSchemas(resolvedSchemaLessConditional, s)
+          merger.mergeSchemas(resolvedSchemaLessConditional, s),
         );
   }
   return resolvedSchemas.flatMap((s) =>
@@ -385,8 +384,8 @@ export function resolveCondition(
       rootSchema,
       formData,
       expandAllBranches,
-      stack
-    )
+      stack,
+    ),
   );
 }
 
@@ -398,7 +397,7 @@ export function stubExistingAdditionalProperties(
   merger: Merger,
   schema: SchemaWithProperties,
   rootSchema: Schema,
-  formData: SchemaObjectValue | undefined
+  formData: SchemaObjectValue | undefined,
 ): Schema {
   const { additionalProperties, patternProperties } = schema;
   const isAdditionalProperties =
@@ -411,7 +410,7 @@ export function stubExistingAdditionalProperties(
     if (patternProperties !== undefined) {
       const matchingProperties = getMatchingPatternProperties(
         patternProperties,
-        key
+        key,
       );
       if (matchingProperties.length > 0) {
         // TODO: Check if the shallow clone can be returned directly
@@ -421,7 +420,7 @@ export function stubExistingAdditionalProperties(
             merger,
             { allOf: matchingProperties },
             rootSchema,
-            formData?.[key]
+            formData?.[key],
           ),
         };
       }
@@ -434,7 +433,7 @@ export function stubExistingAdditionalProperties(
             merger,
             { $ref: additionalProperties[REF_KEY] },
             rootSchema,
-            formData
+            formData,
           ),
         };
       }
@@ -485,7 +484,7 @@ export function resolveSchema(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  resolveAnyOfOrOneOfRefs?: boolean
+  resolveAnyOfOrOneOfRefs?: boolean,
 ): Schema[] {
   const updatedSchemas = resolveReference(
     validator,
@@ -495,7 +494,7 @@ export function resolveSchema(
     expandAllBranches,
     stack,
     formData,
-    resolveAnyOfOrOneOfRefs
+    resolveAnyOfOrOneOfRefs,
   );
   if (updatedSchemas.length > 1 || updatedSchemas[0] !== schema) {
     return updatedSchemas;
@@ -508,7 +507,7 @@ export function resolveSchema(
       rootSchema,
       expandAllBranches,
       stack,
-      formData
+      formData,
     );
     return resolvedSchemas.flatMap((s) => {
       return retrieveSchemaInternal(
@@ -518,7 +517,7 @@ export function resolveSchema(
         rootSchema,
         formData,
         expandAllBranches,
-        stack
+        stack,
       );
     });
   }
@@ -533,8 +532,8 @@ export function resolveSchema(
           rootSchema,
           formData,
           expandAllBranches,
-          stack
-        )
+          stack,
+        ),
       );
     const allPermutations = getAllPermutationsOfXxxOf(allOfSchemaElements);
     return allPermutations.map((permutation) => ({
@@ -553,7 +552,7 @@ export function resolveDependencies(
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
 ): Schema[] {
   const { dependencies, ...remainingSchema } = schema;
   const resolvedSchemas = resolveAnyOrOneOfSchemas(
@@ -562,7 +561,7 @@ export function resolveDependencies(
     remainingSchema,
     rootSchema,
     expandAllBranches,
-    formData
+    formData,
   );
   return resolvedSchemas.flatMap((resolvedSchema) =>
     processDependencies(
@@ -573,8 +572,8 @@ export function resolveDependencies(
       rootSchema,
       expandAllBranches,
       stack,
-      formData
-    )
+      formData,
+    ),
   );
 }
 
@@ -584,7 +583,7 @@ export function resolveAnyOrOneOfSchemas(
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
-  rawFormData?: SchemaValue
+  rawFormData?: SchemaValue,
 ) {
   let anyOrOneOf: Schema[] | undefined;
   const { oneOf, anyOf, ...remaining } = schema;
@@ -609,7 +608,7 @@ export function resolveAnyOrOneOfSchemas(
       formData,
       anyOrOneOf,
       rootSchema,
-      discriminator
+      discriminator,
     );
     const isRemainingEmpty = isRecordEmpty(remaining);
     if (expandAllBranches) {
@@ -632,7 +631,7 @@ export function processDependencies(
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
 ): Schema[] {
   let schemas = [resolvedSchema];
   // Process dependencies updating the local schema properties as appropriate.
@@ -667,7 +666,7 @@ export function processDependencies(
         dependencyValue,
         expandAllBranches,
         stack,
-        formData
+        formData,
       );
     }
     return schemas.flatMap((schema) =>
@@ -679,8 +678,8 @@ export function processDependencies(
         rootSchema,
         expandAllBranches,
         stack,
-        formData
-      )
+        formData,
+      ),
     );
   }
   return schemas;
@@ -695,7 +694,7 @@ export function withDependentSchema(
   dependencyValue: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
 ): Schema[] {
   const dependentSchemas = retrieveSchemaInternal(
     validator,
@@ -704,7 +703,7 @@ export function withDependentSchema(
     rootSchema,
     formData,
     expandAllBranches,
-    stack
+    stack,
   );
   return dependentSchemas.flatMap((dependent) => {
     const { oneOf, ...dependentSchema } = dependent;
@@ -727,7 +726,7 @@ export function withDependentSchema(
         rootSchema,
         expandAllBranches,
         stack,
-        formData
+        formData,
       );
     });
     const allPermutations = getAllPermutationsOfXxxOf(resolvedOneOfs);
@@ -741,8 +740,8 @@ export function withDependentSchema(
         resolvedOneOf,
         expandAllBranches,
         stack,
-        formData
-      )
+        formData,
+      ),
     );
   });
 }
@@ -756,7 +755,7 @@ export function withExactlyOneSubSchema(
   oneOf: Exclude<Schema["oneOf"], undefined>,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
 ): Schema[] {
   const validSubSchemas = oneOf.filter(
     (subschema): subschema is SchemaWithProperties => {
@@ -781,12 +780,12 @@ export function withExactlyOneSubSchema(
         );
       }
       return false;
-    }
+    },
   );
 
   if (!expandAllBranches && validSubSchemas.length !== 1) {
     console.warn(
-      "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid"
+      "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid",
     );
     return [schema];
   }
@@ -801,7 +800,7 @@ export function withExactlyOneSubSchema(
       rootSchema,
       formData,
       expandAllBranches,
-      stack
+      stack,
     );
     return schemas.map((s) => merger.mergeSchemas(schema, s));
   });
@@ -814,15 +813,15 @@ export function getAllPermutationsOfXxxOf(listOfLists: SchemaDefinition[][]) {
       if (list.length > 1) {
         return list.flatMap((element) =>
           array(permutations.length, (i) =>
-            [...permutations[i]!].concat(element)
-          )
+            [...permutations[i]!].concat(element),
+          ),
         );
       }
       // Otherwise just push in the single value into the current set of permutations
       permutations.forEach((permutation) => permutation.push(list[0]!));
       return permutations;
     },
-    [[]] as SchemaDefinition[][] // Start with an empty list
+    [[]] as SchemaDefinition[][], // Start with an empty list
   );
 
   return allPermutations;
@@ -830,7 +829,7 @@ export function getAllPermutationsOfXxxOf(listOfLists: SchemaDefinition[][]) {
 
 export function getMatchingPatternProperties(
   patternProperties: Exclude<Schema["patternProperties"], undefined>,
-  key: string
+  key: string,
 ) {
   const schemas: SchemaDefinition[] = [];
   for (const [p, d] of Object.entries(patternProperties)) {

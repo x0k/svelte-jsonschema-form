@@ -1,24 +1,24 @@
 import {
-  getSchemaConstantValue,
-  schemaValueToString,
   type EnumOption,
+  getSchemaConstantValue,
   type Schema,
   type SchemaDefinition,
   type SchemaValue,
+  schemaValueToString,
 } from "@/core/index.js";
 import {
-  type UiSchema,
-  type UiSchemaDefinition,
-  retrieveUiSchema,
   type Config,
-  type UiOption,
   type FormState,
   getPseudoId,
+  retrieveUiSchema,
+  type UiOption,
+  type UiSchema,
+  type UiSchemaDefinition,
 } from "@/form/index.js";
 
 function getAltSchemas(
   schema: Schema,
-  uiSchema: UiSchema
+  uiSchema: UiSchema,
 ): [SchemaDefinition[] | undefined, UiSchemaDefinition[] | undefined] {
   return schema.anyOf
     ? [schema.anyOf, uiSchema.anyOf]
@@ -29,7 +29,7 @@ export function createOptions<T>(
   ctx: FormState<T>,
   config: Config,
   uiOption: UiOption,
-  schema: Schema
+  schema: Schema,
 ): EnumOption<SchemaValue>[] | undefined {
   const enumValues = schema.enum;
   const disabledValues = new Set(uiOption("disabledEnumValues"));

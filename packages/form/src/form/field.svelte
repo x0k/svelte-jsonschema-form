@@ -1,29 +1,12 @@
 <script lang="ts" generics="T, P extends JsonPaths<T>">
-  import type { Snippet } from "svelte";
   import { DEV } from "esm-env";
-
+  import type { Snippet } from "svelte";
+  import { getSchemaDefinitionByPath, isSchemaObjectValue } from "@/core/index.js";
+  import { isObject } from "@/lib/object.js";
   import type { Ref } from '@/lib/svelte.svelte.js';
   import type { JsonPaths } from "@/lib/types.js";
-  import { isObject } from "@/lib/object.js";
-  import { getSchemaDefinitionByPath, isSchemaObjectValue } from "@/core/index.js";
-
-  import {
-    getFieldComponent,
-    retrieveSchema,
-    retrieveTranslate,
-    retrieveUiOption,
-    setFormContext,
-    uiTitleOption,
-    type FormState,
-  } from "./state/index.js";
-  import type { FieldValue } from "./model.js";
-  import {
-    getUiSchemaByPath,
-    type UiOption,
-    type UiSchema,
-  } from "./ui-schema.js";
-  import type { Config } from "./config.js";
   import type { ComponentProps } from "./components.js";
+  import type { Config } from "./config.js";
   import type { FoundationalFieldType } from "./fields.js";
   import {
     FORM_MERGER,
@@ -35,6 +18,21 @@
     FORM_VALUE,
     internalRegisterFieldPath,
   } from "./internals.js";
+  import type { FieldValue } from "./model.js";
+  import {
+    type FormState,
+    getFieldComponent,
+    retrieveSchema,
+    retrieveTranslate,
+    retrieveUiOption,
+    setFormContext,
+    uiTitleOption,
+  } from "./state/index.js";
+  import {
+    getUiSchemaByPath,
+    type UiOption,
+    type UiSchema,
+  } from "./ui-schema.js";
 
   interface Props {
     form: FormState<T>;

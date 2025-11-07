@@ -2,11 +2,11 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { type Schema, type SchemaValue } from "./schema.js";
+import type { Schema, SchemaValue } from "./schema.js";
 import { isSchemaObjectValue } from "./value.js";
 
 export function getDiscriminatorFieldFromSchema(
-  schema: Schema
+  schema: Schema,
 ): string | undefined {
   return schema.discriminator?.propertyName;
 }
@@ -14,7 +14,7 @@ export function getDiscriminatorFieldFromSchema(
 export function getOptionMatchingSimpleDiscriminator<T extends SchemaValue>(
   formData: T | undefined,
   options: Schema[],
-  discriminatorField?: string
+  discriminatorField?: string,
 ): number | undefined {
   if (discriminatorField && isSchemaObjectValue(formData)) {
     const value = formData[discriminatorField];

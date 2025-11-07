@@ -17,13 +17,13 @@
 
 <script lang="ts">
   import {
-    Text,
+    type ComponentProps,
     getComponent,
     getFieldAction,
     getFormContext,
     retrieveTranslate,
     retrieveUiOption,
-    type ComponentProps,
+    Text,
   } from "@/form/index.js";
 
   import { createObjectContext, setObjectContext } from "./context.svelte.js";

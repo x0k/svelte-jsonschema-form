@@ -1,33 +1,33 @@
-import { isObject } from "@/lib/object.js";
-import { isSchemaObject } from "@/lib/json-schema/index.js";
 import {
+  getClosestMatchingOption,
+  getDiscriminatorFieldFromSchema,
   getKnownProperties,
-  resolveRef,
   getSimpleSchemaType,
+  isSchemaArrayValue,
   isSchemaObjectValue,
+  isSelect,
   type Merger,
+  resolveRef,
   type Schema,
+  type SchemaArrayValue,
   type SchemaDefinition,
   type SchemaObjectValue,
   type SchemaValue,
   type Validator,
-  type SchemaArrayValue,
-  isSchemaArrayValue,
-  isSelect,
-  getClosestMatchingOption,
-  getDiscriminatorFieldFromSchema,
 } from "@/core/index.js";
+import { isSchemaObject } from "@/lib/json-schema/index.js";
+import { isObject } from "@/lib/object.js";
 
 export function omitExtraData(
   validator: Validator,
   merger: Merger,
   rootSchema: Schema,
-  value: SchemaValue | undefined
+  value: SchemaValue | undefined,
 ): SchemaValue | undefined {
   function handleObject(
     schema: Schema,
     source: SchemaObjectValue,
-    target: SchemaObjectValue
+    target: SchemaObjectValue,
   ): SchemaObjectValue {
     const {
       properties,
@@ -39,7 +39,7 @@ export function omitExtraData(
     function setProperty(
       key: string,
       schemaDef: SchemaDefinition,
-      value: SchemaValue | undefined
+      value: SchemaValue | undefined,
     ) {
       const v = omit(schemaDef, value, target[key]);
       if (v !== undefined) {
@@ -59,7 +59,7 @@ export function omitExtraData(
         ([pattern, schemaDef]): [RegExp, SchemaDefinition] => [
           new RegExp(pattern),
           schemaDef,
-        ]
+        ],
       );
       const knownProperties = new Set(getKnownProperties(schema, rootSchema));
       for (const [key, value] of Object.entries(source)) {
@@ -100,7 +100,7 @@ export function omitExtraData(
   function handleArray(
     schema: Schema,
     source: SchemaArrayValue,
-    target: SchemaArrayValue
+    target: SchemaArrayValue,
   ) {
     const { items, additionalItems } = schema;
     if (items !== undefined) {
@@ -125,7 +125,7 @@ export function omitExtraData(
   function handleConditions(
     schema: Schema,
     source: SchemaValue | undefined,
-    target: SchemaValue | undefined
+    target: SchemaValue | undefined,
   ) {
     const { if: condition, then, else: otherwise } = schema;
     if (condition === undefined) {
@@ -142,7 +142,7 @@ export function omitExtraData(
     oneOf: Schema["oneOf"],
     schema: Schema,
     source: SchemaValue | undefined,
-    target: SchemaValue | undefined
+    target: SchemaValue | undefined,
   ) {
     if (
       !Array.isArray(oneOf) ||
@@ -157,7 +157,7 @@ export function omitExtraData(
       source,
       oneOf.map((d) => (isSchemaObject(d) ? d : d ? {} : { not: {} })),
       0,
-      getDiscriminatorFieldFromSchema(schema)
+      getDiscriminatorFieldFromSchema(schema),
     );
     return omit(oneOf[bestIndex]!, source, target);
   }
@@ -165,7 +165,7 @@ export function omitExtraData(
   function handleAllOf(
     allOf: Schema["allOf"],
     source: SchemaValue | undefined,
-    target: SchemaValue | undefined
+    target: SchemaValue | undefined,
   ) {
     if (!Array.isArray(allOf)) {
       return target;
@@ -179,7 +179,7 @@ export function omitExtraData(
   function handleAnyOf(
     schema: Schema,
     source: SchemaValue | undefined,
-    target: SchemaValue | undefined
+    target: SchemaValue | undefined,
   ) {
     const { anyOf } = schema;
     if (!Array.isArray(anyOf)) {
@@ -200,7 +200,7 @@ export function omitExtraData(
   function handleDependencies(
     schema: Schema,
     source: SchemaValue | undefined,
-    target: SchemaValue | undefined
+    target: SchemaValue | undefined,
   ) {
     const { dependencies } = schema;
     if (dependencies === undefined || !isSchemaObjectValue(source)) {
@@ -218,7 +218,7 @@ export function omitExtraData(
   function omit(
     schema: SchemaDefinition,
     source: SchemaValue | undefined,
-    target?: SchemaValue
+    target?: SchemaValue,
   ): SchemaValue | undefined {
     if (source === undefined || schema === false) {
       return source;
@@ -236,8 +236,8 @@ export function omitExtraData(
       handleAllOf(
         schema.allOf,
         source,
-        handleOneOf(schema.oneOf, schema, source, target)
-      )
+        handleOneOf(schema.oneOf, schema, source, target),
+      ),
     );
     const type = getSimpleSchemaType(schema);
     if (type === "object") {
@@ -247,7 +247,7 @@ export function omitExtraData(
       target = handleObject(
         schema,
         source,
-        isSchemaObjectValue(target) ? target : {}
+        isSchemaObjectValue(target) ? target : {},
       );
     } else if (type === "array") {
       if (!isSchemaArrayValue(source)) {
@@ -256,7 +256,7 @@ export function omitExtraData(
       target = handleArray(
         schema,
         source,
-        isSchemaArrayValue(target) ? target : []
+        isSchemaArrayValue(target) ? target : [],
       );
     } else if (target === undefined) {
       target = source;
@@ -265,7 +265,7 @@ export function omitExtraData(
     return handleDependencies(
       schema,
       source,
-      handleConditions(schema, source, target)
+      handleConditions(schema, source, target),
     );
   }
 

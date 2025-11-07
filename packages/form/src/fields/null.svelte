@@ -1,9 +1,9 @@
 <script lang="ts">
   import {
+    type ComponentProps,
     getComponent,
     getFieldErrors,
     getFormContext,
-    type ComponentProps,
   } from "@/form/index.js";
 
   let {

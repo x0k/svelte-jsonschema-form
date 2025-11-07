@@ -21,19 +21,19 @@ export function createMerger({
       const c = allOfMerges.find((c) => isSchemaDeepEqual(c.input, schema));
       if (c === undefined) {
         throw new Error(
-          `Cannot find allOfMerge case with ${JSON.stringify({ input: schema })}`
+          `Cannot find allOfMerge case with ${JSON.stringify({ input: schema })}`,
         );
       }
       return c.result;
     },
     mergeSchemas(a, b) {
       const c = merges.find(
-        (c) => isSchemaDeepEqual(c.left, a) && isSchemaDeepEqual(c.right, b)
+        (c) => isSchemaDeepEqual(c.left, a) && isSchemaDeepEqual(c.right, b),
       );
       if (c === undefined) {
         // console.log({ merges, a, b });
         throw new Error(
-          `Cannot find merge case with ${JSON.stringify({ left: a, right: b })}`
+          `Cannot find merge case with ${JSON.stringify({ left: a, right: b })}`,
         );
       }
       return c.result;

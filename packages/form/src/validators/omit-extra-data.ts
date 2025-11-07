@@ -1,6 +1,6 @@
 import {
-  create,
   type Creatable,
+  create,
   type FormValueValidator,
   type Validator,
   type ValidatorFactoryOptions,
@@ -20,7 +20,7 @@ export function withOmitExtraData<
           v,
           options.merger(),
           options.schema,
-          formValue
+          formValue,
         );
         return v.validateFormValue(rootSchema, cleanData);
       },

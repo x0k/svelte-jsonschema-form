@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { expect, describe, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import type { Schema } from "./schema.js";
 import { getSimpleSchemaType } from "./type.js";
@@ -89,6 +89,6 @@ const cases: { schema: Schema; expected: string }[] = [
 describe("typeOfSchema", () => {
   it.each(cases.map((c) => [c.expected, c.schema]))(
     `should correctly guess the type "%s" of a schema %j`,
-    (expected, schema) => expect(getSimpleSchemaType(schema)).toBe(expected)
+    (expected, schema) => expect(getSimpleSchemaType(schema)).toBe(expected),
   );
 });

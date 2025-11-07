@@ -17,7 +17,7 @@ function issueToPath({ path }: StandardSchemaV1.Issue): Path {
 
 function transformErrors<O>(
   formValue: FormValue,
-  result: StandardSchemaV1.Result<O>
+  result: StandardSchemaV1.Result<O>,
 ): ValidationResult<O> {
   if (result.issues === undefined) {
     return {
@@ -34,7 +34,7 @@ function transformErrors<O>(
 }
 
 export function createFormValueValidator<T extends StandardSchemaV1>(
-  schema: T
+  schema: T,
 ): FormValueValidator<StandardSchemaV1.InferOutput<T>> {
   return {
     validateFormValue(_, formValue) {
@@ -48,7 +48,7 @@ export function createFormValueValidator<T extends StandardSchemaV1>(
 }
 
 export function createAsyncFormValueValidator<T extends StandardSchemaV1>(
-  schema: T
+  schema: T,
 ): AsyncFormValueValidator<StandardSchemaV1.InferOutput<T>> {
   return {
     async validateFormValueAsync(_, _1, formValue) {
