@@ -1,0 +1,1 @@
+import{V as s,a as t,D as o,b as e,c}from"./validator.DHZSE0nu.js";function d({ajvOptions:a=o,ajv:r=t(new e.Ajv(a)),...n}={}){return new s({ajv:r,...n})}function A({ajvOptions:a=o,ajv:r=t(new e.Ajv(a)),...n}={}){return new c({ajv:r,...n})}export{A as a,d as c};
