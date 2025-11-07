@@ -127,7 +127,7 @@ import { preventPageReload } from '@sjsf/form/prevent-page-reload.svelte';
 
 preventPageReload({
   get isChanged() {
-    return form.isChanged && isSchemaValueDeepEqual(initialValue, getValueSnapshot(form))
+    return form.isChanged && !isSchemaValueDeepEqual(initialValue, getValueSnapshot(form))
   }
 })
 ```
