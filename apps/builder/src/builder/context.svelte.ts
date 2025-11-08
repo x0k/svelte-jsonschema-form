@@ -385,44 +385,37 @@ export class BuilderContext {
     );
   }
 
-  importState(encodedData: string) {
-    const data: BuilderState = JSON.parse(
-      decompressFromEncodedURIComponent(encodedData)
-    );
+  importState(data: BuilderState) {
     Object.assign(this, data);
     if (this.route.name === RouteName.Preview) {
       this.build();
     }
   }
 
-  exportState() {
-    return compressToEncodedURIComponent(
-      JSON.stringify({
-        rootNode: this.rootNode,
-        icons: this.icons,
-        ignoreWarnings: this.ignoreWarnings,
-        resolver: this.resolver,
-        route: this.route,
-        theme: this.theme,
-        validator: this.validator,
-        html5Validation: this.html5Validation,
-      } satisfies BuilderState)
-    );
+  exportState(): BuilderState {
+    return {
+      rootNode: this.rootNode,
+      icons: this.icons,
+      ignoreWarnings: this.ignoreWarnings,
+      resolver: this.resolver,
+      route: this.route,
+      theme: this.theme,
+      validator: this.validator,
+      html5Validation: this.html5Validation,
+    };
   }
 
-  createPlaygroundState() {
-    return compressToEncodedURIComponent(
-      JSON.stringify({
-        schema: this.schema,
-        uiSchema: this.uiSchema ?? {},
-        initialValue: null,
-        validator: this.validator,
-        theme: this.theme === ActualTheme.Daisy5 ? "daisy5" : this.theme,
-        resolver: this.resolver,
-        icons: this.icons,
-        html5Validation: this.html5Validation,
-      } satisfies Sample)
-    );
+  createPlaygroundSample(): Sample {
+    return {
+      schema: this.schema,
+      uiSchema: this.uiSchema ?? {},
+      initialValue: null,
+      validator: this.validator,
+      theme: this.theme === ActualTheme.Daisy5 ? "daisy5" : this.theme,
+      resolver: this.resolver,
+      icons: this.icons,
+      html5Validation: this.html5Validation,
+    };
   }
 
   createDroppable<N extends Node>(

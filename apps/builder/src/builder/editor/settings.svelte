@@ -9,6 +9,7 @@
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import { THEME_TITLES, THEMES } from "$lib/sjsf/theme.js";
   import Select from "$lib/components/select.svelte";
+  import { encodeJson } from '$lib/url.js';
 
   import { RouteName } from "../model.js";
   import { getBuilderContext } from "../context.svelte.js";
@@ -66,7 +67,7 @@
     text={() => {
       const url = new URL(window.location.href);
       url.search = "";
-      url.hash = ctx.exportState();
+      url.hash = encodeJson(ctx.exportState());
       return url.toString();
     }}>Share</CopyButton
   >
