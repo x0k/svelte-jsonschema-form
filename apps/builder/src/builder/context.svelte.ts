@@ -3,11 +3,6 @@ import type { FormValue, Schema, UiSchema } from "@sjsf/form";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
-import {
-  compressToEncodedURIComponent,
-  decompressFromEncodedURIComponent,
-} from "lz-string";
-
 import type { Sample } from "$apps/playground2/src/core/sample.js";
 
 import {
@@ -108,7 +103,7 @@ export interface NodeIssue {
   message: string;
 }
 
-interface BuilderState {
+export interface BuilderState {
   rootNode?: CustomizableNode;
   theme: Theme;
   resolver: Resolver;
@@ -394,11 +389,11 @@ export class BuilderContext {
 
   exportState(): BuilderState {
     return {
-      rootNode: this.rootNode,
+      rootNode: JSON.parse(JSON.stringify(this.rootNode)),
       icons: this.icons,
       ignoreWarnings: this.ignoreWarnings,
       resolver: this.resolver,
-      route: this.route,
+      route: structuredClone(this.route),
       theme: this.theme,
       validator: this.validator,
       html5Validation: this.html5Validation,
@@ -406,7 +401,7 @@ export class BuilderContext {
   }
 
   createPlaygroundSample(): Sample {
-    return {
+    return structuredClone({
       schema: this.schema,
       uiSchema: this.uiSchema ?? {},
       initialValue: null,
@@ -415,7 +410,7 @@ export class BuilderContext {
       resolver: this.resolver,
       icons: this.icons,
       html5Validation: this.html5Validation,
-    };
+    });
   }
 
   createDroppable<N extends Node>(

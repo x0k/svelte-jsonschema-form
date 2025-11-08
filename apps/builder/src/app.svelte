@@ -1,33 +1,41 @@
 <script lang="ts">
   import OpenBook from "@lucide/svelte/icons/book-open";
-  import Download from '@lucide/svelte/icons/download';
-  import Upload from '@lucide/svelte/icons/upload';
+  import Moon from '@lucide/svelte/icons/moon';
+  import Sun from '@lucide/svelte/icons/sun';
+  import { openDB } from 'idb';
 
   import Github from "$lib/components/github.svelte";
   import { Button } from "$lib/components/ui/button/index.js";
   import { TooltipProvider } from "$lib/components/ui/tooltip/index.js";
-  import Select from "$lib/components/select.svelte";
   import { highlighterPromise } from "$lib/shiki.js";
-  import {
-    blobOpen,
-    blobSave,
-    JSON_FILE_EXTENSION,
-    JSON_MIME_TYPE,
-    createJSONBlob,
-    parseJSONBlob
-  } from '$lib/file.js';
 
+  import type { AppDBSchema } from "./shared/index.js";
   import Builder from "./builder/builder.svelte";
   import { BuilderContext } from './builder/context.svelte.js';
   import { setShadcnContext } from "./shadcn-context.js";
   import { themeManager } from "./theme.svelte.js";
-  import { THEME_TITLES, THEMES } from "./shared/index.js";
+  import { AppContext } from './app/context.svelte.js';
+  import { ProjectsService } from './app/projects-service.js';
+  import ProjectsControls from './app/projects-controls.svelte';
+  import ProjectsDialog from './app/projects-dialog.svelte';
 
   setShadcnContext();
 
   const clearLink = new URL(location.href);
   clearLink.search = "";
   clearLink.hash = "";
+
+  const promises = Promise.all([highlighterPromise, openDB<AppDBSchema>("builder-db", 1, {
+    upgrade(db, oldVersion) {
+      if (oldVersion < 1) {
+        const projects = db.createObjectStore('projects', {
+          keyPath: "id"
+        })
+        projects.createIndex('titleIndex', 'title', { unique: true })
+        projects.createIndex('updatedAtIndex', 'updatedAt')
+      }
+    }
+  })])
 </script>
 
 <TooltipProvider delayDuration={0}>
@@ -35,65 +43,42 @@
     class="min-h-screen bg-background dark:[color-scheme:dark]"
     style="--header-height: 60px;"
   >
-    {#await highlighterPromise}
+    {#await promises}
       <p>Loading...</p>
-    {:then highlighter}
+    {:then [highlighter, db]}
       {@const ctx = new BuilderContext(highlighter)}
+      {@const app = new AppContext(ctx, new ProjectsService(db))}
       <div class="sticky top-0 z-50 bg-background">
         <div class="mx-auto px-8 py-3 flex gap-2 items-center">
-          <a href={clearLink.toString()} class="text-xl font-bold mr-auto"
+          <a href={clearLink.toString()} class="text-xl font-bold"
             >Form Builder</a
           >
+          <ProjectsDialog {app} class="mr-auto" />
+          <ProjectsControls {app} />
           <Button
             variant="ghost"
-            onclick={async () => {
-              ctx.importState(
-                await parseJSONBlob(
-                  await blobOpen({
-                    extensions: [JSON_FILE_EXTENSION],
-                    mimeTypes: [JSON_MIME_TYPE]
-                  }),
-                )
-              )
-            }}
-          >
-            <Upload class="size-6" />
-            Import
-          </Button>
-          <Button
-            variant="ghost"
-            onclick={async () => {
-              await blobSave(
-                `data.${JSON_FILE_EXTENSION}`,
-                createJSONBlob(
-                  JSON.stringify(ctx.exportState())
-                )
-              )
-            }}
-          >
-            <Download class="size-6" />
-            Export
-          </Button>
-          <Button
-            variant="ghost"
+            size="icon"
             href="https://x0k.github.io/svelte-jsonschema-form/"
             >
             <OpenBook class="size-6" />
-            Docs
           </Button>
           <Button
             target="_blank"
             href="https://github.com/x0k/svelte-jsonschema-form/"
             variant="ghost"
+            size="icon"
             >
             <Github class="size-6" />
-            GitHub
           </Button>
-          <Select
-            bind:value={themeManager.theme}
-            items={THEMES}
-            labels={THEME_TITLES}
-          />
+          <Button variant="ghost" size="icon" onclick={() => {
+            themeManager.isDark = !themeManager.isDark
+          }} >
+            {#if themeManager.isDark}
+              <Moon class="size-6" />
+            {:else}
+              <Sun class="size-6" />
+            {/if}
+          </Button>
         </div>
       </div>
       <Builder {ctx} />
