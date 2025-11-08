@@ -8,12 +8,6 @@
   import { TooltipProvider } from "$lib/components/ui/tooltip/index.js";
   import Select from "$lib/components/select.svelte";
   import { highlighterPromise } from "$lib/shiki.js";
-
-  import Builder from "./builder/builder.svelte";
-  import { BuilderContext } from './builder/context.svelte.js';
-  import { setShadcnContext } from "./shadcn-context.js";
-  import { themeManager } from "./theme.svelte.js";
-  import { THEME_TITLES, THEMES } from "./shared/index.js";
   import {
     blobOpen,
     blobSave,
@@ -22,6 +16,12 @@
     createJSONBlob,
     parseJSONBlob
   } from '$lib/file.js';
+
+  import Builder from "./builder/builder.svelte";
+  import { BuilderContext } from './builder/context.svelte.js';
+  import { setShadcnContext } from "./shadcn-context.js";
+  import { themeManager } from "./theme.svelte.js";
+  import { THEME_TITLES, THEMES } from "./shared/index.js";
 
   setShadcnContext();
 
