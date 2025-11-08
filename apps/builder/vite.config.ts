@@ -15,6 +15,6 @@ export default defineConfig({
   },
   optimizeDeps: {
     exclude: ["@jis3r/icons"],
-    include: ['@svar-ui/svelte-core']
+    include: ['@svar-ui/svelte-core', "svelte-sonner"]
   },
 });

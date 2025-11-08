@@ -9,7 +9,7 @@ import {
   type ProjectMeta,
 } from "./model.js";
 
-export class ProjectsService<S> {
+export class IDBProjectsRepository<S> {
   constructor(protected readonly db: IDBPDatabase<AppDBSchema>) {}
 
   async validateProjectName(title: string) {

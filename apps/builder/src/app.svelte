@@ -8,6 +8,7 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { TooltipProvider } from "$lib/components/ui/tooltip/index.js";
   import { highlighterPromise } from "$lib/shiki.js";
+  import { Toaster } from "$lib/components/ui/sonner/index.js";
 
   import type { AppDBSchema } from "./shared/index.js";
   import Builder from "./builder/builder.svelte";
@@ -15,7 +16,7 @@
   import { setShadcnContext } from "./shadcn-context.js";
   import { themeManager } from "./theme.svelte.js";
   import { AppContext } from './app/context.svelte.js';
-  import { ProjectsService } from './app/projects-service.js';
+  import { IDBProjectsRepository } from './app/idb-projects-repository.js';
   import ProjectsControls from './app/projects-controls.svelte';
   import ProjectsDialog from './app/projects-dialog.svelte';
 
@@ -38,16 +39,17 @@
   })])
 </script>
 
+<Toaster richColors theme={themeManager.theme} />
 <TooltipProvider delayDuration={0}>
   <div
-    class="min-h-screen bg-background dark:[color-scheme:dark]"
-    style="--header-height: 60px;"
+  class="min-h-screen bg-background dark:scheme-dark"
+  style="--header-height: 60px;"
   >
     {#await promises}
       <p>Loading...</p>
     {:then [highlighter, db]}
       {@const ctx = new BuilderContext(highlighter)}
-      {@const app = new AppContext(ctx, new ProjectsService(db))}
+      {@const app = new AppContext(ctx, new IDBProjectsRepository(db))}
       <div class="sticky top-0 z-50 bg-background">
         <div class="mx-auto px-8 py-3 flex gap-2 items-center">
           <a href={clearLink.toString()} class="text-xl font-bold"

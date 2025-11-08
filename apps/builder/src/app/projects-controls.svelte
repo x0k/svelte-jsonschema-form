@@ -18,7 +18,8 @@
 
 <ButtonGroup>
   {#if app.currentProject}
-    <Button>
+    <Button variant="outline">
+      <Save />
       Save
     </Button>
   {:else}

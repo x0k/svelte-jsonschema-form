@@ -17,6 +17,7 @@
     "clsx": "^2.1.1",
     "json-schema-to-ts": "^3.1.1",
     "svelte": "catalog:",
+    "svelte-sonner": "^1.0.5",
     "tailwind-merge": "^3.3.1",
     "tailwind-variants": "^3.1.1",
     "tailwindcss": "catalog:",
