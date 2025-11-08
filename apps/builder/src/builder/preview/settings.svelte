@@ -10,6 +10,7 @@
   import { VALIDATOR_TITLES, VALIDATORS } from "$lib/sjsf/validators.js";
   import Select from "$lib/components/select.svelte";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+  import { encodeJson } from '$lib/url.js';
 
   import { RouteName } from "../model.js";
   import { getBuilderContext } from "../context.svelte.js";
@@ -76,7 +77,7 @@
       variant="ghost"
       class="flex items-center gap-2"
       onclick={() => {
-        const url = `https://x0k.github.io/svelte-jsonschema-form/playground3#${ctx.createPlaygroundState()}`;
+        const url = `https://x0k.github.io/svelte-jsonschema-form/playground3#${encodeJson(ctx.createPlaygroundSample())}`;
         window.open(url);
       }}
       >Playground <div><ExternalLink tabindex={-1} /></div></Button
@@ -85,7 +86,7 @@
       text={() => {
         const url = new URL(window.location.href);
         url.search = "";
-        url.hash = ctx.exportState();
+        url.hash = encodeJson(ctx.exportState());
         return url.toString();
       }}>Share</CopyButton
     >

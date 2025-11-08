@@ -15,8 +15,8 @@
     "@tailwindcss/vite": "catalog:",
     "bits-ui": "catalog:",
     "clsx": "^2.1.1",
-    "svelte": "catalog:",
     "json-schema-to-ts": "^3.1.1",
+    "svelte": "catalog:",
     "tailwind-merge": "^3.3.1",
     "tailwind-variants": "^3.1.1",
     "tailwindcss": "catalog:",
@@ -44,6 +44,7 @@
     "@sjsf/skeleton4-theme": "workspace:*",
     "@svar-ui/svelte-core": "^2.3.1",
     "ajv": "^8.17.1",
+    "browser-fs-access": "^0.38.0",
     "dompurify": "^3.3.0",
     "lz-string": "^1.5.0",
     "shiki": "^3.14.0"

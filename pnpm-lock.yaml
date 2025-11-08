@@ -214,6 +214,9 @@ importers:
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
+      browser-fs-access:
+        specifier: ^0.38.0
+        version: 0.38.0
       dompurify:
         specifier: ^3.3.0
         version: 3.3.0
@@ -4088,6 +4091,9 @@ packages:
 
   brotli@1.3.3:
     resolution: {integrity: sha512-oTKjJdShmDuGW94SyyaoQvAjf30dZaHnjJ8uAF+u2/vGJkJbJPJAT1gDiOJP5v1Zb6f9KEyW/1HpuaWIXtGHPg==}
+
+  browser-fs-access@0.38.0:
+    resolution: {integrity: sha512-JveqW2w6pEZqFEEfMgCszXzYpE89dG+nPsmOdcs741mFFAROeL+iqjGEpR07RI+s0YY0EFr+4KnOoACprJTpOw==}
 
   browserslist@4.27.0:
     resolution: {integrity: sha512-AXVQwdhot1eqLihwasPElhX2tAZiBjWdJ9i/Zcj2S6QYIjkx62OKSfnobkriB81C3l4w0rVy3Nt4jaTBltYEpw==}
@@ -9974,6 +9980,8 @@ snapshots:
   brotli@1.3.3:
     dependencies:
       base64-js: 1.5.1
+
+  browser-fs-access@0.38.0: {}
 
   browserslist@4.27.0:
     dependencies:
