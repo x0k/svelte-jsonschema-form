@@ -6,11 +6,11 @@
 	import { Toaster } from '$lib/components/ui/sonner/index.js';
 
 	import type { AppDBSchema } from './shared/index.js';
-	import { IDBProjectsRepository } from './app/idb-projects-repository.js';
+	import { IDBProjectsRepository } from './projects/idb-projects-repository.js';
 	import { BuilderContext } from './builder/context.svelte.js';
 	import { setShadcnContext } from './shadcn-context.js';
 	import { themeManager } from './theme.svelte.js';
-	import { AppContext } from './app/context.svelte.js';
+	import { ProjectsContext } from './projects/context.svelte.js';
 	import Builder from './builder/builder.svelte';
 	import Header from './header.svelte';
 
@@ -42,12 +42,12 @@
 		{#await promises}
 			<p>Loading...</p>
 		{:then [highlighter, db]}
-			{@const ctx = new BuilderContext(highlighter)}
-			{@const app = new AppContext(ctx, new IDBProjectsRepository(db))}
+			{@const builder = new BuilderContext(highlighter)}
+			{@const projects = new ProjectsContext(builder, new IDBProjectsRepository(db))}
 			<div class="sticky top-0 z-50 bg-background">
-        <Header {app} />
+        <Header ctx={projects} />
 			</div>
-			<Builder {ctx} />
+			<Builder ctx={builder} />
 		{/await}
 	</div>
 </TooltipProvider>

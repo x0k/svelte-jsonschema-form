@@ -33,7 +33,7 @@ export interface ProjectsRepository<S> {
 	loadLastUsedProject(): Promise<Project<S> | undefined>;
 }
 
-export class AppContext {
+export class ProjectsContext {
 	readonly #closeGenericDialog = () => {
 		this.#genericProjectDialogOptions = undefined;
 	};
@@ -58,15 +58,6 @@ export class AppContext {
 				this.#currentProject?.state as unknown as SchemaValue,
 				this.#builderState as unknown as SchemaValue
 			)
-		);
-		projectsRepository.loadLastUsedProject().then(
-			(p) => {
-				this.setCurrentProject(p);
-			},
-			(err) => {
-				toast.error(`Failed to load last project`);
-				console.error(err);
-			}
 		);
 	}
 
@@ -107,6 +98,18 @@ export class AppContext {
 			},
 			(err) => {
 				toast.error(`Failed to load recent projects`);
+				console.error(err);
+			}
+		);
+	}
+
+	loadLastUsedProject() {
+		this.projectsRepository.loadLastUsedProject().then(
+			(p) => {
+				this.setCurrentProject(p);
+			},
+			(err) => {
+				toast.error(`Failed to load last project`);
 				console.error(err);
 			}
 		);
@@ -366,7 +369,7 @@ export class AppContext {
 	}
 
 	private setCurrentProject(p: Project<BuilderState> | undefined) {
-		this.projectsRepository.saveLastUsedProjectId(p?.id)
+		this.projectsRepository.saveLastUsedProjectId(p?.id);
 		this.#currentProject = p;
 		if (p) {
 			this.builder.importState(p.state);

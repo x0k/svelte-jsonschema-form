@@ -16,54 +16,25 @@
 	import * as Item from '$lib/components/ui/item/index.js';
 	import * as Empty from '$lib/components/ui/empty/index.js';
 
-	import type { BuilderState } from '../builder/context.svelte.js';
-	import type { Project, ProjectMeta } from './model.js';
+	import type { ProjectsContext } from './context.svelte.js';
 
-	interface ProjectsDialogOptions {
-		class?: ClassNameValue;
-		projects: ProjectMeta[];
-		currentProject: Project<BuilderState> | undefined;
-		loadProjects: () => void;
-		//
-		openProject: (project: ProjectMeta, onOpen: () => void) => void;
-		openEditProjectDialog: (project: ProjectMeta) => void;
-		openForkProjectDialog: (project: ProjectMeta, onFork: () => void) => void;
-		openExportProjectDialog: (project: ProjectMeta) => void;
-		openDeleteProjectDialog: (project: ProjectMeta) => void;
-		//
-		openCreateProjectDialog: () => void;
-		openImportProjectDialog: () => void;
-	}
-
-	const {
-		class: className,
-		projects,
-		currentProject,
-		loadProjects,
-		//
-		openProject,
-		openEditProjectDialog,
-		openForkProjectDialog,
-		openExportProjectDialog,
-		openDeleteProjectDialog,
-		//
-		openCreateProjectDialog,
-		openImportProjectDialog
-	}: ProjectsDialogOptions = $props();
+	const { class: className, ctx }: { class?: ClassNameValue; ctx: ProjectsContext } = $props();
 
 	let open = $state.raw(false);
 
 	function closeDialog() {
 		open = false;
 	}
+
+	const currentProject = $derived(ctx.currentProject);
 </script>
 
 {#snippet buttons()}
-	<Button onclick={openCreateProjectDialog}>
+	<Button onclick={() => ctx.openCreateProjectDialog()}>
 		<Plus />
 		Create Project
 	</Button>
-	<Button variant="outline" onclick={openImportProjectDialog}>
+	<Button variant="outline" onclick={() => ctx.openImportProjectDialog()}>
 		<Upload />
 		Import Project
 	</Button>
@@ -72,7 +43,7 @@
 	bind:open
 	onOpenChange={(open) => {
 		if (open) {
-			loadProjects();
+			ctx.loadRecentProjects();
 		}
 	}}
 >
@@ -85,7 +56,7 @@
 		</Dialog.Header>
 		<div class="py-4">
 			<Item.Group>
-				{#each projects as p, i (p.id)}
+				{#each ctx.recentProjects as p, i (p.id)}
 					{@const isCurrent = p.id === currentProject?.id}
 					{#if i !== 0}
 						<Item.Separator />
@@ -102,7 +73,7 @@
 								<Button
 									variant="outline"
 									disabled={isCurrent}
-									onclick={() => openProject(p, closeDialog)}>Open</Button
+									onclick={() => ctx.openProject(p, closeDialog)}>Open</Button
 								>
 								<DropdownMenu.Root>
 									<DropdownMenu.Trigger>
@@ -113,22 +84,22 @@
 										{/snippet}
 									</DropdownMenu.Trigger>
 									<DropdownMenu.Content class="w-36" align="start">
-										<DropdownMenu.Item onclick={() => openEditProjectDialog(p)}>
+										<DropdownMenu.Item onclick={() => ctx.openEditProjectDialog(p)}>
 											<Pencil />
 											Edit
 										</DropdownMenu.Item>
-										<DropdownMenu.Item onclick={() => openForkProjectDialog(p, closeDialog)}>
+										<DropdownMenu.Item onclick={() => ctx.openForkProjectDialog(p, closeDialog)}>
 											<GitFork />
 											Fork
 										</DropdownMenu.Item>
-										<DropdownMenu.Item onclick={() => openExportProjectDialog(p)}>
+										<DropdownMenu.Item onclick={() => ctx.openExportProjectDialog(p)}>
 											<Download />
 											Export
 										</DropdownMenu.Item>
 										<DropdownMenu.Separator />
 										<DropdownMenu.Item
 											variant="destructive"
-											onclick={() => openDeleteProjectDialog(p)}
+											onclick={() => ctx.openDeleteProjectDialog(p)}
 										>
 											<Trash />
 											Delete
@@ -155,7 +126,7 @@
 				{/each}
 			</Item.Group>
 		</div>
-		{#if projects.length > 0}
+		{#if ctx.recentProjects.length > 0}
 			<Dialog.Footer>
 				{@render buttons()}
 			</Dialog.Footer>
