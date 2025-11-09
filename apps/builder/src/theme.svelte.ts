@@ -5,7 +5,7 @@ import { Theme, type DarkOrLight } from "./shared/index.js";
 export interface ThemeManager {
   theme: Theme;
   readonly darkOrLight: DarkOrLight;
-  readonly isDark: boolean;
+  isDark: boolean;
   sync: () => void;
 }
 
@@ -44,6 +44,9 @@ function createThemeManager(sync: (manager: ThemeManager) => void) {
     get isDark() {
       return isDark;
     },
+    set isDark(v) {
+      manager.theme = v ? Theme.Dark : Theme.Light
+    }
   } satisfies ThemeManager;
   return manager;
 }

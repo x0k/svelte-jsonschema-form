@@ -3,11 +3,6 @@ import type { FormValue, Schema, UiSchema } from "@sjsf/form";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
-import {
-  compressToEncodedURIComponent,
-  decompressFromEncodedURIComponent,
-} from "lz-string";
-
 import type { Sample } from "$apps/playground2/src/core/sample.js";
 
 import {
@@ -108,7 +103,7 @@ export interface NodeIssue {
   message: string;
 }
 
-interface BuilderState {
+export interface BuilderState {
   rootNode?: CustomizableNode;
   theme: Theme;
   resolver: Resolver;
@@ -393,7 +388,7 @@ export class BuilderContext {
   }
 
   exportState(): BuilderState {
-    return {
+    return $state.snapshot({
       rootNode: this.rootNode,
       icons: this.icons,
       ignoreWarnings: this.ignoreWarnings,
@@ -402,10 +397,10 @@ export class BuilderContext {
       theme: this.theme,
       validator: this.validator,
       html5Validation: this.html5Validation,
-    };
+    });
   }
 
-  createPlaygroundSample(): Sample {
+  createPlaygroundSample(): Readonly<Sample> {
     return {
       schema: this.schema,
       uiSchema: this.uiSchema ?? {},
