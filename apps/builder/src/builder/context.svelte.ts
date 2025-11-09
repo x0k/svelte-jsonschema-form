@@ -388,20 +388,20 @@ export class BuilderContext {
   }
 
   exportState(): BuilderState {
-    return {
-      rootNode: JSON.parse(JSON.stringify(this.rootNode)),
+    return $state.snapshot({
+      rootNode: this.rootNode,
       icons: this.icons,
       ignoreWarnings: this.ignoreWarnings,
       resolver: this.resolver,
-      route: structuredClone(this.route),
+      route: this.route,
       theme: this.theme,
       validator: this.validator,
       html5Validation: this.html5Validation,
-    };
+    });
   }
 
-  createPlaygroundSample(): Sample {
-    return structuredClone({
+  createPlaygroundSample(): Readonly<Sample> {
+    return {
       schema: this.schema,
       uiSchema: this.uiSchema ?? {},
       initialValue: null,
@@ -410,7 +410,7 @@ export class BuilderContext {
       resolver: this.resolver,
       icons: this.icons,
       html5Validation: this.html5Validation,
-    });
+    };
   }
 
   createDroppable<N extends Node>(

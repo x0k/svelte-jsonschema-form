@@ -7,6 +7,7 @@
 	import Folder from '@lucide/svelte/icons/folder-code';
 	import Upload from '@lucide/svelte/icons/upload';
 	import Plus from '@lucide/svelte/icons/plus';
+	import Pencil from '@lucide/svelte/icons/pencil';
 
 	import { ButtonGroup } from '$lib/components/ui/button-group/index.js';
 	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
@@ -15,34 +16,68 @@
 	import * as Item from '$lib/components/ui/item/index.js';
 	import * as Empty from '$lib/components/ui/empty/index.js';
 
-	import type { AppContext } from './context.svelte.js';
+	import type { BuilderState } from '../builder/context.svelte.js';
+	import type { Project, ProjectMeta } from './model.js';
 
-	const { app, class: className }: { app: AppContext; class?: ClassNameValue } = $props();
+	interface ProjectsDialogOptions {
+		class?: ClassNameValue;
+		projects: ProjectMeta[];
+		currentProject: Project<BuilderState> | undefined;
+		loadProjects: () => void;
+		//
+		openProject: (project: ProjectMeta, onOpen: () => void) => void;
+		openEditProjectDialog: (project: ProjectMeta) => void;
+		openForkProjectDialog: (project: ProjectMeta, onFork: () => void) => void;
+		openExportProjectDialog: (project: ProjectMeta) => void;
+		openDeleteProjectDialog: (project: ProjectMeta) => void;
+		//
+		openCreateProjectDialog: () => void;
+		openImportProjectDialog: () => void;
+	}
+
+	const {
+		class: className,
+		projects,
+		currentProject,
+		loadProjects,
+		//
+		openProject,
+		openEditProjectDialog,
+		openForkProjectDialog,
+		openExportProjectDialog,
+		openDeleteProjectDialog,
+		//
+		openCreateProjectDialog,
+		openImportProjectDialog
+	}: ProjectsDialogOptions = $props();
+
+	let open = $state.raw(false);
+
+	function closeDialog() {
+		open = false;
+	}
 </script>
 
 {#snippet buttons()}
-	<Button
-		onclick={() => {
-			app.createProjectDialogOpen = true;
-		}}
-	>
+	<Button onclick={openCreateProjectDialog}>
 		<Plus />
 		Create Project
 	</Button>
-	<Button variant="outline">
+	<Button variant="outline" onclick={openImportProjectDialog}>
 		<Upload />
 		Import Project
 	</Button>
 {/snippet}
 <Dialog.Root
+	bind:open
 	onOpenChange={(open) => {
 		if (open) {
-			app.loadRecentProjects.run();
+			loadProjects();
 		}
 	}}
 >
 	<Dialog.Trigger class={buttonVariants({ variant: 'ghost', className })}>
-		{app.currentProject?.title ?? 'Projects'}
+		{currentProject?.title ?? 'Projects'}
 	</Dialog.Trigger>
 	<Dialog.Content class="sm:max-w-[425px] md:max-w-xl lg:max-w-2xl">
 		<Dialog.Header>
@@ -50,11 +85,12 @@
 		</Dialog.Header>
 		<div class="py-4">
 			<Item.Group>
-				{#each app.recentProjects as p, i (p.id)}
+				{#each projects as p, i (p.id)}
+					{@const isCurrent = p.id === currentProject?.id}
 					{#if i !== 0}
 						<Item.Separator />
 					{/if}
-					<Item.Root variant={app.currentProject?.id === p.id ? 'muted' : 'default'}>
+					<Item.Root variant={isCurrent ? 'muted' : 'default'}>
 						<Item.Content>
 							<Item.Title>{p.title}</Item.Title>
 							<Item.Description>
@@ -63,7 +99,11 @@
 						</Item.Content>
 						<Item.Actions>
 							<ButtonGroup>
-								<Button variant="outline">Open</Button>
+								<Button
+									variant="outline"
+									disabled={isCurrent}
+									onclick={() => openProject(p, closeDialog)}>Open</Button
+								>
 								<DropdownMenu.Root>
 									<DropdownMenu.Trigger>
 										{#snippet child({ props })}
@@ -73,16 +113,23 @@
 										{/snippet}
 									</DropdownMenu.Trigger>
 									<DropdownMenu.Content class="w-36" align="start">
-										<DropdownMenu.Item>
+										<DropdownMenu.Item onclick={() => openEditProjectDialog(p)}>
+											<Pencil />
+											Edit
+										</DropdownMenu.Item>
+										<DropdownMenu.Item onclick={() => openForkProjectDialog(p, closeDialog)}>
 											<GitFork />
 											Fork
 										</DropdownMenu.Item>
-										<DropdownMenu.Item>
+										<DropdownMenu.Item onclick={() => openExportProjectDialog(p)}>
 											<Download />
 											Export
 										</DropdownMenu.Item>
 										<DropdownMenu.Separator />
-										<DropdownMenu.Item variant="destructive">
+										<DropdownMenu.Item
+											variant="destructive"
+											onclick={() => openDeleteProjectDialog(p)}
+										>
 											<Trash />
 											Delete
 										</DropdownMenu.Item>
@@ -108,8 +155,10 @@
 				{/each}
 			</Item.Group>
 		</div>
-		<Dialog.Footer>
-			{@render buttons()}
-		</Dialog.Footer>
+		{#if projects.length > 0}
+			<Dialog.Footer>
+				{@render buttons()}
+			</Dialog.Footer>
+		{/if}
 	</Dialog.Content>
 </Dialog.Root>
