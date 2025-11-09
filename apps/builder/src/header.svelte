@@ -25,6 +25,9 @@
 	const clearLink = new URL(location.href);
 	clearLink.search = '';
 	clearLink.hash = '';
+
+  const hash = location.hash.substring(1);
+	ctx.init(hash)
 </script>
 
 <div class="mx-auto flex items-center gap-2 px-8 py-3">

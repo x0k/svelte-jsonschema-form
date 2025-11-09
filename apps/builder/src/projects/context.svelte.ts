@@ -1,6 +1,15 @@
 import { isSchemaValueDeepEqual, type SchemaValue } from '@sjsf/form/core';
 import { toast } from 'svelte-sonner';
 
+import {
+	blobOpen,
+	blobSave,
+	createJSONBlob,
+	JSON_FILE_EXTENSION,
+	JSON_MIME_TYPE,
+	parseJSONBlob
+} from '$lib/file.js';
+
 import type { BuilderContext, BuilderState } from '../builder/context.svelte.js';
 import { type CreateProject, type Project, type ProjectId, type ProjectMeta } from './model.js';
 import {
@@ -11,14 +20,7 @@ import {
 	DEFAULT_CONFIRMATION_DIALOG_OPTIONS,
 	type ConfirmationDialogOptions
 } from './confirmation-dialog.svelte';
-import {
-	blobOpen,
-	blobSave,
-	createJSONBlob,
-	JSON_FILE_EXTENSION,
-	JSON_MIME_TYPE,
-	parseJSONBlob
-} from '$lib/file.js';
+import { decodeJson } from '$lib/url.js';
 
 export interface ProjectsRepository<S> {
 	validateProjectName(title: string): Promise<boolean>;
@@ -91,6 +93,22 @@ export class ProjectsContext {
 		return this.#confirmationDialogOptions ?? DEFAULT_CONFIRMATION_DIALOG_OPTIONS;
 	}
 
+	init(hash: string) {
+		if (hash) {
+			this.builder.importState(decodeJson(hash))
+		} else {
+			this.projectsRepository.loadLastUsedProject().then(
+				(p) => {
+					this.setCurrentProject(p);
+				},
+				(err) => {
+					toast.error(`Failed to load last project`);
+					console.error(err);
+				}
+			);
+		}
+	}
+
 	loadRecentProjects() {
 		this.projectsRepository.loadRecentProjects().then(
 			(projects) => {
@@ -98,18 +116,6 @@ export class ProjectsContext {
 			},
 			(err) => {
 				toast.error(`Failed to load recent projects`);
-				console.error(err);
-			}
-		);
-	}
-
-	loadLastUsedProject() {
-		this.projectsRepository.loadLastUsedProject().then(
-			(p) => {
-				this.setCurrentProject(p);
-			},
-			(err) => {
-				toast.error(`Failed to load last project`);
 				console.error(err);
 			}
 		);
