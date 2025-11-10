@@ -64,8 +64,50 @@ using the `createAction` function.
 In this case, the callback provided as the second argument
 will only be called if the form data passes validation successfully.
 
+```ts
+export const actions = {
+  default: createAction(
+    {
+      /* options */
+    },
+    (data, event, meta) => {
+      /* logic */
+    }
+  ),
+} satisfies Actions;
+```
+
 If any errors occur during processing,
 you can return an array of `ValidationError` objects.
+
+```ts
+if (title.length > 100) {
+  return [{ path: ["title"], message: "Title is too long" }];
+}
+```
+
+### Advanced API
+
+If you need more control over the action handler - for example,
+to perform checks before processing form data -
+you can use the `createFormHandler` API:
+
+:::note
+
+You must return the `form` (the key corresponding to the form name)
+in every branch of the handler's code.
+`redirect` and `error` helpers are also allowed.
+
+:::
+
+<Tabs>
+  <TabItem label='+page.server.ts'>
+    <Code code={serverFlexCode} lang='typescript' />
+  </TabItem>
+  <TabItem label='lib/post.ts'>
+    <Code code={modelCode} lang='typescript' />
+  </TabItem>
+</Tabs>
 
 ## Client
 
