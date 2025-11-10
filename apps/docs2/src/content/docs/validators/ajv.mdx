@@ -46,12 +46,15 @@ JSON schema validator.
 You can connect AJV plugins as follows:
 
 ```ts
+import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { createFormValidator, addFormComponents } from "@sjsf/ajv8-validator";
 import addFormats from "ajv-formats"
 
-const validator = createFormValidator({
-  ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
-})
+export const validator = <T>(options: ValidatorFactoryOptions) =>
+  createFormValidator<T>({
+    ...options,
+    ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+  })
 ```
 
 ## Async validation
@@ -69,11 +72,14 @@ This validator supports async validation.
 </LinkButton>
 
 ```typescript
+import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { createAsyncFormValidator } from "@sjsf/ajv8-validator";
 
-const validator = createAsyncFormValidator({
-  ajv: yourAjvInstance,
-})
+export const validator = <T>(options: ValidatorFactoryOptions) =>
+  createAsyncFormValidator<T>({
+    ...options,
+    ajv: yourAjvInstance,
+  })
 ```
 
 ## Precompiled validation

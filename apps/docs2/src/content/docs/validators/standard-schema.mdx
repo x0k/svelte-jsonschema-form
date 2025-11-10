@@ -45,7 +45,8 @@ This validator supports async validation.
 ```typescript
 import { createAsyncFormValueValidator } from "@sjsf/form/validators/standard-schema";
 
-const validator = {
-  ...createAsyncFormValueValidator(schema, options),
+export const validator = {
+  ...createAsyncFormValueValidator(schema),
+  isValid: () => true,
 };
 ```

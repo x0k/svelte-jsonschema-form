@@ -55,7 +55,7 @@ Use `@sjsf/zod4-validator/mini` to work with `zod/mini`
 This validator supports async validation.
 
 ```typescript
-import { setupAsyncFormValidator } from "@sjsf/zod-validator/classic";
+import { adaptAsync } from "@sjsf/zod-validator/classic";
 
-const { schema, validator } = setupAsyncFormValidator(zodSchema);
+const { schema, validator } = adaptAsync(zodSchema);
 ```

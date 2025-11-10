@@ -49,7 +49,7 @@ See the [supported features](https://github.com/fabian-hiller/valibot/blob/main/
 This validator supports async validation.
 
 ```typescript
-import { setupAsyncFormValidator } from "@sjsf/valibot-validator";
+import { adaptAsync } from "@sjsf/valibot-validator";
 
-const { schema, validator } = setupAsyncFormValidator(valibotSchema);
+const { schema, validator } = adaptAsync(valibotSchema);
 ```

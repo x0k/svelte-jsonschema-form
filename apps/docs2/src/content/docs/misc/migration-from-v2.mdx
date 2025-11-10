@@ -21,11 +21,12 @@ Update your `defaults.ts` file:
 + export { createFormMerger as merger } from "@sjsf/form/mergers/legacy";
 ```
 
-And install `json-schema-merge-allof`, but I recommend trying to switch
-to a modern merger to get the benefits of bundle size and performance -
-[modern merger setup](../../guides/merger/).
+And install `json-schema-merge-allof`:
 
 <Npm pkg="json-schema-merge-allof" />
+
+But I recommend trying to switch to a modern merger to get the benefits
+of bundle size and performance - [modern merger setup](../../guides/merger/).
 
 This change should be sufficient for migrating simple projects.
 However, I recommend reviewing the full list of changes,
@@ -279,8 +280,7 @@ For convenient use with `createForm`:
 The signatures of `createFormValueValidator` and `createAsyncFormValueValidator`
 from the `@sjsf/form/validators/standard-schema` module have changed.
 
-Now, the Standard Schema is passed as the first argument,
-followed by the remaining options.
+Now the Standard Schema is passed as the first argument without any options.
 
 ## Themes
 
