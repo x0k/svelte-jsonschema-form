@@ -52,9 +52,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          key: ${{ runner.os }}-turbo-v3-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-turbo-
+            ${{ runner.os }}-turbo-v3
 
       - name: Build
         run: pnpm run ci:build --filter="@sjsf/*" --filter="@sjsf-lab/*"
