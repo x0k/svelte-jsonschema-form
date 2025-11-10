@@ -3,10 +3,15 @@ import postModelTs from '%/sveltekit-starter/src/lib/post.ts?raw';
 import pageServerTs from "%/sveltekit-starter/src/routes/form-actions-flex/+page.server.ts?raw";
 import pageSvelte from "%/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw";
 
+import { FORM_SVELTEKIT_PACKAGE } from '@/shared';
+
 import { omitBasePackages, type Layer } from "../layer";
 
 export const layer = {
   package: omitBasePackages(packageJson),
+  formDefaults: {
+    idBuilderPackage: FORM_SVELTEKIT_PACKAGE,
+  },
   files: {
     "src/lib/post.ts": postModelTs,
     "src/routes/+page.server.ts": pageServerTs,

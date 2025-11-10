@@ -9,7 +9,9 @@ export const VERSION = version;
 
 export const IS_NEXT_VERSION = VERSION.includes("next");
 
-export const FORM_PACKAGE = `@sjsf/form`;
+export const FORM_PACKAGE = "@sjsf/form";
+export const FORM_SVELTEKIT_PACKAGE = "@sjsf/sveltekit";
+export const FORM_SVELTEKIT_RF_PACKAGE = "@sjsf/sveltekit/rf";
 
 export const AJV_PACKAGE_WITH_TAG = "ajv@8";
 
@@ -131,9 +133,7 @@ export const ACTUAL_THEMES = [
 
 export type ActualTheme = (typeof ACTUAL_THEMES)[number];
 
-export const SUB_THEMES = [
-  'pico'
-] as const
+export const SUB_THEMES = ["pico"] as const;
 
 export type SubThemes = (typeof SUB_THEMES)[number];
 

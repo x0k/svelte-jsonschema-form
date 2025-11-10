@@ -39,6 +39,7 @@ export interface FormDefaultsConfig {
   widgets?: string[];
   validator?: Validator;
   resolver?: Resolver;
+  idBuilderPackage?: string;
 }
 
 export interface SvelteCompilerOptions {
@@ -215,6 +216,7 @@ function buildFormDefaultsConfig({
   theme = "basic",
   validator = "Ajv",
   widgets = [],
+  idBuilderPackage = "@sjsf/form/id-builders/modern"
 }: FormDefaultsConfig): string {
   const pkg = validatorPackage(validator);
   const validatorCode = pkg
@@ -229,7 +231,7 @@ ${widgets.map((w) => `import "@sjsf/${theme}-theme/extra-widgets/${w}-include";`
 
 export { translation } from "@sjsf/form/translations/en";
 
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { createFormIdBuilder as idBuilder } from "${idBuilderPackage}";
 
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 ${validatorCode}`;
