@@ -70,6 +70,7 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 - [Flowbite Svelte](https://x0k.dev/svelte-jsonschema-form/themes/flowbite3/)
 - [Skeleton v4](https://x0k.dev/svelte-jsonschema-form/themes/skeleton4/)
 - [shadcn-svelte](https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/)
+  - [shadcn-svelte-extras](https://x0k.dev/svelte-jsonschema-form/themes/lab/shadcn-extras/) (experimental)
 - [SVAR](https://x0k.dev/svelte-jsonschema-form/themes/lab/svar/) (experimental)
 
 ## Supported Validators
