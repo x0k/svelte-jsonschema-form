@@ -3,8 +3,6 @@
   import { setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
 
-  import { createAstro } from "@/astro.svelte";
-
   import {
     schema,
     uiSchema,
@@ -23,12 +21,11 @@
     uiSchema,
     onSubmit: ({ name }) => window.alert(`Hello, ${name}`),
   });
-  const astro = createAstro();
 
-  //@ts-expect-error
+  //@ts-expect-error shadcn-svelte-extras
   setThemeContext({ components });
 </script>
 
-<BasicForm {form} class="flex flex-col gap-4 {astro.darkOrLight}" />
+<BasicForm {form} />
 
-<pre style="padding-top: 1rem;">{JSON.stringify(getValueSnapshot(form), withFile, 2)}</pre>
+<pre>{JSON.stringify(getValueSnapshot(form), withFile, 2)}</pre>

@@ -32,5 +32,7 @@
   })
 </script>
 
-<Form {extraUiOptions} />
-<div bind:this={portalEl}></div>
+<div class="demo-container" data-theme="cerberus">
+  <Form {extraUiOptions} />
+  <div bind:this={portalEl}></div>
+</div>
