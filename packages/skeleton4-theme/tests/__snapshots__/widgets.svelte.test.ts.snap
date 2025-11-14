@@ -1588,7 +1588,7 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2 w-full"
+          class="skb:space-y-2 w-full"
           data-disabled=""
           data-part="root"
           data-scope="date-picker"
@@ -1598,7 +1598,7 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:flex skb:flex-col skb:gap-2"
+            class="skb:relative skb:space-y-2"
             data-disabled=""
             data-part="control"
             data-scope="date-picker"
@@ -1629,7 +1629,7 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
               aria-controls="datepicker:c7:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-[calc(var(--spacing)*1.25)]"
+              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -1752,7 +1752,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2 w-full"
+          class="skb:space-y-2 w-full"
           data-part="root"
           data-scope="date-picker"
           data-state="closed"
@@ -1761,7 +1761,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:flex skb:flex-col skb:gap-2"
+            class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
             id="datepicker:c6:control"
@@ -1790,7 +1790,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
               aria-controls="datepicker:c6:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-[calc(var(--spacing)*1.25)]"
+              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -1923,7 +1923,7 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2 w-full"
+          class="skb:space-y-2 w-full"
           data-part="root"
           data-scope="date-picker"
           data-state="closed"
@@ -1932,7 +1932,7 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:flex skb:flex-col skb:gap-2"
+            class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
             id="datepicker:c5:control"
@@ -1961,7 +1961,7 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
               aria-controls="datepicker:c5:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-[calc(var(--spacing)*1.25)]"
+              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -2083,7 +2083,7 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2 w-full"
+          class="skb:space-y-2 w-full"
           data-part="root"
           data-readonly=""
           data-scope="date-picker"
@@ -2093,7 +2093,7 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:flex skb:flex-col skb:gap-2"
+            class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
             id="datepicker:c8:control"
@@ -2123,7 +2123,7 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
               aria-controls="datepicker:c8:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-[calc(var(--spacing)*1.25)]"
+              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -9333,7 +9333,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           <!---->
           <span
             aria-hidden="true"
-            class="skb:block skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
+            class="skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
             data-disabled=""
             data-part="control"
             data-required=""
@@ -9480,7 +9480,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
           <!---->
           <span
             aria-hidden="true"
-            class="skb:block skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
+            class="skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
             data-invalid=""
             data-part="control"
             data-required=""
@@ -9636,7 +9636,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           <!---->
           <span
             aria-hidden="true"
-            class="skb:block skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
+            class="skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
             data-part="control"
             data-required=""
             data-scope="switch"
@@ -9779,7 +9779,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           <!---->
           <span
             aria-hidden="true"
-            class="skb:block skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
+            class="skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
             data-part="control"
             data-readonly=""
             data-required=""
