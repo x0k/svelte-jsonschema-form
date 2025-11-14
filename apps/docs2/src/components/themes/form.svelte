@@ -3,9 +3,9 @@
 
   import type { ActualTheme } from "@/shared";
 
-  import Basic from "./basic/form.svelte";
-  import Daisyui5 from "./daisyui/form.svelte";
-  import Flowbite3 from "./flowbite/form.svelte";
+  import Basic from "./basic/wrapper.svelte";
+  import Daisyui5 from "./daisyui/wrapper.svelte";
+  import Flowbite3 from "./flowbite/wrapper.svelte";
   import Shadcn4 from "./shadcn4/wrapper.svelte";
   import Skeleton4 from "./skeleton4/wrapper.svelte";
 
@@ -23,3 +23,23 @@
 </script>
 
 <ThemeForm />
+<div>
+  <style>
+    .demo-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      align-items: stretch;
+      gap: 1rem;
+    }
+    @media (max-width: 1080px) {
+      .demo-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    .demo-container > pre {
+      overflow: auto;
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</div>

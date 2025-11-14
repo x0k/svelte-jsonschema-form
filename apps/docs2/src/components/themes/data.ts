@@ -160,7 +160,7 @@ export const uiSchema: UiSchemaRoot = {
 
 export const initialValue: CreateUser = {
   name: "Sarah Johnson",
-  email: "sarah.johnson@invalid",
+  email: "invalid@email",
   age: 28,
   country: "CA",
   skills: ["HTML", "CSS", "JS/TS", "Svelte"],
