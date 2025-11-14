@@ -55,10 +55,11 @@
       if (files === undefined || files.length === 0) {
         return undefined;
       }
+      const file = files[0]!;
       if (!(await validateFileList(signal, ctx, config, files))) {
         throw new FileListValidationError();
       }
-      return files[0]!;
+      return file;
     },
     onSuccess(file: File | undefined) {
       value = file;

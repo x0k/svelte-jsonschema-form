@@ -62,10 +62,11 @@
       if (files === undefined || files.length === 0) {
         return undefined;
       }
+      const file = files[0]!
       if (!(await validateFileList(signal, ctx, config, files))) {
         throw new FileListValidationError();
       }
-      return fileToDataURL(signal, files[0]!);
+      return fileToDataURL(signal, file);
     },
   });
 
