@@ -22,10 +22,10 @@
 
 <Input
 	{...inputAttributes(ctx, config, 'file', handlers, {
-		multiple,
-		'data-loading': loading,
-		'data-processing': processing
+		multiple
 	})}
 	bind:files={value}
 	type="file"
+	data-loading={loading}
+	data-processing={processing}
 />
