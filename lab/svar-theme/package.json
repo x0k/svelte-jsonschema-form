@@ -56,10 +56,10 @@
 		}
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^3.0.0"
+		"@sjsf/basic-theme": "workspace:^3.0.1"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^3.0.0",
+		"@sjsf/form": "workspace:^3.0.1",
 		"@svar-ui/svelte-core": "^2.3.0",
 		"svelte": "^5.30.0"
 	},

@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 3.0.1
+
+### Patch Changes
+
+- Fix file input handling by snapshotting files before async validation ([#248](https://github.com/x0k/svelte-jsonschema-form/pull/248))
+
 ## 3.0.0
 
 ### Major Changes

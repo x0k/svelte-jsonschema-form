@@ -1,5 +1,46 @@
 # docs
 
+## 1.9.1
+
+### Patch Changes
+
+- Use correct ID builders for SvelteKit examples ([#243](https://github.com/x0k/svelte-jsonschema-form/pull/243))
+
+- Update validator code blocks ([#244](https://github.com/x0k/svelte-jsonschema-form/pull/244))
+
+- Restore SvelteKit server advanced API code block ([#245](https://github.com/x0k/svelte-jsonschema-form/pull/245))
+
+- Simplify code of the main demo ([#247](https://github.com/x0k/svelte-jsonschema-form/pull/247))
+
+- Fix peer dependencies for `shadcn-svelte` and `schadcn-svelte-extras` theme examples ([#243](https://github.com/x0k/svelte-jsonschema-form/pull/243))
+
+- Fix link to `Form actions advanced API` section in Migration guide ([#246](https://github.com/x0k/svelte-jsonschema-form/pull/246))
+
+- Updated dependencies [[`1b8f1a6`](https://github.com/x0k/svelte-jsonschema-form/commit/1b8f1a6a2e13fbc97ab3f9c94accc5d74344a3ce), [`1b8f1a6`](https://github.com/x0k/svelte-jsonschema-form/commit/1b8f1a6a2e13fbc97ab3f9c94accc5d74344a3ce)]:
+  - @sjsf/shadcn4-theme@3.0.1
+  - @sjsf/form@3.0.1
+  - @sjsf-lab/shadcn-extras-theme@3.0.0
+  - @sjsf-lab/svar-theme@3.0.0
+  - @sjsf/daisyui-theme@3.0.0
+  - @sjsf/flowbite-theme@3.0.0
+  - @sjsf/shadcn-theme@3.0.0
+  - @sjsf/skeleton3-theme@3.0.0
+  - @sjsf/ajv8-validator@3.0.1
+  - @sjsf/basic-theme@3.0.1
+  - @sjsf/cfworker-validator@3.0.1
+  - @sjsf/daisyui5-theme@3.0.1
+  - @sjsf/flowbite-icons@3.0.1
+  - @sjsf/flowbite3-theme@3.0.1
+  - @sjsf/lucide-icons@3.0.1
+  - @sjsf/moving-icons@3.0.1
+  - @sjsf/radix-icons@3.0.1
+  - @sjsf/schemasafe-validator@3.0.1
+  - @sjsf/skeleton4-theme@3.0.1
+  - @sjsf/sveltekit@3.0.1
+  - theme-testing@1.0.14
+  - @sjsf/valibot-validator@3.0.1
+  - @sjsf/zod4-validator@3.0.1
+
 ## 1.9.0
 
 ### Minor Changes

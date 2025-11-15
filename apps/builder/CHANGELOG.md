@@ -1,5 +1,31 @@
 # builder
 
+## 0.3.0
+
+### Minor Changes
+
+- Implement local projects management ([#242](https://github.com/x0k/svelte-jsonschema-form/pull/242))
+
+- Add `Import` and `Export` buttons ([#240](https://github.com/x0k/svelte-jsonschema-form/pull/240))
+
+### Patch Changes
+
+- Updated dependencies [[`1b8f1a6`](https://github.com/x0k/svelte-jsonschema-form/commit/1b8f1a6a2e13fbc97ab3f9c94accc5d74344a3ce), [`1b8f1a6`](https://github.com/x0k/svelte-jsonschema-form/commit/1b8f1a6a2e13fbc97ab3f9c94accc5d74344a3ce)]:
+  - @sjsf/shadcn4-theme@3.0.1
+  - @sjsf/form@3.0.1
+  - @sjsf-lab/svar-theme@3.0.0
+  - @sjsf/ajv8-validator@3.0.1
+  - @sjsf/basic-theme@3.0.1
+  - @sjsf/cfworker-validator@3.0.1
+  - @sjsf/daisyui5-theme@3.0.1
+  - @sjsf/flowbite-icons@3.0.1
+  - @sjsf/flowbite3-theme@3.0.1
+  - @sjsf/lucide-icons@3.0.1
+  - @sjsf/moving-icons@3.0.1
+  - @sjsf/radix-icons@3.0.1
+  - @sjsf/schemasafe-validator@3.0.1
+  - @sjsf/skeleton4-theme@3.0.1
+
 ## 0.2.0
 
 ### Minor Changes
