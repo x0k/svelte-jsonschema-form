@@ -69,12 +69,11 @@
       if (files === undefined) {
         return undefined;
       }
+      const array = Array.from(files);
       if (!(await validateFileList(signal, ctx, config, files))) {
         throw new FileListValidationError();
       }
-      return Promise.all(
-        Array.from(files).map((f) => fileToDataURL(signal, f))
-      );
+      return Promise.all(array.map((f) => fileToDataURL(signal, f)));
     },
   });
 
