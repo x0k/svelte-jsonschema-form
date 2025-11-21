@@ -176,7 +176,8 @@ export function ariaInvalidProp<T extends AriaAttributes, FT>(
   config: Config,
   ctx: FormState<FT>
 ): T {
-  obj["aria-invalid"] = ctx[FORM_ERRORS].has(config.path);
+  obj["aria-invalid"] =
+    ctx[FORM_ERRORS].getFieldErrors(config.path) !== undefined;
   return obj;
 }
 

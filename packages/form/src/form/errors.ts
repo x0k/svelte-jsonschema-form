@@ -13,6 +13,8 @@ export class InvalidValidatorError extends Error {}
 
 export type FieldErrors = Readonly<string[]>;
 
+// TODO: Remove in v4
+/** @deprecated */
 export type FormErrorsMap = SvelteMap<FieldPath, string[]>;
 
 export type FormSubmission<Output> = Task<

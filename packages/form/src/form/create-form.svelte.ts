@@ -82,12 +82,12 @@ import {
   FORM_FIELDS_STATE_MAP,
   FORM_ID_FROM_PATH,
   internalRegisterFieldPath,
-  internalAssignErrors,
   FORM_ROOT_PATH,
   FORM_ERRORS,
   FORM_PATHS_TRIE_REF,
   internalHasFieldState,
   FORM_ID_PREFIX,
+  FormErrors,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
 
@@ -309,15 +309,16 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const idFromPath = $derived(
     weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
   );
-  const errors = $derived(
-    Array.isArray(options.initialErrors)
-      ? internalAssignErrors(
-          pathsTrieRef,
-          new SvelteMap(),
-          options.initialErrors
-        )
-      : new SvelteMap(options.initialErrors)
-  );
+  const errors = $derived.by(() => {
+    const errors = new FormErrors(pathsTrieRef);
+    const initial = options.initialErrors;
+    if (initial === undefined) {
+      return errors;
+    }
+    return Array.isArray(initial)
+      ? errors.updateErrors(initial)
+      : errors.assign(initial);
+  });
   const disabled = $derived(options.disabled ?? false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
   const keyedArrays: KeyedArraysMap = $derived(

@@ -81,6 +81,9 @@ export function hasFieldStateByPath<T>(
   );
 }
 
+
+const NO_ERRORS: string[] = [];
+
 export function makeEventHandlers<T>(
   ctx: FormState<T>,
   config: () => Config,
@@ -97,7 +100,7 @@ export function makeEventHandlers<T>(
     const initialPath = path;
     return () => {
       ctx[FORM_FIELDS_STATE_MAP].delete(initialPath);
-      ctx[FORM_ERRORS].delete(initialPath);
+      ctx[FORM_ERRORS].updateFieldErrors(initialPath, NO_ERRORS);
     };
   });
 
