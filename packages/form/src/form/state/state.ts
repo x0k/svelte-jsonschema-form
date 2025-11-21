@@ -12,7 +12,6 @@ import {
   type UiSchemaRoot,
 } from "../ui-schema.js";
 import type {
-  FormErrorsMap,
   FormSubmission,
   FieldsValidation,
 } from "../errors.js";
@@ -47,6 +46,7 @@ import {
   FORM_PATHS_TRIE_REF,
   FORM_ROOT_PATH,
   FORM_ID_PREFIX,
+  FormErrors,
 } from "../internals.js";
 import type { FieldPath, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
@@ -68,7 +68,7 @@ export interface FormState<T> {
   readonly [FORM_ROOT_PATH]: FieldPath;
   readonly [FORM_ID_FROM_PATH]: (path: FieldPath) => Id;
   readonly [FORM_PATHS_TRIE_REF]: PathTrieRef<FieldPath>;
-  readonly [FORM_ERRORS]: FormErrorsMap;
+  readonly [FORM_ERRORS]: FormErrors;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;

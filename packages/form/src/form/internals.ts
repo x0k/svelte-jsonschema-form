@@ -1,11 +1,10 @@
-import type { SvelteMap } from "svelte/reactivity";
+import { SvelteMap } from "svelte/reactivity";
 
 import { getNodeByKeys, insertValue } from "@/lib/trie.js";
 import type { RPath } from "@/core/index.js";
 
-import type { FormErrorsMap } from "./errors.js";
 import type { ValidationError } from "./validator.js";
-import type { PathTrieRef } from "./model.js";
+import type { PathTrieRef, Update } from "./model.js";
 import type { FieldPath } from "./id.js";
 import type { FieldState } from "./field-state.js";
 
@@ -57,28 +56,103 @@ export function internalRegisterFieldPath(
   return p;
 }
 
-export function internalAssignErrors(
-  ref: PathTrieRef<FieldPath>,
-  map: FormErrorsMap,
-  errors: ReadonlyArray<ValidationError>
-): FormErrorsMap {
-  map.clear();
-  for (const { path, message } of errors) {
-    const p = internalRegisterFieldPath(ref, path);
-    const arr = map.get(p);
-    if (arr) {
-      arr.push(message);
-    } else {
-      map.set(p, [message]);
-    }
-  }
-  return map;
-}
-
 export function internalHasFieldState(
   map: SvelteMap<FieldPath, FieldState>,
   path: FieldPath,
   state: FieldState
 ) {
   return ((map.get(path) ?? 0) & state) > 0;
+}
+
+/**
+This class must maintain two invariants:
+- Field errors list should contain at leas one error
+- Errors in the field errors list must be unique
+**/
+export class FormErrors {
+  #map = new SvelteMap<
+    FieldPath,
+    {
+      set: Set<string>;
+      array: string[];
+    }
+  >();
+
+  constructor(private readonly ref: PathTrieRef<FieldPath>) {}
+
+  assign(entries: Iterable<readonly [FieldPath, string[]]>) {
+    this.#map.clear();
+    for (const entry of entries) {
+      let array = entry[1];
+      const set = new Set(array);
+      if (array.length > set.size) {
+        array = Array.from(set);
+      }
+      this.#map.set(entry[0], {
+        set,
+        array,
+      });
+    }
+    return this;
+  }
+
+  updateErrors(errors: ReadonlyArray<ValidationError>): this {
+    this.#map.clear();
+    for (const { path, message } of errors) {
+      const p = internalRegisterFieldPath(this.ref, path);
+      const field = this.#map.get(p);
+      if (field) {
+        const l = field.set.size;
+        field.set.add(message);
+        if (l < field.set.size) {
+          field.array.push(message);
+        }
+      } else {
+        const array = [message];
+        this.#map.set(p, {
+          set: new Set(array),
+          array,
+        });
+      }
+    }
+    return this;
+  }
+
+  getFieldErrors(path: FieldPath): ReadonlyArray<string> | undefined {
+    return this.#map.get(path)?.array;
+  }
+
+  updateFieldErrors(path: FieldPath, errors: Update<string[]>) {
+    if (typeof errors === "function") {
+      const arr = this.#map.get(path)?.array ?? [];
+      errors = errors(arr);
+    }
+    if (errors.length > 0) {
+      const set = new Set(errors);
+      this.#map.set(path, {
+        set,
+        array: Array.from(set),
+      });
+    } else {
+      this.#map.delete(path);
+    }
+    return errors.length === 0;
+  }
+
+  hasErrors() {
+    return this.#map.size > 0;
+  }
+
+  clear() {
+    this.#map.clear()
+  }
+
+  *[Symbol.iterator]() {
+    const casted: [FieldPath, string[]] = [[] as RPath as FieldPath, []];
+    for (const pair of this.#map) {
+      casted[0] = pair[0];
+      casted[1] = pair[1].array;
+      yield casted;
+    }
+  }
 }
