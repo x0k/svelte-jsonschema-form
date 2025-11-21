@@ -131,7 +131,7 @@ export class FormErrors {
       const set = new Set(errors);
       this.#map.set(path, {
         set,
-        array: Array.from(set),
+        array: errors.length > set.size ? Array.from(set) : errors,
       });
     } else {
       this.#map.delete(path);
@@ -144,7 +144,7 @@ export class FormErrors {
   }
 
   clear() {
-    this.#map.clear()
+    this.#map.clear();
   }
 
   *[Symbol.iterator]() {
