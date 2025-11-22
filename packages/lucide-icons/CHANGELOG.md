@@ -1,5 +1,14 @@
 # @sjsf/lucide-icons
 
+## 3.0.2
+
+### Patch Changes
+
+- Bump version for `@lucide/svelte` peer dependency ([`edd4a28`](https://github.com/x0k/svelte-jsonschema-form/commit/edd4a28b855c06f800e24d6674962b876e3af77c))
+
+- Updated dependencies [[`f83461b`](https://github.com/x0k/svelte-jsonschema-form/commit/f83461b344b15e8881e869dc5423c973c8be0e9e)]:
+  - @sjsf/form@3.0.2
+
 ## 3.0.1
 
 ### Patch Changes

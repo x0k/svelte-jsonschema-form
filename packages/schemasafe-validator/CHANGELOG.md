@@ -1,5 +1,12 @@
 # @sjsf/schemasafe
 
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`f83461b`](https://github.com/x0k/svelte-jsonschema-form/commit/f83461b344b15e8881e869dc5423c973c8be0e9e)]:
+  - @sjsf/form@3.0.2
+
 ## 3.0.1
 
 ### Patch Changes
