@@ -74,7 +74,7 @@
 		"@tailwindcss/vite": "catalog:",
 		"ajv": "catalog:",
 		"flowbite": "^3.1.2",
-		"flowbite-svelte": "^1.22.0",
+		"flowbite-svelte": "^1.28.1",
 		"globals": "catalog:",
 		"svelte": "catalog:",
 		"tailwind-variants": "^3.1.1",

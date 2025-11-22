@@ -5440,8 +5440,9 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-orientation="horizontal"
               data-part="indicator"
               data-scope="radio-group"
+              hidden=""
               id="radio-group:c24:indicator"
-              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
+              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: var(--transition-duration, 150ms); transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
             <!---->
@@ -5728,8 +5729,9 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-orientation="horizontal"
               data-part="indicator"
               data-scope="radio-group"
+              hidden=""
               id="radio-group:c23:indicator"
-              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
+              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: var(--transition-duration, 150ms); transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
             <!---->
@@ -6015,8 +6017,9 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-orientation="horizontal"
               data-part="indicator"
               data-scope="radio-group"
+              hidden=""
               id="radio-group:c22:indicator"
-              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
+              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: var(--transition-duration, 150ms); transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
             <!---->
@@ -6291,8 +6294,9 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-orientation="horizontal"
               data-part="indicator"
               data-scope="radio-group"
+              hidden=""
               id="radio-group:c25:indicator"
-              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
+              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: var(--transition-duration, 150ms); transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
             <!---->

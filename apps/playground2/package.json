@@ -12,7 +12,7 @@
   "dependencies": {
     "@codemirror/lang-json": "^6.0.2",
     "@codemirror/state": "^6.5.2",
-    "@codemirror/view": "^6.38.6",
+    "@codemirror/view": "^6.38.8",
     "@ddietr/codemirror-themes": "^1.5.2",
     "@picocss/pico": "^2.1.1",
     "@sjsf-lab/svar-theme": "workspace:*",
