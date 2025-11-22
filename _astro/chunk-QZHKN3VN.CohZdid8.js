@@ -1,1 +1,0 @@
-import{_ as i}from"./mermaid.astro_astro_type_script_index_0_lang.B5yBpXkP.js";var r=class{constructor(t){this.init=t,this.records=this.init()}static{i(this,"ImperativeState")}reset(){this.records=this.init()}};export{r as I};
