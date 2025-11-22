@@ -1,5 +1,13 @@
 # theme-testing
 
+## 1.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`f83461b`](https://github.com/x0k/svelte-jsonschema-form/commit/f83461b344b15e8881e869dc5423c973c8be0e9e)]:
+  - @sjsf/form@3.0.2
+  - @sjsf/ajv8-validator@3.0.2
+
 ## 1.0.14
 
 ### Patch Changes

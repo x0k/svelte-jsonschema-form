@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 3.0.2
+
+### Patch Changes
+
+- Implement `FormErrors` container to maintain unique error messages ([#250](https://github.com/x0k/svelte-jsonschema-form/pull/250))
+
 ## 3.0.1
 
 ### Patch Changes
