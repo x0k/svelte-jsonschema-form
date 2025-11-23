@@ -2823,6 +2823,166 @@ describe("getDefaultFormState()", () => {
       });
     });
 
+    describe("array with nested dependent fixed-length array schema", () => {
+      const schema: Schema = {
+        items: [
+          {
+            dependencies: {
+              checkbox: {
+                if: {
+                  properties: {
+                    checkbox: {
+                      const: true,
+                    },
+                  },
+                },
+                then: {
+                  properties: {
+                    inner_array: {
+                      items: [
+                        {
+                          title: "Fixed Item",
+                          type: "string",
+                        },
+                      ],
+                      title: "Inner Fixed-Length Array",
+                      type: "array",
+                    },
+                  },
+                },
+              },
+            },
+            properties: {
+              checkbox: {
+                title: "Dependency Checkbox",
+                type: "boolean",
+              },
+            },
+            title: "Outer Item",
+            type: "object",
+          },
+        ],
+        title: "Outer Fixed Length Array",
+        type: "array",
+      };
+      const formData = [{ checkbox: true }];
+      const includeUndefinedValues = "excludeObjectChildren";
+      const expected = [
+        {
+          checkbox: true,
+          inner_array: [undefined],
+        },
+      ];
+
+      beforeEach(() => {
+        testValidator = createValidator({
+          cases: [
+            {
+              schema: { properties: { checkbox: { const: true } } },
+              value: { checkbox: true },
+              result: true,
+            },
+          ],
+        });
+        defaultMerger = createMerger({
+          merges: [
+            {
+              left: {
+                properties: {
+                  checkbox: { title: "Dependency Checkbox", type: "boolean" },
+                },
+                title: "Outer Item",
+                type: "object",
+              },
+              right: {
+                properties: {
+                  inner_array: {
+                    items: [{ title: "Fixed Item", type: "string" }],
+                    title: "Inner Fixed-Length Array",
+                    type: "array",
+                  },
+                },
+              },
+              result: {
+                properties: {
+                  checkbox: { title: "Dependency Checkbox", type: "boolean" },
+                  inner_array: {
+                    items: [{ title: "Fixed Item", type: "string" }],
+                    title: "Inner Fixed-Length Array",
+                    type: "array",
+                  },
+                },
+                title: "Outer Item",
+                type: "object",
+              },
+            },
+          ],
+        });
+      });
+
+      test("getDefaultFormState", () => {
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            formData,
+            undefined,
+            includeUndefinedValues
+          )
+        ).toEqual(expected);
+      });
+
+      test("computeDefaults", () => {
+        expect(
+          computeDefaults(testValidator, defaultMerger, schema, {
+            ...defaults,
+            rawFormData: formData,
+            includeUndefinedValues,
+            shouldMergeDefaultsIntoFormData: true,
+          })
+        ).toEqual(expected);
+      });
+
+      test("getDefaultBasedOnSchemaType", () => {
+        expect(
+          getDefaultBasedOnSchemaType(
+            testValidator,
+            defaultMerger,
+            schema,
+            {
+              ...defaults,
+              includeUndefinedValues,
+            },
+            [
+              {
+                checkbox: true,
+              },
+            ]
+          )
+        ).toEqual(expected);
+      });
+
+      test("getArrayDefaults", () => {
+        expect(
+          getArrayDefaults(
+            testValidator,
+            defaultMerger,
+            schema,
+            {
+              ...defaults,
+              includeUndefinedValues,
+            },
+            [
+              {
+                checkbox: true,
+              },
+            ]
+          )
+        ).toEqual(expected);
+      });
+    });
+
     describe("an invalid array schema", () => {
       const schema: Schema = {
         type: "array",

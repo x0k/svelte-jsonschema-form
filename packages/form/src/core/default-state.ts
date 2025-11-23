@@ -832,6 +832,9 @@ export function getArrayDefaults(
         AdditionalItemsHandling.Fallback,
         idx
       );
+      const itemFormData = Array.isArray(rawFormData)
+        ? rawFormData[idx]
+        : undefined;
       return computeDefaults(validator, merger, schemaItem, {
         rootSchema,
         stack,
@@ -839,7 +842,7 @@ export function getArrayDefaults(
         parentDefaults: item,
         required,
         includeUndefinedValues: false,
-        rawFormData: undefined,
+        rawFormData: itemFormData,
         isSchemaRoot: false,
         shouldMergeDefaultsIntoFormData,
         initialDefaultsGenerated,
