@@ -2535,6 +2535,154 @@ describe("getDefaultFormState()", () => {
         ).toEqual(expected);
       });
     });
+
+    describe("an nested object with if/then condition", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          wrappingObject: {
+            type: "object",
+            properties: {
+              checkbox: {
+                type: "boolean",
+              },
+            },
+            if: {
+              properties: {
+                checkbox: {
+                  const: true,
+                },
+              },
+              required: ["checkbox"],
+            },
+            then: {
+              properties: {
+                foo: {
+                  type: "string",
+                  default: "foo value",
+                },
+              },
+              required: ["foo"],
+            },
+          },
+        },
+      };
+      const rawFormData = {
+        wrappingObject: {
+          checkbox: true,
+        },
+      };
+      const expected = {
+        wrappingObject: {
+          checkbox: true,
+          foo: "foo value",
+        },
+      };
+
+      beforeEach(() => {
+        testValidator = createValidator({
+          cases: [
+            {
+              schema: {
+                properties: { checkbox: { const: true } },
+                required: ["checkbox"],
+              },
+              value: { checkbox: true },
+              result: true,
+            },
+            {
+              schema: {
+                properties: { checkbox: { const: true } },
+                required: ["checkbox"],
+              },
+              value: {},
+              result: false
+            },
+          ],
+        });
+        defaultMerger = createMerger({
+          merges: [
+            {
+              left: {
+                type: "object",
+                properties: { checkbox: { type: "boolean" } },
+              },
+              right: {
+                properties: {
+                  foo: { type: "string", default: "foo value" },
+                },
+                required: ["foo"],
+              },
+              result: {
+                type: "object",
+                properties: {
+                  checkbox: { type: "boolean" },
+                  foo: { type: "string", default: "foo value" },
+                },
+                required: ["foo"],
+              },
+            },
+          ],
+        });
+      });
+
+      test("getDefaultFormState", () => {
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            rawFormData,
+            schema
+          )
+        ).toEqual(expected);
+      });
+
+      test("computeDefaults", () => {
+        expect(
+          computeDefaults(testValidator, defaultMerger, schema, {
+            ...defaults,
+            rootSchema: schema,
+            rawFormData,
+            shouldMergeDefaultsIntoFormData: true,
+          })
+        ).toEqual(expected);
+      });
+
+      test("getDefaultBasedOnSchemaType", () => {
+        expect(
+          getDefaultBasedOnSchemaType(
+            testValidator,
+            defaultMerger,
+            schema,
+            {
+              ...defaults,
+              rootSchema: schema,
+              rawFormData,
+              shouldMergeDefaultsIntoFormData: true,
+            },
+            undefined
+          )
+        ).toEqual(expected);
+      });
+
+      test("getObjectDefaults", () => {
+        expect(
+          getObjectDefaults(
+            testValidator,
+            defaultMerger,
+            schema,
+            {
+              ...defaults,
+              rootSchema: schema,
+              rawFormData,
+              shouldMergeDefaultsIntoFormData: true,
+            },
+            undefined
+          )
+        ).toEqual(expected);
+      });
+    });
   });
 
   describe("array schemas", () => {
