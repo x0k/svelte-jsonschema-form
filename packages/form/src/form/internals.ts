@@ -147,12 +147,9 @@ export class FormErrors {
     this.#map.clear();
   }
 
-  *[Symbol.iterator]() {
-    const casted: [FieldPath, string[]] = [[] as RPath as FieldPath, []];
+  *[Symbol.iterator](): Generator<[FieldPath, string[]]> {
     for (const pair of this.#map) {
-      casted[0] = pair[0];
-      casted[1] = pair[1].array;
-      yield casted;
+      yield [pair[0], pair[1].array];
     }
   }
 }
