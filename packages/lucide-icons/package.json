@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/lucide-icons",
-	"version": "3.0.2",
+	"version": "3.0.3",
 	"description": "The lucide based icons set for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -47,7 +47,7 @@
 		}
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^3.0.2",
+		"@sjsf/form": "workspace:^3.0.3",
 		"@lucide/svelte": ">=0.479.0 <0.555.0",
 		"svelte": "^5.30.0"
 	},
