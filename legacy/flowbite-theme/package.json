@@ -64,7 +64,7 @@
 		}
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^3.0.2",
+		"@sjsf/form": "workspace:^3.0.3",
 		"flowbite": "^2.5.0",
 		"flowbite-svelte": "~0.47.0",
 		"svelte": "^5.33.0"

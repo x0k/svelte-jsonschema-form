@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 3.0.3
+
+### Patch Changes
+
+- Fix errors iterator ([#254](https://github.com/x0k/svelte-jsonschema-form/pull/254))
+
 ## 3.0.2
 
 ### Patch Changes
