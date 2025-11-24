@@ -1,5 +1,15 @@
 # @sjsf/form
 
+## 3.0.2
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4889 ([#253](https://github.com/x0k/svelte-jsonschema-form/pull/253))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4860 ([#252](https://github.com/x0k/svelte-jsonschema-form/pull/252))
+
+- Implement `FormErrors` container to maintain unique error messages ([#250](https://github.com/x0k/svelte-jsonschema-form/pull/250))
+
 ## 3.0.1
 
 ### Patch Changes
