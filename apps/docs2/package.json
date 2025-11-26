@@ -59,7 +59,7 @@
     "tailwind-variants": "^3.1.1",
     "theme-testing": "workspace:*",
     "typebox": "^1.0.55",
-    "valibot": "^1.1.0",
+    "valibot": "^1.2.0",
     "zod": "catalog:"
   },
   "devDependencies": {
