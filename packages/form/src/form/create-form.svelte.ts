@@ -163,6 +163,15 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   icons?: Icons;
   uiSchema?: UiSchemaRoot;
   extraUiOptions?: ExtraUiOptions;
+  /**
+   * Enabling this option can reduce the number of irrelevant validation errors
+   * (for example, when using `dependencies` keyword) by providing the validator
+   * with a trimmed JSON Schema.
+   * 
+   * However, this makes the schema reference unstable, which leads to cache misses
+   * when using validators that rely on `WeakMap`-based memoization.
+   * If this is a concern for your use case, use a validator with hash-based memoization instead.
+   */
   validateByRetrievedSchema?: boolean;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
