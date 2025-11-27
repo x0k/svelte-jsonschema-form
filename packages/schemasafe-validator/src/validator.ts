@@ -4,7 +4,7 @@ import {
   type Json,
   type Validate,
 } from "@exodus/schemasafe";
-import { weakMemoize } from "@sjsf/form/lib/memoize";
+import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 import {
   prefixSchemaRefs,
   ROOT_SCHEMA_PREFIX,
@@ -24,6 +24,14 @@ import { DEFAULT_VALIDATOR_OPTIONS } from "./model.js";
 
 export type ValidateFactory = (schema: Schema, rootSchema: Schema) => Validate;
 
+export const defaultValidateFactory: ValidateFactory = (schema, rootSchema) =>
+  validator(schema as SafeSchema, {
+    ...DEFAULT_VALIDATOR_OPTIONS,
+    schemas: {
+      [ROOT_SCHEMA_PREFIX]: rootSchema as SafeSchema,
+    },
+  });
+
 export interface ValueToJSON {
   valueToJSON: (value: FormValue) => Json;
 }
@@ -32,7 +40,31 @@ export interface ValidatorOptions extends ValueToJSON {
   createSchemaValidator: (schema: Schema, rootSchema: Schema) => Validate;
 }
 
-export function createSchemaValidatorFactory(factory: ValidateFactory) {
+export interface ValidatorsCache extends MapLike<Schema, Validate> {
+  clear(): void;
+}
+
+class ClearableWeakMap implements ValidatorsCache {
+  private map = new WeakMap<Schema, Validate>();
+
+  has(key: Schema): boolean {
+    return this.map.has(key);
+  }
+  get(key: Schema): Validate | undefined {
+    return this.map.get(key);
+  }
+  set(key: Schema, value: Validate): void {
+    this.map.set(key, value);
+  }
+  clear(): void {
+    this.map = new WeakMap();
+  }
+}
+
+export function createSchemaValidatorFactory(
+  factory: ValidateFactory,
+  cache: ValidatorsCache = new ClearableWeakMap()
+) {
   let usePrefixSchemaRefs = false;
   let lastRootSchemaRef: WeakRef<Schema> = new WeakRef({});
   const factoryCall = (schema: Schema) =>
@@ -42,12 +74,12 @@ export function createSchemaValidatorFactory(factory: ValidateFactory) {
         : schema,
       lastRootSchemaRef.deref()!
     );
-  let makeValidator = weakMemoize(new WeakMap<Schema, Validate>(), factoryCall);
+  let makeValidator = memoize(cache, factoryCall);
   return (schema: Schema, rootSchema: Schema) => {
     usePrefixSchemaRefs = schema !== rootSchema;
     if (lastRootSchemaRef.deref() !== rootSchema) {
       lastRootSchemaRef = new WeakRef(rootSchema);
-      makeValidator = weakMemoize(new WeakMap<Schema, Validate>(), factoryCall);
+      cache.clear();
     }
     return makeValidator(schema);
   };
@@ -125,13 +157,7 @@ export interface FormValidatorOptions
     FieldValueValidatorOptions {}
 
 export function createFormValidator<T>({
-  factory = (schema, rootSchema) =>
-    validator(schema as SafeSchema, {
-      ...DEFAULT_VALIDATOR_OPTIONS,
-      schemas: {
-        [ROOT_SCHEMA_PREFIX]: rootSchema as SafeSchema,
-      },
-    }),
+  factory = defaultValidateFactory,
   createSchemaValidator = createSchemaValidatorFactory(factory),
   createFieldSchemaValidator = createFieldsValidatorFactory(factory),
   // `isJSON` validator option is `false` by default

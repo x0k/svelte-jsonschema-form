@@ -3,7 +3,7 @@ import {
   type OutputUnit,
   type Schema as CfSchema,
 } from "@cfworker/json-schema";
-import { weakMemoize } from "@sjsf/form/lib/memoize";
+import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 import {
   ID_KEY,
   prefixSchemaRefs,
@@ -29,12 +29,16 @@ export interface ValidatorOptions extends ValueToJSON {
 
 export type CfValidatorFactory = (schema: Schema) => CfValidator;
 
-export function createSchemaValidatorFactory(factory: CfValidatorFactory) {
+export const defaultValidatorFactory: CfValidatorFactory = (schema) => new CfValidator(schema as CfSchema, "7", false)
+
+export function createSchemaValidatorFactory(
+  factory: CfValidatorFactory,
+  validatorsCache: MapLike<Schema, CfValidator> = new WeakMap()
+) {
   let rootSchemaId = "";
   let usePrefixSchemaRefs = false;
   let lastRootSchema: WeakRef<Schema> = new WeakRef({});
-  const validatorsCache = new WeakMap<Schema, CfValidator>();
-  const makeValidator = weakMemoize<Schema, CfValidator>(
+  const makeValidator = memoize<Schema, CfValidator>(
     validatorsCache,
     (schema) => {
       const snapshot = $state.snapshot(schema);
@@ -144,7 +148,7 @@ export interface FormValidatorOptions
     FieldValueValidatorOptions {}
 
 export function createFormValidator<T>({
-  factory = (schema) => new CfValidator(schema as CfSchema, "7", false),
+  factory = defaultValidatorFactory,
   createSchemaValidator = createSchemaValidatorFactory(factory),
   createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
   valueToJSON = (v) =>
