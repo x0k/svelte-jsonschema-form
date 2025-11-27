@@ -3,8 +3,10 @@
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
+  import { HashedKeyCache, LRUCache } from "@sjsf/form/lib/cache";
+  import { weakMemoize } from '@sjsf/form/lib/memoize';
   import { fromFactories } from "@sjsf/form/lib/resolver";
-  import { isSelect, type SchemaDefinition } from "@sjsf/form/core";
+  import { isSelect, schemaHash, type SchemaDefinition } from "@sjsf/form/core";
   import {
     SimpleForm,
     type Schema,
@@ -61,7 +63,14 @@
     ],
   };
 
-  const validator = defaults.validator<FormValue>();
+  const validator = defaults.validator<FormValue>({
+    validatorsCache: new HashedKeyCache({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({
+        maxSize: 10,
+      }),
+    }),
+  });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
