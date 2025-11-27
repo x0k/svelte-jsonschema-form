@@ -22,6 +22,7 @@ export const FORM_FIELDS_VALIDATION_MODE = Symbol(
   "form-fields-validation-mode"
 );
 export const FORM_SCHEMA = Symbol("form-schema");
+export const FORM_RETRIEVED_SCHEMA = Symbol("form-retrieved-schema")
 export const FORM_ROOT_PATH = Symbol("form-root-path");
 export const FORM_UI_SCHEMA_ROOT = Symbol("form-ui-schema-root");
 export const FORM_UI_SCHEMA = Symbol("form-ui-schema");

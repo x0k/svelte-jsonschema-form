@@ -47,6 +47,7 @@ import {
   FORM_ROOT_PATH,
   FORM_ID_PREFIX,
   FormErrors,
+  FORM_RETRIEVED_SCHEMA,
 } from "../internals.js";
 import type { FieldPath, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
@@ -73,6 +74,7 @@ export interface FormState<T> {
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
   readonly [FORM_SCHEMA]: Schema;
+  readonly [FORM_RETRIEVED_SCHEMA]: Schema;
   readonly [FORM_UI_SCHEMA_ROOT]: UiSchemaRoot;
   readonly [FORM_UI_SCHEMA]: UiSchema;
   readonly [FORM_UI_OPTIONS_REGISTRY]: UiOptionsRegistry;

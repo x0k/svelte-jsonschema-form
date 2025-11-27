@@ -5,15 +5,22 @@ import type {
   ValidateFunction,
 } from "ajv";
 import type { AnyValidateFunction } from "ajv/dist/core.js";
-import { weakMemoize } from "@sjsf/form/lib/memoize";
+import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 import { ID_KEY, prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
 import type { Config, Schema } from "@sjsf/form";
 
-export function createSchemaCompiler<A extends boolean>(ajv: Ajv, _async: A) {
+export interface ValidatorsCache extends MapLike<Schema, AnyValidateFunction> {
+  delete(schema: Schema): boolean;
+}
+
+export function createSchemaCompiler<A extends boolean>(
+  ajv: Ajv,
+  _async: A,
+  validatorsCache: ValidatorsCache = new WeakMap()
+) {
   let rootSchemaId = "";
   let usePrefixSchemaRefs = false;
-  const validatorsCache = new WeakMap<Schema, AnyValidateFunction>();
-  const compile = weakMemoize<Schema, AnyValidateFunction>(
+  const compile = memoize<Schema, AnyValidateFunction>(
     validatorsCache,
     (schema) => {
       let ajvSchema: AnySchema = schema;
