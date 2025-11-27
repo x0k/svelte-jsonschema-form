@@ -13,7 +13,7 @@ import {
   type FailedTask,
 } from "@/lib/task.svelte.js";
 import { weakMemoize } from "@/lib/memoize.js";
-import type { Schema, Validator } from "@/core/index.js";
+import { retrieveSchema, type Schema, type Validator } from "@/core/index.js";
 
 import {
   isFieldValueValidator,
@@ -88,6 +88,7 @@ import {
   internalHasFieldState,
   FORM_ID_PREFIX,
   FormErrors,
+  FORM_RETRIEVED_SCHEMA,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
 
@@ -162,6 +163,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   icons?: Icons;
   uiSchema?: UiSchemaRoot;
   extraUiOptions?: ExtraUiOptions;
+  validateByRetrievedSchema?: boolean;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
   initialValue?: DeepPartial<T>;
@@ -305,6 +307,15 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       valueRef,
     })
   );
+  const retrievedSchema = $derived(
+    retrieveSchema(
+      validator,
+      merger,
+      options.schema,
+      options.schema,
+      valueRef.current
+    )
+  );
   const idCache = new WeakMap<FieldPath, Id>();
   const idFromPath = $derived(
     weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
@@ -375,7 +386,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       setFieldState(formState, rootPath, FIELD_SUBMITTED);
       return await validateForm(
         signal,
-        options.schema,
+        options.validateByRetrievedSchema
+          ? retrievedSchema
+          : options.schema,
         $state.snapshot(valueRef.current)
       );
     },
@@ -524,6 +537,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     get [FORM_SCHEMA]() {
       return options.schema;
+    },
+    get [FORM_RETRIEVED_SCHEMA]() {
+      return retrievedSchema;
     },
     get [FORM_UI_SCHEMA_ROOT]() {
       return uiSchemaRoot;

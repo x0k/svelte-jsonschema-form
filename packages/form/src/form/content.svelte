@@ -1,13 +1,12 @@
 <script lang="ts">
   import {
+    FORM_RETRIEVED_SCHEMA,
     FORM_ROOT_PATH,
-    FORM_SCHEMA,
     FORM_UI_SCHEMA,
     FORM_VALUE,
   } from "./internals.js";
   import type { Config } from "./config.js";
   import {
-    retrieveSchema,
     getFormContext,
     getFieldComponent,
     retrieveUiOption,
@@ -18,14 +17,13 @@
 
   const ctx = getFormContext();
 
-  const retrievedSchema = $derived(
-    retrieveSchema(ctx, ctx[FORM_SCHEMA], ctx[FORM_VALUE])
-  );
   const config: Config = $derived({
     path: ctx[FORM_ROOT_PATH],
     title:
-      uiTitleOption(ctx, ctx[FORM_UI_SCHEMA]) ?? retrievedSchema.title ?? "",
-    schema: retrievedSchema,
+      uiTitleOption(ctx, ctx[FORM_UI_SCHEMA]) ??
+      ctx[FORM_RETRIEVED_SCHEMA].title ??
+      "",
+    schema: ctx[FORM_RETRIEVED_SCHEMA],
     uiSchema: ctx[FORM_UI_SCHEMA],
     required: true,
   });
