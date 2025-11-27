@@ -15,9 +15,8 @@
   import { resolver } from "@sjsf/form/resolvers/compat";
   import "@sjsf/form/fields/extra/enum-include";
 
-  import * as _defaults from "$lib/form-defaults";
-
   // https://github.com/sveltejs/svelte/issues/17220
+  import * as _defaults from "$lib/form-defaults";
   const defaults = { ..._defaults };
 
   const originalSchema: Schema = {
@@ -68,7 +67,7 @@
     schema: originalSchema,
   });
 
-  const VIRTUAL_PROPERTY_PREFIX = "virtual:";
+  const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
     (isSchemaObject(def) && def.title) || `Option ${index + 1}`;
 
@@ -90,18 +89,17 @@
         required = [],
         ...rest
       } = copy;
-      const property = `${VIRTUAL_PROPERTY_PREFIX}${altKeyword}`;
       const options = alt.map(toOption);
-      properties[property] = {
+      properties[VIRTUAL_PROPERTY] = {
         title: copy.title ?? "Options",
         enum: options,
         default: options[0],
       };
-      dependencies[property] = {
+      dependencies[VIRTUAL_PROPERTY] = {
         oneOf: alt.map((def, i) => {
           const option: Schema = {
             properties: {
-              [property]: {
+              [VIRTUAL_PROPERTY]: {
                 const: toOption(def, i),
               },
             },
@@ -113,7 +111,7 @@
       };
       return {
         ...rest,
-        required: required.concat(property),
+        required: required.concat(VIRTUAL_PROPERTY),
         properties,
         dependencies,
       };
@@ -123,6 +121,7 @@
 
 <SimpleForm
   {...defaults}
+  validateByRetrievedSchema
   {resolver}
   {validator}
   {merger}
@@ -135,21 +134,10 @@
     },
   }}
   onSubmit={(value) => {
-    console.log({
-      schema,
-      value,
-      omitted: omitExtraData(validator, merger, originalSchema, value),
-    });
+    console.log(omitExtraData(validator, merger, originalSchema, value));
   }}
   extraUiOptions={fromFactories({
-    hideTitle: ({ path }: Config) => {
-      const last = path[path.length - 1];
-      if (
-        typeof last === "string" &&
-        last.startsWith(VIRTUAL_PROPERTY_PREFIX)
-      ) {
-        return true;
-      }
-    },
+    hideTitle: ({ path }: Config) =>
+      path.at(-1) === VIRTUAL_PROPERTY || undefined,
   })}
 />
