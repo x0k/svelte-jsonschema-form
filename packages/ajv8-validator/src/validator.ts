@@ -18,6 +18,7 @@ import { addFormComponents, DEFAULT_AJV_CONFIG } from "./model.js";
 import {
   createFieldSchemaCompiler,
   createSchemaCompiler,
+  type ValidatorsCache,
 } from "./schema-compilers.js";
 import {
   createFormErrorsTransformer,
@@ -142,7 +143,8 @@ export function createFormValidator<T>({
   ajvOptions = DEFAULT_AJV_CONFIG,
   ajvPlugins = addFormComponents,
   ajv = ajvPlugins(new Ajv(ajvOptions)),
-  compileSchema = createSchemaCompiler(ajv, false),
+  validatorsCache,
+  compileSchema = createSchemaCompiler(ajv, false, validatorsCache),
   compileFieldSchema = createFieldSchemaCompiler(ajv, false),
   ...rest
 }: Partial<FormValidatorOptions> & {
@@ -155,6 +157,7 @@ export function createFormValidator<T>({
    */
   ajvPlugins?: (ajv: Ajv) => Ajv;
   ajv?: Ajv;
+  validatorsCache?: ValidatorsCache;
 } = {}) {
   const options: FormValidatorOptions = {
     ...rest,
@@ -175,11 +178,15 @@ export interface AsyncFormValidatorOptions
 
 export function createAsyncFormValidator<T>({
   ajv,
-  compileSchema = createSchemaCompiler(ajv, false),
-  compileAsyncSchema = createSchemaCompiler(ajv, true),
+  validatorsCache,
+  compileSchema = createSchemaCompiler(ajv, false, validatorsCache),
+  compileAsyncSchema = createSchemaCompiler(ajv, true, validatorsCache),
   compileAsyncFieldSchema = createFieldSchemaCompiler(ajv, true),
   ...rest
-}: Partial<AsyncFormValidatorOptions> & { ajv: Ajv }) {
+}: Partial<AsyncFormValidatorOptions> & {
+  ajv: Ajv;
+  validatorsCache?: ValidatorsCache;
+}) {
   const options: AsyncFormValidatorOptions = {
     ...rest,
     compileSchema,

@@ -4,4 +4,4 @@
 "@sjsf/ajv8-validator": minor
 ---
 
-Add the `cache` option for the `createSchemaValidatorFactory` function
+Add `validatorsCache` option for `createFormValidator` functions

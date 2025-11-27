@@ -31,9 +31,11 @@ export type CfValidatorFactory = (schema: Schema) => CfValidator;
 
 export const defaultValidatorFactory: CfValidatorFactory = (schema) => new CfValidator(schema as CfSchema, "7", false)
 
+export type ValidatorsCache = MapLike<Schema, CfValidator>
+
 export function createSchemaValidatorFactory(
   factory: CfValidatorFactory,
-  validatorsCache: MapLike<Schema, CfValidator> = new WeakMap()
+  validatorsCache: ValidatorsCache = new WeakMap()
 ) {
   let rootSchemaId = "";
   let usePrefixSchemaRefs = false;
@@ -149,7 +151,8 @@ export interface FormValidatorOptions
 
 export function createFormValidator<T>({
   factory = defaultValidatorFactory,
-  createSchemaValidator = createSchemaValidatorFactory(factory),
+  validatorsCache,
+  createSchemaValidator = createSchemaValidatorFactory(factory, validatorsCache),
   createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
   valueToJSON = (v) =>
     v === undefined || v === null
@@ -160,6 +163,7 @@ export function createFormValidator<T>({
   ...rest
 }: Partial<FormValidatorOptions> & {
   factory?: CfValidatorFactory;
+  validatorsCache?: ValidatorsCache
 } = {}) {
   const options: FormValidatorOptions = {
     ...rest,

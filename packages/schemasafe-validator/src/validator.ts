@@ -158,13 +158,18 @@ export interface FormValidatorOptions
 
 export function createFormValidator<T>({
   factory = defaultValidateFactory,
-  createSchemaValidator = createSchemaValidatorFactory(factory),
+  validatorsCache,
+  createSchemaValidator = createSchemaValidatorFactory(
+    factory,
+    validatorsCache
+  ),
   createFieldSchemaValidator = createFieldsValidatorFactory(factory),
   // `isJSON` validator option is `false` by default
   valueToJSON = (value) => value as Json,
   ...rest
 }: Partial<FormValidatorOptions> & {
   factory?: ValidateFactory;
+  validatorsCache?: ValidatorsCache;
   merger: () => Merger;
 }) {
   const options: FormValidatorOptions = {
