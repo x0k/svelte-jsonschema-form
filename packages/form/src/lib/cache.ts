@@ -21,25 +21,25 @@ class ListNode<K, V> {
 
 export interface LRUCacheOptions<K, V> {
   maxSize: number;
-  cache?: CacheStore<K, ListNode<K, V>>;
+  store?: CacheStore<K, ListNode<K, V>>;
 }
 
 export class LRUCache<K, V> implements CacheStore<K, V> {
-  private cache: CacheStore<K, ListNode<K, V>>;
+  private store: CacheStore<K, ListNode<K, V>>;
   private readonly maxSize: number;
   private head: ListNode<K, V> | null = null; // Most recently used
   private tail: ListNode<K, V> | null = null; // Least recently used
 
-  constructor({ maxSize, cache = new Map() }: LRUCacheOptions<K, V>) {
+  constructor({ maxSize, store = new Map() }: LRUCacheOptions<K, V>) {
     if (maxSize <= 0) {
       throw new Error("maxSize must be greater than 0");
     }
     this.maxSize = maxSize;
-    this.cache = cache;
+    this.store = store;
   }
 
   get(key: K): V | undefined {
-    const node = this.cache.get(key);
+    const node = this.store.get(key);
     if (node === undefined) {
       return undefined;
     }
@@ -49,7 +49,7 @@ export class LRUCache<K, V> implements CacheStore<K, V> {
   }
 
   set(key: K, value: V): void {
-    let node = this.cache.get(key);
+    let node = this.store.get(key);
 
     if (node !== undefined) {
       // Update existing node
@@ -58,37 +58,37 @@ export class LRUCache<K, V> implements CacheStore<K, V> {
     } else {
       // Create new node
       node = new ListNode(key, value);
-      this.cache.set(key, node);
+      this.store.set(key, node);
       this.addToHead(node);
 
       // Evict if over capacity
-      if (this.cache.size > this.maxSize) {
+      if (this.store.size > this.maxSize) {
         this.removeTail();
       }
     }
   }
 
   has(key: K): boolean {
-    return this.cache.has(key);
+    return this.store.has(key);
   }
 
   delete(key: K): boolean {
-    const node = this.cache.get(key);
+    const node = this.store.get(key);
     if (node === undefined) {
       return false;
     }
     this.removeNode(node);
-    return this.cache.delete(key);
+    return this.store.delete(key);
   }
 
   clear(): void {
-    this.cache.clear();
+    this.store.clear();
     this.head = null;
     this.tail = null;
   }
 
   get size(): number {
-    return this.cache.size;
+    return this.store.size;
   }
 
   private addToHead(node: ListNode<K, V>): void {
@@ -133,47 +133,47 @@ export class LRUCache<K, V> implements CacheStore<K, V> {
     }
     const key = this.tail.key;
     this.removeNode(this.tail);
-    this.cache.delete(key);
+    this.store.delete(key);
   }
 }
 
-export interface HashBasedCacheOptions<K, H, V> {
+export interface HashedKeyCacheOptions<K, H, V> {
   getHash: (key: K) => H;
-  cache?: CacheStore<H, V>;
+  store?: CacheStore<H, V>;
 }
 
-export class HashBasedCache<K, H, V> implements CacheStore<K, V> {
-  private cache: CacheStore<H, V>;
+export class HashedKeyCache<K, H, V> implements CacheStore<K, V> {
+  private store: CacheStore<H, V>;
   private readonly getHash: (key: K) => H;
 
-  constructor({ getHash, cache = new Map() }: HashBasedCacheOptions<K, H, V>) {
+  constructor({ getHash, store = new Map() }: HashedKeyCacheOptions<K, H, V>) {
     this.getHash = getHash;
-    this.cache = cache;
+    this.store = store;
   }
 
   get(key: K): V | undefined {
     const hash = this.getHash(key);
-    return this.cache.get(hash);
+    return this.store.get(hash);
   }
 
   set(key: K, value: V): void {
     const hash = this.getHash(key);
-    this.cache.set(hash, value);
+    this.store.set(hash, value);
   }
 
   has(key: K): boolean {
-    return this.cache.has(this.getHash(key));
+    return this.store.has(this.getHash(key));
   }
 
   delete(key: K): boolean {
-    return this.cache.delete(this.getHash(key));
+    return this.store.delete(this.getHash(key));
   }
 
   clear(): void {
-    this.cache.clear();
+    this.store.clear();
   }
 
   get size(): number {
-    return this.cache.size;
+    return this.store.size;
   }
 }
