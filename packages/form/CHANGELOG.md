@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 3.1.0
+
+### Minor Changes
+
+- Add `lib/cache` module ([#259](https://github.com/x0k/svelte-jsonschema-form/pull/259))
+
+- Add `validateByRetrievedSchema` form option ([#259](https://github.com/x0k/svelte-jsonschema-form/pull/259))
+
 ## 3.0.3
 
 ### Patch Changes
