@@ -3,7 +3,7 @@
 -->
 
 <script lang="ts">
-	import { cn } from '$lib/utils/utils.js';
+	import { cn } from '$lib/utils.js';
 	import { box, mergeProps } from 'svelte-toolbelt';
 	import { usePasswordInput } from './password.svelte.js';
 	import type { PasswordInputProps } from './types.js';

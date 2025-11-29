@@ -1,7 +1,3 @@
-/*
-	Installed from @ieedan/shadcn-svelte-extras
-*/
-
 type Options = {
 	/** The time before the copied status is reset. */
 	delay: number;

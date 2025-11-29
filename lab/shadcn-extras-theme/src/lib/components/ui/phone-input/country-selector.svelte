@@ -18,7 +18,7 @@
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import CheckIcon from '@lucide/svelte/icons/check';
 	import ChevronsUpDownIcon from '@lucide/svelte/icons/chevrons-up-down';
-	import { cn } from '$lib/utils/utils.js';
+	import { cn } from '$lib/utils.js';
 	import Flag from './flag.svelte';
 	import type { Country, CountryCode } from 'svelte-tel-input/types';
 
