@@ -1,8 +1,4 @@
 /*
-	Installed from @ieedan/shadcn-svelte-extras
-*/
-
-/*
 	Installed from @ieedan/std
 */
 

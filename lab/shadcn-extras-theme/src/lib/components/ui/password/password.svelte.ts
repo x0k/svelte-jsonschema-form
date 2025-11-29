@@ -1,7 +1,3 @@
-/*
-	Installed from @ieedan/shadcn-svelte-extras
-*/
-
 import { Context, watch } from 'runed';
 import type { ReadableBoxedValues, WritableBoxedValues } from 'svelte-toolbelt';
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';

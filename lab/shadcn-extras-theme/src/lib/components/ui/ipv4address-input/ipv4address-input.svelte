@@ -3,7 +3,7 @@
 -->
 
 <script lang="ts">
-	import { cn } from '$lib/utils/utils.js';
+	import { cn } from '$lib/utils.js';
 	import Input from './ipv4address-input-input.svelte';
 	import { safeParseIPv4Address } from './index.js';
 	import { isNumber } from '$lib/utils/is-number.js';

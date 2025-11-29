@@ -1,7 +1,3 @@
-/*
-	Installed from @ieedan/shadcn-svelte-extras
-*/
-
 import type { HTMLInputAttributes } from 'svelte/elements';
 
 export type TagsInputPropsWithoutHTML = {

@@ -1,7 +1,3 @@
-<!--
-	Installed from @ieedan/shadcn-svelte-extras
--->
-
 <script lang="ts">
 	import type { Country } from 'svelte-tel-input/types';
 	import { hasFlag } from 'country-flag-icons';
@@ -17,7 +13,7 @@
 
 		if (!hasFlag(country.iso2)) return null;
 
-		const svg = await import(`country-flag-icons/string/3x2`);
+		const svg = await import('country-flag-icons/string/3x2');
 
 		return svg[country.iso2] ?? null;
 	}

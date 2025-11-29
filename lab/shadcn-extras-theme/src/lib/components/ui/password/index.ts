@@ -1,7 +1,3 @@
-/*
-	Installed from @ieedan/shadcn-svelte-extras
-*/
-
 import Root from './password.svelte';
 import Input from './password-input.svelte';
 import Strength from './password-strength.svelte';

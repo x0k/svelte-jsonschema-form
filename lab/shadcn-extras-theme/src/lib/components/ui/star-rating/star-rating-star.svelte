@@ -3,7 +3,7 @@
 -->
 
 <script lang="ts">
-	import { cn } from '$lib/utils/utils.js';
+	import { cn } from '$lib/utils.js';
 	import StarHalfIcon from '@lucide/svelte/icons/star-half';
 	import StarIcon from '@lucide/svelte/icons/star';
 	import { RatingGroup } from 'bits-ui';

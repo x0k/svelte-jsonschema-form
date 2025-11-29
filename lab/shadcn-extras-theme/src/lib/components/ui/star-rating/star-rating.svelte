@@ -1,9 +1,5 @@
-<!--
-	Installed from @ieedan/shadcn-svelte-extras
--->
-
 <script lang="ts">
-	import { cn } from '$lib/utils/utils.js';
+	import { cn } from '$lib/utils.js';
 	import { RatingGroup, type RatingGroupRootProps } from 'bits-ui';
 
 	let {
