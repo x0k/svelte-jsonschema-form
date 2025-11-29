@@ -60,8 +60,8 @@
 		"@zxcvbn-ts/language-common": "^3.0.0",
 		"@zxcvbn-ts/language-en": "^3.0.0",
 		"bits-ui": "^2.14.0",
-		"country-flag-icons": "^1.5.0",
 		"clsx": "^2.1.0",
+		"country-flag-icons": "^1.5.0",
 		"runed": "^0.31.0",
 		"svelte": "^5.30.0",
 		"svelte-tel-input": "^3.6.0",
@@ -103,6 +103,7 @@
 		}
 	},
 	"devDependencies": {
+		"@jsrepo/transform-prettier": "^0.0.6",
 		"@lucide/svelte": "^0.544.0",
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
@@ -116,6 +117,7 @@
 		"clsx": "^2.1.1",
 		"country-flag-icons": "^1.6.4",
 		"globals": "catalog:",
+		"jsrepo": "^3.0.5",
 		"runed": "^0.31.1",
 		"svelte": "catalog:",
 		"svelte-tel-input": "^3.6.1",
