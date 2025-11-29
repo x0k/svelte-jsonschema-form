@@ -1,5 +1,40 @@
 # docs
 
+## 1.9.4
+
+### Patch Changes
+
+- Add a warning about the issue with overwriting defaults ([#256](https://github.com/x0k/svelte-jsonschema-form/pull/256))
+
+- Remove the `new` badges ([#260](https://github.com/x0k/svelte-jsonschema-form/pull/260))
+
+- Add `validateByRetrievedSchema` form option ([#259](https://github.com/x0k/svelte-jsonschema-form/pull/259))
+
+- Updated dependencies [[`2be578c`](https://github.com/x0k/svelte-jsonschema-form/commit/2be578c48423ad0fe6e762f1a1f64ceaeeb36f41), [`89735c8`](https://github.com/x0k/svelte-jsonschema-form/commit/89735c84083299de1d148f5550ab18d79200ad55), [`89735c8`](https://github.com/x0k/svelte-jsonschema-form/commit/89735c84083299de1d148f5550ab18d79200ad55), [`89735c8`](https://github.com/x0k/svelte-jsonschema-form/commit/89735c84083299de1d148f5550ab18d79200ad55)]:
+  - @sjsf-lab/shadcn-extras-theme@3.1.0
+  - @sjsf/form@3.1.0
+  - @sjsf/schemasafe-validator@3.1.0
+  - @sjsf/cfworker-validator@3.1.0
+  - @sjsf/ajv8-validator@3.1.0
+  - @sjsf-lab/svar-theme@3.0.0
+  - @sjsf/daisyui-theme@3.0.0
+  - @sjsf/flowbite-theme@3.0.0
+  - @sjsf/shadcn-theme@3.0.0
+  - @sjsf/skeleton3-theme@3.0.0
+  - @sjsf/basic-theme@3.1.0
+  - @sjsf/daisyui5-theme@3.1.0
+  - @sjsf/flowbite-icons@3.1.0
+  - @sjsf/flowbite3-theme@3.1.0
+  - @sjsf/lucide-icons@3.1.0
+  - @sjsf/moving-icons@3.1.0
+  - @sjsf/radix-icons@3.1.0
+  - @sjsf/shadcn4-theme@3.1.0
+  - @sjsf/skeleton4-theme@3.1.0
+  - @sjsf/sveltekit@3.1.0
+  - theme-testing@1.0.17
+  - @sjsf/valibot-validator@3.1.0
+  - @sjsf/zod4-validator@3.1.0
+
 ## 1.9.3
 
 ### Patch Changes
