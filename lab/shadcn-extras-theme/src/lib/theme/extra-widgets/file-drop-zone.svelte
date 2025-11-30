@@ -46,32 +46,38 @@
 	const { Button, FileDropZone } = $derived(themeCtx.components);
 
 	const id = $derived(getId(ctx, config.path));
+	let localValue: FileList | undefined = $derived(value)
+
+	function setValue(list: FileList) {
+		value = list;
+		localValue = list
+	}
 
 	async function onUpload(files: File[]) {
 		const data = new DataTransfer();
-		if (value) {
-			for (const file of value) {
+		if (localValue) {
+			for (const file of localValue) {
 				data.items.add(file);
 			}
 		}
 		for (const file of files) {
 			data.items.add(file);
 		}
-		value = data.files;
+		setValue(data.files);
 	}
 </script>
 
 <div class="flex w-full flex-col gap-2 p-6">
 	<FileDropZone
 		{onUpload}
-		fileCount={value?.length ?? 0}
+		fileCount={localValue?.length ?? 0}
 		{...customInputAttributes(ctx, config, 'shadcnExtrasFileDropZone', {
 			maxFiles: multiple ? config.schema.maxItems : 1
 		})}
 	/>
-	<input name={id} {id} type="file" bind:files={value} class="hidden" />
+	<input name={id} {id} type="file" bind:files={localValue} class="hidden" />
 	<div class="flex flex-col gap-2">
-		{#each value as file, i (file)}
+		{#each localValue as file, i (file)}
 			<div class="flex place-items-center justify-between gap-2">
 				<div class="flex place-items-center gap-2">
 					<div class="flex flex-col">
@@ -83,16 +89,16 @@
 					variant="outline"
 					size="icon"
 					onclick={() => {
-						if (!value) {
+						if (!localValue) {
 							return;
 						}
 						const data = new DataTransfer();
-						for (let j = 0; j < value.length; j++) {
+						for (let j = 0; j < localValue.length; j++) {
 							if (j !== i) {
-								data.items.add(value[j]);
+								data.items.add(localValue[j]);
 							}
 						}
-						value = data.files;
+						setValue(data.files);
 					}}
 				>
 					<XIcon />
