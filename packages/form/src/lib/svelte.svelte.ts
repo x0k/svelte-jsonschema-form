@@ -68,6 +68,7 @@ export function createAsyncBinding<I, O>({
     },
     set current(v) {
       toOutputTask.abort();
+      output = v;
       toInputTask.run(v);
     },
     get inputProcessing() {
