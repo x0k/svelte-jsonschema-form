@@ -1,8 +1,10 @@
 import { s, DEFAULT_SPECS } from 'theme-testing/specs';
+import '@sjsf/form/fields/extra/object-range-include';
 
 import './theme/extra-widgets/checkboxes-include.js';
 import './theme/extra-widgets/combobox-include.js';
 import './theme/extra-widgets/date-picker-include.js';
+import './theme/extra-widgets/date-range-picker-include.js';
 import './theme/extra-widgets/file-include.js';
 import './theme/extra-widgets/multi-select-include.js';
 import './theme/extra-widgets/radio-buttons-include.js';
@@ -10,8 +12,6 @@ import './theme/extra-widgets/radio-include.js';
 import './theme/extra-widgets/range-include.js';
 import './theme/extra-widgets/switch-include.js';
 import './theme/extra-widgets/textarea-include.js';
-
-
 
 export const specs: s.Specs = {
 	...DEFAULT_SPECS,
@@ -23,9 +23,9 @@ export const specs: s.Specs = {
 			}
 		},
 		{
-			oninput: "inputShadcnSelect",
-			onchange: "changeShadcnSelect",
-			onblur: "visitShadcnSelect",
+			oninput: 'inputShadcnSelect',
+			onchange: 'changeShadcnSelect',
+			onblur: 'visitShadcnSelect'
 		}
 	],
 	combobox: [
@@ -38,9 +38,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: "inputShadcnCombobox",
-			onchange: "changeShadcnCombobox",
-			onblur: "visitShadcnCombobox",
+			oninput: 'inputShadcnCombobox',
+			onchange: 'changeShadcnCombobox',
+			onblur: 'visitShadcnCombobox'
 		}
 	],
 	datePicker: [
@@ -48,10 +48,23 @@ export const specs: s.Specs = {
 		// NOTE: DatePicker is a button
 		{ 'ui:components': { textWidget: 'datePickerWidget' }, 'ui:options': { useLabel: false } },
 		{
-			oninput: "inputShadcnDatePicker",
-			onchange: "changeShadcnDatePicker",
-			onblur: "visitShadcnDatePicker",
+			oninput: 'inputShadcnDatePicker',
+			onchange: 'changeShadcnDatePicker',
+			onblur: 'visitShadcnDatePicker'
 		}
+	],
+	dateRangePicker: [
+		s.range(s.text),
+		{
+			'ui:components': {
+				objectField: 'objectRangeField',
+				rangePickerWidget: 'shadcn4DateRangePickerWidget'
+			},
+			'ui:options': {
+				useLabel: false
+			}
+		},
+		{}
 	],
 	multiSelect: [
 		s.uniqueArray,
@@ -63,9 +76,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: true }
 		},
 		{
-			oninput: "inputShadcnSelect",
-			onchange: "changeShadcnSelect",
-			onblur: "visitShadcnSelect",
+			oninput: 'inputShadcnSelect',
+			onchange: 'changeShadcnSelect',
+			onblur: 'visitShadcnSelect'
 		}
 	],
 	radioButtons: [
@@ -78,9 +91,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: "inputRadio",
-			onchange: "changeRadio",
-			onblur: "visitRadio"
+			oninput: 'inputRadio',
+			onchange: 'changeRadio',
+			onblur: 'visitRadio'
 		}
 	],
 	radio: [
@@ -93,9 +106,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: "inputRadio",
-			onchange: "changeRadio",
-			onblur: "visitRadio"
+			oninput: 'inputRadio',
+			onchange: 'changeRadio',
+			onblur: 'visitRadio'
 		}
 	],
 	range: [
@@ -103,8 +116,8 @@ export const specs: s.Specs = {
 		// NOTE: Range is span based
 		{ 'ui:components': { numberWidget: 'rangeWidget' }, 'ui:options': { useLabel: false } },
 		{
-			oninput: "inputSlider",
-			onchange: "changeSlider"
+			oninput: 'inputSlider',
+			onchange: 'changeSlider'
 		}
 	],
 	switch: [
@@ -116,18 +129,18 @@ export const specs: s.Specs = {
 			}
 		},
 		{
-			oninput: "inputSwitch",
-			onchange: "changeSwitch",
-			onblur: "visitSwitch"
+			oninput: 'inputSwitch',
+			onchange: 'changeSwitch',
+			onblur: 'visitSwitch'
 		}
 	],
 	textarea: [
 		s.text,
 		{ 'ui:components': { textWidget: 'textareaWidget' } },
 		{
-			oninput: "inputText",
-			onchange: "changeText",
-			onblur: "visitText"
+			oninput: 'inputText',
+			onchange: 'changeText',
+			onblur: 'visitText'
 		}
 	]
 };
