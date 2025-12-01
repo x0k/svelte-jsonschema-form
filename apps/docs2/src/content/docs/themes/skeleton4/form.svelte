@@ -38,6 +38,8 @@
       skeleton4ComboboxPortal: portalProps,
       skeleton4DatePicker: options,
       skeleton4DatePickerPortal: portalProps,
+      skeleton4DateRangePicker: options,
+      skeleton4DateRangePickerPortal: portalProps
     }),
   });
 

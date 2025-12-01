@@ -1,10 +1,12 @@
 import { s, DEFAULT_SPECS } from 'theme-testing/specs';
 import '@sjsf/form/fields/extra/array-tags-include';
 import '@sjsf/form/fields/extra/array-files-include';
+import '@sjsf/form/fields/extra/object-range-include';
 
 import './extra-widgets/checkboxes-include';
 import './extra-widgets/combobox-include.js';
 import './extra-widgets/date-picker-include';
+import './extra-widgets/date-range-picker-include.js';
 import './extra-widgets/file-upload-include.js';
 import './extra-widgets/file-include';
 import './extra-widgets/multi-select-include';
@@ -41,6 +43,17 @@ export const specs: s.Specs = {
 			onchange: 'changeDate',
 			onblur: 'visitDate'
 		}
+	],
+	dateRangePicker: [
+		s.range(s.text),
+		{
+			'ui:components': {
+				objectField: 'objectRangeField',
+				rangePickerWidget: 'skeleton4DateRangePickerWidget'
+			},
+			'ui:options': { useLabel: false }
+		},
+		{}
 	],
 	fileUpload: [
 		s.file,
@@ -92,7 +105,7 @@ export const specs: s.Specs = {
 		},
 		{
 			oninput: 'inputFlowbiteRadioButton',
-			onchange: 'changeFlowbiteRadioButton',
+			onchange: 'changeFlowbiteRadioButton'
 			// onblur: 'visitFlowbiteRadioButton'
 		}
 	],
