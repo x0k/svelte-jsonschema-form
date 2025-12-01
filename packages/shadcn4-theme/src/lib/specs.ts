@@ -1,5 +1,5 @@
 import { s, DEFAULT_SPECS } from 'theme-testing/specs';
-import '@sjsf/form/fields/extra/range-include';
+import '@sjsf/form/fields/extra/aggregated-include';
 
 import './theme/extra-widgets/checkboxes-include.js';
 import './theme/extra-widgets/combobox-include.js';
@@ -57,8 +57,8 @@ export const specs: s.Specs = {
 		s.range(s.text),
 		{
 			'ui:components': {
-				objectField: 'rangeField',
-				rangePickerWidget: 'shadcn4DateRangePickerWidget'
+				objectField: 'aggregatedField',
+				aggregatedWidget: 'shadcn4DateRangePickerWidget'
 			},
 			'ui:options': {
 				useLabel: false

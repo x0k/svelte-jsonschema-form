@@ -1,12 +1,11 @@
 <script lang="ts" module>
 	import { type DatePickerRootProps, type PortalRootProps } from '@skeletonlabs/skeleton-svelte';
 	import type { Range } from '@sjsf/form/lib/range';
-	import type { SchemaValue } from '@sjsf/form';
 	import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
-			skeleton4DateRangePickerWidget: WidgetCommonProps<Partial<Range<SchemaValue>>>;
+			skeleton4DateRangePickerWidget: WidgetCommonProps<Partial<Range<string>>>;
 		}
 		interface ComponentBindings {
 			skeleton4DateRangePickerWidget: 'value';

@@ -3,13 +3,12 @@
 	import type { RangeCalendarRootProps, RangeCalendar, WithoutChildrenOrChild } from 'bits-ui';
 	import type { DateValue } from '@internationalized/date';
 	import type { Range } from '@sjsf/form/lib/range';
-	import type { SchemaValue } from '@sjsf/form';
 
 	import '../types/popover';
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
-			shadcn4DateRangePickerWidget: WidgetCommonProps<Partial<Range<SchemaValue>>>;
+			shadcn4DateRangePickerWidget: WidgetCommonProps<Partial<Range<string>>>;
 		}
 		interface ComponentBindings {
 			shadcn4DateRangePickerWidget: 'value';
