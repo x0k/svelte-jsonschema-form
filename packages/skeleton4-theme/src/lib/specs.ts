@@ -1,7 +1,7 @@
 import { s, DEFAULT_SPECS } from 'theme-testing/specs';
 import '@sjsf/form/fields/extra/array-tags-include';
 import '@sjsf/form/fields/extra/array-files-include';
-import '@sjsf/form/fields/extra/object-range-include';
+import '@sjsf/form/fields/extra/range-include';
 
 import './extra-widgets/checkboxes-include';
 import './extra-widgets/combobox-include.js';
@@ -48,7 +48,7 @@ export const specs: s.Specs = {
 		s.range(s.text),
 		{
 			'ui:components': {
-				objectField: 'objectRangeField',
+				objectField: 'rangeField',
 				rangePickerWidget: 'skeleton4DateRangePickerWidget'
 			},
 			'ui:options': { useLabel: false }

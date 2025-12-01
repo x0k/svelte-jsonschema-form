@@ -9,7 +9,7 @@
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
-			shadcn4DateRangePickerWidget: WidgetCommonProps<Range<SchemaValue | undefined>>;
+			shadcn4DateRangePickerWidget: WidgetCommonProps<Partial<Range<SchemaValue>>>;
 		}
 		interface ComponentBindings {
 			shadcn4DateRangePickerWidget: 'value';

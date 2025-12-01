@@ -6,7 +6,7 @@
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
-			skeleton4DateRangePickerWidget: WidgetCommonProps<Range<SchemaValue | undefined>>;
+			skeleton4DateRangePickerWidget: WidgetCommonProps<Partial<Range<SchemaValue>>>;
 		}
 		interface ComponentBindings {
 			skeleton4DateRangePickerWidget: 'value';

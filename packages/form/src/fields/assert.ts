@@ -1,4 +1,3 @@
-import type { Range } from "@/lib/range.js";
 import type { SchemaArrayValue, SchemaValue } from "@/core/index.js";
 
 type ArrayAssert<T extends SchemaValue> = (
@@ -37,18 +36,4 @@ export function assertFile(v: unknown): asserts v is File | undefined {
       `expected "File" or "undefined", but got (${typeof v}: ${JSON.stringify(v)})`
     );
   }
-}
-
-export function assertRange(
-  v: unknown
-): asserts v is Range<SchemaValue | undefined> | undefined | null {
-  if (
-    v === undefined ||
-    v === null ||
-    (typeof v === "object" && "start" in v && "end" in v)
-  ) {
-    return;
-  }
-  throw new Error(`
-    expected "Range<SchemaValue | undefined>" or "null" or "undefined", but got (${typeof v}: ${JSON.stringify(v)})`);
 }

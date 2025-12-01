@@ -71,11 +71,9 @@
     ctx,
     config,
     {
-      // @ts-expect-error Due to the fallback on the `action` option, typing is difficult.
       get current() {
         return value;
       },
-      // @ts-expect-error See above
       set current(v) {
         value = v;
       },
