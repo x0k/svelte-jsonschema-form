@@ -53,6 +53,14 @@ export const text: Schema = {
   type: "string",
 };
 
+export const range = (schema: Schema): Schema => ({
+  type: "object",
+  properties: {
+    start: schema,
+    end: schema,
+  },
+});
+
 export const uiStates = (uiSchema: UiSchema): UiSchema => ({
   default: uiSchema,
   error: uiSchema,

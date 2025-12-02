@@ -28,3 +28,4 @@ export {
 	FieldLegend,
 	FieldGroup
 } from './field/index.js';
+export { RangeCalendar } from './range-calendar/index.js';

@@ -3520,6 +3520,800 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
 </div>
 `;
 
+exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="false"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
+    >
+      <!---->
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-md text-sm outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border h-9 px-4 py-2 has-[>svg]:px-3 justify-start text-start font-normal"
+        data-popover-trigger=""
+        data-slot="popover-trigger"
+        data-state="closed"
+        id="bits-c983"
+        type="button"
+      >
+        <!---->
+        <svg
+          class="lucide-icon lucide lucide-calendar me-2 size-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!---->
+          <path
+            d="M8 2v4"
+          >
+            
+          </path>
+          
+          <!---->
+          <path
+            d="M16 2v4"
+          >
+            
+          </path>
+          
+          <!---->
+          <rect
+            height="18"
+            rx="2"
+            width="18"
+            x="3"
+            y="4"
+          >
+            
+          </rect>
+          
+          <!---->
+          <path
+            d="M3 10h18"
+          >
+            
+          </path>
+          
+          <!---->
+          <!---->
+          
+          <!---->
+        </svg>
+        <!---->
+         
+        <!---->
+      </button>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      
+      
+      <!---->
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  
+</div>
+`;
+
+exports[`widgets > dateRangePicker > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="true"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
+    >
+      <!---->
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-md text-sm outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border h-9 px-4 py-2 has-[>svg]:px-3 justify-start text-start font-normal"
+        data-popover-trigger=""
+        data-slot="popover-trigger"
+        data-state="closed"
+        id="bits-c980"
+        type="button"
+      >
+        <!---->
+        <svg
+          class="lucide-icon lucide lucide-calendar me-2 size-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!---->
+          <path
+            d="M8 2v4"
+          >
+            
+          </path>
+          
+          <!---->
+          <path
+            d="M16 2v4"
+          >
+            
+          </path>
+          
+          <!---->
+          <rect
+            height="18"
+            rx="2"
+            width="18"
+            x="3"
+            y="4"
+          >
+            
+          </rect>
+          
+          <!---->
+          <path
+            d="M3 10h18"
+          >
+            
+          </path>
+          
+          <!---->
+          <!---->
+          
+          <!---->
+        </svg>
+        <!---->
+         
+        <!---->
+      </button>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      
+      
+      <!---->
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="text-destructive text-sm font-normal"
+        data-slot="field-error"
+        role="alert"
+      >
+        <!---->
+        <ul
+          class="ml-4 flex list-disc flex-col gap-1"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  
+</div>
+`;
+
+exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="false"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
+    >
+      <!---->
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-md text-sm outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border h-9 px-4 py-2 has-[>svg]:px-3 justify-start text-start font-normal"
+        data-popover-trigger=""
+        data-slot="popover-trigger"
+        data-state="closed"
+        id="bits-c977"
+        type="button"
+      >
+        <!---->
+        <svg
+          class="lucide-icon lucide lucide-calendar me-2 size-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!---->
+          <path
+            d="M8 2v4"
+          >
+            
+          </path>
+          
+          <!---->
+          <path
+            d="M16 2v4"
+          >
+            
+          </path>
+          
+          <!---->
+          <rect
+            height="18"
+            rx="2"
+            width="18"
+            x="3"
+            y="4"
+          >
+            
+          </rect>
+          
+          <!---->
+          <path
+            d="M3 10h18"
+          >
+            
+          </path>
+          
+          <!---->
+          <!---->
+          
+          <!---->
+        </svg>
+        <!---->
+         
+        <!---->
+      </button>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      
+      
+      <!---->
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  
+</div>
+`;
+
+exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="false"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
+    >
+      <!---->
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-md text-sm outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border h-9 px-4 py-2 has-[>svg]:px-3 justify-start text-start font-normal"
+        data-popover-trigger=""
+        data-slot="popover-trigger"
+        data-state="closed"
+        id="bits-c986"
+        type="button"
+      >
+        <!---->
+        <svg
+          class="lucide-icon lucide lucide-calendar me-2 size-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!---->
+          <path
+            d="M8 2v4"
+          >
+            
+          </path>
+          
+          <!---->
+          <path
+            d="M16 2v4"
+          >
+            
+          </path>
+          
+          <!---->
+          <rect
+            height="18"
+            rx="2"
+            width="18"
+            x="3"
+            y="4"
+          >
+            
+          </rect>
+          
+          <!---->
+          <path
+            d="M3 10h18"
+          >
+            
+          </path>
+          
+          <!---->
+          <!---->
+          
+          <!---->
+        </svg>
+        <!---->
+         
+        <!---->
+      </button>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      
+      
+      <!---->
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  
+</div>
+`;
+
 exports[`widgets > file > snapshots > disabled 1`] = `
 <div>
   <!---->
@@ -5758,7 +6552,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c1207"
+        id="bits-c2668"
         role="radiogroup"
       >
         <!---->
@@ -5802,7 +6596,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c1209"
+            id="bits-c2670"
           >
             <!---->
             foo
@@ -5853,7 +6647,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c1211"
+            id="bits-c2672"
           >
             <!---->
             bar
@@ -5904,7 +6698,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c1213"
+            id="bits-c2674"
           >
             <!---->
             fuzz
@@ -5955,7 +6749,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c1215"
+            id="bits-c2676"
           >
             <!---->
             qux
@@ -6082,7 +6876,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c1198"
+        id="bits-c2659"
         role="radiogroup"
       >
         <!---->
@@ -6124,7 +6918,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c1200"
+            id="bits-c2661"
           >
             <!---->
             foo
@@ -6173,7 +6967,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c1202"
+            id="bits-c2663"
           >
             <!---->
             bar
@@ -6222,7 +7016,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c1204"
+            id="bits-c2665"
           >
             <!---->
             fuzz
@@ -6271,7 +7065,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c1206"
+            id="bits-c2667"
           >
             <!---->
             qux
@@ -6422,7 +7216,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c1189"
+        id="bits-c2650"
         role="radiogroup"
       >
         <!---->
@@ -6464,7 +7258,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c1191"
+            id="bits-c2652"
           >
             <!---->
             foo
@@ -6513,7 +7307,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c1193"
+            id="bits-c2654"
           >
             <!---->
             bar
@@ -6562,7 +7356,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c1195"
+            id="bits-c2656"
           >
             <!---->
             fuzz
@@ -6611,7 +7405,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c1197"
+            id="bits-c2658"
           >
             <!---->
             qux
@@ -6738,7 +7532,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c1216"
+        id="bits-c2677"
         role="radiogroup"
       >
         <!---->
@@ -6780,7 +7574,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c1218"
+            id="bits-c2679"
           >
             <!---->
             foo
@@ -6829,7 +7623,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c1220"
+            id="bits-c2681"
           >
             <!---->
             bar
@@ -6878,7 +7672,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c1222"
+            id="bits-c2683"
           >
             <!---->
             fuzz
@@ -6927,7 +7721,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c1224"
+            id="bits-c2685"
           >
             <!---->
             qux
@@ -7075,7 +7869,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__0"
           data-variant="outline"
           disabled=""
-          id="bits-c1165"
+          id="bits-c2626"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7102,7 +7896,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__1"
           data-variant="outline"
           disabled=""
-          id="bits-c1166"
+          id="bits-c2627"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7129,7 +7923,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__2"
           data-variant="outline"
           disabled=""
-          id="bits-c1167"
+          id="bits-c2628"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7156,7 +7950,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__3"
           data-variant="outline"
           disabled=""
-          id="bits-c1168"
+          id="bits-c2629"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7298,7 +8092,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__0"
           data-variant="outline"
-          id="bits-c1160"
+          id="bits-c2621"
           role="radio"
           tabindex="0"
           type="button"
@@ -7323,7 +8117,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__1"
           data-variant="outline"
-          id="bits-c1161"
+          id="bits-c2622"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7348,7 +8142,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__2"
           data-variant="outline"
-          id="bits-c1162"
+          id="bits-c2623"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7373,7 +8167,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__3"
           data-variant="outline"
-          id="bits-c1163"
+          id="bits-c2624"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7539,7 +8333,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__0"
           data-variant="outline"
-          id="bits-c1155"
+          id="bits-c2616"
           role="radio"
           tabindex="0"
           type="button"
@@ -7564,7 +8358,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__1"
           data-variant="outline"
-          id="bits-c1156"
+          id="bits-c2617"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7589,7 +8383,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__2"
           data-variant="outline"
-          id="bits-c1157"
+          id="bits-c2618"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7614,7 +8408,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__3"
           data-variant="outline"
-          id="bits-c1158"
+          id="bits-c2619"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7756,7 +8550,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__0"
           data-variant="outline"
-          id="bits-c1170"
+          id="bits-c2631"
           role="radio"
           tabindex="0"
           type="button"
@@ -7781,7 +8575,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__1"
           data-variant="outline"
-          id="bits-c1171"
+          id="bits-c2632"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7806,7 +8600,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__2"
           data-variant="outline"
-          id="bits-c1172"
+          id="bits-c2633"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7831,7 +8625,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__3"
           data-variant="outline"
-          id="bits-c1173"
+          id="bits-c2634"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7968,7 +8762,7 @@ exports[`widgets > range > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c1259"
+            id="bits-c2720"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -7991,7 +8785,7 @@ exports[`widgets > range > snapshots > disabled 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c1260"
+          id="bits-c2721"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="-1"
@@ -8125,7 +8919,7 @@ exports[`widgets > range > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c1256"
+            id="bits-c2717"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -8147,7 +8941,7 @@ exports[`widgets > range > snapshots > error 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c1257"
+          id="bits-c2718"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -8305,7 +9099,7 @@ exports[`widgets > range > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c1253"
+            id="bits-c2714"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -8327,7 +9121,7 @@ exports[`widgets > range > snapshots > normal 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c1254"
+          id="bits-c2715"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -8461,7 +9255,7 @@ exports[`widgets > range > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c1262"
+            id="bits-c2723"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -8483,7 +9277,7 @@ exports[`widgets > range > snapshots > readonly 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c1263"
+          id="bits-c2724"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9386,7 +10180,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c1277"
+            id="bits-c2738"
           >
             <!---->
           </span>
@@ -9421,7 +10215,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c1278"
+          id="bits-c2739"
         >
           <!---->
           switch
@@ -9553,7 +10347,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c1274"
+            id="bits-c2735"
           >
             <!---->
           </span>
@@ -9587,7 +10381,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c1275"
+          id="bits-c2736"
         >
           <!---->
           switch
@@ -9743,7 +10537,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c1271"
+            id="bits-c2732"
           >
             <!---->
           </span>
@@ -9777,7 +10571,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c1272"
+          id="bits-c2733"
         >
           <!---->
           switch
@@ -9909,7 +10703,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c1280"
+            id="bits-c2741"
           >
             <!---->
           </span>
@@ -9943,7 +10737,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c1281"
+          id="bits-c2742"
         >
           <!---->
           switch

@@ -187,7 +187,7 @@ exports[`array fields > array icons 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@0"
+                      for="root_0"
                     >
                       -1
                     </label>
@@ -221,7 +221,7 @@ exports[`array fields > array icons 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@0"
+                      id="root_0"
                       placeholder=""
                       style=""
                       title=""
@@ -389,7 +389,7 @@ exports[`array fields > array icons 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@1"
+                      for="root_1"
                     >
                       -2
                     </label>
@@ -423,7 +423,7 @@ exports[`array fields > array icons 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@1"
+                      id="root_1"
                       placeholder=""
                       style=""
                       title=""
@@ -751,7 +751,7 @@ exports[`array fields > empty errors array 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.name"
+                      for="root_name"
                     >
                       name
                     </label>
@@ -785,7 +785,7 @@ exports[`array fields > empty errors array 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.name"
+                      id="root_name"
                       placeholder=""
                       style=""
                       title=""
@@ -838,7 +838,7 @@ exports[`array fields > empty errors array 1`] = `
         <!---->
         <ul
           class="svelte-ulrohq"
-          id="root::errors"
+          id="root__errors"
           tabindex="-1"
         >
           <li>
@@ -967,7 +967,7 @@ exports[`array fields > fixed array 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@0"
+                      id="root_0"
                       placeholder=""
                       style=""
                       title=""
@@ -1051,7 +1051,7 @@ exports[`array fields > fixed array 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@1"
+                      id="root_1"
                       placeholder=""
                       style=""
                       title=""
@@ -1189,7 +1189,7 @@ exports[`with title and description > array 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="arrayTemplate"
-              id="root::title"
+              id="root__title"
             >
               Test field
             </div>
@@ -1204,7 +1204,7 @@ exports[`with title and description > array 1`] = `
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a test description
@@ -1336,7 +1336,7 @@ exports[`with title and description > array icons 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="arrayTemplate"
-              id="root::title"
+              id="root__title"
             >
               Test field
             </div>
@@ -1351,7 +1351,7 @@ exports[`with title and description > array icons 1`] = `
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a test description
@@ -1419,7 +1419,7 @@ exports[`with title and description > array icons 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@0"
+                      for="root_0"
                     >
                       Test item-1
                     </label>
@@ -1434,7 +1434,7 @@ exports[`with title and description > array icons 1`] = `
                    
                   <!---->
                   <div
-                    id="root@0::description"
+                    id="root_0__description"
                     style="font-weight: 300;"
                   >
                     a test item description
@@ -1461,7 +1461,7 @@ exports[`with title and description > array icons 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@0"
+                      id="root_0"
                       placeholder=""
                       style=""
                       title=""
@@ -1629,7 +1629,7 @@ exports[`with title and description > array icons 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@1"
+                      for="root_1"
                     >
                       Test item-2
                     </label>
@@ -1644,7 +1644,7 @@ exports[`with title and description > array icons 1`] = `
                    
                   <!---->
                   <div
-                    id="root@1::description"
+                    id="root_1__description"
                     style="font-weight: 300;"
                   >
                     a test item description
@@ -1671,7 +1671,7 @@ exports[`with title and description > array icons 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@1"
+                      id="root_1"
                       placeholder=""
                       style=""
                       title=""
@@ -1960,7 +1960,7 @@ exports[`with title and description > fixed array 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="arrayTemplate"
-              id="root::title"
+              id="root__title"
             >
               Test field
             </div>
@@ -1975,7 +1975,7 @@ exports[`with title and description > fixed array 1`] = `
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a test description
@@ -2043,7 +2043,7 @@ exports[`with title and description > fixed array 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@0"
+                      for="root_0"
                     >
                       Test item
                     </label>
@@ -2058,7 +2058,7 @@ exports[`with title and description > fixed array 1`] = `
                    
                   <!---->
                   <div
-                    id="root@0::description"
+                    id="root_0__description"
                     style="font-weight: 300;"
                   >
                     a test item description
@@ -2085,7 +2085,7 @@ exports[`with title and description > fixed array 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@0"
+                      id="root_0"
                       placeholder=""
                       style=""
                       title=""
@@ -2173,7 +2173,7 @@ exports[`with title and description > fixed array 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@1"
+                      for="root_1"
                     >
                       Test item
                     </label>
@@ -2188,7 +2188,7 @@ exports[`with title and description > fixed array 1`] = `
                    
                   <!---->
                   <div
-                    id="root@1::description"
+                    id="root_1__description"
                     style="font-weight: 300;"
                   >
                     a test item description
@@ -2215,7 +2215,7 @@ exports[`with title and description > fixed array 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@1"
+                      id="root_1"
                       placeholder=""
                       style=""
                       title=""
@@ -2353,7 +2353,7 @@ exports[`with title and description from both > array 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="arrayTemplate"
-              id="root::title"
+              id="root__title"
             >
               My Field
             </div>
@@ -2368,7 +2368,7 @@ exports[`with title and description from both > array 1`] = `
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a fancier description
@@ -2500,7 +2500,7 @@ exports[`with title and description from both > array icons 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="arrayTemplate"
-              id="root::title"
+              id="root__title"
             >
               My Field
             </div>
@@ -2515,7 +2515,7 @@ exports[`with title and description from both > array icons 1`] = `
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a fancier description
@@ -2583,7 +2583,7 @@ exports[`with title and description from both > array icons 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@0"
+                      for="root_0"
                     >
                       My Item-1
                     </label>
@@ -2598,7 +2598,7 @@ exports[`with title and description from both > array icons 1`] = `
                    
                   <!---->
                   <div
-                    id="root@0::description"
+                    id="root_0__description"
                     style="font-weight: 300;"
                   >
                     a fancier item description
@@ -2625,7 +2625,7 @@ exports[`with title and description from both > array icons 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@0"
+                      id="root_0"
                       placeholder=""
                       style=""
                       title=""
@@ -2793,7 +2793,7 @@ exports[`with title and description from both > array icons 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@1"
+                      for="root_1"
                     >
                       My Item-2
                     </label>
@@ -2808,7 +2808,7 @@ exports[`with title and description from both > array icons 1`] = `
                    
                   <!---->
                   <div
-                    id="root@1::description"
+                    id="root_1__description"
                     style="font-weight: 300;"
                   >
                     a fancier item description
@@ -2835,7 +2835,7 @@ exports[`with title and description from both > array icons 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@1"
+                      id="root_1"
                       placeholder=""
                       style=""
                       title=""
@@ -3124,7 +3124,7 @@ exports[`with title and description from both > fixed array 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="arrayTemplate"
-              id="root::title"
+              id="root__title"
             >
               My Field
             </div>
@@ -3139,7 +3139,7 @@ exports[`with title and description from both > fixed array 1`] = `
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a fancier description
@@ -3207,7 +3207,7 @@ exports[`with title and description from both > fixed array 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@0"
+                      for="root_0"
                     >
                       My Item
                     </label>
@@ -3222,7 +3222,7 @@ exports[`with title and description from both > fixed array 1`] = `
                    
                   <!---->
                   <div
-                    id="root@0::description"
+                    id="root_0__description"
                     style="font-weight: 300;"
                   >
                     a fancier item description
@@ -3249,7 +3249,7 @@ exports[`with title and description from both > fixed array 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@0"
+                      id="root_0"
                       placeholder=""
                       style=""
                       title=""
@@ -3337,7 +3337,7 @@ exports[`with title and description from both > fixed array 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@1"
+                      for="root_1"
                     >
                       My Item
                     </label>
@@ -3352,7 +3352,7 @@ exports[`with title and description from both > fixed array 1`] = `
                    
                   <!---->
                   <div
-                    id="root@1::description"
+                    id="root_1__description"
                     style="font-weight: 300;"
                   >
                     a fancier item description
@@ -3379,7 +3379,7 @@ exports[`with title and description from both > fixed array 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@1"
+                      id="root_1"
                       placeholder=""
                       style=""
                       title=""
@@ -3517,7 +3517,7 @@ exports[`with title and description from uiSchema > array 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="arrayTemplate"
-              id="root::title"
+              id="root__title"
             >
               My Field
             </div>
@@ -3532,7 +3532,7 @@ exports[`with title and description from uiSchema > array 1`] = `
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a fancier description
@@ -3664,7 +3664,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="arrayTemplate"
-              id="root::title"
+              id="root__title"
             >
               My Field
             </div>
@@ -3679,7 +3679,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a fancier description
@@ -3747,7 +3747,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@0"
+                      for="root_0"
                     >
                       My Item-1
                     </label>
@@ -3762,7 +3762,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                    
                   <!---->
                   <div
-                    id="root@0::description"
+                    id="root_0__description"
                     style="font-weight: 300;"
                   >
                     a fancier item description
@@ -3789,7 +3789,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@0"
+                      id="root_0"
                       placeholder=""
                       style=""
                       title=""
@@ -3957,7 +3957,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@1"
+                      for="root_1"
                     >
                       My Item-2
                     </label>
@@ -3972,7 +3972,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                    
                   <!---->
                   <div
-                    id="root@1::description"
+                    id="root_1__description"
                     style="font-weight: 300;"
                   >
                     a fancier item description
@@ -3999,7 +3999,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@1"
+                      id="root_1"
                       placeholder=""
                       style=""
                       title=""
@@ -4288,7 +4288,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="arrayTemplate"
-              id="root::title"
+              id="root__title"
             >
               My Field
             </div>
@@ -4303,7 +4303,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a fancier description
@@ -4371,7 +4371,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@0"
+                      for="root_0"
                     >
                       My Item
                     </label>
@@ -4386,7 +4386,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                    
                   <!---->
                   <div
-                    id="root@0::description"
+                    id="root_0__description"
                     style="font-weight: 300;"
                   >
                     a fancier item description
@@ -4413,7 +4413,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@0"
+                      id="root_0"
                       placeholder=""
                       style=""
                       title=""
@@ -4501,7 +4501,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root@1"
+                      for="root_1"
                     >
                       My Item
                     </label>
@@ -4516,7 +4516,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                    
                   <!---->
                   <div
-                    id="root@1::description"
+                    id="root_1__description"
                     style="font-weight: 300;"
                   >
                     a fancier item description
@@ -4543,7 +4543,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@1"
+                      id="root_1"
                       placeholder=""
                       style=""
                       title=""
@@ -4815,7 +4815,7 @@ exports[`with title and description with global label off > array icons 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@0"
+                      id="root_0"
                       placeholder=""
                       style=""
                       title=""
@@ -4979,7 +4979,7 @@ exports[`with title and description with global label off > array icons 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@1"
+                      id="root_1"
                       placeholder=""
                       style=""
                       title=""
@@ -5301,7 +5301,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@0"
+                      id="root_0"
                       placeholder=""
                       style=""
                       title=""
@@ -5385,7 +5385,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root@1"
+                      id="root_1"
                       placeholder=""
                       style=""
                       title=""

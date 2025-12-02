@@ -1,9 +1,11 @@
 import { s, DEFAULT_SPECS } from 'theme-testing/specs';
 import '@sjsf/form/fields/extra/array-tags-include';
 import '@sjsf/form/fields/extra/array-files-include';
+import '@sjsf/form/fields/extra/aggregated-include';
 
 import './extra-widgets/checkboxes-include.js';
 import './extra-widgets/date-picker-include.js';
+import './extra-widgets/date-range-picker-include.js';
 import './extra-widgets/multi-select-include.js';
 import './extra-widgets/radio-include.js';
 import './extra-widgets/range-include.js';
@@ -41,6 +43,18 @@ export const specs: s.Specs = {
 		{ 'ui:components': { textWidget: 'datePickerWidget' } },
 		{
 			onchange: 'changeDate'
+		}
+	],
+	dateRangePicker: [
+		s.range(s.text),
+		{
+			'ui:components': {
+				objectField: 'aggregatedField',
+				aggregatedWidget: 'svarDateRangePickerWidget'
+			}
+		},
+		{
+			onchange: 'changeSvarDateRangePicker'
 		}
 	],
 	multiSelect: [

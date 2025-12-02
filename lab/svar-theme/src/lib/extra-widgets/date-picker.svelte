@@ -19,6 +19,8 @@
 		type ComponentProps
 	} from '@sjsf/form';
 
+	import { parseLocalDate, toLocalDate } from '$lib/local-date.js';
+
 	let {
 		value = $bindable(),
 		config,
@@ -30,11 +32,6 @@
 
 	const id = $derived(getId(ctx, config.path));
 
-	function parseLocalDate(date: string) {
-		const [year, month, day] = date.split('-').map(Number);
-		return new Date(year, month - 1, day);
-	}
-
 	function onchange() {
 		handlers.oninput?.();
 		handlers.onchange?.();
@@ -43,8 +40,7 @@
 
 <SvarDatePicker
 	bind:value={
-		() => (value ? parseLocalDate(value) : undefined),
-		(v) => (value = v?.toLocaleDateString('en-CA'))
+		() => (value ? parseLocalDate(value) : undefined), (v) => (value = v && toLocalDate(v))
 	}
 	{...uiOptionProps('svarDatePicker')(
 		{

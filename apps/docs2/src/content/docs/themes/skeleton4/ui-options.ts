@@ -10,15 +10,16 @@ import type {
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type {
   ComboboxRootProps,
+  DatePickerRootProps,
   FileUploadRootProviderProps,
+  PortalRootProps,
   RatingGroupRootProps,
   SegmentedControlItemProps,
   SegmentedControlRootProps,
   SliderRootProps,
   SwitchRootProps,
-  TagsInputRootProps
+  TagsInputRootProps,
 } from "@skeletonlabs/skeleton-svelte4";
-import type { DatePickerRootProps } from 'bits-ui';
 
 export interface UiOptions {
   /**
@@ -88,13 +89,18 @@ export interface UiOptions {
   textarea?: HTMLTextareaAttributes;
 
   skeleton4Combobox?: ComboboxRootProps;
+  skeleton4ComboboxPortal?: Omit<PortalRootProps, "children">;
 
   skeleton4DatePicker?: DatePickerRootProps;
+  skeleton4DatePickerPortal?: Omit<PortalRootProps, "children">;
 
-  skeleton4FileUpload?: Omit<FileUploadRootProviderProps, 'value'>;
+  skeleton4DateRangePicker?: DatePickerRootProps;
+  skeleton4DateRangePickerPortal?: Omit<PortalRootProps, "children">;
+
+  skeleton4FileUpload?: Omit<FileUploadRootProviderProps, "value">;
 
   skeleton4Segment?: SegmentedControlRootProps;
-  skeleton4SegmentItem?: Omit<SegmentedControlItemProps, 'value'>;
+  skeleton4SegmentItem?: Omit<SegmentedControlItemProps, "value">;
 
   skeleton4Rating?: RatingGroupRootProps;
 
