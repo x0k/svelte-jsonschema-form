@@ -67,7 +67,7 @@
 		"@sjsf/form": "workspace:^3.0.3",
 		"@sveltejs/kit": "^2.48.3",
 		"esm-env": "^1.2.0",
-		"svelte": "^5.30.0"
+		"svelte": "^5.34.8"
 	},
 	"devDependencies": {
 		"@sjsf/ajv8-validator": "workspace:*",

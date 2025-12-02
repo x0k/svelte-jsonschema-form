@@ -63,7 +63,7 @@
 		"clsx": "^2.1.0",
 		"country-flag-icons": "^1.5.0",
 		"runed": "^0.36.0",
-		"svelte": "^5.30.0",
+		"svelte": "^5.34.8",
 		"svelte-tel-input": "^3.6.0",
 		"svelte-toolbelt": "^0.10.0",
 		"tailwind-merge": "^3.3.0",
