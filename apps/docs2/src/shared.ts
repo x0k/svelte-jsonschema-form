@@ -261,3 +261,39 @@ export const PKG_MANGER_ICONS: Record<PackageManager, StarlightIcon> = {
   pnpm: "pnpm",
   bun: "bun",
 };
+
+const packagesMeta = Object.values(
+  import.meta.glob(
+    ["#/*/package.json", "legacy/*/package.json", "lab/*/package.json"],
+    {
+      import: "default",
+      eager: true,
+    }
+  )
+) as {
+  name: string;
+  version: string;
+  repository: {
+    directory: string;
+  };
+}[];
+
+const packagesMap = new Map(packagesMeta.map((p) => [p.name, p]));
+
+export function isValidPackageName(name: string) {
+  return packagesMap.has(name);
+}
+
+export function getPackageMetadata(name: string) {
+  const pkg = packagesMap.get(name);
+  if (!pkg) {
+    throw new Error(`Cannot find package with name "${name}"`);
+  }
+  const unscoped = name[0] === "@" ? name.replace(/@.*?\//, "") : name;
+  return {
+    version: pkg.version,
+    npmUrl: `https://www.npmjs.com/package/${pkg.name}`,
+    githubUrl: `https://github.com/x0k/svelte-jsonschema-form/tree/main/${pkg.repository.directory}`,
+    changelogPath: `changelogs/${unscoped}`,
+  };
+}
