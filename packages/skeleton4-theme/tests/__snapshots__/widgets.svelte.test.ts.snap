@@ -2249,7 +2249,7 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
           data-part="root"
           data-scope="date-picker"
           data-state="closed"
-          id="datepicker:c3"
+          id="datepicker:c14"
         >
           <!---->
           <!---->
@@ -2258,7 +2258,7 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
             data-disabled=""
             data-part="control"
             data-scope="date-picker"
-            id="datepicker:c3:control"
+            id="datepicker:c14:control"
           >
             <!---->
             <!---->
@@ -2299,7 +2299,7 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
              
             <!---->
             <button
-              aria-controls="datepicker:c3:content"
+              aria-controls="datepicker:c14:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
               class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
@@ -2307,7 +2307,7 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
               data-scope="date-picker"
               data-state="closed"
               disabled=""
-              id="datepicker:c3:trigger"
+              id="datepicker:c14:trigger"
               type="button"
             >
               <svg
@@ -2429,7 +2429,7 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
           data-part="root"
           data-scope="date-picker"
           data-state="closed"
-          id="datepicker:c2"
+          id="datepicker:c13"
         >
           <!---->
           <!---->
@@ -2437,7 +2437,7 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
             class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
-            id="datepicker:c2:control"
+            id="datepicker:c13:control"
           >
             <!---->
             <!---->
@@ -2476,14 +2476,14 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
              
             <!---->
             <button
-              aria-controls="datepicker:c2:content"
+              aria-controls="datepicker:c13:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
               class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
-              id="datepicker:c2:trigger"
+              id="datepicker:c13:trigger"
               type="button"
             >
               <svg
@@ -2616,7 +2616,7 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
           data-part="root"
           data-scope="date-picker"
           data-state="closed"
-          id="datepicker:c1"
+          id="datepicker:c12"
         >
           <!---->
           <!---->
@@ -2624,7 +2624,7 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
             class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
-            id="datepicker:c1:control"
+            id="datepicker:c12:control"
           >
             <!---->
             <!---->
@@ -2663,14 +2663,14 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
              
             <!---->
             <button
-              aria-controls="datepicker:c1:content"
+              aria-controls="datepicker:c12:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
               class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
-              id="datepicker:c1:trigger"
+              id="datepicker:c12:trigger"
               type="button"
             >
               <svg
@@ -2793,7 +2793,7 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
           data-readonly=""
           data-scope="date-picker"
           data-state="closed"
-          id="datepicker:c4"
+          id="datepicker:c15"
         >
           <!---->
           <!---->
@@ -2801,7 +2801,7 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
             class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
-            id="datepicker:c4:control"
+            id="datepicker:c15:control"
           >
             <!---->
             <!---->
@@ -2842,14 +2842,14 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
              
             <!---->
             <button
-              aria-controls="datepicker:c4:content"
+              aria-controls="datepicker:c15:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
               class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
-              id="datepicker:c4:trigger"
+              id="datepicker:c15:trigger"
               type="button"
             >
               <svg
