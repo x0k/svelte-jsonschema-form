@@ -75,6 +75,7 @@ export default defineConfig({
         // Head: "./src/components/custom-head.astro",
         Header: "./src/components/header-with-links.astro",
         MarkdownContent: "./src/components/markdown-content.astro",
+        PageTitle: './src/components/page-title.astro',
       },
       customCss: ["./src/styles.css"],
     }),
