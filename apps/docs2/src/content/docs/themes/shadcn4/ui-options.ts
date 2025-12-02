@@ -26,10 +26,16 @@ import type {
   Without,
   ToggleGroupRootPropsWithoutHTML,
   ToggleGroupItemProps,
+  RangeCalendarRootProps,
 } from "bits-ui";
+import type { DateValue } from '@internationalized/date';
+import type { Range } from '@sjsf/form/lib/range';
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type { Button } from "@sjsf/shadcn4-theme/new-york";
-import type { ButtonGroupProps, FieldProps } from '@sjsf/shadcn4-theme/components/layout.svelte'
+import type {
+  ButtonGroupProps,
+  FieldProps,
+} from "@sjsf/shadcn4-theme/components/layout.svelte";
 
 type InputType = Exclude<HTMLInputTypeAttribute, "file">;
 
@@ -112,6 +118,10 @@ export interface UiOptions {
   >;
   shadcn4DatePickerTrigger?: ComponentProps<typeof Button>;
   shadcn4DateFormatter?: (date: Date) => string;
+
+  shadcn4DateRangePicker?: RangeCalendarRootProps;
+  shadcn4DateRangePickerPlaceholder?: string;
+  shadcn4DateRangeFormatter?: (range: Range<DateValue | undefined>) => string;
 
   file?: HTMLInputAttributes;
 
