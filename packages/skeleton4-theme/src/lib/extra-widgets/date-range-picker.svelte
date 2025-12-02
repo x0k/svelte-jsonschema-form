@@ -50,16 +50,14 @@
 	{...customInputAttributes(ctx, config, 'skeleton4DateRangePicker', {
 		selectionMode: 'range',
 		ids: {
-			input: (i) => inputIds[i],
+			input: (i) => inputIds[i]
 		},
 		readOnly: config.schema.readOnly,
 		onValueChange: (e) => {
-			const next= {
+			value = {
 				start: e.value[0]?.toString(),
 				end: e.value[1]?.toString()
-			}
-			console.log(next)
-			value = next;
+			};
 		}
 	})}
 >
