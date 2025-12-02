@@ -64,7 +64,11 @@ export const specs: s.Specs = {
 				useLabel: false
 			}
 		},
-		{}
+		{
+			oninput: 'inputShadcnDatePicker',
+			onchange: 'changeShadcnDatePicker',
+			onblur: 'visitShadcnDatePicker'
+		}
 	],
 	multiSelect: [
 		s.uniqueArray,

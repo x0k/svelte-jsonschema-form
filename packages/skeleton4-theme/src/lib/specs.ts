@@ -53,7 +53,11 @@ export const specs: s.Specs = {
 			},
 			'ui:options': { useLabel: false }
 		},
-		{}
+		{
+			oninput: 'inputSkeletonDateRangePicker',
+			onchange: 'changeSkeletonDateRangePicker',
+			onblur: 'visitSkeletonDateRangePicker'
+		}
 	],
 	fileUpload: [
 		s.file,

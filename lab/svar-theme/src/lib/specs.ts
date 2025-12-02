@@ -53,7 +53,9 @@ export const specs: s.Specs = {
 				aggregatedWidget: 'svarDateRangePickerWidget'
 			}
 		},
-		{}
+		{
+			onchange: 'changeSvarDateRangePicker'
+		}
 	],
 	multiSelect: [
 		s.uniqueArray,

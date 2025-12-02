@@ -148,7 +148,7 @@ export const visitShadcnSelect = withTab(inputShadcnSelect);
 export const inputShadcnDatePicker: FieldValidationTrigger = async (l) => {
   const btn = getButton(l);
   await userEvent.click(btn);
-  const day = l.getByText("19");
+  const day = l.getByText("19").first();
   await userEvent.click(day);
 };
 export const changeShadcnDatePicker = inputShadcnDatePicker;
@@ -172,6 +172,14 @@ export const inputSkeletonCombobox: FieldValidationTrigger = async (l) => {
 export const changeSkeletonCombobox = inputSkeletonCombobox;
 export const visitSkeletonCombobox = withTab(inputSkeletonCombobox);
 
+export const getFirstTextbox = (l: Locator) => l.getByRole("textbox").first();
+export const inputSkeletonDateRangePicker = fill(getFirstTextbox, "2020-01-01");
+export const changeSkeletonDateRangePicker = withTab(
+  inputSkeletonDateRangePicker,
+  true
+);
+export const visitSkeletonDateRangePicker = changeSkeletonDateRangePicker;
+
 export const getSkeletonRadioButtonLabel = (l: Locator) =>
   l.getByTestId("segment-item").last();
 export const inputSkeletonRadioButton = click(getSkeletonRadioButtonLabel);
@@ -190,9 +198,18 @@ export const inputSvarCheckbox = click(getSvarCheckbox);
 export const changeSvarCheckbox = inputSvarCheckbox;
 
 export const inputSvarMultiSelect: FieldValidationTrigger = async (l) => {
-  const box = l.getByRole('textbox')
-  await userEvent.click(box)
-  const item = l.getByText(enumeration.enum[0])
-  await userEvent.click(item)
-}
+  const box = l.getByRole("textbox");
+  await userEvent.click(box);
+  const item = l.getByText(enumeration.enum[0]);
+  await userEvent.click(item);
+};
 export const changeSvarMultiSelect = inputSvarMultiSelect;
+
+export const inputSvarDateRangePicker = fill(
+  getTextbox,
+  "2020-01-01 - 20022-01-01"
+);
+export const changeSvarDateRangePicker = withTab(
+  inputSvarDateRangePicker,
+  true
+);

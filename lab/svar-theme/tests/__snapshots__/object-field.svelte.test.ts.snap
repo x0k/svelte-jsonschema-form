@@ -86,7 +86,7 @@ exports[`object fields > additionalProperties 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root.foo::key-input"
+                      for="root_foo__key-input"
                     >
                       foo Key
                     </label>
@@ -120,7 +120,7 @@ exports[`object fields > additionalProperties 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo::key-input"
+                      id="root_foo__key-input"
                       placeholder=""
                       style=""
                       title=""
@@ -191,7 +191,7 @@ exports[`object fields > additionalProperties 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.foo"
+                      for="root_foo"
                     >
                       foo
                     </label>
@@ -225,7 +225,7 @@ exports[`object fields > additionalProperties 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo"
+                      id="root_foo"
                       placeholder=""
                       style=""
                       title=""
@@ -422,7 +422,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                       class="svelte-1xvnq02"
                       data-error="true"
                       data-required="true"
-                      for="root.foo::key-input"
+                      for="root_foo__key-input"
                     >
                       foo Key
                     </label>
@@ -456,7 +456,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo::key-input"
+                      id="root_foo__key-input"
                       placeholder=""
                       style=""
                       title=""
@@ -478,7 +478,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                 <ul
                   class="svelte-ulrohq"
-                  id="root.foo::key-input::errors"
+                  id="root_foo__key-input__errors"
                   tabindex="-1"
                 >
                   <li>
@@ -539,7 +539,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.foo"
+                      for="root_foo"
                     >
                       foo
                     </label>
@@ -573,7 +573,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo"
+                      id="root_foo"
                       placeholder=""
                       style=""
                       title=""
@@ -772,7 +772,7 @@ exports[`object fields > has errors 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.name"
+                      for="root_name"
                     >
                       name
                     </label>
@@ -806,7 +806,7 @@ exports[`object fields > has errors 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.name"
+                      id="root_name"
                       placeholder=""
                       style=""
                       title=""
@@ -859,7 +859,7 @@ exports[`object fields > has errors 1`] = `
         <!---->
         <ul
           class="svelte-ulrohq"
-          id="root::errors"
+          id="root__errors"
           tabindex="-1"
         >
           <li>
@@ -994,7 +994,7 @@ exports[`object fields > object 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.a"
+                      for="root_a"
                     >
                       A
                     </label>
@@ -1028,7 +1028,7 @@ exports[`object fields > object 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.a"
+                      id="root_a"
                       placeholder=""
                       style=""
                       title=""
@@ -1118,7 +1118,7 @@ exports[`object fields > object 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.b"
+                      for="root_b"
                     >
                       B
                     </label>
@@ -1152,7 +1152,7 @@ exports[`object fields > object 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.b"
+                      id="root_b"
                       placeholder=""
                       style=""
                       title=""
@@ -1290,7 +1290,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="objectTemplate"
-              id="root::title"
+              id="root__title"
             >
               Options
             </div>
@@ -1398,7 +1398,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.transform::description"
+                    id="root_transform__description"
                     style="font-weight: 300;"
                   >
                     Apply a transformation to the output data
@@ -1425,14 +1425,14 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   >
                     <input
                       class="svelte-2blbp2"
-                      id="root.transform"
+                      id="root_transform"
                       type="checkbox"
                       value=""
                     />
                      
                     <label
                       class="svelte-2blbp2"
-                      for="root.transform"
+                      for="root_transform"
                     >
                       <span
                         class="svelte-2blbp2"
@@ -1555,7 +1555,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.paginate::description"
+                    id="root_paginate__description"
                     style="font-weight: 300;"
                   >
                     Partitioning the input data (object or array) into pages by their keys
@@ -1582,14 +1582,14 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   >
                     <input
                       class="svelte-2blbp2"
-                      id="root.paginate"
+                      id="root_paginate"
                       type="checkbox"
                       value=""
                     />
                      
                     <label
                       class="svelte-2blbp2"
-                      for="root.paginate"
+                      for="root_paginate"
                     >
                       <span
                         class="svelte-2blbp2"
@@ -1673,7 +1673,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.createOnOpen::description"
+                    id="root_createOnOpen__description"
                     style="font-weight: 300;"
                   >
                     Creating a table when opening a share link
@@ -1700,14 +1700,14 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   >
                     <input
                       class="svelte-2blbp2"
-                      id="root.createOnOpen"
+                      id="root_createOnOpen"
                       type="checkbox"
                       value=""
                     />
                      
                     <label
                       class="svelte-2blbp2"
-                      for="root.createOnOpen"
+                      for="root_createOnOpen"
                     >
                       <span
                         class="svelte-2blbp2"
@@ -1846,7 +1846,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="objectTemplate"
-              id="root::title"
+              id="root__title"
             >
               Options
             </div>
@@ -1954,7 +1954,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.collapseIndexes::description"
+                    id="root_collapseIndexes__description"
                     style="font-weight: 300;"
                   >
                     Combines hierarchical indexes into one cell (1.1, 1.2, ...)
@@ -1981,14 +1981,14 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   >
                     <input
                       class="svelte-2blbp2"
-                      id="root.collapseIndexes"
+                      id="root_collapseIndexes"
                       type="checkbox"
                       value=""
                     />
                      
                     <label
                       class="svelte-2blbp2"
-                      for="root.collapseIndexes"
+                      for="root_collapseIndexes"
                     >
                       <span
                         class="svelte-2blbp2"
@@ -2072,7 +2072,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.joinPrimitiveArrayValues::description"
+                    id="root_joinPrimitiveArrayValues__description"
                     style="font-weight: 300;"
                   >
                     Combines the values of an array of primitives into one cell (separated by ',')
@@ -2099,14 +2099,14 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   >
                     <input
                       class="svelte-2blbp2"
-                      id="root.joinPrimitiveArrayValues"
+                      id="root_joinPrimitiveArrayValues"
                       type="checkbox"
                       value=""
                     />
                      
                     <label
                       class="svelte-2blbp2"
-                      for="root.joinPrimitiveArrayValues"
+                      for="root_joinPrimitiveArrayValues"
                     >
                       <span
                         class="svelte-2blbp2"
@@ -2190,7 +2190,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.combineArraysOfObjects::description"
+                    id="root_combineArraysOfObjects__description"
                     style="font-weight: 300;"
                   >
                     Combine arrays of objects into a single object
@@ -2217,14 +2217,14 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   >
                     <input
                       class="svelte-2blbp2"
-                      id="root.combineArraysOfObjects"
+                      id="root_combineArraysOfObjects"
                       type="checkbox"
                       value=""
                     />
                      
                     <label
                       class="svelte-2blbp2"
-                      for="root.combineArraysOfObjects"
+                      for="root_combineArraysOfObjects"
                     >
                       <span
                         class="svelte-2blbp2"
@@ -2308,7 +2308,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+                    id="root_stabilizeOrderOfPropertiesInArraysOfObjects__description"
                     style="font-weight: 300;"
                   >
                     Stabilizing the order in which properties are displayed for arrays of objects
@@ -2335,14 +2335,14 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   >
                     <input
                       class="svelte-2blbp2"
-                      id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                      id="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                       type="checkbox"
                       value=""
                     />
                      
                     <label
                       class="svelte-2blbp2"
-                      for="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                      for="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                     >
                       <span
                         class="svelte-2blbp2"
@@ -2434,7 +2434,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root.proportionalSizeAdjustmentThreshold"
+                      for="root_proportionalSizeAdjustmentThreshold"
                     >
                       Proportional size adjustment threshold
                     </label>
@@ -2449,7 +2449,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.proportionalSizeAdjustmentThreshold::description"
+                    id="root_proportionalSizeAdjustmentThreshold__description"
                     style="font-weight: 300;"
                   >
                     Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
@@ -2476,7 +2476,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.proportionalSizeAdjustmentThreshold"
+                      id="root_proportionalSizeAdjustmentThreshold"
                       placeholder=""
                       style=""
                       title=""
@@ -2567,7 +2567,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.cornerCellValue"
+                      for="root_cornerCellValue"
                     >
                       Corner cell value
                     </label>
@@ -2582,7 +2582,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.cornerCellValue::description"
+                    id="root_cornerCellValue__description"
                     style="font-weight: 300;"
                   >
                     The value of the corner cell.
@@ -2609,7 +2609,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.cornerCellValue"
+                      id="root_cornerCellValue"
                       placeholder=""
                       style=""
                       title=""
@@ -2691,7 +2691,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.transform::description"
+                    id="root_transform__description"
                     style="font-weight: 300;"
                   >
                     Apply a transformation to the output data
@@ -2718,14 +2718,14 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   >
                     <input
                       class="svelte-2blbp2"
-                      id="root.transform"
+                      id="root_transform"
                       type="checkbox"
                       value=""
                     />
                      
                     <label
                       class="svelte-2blbp2"
-                      for="root.transform"
+                      for="root_transform"
                     >
                       <span
                         class="svelte-2blbp2"
@@ -2848,7 +2848,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.paginate::description"
+                    id="root_paginate__description"
                     style="font-weight: 300;"
                   >
                     Partitioning the input data (object or array) into pages by their keys
@@ -2875,14 +2875,14 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   >
                     <input
                       class="svelte-2blbp2"
-                      id="root.paginate"
+                      id="root_paginate"
                       type="checkbox"
                       value=""
                     />
                      
                     <label
                       class="svelte-2blbp2"
-                      for="root.paginate"
+                      for="root_paginate"
                     >
                       <span
                         class="svelte-2blbp2"
@@ -2966,7 +2966,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                    
                   <!---->
                   <div
-                    id="root.createOnOpen::description"
+                    id="root_createOnOpen__description"
                     style="font-weight: 300;"
                   >
                     Creating a table when opening a share link
@@ -2993,14 +2993,14 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   >
                     <input
                       class="svelte-2blbp2"
-                      id="root.createOnOpen"
+                      id="root_createOnOpen"
                       type="checkbox"
                       value=""
                     />
                      
                     <label
                       class="svelte-2blbp2"
-                      for="root.createOnOpen"
+                      for="root_createOnOpen"
                     >
                       <span
                         class="svelte-2blbp2"
@@ -3176,7 +3176,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root.additionalProperty::key-input"
+                      for="root_additionalProperty__key-input"
                     >
                       additionalProperty Key
                     </label>
@@ -3210,7 +3210,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.additionalProperty::key-input"
+                      id="root_additionalProperty__key-input"
                       placeholder=""
                       style=""
                       title=""
@@ -3281,7 +3281,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.additionalProperty"
+                      for="root_additionalProperty"
                     >
                       additionalProperty
                     </label>
@@ -3315,7 +3315,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.additionalProperty"
+                      id="root_additionalProperty"
                       placeholder=""
                       style=""
                       title=""
@@ -3475,7 +3475,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               class="svelte-1id7bpe"
               data-error="false"
               data-template="objectTemplate"
-              id="root::title"
+              id="root__title"
             >
               Test field
             </div>
@@ -3490,7 +3490,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a test description
@@ -3558,7 +3558,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root.foo::key-input"
+                      for="root_foo__key-input"
                     >
                       foo Key
                     </label>
@@ -3592,7 +3592,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo::key-input"
+                      id="root_foo__key-input"
                       placeholder=""
                       style=""
                       title=""
@@ -3663,7 +3663,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.foo"
+                      for="root_foo"
                     >
                       foo
                     </label>
@@ -3697,7 +3697,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo"
+                      id="root_foo"
                       placeholder=""
                       style=""
                       title=""
@@ -3857,7 +3857,7 @@ exports[`object fields > with title and description > object 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="objectTemplate"
-              id="root::title"
+              id="root__title"
             >
               Test field
             </div>
@@ -3872,7 +3872,7 @@ exports[`object fields > with title and description > object 1`] = `
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a test description
@@ -3942,7 +3942,7 @@ exports[`object fields > with title and description > object 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.a"
+                      for="root_a"
                     >
                       A
                     </label>
@@ -3957,7 +3957,7 @@ exports[`object fields > with title and description > object 1`] = `
                    
                   <!---->
                   <div
-                    id="root.a::description"
+                    id="root_a__description"
                     style="font-weight: 300;"
                   >
                     A description
@@ -3984,7 +3984,7 @@ exports[`object fields > with title and description > object 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.a"
+                      id="root_a"
                       placeholder=""
                       style=""
                       title=""
@@ -4074,7 +4074,7 @@ exports[`object fields > with title and description > object 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.b"
+                      for="root_b"
                     >
                       B
                     </label>
@@ -4089,7 +4089,7 @@ exports[`object fields > with title and description > object 1`] = `
                    
                   <!---->
                   <div
-                    id="root.b::description"
+                    id="root_b__description"
                     style="font-weight: 300;"
                   >
                     B description
@@ -4116,7 +4116,7 @@ exports[`object fields > with title and description > object 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.b"
+                      id="root_b"
                       placeholder=""
                       style=""
                       title=""
@@ -4254,7 +4254,7 @@ exports[`object fields > with title and description > show add button and fields
               class="svelte-1id7bpe"
               data-error="false"
               data-template="objectTemplate"
-              id="root::title"
+              id="root__title"
             >
               Test field
             </div>
@@ -4269,7 +4269,7 @@ exports[`object fields > with title and description > show add button and fields
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a test description
@@ -4337,7 +4337,7 @@ exports[`object fields > with title and description > show add button and fields
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root.additionalProperty::key-input"
+                      for="root_additionalProperty__key-input"
                     >
                       additionalProperty Key
                     </label>
@@ -4371,7 +4371,7 @@ exports[`object fields > with title and description > show add button and fields
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.additionalProperty::key-input"
+                      id="root_additionalProperty__key-input"
                       placeholder=""
                       style=""
                       title=""
@@ -4442,7 +4442,7 @@ exports[`object fields > with title and description > show add button and fields
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.additionalProperty"
+                      for="root_additionalProperty"
                     >
                       additionalProperty
                     </label>
@@ -4476,7 +4476,7 @@ exports[`object fields > with title and description > show add button and fields
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.additionalProperty"
+                      id="root_additionalProperty"
                       placeholder=""
                       style=""
                       title=""
@@ -4636,7 +4636,7 @@ exports[`object fields > with title and description from both > additionalProper
               class="svelte-1id7bpe"
               data-error="false"
               data-template="objectTemplate"
-              id="root::title"
+              id="root__title"
             >
               My Field
             </div>
@@ -4651,7 +4651,7 @@ exports[`object fields > with title and description from both > additionalProper
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a fancier description
@@ -4719,7 +4719,7 @@ exports[`object fields > with title and description from both > additionalProper
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root.foo::key-input"
+                      for="root_foo__key-input"
                     >
                       foo Key
                     </label>
@@ -4753,7 +4753,7 @@ exports[`object fields > with title and description from both > additionalProper
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo::key-input"
+                      id="root_foo__key-input"
                       placeholder=""
                       style=""
                       title=""
@@ -4824,7 +4824,7 @@ exports[`object fields > with title and description from both > additionalProper
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.foo"
+                      for="root_foo"
                     >
                       foo
                     </label>
@@ -4858,7 +4858,7 @@ exports[`object fields > with title and description from both > additionalProper
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo"
+                      id="root_foo"
                       placeholder=""
                       style=""
                       title=""
@@ -5018,7 +5018,7 @@ exports[`object fields > with title and description from both > object 1`] = `
               class="svelte-1id7bpe"
               data-error="false"
               data-template="objectTemplate"
-              id="root::title"
+              id="root__title"
             >
               My Field
             </div>
@@ -5033,7 +5033,7 @@ exports[`object fields > with title and description from both > object 1`] = `
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a fancier description
@@ -5103,7 +5103,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.a"
+                      for="root_a"
                     >
                       My Item A
                     </label>
@@ -5118,7 +5118,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                    
                   <!---->
                   <div
-                    id="root.a::description"
+                    id="root_a__description"
                     style="font-weight: 300;"
                   >
                     a fancier item A description
@@ -5145,7 +5145,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.a"
+                      id="root_a"
                       placeholder=""
                       style=""
                       title=""
@@ -5235,7 +5235,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.b"
+                      for="root_b"
                     >
                       My Item B
                     </label>
@@ -5250,7 +5250,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                    
                   <!---->
                   <div
-                    id="root.b::description"
+                    id="root_b__description"
                     style="font-weight: 300;"
                   >
                     a fancier item B description
@@ -5277,7 +5277,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.b"
+                      id="root_b"
                       placeholder=""
                       style=""
                       title=""
@@ -5415,7 +5415,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               class="svelte-1id7bpe"
               data-error="false"
               data-template="objectTemplate"
-              id="root::title"
+              id="root__title"
             >
               My Field
             </div>
@@ -5430,7 +5430,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a fancier description
@@ -5498,7 +5498,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root.foo::key-input"
+                      for="root_foo__key-input"
                     >
                       foo Key
                     </label>
@@ -5532,7 +5532,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo::key-input"
+                      id="root_foo__key-input"
                       placeholder=""
                       style=""
                       title=""
@@ -5603,7 +5603,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.foo"
+                      for="root_foo"
                     >
                       foo
                     </label>
@@ -5637,7 +5637,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo"
+                      id="root_foo"
                       placeholder=""
                       style=""
                       title=""
@@ -5797,7 +5797,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
               class="svelte-1id7bpe"
               data-error="false"
               data-template="objectTemplate"
-              id="root::title"
+              id="root__title"
             >
               My Field
             </div>
@@ -5812,7 +5812,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a fancier description
@@ -5882,7 +5882,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.a"
+                      for="root_a"
                     >
                       My Item A
                     </label>
@@ -5897,7 +5897,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                    
                   <!---->
                   <div
-                    id="root.a::description"
+                    id="root_a__description"
                     style="font-weight: 300;"
                   >
                     a fancier item A description
@@ -5924,7 +5924,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.a"
+                      id="root_a"
                       placeholder=""
                       style=""
                       title=""
@@ -6014,7 +6014,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.b"
+                      for="root_b"
                     >
                       My Item B
                     </label>
@@ -6029,7 +6029,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                    
                   <!---->
                   <div
-                    id="root.b::description"
+                    id="root_b__description"
                     style="font-weight: 300;"
                   >
                     a fancier item B description
@@ -6056,7 +6056,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.b"
+                      id="root_b"
                       placeholder=""
                       style=""
                       title=""
@@ -6194,7 +6194,7 @@ exports[`object fields > with title and description from uiSchema > show add but
               class="svelte-1id7bpe"
               data-error="false"
               data-template="objectTemplate"
-              id="root::title"
+              id="root__title"
             >
               My Field
             </div>
@@ -6209,7 +6209,7 @@ exports[`object fields > with title and description from uiSchema > show add but
            
           <!---->
           <div
-            id="root::description"
+            id="root__description"
             style="font-weight: 300;"
           >
             a fancier description
@@ -6277,7 +6277,7 @@ exports[`object fields > with title and description from uiSchema > show add but
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="true"
-                      for="root.additionalProperty::key-input"
+                      for="root_additionalProperty__key-input"
                     >
                       additionalProperty Key
                     </label>
@@ -6311,7 +6311,7 @@ exports[`object fields > with title and description from uiSchema > show add but
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.additionalProperty::key-input"
+                      id="root_additionalProperty__key-input"
                       placeholder=""
                       style=""
                       title=""
@@ -6382,7 +6382,7 @@ exports[`object fields > with title and description from uiSchema > show add but
                       class="svelte-1xvnq02"
                       data-error="false"
                       data-required="false"
-                      for="root.additionalProperty"
+                      for="root_additionalProperty"
                     >
                       additionalProperty
                     </label>
@@ -6416,7 +6416,7 @@ exports[`object fields > with title and description from uiSchema > show add but
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.additionalProperty"
+                      id="root_additionalProperty"
                       placeholder=""
                       style=""
                       title=""
@@ -6609,7 +6609,7 @@ exports[`object fields > with title and description with global label off > addi
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo::key-input"
+                      id="root_foo__key-input"
                       placeholder=""
                       style=""
                       title=""
@@ -6676,7 +6676,7 @@ exports[`object fields > with title and description with global label off > addi
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.foo"
+                      id="root_foo"
                       placeholder=""
                       style=""
                       title=""
@@ -6871,7 +6871,7 @@ exports[`object fields > with title and description with global label off > obje
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.a"
+                      id="root_a"
                       placeholder=""
                       style=""
                       title=""
@@ -6957,7 +6957,7 @@ exports[`object fields > with title and description with global label off > obje
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.b"
+                      id="root_b"
                       placeholder=""
                       style=""
                       title=""
@@ -7128,7 +7128,7 @@ exports[`object fields > with title and description with global label off > show
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.additionalProperty::key-input"
+                      id="root_additionalProperty__key-input"
                       placeholder=""
                       style=""
                       title=""
@@ -7195,7 +7195,7 @@ exports[`object fields > with title and description with global label off > show
                     <!---->
                     <input
                       class="svelte-1gktjgg"
-                      id="root.additionalProperty"
+                      id="root_additionalProperty"
                       placeholder=""
                       style=""
                       title=""
