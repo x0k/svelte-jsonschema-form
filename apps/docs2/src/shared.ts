@@ -82,6 +82,7 @@ export enum GenericExample {
   LayoutSlots = "layout-slots",
   PreuploadFile = "preupload-file",
   OptionalDataControls = "optional-data-controls",
+  SchemaTransformation = 'schema-transformation'
 }
 
 export const GENERIC_EXAMPLES = Object.values(GenericExample);
