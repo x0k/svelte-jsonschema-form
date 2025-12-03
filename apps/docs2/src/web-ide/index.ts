@@ -61,7 +61,7 @@ const VALIDATOR_LAYERS = Object.fromEntries(
 
 const THEME_LAYERS: Record<Theme, () => LayerPromise[]> = {
   basic: () => [import("./layers/basic")],
-  pico: () => [import('./layers/pico')],
+  pico: () => [import("./layers/pico")],
   daisyui: () => [import("./layers/tailwind3"), import("./layers/daisyui")],
   daisyui5: () => [import("./layers/tailwind4"), import("./layers/daisyui5")],
   flowbite: () => [import("./layers/tailwind3"), import("./layers/flowbite")],
@@ -92,6 +92,8 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [GenericExample.PreuploadFile]: () => import("./examples/preupload-file"),
   [GenericExample.OptionalDataControls]: () =>
     import("./examples/optional-data-controls"),
+  [GenericExample.SchemaTransformation]: () =>
+    import("./examples/schema-transformation"),
   [SvelteKitExample.FormActionsWithoutJs]: () =>
     import("./examples/form-actions-without-js"),
   [SvelteKitExample.MultiStepNativeForm]: () =>
