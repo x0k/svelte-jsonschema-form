@@ -1,5 +1,19 @@
 # @sjsf/skeleton4-theme
 
+## 3.1.0
+
+### Minor Changes
+
+- Add `date-range-picker` widget ([#264](https://github.com/x0k/svelte-jsonschema-form/pull/264))
+
+### Patch Changes
+
+- Fix svelte peer dependecy version ([#266](https://github.com/x0k/svelte-jsonschema-form/pull/266))
+
+- Updated dependencies [[`89735c8`](https://github.com/x0k/svelte-jsonschema-form/commit/89735c84083299de1d148f5550ab18d79200ad55), [`3ac9807`](https://github.com/x0k/svelte-jsonschema-form/commit/3ac98076ab05eb39fdb500bd067a9ec42a0aa5da), [`a42e942`](https://github.com/x0k/svelte-jsonschema-form/commit/a42e9427645265bf841fed566a31a2fdaa145f74), [`89735c8`](https://github.com/x0k/svelte-jsonschema-form/commit/89735c84083299de1d148f5550ab18d79200ad55)]:
+  - @sjsf/form@3.1.0
+  - @sjsf/basic-theme@3.1.0
+
 ## 3.0.3
 
 ### Patch Changes

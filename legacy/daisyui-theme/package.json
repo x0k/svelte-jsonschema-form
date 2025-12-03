@@ -63,10 +63,10 @@
 		}
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^3.0.3"
+		"@sjsf/basic-theme": "workspace:^3.1.0"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^3.0.3",
+		"@sjsf/form": "workspace:^3.1.0",
 		"daisyui": "^4.12.0",
 		"svelte": "^5.33.0"
 	},

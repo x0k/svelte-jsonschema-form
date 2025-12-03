@@ -1,5 +1,16 @@
 # svar-starter
 
+## 0.0.6
+
+### Patch Changes
+
+- Fix svelte peer dependecy version ([#266](https://github.com/x0k/svelte-jsonschema-form/pull/266))
+
+- Updated dependencies [[`7cd8693`](https://github.com/x0k/svelte-jsonschema-form/commit/7cd86931078ea56a3e2e6a7b82c5c859ac778d91), [`89735c8`](https://github.com/x0k/svelte-jsonschema-form/commit/89735c84083299de1d148f5550ab18d79200ad55), [`3ac9807`](https://github.com/x0k/svelte-jsonschema-form/commit/3ac98076ab05eb39fdb500bd067a9ec42a0aa5da), [`37d4599`](https://github.com/x0k/svelte-jsonschema-form/commit/37d4599f886d152d37ae0936f48be122314412ca), [`a42e942`](https://github.com/x0k/svelte-jsonschema-form/commit/a42e9427645265bf841fed566a31a2fdaa145f74), [`89735c8`](https://github.com/x0k/svelte-jsonschema-form/commit/89735c84083299de1d148f5550ab18d79200ad55), [`89735c8`](https://github.com/x0k/svelte-jsonschema-form/commit/89735c84083299de1d148f5550ab18d79200ad55)]:
+  - @sjsf-lab/svar-theme@3.1.0
+  - @sjsf/form@3.1.0
+  - @sjsf/ajv8-validator@3.1.0
+
 ## 0.0.5
 
 ### Patch Changes
