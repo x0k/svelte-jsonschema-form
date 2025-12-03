@@ -1,5 +1,44 @@
 # docs
 
+## 1.10.0
+
+### Minor Changes
+
+- Display packages metadata ([#268](https://github.com/x0k/svelte-jsonschema-form/pull/268))
+
+### Patch Changes
+
+- Add a warning about the issue with overwriting defaults ([#256](https://github.com/x0k/svelte-jsonschema-form/pull/256))
+
+- Remove the `new` badges ([#260](https://github.com/x0k/svelte-jsonschema-form/pull/260))
+
+- Add `validateByRetrievedSchema` form option ([#259](https://github.com/x0k/svelte-jsonschema-form/pull/259))
+
+- Updated dependencies [[`7cd8693`](https://github.com/x0k/svelte-jsonschema-form/commit/7cd86931078ea56a3e2e6a7b82c5c859ac778d91), [`2be578c`](https://github.com/x0k/svelte-jsonschema-form/commit/2be578c48423ad0fe6e762f1a1f64ceaeeb36f41), [`89735c8`](https://github.com/x0k/svelte-jsonschema-form/commit/89735c84083299de1d148f5550ab18d79200ad55), [`3ac9807`](https://github.com/x0k/svelte-jsonschema-form/commit/3ac98076ab05eb39fdb500bd067a9ec42a0aa5da), [`37d4599`](https://github.com/x0k/svelte-jsonschema-form/commit/37d4599f886d152d37ae0936f48be122314412ca), [`a42e942`](https://github.com/x0k/svelte-jsonschema-form/commit/a42e9427645265bf841fed566a31a2fdaa145f74), [`f60ca30`](https://github.com/x0k/svelte-jsonschema-form/commit/f60ca30907f8fb2806c8eae425db24374a0760d1), [`7cd8693`](https://github.com/x0k/svelte-jsonschema-form/commit/7cd86931078ea56a3e2e6a7b82c5c859ac778d91), [`89735c8`](https://github.com/x0k/svelte-jsonschema-form/commit/89735c84083299de1d148f5550ab18d79200ad55), [`7cd8693`](https://github.com/x0k/svelte-jsonschema-form/commit/7cd86931078ea56a3e2e6a7b82c5c859ac778d91), [`89735c8`](https://github.com/x0k/svelte-jsonschema-form/commit/89735c84083299de1d148f5550ab18d79200ad55)]:
+  - @sjsf-lab/svar-theme@3.1.0
+  - @sjsf-lab/shadcn-extras-theme@3.1.0
+  - @sjsf/form@3.1.0
+  - @sjsf/flowbite3-theme@3.1.0
+  - @sjsf/skeleton4-theme@3.1.0
+  - @sjsf/daisyui5-theme@3.1.0
+  - @sjsf/flowbite-icons@3.1.0
+  - @sjsf/skeleton3-theme@3.0.1
+  - @sjsf/shadcn4-theme@3.1.0
+  - theme-testing@1.0.17
+  - @sjsf/lucide-icons@3.1.0
+  - @sjsf/moving-icons@3.1.0
+  - @sjsf/basic-theme@3.1.0
+  - @sjsf/radix-icons@3.1.0
+  - @sjsf/sveltekit@3.1.0
+  - @sjsf/schemasafe-validator@3.1.0
+  - @sjsf/cfworker-validator@3.1.0
+  - @sjsf/ajv8-validator@3.1.0
+  - @sjsf/daisyui-theme@3.0.0
+  - @sjsf/flowbite-theme@3.0.0
+  - @sjsf/shadcn-theme@3.0.0
+  - @sjsf/valibot-validator@3.1.0
+  - @sjsf/zod4-validator@3.1.0
+
 ## 1.9.3
 
 ### Patch Changes

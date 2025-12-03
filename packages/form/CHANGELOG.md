@@ -1,5 +1,19 @@
 # @sjsf/form
 
+## 3.1.0
+
+### Minor Changes
+
+- Add `lib/cache` module ([#259](https://github.com/x0k/svelte-jsonschema-form/pull/259))
+
+- Add `validateByRetrievedSchema` form option ([#259](https://github.com/x0k/svelte-jsonschema-form/pull/259))
+
+### Patch Changes
+
+- Fix svelte peer dependecy version ([#266](https://github.com/x0k/svelte-jsonschema-form/pull/266))
+
+- Fix saving updates in `createAsyncBinding` function ([#263](https://github.com/x0k/svelte-jsonschema-form/pull/263))
+
 ## 3.0.3
 
 ### Patch Changes
