@@ -43,7 +43,7 @@
 		handlers.onchange?.();
 	}
 
-	const { placeholder = '', ...attributes } = $derived(
+	const { placeholder = ' ', ...attributes } = $derived(
 		uiOptionProps('svarCombobox')(
 			{
 				id,
