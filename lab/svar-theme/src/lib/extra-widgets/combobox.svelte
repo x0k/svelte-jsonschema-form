@@ -1,10 +1,11 @@
 <script lang="ts" module>
 	import type { ComponentProps as SvelteComponentProps } from 'svelte';
-	import { Select as SvarSelect } from '@svar-ui/svelte-core';
+	import { Combo } from '@svar-ui/svelte-core';
+	import '@sjsf/form/fields/extra-widgets/combobox';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			savrSelect?: SvelteComponentProps<typeof SvarSelect>;
+			svarCombobox?: SvelteComponentProps<typeof Combo>;
 		}
 	}
 </script>
@@ -21,11 +22,11 @@
 
 	let {
 		value = $bindable(),
-		options,
 		config,
-		errors,
-		handlers
-	}: ComponentProps['selectWidget'] = $props();
+		handlers,
+		options,
+		errors
+	}: ComponentProps['comboboxWidget'] = $props();
 
 	const ctx = getFormContext();
 
@@ -42,13 +43,19 @@
 		handlers.onchange?.();
 	}
 
-	const { placeholder = '', ...attributes } = $derived(
-		uiOptionProps('savrSelect')(
-			{ id, disabled: isDisabled(ctx), error: errors.length > 0, onchange },
+	const { placeholder = ' ', ...attributes } = $derived(
+		uiOptionProps('svarCombobox')(
+			{
+				id,
+				disabled: isDisabled(ctx),
+				error: errors.length > 0,
+				onchange
+			},
 			config,
 			ctx
 		)
 	);
+
 	const items = $derived(
 		config.schema.default === undefined
 			? [{ id: UNDEFINED_ID, label: placeholder }, ...options]
@@ -56,4 +63,4 @@
 	);
 </script>
 
-<SvarSelect options={items} bind:value={mapped.value} {...attributes} />
+<Combo options={items} bind:value={mapped.value} {...attributes} />
