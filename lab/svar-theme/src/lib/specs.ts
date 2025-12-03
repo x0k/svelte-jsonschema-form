@@ -4,11 +4,16 @@ import '@sjsf/form/fields/extra/array-files-include';
 import '@sjsf/form/fields/extra/aggregated-include';
 
 import './extra-widgets/checkboxes-include.js';
+import './extra-widgets/color-picker-include.js';
+import './extra-widgets/color-select-include.js';
+import './extra-widgets/combobox-include.js';
 import './extra-widgets/date-picker-include.js';
 import './extra-widgets/date-range-picker-include.js';
 import './extra-widgets/multi-select-include.js';
+import './extra-widgets/radio-buttons-include.js';
 import './extra-widgets/radio-include.js';
 import './extra-widgets/range-include.js';
+import './extra-widgets/switch-include.js';
 import './extra-widgets/textarea-include.js';
 
 function prepareSpecs(specs: s.Specs) {
@@ -38,6 +43,18 @@ function prepareSpecs(specs: s.Specs) {
 
 export const specs: s.Specs = {
 	...prepareSpecs(DEFAULT_SPECS),
+	colorPicker: [s.text, { 'ui:components': { textWidget: 'svarColorPickerWidget' } }, {}],
+	colorSelect: [s.text, { 'ui:components': { textWidget: 'svarColorSelectWidget' } }, {}],
+	combobox: [
+		s.enumeration,
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: 'comboboxWidget'
+			}
+		},
+		{}
+	],
 	datePicker: [
 		s.text,
 		{ 'ui:components': { textWidget: 'datePickerWidget' } },
@@ -71,6 +88,19 @@ export const specs: s.Specs = {
 			onchange: 'changeSvarMultiSelect'
 		}
 	],
+	radioButtons: [
+		s.enumeration,
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: 'radioButtonsWidget'
+			},
+			'ui:options': {
+				useLabel: false
+			}
+		},
+		{}
+	],
 	radio: [
 		s.enumeration,
 		{
@@ -93,6 +123,7 @@ export const specs: s.Specs = {
 			onchange: 'changeSlider'
 		}
 	],
+	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }, {}],
 	textarea: [
 		s.text,
 		{ 'ui:components': { textWidget: 'textareaWidget' } },

@@ -517,14 +517,14 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421410"
+                  id="1764728231871"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421410"
+                  for="1764728231871"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -549,14 +549,14 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421411"
+                  id="1764728231872"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421411"
+                  for="1764728231872"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -581,14 +581,14 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421412"
+                  id="1764728231873"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421412"
+                  for="1764728231873"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -613,14 +613,14 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421413"
+                  id="1764728231874"
                   type="checkbox"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421413"
+                  for="1764728231874"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -737,14 +737,14 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421406"
+                  id="1764728231867"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421406"
+                  for="1764728231867"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -769,14 +769,14 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421407"
+                  id="1764728231868"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421407"
+                  for="1764728231868"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -801,14 +801,14 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421408"
+                  id="1764728231869"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421408"
+                  for="1764728231869"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -833,14 +833,14 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421409"
+                  id="1764728231870"
                   type="checkbox"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421409"
+                  for="1764728231870"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -968,14 +968,14 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421402"
+                  id="1764728231863"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421402"
+                  for="1764728231863"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -1000,14 +1000,14 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421403"
+                  id="1764728231864"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421403"
+                  for="1764728231864"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -1032,14 +1032,14 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421404"
+                  id="1764728231865"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421404"
+                  for="1764728231865"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -1064,14 +1064,14 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421405"
+                  id="1764728231866"
                   type="checkbox"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421405"
+                  for="1764728231866"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -1187,14 +1187,14 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421414"
+                  id="1764728231875"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421414"
+                  for="1764728231875"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -1219,14 +1219,14 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421415"
+                  id="1764728231876"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421415"
+                  for="1764728231876"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -1251,14 +1251,14 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421416"
+                  id="1764728231877"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421416"
+                  for="1764728231877"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -1283,14 +1283,14 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-2blbp2"
-                  id="1764698421417"
+                  id="1764728231878"
                   type="checkbox"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-2blbp2"
-                  for="1764698421417"
+                  for="1764728231878"
                 >
                   <span
                     class="svelte-2blbp2"
@@ -1307,6 +1307,1314 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
               <!---->
             </div>
             
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > colorPicker > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-colorpicker svelte-akx3ao"
+          >
+            <input
+              class="svelte-akx3ao"
+              disabled=""
+              id="root"
+              placeholder=""
+              readonly=""
+              title=""
+            />
+             
+            <div
+              class="wx-color svelte-akx3ao"
+              style=""
+            />
+             
+            <!---->
+             
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        disabled=""
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > colorPicker > snapshots > error 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-colorpicker svelte-akx3ao"
+          >
+            <input
+              class="svelte-akx3ao wx-error"
+              id="root"
+              placeholder=""
+              readonly=""
+              title=""
+            />
+             
+            <div
+              class="wx-color svelte-akx3ao"
+              style=""
+            />
+             
+            <!---->
+             
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="svelte-ulrohq"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > colorPicker > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-colorpicker svelte-akx3ao"
+          >
+            <input
+              class="svelte-akx3ao"
+              id="root"
+              placeholder=""
+              readonly=""
+              title=""
+            />
+             
+            <div
+              class="wx-color svelte-akx3ao"
+              style=""
+            />
+             
+            <!---->
+             
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > colorPicker > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-colorpicker svelte-akx3ao"
+          >
+            <input
+              class="svelte-akx3ao"
+              id="root"
+              placeholder=""
+              readonly=""
+              title=""
+            />
+             
+            <div
+              class="wx-color svelte-akx3ao"
+              style=""
+            />
+             
+            <!---->
+             
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > colorSelect > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-colorselect svelte-1ifeqw2"
+          >
+            <input
+              class="svelte-1ifeqw2"
+              disabled=""
+              id="root"
+              placeholder=""
+              readonly=""
+              title=""
+            />
+             
+            <!---->
+             
+            <div
+              class="wx-empty wx-selected svelte-1ifeqw2"
+            />
+            <!---->
+             
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        disabled=""
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > colorSelect > snapshots > error 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-colorselect svelte-1ifeqw2"
+          >
+            <input
+              class="svelte-1ifeqw2 wx-error"
+              id="root"
+              placeholder=""
+              readonly=""
+              title=""
+            />
+             
+            <!---->
+             
+            <div
+              class="wx-empty wx-selected svelte-1ifeqw2"
+            />
+            <!---->
+             
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="svelte-ulrohq"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > colorSelect > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-colorselect svelte-1ifeqw2"
+          >
+            <input
+              class="svelte-1ifeqw2"
+              id="root"
+              placeholder=""
+              readonly=""
+              title=""
+            />
+             
+            <!---->
+             
+            <div
+              class="wx-empty wx-selected svelte-1ifeqw2"
+            />
+            <!---->
+             
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > colorSelect > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-colorselect svelte-1ifeqw2"
+          >
+            <input
+              class="svelte-1ifeqw2"
+              id="root"
+              placeholder=""
+              readonly=""
+              title=""
+            />
+             
+            <!---->
+             
+            <div
+              class="wx-empty wx-selected svelte-1ifeqw2"
+            />
+            <!---->
+             
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > combobox > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-combo svelte-1rua8s3"
+            title=""
+          >
+            <input
+              class="svelte-1rua8s3"
+              disabled=""
+              id="root"
+              placeholder=""
+            />
+             
+            <i
+              class="wx-icon wxi-angle-down svelte-1rua8s3"
+            />
+            <!---->
+             
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        disabled=""
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > combobox > snapshots > error 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-combo svelte-1rua8s3"
+            title=""
+          >
+            <input
+              class="svelte-1rua8s3 wx-error"
+              id="root"
+              placeholder=""
+            />
+             
+            <i
+              class="wx-icon wxi-angle-down svelte-1rua8s3"
+            />
+            <!---->
+             
+            <!---->
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="svelte-ulrohq"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > combobox > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-combo svelte-1rua8s3"
+            title=""
+          >
+            <input
+              class="svelte-1rua8s3"
+              id="root"
+              placeholder=""
+            />
+             
+            <i
+              class="wx-icon wxi-angle-down svelte-1rua8s3"
+            />
+            <!---->
+             
+            <!---->
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > combobox > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-combo svelte-1rua8s3"
+            title=""
+          >
+            <input
+              class="svelte-1rua8s3"
+              id="root"
+              placeholder=""
+            />
+             
+            <i
+              class="wx-icon wxi-angle-down svelte-1rua8s3"
+            />
+            <!---->
+             
+            <!---->
+            
+            <!---->
           </div>
           
           
@@ -3268,15 +4576,15 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421437"
-                  name="1764698421436"
+                  id="1764728231898"
+                  name="1764728231897"
                   type="radio"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421437"
+                  for="1764728231898"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3300,15 +4608,15 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421438"
-                  name="1764698421436"
+                  id="1764728231899"
+                  name="1764728231897"
                   type="radio"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421438"
+                  for="1764728231899"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3332,15 +4640,15 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421439"
-                  name="1764698421436"
+                  id="1764728231900"
+                  name="1764728231897"
                   type="radio"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421439"
+                  for="1764728231900"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3364,15 +4672,15 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421440"
-                  name="1764698421436"
+                  id="1764728231901"
+                  name="1764728231897"
                   type="radio"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421440"
+                  for="1764728231901"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3488,15 +4796,15 @@ exports[`widgets > radio > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421432"
-                  name="1764698421431"
+                  id="1764728231893"
+                  name="1764728231892"
                   type="radio"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421432"
+                  for="1764728231893"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3520,15 +4828,15 @@ exports[`widgets > radio > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421433"
-                  name="1764698421431"
+                  id="1764728231894"
+                  name="1764728231892"
                   type="radio"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421433"
+                  for="1764728231894"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3552,15 +4860,15 @@ exports[`widgets > radio > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421434"
-                  name="1764698421431"
+                  id="1764728231895"
+                  name="1764728231892"
                   type="radio"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421434"
+                  for="1764728231895"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3584,15 +4892,15 @@ exports[`widgets > radio > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421435"
-                  name="1764698421431"
+                  id="1764728231896"
+                  name="1764728231892"
                   type="radio"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421435"
+                  for="1764728231896"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3719,15 +5027,15 @@ exports[`widgets > radio > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421427"
-                  name="1764698421426"
+                  id="1764728231888"
+                  name="1764728231887"
                   type="radio"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421427"
+                  for="1764728231888"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3751,15 +5059,15 @@ exports[`widgets > radio > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421428"
-                  name="1764698421426"
+                  id="1764728231889"
+                  name="1764728231887"
                   type="radio"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421428"
+                  for="1764728231889"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3783,15 +5091,15 @@ exports[`widgets > radio > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421429"
-                  name="1764698421426"
+                  id="1764728231890"
+                  name="1764728231887"
                   type="radio"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421429"
+                  for="1764728231890"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3815,15 +5123,15 @@ exports[`widgets > radio > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421430"
-                  name="1764698421426"
+                  id="1764728231891"
+                  name="1764728231887"
                   type="radio"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421430"
+                  for="1764728231891"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3938,15 +5246,15 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421442"
-                  name="1764698421441"
+                  id="1764728231903"
+                  name="1764728231902"
                   type="radio"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421442"
+                  for="1764728231903"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -3970,15 +5278,15 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421443"
-                  name="1764698421441"
+                  id="1764728231904"
+                  name="1764728231902"
                   type="radio"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421443"
+                  for="1764728231904"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -4002,15 +5310,15 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421444"
-                  name="1764698421441"
+                  id="1764728231905"
+                  name="1764728231902"
                   type="radio"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421444"
+                  for="1764728231905"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -4034,15 +5342,15 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-4pz3qu"
-                  id="1764698421445"
-                  name="1764698421441"
+                  id="1764728231906"
+                  name="1764728231902"
                   type="radio"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-4pz3qu"
-                  for="1764698421445"
+                  for="1764728231906"
                 >
                   <span
                     class="svelte-4pz3qu"
@@ -4058,6 +5366,607 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
               </div>
               <!---->
             </div>
+            
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-segmented  svelte-xr0vtp"
+          >
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                foo
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                bar
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                fuzz
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                qux
+              </span>
+              <!---->
+              <!---->
+            </button>
+            
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        disabled=""
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > snapshots > error 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-segmented  svelte-xr0vtp"
+          >
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                foo
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                bar
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                fuzz
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                qux
+              </span>
+              <!---->
+              <!---->
+            </button>
+            
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="svelte-ulrohq"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-segmented  svelte-xr0vtp"
+          >
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                foo
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                bar
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                fuzz
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                qux
+              </span>
+              <!---->
+              <!---->
+            </button>
+            
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-segmented  svelte-xr0vtp"
+          >
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                foo
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                bar
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                fuzz
+              </span>
+              <!---->
+              <!---->
+            </button>
+            <button
+              class="svelte-xr0vtp"
+            >
+              <!---->
+              <!---->
+               
+              <span
+                class="wx-label svelte-xr0vtp"
+              >
+                qux
+              </span>
+              <!---->
+              <!---->
+            </button>
             
           </div>
           
@@ -5052,6 +6961,416 @@ exports[`widgets > select > snapshots > readonly 1`] = `
             />
             <!---->
           </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <label
+            class="wx-switch svelte-19es555"
+          >
+            <input
+              class="svelte-19es555"
+              disabled=""
+              id="root"
+              type="checkbox"
+            />
+             
+            <span
+              class="svelte-19es555"
+            />
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        disabled=""
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > snapshots > error 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <label
+            class="wx-switch svelte-19es555"
+          >
+            <input
+              class="svelte-19es555"
+              id="root"
+              type="checkbox"
+            />
+             
+            <span
+              class="svelte-19es555"
+            />
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="svelte-ulrohq"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <label
+            class="wx-switch svelte-19es555"
+          >
+            <input
+              class="svelte-19es555"
+              id="root"
+              type="checkbox"
+            />
+             
+            <span
+              class="svelte-19es555"
+            />
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="wx-button wx-primary wx-block svelte-1hpw1i9"
+        title=""
+      >
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        Submit
+        
+        
+        
+        <!---->
+      </button>
+      
+      <!---->
+      <!---->
+    </form>
+    
+    <!---->
+  </div>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <div
+    class="wx-willow-theme"
+    style="height:100%"
+  >
+    <!---->
+    <form
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <label
+            class="wx-switch svelte-19es555"
+          >
+            <input
+              class="svelte-19es555"
+              id="root"
+              type="checkbox"
+            />
+             
+            <span
+              class="svelte-19es555"
+            />
+          </label>
           
           
           <!---->
