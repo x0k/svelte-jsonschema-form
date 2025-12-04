@@ -78,5 +78,10 @@ const { properties, remainingStyles } = extractPropertiesWithCSSTree(
   <template shadowrootmode="open">
     {remainingStyles && <style set:html={remainingStyles} />}
     <slot />
+    <style>
+      :host {
+        background-color: unset;
+      }
+    </style>
   </template>
 </Card>
