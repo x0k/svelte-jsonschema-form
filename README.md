@@ -76,10 +76,12 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 ## Supported Validators
 
 - [Ajv v8](https://x0k.dev/svelte-jsonschema-form/validators/ajv/)
+  - [Precompiled](https://x0k.dev/svelte-jsonschema-form/validators/ajv/#precompiled-validation)
 - [Zod v4](https://x0k.dev/svelte-jsonschema-form/validators/zod4/)
 - [Valibot](https://x0k.dev/svelte-jsonschema-form/validators/valibot/)
 - [@cfworker/json-schema](https://x0k.dev/svelte-jsonschema-form/validators/cfworker/)
 - [@exodus/schemasafe](https://x0k.dev/svelte-jsonschema-form/validators/schemasafe/)
+  - [Precompiled](https://x0k.dev/svelte-jsonschema-form/validators/schemasafe/#precompiled-validation)
 - [Standard Schema](https://x0k.dev/svelte-jsonschema-form/validators/standard-schema/)
 
 ## License
