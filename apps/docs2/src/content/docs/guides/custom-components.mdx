@@ -277,6 +277,52 @@ previous category, have the suffix `Attributes`.
   </TabItem>
 </Tabs>
 
+## Working with enumerations
+
+To implement widgets that use enumerations (`options: EnumOption<SchemaValue>[]`),
+use the functions from the `@sjsf/form/options.svelte` module.
+
+```ts
+import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+
+const mapped = singleOption({
+  mapper: () => idMapper(options),
+  value: () => value,
+  update: (v) => (value = v),
+});
+```
+
+Now, `mapped.value` will correspond to the `option.id` of the current option,
+and when it changes, value will be assigned the corresponding `option.value`:
+
+```svelte
+<select bind:value={mapped.value} {...attributes}>
+  <option value={UNDEFINED_ID}>{placeholder}</option>
+  {#each options as option (option.id)}
+    <option value={option.id} disabled={option.disabled}>
+      {option.label}
+    </option>
+  {/each}
+</select>
+```
+
+You can also use the `multipleOptions` function to implement multi-select behavior.
+In this case, `mapped.value` will be an array of `option.id`:
+
+```svelte
+<script lang="ts">
+  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  
+  const mapped = multipleOptions({
+      mapper: () => idMapper(options),
+      value: () => value,
+      update: (v) => (value = v),
+    })
+</script>
+
+<select multiple bind:value={mapped.value} {...attributes}>
+  ...
+```
 
 ## Retrieving theme components
 
