@@ -9,6 +9,8 @@ sidebar:
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/basic-theme/specs';
 import styles from '@sjsf/basic-theme/css/basic.css?raw';
+import picoCssStyles from "@picocss/pico/css/pico.css?raw";
+import basicThemePicoCssStyles from "@sjsf/basic-theme/css/pico.css?raw";
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
@@ -60,6 +62,11 @@ or used in the field as the default widget.
 <Tabs>
   <TabItem label='Form'>
     <FormCard style={styles}>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label='Form (Pico CSS)'>
+    <FormCard style={`${picoCssStyles}\n${basicThemePicoCssStyles}`}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
