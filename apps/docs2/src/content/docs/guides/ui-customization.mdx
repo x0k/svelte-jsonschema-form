@@ -6,6 +6,7 @@ sidebar:
 
 import { Code, LinkCard } from '@astrojs/starlight/components'
 
+import { withBase } from '@/lib/base-path'
 import FormCard from '@/components/form-card.astro'
 
 import CustomizableText from './customizable-text.svelte'
@@ -19,7 +20,7 @@ import extraUiOptionsCode from './extra-ui-options.svelte?raw'
 
 ## Widgets customization
 
-In addition to the [predefined UI options](../../form/ui-schema/#ui-options),
+In addition to the [predefined UI options](/form/ui-schema/#ui-options),
 each widget and theme component extends the `UiOptions` interface
 with at least one property that allows customization.
 
@@ -36,11 +37,11 @@ you can control the widget's attributes - even reactively.
 
 Check your theme page for an extended list of UI options:
 
-<LinkCard title="Basic" href="../../themes/basic/#ui-options" />
-<LinkCard title="daisyUI" href="../../themes/daisyui5/#ui-options" />
-<LinkCard title="Flowbite" href="../../themes/flowbite3/#ui-options" />
-<LinkCard title="Skeleton" href="../../themes/skeleton4/#ui-options" />
-<LinkCard title="shadcn-svelte" href="../../themes/shadcn4/#ui-options" />
+<LinkCard title="Basic" href={withBase("/themes/basic/#ui-options")} />
+<LinkCard title="daisyUI" href={withBase("/themes/daisyui5/#ui-options")} />
+<LinkCard title="Flowbite" href={withBase("/themes/flowbite3/#ui-options")} />
+<LinkCard title="Skeleton" href={withBase("/themes/skeleton4/#ui-options")} />
+<LinkCard title="shadcn-svelte" href={withBase("/themes/shadcn4/#ui-options")} />
 
 ## Actions
 
