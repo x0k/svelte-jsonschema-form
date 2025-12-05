@@ -1,7 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    playwright.url = "github:pietdevries94/playwright-web-flake/1.57.0";
     mk.url = "github:x0k/mk";
   };
   outputs =
@@ -10,10 +11,17 @@
       nixpkgs,
       nixpkgs-unstable,
       mk,
+      playwright,
     }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      overlay = final: prev: {
+        inherit (playwright.packages.${system}) playwright-test playwright-driver;
+      };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ overlay ];
+      };
       unstablePkgs = import nixpkgs-unstable {
         inherit system;
       };
@@ -22,7 +30,7 @@
       devShells.${system} = {
         default = pkgs.mkShell {
           nativeBuildInputs = [
-            unstablePkgs.playwright.browsers
+            pkgs.playwright-driver.browsers
           ];
           buildInputs = [
             mk.packages.${system}.default
@@ -30,7 +38,7 @@
             pkgs.pnpm
           ];
           shellHook = ''
-            export PLAYWRIGHT_BROWSERS_PATH=${unstablePkgs.playwright.browsers}
+            export PLAYWRIGHT_BROWSERS_PATH=${pkgs.playwright-driver.browsers}
             source <(COMPLETE=''${SHELL##*/} mk)
           '';
         };
