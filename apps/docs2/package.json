@@ -8,7 +8,7 @@
     "precompile-ajv-validator": "node --experimental-strip-types src/content/docs/validators/ajv/precompile/compile-schema-script.ts",
     "precompile-schemasafe-validator": "node --experimental-strip-types src/content/docs/validators/schemasafe/precompile/compile-schema-script.ts",
     "precompile-validators": "pnpm run precompile-ajv-validator && pnpm run precompile-schemasafe-validator",
-    "build": " astro build",
+    "build": "CHECK_LINKS=true astro build",
     "preview": "astro preview",
     "check": "pnpm run precompile-validators && astro check && svelte-check --tsconfig ./tsconfig.json"
   },
@@ -79,7 +79,9 @@
     "flowbite-svelte2": "npm:flowbite-svelte@0.47",
     "json-schema-to-ts": "^3.1.1",
     "sharp": "^0.34.5",
+    "starlight-links-validator": "^0.19.2",
     "starlight-package-managers": "^0.11.1",
-    "svelte": "catalog:"
+    "svelte": "catalog:",
+    "unist-util-visit": "^5.0.0"
   }
 }

@@ -3,11 +3,26 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import svelte from "@astrojs/svelte";
+import starlightLinksValidator from "starlight-links-validator";
+import { visit } from "unist-util-visit";
+
+const base = "/svelte-jsonschema-form/";
+
+function remarkBasePath(base) {
+  return (tree) => {
+    visit(tree, "link", (node) => {
+      // Only modify internal links (starting with /)
+      if (node.url && node.url.startsWith("/") && !node.url.startsWith(base)) {
+        node.url = base + node.url.slice(1);
+      }
+    });
+  };
+}
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://x0k.github.io",
-  base: "/svelte-jsonschema-form/",
+  base,
   trailingSlash: "always",
   i18n: {
     defaultLocale: "en",
@@ -16,6 +31,7 @@ export default defineConfig({
   integrations: [
     svelte(),
     starlight({
+      plugins: process.env.CHECK_LINKS ? [starlightLinksValidator()] : [],
       title: "svelte-jsonschema-form v3",
       social: [
         {
@@ -75,11 +91,14 @@ export default defineConfig({
         // Head: "./src/components/custom-head.astro",
         Header: "./src/components/header-with-links.astro",
         MarkdownContent: "./src/components/markdown-content.astro",
-        PageTitle: './src/components/page-title.astro',
+        PageTitle: "./src/components/page-title.astro",
       },
       customCss: ["./src/styles.css"],
     }),
   ],
+  markdown: {
+    remarkPlugins: [[remarkBasePath, base]],
+  },
   vite: {
     optimizeDeps: {
       exclude: ["@jis3r/icons"],

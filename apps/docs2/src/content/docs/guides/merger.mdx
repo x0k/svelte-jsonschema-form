@@ -5,6 +5,8 @@ sidebar:
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
+
+import { withBase } from '@/lib/base-path';
 import Npm from "@/components/npm.astro";
 
 ## Overview
@@ -12,7 +14,7 @@ import Npm from "@/components/npm.astro";
 Starting with version 3, a `merger` option is required when creating a form.
 The merger is responsible for combining and processing JSON Schemas used within the form.
 
-<LinkCard title="Form Merger API Reference" href="../../form/merger/" />
+<LinkCard title="Form Merger API Reference" href={withBase("/form/merger/")} />
 
 ## Basic Configuration
 

@@ -6,6 +6,7 @@ sidebar:
 
 import { LinkCard, LinkButton, Code, Card, Icon } from '@astrojs/starlight/components';
 
+import { withBase } from '@/lib/base-path';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
@@ -23,7 +24,7 @@ Translations are imported from `@sjsf/form/translations/{locale}`, currently sup
 - `en`
 - `ru`
 
-<LinkCard title="Translation API reference" href="../../form/translation/" />
+<LinkCard title="Translation API reference" href={withBase("/form/translation/")} />
 
 ## Icons
 

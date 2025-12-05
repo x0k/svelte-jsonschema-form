@@ -26,7 +26,7 @@ And install `json-schema-merge-allof`:
 <Npm pkg="json-schema-merge-allof" />
 
 But I recommend trying to switch to a modern merger to get the benefits
-of bundle size and performance - [modern merger setup](../../guides/merger/).
+of bundle size and performance - [modern merger setup](/guides/merger/).
 
 This change should be sufficient for migrating simple projects.
 However, I recommend reviewing the full list of changes,
@@ -121,7 +121,7 @@ Previously, the public and internal APIs were split between two objects:
 `form` and `form.context`.
 In v3, `form.context` and `FormInternalContext` no longer exist.
 All internal fields and methods have been moved directly into `form`,
-but they must be accessed via [internal symbols](../../form/state/#internals).
+but they must be accessed via [internal symbols](/form/state/#internals).
 
 :::caution
 
@@ -147,7 +147,7 @@ You can access form errors and even more by using the following functions:
 ### The `getSnapshot` form option has been removed
 
 To apply transformations before validation, you now need to augment the validator -
-see [State transformation](../../guides/validation/#state-transformation).
+see [State transformation](/guides/validation/#state-transformation).
 
 ### `onsubmit` and `onreset` attributes
 
@@ -338,7 +338,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit'
 
 The `makeFormDataParser` and `validateForm` functions
 have been replaced with `createFormHandler`.
-See the [Form actions](../../integrations/sveltekit/form-actions/#advanced-api) page for more information.
+See the [Form actions](/integrations/sveltekit/form-actions/#advanced-api) page for more information.
 
 The `initForm` function has been removed — specify initial values directly instead.
 

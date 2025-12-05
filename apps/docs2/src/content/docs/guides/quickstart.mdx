@@ -10,10 +10,11 @@ import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 
 import pkg from '#/form/package.json'
 
+import { withBase } from '@/lib/base-path';
 import { createThemeInstall } from '@/shared'
 import FormCard from '@/components/form-card.astro'
 import Npm from "@/components/npm.astro";
-import Deps from '@/components/peer-dependencies.astro'
+import Deps from '@/components/peer-dependencies.astro';
 
 import SimpleSetupForm from "./simple-setup.svelte";
 import simpleSetupCode from './simple-setup.svelte?raw';
@@ -53,9 +54,9 @@ Although this is an extremely simple example, it turned out to be quite verbose,
 so you can import only the functionality you need, keeping your bundle lean and optimized.
 - **Highly Customizable**: We provide extensive customization options so that you can tailor every aspect of the library to your needs.
 
-<LinkCard title="Schema" href="../../form/schema/" />
+<LinkCard title="Schema" href={withBase("/form/schema/")} />
 
-<LinkCard title="Form options" href="../../form/options/" />
+<LinkCard title="Form options" href={withBase("/form/options/")} />
 
 ## UI Schema
 
@@ -63,7 +64,7 @@ With the `uiSchema` parameter you can customize the appearance of the form.
 
 :::note
 
-We'll talk about `* as defaults` in the [Reusable defaults](../reusable-defaults/) guide.
+We'll talk about `* as defaults` in the [Reusable defaults](/guides/reusable-defaults/) guide.
 
 :::
 
@@ -73,7 +74,7 @@ We'll talk about `* as defaults` in the [Reusable defaults](../reusable-defaults
   <UiSchemaForm client:only="svelte" />
 </FormCard>
 
-<LinkCard title="UI Schema" href="../../form/ui-schema/" />
+<LinkCard title="UI Schema" href={withBase("/form/ui-schema/")} />
 
 ## Form state
 
@@ -91,7 +92,7 @@ Use getters to pass reactive parameters.
   <FormStateForm client:only="svelte" />
 </FormCard>
 
-<LinkCard title="Form state" href="../../form/state/" />
+<LinkCard title="Form state" href={withBase("/form/state/")} />
 
 ### "Controlled" form
 
@@ -110,7 +111,7 @@ so here is a list of situations in which this approach can be used
 
 :::caution
 
-Before using, please read the section - [Direct modification of form state](../../form/state/#direct-modification-of-form-state)
+Before using, please read the section - [Direct modification of form state](/form/state/#direct-modification-of-form-state)
 
 :::
 
