@@ -8,7 +8,15 @@ import { visit } from "unist-util-visit";
 
 const base = "/svelte-jsonschema-form/";
 
+/**
+ *
+ * @param {string} base
+ * @returns
+ */
 function remarkBasePath(base) {
+  /**
+   * @param {any} tree
+   */
   return (tree) => {
     visit(tree, "link", (node) => {
       // Only modify internal links (starting with /)
