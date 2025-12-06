@@ -1,0 +1,49 @@
+import{o as e}from"./advanced-examples.JNG0ujKV.js";import"./each.E2M9YBNN.js";import"./render.BuB-hVQN.js";import"./definitions.CTDKHaM0.js";import"./_commonjsHelpers.DaWZu8wl.js";import"./snippet.qsOdrog_.js";import"./shared.vk0nOusO.js";import"./preload-helper.BUFao3bW.js";import"./buttons.InKbrNqz.js";/* empty css                                                       *//* empty css                                                                 */const t=`<script lang="ts">
+  import Markdown from "svelte-exmarkdown";
+
+  import {
+    descriptionAttributes,
+    getFormContext,
+    type ComponentProps,
+  } from "@sjsf/form";
+
+  const { config, description }: ComponentProps["description"] = $props();
+
+  const ctx = getFormContext();
+<\/script>
+
+<Markdown md={description}>
+  {#snippet p({ children })}
+    <div {...descriptionAttributes(ctx, config, "descriptionAttributes", {})}>
+      {@render children?.()}
+    </div>
+  {/snippet}
+</Markdown>
+`,n=`<script lang="ts">
+  import { overrideByRecord } from '@sjsf/form/lib/resolver';
+  import { createForm, BasicForm, type Schema } from "@sjsf/form";
+
+  import * as defaults from "$lib/form-defaults";
+
+  import Description from './description.svelte';
+
+  const schema = {
+    type: "null",
+    title: "Title",
+    description: "**bold** *italic* [link](#)",
+  } as const satisfies Schema;
+
+  const theme = overrideByRecord(defaults.theme, {
+    description: Description,
+  });
+
+  const form = createForm({
+    ...defaults,
+    theme,
+    schema,
+    onSubmit: console.log,
+  });
+<\/script>
+
+<BasicForm {form} />
+`,s="markdown-description",o="0.0.6",r="module",i={dev:"vite dev",preview:"vite preview",prepare:"svelte-kit sync || echo ''",check:"svelte-kit sync && svelte-check --tsconfig ./tsconfig.json","check:watch":"svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"},c={"@sveltejs/adapter-auto":"^6.1.0","@sveltejs/kit":"^2.42.0","@sveltejs/vite-plugin-svelte":"^6.1.2",svelte:"^5.34.8","svelte-check":"^4.3.1",typescript:"^5.9.2",vite:"^7.1.2"},p={"@sjsf/ajv8-validator":"workspace:*","@sjsf/basic-theme":"workspace:*","@sjsf/form":"workspace:*",ajv:"^8.17.1","svelte-exmarkdown":"^5.0.2"},m={name:s,private:!0,version:o,type:r,scripts:i,devDependencies:c,dependencies:p},y={package:e(m),files:{"src/routes/description.svelte":t,"src/routes/+page.svelte":n}};export{y as layer};
