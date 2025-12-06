@@ -7,7 +7,6 @@ flowchart TD
     initialValue["initialValue"]
     value["value"]
     initialErrors["initialErrors"]
-    getSnapshot["getSnapshot"]
   end
   subgraph Internal["Internal State"]
     pathsTrieRef["pathsTrieRef"]
@@ -43,7 +42,6 @@ flowchart TD
   valueRef --> idBuilder
   initialErrors --> errors
   pathsTrieRef --> errors
-  getSnapshot --> formValue
   merger --> formValue
   schema --> formValue
   validator --> formValue
