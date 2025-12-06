@@ -14,9 +14,11 @@
   {...defaults}
   {meta}
   idBuilder={createFormIdBuilder}
-  onSuccess={(result) => {
-    if (result.type === "success") {
-      console.log(result.data?.post);
-    }
+  uiSchema={{
+    "ui:options": {
+      form: {
+        novalidate: true,
+      },
+    },
   }}
 />
