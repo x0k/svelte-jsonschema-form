@@ -14,11 +14,11 @@ Validator - a collection of functions used by the form to validate data:
 You can easily extend/modify the validator to suit your needs.
 
 ```ts
-import type { FormValueValidator } from "@sjsf/form";
+import type { FormValueValidator, ValidatorFactoryOptions } from "@sjsf/form";
 import { createFormValidator } from "@sjsf/ajv8-validator";
 
-export function validator() {
-  const validator = createFormValidator();
+export function validator<T>(options: ValidatorFactoryOptions) {
+  const validator = createFormValidator<T>(options);
   return {
     ...validator,
     validateFormValue(rootSchema, formValue) {
@@ -26,7 +26,7 @@ export function validator() {
       // Your logic
       return errors
     },
-  } satisfies FormValueValidator;
+  } satisfies FormValueValidator<T>;
 }
 ```
 
