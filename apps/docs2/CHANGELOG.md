@@ -1,5 +1,29 @@
 # docs
 
+## 1.11.0
+
+### Minor Changes
+
+- Add dynamic schema examples ([#276](https://github.com/x0k/svelte-jsonschema-form/pull/276))
+
+- Add `schema-transformation` example ([#270](https://github.com/x0k/svelte-jsonschema-form/pull/270))
+
+- Add the `Working with enumerations` section to the custom components page ([#273](https://github.com/x0k/svelte-jsonschema-form/pull/273))
+
+- Add `LLMs` page ([#275](https://github.com/x0k/svelte-jsonschema-form/pull/275))
+
+- Add Pico CSS demo ([#272](https://github.com/x0k/svelte-jsonschema-form/pull/272))
+
+### Patch Changes
+
+- Enable links validation ([#274](https://github.com/x0k/svelte-jsonschema-form/pull/274))
+
+- Update validator extension example ([#275](https://github.com/x0k/svelte-jsonschema-form/pull/275))
+
+- Sync reactive flow diagram ([#275](https://github.com/x0k/svelte-jsonschema-form/pull/275))
+
+- Mention dynamic schemas in Advanced API section ([#275](https://github.com/x0k/svelte-jsonschema-form/pull/275))
+
 ## 1.10.0
 
 ### Minor Changes
