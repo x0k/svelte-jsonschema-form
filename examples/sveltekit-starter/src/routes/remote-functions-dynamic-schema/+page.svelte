@@ -4,7 +4,7 @@
   const results = $derived(await getResults())
 </script>
 
-<div class="center">
+<div class="center" data-sveltekit-reload>
   <a href="./foo">Foo form</a>
   <a href="./bar">Bar form</a>
   <p>Results:</p>

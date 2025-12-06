@@ -101,9 +101,13 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [SvelteKitExample.FormActions]: () => import("./examples/form-actions"),
   [SvelteKitExample.FormActionsFlex]: () =>
     import("./examples/form-actions-flex"),
-  [SvelteKitExample.RemoveFunctions]: () =>
+  [SvelteKitExample.FormActionsDynamicSchema]: () =>
+    import("./examples/form-actions-dynamic-schema"),
+  [SvelteKitExample.RemoteFunctions]: () =>
     import("./examples/remote-functions"),
-  [SvelteKitExample.RemoveFunctionsWithoutJs]: () =>
+  [SvelteKitExample.RemoteFunctionsDynamicSchema]: () =>
+    import("./examples/remote-functions-dynamic-schema"),
+  [SvelteKitExample.RemoteFunctionsWithoutJs]: () =>
     import("./examples/remote-functions-without-js"),
   [ValidatorSpecificExample.ZodStarter]: () => import("./examples/zod-starter"),
   [ValidatorSpecificExample.ValibotStarter]: () =>
@@ -114,12 +118,26 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
     import("./examples/typebox-starter"),
 };
 
-export async function openProject({
-  example,
-  theme,
-  validator,
-  platform,
-}: ProjectOptions) {
+const PLATFORM_FACTORIES: Record<
+  Platform,
+  (options: ProjectOptions, files: LayerFiles) => void
+> = {
+  [Platform.StackBlitz]: ({ example, theme, validator }, files) =>
+    sdk.openProject(
+      {
+        title: `${example} (${theme}, ${validator})`,
+        files,
+        template: "node",
+      },
+      {
+        openFile: INITIAL_FILE,
+      }
+    ),
+  [Platform.SvelteLab]: (_, files) => openSvelteLab(files),
+};
+
+export async function openProject(options: ProjectOptions) {
+  const { example, theme, validator, platform } = options;
   const layers: Awaited<LayerPromise>[] = await Promise.all([
     import("./layers/sveltekit"),
     ...THEME_LAYERS[theme](),
@@ -127,21 +145,7 @@ export async function openProject({
     EXAMPLE_LAYERS[example](),
   ]);
   const files = buildLayers(layers.map((l) => l.layer));
-  switch (platform) {
-    case Platform.StackBlitz:
-      return sdk.openProject(
-        {
-          title: `${example} (${theme}, ${validator})`,
-          files,
-          template: "node",
-        },
-        {
-          openFile: INITIAL_FILE,
-        }
-      );
-    case Platform.SvelteLab:
-      return openSvelteLab(files);
-  }
+  PLATFORM_FACTORIES[platform](options, files);
 }
 
 function openSvelteLab(files: LayerFiles) {
