@@ -82,7 +82,8 @@ export enum GenericExample {
   LayoutSlots = "layout-slots",
   PreuploadFile = "preupload-file",
   OptionalDataControls = "optional-data-controls",
-  SchemaTransformation = 'schema-transformation'
+  SchemaTransformation = "schema-transformation",
+  LabelOnLeft = "label-on-left",
 }
 
 export const GENERIC_EXAMPLES = Object.values(GenericExample);
@@ -94,7 +95,7 @@ export enum SvelteKitExample {
   FormActionsDynamicSchema = "form-actions-dynamic-schema",
   RemoteFunctions = "remote-functions",
   RemoteFunctionsWithoutJs = "remote-functions-without-js",
-  RemoteFunctionsDynamicSchema = 'remote-functions-dynamic-schema',
+  RemoteFunctionsDynamicSchema = "remote-functions-dynamic-schema",
   MultiStepNativeForm = "multi-step-native-form",
 }
 
