@@ -6,12 +6,18 @@
   import { HashedKeyCache, LRUCache } from "@sjsf/form/lib/cache";
   import { weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
-  import { isSelect, schemaHash, type SchemaDefinition } from "@sjsf/form/core";
+  import {
+    isSelect,
+    retrieveSchema,
+    schemaHash,
+    type SchemaDefinition,
+  } from "@sjsf/form/core";
   import {
     SimpleForm,
     type Schema,
     type FormValue,
     type Config,
+    type FormValueValidator,
   } from "@sjsf/form";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -131,9 +137,20 @@
 
 <SimpleForm
   {...defaults}
-  validateByRetrievedSchema
   {resolver}
-  {validator}
+  validator={{
+    ...validator,
+    validateFormValue(rootSchema, formValue) {
+      const retrievedSchema = retrieveSchema(
+        validator,
+        merger,
+        rootSchema,
+        rootSchema,
+        formValue
+      );
+      return validator.validateFormValue(retrievedSchema, formValue);
+    },
+  } satisfies FormValueValidator<FormValue>}
   {merger}
   {schema}
   uiSchema={{
