@@ -45,7 +45,7 @@
 </script>
 
 <SegmentedControl
-	value={mapped.value}
+	value={mapped.current}
 	{...customInputAttributes(ctx, config, 'skeleton4Segment', {
 		ids: {
 			root: id
@@ -53,7 +53,7 @@
 		name: id,
 		readOnly: config.schema.readOnly,
 		onValueChange: (details) => {
-			mapped.value = details.value ?? UNDEFINED_ID;
+			mapped.current = details.value ?? UNDEFINED_ID;
 			handlers.oninput?.();
 			handlers.onchange?.();
 		}

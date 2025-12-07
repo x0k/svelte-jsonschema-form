@@ -28,7 +28,7 @@
 	);
 </script>
 
-<Select bind:value={mapped.value} class="flex-1" {...attributes}>
+<Select bind:value={mapped.current} class="flex-1" {...attributes}>
 	{#if config.schema.default === undefined}
 		<option value={UNDEFINED_ID}>{attributes.placeholder}</option>
 	{/if}

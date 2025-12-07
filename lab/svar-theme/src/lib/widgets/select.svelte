@@ -56,4 +56,4 @@
 	);
 </script>
 
-<SvarSelect options={items} bind:value={mapped.value} {...attributes} />
+<SvarSelect options={items} bind:value={mapped.current} {...attributes} />

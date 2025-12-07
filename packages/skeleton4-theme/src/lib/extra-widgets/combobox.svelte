@@ -76,7 +76,7 @@
 				}
 			},
 			onValueChange: (details) => {
-				mapped.value = details.value;
+				mapped.current = details.value;
 				handlers.oninput?.();
 				handlers.onchange?.();
 			}
@@ -84,7 +84,7 @@
 	);
 </script>
 
-<Combobox class="w-full" value={mapped.value} {...attributes}>
+<Combobox class="w-full" value={mapped.current} {...attributes}>
 	<Combobox.Control>
 		<Combobox.Input />
 		<Combobox.Trigger />

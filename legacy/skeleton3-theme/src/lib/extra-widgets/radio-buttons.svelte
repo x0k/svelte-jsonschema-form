@@ -41,7 +41,7 @@
 </script>
 
 <Segment
-	value={mapped.value}
+	value={mapped.current}
 	{...customInputAttributes(ctx, config, 'skeleton3Segment', {
 		ids: {
 			root: id
@@ -49,7 +49,7 @@
 		name: id,
 		readOnly: config.schema.readOnly,
 		onValueChange: (details) => {
-			mapped.value = details.value ?? '';
+			mapped.current = details.value ?? '';
 			handlers.oninput?.();
 			handlers.onchange?.();
 		}

@@ -40,7 +40,7 @@
 
 <MultiSelect
 	class="grow"
-	bind:value={mapped.value}
+	bind:value={mapped.current}
 	{...selectAttributes(ctx, config, 'flowbiteMultiSelect', handlers, {
 		items: selectOptions
 	})}

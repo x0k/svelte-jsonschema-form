@@ -63,4 +63,4 @@
 	);
 </script>
 
-<Combo options={items} bind:value={mapped.value} {...attributes} />
+<Combo options={items} bind:value={mapped.current} {...attributes} />

@@ -81,7 +81,7 @@
 
 	const attributes = $derived(inputAttributes(ctx, config, 'shadcnComboboxInput', handlers, {}));
 
-	const triggerContent = $derived(labels.get(mapped.value) ?? attributes.placeholder);
+	const triggerContent = $derived(labels.get(mapped.current) ?? attributes.placeholder);
 
 	const emptyText = $derived(retrieveUiOption(ctx, config, 'shadcnComboboxEmptyText'));
 </script>
@@ -119,12 +119,12 @@
 						<CommandItem
 							value={option.label}
 							onSelect={() => {
-								mapped.value = option.id;
+								mapped.current = option.id;
 								closeAndFocusTrigger();
 							}}
 							disabled={option.disabled}
 						>
-							<Check class={cn('mr-2 size-4', option.id !== mapped.value && 'text-transparent')} />
+							<Check class={cn('mr-2 size-4', option.id !== mapped.current && 'text-transparent')} />
 							{option.label}
 						</CommandItem>
 					{/each}

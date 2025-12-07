@@ -24,7 +24,7 @@
 
 <select
 	class={['select select-bordered w-full', errors.length > 0 && 'select-error']}
-	bind:value={mapped.value}
+	bind:value={mapped.current}
 	{...attributes}
 >
 	{#if config.schema.default === undefined}

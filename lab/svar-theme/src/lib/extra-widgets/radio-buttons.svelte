@@ -37,7 +37,7 @@
 
 <Segmented
 	{options}
-	bind:value={mapped.value}
+	bind:value={mapped.current}
 	{...uiOptionProps('svarRadioButtons')(
 		{
 			onchange

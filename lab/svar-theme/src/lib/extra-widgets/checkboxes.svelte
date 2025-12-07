@@ -37,6 +37,6 @@
 
 <SvarCheckboxGroup
 	{options}
-	bind:value={mapped.value}
+	bind:value={mapped.current}
 	{...uiOptionProps('svarCheckboxes')({ onchange }, config, ctx)}
 />

@@ -42,7 +42,7 @@
 		update: (v) => (value = v)
 	});
 
-	const selected = $derived(new Set(mapped.value));
+	const selected = $derived(new Set(mapped.current));
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 
@@ -68,9 +68,9 @@
 			checked={selected.has(option.id)}
 			value={option.id}
 			onCheckedChange={(v) => {
-				mapped.value = v
-					? mapped.value.concat(option.id)
-					: mapped.value.filter((id) => id !== option.id);
+				mapped.current = v
+					? mapped.current.concat(option.id)
+					: mapped.current.filter((id) => id !== option.id);
 				oninput?.();
 				onchange?.();
 			}}

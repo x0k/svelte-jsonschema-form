@@ -72,13 +72,11 @@
 	}: ComponentProps['comboboxWidget'] = $props();
 
 	const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
-	const mapped = $derived(
-		singleOption({
-			mapper: () => idMapper(options),
-			value: () => value,
-			update: (v) => (value = v)
-		})
-	);
+	const mapped = singleOption({
+		mapper: () => idMapper(options),
+		value: () => value,
+		update: (v) => (value = v)
+	});
 
 	let open = $state(false);
 	let triggerRef = $state<HTMLButtonElement>(null!);
@@ -92,7 +90,7 @@
 
 	const attributes = $derived(inputAttributes(ctx, config, 'shadcn4ComboboxInput', handlers, {}));
 
-	const triggerContent = $derived(labels.get(mapped.value) ?? attributes.placeholder);
+	const triggerContent = $derived(labels.get(mapped.current) ?? attributes.placeholder);
 
 	const emptyText = $derived(retrieveUiOption(ctx, config, 'shadcn4ComboboxEmptyText'));
 
@@ -140,14 +138,14 @@
 						<CommandItem
 							value={option.label}
 							onSelect={() => {
-								mapped.value = option.id;
+								mapped.current = option.id;
 								oninput?.();
 								onchange?.();
 								closeAndFocusTrigger();
 							}}
 							disabled={option.disabled}
 						>
-							<Check class={cn('mr-2 size-4', mapped.value !== option.id && 'text-transparent')} />
+							<Check class={cn('mr-2 size-4', mapped.current !== option.id && 'text-transparent')} />
 							{option.label}
 						</CommandItem>
 					{/each}

@@ -39,7 +39,7 @@
     })
 </script>
 
-<select multiple bind:value={mapped.value} {...attributes}>
+<select multiple bind:value={mapped.current} {...attributes}>
   {#each options as option (option.id)}
     <option value={option.id} disabled={option.disabled}>
       {option.label}

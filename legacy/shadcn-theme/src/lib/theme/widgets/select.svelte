@@ -47,12 +47,12 @@
 		})
 	);
 
-	const triggerContent = $derived(labels.get(mapped.value) ?? selectAttributes.placeholder);
+	const triggerContent = $derived(labels.get(mapped.current) ?? selectAttributes.placeholder);
 
 	const id = $derived(getId(ctx, config.path));
 </script>
 
-<Select bind:value={mapped.value} {...selectAttributes} type="single">
+<Select bind:value={mapped.current} {...selectAttributes} type="single">
 	<SelectTrigger
 		class="w-full"
 		{...customInputAttributes(

@@ -67,7 +67,7 @@
 	);
 </script>
 
-<RadioGroup bind:value={mapped.value} {...attributes}>
+<RadioGroup bind:value={mapped.current} {...attributes}>
 	{#each options as option (option.id)}
 		<div class="flex items-center space-x-2">
 			<RadioGroupItem

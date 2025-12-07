@@ -30,7 +30,7 @@
 	<label class="label cursor-pointer gap-2 justify-start">
 		<input
 			class={['checkbox', errors.length > 0 && 'checkbox-error']}
-			bind:group={mapped.value}
+			bind:group={mapped.current}
 			value={option.id}
 			{...attributes}
 			id={option.id}

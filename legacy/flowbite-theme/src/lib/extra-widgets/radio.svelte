@@ -29,7 +29,7 @@
 
 {#each options as option (option.id)}
 	<Radio
-		bind:group={mapped.value}
+		bind:group={mapped.current}
 		value={option.id}
 		{...attributes}
 		id={option.id}

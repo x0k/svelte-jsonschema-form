@@ -42,7 +42,7 @@
 {#each options as option (option.id)}
   <label class="sjsf-checkboxes">
     <input
-      bind:group={mapped.value}
+      bind:group={mapped.current}
       value={option.id}
       {...attributes}
       id={option.id}
