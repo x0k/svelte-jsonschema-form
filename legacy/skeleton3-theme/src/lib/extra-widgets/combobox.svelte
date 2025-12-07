@@ -43,7 +43,7 @@
 			readOnly: config.schema.readOnly,
 			onFocusOutside: handlers.onblur,
 			onValueChange: (details) => {
-				mapped.value = details.value;
+				mapped.current = details.value;
 				handlers.oninput?.();
 				handlers.onchange?.();
 			}
@@ -51,4 +51,4 @@
 	);
 </script>
 
-<SkeletonCombobox classes="w-full" {data} value={mapped.value} {...attributes} />
+<SkeletonCombobox classes="w-full" {data} value={mapped.current} {...attributes} />

@@ -47,14 +47,14 @@
 <div class="filter" {...uiOptionProps('daisyui5Filter')({}, config, ctx)}>
 	<input
 		class="btn filter-reset"
-		bind:group={mapped.value}
+		bind:group={mapped.current}
 		{...itemAttributes}
 		aria-label="Reset"
 	/>
 	{#each options as option (option.id)}
 		<input
 			class={['btn', errors.length > 0 && 'btn-error']}
-			bind:group={mapped.value}
+			bind:group={mapped.current}
 			value={option.id}
 			aria-label={option.label}
 			{...itemAttributes}

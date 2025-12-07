@@ -46,7 +46,7 @@
 <ButtonGroup {...customInputAttributes(ctx, config, 'flowbite3RadioButtons', {})}>
 	{#each options as option (option.id)}
 		<RadioButton
-			bind:group={mapped.value}
+			bind:group={mapped.current}
 			value={option.id}
 			{...attributes}
 			id={option.id}

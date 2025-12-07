@@ -53,13 +53,13 @@
 <ButtonToggleGroup
 	{...customInputAttributes(ctx, config, 'flowbite3ToggleRadioButtons', {
 		onSelect(val: string | string[] | null) {
-			mapped.value = (val as string) ?? UNDEFINED_ID;
+			mapped.current = (val as string) ?? UNDEFINED_ID;
 			handlers.onchange?.();
 		}
 	})}
 >
 	{#each options as option (option.id)}
-		<ButtonToggle {...itemAttributes} selected={mapped.value === option.id} value={option.id}
+		<ButtonToggle {...itemAttributes} selected={mapped.current === option.id} value={option.id}
 			>{option.label}</ButtonToggle
 		>
 	{/each}

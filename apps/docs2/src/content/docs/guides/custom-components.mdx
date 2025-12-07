@@ -292,11 +292,11 @@ const mapped = singleOption({
 });
 ```
 
-Now, `mapped.value` will correspond to the `option.id` of the current option,
+Now, `mapped.current` will correspond to the `option.id` of the current option,
 and when it changes, value will be assigned the corresponding `option.value`:
 
 ```svelte
-<select bind:value={mapped.value} {...attributes}>
+<select bind:value={mapped.current} {...attributes}>
   <option value={UNDEFINED_ID}>{placeholder}</option>
   {#each options as option (option.id)}
     <option value={option.id} disabled={option.disabled}>
@@ -307,7 +307,7 @@ and when it changes, value will be assigned the corresponding `option.value`:
 ```
 
 You can also use the `multipleOptions` function to implement multi-select behavior.
-In this case, `mapped.value` will be an array of `option.id`:
+In this case, `mapped.current` will be an array of `option.id`:
 
 ```svelte
 <script lang="ts">
@@ -320,7 +320,7 @@ In this case, `mapped.value` will be an array of `option.id`:
     })
 </script>
 
-<select multiple bind:value={mapped.value} {...attributes}>
+<select multiple bind:value={mapped.current} {...attributes}>
   ...
 ```
 

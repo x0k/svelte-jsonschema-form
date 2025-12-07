@@ -74,6 +74,8 @@ export interface FormState<T> {
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
   readonly [FORM_SCHEMA]: Schema;
+  // TODO: Remove in v4
+  /** @deprecated */
   readonly [FORM_RETRIEVED_SCHEMA]: Schema;
   readonly [FORM_UI_SCHEMA_ROOT]: UiSchemaRoot;
   readonly [FORM_UI_SCHEMA]: UiSchema;

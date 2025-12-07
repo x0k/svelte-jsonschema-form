@@ -16,7 +16,7 @@
 	const attributes = $derived(selectAttributes(ctx, config, 'select', handlers, {}));
 </script>
 
-<select class="select" bind:value={mapped.value} {...attributes}>
+<select class="select" bind:value={mapped.current} {...attributes}>
 	{#if config.schema.default === undefined}
 		<option value={UNDEFINED_ID}>{attributes.placeholder}</option>
 	{/if}

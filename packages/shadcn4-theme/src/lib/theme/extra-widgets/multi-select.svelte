@@ -55,13 +55,13 @@
 	);
 
 	const triggerContent = $derived(
-		mapped.value.map((id) => labels.get(id)).join(', ') || selectAttributes.placeholder
+		mapped.current.map((id) => labels.get(id)).join(', ') || selectAttributes.placeholder
 	);
 
 	const id = $derived(getId(ctx, config.path));
 </script>
 
-<Select bind:value={mapped.value} {...selectAttributes} type="multiple">
+<Select bind:value={mapped.current} {...selectAttributes} type="multiple">
 	<SelectTrigger
 		class="w-full"
 		{...customInputAttributes(

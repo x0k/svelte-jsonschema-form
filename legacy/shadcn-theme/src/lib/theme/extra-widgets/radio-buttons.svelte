@@ -71,7 +71,7 @@
 	);
 </script>
 
-<ToggleGroup bind:value={mapped.value} {...attributes}>
+<ToggleGroup bind:value={mapped.current} {...attributes}>
 	{#each options as option (option.id)}
 		<ToggleGroupItem
 			{...uiOptionProps('shadcnRadioButtonsItem')(

@@ -38,7 +38,7 @@
 </script>
 
 <Checkbox
-	bind:group={mapped.value}
+	bind:group={mapped.current}
 	groupInputClass="ms-2"
 	{...inputAttributes(ctx, config, 'flowbiteCheckboxes', handlers, { choices })}
 />

@@ -46,7 +46,7 @@
 
 <SvarMultiCombo
 	{options}
-	bind:value={mapped.value}
+	bind:value={mapped.current}
 	{...uiOptionProps('svarMultiSelect')(
 		{
 			id,

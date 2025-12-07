@@ -26,7 +26,7 @@
 	<label class="fieldset-label">
 		<input
 			class={['radio', errors.length > 0 && 'radio-error']}
-			bind:group={mapped.value}
+			bind:group={mapped.current}
 			value={option.id}
 			{...attributes}
 			id={option.id}

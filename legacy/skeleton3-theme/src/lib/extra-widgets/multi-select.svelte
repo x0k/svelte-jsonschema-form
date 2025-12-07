@@ -21,7 +21,7 @@
 
 <select
 	multiple
-	bind:value={mapped.value}
+	bind:value={mapped.current}
 	class="select"
 	{...selectAttributes(ctx, config, 'multiSelect', handlers, {})}
 >

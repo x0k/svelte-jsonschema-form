@@ -27,7 +27,7 @@
 	<label class="flex items-center space-x-2 cursor-pointer">
 		<input
 			class="checkbox"
-			bind:group={mapped.value}
+			bind:group={mapped.current}
 			value={option.id}
 			{...attributes}
 			id={option.id}
