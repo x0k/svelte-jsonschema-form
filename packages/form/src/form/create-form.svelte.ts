@@ -171,6 +171,8 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * However, this makes the schema reference unstable, which leads to cache misses
    * when using validators that rely on `WeakMap`-based memoization.
    * If this is a concern for your use case, use a validator with hash-based memoization instead.
+   * 
+   * @deprecated If you need this kind of functionality, use the `retrieveSchema` function from `@sjsf/form/core` in your validator extension.
    */
   validateByRetrievedSchema?: boolean;
   fieldsValidationMode?: FieldsValidationMode;
@@ -316,6 +318,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       valueRef,
     })
   );
+  // TODO: Remove in v4
   const retrievedSchema = $derived(
     retrieveSchema(
       validator,
