@@ -47,6 +47,7 @@ export function idMapper(
   };
 }
 
+// TODO: Remove in v4
 interface OptionValue<V> {
   /** @deprecated use `current` instead */
   value: V;
