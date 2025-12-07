@@ -1,3 +1,4 @@
+import type { Ref } from "@/lib/svelte.svelte.js";
 import { isObject } from "@/lib/object.js";
 
 import {
@@ -46,6 +47,11 @@ export function idMapper(
   };
 }
 
+interface OptionValue<V> {
+  /** @deprecated use `current` instead */
+  value: V;
+}
+
 export function singleOption<V>({
   mapper,
   value,
@@ -54,7 +60,7 @@ export function singleOption<V>({
   mapper: () => OptionsMapper<V>;
   value: () => SchemaValue | undefined;
   update: (value: SchemaValue | undefined) => void;
-}) {
+}): OptionValue<V> & Ref<V> {
   const { fromValue, toValue } = $derived(mapper());
   const val = $derived(fromValue(value()));
   return {
@@ -62,6 +68,12 @@ export function singleOption<V>({
       return val;
     },
     set value(v) {
+      update(toValue(v));
+    },
+    get current() {
+      return val;
+    },
+    set current(v) {
       update(toValue(v));
     },
   };
@@ -75,7 +87,7 @@ export function multipleOptions<V>({
   mapper: () => OptionsMapper<V>;
   value: () => SchemaArrayValue | undefined;
   update: (value: SchemaArrayValue) => void;
-}) {
+}): OptionValue<V[]> & Ref<V[]> {
   const { fromValue, toValue } = $derived(mapper());
   const val = $derived(value()?.map(fromValue) ?? []);
   return {
@@ -83,6 +95,12 @@ export function multipleOptions<V>({
       return val;
     },
     set value(v) {
+      update(v.map(toValue));
+    },
+    get current() {
+      return val;
+    },
+    set current(v) {
       update(v.map(toValue));
     },
   };
