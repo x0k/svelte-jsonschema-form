@@ -1435,6 +1435,40 @@ importers:
         specifier: ^7.2.6
         version: 7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)
 
+  lab/beercss-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^3.1.0
+        version: link:../../packages/basic-theme
+    devDependencies:
+      '@sjsf/ajv8-validator':
+        specifier: workspace:*
+        version: link:../../packages/ajv8-validator
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../../packages/form
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.1.17(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1))
+      ajv:
+        specifier: 'catalog:'
+        version: 8.17.1
+      beercss:
+        specifier: ^3.13.1
+        version: 3.13.1
+      globals:
+        specifier: 'catalog:'
+        version: 16.5.0
+      material-dynamic-colors:
+        specifier: ^1.1.2
+        version: 1.1.2
+      svelte:
+        specifier: 'catalog:'
+        version: 5.45.4
+      theme-testing:
+        specifier: workspace:*
+        version: link:../../packages/theme-testing
+
   lab/shadcn-extras-theme:
     devDependencies:
       '@jsrepo/transform-prettier':
@@ -3090,6 +3124,9 @@ packages:
   '@marijn/find-cluster-break@1.0.2':
     resolution: {integrity: sha512-l0h88YhZFyKdXIFNfSWpyjStDjGHwZ/U7iobcK1cQQD8sejsONdQtTVU+1wVN1PBw40PiiHB1vA5S7VTfQiP9g==}
 
+  '@material/material-color-utilities@0.2.7':
+    resolution: {integrity: sha512-0FCeqG6WvK4/Cc06F/xXMd/pv4FeisI0c1tUpBbfhA2n9Y8eZEv4Karjbmf2ZqQCPUWMrGp8A571tCjizxoTiQ==}
+
   '@mdx-js/mdx@3.1.0':
     resolution: {integrity: sha512-/QxEhPAvGwbQmy1Px8F899L5Uc2KZ6JtXwlCgJmjSTBedwOZkByYcBG4GceIGPXRDsmfxhHazuS+hlOShRLeDw==}
 
@@ -4414,6 +4451,9 @@ packages:
 
   bcp-47@2.1.0:
     resolution: {integrity: sha512-9IIS3UPrvIa1Ej+lVDdDwO7zLehjqsaByECw0bu2RRGP73jALm6FYbzI5gWbgHLvNdkvfXB5YrSbocZdOS0c0w==}
+
+  beercss@3.13.1:
+    resolution: {integrity: sha512-729VrZYmaySNf8OXJ7iovXdToiqwiSuMNBABWOTMQxOBnwS78VnV7tRs1Ke0yK5mjij5WYwr6MLx4eSK0S7ThQ==}
 
   better-path-resolve@1.0.0:
     resolution: {integrity: sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==}
@@ -5838,6 +5878,10 @@ packages:
   marked@16.4.0:
     resolution: {integrity: sha512-CTPAcRBq57cn3R8n3hwc2REddc28hjR7RzDXQ+lXLmMJYqn20BaI2cGw6QjgZGIgVfp2Wdfw4aMzgNteQ6qJgQ==}
     engines: {node: '>= 20'}
+    hasBin: true
+
+  material-dynamic-colors@1.1.2:
+    resolution: {integrity: sha512-8KD0jrPTFs2x06UJWbvkg6E0HyzFjrvS5oOc2DsXzIEOqZTbb3ruLMUhNuPSl8WeHA/O/RTAlTLcxqYXJzYwPA==}
     hasBin: true
 
   mdast-util-definitions@6.0.0:
@@ -8834,6 +8878,8 @@ snapshots:
 
   '@marijn/find-cluster-break@1.0.2': {}
 
+  '@material/material-color-utilities@0.2.7': {}
+
   '@mdx-js/mdx@3.1.0(acorn@8.15.0)':
     dependencies:
       '@types/estree': 1.0.8
@@ -10644,6 +10690,10 @@ snapshots:
       is-alphanumerical: 2.0.1
       is-decimal: 2.0.1
 
+  beercss@3.13.1:
+    dependencies:
+      material-dynamic-colors: 1.1.2
+
   better-path-resolve@1.0.0:
     dependencies:
       is-windows: 1.0.2
@@ -12293,6 +12343,10 @@ snapshots:
   markdown-table@3.0.4: {}
 
   marked@16.4.0: {}
+
+  material-dynamic-colors@1.1.2:
+    dependencies:
+      '@material/material-color-utilities': 0.2.7
 
   mdast-util-definitions@6.0.0:
     dependencies:
