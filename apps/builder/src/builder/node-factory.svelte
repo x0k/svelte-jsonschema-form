@@ -1,5 +1,5 @@
 <script lang="ts">
-  import GripVertical from "@lucide/svelte/icons/grip-vertical";
+	import type { Snippet } from 'svelte';
   import { noop } from '@sjsf/form/lib/function';
 
   import type { Node } from "$lib/builder/index.js";
@@ -9,9 +9,10 @@
   interface Props {
     createNode: () => Node;
     title: string;
+    icon: Snippet
   }
 
-  const { createNode, title }: Props = $props();
+  const { createNode, title, icon }: Props = $props();
 
   const ctx = getBuilderContext();
   const draggable = ctx.createDraggable({
@@ -29,6 +30,6 @@
   ]}
   {@attach draggable.attach}
 >
-  <GripVertical class="size-4" />
+   {@render icon()}
   <span class="text-sm font-medium text-foreground">{title}</span>
 </div>
