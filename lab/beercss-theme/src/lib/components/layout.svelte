@@ -1,86 +1,92 @@
-<script lang="ts" module>
-	import type { HTMLFieldsetAttributes } from 'svelte/elements';
-	import type { LayoutType } from '@sjsf/form/fields/exports';
-	import '@sjsf/basic-theme/components/layout.svelte';
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			daisyui5FieldsLayout?: HTMLFieldsetAttributes;
-			daisyui5FieldsLayouts?: {
-				[L in LayoutType]?: HTMLFieldsetAttributes;
-			};
-		}
-	}
-</script>
-
 <script lang="ts">
-	import {
-		composeProps,
-		getFormContext,
-		layoutAttributes,
-		uiOptionNestedProps,
-		uiOptionProps,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, layoutAttributes, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/layout.svelte';
 
-	const { type, children, config }: ComponentProps['layout'] = $props();
-
-	const isItem = $derived(type === 'array-item');
-	const isProperty = $derived(type === 'object-property');
-	const isControls = $derived(type === 'array-item-controls');
-	const isColumn = $derived(
-		type === 'array-items' || type === 'object-properties' || type === 'multi-field'
-	);
-	const isField = $derived(type === 'field' || type === 'array-field' || type === 'object-field');
-	const isTitleRow = $derived(
-		type === 'field-title-row' ||
-			type === 'array-field-title-row' ||
-			type === 'object-field-title-row'
-	);
-	const isMultiFieldControls = $derived(type === 'multi-field-controls')
+	const { type, children, config, errors }: ComponentProps['layout'] = $props();
 
 	const ctx = getFormContext();
 
 	const attributes = $derived(layoutAttributes(ctx, config, 'layout', 'layouts', type, {}));
 </script>
 
-{#if type === 'field-content' || (type === 'field-meta' && Object.keys(attributes).length < 2)}
+{#if type === 'field-content'}
 	{@render children()}
-{:else if isField}
-	<fieldset
-		class="fieldset gap-y-2"
-		{...composeProps(
-			ctx,
-			config,
-			attributes as HTMLFieldsetAttributes,
-			uiOptionProps('daisyui5FieldsLayout'),
-			uiOptionNestedProps('daisyui5FieldsLayouts', (data) => data[type])
-		)}
-	>
+{:else if type === 'array-item-controls'}
+	<nav class="group connected">
 		{@render children()}
-	</fieldset>
-{:else if type === 'array-field-meta' || type === 'object-field-meta'}
-	<legend class="w-full" {...attributes}>
-		{@render children()}
-	</legend>
+	</nav>
 {:else}
 	<div
-		class={{
-			flex: isItem || isControls || isColumn || isTitleRow || isMultiFieldControls,
-			'gap-2': isItem || isColumn || isMultiFieldControls,
-			'items-start': isItem || isControls,
-			'items-center': isTitleRow || isMultiFieldControls,
-			'justify-between': isTitleRow,
-			join: isControls,
-			grow:
-				type === 'array-item-content' ||
-				type === 'object-property-key-input' ||
-				type === 'object-property-content',
-			'flex-col': isColumn,
-			'grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2':
-				isProperty
-		}}
+		class={type === 'field' || type === 'multi-field-controls'
+			? [
+					'field border',
+					errors.length > 0 && 'invalid',
+					type === 'multi-field-controls' && 'layout'
+				]
+			: 'layout'}
 		{...attributes}
 	>
 		{@render children()}
 	</div>
 {/if}
+
+<style>
+	.layout {
+		&[data-layout='object-property'] {
+			display: grid;
+			grid-template-rows: 1fr;
+			align-items: start;
+			column-gap: 0.2rem;
+		}
+		&[data-layout='array-item'],
+		&[data-layout='array-item-controls'] {
+			display: flex;
+			gap: 0.2rem;
+			align-items: start;
+		}
+		&[data-layout='multi-field-controls'] {
+			display: flex;
+			flex-direction: row;
+			gap: 0.5rem;
+			align-items: center;
+		}
+		&[data-layout='array-item-content'] {
+			flex-grow: 1;
+		}
+		&[data-layout='field-content'] {
+			display: flex;
+			gap: 0.5rem;
+			flex-wrap: wrap;
+		}
+		&[data-layout='array-items'],
+		&[data-layout='object-properties'],
+		&[data-layout='array-field'],
+		&[data-layout='object-field'],
+		&[data-layout='multi-field'] {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+		&[data-layout='field-title-row'],
+		&[data-layout='array-field-title-row'],
+		&[data-layout='object-field-title-row'] {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		&[data-layout='object-property-key-input'],
+		&[data-layout='object-property-content'] {
+			flex-grow: 1;
+		}
+		&[data-layout='object-field-meta'],
+		&[data-layout='array-field-meta'] {
+			padding: 0;
+		}
+		&[data-layout='object-property'] {
+			grid-template-columns: 1fr;
+		}
+		&[data-layout='object-property']:has(:global(> :nth-child(2))) {
+			grid-template-columns: 1fr 1fr auto;
+		}
+	}
+</style>

@@ -8,8 +8,7 @@
 		multiple,
 		loading,
 		processing,
-		value = $bindable(),
-		errors
+		value = $bindable()
 	}: ComponentProps['fileWidget'] = $props();
 
 	const ctx = getFormContext();
@@ -18,10 +17,10 @@
 <input
 	type="file"
 	bind:files={value}
-	class={['file-input w-full', errors.length > 0 && 'file-input-error']}
 	{...inputAttributes(ctx, config, 'file', handlers, {
 		multiple,
 		'data-loading': loading,
 		'data-processing': processing
 	})}
 />
+<input type="text" />

@@ -8,11 +8,18 @@
 </script>
 
 <form
-	class="flex flex-col gap-4"
 	onsubmit={ctx.submit}
 	onreset={ctx.reset}
-	bind:this={ref}
 	{...formAttributes(ctx, config, 'form', attributes, {})}
+	bind:this={ref}
 >
 	{@render children?.()}
 </form>
+
+<style>
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+</style>

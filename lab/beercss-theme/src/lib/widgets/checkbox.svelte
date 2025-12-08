@@ -12,12 +12,11 @@
 	const ctx = getFormContext();
 </script>
 
-<label class="fieldset-label">
+<label class="checkbox">
 	<input
 		type="checkbox"
-		class={['checkbox', errors.length > 0 && 'checkbox-error']}
 		bind:checked={() => value ?? false, (v) => (value = v)}
 		{...inputAttributes(ctx, config, 'checkbox', handlers, {})}
 	/>
-	{config.title}
+	<span>{config.title}</span>
 </label>

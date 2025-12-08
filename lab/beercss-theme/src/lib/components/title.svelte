@@ -5,11 +5,22 @@
 	const { title, config, templateType }: ComponentProps['title'] = $props();
 
 	const ctx = getFormContext();
+
+	const attributes = $derived(titleAttributes(ctx, config, 'titleAttributes', {}));
 </script>
 
-<div
-	class={['fieldset-legend', { 'text-base': templateType !== 'fieldTemplate' }]}
-	{...titleAttributes(ctx, config, 'titleAttributes', {})}
->
-	{title}
-</div>
+{#if templateType === 'fieldTemplate'}
+	<div class="title" {...attributes}>
+		{title}
+	</div>
+{:else}
+	<h6 {...attributes}>
+		{title}
+	</h6>
+{/if}
+
+<style>
+	.title {
+		font-size: 0.75rem;
+	}
+</style>

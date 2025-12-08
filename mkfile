@@ -341,6 +341,17 @@ lab/:
     t:
       pnpm run test $@
     popd
+  beer/:
+    pushd beercss-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
   popd
 
 e/:

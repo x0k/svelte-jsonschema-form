@@ -7,6 +7,6 @@
 	const ctx = getFormContext();
 </script>
 
-<p class="fieldset-label" {...helpAttributes(ctx, config, 'helpAttributes', {})}>
+<output {...helpAttributes(ctx, config, 'helpAttributes', {})}>
 	{help}
-</p>
+</output>

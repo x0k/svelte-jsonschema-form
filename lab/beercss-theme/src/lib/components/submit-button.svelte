@@ -8,8 +8,9 @@
 </script>
 
 <button
-	class="btn btn-primary w-full"
-	{...buttonAttributes(ctx, config, 'submitButton', 'submit', {})}
+	{...buttonAttributes(ctx, config, 'submitButton', 'submit', {
+		class: 'responsive'
+	})}
 >
 	{@render children()}
 </button>

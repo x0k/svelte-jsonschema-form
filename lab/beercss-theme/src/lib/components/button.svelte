@@ -16,11 +16,10 @@
 </script>
 
 <button
-	class="btn join-item btn-sm"
 	{...composeProps(
 		ctx,
 		config,
-		{ type: 'button', onclick, disabled } satisfies HTMLButtonAttributes,
+		{ type: 'button', onclick, disabled, class: 'small fill' } satisfies HTMLButtonAttributes,
 		uiOptionProps('button'),
 		uiOptionNestedProps('buttons', (b) => b[type]),
 		disabledProp

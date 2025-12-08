@@ -12,17 +12,22 @@
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
-	let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
+	let { config, value = $bindable(), handlers }: ComponentProps['switchWidget'] = $props();
 
 	const ctx = getFormContext();
 </script>
 
-<label class="fieldset-label">
+<label class="switch">
 	<input
-		type="checkbox"
-		class={['toggle', errors.length > 0 && 'toggle-error']}
-		bind:checked={() => value ?? false, (v) => (value = v)}
 		{...inputAttributes(ctx, config, 'daisyui5Switch', handlers, {})}
+		type="checkbox"
+		bind:checked={() => value ?? false, (v) => (value = v)}
 	/>
-	{config.title}
+	<span>{config.title}</span>
 </label>
+
+<style>
+	.switch span {
+		padding-left: 0.5rem;
+	}
+</style>

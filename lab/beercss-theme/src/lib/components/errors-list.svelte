@@ -8,10 +8,20 @@
 </script>
 
 <ul
-	class="text-error list-disc list-inside"
-	{...errorsListAttributes(ctx, config, 'errorsList', {})}
+	{...errorsListAttributes(ctx, config, 'errorsList', {
+		class: 'errors-list'
+	})}
 >
 	{#each errors as err}
-		<li>{err}</li>
+		<li class="error-text">{err}</li>
 	{/each}
 </ul>
+
+<style>
+	.errors-list {
+		margin: 0 !important;
+	}
+	:global(.field > .errors-list) {
+		margin-top: 1rem !important;
+	}
+</style>

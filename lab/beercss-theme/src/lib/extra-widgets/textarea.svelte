@@ -12,8 +12,4 @@
 	const ctx = getFormContext();
 </script>
 
-<textarea
-	bind:value
-	class={['textarea textarea-bordered w-full', errors.length > 0 && 'textarea-error']}
-	{...textareaAttributes(ctx, config, 'textarea', handlers, {})}
-></textarea>
+<textarea {...textareaAttributes(ctx, config, 'textarea', handlers, {})} bind:value></textarea>

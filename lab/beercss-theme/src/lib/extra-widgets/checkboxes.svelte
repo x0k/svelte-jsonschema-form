@@ -24,16 +24,17 @@
 	);
 </script>
 
-{#each options as option (option.id)}
-	<label class="fieldset-label">
-		<input
-			class={['checkbox', errors.length > 0 && 'checkbox-error']}
-			bind:group={mapped.current}
-			value={option.id}
-			{...attributes}
-			id={option.id}
-			disabled={option.disabled || attributes.disabled}
-		/>
-		{option.label}
-	</label>
-{/each}
+<nav>
+	{#each options as option (option.id)}
+		<label class="checkbox">
+			<input
+				{...attributes}
+				bind:group={mapped.current}
+				value={option.id}
+				id={option.id}
+				disabled={option.disabled || attributes.disabled}
+			/>
+			<span>{option.label}</span>
+		</label>
+	{/each}
+</nav>

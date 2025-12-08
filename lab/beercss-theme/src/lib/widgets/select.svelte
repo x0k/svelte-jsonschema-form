@@ -3,13 +3,7 @@
 	import { singleOption, idMapper, UNDEFINED_ID } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/widgets/select.svelte';
 
-	let {
-		value = $bindable(),
-		options,
-		config,
-		errors,
-		handlers
-	}: ComponentProps['selectWidget'] = $props();
+	let { value = $bindable(), options, config, handlers }: ComponentProps['selectWidget'] = $props();
 
 	const mapped = singleOption({
 		mapper: () => idMapper(options),
@@ -22,11 +16,7 @@
 	const attributes = $derived(selectAttributes(ctx, config, 'select', handlers, {}));
 </script>
 
-<select
-	class={['select select-bordered w-full', errors.length > 0 && 'select-error']}
-	bind:value={mapped.current}
-	{...attributes}
->
+<select {...attributes} bind:value={mapped.current}>
 	{#if config.schema.default === undefined}
 		<option value={UNDEFINED_ID}>{attributes.placeholder}</option>
 	{/if}

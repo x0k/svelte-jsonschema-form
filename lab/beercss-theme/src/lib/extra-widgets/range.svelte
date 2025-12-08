@@ -2,14 +2,15 @@
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/extra-widgets/range.svelte';
 
-	let { value = $bindable(), config, handlers, errors }: ComponentProps['rangeWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['rangeWidget'] = $props();
 
 	const ctx = getFormContext();
 </script>
 
-<input
-	type="range"
-	bind:value={() => value ?? 0, (v) => (value = v)}
-	class={['w-full range', errors.length > 0 && 'range-error']}
-	{...inputAttributes(ctx, config, 'range', handlers, { type: 'range' })}
-/>
+<div class="slider">
+	<input
+		{...inputAttributes(ctx, config, 'range', handlers, { type: 'range' })}
+		bind:value={() => value ?? 0, (v) => (value = v)}
+	/>
+	<span></span>
+</div>
