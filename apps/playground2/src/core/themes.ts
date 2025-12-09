@@ -54,6 +54,7 @@ import { theme as skeleton4 } from "@sjsf/skeleton4-theme";
 import skeleton4Styles from "@sjsf/skeleton4-theme/styles.css?raw";
 import "@sjsf/skeleton4-theme/extra-widgets/checkboxes-include";
 import "@sjsf/skeleton4-theme/extra-widgets/date-picker-include";
+import "@sjsf/skeleton4-theme/extra-widgets/date-range-picker-include";
 import "@sjsf/skeleton4-theme/extra-widgets/file-include";
 import "@sjsf/skeleton4-theme/extra-widgets/multi-select-include";
 import "@sjsf/skeleton4-theme/extra-widgets/radio-buttons-include";
