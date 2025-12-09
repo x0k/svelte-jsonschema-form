@@ -96,8 +96,27 @@ import "@sjsf-lab/svar-theme/extra-widgets/switch-include";
 import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
 
 import { theme as beercss } from "@sjsf-lab/beercss-theme";
-import beercssStyles from 'beercss/dist/cdn/beer.css?raw'
-const beerCssSettings = `.light {
+import beercssStyles from "beercss/dist/cdn/beer.min.css?raw";
+const beerCssSettings = `
+:host {
+  --size: 1rem;
+  --font: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Noto Sans, Arial, sans-serif;
+  --font-icon: "Material Symbols Outlined";
+  --speed1: 0.1s;
+  --speed2: 0.2s;
+  --speed3: 0.3s;
+  --speed4: 0.4s;
+  --active: rgb(128 128 128 / 0.192);
+  --overlay: rgb(0 0 0 / 0.5);
+  --elevate1: 0 0.125rem 0.125rem 0 rgb(0 0 0 / 0.32);
+  --elevate2: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 0.4);
+  --elevate3: 0 0.375rem 0.75rem 0 rgb(0 0 0 / 0.48);
+  --top: env(safe-area-inset-top);
+  --bottom: env(safe-area-inset-bottom);
+  --left: env(safe-area-inset-left);
+  --right: env(safe-area-inset-right);
+}
+:host, .light {
   --primary: #6750a4;
   --on-primary: #ffffff;
   --primary-container: #e9ddff;
@@ -172,7 +191,7 @@ const beerCssSettings = `.light {
   --surface-container: #201f22;
   --surface-container-high: #2b292d;
   --surface-container-highest: #363438;
-}`
+}`;
 import "@sjsf-lab/beercss-theme/extra-widgets/checkboxes-include";
 import "@sjsf-lab/beercss-theme/extra-widgets/date-picker-include";
 import "@sjsf-lab/beercss-theme/extra-widgets/file-include";
