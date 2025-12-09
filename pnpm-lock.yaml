@@ -492,6 +492,9 @@ importers:
       '@picocss/pico':
         specifier: ^2.1.1
         version: 2.1.1
+      '@sjsf-lab/beercss-theme':
+        specifier: workspace:*
+        version: link:../../lab/beercss-theme
       '@sjsf-lab/svar-theme':
         specifier: workspace:*
         version: link:../../lab/svar-theme
@@ -559,6 +562,9 @@ importers:
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.1.17(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1))
+      beercss:
+        specifier: ^3.13.1
+        version: 3.13.1
       bits-ui:
         specifier: 'catalog:'
         version: 2.14.4(@internationalized/date@3.10.0)(@sveltejs/kit@2.49.1(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.45.4)(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.45.4)(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.5.1)))(svelte@5.45.4)
