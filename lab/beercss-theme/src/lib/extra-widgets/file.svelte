@@ -15,12 +15,12 @@
 </script>
 
 <input
-	type="file"
-	bind:files={value}
 	{...inputAttributes(ctx, config, 'file', handlers, {
 		multiple,
 		'data-loading': loading,
 		'data-processing': processing
 	})}
+	type="file"
+	bind:files={value}
 />
 <input type="text" />

@@ -2,12 +2,7 @@
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/widgets/checkbox.svelte';
 
-	let {
-		config,
-		value = $bindable(),
-		handlers,
-		errors
-	}: ComponentProps['checkboxWidget'] = $props();
+	let { config, value = $bindable(), handlers }: ComponentProps['checkboxWidget'] = $props();
 
 	const ctx = getFormContext();
 </script>

@@ -1,12 +1,21 @@
+<script lang="ts" module>
+	import type { HTMLOutputAttributes } from 'svelte/elements';
+
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			beercssHelp?: HTMLOutputAttributes;
+		}
+	}
+</script>
+
 <script lang="ts">
 	import { getFormContext, helpAttributes, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/components/help.svelte';
 
 	const { help, config }: ComponentProps['help'] = $props();
 
 	const ctx = getFormContext();
 </script>
 
-<output {...helpAttributes(ctx, config, 'helpAttributes', {})}>
+<output {...helpAttributes(ctx, config, 'beercssHelp', {})}>
 	{help}
 </output>

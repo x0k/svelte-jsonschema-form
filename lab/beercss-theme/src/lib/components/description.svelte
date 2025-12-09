@@ -1,12 +1,31 @@
+<script lang="ts" module>
+	import type { HTMLOutputAttributes } from 'svelte/elements';
+
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			beercssDescription?: HTMLOutputAttributes;
+		}
+	}
+</script>
+
 <script lang="ts">
 	import { descriptionAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/components/description.svelte';
 
 	const { description, config }: ComponentProps['description'] = $props();
 
 	const ctx = getFormContext();
 </script>
 
-<p class="fieldset-label" {...descriptionAttributes(ctx, config, 'descriptionAttributes', {})}>
+<output
+	{...descriptionAttributes(ctx, config, 'beercssDescription', {
+		class: 'small-text description'
+	})}
+>
 	{description}
-</p>
+</output>
+
+<style>
+	.description {
+		padding: 0.25rem 1rem;
+	}
+</style>

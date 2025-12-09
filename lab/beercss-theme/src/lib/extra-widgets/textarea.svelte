@@ -6,7 +6,6 @@
 		value = $bindable(),
 		config,
 		handlers,
-		errors
 	}: ComponentProps['textareaWidget'] = $props();
 
 	const ctx = getFormContext();

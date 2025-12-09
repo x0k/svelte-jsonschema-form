@@ -1,5 +1,14 @@
+<script lang="ts" module>
+	import type { HTMLAttributes } from 'svelte/elements';
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			beercssNav?: HTMLAttributes<HTMLElement>;
+		}
+	}
+</script>
+
 <script lang="ts">
-	import { getFormContext, layoutAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, layoutAttributes, uiOptionProps, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/layout.svelte';
 
 	const { type, children, config, errors }: ComponentProps['layout'] = $props();
@@ -12,7 +21,7 @@
 {#if type === 'field-content'}
 	{@render children()}
 {:else if type === 'array-item-controls'}
-	<nav class="group connected">
+	<nav {...uiOptionProps('beercssNav')({ class: 'group connected' }, config, ctx)}>
 		{@render children()}
 	</nav>
 {:else}
