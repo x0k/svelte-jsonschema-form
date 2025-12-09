@@ -16,6 +16,7 @@ export default defineConfig({
 					include: ['src/**/*.svelte.{test,spec}.{js,ts}', 'tests/**/*.svelte.{test,spec}.{js,ts}'],
 					exclude: ['src/lib/server/**'],
 					setupFiles: ['vitest-browser-svelte'],
+					// testTimeout: 1000,
 					browser: {
 						enabled: true,
 						provider: playwright(),

@@ -10,6 +10,32 @@ import './extra-widgets/date-picker-include.js';
 
 export const specs: s.Specs = {
 	...DEFAULT_SPECS,
+	checkbox: [
+		s.boolean,
+		{
+			'ui:options': {
+				title: s.CHECKBOX_LABEL_TEXT
+			}
+		},
+		{
+			oninput: 'inputSvarCheckbox',
+			onchange: 'changeSvarCheckbox',
+			onblur: "visitSvarCheckbox",
+		}
+	],
+	checkboxes: [
+		s.uniqueArray,
+		{
+			'ui:components': {
+				arrayField: 'multiEnumField'
+			}
+		},
+		{
+			// oninput: 'inputSvarCheckbox',
+			// onchange: 'changeSvarCheckbox',
+			// onblur: "visitSvarCheckbox",
+		}
+	],
 	datePicker: [
 		s.text,
 		{ 'ui:components': { textWidget: 'datePickerWidget' } },
@@ -29,9 +55,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: 'inputRadio',
-			onchange: 'changeRadio',
-			onblur: 'visitRadio'
+			// oninput: 'inputRadio',
+			// onchange: 'changeRadio',
+			// onblur: 'visitRadio'
 		}
 	],
 	range: [
@@ -45,11 +71,16 @@ export const specs: s.Specs = {
 	],
 	switch: [
 		s.boolean,
-		{ 'ui:components': { checkboxWidget: 'switchWidget' } },
 		{
-			oninput: 'inputCheckbox',
-			onchange: 'changeCheckbox',
-			onblur: 'visitCheckbox'
+			'ui:components': { checkboxWidget: 'switchWidget' },
+			'ui:options': {
+				title: s.SWITCH_LABEL_TEXT
+			}
+		},
+		{
+			oninput: 'inputSwitch',
+			onchange: 'changeSwitch',
+			onblur: 'visitSwitch'
 		}
 	],
 	textarea: [

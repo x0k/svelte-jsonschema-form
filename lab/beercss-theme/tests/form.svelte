@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { BasicForm, createForm, type FormOptions } from '@sjsf/form';
-
-	import '../src/app.css';
+	import 'beercss/dist/cdn/beer.css';
 
 	const props: FormOptions<any> = $props();
 
