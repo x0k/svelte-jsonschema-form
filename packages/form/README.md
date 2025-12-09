@@ -84,6 +84,13 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
   - [Precompiled](https://x0k.dev/svelte-jsonschema-form/validators/schemasafe/#precompiled-validation)
 - [Standard Schema](https://x0k.dev/svelte-jsonschema-form/validators/standard-schema/)
 
+## Integrations
+
+- [Generic backend](https://x0k.dev/svelte-jsonschema-form/integrations/generic-backend/)
+- SvelteKit
+  - [Form actions](https://x0k.dev/svelte-jsonschema-form/integrations/sveltekit/form-actions/)
+  - [Remote functions](https://x0k.dev/svelte-jsonschema-form/integrations/sveltekit/remote-functions/) (experimental)
+
 ## License
 
 This project includes modifications of code from [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form), which is licensed under the Apache License, Version 2.0.
