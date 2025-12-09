@@ -1,9 +1,9 @@
 <script lang="ts" module>
-	import type { HTMLOutputAttributes } from 'svelte/elements';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			beercssDescription?: HTMLOutputAttributes;
+			beercssDescription?: HTMLAttributes<HTMLElement>;
 		}
 	}
 </script>
@@ -16,16 +16,6 @@
 	const ctx = getFormContext();
 </script>
 
-<output
-	{...descriptionAttributes(ctx, config, 'beercssDescription', {
-		class: 'small-text description'
-	})}
->
+<em {...descriptionAttributes(ctx, config, 'beercssDescription', {})}>
 	{description}
-</output>
-
-<style>
-	.description {
-		padding: 0.25rem 1rem;
-	}
-</style>
+</em>

@@ -26,7 +26,7 @@
 	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && publint",
+		"build": "svelte-package && publint",
 		"preview": "vite preview",
 		"test": "npm run test:unit -- --run",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -53,7 +53,6 @@
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
 		},
-		"./styles.css": "./dist/styles.css",
 		"./specs": {
 			"types": "./dist/specs.d.ts",
 			"svelte": "./dist/specs.js"
