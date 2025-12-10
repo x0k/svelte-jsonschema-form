@@ -27,8 +27,11 @@
 <legend
   {...titleAttributes(ctx, config, "titleAttributes", {
     class: "sjsf-title",
-    "data-template": templateType
+    "data-template": templateType,
   })}
 >
   {title}
+  {#if config.required && templateType === 'fieldTemplate'}
+    *
+  {/if}
 </legend>

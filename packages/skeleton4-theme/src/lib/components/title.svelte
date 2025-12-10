@@ -5,11 +5,16 @@
 	const { title, templateType, config }: ComponentProps['title'] = $props();
 
 	const ctx = getFormContext();
+
+	const isFieldTemplate = $derived(templateType === 'fieldTemplate')
 </script>
 
 <div
-	class={templateType === 'fieldTemplate' ? 'label-text' : 'font-bold text-xl'}
+	class={isFieldTemplate ? 'label-text' : 'font-bold text-xl'}
 	{...titleAttributes(ctx, config, 'titleAttributes', {})}
 >
 	{title}
+	{#if config.required && isFieldTemplate}
+		*
+	{/if}
 </div>

@@ -944,7 +944,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
           data-template="objectTemplate"
           id="root__title"
         >
-          Options
+          Options 
+          <!---->
         </legend>
         <!---->
          
@@ -1349,7 +1350,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           data-template="objectTemplate"
           id="root__title"
         >
-          Options
+          Options 
+          <!---->
         </legend>
         <!---->
          
@@ -2576,7 +2578,8 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           data-template="objectTemplate"
           id="root__title"
         >
-          Test field
+          Test field 
+          <!---->
         </legend>
         <!---->
          
@@ -2865,7 +2868,8 @@ exports[`object fields > with title and description > object 1`] = `
           data-template="objectTemplate"
           id="root__title"
         >
-          Test field
+          Test field 
+          <!---->
         </legend>
         <!---->
          
@@ -3163,7 +3167,8 @@ exports[`object fields > with title and description > show add button and fields
           data-template="objectTemplate"
           id="root__title"
         >
-          Test field
+          Test field 
+          <!---->
         </legend>
         <!---->
          
@@ -3452,7 +3457,8 @@ exports[`object fields > with title and description from both > additionalProper
           data-template="objectTemplate"
           id="root__title"
         >
-          My Field
+          My Field 
+          <!---->
         </legend>
         <!---->
          
@@ -3741,7 +3747,8 @@ exports[`object fields > with title and description from both > object 1`] = `
           data-template="objectTemplate"
           id="root__title"
         >
-          My Field
+          My Field 
+          <!---->
         </legend>
         <!---->
          
@@ -4039,7 +4046,8 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           data-template="objectTemplate"
           id="root__title"
         >
-          My Field
+          My Field 
+          <!---->
         </legend>
         <!---->
          
@@ -4328,7 +4336,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           data-template="objectTemplate"
           id="root__title"
         >
-          My Field
+          My Field 
+          <!---->
         </legend>
         <!---->
          
@@ -4626,7 +4635,8 @@ exports[`object fields > with title and description from uiSchema > show add but
           data-template="objectTemplate"
           id="root__title"
         >
-          My Field
+          My Field 
+          <!---->
         </legend>
         <!---->
          

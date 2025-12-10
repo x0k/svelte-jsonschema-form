@@ -1024,7 +1024,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
             class="font-bold text-xl"
             id="root__title"
           >
-            Options
+            Options 
+            <!---->
           </div>
           <!---->
            
@@ -1458,7 +1459,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             class="font-bold text-xl"
             id="root__title"
           >
-            Options
+            Options 
+            <!---->
           </div>
           <!---->
            
@@ -2742,7 +2744,8 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             class="font-bold text-xl"
             id="root__title"
           >
-            Test field
+            Test field 
+            <!---->
           </div>
           <!---->
            
@@ -3047,7 +3050,8 @@ exports[`object fields > with title and description > object 1`] = `
             class="font-bold text-xl"
             id="root__title"
           >
-            Test field
+            Test field 
+            <!---->
           </div>
           <!---->
            
@@ -3363,7 +3367,8 @@ exports[`object fields > with title and description > show add button and fields
             class="font-bold text-xl"
             id="root__title"
           >
-            Test field
+            Test field 
+            <!---->
           </div>
           <!---->
            
@@ -3668,7 +3673,8 @@ exports[`object fields > with title and description from both > additionalProper
             class="font-bold text-xl"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -3973,7 +3979,8 @@ exports[`object fields > with title and description from both > object 1`] = `
             class="font-bold text-xl"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -4289,7 +4296,8 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             class="font-bold text-xl"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -4594,7 +4602,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             class="font-bold text-xl"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -4910,7 +4919,8 @@ exports[`object fields > with title and description from uiSchema > show add but
             class="font-bold text-xl"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            

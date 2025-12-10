@@ -12,6 +12,9 @@
 {#if templateType === 'fieldTemplate'}
 	<div class="title" {...attributes}>
 		{title}
+		{#if config.required}
+			*
+		{/if}
 	</div>
 {:else}
 	<h6 {...attributes}>

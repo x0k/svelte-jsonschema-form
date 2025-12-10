@@ -1187,7 +1187,8 @@ exports[`with title and description > array 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            Test field
+            Test field 
+            <!---->
           </div>
           <!---->
            
@@ -1325,7 +1326,8 @@ exports[`with title and description > array icons 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            Test field
+            Test field 
+            <!---->
           </div>
           <!---->
            
@@ -1970,7 +1972,8 @@ exports[`with title and description > fixed array 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            Test field
+            Test field 
+            <!---->
           </div>
           <!---->
            
@@ -2356,7 +2359,8 @@ exports[`with title and description from both > array 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -2494,7 +2498,8 @@ exports[`with title and description from both > array icons 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -3139,7 +3144,8 @@ exports[`with title and description from both > fixed array 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -3525,7 +3531,8 @@ exports[`with title and description from uiSchema > array 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -3663,7 +3670,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -4308,7 +4316,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            

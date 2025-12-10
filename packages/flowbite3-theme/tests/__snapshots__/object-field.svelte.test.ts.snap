@@ -1266,7 +1266,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            Options
+            Options 
+            <!---->
           </div>
           <!---->
            
@@ -1772,7 +1773,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            Options
+            Options 
+            <!---->
           </div>
           <!---->
            
@@ -3312,7 +3314,8 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            Test field
+            Test field 
+            <!---->
           </div>
           <!---->
            
@@ -3691,7 +3694,8 @@ exports[`object fields > with title and description > object 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            Test field
+            Test field 
+            <!---->
           </div>
           <!---->
            
@@ -4073,7 +4077,8 @@ exports[`object fields > with title and description > show add button and fields
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            Test field
+            Test field 
+            <!---->
           </div>
           <!---->
            
@@ -4452,7 +4457,8 @@ exports[`object fields > with title and description from both > additionalProper
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -4831,7 +4837,8 @@ exports[`object fields > with title and description from both > object 1`] = `
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -5213,7 +5220,8 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -5592,7 +5600,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
@@ -5974,7 +5983,8 @@ exports[`object fields > with title and description from uiSchema > show add but
             class="text-gray-900 dark:text-white font-semibold"
             id="root__title"
           >
-            My Field
+            My Field 
+            <!---->
           </div>
           <!---->
            
