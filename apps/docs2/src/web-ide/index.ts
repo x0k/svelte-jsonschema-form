@@ -75,6 +75,7 @@ const THEME_LAYERS: Record<Theme, () => LayerPromise[]> = {
     import("./layers/shadcn-extras"),
   ],
   svar: () => [import("./layers/svar")],
+  beercss: () => [import("./layers/beercss")],
 };
 
 const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
