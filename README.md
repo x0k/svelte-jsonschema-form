@@ -72,6 +72,7 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 - [shadcn-svelte](https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/)
   - [shadcn-svelte-extras](https://x0k.dev/svelte-jsonschema-form/themes/lab/shadcn-extras/) (experimental)
 - [SVAR](https://x0k.dev/svelte-jsonschema-form/themes/lab/svar/) (experimental)
+- [Beer CSS](https://x0k.dev/svelte-jsonschema-form/themes/lab/beercss/) (experimental)
 
 ## Supported Validators
 
