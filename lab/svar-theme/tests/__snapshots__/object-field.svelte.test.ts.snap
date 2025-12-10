@@ -1289,6 +1289,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="objectTemplate"
               id="root__title"
             >
@@ -1845,6 +1846,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="objectTemplate"
               id="root__title"
             >
@@ -3474,6 +3476,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="objectTemplate"
               id="root__title"
             >
@@ -3856,6 +3859,7 @@ exports[`object fields > with title and description > object 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="objectTemplate"
               id="root__title"
             >
@@ -4253,6 +4257,7 @@ exports[`object fields > with title and description > show add button and fields
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="objectTemplate"
               id="root__title"
             >
@@ -4635,6 +4640,7 @@ exports[`object fields > with title and description from both > additionalProper
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="objectTemplate"
               id="root__title"
             >
@@ -5017,6 +5023,7 @@ exports[`object fields > with title and description from both > object 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="objectTemplate"
               id="root__title"
             >
@@ -5414,6 +5421,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="objectTemplate"
               id="root__title"
             >
@@ -5796,6 +5804,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="objectTemplate"
               id="root__title"
             >
@@ -6193,6 +6202,7 @@ exports[`object fields > with title and description from uiSchema > show add but
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="objectTemplate"
               id="root__title"
             >

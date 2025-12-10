@@ -10,6 +10,7 @@
 <div
 	{...titleAttributes(ctx, config, 'titleAttributes', {
 		'data-template': templateType,
+		'data-required': config.required,
 		'data-error': errors.length > 0
 	})}
 >
@@ -33,6 +34,10 @@
 		font-weight: normal;
 	}
 	div[data-template='fieldTemplate'][data-error='true'] {
+		color: var(--wx-color-danger);
+	}
+	div[data-template='fieldTemplate'][data-required='true']::after {
+		content: ' *';
 		color: var(--wx-color-danger);
 	}
 </style>

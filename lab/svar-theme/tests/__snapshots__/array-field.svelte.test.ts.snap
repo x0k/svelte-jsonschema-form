@@ -1188,6 +1188,7 @@ exports[`with title and description > array 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="arrayTemplate"
               id="root__title"
             >
@@ -1335,6 +1336,7 @@ exports[`with title and description > array icons 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="arrayTemplate"
               id="root__title"
             >
@@ -1959,6 +1961,7 @@ exports[`with title and description > fixed array 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="arrayTemplate"
               id="root__title"
             >
@@ -2352,6 +2355,7 @@ exports[`with title and description from both > array 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="arrayTemplate"
               id="root__title"
             >
@@ -2499,6 +2503,7 @@ exports[`with title and description from both > array icons 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="arrayTemplate"
               id="root__title"
             >
@@ -3123,6 +3128,7 @@ exports[`with title and description from both > fixed array 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="arrayTemplate"
               id="root__title"
             >
@@ -3516,6 +3522,7 @@ exports[`with title and description from uiSchema > array 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="arrayTemplate"
               id="root__title"
             >
@@ -3663,6 +3670,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="arrayTemplate"
               id="root__title"
             >
@@ -4287,6 +4295,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             <div
               class="svelte-1id7bpe"
               data-error="false"
+              data-required="true"
               data-template="arrayTemplate"
               id="root__title"
             >

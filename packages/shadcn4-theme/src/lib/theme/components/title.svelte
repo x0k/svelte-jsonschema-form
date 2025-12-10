@@ -24,6 +24,9 @@
 {#if templateType === 'fieldTemplate'}
 	<Title {...titleAttributes(ctx, config, 'titleAttributes', {})}>
 		{title}
+		{#if config.required}
+			*
+		{/if}
 	</Title>
 {:else}
 	<div {...titleAttributes(ctx, config, 'titleAttributes', {})}>
