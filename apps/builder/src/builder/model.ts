@@ -71,7 +71,7 @@ export const TEXT_WIDGET_OPTIONS: Record<Theme, (params: TextWidgetParams) => Ui
 	[LabTheme.Svar]: (params) => ({
 		svarText: { placeholder: params.placeholder, type: params.type as any }
 	}),
-  [LabTheme.BeerCSS]: basicTextOptions
+	[LabTheme.BeerCSS]: basicTextOptions
 };
 
 export const CHECKBOXES_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOptions> = {
@@ -143,7 +143,14 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOpt
 					}
 				}
 			: {},
-  [LabTheme.BeerCSS]: (inline) => inline ? {} : {}
+	[LabTheme.BeerCSS]: (inline) =>
+		inline
+			? {}
+			: {
+					beercssCheckboxesContainer: {
+						class: 'vertical'
+					}
+				}
 };
 
 export const RADIO_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOptions> = {
@@ -163,7 +170,15 @@ export const RADIO_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOptions>
 						type: 'inline'
 					}
 				}
-			: {}
+			: {},
+	[LabTheme.BeerCSS]: (inline) =>
+		inline
+			? {}
+			: {
+					beercssRadioContainer: {
+						class: 'vertical'
+					}
+				}
 };
 
 export const DEFAULT_COMPONENTS: Record<
@@ -304,12 +319,12 @@ export const WIDGET_EXTRA_FIELD: Record<WidgetType, StripFieldSuffix<FieldType> 
 	skeleton4SliderWidget: undefined,
 	skeleton4FileUploadWidget: undefined,
 	flowbite3ToggleRadioButtonsWidget: 'enum',
-  shadcn4DateRangePickerWidget: "aggregated",
-  aggregatedWidget: "aggregated",
-  skeleton4DateRangePickerWidget: 'aggregated',
-  svarColorPickerWidget: undefined,
-  svarColorSelectWidget: undefined,
-  svarDateRangePickerWidget: "aggregated"
+	shadcn4DateRangePickerWidget: 'aggregated',
+	aggregatedWidget: 'aggregated',
+	skeleton4DateRangePickerWidget: 'aggregated',
+	svarColorPickerWidget: undefined,
+	svarColorSelectWidget: undefined,
+	svarDateRangePickerWidget: 'aggregated'
 };
 
 export const WIDGET_NAMES: Record<WidgetType, string> = {
@@ -334,12 +349,12 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
 	skeleton4FileUploadWidget: 'Drop zone',
 	skeleton4SliderWidget: 'Slider',
 	flowbite3ToggleRadioButtonsWidget: 'Toggle radio buttons',
-  aggregatedWidget: "Aggregated widget",
-  shadcn4DateRangePickerWidget: "Date range picker",
-  skeleton4DateRangePickerWidget: "Date range picker",
-  svarDateRangePickerWidget: "Date range picker",
-  svarColorPickerWidget: "Color picker",
-  svarColorSelectWidget: "Color select"
+	aggregatedWidget: 'Aggregated widget',
+	shadcn4DateRangePickerWidget: 'Date range picker',
+	skeleton4DateRangePickerWidget: 'Date range picker',
+	svarDateRangePickerWidget: 'Date range picker',
+	svarColorPickerWidget: 'Color picker',
+	svarColorSelectWidget: 'Color select'
 };
 
 export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
@@ -364,12 +379,12 @@ export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
 	skeleton4SliderWidget: true,
 	skeleton4FileUploadWidget: true,
 	flowbite3ToggleRadioButtonsWidget: false,
-  aggregatedWidget: false,
-  shadcn4DateRangePickerWidget: false,
-  skeleton4DateRangePickerWidget: false,
-  svarColorPickerWidget: true,
-  svarColorSelectWidget: true,
-  svarDateRangePickerWidget: true,
+	aggregatedWidget: false,
+	shadcn4DateRangePickerWidget: false,
+	skeleton4DateRangePickerWidget: false,
+	svarColorPickerWidget: true,
+	svarColorSelectWidget: true,
+	svarDateRangePickerWidget: true
 };
 
 export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
@@ -395,5 +410,5 @@ export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
 	svarDateRangePickerWidget: 'date-range-picker',
 	svarColorPickerWidget: 'color-picker',
 	svarColorSelectWidget: 'color-select',
-  aggregatedWidget: "virtual-widget-import"
+	aggregatedWidget: 'virtual-widget-import'
 };

@@ -1,5 +1,15 @@
+<script lang="ts" module>
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			beercssRadioContainer?: HTMLAttributes<HTMLElement>;
+		}
+	}
+</script>
+
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, inputAttributes, uiOptionProps, type ComponentProps } from '@sjsf/form';
 	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/extra-widgets/radio.svelte';
 
@@ -16,7 +26,7 @@
 	const attributes = $derived(inputAttributes(ctx, config, 'radio', handlers, { type: 'radio' }));
 </script>
 
-<nav>
+<nav {...uiOptionProps('beercssRadioContainer')({}, config, ctx)}>
 	{#each options as option (option.id)}
 		<label class="radio">
 			<input

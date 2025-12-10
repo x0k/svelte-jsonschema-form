@@ -1,5 +1,15 @@
+<script lang="ts" module>
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			beercssCheckboxesContainer?: HTMLAttributes<HTMLElement>;
+		}
+	}
+</script>
+
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, inputAttributes, uiOptionProps, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, idMapper } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/extra-widgets/checkboxes.svelte';
 
@@ -7,8 +17,7 @@
 		handlers,
 		config,
 		value = $bindable(),
-		options,
-		errors
+		options
 	}: ComponentProps['checkboxesWidget'] = $props();
 
 	const mapped = multipleOptions({
@@ -24,7 +33,7 @@
 	);
 </script>
 
-<nav>
+<nav {...uiOptionProps('beercssCheckboxesContainer')({}, config, ctx)}>
 	{#each options as option (option.id)}
 		<label class="checkbox">
 			<input
