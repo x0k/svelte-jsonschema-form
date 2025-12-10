@@ -196,6 +196,7 @@ export const changeSkeleton4File = uploadFile(getSkeleton4FileInput);
 export const getSvarCheckbox = (l: Locator) => l.getByText(CHECKBOX_LABEL_TEXT);
 export const inputSvarCheckbox = click(getSvarCheckbox);
 export const changeSvarCheckbox = inputSvarCheckbox;
+export const visitSvarCheckbox = withTab(inputSvarCheckbox);
 
 export const inputSvarMultiSelect: FieldValidationTrigger = async (l) => {
   const box = l.getByRole("textbox");

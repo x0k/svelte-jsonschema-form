@@ -193,6 +193,7 @@
     array: {
       items: {
         "ui:options": {
+          description: "test description",
           help: "test help",
         },
       },

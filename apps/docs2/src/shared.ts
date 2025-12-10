@@ -150,7 +150,7 @@ export const DEPRECATED_THEMES = [
 
 export type DeprecatedTheme = (typeof DEPRECATED_THEMES)[number];
 
-export const LAB_THEMES = ["shadcn-extras", "svar"] as const;
+export const LAB_THEMES = ["shadcn-extras", "svar", "beercss"] as const;
 
 export type LabTheme = (typeof LAB_THEMES)[number];
 
@@ -181,6 +181,7 @@ export const THEME_TITLES = {
   shadcn4: "shadcn-svelte",
   "shadcn-extras": "shadcn-svelte-extras",
   svar: "SVAR",
+  beercss: "Beer CSS",
 } satisfies Record<Theme, string>;
 
 export const THEME_BRAND = {
@@ -204,6 +205,7 @@ export const THEME_PACKAGES = {
   shadcn4: "@sjsf/shadcn4-theme",
   "shadcn-extras": "@sjsf-lab/shadcn-extras-theme",
   svar: "@sjsf-lab/svar-theme",
+  beercss: "@sjsf-lab/beercss-theme",
 } satisfies Record<Theme, string>;
 
 export function isTheme(str: string): str is Theme {

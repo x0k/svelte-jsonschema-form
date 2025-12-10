@@ -44,7 +44,8 @@ import {
   FieldTitle,
   FieldSet,
 } from "$lib/components/ui/field/index.js";
-import { ButtonGroup } from '$lib/components/ui/button-group/index.js'
+import { ButtonGroup } from "$lib/components/ui/button-group/index.js";
+import { RangeCalendar } from "$lib/components/ui/range-calendar/index.js";
 
 export function setShadcnContext() {
   setThemeContext({
@@ -82,6 +83,7 @@ export function setShadcnContext() {
       Popover,
       PopoverContent,
       PopoverTrigger,
+      RangeCalendar,
     },
   });
 }

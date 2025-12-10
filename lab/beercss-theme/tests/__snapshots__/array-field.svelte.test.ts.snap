@@ -1,0 +1,4857 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`array fields > array 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="small fill"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`array fields > array icons 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_0"
+                  >
+                    -1 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                id="root_0"
+                name="root_0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <!---->
+          <nav
+            class="group connected svelte-1fixc4e"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="small fill"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </nav>
+          
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_1"
+                  >
+                    -2 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                id="root_1"
+                name="root_1"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <!---->
+          <nav
+            class="group connected svelte-1fixc4e"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="small fill"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </nav>
+          
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="small fill"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`array fields > checkboxes 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`array fields > empty errors array 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_name"
+                  >
+                    name 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_name__description root_name__help root_name__errors"
+                aria-invalid="false"
+                id="root_name"
+                name="root_name"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <ul
+        class="errors-list svelte-ulrohq"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li
+          class="error-text"
+        >
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`array fields > fixed array 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                id="root_0"
+                name="root_0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                id="root_1"
+                name="root_1"
+                required=""
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description > array 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <!---->
+          <h6
+            class="svelte-1id7bpe"
+            id="root__title"
+          >
+            Test field
+          </h6>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a test description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="small fill"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description > array icons 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <!---->
+          <h6
+            class="svelte-1id7bpe"
+            id="root__title"
+          >
+            Test field
+          </h6>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a test description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_0"
+                  >
+                    Test item-1 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_0__description"
+                >
+                  a test item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                id="root_0"
+                name="root_0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <!---->
+          <nav
+            class="group connected svelte-1fixc4e"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="small fill"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </nav>
+          
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_1"
+                  >
+                    Test item-2 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_1__description"
+                >
+                  a test item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                id="root_1"
+                name="root_1"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <!---->
+          <nav
+            class="group connected svelte-1fixc4e"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="small fill"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </nav>
+          
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="small fill"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description > checkboxes 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description > fixed array 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <!---->
+          <h6
+            class="svelte-1id7bpe"
+            id="root__title"
+          >
+            Test field
+          </h6>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a test description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_0"
+                  >
+                    Test item 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_0__description"
+                >
+                  a test item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                id="root_0"
+                name="root_0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_1"
+                  >
+                    Test item 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_1__description"
+                >
+                  a test item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                id="root_1"
+                name="root_1"
+                required=""
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description from both > array 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <!---->
+          <h6
+            class="svelte-1id7bpe"
+            id="root__title"
+          >
+            My Field
+          </h6>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a fancier description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="small fill"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description from both > array icons 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <!---->
+          <h6
+            class="svelte-1id7bpe"
+            id="root__title"
+          >
+            My Field
+          </h6>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a fancier description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_0"
+                  >
+                    My Item-1 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_0__description"
+                >
+                  a fancier item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                id="root_0"
+                name="root_0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <!---->
+          <nav
+            class="group connected svelte-1fixc4e"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="small fill"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </nav>
+          
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_1"
+                  >
+                    My Item-2 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_1__description"
+                >
+                  a fancier item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                id="root_1"
+                name="root_1"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <!---->
+          <nav
+            class="group connected svelte-1fixc4e"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="small fill"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </nav>
+          
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="small fill"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description from both > checkboxes 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description from both > fixed array 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <!---->
+          <h6
+            class="svelte-1id7bpe"
+            id="root__title"
+          >
+            My Field
+          </h6>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a fancier description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_0"
+                  >
+                    My Item 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_0__description"
+                >
+                  a fancier item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                id="root_0"
+                name="root_0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_1"
+                  >
+                    My Item 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_1__description"
+                >
+                  a fancier item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                id="root_1"
+                name="root_1"
+                required=""
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > array 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <!---->
+          <h6
+            class="svelte-1id7bpe"
+            id="root__title"
+          >
+            My Field
+          </h6>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a fancier description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="small fill"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > array icons 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <!---->
+          <h6
+            class="svelte-1id7bpe"
+            id="root__title"
+          >
+            My Field
+          </h6>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a fancier description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_0"
+                  >
+                    My Item-1 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_0__description"
+                >
+                  a fancier item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                id="root_0"
+                name="root_0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <!---->
+          <nav
+            class="group connected svelte-1fixc4e"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="small fill"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </nav>
+          
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_1"
+                  >
+                    My Item-2 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_1__description"
+                >
+                  a fancier item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                id="root_1"
+                name="root_1"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <!---->
+          <nav
+            class="group connected svelte-1fixc4e"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="small fill"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </nav>
+          
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="small fill"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > checkboxes 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > fixed array 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-field-title-row"
+        >
+          <!---->
+          <!---->
+          <h6
+            class="svelte-1id7bpe"
+            id="root__title"
+          >
+            My Field
+          </h6>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a fancier description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_0"
+                  >
+                    My Item 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_0__description"
+                >
+                  a fancier item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                id="root_0"
+                name="root_0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_1"
+                  >
+                    My Item 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <em
+                  id="root_1__description"
+                >
+                  a fancier item description
+                </em>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                id="root_1"
+                name="root_1"
+                required=""
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > array 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="small fill"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > array icons 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                id="root_0"
+                name="root_0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <!---->
+          <nav
+            class="group connected svelte-1fixc4e"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="small fill"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </nav>
+          
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                id="root_1"
+                name="root_1"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <!---->
+          <nav
+            class="group connected svelte-1fixc4e"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="small fill"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="small fill"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </nav>
+          
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="small fill"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > checkboxes 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > fixed array 1`] = `
+<div>
+  <!---->
+  <form
+    class="svelte-81j1d2"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="layout svelte-1fixc4e"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_0__description root_0__help root_0__errors"
+                aria-invalid="false"
+                id="root_0"
+                name="root_0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="layout svelte-1fixc4e"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root_1__description root_1__help root_1__errors"
+                aria-invalid="false"
+                id="root_1"
+                name="root_1"
+                required=""
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="responsive"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
