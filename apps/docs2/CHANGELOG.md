@@ -1,5 +1,59 @@
 # docs
 
+## 1.11.0
+
+### Minor Changes
+
+- Add `label-on-left` example ([#277](https://github.com/x0k/svelte-jsonschema-form/pull/277))
+
+- Add dynamic schema examples ([#276](https://github.com/x0k/svelte-jsonschema-form/pull/276))
+
+- Add `beercss` theme ([#280](https://github.com/x0k/svelte-jsonschema-form/pull/280))
+
+- Add `schema-transformation` example ([#270](https://github.com/x0k/svelte-jsonschema-form/pull/270))
+
+- Add the `Working with enumerations` section to the custom components page ([#273](https://github.com/x0k/svelte-jsonschema-form/pull/273))
+
+- Add `LLMs` page ([#275](https://github.com/x0k/svelte-jsonschema-form/pull/275))
+
+- Add Pico CSS demo ([#272](https://github.com/x0k/svelte-jsonschema-form/pull/272))
+
+### Patch Changes
+
+- Enable links validation ([#274](https://github.com/x0k/svelte-jsonschema-form/pull/274))
+
+- Update validator extension example ([#275](https://github.com/x0k/svelte-jsonschema-form/pull/275))
+
+- Sync reactive flow diagram ([#275](https://github.com/x0k/svelte-jsonschema-form/pull/275))
+
+- Mention dynamic schemas in Advanced API section ([#275](https://github.com/x0k/svelte-jsonschema-form/pull/275))
+
+- Updated dependencies [[`34ce957`](https://github.com/x0k/svelte-jsonschema-form/commit/34ce95794bb33ff6199556f27799045c10da8da9), [`750e8d3`](https://github.com/x0k/svelte-jsonschema-form/commit/750e8d32c94f79de48bbd26275b3008cfc9f7949), [`a9a773a`](https://github.com/x0k/svelte-jsonschema-form/commit/a9a773a4eb9d2baf6404e8f63044ba500a68086f), [`750e8d3`](https://github.com/x0k/svelte-jsonschema-form/commit/750e8d32c94f79de48bbd26275b3008cfc9f7949)]:
+  - @sjsf/flowbite3-theme@3.1.1
+  - @sjsf/skeleton4-theme@3.1.1
+  - @sjsf/daisyui5-theme@3.1.1
+  - @sjsf/shadcn4-theme@3.1.1
+  - @sjsf/basic-theme@3.1.1
+  - @sjsf-lab/beercss-theme@3.2.0
+  - @sjsf-lab/svar-theme@3.1.1
+  - @sjsf/form@3.1.1
+  - @sjsf-lab/shadcn-extras-theme@3.1.0
+  - @sjsf/sveltekit@3.1.1
+  - @sjsf/daisyui-theme@3.0.0
+  - @sjsf/flowbite-theme@3.0.0
+  - @sjsf/shadcn-theme@3.0.0
+  - @sjsf/skeleton3-theme@3.0.1
+  - @sjsf/ajv8-validator@3.1.1
+  - @sjsf/cfworker-validator@3.1.1
+  - @sjsf/flowbite-icons@3.1.1
+  - @sjsf/lucide-icons@3.1.1
+  - @sjsf/moving-icons@3.1.1
+  - @sjsf/radix-icons@3.1.1
+  - @sjsf/schemasafe-validator@3.1.1
+  - theme-testing@1.0.18
+  - @sjsf/valibot-validator@3.1.1
+  - @sjsf/zod4-validator@3.1.1
+
 ## 1.10.0
 
 ### Minor Changes

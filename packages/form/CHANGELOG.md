@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 3.1.1
+
+### Patch Changes
+
+- Deprecate `validateByRetrievedSchema` form option ([#278](https://github.com/x0k/svelte-jsonschema-form/pull/278))
+
+- Deprecate `mapped.value` property ([#278](https://github.com/x0k/svelte-jsonschema-form/pull/278))
+
 ## 3.1.0
 
 ### Minor Changes
