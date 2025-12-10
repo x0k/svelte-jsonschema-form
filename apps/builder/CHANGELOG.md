@@ -1,5 +1,32 @@
 # builder
 
+## 0.4.0
+
+### Minor Changes
+
+- Add `beercss` theme ([#280](https://github.com/x0k/svelte-jsonschema-form/pull/280))
+
+### Patch Changes
+
+- Use icons for node factories ([#279](https://github.com/x0k/svelte-jsonschema-form/pull/279))
+
+- Updated dependencies [[`34ce957`](https://github.com/x0k/svelte-jsonschema-form/commit/34ce95794bb33ff6199556f27799045c10da8da9), [`750e8d3`](https://github.com/x0k/svelte-jsonschema-form/commit/750e8d32c94f79de48bbd26275b3008cfc9f7949), [`a9a773a`](https://github.com/x0k/svelte-jsonschema-form/commit/a9a773a4eb9d2baf6404e8f63044ba500a68086f), [`750e8d3`](https://github.com/x0k/svelte-jsonschema-form/commit/750e8d32c94f79de48bbd26275b3008cfc9f7949)]:
+  - @sjsf/flowbite3-theme@3.1.1
+  - @sjsf/skeleton4-theme@3.1.1
+  - @sjsf/daisyui5-theme@3.1.1
+  - @sjsf/shadcn4-theme@3.1.1
+  - @sjsf/basic-theme@3.1.1
+  - @sjsf-lab/beercss-theme@3.2.0
+  - @sjsf-lab/svar-theme@3.1.1
+  - @sjsf/form@3.1.1
+  - @sjsf/ajv8-validator@3.1.1
+  - @sjsf/cfworker-validator@3.1.1
+  - @sjsf/flowbite-icons@3.1.1
+  - @sjsf/lucide-icons@3.1.1
+  - @sjsf/moving-icons@3.1.1
+  - @sjsf/radix-icons@3.1.1
+  - @sjsf/schemasafe-validator@3.1.1
+
 ## 0.3.3
 
 ### Patch Changes
