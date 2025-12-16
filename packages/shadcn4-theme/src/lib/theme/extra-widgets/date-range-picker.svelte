@@ -3,14 +3,19 @@
 	import type { RangeCalendarRootProps, RangeCalendar, WithoutChildrenOrChild } from 'bits-ui';
 	import type { DateValue } from '@internationalized/date';
 	import type { Range } from '@sjsf/form/lib/range';
+	import "@sjsf/form/fields/extra-widgets/string-range";
 
 	import '../types/popover';
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
+			// TODO: Remove in v4
+			/** @deprecated use `stringRangeWidget` instead */
 			shadcn4DateRangePickerWidget: WidgetCommonProps<Partial<Range<string>>>;
 		}
 		interface ComponentBindings {
+			// TODO: Remove in v4
+			/** @deprecated use `stringRangeWidget` instead */
 			shadcn4DateRangePickerWidget: 'value';
 		}
 		interface UiOptions {
@@ -54,7 +59,7 @@
 		value = $bindable(),
 		config,
 		handlers
-	}: ComponentProps['shadcn4DateRangePickerWidget'] = $props();
+	}: ComponentProps['stringRangeWidget'] = $props();
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 
