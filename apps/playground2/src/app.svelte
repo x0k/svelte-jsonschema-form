@@ -235,7 +235,9 @@
       skeleton4DatePicker: options,
       skeleton4DatePickerPortal: portalOptions,
       skeleton4Combobox: options,
-      skeleton4ComboboxPortal: portalOptions
+      skeleton4ComboboxPortal: portalOptions,
+      skeleton4DateRangePicker: options,
+      skeleton4DateRangePickerPortal: portalOptions
     }),
     onSubmit(value) {
       console.log("submit", value);
