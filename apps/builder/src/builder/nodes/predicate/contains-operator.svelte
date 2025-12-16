@@ -17,7 +17,7 @@
   setPredicateContext({
     get node() {
       return child!;
-    },
+    }
   });
 </script>
 

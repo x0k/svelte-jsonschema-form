@@ -34,6 +34,7 @@ export const NODES: {
   [NodeType.Boolean]: BasicField,
   [NodeType.File]: BasicField,
   [NodeType.Tags]: BasicField,
+  [NodeType.Range]: BasicField
 } satisfies {
   [T in CustomizableNodeType]: NodeComponent<T>;
 } & {

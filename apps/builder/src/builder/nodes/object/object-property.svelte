@@ -46,7 +46,7 @@
   setPredicateContext({
     get node() {
       return node.property;
-    },
+    }
   });
   const isError = $derived(ctx.errors[node.id] !== undefined);
   const isWarning = $derived(ctx.warnings[node.id] !== undefined);

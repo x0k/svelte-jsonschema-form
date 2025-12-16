@@ -263,6 +263,13 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 					enum: ['tagsWidget'] satisfies CompatibleComponentType<'tagsWidget'>[]
 				}
 			}
+		},
+		[NodeType.Range]: {
+			properties: {
+				widget: {
+					enum: ['stringRangeWidget']
+				}
+			}
 		}
 	},
 	[ActualTheme.Shadcn4]: {
@@ -321,6 +328,13 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 					enum: ['fileWidget'] satisfies CompatibleComponentType<'fileWidget'>[]
 				}
 			}
+		},
+		[NodeType.Range]: {
+			properties: {
+				widget: {
+					enum: ['stringRangeWidget']
+				}
+			}
 		}
 	},
 	[LabTheme.Svar]: {
@@ -373,6 +387,13 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 						'checkboxWidget',
 						'switchWidget'
 					] satisfies CompatibleComponentType<'checkboxWidget'>[]
+				}
+			}
+		},
+		[NodeType.Range]: {
+			properties: {
+				widget: {
+					enum: ['stringRangeWidget']
 				}
 			}
 		}
@@ -478,14 +499,14 @@ function schemasToEnumNames(schemas: Partial<Record<NodeType, Schema>>) {
 }
 
 export const THEME_MISSING_FIELDS: Record<Theme, Set<NodeType>> = {
-	[ActualTheme.Basic]: new Set([NodeType.Tags]),
-	[ActualTheme.Pico]: new Set([NodeType.Tags]),
-	[ActualTheme.Daisy5]: new Set([NodeType.Tags]),
-	[ActualTheme.Flowbite3]: new Set([]),
+	[ActualTheme.Basic]: new Set([NodeType.Tags, NodeType.Range]),
+	[ActualTheme.Pico]: new Set([NodeType.Tags, NodeType.Range]),
+	[ActualTheme.Daisy5]: new Set([NodeType.Tags, NodeType.Range]),
+	[ActualTheme.Flowbite3]: new Set([NodeType.Range]),
 	[ActualTheme.Skeleton4]: new Set([]),
 	[ActualTheme.Shadcn4]: new Set([NodeType.Tags]),
 	[LabTheme.Svar]: new Set([NodeType.Tags, NodeType.File]),
-	[LabTheme.BeerCSS]: new Set([NodeType.Tags])
+	[LabTheme.BeerCSS]: new Set([NodeType.Tags, NodeType.Range])
 };
 
 export const THEME_APP_CSS: Record<Theme, string> = {
