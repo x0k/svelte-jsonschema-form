@@ -66,6 +66,8 @@
       skeleton4ComboboxPortal: portalOptions,
       skeleton4DatePicker: options,
       skeleton4DatePickerPortal: portalOptions,
+      skeleton4DateRangePicker: options,
+      skeleton4DateRangePickerPortal: portalOptions
     }),
     onSubmit: console.log,
     onSubmitError: console.warn,

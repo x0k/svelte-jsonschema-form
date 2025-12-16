@@ -22,7 +22,7 @@
   const properties = $derived(getNodeProperties(pCtx.node));
   const selectedNode = $derived(
     node.propertyId !== undefined
-      ? getNodeProperty(pCtx.node, node.propertyId)
+      ? getNodeProperty(pCtx.node, node.propertyId) ?? undefined
       : undefined
   );
 

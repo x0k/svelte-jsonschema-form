@@ -33,6 +33,7 @@
   import MdiVectorArrangeAbove from '~icons/mdi/vector-arrange-above';
   import MdiPageNextOutline from '~icons/mdi/page-next-outline';
   import MdiFileTree from '~icons/mdi/file-tree';
+  import MdiArrowLeftRight from '~icons/mdi/arrow-left-right';
 
 	import {
 		createNode,
@@ -65,6 +66,7 @@
     [NodeType.Boolean]: MdiToggleSwitchOffOutline,
     [NodeType.File]: MdiAttachFile,
     [NodeType.Tags]: MdiTag,
+    [NodeType.Range]: MdiArrowLeftRight,
   };
 
   const OPERATOR_ICONS: Record<OperatorType, Component<SVGAttributes<SVGSVGElement>>> = {

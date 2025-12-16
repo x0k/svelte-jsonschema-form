@@ -11,6 +11,7 @@ import {
 	MULTI_ENUM_OPTIONS_SCHEMA,
 	NodeType,
 	NUMBER_NODE_OPTIONS_SCHEMA,
+	RANGE_NODE_OPTIONS_SCHEMA,
 	STRING_NODE_OPTIONS_SCHEMA,
 	type AbstractNode,
 	type Node,
@@ -219,6 +220,9 @@ export const DEFAULT_COMPONENTS: Record<
 		},
 		[NodeType.Tags]: constant({
 			arrayField: 'arrayTagsField'
+		}),
+		[NodeType.Range]: constant({
+			objectField: 'aggregatedField'
 		})
 	},
 	[Resolver.Compat]: {
@@ -241,6 +245,9 @@ export const DEFAULT_COMPONENTS: Record<
 		},
 		[NodeType.Tags]: constant({
 			arrayField: 'arrayTagsField'
+		}),
+		[NodeType.Range]: constant({
+			objectField: 'aggregatedField'
 		})
 	}
 };
@@ -252,7 +259,8 @@ export const DEFAULT_WIDGETS: Record<WidgetNodeType, WidgetType> = {
 	[NodeType.Number]: NUMBER_NODE_OPTIONS_SCHEMA.properties.widget.default,
 	[NodeType.Boolean]: BOOLEAN_NODE_OPTIONS_SCHEMA.properties.widget.default,
 	[NodeType.File]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
-	[NodeType.Tags]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default
+	[NodeType.Tags]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
+	[NodeType.Range]: RANGE_NODE_OPTIONS_SCHEMA.properties.widget.default
 };
 
 const BASE_WIDGETS = [
@@ -350,7 +358,7 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
 	skeleton4FileUploadWidget: 'Drop zone',
 	skeleton4SliderWidget: 'Slider',
 	flowbite3ToggleRadioButtonsWidget: 'Toggle radio buttons',
-	aggregatedWidget: 'Aggregated widget',
+	aggregatedWidget: 'Invalid widget',
 	shadcn4DateRangePickerWidget: 'Date range picker',
 	skeleton4DateRangePickerWidget: 'Date range picker',
 	svarDateRangePickerWidget: 'Date range picker',

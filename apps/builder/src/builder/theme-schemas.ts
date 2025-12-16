@@ -263,6 +263,14 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 					enum: ['tagsWidget'] satisfies CompatibleComponentType<'tagsWidget'>[]
 				}
 			}
+		},
+		[NodeType.Range]: {
+			properties: {
+				widget: {
+					enum: ['skeleton4DateRangePickerWidget'],
+					default: 'skeleton4DateRangePickerWidget'
+				}
+			}
 		}
 	},
 	[ActualTheme.Shadcn4]: {
@@ -321,6 +329,14 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 					enum: ['fileWidget'] satisfies CompatibleComponentType<'fileWidget'>[]
 				}
 			}
+		},
+		[NodeType.Range]: {
+			properties: {
+				widget: {
+					enum: ['shadcn4DateRangePickerWidget'],
+					default: 'shadcn4DateRangePickerWidget'
+				}
+			}
 		}
 	},
 	[LabTheme.Svar]: {
@@ -373,6 +389,14 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 						'checkboxWidget',
 						'switchWidget'
 					] satisfies CompatibleComponentType<'checkboxWidget'>[]
+				}
+			}
+		},
+		[NodeType.Range]: {
+			properties: {
+				widget: {
+					enum: ['svarDateRangePickerWidget'],
+					default: 'svarDateRangePickerWidget'
 				}
 			}
 		}
