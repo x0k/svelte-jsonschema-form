@@ -1,3 +1,4 @@
+import { getNodeByKeys, type Node } from "@/lib/trie.js";
 import type { RPath } from "@/core/index.js";
 
 import {
@@ -25,7 +26,34 @@ export function getId<T>(ctx: FormState<T>, path: FieldPath): Id {
  * @query
  */
 function getFieldPath<T>(ctx: FormState<T>, path: RPath): FieldPath {
-  return internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path)
+  return internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path);
+}
+
+/**
+ * @query
+ */
+function* emitNodeValues(
+  node: Node<RPath[number], FieldPath>
+): Generator<FieldPath> {
+  if (node.value !== undefined) {
+    yield node.value;
+  }
+  for (const n of node.values.values()) {
+    yield* emitNodeValues(n);
+  }
+}
+
+/**
+ * WARN: This method will not react to changes in the subtree.
+ * @query
+ */
+export function* getSubtreePaths<T>(ctx: FormState<T>, path: FieldPath) {
+  const trie = ctx[FORM_PATHS_TRIE_REF].current;
+  const node = getNodeByKeys(trie, path);
+  if (node === undefined) {
+    return;
+  }
+  yield* emitNodeValues(node);
 }
 
 /**

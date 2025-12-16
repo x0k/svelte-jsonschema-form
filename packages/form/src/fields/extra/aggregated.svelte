@@ -1,20 +1,13 @@
 <script lang="ts" module>
-  import { createArrayComparator } from "@/lib/array.js";
-  
-  const field = "aggregatedField"
+  const field = "aggregatedField";
   declare module "../../form/index.js" {
     interface ActionFields {
-      [field]: {}
+      [field]: {};
     }
     interface FoundationalComponents {
       aggregatedWidget: {};
     }
   }
-
-  const comparePaths = createArrayComparator((a: FieldPath, b: FieldPath) =>
-    a === b ? 0 : 1
-  );
-  
 </script>
 
 <script lang="ts">
@@ -27,8 +20,8 @@
     getFieldsErrors,
     getFieldErrors,
     type FieldPath,
-    getChildPath,
     getFieldAction,
+    getSubtreePaths,
   } from "@/form/index.js";
   import "@/form/extra-fields/aggregated.js";
 
@@ -53,26 +46,12 @@
   );
 
   const collectErrors = $derived(uiOption("collectErrors") ?? false);
-
-  let lastPaths: FieldPath[] | undefined;
-  const paths = $derived.by(() => {
-    const path = config.path;
-    const v = value;
-    const nextPaths = v
-      ? Object.keys(v).map((k) => getChildPath(ctx, path, k))
-      : [];
-    nextPaths.unshift(path);
-    return lastPaths && comparePaths(nextPaths, lastPaths) === 0
-      ? lastPaths
-      : nextPaths;
-  });
-
   const errors = $derived(
     collectErrors
-      ? getFieldsErrors(ctx, paths)
+      ? getFieldsErrors(ctx, getSubtreePaths(ctx, config.path))
       : getFieldErrors(ctx, config.path)
   );
-  const action = $derived(getFieldAction(ctx, config, field))
+  const action = $derived(getFieldAction(ctx, config, field));
 </script>
 
 {#snippet renderAction()}

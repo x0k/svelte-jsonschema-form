@@ -43,14 +43,14 @@ export function getFieldErrorsByPath<T>(
  */
 export function getFieldsErrors<T>(
   ctx: FormState<T>,
-  paths: FieldPath[]
+  paths: Iterable<FieldPath>
 ): string[] {
   const errors: string[] = [];
-  for (let i = 0; i < paths.length; i++) {
-    const errs = ctx[FORM_ERRORS].getFieldErrors(paths[i]!);
+  for (const path of paths) {
+    const errs = ctx[FORM_ERRORS].getFieldErrors(path);
     if (errs) {
-      for (let j = 0; j < errs.length; j++) {
-        errors.push(errs[j]!);
+      for (let i = 0; i < errs.length; i++) {
+        errors.push(errs[i]!);
       }
     }
   }
