@@ -11,7 +11,6 @@ import {
 	MULTI_ENUM_OPTIONS_SCHEMA,
 	NodeType,
 	NUMBER_NODE_OPTIONS_SCHEMA,
-	RANGE_NODE_OPTIONS_SCHEMA,
 	STRING_NODE_OPTIONS_SCHEMA,
 	type AbstractNode,
 	type Node,
@@ -260,7 +259,7 @@ export const DEFAULT_WIDGETS: Record<WidgetNodeType, WidgetType> = {
 	[NodeType.Boolean]: BOOLEAN_NODE_OPTIONS_SCHEMA.properties.widget.default,
 	[NodeType.File]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
 	[NodeType.Tags]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
-	[NodeType.Range]: RANGE_NODE_OPTIONS_SCHEMA.properties.widget.default
+	[NodeType.Range]: 'aggregatedWidget'
 };
 
 const BASE_WIDGETS = [

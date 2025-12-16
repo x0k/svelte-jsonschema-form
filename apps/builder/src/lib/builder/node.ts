@@ -628,7 +628,7 @@ export const RANGE_NODE_OPTIONS_SCHEMA = {
 		widget: {
 			title: 'Widget',
 			type: 'string',
-			default: 'aggregatedWidget'
+			default: 'stringRangeWidget'
 		},
 		help: {
 			title: 'Help',
