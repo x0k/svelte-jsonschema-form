@@ -49,7 +49,7 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				objectField: 'aggregatedField',
-				aggregatedWidget: 'skeleton4DateRangePickerWidget'
+				aggregatedWidget: 'stringRangeWidget'
 			},
 			'ui:options': { useLabel: false }
 		},

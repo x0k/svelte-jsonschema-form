@@ -8,7 +8,7 @@ import type {
 } from '@sjsf/form';
 import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
 
-import "@sjsf/form/fields/extra/aggregated-include";
+import '@sjsf/form/fields/extra/aggregated-include';
 import '@sjsf/form/fields/extra/boolean-select-include';
 import '@sjsf/form/fields/extra/enum-include';
 import '@sjsf/form/fields/extra/file-include';
@@ -271,6 +271,7 @@ export const THEME_OPTIONAL_DEPS: Record<Theme, Record<string, Set<WidgetType>>>
 			'skeleton4DateRangePickerWidget',
 			'skeleton4FileUploadWidget',
 			'skeleton4SliderWidget',
+			'stringRangeWidget',
 			'radioButtonsWidget',
 			'comboboxWidget',
 			'ratingWidget',
@@ -280,7 +281,11 @@ export const THEME_OPTIONAL_DEPS: Record<Theme, Record<string, Set<WidgetType>>>
 		])
 	},
 	[ActualTheme.Shadcn4]: {
-		'@internationalized/date': new Set(['datePickerWidget', 'shadcn4DateRangePickerWidget'])
+		'@internationalized/date': new Set([
+			'datePickerWidget',
+			'shadcn4DateRangePickerWidget',
+			'stringRangeWidget'
+		])
 	},
 	[LabTheme.Svar]: {},
 	[LabTheme.BeerCSS]: {}

@@ -67,7 +67,7 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				objectField: 'aggregatedField',
-				aggregatedWidget: 'svarDateRangePickerWidget'
+				aggregatedWidget: 'stringRangeWidget'
 			}
 		},
 		{

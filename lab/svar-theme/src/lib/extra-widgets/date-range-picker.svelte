@@ -3,12 +3,17 @@
 	import { DateRangePicker as SvarDateRangePicker } from '@svar-ui/svelte-core';
 	import type { Range } from '@sjsf/form/lib/range';
 	import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
+	import '@sjsf/form/fields/extra-widgets/string-range';
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
+			// TODO: Remove in v4
+			/** @deprecated use `stringRangeWidget` instead */
 			svarDateRangePickerWidget: WidgetCommonProps<Partial<Range<string>>>;
 		}
 		interface ComponentBindings {
+			// TODO: Remove in v4
+			/** @deprecated use `stringRangeWidget` instead */
 			svarDateRangePickerWidget: 'value';
 		}
 		interface UiOptions {
@@ -32,8 +37,8 @@
 		value = $bindable(),
 		config,
 		handlers,
-    errors
-	}: ComponentProps['svarDateRangePickerWidget'] = $props();
+		errors
+	}: ComponentProps['stringRangeWidget'] = $props();
 
 	const ctx = getFormContext();
 
