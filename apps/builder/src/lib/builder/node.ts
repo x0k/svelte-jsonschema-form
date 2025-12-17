@@ -386,6 +386,11 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
 			title: 'Default value',
 			type: 'string'
 		},
+		format: {
+			type: 'string',
+			title: "Format",
+			description: "JSON Schema string formats"
+		},
 		maxLength: {
 			title: 'Max length',
 			type: 'number',
@@ -398,6 +403,7 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
 		},
 		pattern: {
 			title: 'Pattern',
+			description: 'Regular expression, preferably using the ECMA-262 flavour',
 			type: 'string',
 			format: 'regexp'
 		}

@@ -181,6 +181,13 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
 				op,
 				values: []
 			};
+		case OperatorType.Format:
+			return {
+				id,
+				type,
+				op,
+				value: ''
+			};
 		case OperatorType.Pattern:
 			return {
 				id,

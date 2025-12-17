@@ -9,6 +9,7 @@ import {
 	isValidJson
 } from '$lib/json.js';
 import { isValidRegExp } from '$lib/reg-exp.js';
+import { isKnownJsonSchemaFormat } from '$lib/json-schema.js';
 
 import { EnumValueType } from './enum.js';
 import { OperatorType, type AbstractOperator } from './operator.js';
@@ -241,6 +242,16 @@ const OPERATOR_VALIDATORS: {
 		}
 	},
 	// String
+	[OperatorType.Format]: (ctx, op) => {
+		if (!isKnownJsonSchemaFormat(op.value)) {
+			ctx.addWarning(op, 'Unknown JSON Schema format');
+		}
+		checkAffected(ctx, op, (affected) => {
+			if (!isStringNode(affected)) {
+				ctx.addError(op, 'The operator can only be applied to string fields');
+			}
+		});
+	},
 	[OperatorType.Pattern]: (ctx, op) => {
 		if (!isValidRegExp(op.value)) {
 			ctx.addError(op, 'Invalid regular expression');
@@ -484,7 +495,7 @@ const NODE_VALIDATORS: {
 	[NodeType.Boolean]: noop,
 	[NodeType.File]: noop,
 	[NodeType.Tags]: noop,
-	[NodeType.Range]: noop,
+	[NodeType.Range]: noop
 };
 
 export function validateNode(ctx: ValidatorContext, node: Node) {

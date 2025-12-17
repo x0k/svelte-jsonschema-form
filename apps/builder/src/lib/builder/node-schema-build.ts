@@ -21,10 +21,8 @@ import {
 	isArrayNode,
 	isCustomizableNode,
 	isFileNode,
-	isGridNode,
 	isMultiEnumNode,
 	isObjectNode,
-	isRangeNode,
 	isTagsNode
 } from './node-guards.js';
 import { getNodeChild, getNodeProperty } from './node-props.js';
@@ -241,6 +239,7 @@ const OPERATOR_SCHEMA_BUILDERS: {
 			: schema;
 	},
 	// String
+	[OperatorType.Format]: (_, op) => ({ format: op.value }),
 	[OperatorType.Pattern]: (_, op) => ({ pattern: op.value }),
 	[OperatorType.MinLength]: (_, op) => ({ minLength: op.value }),
 	[OperatorType.MaxLength]: (_, op) => ({ maxLength: op.value }),

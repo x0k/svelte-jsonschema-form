@@ -21,7 +21,6 @@
 	const nodeCtx = getNodeContext();
 	const pCtx = getPredicateContext();
 	const applicableOperators = $derived(detectApplicableOperators(pCtx.node, true));
-	$inspect(applicableOperators, pCtx.node)
 </script>
 
 {#if node}

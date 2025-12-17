@@ -12,6 +12,7 @@ const multiEnumOperatorsConstant = constant(multiEnumOperators);
 const filesOperators = multiEnumOperators.concat(OperatorType.UniqueItems);
 const arrayOperators = filesOperators.concat(OperatorType.Contains);
 const stringOperators = constant([
+	OperatorType.Format,
 	OperatorType.Pattern,
 	OperatorType.MinLength,
 	OperatorType.MaxLength
