@@ -61,6 +61,7 @@ import "@sjsf/skeleton4-theme/extra-widgets/multi-select-include";
 import "@sjsf/skeleton4-theme/extra-widgets/radio-buttons-include";
 import "@sjsf/skeleton4-theme/extra-widgets/radio-include";
 import "@sjsf/skeleton4-theme/extra-widgets/range-include";
+import "@sjsf/skeleton4-theme/extra-widgets/range-slider-include";
 import "@sjsf/skeleton4-theme/extra-widgets/rating-include";
 import "@sjsf/skeleton4-theme/extra-widgets/switch-include";
 import "@sjsf/skeleton4-theme/extra-widgets/tags-include";
@@ -80,6 +81,7 @@ import "@sjsf/shadcn4-theme/extra-widgets/multi-select-include";
 import "@sjsf/shadcn4-theme/extra-widgets/radio-buttons-include";
 import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
 import "@sjsf/shadcn4-theme/extra-widgets/range-include";
+import "@sjsf/shadcn4-theme/extra-widgets/range-slider-include";
 import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 

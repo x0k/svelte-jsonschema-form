@@ -445,8 +445,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       '@skeletonlabs/skeleton-svelte4':
-        specifier: npm:@skeletonlabs/skeleton-svelte@^4.5.0
-        version: '@skeletonlabs/skeleton-svelte@4.7.1(svelte@5.45.4)'
+        specifier: npm:@skeletonlabs/skeleton-svelte@^4.8.0
+        version: '@skeletonlabs/skeleton-svelte@4.8.0(svelte@5.45.4)'
       '@types/css-tree':
         specifier: ^2.3.11
         version: 2.3.11

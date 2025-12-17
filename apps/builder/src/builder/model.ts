@@ -332,7 +332,8 @@ export const WIDGET_EXTRA_FIELD: Record<WidgetType, StripFieldSuffix<FieldType> 
 	svarColorPickerWidget: undefined,
 	svarColorSelectWidget: undefined,
 	svarDateRangePickerWidget: 'aggregated',
-	stringRangeWidget: 'aggregated'
+	stringRangeWidget: 'aggregated',
+	numberRangeWidget: 'aggregated'
 };
 
 export const WIDGET_NAMES: Record<WidgetType, string> = {
@@ -363,7 +364,8 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
 	svarDateRangePickerWidget: 'Date range picker',
 	svarColorPickerWidget: 'Color picker',
 	svarColorSelectWidget: 'Color select',
-	stringRangeWidget: 'Date range picker'
+	stringRangeWidget: 'Date range picker',
+	numberRangeWidget: "Range slider"
 };
 
 export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
@@ -395,7 +397,8 @@ export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
 	svarColorSelectWidget: true,
 	svarDateRangePickerWidget: true,
 	// TODO: Take into account differences in implementation across different themes
-	stringRangeWidget: true
+	stringRangeWidget: true,
+	numberRangeWidget: true
 };
 
 export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
@@ -422,5 +425,6 @@ export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
 	svarColorPickerWidget: 'color-picker',
 	svarColorSelectWidget: 'color-select',
 	aggregatedWidget: 'virtual-widget-import',
-	stringRangeWidget: 'date-range-picker'
+	stringRangeWidget: 'date-range-picker',
+	numberRangeWidget: 'range-slider'
 };
