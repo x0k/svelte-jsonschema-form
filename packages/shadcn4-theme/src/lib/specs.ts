@@ -10,6 +10,7 @@ import './theme/extra-widgets/multi-select-include.js';
 import './theme/extra-widgets/radio-buttons-include.js';
 import './theme/extra-widgets/radio-include.js';
 import './theme/extra-widgets/range-include.js';
+import './theme/extra-widgets/range-slider-include.js';
 import './theme/extra-widgets/switch-include.js';
 import './theme/extra-widgets/textarea-include.js';
 
@@ -119,6 +120,22 @@ export const specs: s.Specs = {
 		s.number,
 		// NOTE: Range is span based
 		{ 'ui:components': { numberWidget: 'rangeWidget' }, 'ui:options': { useLabel: false } },
+		{
+			oninput: 'inputSlider',
+			onchange: 'changeSlider'
+		}
+	],
+	rangeSlider: [
+		s.range(s.number),
+		{
+			'ui:components': {
+				objectField: 'aggregatedField',
+				aggregatedWidget: 'numberRangeWidget'
+			},
+			'ui:options': {
+				useLabel: false
+			}
+		},
 		{
 			oninput: 'inputSlider',
 			onchange: 'changeSlider'
