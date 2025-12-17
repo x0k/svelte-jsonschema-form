@@ -963,7 +963,7 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 w-full"
+          class="w-full"
           data-part="root"
           data-scope="combobox"
           id="combobox:c3"
@@ -971,7 +971,6 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative"
             data-disabled=""
             data-part="control"
             data-scope="combobox"
@@ -987,7 +986,6 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-part="input"
               data-scope="combobox"
               data-state="closed"
@@ -1007,7 +1005,6 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
               aria-expanded="false"
               aria-haspopup="listbox"
               aria-label="Toggle suggestions"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1/2 skb:-translate-y-1/2"
               data-disabled=""
               data-part="trigger"
               data-scope="combobox"
@@ -1119,7 +1116,7 @@ exports[`widgets > combobox > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 w-full"
+          class="w-full"
           data-part="root"
           data-scope="combobox"
           id="combobox:c2"
@@ -1127,7 +1124,6 @@ exports[`widgets > combobox > snapshots > error 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative"
             data-part="control"
             data-scope="combobox"
             data-state="closed"
@@ -1142,7 +1138,6 @@ exports[`widgets > combobox > snapshots > error 1`] = `
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-part="input"
               data-scope="combobox"
               data-state="closed"
@@ -1161,7 +1156,6 @@ exports[`widgets > combobox > snapshots > error 1`] = `
               aria-expanded="false"
               aria-haspopup="listbox"
               aria-label="Toggle suggestions"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1/2 skb:-translate-y-1/2"
               data-part="trigger"
               data-scope="combobox"
               data-state="closed"
@@ -1282,7 +1276,7 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 w-full"
+          class="w-full"
           data-part="root"
           data-scope="combobox"
           id="combobox:c1"
@@ -1290,7 +1284,6 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative"
             data-part="control"
             data-scope="combobox"
             data-state="closed"
@@ -1305,7 +1298,6 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-part="input"
               data-scope="combobox"
               data-state="closed"
@@ -1324,7 +1316,6 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
               aria-expanded="false"
               aria-haspopup="listbox"
               aria-label="Toggle suggestions"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1/2 skb:-translate-y-1/2"
               data-part="trigger"
               data-scope="combobox"
               data-state="closed"
@@ -1434,7 +1425,7 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 w-full"
+          class="w-full"
           data-part="root"
           data-readonly=""
           data-scope="combobox"
@@ -1443,7 +1434,6 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative"
             data-part="control"
             data-scope="combobox"
             data-state="closed"
@@ -1458,7 +1448,6 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-part="input"
               data-scope="combobox"
               data-state="closed"
@@ -1478,7 +1467,6 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
               aria-expanded="false"
               aria-haspopup="listbox"
               aria-label="Toggle suggestions"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1/2 skb:-translate-y-1/2"
               data-part="trigger"
               data-readonly=""
               data-scope="combobox"
@@ -1588,7 +1576,7 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:space-y-2 w-full"
+          class="w-full"
           data-disabled=""
           data-part="root"
           data-scope="date-picker"
@@ -1598,7 +1586,6 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:space-y-2"
             data-disabled=""
             data-part="control"
             data-scope="date-picker"
@@ -1609,7 +1596,6 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="0"
               data-part="input"
               data-scope="date-picker"
@@ -1629,7 +1615,6 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
               aria-controls="datepicker:c7:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -1752,7 +1737,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="skb:space-y-2 w-full"
+          class="w-full"
           data-part="root"
           data-scope="date-picker"
           data-state="closed"
@@ -1761,7 +1746,6 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
             id="datepicker:c6:control"
@@ -1771,7 +1755,6 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="0"
               data-part="input"
               data-scope="date-picker"
@@ -1790,7 +1773,6 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
               aria-controls="datepicker:c6:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -1923,7 +1905,7 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:space-y-2 w-full"
+          class="w-full"
           data-part="root"
           data-scope="date-picker"
           data-state="closed"
@@ -1932,7 +1914,6 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
             id="datepicker:c5:control"
@@ -1942,7 +1923,6 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="0"
               data-part="input"
               data-scope="date-picker"
@@ -1961,7 +1941,6 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
               aria-controls="datepicker:c5:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -2083,7 +2062,7 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="skb:space-y-2 w-full"
+          class="w-full"
           data-part="root"
           data-readonly=""
           data-scope="date-picker"
@@ -2093,7 +2072,6 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
             id="datepicker:c8:control"
@@ -2103,7 +2081,6 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="0"
               data-part="input"
               data-scope="date-picker"
@@ -2123,7 +2100,6 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
               aria-controls="datepicker:c8:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -2244,7 +2220,7 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:space-y-2 w-full"
+          class="w-full"
           data-disabled=""
           data-part="root"
           data-scope="date-picker"
@@ -2254,7 +2230,6 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:space-y-2"
             data-disabled=""
             data-part="control"
             data-scope="date-picker"
@@ -2265,7 +2240,6 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="0"
               data-part="input"
               data-scope="date-picker"
@@ -2283,7 +2257,6 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="1"
               data-part="input"
               data-scope="date-picker"
@@ -2302,7 +2275,6 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
               aria-controls="datepicker:c14:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -2425,7 +2397,7 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="skb:space-y-2 w-full"
+          class="w-full"
           data-part="root"
           data-scope="date-picker"
           data-state="closed"
@@ -2434,7 +2406,6 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
             id="datepicker:c13:control"
@@ -2444,7 +2415,6 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="0"
               data-part="input"
               data-scope="date-picker"
@@ -2461,7 +2431,6 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="1"
               data-part="input"
               data-scope="date-picker"
@@ -2479,7 +2448,6 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
               aria-controls="datepicker:c13:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -2612,7 +2580,7 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:space-y-2 w-full"
+          class="w-full"
           data-part="root"
           data-scope="date-picker"
           data-state="closed"
@@ -2621,7 +2589,6 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
             id="datepicker:c12:control"
@@ -2631,7 +2598,6 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="0"
               data-part="input"
               data-scope="date-picker"
@@ -2648,7 +2614,6 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="1"
               data-part="input"
               data-scope="date-picker"
@@ -2666,7 +2631,6 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
               aria-controls="datepicker:c12:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -2788,7 +2752,7 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="skb:space-y-2 w-full"
+          class="w-full"
           data-part="root"
           data-readonly=""
           data-scope="date-picker"
@@ -2798,7 +2762,6 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:relative skb:space-y-2"
             data-part="control"
             data-scope="date-picker"
             id="datepicker:c15:control"
@@ -2808,7 +2771,6 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="0"
               data-part="input"
               data-scope="date-picker"
@@ -2826,7 +2788,6 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
             <input
               autocomplete="off"
               autocorrect="off"
-              class="skb:input"
               data-index="1"
               data-part="input"
               data-scope="date-picker"
@@ -2845,7 +2806,6 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
               aria-controls="datepicker:c15:content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="skb:btn-icon skb:btn-icon-sm skb:preset-tonal skb:absolute skb:end-1.5 skb:top-1.25"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
@@ -3290,7 +3250,7 @@ exports[`widgets > fileUpload > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 skb:data-disabled:disabled w-full"
+          class="w-full"
           data-part="root"
           data-scope="file-upload"
           disabled="true"
@@ -3301,7 +3261,6 @@ exports[`widgets > fileUpload > snapshots > disabled 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
-            class="skb:card skb:px-4 skb:py-10 skb:border skb:border-dashed skb:border-surface-200-800 skb:flex skb:flex-col skb:justify-center skb:items-center skb:gap-2 skb:data-dragging:preset-tonal"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c21:dropzone"
@@ -3314,7 +3273,6 @@ exports[`widgets > fileUpload > snapshots > disabled 1`] = `
              
             <!---->
             <button
-              class="skb:btn skb:preset-filled"
               data-part="trigger"
               data-scope="file-upload"
               id="file:c21:trigger"
@@ -3345,7 +3303,6 @@ exports[`widgets > fileUpload > snapshots > disabled 1`] = `
            
           <!---->
           <ul
-            class="skb:flex skb:flex-col skb:gap-2"
             data-part="item-group"
             data-scope="file-upload"
             data-type="accepted"
@@ -3437,7 +3394,7 @@ exports[`widgets > fileUpload > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 skb:data-disabled:disabled w-full"
+          class="w-full"
           data-part="root"
           data-scope="file-upload"
           disabled="false"
@@ -3448,7 +3405,6 @@ exports[`widgets > fileUpload > snapshots > error 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
-            class="skb:card skb:px-4 skb:py-10 skb:border skb:border-dashed skb:border-surface-200-800 skb:flex skb:flex-col skb:justify-center skb:items-center skb:gap-2 skb:data-dragging:preset-tonal"
             data-invalid=""
             data-part="dropzone"
             data-scope="file-upload"
@@ -3462,7 +3418,6 @@ exports[`widgets > fileUpload > snapshots > error 1`] = `
              
             <!---->
             <button
-              class="skb:btn skb:preset-filled"
               data-invalid=""
               data-part="trigger"
               data-scope="file-upload"
@@ -3494,7 +3449,6 @@ exports[`widgets > fileUpload > snapshots > error 1`] = `
            
           <!---->
           <ul
-            class="skb:flex skb:flex-col skb:gap-2"
             data-part="item-group"
             data-scope="file-upload"
             data-type="accepted"
@@ -3597,7 +3551,7 @@ exports[`widgets > fileUpload > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 skb:data-disabled:disabled w-full"
+          class="w-full"
           data-part="root"
           data-scope="file-upload"
           disabled="false"
@@ -3608,7 +3562,6 @@ exports[`widgets > fileUpload > snapshots > normal 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
-            class="skb:card skb:px-4 skb:py-10 skb:border skb:border-dashed skb:border-surface-200-800 skb:flex skb:flex-col skb:justify-center skb:items-center skb:gap-2 skb:data-dragging:preset-tonal"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c19:dropzone"
@@ -3621,7 +3574,6 @@ exports[`widgets > fileUpload > snapshots > normal 1`] = `
              
             <!---->
             <button
-              class="skb:btn skb:preset-filled"
               data-part="trigger"
               data-scope="file-upload"
               id="file:c19:trigger"
@@ -3652,7 +3604,6 @@ exports[`widgets > fileUpload > snapshots > normal 1`] = `
            
           <!---->
           <ul
-            class="skb:flex skb:flex-col skb:gap-2"
             data-part="item-group"
             data-scope="file-upload"
             data-type="accepted"
@@ -3744,7 +3695,7 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 skb:data-disabled:disabled w-full"
+          class="w-full"
           data-part="root"
           data-scope="file-upload"
           disabled="false"
@@ -3755,7 +3706,6 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
-            class="skb:card skb:px-4 skb:py-10 skb:border skb:border-dashed skb:border-surface-200-800 skb:flex skb:flex-col skb:justify-center skb:items-center skb:gap-2 skb:data-dragging:preset-tonal"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c22:dropzone"
@@ -3768,7 +3718,6 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
              
             <!---->
             <button
-              class="skb:btn skb:preset-filled"
               data-part="trigger"
               data-scope="file-upload"
               id="file:c22:trigger"
@@ -3799,7 +3748,6 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
            
           <!---->
           <ul
-            class="skb:flex skb:flex-col skb:gap-2"
             data-part="item-group"
             data-scope="file-upload"
             data-type="accepted"
@@ -3890,7 +3838,7 @@ exports[`widgets > fileUploadMultiple > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 skb:data-disabled:disabled w-full"
+          class="w-full"
           data-part="root"
           data-scope="file-upload"
           disabled="true"
@@ -3901,7 +3849,6 @@ exports[`widgets > fileUploadMultiple > snapshots > disabled 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
-            class="skb:card skb:px-4 skb:py-10 skb:border skb:border-dashed skb:border-surface-200-800 skb:flex skb:flex-col skb:justify-center skb:items-center skb:gap-2 skb:data-dragging:preset-tonal"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c26:dropzone"
@@ -3914,7 +3861,6 @@ exports[`widgets > fileUploadMultiple > snapshots > disabled 1`] = `
              
             <!---->
             <button
-              class="skb:btn skb:preset-filled"
               data-part="trigger"
               data-scope="file-upload"
               id="file:c26:trigger"
@@ -3946,7 +3892,6 @@ exports[`widgets > fileUploadMultiple > snapshots > disabled 1`] = `
            
           <!---->
           <ul
-            class="skb:flex skb:flex-col skb:gap-2"
             data-part="item-group"
             data-scope="file-upload"
             data-type="accepted"
@@ -4038,7 +3983,7 @@ exports[`widgets > fileUploadMultiple > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 skb:data-disabled:disabled w-full"
+          class="w-full"
           data-part="root"
           data-scope="file-upload"
           disabled="false"
@@ -4049,7 +3994,6 @@ exports[`widgets > fileUploadMultiple > snapshots > error 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
-            class="skb:card skb:px-4 skb:py-10 skb:border skb:border-dashed skb:border-surface-200-800 skb:flex skb:flex-col skb:justify-center skb:items-center skb:gap-2 skb:data-dragging:preset-tonal"
             data-invalid=""
             data-part="dropzone"
             data-scope="file-upload"
@@ -4063,7 +4007,6 @@ exports[`widgets > fileUploadMultiple > snapshots > error 1`] = `
              
             <!---->
             <button
-              class="skb:btn skb:preset-filled"
               data-invalid=""
               data-part="trigger"
               data-scope="file-upload"
@@ -4096,7 +4039,6 @@ exports[`widgets > fileUploadMultiple > snapshots > error 1`] = `
            
           <!---->
           <ul
-            class="skb:flex skb:flex-col skb:gap-2"
             data-part="item-group"
             data-scope="file-upload"
             data-type="accepted"
@@ -4199,7 +4141,7 @@ exports[`widgets > fileUploadMultiple > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 skb:data-disabled:disabled w-full"
+          class="w-full"
           data-part="root"
           data-scope="file-upload"
           disabled="false"
@@ -4210,7 +4152,6 @@ exports[`widgets > fileUploadMultiple > snapshots > normal 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
-            class="skb:card skb:px-4 skb:py-10 skb:border skb:border-dashed skb:border-surface-200-800 skb:flex skb:flex-col skb:justify-center skb:items-center skb:gap-2 skb:data-dragging:preset-tonal"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c24:dropzone"
@@ -4223,7 +4164,6 @@ exports[`widgets > fileUploadMultiple > snapshots > normal 1`] = `
              
             <!---->
             <button
-              class="skb:btn skb:preset-filled"
               data-part="trigger"
               data-scope="file-upload"
               id="file:c24:trigger"
@@ -4255,7 +4195,6 @@ exports[`widgets > fileUploadMultiple > snapshots > normal 1`] = `
            
           <!---->
           <ul
-            class="skb:flex skb:flex-col skb:gap-2"
             data-part="item-group"
             data-scope="file-upload"
             data-type="accepted"
@@ -4347,7 +4286,7 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="skb:w-full skb:space-y-2 skb:data-disabled:disabled w-full"
+          class="w-full"
           data-part="root"
           data-scope="file-upload"
           disabled="false"
@@ -4358,7 +4297,6 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
-            class="skb:card skb:px-4 skb:py-10 skb:border skb:border-dashed skb:border-surface-200-800 skb:flex skb:flex-col skb:justify-center skb:items-center skb:gap-2 skb:data-dragging:preset-tonal"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c27:dropzone"
@@ -4371,7 +4309,6 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
              
             <!---->
             <button
-              class="skb:btn skb:preset-filled"
               data-part="trigger"
               data-scope="file-upload"
               id="file:c27:trigger"
@@ -4403,7 +4340,6 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
            
           <!---->
           <ul
-            class="skb:flex skb:flex-col skb:gap-2"
             data-part="item-group"
             data-scope="file-upload"
             data-type="accepted"
@@ -6136,11 +6072,11 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
         <!---->
         <div
           aria-describedby="root__description root__help root__errors"
+          aria-disabled="true"
           aria-invalid="false"
           aria-labelledby="radio-group:c31:label"
           aria-orientation="horizontal"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2 group"
           data-disabled=""
           data-orientation="horizontal"
           data-part="root"
@@ -6152,12 +6088,12 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:inline-flex skb:preset-outlined-surface-200-800 skb:p-2 skb:gap-2 skb:rounded skb:group-data-[orientation=horizontal]:flex-row skb:group-data-[orientation=vertical]:flex-col"
+            data-part="control"
+            data-scope="radio-group"
           >
             <!---->
             <!---->
             <div
-              class="skb:top-(--top) skb:left-(--left) skb:w-(--width) skb:h-(--height) skb:preset-filled skb:rounded skb:data-disabled:opacity-50"
               data-disabled=""
               data-orientation="horizontal"
               data-part="indicator"
@@ -6172,7 +6108,6 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-disabled=""
               data-orientation="horizontal"
               data-part="item"
@@ -6184,7 +6119,6 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-disabled=""
                 data-orientation="horizontal"
                 data-part="item-text"
@@ -6217,7 +6151,6 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-disabled=""
               data-orientation="horizontal"
               data-part="item"
@@ -6229,7 +6162,6 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-disabled=""
                 data-orientation="horizontal"
                 data-part="item-text"
@@ -6262,7 +6194,6 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-disabled=""
               data-orientation="horizontal"
               data-part="item"
@@ -6274,7 +6205,6 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-disabled=""
                 data-orientation="horizontal"
                 data-part="item-text"
@@ -6307,7 +6237,6 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-disabled=""
               data-orientation="horizontal"
               data-part="item"
@@ -6319,7 +6248,6 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-disabled=""
                 data-orientation="horizontal"
                 data-part="item-text"
@@ -6431,7 +6359,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           aria-labelledby="radio-group:c30:label"
           aria-orientation="horizontal"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2 group"
           data-orientation="horizontal"
           data-part="root"
           data-scope="radio-group"
@@ -6442,12 +6369,12 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:inline-flex skb:preset-outlined-surface-200-800 skb:p-2 skb:gap-2 skb:rounded skb:group-data-[orientation=horizontal]:flex-row skb:group-data-[orientation=vertical]:flex-col"
+            data-part="control"
+            data-scope="radio-group"
           >
             <!---->
             <!---->
             <div
-              class="skb:top-(--top) skb:left-(--left) skb:w-(--width) skb:h-(--height) skb:preset-filled skb:rounded skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="indicator"
               data-scope="radio-group"
@@ -6461,7 +6388,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-scope="radio-group"
@@ -6472,7 +6398,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-scope="radio-group"
@@ -6503,7 +6428,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-scope="radio-group"
@@ -6514,7 +6438,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-scope="radio-group"
@@ -6545,7 +6468,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-scope="radio-group"
@@ -6556,7 +6478,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-scope="radio-group"
@@ -6587,7 +6508,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-scope="radio-group"
@@ -6598,7 +6518,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-scope="radio-group"
@@ -6719,7 +6638,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           aria-labelledby="radio-group:c29:label"
           aria-orientation="horizontal"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2 group"
           data-orientation="horizontal"
           data-part="root"
           data-scope="radio-group"
@@ -6730,12 +6648,12 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:inline-flex skb:preset-outlined-surface-200-800 skb:p-2 skb:gap-2 skb:rounded skb:group-data-[orientation=horizontal]:flex-row skb:group-data-[orientation=vertical]:flex-col"
+            data-part="control"
+            data-scope="radio-group"
           >
             <!---->
             <!---->
             <div
-              class="skb:top-(--top) skb:left-(--left) skb:w-(--width) skb:h-(--height) skb:preset-filled skb:rounded skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="indicator"
               data-scope="radio-group"
@@ -6749,7 +6667,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-scope="radio-group"
@@ -6760,7 +6677,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-scope="radio-group"
@@ -6791,7 +6707,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-scope="radio-group"
@@ -6802,7 +6717,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-scope="radio-group"
@@ -6833,7 +6747,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-scope="radio-group"
@@ -6844,7 +6757,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-scope="radio-group"
@@ -6875,7 +6787,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-scope="radio-group"
@@ -6886,7 +6797,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-scope="radio-group"
@@ -6996,7 +6906,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           aria-orientation="horizontal"
           aria-readonly="true"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2 group"
           data-orientation="horizontal"
           data-part="root"
           data-scope="radio-group"
@@ -7007,12 +6916,12 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           <!---->
           <!---->
           <div
-            class="skb:inline-flex skb:preset-outlined-surface-200-800 skb:p-2 skb:gap-2 skb:rounded skb:group-data-[orientation=horizontal]:flex-row skb:group-data-[orientation=vertical]:flex-col"
+            data-part="control"
+            data-scope="radio-group"
           >
             <!---->
             <!---->
             <div
-              class="skb:top-(--top) skb:left-(--left) skb:w-(--width) skb:h-(--height) skb:preset-filled skb:rounded skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="indicator"
               data-scope="radio-group"
@@ -7026,7 +6935,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-readonly=""
@@ -7038,7 +6946,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-readonly=""
@@ -7071,7 +6978,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-readonly=""
@@ -7083,7 +6989,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-readonly=""
@@ -7116,7 +7021,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-readonly=""
@@ -7128,7 +7032,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-readonly=""
@@ -7161,7 +7064,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <!---->
             <!---->
             <label
-              class="skb:btn skb:cursor-pointer skb:z-10 skb:flex-1 skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50 skb:data-readonly:pointer-events-none skb:data-disabled:pointer-events-none skb:data-disabled:opacity-50"
               data-orientation="horizontal"
               data-part="item"
               data-readonly=""
@@ -7173,7 +7075,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               <!---->
               <!---->
               <span
-                class="skb:transition-colors skb:data-[state=checked]:text-surface-contrast-950 skb:data-[state=checked]:dark:text-surface-contrast-50"
                 data-orientation="horizontal"
                 data-part="item-text"
                 data-readonly=""
@@ -7566,6 +7467,786 @@ exports[`widgets > range > snapshots > readonly 1`] = `
 </div>
 `;
 
+exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-required="true"
+          data-disabled=""
+          data-orientation="horizontal"
+          data-part="root"
+          data-scope="slider"
+          dir="ltr"
+          id="slider:c37"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+        >
+          <!---->
+          <!---->
+          <div
+            data-disabled=""
+            data-orientation="horizontal"
+            data-part="control"
+            data-scope="slider"
+            dir="ltr"
+            id="slider:c37:control"
+            style="touch-action: none; user-select: none; position: relative;"
+          >
+            <!---->
+            <!---->
+            <div
+              data-disabled=""
+              data-orientation="horizontal"
+              data-part="track"
+              data-scope="slider"
+              dir="ltr"
+              id="slider:c37:track"
+              style="position: relative;"
+            >
+              <!---->
+              <!---->
+              <div
+                data-disabled=""
+                data-orientation="horizontal"
+                data-part="range"
+                data-scope="slider"
+                dir="ltr"
+                id="slider:c37:range"
+                style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
+              >
+                <!---->
+              </div>
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <div
+              aria-disabled="true"
+              aria-labelledby="slider:c37:label"
+              aria-orientation="horizontal"
+              aria-valuemax="0"
+              aria-valuemin="0"
+              aria-valuenow="0"
+              data-disabled=""
+              data-index="0"
+              data-orientation="horizontal"
+              data-part="thumb"
+              data-scope="slider"
+              dir="ltr"
+              draggable="false"
+              id="slider:c37:thumb:0"
+              role="slider"
+              style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
+            >
+              <!---->
+              <!---->
+              <input
+                hidden=""
+                id="root"
+                name="root[]"
+                type="text"
+              />
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <div
+              aria-disabled="true"
+              aria-labelledby="slider:c37:label"
+              aria-orientation="horizontal"
+              aria-valuemax="100"
+              aria-valuemin="0"
+              aria-valuenow="0"
+              data-disabled=""
+              data-index="1"
+              data-orientation="horizontal"
+              data-part="thumb"
+              data-scope="slider"
+              dir="ltr"
+              draggable="false"
+              id="slider:c37:thumb:1"
+              role="slider"
+              style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-1);"
+            >
+              <!---->
+              <!---->
+              <input
+                hidden=""
+                id="root"
+                name="root[]"
+                type="text"
+              />
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > rangeSlider > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          aria-required="true"
+          data-invalid=""
+          data-orientation="horizontal"
+          data-part="root"
+          data-scope="slider"
+          dir="ltr"
+          id="slider:c36"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+        >
+          <!---->
+          <!---->
+          <div
+            data-invalid=""
+            data-orientation="horizontal"
+            data-part="control"
+            data-scope="slider"
+            dir="ltr"
+            id="slider:c36:control"
+            style="touch-action: none; user-select: none; position: relative;"
+          >
+            <!---->
+            <!---->
+            <div
+              data-invalid=""
+              data-orientation="horizontal"
+              data-part="track"
+              data-scope="slider"
+              dir="ltr"
+              id="slider:c36:track"
+              style="position: relative;"
+            >
+              <!---->
+              <!---->
+              <div
+                data-invalid=""
+                data-orientation="horizontal"
+                data-part="range"
+                data-scope="slider"
+                dir="ltr"
+                id="slider:c36:range"
+                style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
+              >
+                <!---->
+              </div>
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <div
+              aria-labelledby="slider:c36:label"
+              aria-orientation="horizontal"
+              aria-valuemax="0"
+              aria-valuemin="0"
+              aria-valuenow="0"
+              data-index="0"
+              data-orientation="horizontal"
+              data-part="thumb"
+              data-scope="slider"
+              dir="ltr"
+              draggable="false"
+              id="slider:c36:thumb:0"
+              role="slider"
+              style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
+              tabindex="0"
+            >
+              <!---->
+              <!---->
+              <input
+                hidden=""
+                id="root"
+                name="root[]"
+                type="text"
+              />
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <div
+              aria-labelledby="slider:c36:label"
+              aria-orientation="horizontal"
+              aria-valuemax="100"
+              aria-valuemin="0"
+              aria-valuenow="0"
+              data-index="1"
+              data-orientation="horizontal"
+              data-part="thumb"
+              data-scope="slider"
+              dir="ltr"
+              draggable="false"
+              id="slider:c36:thumb:1"
+              role="slider"
+              style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-1);"
+              tabindex="0"
+            >
+              <!---->
+              <!---->
+              <input
+                hidden=""
+                id="root"
+                name="root[]"
+                type="text"
+              />
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > rangeSlider > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-required="true"
+          data-orientation="horizontal"
+          data-part="root"
+          data-scope="slider"
+          dir="ltr"
+          id="slider:c35"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+        >
+          <!---->
+          <!---->
+          <div
+            data-orientation="horizontal"
+            data-part="control"
+            data-scope="slider"
+            dir="ltr"
+            id="slider:c35:control"
+            style="touch-action: none; user-select: none; position: relative;"
+          >
+            <!---->
+            <!---->
+            <div
+              data-orientation="horizontal"
+              data-part="track"
+              data-scope="slider"
+              dir="ltr"
+              id="slider:c35:track"
+              style="position: relative;"
+            >
+              <!---->
+              <!---->
+              <div
+                data-orientation="horizontal"
+                data-part="range"
+                data-scope="slider"
+                dir="ltr"
+                id="slider:c35:range"
+                style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
+              >
+                <!---->
+              </div>
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <div
+              aria-labelledby="slider:c35:label"
+              aria-orientation="horizontal"
+              aria-valuemax="0"
+              aria-valuemin="0"
+              aria-valuenow="0"
+              data-index="0"
+              data-orientation="horizontal"
+              data-part="thumb"
+              data-scope="slider"
+              dir="ltr"
+              draggable="false"
+              id="slider:c35:thumb:0"
+              role="slider"
+              style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
+              tabindex="0"
+            >
+              <!---->
+              <!---->
+              <input
+                hidden=""
+                id="root"
+                name="root[]"
+                type="text"
+              />
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <div
+              aria-labelledby="slider:c35:label"
+              aria-orientation="horizontal"
+              aria-valuemax="100"
+              aria-valuemin="0"
+              aria-valuenow="0"
+              data-index="1"
+              data-orientation="horizontal"
+              data-part="thumb"
+              data-scope="slider"
+              dir="ltr"
+              draggable="false"
+              id="slider:c35:thumb:1"
+              role="slider"
+              style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-1);"
+              tabindex="0"
+            >
+              <!---->
+              <!---->
+              <input
+                hidden=""
+                id="root"
+                name="root[]"
+                type="text"
+              />
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="true"
+          aria-required="true"
+          data-orientation="horizontal"
+          data-part="root"
+          data-scope="slider"
+          dir="ltr"
+          id="slider:c38"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+        >
+          <!---->
+          <!---->
+          <div
+            data-orientation="horizontal"
+            data-part="control"
+            data-scope="slider"
+            dir="ltr"
+            id="slider:c38:control"
+            style="touch-action: none; user-select: none; position: relative;"
+          >
+            <!---->
+            <!---->
+            <div
+              data-orientation="horizontal"
+              data-part="track"
+              data-scope="slider"
+              dir="ltr"
+              id="slider:c38:track"
+              style="position: relative;"
+            >
+              <!---->
+              <!---->
+              <div
+                data-orientation="horizontal"
+                data-part="range"
+                data-scope="slider"
+                dir="ltr"
+                id="slider:c38:range"
+                style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
+              >
+                <!---->
+              </div>
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <div
+              aria-labelledby="slider:c38:label"
+              aria-orientation="horizontal"
+              aria-valuemax="0"
+              aria-valuemin="0"
+              aria-valuenow="0"
+              data-index="0"
+              data-orientation="horizontal"
+              data-part="thumb"
+              data-scope="slider"
+              dir="ltr"
+              draggable="false"
+              id="slider:c38:thumb:0"
+              role="slider"
+              style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
+              tabindex="0"
+            >
+              <!---->
+              <!---->
+              <input
+                hidden=""
+                id="root"
+                name="root[]"
+                type="text"
+              />
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+            <div
+              aria-labelledby="slider:c38:label"
+              aria-orientation="horizontal"
+              aria-valuemax="100"
+              aria-valuemin="0"
+              aria-valuenow="0"
+              data-index="1"
+              data-orientation="horizontal"
+              data-part="thumb"
+              data-scope="slider"
+              dir="ltr"
+              draggable="false"
+              id="slider:c38:thumb:1"
+              role="slider"
+              style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-1);"
+              tabindex="0"
+            >
+              <!---->
+              <!---->
+              <input
+                hidden=""
+                id="root"
+                name="root[]"
+                type="text"
+              />
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
 exports[`widgets > rating > snapshots > disabled 1`] = `
 <div>
   <!---->
@@ -7601,23 +8282,21 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2"
           data-part="root"
           data-scope="rating-group"
           dir="ltr"
-          id="rating:c37"
+          id="rating:c44"
         >
           <!---->
           <!---->
           <div
-            aria-labelledby="rating:c37:label"
+            aria-labelledby="rating:c44:label"
             aria-orientation="horizontal"
-            class="skb:flex skb:gap-2 skb:data-disabled:cursor-not-allowed skb:data-disabled:opacity-50"
             data-disabled=""
             data-part="control"
             data-scope="rating-group"
             dir="ltr"
-            id="rating:c37:control"
+            id="rating:c44:control"
             role="radiogroup"
           >
             <!---->
@@ -7637,7 +8316,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c37:item:1"
+              id="rating:c44:item:1"
               role="radio"
             >
               <!---->
@@ -7681,7 +8360,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c37:item:2"
+              id="rating:c44:item:2"
               role="radio"
             >
               <!---->
@@ -7725,7 +8404,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c37:item:3"
+              id="rating:c44:item:3"
               role="radio"
             >
               <!---->
@@ -7769,7 +8448,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c37:item:4"
+              id="rating:c44:item:4"
               role="radio"
             >
               <!---->
@@ -7813,7 +8492,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c37:item:5"
+              id="rating:c44:item:5"
               role="radio"
             >
               <!---->
@@ -7938,22 +8617,20 @@ exports[`widgets > rating > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2"
           data-part="root"
           data-scope="rating-group"
           dir="ltr"
-          id="rating:c36"
+          id="rating:c43"
         >
           <!---->
           <!---->
           <div
-            aria-labelledby="rating:c36:label"
+            aria-labelledby="rating:c43:label"
             aria-orientation="horizontal"
-            class="skb:flex skb:gap-2 skb:data-disabled:cursor-not-allowed skb:data-disabled:opacity-50"
             data-part="control"
             data-scope="rating-group"
             dir="ltr"
-            id="rating:c36:control"
+            id="rating:c43:control"
             role="radiogroup"
           >
             <!---->
@@ -7972,7 +8649,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c36:item:1"
+              id="rating:c43:item:1"
               role="radio"
               tabindex="0"
             >
@@ -8016,7 +8693,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c36:item:2"
+              id="rating:c43:item:2"
               role="radio"
               tabindex="-1"
             >
@@ -8060,7 +8737,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c36:item:3"
+              id="rating:c43:item:3"
               role="radio"
               tabindex="-1"
             >
@@ -8104,7 +8781,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c36:item:4"
+              id="rating:c43:item:4"
               role="radio"
               tabindex="-1"
             >
@@ -8148,7 +8825,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c36:item:5"
+              id="rating:c43:item:5"
               role="radio"
               tabindex="-1"
             >
@@ -8284,22 +8961,20 @@ exports[`widgets > rating > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2"
           data-part="root"
           data-scope="rating-group"
           dir="ltr"
-          id="rating:c35"
+          id="rating:c42"
         >
           <!---->
           <!---->
           <div
-            aria-labelledby="rating:c35:label"
+            aria-labelledby="rating:c42:label"
             aria-orientation="horizontal"
-            class="skb:flex skb:gap-2 skb:data-disabled:cursor-not-allowed skb:data-disabled:opacity-50"
             data-part="control"
             data-scope="rating-group"
             dir="ltr"
-            id="rating:c35:control"
+            id="rating:c42:control"
             role="radiogroup"
           >
             <!---->
@@ -8318,7 +8993,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c35:item:1"
+              id="rating:c42:item:1"
               role="radio"
               tabindex="0"
             >
@@ -8362,7 +9037,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c35:item:2"
+              id="rating:c42:item:2"
               role="radio"
               tabindex="-1"
             >
@@ -8406,7 +9081,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c35:item:3"
+              id="rating:c42:item:3"
               role="radio"
               tabindex="-1"
             >
@@ -8450,7 +9125,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c35:item:4"
+              id="rating:c42:item:4"
               role="radio"
               tabindex="-1"
             >
@@ -8494,7 +9169,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c35:item:5"
+              id="rating:c42:item:5"
               role="radio"
               tabindex="-1"
             >
@@ -8619,24 +9294,22 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="skb:flex skb:flex-col skb:gap-2"
           data-part="root"
           data-scope="rating-group"
           dir="ltr"
-          id="rating:c38"
+          id="rating:c45"
         >
           <!---->
           <!---->
           <div
-            aria-labelledby="rating:c38:label"
+            aria-labelledby="rating:c45:label"
             aria-orientation="horizontal"
             aria-readonly="true"
-            class="skb:flex skb:gap-2 skb:data-disabled:cursor-not-allowed skb:data-disabled:opacity-50"
             data-part="control"
             data-readonly=""
             data-scope="rating-group"
             dir="ltr"
-            id="rating:c38:control"
+            id="rating:c45:control"
             role="radiogroup"
           >
             <!---->
@@ -8656,7 +9329,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-readonly=""
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c38:item:1"
+              id="rating:c45:item:1"
               role="radio"
               tabindex="0"
             >
@@ -8701,7 +9374,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-readonly=""
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c38:item:2"
+              id="rating:c45:item:2"
               role="radio"
             >
               <!---->
@@ -8745,7 +9418,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-readonly=""
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c38:item:3"
+              id="rating:c45:item:3"
               role="radio"
             >
               <!---->
@@ -8789,7 +9462,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-readonly=""
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c38:item:4"
+              id="rating:c45:item:4"
               role="radio"
             >
               <!---->
@@ -8833,7 +9506,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-readonly=""
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c38:item:5"
+              id="rating:c45:item:5"
               role="radio"
             >
               <!---->
@@ -9379,49 +10052,45 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:w-full skb:flex skb:flex-col skb:gap-2"
           data-disabled=""
           data-orientation="horizontal"
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c43"
+          id="slider:c50"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
         >
           <!---->
           <!---->
           <div
-            class="skb:flex skb:items-center skb:data-disabled:opacity-50"
             data-disabled=""
             data-orientation="horizontal"
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c43:control"
+            id="slider:c50:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
             <!---->
             <div
-              class="skb:bg-surface-200-800 skb:rounded-base skb:h-2 skb:overflow-hidden skb:flex-1"
               data-disabled=""
               data-orientation="horizontal"
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c43:track"
+              id="slider:c50:track"
               style="position: relative;"
             >
               <!---->
               <!---->
               <div
-                class="skb:bg-surface-950-50 skb:h-full"
                 data-disabled=""
                 data-orientation="horizontal"
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c43:range"
+                id="slider:c50:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -9436,12 +10105,11 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
             <!---->
             <div
               aria-disabled="true"
-              aria-labelledby="slider:c43:label"
+              aria-labelledby="slider:c50:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
               aria-valuenow="0"
-              class="skb:size-5 skb:bg-surface-50-950 skb:ring-inset skb:ring-2 skb:ring-surface-950-50 skb:rounded-full skb:focus-visible:outline-2 skb:focus-visible:outline-offset-1 skb:focus-visible:outline-surface-950-50"
               data-disabled=""
               data-index="0"
               data-orientation="horizontal"
@@ -9449,7 +10117,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c43:thumb:0"
+              id="slider:c50:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
             >
@@ -9546,49 +10214,45 @@ exports[`widgets > slider > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="skb:w-full skb:flex skb:flex-col skb:gap-2"
           data-invalid=""
           data-orientation="horizontal"
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c42"
+          id="slider:c49"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
         >
           <!---->
           <!---->
           <div
-            class="skb:flex skb:items-center skb:data-disabled:opacity-50"
             data-invalid=""
             data-orientation="horizontal"
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c42:control"
+            id="slider:c49:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
             <!---->
             <div
-              class="skb:bg-surface-200-800 skb:rounded-base skb:h-2 skb:overflow-hidden skb:flex-1"
               data-invalid=""
               data-orientation="horizontal"
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c42:track"
+              id="slider:c49:track"
               style="position: relative;"
             >
               <!---->
               <!---->
               <div
-                class="skb:bg-surface-950-50 skb:h-full"
                 data-invalid=""
                 data-orientation="horizontal"
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c42:range"
+                id="slider:c49:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -9602,19 +10266,18 @@ exports[`widgets > slider > snapshots > error 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c42:label"
+              aria-labelledby="slider:c49:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
               aria-valuenow="0"
-              class="skb:size-5 skb:bg-surface-50-950 skb:ring-inset skb:ring-2 skb:ring-surface-950-50 skb:rounded-full skb:focus-visible:outline-2 skb:focus-visible:outline-offset-1 skb:focus-visible:outline-surface-950-50"
               data-index="0"
               data-orientation="horizontal"
               data-part="thumb"
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c42:thumb:0"
+              id="slider:c49:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
               tabindex="0"
@@ -9723,45 +10386,41 @@ exports[`widgets > slider > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:w-full skb:flex skb:flex-col skb:gap-2"
           data-orientation="horizontal"
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c41"
+          id="slider:c48"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
         >
           <!---->
           <!---->
           <div
-            class="skb:flex skb:items-center skb:data-disabled:opacity-50"
             data-orientation="horizontal"
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c41:control"
+            id="slider:c48:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
             <!---->
             <div
-              class="skb:bg-surface-200-800 skb:rounded-base skb:h-2 skb:overflow-hidden skb:flex-1"
               data-orientation="horizontal"
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c41:track"
+              id="slider:c48:track"
               style="position: relative;"
             >
               <!---->
               <!---->
               <div
-                class="skb:bg-surface-950-50 skb:h-full"
                 data-orientation="horizontal"
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c41:range"
+                id="slider:c48:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -9775,19 +10434,18 @@ exports[`widgets > slider > snapshots > normal 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c41:label"
+              aria-labelledby="slider:c48:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
               aria-valuenow="0"
-              class="skb:size-5 skb:bg-surface-50-950 skb:ring-inset skb:ring-2 skb:ring-surface-950-50 skb:rounded-full skb:focus-visible:outline-2 skb:focus-visible:outline-offset-1 skb:focus-visible:outline-surface-950-50"
               data-index="0"
               data-orientation="horizontal"
               data-part="thumb"
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c41:thumb:0"
+              id="slider:c48:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
               tabindex="0"
@@ -9885,45 +10543,41 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="skb:w-full skb:flex skb:flex-col skb:gap-2"
           data-orientation="horizontal"
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c44"
+          id="slider:c51"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
         >
           <!---->
           <!---->
           <div
-            class="skb:flex skb:items-center skb:data-disabled:opacity-50"
             data-orientation="horizontal"
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c44:control"
+            id="slider:c51:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
             <!---->
             <div
-              class="skb:bg-surface-200-800 skb:rounded-base skb:h-2 skb:overflow-hidden skb:flex-1"
               data-orientation="horizontal"
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c44:track"
+              id="slider:c51:track"
               style="position: relative;"
             >
               <!---->
               <!---->
               <div
-                class="skb:bg-surface-950-50 skb:h-full"
                 data-orientation="horizontal"
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c44:range"
+                id="slider:c51:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -9937,19 +10591,18 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c44:label"
+              aria-labelledby="slider:c51:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
               aria-valuenow="0"
-              class="skb:size-5 skb:bg-surface-50-950 skb:ring-inset skb:ring-2 skb:ring-surface-950-50 skb:rounded-full skb:focus-visible:outline-2 skb:focus-visible:outline-offset-1 skb:focus-visible:outline-surface-950-50"
               data-index="0"
               data-orientation="horizontal"
               data-part="thumb"
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c44:thumb:0"
+              id="slider:c51:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
               tabindex="0"
@@ -10046,38 +10699,35 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:cursor-pointer skb:data-disabled:cursor-not-allowed skb:data-disabled:opacity-50 skb:inline-flex skb:gap-2 skb:items-center skb:rounded skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50"
           data-disabled=""
           data-part="root"
           data-required=""
           data-scope="switch"
           data-state="unchecked"
           for="root"
-          id="switch:c50"
+          id="switch:c57"
         >
           <!---->
           <!---->
           <span
             aria-hidden="true"
-            class="skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
             data-disabled=""
             data-part="control"
             data-required=""
             data-scope="switch"
             data-state="unchecked"
-            id="switch:c50:control"
+            id="switch:c57:control"
           >
             <!---->
             <!---->
             <span
               aria-hidden="true"
-              class="skb:grid skb:justify-center skb:items-center skb:h-full skb:aspect-square skb:rounded-full skb:bg-surface-50 skb:text-surface-contrast-50 skb:fill-surface-contrast-50 skb:transition-transform skb:duration-100 skb:data-[state=checked]:translate-x-4 skb:rtl:data-[state=checked]:-translate-x-4"
               data-disabled=""
               data-part="thumb"
               data-required=""
               data-scope="switch"
               data-state="unchecked"
-              id="switch:c50:thumb"
+              id="switch:c57:thumb"
             >
               <!---->
             </span>
@@ -10090,13 +10740,12 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
            
           <!---->
           <span
-            class="skb:label-text"
             data-disabled=""
             data-part="label"
             data-required=""
             data-scope="switch"
             data-state="unchecked"
-            id="switch:c50:label"
+            id="switch:c57:label"
           >
             switch
             <!---->
@@ -10107,7 +10756,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           <!---->
           <input
             aria-invalid="false"
-            aria-labelledby="switch:c50:label"
+            aria-labelledby="switch:c57:label"
             disabled=""
             id="root"
             name="root"
@@ -10193,38 +10842,35 @@ exports[`widgets > switch > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="skb:cursor-pointer skb:data-disabled:cursor-not-allowed skb:data-disabled:opacity-50 skb:inline-flex skb:gap-2 skb:items-center skb:rounded skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50"
           data-invalid=""
           data-part="root"
           data-required=""
           data-scope="switch"
           data-state="unchecked"
           for="root"
-          id="switch:c49"
+          id="switch:c56"
         >
           <!---->
           <!---->
           <span
             aria-hidden="true"
-            class="skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
             data-invalid=""
             data-part="control"
             data-required=""
             data-scope="switch"
             data-state="unchecked"
-            id="switch:c49:control"
+            id="switch:c56:control"
           >
             <!---->
             <!---->
             <span
               aria-hidden="true"
-              class="skb:grid skb:justify-center skb:items-center skb:h-full skb:aspect-square skb:rounded-full skb:bg-surface-50 skb:text-surface-contrast-50 skb:fill-surface-contrast-50 skb:transition-transform skb:duration-100 skb:data-[state=checked]:translate-x-4 skb:rtl:data-[state=checked]:-translate-x-4"
               data-invalid=""
               data-part="thumb"
               data-required=""
               data-scope="switch"
               data-state="unchecked"
-              id="switch:c49:thumb"
+              id="switch:c56:thumb"
             >
               <!---->
             </span>
@@ -10237,13 +10883,12 @@ exports[`widgets > switch > snapshots > error 1`] = `
            
           <!---->
           <span
-            class="skb:label-text"
             data-invalid=""
             data-part="label"
             data-required=""
             data-scope="switch"
             data-state="unchecked"
-            id="switch:c49:label"
+            id="switch:c56:label"
           >
             switch
             <!---->
@@ -10254,7 +10899,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
           <!---->
           <input
             aria-invalid="true"
-            aria-labelledby="switch:c49:label"
+            aria-labelledby="switch:c56:label"
             id="root"
             name="root"
             required=""
@@ -10350,35 +10995,32 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:cursor-pointer skb:data-disabled:cursor-not-allowed skb:data-disabled:opacity-50 skb:inline-flex skb:gap-2 skb:items-center skb:rounded skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50"
           data-part="root"
           data-required=""
           data-scope="switch"
           data-state="unchecked"
           for="root"
-          id="switch:c48"
+          id="switch:c55"
         >
           <!---->
           <!---->
           <span
             aria-hidden="true"
-            class="skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
             data-part="control"
             data-required=""
             data-scope="switch"
             data-state="unchecked"
-            id="switch:c48:control"
+            id="switch:c55:control"
           >
             <!---->
             <!---->
             <span
               aria-hidden="true"
-              class="skb:grid skb:justify-center skb:items-center skb:h-full skb:aspect-square skb:rounded-full skb:bg-surface-50 skb:text-surface-contrast-50 skb:fill-surface-contrast-50 skb:transition-transform skb:duration-100 skb:data-[state=checked]:translate-x-4 skb:rtl:data-[state=checked]:-translate-x-4"
               data-part="thumb"
               data-required=""
               data-scope="switch"
               data-state="unchecked"
-              id="switch:c48:thumb"
+              id="switch:c55:thumb"
             >
               <!---->
             </span>
@@ -10391,12 +11033,11 @@ exports[`widgets > switch > snapshots > normal 1`] = `
            
           <!---->
           <span
-            class="skb:label-text"
             data-part="label"
             data-required=""
             data-scope="switch"
             data-state="unchecked"
-            id="switch:c48:label"
+            id="switch:c55:label"
           >
             switch
             <!---->
@@ -10407,7 +11048,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           <!---->
           <input
             aria-invalid="false"
-            aria-labelledby="switch:c48:label"
+            aria-labelledby="switch:c55:label"
             id="root"
             name="root"
             required=""
@@ -10492,38 +11133,35 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="skb:cursor-pointer skb:data-disabled:cursor-not-allowed skb:data-disabled:opacity-50 skb:inline-flex skb:gap-2 skb:items-center skb:rounded skb:data-focus-visible:outline-2 skb:data-focus-visible:outline-offset-1 skb:data-focus-visible:outline-surface-950-50"
           data-part="root"
           data-readonly=""
           data-required=""
           data-scope="switch"
           data-state="unchecked"
           for="root"
-          id="switch:c51"
+          id="switch:c58"
         >
           <!---->
           <!---->
           <span
             aria-hidden="true"
-            class="skb:preset-filled-surface-200-800 skb:h-6 skb:w-10 skb:p-0.5 skb:rounded-full skb:flex skb:justify-start skb:data-[state=checked]:preset-filled-primary-500"
             data-part="control"
             data-readonly=""
             data-required=""
             data-scope="switch"
             data-state="unchecked"
-            id="switch:c51:control"
+            id="switch:c58:control"
           >
             <!---->
             <!---->
             <span
               aria-hidden="true"
-              class="skb:grid skb:justify-center skb:items-center skb:h-full skb:aspect-square skb:rounded-full skb:bg-surface-50 skb:text-surface-contrast-50 skb:fill-surface-contrast-50 skb:transition-transform skb:duration-100 skb:data-[state=checked]:translate-x-4 skb:rtl:data-[state=checked]:-translate-x-4"
               data-part="thumb"
               data-readonly=""
               data-required=""
               data-scope="switch"
               data-state="unchecked"
-              id="switch:c51:thumb"
+              id="switch:c58:thumb"
             >
               <!---->
             </span>
@@ -10536,13 +11174,12 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
            
           <!---->
           <span
-            class="skb:label-text"
             data-part="label"
             data-readonly=""
             data-required=""
             data-scope="switch"
             data-state="unchecked"
-            id="switch:c51:label"
+            id="switch:c58:label"
           >
             switch
             <!---->
@@ -10553,7 +11190,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           <!---->
           <input
             aria-invalid="false"
-            aria-labelledby="switch:c51:label"
+            aria-labelledby="switch:c58:label"
             id="root"
             name="root"
             required=""
@@ -10637,23 +11274,21 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:w-full skb:space-y-2"
           data-disabled=""
           data-empty=""
           data-part="root"
           data-scope="tags-input"
           dir="ltr"
-          id="tags-input:c56"
+          id="tags-input:c63"
         >
           <!---->
           <!---->
           <div
-            class="skb:input skb:flex skb:flex-wrap skb:gap-2 skb:p-2"
             data-disabled=""
             data-part="control"
             data-scope="tags-input"
             dir="ltr"
-            id="tags-input:c56:control"
+            id="tags-input:c63:control"
           >
             <!---->
             <!---->
@@ -10667,7 +11302,6 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
-              class="skb:input-ghost"
               data-empty=""
               data-part="input"
               data-scope="tags-input"
@@ -10686,7 +11320,7 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
           <input
             disabled=""
             hidden=""
-            id="tags-input:c56:hidden-input"
+            id="tags-input:c63:hidden-input"
             name="root"
             required=""
             type="text"
@@ -10768,23 +11402,21 @@ exports[`widgets > tags > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="skb:w-full skb:space-y-2"
           data-empty=""
           data-invalid=""
           data-part="root"
           data-scope="tags-input"
           dir="ltr"
-          id="tags-input:c55"
+          id="tags-input:c62"
         >
           <!---->
           <!---->
           <div
-            class="skb:input skb:flex skb:flex-wrap skb:gap-2 skb:p-2"
             data-invalid=""
             data-part="control"
             data-scope="tags-input"
             dir="ltr"
-            id="tags-input:c55:control"
+            id="tags-input:c62:control"
           >
             <!---->
             <!---->
@@ -10799,7 +11431,6 @@ exports[`widgets > tags > snapshots > error 1`] = `
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
-              class="skb:input-ghost"
               data-empty=""
               data-invalid=""
               data-part="input"
@@ -10817,7 +11448,7 @@ exports[`widgets > tags > snapshots > error 1`] = `
           <!---->
           <input
             hidden=""
-            id="tags-input:c55:hidden-input"
+            id="tags-input:c62:hidden-input"
             name="root"
             required=""
             type="text"
@@ -10910,21 +11541,19 @@ exports[`widgets > tags > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="skb:w-full skb:space-y-2"
           data-empty=""
           data-part="root"
           data-scope="tags-input"
           dir="ltr"
-          id="tags-input:c54"
+          id="tags-input:c61"
         >
           <!---->
           <!---->
           <div
-            class="skb:input skb:flex skb:flex-wrap skb:gap-2 skb:p-2"
             data-part="control"
             data-scope="tags-input"
             dir="ltr"
-            id="tags-input:c54:control"
+            id="tags-input:c61:control"
           >
             <!---->
             <!---->
@@ -10938,7 +11567,6 @@ exports[`widgets > tags > snapshots > normal 1`] = `
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
-              class="skb:input-ghost"
               data-empty=""
               data-part="input"
               data-scope="tags-input"
@@ -10955,7 +11583,7 @@ exports[`widgets > tags > snapshots > normal 1`] = `
           <!---->
           <input
             hidden=""
-            id="tags-input:c54:hidden-input"
+            id="tags-input:c61:hidden-input"
             name="root"
             required=""
             type="text"
@@ -11037,23 +11665,21 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="skb:w-full skb:space-y-2"
           data-empty=""
           data-part="root"
           data-readonly=""
           data-scope="tags-input"
           dir="ltr"
-          id="tags-input:c57"
+          id="tags-input:c64"
         >
           <!---->
           <!---->
           <div
-            class="skb:input skb:flex skb:flex-wrap skb:gap-2 skb:p-2"
             data-part="control"
             data-readonly=""
             data-scope="tags-input"
             dir="ltr"
-            id="tags-input:c57:control"
+            id="tags-input:c64:control"
             tabindex="0"
           >
             <!---->
@@ -11068,7 +11694,6 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
-              class="skb:input-ghost"
               data-empty=""
               data-part="input"
               data-readonly=""
@@ -11087,7 +11712,7 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
           <!---->
           <input
             hidden=""
-            id="tags-input:c57:hidden-input"
+            id="tags-input:c64:hidden-input"
             name="root"
             readonly=""
             required=""
