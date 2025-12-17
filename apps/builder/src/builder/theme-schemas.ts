@@ -189,6 +189,13 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 					enum: ['tagsWidget'] satisfies CompatibleComponentType<'tagsWidget'>[]
 				}
 			}
+		},
+		[NodeType.Range]: {
+			properties: {
+				widget: {
+					enum: ['stringRangeWidget'] satisfies CompatibleComponentType<'stringRangeWidget'>[]
+				}
+			}
 		}
 	},
 	[ActualTheme.Skeleton4]: {
@@ -267,7 +274,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 		[NodeType.Range]: {
 			properties: {
 				widget: {
-					enum: ['stringRangeWidget']
+					enum: ['stringRangeWidget'] satisfies CompatibleComponentType<'stringRangeWidget'>[]
 				}
 			}
 		}
@@ -332,7 +339,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 		[NodeType.Range]: {
 			properties: {
 				widget: {
-					enum: ['stringRangeWidget']
+					enum: ['stringRangeWidget'] satisfies CompatibleComponentType<'stringRangeWidget'>[]
 				}
 			}
 		}
@@ -393,7 +400,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 		[NodeType.Range]: {
 			properties: {
 				widget: {
-					enum: ['stringRangeWidget']
+					enum: ['stringRangeWidget'] satisfies CompatibleComponentType<'stringRangeWidget'>[]
 				}
 			}
 		}
@@ -502,7 +509,7 @@ export const THEME_MISSING_FIELDS: Record<Theme, Set<NodeType>> = {
 	[ActualTheme.Basic]: new Set([NodeType.Tags, NodeType.Range]),
 	[ActualTheme.Pico]: new Set([NodeType.Tags, NodeType.Range]),
 	[ActualTheme.Daisy5]: new Set([NodeType.Tags, NodeType.Range]),
-	[ActualTheme.Flowbite3]: new Set([NodeType.Range]),
+	[ActualTheme.Flowbite3]: new Set([]),
 	[ActualTheme.Skeleton4]: new Set([]),
 	[ActualTheme.Shadcn4]: new Set([NodeType.Tags]),
 	[LabTheme.Svar]: new Set([NodeType.Tags, NodeType.File]),
