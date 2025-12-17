@@ -193,7 +193,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 		[NodeType.Range]: {
 			properties: {
 				widget: {
-					enum: ['stringRangeWidget'] satisfies CompatibleComponentType<'stringRangeWidget'>[]
+					enum: ['dateRangePickerWidget'] satisfies CompatibleComponentType<'dateRangePickerWidget'>[]
 				}
 			}
 		}
@@ -274,7 +274,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 		[NodeType.Range]: {
 			properties: {
 				widget: {
-					enum: ['stringRangeWidget'] satisfies CompatibleComponentType<'stringRangeWidget'>[]
+					enum: ['dateRangePickerWidget'] satisfies CompatibleComponentType<'dateRangePickerWidget'>[]
 				}
 			}
 		}
@@ -339,7 +339,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 		[NodeType.Range]: {
 			properties: {
 				widget: {
-					enum: ['stringRangeWidget'] satisfies CompatibleComponentType<'stringRangeWidget'>[]
+					enum: ['dateRangePickerWidget'] satisfies CompatibleComponentType<'dateRangePickerWidget'>[]
 				}
 			}
 		}
@@ -400,7 +400,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
 		[NodeType.Range]: {
 			properties: {
 				widget: {
-					enum: ['stringRangeWidget'] satisfies CompatibleComponentType<'stringRangeWidget'>[]
+					enum: ['dateRangePickerWidget'] satisfies CompatibleComponentType<'dateRangePickerWidget'>[]
 				}
 			}
 		}

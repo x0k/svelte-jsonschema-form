@@ -634,7 +634,7 @@ export const RANGE_NODE_OPTIONS_SCHEMA = {
 		widget: {
 			title: 'Widget',
 			type: 'string',
-			default: 'stringRangeWidget'
+			default: 'dateRangePickerWidget'
 		},
 		help: {
 			title: 'Help',

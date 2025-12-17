@@ -273,7 +273,7 @@ export const THEME_OPTIONAL_DEPS: Record<Theme, Record<string, Set<WidgetType>>>
 			'skeleton4DateRangePickerWidget',
 			'skeleton4FileUploadWidget',
 			'skeleton4SliderWidget',
-			'stringRangeWidget',
+			'dateRangePickerWidget',
 			'radioButtonsWidget',
 			'comboboxWidget',
 			'ratingWidget',
@@ -286,7 +286,7 @@ export const THEME_OPTIONAL_DEPS: Record<Theme, Record<string, Set<WidgetType>>>
 		'@internationalized/date': new Set([
 			'datePickerWidget',
 			'shadcn4DateRangePickerWidget',
-			'stringRangeWidget'
+			'dateRangePickerWidget'
 		])
 	},
 	[LabTheme.Svar]: {},
