@@ -32,7 +32,6 @@ import '@sjsf/basic-theme/extra-widgets/textarea-include';
 
 import { theme as daisy5 } from '@sjsf/daisyui5-theme';
 import daisy5Styles from '@sjsf/daisyui5-theme/styles.css?raw';
-
 import '@sjsf/daisyui5-theme/extra-widgets/checkboxes-include';
 import '@sjsf/daisyui5-theme/extra-widgets/date-picker-include';
 import '@sjsf/daisyui5-theme/extra-widgets/file-include';
@@ -50,6 +49,7 @@ import { theme as flowbite3 } from '@sjsf/flowbite3-theme';
 import flowbite3Styles from '@sjsf/flowbite3-theme/styles.css?raw';
 import '@sjsf/flowbite3-theme/extra-widgets/checkboxes-include';
 import '@sjsf/flowbite3-theme/extra-widgets/date-picker-include';
+import '@sjsf/flowbite3-theme/extra-widgets/date-range-picker-include';
 import '@sjsf/flowbite3-theme/extra-widgets/file-include';
 import '@sjsf/flowbite3-theme/extra-widgets/multi-select-include';
 import '@sjsf/flowbite3-theme/extra-widgets/radio-buttons-include';
