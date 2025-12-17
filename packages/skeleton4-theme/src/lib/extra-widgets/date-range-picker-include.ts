@@ -6,11 +6,11 @@ import './date-range-picker.svelte';
 declare module '../definitions.js' {
 	interface ExtraWidgets {
 		// TODO: Remove in v4
-		/** @deprecated use `stringRangeWidget` instead */
+		/** @deprecated use `dateRangePickerWidget` instead */
 		skeleton4DateRangePickerWidget: {};
-		stringRangeWidget: {};
+		dateRangePickerWidget: {};
 	}
 }
 
 definitions.skeleton4DateRangePickerWidget = DateRangePicker;
-definitions.stringRangeWidget = DateRangePicker;
+definitions.dateRangePickerWidget = DateRangePicker;

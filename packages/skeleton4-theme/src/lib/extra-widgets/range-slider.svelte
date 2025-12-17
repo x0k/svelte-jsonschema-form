@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { SliderRootProps } from '@skeletonlabs/skeleton-svelte';
-	import '@sjsf/form/fields/extra-widgets/number-range';
+	import '@sjsf/form/fields/extra-widgets/range-slider';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -18,7 +18,7 @@
 		config,
 		handlers,
 		errors
-	}: ComponentProps['numberRangeWidget'] = $props();
+	}: ComponentProps['rangeSliderWidget'] = $props();
 
 	const ctx = getFormContext();
 

@@ -5,8 +5,8 @@ import './date-range-picker.svelte';
 
 declare module '../definitions.js' {
 	interface ExtraWidgets {
-		stringRangeWidget: {};
+		dateRangePickerWidget: {};
 	}
 }
 
-definitions.stringRangeWidget = DateRangePicker;
+definitions.dateRangePickerWidget = DateRangePicker;

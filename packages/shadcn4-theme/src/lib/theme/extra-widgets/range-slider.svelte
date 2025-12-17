@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { SliderMultipleRootProps, WithoutChildrenOrChild } from 'bits-ui';
-	import '@sjsf/form/fields/extra-widgets/number-range';
+	import '@sjsf/form/fields/extra-widgets/range-slider';
 
 	import '../types/slider.js';
 
@@ -16,7 +16,7 @@
 
 	import { getThemeContext } from '../context.js';
 
-	let { value = $bindable(), config, handlers }: ComponentProps['numberRangeWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['rangeSliderWidget'] = $props();
 
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();

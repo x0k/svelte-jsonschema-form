@@ -2,17 +2,17 @@
 	import { type DatePickerRootProps, type PortalRootProps } from '@skeletonlabs/skeleton-svelte';
 	import type { Range } from '@sjsf/form/lib/range';
 	import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
-	import '@sjsf/form/fields/extra-widgets/string-range';
+	import '@sjsf/form/fields/extra-widgets/date-range-picker';
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
 			// TODO: Remove in v4
-			/** @deprecated use `stringRangeWidget` instead */
+			/** @deprecated use `dateRangePickerWidget` instead */
 			skeleton4DateRangePickerWidget: WidgetCommonProps<Partial<Range<string>>>;
 		}
 		interface ComponentBindings {
 			// TODO: Remove in v4
-			/** @deprecated use `stringRangeWidget` instead */
+			/** @deprecated use `dateRangePickerWidget` instead */
 			skeleton4DateRangePickerWidget: 'value';
 		}
 		interface UiOptions {
@@ -33,7 +33,7 @@
 	} from '@sjsf/form';
 	import { DatePicker, parseDate, Portal } from '@skeletonlabs/skeleton-svelte';
 
-	let { value = $bindable(), config, handlers }: ComponentProps['stringRangeWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['dateRangePickerWidget'] = $props();
 
 	const ctx = getFormContext();
 

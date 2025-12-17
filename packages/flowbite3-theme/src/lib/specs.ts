@@ -38,7 +38,7 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				objectField: 'aggregatedField',
-				aggregatedWidget: 'stringRangeWidget'
+				aggregatedWidget: 'dateRangePickerWidget'
 			},
 			'ui:options': {
 				flowbite3DateRangePicker: {

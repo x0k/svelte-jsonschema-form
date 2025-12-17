@@ -4,4 +4,4 @@
 "@sjsf-lab/svar-theme": minor
 ---
 
-Use `stringRangeWidget` definition for date range picker
+Use `dateRangePickerWidget` definition for date range picker

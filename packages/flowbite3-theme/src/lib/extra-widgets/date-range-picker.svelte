@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { DatepickerProps } from 'flowbite-svelte/types';
-	import '@sjsf/form/fields/extra-widgets/string-range';
+	import '@sjsf/form/fields/extra-widgets/date-range-picker';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -20,7 +20,7 @@
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
 
 	import { parseLocalDate, toLocalDate } from '$lib/local-date.js';
-	let { value = $bindable(), config, handlers }: ComponentProps['stringRangeWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['dateRangePickerWidget'] = $props();
 
 	const ctx = getFormContext();
 

@@ -50,7 +50,7 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				objectField: 'aggregatedField',
-				aggregatedWidget: 'stringRangeWidget'
+				aggregatedWidget: 'dateRangePickerWidget'
 			},
 			'ui:options': { useLabel: false }
 		},
@@ -143,7 +143,7 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				objectField: 'aggregatedField',
-				aggregatedWidget: 'numberRangeWidget'
+				aggregatedWidget: 'rangeSliderWidget'
 			}
 		},
 		{
