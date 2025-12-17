@@ -16,6 +16,7 @@ export default defineConfig({
 					name: 'client',
 					include: ['src/**/*.svelte.{test,spec}.{js,ts}', 'tests/**/*.svelte.{test,spec}.{js,ts}'],
 					exclude: ['src/lib/server/**'],
+					// testTimeout: 1000,
 					setupFiles: ['vitest-browser-svelte'],
 					browser: {
 						enabled: true,

@@ -1,10 +1,10 @@
 <script lang="ts" module>
 	import type { DatepickerProps } from 'flowbite-svelte/types';
-	import '@sjsf/form/fields/extra-widgets/date-picker';
+	import '@sjsf/form/fields/extra-widgets/string-range';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbite3Datepicker?: DatepickerProps;
+			flowbite3DateRangePicker?: DatepickerProps;
 		}
 	}
 </script>
@@ -13,19 +13,29 @@
 	import {
 		customInputAttributes,
 		getFormContext,
-		handlersAttachment,
 		getId,
+		handlersAttachment,
 		type ComponentProps
 	} from '@sjsf/form';
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
 
 	import { parseLocalDate, toLocalDate } from '$lib/local-date.js';
-
-	let { value = $bindable(), config, handlers }: ComponentProps['datePickerWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['stringRangeWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const id = $derived(getId(ctx, config.path));
+
+	const parsed = $derived(
+		value?.start
+			? value.end
+				? {
+						start: parseLocalDate(value.start),
+						end: parseLocalDate(value.end)
+					}
+				: { start: parseLocalDate(value.start) }
+			: undefined
+	);
 
 	function onChange() {
 		handlers.oninput?.();
@@ -35,10 +45,8 @@
 
 <div class="w-full">
 	<Datepicker
-		bind:value={
-			() => (value ? parseLocalDate(value) : undefined), (v) => (value = v && toLocalDate(v))
-		}
-		{...customInputAttributes(ctx, config, 'flowbite3Datepicker', {
+		{...customInputAttributes(ctx, config, 'flowbite3DateRangePicker', {
+			range: true,
 			inputProps: handlersAttachment(handlers)({
 				id,
 				name: id
@@ -46,8 +54,10 @@
 			required: config.required,
 			showActionButtons: true,
 			autohide: false,
-			onselect: onChange,
+			onseeked: onChange,
 			onclear: onChange
 		})}
+		bind:rangeFrom={() => parsed?.start, (v) => (value = { ...value, start: v && toLocalDate(v) })}
+		bind:rangeTo={() => parsed?.end, (v) => (value = { ...value, end: v && toLocalDate(v) })}
 	/>
 </div>

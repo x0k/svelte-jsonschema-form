@@ -1631,6 +1631,509 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
 </div>
 `;
 
+exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative"
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 border-gray-300 bg-gray-50 text-gray-900 focus:ring-primary-500 dark:focus:ring-primary-400"
+                disabled=""
+                id="root"
+                inputmode="none"
+                name="root"
+                placeholder="Select date"
+                required=""
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 focus:outline-hidden dark:text-gray-400"
+                disabled=""
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+       
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > dateRangePicker > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative"
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 border-gray-300 bg-gray-50 text-gray-900 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="root"
+                inputmode="none"
+                name="root"
+                placeholder="Select date"
+                required=""
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 focus:outline-hidden dark:text-gray-400"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+       
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative"
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 border-gray-300 bg-gray-50 text-gray-900 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="root"
+                inputmode="none"
+                name="root"
+                placeholder="Select date"
+                required=""
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 focus:outline-hidden dark:text-gray-400"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+       
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative"
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 border-gray-300 bg-gray-50 text-gray-900 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="root"
+                inputmode="none"
+                name="root"
+                placeholder="Select date"
+                required=""
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 focus:outline-hidden dark:text-gray-400"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+       
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
 exports[`widgets > file > snapshots > disabled 1`] = `
 <div>
   <!---->
