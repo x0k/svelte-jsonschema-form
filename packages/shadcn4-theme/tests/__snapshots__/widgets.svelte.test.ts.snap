@@ -9345,6 +9345,745 @@ exports[`widgets > range > snapshots > readonly 1`] = `
 </div>
 `;
 
+exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="false"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
+    >
+      <!---->
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <span
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        aria-required="true"
+        class="relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50"
+        data-disabled=""
+        data-orientation="horizontal"
+        data-slider-root=""
+        data-slot="slider"
+        id="root"
+        style=""
+      >
+        <span
+          class="bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-1.5"
+          data-orientation="horizontal"
+          data-slot="slider-track"
+        >
+          <!---->
+          <span
+            class="bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
+            data-disabled=""
+            data-orientation="horizontal"
+            data-slider-range=""
+            data-slot="slider-range"
+            id="bits-c2740"
+            style="position: absolute; left: 1.93237%; right: 98.0676%;"
+          >
+            <!---->
+          </span>
+          
+          <!---->
+        </span>
+         
+        <!---->
+        <!---->
+        <span
+          aria-disabled="true"
+          aria-orientation="horizontal"
+          aria-valuemax="100"
+          aria-valuemin="0"
+          aria-valuenow="0"
+          class="border-primary bg-background ring-ring/50 focus-visible:outline-hidden block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50"
+          data-disabled=""
+          data-orientation="horizontal"
+          data-slider-thumb=""
+          data-slot="slider-thumb"
+          data-value="0"
+          id="bits-c2741"
+          role="slider"
+          style="position: absolute; left: 1.93237%; translate: -50%;"
+          tabindex="-1"
+        >
+          <!---->
+        </span>
+        
+        
+        <!---->
+        <!---->
+        <span
+          aria-disabled="true"
+          aria-orientation="horizontal"
+          aria-valuemax="100"
+          aria-valuemin="0"
+          aria-valuenow="0"
+          class="border-primary bg-background ring-ring/50 focus-visible:outline-hidden block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50"
+          data-disabled=""
+          data-orientation="horizontal"
+          data-slider-thumb=""
+          data-slot="slider-thumb"
+          data-value="0"
+          id="bits-c2742"
+          role="slider"
+          style="position: absolute; left: 1.93237%; translate: -50%;"
+          tabindex="-1"
+        >
+          <!---->
+        </span>
+        
+        
+        <!---->
+        <!---->
+      </span>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > rangeSlider > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="true"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
+    >
+      <!---->
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <span
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="true"
+        aria-required="true"
+        class="relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50"
+        data-orientation="horizontal"
+        data-slider-root=""
+        data-slot="slider"
+        id="root"
+        style="touch-action: pan-y;"
+      >
+        <span
+          class="bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-1.5"
+          data-orientation="horizontal"
+          data-slot="slider-track"
+        >
+          <!---->
+          <span
+            class="bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
+            data-orientation="horizontal"
+            data-slider-range=""
+            data-slot="slider-range"
+            id="bits-c2736"
+            style="position: absolute; left: 1.93237%; right: 98.0676%;"
+          >
+            <!---->
+          </span>
+          
+          <!---->
+        </span>
+         
+        <!---->
+        <!---->
+        <span
+          aria-disabled="false"
+          aria-orientation="horizontal"
+          aria-valuemax="100"
+          aria-valuemin="0"
+          aria-valuenow="0"
+          class="border-primary bg-background ring-ring/50 focus-visible:outline-hidden block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50"
+          data-orientation="horizontal"
+          data-slider-thumb=""
+          data-slot="slider-thumb"
+          data-value="0"
+          id="bits-c2737"
+          role="slider"
+          style="position: absolute; left: 1.93237%; translate: -50%;"
+          tabindex="0"
+        >
+          <!---->
+        </span>
+        
+        
+        <!---->
+        <!---->
+        <span
+          aria-disabled="false"
+          aria-orientation="horizontal"
+          aria-valuemax="100"
+          aria-valuemin="0"
+          aria-valuenow="0"
+          class="border-primary bg-background ring-ring/50 focus-visible:outline-hidden block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50"
+          data-orientation="horizontal"
+          data-slider-thumb=""
+          data-slot="slider-thumb"
+          data-value="0"
+          id="bits-c2738"
+          role="slider"
+          style="position: absolute; left: 1.93237%; translate: -50%;"
+          tabindex="0"
+        >
+          <!---->
+        </span>
+        
+        
+        <!---->
+        <!---->
+      </span>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="text-destructive text-sm font-normal"
+        data-slot="field-error"
+        role="alert"
+      >
+        <!---->
+        <ul
+          class="ml-4 flex list-disc flex-col gap-1"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > rangeSlider > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="false"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
+    >
+      <!---->
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <span
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        aria-required="true"
+        class="relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50"
+        data-orientation="horizontal"
+        data-slider-root=""
+        data-slot="slider"
+        id="root"
+        style="touch-action: pan-y;"
+      >
+        <span
+          class="bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-1.5"
+          data-orientation="horizontal"
+          data-slot="slider-track"
+        >
+          <!---->
+          <span
+            class="bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
+            data-orientation="horizontal"
+            data-slider-range=""
+            data-slot="slider-range"
+            id="bits-c2732"
+            style="position: absolute; left: 1.93237%; right: 98.0676%;"
+          >
+            <!---->
+          </span>
+          
+          <!---->
+        </span>
+         
+        <!---->
+        <!---->
+        <span
+          aria-disabled="false"
+          aria-orientation="horizontal"
+          aria-valuemax="100"
+          aria-valuemin="0"
+          aria-valuenow="0"
+          class="border-primary bg-background ring-ring/50 focus-visible:outline-hidden block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50"
+          data-orientation="horizontal"
+          data-slider-thumb=""
+          data-slot="slider-thumb"
+          data-value="0"
+          id="bits-c2733"
+          role="slider"
+          style="position: absolute; left: 1.93237%; translate: -50%;"
+          tabindex="0"
+        >
+          <!---->
+        </span>
+        
+        
+        <!---->
+        <!---->
+        <span
+          aria-disabled="false"
+          aria-orientation="horizontal"
+          aria-valuemax="100"
+          aria-valuemin="0"
+          aria-valuenow="0"
+          class="border-primary bg-background ring-ring/50 focus-visible:outline-hidden block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50"
+          data-orientation="horizontal"
+          data-slider-thumb=""
+          data-slot="slider-thumb"
+          data-value="0"
+          id="bits-c2734"
+          role="slider"
+          style="position: absolute; left: 1.93237%; translate: -50%;"
+          tabindex="0"
+        >
+          <!---->
+        </span>
+        
+        
+        <!---->
+        <!---->
+      </span>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
+exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="false"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
+    >
+      <!---->
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <span
+        aria-describedby="root__description root__help root__errors"
+        aria-invalid="false"
+        aria-readonly="true"
+        aria-required="true"
+        class="relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50"
+        data-orientation="horizontal"
+        data-slider-root=""
+        data-slot="slider"
+        id="root"
+        style="touch-action: pan-y;"
+      >
+        <span
+          class="bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-1.5"
+          data-orientation="horizontal"
+          data-slot="slider-track"
+        >
+          <!---->
+          <span
+            class="bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
+            data-orientation="horizontal"
+            data-slider-range=""
+            data-slot="slider-range"
+            id="bits-c2744"
+            style="position: absolute; left: 1.93237%; right: 98.0676%;"
+          >
+            <!---->
+          </span>
+          
+          <!---->
+        </span>
+         
+        <!---->
+        <!---->
+        <span
+          aria-disabled="false"
+          aria-orientation="horizontal"
+          aria-valuemax="100"
+          aria-valuemin="0"
+          aria-valuenow="0"
+          class="border-primary bg-background ring-ring/50 focus-visible:outline-hidden block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50"
+          data-orientation="horizontal"
+          data-slider-thumb=""
+          data-slot="slider-thumb"
+          data-value="0"
+          id="bits-c2745"
+          role="slider"
+          style="position: absolute; left: 1.93237%; translate: -50%;"
+          tabindex="0"
+        >
+          <!---->
+        </span>
+        
+        
+        <!---->
+        <!---->
+        <span
+          aria-disabled="false"
+          aria-orientation="horizontal"
+          aria-valuemax="100"
+          aria-valuemin="0"
+          aria-valuenow="0"
+          class="border-primary bg-background ring-ring/50 focus-visible:outline-hidden block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50"
+          data-orientation="horizontal"
+          data-slider-thumb=""
+          data-slot="slider-thumb"
+          data-value="0"
+          id="bits-c2746"
+          role="slider"
+          style="position: absolute; left: 1.93237%; translate: -50%;"
+          tabindex="0"
+        >
+          <!---->
+        </span>
+        
+        
+        <!---->
+        <!---->
+      </span>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+  
+</div>
+`;
+
 exports[`widgets > select > snapshots > disabled 1`] = `
 <div>
   <!---->
@@ -10180,7 +10919,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2738"
+            id="bits-c2762"
           >
             <!---->
           </span>
@@ -10215,7 +10954,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2739"
+          id="bits-c2763"
         >
           <!---->
           switch
@@ -10347,7 +11086,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2735"
+            id="bits-c2759"
           >
             <!---->
           </span>
@@ -10381,7 +11120,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2736"
+          id="bits-c2760"
         >
           <!---->
           switch
@@ -10537,7 +11276,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2732"
+            id="bits-c2756"
           >
             <!---->
           </span>
@@ -10571,7 +11310,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2733"
+          id="bits-c2757"
         >
           <!---->
           switch
@@ -10703,7 +11442,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2741"
+            id="bits-c2765"
           >
             <!---->
           </span>
@@ -10737,7 +11476,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2742"
+          id="bits-c2766"
         >
           <!---->
           switch

@@ -102,6 +102,8 @@ export interface UiOptions {
   skeleton4Segment?: SegmentedControlRootProps;
   skeleton4SegmentItem?: Omit<SegmentedControlItemProps, "value">;
 
+  skeleton4RangeSlider?: SliderRootProps;
+
   skeleton4Rating?: RatingGroupRootProps;
 
   skeleton4Slider?: SliderRootProps;

@@ -93,7 +93,7 @@ export const inputRadio = click(getRadio);
 export const changeRadio = inputRadio;
 export const visitRadio = withTab(inputRadio);
 
-export const getSlider = (l: Locator) => l.getByRole("slider");
+export const getSlider = (l: Locator) => l.getByRole("slider").last();
 export const inputSlider: FieldValidationTrigger = async (l) => {
   const s = getSlider(l);
   await userEvent.type(s, "{arrowRight}");

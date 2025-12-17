@@ -3,21 +3,22 @@ import '@sjsf/form/fields/extra/array-tags-include';
 import '@sjsf/form/fields/extra/array-files-include';
 import '@sjsf/form/fields/extra/aggregated-include';
 
-import './extra-widgets/checkboxes-include';
+import './extra-widgets/checkboxes-include.js';
 import './extra-widgets/combobox-include.js';
-import './extra-widgets/date-picker-include';
+import './extra-widgets/date-picker-include.js';
 import './extra-widgets/date-range-picker-include.js';
 import './extra-widgets/file-upload-include.js';
-import './extra-widgets/file-include';
-import './extra-widgets/multi-select-include';
-import './extra-widgets/radio-buttons-include';
-import './extra-widgets/radio-include';
-import './extra-widgets/range-include';
-import './extra-widgets/rating-include';
+import './extra-widgets/file-include.js';
+import './extra-widgets/multi-select-include.js';
+import './extra-widgets/radio-buttons-include.js';
+import './extra-widgets/radio-include.js';
+import './extra-widgets/range-include.js';
+import './extra-widgets/range-slider-include.js';
+import './extra-widgets/rating-include.js';
 import './extra-widgets/slider-include.js';
-import './extra-widgets/switch-include';
-import './extra-widgets/tags-include';
-import './extra-widgets/textarea-include';
+import './extra-widgets/switch-include.js';
+import './extra-widgets/tags-include.js';
+import './extra-widgets/textarea-include.js';
 
 export const specs: s.Specs = {
 	...DEFAULT_SPECS,
@@ -131,6 +132,20 @@ export const specs: s.Specs = {
 	range: [
 		s.number,
 		{ 'ui:components': { numberWidget: 'rangeWidget' } },
+		{
+			oninput: 'inputSlider',
+			onchange: 'changeSlider',
+			onblur: 'visitSlider'
+		}
+	],
+	rangeSlider: [
+		s.range(s.number),
+		{
+			'ui:components': {
+				objectField: 'aggregatedField',
+				aggregatedWidget: 'numberRangeWidget'
+			}
+		},
 		{
 			oninput: 'inputSlider',
 			onchange: 'changeSlider',

@@ -17,6 +17,7 @@ import type {
   SelectSingleRootProps,
   SelectTriggerProps,
   SliderSingleRootProps,
+  SliderMultipleRootProps,
   SwitchRootProps,
   WithElementRef,
   WithoutChildrenOrChild,
@@ -28,8 +29,8 @@ import type {
   ToggleGroupItemProps,
   RangeCalendarRootProps,
 } from "bits-ui";
-import type { DateValue } from '@internationalized/date';
-import type { Range } from '@sjsf/form/lib/range';
+import type { DateValue } from "@internationalized/date";
+import type { Range } from "@sjsf/form/lib/range";
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type { Button } from "@sjsf/shadcn4-theme/new-york";
 import type {
@@ -135,6 +136,11 @@ export interface UiOptions {
   shadcn4RadioItem?: Omit<WithoutChildrenOrChild<RadioGroupItemProps>, "value">;
 
   shadcn4Range?: Omit<WithoutChildrenOrChild<SliderSingleRootProps>, "type">;
+
+  shadcn4RangeSlider?: Omit<
+    WithoutChildrenOrChild<SliderMultipleRootProps>,
+    "type"
+  >;
 
   shadcn4Switch?: WithoutChildrenOrChild<SwitchRootProps>;
 

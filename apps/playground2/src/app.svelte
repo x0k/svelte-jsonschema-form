@@ -228,6 +228,7 @@
     extraUiOptions: fromRecord({
       skeleton4Slider: options,
       skeleton4FileUpload: options,
+      skeleton4RangeSlider: options,
       skeleton4Rating: options,
       skeleton4Segment: options,
       skeleton4Switch: options,

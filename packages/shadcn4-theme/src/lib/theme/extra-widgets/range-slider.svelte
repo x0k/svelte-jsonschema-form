@@ -1,12 +1,12 @@
 <script lang="ts" module>
-	import type { SliderSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
-	import '@sjsf/form/fields/extra-widgets/range';
+	import type { SliderMultipleRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	import '@sjsf/form/fields/extra-widgets/number-range';
 
 	import '../types/slider.js';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcn4Range?: Omit<WithoutChildrenOrChild<SliderSingleRootProps>, 'type'>;
+			shadcn4RangeSlider?: Omit<WithoutChildrenOrChild<SliderMultipleRootProps>, 'type'>;
 		}
 	}
 </script>
@@ -16,19 +16,27 @@
 
 	import { getThemeContext } from '../context.js';
 
+	let { value = $bindable(), config, handlers }: ComponentProps['numberRangeWidget'] = $props();
+
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 
 	const { Slider } = $derived(themeCtx.components);
 
-	let { value = $bindable(), config, handlers }: ComponentProps['rangeWidget'] = $props();
-
 	const id = $derived(getId(ctx, config.path));
 </script>
 
 <Slider
-	bind:value={() => value ?? 0, (v) => (value = v)}
-	{...customInputAttributes(ctx, config, 'shadcn4Range', {
+	bind:value={
+		() => [value?.start ?? 0, value?.end ?? 0],
+		(v) => {
+			value = {
+				start: v[0],
+				end: v[1]
+			};
+		}
+	}
+	{...customInputAttributes(ctx, config, 'shadcn4RangeSlider', {
 		id,
 		min: config.schema.minimum,
 		max: config.schema.maximum,
@@ -36,5 +44,5 @@
 		onValueChange: handlers.oninput,
 		onValueCommit: handlers.onchange
 	})}
-	type="single"
+	type="multiple"
 />

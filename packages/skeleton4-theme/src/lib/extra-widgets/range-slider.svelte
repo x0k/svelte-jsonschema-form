@@ -1,22 +1,16 @@
 <script lang="ts" module>
-	import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
 	import type { SliderRootProps } from '@skeletonlabs/skeleton-svelte';
+	import '@sjsf/form/fields/extra-widgets/number-range';
 
 	declare module '@sjsf/form' {
-		interface ComponentProps {
-			skeleton4SliderWidget: WidgetCommonProps<number>;
-		}
-		interface ComponentBindings {
-			skeleton4SliderWidget: 'value';
-		}
 		interface UiOptions {
-			skeleton4Slider?: SliderRootProps;
+			skeleton4RangeSlider?: SliderRootProps;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps, customInputAttributes, getId } from '@sjsf/form';
+	import { customInputAttributes, getFormContext, getId, type ComponentProps } from '@sjsf/form';
 	import { Slider } from '@skeletonlabs/skeleton-svelte';
 
 	let {
@@ -24,7 +18,7 @@
 		config,
 		handlers,
 		errors
-	}: ComponentProps['skeleton4SliderWidget'] = $props();
+	}: ComponentProps['numberRangeWidget'] = $props();
 
 	const ctx = getFormContext();
 
@@ -32,8 +26,8 @@
 </script>
 
 <Slider
-	value={value === undefined ? undefined : [value]}
-	{...customInputAttributes(ctx, config, 'skeleton4Slider', {
+	value={[value?.start ?? 0, value?.end ?? 0]}
+	{...customInputAttributes(ctx, config, 'skeleton4RangeSlider', {
 		ids: {
 			hiddenInput() {
 				return id;
@@ -46,11 +40,14 @@
 		step: config.schema.multipleOf,
 		invalid: errors.length > 0,
 		onFocusChange: handlers.onblur,
-		onValueChange: (details) => {
-			value = details.value[0];
+		onValueChange: (e) => {
+			value = {
+				start: e.value[0],
+				end: e.value[1]
+			};
 			handlers.oninput?.();
 		},
-		onValueChangeEnd: handlers.onchange,
+		onValueChangeEnd: handlers.onchange
 	})}
 >
 	<Slider.Control>
@@ -58,6 +55,9 @@
 			<Slider.Range />
 		</Slider.Track>
 		<Slider.Thumb index={0}>
+			<Slider.HiddenInput />
+		</Slider.Thumb>
+		<Slider.Thumb index={1}>
 			<Slider.HiddenInput />
 		</Slider.Thumb>
 	</Slider.Control>
