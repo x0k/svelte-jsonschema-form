@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { Willow } from '@svar-ui/svelte-core'
+	import { Willow } from '@svar-ui/svelte-core';
 	import { BasicForm, createForm, type FormOptions } from '@sjsf/form';
+
+	import '../src/lib/extra-widgets/checkboxes-include.js';
 
 	const props: FormOptions<any> = $props();
 

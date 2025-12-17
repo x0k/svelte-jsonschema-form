@@ -1175,11 +1175,149 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_preset"
+                    id="bits-c26"
+                  >
+                    Preset 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <button
+                  aria-describedby="root_preset__description root_preset__help root_preset__errors"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  aria-invalid="false"
+                  aria-required="true"
+                  class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+                  data-select-trigger=""
+                  data-state="closed"
+                  id="root_preset"
+                  name="root_preset"
+                  type="button"
+                >
+                  <!---->
+                  <span>
+                    Default
+                  </span>
+                  <!---->
+                   
+                  <svg
+                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <!---->
+                    <path
+                      d="m6 9 6 6 6-6"
+                    >
+                      
+                    </path>
+                    
+                    <!---->
+                    <!---->
+                    
+                    <!---->
+                  </svg>
+                  <!---->
+                  <!---->
+                </button>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+                
+                
+                <!---->
+                
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
             
             
             <!---->
@@ -1315,7 +1453,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_transform"
-                    id="bits-c27"
+                    id="bits-c29"
                   >
                     Transform
                     <!---->
@@ -1365,11 +1503,149 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_format"
+                    id="bits-c30"
+                  >
+                    Output format 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <button
+                  aria-describedby="root_format__description root_format__help root_format__errors"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  aria-invalid="false"
+                  aria-required="true"
+                  class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+                  data-select-trigger=""
+                  data-state="closed"
+                  id="root_format"
+                  name="root_format"
+                  type="button"
+                >
+                  <!---->
+                  <span>
+                    HTML
+                  </span>
+                  <!---->
+                   
+                  <svg
+                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <!---->
+                    <path
+                      d="m6 9 6 6 6-6"
+                    >
+                      
+                    </path>
+                    
+                    <!---->
+                    <!---->
+                    
+                    <!---->
+                  </svg>
+                  <!---->
+                  <!---->
+                </button>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+                
+                
+                <!---->
+                
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
             
             
             <!---->
@@ -1505,7 +1781,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_paginate"
-                    id="bits-c29"
+                    id="bits-c33"
                   >
                     Paginate
                     <!---->
@@ -1662,7 +1938,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_createOnOpen"
-                    id="bits-c31"
+                    id="bits-c35"
                   >
                     Create on open
                     <!---->
@@ -1812,11 +2088,149 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_preset"
+                    id="bits-c38"
+                  >
+                    Preset 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <button
+                  aria-describedby="root_preset__description root_preset__help root_preset__errors"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  aria-invalid="false"
+                  aria-required="true"
+                  class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+                  data-select-trigger=""
+                  data-state="closed"
+                  id="root_preset"
+                  name="root_preset"
+                  type="button"
+                >
+                  <!---->
+                  <span>
+                    Manual
+                  </span>
+                  <!---->
+                   
+                  <svg
+                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <!---->
+                    <path
+                      d="m6 9 6 6 6-6"
+                    >
+                      
+                    </path>
+                    
+                    <!---->
+                    <!---->
+                    
+                    <!---->
+                  </svg>
+                  <!---->
+                  <!---->
+                </button>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+                
+                
+                <!---->
+                
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
             
             
             <!---->
@@ -1952,7 +2366,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_collapseIndexes"
-                    id="bits-c33"
+                    id="bits-c41"
                   >
                     Combine nested indexes
                     <!---->
@@ -2109,7 +2523,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_joinPrimitiveArrayValues"
-                    id="bits-c35"
+                    id="bits-c43"
                   >
                     Combine simple values
                     <!---->
@@ -2266,7 +2680,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_combineArraysOfObjects"
-                    id="bits-c37"
+                    id="bits-c45"
                   >
                     Combine objects
                     <!---->
@@ -2423,7 +2837,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_stabilizeOrderOfPropertiesInArraysOfObjects"
-                    id="bits-c39"
+                    id="bits-c47"
                   >
                     Stabilize order of properties
                     <!---->
@@ -2497,7 +2911,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_proportionalSizeAdjustmentThreshold"
-                    id="bits-c40"
+                    id="bits-c48"
                   >
                     Proportional size adjustment threshold 
                     <span>
@@ -2621,7 +3035,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_cornerCellValue"
-                    id="bits-c41"
+                    id="bits-c49"
                   >
                     Corner cell value 
                     <!---->
@@ -2821,7 +3235,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_transform"
-                    id="bits-c43"
+                    id="bits-c51"
                   >
                     Transform
                     <!---->
@@ -2871,11 +3285,149 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_format"
+                    id="bits-c52"
+                  >
+                    Output format 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <button
+                  aria-describedby="root_format__description root_format__help root_format__errors"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  aria-invalid="false"
+                  aria-required="true"
+                  class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+                  data-select-trigger=""
+                  data-state="closed"
+                  id="root_format"
+                  name="root_format"
+                  type="button"
+                >
+                  <!---->
+                  <span>
+                    HTML
+                  </span>
+                  <!---->
+                   
+                  <svg
+                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <!---->
+                    <path
+                      d="m6 9 6 6 6-6"
+                    >
+                      
+                    </path>
+                    
+                    <!---->
+                    <!---->
+                    
+                    <!---->
+                  </svg>
+                  <!---->
+                  <!---->
+                </button>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+                
+                
+                <!---->
+                
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
             
             
             <!---->
@@ -3011,7 +3563,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_paginate"
-                    id="bits-c45"
+                    id="bits-c55"
                   >
                     Paginate
                     <!---->
@@ -3168,7 +3720,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_createOnOpen"
-                    id="bits-c47"
+                    id="bits-c57"
                   >
                     Create on open
                     <!---->
@@ -6998,7 +7550,7 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c51"
+                    id="bits-c63"
                   >
                     foo Key 
                     <span>
@@ -7095,7 +7647,7 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c52"
+                    id="bits-c64"
                   >
                     foo 
                     <!---->
@@ -7300,7 +7852,7 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c53"
+                    id="bits-c65"
                   >
                     foo Key 
                     <span>
@@ -7409,7 +7961,7 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c54"
+                    id="bits-c66"
                   >
                     foo 
                     <!---->
@@ -7616,7 +8168,7 @@ exports[`new-york-ui > object fields > has errors 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_name"
-                    id="bits-c50"
+                    id="bits-c62"
                   >
                     name 
                     <!---->
@@ -7809,7 +8361,7 @@ exports[`new-york-ui > object fields > object 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_a"
-                    id="bits-c48"
+                    id="bits-c60"
                   >
                     A 
                     <!---->
@@ -7918,7 +8470,7 @@ exports[`new-york-ui > object fields > object 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_b"
-                    id="bits-c49"
+                    id="bits-c61"
                   >
                     B 
                     <!---->
@@ -8105,1304 +8657,6 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
-            >
-              "enumField" component not found
-            </pre>
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                 
-                <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root_transform__description"
-                >
-                  Apply a transformation to the output data
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <div
-                  class="flex items-center space-x-2"
-                >
-                  <!---->
-                  <!---->
-                  <button
-                    aria-checked="false"
-                    aria-describedby="root_transform__description root_transform__help root_transform__errors"
-                    aria-invalid="false"
-                    aria-readonly="false"
-                    aria-required="false"
-                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
-                    data-checkbox-root=""
-                    data-state="unchecked"
-                    id="root_transform"
-                    role="checkbox"
-                    type="button"
-                  >
-                    <span
-                      class="flex items-center justify-center text-current"
-                    >
-                      <svg
-                        class="lucide-icon lucide lucide-check size-4 text-transparent"
-                        fill="none"
-                        height="24"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <!---->
-                        <path
-                          d="M20 6 9 17l-5-5"
-                        >
-                          
-                        </path>
-                        
-                        <!---->
-                        <!---->
-                        
-                        <!---->
-                      </svg>
-                      <!---->
-                    </span>
-                    <!---->
-                  </button>
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <input
-                    aria-hidden="true"
-                    name="root_transform"
-                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-                    tabindex="-1"
-                    type="checkbox"
-                    value="on"
-                  />
-                  
-                  
-                  <!---->
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_transform"
-                    id="bits-c74"
-                  >
-                    Transform
-                    <!---->
-                  </label>
-                  
-                  
-                  <!---->
-                </div>
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <pre
-              style="color: red;"
-            >
-              "enumField" component not found
-            </pre>
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                 
-                <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root_paginate__description"
-                >
-                  Partitioning the input data (object or array) into pages by their keys
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <div
-                  class="flex items-center space-x-2"
-                >
-                  <!---->
-                  <!---->
-                  <button
-                    aria-checked="false"
-                    aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
-                    aria-invalid="false"
-                    aria-readonly="false"
-                    aria-required="false"
-                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
-                    data-checkbox-root=""
-                    data-state="unchecked"
-                    id="root_paginate"
-                    role="checkbox"
-                    type="button"
-                  >
-                    <span
-                      class="flex items-center justify-center text-current"
-                    >
-                      <svg
-                        class="lucide-icon lucide lucide-check size-4 text-transparent"
-                        fill="none"
-                        height="24"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <!---->
-                        <path
-                          d="M20 6 9 17l-5-5"
-                        >
-                          
-                        </path>
-                        
-                        <!---->
-                        <!---->
-                        
-                        <!---->
-                      </svg>
-                      <!---->
-                    </span>
-                    <!---->
-                  </button>
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <input
-                    aria-hidden="true"
-                    name="root_paginate"
-                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-                    tabindex="-1"
-                    type="checkbox"
-                    value="on"
-                  />
-                  
-                  
-                  <!---->
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_paginate"
-                    id="bits-c76"
-                  >
-                    Paginate
-                    <!---->
-                  </label>
-                  
-                  
-                  <!---->
-                </div>
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                 
-                <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root_createOnOpen__description"
-                >
-                  Creating a table when opening a share link
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <div
-                  class="flex items-center space-x-2"
-                >
-                  <!---->
-                  <!---->
-                  <button
-                    aria-checked="true"
-                    aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
-                    aria-invalid="false"
-                    aria-readonly="false"
-                    aria-required="false"
-                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
-                    data-checkbox-root=""
-                    data-state="checked"
-                    id="root_createOnOpen"
-                    role="checkbox"
-                    type="button"
-                  >
-                    <span
-                      class="flex items-center justify-center text-current"
-                    >
-                      <svg
-                        class="lucide-icon lucide lucide-check size-4"
-                        fill="none"
-                        height="24"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <!---->
-                        <path
-                          d="M20 6 9 17l-5-5"
-                        >
-                          
-                        </path>
-                        
-                        <!---->
-                        <!---->
-                        
-                        <!---->
-                      </svg>
-                      <!---->
-                    </span>
-                    <!---->
-                  </button>
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <input
-                    aria-hidden="true"
-                    name="root_createOnOpen"
-                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-                    tabindex="-1"
-                    type="checkbox"
-                    value="on"
-                  />
-                  
-                  
-                  <!---->
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_createOnOpen"
-                    id="bits-c78"
-                  >
-                    Create on open
-                    <!---->
-                  </label>
-                  
-                  
-                  <!---->
-                </div>
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    <!---->
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-  
-</div>
-`;
-
-exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <input
-      name="__sjsf_id_prefix"
-      type="hidden"
-      value="root"
-    />
-    <!---->
-     
-    <!---->
-    <!---->
-    <div
-      class="flex gap-4 flex-col"
-      data-layout="object-field"
-    >
-      <!---->
-      <!---->
-      <div
-        data-layout="object-field-meta"
-      >
-        <!---->
-        <!---->
-        <div
-          data-layout="object-field-title-row"
-        >
-          <!---->
-          <div
-            class="font-medium text-lg"
-            id="root__title"
-          >
-            Options
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <div
-        class="flex gap-4 flex-col"
-        data-layout="object-properties"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <pre
-              style="color: red;"
-            >
-              "enumField" component not found
-            </pre>
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                 
-                <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root_collapseIndexes__description"
-                >
-                  Combines hierarchical indexes into one cell (1.1, 1.2, ...)
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <div
-                  class="flex items-center space-x-2"
-                >
-                  <!---->
-                  <!---->
-                  <button
-                    aria-checked="true"
-                    aria-describedby="root_collapseIndexes__description root_collapseIndexes__help root_collapseIndexes__errors"
-                    aria-invalid="false"
-                    aria-readonly="false"
-                    aria-required="false"
-                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
-                    data-checkbox-root=""
-                    data-state="checked"
-                    id="root_collapseIndexes"
-                    role="checkbox"
-                    type="button"
-                  >
-                    <span
-                      class="flex items-center justify-center text-current"
-                    >
-                      <svg
-                        class="lucide-icon lucide lucide-check size-4"
-                        fill="none"
-                        height="24"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <!---->
-                        <path
-                          d="M20 6 9 17l-5-5"
-                        >
-                          
-                        </path>
-                        
-                        <!---->
-                        <!---->
-                        
-                        <!---->
-                      </svg>
-                      <!---->
-                    </span>
-                    <!---->
-                  </button>
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <input
-                    aria-hidden="true"
-                    name="root_collapseIndexes"
-                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-                    tabindex="-1"
-                    type="checkbox"
-                    value="on"
-                  />
-                  
-                  
-                  <!---->
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_collapseIndexes"
-                    id="bits-c80"
-                  >
-                    Combine nested indexes
-                    <!---->
-                  </label>
-                  
-                  
-                  <!---->
-                </div>
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                 
-                <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root_joinPrimitiveArrayValues__description"
-                >
-                  Combines the values of an array of primitives into one cell (separated by ',')
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <div
-                  class="flex items-center space-x-2"
-                >
-                  <!---->
-                  <!---->
-                  <button
-                    aria-checked="true"
-                    aria-describedby="root_joinPrimitiveArrayValues__description root_joinPrimitiveArrayValues__help root_joinPrimitiveArrayValues__errors"
-                    aria-invalid="false"
-                    aria-readonly="false"
-                    aria-required="false"
-                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
-                    data-checkbox-root=""
-                    data-state="checked"
-                    id="root_joinPrimitiveArrayValues"
-                    role="checkbox"
-                    type="button"
-                  >
-                    <span
-                      class="flex items-center justify-center text-current"
-                    >
-                      <svg
-                        class="lucide-icon lucide lucide-check size-4"
-                        fill="none"
-                        height="24"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <!---->
-                        <path
-                          d="M20 6 9 17l-5-5"
-                        >
-                          
-                        </path>
-                        
-                        <!---->
-                        <!---->
-                        
-                        <!---->
-                      </svg>
-                      <!---->
-                    </span>
-                    <!---->
-                  </button>
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <input
-                    aria-hidden="true"
-                    name="root_joinPrimitiveArrayValues"
-                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-                    tabindex="-1"
-                    type="checkbox"
-                    value="on"
-                  />
-                  
-                  
-                  <!---->
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_joinPrimitiveArrayValues"
-                    id="bits-c82"
-                  >
-                    Combine simple values
-                    <!---->
-                  </label>
-                  
-                  
-                  <!---->
-                </div>
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                 
-                <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root_combineArraysOfObjects__description"
-                >
-                  Combine arrays of objects into a single object
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <div
-                  class="flex items-center space-x-2"
-                >
-                  <!---->
-                  <!---->
-                  <button
-                    aria-checked="false"
-                    aria-describedby="root_combineArraysOfObjects__description root_combineArraysOfObjects__help root_combineArraysOfObjects__errors"
-                    aria-invalid="false"
-                    aria-readonly="false"
-                    aria-required="false"
-                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
-                    data-checkbox-root=""
-                    data-state="unchecked"
-                    id="root_combineArraysOfObjects"
-                    role="checkbox"
-                    type="button"
-                  >
-                    <span
-                      class="flex items-center justify-center text-current"
-                    >
-                      <svg
-                        class="lucide-icon lucide lucide-check size-4 text-transparent"
-                        fill="none"
-                        height="24"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <!---->
-                        <path
-                          d="M20 6 9 17l-5-5"
-                        >
-                          
-                        </path>
-                        
-                        <!---->
-                        <!---->
-                        
-                        <!---->
-                      </svg>
-                      <!---->
-                    </span>
-                    <!---->
-                  </button>
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <input
-                    aria-hidden="true"
-                    name="root_combineArraysOfObjects"
-                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-                    tabindex="-1"
-                    type="checkbox"
-                    value="on"
-                  />
-                  
-                  
-                  <!---->
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_combineArraysOfObjects"
-                    id="bits-c84"
-                  >
-                    Combine objects
-                    <!---->
-                  </label>
-                  
-                  
-                  <!---->
-                </div>
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                 
-                <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root_stabilizeOrderOfPropertiesInArraysOfObjects__description"
-                >
-                  Stabilizing the order in which properties are displayed for arrays of objects
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <div
-                  class="flex items-center space-x-2"
-                >
-                  <!---->
-                  <!---->
-                  <button
-                    aria-checked="true"
-                    aria-describedby="root_stabilizeOrderOfPropertiesInArraysOfObjects__description root_stabilizeOrderOfPropertiesInArraysOfObjects__help root_stabilizeOrderOfPropertiesInArraysOfObjects__errors"
-                    aria-invalid="false"
-                    aria-readonly="false"
-                    aria-required="false"
-                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
-                    data-checkbox-root=""
-                    data-state="checked"
-                    id="root_stabilizeOrderOfPropertiesInArraysOfObjects"
-                    role="checkbox"
-                    type="button"
-                  >
-                    <span
-                      class="flex items-center justify-center text-current"
-                    >
-                      <svg
-                        class="lucide-icon lucide lucide-check size-4"
-                        fill="none"
-                        height="24"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <!---->
-                        <path
-                          d="M20 6 9 17l-5-5"
-                        >
-                          
-                        </path>
-                        
-                        <!---->
-                        <!---->
-                        
-                        <!---->
-                      </svg>
-                      <!---->
-                    </span>
-                    <!---->
-                  </button>
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <input
-                    aria-hidden="true"
-                    name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
-                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-                    tabindex="-1"
-                    type="checkbox"
-                    value="on"
-                  />
-                  
-                  
-                  <!---->
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_stabilizeOrderOfPropertiesInArraysOfObjects"
-                    id="bits-c86"
-                  >
-                    Stabilize order of properties
-                    <!---->
-                  </label>
-                  
-                  
-                  <!---->
-                </div>
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
             <!---->
             <!---->
             <div
@@ -9426,10 +8680,10 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <label
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
-                    for="root_proportionalSizeAdjustmentThreshold"
-                    id="bits-c87"
+                    for="root_preset"
+                    id="bits-c85"
                   >
-                    Proportional size adjustment threshold 
+                    Preset 
                     <span>
                       *
                     </span>
@@ -9448,14 +8702,6 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                  
                 <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root_proportionalSizeAdjustmentThreshold__description"
-                >
-                  Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
-                </div>
-                
-                <!---->
                 <!---->
               </div>
               
@@ -9469,140 +8715,78 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <!---->
-                <input
-                  aria-describedby="root_proportionalSizeAdjustmentThreshold__description root_proportionalSizeAdjustmentThreshold__help root_proportionalSizeAdjustmentThreshold__errors"
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <button
+                  aria-describedby="root_preset__description root_preset__help root_preset__errors"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
                   aria-invalid="false"
-                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root_proportionalSizeAdjustmentThreshold"
-                  min="0"
-                  name="root_proportionalSizeAdjustmentThreshold"
-                  required=""
-                  step="any"
-                  type="number"
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <div
-                  data-layout="field-title-row"
+                  aria-required="true"
+                  class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+                  data-select-trigger=""
+                  data-state="closed"
+                  id="root_preset"
+                  name="root_preset"
+                  type="button"
                 >
                   <!---->
-                  <!---->
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_cornerCellValue"
-                    id="bits-c88"
-                  >
-                    Corner cell value 
-                    <!---->
-                    <!---->
-                  </label>
-                  
-                  
-                  
+                  <span>
+                    Default
+                  </span>
                   <!---->
                    
+                  <svg
+                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <!---->
+                    <path
+                      d="m6 9 6 6 6-6"
+                    >
+                      
+                    </path>
+                    
+                    <!---->
+                    <!---->
+                    
+                    <!---->
+                  </svg>
                   <!---->
                   <!---->
-                </div>
+                </button>
+                
+                
+                
                 
                 <!---->
                  
                 <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root_cornerCellValue__description"
-                >
-                  The value of the corner cell.
-                </div>
+                <!---->
+                
                 
                 <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root_cornerCellValue__description root_cornerCellValue__help root_cornerCellValue__errors"
-                  aria-invalid="false"
-                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root_cornerCellValue"
-                  name="root_cornerCellValue"
-                />
+                
                 
                 <!---->
                  
                 <!---->
                 
                 <!---->
+                
                 
                 
                 <!---->
@@ -9751,7 +8935,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_transform"
-                    id="bits-c90"
+                    id="bits-c88"
                   >
                     Transform
                     <!---->
@@ -9801,11 +8985,149 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_format"
+                    id="bits-c89"
+                  >
+                    Output format 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <button
+                  aria-describedby="root_format__description root_format__help root_format__errors"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  aria-invalid="false"
+                  aria-required="true"
+                  class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+                  data-select-trigger=""
+                  data-state="closed"
+                  id="root_format"
+                  name="root_format"
+                  type="button"
+                >
+                  <!---->
+                  <span>
+                    HTML
+                  </span>
+                  <!---->
+                   
+                  <svg
+                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <!---->
+                    <path
+                      d="m6 9 6 6 6-6"
+                    >
+                      
+                    </path>
+                    
+                    <!---->
+                    <!---->
+                    
+                    <!---->
+                  </svg>
+                  <!---->
+                  <!---->
+                </button>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+                
+                
+                <!---->
+                
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
             
             
             <!---->
@@ -10174,6 +9496,1788 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
 </div>
 `;
 
+exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="object-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="font-medium text-lg"
+            id="root__title"
+          >
+            Options
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_preset"
+                    id="bits-c97"
+                  >
+                    Preset 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <button
+                  aria-describedby="root_preset__description root_preset__help root_preset__errors"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  aria-invalid="false"
+                  aria-required="true"
+                  class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+                  data-select-trigger=""
+                  data-state="closed"
+                  id="root_preset"
+                  name="root_preset"
+                  type="button"
+                >
+                  <!---->
+                  <span>
+                    Manual
+                  </span>
+                  <!---->
+                   
+                  <svg
+                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <!---->
+                    <path
+                      d="m6 9 6 6 6-6"
+                    >
+                      
+                    </path>
+                    
+                    <!---->
+                    <!---->
+                    
+                    <!---->
+                  </svg>
+                  <!---->
+                  <!---->
+                </button>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+                
+                
+                <!---->
+                
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root_collapseIndexes__description"
+                >
+                  Combines hierarchical indexes into one cell (1.1, 1.2, ...)
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="flex items-center space-x-2"
+                >
+                  <!---->
+                  <!---->
+                  <button
+                    aria-checked="true"
+                    aria-describedby="root_collapseIndexes__description root_collapseIndexes__help root_collapseIndexes__errors"
+                    aria-invalid="false"
+                    aria-readonly="false"
+                    aria-required="false"
+                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+                    data-checkbox-root=""
+                    data-state="checked"
+                    id="root_collapseIndexes"
+                    role="checkbox"
+                    type="button"
+                  >
+                    <span
+                      class="flex items-center justify-center text-current"
+                    >
+                      <svg
+                        class="lucide-icon lucide lucide-check size-4"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <!---->
+                        <path
+                          d="M20 6 9 17l-5-5"
+                        >
+                          
+                        </path>
+                        
+                        <!---->
+                        <!---->
+                        
+                        <!---->
+                      </svg>
+                      <!---->
+                    </span>
+                    <!---->
+                  </button>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <input
+                    aria-hidden="true"
+                    name="root_collapseIndexes"
+                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                    tabindex="-1"
+                    type="checkbox"
+                    value="on"
+                  />
+                  
+                  
+                  <!---->
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_collapseIndexes"
+                    id="bits-c100"
+                  >
+                    Combine nested indexes
+                    <!---->
+                  </label>
+                  
+                  
+                  <!---->
+                </div>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root_joinPrimitiveArrayValues__description"
+                >
+                  Combines the values of an array of primitives into one cell (separated by ',')
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="flex items-center space-x-2"
+                >
+                  <!---->
+                  <!---->
+                  <button
+                    aria-checked="true"
+                    aria-describedby="root_joinPrimitiveArrayValues__description root_joinPrimitiveArrayValues__help root_joinPrimitiveArrayValues__errors"
+                    aria-invalid="false"
+                    aria-readonly="false"
+                    aria-required="false"
+                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+                    data-checkbox-root=""
+                    data-state="checked"
+                    id="root_joinPrimitiveArrayValues"
+                    role="checkbox"
+                    type="button"
+                  >
+                    <span
+                      class="flex items-center justify-center text-current"
+                    >
+                      <svg
+                        class="lucide-icon lucide lucide-check size-4"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <!---->
+                        <path
+                          d="M20 6 9 17l-5-5"
+                        >
+                          
+                        </path>
+                        
+                        <!---->
+                        <!---->
+                        
+                        <!---->
+                      </svg>
+                      <!---->
+                    </span>
+                    <!---->
+                  </button>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <input
+                    aria-hidden="true"
+                    name="root_joinPrimitiveArrayValues"
+                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                    tabindex="-1"
+                    type="checkbox"
+                    value="on"
+                  />
+                  
+                  
+                  <!---->
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_joinPrimitiveArrayValues"
+                    id="bits-c102"
+                  >
+                    Combine simple values
+                    <!---->
+                  </label>
+                  
+                  
+                  <!---->
+                </div>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root_combineArraysOfObjects__description"
+                >
+                  Combine arrays of objects into a single object
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="flex items-center space-x-2"
+                >
+                  <!---->
+                  <!---->
+                  <button
+                    aria-checked="false"
+                    aria-describedby="root_combineArraysOfObjects__description root_combineArraysOfObjects__help root_combineArraysOfObjects__errors"
+                    aria-invalid="false"
+                    aria-readonly="false"
+                    aria-required="false"
+                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+                    data-checkbox-root=""
+                    data-state="unchecked"
+                    id="root_combineArraysOfObjects"
+                    role="checkbox"
+                    type="button"
+                  >
+                    <span
+                      class="flex items-center justify-center text-current"
+                    >
+                      <svg
+                        class="lucide-icon lucide lucide-check size-4 text-transparent"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <!---->
+                        <path
+                          d="M20 6 9 17l-5-5"
+                        >
+                          
+                        </path>
+                        
+                        <!---->
+                        <!---->
+                        
+                        <!---->
+                      </svg>
+                      <!---->
+                    </span>
+                    <!---->
+                  </button>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <input
+                    aria-hidden="true"
+                    name="root_combineArraysOfObjects"
+                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                    tabindex="-1"
+                    type="checkbox"
+                    value="on"
+                  />
+                  
+                  
+                  <!---->
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_combineArraysOfObjects"
+                    id="bits-c104"
+                  >
+                    Combine objects
+                    <!---->
+                  </label>
+                  
+                  
+                  <!---->
+                </div>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root_stabilizeOrderOfPropertiesInArraysOfObjects__description"
+                >
+                  Stabilizing the order in which properties are displayed for arrays of objects
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="flex items-center space-x-2"
+                >
+                  <!---->
+                  <!---->
+                  <button
+                    aria-checked="true"
+                    aria-describedby="root_stabilizeOrderOfPropertiesInArraysOfObjects__description root_stabilizeOrderOfPropertiesInArraysOfObjects__help root_stabilizeOrderOfPropertiesInArraysOfObjects__errors"
+                    aria-invalid="false"
+                    aria-readonly="false"
+                    aria-required="false"
+                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+                    data-checkbox-root=""
+                    data-state="checked"
+                    id="root_stabilizeOrderOfPropertiesInArraysOfObjects"
+                    role="checkbox"
+                    type="button"
+                  >
+                    <span
+                      class="flex items-center justify-center text-current"
+                    >
+                      <svg
+                        class="lucide-icon lucide lucide-check size-4"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <!---->
+                        <path
+                          d="M20 6 9 17l-5-5"
+                        >
+                          
+                        </path>
+                        
+                        <!---->
+                        <!---->
+                        
+                        <!---->
+                      </svg>
+                      <!---->
+                    </span>
+                    <!---->
+                  </button>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <input
+                    aria-hidden="true"
+                    name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
+                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                    tabindex="-1"
+                    type="checkbox"
+                    value="on"
+                  />
+                  
+                  
+                  <!---->
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_stabilizeOrderOfPropertiesInArraysOfObjects"
+                    id="bits-c106"
+                  >
+                    Stabilize order of properties
+                    <!---->
+                  </label>
+                  
+                  
+                  <!---->
+                </div>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_proportionalSizeAdjustmentThreshold"
+                    id="bits-c107"
+                  >
+                    Proportional size adjustment threshold 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root_proportionalSizeAdjustmentThreshold__description"
+                >
+                  Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_proportionalSizeAdjustmentThreshold__description root_proportionalSizeAdjustmentThreshold__help root_proportionalSizeAdjustmentThreshold__errors"
+                  aria-invalid="false"
+                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root_proportionalSizeAdjustmentThreshold"
+                  min="0"
+                  name="root_proportionalSizeAdjustmentThreshold"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_cornerCellValue"
+                    id="bits-c108"
+                  >
+                    Corner cell value 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root_cornerCellValue__description"
+                >
+                  The value of the corner cell.
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_cornerCellValue__description root_cornerCellValue__help root_cornerCellValue__errors"
+                  aria-invalid="false"
+                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root_cornerCellValue"
+                  name="root_cornerCellValue"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root_transform__description"
+                >
+                  Apply a transformation to the output data
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="flex items-center space-x-2"
+                >
+                  <!---->
+                  <!---->
+                  <button
+                    aria-checked="false"
+                    aria-describedby="root_transform__description root_transform__help root_transform__errors"
+                    aria-invalid="false"
+                    aria-readonly="false"
+                    aria-required="false"
+                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+                    data-checkbox-root=""
+                    data-state="unchecked"
+                    id="root_transform"
+                    role="checkbox"
+                    type="button"
+                  >
+                    <span
+                      class="flex items-center justify-center text-current"
+                    >
+                      <svg
+                        class="lucide-icon lucide lucide-check size-4 text-transparent"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <!---->
+                        <path
+                          d="M20 6 9 17l-5-5"
+                        >
+                          
+                        </path>
+                        
+                        <!---->
+                        <!---->
+                        
+                        <!---->
+                      </svg>
+                      <!---->
+                    </span>
+                    <!---->
+                  </button>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <input
+                    aria-hidden="true"
+                    name="root_transform"
+                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                    tabindex="-1"
+                    type="checkbox"
+                    value="on"
+                  />
+                  
+                  
+                  <!---->
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_transform"
+                    id="bits-c110"
+                  >
+                    Transform
+                    <!---->
+                  </label>
+                  
+                  
+                  <!---->
+                </div>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_format"
+                    id="bits-c111"
+                  >
+                    Output format 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <button
+                  aria-describedby="root_format__description root_format__help root_format__errors"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  aria-invalid="false"
+                  aria-required="true"
+                  class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+                  data-select-trigger=""
+                  data-state="closed"
+                  id="root_format"
+                  name="root_format"
+                  type="button"
+                >
+                  <!---->
+                  <span>
+                    HTML
+                  </span>
+                  <!---->
+                   
+                  <svg
+                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <!---->
+                    <path
+                      d="m6 9 6 6 6-6"
+                    >
+                      
+                    </path>
+                    
+                    <!---->
+                    <!---->
+                    
+                    <!---->
+                  </svg>
+                  <!---->
+                  <!---->
+                </button>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+                
+                
+                <!---->
+                
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root_paginate__description"
+                >
+                  Partitioning the input data (object or array) into pages by their keys
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="flex items-center space-x-2"
+                >
+                  <!---->
+                  <!---->
+                  <button
+                    aria-checked="false"
+                    aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
+                    aria-invalid="false"
+                    aria-readonly="false"
+                    aria-required="false"
+                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+                    data-checkbox-root=""
+                    data-state="unchecked"
+                    id="root_paginate"
+                    role="checkbox"
+                    type="button"
+                  >
+                    <span
+                      class="flex items-center justify-center text-current"
+                    >
+                      <svg
+                        class="lucide-icon lucide lucide-check size-4 text-transparent"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <!---->
+                        <path
+                          d="M20 6 9 17l-5-5"
+                        >
+                          
+                        </path>
+                        
+                        <!---->
+                        <!---->
+                        
+                        <!---->
+                      </svg>
+                      <!---->
+                    </span>
+                    <!---->
+                  </button>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <input
+                    aria-hidden="true"
+                    name="root_paginate"
+                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                    tabindex="-1"
+                    type="checkbox"
+                    value="on"
+                  />
+                  
+                  
+                  <!---->
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_paginate"
+                    id="bits-c114"
+                  >
+                    Paginate
+                    <!---->
+                  </label>
+                  
+                  
+                  <!---->
+                </div>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root_createOnOpen__description"
+                >
+                  Creating a table when opening a share link
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="flex items-center space-x-2"
+                >
+                  <!---->
+                  <!---->
+                  <button
+                    aria-checked="true"
+                    aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
+                    aria-invalid="false"
+                    aria-readonly="false"
+                    aria-required="false"
+                    class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+                    data-checkbox-root=""
+                    data-state="checked"
+                    id="root_createOnOpen"
+                    role="checkbox"
+                    type="button"
+                  >
+                    <span
+                      class="flex items-center justify-center text-current"
+                    >
+                      <svg
+                        class="lucide-icon lucide lucide-check size-4"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <!---->
+                        <path
+                          d="M20 6 9 17l-5-5"
+                        >
+                          
+                        </path>
+                        
+                        <!---->
+                        <!---->
+                        
+                        <!---->
+                      </svg>
+                      <!---->
+                    </span>
+                    <!---->
+                  </button>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <input
+                    aria-hidden="true"
+                    name="root_createOnOpen"
+                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                    tabindex="-1"
+                    type="checkbox"
+                    value="on"
+                  />
+                  
+                  
+                  <!---->
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_createOnOpen"
+                    id="bits-c116"
+                  >
+                    Create on open
+                    <!---->
+                  </label>
+                  
+                  
+                  <!---->
+                </div>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
 exports[`new-york-ui > object fields > show add button and fields if additionalProperties is true and not an object 1`] = `
 <div>
   <!---->
@@ -10242,7 +11346,7 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty__key-input"
-                    id="bits-c55"
+                    id="bits-c67"
                   >
                     additionalProperty Key 
                     <span>
@@ -10339,7 +11443,7 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty"
-                    id="bits-c56"
+                    id="bits-c68"
                   >
                     additionalProperty 
                     <!---->
@@ -10528,1026 +11632,6 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
           id="root__description"
         >
           a test description
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <div
-        class="flex gap-4 flex-col"
-        data-layout="object-properties"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-          <div
-            class="grow"
-            data-layout="object-property-key-input"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <div
-                  data-layout="field-title-row"
-                >
-                  <!---->
-                  <!---->
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_foo__key-input"
-                    id="bits-c59"
-                  >
-                    foo Key 
-                    <span>
-                      *
-                    </span>
-                    <!---->
-                    <!---->
-                  </label>
-                  
-                  
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                </div>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
-                  aria-invalid="false"
-                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root_foo__key-input"
-                  name="root_foo__key-input"
-                  required=""
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <div
-                  data-layout="field-title-row"
-                >
-                  <!---->
-                  <!---->
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_foo"
-                    id="bits-c60"
-                  >
-                    foo 
-                    <!---->
-                    <!---->
-                  </label>
-                  
-                  
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                </div>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
-                  aria-invalid="false"
-                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root_foo"
-                  name="root_foo"
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <div
-            data-layout="object-property-controls"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <button
-              class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
-              type="button"
-            >
-              <!---->
-              <!---->
-              Del
-              
-              
-              <!---->
-            </button>
-            
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    <!---->
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-  
-</div>
-`;
-
-exports[`new-york-ui > object fields > with title and description > object 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <input
-      name="__sjsf_id_prefix"
-      type="hidden"
-      value="root"
-    />
-    <!---->
-     
-    <!---->
-    <!---->
-    <div
-      class="flex gap-4 flex-col"
-      data-layout="object-field"
-    >
-      <!---->
-      <!---->
-      <div
-        data-layout="object-field-meta"
-      >
-        <!---->
-        <!---->
-        <div
-          data-layout="object-field-title-row"
-        >
-          <!---->
-          <div
-            class="font-medium text-lg"
-            id="root__title"
-          >
-            Test field
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <div
-          class="text-muted-foreground"
-          id="root__description"
-        >
-          a test description
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <div
-        class="flex gap-4 flex-col"
-        data-layout="object-properties"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <div
-                  data-layout="field-title-row"
-                >
-                  <!---->
-                  <!---->
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_a"
-                    id="bits-c57"
-                  >
-                    A 
-                    <!---->
-                    <!---->
-                  </label>
-                  
-                  
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                </div>
-                
-                <!---->
-                 
-                <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root_a__description"
-                >
-                  A description
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root_a__description root_a__help root_a__errors"
-                  aria-invalid="false"
-                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root_a"
-                  name="root_a"
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <div
-                  data-layout="field-title-row"
-                >
-                  <!---->
-                  <!---->
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_b"
-                    id="bits-c58"
-                  >
-                    B 
-                    <!---->
-                    <!---->
-                  </label>
-                  
-                  
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                </div>
-                
-                <!---->
-                 
-                <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root_b__description"
-                >
-                  B description
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root_b__description root_b__help root_b__errors"
-                  aria-invalid="false"
-                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root_b"
-                  name="root_b"
-                  step="any"
-                  type="number"
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    <!---->
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-  
-</div>
-`;
-
-exports[`new-york-ui > object fields > with title and description > show add button and fields if additionalProperties is true and not an object 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <input
-      name="__sjsf_id_prefix"
-      type="hidden"
-      value="root"
-    />
-    <!---->
-     
-    <!---->
-    <!---->
-    <div
-      class="flex gap-4 flex-col"
-      data-layout="object-field"
-    >
-      <!---->
-      <!---->
-      <div
-        data-layout="object-field-meta"
-      >
-        <!---->
-        <!---->
-        <div
-          data-layout="object-field-title-row"
-        >
-          <!---->
-          <div
-            class="font-medium text-lg"
-            id="root__title"
-          >
-            Test field
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <div
-          class="text-muted-foreground"
-          id="root__description"
-        >
-          a test description
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <div
-        class="flex gap-4 flex-col"
-        data-layout="object-properties"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-          <div
-            class="grow"
-            data-layout="object-property-key-input"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <div
-                  data-layout="field-title-row"
-                >
-                  <!---->
-                  <!---->
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_additionalProperty__key-input"
-                    id="bits-c61"
-                  >
-                    additionalProperty Key 
-                    <span>
-                      *
-                    </span>
-                    <!---->
-                    <!---->
-                  </label>
-                  
-                  
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                </div>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
-                  aria-invalid="false"
-                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root_additionalProperty__key-input"
-                  name="root_additionalProperty__key-input"
-                  required=""
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <div
-                  data-layout="field-title-row"
-                >
-                  <!---->
-                  <!---->
-                  <!---->
-                  <!---->
-                  <label
-                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    data-label-root=""
-                    for="root_additionalProperty"
-                    id="bits-c62"
-                  >
-                    additionalProperty 
-                    <!---->
-                    <!---->
-                  </label>
-                  
-                  
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                </div>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
-                  aria-invalid="false"
-                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root_additionalProperty"
-                  name="root_additionalProperty"
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <div
-            data-layout="object-property-controls"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <button
-              class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
-              type="button"
-            >
-              <!---->
-              <!---->
-              Del
-              
-              
-              <!---->
-            </button>
-            
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    <!---->
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-  
-</div>
-`;
-
-exports[`new-york-ui > object fields > with title and description from both > additionalProperties 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <input
-      name="__sjsf_id_prefix"
-      type="hidden"
-      value="root"
-    />
-    <!---->
-     
-    <!---->
-    <!---->
-    <div
-      class="flex gap-4 flex-col"
-      data-layout="object-field"
-    >
-      <!---->
-      <!---->
-      <div
-        data-layout="object-field-meta"
-      >
-        <!---->
-        <!---->
-        <div
-          data-layout="object-field-title-row"
-        >
-          <!---->
-          <div
-            class="font-medium text-lg"
-            id="root__title"
-          >
-            My Field
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <div
-          class="text-muted-foreground"
-          id="root__description"
-        >
-          a fancier description
         </div>
         
         <!---->
@@ -11834,6 +11918,1026 @@ exports[`new-york-ui > object fields > with title and description from both > ad
 </div>
 `;
 
+exports[`new-york-ui > object fields > with title and description > object 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="object-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="font-medium text-lg"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root__description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_a"
+                    id="bits-c69"
+                  >
+                    A 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root_a__description"
+                >
+                  A description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_a__description root_a__help root_a__errors"
+                  aria-invalid="false"
+                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root_a"
+                  name="root_a"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_b"
+                    id="bits-c70"
+                  >
+                    B 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root_b__description"
+                >
+                  B description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_b__description root_b__help root_b__errors"
+                  aria-invalid="false"
+                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root_b"
+                  name="root_b"
+                  step="any"
+                  type="number"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > object fields > with title and description > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="object-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="font-medium text-lg"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root__description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_additionalProperty__key-input"
+                    id="bits-c73"
+                  >
+                    additionalProperty Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_additionalProperty__key-input__description root_additionalProperty__key-input__help root_additionalProperty__key-input__errors"
+                  aria-invalid="false"
+                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root_additionalProperty__key-input"
+                  name="root_additionalProperty__key-input"
+                  required=""
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_additionalProperty"
+                    id="bits-c74"
+                  >
+                    additionalProperty 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_additionalProperty__description root_additionalProperty__help root_additionalProperty__errors"
+                  aria-invalid="false"
+                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root_additionalProperty"
+                  name="root_additionalProperty"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+              type="button"
+            >
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > object fields > with title and description from both > additionalProperties 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="object-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          data-layout="object-field-title-row"
+        >
+          <!---->
+          <div
+            class="font-medium text-lg"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_foo__key-input"
+                    id="bits-c83"
+                  >
+                    foo Key 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_foo__key-input__description root_foo__key-input__help root_foo__key-input__errors"
+                  aria-invalid="false"
+                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root_foo__key-input"
+                  name="root_foo__key-input"
+                  required=""
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    data-label-root=""
+                    for="root_foo"
+                    id="bits-c84"
+                  >
+                    foo 
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_foo__description root_foo__help root_foo__errors"
+                  aria-invalid="false"
+                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root_foo"
+                  name="root_foo"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+              type="button"
+            >
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  
+</div>
+`;
+
 exports[`new-york-ui > object fields > with title and description from both > object 1`] = `
 <div>
   <!---->
@@ -11940,7 +13044,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_a"
-                    id="bits-c69"
+                    id="bits-c81"
                   >
                     My Item A 
                     <!---->
@@ -12057,7 +13161,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_b"
-                    id="bits-c70"
+                    id="bits-c82"
                   >
                     My Item B 
                     <!---->
@@ -12282,7 +13386,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c65"
+                    id="bits-c77"
                   >
                     foo Key 
                     <span>
@@ -12379,7 +13483,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c66"
+                    id="bits-c78"
                   >
                     foo 
                     <!---->
@@ -12622,7 +13726,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_a"
-                    id="bits-c63"
+                    id="bits-c75"
                   >
                     My Item A 
                     <!---->
@@ -12739,7 +13843,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_b"
-                    id="bits-c64"
+                    id="bits-c76"
                   >
                     My Item B 
                     <!---->
@@ -12964,7 +14068,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty__key-input"
-                    id="bits-c67"
+                    id="bits-c79"
                   >
                     additionalProperty Key 
                     <span>
@@ -13061,7 +14165,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty"
-                    id="bits-c68"
+                    id="bits-c80"
                   >
                     additionalProperty 
                     <!---->

@@ -3,56 +3,79 @@
 exports[`widgets > checkbox > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <label
-        class="sjsf-checkbox"
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          disabled=""
-          id="root"
-          name="root"
-          required=""
-          type="checkbox"
-        />
-         
-      </label>
-      
-      
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            disabled=""
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -61,67 +84,89 @@ exports[`widgets > checkbox > snapshots > disabled 1`] = `
 exports[`widgets > checkbox > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <label
-        class="sjsf-checkbox"
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="true"
-          id="root"
-          name="root"
-          required=""
-          type="checkbox"
-        />
-         
-      </label>
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
       
-      
+      <!---->
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -130,55 +175,77 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
 exports[`widgets > checkbox > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <label
-        class="sjsf-checkbox"
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root"
-          name="root"
-          required=""
-          type="checkbox"
-        />
-         
-      </label>
-      
-      
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+          />
+           
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -187,56 +254,78 @@ exports[`widgets > checkbox > snapshots > normal 1`] = `
 exports[`widgets > checkbox > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <label
-        class="sjsf-checkbox"
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root"
-          name="root"
-          readonly=""
-          required=""
-          type="checkbox"
-        />
-         
-      </label>
-      
-      
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+          />
+           
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -245,104 +334,127 @@ exports[`widgets > checkbox > snapshots > readonly 1`] = `
 exports[`widgets > checkboxes > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            disabled=""
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           foo
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            disabled=""
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           bar
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            disabled=""
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           fuzz
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            disabled=""
+            id="root__3"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__3"
+          />
+           qux
+        </label>
+        
+        
+        
+        <!---->
+      </div>
       <!---->
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          disabled=""
-          id="root__0"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__0"
-        />
-         foo
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          disabled=""
-          id="root__1"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__1"
-        />
-         bar
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          disabled=""
-          id="root__2"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__2"
-        />
-         fuzz
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          disabled=""
-          id="root__3"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__3"
-        />
-         qux
-      </label>
-      
-      
-      
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -351,112 +463,134 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
 exports[`widgets > checkboxes > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           foo
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           bar
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           fuzz
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            id="root__3"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__3"
+          />
+           qux
+        </label>
+        
+        
+        
+        <!---->
+      </div>
       <!---->
-      <label
-        class="sjsf-checkboxes"
+       
+      <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
       >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="true"
-          id="root__0"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__0"
-        />
-         foo
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="true"
-          id="root__1"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__1"
-        />
-         bar
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="true"
-          id="root__2"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__2"
-        />
-         fuzz
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="true"
-          id="root__3"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__3"
-        />
-         qux
-      </label>
+        <li>
+          error
+        </li>
+        
+      </ul>
       
-      
-      
+      <!---->
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -465,100 +599,122 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
 exports[`widgets > checkboxes > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           foo
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           bar
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           fuzz
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__3"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__3"
+          />
+           qux
+        </label>
+        
+        
+        
+        <!---->
+      </div>
       <!---->
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__0"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__0"
-        />
-         foo
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__1"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__1"
-        />
-         bar
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__2"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__2"
-        />
-         fuzz
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__3"
-          name="root"
-          required=""
-          type="checkbox"
-          value="root__3"
-        />
-         qux
-      </label>
-      
-      
-      
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -567,104 +723,126 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
 exports[`widgets > checkboxes > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           foo
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           bar
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           fuzz
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__3"
+            name="root"
+            readonly=""
+            required=""
+            type="checkbox"
+            value="root__3"
+          />
+           qux
+        </label>
+        
+        
+        
+        <!---->
+      </div>
       <!---->
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__0"
-          name="root"
-          readonly=""
-          required=""
-          type="checkbox"
-          value="root__0"
-        />
-         foo
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__1"
-          name="root"
-          readonly=""
-          required=""
-          type="checkbox"
-          value="root__1"
-        />
-         bar
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__2"
-          name="root"
-          readonly=""
-          required=""
-          type="checkbox"
-          value="root__2"
-        />
-         fuzz
-      </label>
-      <label
-        class="sjsf-checkboxes"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__3"
-          name="root"
-          readonly=""
-          required=""
-          type="checkbox"
-          value="root__3"
-        />
-         qux
-      </label>
-      
-      
-      
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -673,56 +851,79 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
 exports[`widgets > datePicker > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-date-picker"
-        disabled=""
-        id="root"
-        name="root"
-        required=""
-        type="date"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-date-picker"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          type="date"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
-      
+       
       <!---->
-      
-      
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -731,67 +932,89 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
 exports[`widgets > datePicker > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="true"
-        class="sjsf-date-picker"
-        id="root"
-        name="root"
-        required=""
-        type="date"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="sjsf-date-picker"
+          id="root"
+          name="root"
+          required=""
+          type="date"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
       
       <!---->
-      
-      
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -800,55 +1023,77 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
 exports[`widgets > datePicker > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-date-picker"
-        id="root"
-        name="root"
-        required=""
-        type="date"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-date-picker"
+          id="root"
+          name="root"
+          required=""
+          type="date"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
-      
+       
       <!---->
-      
-      
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -857,56 +1102,78 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
 exports[`widgets > datePicker > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-date-picker"
-        id="root"
-        name="root"
-        readonly=""
-        required=""
-        type="date"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-date-picker"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          type="date"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
-      
+       
       <!---->
-      
-      
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -915,54 +1182,77 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
 exports[`widgets > file > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-file"
-        data-loading="false"
-        data-processing="false"
-        disabled=""
-        id="root"
-        name="root"
-        required=""
-        type="file"
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-file"
+          data-loading="false"
+          data-processing="false"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -971,65 +1261,87 @@ exports[`widgets > file > snapshots > disabled 1`] = `
 exports[`widgets > file > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="true"
-        class="sjsf-file"
-        data-loading="false"
-        data-processing="false"
-        id="root"
-        name="root"
-        required=""
-        type="file"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="sjsf-file"
+          data-loading="false"
+          data-processing="false"
+          id="root"
+          name="root"
+          required=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
       
-      
+      <!---->
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1038,53 +1350,75 @@ exports[`widgets > file > snapshots > error 1`] = `
 exports[`widgets > file > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-file"
-        data-loading="false"
-        data-processing="false"
-        id="root"
-        name="root"
-        required=""
-        type="file"
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-file"
+          data-loading="false"
+          data-processing="false"
+          id="root"
+          name="root"
+          required=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1093,54 +1427,76 @@ exports[`widgets > file > snapshots > normal 1`] = `
 exports[`widgets > file > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-file"
-        data-loading="false"
-        data-processing="false"
-        id="root"
-        name="root"
-        readonly=""
-        required=""
-        type="file"
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-file"
+          data-loading="false"
+          data-processing="false"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1149,55 +1505,78 @@ exports[`widgets > file > snapshots > readonly 1`] = `
 exports[`widgets > multiFile > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-file"
-        data-loading="true"
-        data-processing="false"
-        disabled=""
-        id="root"
-        multiple=""
-        name="root"
-        required=""
-        type="file"
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-file"
+          data-loading="true"
+          data-processing="false"
+          disabled=""
+          id="root"
+          multiple=""
+          name="root"
+          required=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1206,66 +1585,88 @@ exports[`widgets > multiFile > snapshots > disabled 1`] = `
 exports[`widgets > multiFile > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="true"
-        class="sjsf-file"
-        data-loading="true"
-        data-processing="false"
-        id="root"
-        multiple=""
-        name="root"
-        required=""
-        type="file"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="sjsf-file"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          required=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
       
-      
+      <!---->
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1274,54 +1675,76 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
 exports[`widgets > multiFile > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-file"
-        data-loading="true"
-        data-processing="false"
-        id="root"
-        multiple=""
-        name="root"
-        required=""
-        type="file"
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-file"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          required=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1330,55 +1753,77 @@ exports[`widgets > multiFile > snapshots > normal 1`] = `
 exports[`widgets > multiFile > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-file"
-        data-loading="true"
-        data-processing="false"
-        id="root"
-        multiple=""
-        name="root"
-        readonly=""
-        required=""
-        type="file"
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-file"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          readonly=""
+          required=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1387,74 +1832,97 @@ exports[`widgets > multiFile > snapshots > readonly 1`] = `
 exports[`widgets > multiSelect > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <select
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-multi-select"
-        disabled=""
-        id="root"
-        multiple=""
-        name="root"
-        required=""
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <option
-          value="root__0"
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-multi-select"
+          disabled=""
+          id="root"
+          multiple=""
+          name="root"
+          required=""
         >
-          foo
-        </option>
-        <option
-          value="root__1"
-        >
-          bar
-        </option>
-        <option
-          value="root__2"
-        >
-          fuzz
-        </option>
-        <option
-          value="root__3"
-        >
-          qux
-        </option>
+          <option
+            value="root__0"
+          >
+            foo
+          </option>
+          <option
+            value="root__1"
+          >
+            bar
+          </option>
+          <option
+            value="root__2"
+          >
+            fuzz
+          </option>
+          <option
+            value="root__3"
+          >
+            qux
+          </option>
+          
+        </select>
         
-      </select>
-      
-      
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1463,85 +1931,107 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
 exports[`widgets > multiSelect > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <select
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="true"
-        class="sjsf-multi-select"
-        id="root"
-        multiple=""
-        name="root"
-        required=""
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <option
-          value="root__0"
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="sjsf-multi-select"
+          id="root"
+          multiple=""
+          name="root"
+          required=""
         >
-          foo
-        </option>
-        <option
-          value="root__1"
-        >
-          bar
-        </option>
-        <option
-          value="root__2"
-        >
-          fuzz
-        </option>
-        <option
-          value="root__3"
-        >
-          qux
-        </option>
+          <option
+            value="root__0"
+          >
+            foo
+          </option>
+          <option
+            value="root__1"
+          >
+            bar
+          </option>
+          <option
+            value="root__2"
+          >
+            fuzz
+          </option>
+          <option
+            value="root__3"
+          >
+            qux
+          </option>
+          
+        </select>
         
-      </select>
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
       
-      
+      <!---->
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1550,73 +2040,95 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
 exports[`widgets > multiSelect > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <select
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-multi-select"
-        id="root"
-        multiple=""
-        name="root"
-        required=""
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <option
-          value="root__0"
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-multi-select"
+          id="root"
+          multiple=""
+          name="root"
+          required=""
         >
-          foo
-        </option>
-        <option
-          value="root__1"
-        >
-          bar
-        </option>
-        <option
-          value="root__2"
-        >
-          fuzz
-        </option>
-        <option
-          value="root__3"
-        >
-          qux
-        </option>
+          <option
+            value="root__0"
+          >
+            foo
+          </option>
+          <option
+            value="root__1"
+          >
+            bar
+          </option>
+          <option
+            value="root__2"
+          >
+            fuzz
+          </option>
+          <option
+            value="root__3"
+          >
+            qux
+          </option>
+          
+        </select>
         
-      </select>
-      
-      
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1625,73 +2137,95 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
 exports[`widgets > multiSelect > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <select
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-multi-select"
-        id="root"
-        multiple=""
-        name="root"
-        required=""
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <option
-          value="root__0"
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-multi-select"
+          id="root"
+          multiple=""
+          name="root"
+          required=""
         >
-          foo
-        </option>
-        <option
-          value="root__1"
-        >
-          bar
-        </option>
-        <option
-          value="root__2"
-        >
-          fuzz
-        </option>
-        <option
-          value="root__3"
-        >
-          qux
-        </option>
+          <option
+            value="root__0"
+          >
+            foo
+          </option>
+          <option
+            value="root__1"
+          >
+            bar
+          </option>
+          <option
+            value="root__2"
+          >
+            fuzz
+          </option>
+          <option
+            value="root__3"
+          >
+            qux
+          </option>
+          
+        </select>
         
-      </select>
-      
-      
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1700,57 +2234,80 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
 exports[`widgets > number > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-number"
-        disabled=""
-        id="root"
-        name="root"
-        required=""
-        step="any"
-        type="number"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-number"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
-      
+       
       <!---->
-      
-      
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1759,68 +2316,90 @@ exports[`widgets > number > snapshots > disabled 1`] = `
 exports[`widgets > number > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="true"
-        class="sjsf-number"
-        id="root"
-        name="root"
-        required=""
-        step="any"
-        type="number"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="sjsf-number"
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
       
       <!---->
-      
-      
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1829,56 +2408,78 @@ exports[`widgets > number > snapshots > error 1`] = `
 exports[`widgets > number > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-number"
-        id="root"
-        name="root"
-        required=""
-        step="any"
-        type="number"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-number"
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
-      
+       
       <!---->
-      
-      
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1887,57 +2488,79 @@ exports[`widgets > number > snapshots > normal 1`] = `
 exports[`widgets > number > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-number"
-        id="root"
-        name="root"
-        readonly=""
-        required=""
-        step="any"
-        type="number"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-number"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
-      
+       
       <!---->
-      
-      
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1946,104 +2569,127 @@ exports[`widgets > number > snapshots > readonly 1`] = `
 exports[`widgets > radio > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            disabled=""
+            id="root__0"
+            name="root"
+            required=""
+            type="radio"
+            value="root__0"
+          />
+           foo
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            disabled=""
+            id="root__1"
+            name="root"
+            required=""
+            type="radio"
+            value="root__1"
+          />
+           bar
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            disabled=""
+            id="root__2"
+            name="root"
+            required=""
+            type="radio"
+            value="root__2"
+          />
+           fuzz
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            disabled=""
+            id="root__3"
+            name="root"
+            required=""
+            type="radio"
+            value="root__3"
+          />
+           qux
+        </label>
+        
+        
+        
+        <!---->
+      </div>
       <!---->
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          disabled=""
-          id="root__0"
-          name="root"
-          required=""
-          type="radio"
-          value="root__0"
-        />
-         foo
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          disabled=""
-          id="root__1"
-          name="root"
-          required=""
-          type="radio"
-          value="root__1"
-        />
-         bar
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          disabled=""
-          id="root__2"
-          name="root"
-          required=""
-          type="radio"
-          value="root__2"
-        />
-         fuzz
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          disabled=""
-          id="root__3"
-          name="root"
-          required=""
-          type="radio"
-          value="root__3"
-        />
-         qux
-      </label>
-      
-      
-      
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2052,112 +2698,134 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
 exports[`widgets > radio > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            id="root__0"
+            name="root"
+            required=""
+            type="radio"
+            value="root__0"
+          />
+           foo
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            id="root__1"
+            name="root"
+            required=""
+            type="radio"
+            value="root__1"
+          />
+           bar
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            id="root__2"
+            name="root"
+            required=""
+            type="radio"
+            value="root__2"
+          />
+           fuzz
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="true"
+            id="root__3"
+            name="root"
+            required=""
+            type="radio"
+            value="root__3"
+          />
+           qux
+        </label>
+        
+        
+        
+        <!---->
+      </div>
       <!---->
-      <label
-        class="sjsf-radio"
+       
+      <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
       >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="true"
-          id="root__0"
-          name="root"
-          required=""
-          type="radio"
-          value="root__0"
-        />
-         foo
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="true"
-          id="root__1"
-          name="root"
-          required=""
-          type="radio"
-          value="root__1"
-        />
-         bar
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="true"
-          id="root__2"
-          name="root"
-          required=""
-          type="radio"
-          value="root__2"
-        />
-         fuzz
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="true"
-          id="root__3"
-          name="root"
-          required=""
-          type="radio"
-          value="root__3"
-        />
-         qux
-      </label>
+        <li>
+          error
+        </li>
+        
+      </ul>
       
-      
-      
+      <!---->
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2166,100 +2834,122 @@ exports[`widgets > radio > snapshots > error 1`] = `
 exports[`widgets > radio > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="radio"
+            value="root__0"
+          />
+           foo
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="radio"
+            value="root__1"
+          />
+           bar
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="radio"
+            value="root__2"
+          />
+           fuzz
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__3"
+            name="root"
+            required=""
+            type="radio"
+            value="root__3"
+          />
+           qux
+        </label>
+        
+        
+        
+        <!---->
+      </div>
       <!---->
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__0"
-          name="root"
-          required=""
-          type="radio"
-          value="root__0"
-        />
-         foo
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__1"
-          name="root"
-          required=""
-          type="radio"
-          value="root__1"
-        />
-         bar
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__2"
-          name="root"
-          required=""
-          type="radio"
-          value="root__2"
-        />
-         fuzz
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__3"
-          name="root"
-          required=""
-          type="radio"
-          value="root__3"
-        />
-         qux
-      </label>
-      
-      
-      
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2268,104 +2958,126 @@ exports[`widgets > radio > snapshots > normal 1`] = `
 exports[`widgets > radio > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            readonly=""
+            required=""
+            type="radio"
+            value="root__0"
+          />
+           foo
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            readonly=""
+            required=""
+            type="radio"
+            value="root__1"
+          />
+           bar
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            readonly=""
+            required=""
+            type="radio"
+            value="root__2"
+          />
+           fuzz
+        </label>
+        <label
+          class="sjsf-radio"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__3"
+            name="root"
+            readonly=""
+            required=""
+            type="radio"
+            value="root__3"
+          />
+           qux
+        </label>
+        
+        
+        
+        <!---->
+      </div>
       <!---->
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__0"
-          name="root"
-          readonly=""
-          required=""
-          type="radio"
-          value="root__0"
-        />
-         foo
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__1"
-          name="root"
-          readonly=""
-          required=""
-          type="radio"
-          value="root__1"
-        />
-         bar
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__2"
-          name="root"
-          readonly=""
-          required=""
-          type="radio"
-          value="root__2"
-        />
-         fuzz
-      </label>
-      <label
-        class="sjsf-radio"
-      >
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          id="root__3"
-          name="root"
-          readonly=""
-          required=""
-          type="radio"
-          value="root__3"
-        />
-         qux
-      </label>
-      
-      
-      
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2374,53 +3086,76 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
 exports[`widgets > range > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-range"
-        disabled=""
-        id="root"
-        name="root"
-        required=""
-        step="any"
-        type="range"
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-range"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2429,64 +3164,86 @@ exports[`widgets > range > snapshots > disabled 1`] = `
 exports[`widgets > range > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="true"
-        class="sjsf-range"
-        id="root"
-        name="root"
-        required=""
-        step="any"
-        type="range"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="sjsf-range"
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
       
-      
+      <!---->
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2495,52 +3252,74 @@ exports[`widgets > range > snapshots > error 1`] = `
 exports[`widgets > range > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-range"
-        id="root"
-        name="root"
-        required=""
-        step="any"
-        type="range"
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-range"
+          id="root"
+          name="root"
+          required=""
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2549,53 +3328,75 @@ exports[`widgets > range > snapshots > normal 1`] = `
 exports[`widgets > range > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-range"
-        id="root"
-        name="root"
-        readonly=""
-        required=""
-        step="any"
-        type="range"
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-range"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2604,79 +3405,102 @@ exports[`widgets > range > snapshots > readonly 1`] = `
 exports[`widgets > select > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <select
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-select"
-        disabled=""
-        id="root"
-        name="root"
-        required=""
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <option
-          value="-1"
-        >
-          
-        </option>
         <!---->
-        <option
-          value="root__0"
-        >
-          foo
-        </option>
-        <option
-          value="root__1"
-        >
-          bar
-        </option>
-        <option
-          value="root__2"
-        >
-          fuzz
-        </option>
-        <option
-          value="root__3"
-        >
-          qux
-        </option>
         <!---->
-      </select>
-      
-      
+        <select
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-select"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="root__0"
+          >
+            foo
+          </option>
+          <option
+            value="root__1"
+          >
+            bar
+          </option>
+          <option
+            value="root__2"
+          >
+            fuzz
+          </option>
+          <option
+            value="root__3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2685,90 +3509,112 @@ exports[`widgets > select > snapshots > disabled 1`] = `
 exports[`widgets > select > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <select
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="true"
-        class="sjsf-select"
-        id="root"
-        name="root"
-        required=""
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <option
-          value="-1"
-        >
-          
-        </option>
         <!---->
-        <option
-          value="root__0"
-        >
-          foo
-        </option>
-        <option
-          value="root__1"
-        >
-          bar
-        </option>
-        <option
-          value="root__2"
-        >
-          fuzz
-        </option>
-        <option
-          value="root__3"
-        >
-          qux
-        </option>
         <!---->
-      </select>
+        <select
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="sjsf-select"
+          id="root"
+          name="root"
+          required=""
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="root__0"
+          >
+            foo
+          </option>
+          <option
+            value="root__1"
+          >
+            bar
+          </option>
+          <option
+            value="root__2"
+          >
+            fuzz
+          </option>
+          <option
+            value="root__3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
       
-      
+      <!---->
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2777,78 +3623,100 @@ exports[`widgets > select > snapshots > error 1`] = `
 exports[`widgets > select > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <select
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-select"
-        id="root"
-        name="root"
-        required=""
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <option
-          value="-1"
-        >
-          
-        </option>
         <!---->
-        <option
-          value="root__0"
-        >
-          foo
-        </option>
-        <option
-          value="root__1"
-        >
-          bar
-        </option>
-        <option
-          value="root__2"
-        >
-          fuzz
-        </option>
-        <option
-          value="root__3"
-        >
-          qux
-        </option>
         <!---->
-      </select>
-      
-      
+        <select
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-select"
+          id="root"
+          name="root"
+          required=""
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="root__0"
+          >
+            foo
+          </option>
+          <option
+            value="root__1"
+          >
+            bar
+          </option>
+          <option
+            value="root__2"
+          >
+            fuzz
+          </option>
+          <option
+            value="root__3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2857,78 +3725,100 @@ exports[`widgets > select > snapshots > normal 1`] = `
 exports[`widgets > select > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <select
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-select"
-        id="root"
-        name="root"
-        required=""
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
       >
-        <option
-          value="-1"
-        >
-          
-        </option>
         <!---->
-        <option
-          value="root__0"
-        >
-          foo
-        </option>
-        <option
-          value="root__1"
-        >
-          bar
-        </option>
-        <option
-          value="root__2"
-        >
-          fuzz
-        </option>
-        <option
-          value="root__3"
-        >
-          qux
-        </option>
         <!---->
-      </select>
-      
-      
+        <select
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-select"
+          id="root"
+          name="root"
+          required=""
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="root__0"
+          >
+            foo
+          </option>
+          <option
+            value="root__1"
+          >
+            bar
+          </option>
+          <option
+            value="root__2"
+          >
+            fuzz
+          </option>
+          <option
+            value="root__3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2937,56 +3827,79 @@ exports[`widgets > select > snapshots > readonly 1`] = `
 exports[`widgets > text > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-text"
-        disabled=""
-        id="root"
-        name="root"
-        required=""
-        type="text"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-text"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
-      
+       
       <!---->
-      
-      
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2995,67 +3908,89 @@ exports[`widgets > text > snapshots > disabled 1`] = `
 exports[`widgets > text > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="true"
-        class="sjsf-text"
-        id="root"
-        name="root"
-        required=""
-        type="text"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="sjsf-text"
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
       
       <!---->
-      
-      
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -3064,55 +3999,77 @@ exports[`widgets > text > snapshots > error 1`] = `
 exports[`widgets > text > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-text"
-        id="root"
-        name="root"
-        required=""
-        type="text"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-text"
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
-      
+       
       <!---->
-      
-      
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -3121,56 +4078,78 @@ exports[`widgets > text > snapshots > normal 1`] = `
 exports[`widgets > text > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <input
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-text"
-        id="root"
-        name="root"
-        readonly=""
-        required=""
-        type="text"
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-text"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
        
       <!---->
-      
+       
       <!---->
-      
-      
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -3179,51 +4158,74 @@ exports[`widgets > text > snapshots > readonly 1`] = `
 exports[`widgets > textarea > snapshots > disabled 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <textarea
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-textarea"
-        disabled=""
-        id="root"
-        name="root"
-        required=""
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-textarea"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -3232,62 +4234,84 @@ exports[`widgets > textarea > snapshots > disabled 1`] = `
 exports[`widgets > textarea > snapshots > error 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <textarea
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="true"
-        class="sjsf-textarea"
-        id="root"
-        name="root"
-        required=""
-      />
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="sjsf-textarea"
+          id="root"
+          name="root"
+          required=""
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
       
-      
+      <!---->
+       
+      <!---->
       <!---->
     </div>
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
+    <!---->
      
     <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
-  </div>
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -3296,50 +4320,72 @@ exports[`widgets > textarea > snapshots > error 1`] = `
 exports[`widgets > textarea > snapshots > normal 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <textarea
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-textarea"
-        id="root"
-        name="root"
-        required=""
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-textarea"
+          id="root"
+          name="root"
+          required=""
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -3348,51 +4394,73 @@ exports[`widgets > textarea > snapshots > normal 1`] = `
 exports[`widgets > textarea > snapshots > readonly 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="field-content"
+      data-layout="field"
     >
       <!---->
       <!---->
-      <textarea
-        aria-describedby="root__description root__help root__errors"
-        aria-invalid="false"
-        class="sjsf-textarea"
-        id="root"
-        name="root"
-        readonly=""
-        required=""
-      />
-      
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="sjsf-textarea"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>

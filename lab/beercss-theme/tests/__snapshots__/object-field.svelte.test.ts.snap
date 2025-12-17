@@ -1234,11 +1234,95 @@ exports[`object fields > one of defaults > default preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_preset"
+                  >
+                    Preset 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <select
+                aria-describedby="root_preset__description root_preset__help root_preset__errors"
+                aria-invalid="false"
+                id="root_preset"
+                name="root_preset"
+                required=""
+              >
+                <!---->
+                <option
+                  value="root_preset__0"
+                >
+                  Default
+                </option>
+                <option
+                  value="root_preset__1"
+                >
+                  Manual
+                </option>
+                <!---->
+              </select>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
             
             
             <!---->
@@ -1379,11 +1463,100 @@ exports[`object fields > one of defaults > default preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_format"
+                  >
+                    Output format 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <select
+                aria-describedby="root_format__description root_format__help root_format__errors"
+                aria-invalid="false"
+                id="root_format"
+                name="root_format"
+                required=""
+              >
+                <!---->
+                <option
+                  value="root_format__0"
+                >
+                  HTML
+                </option>
+                <option
+                  value="root_format__1"
+                >
+                  XLSX
+                </option>
+                <option
+                  value="root_format__2"
+                >
+                  ASCII
+                </option>
+                <!---->
+              </select>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
             
             
             <!---->
@@ -1742,11 +1915,95 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_preset"
+                  >
+                    Preset 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <select
+                aria-describedby="root_preset__description root_preset__help root_preset__errors"
+                aria-invalid="false"
+                id="root_preset"
+                name="root_preset"
+                required=""
+              >
+                <!---->
+                <option
+                  value="root_preset__0"
+                >
+                  Default
+                </option>
+                <option
+                  value="root_preset__1"
+                >
+                  Manual
+                </option>
+                <!---->
+              </select>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
             
             
             <!---->
@@ -2551,11 +2808,100 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="field border svelte-1fixc4e"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="layout svelte-1fixc4e"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="layout svelte-1fixc4e"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    for="root_format"
+                  >
+                    Output format 
+                    *
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <select
+                aria-describedby="root_format__description root_format__help root_format__errors"
+                aria-invalid="false"
+                id="root_format"
+                name="root_format"
+                required=""
+              >
+                <!---->
+                <option
+                  value="root_format__0"
+                >
+                  HTML
+                </option>
+                <option
+                  value="root_format__1"
+                >
+                  XLSX
+                </option>
+                <option
+                  value="root_format__2"
+                >
+                  ASCII
+                </option>
+                <!---->
+              </select>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
             
             
             <!---->

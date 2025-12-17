@@ -3,54 +3,76 @@
 exports[`array fields > array 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-items"
+      data-layout="array-field"
     >
       <!---->
       <!---->
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="sjsf-button"
+        data-type="array-item-add"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
       
       <!---->
+       
+      <!---->
+      <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
     <button
-      class="sjsf-button"
-      data-type="array-item-add"
-      type="button"
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      Add item
+      Submit
       
       <!---->
     </button>
     
     <!---->
-     
     <!---->
-    <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -59,71 +81,82 @@ exports[`array fields > array 1`] = `
 exports[`array fields > array icons 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-items"
+      data-layout="array-field"
     >
       <!---->
       <!---->
-      <!---->
-      <!---->
-      <!---->
+       
       <div
         class="sjsf-layout"
-        data-layout="array-item"
+        data-layout="array-items"
       >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
         <!---->
         <div
           class="sjsf-layout"
-          data-layout="array-item-content"
+          data-layout="array-item"
         >
-          <!---->
-          <!---->
-          <!---->
           <!---->
           <div
             class="sjsf-layout"
-            data-layout="field"
+            data-layout="array-item-content"
           >
+            <!---->
+            <!---->
             <!---->
             <!---->
             <div
               class="sjsf-layout"
-              data-layout="field-meta"
+              data-layout="field"
             >
               <!---->
               <!---->
               <div
                 class="sjsf-layout"
-                data-layout="field-title-row"
+                data-layout="field-meta"
               >
                 <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_0"
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
                 >
-                  -1 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="sjsf-label"
+                    for="root_0"
+                  >
+                    -1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
                 <!---->
                  
                 <!---->
@@ -132,164 +165,164 @@ exports[`array fields > array icons 1`] = `
               
               <!---->
                
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_0"
+                  name="root_0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
               <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_0__description root_0__help root_0__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_0"
-                name="root_0"
-                required=""
-                type="text"
-              />
                
               <!---->
-              
+               
               <!---->
-              
-              
               <!---->
             </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
+            
+            
+            
+            
             <!---->
           </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-controls"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-up"
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
           <!---->
            
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-down"
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-copy"
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-remove"
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
-          <!---->
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
           <!---->
           <div
             class="sjsf-layout"
-            data-layout="field"
+            data-layout="array-item-controls"
           >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-up"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-down"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-copy"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-remove"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
             <!---->
             <!---->
             <div
               class="sjsf-layout"
-              data-layout="field-meta"
+              data-layout="field"
             >
               <!---->
               <!---->
               <div
                 class="sjsf-layout"
-                data-layout="field-title-row"
+                data-layout="field-meta"
               >
                 <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_1"
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
                 >
-                  -2 
-                  <span>
-                    *
-                  </span>
                   <!---->
-                </label>
+                  <label
+                    class="sjsf-label"
+                    for="root_1"
+                  >
+                    -2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
                 <!---->
                  
                 <!---->
@@ -298,147 +331,158 @@ exports[`array fields > array icons 1`] = `
               
               <!---->
                
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_1"
+                  name="root_1"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
               <!---->
               <!---->
             </div>
             
+            
+            
+            
             <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-up"
+              type="button"
             >
               <!---->
-              <!---->
-              <input
-                aria-describedby="root_1__description root_1__help root_1__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_1"
-                name="root_1"
-                required=""
-                type="text"
-              />
-               
-              <!---->
+              Up
               
               <!---->
-              
+            </button>
+            <!---->
+             
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-down"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
               
               <!---->
-            </div>
+            </button>
+            <!---->
             <!---->
              
             <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-copy"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
              
             <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-remove"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
             <!---->
           </div>
           
-          
-          
-          
           <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-controls"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-up"
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
-          <!---->
-           
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-down"
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-copy"
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-remove"
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
           <!---->
         </div>
         
-        <!---->
+        
+        
+        
+        
         <!---->
       </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="sjsf-button"
+        data-type="array-item-add"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
       
-      
-      
-      
-      
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
     <button
-      class="sjsf-button"
-      data-type="array-item-add"
-      type="button"
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      Add item
+      Submit
       
       <!---->
     </button>
     
     <!---->
-     
     <!---->
-    <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -447,19 +491,108 @@ exports[`array fields > array icons 1`] = `
 exports[`array fields > checkboxes 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <pre
-    style="color: red;"
+  <form
+    class="sjsf-form"
   >
-    "multiEnumField" component not found
-  </pre>
-  <!---->
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="sjsf-layout"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           a
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           b
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           c
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
   
   
 </div>
@@ -468,70 +601,81 @@ exports[`array fields > checkboxes 1`] = `
 exports[`array fields > empty errors array 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="object-field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="object-properties"
+      data-layout="object-field"
     >
       <!---->
       <!---->
-      <!---->
-      <!---->
-      <!---->
+       
       <div
         class="sjsf-layout"
-        data-layout="object-property"
+        data-layout="object-properties"
       >
         <!---->
         <!---->
-         
+        <!---->
+        <!---->
+        <!---->
         <div
           class="sjsf-layout"
-          data-layout="object-property-content"
+          data-layout="object-property"
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
+           
           <div
             class="sjsf-layout"
-            data-layout="field"
+            data-layout="object-property-content"
           >
+            <!---->
+            <!---->
             <!---->
             <!---->
             <div
               class="sjsf-layout"
-              data-layout="field-meta"
+              data-layout="field"
             >
               <!---->
               <!---->
               <div
                 class="sjsf-layout"
-                data-layout="field-title-row"
+                data-layout="field-meta"
               >
                 <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_name"
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
                 >
-                  name 
                   <!---->
-                </label>
+                  <label
+                    class="sjsf-label"
+                    for="root_name"
+                  >
+                    name 
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
                 <!---->
                  
                 <!---->
@@ -540,81 +684,92 @@ exports[`array fields > empty errors array 1`] = `
               
               <!---->
                
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_name__description root_name__help root_name__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_name"
+                  name="root_name"
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
               <!---->
               <!---->
             </div>
             
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_name__description root_name__help root_name__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_name"
-                name="root_name"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
+            
+            
+            
             <!---->
           </div>
-          
-          
-          
-          
+          <!---->
+           
+          <!---->
           <!---->
         </div>
-        <!---->
-         
-        <!---->
+        
+        
+        
+        
+        
         <!---->
       </div>
-      
-      
-      
-      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <ul
+        class="sjsf-errors-list"
+        id="root__errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
       
       <!---->
+      <!---->
     </div>
-    <!---->
-     
-    <!---->
-     
-    <!---->
-    <ul
-      class="sjsf-errors-list"
-      id="root__errors"
-      tabindex="-1"
-    >
-      <li>
-        error
-      </li>
-      
-    </ul>
+    
     
     <!---->
     <!---->
-  </div>
+     
+    <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -623,177 +778,199 @@ exports[`array fields > empty errors array 1`] = `
 exports[`array fields > fixed array 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-items"
+      data-layout="array-field"
     >
       <!---->
       <!---->
-      <!---->
-      <!---->
-      <!---->
+       
       <div
         class="sjsf-layout"
-        data-layout="array-item"
+        data-layout="array-items"
       >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
         <!---->
         <div
           class="sjsf-layout"
-          data-layout="array-item-content"
+          data-layout="array-item"
         >
-          <!---->
-          <!---->
-          <!---->
           <!---->
           <div
             class="sjsf-layout"
-            data-layout="field"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
-             
+            <!---->
+            <!---->
             <div
               class="sjsf-layout"
-              data-layout="field-content"
+              data-layout="field"
             >
               <!---->
               <!---->
-              <input
-                aria-describedby="root_0__description root_0__help root_0__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_0"
-                name="root_0"
-                required=""
-                type="text"
-              />
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_0"
+                  name="root_0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
                
               <!---->
-              
+               
               <!---->
-              
-              
               <!---->
             </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
+            
+            
+            
+            
             <!---->
           </div>
-          
-          
-          
-          
+          <!---->
+           
+          <!---->
           <!---->
         </div>
+        
+        
+        
         <!---->
-         
         <!---->
-        <!---->
-      </div>
-      
-      
-      
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
         <!---->
         <div
           class="sjsf-layout"
-          data-layout="array-item-content"
+          data-layout="array-item"
         >
-          <!---->
-          <!---->
-          <!---->
           <!---->
           <div
             class="sjsf-layout"
-            data-layout="field"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
-             
+            <!---->
+            <!---->
             <div
               class="sjsf-layout"
-              data-layout="field-content"
+              data-layout="field"
             >
               <!---->
               <!---->
-              <input
-                aria-describedby="root_1__description root_1__help root_1__errors"
-                aria-invalid="false"
-                class="sjsf-number"
-                id="root_1"
-                name="root_1"
-                required=""
-                step="any"
-                type="number"
-              />
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="sjsf-number"
+                  id="root_1"
+                  name="root_1"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
                
               <!---->
-              
+               
               <!---->
-              
-              
               <!---->
             </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
+            
+            
+            
+            
             <!---->
           </div>
-          
-          
-          
-          
+          <!---->
+           
+          <!---->
           <!---->
         </div>
-        <!---->
-         
-        <!---->
+        
+        
+        
+        
+        
         <!---->
       </div>
-      
-      
-      
-      
-      
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -802,94 +979,116 @@ exports[`array fields > fixed array 1`] = `
 exports[`with title and description > array 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-field-meta"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
         class="sjsf-layout"
-        data-layout="array-field-title-row"
+        data-layout="array-field-meta"
       >
         <!---->
-        <legend
-          class="sjsf-title"
-          data-template="arrayTemplate"
-          id="root__title"
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-field-title-row"
         >
-          Test field 
           <!---->
-        </legend>
+          <legend
+            class="sjsf-title"
+            data-template="arrayTemplate"
+            id="root__title"
+          >
+            Test field 
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
         <!---->
          
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a test description
+        </div>
+        
         <!---->
         <!---->
       </div>
       
       <!---->
        
-      <!---->
       <div
-        class="sjsf-description"
-        id="root__description"
+        class="sjsf-layout"
+        data-layout="array-items"
       >
-        a test description
+        <!---->
+        <!---->
+        
+        
+        <!---->
       </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="sjsf-button"
+        data-type="array-item-add"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
       
+      <!---->
+       
       <!---->
       <!---->
     </div>
     
+    
     <!---->
-     
-    <div
-      class="sjsf-layout"
-      data-layout="array-items"
-    >
-      <!---->
-      <!---->
-      
-      
-      <!---->
-    </div>
     <!---->
      
     <!---->
     <button
-      class="sjsf-button"
-      data-type="array-item-add"
-      type="button"
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      Add item
+      Submit
       
       <!---->
     </button>
     
     <!---->
-     
     <!---->
-    <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -898,442 +1097,464 @@ exports[`with title and description > array 1`] = `
 exports[`with title and description > array icons 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-field-meta"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
         class="sjsf-layout"
-        data-layout="array-field-title-row"
+        data-layout="array-field-meta"
       >
         <!---->
-        <legend
-          class="sjsf-title"
-          data-template="arrayTemplate"
-          id="root__title"
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-field-title-row"
         >
-          Test field 
           <!---->
-        </legend>
+          <legend
+            class="sjsf-title"
+            data-template="arrayTemplate"
+            id="root__title"
+          >
+            Test field 
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
         <!---->
          
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a test description
+        </div>
+        
         <!---->
         <!---->
       </div>
       
       <!---->
        
-      <!---->
       <div
-        class="sjsf-description"
-        id="root__description"
+        class="sjsf-layout"
+        data-layout="array-items"
       >
-        a test description
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_0"
+                  >
+                    Test item-1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_0__description"
+                >
+                  a test item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_0"
+                  name="root_0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-up"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-down"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-copy"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-remove"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_1"
+                  >
+                    Test item-2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_1__description"
+                >
+                  a test item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_1"
+                  name="root_1"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-up"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-down"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-copy"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-remove"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
       </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="sjsf-button"
+        data-type="array-item-add"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
       
+      <!---->
+       
       <!---->
       <!---->
     </div>
     
+    
     <!---->
-     
-    <div
-      class="sjsf-layout"
-      data-layout="array-items"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_0"
-                >
-                  Test item-1 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_0__description"
-              >
-                a test item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_0__description root_0__help root_0__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_0"
-                name="root_0"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-controls"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-up"
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
-          <!---->
-           
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-down"
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-copy"
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-remove"
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
-          <!---->
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_1"
-                >
-                  Test item-2 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_1__description"
-              >
-                a test item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_1__description root_1__help root_1__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_1"
-                name="root_1"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-controls"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-up"
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
-          <!---->
-           
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-down"
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-copy"
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-remove"
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
-          <!---->
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      
-      
-      <!---->
-    </div>
     <!---->
      
     <!---->
     <button
-      class="sjsf-button"
-      data-type="array-item-add"
-      type="button"
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      Add item
+      Submit
       
       <!---->
     </button>
     
     <!---->
-     
     <!---->
-    <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1342,19 +1563,149 @@ exports[`with title and description > array icons 1`] = `
 exports[`with title and description > checkboxes 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <pre
-    style="color: red;"
+  <form
+    class="sjsf-form"
   >
-    "multiEnumField" component not found
-  </pre>
-  <!---->
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="sjsf-layout"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+      <div
+        class="sjsf-layout"
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="field-title-row"
+        >
+          <!---->
+          <legend
+            class="sjsf-title"
+            data-template="fieldTemplate"
+            id="root__title"
+          >
+            Test field 
+            *
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           a
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           b
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           c
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
   
   
 </div>
@@ -1363,301 +1714,323 @@ exports[`with title and description > checkboxes 1`] = `
 exports[`with title and description > fixed array 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-field-meta"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
         class="sjsf-layout"
-        data-layout="array-field-title-row"
+        data-layout="array-field-meta"
       >
         <!---->
-        <legend
-          class="sjsf-title"
-          data-template="arrayTemplate"
-          id="root__title"
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-field-title-row"
         >
-          Test field 
           <!---->
-        </legend>
+          <legend
+            class="sjsf-title"
+            data-template="arrayTemplate"
+            id="root__title"
+          >
+            Test field 
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
         <!---->
          
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a test description
+        </div>
+        
         <!---->
         <!---->
       </div>
       
       <!---->
        
-      <!---->
       <div
-        class="sjsf-description"
-        id="root__description"
+        class="sjsf-layout"
+        data-layout="array-items"
       >
-        a test description
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_0"
+                  >
+                    Test item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_0__description"
+                >
+                  a test item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_0"
+                  name="root_0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_1"
+                  >
+                    Test item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_1__description"
+                >
+                  a test item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="sjsf-number"
+                  id="root_1"
+                  name="root_1"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
       </div>
-      
+      <!---->
+       
+      <!---->
+       
       <!---->
       <!---->
     </div>
     
+    
+    <!---->
     <!---->
      
-    <div
-      class="sjsf-layout"
-      data-layout="array-items"
+    <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_0"
-                >
-                  Test item 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_0__description"
-              >
-                a test item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_0__description root_0__help root_0__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_0"
-                name="root_0"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <!---->
-      </div>
-      
-      
+      Submit
       
       <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_1"
-                >
-                  Test item 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_1__description"
-              >
-                a test item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_1__description root_1__help root_1__errors"
-                aria-invalid="false"
-                class="sjsf-number"
-                id="root_1"
-                name="root_1"
-                required=""
-                step="any"
-                type="number"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      
-      
-      <!---->
-    </div>
-    <!---->
-     
-    <!---->
-     
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1666,94 +2039,116 @@ exports[`with title and description > fixed array 1`] = `
 exports[`with title and description from both > array 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-field-meta"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
         class="sjsf-layout"
-        data-layout="array-field-title-row"
+        data-layout="array-field-meta"
       >
         <!---->
-        <legend
-          class="sjsf-title"
-          data-template="arrayTemplate"
-          id="root__title"
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-field-title-row"
         >
-          My Field 
           <!---->
-        </legend>
+          <legend
+            class="sjsf-title"
+            data-template="arrayTemplate"
+            id="root__title"
+          >
+            My Field 
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
         <!---->
          
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
         <!---->
         <!---->
       </div>
       
       <!---->
        
-      <!---->
       <div
-        class="sjsf-description"
-        id="root__description"
+        class="sjsf-layout"
+        data-layout="array-items"
       >
-        a fancier description
+        <!---->
+        <!---->
+        
+        
+        <!---->
       </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="sjsf-button"
+        data-type="array-item-add"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
       
+      <!---->
+       
       <!---->
       <!---->
     </div>
     
+    
     <!---->
-     
-    <div
-      class="sjsf-layout"
-      data-layout="array-items"
-    >
-      <!---->
-      <!---->
-      
-      
-      <!---->
-    </div>
     <!---->
      
     <!---->
     <button
-      class="sjsf-button"
-      data-type="array-item-add"
-      type="button"
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      Add item
+      Submit
       
       <!---->
     </button>
     
     <!---->
-     
     <!---->
-    <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -1762,442 +2157,464 @@ exports[`with title and description from both > array 1`] = `
 exports[`with title and description from both > array icons 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-field-meta"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
         class="sjsf-layout"
-        data-layout="array-field-title-row"
+        data-layout="array-field-meta"
       >
         <!---->
-        <legend
-          class="sjsf-title"
-          data-template="arrayTemplate"
-          id="root__title"
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-field-title-row"
         >
-          My Field 
           <!---->
-        </legend>
+          <legend
+            class="sjsf-title"
+            data-template="arrayTemplate"
+            id="root__title"
+          >
+            My Field 
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
         <!---->
          
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
         <!---->
         <!---->
       </div>
       
       <!---->
        
-      <!---->
       <div
-        class="sjsf-description"
-        id="root__description"
+        class="sjsf-layout"
+        data-layout="array-items"
       >
-        a fancier description
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_0"
+                  >
+                    My Item-1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_0__description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_0"
+                  name="root_0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-up"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-down"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-copy"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-remove"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_1"
+                  >
+                    My Item-2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_1__description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_1"
+                  name="root_1"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-up"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-down"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-copy"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-remove"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
       </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="sjsf-button"
+        data-type="array-item-add"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
       
+      <!---->
+       
       <!---->
       <!---->
     </div>
     
+    
     <!---->
-     
-    <div
-      class="sjsf-layout"
-      data-layout="array-items"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_0"
-                >
-                  My Item-1 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_0__description"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_0__description root_0__help root_0__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_0"
-                name="root_0"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-controls"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-up"
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
-          <!---->
-           
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-down"
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-copy"
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-remove"
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
-          <!---->
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_1"
-                >
-                  My Item-2 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_1__description"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_1__description root_1__help root_1__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_1"
-                name="root_1"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-controls"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-up"
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
-          <!---->
-           
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-down"
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-copy"
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-remove"
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
-          <!---->
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      
-      
-      <!---->
-    </div>
     <!---->
      
     <!---->
     <button
-      class="sjsf-button"
-      data-type="array-item-add"
-      type="button"
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      Add item
+      Submit
       
       <!---->
     </button>
     
     <!---->
-     
     <!---->
-    <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2206,19 +2623,149 @@ exports[`with title and description from both > array icons 1`] = `
 exports[`with title and description from both > checkboxes 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <pre
-    style="color: red;"
+  <form
+    class="sjsf-form"
   >
-    "multiEnumField" component not found
-  </pre>
-  <!---->
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="sjsf-layout"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+      <div
+        class="sjsf-layout"
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="field-title-row"
+        >
+          <!---->
+          <legend
+            class="sjsf-title"
+            data-template="fieldTemplate"
+            id="root__title"
+          >
+            My Field 
+            *
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           a
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           b
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           c
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
   
   
 </div>
@@ -2227,301 +2774,323 @@ exports[`with title and description from both > checkboxes 1`] = `
 exports[`with title and description from both > fixed array 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-field-meta"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
         class="sjsf-layout"
-        data-layout="array-field-title-row"
+        data-layout="array-field-meta"
       >
         <!---->
-        <legend
-          class="sjsf-title"
-          data-template="arrayTemplate"
-          id="root__title"
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-field-title-row"
         >
-          My Field 
           <!---->
-        </legend>
+          <legend
+            class="sjsf-title"
+            data-template="arrayTemplate"
+            id="root__title"
+          >
+            My Field 
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
         <!---->
          
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
         <!---->
         <!---->
       </div>
       
       <!---->
        
-      <!---->
       <div
-        class="sjsf-description"
-        id="root__description"
+        class="sjsf-layout"
+        data-layout="array-items"
       >
-        a fancier description
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_0"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_0__description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_0"
+                  name="root_0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_1"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_1__description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="sjsf-number"
+                  id="root_1"
+                  name="root_1"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
       </div>
-      
+      <!---->
+       
+      <!---->
+       
       <!---->
       <!---->
     </div>
     
+    
+    <!---->
     <!---->
      
-    <div
-      class="sjsf-layout"
-      data-layout="array-items"
+    <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_0"
-                >
-                  My Item 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_0__description"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_0__description root_0__help root_0__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_0"
-                name="root_0"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <!---->
-      </div>
-      
-      
+      Submit
       
       <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_1"
-                >
-                  My Item 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_1__description"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_1__description root_1__help root_1__errors"
-                aria-invalid="false"
-                class="sjsf-number"
-                id="root_1"
-                name="root_1"
-                required=""
-                step="any"
-                type="number"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      
-      
-      <!---->
-    </div>
-    <!---->
-     
-    <!---->
-     
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2530,94 +3099,116 @@ exports[`with title and description from both > fixed array 1`] = `
 exports[`with title and description from uiSchema > array 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-field-meta"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
         class="sjsf-layout"
-        data-layout="array-field-title-row"
+        data-layout="array-field-meta"
       >
         <!---->
-        <legend
-          class="sjsf-title"
-          data-template="arrayTemplate"
-          id="root__title"
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-field-title-row"
         >
-          My Field 
           <!---->
-        </legend>
+          <legend
+            class="sjsf-title"
+            data-template="arrayTemplate"
+            id="root__title"
+          >
+            My Field 
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
         <!---->
          
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
         <!---->
         <!---->
       </div>
       
       <!---->
        
-      <!---->
       <div
-        class="sjsf-description"
-        id="root__description"
+        class="sjsf-layout"
+        data-layout="array-items"
       >
-        a fancier description
+        <!---->
+        <!---->
+        
+        
+        <!---->
       </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="sjsf-button"
+        data-type="array-item-add"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
       
+      <!---->
+       
       <!---->
       <!---->
     </div>
     
+    
     <!---->
-     
-    <div
-      class="sjsf-layout"
-      data-layout="array-items"
-    >
-      <!---->
-      <!---->
-      
-      
-      <!---->
-    </div>
     <!---->
      
     <!---->
     <button
-      class="sjsf-button"
-      data-type="array-item-add"
-      type="button"
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      Add item
+      Submit
       
       <!---->
     </button>
     
     <!---->
-     
     <!---->
-    <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -2626,442 +3217,464 @@ exports[`with title and description from uiSchema > array 1`] = `
 exports[`with title and description from uiSchema > array icons 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-field-meta"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
         class="sjsf-layout"
-        data-layout="array-field-title-row"
+        data-layout="array-field-meta"
       >
         <!---->
-        <legend
-          class="sjsf-title"
-          data-template="arrayTemplate"
-          id="root__title"
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-field-title-row"
         >
-          My Field 
           <!---->
-        </legend>
+          <legend
+            class="sjsf-title"
+            data-template="arrayTemplate"
+            id="root__title"
+          >
+            My Field 
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
         <!---->
          
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
         <!---->
         <!---->
       </div>
       
       <!---->
        
-      <!---->
       <div
-        class="sjsf-description"
-        id="root__description"
+        class="sjsf-layout"
+        data-layout="array-items"
       >
-        a fancier description
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_0"
+                  >
+                    My Item-1 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_0__description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_0"
+                  name="root_0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-up"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-down"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-copy"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-remove"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_1"
+                  >
+                    My Item-2 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_1__description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_1"
+                  name="root_1"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-up"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-down"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-copy"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-remove"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
       </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="sjsf-button"
+        data-type="array-item-add"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
       
+      <!---->
+       
       <!---->
       <!---->
     </div>
     
+    
     <!---->
-     
-    <div
-      class="sjsf-layout"
-      data-layout="array-items"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_0"
-                >
-                  My Item-1 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_0__description"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_0__description root_0__help root_0__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_0"
-                name="root_0"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-controls"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-up"
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
-          <!---->
-           
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-down"
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-copy"
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-remove"
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
-          <!---->
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_1"
-                >
-                  My Item-2 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_1__description"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_1__description root_1__help root_1__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_1"
-                name="root_1"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-controls"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-up"
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
-          <!---->
-           
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-down"
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-copy"
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-remove"
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
-          <!---->
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      
-      
-      <!---->
-    </div>
     <!---->
      
     <!---->
     <button
-      class="sjsf-button"
-      data-type="array-item-add"
-      type="button"
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      Add item
+      Submit
       
       <!---->
     </button>
     
     <!---->
-     
     <!---->
-    <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -3070,19 +3683,149 @@ exports[`with title and description from uiSchema > array icons 1`] = `
 exports[`with title and description from uiSchema > checkboxes 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <pre
-    style="color: red;"
+  <form
+    class="sjsf-form"
   >
-    "multiEnumField" component not found
-  </pre>
-  <!---->
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="sjsf-layout"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+      <div
+        class="sjsf-layout"
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="field-title-row"
+        >
+          <!---->
+          <legend
+            class="sjsf-title"
+            data-template="fieldTemplate"
+            id="root__title"
+          >
+            My Field 
+            *
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           a
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           b
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           c
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
   
   
 </div>
@@ -3091,301 +3834,323 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
 exports[`with title and description from uiSchema > fixed array 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
     <!---->
     <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-field-meta"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
         class="sjsf-layout"
-        data-layout="array-field-title-row"
+        data-layout="array-field-meta"
       >
         <!---->
-        <legend
-          class="sjsf-title"
-          data-template="arrayTemplate"
-          id="root__title"
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-field-title-row"
         >
-          My Field 
           <!---->
-        </legend>
+          <legend
+            class="sjsf-title"
+            data-template="arrayTemplate"
+            id="root__title"
+          >
+            My Field 
+            <!---->
+          </legend>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
         <!---->
          
+        <!---->
+        <div
+          class="sjsf-description"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
         <!---->
         <!---->
       </div>
       
       <!---->
        
-      <!---->
       <div
-        class="sjsf-description"
-        id="root__description"
+        class="sjsf-layout"
+        data-layout="array-items"
       >
-        a fancier description
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_0"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_0__description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_0"
+                  name="root_0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <label
+                    class="sjsf-label"
+                    for="root_1"
+                  >
+                    My Item 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                  </label>
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="sjsf-description"
+                  id="root_1__description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="sjsf-number"
+                  id="root_1"
+                  name="root_1"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
       </div>
-      
+      <!---->
+       
+      <!---->
+       
       <!---->
       <!---->
     </div>
     
+    
+    <!---->
     <!---->
      
-    <div
-      class="sjsf-layout"
-      data-layout="array-items"
+    <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_0"
-                >
-                  My Item 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_0__description"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_0__description root_0__help root_0__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_0"
-                name="root_0"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <!---->
-      </div>
-      
-      
+      Submit
       
       <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="sjsf-layout"
-            data-layout="field"
-          >
-            <!---->
-            <!---->
-            <div
-              class="sjsf-layout"
-              data-layout="field-meta"
-            >
-              <!---->
-              <!---->
-              <div
-                class="sjsf-layout"
-                data-layout="field-title-row"
-              >
-                <!---->
-                <label
-                  class="sjsf-label"
-                  for="root_1"
-                >
-                  My Item 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <!---->
-              <div
-                class="sjsf-description"
-                id="root_1__description"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root_1__description root_1__help root_1__errors"
-                aria-invalid="false"
-                class="sjsf-number"
-                id="root_1"
-                name="root_1"
-                required=""
-                step="any"
-                type="number"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      
-      
-      <!---->
-    </div>
-    <!---->
-     
-    <!---->
-     
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -3394,54 +4159,76 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
 exports[`with title and description with global label off > array 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-items"
+      data-layout="array-field"
     >
       <!---->
       <!---->
-      
+       
+      <div
+        class="sjsf-layout"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="sjsf-button"
+        data-type="array-item-add"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
       
       <!---->
+       
+      <!---->
+      <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
     <button
-      class="sjsf-button"
-      data-type="array-item-add"
-      type="button"
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      Add item
+      Submit
       
       <!---->
     </button>
     
     <!---->
-     
     <!---->
-    <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -3450,318 +4237,340 @@ exports[`with title and description with global label off > array 1`] = `
 exports[`with title and description with global label off > array icons 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-items"
+      data-layout="array-field"
     >
       <!---->
       <!---->
-      <!---->
-      <!---->
-      <!---->
+       
       <div
         class="sjsf-layout"
-        data-layout="array-item"
+        data-layout="array-items"
       >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
         <!---->
         <div
           class="sjsf-layout"
-          data-layout="array-item-content"
+          data-layout="array-item"
         >
-          <!---->
-          <!---->
-          <!---->
           <!---->
           <div
             class="sjsf-layout"
-            data-layout="field"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
-             
+            <!---->
+            <!---->
             <div
               class="sjsf-layout"
-              data-layout="field-content"
+              data-layout="field"
             >
               <!---->
               <!---->
-              <input
-                aria-describedby="root_0__description root_0__help root_0__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_0"
-                name="root_0"
-                required=""
-                type="text"
-              />
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_0"
+                  name="root_0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
                
               <!---->
-              
+               
               <!---->
-              
-              
               <!---->
             </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
+            
+            
+            
+            
             <!---->
           </div>
-          
-          
-          
-          
-          <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-controls"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-up"
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
           <!---->
            
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-down"
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-copy"
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-remove"
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
-          <!---->
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-content"
-        >
-          <!---->
-          <!---->
-          <!---->
           <!---->
           <div
             class="sjsf-layout"
-            data-layout="field"
+            data-layout="array-item-controls"
           >
             <!---->
             <!---->
-             
-            <div
-              class="sjsf-layout"
-              data-layout="field-content"
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-up"
+              disabled=""
+              type="button"
             >
               <!---->
-              <!---->
-              <input
-                aria-describedby="root_1__description root_1__help root_1__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_1"
-                name="root_1"
-                required=""
-                type="text"
-              />
-               
-              <!---->
+              Up
               
               <!---->
-              
+            </button>
+            <!---->
+             
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-down"
+              type="button"
+            >
+              <!---->
+              Down
               
               <!---->
-            </div>
+            </button>
+            <!---->
             <!---->
              
             <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-copy"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
              
             <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-remove"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
             <!---->
           </div>
           
-          
-          
-          
           <!---->
-        </div>
-        <!---->
-         
-        <!---->
-        <div
-          class="sjsf-layout"
-          data-layout="array-item-controls"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-up"
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
-          <!---->
-           
-          <button
-            class="sjsf-button"
-            data-type="array-item-move-down"
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-copy"
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            class="sjsf-button"
-            data-type="array-item-remove"
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
           <!---->
         </div>
         
+        
+        
         <!---->
+        <!---->
+        <!---->
+        <div
+          class="sjsf-layout"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="sjsf-layout"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_1"
+                  name="root_1"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-up"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="sjsf-button"
+              data-type="array-item-move-down"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-copy"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="sjsf-button"
+              data-type="array-item-remove"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
         <!---->
       </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="sjsf-button"
+        data-type="array-item-add"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
       
-      
-      
-      
-      
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
     <button
-      class="sjsf-button"
-      data-type="array-item-add"
-      type="button"
+      class="sjsf-submit-button"
+      type="submit"
     >
       <!---->
-      Add item
+      Submit
       
       <!---->
     </button>
     
     <!---->
-     
     <!---->
-    <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>
@@ -3770,19 +4579,108 @@ exports[`with title and description with global label off > array icons 1`] = `
 exports[`with title and description with global label off > checkboxes 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <pre
-    style="color: red;"
+  <form
+    class="sjsf-form"
   >
-    "multiEnumField" component not found
-  </pre>
-  <!---->
+    <!---->
+    <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
+     
+    <!---->
+    <!---->
+    <div
+      class="sjsf-layout"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="sjsf-layout"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           a
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           b
+        </label>
+        <label
+          class="sjsf-checkboxes"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           c
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+    <!---->
+     
+    <!---->
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
   
   
 </div>
@@ -3791,177 +4689,199 @@ exports[`with title and description with global label off > checkboxes 1`] = `
 exports[`with title and description with global label off > fixed array 1`] = `
 <div>
   <!---->
-  <input
-    name="__sjsf_id_prefix"
-    type="hidden"
-    value="root"
-  />
-  <!---->
-   
-  <!---->
-  <!---->
-  <div
-    class="sjsf-layout"
-    data-layout="array-field"
+  <form
+    class="sjsf-form"
   >
     <!---->
     <!---->
+    <input
+      name="__sjsf_id_prefix"
+      type="hidden"
+      value="root"
+    />
+    <!---->
      
+    <!---->
+    <!---->
     <div
       class="sjsf-layout"
-      data-layout="array-items"
+      data-layout="array-field"
     >
       <!---->
       <!---->
-      <!---->
-      <!---->
-      <!---->
+       
       <div
         class="sjsf-layout"
-        data-layout="array-item"
+        data-layout="array-items"
       >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
         <!---->
         <div
           class="sjsf-layout"
-          data-layout="array-item-content"
+          data-layout="array-item"
         >
-          <!---->
-          <!---->
-          <!---->
           <!---->
           <div
             class="sjsf-layout"
-            data-layout="field"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
-             
+            <!---->
+            <!---->
             <div
               class="sjsf-layout"
-              data-layout="field-content"
+              data-layout="field"
             >
               <!---->
               <!---->
-              <input
-                aria-describedby="root_0__description root_0__help root_0__errors"
-                aria-invalid="false"
-                class="sjsf-text"
-                id="root_0"
-                name="root_0"
-                required=""
-                type="text"
-              />
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_0__description root_0__help root_0__errors"
+                  aria-invalid="false"
+                  class="sjsf-text"
+                  id="root_0"
+                  name="root_0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
                
               <!---->
-              
+               
               <!---->
-              
-              
               <!---->
             </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
+            
+            
+            
+            
             <!---->
           </div>
-          
-          
-          
-          
+          <!---->
+           
+          <!---->
           <!---->
         </div>
+        
+        
+        
         <!---->
-         
         <!---->
-        <!---->
-      </div>
-      
-      
-      
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="sjsf-layout"
-        data-layout="array-item"
-      >
         <!---->
         <div
           class="sjsf-layout"
-          data-layout="array-item-content"
+          data-layout="array-item"
         >
-          <!---->
-          <!---->
-          <!---->
           <!---->
           <div
             class="sjsf-layout"
-            data-layout="field"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
-             
+            <!---->
+            <!---->
             <div
               class="sjsf-layout"
-              data-layout="field-content"
+              data-layout="field"
             >
               <!---->
               <!---->
-              <input
-                aria-describedby="root_1__description root_1__help root_1__errors"
-                aria-invalid="false"
-                class="sjsf-number"
-                id="root_1"
-                name="root_1"
-                required=""
-                step="any"
-                type="number"
-              />
+               
+              <div
+                class="sjsf-layout"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root_1__description root_1__help root_1__errors"
+                  aria-invalid="false"
+                  class="sjsf-number"
+                  id="root_1"
+                  name="root_1"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
                
               <!---->
-              
+               
               <!---->
-              
-              
               <!---->
             </div>
-            <!---->
-             
-            <!---->
-             
-            <!---->
+            
+            
+            
+            
             <!---->
           </div>
-          
-          
-          
-          
+          <!---->
+           
+          <!---->
           <!---->
         </div>
-        <!---->
-         
-        <!---->
+        
+        
+        
+        
+        
         <!---->
       </div>
-      
-      
-      
-      
-      
+      <!---->
+       
+      <!---->
+       
+      <!---->
       <!---->
     </div>
+    
+    
+    <!---->
     <!---->
      
     <!---->
-     
+    <button
+      class="sjsf-submit-button"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
     <!---->
     <!---->
-  </div>
+  </form>
   
-  
-  <!---->
   
   
 </div>

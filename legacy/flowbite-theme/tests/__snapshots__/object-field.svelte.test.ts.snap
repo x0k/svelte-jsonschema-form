@@ -1329,11 +1329,104 @@ exports[`object fields > one of defaults > default preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
+                    for="root_preset"
+                  >
+                    Preset 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <select
+                  aria-describedby="root_preset__description root_preset__help root_preset__errors"
+                  aria-invalid="false"
+                  class="block w-full text-gray-900 disabled:text-gray-400 bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm p-2.5"
+                  id="root_preset"
+                  name="root_preset"
+                  required=""
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                   
+                  <option
+                    value="root_preset__0"
+                  >
+                    Default
+                  </option>
+                  <option
+                    value="root_preset__1"
+                  >
+                    Manual
+                  </option>
+                  <!---->
+                  
+                  <!---->
+                </select>
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
             
             
             <!---->
@@ -1472,11 +1565,109 @@ exports[`object fields > one of defaults > default preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
+                    for="root_format"
+                  >
+                    Output format 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <select
+                  aria-describedby="root_format__description root_format__help root_format__errors"
+                  aria-invalid="false"
+                  class="block w-full text-gray-900 disabled:text-gray-400 bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm p-2.5"
+                  id="root_format"
+                  name="root_format"
+                  required=""
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                   
+                  <option
+                    value="root_format__0"
+                  >
+                    HTML
+                  </option>
+                  <option
+                    value="root_format__1"
+                  >
+                    XLSX
+                  </option>
+                  <option
+                    value="root_format__2"
+                  >
+                    ASCII
+                  </option>
+                  <!---->
+                  
+                  <!---->
+                </select>
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
             
             
             <!---->
@@ -1831,11 +2022,104 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
+                    for="root_preset"
+                  >
+                    Preset 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <select
+                  aria-describedby="root_preset__description root_preset__help root_preset__errors"
+                  aria-invalid="false"
+                  class="block w-full text-gray-900 disabled:text-gray-400 bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm p-2.5"
+                  id="root_preset"
+                  name="root_preset"
+                  required=""
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                   
+                  <option
+                    value="root_preset__0"
+                  >
+                    Default
+                  </option>
+                  <option
+                    value="root_preset__1"
+                  >
+                    Manual
+                  </option>
+                  <!---->
+                  
+                  <!---->
+                </select>
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
             
             
             <!---->
@@ -2672,11 +2956,109 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  data-layout="field-title-row"
+                >
+                  <!---->
+                  <!---->
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
+                    for="root_format"
+                  >
+                    Output format 
+                    <span>
+                      *
+                    </span>
+                    <!---->
+                    <!---->
+                  </label>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <select
+                  aria-describedby="root_format__description root_format__help root_format__errors"
+                  aria-invalid="false"
+                  class="block w-full text-gray-900 disabled:text-gray-400 bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm p-2.5"
+                  id="root_format"
+                  name="root_format"
+                  required=""
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <!---->
+                   
+                  <option
+                    value="root_format__0"
+                  >
+                    HTML
+                  </option>
+                  <option
+                    value="root_format__1"
+                  >
+                    XLSX
+                  </option>
+                  <option
+                    value="root_format__2"
+                  >
+                    ASCII
+                  </option>
+                  <!---->
+                  
+                  <!---->
+                </select>
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
             
             
             <!---->

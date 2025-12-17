@@ -557,11 +557,83 @@ exports[`array fields > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__0"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__0"
+        />
+         a
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__1"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__1"
+        />
+         b
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__2"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__2"
+        />
+         c
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -1704,11 +1776,127 @@ exports[`with title and description > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex items-center justify-between"
+        data-layout="field-title-row"
+      >
+        <!---->
+        <div
+          class="fieldset-legend"
+          id="root__title"
+        >
+          Test field 
+          *
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root__description"
+      >
+        a test description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__0"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__0"
+        />
+         a
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__1"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__1"
+        />
+         b
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__2"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__2"
+        />
+         c
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -2785,11 +2973,127 @@ exports[`with title and description from both > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex items-center justify-between"
+        data-layout="field-title-row"
+      >
+        <!---->
+        <div
+          class="fieldset-legend"
+          id="root__title"
+        >
+          My Field 
+          *
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root__description"
+      >
+        a fancier description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__0"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__0"
+        />
+         a
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__1"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__1"
+        />
+         b
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__2"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__2"
+        />
+         c
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -3866,11 +4170,127 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex items-center justify-between"
+        data-layout="field-title-row"
+      >
+        <!---->
+        <div
+          class="fieldset-legend"
+          id="root__title"
+        >
+          My Field 
+          *
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root__description"
+      >
+        a fancier description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__0"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__0"
+        />
+         a
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__1"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__1"
+        />
+         b
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__2"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__2"
+        />
+         c
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -4757,11 +5177,83 @@ exports[`with title and description with global label off > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__0"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__0"
+        />
+         a
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__1"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__1"
+        />
+         b
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="checkbox"
+          id="root__2"
+          name="root"
+          required=""
+          type="checkbox"
+          value="root__2"
+        />
+         c
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
     <!---->
     <!---->
      

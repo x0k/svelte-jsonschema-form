@@ -626,11 +626,141 @@ exports[`array fields > checkboxes 1`] = `
       />
       <!---->
        
-      <pre
-        style="color: red;"
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
       >
-        "multiEnumField" component not found
-      </pre>
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-checkboxgroup  svelte-95hzmh"
+          >
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952854"
+                  type="checkbox"
+                  value="root__0"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952854"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    a
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952855"
+                  type="checkbox"
+                  value="root__1"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952855"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    b
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952856"
+                  type="checkbox"
+                  value="root__2"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952856"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    c
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
       <!---->
       <!---->
        
@@ -1876,11 +2006,188 @@ exports[`with title and description > checkboxes 1`] = `
       />
       <!---->
        
-      <pre
-        style="color: red;"
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
       >
-        "multiEnumField" component not found
-      </pre>
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-meta"
+          style="display: block;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-required="true"
+              data-template="fieldTemplate"
+              id="root__title"
+            >
+              Test field
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            id="root__description"
+            style="font-weight: 300;"
+          >
+            a test description
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-checkboxgroup  svelte-95hzmh"
+          >
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952857"
+                  type="checkbox"
+                  value="root__0"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952857"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    a
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952858"
+                  type="checkbox"
+                  value="root__1"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952858"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    b
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952859"
+                  type="checkbox"
+                  value="root__2"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952859"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    c
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
       <!---->
       <!---->
        
@@ -3043,11 +3350,188 @@ exports[`with title and description from both > checkboxes 1`] = `
       />
       <!---->
        
-      <pre
-        style="color: red;"
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
       >
-        "multiEnumField" component not found
-      </pre>
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-meta"
+          style="display: block;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-required="true"
+              data-template="fieldTemplate"
+              id="root__title"
+            >
+              My Field
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            id="root__description"
+            style="font-weight: 300;"
+          >
+            a fancier description
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-checkboxgroup  svelte-95hzmh"
+          >
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952863"
+                  type="checkbox"
+                  value="root__0"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952863"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    a
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952864"
+                  type="checkbox"
+                  value="root__1"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952864"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    b
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952865"
+                  type="checkbox"
+                  value="root__2"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952865"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    c
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
       <!---->
       <!---->
        
@@ -4210,11 +4694,188 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
       />
       <!---->
        
-      <pre
-        style="color: red;"
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
       >
-        "multiEnumField" component not found
-      </pre>
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-meta"
+          style="display: block;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-1fixc4e"
+            data-layout="field-title-row"
+            style="display: flex; justify-content: space-between; align-items: center;"
+          >
+            <!---->
+            <div
+              class="svelte-1id7bpe"
+              data-error="false"
+              data-required="true"
+              data-template="fieldTemplate"
+              id="root__title"
+            >
+              My Field
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            id="root__description"
+            style="font-weight: 300;"
+          >
+            a fancier description
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-checkboxgroup  svelte-95hzmh"
+          >
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952860"
+                  type="checkbox"
+                  value="root__0"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952860"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    a
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952861"
+                  type="checkbox"
+                  value="root__1"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952861"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    b
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952862"
+                  type="checkbox"
+                  value="root__2"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952862"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    c
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
       <!---->
       <!---->
        
@@ -5191,11 +5852,141 @@ exports[`with title and description with global label off > checkboxes 1`] = `
       />
       <!---->
        
-      <pre
-        style="color: red;"
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-1fixc4e"
+        data-layout="field"
+        style="display: flex; flex-direction: column; gap: 0.2rem;"
       >
-        "multiEnumField" component not found
-      </pre>
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-1fixc4e"
+          data-layout="field-content"
+          style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+        >
+          <!---->
+          <!---->
+          <div
+            class="wx-checkboxgroup  svelte-95hzmh"
+          >
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952866"
+                  type="checkbox"
+                  value="root__0"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952866"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    a
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952867"
+                  type="checkbox"
+                  value="root__1"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952867"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    b
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            <div
+              class="wx-item svelte-95hzmh"
+            >
+              <div
+                class="wx-checkbox svelte-2blbp2"
+                style=""
+              >
+                <input
+                  class="svelte-2blbp2"
+                  id="1766000952868"
+                  type="checkbox"
+                  value="root__2"
+                />
+                 
+                <label
+                  class="svelte-2blbp2"
+                  for="1766000952868"
+                >
+                  <span
+                    class="svelte-2blbp2"
+                  />
+                   
+                  <span
+                    class="svelte-2blbp2"
+                  >
+                    c
+                  </span>
+                  <!---->
+                </label>
+              </div>
+              <!---->
+            </div>
+            
+          </div>
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
       <!---->
       <!---->
        

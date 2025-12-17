@@ -543,11 +543,90 @@ exports[`array fields > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="field border svelte-1fixc4e"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <nav>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <span>
+            a
+          </span>
+        </label>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <span>
+            b
+          </span>
+        </label>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <span>
+            c
+          </span>
+        </label>
+        
+      </nav>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -1652,11 +1731,139 @@ exports[`with title and description > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="field border svelte-1fixc4e"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="field-title-row"
+        >
+          <!---->
+          <!---->
+          <div
+            class="title svelte-1id7bpe"
+            id="root__title"
+          >
+            Test field 
+            *
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a test description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <nav>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <span>
+            a
+          </span>
+        </label>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <span>
+            b
+          </span>
+        </label>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <span>
+            c
+          </span>
+        </label>
+        
+      </nav>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -2697,11 +2904,139 @@ exports[`with title and description from both > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="field border svelte-1fixc4e"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="field-title-row"
+        >
+          <!---->
+          <!---->
+          <div
+            class="title svelte-1id7bpe"
+            id="root__title"
+          >
+            My Field 
+            *
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a fancier description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <nav>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <span>
+            a
+          </span>
+        </label>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <span>
+            b
+          </span>
+        </label>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <span>
+            c
+          </span>
+        </label>
+        
+      </nav>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -3742,11 +4077,139 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="field border svelte-1fixc4e"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="layout svelte-1fixc4e"
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="layout svelte-1fixc4e"
+          data-layout="field-title-row"
+        >
+          <!---->
+          <!---->
+          <div
+            class="title svelte-1id7bpe"
+            id="root__title"
+          >
+            My Field 
+            *
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <em
+          id="root__description"
+        >
+          a fancier description
+        </em>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <nav>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <span>
+            a
+          </span>
+        </label>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <span>
+            b
+          </span>
+        </label>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <span>
+            c
+          </span>
+        </label>
+        
+      </nav>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -4601,11 +5064,90 @@ exports[`with title and description with global label off > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="field border svelte-1fixc4e"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <nav>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <span>
+            a
+          </span>
+        </label>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <span>
+            b
+          </span>
+        </label>
+        <label
+          class="checkbox"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <span>
+            c
+          </span>
+        </label>
+        
+      </nav>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
     <!---->
     <!---->
      

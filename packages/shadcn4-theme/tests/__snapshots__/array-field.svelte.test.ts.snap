@@ -243,7 +243,7 @@ exports[`array fields > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c1"
+                  id="bits-c7"
                 >
                   <!---->
                   -1 
@@ -510,7 +510,7 @@ exports[`array fields > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c2"
+                  id="bits-c8"
                 >
                   <!---->
                   -2 
@@ -805,11 +805,248 @@ exports[`array fields > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="false"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__0"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__0"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__0"
+          id="bits-c2"
+        >
+          <!---->
+          a
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__1"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__1"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__1"
+          id="bits-c4"
+        >
+          <!---->
+          b
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__2"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__2"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__2"
+          id="bits-c6"
+        >
+          <!---->
+          c
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -962,7 +1199,7 @@ exports[`array fields > empty errors array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_name"
-                  id="bits-c3"
+                  id="bits-c9"
                 >
                   <!---->
                   name 
@@ -1841,7 +2078,7 @@ exports[`with title and description > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c6"
+                  id="bits-c18"
                 >
                   <!---->
                   Test item-1 
@@ -2120,7 +2357,7 @@ exports[`with title and description > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c7"
+                  id="bits-c19"
                 >
                   <!---->
                   Test item-2 
@@ -2427,11 +2664,306 @@ exports[`with title and description > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="false"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex w-full items-center justify-between"
+        data-layout="field-title-row"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex w-fit items-center gap-2 text-sm font-medium leading-snug group-data-[disabled=true]/field:opacity-50"
+          data-slot="field-title"
+          id="root__title"
+        >
+          Test field 
+          *
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <p
+        class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+        data-slot="field-description"
+        id="root__description"
+      >
+        a test description
+        <!---->
+      </p>
+      
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__0"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__0"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__0"
+          id="bits-c13"
+        >
+          <!---->
+          a
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__1"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__1"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__1"
+          id="bits-c15"
+        >
+          <!---->
+          b
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__2"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__2"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__2"
+          id="bits-c17"
+        >
+          <!---->
+          c
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -2641,7 +3173,7 @@ exports[`with title and description > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c4"
+                  id="bits-c10"
                 >
                   <!---->
                   Test item 
@@ -2820,7 +3352,7 @@ exports[`with title and description > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c5"
+                  id="bits-c11"
                 >
                   <!---->
                   Test item 
@@ -3355,7 +3887,7 @@ exports[`with title and description from both > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c14"
+                  id="bits-c38"
                 >
                   <!---->
                   My Item-1 
@@ -3634,7 +4166,7 @@ exports[`with title and description from both > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c15"
+                  id="bits-c39"
                 >
                   <!---->
                   My Item-2 
@@ -3941,11 +4473,306 @@ exports[`with title and description from both > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="false"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex w-full items-center justify-between"
+        data-layout="field-title-row"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex w-fit items-center gap-2 text-sm font-medium leading-snug group-data-[disabled=true]/field:opacity-50"
+          data-slot="field-title"
+          id="root__title"
+        >
+          My Field 
+          *
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <p
+        class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+        data-slot="field-description"
+        id="root__description"
+      >
+        a fancier description
+        <!---->
+      </p>
+      
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__0"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__0"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__0"
+          id="bits-c33"
+        >
+          <!---->
+          a
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__1"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__1"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__1"
+          id="bits-c35"
+        >
+          <!---->
+          b
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__2"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__2"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__2"
+          id="bits-c37"
+        >
+          <!---->
+          c
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -4155,7 +4982,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c12"
+                  id="bits-c30"
                 >
                   <!---->
                   My Item 
@@ -4334,7 +5161,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c13"
+                  id="bits-c31"
                 >
                   <!---->
                   My Item 
@@ -4869,7 +5696,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c10"
+                  id="bits-c28"
                 >
                   <!---->
                   My Item-1 
@@ -5148,7 +5975,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c11"
+                  id="bits-c29"
                 >
                   <!---->
                   My Item-2 
@@ -5455,11 +6282,306 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="false"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex w-full items-center justify-between"
+        data-layout="field-title-row"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex w-fit items-center gap-2 text-sm font-medium leading-snug group-data-[disabled=true]/field:opacity-50"
+          data-slot="field-title"
+          id="root__title"
+        >
+          My Field 
+          *
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <p
+        class="text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5 [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+        data-slot="field-description"
+        id="root__description"
+      >
+        a fancier description
+        <!---->
+      </p>
+      
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__0"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__0"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__0"
+          id="bits-c23"
+        >
+          <!---->
+          a
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__1"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__1"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__1"
+          id="bits-c25"
+        >
+          <!---->
+          b
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__2"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__2"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__2"
+          id="bits-c27"
+        >
+          <!---->
+          c
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
     <!---->
     <!---->
      
@@ -5669,7 +6791,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c8"
+                  id="bits-c20"
                 >
                   <!---->
                   My Item 
@@ -5848,7 +6970,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c9"
+                  id="bits-c21"
                 >
                   <!---->
                   My Item 
@@ -6719,11 +7841,248 @@ exports[`with title and description with global label off > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+      data-invalid="false"
+      data-layout="field"
+      data-orientation="vertical"
+      data-slot="field"
+      role="group"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__0"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__0"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__0"
+          id="bits-c41"
+        >
+          <!---->
+          a
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__1"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__1"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__1"
+          id="bits-c43"
+        >
+          <!---->
+          b
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <div
+        class="flex items-center space-x-3"
+      >
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="false"
+          aria-required="true"
+          class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-checkbox-root=""
+          data-slot="checkbox"
+          data-state="unchecked"
+          id="root__2"
+          role="checkbox"
+          type="button"
+        >
+          <div
+            class="text-current transition-none"
+            data-slot="checkbox-indicator"
+          >
+            <!---->
+            
+            <!---->
+          </div>
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          required=""
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="root__2"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+          data-label-root=""
+          data-slot="field-label"
+          for="root__2"
+          id="bits-c45"
+        >
+          <!---->
+          c
+          
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      
+      <!---->
+    </div>
+    
+    
+    
+    
+    
+    
+    
     <!---->
     <!---->
      

@@ -1794,11 +1794,178 @@ exports[`object fields > one of defaults > default preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
+              data-layout="field"
+              data-orientation="vertical"
+              data-slot="field"
+              role="group"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+                  data-label-root=""
+                  data-slot="field-label"
+                  for="root_preset"
+                  id="bits-c26"
+                >
+                  <!---->
+                  Preset 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                  
+                  <!---->
+                </label>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <button
+                aria-describedby="root_preset__description root_preset__help root_preset__errors"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-invalid="false"
+                aria-required="true"
+                class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
+                data-select-trigger=""
+                data-size="default"
+                data-slot="select-trigger"
+                data-state="closed"
+                id="root_preset"
+                name="root_preset"
+                type="button"
+              >
+                <!---->
+                <span>
+                  Default
+                </span>
+                <!---->
+                 
+                <svg
+                  class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <!---->
+                  <path
+                    d="m6 9 6 6 6-6"
+                  >
+                    
+                  </path>
+                  
+                  <!---->
+                  <!---->
+                  
+                  <!---->
+                </svg>
+                <!---->
+                <!---->
+              </button>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              
+              
+              <!---->
+              
+              
+              <!---->
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            
             
             
             <!---->
@@ -1954,7 +2121,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_transform"
-                  id="bits-c27"
+                  id="bits-c29"
                 >
                   <!---->
                   Transform
@@ -2040,11 +2207,178 @@ exports[`object fields > one of defaults > default preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
+              data-layout="field"
+              data-orientation="vertical"
+              data-slot="field"
+              role="group"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+                  data-label-root=""
+                  data-slot="field-label"
+                  for="root_format"
+                  id="bits-c30"
+                >
+                  <!---->
+                  Output format 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                  
+                  <!---->
+                </label>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <button
+                aria-describedby="root_format__description root_format__help root_format__errors"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-invalid="false"
+                aria-required="true"
+                class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
+                data-select-trigger=""
+                data-size="default"
+                data-slot="select-trigger"
+                data-state="closed"
+                id="root_format"
+                name="root_format"
+                type="button"
+              >
+                <!---->
+                <span>
+                  HTML
+                </span>
+                <!---->
+                 
+                <svg
+                  class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <!---->
+                  <path
+                    d="m6 9 6 6 6-6"
+                  >
+                    
+                  </path>
+                  
+                  <!---->
+                  <!---->
+                  
+                  <!---->
+                </svg>
+                <!---->
+                <!---->
+              </button>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              
+              
+              <!---->
+              
+              
+              <!---->
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            
             
             
             <!---->
@@ -2200,7 +2534,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_paginate"
-                  id="bits-c29"
+                  id="bits-c33"
                 >
                   <!---->
                   Paginate
@@ -2407,7 +2741,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_createOnOpen"
-                  id="bits-c31"
+                  id="bits-c35"
                 >
                   <!---->
                   Create on open
@@ -2518,7 +2852,36 @@ exports[`object fields > one of defaults > default preset 1`] = `
   
   <!---->
    
-  <div />
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
   
   
 </div>
@@ -2649,11 +3012,178 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
+              data-layout="field"
+              data-orientation="vertical"
+              data-slot="field"
+              role="group"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+                  data-label-root=""
+                  data-slot="field-label"
+                  for="root_preset"
+                  id="bits-c40"
+                >
+                  <!---->
+                  Preset 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                  
+                  <!---->
+                </label>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <button
+                aria-describedby="root_preset__description root_preset__help root_preset__errors"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-invalid="false"
+                aria-required="true"
+                class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
+                data-select-trigger=""
+                data-size="default"
+                data-slot="select-trigger"
+                data-state="closed"
+                id="root_preset"
+                name="root_preset"
+                type="button"
+              >
+                <!---->
+                <span>
+                  Manual
+                </span>
+                <!---->
+                 
+                <svg
+                  class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <!---->
+                  <path
+                    d="m6 9 6 6 6-6"
+                  >
+                    
+                  </path>
+                  
+                  <!---->
+                  <!---->
+                  
+                  <!---->
+                </svg>
+                <!---->
+                <!---->
+              </button>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              
+              
+              <!---->
+              
+              
+              <!---->
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            
             
             
             <!---->
@@ -2831,7 +3361,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_collapseIndexes"
-                  id="bits-c33"
+                  id="bits-c43"
                 >
                   <!---->
                   Combine nested indexes
@@ -3038,7 +3568,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_joinPrimitiveArrayValues"
-                  id="bits-c35"
+                  id="bits-c45"
                 >
                   <!---->
                   Combine simple values
@@ -3223,7 +3753,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_combineArraysOfObjects"
-                  id="bits-c37"
+                  id="bits-c47"
                 >
                   <!---->
                   Combine objects
@@ -3430,7 +3960,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_stabilizeOrderOfPropertiesInArraysOfObjects"
-                  id="bits-c39"
+                  id="bits-c49"
                 >
                   <!---->
                   Stabilize order of properties
@@ -3556,7 +4086,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_proportionalSizeAdjustmentThreshold"
-                  id="bits-c40"
+                  id="bits-c50"
                 >
                   <!---->
                   Proportional size adjustment threshold 
@@ -3740,7 +4270,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_cornerCellValue"
-                  id="bits-c41"
+                  id="bits-c51"
                 >
                   <!---->
                   Corner cell value 
@@ -3976,7 +4506,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_transform"
-                  id="bits-c43"
+                  id="bits-c53"
                 >
                   <!---->
                   Transform
@@ -4062,11 +4592,178 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           >
             <!---->
             <!---->
-            <pre
-              style="color: red;"
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
+              data-invalid="false"
+              data-layout="field"
+              data-orientation="vertical"
+              data-slot="field"
+              role="group"
             >
-              "enumField" component not found
-            </pre>
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="flex w-full items-center justify-between"
+                data-layout="field-title-row"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="select-none items-center text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4 has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10"
+                  data-label-root=""
+                  data-slot="field-label"
+                  for="root_format"
+                  id="bits-c54"
+                >
+                  <!---->
+                  Output format 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                  
+                  <!---->
+                </label>
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <button
+                aria-describedby="root_format__description root_format__help root_format__errors"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-invalid="false"
+                aria-required="true"
+                class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 shadow-xs flex select-none items-center justify-between gap-2 whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 w-full"
+                data-select-trigger=""
+                data-size="default"
+                data-slot="select-trigger"
+                data-state="closed"
+                id="root_format"
+                name="root_format"
+                type="button"
+              >
+                <!---->
+                <span>
+                  HTML
+                </span>
+                <!---->
+                 
+                <svg
+                  class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <!---->
+                  <path
+                    d="m6 9 6 6 6-6"
+                  >
+                    
+                  </path>
+                  
+                  <!---->
+                  <!---->
+                  
+                  <!---->
+                </svg>
+                <!---->
+                <!---->
+              </button>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              
+              
+              <!---->
+              
+              
+              <!---->
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            
+            
             
             
             <!---->
@@ -4222,7 +4919,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_paginate"
-                  id="bits-c45"
+                  id="bits-c57"
                 >
                   <!---->
                   Paginate
@@ -4429,7 +5126,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_createOnOpen"
-                  id="bits-c47"
+                  id="bits-c59"
                 >
                   <!---->
                   Create on open
@@ -4540,7 +5237,36 @@ exports[`object fields > one of defaults > manual preset 1`] = `
   
   <!---->
    
-  <div />
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
   
   
 </div>

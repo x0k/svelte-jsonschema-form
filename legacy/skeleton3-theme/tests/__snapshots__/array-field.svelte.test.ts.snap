@@ -491,11 +491,90 @@ exports[`array fields > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <p>
+            a
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <p>
+            b
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <p>
+            c
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -1477,11 +1556,127 @@ exports[`with title and description > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="field-title-row"
+        >
+          <!---->
+          <div
+            class="label-text"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="opacity-60"
+          id="root__description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <p>
+            a
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <p>
+            b
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <p>
+            c
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -2406,11 +2601,127 @@ exports[`with title and description from both > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="field-title-row"
+        >
+          <!---->
+          <div
+            class="label-text"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="opacity-60"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <p>
+            a
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <p>
+            b
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <p>
+            c
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -3335,11 +3646,127 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="flex items-center justify-between"
+          data-layout="field-title-row"
+        >
+          <!---->
+          <div
+            class="label-text"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="opacity-60"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <p>
+            a
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <p>
+            b
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <p>
+            c
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -4108,11 +4535,90 @@ exports[`with title and description with global label off > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__0"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <p>
+            a
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__1"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <p>
+            b
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="checkbox"
+            id="root__2"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <p>
+            c
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      

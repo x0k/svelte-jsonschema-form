@@ -659,11 +659,105 @@ exports[`array fields > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-0"
+        >
+          a 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-1"
+        >
+          b 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-2"
+        >
+          c 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
     <!---->
     <!---->
      
@@ -1923,11 +2017,145 @@ exports[`with title and description > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          data-layout="field-title-row"
+        >
+          <!---->
+          <p
+            class="text-gray-900 dark:text-white"
+            id="root__title"
+          >
+            Test field
+          </p>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-sm opacity-70"
+          id="root__description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-0"
+        >
+          a 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-1"
+        >
+          b 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-2"
+        >
+          c 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
     <!---->
     <!---->
      
@@ -3105,11 +3333,145 @@ exports[`with title and description from both > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          data-layout="field-title-row"
+        >
+          <!---->
+          <p
+            class="text-gray-900 dark:text-white"
+            id="root__title"
+          >
+            My Field
+          </p>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-sm opacity-70"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-0"
+        >
+          a 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-1"
+        >
+          b 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-2"
+        >
+          c 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
     <!---->
     <!---->
      
@@ -4287,11 +4649,145 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          data-layout="field-title-row"
+        >
+          <!---->
+          <p
+            class="text-gray-900 dark:text-white"
+            id="root__title"
+          >
+            My Field
+          </p>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-sm opacity-70"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-0"
+        >
+          a 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-1"
+        >
+          b 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-2"
+        >
+          c 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
     <!---->
     <!---->
      
@@ -5295,11 +5791,105 @@ exports[`with title and description with global label off > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-0"
+        >
+          a 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__0"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-1"
+        >
+          b 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__1"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+          for="checkbox-2"
+        >
+          c 
+          <input
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 ms-2"
+            id="root"
+            name="root"
+            required=""
+            type="checkbox"
+            value="root__2"
+          />
+           
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
     <!---->
     <!---->
      

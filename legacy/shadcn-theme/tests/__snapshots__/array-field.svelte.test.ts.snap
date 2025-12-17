@@ -157,7 +157,7 @@ exports[`default-ui > array fields > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c1"
+                    id="bits-c7"
                   >
                     -1 
                     <span>
@@ -353,7 +353,7 @@ exports[`default-ui > array fields > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c2"
+                    id="bits-c8"
                   >
                     -2 
                     <span>
@@ -585,11 +585,285 @@ exports[`default-ui > array fields > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__0"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__0"
+            id="bits-c2"
+          >
+            a
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__1"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__1"
+            id="bits-c4"
+          >
+            b
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__2"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__2"
+            id="bits-c6"
+          >
+            c
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -689,7 +963,7 @@ exports[`default-ui > array fields > empty errors array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_name"
-                    id="bits-c3"
+                    id="bits-c9"
                   >
                     name 
                     <!---->
@@ -1255,7 +1529,7 @@ exports[`default-ui > with title and description > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c6"
+                    id="bits-c18"
                   >
                     Test item-1 
                     <span>
@@ -1459,7 +1733,7 @@ exports[`default-ui > with title and description > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c7"
+                    id="bits-c19"
                   >
                     Test item-2 
                     <span>
@@ -1699,11 +1973,321 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          data-layout="field-title-row"
+        >
+          <!---->
+          <div
+            class="font-medium text-sm"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root__description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__0"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__0"
+            id="bits-c13"
+          >
+            a
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__1"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__1"
+            id="bits-c15"
+          >
+            b
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__2"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__2"
+            id="bits-c17"
+          >
+            c
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -1837,7 +2421,7 @@ exports[`default-ui > with title and description > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c4"
+                    id="bits-c10"
                   >
                     Test item 
                     <span>
@@ -1956,7 +2540,7 @@ exports[`default-ui > with title and description > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c5"
+                    id="bits-c11"
                   >
                     Test item 
                     <span>
@@ -2310,7 +2894,7 @@ exports[`default-ui > with title and description from both > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c14"
+                    id="bits-c38"
                   >
                     My Item-1 
                     <span>
@@ -2514,7 +3098,7 @@ exports[`default-ui > with title and description from both > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c15"
+                    id="bits-c39"
                   >
                     My Item-2 
                     <span>
@@ -2754,11 +3338,321 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          data-layout="field-title-row"
+        >
+          <!---->
+          <div
+            class="font-medium text-sm"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__0"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__0"
+            id="bits-c33"
+          >
+            a
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__1"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__1"
+            id="bits-c35"
+          >
+            b
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__2"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__2"
+            id="bits-c37"
+          >
+            c
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -2892,7 +3786,7 @@ exports[`default-ui > with title and description from both > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c12"
+                    id="bits-c30"
                   >
                     My Item 
                     <span>
@@ -3011,7 +3905,7 @@ exports[`default-ui > with title and description from both > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c13"
+                    id="bits-c31"
                   >
                     My Item 
                     <span>
@@ -3365,7 +4259,7 @@ exports[`default-ui > with title and description from uiSchema > array icons 1`]
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c10"
+                    id="bits-c28"
                   >
                     My Item-1 
                     <span>
@@ -3569,7 +4463,7 @@ exports[`default-ui > with title and description from uiSchema > array icons 1`]
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c11"
+                    id="bits-c29"
                   >
                     My Item-2 
                     <span>
@@ -3809,11 +4703,321 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          data-layout="field-title-row"
+        >
+          <!---->
+          <div
+            class="font-medium text-sm"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__0"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__0"
+            id="bits-c23"
+          >
+            a
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__1"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__1"
+            id="bits-c25"
+          >
+            b
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__2"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__2"
+            id="bits-c27"
+          >
+            c
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -3947,7 +5151,7 @@ exports[`default-ui > with title and description from uiSchema > fixed array 1`]
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c8"
+                    id="bits-c20"
                   >
                     My Item 
                     <span>
@@ -4066,7 +5270,7 @@ exports[`default-ui > with title and description from uiSchema > fixed array 1`]
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c9"
+                    id="bits-c21"
                   >
                     My Item 
                     <span>
@@ -4694,11 +5898,285 @@ exports[`default-ui > with title and description with global label off > checkbo
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__0"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__0"
+            id="bits-c41"
+          >
+            a
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__1"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__1"
+            id="bits-c43"
+          >
+            b
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__2"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__2"
+            id="bits-c45"
+          >
+            c
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -5099,7 +6577,7 @@ exports[`new-york-ui > array fields > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c16"
+                    id="bits-c52"
                   >
                     -1 
                     <span>
@@ -5295,7 +6773,7 @@ exports[`new-york-ui > array fields > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c17"
+                    id="bits-c53"
                   >
                     -2 
                     <span>
@@ -5527,11 +7005,285 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__0"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__0"
+            id="bits-c47"
+          >
+            a
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__1"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__1"
+            id="bits-c49"
+          >
+            b
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__2"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__2"
+            id="bits-c51"
+          >
+            c
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -5631,7 +7383,7 @@ exports[`new-york-ui > array fields > empty errors array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_name"
-                    id="bits-c18"
+                    id="bits-c54"
                   >
                     name 
                     <!---->
@@ -6197,7 +7949,7 @@ exports[`new-york-ui > with title and description > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c21"
+                    id="bits-c63"
                   >
                     Test item-1 
                     <span>
@@ -6401,7 +8153,7 @@ exports[`new-york-ui > with title and description > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c22"
+                    id="bits-c64"
                   >
                     Test item-2 
                     <span>
@@ -6641,11 +8393,321 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          data-layout="field-title-row"
+        >
+          <!---->
+          <div
+            class="font-medium text-sm"
+            id="root__title"
+          >
+            Test field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root__description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__0"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__0"
+            id="bits-c58"
+          >
+            a
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__1"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__1"
+            id="bits-c60"
+          >
+            b
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__2"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__2"
+            id="bits-c62"
+          >
+            c
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -6779,7 +8841,7 @@ exports[`new-york-ui > with title and description > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c19"
+                    id="bits-c55"
                   >
                     Test item 
                     <span>
@@ -6898,7 +8960,7 @@ exports[`new-york-ui > with title and description > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c20"
+                    id="bits-c56"
                   >
                     Test item 
                     <span>
@@ -7252,7 +9314,7 @@ exports[`new-york-ui > with title and description from both > array icons 1`] = 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c29"
+                    id="bits-c83"
                   >
                     My Item-1 
                     <span>
@@ -7456,7 +9518,7 @@ exports[`new-york-ui > with title and description from both > array icons 1`] = 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c30"
+                    id="bits-c84"
                   >
                     My Item-2 
                     <span>
@@ -7696,11 +9758,321 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          data-layout="field-title-row"
+        >
+          <!---->
+          <div
+            class="font-medium text-sm"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__0"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__0"
+            id="bits-c78"
+          >
+            a
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__1"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__1"
+            id="bits-c80"
+          >
+            b
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__2"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__2"
+            id="bits-c82"
+          >
+            c
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -7834,7 +10206,7 @@ exports[`new-york-ui > with title and description from both > fixed array 1`] = 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c27"
+                    id="bits-c75"
                   >
                     My Item 
                     <span>
@@ -7953,7 +10325,7 @@ exports[`new-york-ui > with title and description from both > fixed array 1`] = 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c28"
+                    id="bits-c76"
                   >
                     My Item 
                     <span>
@@ -8307,7 +10679,7 @@ exports[`new-york-ui > with title and description from uiSchema > array icons 1`
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c25"
+                    id="bits-c73"
                   >
                     My Item-1 
                     <span>
@@ -8511,7 +10883,7 @@ exports[`new-york-ui > with title and description from uiSchema > array icons 1`
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c26"
+                    id="bits-c74"
                   >
                     My Item-2 
                     <span>
@@ -8751,11 +11123,321 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+      <div
+        data-layout="field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          data-layout="field-title-row"
+        >
+          <!---->
+          <div
+            class="font-medium text-sm"
+            id="root__title"
+          >
+            My Field
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root__description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__0"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__0"
+            id="bits-c68"
+          >
+            a
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__1"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__1"
+            id="bits-c70"
+          >
+            b
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__2"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__2"
+            id="bits-c72"
+          >
+            c
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      
@@ -8889,7 +11571,7 @@ exports[`new-york-ui > with title and description from uiSchema > fixed array 1`
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c23"
+                    id="bits-c65"
                   >
                     My Item 
                     <span>
@@ -9008,7 +11690,7 @@ exports[`new-york-ui > with title and description from uiSchema > fixed array 1`
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c24"
+                    id="bits-c66"
                   >
                     My Item 
                     <span>
@@ -9636,11 +12318,285 @@ exports[`new-york-ui > with title and description with global label off > checkb
     />
     <!---->
      
-    <pre
-      style="color: red;"
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
     >
-      "multiEnumField" component not found
-    </pre>
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__0"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__0"
+            id="bits-c86"
+          >
+            a
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__1"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__1"
+            id="bits-c88"
+          >
+            b
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-3"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-describedby="root__description root__help root__errors"
+            aria-invalid="false"
+            aria-readonly="false"
+            aria-required="true"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-state="unchecked"
+            id="root__2"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            required=""
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="root__2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root__2"
+            id="bits-c90"
+          >
+            c
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
     <!---->
     <!---->
      

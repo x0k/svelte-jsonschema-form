@@ -1339,11 +1339,108 @@ exports[`object fields > one of defaults > default preset 1`] = `
             >
               <!---->
               <!---->
-              <pre
-                style="color: red;"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
               >
-                "enumField" component not found
-              </pre>
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root_preset"
+                    >
+                      Preset
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-select svelte-58cfsh"
+                  >
+                    <select
+                      class="svelte-58cfsh"
+                      id="root_preset"
+                      title=""
+                    >
+                      <option
+                        class="svelte-58cfsh"
+                        value="root_preset__0"
+                      >
+                        Default
+                      </option>
+                      <option
+                        class="svelte-58cfsh"
+                        value="root_preset__1"
+                      >
+                        Manual
+                      </option>
+                      
+                    </select>
+                     
+                    <!---->
+                     
+                    <i
+                      class="wx-icon wxi-angle-down svelte-58cfsh"
+                    />
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               
               <!---->
@@ -1496,11 +1593,114 @@ exports[`object fields > one of defaults > default preset 1`] = `
             >
               <!---->
               <!---->
-              <pre
-                style="color: red;"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
               >
-                "enumField" component not found
-              </pre>
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root_format"
+                    >
+                      Output format
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-select svelte-58cfsh"
+                  >
+                    <select
+                      class="svelte-58cfsh"
+                      id="root_format"
+                      title=""
+                    >
+                      <option
+                        class="svelte-58cfsh"
+                        value="root_format__0"
+                      >
+                        HTML
+                      </option>
+                      <option
+                        class="svelte-58cfsh"
+                        value="root_format__1"
+                      >
+                        XLSX
+                      </option>
+                      <option
+                        class="svelte-58cfsh"
+                        value="root_format__2"
+                      >
+                        ASCII
+                      </option>
+                      
+                    </select>
+                     
+                    <!---->
+                     
+                    <i
+                      class="wx-icon wxi-angle-down svelte-58cfsh"
+                    />
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               
               <!---->
@@ -1896,11 +2096,108 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             >
               <!---->
               <!---->
-              <pre
-                style="color: red;"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
               >
-                "enumField" component not found
-              </pre>
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root_preset"
+                    >
+                      Preset
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-select svelte-58cfsh"
+                  >
+                    <select
+                      class="svelte-58cfsh"
+                      id="root_preset"
+                      title=""
+                    >
+                      <option
+                        class="svelte-58cfsh"
+                        value="root_preset__0"
+                      >
+                        Default
+                      </option>
+                      <option
+                        class="svelte-58cfsh"
+                        value="root_preset__1"
+                      >
+                        Manual
+                      </option>
+                      
+                    </select>
+                     
+                    <!---->
+                     
+                    <i
+                      class="wx-icon wxi-angle-down svelte-58cfsh"
+                    />
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               
               <!---->
@@ -2790,11 +3087,114 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             >
               <!---->
               <!---->
-              <pre
-                style="color: red;"
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="svelte-1fixc4e"
+                data-layout="field"
+                style="display: flex; flex-direction: column; gap: 0.2rem;"
               >
-                "enumField" component not found
-              </pre>
+                <!---->
+                <!---->
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-meta"
+                  style="display: block;"
+                >
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div
+                    class="svelte-1fixc4e"
+                    data-layout="field-title-row"
+                    style="display: flex; justify-content: space-between; align-items: center;"
+                  >
+                    <!---->
+                    <label
+                      class="svelte-1xvnq02"
+                      data-error="false"
+                      data-required="true"
+                      for="root_format"
+                    >
+                      Output format
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </div>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="svelte-1fixc4e"
+                  data-layout="field-content"
+                  style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="wx-select svelte-58cfsh"
+                  >
+                    <select
+                      class="svelte-58cfsh"
+                      id="root_format"
+                      title=""
+                    >
+                      <option
+                        class="svelte-58cfsh"
+                        value="root_format__0"
+                      >
+                        HTML
+                      </option>
+                      <option
+                        class="svelte-58cfsh"
+                        value="root_format__1"
+                      >
+                        XLSX
+                      </option>
+                      <option
+                        class="svelte-58cfsh"
+                        value="root_format__2"
+                      >
+                        ASCII
+                      </option>
+                      
+                    </select>
+                     
+                    <!---->
+                     
+                    <i
+                      class="wx-icon wxi-angle-down svelte-58cfsh"
+                    />
+                    <!---->
+                  </div>
+                  
+                  
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
               
               
               <!---->
