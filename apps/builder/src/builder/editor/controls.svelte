@@ -34,6 +34,7 @@
   import MdiPageNextOutline from '~icons/mdi/page-next-outline';
   import MdiFileTree from '~icons/mdi/file-tree';
   import MdiArrowLeftRight from '~icons/mdi/arrow-left-right';
+  import MdiFormatText from '~icons/mdi/format-text';
 
 	import {
 		createNode,
@@ -78,6 +79,7 @@
       [OperatorType.Eq]: MdiEqual,
       [OperatorType.In]: MdiFormatListChecks,
       // String
+      [OperatorType.Format]: MdiFormatText,
       [OperatorType.Pattern]: MdiRegex,
       [OperatorType.MinLength]: MdiArrowCollapseHorizontal,
       [OperatorType.MaxLength]: MdiArrowExpandHorizontal,
