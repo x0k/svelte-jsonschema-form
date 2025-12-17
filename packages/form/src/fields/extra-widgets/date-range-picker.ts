@@ -4,9 +4,9 @@ import type { WidgetCommonProps } from "../widgets.js";
 
 declare module "../../form/index.js" {
   interface ComponentProps {
-    stringRangeWidget: WidgetCommonProps<Partial<Range<string>>>;
+    dateRangePickerWidget: WidgetCommonProps<Partial<Range<string>>>;
   }
   interface ComponentBindings {
-    stringRangeWidget: "value";
+    dateRangePickerWidget: "value";
   }
 }

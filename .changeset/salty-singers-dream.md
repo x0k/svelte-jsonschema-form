@@ -2,4 +2,4 @@
 "@sjsf/form": minor
 ---
 
-Add `stringRangeWidget` and `numberRangeWidget` definitions
+Add `dateRangePickerWidget` and `rangeSliderWidget` definitions
