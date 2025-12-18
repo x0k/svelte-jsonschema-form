@@ -1,6 +1,6 @@
 import type { SampleCategory, Sample } from "@/core/index.js";
 
-export const category: SampleCategory = "Schema Basics";
+export const category: SampleCategory = "Other";
 
 export default {
 
