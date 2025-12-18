@@ -365,10 +365,10 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
 	svarColorPickerWidget: 'Color picker',
 	svarColorSelectWidget: 'Color select',
 	dateRangePickerWidget: 'Date range picker',
-	rangeSliderWidget: "Range slider"
+	rangeSliderWidget: 'Range slider'
 };
 
-export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
+const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<Theme>> = {
 	textWidget: true,
 	numberWidget: true,
 	selectWidget: true,
@@ -396,10 +396,17 @@ export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
 	svarColorPickerWidget: true,
 	svarColorSelectWidget: true,
 	svarDateRangePickerWidget: true,
-	// TODO: Take into account differences in implementation across different themes
-	dateRangePickerWidget: true,
-	rangeSliderWidget: true
+	dateRangePickerWidget: new Set([LabTheme.Svar, ActualTheme.Flowbite3]),
+	rangeSliderWidget: false
 };
+
+export function getUseLabel(theme: Theme, widgetType: WidgetType): boolean {
+	const useLabel = WIDGET_USE_LABEL[widgetType];
+	if (typeof useLabel === 'boolean') {
+		return useLabel;
+	}
+	return useLabel.has(theme);
+}
 
 export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
 	fileWidget: 'file',

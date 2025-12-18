@@ -49,7 +49,7 @@ import {
 	RADIO_WIDGET_OPTIONS,
 	RouteName,
 	TEXT_WIDGET_OPTIONS,
-	WIDGET_USE_LABEL
+	getUseLabel
 } from './model.js';
 import type { NodeContext } from './node-context.js';
 import {
@@ -268,8 +268,8 @@ export class BuilderContext {
 						const widget = options.widget as WidgetType;
 						const defaultWidget = DEFAULT_WIDGETS[type];
 						if (defaultWidget !== widget) {
-							const useLabel = WIDGET_USE_LABEL[widget];
-							if (WIDGET_USE_LABEL[defaultWidget] !== useLabel) {
+							const useLabel = getUseLabel(this.theme, widget);
+							if (getUseLabel(this.theme, defaultWidget) !== useLabel) {
 								return { useLabel };
 							}
 						}
