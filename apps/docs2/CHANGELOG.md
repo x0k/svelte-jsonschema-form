@@ -1,5 +1,35 @@
 # docs
 
+## 1.11.1
+
+### Patch Changes
+
+- Updated dependencies [[`e4001c6`](https://github.com/x0k/svelte-jsonschema-form/commit/e4001c62e010adb122d1d820311a7de6fdda2d47), [`e4c10c0`](https://github.com/x0k/svelte-jsonschema-form/commit/e4c10c056807c6f105725cd5c62d0a5f63229462), [`93c3c28`](https://github.com/x0k/svelte-jsonschema-form/commit/93c3c28e5ab66cb9945114ba60e5d83bd1e053e7), [`2aed532`](https://github.com/x0k/svelte-jsonschema-form/commit/2aed53299b8387d38e362c03ea4bc3a544506fe8), [`93c3c28`](https://github.com/x0k/svelte-jsonschema-form/commit/93c3c28e5ab66cb9945114ba60e5d83bd1e053e7), [`2aed532`](https://github.com/x0k/svelte-jsonschema-form/commit/2aed53299b8387d38e362c03ea4bc3a544506fe8), [`109d074`](https://github.com/x0k/svelte-jsonschema-form/commit/109d0742b6489e3e6b9fd0460aaca77abd6dffab), [`109d074`](https://github.com/x0k/svelte-jsonschema-form/commit/109d0742b6489e3e6b9fd0460aaca77abd6dffab)]:
+  - @sjsf/flowbite3-theme@3.2.0
+  - @sjsf/valibot-validator@3.2.0
+  - @sjsf/form@3.2.0
+  - @sjsf/skeleton4-theme@3.2.0
+  - @sjsf/shadcn4-theme@3.2.0
+  - @sjsf-lab/svar-theme@3.2.0
+  - @sjsf-lab/beercss-theme@3.2.0
+  - @sjsf-lab/shadcn-extras-theme@3.1.0
+  - @sjsf/daisyui-theme@3.0.0
+  - @sjsf/flowbite-theme@3.0.0
+  - @sjsf/shadcn-theme@3.0.0
+  - @sjsf/skeleton3-theme@3.0.1
+  - @sjsf/ajv8-validator@3.2.0
+  - @sjsf/basic-theme@3.2.0
+  - @sjsf/cfworker-validator@3.2.0
+  - @sjsf/daisyui5-theme@3.2.0
+  - @sjsf/flowbite-icons@3.2.0
+  - @sjsf/lucide-icons@3.2.0
+  - @sjsf/moving-icons@3.2.0
+  - @sjsf/radix-icons@3.2.0
+  - @sjsf/schemasafe-validator@3.2.0
+  - @sjsf/sveltekit@3.2.0
+  - theme-testing@1.0.19
+  - @sjsf/zod4-validator@3.2.0
+
 ## 1.11.0
 
 ### Minor Changes

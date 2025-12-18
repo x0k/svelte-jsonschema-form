@@ -1,5 +1,34 @@
 # builder
 
+## 0.5.0
+
+### Minor Changes
+
+- Add `format` string option and operator ([#287](https://github.com/x0k/svelte-jsonschema-form/pull/287))
+
+- Add `number` range value type ([#290](https://github.com/x0k/svelte-jsonschema-form/pull/290))
+
+- Add `Range` field ([#285](https://github.com/x0k/svelte-jsonschema-form/pull/285))
+
+### Patch Changes
+
+- Updated dependencies [[`e4001c6`](https://github.com/x0k/svelte-jsonschema-form/commit/e4001c62e010adb122d1d820311a7de6fdda2d47), [`93c3c28`](https://github.com/x0k/svelte-jsonschema-form/commit/93c3c28e5ab66cb9945114ba60e5d83bd1e053e7), [`2aed532`](https://github.com/x0k/svelte-jsonschema-form/commit/2aed53299b8387d38e362c03ea4bc3a544506fe8), [`93c3c28`](https://github.com/x0k/svelte-jsonschema-form/commit/93c3c28e5ab66cb9945114ba60e5d83bd1e053e7), [`2aed532`](https://github.com/x0k/svelte-jsonschema-form/commit/2aed53299b8387d38e362c03ea4bc3a544506fe8), [`109d074`](https://github.com/x0k/svelte-jsonschema-form/commit/109d0742b6489e3e6b9fd0460aaca77abd6dffab), [`109d074`](https://github.com/x0k/svelte-jsonschema-form/commit/109d0742b6489e3e6b9fd0460aaca77abd6dffab)]:
+  - @sjsf/flowbite3-theme@3.2.0
+  - @sjsf/form@3.2.0
+  - @sjsf/skeleton4-theme@3.2.0
+  - @sjsf/shadcn4-theme@3.2.0
+  - @sjsf-lab/svar-theme@3.2.0
+  - @sjsf-lab/beercss-theme@3.2.0
+  - @sjsf/ajv8-validator@3.2.0
+  - @sjsf/basic-theme@3.2.0
+  - @sjsf/cfworker-validator@3.2.0
+  - @sjsf/daisyui5-theme@3.2.0
+  - @sjsf/flowbite-icons@3.2.0
+  - @sjsf/lucide-icons@3.2.0
+  - @sjsf/moving-icons@3.2.0
+  - @sjsf/radix-icons@3.2.0
+  - @sjsf/schemasafe-validator@3.2.0
+
 ## 0.4.0
 
 ### Minor Changes

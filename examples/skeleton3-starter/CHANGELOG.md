@@ -1,5 +1,15 @@
 # skeleton3-starter
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`93c3c28`](https://github.com/x0k/svelte-jsonschema-form/commit/93c3c28e5ab66cb9945114ba60e5d83bd1e053e7), [`93c3c28`](https://github.com/x0k/svelte-jsonschema-form/commit/93c3c28e5ab66cb9945114ba60e5d83bd1e053e7), [`109d074`](https://github.com/x0k/svelte-jsonschema-form/commit/109d0742b6489e3e6b9fd0460aaca77abd6dffab)]:
+  - @sjsf/form@3.2.0
+  - @sjsf/skeleton3-theme@3.0.1
+  - @sjsf/ajv8-validator@3.2.0
+  - @sjsf/basic-theme@3.2.0
+
 ## 0.0.7
 
 ### Patch Changes
