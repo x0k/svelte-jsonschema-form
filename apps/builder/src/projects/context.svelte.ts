@@ -9,6 +9,7 @@ import {
 	JSON_MIME_TYPE,
 	parseJSONBlob
 } from '$lib/file.js';
+import { decodeJson } from '$lib/url.js';
 
 import type { BuilderContext, BuilderState } from '../builder/context.svelte.js';
 import { type CreateProject, type Project, type ProjectId, type ProjectMeta } from './model.js';
@@ -20,7 +21,6 @@ import {
 	DEFAULT_CONFIRMATION_DIALOG_OPTIONS,
 	type ConfirmationDialogOptions
 } from './confirmation-dialog.svelte';
-import { decodeJson } from '$lib/url.js';
 
 export interface ProjectsRepository<S> {
 	validateProjectName(title: string): Promise<boolean>;
@@ -95,7 +95,7 @@ export class ProjectsContext {
 
 	init(hash: string) {
 		if (hash) {
-			this.builder.importState(decodeJson(hash))
+			this.builder.importState(decodeJson(hash));
 		} else {
 			this.projectsRepository.loadLastUsedProject().then(
 				(p) => {
@@ -263,7 +263,7 @@ export class ProjectsContext {
 			variant: 'warn',
 			onConfirm: () => {
 				// WARN: Snapshot is required
-				this.builder.importState($state.snapshot(project.state));
+				this.importState($state.snapshot(project.state));
 			}
 		};
 	}
@@ -374,11 +374,18 @@ export class ProjectsContext {
 		exportState();
 	}
 
+	private importState(state: BuilderState) {
+		this.builder.importState({
+			...state,
+			livePreview: 'livePreview' in state ? state.livePreview : false
+		});
+	}
+
 	private setCurrentProject(p: Project<BuilderState> | undefined) {
 		this.projectsRepository.saveLastUsedProjectId(p?.id);
 		this.#currentProject = p;
 		if (p) {
-			this.builder.importState(p.state);
+			this.importState(p.state);
 		}
 	}
 

@@ -1,5 +1,6 @@
-import { createContext, flushSync, onDestroy } from 'svelte';
-import type { FormValue, Schema, UiSchema } from '@sjsf/form';
+import { createContext, flushSync, onDestroy, untrack } from 'svelte';
+import { isSchemaValueDeepEqual } from '@sjsf/form/core';
+import type { FormValue, Schema, SchemaValue, UiSchema } from '@sjsf/form';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import { DragDropManager, Draggable, Droppable } from '@dnd-kit/dom';
 import type { HighlighterCore } from 'shiki/core';
@@ -26,7 +27,7 @@ import {
 	buildUiSchema,
 	type Scope,
 	type SchemaBuilderContext,
-	isFileNode,
+	isFileNode
 } from '$lib/builder/index.js';
 import { ActualTheme, mergeUiSchemas, type Theme, type WidgetType } from '$lib/sjsf/theme.js';
 import { Validator } from '$lib/sjsf/validators.js';
@@ -92,7 +93,7 @@ export interface NodeIssue {
 	message: string;
 }
 
-export interface BuilderState {
+export interface BuilderState1 {
 	rootNode?: CustomizableNode;
 	theme: Theme;
 	resolver: Resolver;
@@ -102,6 +103,14 @@ export interface BuilderState {
 	html5Validation: boolean;
 	route: Route;
 }
+
+export interface BuilderState2 extends BuilderState1 {
+	livePreview: boolean;
+}
+
+export type BuilderState = BuilderState1 | BuilderState2;
+
+type State = BuilderState2;
 
 const noopNodeRef: NodeRef = {
 	current() {
@@ -118,6 +127,9 @@ obj.options.title = 'Form title';
 
 export class BuilderContext {
 	#dnd = new DragDropManager<DndData>();
+	#validator = createFormValidator({
+		ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv))
+	});
 
 	#sourceId = $state.raw<UniqueId>();
 	#targetId = $state.raw<UniqueId>();
@@ -179,6 +191,7 @@ export class BuilderContext {
 	}
 
 	ignoreWarnings = $state(false);
+	livePreview = $state(false);
 	html5Validation = $state(false);
 
 	private _errorsCount = $state(0);
@@ -214,67 +227,72 @@ export class BuilderContext {
 		| undefined
 	>(undefined);
 
-	readonly schema = $derived(this.#buildOutput?.schema ?? {});
+	readonly schema: Schema = $derived(this.#buildOutput?.schema ?? { type: 'object' });
 	#uiSchemaOutput = $derived.by(() => {
-		let fileFieldMode = 0;
-		const widgets = new Set<WidgetType>();
-		const uiSchema =
-			this.rootNode &&
-			this.#buildOutput &&
-			buildUiSchema(
-				{
-					propertyNames: this.#buildOutput.propertyNames,
-					propertiesOrder: [],
-					uiComponents: (node) => {
-						if (isFileNode(node)) {
-							fileFieldMode |= node.options.native
-								? node.options.multiple
-									? FILE_FIELD_NATIVE_MULTIPLE_MODE
-									: FILE_FIELD_NATIVE_SINGLE_MODE
-								: node.options.multiple
-									? FILE_FIELD_MULTIPLE_MODE
-									: FILE_FIELD_SINGLE_MODE;
-						}
-						const widget = node.options.widget as WidgetType;
-						widgets.add(widget);
-						const components = Object.assign(
-							{} satisfies UiSchema['ui:components'],
-							DEFAULT_COMPONENTS[this.resolver][node.type](node as never)
-						);
-						const defaultWidget = DEFAULT_WIDGETS[node.type];
-						if (node.options.widget !== defaultWidget) {
-							//@ts-expect-error
-							components[defaultWidget] = widget;
-						}
-						return components;
-					},
-					textWidgetOptions: (params) => {
-						if (Object.values(params).every((v) => v === undefined)) {
+		this.#buildOutput; // includes rootNode
+		this.theme;
+		this.resolver;
+		return untrack(() => {
+			let fileFieldMode = 0;
+			const widgets = new Set<WidgetType>();
+			const uiSchema =
+				this.rootNode &&
+				this.#buildOutput &&
+				buildUiSchema(
+					{
+						propertyNames: this.#buildOutput.propertyNames,
+						propertiesOrder: [],
+						uiComponents: (node) => {
+							if (isFileNode(node)) {
+								fileFieldMode |= node.options.native
+									? node.options.multiple
+										? FILE_FIELD_NATIVE_MULTIPLE_MODE
+										: FILE_FIELD_NATIVE_SINGLE_MODE
+									: node.options.multiple
+										? FILE_FIELD_MULTIPLE_MODE
+										: FILE_FIELD_SINGLE_MODE;
+							}
+							const widget = node.options.widget as WidgetType;
+							widgets.add(widget);
+							const components = Object.assign(
+								{} satisfies UiSchema['ui:components'],
+								DEFAULT_COMPONENTS[this.resolver][node.type](node as never)
+							);
+							const defaultWidget = DEFAULT_WIDGETS[node.type];
+							if (node.options.widget !== defaultWidget) {
+								//@ts-expect-error
+								components[defaultWidget] = widget;
+							}
+							return components;
+						},
+						textWidgetOptions: (params) => {
+							if (Object.values(params).every((v) => v === undefined)) {
+								return {};
+							}
+							return TEXT_WIDGET_OPTIONS[this.theme](params);
+						},
+						checkboxesWidgetOptions: (inline) => {
+							return CHECKBOXES_WIDGET_OPTIONS[this.theme](inline);
+						},
+						radioWidgetOptions: (inline) => {
+							return RADIO_WIDGET_OPTIONS[this.theme](inline);
+						},
+						useLabelOptions: ({ type, options }) => {
+							const widget = options.widget as WidgetType;
+							const defaultWidget = DEFAULT_WIDGETS[type];
+							if (defaultWidget !== widget) {
+								const useLabel = getUseLabel(this.theme, widget);
+								if (getUseLabel(this.theme, defaultWidget) !== useLabel) {
+									return { useLabel };
+								}
+							}
 							return {};
 						}
-						return TEXT_WIDGET_OPTIONS[this.theme](params);
 					},
-					checkboxesWidgetOptions: (inline) => {
-						return CHECKBOXES_WIDGET_OPTIONS[this.theme](inline);
-					},
-					radioWidgetOptions: (inline) => {
-						return RADIO_WIDGET_OPTIONS[this.theme](inline);
-					},
-					useLabelOptions: ({ type, options }) => {
-						const widget = options.widget as WidgetType;
-						const defaultWidget = DEFAULT_WIDGETS[type];
-						if (defaultWidget !== widget) {
-							const useLabel = getUseLabel(this.theme, widget);
-							if (getUseLabel(this.theme, defaultWidget) !== useLabel) {
-								return { useLabel };
-							}
-						}
-						return {};
-					}
-				},
-				this.rootNode
-			);
-		return { uiSchema, widgets, fileFieldMode };
+					this.rootNode
+				);
+			return { uiSchema, widgets, fileFieldMode };
+		});
 	});
 	readonly uiSchema = $derived(this.#uiSchemaOutput.uiSchema);
 
@@ -353,19 +371,43 @@ export class BuilderContext {
 				handler?.(data.node);
 			});
 		});
+
+		let cId: number;
+		let lastSnap: SchemaValue | undefined;
+		$effect(() => {
+			if (!this.livePreview) {
+				return;
+			}
+			const snap = $state.snapshot({
+				theme: this.theme,
+				ignoreWarnings: this.ignoreWarnings,
+				rootNode: this.rootNode
+			});
+			if (isSchemaValueDeepEqual(lastSnap, snap)) {
+				return;
+			}
+			lastSnap = snap;
+			clearTimeout(cId);
+			cId = setTimeout(() => {
+				if (this.validate()) {
+					this.build();
+				}
+			}, 300);
+		});
 	}
 
-	importState(data: BuilderState) {
+	importState(data: State) {
 		Object.assign(this, data);
 		if (this.route.name === RouteName.Preview) {
 			this.build();
 		}
 	}
 
-	exportState(): BuilderState {
+	exportState(): State {
 		return $state.snapshot({
 			rootNode: this.rootNode,
 			icons: this.icons,
+			livePreview: this.livePreview,
 			ignoreWarnings: this.ignoreWarnings,
 			resolver: this.resolver,
 			route: this.route,
@@ -510,9 +552,6 @@ export class BuilderContext {
 		if (this.rootNode === undefined) {
 			return false;
 		}
-		const validator = createFormValidator({
-			ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv))
-		});
 		const registries: {
 			[K in keyof ValidatorRegistries]: Array<ValidatorRegistries[K]>;
 		} = {
@@ -527,14 +566,14 @@ export class BuilderContext {
 			{
 				validateCustomizableNodeOptions(node) {
 					const schema = self.nodeSchema(node);
-					const result = validator.validateFormValue(schema, node.options as FormValue);
+					const result = self.#validator.validateFormValue(schema, node.options as FormValue);
 					if (result.errors) {
 						errors.push({ nodeId: node.id, message: 'Invalid field options' });
 						console.error(result.errors);
 					}
 				},
 				getAvailableRangeValueTypes() {
-					return self.availableRangeValueTypes
+					return self.availableRangeValueTypes;
 				},
 				addError(node, message) {
 					//@ts-expect-error
