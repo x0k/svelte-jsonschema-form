@@ -1,6 +1,7 @@
 import { DEFAULT_BOOLEAN_ENUM } from '@sjsf/form';
 
-import type { Node, NodeId } from './node.js';
+import type { NodeId } from './node-base.js';
+import type { Node } from './node.js';
 import {
 	isArrayNode,
 	isBooleanNode,

@@ -1,9 +1,9 @@
-import type { Brand } from '@sjsf/form/lib/types';
 import type { Schema, UiOptions, UiSchemaRoot } from '@sjsf/form';
 import type { FromSchema } from 'json-schema-to-ts';
 
 import { mergeUiSchemas } from '$lib/sjsf/theme.js';
 import { mergeSchemas } from '$lib/json-schema.js';
+import { constant } from '$lib/function.js';
 
 import {
 	OperatorType,
@@ -14,61 +14,16 @@ import {
 	type UOperatorType
 } from './operator.js';
 import { EnumValueType } from './enum.js';
-import type { RangeValueType } from './range.js';
-
-export enum NodeType {
-	Object = 'object',
-	ObjectProperty = 'object-property',
-	ObjectPropertyDependency = 'object-property-dependency',
-	Predicate = 'predicate',
-	Operator = 'operator',
-	Array = 'array',
-	Grid = 'grid',
-	Enum = 'enum',
-	MultiEnum = 'multi-enum',
-	EnumItem = 'enum-item',
-	String = 'string',
-	Number = 'number',
-	Boolean = 'boolean',
-	File = 'file',
-	Tags = 'tags',
-	Range = 'range'
-}
-
-export type NodeId = Brand<'node-id'>;
-
-export const COMMON_OPTIONS_SCHEMA = {
-	type: 'object',
-	properties: {
-		title: {
-			title: 'Title',
-			type: 'string'
-		},
-		description: {
-			title: 'Description',
-			type: 'string'
-		},
-		required: {
-			title: 'Required',
-			type: 'boolean'
-		}
-	},
-	required: ['title', 'required']
-} as const satisfies Schema;
-
-export type CommonOptions = FromSchema<typeof COMMON_OPTIONS_SCHEMA>;
-
-export interface AbstractNode<T extends NodeType> {
-	id: NodeId;
-	type: T;
-}
-
-export interface AbstractCustomizableNode<
-	T extends NodeType,
-	O extends {}
-> extends AbstractNode<T> {
-	options: CommonOptions & O;
-}
+import {
+	COMMON_OPTIONS_SCHEMA,
+	NodeType,
+	type AbstractCustomizableNode,
+	type AbstractNode,
+	type NodeId
+} from './node-base.js';
+import { STRING_NODE_OPTIONS_SCHEMA, type StringNode } from './string-node.js';
+import { NUMBER_NODE_OPTIONS_SCHEMA, type NumberNode } from './number-node.js';
+import { RANGE_NODE_OPTIONS_SCHEMA, type RangeNode } from './range-node.js';
 
 export interface PredicateNode extends AbstractNode<NodeType.Predicate> {
 	operator: OperatorNode | undefined;
@@ -369,138 +324,6 @@ export interface MultiEnumNode extends AbstractCustomizableNode<
 	items: EnumItemNode[];
 }
 
-export const STRING_NODE_OPTIONS_SCHEMA = {
-	type: 'object',
-	title: 'String options',
-	properties: {
-		widget: {
-			title: 'Widget',
-			type: 'string',
-			default: 'textWidget'
-		},
-		help: {
-			title: 'Help',
-			type: 'string'
-		},
-		default: {
-			title: 'Default value',
-			type: 'string'
-		},
-		format: {
-			type: 'string',
-			title: "Format",
-			description: "JSON Schema string formats"
-		},
-		maxLength: {
-			title: 'Max length',
-			type: 'number',
-			minimum: 0
-		},
-		minLength: {
-			title: 'Min length',
-			type: 'number',
-			minimum: 0
-		},
-		pattern: {
-			title: 'Pattern',
-			description: 'Regular expression, preferably using the ECMA-262 flavour',
-			type: 'string',
-			format: 'regexp'
-		}
-	},
-	required: ['widget'],
-	dependencies: {
-		widget: {
-			oneOf: [
-				{
-					type: 'object',
-					properties: {
-						widget: {
-							const: 'textWidget'
-						},
-						inputType: {
-							title: 'Input type',
-							enum: [
-								'color',
-								'date',
-								'datetime-local',
-								'email',
-								'hidden',
-								'month',
-								'password',
-								'tel',
-								'text',
-								'time',
-								'url',
-								'week'
-							]
-						},
-						placeholder: {
-							title: 'Placeholder',
-							type: 'string'
-						}
-					}
-				},
-				{
-					properties: {
-						widget: {
-							not: {
-								const: 'textWidget'
-							}
-						}
-					}
-				}
-			]
-		}
-	}
-} as const satisfies Schema;
-
-export type StringNodeOptions = FromSchema<typeof STRING_NODE_OPTIONS_SCHEMA> &
-	FromSchema<(typeof STRING_NODE_OPTIONS_SCHEMA)['dependencies']['widget']['oneOf'][0]>;
-
-export interface StringNode extends AbstractCustomizableNode<NodeType.String, StringNodeOptions> {}
-
-export const NUMBER_NODE_OPTIONS_SCHEMA = {
-	title: 'Number options',
-	type: 'object',
-	properties: {
-		integer: {
-			title: 'Integer',
-			type: 'boolean'
-		},
-		widget: {
-			title: 'Widget',
-			type: 'string',
-			default: 'numberWidget'
-		},
-		help: {
-			title: 'Help',
-			type: 'string'
-		},
-		default: {
-			title: 'Default value',
-			type: 'number'
-		},
-		minimum: {
-			title: 'Minimum',
-			type: 'number'
-		},
-		maximum: {
-			title: 'Maximum',
-			type: 'number'
-		},
-		multipleOf: {
-			title: 'Multiple of',
-			type: 'number'
-		}
-	},
-	required: ['widget']
-} as const satisfies Schema;
-
-export type NumberOptions = FromSchema<typeof NUMBER_NODE_OPTIONS_SCHEMA>;
-
-export interface NumberNode extends AbstractCustomizableNode<NodeType.Number, NumberOptions> {}
-
 export const BOOLEAN_NODE_OPTIONS_SCHEMA = {
 	title: 'Boolean options',
 	type: 'object',
@@ -627,31 +450,6 @@ export type TagsOptions = FromSchema<typeof TAGS_NODE_OPTIONS_SCHEMA>;
 
 export interface TagsNode extends AbstractCustomizableNode<NodeType.Tags, TagsOptions> {}
 
-export const RANGE_NODE_OPTIONS_SCHEMA = {
-	title: 'Range options',
-	type: 'object',
-	properties: {
-		widget: {
-			title: 'Widget',
-			type: 'string',
-			default: 'dateRangePickerWidget'
-		},
-		help: {
-			title: 'Help',
-			type: 'string'
-		}
-	},
-	required: ['widget']
-} as const satisfies Schema;
-
-export type RangeOptions = FromSchema<typeof RANGE_NODE_OPTIONS_SCHEMA>;
-
-export interface RangeNode extends AbstractCustomizableNode<NodeType.Range, RangeOptions> {
-	valueType: RangeValueType;
-	startNode: Node;
-	endNode: Node;
-}
-
 export type Node =
 	| ObjectNode
 	| ObjectPropertyNode
@@ -692,7 +490,9 @@ export const CUSTOMIZABLE_TYPE_TITLES: Record<CustomizableNodeType, string> = {
 
 export const CUSTOMIZABLE_TYPES = Object.keys(CUSTOMIZABLE_TYPE_TITLES) as CustomizableNodeType[];
 
-export const NODE_OPTIONS_SCHEMAS = {
+export const NODE_OPTIONS_SCHEMAS: {
+	[T in CustomizableNodeType]: Schema;
+} = {
 	[NodeType.Object]: mergeSchemas(COMMON_OPTIONS_SCHEMA, OBJECT_NODE_OPTIONS_SCHEMA),
 	[NodeType.Array]: mergeSchemas(COMMON_OPTIONS_SCHEMA, ARRAY_NODE_OPTIONS_SCHEMA),
 	[NodeType.Grid]: mergeSchemas(COMMON_OPTIONS_SCHEMA, GRID_NODE_OPTIONS_SCHEMA),
@@ -704,7 +504,7 @@ export const NODE_OPTIONS_SCHEMAS = {
 	[NodeType.File]: mergeSchemas(COMMON_OPTIONS_SCHEMA, FILE_NODE_OPTIONS_SCHEMA),
 	[NodeType.Tags]: mergeSchemas(COMMON_OPTIONS_SCHEMA, TAGS_NODE_OPTIONS_SCHEMA),
 	[NodeType.Range]: mergeSchemas(COMMON_OPTIONS_SCHEMA, RANGE_NODE_OPTIONS_SCHEMA)
-} satisfies Record<CustomizableNodeType, Schema>;
+};
 
 const COMMON_UI_SCHEMA: UiSchemaRoot = {
 	'ui:options': {
