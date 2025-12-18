@@ -1,5 +1,7 @@
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
-import type { Sample } from "@/core/index.js";
+import type { SampleCategory, Sample } from "@/core/index.js";
+
+export const category: SampleCategory = "Other";
 
 enum TransformPreset {
   Default = "Default",

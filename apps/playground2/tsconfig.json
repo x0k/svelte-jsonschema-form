@@ -7,6 +7,11 @@
     "types": [
       "vite/client",
     ],
+    "lib": [
+      "es2024",
+      "DOM.Iterable",
+      "DOM"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": [

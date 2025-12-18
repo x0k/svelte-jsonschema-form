@@ -1,4 +1,6 @@
-import type { Sample } from '@/core/index.js';
+import type { SampleCategory, Sample } from "@/core/index.js";
+
+export const category: SampleCategory = "Schema Logic";
 
 export default {
   // NOTE: This sample produces warnings in the console as original project does.

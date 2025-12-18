@@ -1,6 +1,8 @@
 import type { UiOptions, UiSchema, UiSchemaRef } from "@sjsf/form";
 
-import type { Sample } from "@/core/index.js";
+import type { SampleCategory, Sample } from "@/core/index.js";
+
+export const category: SampleCategory = "UI customization";
 
 function propertyStyles(
   style: string,
