@@ -1,5 +1,19 @@
 # @sjsf/shadcn4-theme
 
+## 3.2.0
+
+### Minor Changes
+
+- Add `range-slider` widget ([#289](https://github.com/x0k/svelte-jsonschema-form/pull/289))
+
+- Use `dateRangePickerWidget` definition for date range picker ([#284](https://github.com/x0k/svelte-jsonschema-form/pull/284))
+
+### Patch Changes
+
+- Updated dependencies [[`93c3c28`](https://github.com/x0k/svelte-jsonschema-form/commit/93c3c28e5ab66cb9945114ba60e5d83bd1e053e7), [`93c3c28`](https://github.com/x0k/svelte-jsonschema-form/commit/93c3c28e5ab66cb9945114ba60e5d83bd1e053e7), [`109d074`](https://github.com/x0k/svelte-jsonschema-form/commit/109d0742b6489e3e6b9fd0460aaca77abd6dffab)]:
+  - @sjsf/form@3.2.0
+  - @sjsf/basic-theme@3.2.0
+
 ## 3.1.1
 
 ### Patch Changes

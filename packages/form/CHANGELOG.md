@@ -1,5 +1,17 @@
 # @sjsf/form
 
+## 3.2.0
+
+### Minor Changes
+
+- Add `getSubtreePaths` form method ([#286](https://github.com/x0k/svelte-jsonschema-form/pull/286))
+
+- Add `dateRangePickerWidget` and `rangeSliderWidget` definitions ([#284](https://github.com/x0k/svelte-jsonschema-form/pull/284))
+
+### Patch Changes
+
+- Fix error collection in `aggregated` and `tags` fields ([#286](https://github.com/x0k/svelte-jsonschema-form/pull/286))
+
 ## 3.1.1
 
 ### Patch Changes
