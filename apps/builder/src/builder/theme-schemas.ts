@@ -1,9 +1,15 @@
 import { isObject } from '@sjsf/form/lib/object';
-import type { CompatibleComponentType, Schema, UiSchema, UiSchemaRoot } from '@sjsf/form';
+import type { CompatibleComponentType, Schema, UiSchemaRoot } from '@sjsf/form';
 
-import { ActualTheme, LabTheme, type Theme, type WidgetType } from '$lib/sjsf/theme.js';
-import { NodeType, RangeValueType, type AbstractNode, type Node } from '$lib/builder/index.js';
 import { constant } from '$lib/function.js';
+import { ActualTheme, LabTheme, type Theme, type WidgetType } from '$lib/sjsf/theme.js';
+import {
+	NodeType,
+	RangeValueType,
+	type AbstractNode,
+	type CustomizableNodeType,
+	type Node
+} from '$lib/builder/index.js';
 
 import { WIDGET_NAMES } from './model.js';
 
@@ -198,15 +204,13 @@ export const THEME_SCHEMAS: Record<Theme, Factories<Schema>> = {
 		[NodeType.Range]: (node) => ({
 			properties: {
 				widget: {
-					enum: {
-						[RangeValueType.String]: [
+					[RangeValueType.String]: {
+						enum: [
 							'dateRangePickerWidget'
-						] satisfies CompatibleComponentType<'dateRangePickerWidget'>[],
-						[RangeValueType.Number]: [
-							'rangeSliderWidget'
-						] satisfies CompatibleComponentType<'rangeSliderWidget'>[]
-					}[node.valueType]
-				}
+						] satisfies CompatibleComponentType<'dateRangePickerWidget'>[]
+					} satisfies Schema,
+					[RangeValueType.Number]: {} satisfies Schema
+				}[node.valueType]
 			}
 		})
 	},
@@ -426,15 +430,13 @@ export const THEME_SCHEMAS: Record<Theme, Factories<Schema>> = {
 		[NodeType.Range]: (node) => ({
 			properties: {
 				widget: {
-					enum: {
-						[RangeValueType.String]: [
+					[RangeValueType.String]: {
+						enum: [
 							'dateRangePickerWidget'
-						] satisfies CompatibleComponentType<'dateRangePickerWidget'>[],
-						[RangeValueType.Number]: [
-							'rangeSliderWidget'
-						] satisfies CompatibleComponentType<'rangeSliderWidget'>[]
-					}[node.valueType]
-				}
+						] satisfies CompatibleComponentType<'dateRangePickerWidget'>[]
+					},
+					[RangeValueType.Number]: {}
+				}[node.valueType]
 			}
 		})
 	},
@@ -533,15 +535,41 @@ function schemaToEnumNames<T extends NodeType>(factory: Factory<T, Schema>) {
 	};
 }
 
-export const THEME_MISSING_FIELDS: Record<Theme, Set<NodeType>> = {
-	[ActualTheme.Basic]: new Set([NodeType.Tags, NodeType.Range]),
-	[ActualTheme.Pico]: new Set([NodeType.Tags, NodeType.Range]),
-	[ActualTheme.Daisy5]: new Set([NodeType.Tags, NodeType.Range]),
-	[ActualTheme.Flowbite3]: new Set([]),
-	[ActualTheme.Skeleton4]: new Set([]),
-	[ActualTheme.Shadcn4]: new Set([NodeType.Tags]),
-	[LabTheme.Svar]: new Set([NodeType.Tags, NodeType.File]),
-	[LabTheme.BeerCSS]: new Set([NodeType.Tags, NodeType.Range])
+const BASIC_THEME_CUSTOMIZABLE_NODE_TYPES = [
+	NodeType.Object,
+	NodeType.Grid,
+	NodeType.Array,
+	NodeType.Enum,
+	NodeType.MultiEnum,
+	NodeType.String,
+	NodeType.Number,
+	NodeType.Boolean,
+	NodeType.File
+] satisfies CustomizableNodeType[];
+
+export const THEME_CUSTOMIZABLE_NODE_TYPES: Record<Theme, CustomizableNodeType[]> = {
+	[ActualTheme.Basic]: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES,
+	[ActualTheme.Pico]: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES,
+	[ActualTheme.Daisy5]: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES,
+	[ActualTheme.Flowbite3]: [...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES, NodeType.Tags, NodeType.Range],
+	[ActualTheme.Skeleton4]: [...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES, NodeType.Tags, NodeType.Range],
+	[ActualTheme.Shadcn4]: [...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES, NodeType.Range],
+	[LabTheme.Svar]: [
+		...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES.filter((t) => t !== NodeType.File),
+		NodeType.Range
+	],
+	[LabTheme.BeerCSS]: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES
+};
+
+export const THEME_RANGE_VALUE_TYPES: Record<Theme, RangeValueType[]> = {
+	[ActualTheme.Basic]: [],
+	[ActualTheme.Pico]: [],
+	[ActualTheme.Daisy5]: [],
+	[ActualTheme.Flowbite3]: [RangeValueType.String],
+	[ActualTheme.Skeleton4]: [RangeValueType.String, RangeValueType.Number],
+	[ActualTheme.Shadcn4]: [RangeValueType.String, RangeValueType.Number],
+	[LabTheme.Svar]: [RangeValueType.String],
+	[LabTheme.BeerCSS]: []
 };
 
 export const THEME_APP_CSS: Record<Theme, string> = {

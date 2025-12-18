@@ -10,6 +10,7 @@ import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/shadcn4-theme/specs';
 import styles from '@sjsf/shadcn4-theme/styles.css?inline';
 
+import shadcnContextCode from 'apps/playground2/src/shadcn-context.ts?raw'
 import pkg from '#/shadcn4-theme/package.json'
 
 import { themePkg } from '@/shared';
@@ -47,18 +48,36 @@ Register the theme source path by adding the following line to the `app.css` fil
 
 Since `shadcn-svelte` is not a component library you should provide your components via `setThemeContext`.
 
-:::note
+<Tabs>
+  <TabItem label="Code base components">
+    :::note
 
-You should prefer to use components from your code base to avoid code duplication
+    `components: ThemeComponents` is an augmentable interface; the set of components
+    is determined automatically when extra widgets are included/imported.
 
-:::
+    Below is an example of a function that sets the set of components required
+    when including all extra widgets.
 
-```typescript
-import { setThemeContext } from '@sjsf/shadcn4-theme';
-import * as components from '@sjsf/shadcn4-theme/new-york';
+    :::
 
-setThemeContext({ components })
-```
+    <Code lang="typescript" code={shadcnContextCode} />
+  </TabItem>
+  <TabItem label="Library components">
+    :::caution
+
+    Using this approach will result in duplication of shadcn components in the final bundle.
+
+    :::
+
+    ```typescript
+    import { setThemeContext } from '@sjsf/shadcn4-theme';
+    import * as components from '@sjsf/shadcn4-theme/new-york';
+
+    setThemeContext({ components })
+    ```
+  </TabItem>
+</Tabs>
+
 
 ## Extra widgets
 

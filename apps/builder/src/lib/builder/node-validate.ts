@@ -37,6 +37,7 @@ import {
 	isTagsNode
 } from './node-guards.js';
 import { getNodeChild, getNodeOptions, getNodeProperty } from './node-props.js';
+import { RANGE_VALUE_TYPE_TITLES, type RangeValueType } from './range-node.js';
 
 export interface ValidatorRegistries {
 	complementary: NodeId | undefined;
@@ -46,6 +47,7 @@ export interface ValidatorRegistries {
 
 export interface ValidatorContext {
 	validateCustomizableNodeOptions: (node: CustomizableNode) => void;
+	getAvailableRangeValueTypes(): RangeValueType[];
 	addError: (node: Node, message: string) => void;
 	addWarning: (node: Node, message: string) => void;
 	push<K extends keyof ValidatorRegistries>(registry: K, value: ValidatorRegistries[K]): Disposable;
@@ -493,7 +495,17 @@ const NODE_VALIDATORS: {
 	[NodeType.Boolean]: noop,
 	[NodeType.File]: noop,
 	[NodeType.Tags]: noop,
-	[NodeType.Range]: noop
+	[NodeType.Range]: (ctx, node) => {
+		const allowed = ctx.getAvailableRangeValueTypes();
+		if (allowed.length === 0) {
+			ctx.addError(node, 'This node cannot be used with the current theme.');
+		} else if (!allowed.includes(node.valueType)) {
+			ctx.addError(
+				node,
+				`Invalid range value type "${RANGE_VALUE_TYPE_TITLES[node.valueType]}", one of the following values is expected: ${JSON.stringify(allowed.map((t) => RANGE_VALUE_TYPE_TITLES[t]))}`
+			);
+		}
+	}
 };
 
 export function validateNode(ctx: ValidatorContext, node: Node) {

@@ -1,4 +1,6 @@
-import type { Sample } from "@/core/sample.js";
+import type { SampleCategory, Sample } from "@/core/index.js";
+
+export const category: SampleCategory = "UI customization";
 
 export default {
   // Based on https://habr.com/ru/articles/884862/ (RU)

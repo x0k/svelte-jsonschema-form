@@ -131,3 +131,16 @@ type RequiredSampleProperties = "schema" | "uiSchema" | "initialValue";
 
 export type Sample = Pick<PlaygroundState, RequiredSampleProperties> &
   Partial<Omit<PlaygroundState, RequiredSampleProperties>>;
+
+export const SAMPLE_CATEGORY = {
+  SchemaBasics: "Schema Basics",
+  SchemaLogic: "Schema Logic",
+  UiCustomization: "UI customization",
+  Other: "Other",
+} as const;
+
+export type SampleCategory =
+  (typeof SAMPLE_CATEGORY)[keyof typeof SAMPLE_CATEGORY];
+
+export const SAMPLE_CATEGORIES: SampleCategory[] =
+  Object.values(SAMPLE_CATEGORY);

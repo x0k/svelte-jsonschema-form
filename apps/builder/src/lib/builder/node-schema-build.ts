@@ -471,7 +471,7 @@ const NODE_SCHEMA_BUILDERS: {
 	[NodeType.Range]: (ctx, { options, startNode, endNode, valueType }) => {
 		ctx.propertyNames.set(startNode.id, 'start');
 		ctx.propertyNames.set(endNode.id, 'end');
-		const subSchema = {
+		const subSchema: Schema = {
 			type: valueType
 		};
 		const schema: Schema = {

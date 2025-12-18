@@ -35,6 +35,10 @@
     />
   </div>
   <div class="flex items-center gap-2">
+    <Checkbox id={`${uniqueId}-live`} bind:checked={ctx.livePreview} />
+    <Label class="text-base" for={`${uniqueId}-live`}>Live preview</Label>
+  </div>
+  <div class="flex items-center gap-2">
     <Checkbox id={`${uniqueId}-ignore`} bind:checked={ctx.ignoreWarnings} />
     <Label class="text-base" for={`${uniqueId}-ignore`}>Ignore warnings</Label>
   </div>

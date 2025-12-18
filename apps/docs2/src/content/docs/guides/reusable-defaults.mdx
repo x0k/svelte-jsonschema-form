@@ -19,9 +19,11 @@ And use it like this:
 :::caution
 
 At the moment, Svelte has an [issue](https://github.com/sveltejs/svelte/issues/17220)
-with overwriting module properties during SSR.
-As a workaround, you can use a shallow clone or `export const defaults = { ... }`
-in a `defaults` file.
+with overwriting module properties used as component properties
+(`<SimpleForm {...defaults} resolver={myResolver} >`) during SSR.
+
+As a workaround, you can use a shallow clone of `defaults` object or
+define `export const defaults = { ... }` in a `defaults` file.
 
 :::
 
