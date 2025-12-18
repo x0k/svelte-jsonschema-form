@@ -127,6 +127,9 @@ describe("SchemasRegistry", () => {
           enum: ["active", "inactive", "pending"],
         },
         record: {
+          propertyNames: {
+            type: "string",
+          },
           additionalProperties: {
             type: "string",
           },
@@ -161,7 +164,7 @@ describe("SchemasRegistry", () => {
           ],
         },
         variant: {
-          anyOf: [
+          oneOf: [
             {
               properties: {
                 email: {
@@ -240,7 +243,6 @@ describe("SchemasRegistry", () => {
         "record",
         "variant",
         "intersect",
-        "exactOptionalString",
         "undefinedableString",
         "nullableString",
       ],
@@ -282,5 +284,50 @@ describe("SchemasRegistry", () => {
       false
     );
     expect(v.safeParse(second, { bar: "bar" })).toHaveProperty("success", true);
+  });
+  it("should create augmented valibot schemas for object variant members", () => {
+    const registry = createSchemaRegistry();
+    const { oneOf } = toJsonSchema(
+      v.variant("type", [
+        v.object({
+          type: v.literal("email"),
+          email: v.pipe(v.string(), v.email()),
+        }),
+        v.object({
+          type: v.literal("url"),
+          url: v.pipe(v.string(), v.url()),
+        }),
+      ]),
+      {
+        overrideSchema: registry.register,
+      }
+    );
+    const definitions = oneOf ?? [];
+    if (!definitions.every(isSchemaObject)) {
+      throw new Error("All `oneOf` elements must be schemas");
+    }
+    const [first, second] = definitions.map(({ $id: id }, i) => {
+      if (id === undefined) {
+        throw new Error(`$id is undefined for oneOf[${i}] item`);
+      }
+      const schema = registry.get(createAugmentedId(id));
+      if (schema === undefined) {
+        throw new Error(`Augmented schema is undefined for oneOf[${i}] item`);
+      }
+      return schema;
+    });
+    if (first === undefined || second === undefined) {
+      throw new Error(`Augmented schemas are invalid`);
+    }
+    expect(v.safeParse(first, {})).toHaveProperty("success", false);
+    expect(
+      v.safeParse(first, { type: "email", email: "foo@test.com" })
+    ).toHaveProperty("success", true);
+    expect(
+      v.safeParse(second, { type: "email", email: "foo@test.com" })
+    ).toHaveProperty("success", false);
+    expect(
+      v.safeParse(second, { type: "url", url: "http://test.com" })
+    ).toHaveProperty("success", true);
   });
 });

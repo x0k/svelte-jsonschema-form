@@ -83,17 +83,18 @@ export function createSchemaRegistry({
         }
         case "union":
         case "variant": {
-          const { anyOf } = jsonSchema;
+          const { anyOf, oneOf } = jsonSchema;
+          const alt = anyOf ?? oneOf;
           if (
-            anyOf === undefined ||
-            !anyOf.every(isSchemaObject) ||
-            vSchema.options.length !== anyOf.length
+            alt === undefined ||
+            !alt.every(isSchemaObject) ||
+            vSchema.options.length !== alt.length
           ) {
             throw new Error(
-              `Expected 'anyOf' keyword for Valibot ${vSchema.type} type, but got '${Object.keys(jsonSchema).join(", ")}'`
+              `Expected 'anyOf' or 'oneOf' keyword for Valibot "${vSchema.type}" type, but got '${Object.keys(jsonSchema).join(", ")}'`
             );
           }
-          for (let i = 0; i < anyOf.length; i++) {
+          for (let i = 0; i < alt.length; i++) {
             const option = vSchema.options[i]!;
             if ("pipe" in option) {
               throw new Error(`unions with pipes currently unsupported`);
@@ -104,7 +105,7 @@ export function createSchemaRegistry({
             if (augmentedSchema === undefined) {
               continue;
             }
-            const { $id: id } = anyOf[i]!;
+            const { $id: id } = alt[i]!;
             if (id === undefined) {
               throw new Error(`Id for item of 'anyOf' item not found`);
             }
