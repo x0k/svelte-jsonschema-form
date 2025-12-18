@@ -7575,8 +7575,8 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
               <!---->
               <input
                 hidden=""
-                id="root"
-                name="root[]"
+                id="root_start"
+                name="root_start"
                 type="text"
               />
               
@@ -7609,8 +7609,8 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
               <!---->
               <input
                 hidden=""
-                id="root"
-                name="root[]"
+                id="root_end"
+                name="root_end"
                 type="text"
               />
               
@@ -7770,8 +7770,8 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
               <!---->
               <input
                 hidden=""
-                id="root"
-                name="root[]"
+                id="root_start"
+                name="root_start"
                 type="text"
               />
               
@@ -7803,8 +7803,8 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
               <!---->
               <input
                 hidden=""
-                id="root"
-                name="root[]"
+                id="root_end"
+                name="root_end"
                 type="text"
               />
               
@@ -7971,8 +7971,8 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
               <!---->
               <input
                 hidden=""
-                id="root"
-                name="root[]"
+                id="root_start"
+                name="root_start"
                 type="text"
               />
               
@@ -8004,8 +8004,8 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
               <!---->
               <input
                 hidden=""
-                id="root"
-                name="root[]"
+                id="root_end"
+                name="root_end"
                 type="text"
               />
               
@@ -8161,8 +8161,8 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
               <!---->
               <input
                 hidden=""
-                id="root"
-                name="root[]"
+                id="root_start"
+                name="root_start"
                 type="text"
               />
               
@@ -8194,8 +8194,8 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
               <!---->
               <input
                 hidden=""
-                id="root"
-                name="root[]"
+                id="root_end"
+                name="root_end"
                 type="text"
               />
               
