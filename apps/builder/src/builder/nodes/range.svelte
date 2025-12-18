@@ -10,6 +10,7 @@
 	import NodeContainer from '../node-container.svelte';
 	import NodeHeader from '../customizable-node-header.svelte';
 	import NodeIssues from '../node-issues.svelte';
+	import { getBuilderContext } from '../context.svelte.js';
 
 	import ValueTypeSelect from './value-type-select.svelte';
 
@@ -19,6 +20,8 @@
 		unmount,
 		showRequired
 	}: NodeProps<NodeType.Range> = $props();
+
+	const ctx = getBuilderContext()
 </script>
 
 <NodeContainer bind:node {draggable} {showRequired} class="flex flex-col gap-0.5">
@@ -31,7 +34,7 @@
 						node = createRangeNode(node.id, t, node.options);
 					}
 				}
-				items={RANGE_VALUE_TYPES}
+				items={ctx.availableRangeValueTypes}
 				labels={RANGE_VALUE_TYPE_TITLES}
 			/>
 		{/snippet}

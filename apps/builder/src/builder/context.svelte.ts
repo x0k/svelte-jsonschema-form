@@ -13,7 +13,6 @@ import {
 	type ObjectNode,
 	NODE_OPTIONS_SCHEMAS,
 	NODE_OPTIONS_UI_SCHEMAS,
-	CUSTOMIZABLE_TYPES,
 	type NodeId,
 	type OperatorNode,
 	summarizeOperator,
@@ -27,7 +26,7 @@ import {
 	buildUiSchema,
 	type Scope,
 	type SchemaBuilderContext,
-	isFileNode
+	isFileNode,
 } from '$lib/builder/index.js';
 import { ActualTheme, mergeUiSchemas, type Theme, type WidgetType } from '$lib/sjsf/theme.js';
 import { Validator } from '$lib/sjsf/validators.js';
@@ -54,7 +53,8 @@ import {
 import type { NodeContext } from './node-context.js';
 import {
 	THEME_APP_CSS,
-	THEME_MISSING_FIELDS,
+	THEME_CUSTOMIZABLE_NODE_TYPES,
+	THEME_RANGE_VALUE_TYPES,
 	THEME_SCHEMAS,
 	THEME_UI_SCHEMAS
 } from './theme-schemas.js';
@@ -153,12 +153,8 @@ export class BuilderContext {
 	icons = $state.raw(Icons.None);
 	validator = $state.raw(Validator.Ajv);
 
-	readonly availableCustomizableNodeTypes = $derived.by(() => {
-		const missing = THEME_MISSING_FIELDS[this.theme];
-		return missing.size === 0
-			? CUSTOMIZABLE_TYPES
-			: CUSTOMIZABLE_TYPES.filter((t) => !missing.has(t));
-	});
+	readonly availableCustomizableNodeTypes = $derived(THEME_CUSTOMIZABLE_NODE_TYPES[this.theme]);
+	readonly availableRangeValueTypes = $derived(THEME_RANGE_VALUE_TYPES[this.theme]);
 
 	get isDragged() {
 		return this.#sourceId !== undefined;
@@ -536,6 +532,9 @@ export class BuilderContext {
 						errors.push({ nodeId: node.id, message: 'Invalid field options' });
 						console.error(result.errors);
 					}
+				},
+				getAvailableRangeValueTypes() {
+					return self.availableRangeValueTypes
 				},
 				addError(node, message) {
 					//@ts-expect-error
