@@ -74,10 +74,10 @@
 		"@tailwindcss/vite": "catalog:",
 		"ajv": "catalog:",
 		"flowbite": "^3.1.2",
-		"flowbite-svelte": "^1.28.1",
+		"flowbite-svelte": "^1.31.0",
 		"globals": "catalog:",
 		"svelte": "catalog:",
-		"tailwind-variants": "^3.1.1",
+		"tailwind-variants": "^3.2.2",
 		"tailwindcss": "catalog:",
 		"theme-testing": "workspace:*"
 	},

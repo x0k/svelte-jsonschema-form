@@ -55,7 +55,7 @@
 		"@sjsf/form": "workspace:*",
 		"globals": "catalog:",
 		"svelte": "catalog:",
-		"svelte-radix": "^3.0.0",
+		"svelte-radix": "^3.0.2",
 		"theme-testing": "workspace:*"
 	},
 	"svelte": "./dist/index.js",
