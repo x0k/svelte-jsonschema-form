@@ -4,14 +4,8 @@ import type { UiOptions, UiSchema } from '@sjsf/form';
 import { assertThing } from '$lib/assert.js';
 import { mergeUiSchemas } from '$lib/sjsf/theme.js';
 
-import {
-	NodeType,
-	type AbstractNode,
-	type EnumItemNode,
-	type Node,
-	type NodeId,
-	type WidgetNode
-} from './node.js';
+import { NodeType, type AbstractNode, type NodeId } from './node-base.js';
+import type { EnumItemNode, Node, WidgetNode } from './node.js';
 import { EnumValueType } from './enum.js';
 
 export interface TextWidgetParams {
@@ -197,7 +191,7 @@ const NODE_UI_SCHEMA_BUILDERS: {
 	[NodeType.Range]: (ctx, node) =>
 		leafNode(ctx, node, {
 			collectErrors: true
-		}),
+		})
 };
 
 export function buildUiSchema(ctx: UiSchemaBuilderContext, node: Node): UiSchema | undefined {

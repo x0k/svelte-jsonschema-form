@@ -1,7 +1,6 @@
+import { NodeType, type AbstractNode } from './node-base.js';
 import {
-	NodeType,
 	type Node,
-	type AbstractNode,
 	type ComparisonOperator,
 	type CustomizableNode,
 	type NOperator,

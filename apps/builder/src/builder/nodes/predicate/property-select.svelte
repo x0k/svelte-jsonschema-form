@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { NodeId } from "$lib/builder/node.js";
+  import type { NodeId } from "$lib/builder/index.js";
   import * as Select from "$lib/components/ui/select/index.js";
 
   interface Props {

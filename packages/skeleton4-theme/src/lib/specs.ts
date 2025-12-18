@@ -144,6 +144,9 @@ export const specs: s.Specs = {
 			'ui:components': {
 				objectField: 'aggregatedField',
 				aggregatedWidget: 'rangeSliderWidget'
+			},
+			'ui:options': {
+				useLabel: false
 			}
 		},
 		{

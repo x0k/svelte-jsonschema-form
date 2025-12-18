@@ -49,7 +49,7 @@ import {
 	RADIO_WIDGET_OPTIONS,
 	RouteName,
 	TEXT_WIDGET_OPTIONS,
-	WIDGET_USE_LABEL
+	getUseLabel
 } from './model.js';
 import type { NodeContext } from './node-context.js';
 import {
@@ -268,8 +268,8 @@ export class BuilderContext {
 						const widget = options.widget as WidgetType;
 						const defaultWidget = DEFAULT_WIDGETS[type];
 						if (defaultWidget !== widget) {
-							const useLabel = WIDGET_USE_LABEL[widget];
-							if (WIDGET_USE_LABEL[defaultWidget] !== useLabel) {
+							const useLabel = getUseLabel(this.theme, widget);
+							if (getUseLabel(this.theme, defaultWidget) !== useLabel) {
 								return { useLabel };
 							}
 						}
@@ -478,7 +478,7 @@ export class BuilderContext {
 
 	nodeSchema(node: CustomizableNode) {
 		const original = NODE_OPTIONS_SCHEMAS[node.type];
-		const augmentation = THEME_SCHEMAS[this.theme][node.type];
+		const augmentation = THEME_SCHEMAS[this.theme][node.type]?.(node as never);
 		return augmentation ? mergeSchemas(original, augmentation) : original;
 	}
 
@@ -494,7 +494,7 @@ export class BuilderContext {
 				}
 			}
 		});
-		const augmentation = THEME_UI_SCHEMAS[this.theme][node.type];
+		const augmentation = THEME_UI_SCHEMAS[this.theme][node.type]?.(node as never);
 		return augmentation ? mergeUiSchemas(next, augmentation as UiSchema) : next;
 	}
 

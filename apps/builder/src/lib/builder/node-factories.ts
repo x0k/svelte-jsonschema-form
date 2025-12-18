@@ -1,32 +1,31 @@
 import { EnumValueType } from './enum.js';
+import { NodeType, type AbstractNode, type NodeId } from './node-base.js';
 import {
-	NodeType,
 	type Node,
-	type AbstractNode,
 	type CustomizableNode,
 	type CustomizableNodeType,
 	type EnumItemNode,
-	type NodeId,
 	type ObjectPropertyDependencyNode,
 	type ObjectPropertyNode,
 	type OperatorNode,
 	type PredicateNode,
 	MULTI_ENUM_OPTIONS_SCHEMA,
-	STRING_NODE_OPTIONS_SCHEMA,
-	NUMBER_NODE_OPTIONS_SCHEMA,
 	BOOLEAN_NODE_OPTIONS_SCHEMA,
 	FILE_NODE_OPTIONS_SCHEMA,
-	TAGS_NODE_OPTIONS_SCHEMA,
-	RANGE_NODE_OPTIONS_SCHEMA
+	TAGS_NODE_OPTIONS_SCHEMA
 } from './node.js';
+import { NUMBER_NODE_OPTIONS_SCHEMA } from './number-node.js';
 import { OperatorType } from './operator.js';
-import { RangeValueType } from './range.js';
+import { createRangeNode, RANGE_NODE_OPTIONS_SCHEMA, RangeValueType } from './range-node.js';
+import { STRING_NODE_OPTIONS_SCHEMA } from './string-node.js';
 
 function nodeId(): NodeId {
 	return crypto.randomUUID() as NodeId;
 }
 
-const NODE_FACTORIES = {
+const NODE_FACTORIES: {
+	[T in CustomizableNodeType]: (id: NodeId) => Extract<Node, AbstractNode<T>>;
+} = {
 	[NodeType.Object]: (id) => ({
 		id,
 		type: NodeType.Object,
@@ -126,23 +125,17 @@ const NODE_FACTORIES = {
 			widget: TAGS_NODE_OPTIONS_SCHEMA.properties.widget.default
 		}
 	}),
-	[NodeType.Range]: (id) => ({
-		id,
-		type: NodeType.Range,
-		valueType: RangeValueType.String,
-		startNode: createNode(NodeType.String),
-		endNode: createNode(NodeType.String),
-		options: {
+	[NodeType.Range]: (id) =>
+		createRangeNode(id, RangeValueType.String, {
 			title: 'Range field',
 			required: true,
 			widget: RANGE_NODE_OPTIONS_SCHEMA.properties.widget.default
-		}
-	})
-} as const satisfies {
-	[T in CustomizableNode['type']]: (id: NodeId) => Extract<Node, AbstractNode<T>>;
+		})
 };
 
-export function createNode(type: CustomizableNodeType): CustomizableNode {
+export function createNode<T extends CustomizableNodeType>(
+	type: T
+): Extract<CustomizableNode, AbstractNode<T>> {
 	return NODE_FACTORIES[type](nodeId());
 }
 

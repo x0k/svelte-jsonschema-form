@@ -7,10 +7,18 @@
 			skeleton4RangeSlider?: SliderRootProps;
 		}
 	}
+
+	const properties = ['start', 'end'];
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, getId, type ComponentProps } from '@sjsf/form';
+	import {
+		customInputAttributes,
+		getChildPath,
+		getFormContext,
+		getId,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { Slider } from '@skeletonlabs/skeleton-svelte';
 
 	let {
@@ -22,18 +30,17 @@
 
 	const ctx = getFormContext();
 
-	const id = $derived(getId(ctx, config.path));
+	const inputIds = $derived(properties.map((p) => getId(ctx, getChildPath(ctx, config.path, p))));
 </script>
 
 <Slider
 	value={[value?.start ?? 0, value?.end ?? 0]}
 	{...customInputAttributes(ctx, config, 'skeleton4RangeSlider', {
 		ids: {
-			hiddenInput() {
-				return id;
-			}
+			hiddenInput(index) {
+				return inputIds[index];
+			},
 		},
-		name: id,
 		readOnly: config.schema.readOnly,
 		min: config.schema.minimum,
 		max: config.schema.maximum,
@@ -55,10 +62,10 @@
 			<Slider.Range />
 		</Slider.Track>
 		<Slider.Thumb index={0}>
-			<Slider.HiddenInput />
+			<Slider.HiddenInput name={inputIds[0]}/>
 		</Slider.Thumb>
 		<Slider.Thumb index={1}>
-			<Slider.HiddenInput />
+			<Slider.HiddenInput name={inputIds[1]}/>
 		</Slider.Thumb>
 	</Slider.Control>
 </Slider>

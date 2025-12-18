@@ -3,17 +3,15 @@ import type { Schema } from '@sjsf/form';
 import { assertThing } from '$lib/assert.js';
 import { mergeSchemas } from '$lib/json-schema.js';
 
-import {
-	NodeType,
-	type AbstractNode,
-	type CustomizableNode,
-	type EnumItemNode,
-	type Node,
-	type NodeId,
-	type ObjectNode,
-	type ObjectPropertyDependencyNode,
-	type ObjectPropertyNode,
-	type OperatorNode
+import { NodeType, type AbstractNode, type NodeId } from './node-base.js';
+import type {
+	CustomizableNode,
+	EnumItemNode,
+	Node,
+	ObjectNode,
+	ObjectPropertyDependencyNode,
+	ObjectPropertyNode,
+	OperatorNode
 } from './node.js';
 import { EnumValueType } from './enum.js';
 import { OperatorType, type AbstractOperator } from './operator.js';
@@ -487,7 +485,7 @@ const NODE_SCHEMA_BUILDERS: {
 			schema.required = ['start', 'end'];
 		}
 		return assignSchemaOptions(schema, options);
-	},
+	}
 };
 
 export function buildSchema(ctx: SchemaBuilderContext, node: Node): Schema {

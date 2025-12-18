@@ -11,17 +11,15 @@ import {
 import { isValidRegExp } from '$lib/reg-exp.js';
 import { isKnownJsonSchemaFormat } from '$lib/json-schema.js';
 
+import { NodeType, type AbstractNode, type NodeId } from './node-base.js';
 import { EnumValueType } from './enum.js';
 import { OperatorType, type AbstractOperator } from './operator.js';
 import {
-	NodeType,
-	type AbstractNode,
 	type ComparisonOperator,
 	type CustomizableNode,
 	type EnumNode,
 	type MultiEnumNode,
 	type Node,
-	type NodeId,
 	type NOperator,
 	type Operator,
 	type OperatorNode,
