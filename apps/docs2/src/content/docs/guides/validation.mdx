@@ -60,6 +60,21 @@ This behavior can be changed using the `fieldsValidationDebounceMs` option.
 
 :::
 
+:::caution
+
+Due to the use of debouncing, field validation is executed asynchronously.
+This may lead to attempts to access component state after the component has been unmounted.
+To prevent this issue, use the following code (not required for `SimpleForm`):
+
+```ts
+onDestroy(() => {
+  form.submission.abort();
+  form.fieldsValidation.abort();
+});
+```
+
+:::
+
 <Code code={fieldsValidationCode} lang="svelte" />
 
 <FormCard>

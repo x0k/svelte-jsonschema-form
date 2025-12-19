@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { untrack } from "svelte";
+  import { onDestroy, untrack } from "svelte";
   import {
     Content,
     createForm,
@@ -55,6 +55,9 @@
     fieldsValidationDebounceMs: 200,
   });
   setFormContext(form);
+  onDestroy(() => {
+    form.fieldsValidation.abort()
+  })
 
   $effect(() => {
     if (form.fieldsValidation.isProcessed) {
