@@ -223,7 +223,6 @@ export class BuilderContext {
 		| {
 				schema: Schema;
 				propertyNames: Map<NodeId, string>;
-				forceOrder: boolean
 		  }
 		| undefined
 	>(undefined);
@@ -243,7 +242,6 @@ export class BuilderContext {
 					{
 						propertyNames: this.#buildOutput.propertyNames,
 						propertiesOrder: [],
-						forceOrder: this.#buildOutput.forceOrder,
 						uiComponents: (node) => {
 							if (isFileNode(node)) {
 								fileFieldMode |= node.options.native
@@ -395,7 +393,7 @@ export class BuilderContext {
 			cancelTask(cId);
 			cId = queueTask(() => {
 				if (this.validate()) {
-					this.build(true);
+					this.build();
 				}
 			});
 		});
@@ -606,7 +604,7 @@ export class BuilderContext {
 		return errors.length === 0 && (this.ignoreWarnings || warnings.length === 0);
 	}
 
-	build(forceOrder = false) {
+	build() {
 		if (this.rootNode === undefined) {
 			throw new Error('Root node is undefined');
 		}
@@ -648,7 +646,6 @@ export class BuilderContext {
 		this.#buildOutput = {
 			propertyNames,
 			schema,
-			forceOrder
 		};
 	}
 
