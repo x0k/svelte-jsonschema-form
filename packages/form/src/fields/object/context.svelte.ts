@@ -4,7 +4,7 @@ import {
   getDefaultValueForType,
   getSimpleSchemaType,
   isAdditionalProperty,
-  isSchemaDeepEqual,
+  isOrderedSchemaDeepEqual,
   isSchemaExpandable,
   isSchemaObjectValue,
   orderProperties,
@@ -91,7 +91,8 @@ export function createObjectContext<T>({
   let lastSchemaProperties: Schema["properties"] = undefined;
   const schemaProperties = $derived.by(() => {
     const snap = $state.snapshot(retrievedSchema.properties);
-    if (!isSchemaDeepEqual(lastSchemaProperties, snap)) {
+    // NOTE: Cache hits are verified on `any-of` and `property-dependencies` examples.
+    if (!isOrderedSchemaDeepEqual(lastSchemaProperties, snap)) {
       lastSchemaProperties = snap;
     }
     return lastSchemaProperties;
