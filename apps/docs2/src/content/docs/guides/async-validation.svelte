@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onDestroy } from "svelte";
   import Ajv, { type AsyncSchema, type SchemaValidateFunction } from "ajv";
   import {
     addFormComponents,
@@ -39,6 +40,10 @@
     schema,
     fieldsValidationMode: ON_INPUT,
     onSubmit: console.log,
+  });
+  onDestroy(() => {
+    form.submission.abort();
+    form.fieldsValidation.abort();
   });
 </script>
 
