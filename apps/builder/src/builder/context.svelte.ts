@@ -223,6 +223,7 @@ export class BuilderContext {
 		| {
 				schema: Schema;
 				propertyNames: Map<NodeId, string>;
+				forceOrder: boolean
 		  }
 		| undefined
 	>(undefined);
@@ -242,6 +243,7 @@ export class BuilderContext {
 					{
 						propertyNames: this.#buildOutput.propertyNames,
 						propertiesOrder: [],
+						forceOrder: this.#buildOutput.forceOrder,
 						uiComponents: (node) => {
 							if (isFileNode(node)) {
 								fileFieldMode |= node.options.native
@@ -374,6 +376,9 @@ export class BuilderContext {
 
 		let cId: number;
 		let lastSnap: SchemaValue | undefined;
+		const queueTask = window.requestIdleCallback ?? setTimeout;
+		//@ts-expect-error Safari
+		const cancelTask = window.requestIdleCallback ? cancelIdleCallback : clearTimeout;
 		$effect(() => {
 			if (!this.livePreview) {
 				return;
@@ -387,12 +392,12 @@ export class BuilderContext {
 				return;
 			}
 			lastSnap = snap;
-			clearTimeout(cId);
-			cId = setTimeout(() => {
+			cancelTask(cId);
+			cId = queueTask(() => {
 				if (this.validate()) {
-					this.build();
+					this.build(true);
 				}
-			}, 300);
+			});
 		});
 	}
 
@@ -601,7 +606,7 @@ export class BuilderContext {
 		return errors.length === 0 && (this.ignoreWarnings || warnings.length === 0);
 	}
 
-	build() {
+	build(forceOrder = false) {
 		if (this.rootNode === undefined) {
 			throw new Error('Root node is undefined');
 		}
@@ -642,7 +647,8 @@ export class BuilderContext {
 		const schema = buildSchema(ctx, this.rootNode);
 		this.#buildOutput = {
 			propertyNames,
-			schema
+			schema,
+			forceOrder
 		};
 	}
 

@@ -16,6 +16,8 @@ export interface TextWidgetParams {
 export interface UiSchemaBuilderContext {
 	readonly propertyNames: Map<NodeId, string>;
 	propertiesOrder: string[];
+	// TODO: Remove after deep equality fix in `@sjsf/form` object field
+	forceOrder: boolean;
 	uiComponents: (node: WidgetNode) => UiSchema['ui:components'];
 	textWidgetOptions: (params: TextWidgetParams) => UiOptions;
 	radioWidgetOptions: (inline: boolean) => UiOptions;
@@ -79,7 +81,7 @@ const NODE_UI_SCHEMA_BUILDERS: {
 			Object.assign(schema, buildUiSchema(ctx, prop));
 		}
 		schema['ui:options'] = assignUiOptions(
-			haveDependencies
+			ctx.forceOrder || haveDependencies
 				? {
 						order: ctx.propertiesOrder
 					}
