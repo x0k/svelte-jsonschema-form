@@ -89,7 +89,7 @@
 
 <div class="flex flex-col gap-2">
   <ShadowHost
-    class="rounded border border-(--global-border)"
+    class="rounded-md border border-(--global-border)"
     style={`${THEME_STYLES[ctx.theme]}\n${ICONS_STYLES[ctx.icons]}`}
   >
     <style>
