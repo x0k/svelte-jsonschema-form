@@ -191,7 +191,7 @@ export class BuilderContext {
 	}
 
 	ignoreWarnings = $state(false);
-	livePreview = $state(false);
+	livePreview = $state(true);
 	html5Validation = $state(false);
 
 	private _errorsCount = $state(0);

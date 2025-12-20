@@ -377,7 +377,7 @@ export class ProjectsContext {
 	private importState(state: BuilderState) {
 		this.builder.importState({
 			...state,
-			livePreview: 'livePreview' in state ? state.livePreview : false
+			livePreview: 'livePreview' in state ? state.livePreview : true
 		});
 	}
 
