@@ -10,6 +10,7 @@
     "check": "svelte-check --tsconfig tsconfig.json"
   },
   "devDependencies": {
+    "@iconify-json/devicon-plain": "^1.2.49",
     "@iconify-json/mdi": "^1.2.3",
     "@internationalized/date": "^3.10.1",
     "@lucide/svelte": "^0.544.0",
