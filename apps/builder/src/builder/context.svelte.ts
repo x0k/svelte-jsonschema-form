@@ -27,7 +27,8 @@ import {
 	buildUiSchema,
 	type Scope,
 	type SchemaBuilderContext,
-	isFileNode
+	isFileNode,
+	createObjectProperty
 } from '$lib/builder/index.js';
 import { ActualTheme, mergeUiSchemas, type Theme, type WidgetType } from '$lib/sjsf/theme.js';
 import { Validator } from '$lib/sjsf/validators.js';
@@ -124,6 +125,7 @@ const noopReadonlyNodeRef: ReadonlyNodeRef = {
 
 const obj = createNode(NodeType.Object) as ObjectNode;
 obj.options.title = 'Form title';
+obj.properties.push(createObjectProperty(createNode(NodeType.String)));
 
 export class BuilderContext {
 	#dnd = new DragDropManager<DndData>();
@@ -645,7 +647,7 @@ export class BuilderContext {
 		const schema = buildSchema(ctx, this.rootNode);
 		this.#buildOutput = {
 			propertyNames,
-			schema,
+			schema
 		};
 	}
 
