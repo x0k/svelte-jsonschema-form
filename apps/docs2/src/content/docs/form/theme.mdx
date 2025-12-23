@@ -4,18 +4,20 @@ sidebar:
   order: 2
 ---
 
+import { TabItem, Tabs } from '@astrojs/starlight/components';
+
 Essentially theme is a simple function:
 
 ```js
 const fromRecord = (record) => (type) => record[type]
-const theme = fromRecord(components)
+const theme = fromRecord({ ...components })
 ```
 
 ## Component types
 
 All components can be divided into four **logical** types:
 
-- components
+- components (generic UI element)
   - `form`
   - `submitButton`
   - `button`
@@ -25,19 +27,19 @@ All components can be divided into four **logical** types:
   - `description`
   - `help`
   - `errorsList`
-- widgets
+- widgets (input control)
   - `textWidget`
   - `numberWidget`
   - `selectWidget`
   - `checkboxWidget`
-- templates
+- templates (layout and presentation)
   - `fieldTemplate`
   - `objectTemplate`
   - `objectPropertyTemplate`
   - `arrayTemplate`
   - `arrayItemTemplate`
   - `multiFieldTemplate`
-- fields
+- fields (schema logic and orchestration)
   - `stringField`
   - `numberField`
   - `integerField`
@@ -50,7 +52,128 @@ All components can be divided into four **logical** types:
   - `anyOfField`
   - `unknownField`
 
-Also found out that the above components are enough to display any JSON schema.
+Below are examples of the components required to render the following JSON schema:
+
+```json
+{ "type": "string" }
+```
+
+<Tabs>
+  <TabItem label='String field'>
+    ```svelte
+    <script lang="ts">
+      ...
+      const widgetType = "textWidget"
+
+      const Template = $derived(getComponent(ctx, "fieldTemplate", config));
+      const Widget = $derived(getComponent(ctx, widgetType, config));
+
+      const handlers = makeEventHandlers(
+        ctx,
+        () => config,
+        () => validateField(ctx, config, value)
+      );
+      const errors = $derived(getFieldErrors(ctx, config.path));
+    </script>
+
+    <Template
+      type="template"
+      showTitle
+      useLabel
+      {widgetType}
+      {value}
+      {config}
+      {errors}
+    >
+      <Widget
+        type="widget"
+        bind:value
+        {config}
+        {errors}
+        {handlers}
+      />
+    </Template>
+    ```
+  </TabItem>
+  <TabItem label="Field template">
+    ```svelte
+    <script lang="ts">
+      ...
+      const Layout = $derived(getComponent(ctx, "layout", config));
+      const TitleOrLabel = $derived(
+        getComponent(
+          ctx,
+          (uiOption("useLabel") ?? useLabel) ? "label" : "title",
+          config
+        )
+      );
+      const Description = $derived(getComponent(ctx, "description", config));
+      const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
+      const Help = $derived(getComponent(ctx, "help", config));
+
+      const { title, description, showMeta } = $derived(
+        getTemplateProps(uiOption, config)
+      );
+      const help = $derived(uiOption("help"));
+    </script>
+
+    <Layout type="field" {config} {errors}>
+      {#if showMeta && ((showTitle && title) || description)}
+        <Layout type="field-meta" {config} {errors}>
+          {#if showTitle && title}
+            <Layout type="field-title-row" {config} {errors}>
+              <TitleOrLabel {templateType} {title} {config} {errors} />
+              {@render action?.()}
+            </Layout>
+          {/if}
+          {#if description}
+            <Description {templateType} {description} {config} {errors} />
+          {/if}
+        </Layout>
+      {/if}
+      <Layout type="field-content" {config} {errors}>
+        {@render children()}
+      </Layout>
+      {#if errors.length > 0}
+        <ErrorsList {errors} {config} />
+      {/if}
+      {#if help !== undefined}
+        <Help {help} {config} {errors} />
+      {/if}
+    </Layout>
+    ```
+  </TabItem>
+  <TabItem label="Text widget">
+    ```svelte
+    <script lang="ts">
+      ...
+      const attributes = $derived(
+        inputAttributes(ctx, config, "text", handlers, {
+          type: "text",
+          class: "sjsf-text"
+        })
+      );
+    </script>
+
+    <input bind:value {...attributes} />
+    <Datalist id={attributes.list} {config} />
+    ```
+  </TabItem>
+  <TabItem label="Label component">
+    ```svelte
+    <label
+      {...labelAttributes(ctx, config, "labelAttributes", {
+        class: "sjsf-label"
+      })}
+    >
+      {title}
+      {#if config.required}
+        <span>*</span>
+      {/if}
+    </label>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Foundational components
 
@@ -125,6 +248,26 @@ const uiSchema: UISchema = {
 }
 ```
 
+### Templates
+
+List of extra templates that can be imported from `@sjsf/form/templates/extra/*`.
+
+- `optional-array`
+- `optional-field`
+- `optional-multi-field`
+- `optional-object`
+
+These templates are intended for rendering optional fields and
+differ from the original templates by the presence of the following condition:
+
+```svelte
+  {#if config.required || !isNil(value)}
+    <Layout type="field-content" {config} {errors}>
+      {@render children()}
+    </Layout>
+  {/if}
+```
+
 ### Widgets
 
 There are several types of extra widgets already defined in the library
@@ -139,7 +282,7 @@ There are several types of extra widgets already defined in the library
 - `multi-select`
 - `radio-buttons`
 - `radio` (group)
-- `range-slider`
+- `range-slider` (two handles)
 - `range`
 - `rating`
 - `switch`
