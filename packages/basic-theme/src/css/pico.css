@@ -113,6 +113,8 @@
 .sjsf-textarea,
 .sjsf-number,
 .sjsf-select,
+.sjsf-color-picker,
+.sjsf-password-input,
 .sjsf-text {
   flex-grow: 1;
 }

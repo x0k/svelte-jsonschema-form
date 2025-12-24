@@ -1,28 +1,33 @@
 import { s, DEFAULT_SPECS } from "theme-testing/specs";
 
 import "./extra-widgets/checkboxes-include.js";
+import "./extra-widgets/color-picker-include.js";
 import "./extra-widgets/date-picker-include.js";
 import "./extra-widgets/file-include.js";
 import "./extra-widgets/multi-select-include.js";
+import "./extra-widgets/password-input-include.js";
 import "./extra-widgets/radio-include.js";
 import "./extra-widgets/range-include.js";
 import "./extra-widgets/textarea-include.js";
 
 export const specs: s.Specs = {
   ...DEFAULT_SPECS,
-  radio: [
-    s.enumeration,
+  datePicker: [
+    s.text,
+    { "ui:components": { textWidget: "datePickerWidget" } },
     {
-      "ui:components": {
-        stringField: "enumField",
-        selectWidget: "radioWidget",
-      },
-      "ui:options": { useLabel: false },
+      oninput: "inputDate",
+      onchange: "changeDate",
+      onblur: "visitDate",
     },
+  ],
+  colorPicker: [
+    s.text,
+    { "ui:components": { textWidget: "colorPickerWidget" } },
     {
-      oninput: "inputRadio",
-      onchange: "changeRadio",
-      onblur: "visitRadio",
+      oninput: "inputColor",
+      onchange: "changeColor",
+      onblur: "visitColor",
     },
   ],
   multiSelect: [
@@ -40,22 +45,28 @@ export const specs: s.Specs = {
       onblur: "visitMultiSelect",
     },
   ],
-  textarea: [
+  passwordInput: [
     s.text,
-    { "ui:components": { textWidget: "textareaWidget" } },
+    { "ui:components": { textWidget: "passwordInputWidget" } },
     {
       oninput: "inputText",
       onchange: "changeText",
       onblur: "visitText",
     },
   ],
-  datePicker: [
-    s.text,
-    { "ui:components": { textWidget: "datePickerWidget" } },
+  radio: [
+    s.enumeration,
     {
-      oninput: "inputDate",
-      onchange: "changeDate",
-      onblur: "visitDate",
+      "ui:components": {
+        stringField: "enumField",
+        selectWidget: "radioWidget",
+      },
+      "ui:options": { useLabel: false },
+    },
+    {
+      oninput: "inputRadio",
+      onchange: "changeRadio",
+      onblur: "visitRadio",
     },
   ],
   range: [
@@ -65,6 +76,15 @@ export const specs: s.Specs = {
       oninput: "inputSlider",
       onchange: "changeSlider",
       onblur: "visitSlider",
+    },
+  ],
+  textarea: [
+    s.text,
+    { "ui:components": { textWidget: "textareaWidget" } },
+    {
+      oninput: "inputText",
+      onchange: "changeText",
+      onblur: "visitText",
     },
   ],
 };

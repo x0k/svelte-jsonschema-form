@@ -64,6 +64,10 @@ export const inputDate = fill(getTextbox, "2020-01-01");
 export const changeDate = withTab(inputDate, true);
 export const visitDate = changeDate;
 
+export const inputColor = fill(getTextbox, "#ff0000");
+export const changeColor = withTab(inputColor, true);
+export const visitColor = changeColor;
+
 export const getSpinButton = (l: Locator) => l.getByRole("spinbutton");
 export const inputNumber = fill(getSpinButton);
 export const changeNumber = withTab(inputNumber);
