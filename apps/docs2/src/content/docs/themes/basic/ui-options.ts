@@ -66,11 +66,15 @@ export interface UiOptions {
 
   checkboxes?: HTMLInputAttributes;
 
+  colorPicker?: HTMLInputAttributes;
+
   datePicker?: HTMLInputAttributes;
 
   file?: HTMLInputAttributes;
 
   multiSelect?: HTMLSelectAttributes;
+
+  passwordInput?: HTMLInputAttributes;
 
   radio?: HTMLInputAttributes;
 

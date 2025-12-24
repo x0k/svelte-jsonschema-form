@@ -78,11 +78,15 @@ export interface UiOptions {
 
   checkboxes?: HTMLInputAttributes;
 
+  colorPicker?: HTMLInputAttributes;
+
   datePicker?: HTMLInputAttributes;
 
   file?: HTMLInputAttributes;
 
   multiSelect?: HTMLSelectAttributes;
+
+  passwordInput?: HTMLInputAttributes;
 
   radio?: HTMLInputAttributes;
 
@@ -90,9 +94,10 @@ export interface UiOptions {
 
   textarea?: HTMLTextareaAttributes;
 
+  daisyui5CallyCalendar?: CalendarProps;
+
   daisyui5CallyCalendarDateFormatter?: (date: string) => string;
   daisyui5CallyCalendarTrigger?: HTMLButtonAttributes;
-  daisyui5CallyCalendar?: CalendarProps;
 
   daisyui5Filter?: HTMLAttributes<HTMLDivElement>;
   daisyui5FilterItem?: HTMLInputAttributes;
