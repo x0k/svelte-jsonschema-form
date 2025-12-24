@@ -2,7 +2,7 @@
 
 The [shadcn-svelte-extras](https://github.com/ieedan/shadcn-svelte-extras) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
-- [Documentation](https://x0k.github.io/svelte-jsonschema-form/lab/shadcn-extras/)
+- [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/lab/shadcn-extras/)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground3/)
 
 ## Installation
