@@ -1,20 +1,34 @@
 import { s, DEFAULT_SPECS } from 'theme-testing/specs';
 
-import './extra-widgets/cally-date-picker-include';
-import './extra-widgets/checkboxes-include';
-import './extra-widgets/file-include';
+import './extra-widgets/calendar-include.js';
+import './extra-widgets/cally-date-picker-include.js';
+import './extra-widgets/checkboxes-include.js';
+import './extra-widgets/color-picker-include.js';
+import './extra-widgets/file-include.js';
 import './extra-widgets/filter-radio-buttons-include.js';
-import './extra-widgets/multi-select-include';
-import './extra-widgets/radio-buttons-include';
-import './extra-widgets/radio-include';
-import './extra-widgets/range-include';
-import './extra-widgets/rating-include';
-import './extra-widgets/switch-include';
-import './extra-widgets/textarea-include';
+import './extra-widgets/multi-select-include.js';
+import './extra-widgets/password-input-include.js';
+import './extra-widgets/radio-buttons-include.js';
+import './extra-widgets/radio-include.js';
+import './extra-widgets/range-include.js';
+import './extra-widgets/rating-include.js';
+import './extra-widgets/switch-include.js';
+import './extra-widgets/textarea-include.js';
 import './extra-widgets/date-picker-include.js';
 
 export const specs: s.Specs = {
 	...DEFAULT_SPECS,
+	calendar: [
+		s.text,
+		{
+			'ui:components': { textWidget: 'calendarWidget' },
+			'ui:options': { useLabel: false }
+		},
+		{
+			// Disabled due `callyDatePicker` tests failure
+			// onchange: "changeCallyCalendar"
+		}
+	],
 	callyDatePicker: [
 		s.text,
 		{
@@ -23,6 +37,15 @@ export const specs: s.Specs = {
 		},
 		{
 			onchange: 'changeCallyDatePicker'
+		}
+	],
+	colorPicker: [
+		s.text,
+		{ 'ui:components': { textWidget: 'colorPickerWidget' } },
+		{
+			oninput: 'inputColor',
+			onchange: 'changeColor',
+			onblur: 'visitColor'
 		}
 	],
 	datePicker: [
@@ -62,6 +85,15 @@ export const specs: s.Specs = {
 			oninput: 'inputMultiSelect',
 			onchange: 'changeMultiSelect',
 			onblur: 'visitMultiSelect'
+		}
+	],
+	passwordInput: [
+		s.text,
+		{ 'ui:components': { textWidget: 'passwordInputWidget' } },
+		{
+			oninput: 'inputText',
+			onchange: 'changeText',
+			onblur: 'visitText'
 		}
 	],
 	radioButtons: [

@@ -118,6 +118,13 @@ export const inputSwitch = click(getSwitchLabel);
 export const changeSwitch = inputSwitch;
 export const visitSwitch = withTab(inputSwitch);
 
+export const changeCallyCalendar: FieldValidationTrigger = async (l) => {
+  await customElements.whenDefined("calendar-date");
+  await customElements.whenDefined("calendar-month");
+  const day = l.getByText("19");
+  await userEvent.click(day);
+};
+
 export const changeCallyDatePicker: FieldValidationTrigger = async (l) => {
   await customElements.whenDefined("calendar-date");
   await customElements.whenDefined("calendar-month");
