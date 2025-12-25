@@ -1,27 +1,16 @@
 <script lang="ts" module>
-	import type { Component } from 'svelte';
-	import type { Calendar, CalendarSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	import type { CalendarSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
 	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	import type { ButtonProps } from '../types/button.js';
-	import '../types/popover';
+	import '../types/popover.js';
+	import '../types/calendar.js';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
 			shadcn4DatePicker?: Omit<WithoutChildrenOrChild<CalendarSingleRootProps>, 'type'>;
 			shadcn4DatePickerTrigger?: ButtonProps;
 			shadcn4DateFormatter?: (date: Date) => string;
-		}
-	}
-
-	declare module '../context.js' {
-		interface ThemeComponents {
-			// @ts-expect-error too complex
-			Calendar: Component<
-				WithoutChildrenOrChild<Calendar.RootProps>,
-				{},
-				'value' | 'placeholder' | 'ref'
-			>;
 		}
 	}
 </script>

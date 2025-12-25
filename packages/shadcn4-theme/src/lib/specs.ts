@@ -1,7 +1,9 @@
 import { s, DEFAULT_SPECS } from 'theme-testing/specs';
 import '@sjsf/form/fields/extra/aggregated-include';
 
+import './theme/extra-widgets/calendar-include.js';
 import './theme/extra-widgets/checkboxes-include.js';
+import './theme/extra-widgets/color-picker-include.js';
 import './theme/extra-widgets/combobox-include.js';
 import './theme/extra-widgets/date-picker-include.js';
 import './theme/extra-widgets/date-range-picker-include.js';
@@ -16,6 +18,12 @@ import './theme/extra-widgets/textarea-include.js';
 
 export const specs: s.Specs = {
 	...DEFAULT_SPECS,
+	calendar: [
+		s.text,
+		{ 'ui:components': { textWidget: 'calendarWidget' }, 'ui:options': { useLabel: false } },
+		{}
+	],
+	colorPicker: [s.text, { 'ui:components': { textWidget: 'colorPickerWidget' } }, {}],
 	select: [
 		s.enumeration,
 		{
