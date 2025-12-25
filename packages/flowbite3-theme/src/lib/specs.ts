@@ -2,11 +2,14 @@ import { s, DEFAULT_SPECS } from 'theme-testing/specs';
 import '@sjsf/form/fields/extra/array-tags-include';
 import '@sjsf/form/fields/extra/aggregated-include';
 
+import './extra-widgets/calendar-include.js';
 import './extra-widgets/checkboxes-include.js';
+import './extra-widgets/color-picker-include.js';
 import './extra-widgets/date-picker-include.js';
 import './extra-widgets/date-range-picker-include.js';
 import './extra-widgets/file-include.js';
 import './extra-widgets/multi-select-include.js';
+import './extra-widgets/password-input-include.js';
 import './extra-widgets/radio-buttons-include.js';
 import './extra-widgets/radio-include.js';
 import './extra-widgets/range-include.js';
@@ -17,6 +20,31 @@ import './extra-widgets/toggle-radio-buttons-include.js';
 
 export const specs: s.Specs = {
 	...DEFAULT_SPECS,
+	calendar: [
+		s.text,
+		{
+			'ui:components': { textWidget: 'calendarWidget' },
+			'ui:options': {
+				useLabel: false,
+				flowbite3Datepicker: {
+					locale: 'en-US'
+				}
+			}
+		},
+		{
+			oninput: 'inputShadcnDatePicker',
+			onchange: 'changeShadcnDatePicker',
+		}
+	],
+	colorPicker: [
+		s.text,
+		{ 'ui:components': { textWidget: 'colorPickerWidget' } },
+		{
+			oninput: 'inputColor',
+			onchange: 'changeColor',
+			onblur: 'visitColor'
+		}
+	],
 	datePicker: [
 		s.text,
 		{
@@ -65,6 +93,15 @@ export const specs: s.Specs = {
 			oninput: 'inputFlowbiteMultiSelect',
 			onchange: 'inputFlowbiteMultiSelect',
 			onblur: 'visitMultiSelect'
+		}
+	],
+	passwordInput: [
+		s.text,
+		{ 'ui:components': { textWidget: 'passwordInputWidget' } },
+		{
+			oninput: 'inputText',
+			onchange: 'changeText',
+			onblur: 'visitText'
 		}
 	],
 	radioButtons: [
