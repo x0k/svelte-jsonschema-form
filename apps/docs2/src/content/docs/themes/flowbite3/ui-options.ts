@@ -76,15 +76,21 @@ export interface UiOptions {
 
   flowbite3Text?: InputProps<string | undefined>;
 
+  flowbite3Calendar?: DatepickerProps;
+
   flowbite3Checkboxes?: CheckboxProps;
 
+  flowbite3ColorPicker?: InputProps<string | undefined>;
+
   flowbite3Datepicker?: DatepickerProps;
-  
+
   flowbite3DateRangePicker?: DatepickerProps;
 
   flowbite3File?: FileuploadProps;
 
   flowbite3MultiSelect?: Omit<MultiSelectProps<number>, "value">;
+
+  flowbite3PasswordInput?: InputProps<string | undefined>;
 
   flowbite3RadioButtons?: Omit<ButtonGroupProps, "children">;
   flowbite3RadioButtonsItem?: Partial<RadioButtonProps<string>>;

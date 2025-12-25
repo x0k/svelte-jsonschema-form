@@ -107,7 +107,14 @@ export interface UiOptions {
 
   shadcn4Text?: InputProps;
 
+  shadcn4Calendar?: Omit<
+    WithoutChildrenOrChild<CalendarSingleRootProps>,
+    "type"
+  >;
+
   shadcn4Checkboxes?: WithoutChildrenOrChild<CheckboxRootProps>;
+
+  shadcn4ColorPicker?: InputProps;
 
   shadcn4ComboboxTrigger?: ComponentProps<typeof Button>;
   shadcn4ComboboxInput?: CommandInputProps;
@@ -128,6 +135,8 @@ export interface UiOptions {
 
   shadcn4MultiSelect?: Omit<SelectMultipleRootProps, "type">;
   shadcn4MultiSelectTrigger?: SelectTriggerProps;
+
+  shadcn4PasswordInput?: InputProps;
 
   shadcn4RadioButtons?: ToggleGroupProps;
   shadcn4RadioButtonsItem?: ToggleGroupItemProps & ToggleVariants;
