@@ -7,7 +7,10 @@ import {
   THEME_BRAND,
   THEME_TITLES,
   ACTUAL_THEMES,
+  LAB_THEMES,
+  ACTUAL_AND_LAB_THEMES,
   type ActualTheme,
+  type LabTheme,
 } from "@/shared";
 import { DEFAULT_LOCALE } from "@/i18n";
 import Npm from "@/components/npm.astro";
@@ -59,9 +62,9 @@ const STYLES = {
 } satisfies Record<ActualTheme, string>;
 
 const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
-const initialTheme = (Astro.params.theme ?? "basic") as ActualTheme;
+const initialTheme = (Astro.params.theme ?? "basic") as ActualTheme | LabTheme;
 
-const styles = ACTUAL_THEMES.map(
+const styles = ACTUAL_AND_LAB_THEMES.map(
   (theme) => `
   .theme-tabs:has(.theme-tab[data-theme="${theme}"]:checked) ~ .theme-content[data-theme="${theme}"] {
     display: block;
@@ -78,6 +81,20 @@ const styles = ACTUAL_THEMES.map(
         type="radio"
         name="theme-input"
         class="theme-tab"
+        aria-label={THEME_TITLES[theme]}
+        checked={theme === initialTheme}
+        data-theme={theme}
+      />
+    ))
+  }
+</div>
+<div class="theme-tabs">
+  {
+    LAB_THEMES.map((theme) => (
+      <input
+        type="radio"
+        name="theme-input"
+        class="theme-tab with-icon"
         aria-label={THEME_TITLES[theme]}
         checked={theme === initialTheme}
         data-theme={theme}
@@ -134,6 +151,8 @@ const styles = ACTUAL_THEMES.map(
     top: calc(64px + 1rem);
   }
   .theme-tab {
+    position: relative;
+    gap: 0.5rem;
     min-width: fit-content;
     appearance: none;
     cursor: pointer;
@@ -150,7 +169,20 @@ const styles = ACTUAL_THEMES.map(
     background-color: var(--sl-color-bg);
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     /* box-shadow: var(--sl-shadow-md); */
-    &:after {
+    &.with-icon {
+      padding-right: 1rem;
+    }
+
+    &.with-icon::after {
+      content: "";
+      width: 1rem;
+      height: 1rem;
+      background-color: currentColor;
+
+      mask: url("lab.svg") no-repeat center;
+      mask-size: contain;
+    }
+    &:before {
       content: attr(aria-label);
     }
     &:checked {

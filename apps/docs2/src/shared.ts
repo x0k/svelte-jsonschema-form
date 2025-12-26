@@ -159,11 +159,13 @@ export function isLabTheme(theme: Theme): theme is LabTheme {
   return LAB_THEMES_SET.has(theme);
 }
 
+export const ACTUAL_AND_LAB_THEMES = [...ACTUAL_THEMES, ...LAB_THEMES];
+
 export const THEMES = [
   ...ACTUAL_THEMES,
   ...SUB_THEMES,
-  ...DEPRECATED_THEMES,
   ...LAB_THEMES,
+  ...DEPRECATED_THEMES,
 ] as const;
 
 export type Theme = (typeof THEMES)[number];
