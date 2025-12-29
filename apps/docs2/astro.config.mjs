@@ -39,8 +39,12 @@ export default defineConfig({
   integrations: [
     svelte(),
     starlight({
+      favicon: "src/assets/logo.svg",
       plugins: process.env.CHECK_LINKS ? [starlightLinksValidator()] : [],
       title: "svelte-jsonschema-form v3",
+      logo: {
+        src: "./src/assets/logo.svg",
+      },
       social: [
         {
           icon: "github",
