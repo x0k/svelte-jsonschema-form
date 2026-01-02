@@ -4,6 +4,7 @@
   const { data }: PageProps = $props();
 </script>
 
+<!-- NOTE: `data-sveltekit-reload` is used to avoid an issue with async Svelte -->
 <div class="center" data-sveltekit-reload>
   <a href="./foo">Foo form</a>
   <a href="./bar">Bar form</a>
