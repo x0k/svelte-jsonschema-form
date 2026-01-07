@@ -24,6 +24,7 @@
   method={createPost.method}
   action={createPost.action}
   style="display: flex; flex-direction: column; gap: 1rem;"
+  novalidate
 >
   <FormContent {formOptions} />
 </form>
