@@ -107,6 +107,8 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
     import("./examples/form-actions-dynamic-schema"),
   [SvelteKitExample.RemoteFunctions]: () =>
     import("./examples/remote-functions"),
+  [SvelteKitExample.RemoteFunctionsEnhance]: () =>
+    import("./examples/remote-functions-enhance"),
   [SvelteKitExample.RemoteFunctionsDynamicSchema]: () =>
     import("./examples/remote-functions-dynamic-schema"),
   [SvelteKitExample.RemoteFunctionsWithoutJs]: () =>

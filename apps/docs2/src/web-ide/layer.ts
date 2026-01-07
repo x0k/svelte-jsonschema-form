@@ -13,6 +13,7 @@ import {
 export interface PackageConfig {
   [key: string]: SchemaValue | undefined;
   dependencies?: Record<string, string>;
+  peerDependencies?: Record<string, string>;
   devDependencies?: Record<string, string>;
 }
 
@@ -108,6 +109,10 @@ export function mergePackageConfigs(
 ): PackageConfig {
   return {
     ...a,
+    peerDependencies: {
+      ...a.peerDependencies,
+      ...b.peerDependencies,
+    },
     dependencies: {
       ...a.dependencies,
       ...b.dependencies,
@@ -184,7 +189,7 @@ function buildPackageConfig(config: PackageConfig): string {
     (key, value) => {
       if (value === "workspace:*") {
         if (key.startsWith("@sjsf-lab/")) {
-          return MAJOR_VERSION
+          return MAJOR_VERSION;
         }
         // TODO: Consider fixed list from changeset config
         return VERSION;
@@ -216,7 +221,7 @@ function buildFormDefaultsConfig({
   theme = "basic",
   validator = "Ajv",
   widgets = [],
-  idBuilderPackage = "@sjsf/form/id-builders/modern"
+  idBuilderPackage = "@sjsf/form/id-builders/modern",
 }: FormDefaultsConfig): string {
   const pkg = validatorPackage(validator);
   const validatorCode = pkg

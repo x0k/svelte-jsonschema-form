@@ -94,6 +94,7 @@ export enum SvelteKitExample {
   FormActionsWithoutJs = "form-actions-without-js",
   FormActionsDynamicSchema = "form-actions-dynamic-schema",
   RemoteFunctions = "remote-functions",
+  RemoteFunctionsEnhance = "remote-functions-enhance",
   RemoteFunctionsWithoutJs = "remote-functions-without-js",
   RemoteFunctionsDynamicSchema = "remote-functions-dynamic-schema",
   MultiStepNativeForm = "multi-step-native-form",
