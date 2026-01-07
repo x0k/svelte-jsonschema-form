@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getAbortSignal, onMount, tick, untrack } from 'svelte';
+import { getAbortSignal, onMount, tick, untrack, hydratable } from 'svelte';
 import type { StandardSchemaV1 } from '@standard-schema/spec';
 import type { RemoteForm, RemoteFormInput } from '@sveltejs/kit';
 import type { DeepPartial } from '@sjsf/form/lib/types';
@@ -79,6 +79,8 @@ export interface ConnectOptions extends SvelteKitDataParserOptions {
 
 type RemoteFieldsContainer = Pick<RemoteForm<any, any>, 'fields'>;
 
+const HYDRATABLE_KEY_PREFIX = '__sjsf_sveltekit_h__';
+
 export async function connect<
   T,
   F extends RemoteForm<any, any> | ReturnType<RemoteForm<any, any>['enhance']>
@@ -129,6 +131,7 @@ export async function connect<
       );
     }
   });
+
   async function getInitialValue() {
     const formValue = fields.value();
     if (isRecordEmpty(formValue)) {
@@ -137,7 +140,9 @@ export async function connect<
     return (await dataParser(getAbortSignal(), idPrefix, formValue)) as DeepPartial<T>;
   }
   // svelte-ignore await_waterfall
-  const initialValue = $derived(await getInitialValue());
+  const initialValue = $derived(
+    await hydratable(`${HYDRATABLE_KEY_PREFIX}${idPrefix}`, getInitialValue)
+  );
 
   function hiddenInput(name: string, value: string) {
     const input = document.createElement('input');

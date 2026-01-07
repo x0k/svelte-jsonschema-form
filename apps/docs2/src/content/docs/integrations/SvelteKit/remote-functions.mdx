@@ -11,10 +11,15 @@ sidebar:
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
 
+import pkg from '#/sveltekit/package.json'
+
 import Npm from '@/components/npm.astro';
+import Deps from '@/components/peer-dependencies.astro';
+import { mergePackageConfigs } from '@/web-ide/layer';
 
 import modelCode from '%/sveltekit-starter/src/lib/post.ts?raw'
 import clientCode from '%/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw';
+import clientEnhanceCode from '%/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw';
 import serverCode from '%/sveltekit-starter/src/routes/remote-functions/data.remote?raw'
 
 :::caution
@@ -27,11 +32,22 @@ Remote functions integration is experimental
 
 <Npm pkg="@sjsf/sveltekit" />
 
+<Deps {...mergePackageConfigs(pkg, {
+  peerDependencies: {
+    // Cause `hydratable` API
+    // https://github.com/sveltejs/svelte/pull/17154
+    svelte: "^5.44.0"
+  }
+})} />
+
 ## Example
 
 <Tabs>
   <TabItem label='+page.svelte' >
     <Code code={clientCode} lang='svelte' />
+  </TabItem>
+  <TabItem label='+page.svelte (enhance)' >
+    <Code code={clientEnhanceCode} lang='svelte' />
   </TabItem>
   <TabItem label='data.remote.ts'>
     <Code code={serverCode} lang='typescript' />
