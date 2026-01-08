@@ -35,6 +35,8 @@ export interface LayerFiles {
   [filename: string]: string;
 }
 
+export type CodeTransformer = (filename: string, code: string) => string;
+
 export interface FormDefaultsConfig {
   theme?: Theme;
   widgets?: string[];
@@ -61,6 +63,7 @@ export interface Layer {
   package?: PackageConfig;
   vite?: ViteConfig;
   files?: LayerFiles;
+  codeTransformers?: CodeTransformer[];
   formDefaults?: FormDefaultsConfig;
 }
 
@@ -175,6 +178,10 @@ export function mergeLayers(a: Layer, b: Layer): Layer {
       ...a.files,
       ...b.files,
     },
+    codeTransformers:
+      a.codeTransformers && b.codeTransformers
+        ? a.codeTransformers.concat(b.codeTransformers)
+        : (a.codeTransformers ?? b.codeTransformers),
     svelte:
       a.svelte && b.svelte
         ? mergeSvelteConfig(a.svelte, b.svelte)
@@ -285,6 +292,13 @@ export function buildLayer(layer: Layer): LayerFiles {
     files["src/lib/form-defaults.ts"] = buildFormDefaultsConfig(
       layer.formDefaults
     );
+  }
+  if (layer.codeTransformers) {
+    for (const transform of layer.codeTransformers) {
+      for (const [filename, content] of Object.entries(files)) {
+        files[filename] = transform(filename, content);
+      }
+    }
   }
   return files;
 }

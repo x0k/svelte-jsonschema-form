@@ -15,7 +15,13 @@ import {
   type Validator,
 } from "@/shared";
 
-import { buildLayers, type Layer, type LayerFiles } from "./layer";
+import {
+  buildLayers,
+  type CodeTransformer,
+  type Layer,
+  type LayerFiles,
+} from "./layer";
+import { schemaToZodTransform } from "./zod-transform";
 
 type LayerPromise = Promise<{ layer: Layer }>;
 
@@ -35,13 +41,19 @@ export interface ProjectOptions {
   validator: Validator;
 }
 
+const VALIDATOR_TRANSFORMERS: Partial<Record<Validator, CodeTransformer>> = {
+  Zod: schemaToZodTransform,
+};
+
 const VALIDATOR_LAYERS = Object.fromEntries(
   VALIDATORS.map((validator) => {
     const pkg = validatorPackage(validator);
+    const transform = VALIDATOR_TRANSFORMERS[validator];
     return [
       validator,
       Promise.resolve({
         layer: {
+          codeTransformers: transform && [transform],
           formDefaults: {
             validator,
           },
@@ -55,7 +67,7 @@ const VALIDATOR_LAYERS = Object.fromEntries(
           },
         },
       }),
-    ] as const;
+    ] satisfies [Validator, LayerPromise];
   })
 ) as Record<Validator, LayerPromise>;
 
