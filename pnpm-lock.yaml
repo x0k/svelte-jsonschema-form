@@ -371,9 +371,15 @@ importers:
       '@svar-ui/svelte-core':
         specifier: ^2.4.0
         version: 2.4.0
+      '@sveltejs/acorn-typescript':
+        specifier: ^1.0.8
+        version: 1.0.8(acorn@8.15.0)
       '@valibot/to-json-schema':
         specifier: ^1.5.0
         version: 1.5.0(valibot@1.2.0(typescript@5.9.3))
+      acorn:
+        specifier: ^8.15.0
+        version: 8.15.0
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
@@ -428,6 +434,9 @@ importers:
       valibot:
         specifier: ^1.2.0
         version: 1.2.0(typescript@5.9.3)
+      zimmerframe:
+        specifier: ^1.1.4
+        version: 1.1.4
       zod:
         specifier: 'catalog:'
         version: 4.2.1
@@ -453,9 +462,15 @@ importers:
       '@types/css-tree':
         specifier: ^2.3.11
         version: 2.3.11
+      '@types/estree':
+        specifier: ^1.0.8
+        version: 1.0.8
       '@types/pikaday':
         specifier: ^1.7.10
         version: 1.7.10
+      '@typescript-eslint/types':
+        specifier: ^8.52.0
+        version: 8.52.0
       '@webcontainer/api':
         specifier: ^1.6.1
         version: 1.6.1
@@ -4000,6 +4015,10 @@ packages:
 
   '@typescript-eslint/types@8.50.0':
     resolution: {integrity: sha512-iX1mgmGrXdANhhITbpp2QQM2fGehBse9LbTf0sidWK6yg/NE+uhV5dfU1g6EYPlcReYmkE9QLPq/2irKAmtS9w==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@typescript-eslint/types@8.52.0':
+    resolution: {integrity: sha512-LWQV1V4q9V4cT4H5JCIx3481iIFxH1UkVk+ZkGGAV1ZGcjGI9IoFOfg3O6ywz8QqCDEp7Inlg6kovMofsNRaGg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/typescript-estree@8.50.0':
@@ -7770,6 +7789,7 @@ packages:
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
     engines: {node: '>=18'}
+    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-mimetype@4.0.0:
     resolution: {integrity: sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==}
@@ -9826,6 +9846,8 @@ snapshots:
       - supports-color
 
   '@typescript-eslint/types@8.50.0': {}
+
+  '@typescript-eslint/types@8.52.0': {}
 
   '@typescript-eslint/typescript-estree@8.50.0(typescript@5.9.3)':
     dependencies:

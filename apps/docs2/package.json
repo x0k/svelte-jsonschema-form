@@ -42,7 +42,9 @@
     "@skeletonlabs/skeleton-svelte": "^1.5.3",
     "@stackblitz/sdk": "^1.11.0",
     "@svar-ui/svelte-core": "^2.4.0",
+    "@sveltejs/acorn-typescript": "^1.0.8",
     "@valibot/to-json-schema": "^1.5.0",
+    "acorn": "^8.15.0",
     "ajv": "catalog:",
     "ajv-formats": "^3.0.1",
     "arktype": "^2.1.29",
@@ -61,6 +63,7 @@
     "theme-testing": "workspace:*",
     "typebox": "^1.0.64",
     "valibot": "^1.2.0",
+    "zimmerframe": "^1.1.4",
     "zod": "catalog:"
   },
   "devDependencies": {
@@ -71,7 +74,9 @@
     "@picocss/pico": "^2.1.1",
     "@skeletonlabs/skeleton-svelte4": "npm:@skeletonlabs/skeleton-svelte@^4.8.0",
     "@types/css-tree": "^2.3.11",
+    "@types/estree": "^1.0.8",
     "@types/pikaday": "^1.7.10",
+    "@typescript-eslint/types": "^8.52.0",
     "@webcontainer/api": "^1.6.1",
     "astro": "^5.16.6",
     "astro-vtbot": "^2.1.9",
