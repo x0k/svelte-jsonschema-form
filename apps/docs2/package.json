@@ -53,6 +53,8 @@
     "esbuild": "^0.27.2",
     "flowbite": "^3.1.2",
     "flowbite-svelte": "1.31.0",
+    "json-schema-to-valibot": "^0.3.0",
+    "json-schema-to-zod": "^2.7.0",
     "lz-string": "^1.5.0",
     "mermaid": "^11.12.2",
     "panzoom": "^9.4.3",

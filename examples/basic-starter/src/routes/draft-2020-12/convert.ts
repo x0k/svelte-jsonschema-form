@@ -115,7 +115,7 @@ const ASSIGNERS: {
   },
 };
 
-function convertSchema(schema: JSONSchema.Interface): Schema {
+export function convertSchema(schema: JSONSchema.Interface): Schema {
   const result: Schema = {};
   const keys = Object.keys(schema) as Array<keyof JSONSchema.Interface>;
   for (const key of keys) {
@@ -146,5 +146,3 @@ function convertRecordOfSchemaDefs(schemas: Record<string, JSONSchema>) {
 function convertArrayOfSchemaDefs(schemas: ReadonlyArray<JSONSchema>) {
   return schemas.map(convertSchemaDef);
 }
-
-export const adapt = convertSchema;
