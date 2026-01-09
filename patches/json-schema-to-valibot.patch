@@ -1,0 +1,17 @@
+diff --git a/package.json b/package.json
+index 13fcaeca1618f37e200c30efbdee7c09c5cd4a72..f58006f10620b16028c738fc8fedda9e179b0ef0 100644
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,12 @@
+ {
+   "name": "json-schema-to-valibot",
+   "type": "module",
++  "exports": {
++    ".": {
++      "import": "./dist/index.mjs",
++      "types": "./dist/index.d.ts"
++    }
++  },
+   "version": "0.3.0",
+   "description": "Convert JSON Schema definitions to Valibot schema definitions. Inspired by json-schema-to-zod.",
+   "main": "dist/index.js",

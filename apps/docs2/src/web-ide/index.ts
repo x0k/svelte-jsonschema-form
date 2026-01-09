@@ -21,7 +21,10 @@ import {
   type Layer,
   type LayerFiles,
 } from "./layer";
-import { schemaToZodTransform } from "./zod-transform";
+import {
+  schemaToZodTransform,
+  schemaToValibotTransform,
+} from "./schema-transform";
 
 type LayerPromise = Promise<{ layer: Layer }>;
 
@@ -43,6 +46,7 @@ export interface ProjectOptions {
 
 const VALIDATOR_TRANSFORMERS: Partial<Record<Validator, CodeTransformer>> = {
   Zod: schemaToZodTransform,
+  Valibot: schemaToValibotTransform,
 };
 
 const VALIDATOR_LAYERS = Object.fromEntries(

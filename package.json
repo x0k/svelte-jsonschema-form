@@ -59,6 +59,9 @@
     "overrides": {
       "playwright": "catalog:",
       "vite": "catalog:"
+    },
+    "patchedDependencies": {
+      "json-schema-to-valibot": "patches/json-schema-to-valibot.patch"
     }
   }
 }
