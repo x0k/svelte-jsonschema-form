@@ -1,11 +1,15 @@
-import descriptionSvelte from "%/markdown-description/src/routes/description.svelte?raw";
-import pageSvelte from "%/markdown-description/src/routes/+page.svelte?raw";
-import packageJson from "%/markdown-description/package.json";
+import descriptionSvelte from "%/basic-starter/src/routes/markdown-description/description.svelte?raw";
+import pageSvelte from "%/basic-starter/src/routes/markdown-description/+page.svelte?raw";
+import packageJson from "%/basic-starter/package.json";
 
-import { omitBasePackages, type Layer } from "../layer";
+import {
+  MARKDOWN_DESCRIPTION_PACKAGES,
+  pickPackages,
+  type Layer,
+} from "../layer";
 
 export const layer = {
-  package: omitBasePackages(packageJson),
+  package: pickPackages(packageJson, MARKDOWN_DESCRIPTION_PACKAGES),
   files: {
     "src/routes/description.svelte": descriptionSvelte,
     "src/routes/+page.svelte": pageSvelte,

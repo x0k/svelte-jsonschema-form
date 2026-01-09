@@ -1,4 +1,5 @@
 import { unique } from "@sjsf/form/lib/array";
+import { isRecordEmpty } from "@sjsf/form/lib/object";
 import type { SchemaValue } from "@sjsf/form";
 
 import {
@@ -67,7 +68,14 @@ export interface Layer {
   formDefaults?: FormDefaultsConfig;
 }
 
-export const BASE_PACKAGES = ["ajv", "@sjsf/ajv8-validator"];
+export const MARKDOWN_DESCRIPTION_PACKAGES = ["svelte-exmarkdown"];
+export const DRAFT_2020_12_PACKAGES = ["json-schema-typed"];
+export const BASE_PACKAGES = [
+  "ajv",
+  "@sjsf/ajv8-validator",
+  ...MARKDOWN_DESCRIPTION_PACKAGES,
+  ...DRAFT_2020_12_PACKAGES,
+];
 
 function mergerSvelteCompilerOptions(
   a: SvelteCompilerOptions,
@@ -313,12 +321,15 @@ export function omitPackages(
 ): PackageConfig {
   const deps = new Map(Object.entries(config.dependencies ?? {}));
   const devDeps = new Map(Object.entries(config.devDependencies ?? {}));
+  const peerDeps = new Map(Object.entries(config.peerDependencies ?? {}));
   for (const pkg of packages) {
     deps.delete(pkg);
     devDeps.delete(pkg);
+    peerDeps.delete(pkg);
   }
   return {
     ...config,
+    peerDependencies: config.peerDependencies && Object.fromEntries(peerDeps),
     dependencies: Object.fromEntries(deps),
     devDependencies: Object.fromEntries(devDeps),
   };
@@ -326,4 +337,28 @@ export function omitPackages(
 
 export function omitBasePackages(config: PackageConfig): PackageConfig {
   return omitPackages(config, BASE_PACKAGES);
+}
+
+function createPackagesPicker(packages: string[]) {
+  return (dependencies: Record<string, string>) => {
+    const deps: Record<string, string> = {};
+    for (const pkg of packages) {
+      if (pkg in dependencies) {
+        deps[pkg] = dependencies[pkg];
+      }
+    }
+    return isRecordEmpty(deps) ? undefined : deps;
+  };
+}
+
+export function pickPackages(
+  { dependencies, devDependencies, peerDependencies }: PackageConfig,
+  packages: string[]
+): PackageConfig {
+  const pickDependencies = createPackagesPicker(packages);
+  return {
+    dependencies: dependencies && pickDependencies(dependencies),
+    devDependencies: devDependencies && pickDependencies(devDependencies),
+    peerDependencies: peerDependencies && pickDependencies(peerDependencies),
+  };
 }

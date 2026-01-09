@@ -24,6 +24,8 @@
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/basic-theme": "workspace:*",
 		"@sjsf/form": "workspace:*",
-		"ajv": "^8.17.1"
+		"ajv": "^8.17.1",
+		"json-schema-typed": "^8.0.2",
+		"svelte-exmarkdown": "^5.0.2"
 	}
 }
