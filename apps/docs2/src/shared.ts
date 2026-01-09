@@ -84,6 +84,7 @@ export enum GenericExample {
   OptionalDataControls = "optional-data-controls",
   SchemaTransformation = "schema-transformation",
   LabelOnLeft = "label-on-left",
+  Draft2020 = "draft-2020-12",
 }
 
 export const GENERIC_EXAMPLES = Object.values(GenericExample);

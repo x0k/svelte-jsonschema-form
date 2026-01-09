@@ -69,10 +69,12 @@ export interface Layer {
 }
 
 export const MARKDOWN_DESCRIPTION_PACKAGES = ["svelte-exmarkdown"];
+export const DRAFT_2020_12_PACKAGES = ["json-schema-typed"];
 export const BASE_PACKAGES = [
   "ajv",
   "@sjsf/ajv8-validator",
   ...MARKDOWN_DESCRIPTION_PACKAGES,
+  ...DRAFT_2020_12_PACKAGES,
 ];
 
 function mergerSvelteCompilerOptions(
