@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 3.3.0
+
+### Patch Changes
+
+- Take properties order in objects into account when caching schema properties ([`0f3cc2d`](https://github.com/x0k/svelte-jsonschema-form/commit/0f3cc2dc252acfcc880ee7a97777d6e77eb31fed))
+
+- Abort `submission` and `fieldsValidation` on `SimpleForm` destroy ([#294](https://github.com/x0k/svelte-jsonschema-form/pull/294))
+
 ## 3.2.0
 
 ### Minor Changes

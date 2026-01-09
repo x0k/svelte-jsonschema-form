@@ -1,5 +1,14 @@
 # valibot-starter
 
+## 0.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`0f3cc2d`](https://github.com/x0k/svelte-jsonschema-form/commit/0f3cc2dc252acfcc880ee7a97777d6e77eb31fed), [`90367f6`](https://github.com/x0k/svelte-jsonschema-form/commit/90367f68d831761e715713667a8bd57a6fdfa532)]:
+  - @sjsf/form@3.3.0
+  - @sjsf/basic-theme@3.3.0
+  - @sjsf/valibot-validator@3.3.0
+
 ## 0.0.8
 
 ### Patch Changes
