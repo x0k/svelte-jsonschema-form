@@ -85,7 +85,7 @@ export function createObjectContext<T>({
   // additional properties in the `properties` field with the
   // `ADDITIONAL_PROPERTY_FLAG` flag and `dependencies` resolution.
   const retrievedSchema = $derived(
-    retrieveSchema(ctx, config().schema, value())
+    retrieveSchema(ctx, config().schema, value(), true)
   );
 
   let lastSchemaProperties: Schema["properties"] = undefined;
@@ -192,7 +192,10 @@ export function createObjectContext<T>({
     },
     propertyConfig(config, property, isAdditional) {
       const definition = schemaProperties![property] ?? false;
-      const schema = typeof definition === "boolean" ? {} : definition;
+      const schema =
+        typeof definition === "boolean"
+          ? {}
+          : retrieveSchema(ctx, definition, value()?.[property]);
       const uiSchema = retrieveUiSchema(
         ctx,
         isAdditional

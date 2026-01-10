@@ -60,14 +60,16 @@ export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
 export function retrieveSchema<T>(
   ctx: FormState<T>,
   schema: Schema,
-  formData: SchemaValue | undefined
+  formData: SchemaValue | undefined,
+  resolveAnyOfOrOneOfRefs?: boolean
 ) {
   return retrieveSchemaInternal(
     ctx[FORM_VALIDATOR],
     ctx[FORM_MERGER],
     schema,
     ctx[FORM_SCHEMA],
-    formData
+    formData,
+    resolveAnyOfOrOneOfRefs
   );
 }
 
