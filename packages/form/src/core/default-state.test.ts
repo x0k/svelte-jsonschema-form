@@ -165,6 +165,176 @@ describe("getDefaultFormState()", () => {
       });
     });
 
+    describe("schema with anyOf containing $ref AND default should preserve existing formData", () => {
+      // This test verifies the fix for a bug where anyOf schemas with $ref AND default
+      // would incorrectly override existing formData with the default value.
+      // The bug occurs when:
+      // 1. anyOf with default gets merged with the matched $ref option
+      // 2. parentDefaults accumulates during recursion
+      // 3. The "merge defaults" branch catches anyOf/$ref schemas
+      const schema = {
+        $defs: {
+          Inner: {
+            type: "object",
+            properties: {
+              str: { type: "string", default: "default_str" },
+              extra: { type: "object", default: { key: "value" } },
+            },
+          },
+          Wrapper: {
+            type: "object",
+            properties: {
+              inner: {
+                $ref: "#/$defs/Inner",
+                default: { str: "default_str", extra: { key: "value" } },
+              },
+            },
+          },
+        },
+        type: "object",
+        properties: {
+          outer: {
+            anyOf: [{ $ref: "#/$defs/Wrapper" }],
+            default: { inner: { str: "default_str", extra: { key: "value" } } },
+          },
+        },
+      } as const satisfies Schema;
+
+      beforeEach(() => {
+        defaultMerger = createMerger({
+          merges: [
+            {
+              left: {
+                type: "object",
+                properties: {
+                  str: { type: "string", default: "default_str" },
+                  extra: { type: "object", default: { key: "value" } },
+                },
+              },
+              right: {
+                default: { str: "default_str", extra: { key: "value" } },
+              },
+              result: {
+                type: "object",
+                properties: {
+                  str: { type: "string", default: "default_str" },
+                  extra: { type: "object", default: { key: "value" } },
+                },
+                default: { str: "default_str", extra: { key: "value" } },
+              },
+            },
+            {
+              left: {
+                default: {
+                  inner: { str: "default_str", extra: { key: "value" } },
+                },
+              },
+              right: {
+                $ref: "#/$defs/Wrapper",
+              },
+              // WARN: This is invalid JSON Schema Draft 07,
+              // as other keywords are prohibited when `$ref` is present.
+              result: {
+                $ref: "#/$defs/Wrapper",
+                default: {
+                  inner: { str: "default_str", extra: { key: "value" } },
+                },
+              },
+            },
+          ],
+        });
+        testValidator = createValidator({
+          cases: [
+            {
+              schema: {
+                allOf: [
+                  {
+                    type: "object",
+                    properties: {
+                      inner: {
+                        type: "object",
+                        properties: {
+                          str: { type: "string", default: "default_str" },
+                          extra: { type: "object", default: { key: "value" } },
+                        },
+                        default: {
+                          str: "default_str",
+                          extra: { key: "value" },
+                        },
+                      },
+                    },
+                  },
+                  { anyOf: [{ required: ["inner"] }] },
+                ],
+              },
+              value: { inner: { str: "default_str", extra: { key: "value" } } },
+              result: true,
+            },
+            {
+              schema: {
+                allOf: [
+                  {
+                    type: "object",
+                    properties: {
+                      inner: {
+                        type: "object",
+                        properties: {
+                          str: { type: "string", default: "default_str" },
+                          extra: { type: "object", default: { key: "value" } },
+                        },
+                        default: {
+                          str: "default_str",
+                          extra: { key: "value" },
+                        },
+                      },
+                    },
+                  },
+                  { anyOf: [{ required: ["inner"] }] },
+                ],
+              },
+              value: { inner: { str: "user_value", extra: { key: "value" } } },
+              result: true,
+            },
+          ],
+        });
+      });
+
+      test("getDefaultFormState should preserve existing formData when anyOf has $ref and default", () => {
+        const existingFormData = {
+          outer: {
+            inner: {
+              str: "user_value", // User's change - should be preserved
+              extra: { key: "value" },
+            },
+          },
+        };
+
+        const result = getDefaultFormState(
+          testValidator,
+          defaultMerger,
+          schema,
+          existingFormData,
+          schema
+        ) as any;
+
+        // The user's value should be preserved, NOT overridden by the default
+        expect(result?.outer?.inner?.str).toBe("user_value");
+      });
+
+      test("getDefaultFormState should apply defaults when formData is undefined", () => {
+        const result = getDefaultFormState(
+          testValidator,
+          defaultMerger,
+          schema,
+          undefined,
+          schema
+        ) as any;
+
+        // Defaults should be applied when no formData exists
+        expect(result?.outer?.inner?.str).toBe("default_str");
+      });
+    });
+
     describe("schema with a const property", () => {
       const schema: Schema = {
         type: "object",
@@ -2596,7 +2766,7 @@ describe("getDefaultFormState()", () => {
                 required: ["checkbox"],
               },
               value: {},
-              result: false
+              result: false,
             },
           ],
         });
