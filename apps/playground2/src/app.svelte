@@ -1,6 +1,6 @@
 <script lang="ts">
   import { BitsConfig } from "bits-ui";
-  import { Willow, WillowDark } from '@svar-ui/svelte-core'
+  import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
@@ -52,7 +52,9 @@
     themes,
     themeStyles,
     validators,
+    VALIDATOR_TITLES,
     type PlaygroundState,
+    REAL_VALIDATORS,
   } from "./core/index.js";
   import { ShadowHost } from "./shadow/index.js";
   import Github from "./github.svelte";
@@ -61,7 +63,7 @@
   import Popup from "./popup.svelte";
   import Bits from "./bits.svelte";
   import Select from "./select.svelte";
-  import Noop from './noop.svelte';
+  import Noop from "./noop.svelte";
 
   import * as customComponents from "./custom-form-components/index.js";
   import { themeManager } from "./theme.svelte";
@@ -163,9 +165,9 @@
   };
   const portalOptions = {
     get target() {
-      return portalEl
-    }
-  }
+      return portalEl;
+    },
+  };
 
   const focusOnFirstError = createFocusOnFirstError();
   const form = createForm({
@@ -238,7 +240,7 @@
       skeleton4Combobox: options,
       skeleton4ComboboxPortal: portalOptions,
       skeleton4DateRangePicker: options,
-      skeleton4DateRangePickerPortal: portalOptions
+      skeleton4DateRangePickerPortal: portalOptions,
     }),
     onSubmit(value) {
       console.log("submit", value);
@@ -257,7 +259,9 @@
   const clearLink = new URL(location.href);
   clearLink.hash = "";
 
-  const SvarProvider = $derived(data.theme === 'svar' ? themeManager.isDark ? WillowDark : Willow : Noop)
+  const SvarProvider = $derived(
+    data.theme === "svar" ? (themeManager.isDark ? WillowDark : Willow) : Noop
+  );
 </script>
 
 <div
@@ -368,7 +372,8 @@
     <Select
       label="Validator"
       bind:value={data.validator}
-      items={Object.keys(validators)}
+      items={REAL_VALIDATORS}
+      labels={VALIDATOR_TITLES}
     />
     <Select label="Theme" bind:value={data.theme} items={Object.keys(themes)} />
     <Select label="Icons" bind:value={data.icons} items={Object.keys(icons)} />
@@ -416,7 +421,8 @@
     style={`${themeStyle}\n${iconSetStyle}`}
   >
     <style>
-      .wx-willow-theme, .wx-willow-dark-theme {
+      .wx-willow-theme,
+      .wx-willow-dark-theme {
         height: auto !important;
         min-height: 100%;
       }
