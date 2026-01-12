@@ -1676,3 +1676,117 @@ describe("omitExtraData", () => {
     });
   });
 });
+
+// The following code was copied and modified from the https://github.com/rjsf-team/react-jsonschema-form/blob/127611fb64d269e985d449fa4e89d3f0c513a95b/packages/utils/test/schema/omitExtraDataTest.ts
+// Licensed under the Apache License, Version 2.0.
+// Modifications made by Roman Krasilnikov.
+describe("omitExtraData (RJSF tests)", () => {
+
+  it("should omit fields not defined in the schema", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        foo: { type: "string" },
+      },
+    };
+    const formData = {
+      foo: "bar",
+      extraField: "should be omitted",
+    };
+
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual({
+      foo: "bar",
+    });
+  });
+
+  it("should include nested object fields defined in the schema", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        nested: {
+          type: "object",
+          properties: {
+            foo: { type: "string" },
+          },
+        },
+      },
+    };
+    const formData = {
+      nested: {
+        foo: "bar",
+        extraField: "should be omitted",
+      },
+    };
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual({
+      nested: { foo: "bar" },
+    });
+  });
+
+  it("should handle arrays according to the schema", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        list: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              foo: { type: "string" },
+            },
+          },
+        },
+      },
+    };
+    const formData = {
+      list: [{ foo: "bar", extraField: "should be omitted" }, { foo: "baz" }],
+    };
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual({
+      list: [{ foo: "bar" }, { foo: "baz" }],
+    });
+  });
+
+  it("should not omit additional properties if the schema allows them", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        level1: {
+          type: "object",
+          properties: {
+            level2: { type: "string" },
+            mixedMap: {
+              type: "string",
+              additionalProperties: true,
+            },
+          },
+        },
+      },
+    };
+    const formData = {
+      level1: {
+        level2: "test",
+        mixedMap: {
+          namedField: "foo",
+          key1: "val1",
+        },
+      },
+    };
+
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
+      formData
+    );
+  });
+
+  it("No form data or RootSchema returns empty object", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        foo: { type: "string" },
+      },
+    };
+
+    expect(omitExtraData(validator, defaultMerger, schema, undefined)).toEqual(
+      // CHANGED: {}
+      undefined
+    );
+  });
+});
