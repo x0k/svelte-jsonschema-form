@@ -11,7 +11,8 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, uiOptionProps, type ComponentProps } from '@sjsf/form';
+	import { on } from 'svelte/events';
+	import { getFormContext, isDisabled, uiOptionProps, type ComponentProps } from '@sjsf/form';
 	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	let {
@@ -35,14 +36,16 @@
 	}
 </script>
 
-<Segmented
-	{options}
-	bind:value={mapped.current}
-	{...uiOptionProps('svarRadioButtons')(
-		{
-			onchange
-		},
-		config,
-		ctx
-	)}
-/>
+<div {@attach (n) => on(n, 'click', (e) => e.preventDefault())}>
+	<Segmented
+		{options}
+		bind:value={mapped.current}
+		{...uiOptionProps('svarRadioButtons')(
+			{
+				onchange
+			},
+			config,
+			ctx
+		)}
+	/>
+</div>
