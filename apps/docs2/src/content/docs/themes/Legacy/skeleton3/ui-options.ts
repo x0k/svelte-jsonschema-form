@@ -1,4 +1,4 @@
-import type { ComponentProps as SvelteComponentProps } from "svelte";
+import type { Component } from "svelte";
 import type {
   HTMLAttributes,
   HTMLButtonAttributes,
@@ -18,6 +18,8 @@ import type {
   TagsInput,
   Combobox as SkeletonCombobox,
 } from "@skeletonlabs/skeleton-svelte";
+
+type Props<T> = T extends Component<infer P, any, any> ? P : never
 
 export interface UiOptions {
   /**
@@ -88,18 +90,18 @@ export interface UiOptions {
 
   textarea?: HTMLTextareaAttributes;
 
-  skeleton3Combobox?: SvelteComponentProps<typeof SkeletonCombobox>;
+  skeleton3Combobox?: Props<typeof SkeletonCombobox>;
 
-  skeleton3FileUpload?: SvelteComponentProps<typeof SkeletonFileUpload>;
+  skeleton3FileUpload?: Props<typeof SkeletonFileUpload>;
 
-  skeleton3Segment?: SvelteComponentProps<typeof Segment>;
-  skeleton3SegmentItem?: SvelteComponentProps<typeof Segment.Item>;
+  skeleton3Segment?: Props<typeof Segment>;
+  skeleton3SegmentItem?: Props<typeof Segment.Item>;
 
-  skeleton3Rating?: SvelteComponentProps<typeof SkeletonRating>;
+  skeleton3Rating?: Props<typeof SkeletonRating>;
 
-  skeleton3Slider?: SvelteComponentProps<typeof SkeletonSlider>;
+  skeleton3Slider?: Props<typeof SkeletonSlider>;
 
-  skeleton3Switch?: SvelteComponentProps<typeof SkeletonSwitch>;
+  skeleton3Switch?: Props<typeof SkeletonSwitch>;
 
-  skeleton3Tags?: SvelteComponentProps<typeof TagsInput>;
+  skeleton3Tags?: Props<typeof TagsInput>;
 }
