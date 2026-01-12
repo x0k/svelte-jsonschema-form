@@ -1,5 +1,28 @@
 # playground2
 
+## 1.1.2
+
+### Patch Changes
+
+- Categorize samples ([#292](https://github.com/x0k/svelte-jsonschema-form/pull/292))
+
+- Updated dependencies [[`0f3cc2d`](https://github.com/x0k/svelte-jsonschema-form/commit/0f3cc2dc252acfcc880ee7a97777d6e77eb31fed), [`90367f6`](https://github.com/x0k/svelte-jsonschema-form/commit/90367f68d831761e715713667a8bd57a6fdfa532), [`e9ca40b`](https://github.com/x0k/svelte-jsonschema-form/commit/e9ca40bdd70c140da75b8bf4e8d8cd572afdf23a), [`8236c6b`](https://github.com/x0k/svelte-jsonschema-form/commit/8236c6bf03152fd332f6acb4d6d71400369cfb43), [`8236c6b`](https://github.com/x0k/svelte-jsonschema-form/commit/8236c6bf03152fd332f6acb4d6d71400369cfb43), [`50aa738`](https://github.com/x0k/svelte-jsonschema-form/commit/50aa738b4386beb52b9078c81c95883a56386cb0)]:
+  - @sjsf/form@3.2.1
+  - @sjsf-lab/svar-theme@3.2.1
+  - @sjsf-lab/beercss-theme@3.2.0
+  - @sjsf/ajv8-validator@3.2.1
+  - @sjsf/basic-theme@3.2.1
+  - @sjsf/cfworker-validator@3.2.1
+  - @sjsf/daisyui5-theme@3.2.1
+  - @sjsf/flowbite-icons@3.2.1
+  - @sjsf/flowbite3-theme@3.2.1
+  - @sjsf/lucide-icons@3.2.1
+  - @sjsf/moving-icons@3.2.1
+  - @sjsf/radix-icons@3.2.1
+  - @sjsf/schemasafe-validator@3.2.1
+  - @sjsf/shadcn4-theme@3.2.1
+  - @sjsf/skeleton4-theme@3.2.1
+
 ## 1.1.1
 
 ### Patch Changes

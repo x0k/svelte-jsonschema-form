@@ -1,5 +1,17 @@
 # @sjsf/sveltekit
 
+## 3.2.1
+
+### Patch Changes
+
+- [**Potentially breaking change**] Utilize `hydratable` API for initial data parsing (Remote functions only). ([#298](https://github.com/x0k/svelte-jsonschema-form/pull/298))
+
+  This change may result in incorrect initial data being rendered if there is an `idPrefix` collision between multiple forms.
+  When rendering multiple forms on the same page, make sure to use a unique `idPrefix` (for example, `$props.id()`).
+
+- Updated dependencies [[`0f3cc2d`](https://github.com/x0k/svelte-jsonschema-form/commit/0f3cc2dc252acfcc880ee7a97777d6e77eb31fed), [`90367f6`](https://github.com/x0k/svelte-jsonschema-form/commit/90367f68d831761e715713667a8bd57a6fdfa532), [`e9ca40b`](https://github.com/x0k/svelte-jsonschema-form/commit/e9ca40bdd70c140da75b8bf4e8d8cd572afdf23a), [`50aa738`](https://github.com/x0k/svelte-jsonschema-form/commit/50aa738b4386beb52b9078c81c95883a56386cb0)]:
+  - @sjsf/form@3.2.1
+
 ## 3.2.0
 
 ### Patch Changes
