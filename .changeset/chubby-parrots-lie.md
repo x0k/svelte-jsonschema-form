@@ -1,5 +1,5 @@
 ---
-"@sjsf/sveltekit": minor
+"@sjsf/sveltekit": patch
 ---
 
 [**Potentially breaking change**] Utilize `hydratable` API for initial data parsing (Remote functions only).
