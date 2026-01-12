@@ -305,6 +305,7 @@ export class BuilderContext {
 				theme: this.theme,
 				schema: this.schema,
 				uiSchema: this.uiSchema,
+				validator: this.validator,
 				html5Validation: this.html5Validation
 			})
 		)
