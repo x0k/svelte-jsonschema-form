@@ -31,15 +31,33 @@
 	}
 </script>
 
-<SvarSwitch
-	bind:value={() => value ?? false, (v) => (value = v)}
-	{...uiOptionProps('svarSwitch')(
-		{
-			id,
-			disabled: isDisabled(ctx),
-			onchange
-		},
-		config,
-		ctx
-	)}
-/>
+<label>
+	<SvarSwitch
+		bind:value={() => value ?? false, (v) => (value = v)}
+		{...uiOptionProps('svarSwitch')(
+			{
+				id,
+				disabled: isDisabled(ctx),
+				onchange
+			},
+			config,
+			ctx
+		)}
+	/>
+	{config.title}
+</label>
+
+<style>
+	label {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		gap: 8px;
+		font-family: var(--wx-checkbox-font-family);
+		font-size: var(--wx-checkbox-font-size);
+		line-height: var(--wx-checkbox-line-height);
+		font-weight: var(--wx-checkbox-font-weight);
+		color: var(--wx-checkbox-font-color);
+		cursor: pointer;
+	}
+</style>
