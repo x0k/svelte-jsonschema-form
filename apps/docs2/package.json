@@ -10,7 +10,7 @@
     "precompile-validators": "pnpm run precompile-ajv-validator && pnpm run precompile-schemasafe-validator",
     "build": "CHECK_LINKS=true astro build",
     "preview": "astro preview",
-    "check": "pnpm run precompile-validators && astro check && svelte-check --tsconfig ./tsconfig.json"
+    "check": "pnpm run precompile-validators && svelte-check --tsconfig ./tsconfig.json && astro check"
   },
   "dependencies": {
     "@exodus/schemasafe": "catalog:",
