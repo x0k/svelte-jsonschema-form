@@ -10,12 +10,12 @@
     "check": "svelte-check --tsconfig tsconfig.json"
   },
   "devDependencies": {
-    "@iconify-json/devicon-plain": "^1.2.49",
+    "@iconify-json/devicon-plain": "^1.2.51",
     "@iconify-json/mdi": "^1.2.3",
     "@internationalized/date": "^3.10.1",
     "@lucide/svelte": "^0.544.0",
     "@tailwindcss/vite": "catalog:",
-    "beercss": "^3.13.1",
+    "beercss": "^3.13.3",
     "bits-ui": "catalog:",
     "clsx": "^2.1.1",
     "json-schema-to-ts": "^3.1.1",
@@ -31,8 +31,8 @@
     "@dnd-kit/collision": "^0.2.1",
     "@dnd-kit/dom": "^0.2.1",
     "@picocss/pico": "^2.1.1",
-    "@shikijs/langs": "^3.20.0",
-    "@shikijs/themes": "^3.20.0",
+    "@shikijs/langs": "^3.21.0",
+    "@shikijs/themes": "^3.21.0",
     "@sjsf-lab/beercss-theme": "workspace:*",
     "@sjsf-lab/svar-theme": "workspace:*",
     "@sjsf/ajv8-validator": "workspace:*",
@@ -56,6 +56,6 @@
     "json-schema-to-valibot": "^0.3.0",
     "json-schema-to-zod": "^2.7.0",
     "lz-string": "^1.5.0",
-    "shiki": "^3.20.0"
+    "shiki": "^3.21.0"
   }
 }
