@@ -274,10 +274,13 @@ export function computeDefaults(
     defaults = schema.const ?? schema.enum?.[0];
   } else if (
     isSchemaObjectValue(defaults) &&
-    isSchemaObjectValue(schemaDefault)
+    isSchemaObjectValue(schemaDefault) &&
+    !schemaAnyOf &&
+    !schemaOneOf &&
+    !schemaRef
   ) {
     // For object defaults, only override parent defaults that are defined in
-    // schema.default.
+    // schema.default. Skip this for anyOf/oneOf/$ref schemas - they need special handling.
     defaults = mergeSchemaObjects(defaults, schemaDefault);
   } else if (
     schemaDefault !== undefined &&
@@ -293,8 +296,13 @@ export function computeDefaults(
       schemaToCompute = findSchemaDefinition(merger, schemaRef, rootSchema);
     }
     // If the referenced schema exists and parentDefaults is not set
-    // Then set the defaults from the current schema for the referenced schema
-    if (schemaToCompute && defaults === undefined) {
+    // Then set the defaults from the current schema for the referenced schema.
+    // Only do this if rawFormData has no meaningful data - we don't want to override user's existing values.
+    // Check for undefined OR empty object - rawFormData may be coerced to {} when not an object.
+    // CHANGED: this expression can be simplified
+    // const hasNoExistingData = rawFormData === undefined || (isObject(rawFormData) && isEmpty(rawFormData));
+    const hasNoExistingData = isRecordEmpty(formData);
+    if (schemaToCompute && defaults === undefined && hasNoExistingData) {
       defaults = schemaDefault;
     }
     // If shouldMergeDefaultsIntoFormData is true
