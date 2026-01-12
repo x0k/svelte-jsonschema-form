@@ -10,20 +10,20 @@ catalog:
   '@tailwindcss/vite': ^4.1.18
   ajv: ^8.17.1
   autoprefixer: ^10.4.23
-  bits-ui: 2.14.4
+  bits-ui: 2.15.4
   esm-env: ^1.2.2
-  globals: 16.5.0
+  globals: 17.0.0
   playwright: 1.57.0
   postcss: ^8.5.6
-  svelte: ^5.46.0
+  svelte: ^5.46.1
   tailwindcss: ^4.1.18
-  vite: ^7.3.0
-  vitest: ^4.0.16
-  zod: 4.2.1
+  vite: ^7.3.1
+  vitest: ^4.0.17
+  zod: 4.3.5
 
 catalogs:
   legacy:
-    tailwindcss: ^3.4.18
+    tailwindcss: ^3.4.19
 
 onlyBuiltDependencies:
   - esbuild

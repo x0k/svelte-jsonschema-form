@@ -72,7 +72,7 @@
 		"@sjsf/form": "workspace:*",
 		"@tailwindcss/vite": "catalog:",
 		"ajv": "catalog:",
-		"beercss": "^3.13.1",
+		"beercss": "^3.13.3",
 		"globals": "catalog:",
 		"material-dynamic-colors": "^1.1.2",
 		"svelte": "catalog:",
