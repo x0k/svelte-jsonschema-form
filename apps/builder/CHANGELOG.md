@@ -1,5 +1,12 @@
 # builder
 
+## 0.6.1
+
+### Patch Changes
+
+- Updated dependencies [[`d082447`](https://github.com/x0k/svelte-jsonschema-form/commit/d08244729655b8891e9a025b4dd83004064592e2)]:
+  - @sjsf-lab/beercss-theme@3.2.1
+
 ## 0.6.0
 
 ### Minor Changes
