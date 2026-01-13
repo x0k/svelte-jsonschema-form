@@ -4,7 +4,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			daisyui5Switch?: HTMLInputAttributes;
+			beercssSwitch?: HTMLInputAttributes;
 		}
 	}
 </script>
@@ -19,7 +19,7 @@
 
 <label class="switch">
 	<input
-		{...inputAttributes(ctx, config, 'daisyui5Switch', handlers, {})}
+		{...inputAttributes(ctx, config, 'beercssSwitch', handlers, {})}
 		type="checkbox"
 		bind:checked={() => value ?? false, (v) => (value = v)}
 	/>
