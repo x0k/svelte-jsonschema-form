@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf-lab/beercss-theme",
-	"version": "3.2.0",
+	"version": "3.2.1",
 	"description": "The Beer CSS v3 based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [

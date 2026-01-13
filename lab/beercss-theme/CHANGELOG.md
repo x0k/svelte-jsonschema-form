@@ -1,5 +1,15 @@
 # @sjsf-lab/beercss-theme
 
+## 3.2.1
+
+### Patch Changes
+
+- [Breaking change] Fix UI options for `date-picker` and `switch` widgets ([#307](https://github.com/x0k/svelte-jsonschema-form/pull/307))
+
+  Widgets now use the correct names for UI options:
+  - `daisyui5Switch` -> `beercssSwitch`
+  - `daisyui5PikadayCalendar` -> `datePicker`
+
 ## 3.2.0
 
 ### Minor Changes
