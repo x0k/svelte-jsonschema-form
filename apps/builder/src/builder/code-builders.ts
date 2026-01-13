@@ -1,5 +1,5 @@
 import { parse, print } from 'svelte/compiler';
-import type { Schema, UiSchema } from '@sjsf/form';
+import type { Schema, SchemaValue, UiSchema } from '@sjsf/form';
 import { jsonSchemaToZod } from 'json-schema-to-zod';
 import { jsonSchemaToValibot } from 'json-schema-to-valibot';
 
@@ -111,8 +111,16 @@ const VALIDATOR_ADAPTERS: Partial<Record<Validator, string>> = {
 		'import { adapt } from "@sjsf/valibot-validator";\nimport * as v from "valibot";'
 };
 
+function toLines(str: string) {
+	return str.split('\n').join('\n  ');
+}
+
+function jsonToLines(data: Schema | UiSchema) {
+	return toLines(JSON.stringify(data, null, 2));
+}
+
 function defaultSchemaFactory(schema: Schema) {
-	return `const schema = ${JSON.stringify(schema)} as const satisfies Schema;`;
+	return `const schema = ${jsonToLines(schema)} as const satisfies Schema`;
 }
 
 const SCHEMA_FACTORIES: Record<Validator, (schema: Schema) => string> = {
@@ -144,22 +152,20 @@ export function buildFormDotSvelte({
 	const isShadcn = theme === ActualTheme.Shadcn4;
 	const isSvar = theme === LabTheme.Svar;
 	const validatorAdapter = VALIDATOR_ADAPTERS[validator] ?? false;
-	return print(
-		parse(
-			join(
-				`<script lang="ts">
+	const code = join(
+		`<script lang="ts">
   import { createForm, BasicForm, type Schema, type UiSchemaRoot } from "@sjsf/form";`,
-				validatorAdapter,
-				isShadcn &&
-					`  import { setThemeContext } from "@sjsf/shadcn4-theme";
+		validatorAdapter && `  ${toLines(validatorAdapter)}`,
+		isShadcn &&
+			`  import { setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";`,
-				isSvar && `  import { Willow } from "@svar-ui/svelte-core";`,
-				`
+		isSvar && `  import { Willow } from "@svar-ui/svelte-core";`,
+		`
   import * as defaults from "$lib/form/defaults.js";
 
   ${SCHEMA_FACTORIES[validator](schema)};
 
-  const uiSchema: UiSchemaRoot = ${JSON.stringify(uiSchema)}
+  const uiSchema: UiSchemaRoot = ${jsonToLines(uiSchema)};
 
   const form = createForm({
     ...defaults,
@@ -167,17 +173,17 @@ export function buildFormDotSvelte({
     uiSchema,
     onSubmit: console.log
   })`,
-				isShadcn &&
-					`
+		isShadcn &&
+			`
   setThemeContext({ components })`,
-				`</script>`,
-				isSvar && `<Willow>`,
-				`<BasicForm {form}${html5Validation ? '' : ' novalidate'} />`,
-				isSvar && `</Willow>`
-			),
-			{ filename: 'form.svelte', modern: true }
-		)
-	).code;
+		`</script>`,
+		isSvar && `<Willow>`,
+		`<BasicForm {form}${html5Validation ? '' : ' novalidate'} />`,
+		isSvar && `</Willow>`
+	);
+	return validatorAdapter
+		? print(parse(code, { filename: 'form.svelte', modern: true })).code
+		: code;
 }
 
 export interface InstallShOptions {
