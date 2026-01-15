@@ -12,7 +12,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^6.1.0",
-		"@sveltejs/kit": "^2.42.0",
+		"@sveltejs/kit": "^2.49.5",
 		"@sveltejs/vite-plugin-svelte": "^6.1.2",
 		"autoprefixer": "^10.4.21",
 		"daisyui": "^4.12.24",
