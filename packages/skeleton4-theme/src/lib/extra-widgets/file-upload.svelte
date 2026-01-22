@@ -48,6 +48,7 @@
 		required: config.required,
 		maxFiles: config.schema.maxItems ?? (multiple ? Infinity : 1),
 		onFileChange: handlers.onchange,
+		readOnly: config.schema.readOnly,
 		onFileAccept: ({ files }) => {
 			if (files.length === 0 && lastFiles === undefined) {
 				return;

@@ -3700,6 +3700,7 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
           aria-required="true"
           class="w-full"
           data-part="root"
+          data-readonly=""
           data-scope="file-upload"
           disabled="false"
           id="file:c22"
@@ -3709,12 +3710,12 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
-            aria-readonly="false"
+            aria-readonly="true"
             data-part="dropzone"
+            data-readonly=""
             data-scope="file-upload"
             id="file:c22:dropzone"
             role="button"
-            tabindex="0"
           >
             <span>
               Select file or drag here.
@@ -3723,7 +3724,9 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
             <!---->
             <button
               data-part="trigger"
+              data-readonly=""
               data-scope="file-upload"
+              disabled=""
               id="file:c22:trigger"
               type="button"
             >
@@ -3736,6 +3739,7 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
             <!---->
             <input
               data-testid="hidden-input"
+              disabled=""
               id="root"
               name="root"
               required=""
@@ -4295,6 +4299,7 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
           aria-required="true"
           class="w-full"
           data-part="root"
+          data-readonly=""
           data-scope="file-upload"
           disabled="false"
           id="file:c27"
@@ -4304,12 +4309,12 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
-            aria-readonly="false"
+            aria-readonly="true"
             data-part="dropzone"
+            data-readonly=""
             data-scope="file-upload"
             id="file:c27:dropzone"
             role="button"
-            tabindex="0"
           >
             <span>
               Select file or drag here.
@@ -4318,7 +4323,9 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
             <!---->
             <button
               data-part="trigger"
+              data-readonly=""
               data-scope="file-upload"
+              disabled=""
               id="file:c27:trigger"
               type="button"
             >
@@ -4331,6 +4338,7 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
             <!---->
             <input
               data-testid="hidden-input"
+              disabled=""
               id="root"
               multiple=""
               name="root"
