@@ -103,7 +103,7 @@
 		}
 	},
 	"devDependencies": {
-		"@jsrepo/transform-prettier": "^0.0.11",
+		"@jsrepo/transform-prettier": "^1.0.0",
 		"@lucide/svelte": "^0.561.0",
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
@@ -115,10 +115,10 @@
 		"ajv": "catalog:",
 		"bits-ui": "catalog:",
 		"clsx": "^2.1.1",
-		"country-flag-icons": "^1.6.4",
+		"country-flag-icons": "^1.6.7",
 		"globals": "catalog:",
-		"jsrepo": "^3.0.10",
-		"runed": "^0.36.0",
+		"jsrepo": "^3.1.0",
+		"runed": "^0.37.1",
 		"svelte": "catalog:",
 		"svelte-tel-input": "^3.6.1",
 		"svelte-toolbelt": "^0.10.6",
@@ -127,7 +127,7 @@
 		"tailwindcss": "catalog:",
 		"theme-testing": "workspace:*",
 		"tw-animate-css": "^1.4.0",
-		"yeezy-dates": "^1.0.1"
+		"yeezy-dates": "^1.1.0"
 	},
 	"keywords": [
 		"theme",

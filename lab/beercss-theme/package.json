@@ -74,7 +74,7 @@
 		"ajv": "catalog:",
 		"beercss": "^3.13.3",
 		"globals": "catalog:",
-		"material-dynamic-colors": "^1.1.2",
+		"material-dynamic-colors": "^1.1.4",
 		"svelte": "catalog:",
 		"theme-testing": "workspace:*"
 	},

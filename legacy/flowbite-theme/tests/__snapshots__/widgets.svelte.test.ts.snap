@@ -4601,6 +4601,7 @@ exports[`widgets > select > snapshots > disabled 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <option
             value="-1"
           >
@@ -4630,6 +4631,7 @@ exports[`widgets > select > snapshots > disabled 1`] = `
           </option>
           <!---->
           
+          <!---->
           <!---->
         </select>
         
@@ -4722,6 +4724,7 @@ exports[`widgets > select > snapshots > error 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <option
             value="-1"
           >
@@ -4751,6 +4754,7 @@ exports[`widgets > select > snapshots > error 1`] = `
           </option>
           <!---->
           
+          <!---->
           <!---->
         </select>
         
@@ -4854,6 +4858,7 @@ exports[`widgets > select > snapshots > normal 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <option
             value="-1"
           >
@@ -4883,6 +4888,7 @@ exports[`widgets > select > snapshots > normal 1`] = `
           </option>
           <!---->
           
+          <!---->
           <!---->
         </select>
         
@@ -4974,6 +4980,7 @@ exports[`widgets > select > snapshots > readonly 1`] = `
           <!---->
           <!---->
           <!---->
+          <!---->
           <option
             value="-1"
           >
@@ -5003,6 +5010,7 @@ exports[`widgets > select > snapshots > readonly 1`] = `
           </option>
           <!---->
           
+          <!---->
           <!---->
         </select>
         

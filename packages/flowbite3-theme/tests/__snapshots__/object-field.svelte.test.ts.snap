@@ -1383,6 +1383,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                     <!---->
                     <!---->
                     <!---->
+                    <!---->
                      
                     <option
                       value="root_preset__0"
@@ -1396,6 +1397,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                     </option>
                     <!---->
                     
+                    <!---->
                     <!---->
                   </select>
                    
@@ -1628,6 +1630,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                     <!---->
                     <!---->
                     <!---->
+                    <!---->
                      
                     <option
                       value="root_format__0"
@@ -1646,6 +1649,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                     </option>
                     <!---->
                     
+                    <!---->
                     <!---->
                   </select>
                    
@@ -2097,6 +2101,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <!---->
                     <!---->
+                    <!---->
                      
                     <option
                       value="root_preset__0"
@@ -2110,6 +2115,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                     </option>
                     <!---->
                     
+                    <!---->
                     <!---->
                   </select>
                    
@@ -3038,6 +3044,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <!---->
                     <!---->
+                    <!---->
                      
                     <option
                       value="root_format__0"
@@ -3056,6 +3063,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                     </option>
                     <!---->
                     
+                    <!---->
                     <!---->
                   </select>
                    

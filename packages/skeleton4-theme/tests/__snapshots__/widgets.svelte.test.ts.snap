@@ -3261,6 +3261,7 @@ exports[`widgets > fileUpload > snapshots > disabled 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
+            aria-readonly="false"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c21:dropzone"
@@ -3405,6 +3406,7 @@ exports[`widgets > fileUpload > snapshots > error 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
+            aria-readonly="false"
             data-invalid=""
             data-part="dropzone"
             data-scope="file-upload"
@@ -3562,6 +3564,7 @@ exports[`widgets > fileUpload > snapshots > normal 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
+            aria-readonly="false"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c19:dropzone"
@@ -3706,6 +3709,7 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
+            aria-readonly="false"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c22:dropzone"
@@ -3849,6 +3853,7 @@ exports[`widgets > fileUploadMultiple > snapshots > disabled 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
+            aria-readonly="false"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c26:dropzone"
@@ -3994,6 +3999,7 @@ exports[`widgets > fileUploadMultiple > snapshots > error 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
+            aria-readonly="false"
             data-invalid=""
             data-part="dropzone"
             data-scope="file-upload"
@@ -4152,6 +4158,7 @@ exports[`widgets > fileUploadMultiple > snapshots > normal 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
+            aria-readonly="false"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c24:dropzone"
@@ -4297,6 +4304,7 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
           <div
             aria-disabled="false"
             aria-label="dropzone"
+            aria-readonly="false"
             data-part="dropzone"
             data-scope="file-upload"
             id="file:c27:dropzone"
