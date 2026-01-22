@@ -64,7 +64,6 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.2.1",
 		"beercss": "^3.13.0",
-		"material-dynamic-colors": "^1.1.0",
 		"svelte": "^5.34.8"
 	},
 	"devDependencies": {
@@ -74,7 +73,6 @@
 		"ajv": "catalog:",
 		"beercss": "^3.13.3",
 		"globals": "catalog:",
-		"material-dynamic-colors": "^1.1.4",
 		"svelte": "catalog:",
 		"theme-testing": "workspace:*"
 	},
