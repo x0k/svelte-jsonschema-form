@@ -1,1 +1,0 @@
-import{_ as i}from"./mermaid.astro_astro_type_script_index_0_lang.CaW-GT55.js";function t(c,e){c.accDescr&&e.setAccDescription?.(c.accDescr),c.accTitle&&e.setAccTitle?.(c.accTitle),c.title&&e.setDiagramTitle?.(c.title)}i(t,"populateCommonDb");export{t as p};
