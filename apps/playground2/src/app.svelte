@@ -30,10 +30,19 @@
     compressToEncodedURIComponent,
     decompressFromEncodedURIComponent,
   } from "lz-string";
+  import { DndContext, ClonedGhost } from "svelte-tiler/shared/dnd.svelte";
+  import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
+  import type { Constraint } from "svelte-tiler/shared/constraints";
+  import { Tiler, type Tiles } from "svelte-tiler";
+  import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
+  import * as Split from "svelte-tiler/tiles/split.svelte";
+  import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
+  import AlignLeft from "@lucide/svelte/icons/align-left";
 
   import { Button } from "$lib/components/ui/button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+  import { debouncedEffect } from "$lib/svelte.svelte.js";
   import { THEME_TITLES, THEMES } from "./shared/theme.js";
   import {
     ALL_OF_STATE_BEHAVIOR,
@@ -69,7 +78,8 @@
   import { themeManager } from "./theme.svelte";
   import SamplePicker from "./sample-picker.svelte";
   import { setShadcnContext } from "./shadcn-context.js";
-  import Debug from "./debug.svelte";
+  import CopyFormData from "./copy-form-data.svelte";
+  import Grip from "./grip.svelte";
 
   const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
     schema: {
@@ -110,8 +120,8 @@
           {},
           DEFAULT_PLAYGROUND_STATE,
           JSON.parse(
-            decompressFromEncodedURIComponent(location.hash.substring(1))
-          )
+            decompressFromEncodedURIComponent(location.hash.substring(1)),
+          ),
         );
       } catch {
         console.error("Failed to decode initial state");
@@ -122,15 +132,13 @@
 
   const data: PlaygroundState = $state(init());
 
-  let callbackId: number | undefined;
-  $effect(() => {
+  debouncedEffect(() => {
     $state.snapshot(data);
-    clearTimeout(callbackId);
-    callbackId = setTimeout(() => {
+    return () => {
       const url = new URL(location.href);
       url.hash = compressToEncodedURIComponent(JSON.stringify(data));
       history.replaceState(null, "", url);
-    }, 300);
+    };
   });
 
   const theme = $derived(extendByRecord(themes[data.theme], customComponents));
@@ -200,7 +208,7 @@
             rootSchema,
             data.omitExtraData
               ? omitExtraData(v, options.merger(), options.schema, formValue)
-              : formValue
+              : formValue,
           );
         },
       };
@@ -260,14 +268,137 @@
   clearLink.hash = "";
 
   const SvarProvider = $derived(
-    data.theme === "svar" ? (themeManager.isDark ? WillowDark : Willow) : Noop
+    data.theme === "svar" ? (themeManager.isDark ? WillowDark : Willow) : Noop,
   );
+
+  const dnd = new DndContext({
+    feedback: (e, el) => new ClonedGhost(el, e).attach(document.body),
+  });
+  const createLeaf = Leaf.setup(
+    registryFromRecord({
+      schema,
+      uiSchema,
+      formData,
+      preview,
+    }),
+  );
+  const createTabs = Tabs.setup({
+    headers: registryFromRecord({
+      gripHeader,
+    }),
+    actions: registryFromRecord({
+      smartActions,
+    }),
+    createSplit({ parent, type, pivot, adjacent, offset }) {
+      if (
+        parent?.type === "split" &&
+        parent.direction === type &&
+        parent.id !== layout.id
+      ) {
+        const index =
+          parent.children.findIndex((c) => c.id === pivot.id) + offset;
+        Split.insertTile(parent, index, {
+          tile: adjacent,
+          constraints,
+        });
+        return parent;
+      }
+      const tiles = new Array<Split.SplitTileOptions>(2);
+      tiles[1 - offset] = { tile: pivot, constraints };
+      tiles[offset] = { tile: adjacent, constraints };
+      const next = Split.create({
+        gapPx,
+        direction: type,
+        children: tiles,
+      });
+      if (parent && parent.children.length > 1) {
+        const index = parent.children.findIndex((c) => c.id === pivot.id);
+        parent.children[index] = next;
+        return parent;
+      }
+      return next;
+    },
+  });
+  const gapPx = 8;
+  const constraints: Constraint[] = [
+    { type: "minSize", unit: "px", value: 70 },
+  ];
+  const saved = localStorage.getItem("layout");
+  let layout = $state(
+    saved
+      ? JSON.parse(saved)
+      : Split.create({
+          gapPx,
+          children: [
+            {
+              weight: 4,
+              constraints,
+              tile: Split.create({
+                gapPx,
+                direction: "column",
+                children: [
+                  {
+                    constraints,
+                    tile: createTabs({
+                      actions: "smartActions",
+                      tabHeader: "gripHeader",
+                      tabs: [["Schema", createLeaf("schema")]],
+                    }),
+                  },
+                  {
+                    constraints,
+                    tile: Split.create({
+                      gapPx,
+                      children: [
+                        {
+                          constraints,
+                          tile: createTabs({
+                            actions: "smartActions",
+                            tabHeader: "gripHeader",
+                            tabs: [["UI Schema", createLeaf("uiSchema")]],
+                          }),
+                        },
+                        {
+                          constraints,
+                          tile: createTabs({
+                            actions: "smartActions",
+                            tabHeader: "gripHeader",
+                            tabs: [["Form Data", createLeaf("formData")]],
+                          }),
+                        },
+                      ],
+                    }),
+                  },
+                ],
+              }),
+            },
+            {
+              weight: 3,
+              constraints,
+              tile: createTabs({
+                actions: "smartActions",
+                tabHeader: "gripHeader",
+                tabs: [["Preview", createLeaf("preview")]],
+              }),
+            },
+          ],
+        }),
+  );
+
+  debouncedEffect(() => {
+    const snap = $state.snapshot(layout);
+    return () => {
+      localStorage.setItem("layout", JSON.stringify(snap));
+    };
+  });
+
+  const editors: Record<string, Editor<any>> = $state({});
 </script>
 
 <div
-  class="py-4 px-8 gap-4 h-screen grid grid-rows-[auto_1fr_1fr] grid-cols-[repeat(7,1fr)] dark:[color-scheme:dark]"
+  class="py-4 px-8 gap-4 h-screen grid grid-rows-[auto_1fr] grid-cols-1 dark:scheme-dark"
 >
-  <div class="col-span-7 flex flex-wrap items-center gap-2">
+  <div class="flex flex-wrap items-center gap-2">
     <a href={clearLink.toString()} class="text-3xl font-bold mr-auto"
       >Playground</a
     >
@@ -399,16 +530,48 @@
       <Github class="size-6" />
     </Button>
   </div>
-  <Editor
-    class="col-span-4 border rounded-md data-[error=true]:border-red-500 data-[error=true]:outline-none"
-    bind:value={data.schema}
+  <Tiler
+    bind:layout
+    {dnd}
+    definitions={{ leaf: Leaf, split: Split, tabs: Tabs }}
   />
+</div>
+
+{#snippet gripHeader(tile: Tiles["tabs"], index: number)}
+  <Grip />
+  {tile.titles[index]}
+{/snippet}
+
+{#snippet smartActions(tile: Tiles["tabs"])}
+  {#if tile.titles[tile.selectedTab] === "Preview"}
+    <CopyFormData />
+  {:else}
+    <Button
+      size="sm"
+      variant="ghost"
+      onclick={() => {
+        const child = tile.children[tile.selectedTab];
+        if (child && child.type === "leaf") {
+          editors[child.name]?.format();
+        }
+      }}
+    >
+      <AlignLeft />
+    </Button>
+  {/if}
+{/snippet}
+
+{#snippet schema()}
+  <Editor bind:this={editors["schema"]} bind:value={data.schema} />
+{/snippet}
+
+{#snippet uiSchema()}
+  <Editor bind:this={editors["uiSchema"]} bind:value={data.uiSchema} />
+{/snippet}
+
+{#snippet formData()}
   <Editor
-    class="row-start-3 col-span-2 border rounded-md data-[error=true]:border-red-500 data-[error=true]:outline-none"
-    bind:value={data.uiSchema}
-  />
-  <Editor
-    class="row-start-3 col-span-2 border rounded-md data-[error=true]:border-red-500 data-[error=true]:outline-none"
+    bind:this={editors["formData"]}
     bind:value={
       () => getValueSnapshot(form),
       (v) => {
@@ -416,10 +579,10 @@
       }
     }
   />
-  <ShadowHost
-    class="col-span-3 row-span-2 overflow-y-auto border border-[var(--global-border)] rounded-md"
-    style={`${themeStyle}\n${iconSetStyle}`}
-  >
+{/snippet}
+
+{#snippet preview()}
+  <ShadowHost id="shadow-host" style={`${themeStyle}\n${iconSetStyle}`}>
     <style>
       .wx-willow-theme,
       .wx-willow-dark-theme {
@@ -444,7 +607,6 @@
           >
             <Content />
             <SubmitButton />
-            <Debug />
           </Form>
           {#snippet failed(error, reset)}
             {@const _ = setTimeout(reset, 1000)}
@@ -455,4 +617,96 @@
     </BitsConfig>
     <div bind:this={portalEl}></div>
   </ShadowHost>
-</div>
+{/snippet}
+
+<style>
+  @reference './app.css';
+  :global {
+    [data-split] {
+      --resizer-len: var(--gap);
+      --resizer-offset: calc(-50% - var(--gap) / 2);
+
+      width: 100%;
+      height: 100%;
+    }
+    [data-split-item] {
+      position: relative;
+    }
+    [data-split-resizer] {
+      position: absolute;
+      inset: 0;
+    }
+    [data-dir="row"] > [data-split-item] > [data-split-resizer] {
+      cursor: col-resize;
+      width: var(--resizer-len);
+      transform: translateX(var(--resizer-offset));
+    }
+    [data-dir="column"] > [data-split-item] > [data-split-resizer] {
+      cursor: row-resize;
+      height: var(--resizer-len);
+      transform: translateY(var(--resizer-offset));
+    }
+    [data-tabs] {
+      @apply flex flex-col rounded-md border h-full bg-background;
+    }
+    [data-tabs-bar] {
+      @apply flex border-b p-2 gap-1;
+    }
+    [data-tabs-list] {
+      @apply flex gap-1 overflow-x-auto;
+      scrollbar-width: thin;
+    }
+    [data-tabs-header] {
+      @apply flex gap-1 items-center py-1 pl-2 pr-3 rounded-sm;
+      &[aria-selected="true"] {
+        @apply bg-muted-foreground/20 text-accent-foreground;
+      }
+      &:hover {
+        @apply bg-muted-foreground/30;
+      }
+      &[data-over="true"] {
+        @apply bg-chart-2/70;
+      }
+    }
+    [data-tabs-spacer] {
+      @apply grow h-full rounded-sm;
+      &[data-over="true"] {
+        @apply bg-chart-2/70;
+      }
+    }
+    [data-tabs-content] {
+      @apply grow overflow-auto relative;
+      &::after {
+        @apply bg-chart-2/70 rounded-md;
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        transition: inset 160ms ease;
+      }
+      &[data-over="true"] {
+        &::after {
+          opacity: 0.4;
+        }
+        &[data-hpart="center"][data-vpart="center"]::after {
+          inset: 0;
+        }
+
+        &[data-hpart="start"]::after {
+          inset: 0 50% 0 0;
+        }
+
+        &[data-hpart="end"]::after {
+          inset: 0 0 0 50%;
+        }
+
+        &[data-hpart="center"][data-vpart="start"]::after {
+          inset: 0 0 50% 0;
+        }
+
+        &[data-hpart="center"][data-vpart="end"]::after {
+          inset: 50% 0 0 0;
+        }
+      }
+    }
+  }
+</style>
