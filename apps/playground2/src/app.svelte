@@ -582,7 +582,7 @@
 {#snippet preview()}
   <ShadowHost
     id="shadow-host"
-    class="h-full flex flex-col"
+    class="min-h-full flex flex-col"
     style={`${themeStyle}\n${iconSetStyle}`}
   >
     <style>
