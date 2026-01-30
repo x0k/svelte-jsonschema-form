@@ -582,12 +582,15 @@
 {/snippet}
 
 {#snippet preview()}
-  <ShadowHost id="shadow-host" style={`${themeStyle}\n${iconSetStyle}`}>
+  <ShadowHost
+    id="shadow-host"
+    class="h-full flex flex-col"
+    style={`${themeStyle}\n${iconSetStyle}`}
+  >
     <style>
       .wx-willow-theme,
       .wx-willow-dark-theme {
-        height: auto !important;
-        min-height: 100%;
+        flex-grow: 1;
       }
     </style>
     <BitsConfig defaultPortalTo={portalEl}>
@@ -598,7 +601,7 @@
               id: "form",
               class: themeManager.darkOrLight,
               style:
-                "min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;",
+                "flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem;",
               novalidate: !data.html5Validation || undefined,
               ["data-theme"]: data.theme.startsWith("skeleton")
                 ? "cerberus"
