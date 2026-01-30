@@ -1,5 +1,15 @@
 # skeleton4-starter
 
+## 0.0.10
+
+### Patch Changes
+
+- Updated dependencies [[`6f257a2`](https://github.com/x0k/svelte-jsonschema-form/commit/6f257a25251492f1b7da2599fdcbeac6266333f9)]:
+  - @sjsf/skeleton4-theme@3.2.2
+  - @sjsf/ajv8-validator@3.2.2
+  - @sjsf/basic-theme@3.2.2
+  - @sjsf/form@3.2.2
+
 ## 0.0.9
 
 ### Patch Changes
