@@ -33,7 +33,12 @@
   import { DndContext, ClonedGhost } from "svelte-tiler/shared/dnd.svelte";
   import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
   import type { Constraint } from "svelte-tiler/shared/constraints";
-  import { Tiler, type Tiles } from "svelte-tiler";
+  import {
+    Panel,
+    TilerContext,
+    setTilerContext,
+    type Tiles,
+  } from "svelte-tiler";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
@@ -271,9 +276,13 @@
     data.theme === "svar" ? (themeManager.isDark ? WillowDark : Willow) : Noop,
   );
 
-  const dnd = new DndContext({
-    feedback: (e, el) => new ClonedGhost(el, e).attach(document.body),
+  const ctx = new TilerContext({
+    dnd: new DndContext({
+      feedback: (e, el) => new ClonedGhost(el, e).attach(document.body),
+    }),
+    definitions: { leaf: Leaf, split: Split, tabs: Tabs },
   });
+  setTilerContext(ctx);
   const createLeaf = Leaf.setup(
     registryFromRecord({
       schema,
@@ -289,34 +298,27 @@
     actions: registryFromRecord({
       smartActions,
     }),
-    createSplit({ parent, type, pivot, adjacent, offset }) {
-      if (
-        parent?.type === "split" &&
-        parent.direction === type &&
-        parent.id !== layout.id
-      ) {
+    applySplit({ parent, type, pivot, adjacent, offset }) {
+      if (parent?.type === "split" && parent.direction === type) {
         const index =
           parent.children.findIndex((c) => c.id === pivot.id) + offset;
-        Split.insertTile(parent, index, {
-          tile: adjacent,
-          constraints,
+        ctx.insertIntoTile(parent.id, "split", index, {
+          children: [adjacent],
+          constraints: [constraints],
         });
-        return parent;
+        return;
       }
       const tiles = new Array<Split.SplitTileOptions>(2);
       tiles[1 - offset] = { tile: pivot, constraints };
       tiles[offset] = { tile: adjacent, constraints };
-      const next = Split.create({
-        gapPx,
-        direction: type,
-        children: tiles,
-      });
-      if (parent && parent.children.length > 1) {
-        const index = parent.children.findIndex((c) => c.id === pivot.id);
-        parent.children[index] = next;
-        return parent;
-      }
-      return next;
+      ctx.replace(
+        parent && parent.children.length > 1 ? pivot : parent,
+        Split.create({
+          direction: type,
+          children: tiles,
+          gapPx,
+        }),
+      );
     },
   });
   const gapPx = 8;
@@ -530,11 +532,7 @@
       <Github class="size-6" />
     </Button>
   </div>
-  <Tiler
-    bind:layout
-    {dnd}
-    definitions={{ leaf: Leaf, split: Split, tabs: Tabs }}
-  />
+  <Panel bind:layout />
 </div>
 
 {#snippet gripHeader(tile: Tiles["tabs"], index: number)}
