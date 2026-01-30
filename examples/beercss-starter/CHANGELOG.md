@@ -1,5 +1,14 @@
 # beercss-starter
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`3d3fb34`](https://github.com/x0k/svelte-jsonschema-form/commit/3d3fb34b0c000885e9035f9bc518a3904224347e)]:
+  - @sjsf-lab/beercss-theme@3.2.2
+  - @sjsf/ajv8-validator@3.2.2
+  - @sjsf/form@3.2.2
+
 ## 0.0.5
 
 ### Patch Changes
