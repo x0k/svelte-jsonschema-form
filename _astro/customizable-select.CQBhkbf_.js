@@ -1,1 +1,0 @@
-import{C as n,Z as i,v as r,r as o,A as p}from"./render.BLF7tmmw.js";let e=null;function d(){if(e===null){var t=document.createElement("select");t.innerHTML="<option><span>t</span></option>",e=t.firstChild?.firstChild?.nodeType===1}return e}function l(t,a){var s=r;d()||(n(!1),t.textContent="",t.append(i("")));try{a()}finally{s&&(r?o(t):(n(!0),p(t)))}}export{l as c};
