@@ -584,6 +584,7 @@
     id="shadow-host"
     class="min-h-full flex flex-col"
     style={`${themeStyle}\n${iconSetStyle}`}
+    data-theme={themeManager.darkOrLight}
   >
     <style>
       .wx-willow-theme,
@@ -659,6 +660,9 @@
     }
     [data-tabs-header] {
       @apply flex gap-1 items-center py-1 pl-2 pr-3 rounded-sm;
+      > svg {
+        @apply size-5;
+      }
       &[aria-selected="true"] {
         @apply bg-muted-foreground/20 text-accent-foreground;
       }
