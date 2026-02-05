@@ -82,7 +82,7 @@
     "@webcontainer/api": "^1.6.1",
     "astro": "^5.16.12",
     "astro-vtbot": "^2.1.10",
-    "beercss": "^3.13.3",
+    "beercss": "^4.0.2",
     "bits-ui": "catalog:",
     "css-tree": "^3.1.0",
     "flowbite-svelte2": "npm:flowbite-svelte@0.47.4",

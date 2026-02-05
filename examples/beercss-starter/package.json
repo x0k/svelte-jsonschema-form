@@ -24,6 +24,6 @@
 		"@sjsf/form": "workspace:*",
 		"@sjsf-lab/beercss-theme": "workspace:*",
 		"ajv": "^8.17.1",
-		"beercss": "^3.13.1"
+		"beercss": "^4.0.2"
 	}
 }

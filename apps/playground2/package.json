@@ -41,7 +41,7 @@
     "@internationalized/date": "~3.10.1",
     "@lucide/svelte": "^0.544.0",
     "@tailwindcss/vite": "catalog:",
-    "beercss": "^3.13.3",
+    "beercss": "^4.0.2",
     "bits-ui": "catalog:",
     "clsx": "^2.1.1",
     "svelte": "catalog:",
