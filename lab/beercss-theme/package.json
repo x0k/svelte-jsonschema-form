@@ -63,7 +63,7 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.2.1",
-		"beercss": "^3.13.0",
+		"beercss": "^3.13.0 || ^4.0.0",
 		"svelte": "^5.34.8"
 	},
 	"devDependencies": {
@@ -71,7 +71,7 @@
 		"@sjsf/form": "workspace:*",
 		"@tailwindcss/vite": "catalog:",
 		"ajv": "catalog:",
-		"beercss": "^3.13.3",
+		"beercss": "^4.0.2",
 		"globals": "catalog:",
 		"svelte": "catalog:",
 		"theme-testing": "workspace:*"

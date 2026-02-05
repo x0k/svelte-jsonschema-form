@@ -1522,8 +1522,8 @@ importers:
         specifier: 'catalog:'
         version: 8.17.1
       beercss:
-        specifier: ^3.13.3
-        version: 3.13.3
+        specifier: ^4.0.2
+        version: 4.0.2
       globals:
         specifier: 'catalog:'
         version: 17.0.0
@@ -3153,6 +3153,9 @@ packages:
   '@material/material-color-utilities@0.2.7':
     resolution: {integrity: sha512-0FCeqG6WvK4/Cc06F/xXMd/pv4FeisI0c1tUpBbfhA2n9Y8eZEv4Karjbmf2ZqQCPUWMrGp8A571tCjizxoTiQ==}
 
+  '@material/material-color-utilities@0.3.0':
+    resolution: {integrity: sha512-ztmtTd6xwnuh2/xu+Vb01btgV8SQWYCaK56CkRK8gEkWe5TuDyBcYJ0wgkMRn+2VcE9KUmhvkz+N9GHrqw/C0g==}
+
   '@mdx-js/mdx@3.1.1':
     resolution: {integrity: sha512-f6ZO2ifpwAQIpzGWaBQT2TXxPv6z3RBzQKpVftEWN78Vl/YweF1uwussDx8ECAXVtr3Rs89fKyG9YlzUs9DyGQ==}
 
@@ -4523,6 +4526,9 @@ packages:
   beercss@3.13.3:
     resolution: {integrity: sha512-tMs2kYBiq+wYqqnE+H2wy0BBIMpzRwy3EKnR40XnE41JUFdkM1CdsCnV+RGMB0fokAQVW2WPaNIik0VPUfitLw==}
 
+  beercss@4.0.2:
+    resolution: {integrity: sha512-pkkm1zOH8UqVMLUwnMRi3ueT+397KNqWDwJEejVBxGQmvSnpmSVf4mnVXjidQI0BvN5uklVdMu8UjcW2c28ZgQ==}
+
   better-path-resolve@1.0.0:
     resolution: {integrity: sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==}
     engines: {node: '>=4'}
@@ -5870,6 +5876,10 @@ packages:
 
   material-dynamic-colors@1.1.2:
     resolution: {integrity: sha512-8KD0jrPTFs2x06UJWbvkg6E0HyzFjrvS5oOc2DsXzIEOqZTbb3ruLMUhNuPSl8WeHA/O/RTAlTLcxqYXJzYwPA==}
+    hasBin: true
+
+  material-dynamic-colors@1.1.4:
+    resolution: {integrity: sha512-0HnLNoxDC/+pCTfhOgvSeqQKXO8n6PLO1D3IwtYr0Gg2SR2pGxft5nNngajVvtEADzXtxWvinmTdig+lUJqkxg==}
     hasBin: true
 
   mdast-util-definitions@6.0.0:
@@ -8645,6 +8655,8 @@ snapshots:
 
   '@material/material-color-utilities@0.2.7': {}
 
+  '@material/material-color-utilities@0.3.0': {}
+
   '@mdx-js/mdx@3.1.1':
     dependencies:
       '@types/estree': 1.0.8
@@ -10530,6 +10542,10 @@ snapshots:
     dependencies:
       material-dynamic-colors: 1.1.2
 
+  beercss@4.0.2:
+    dependencies:
+      material-dynamic-colors: 1.1.4
+
   better-path-resolve@1.0.0:
     dependencies:
       is-windows: 1.0.2
@@ -12051,6 +12067,10 @@ snapshots:
   material-dynamic-colors@1.1.2:
     dependencies:
       '@material/material-color-utilities': 0.2.7
+
+  material-dynamic-colors@1.1.4:
+    dependencies:
+      '@material/material-color-utilities': 0.3.0
 
   mdast-util-definitions@6.0.0:
     dependencies:
