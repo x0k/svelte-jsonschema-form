@@ -1,5 +1,15 @@
 # @sjsf/skeleton4-theme
 
+## 3.2.2
+
+### Patch Changes
+
+- Pass `readOnly` option to `file-upload` widget ([`6f257a2`](https://github.com/x0k/svelte-jsonschema-form/commit/6f257a25251492f1b7da2599fdcbeac6266333f9))
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@3.2.2
+  - @sjsf/form@3.2.2
+
 ## 3.2.1
 
 ### Patch Changes
