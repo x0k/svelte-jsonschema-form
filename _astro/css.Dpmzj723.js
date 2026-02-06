@@ -1,1 +1,0 @@
-import{$ as r}from"./render.1yt6JMB_.js";function h(n,t){r(()=>{var e=n.getRootNode(),a=e.host?e:e.head??e.ownerDocument.head;if(!a.querySelector("#"+t.hash)){const o=document.createElement("style");o.id=t.hash,o.textContent=t.code,a.appendChild(o)}})}export{h as a};
