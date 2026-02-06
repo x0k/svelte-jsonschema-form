@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/flowbite-icons",
-	"version": "3.2.1",
+	"version": "3.2.2",
 	"description": "The flowbite based icons set for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -52,7 +52,7 @@
 		"./styles.css": "./dist/styles.css"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^3.2.1",
+		"@sjsf/form": "workspace:^3.2.2",
 		"flowbite-svelte-icons": "^3.0.0",
 		"svelte": "^5.34.8",
 		"tailwind-merge": "^3.3.0"

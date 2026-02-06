@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf-lab/beercss-theme",
-	"version": "3.2.1",
+	"version": "3.2.2",
 	"description": "The Beer CSS v3 based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -59,10 +59,10 @@
 		}
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^3.2.1"
+		"@sjsf/basic-theme": "workspace:^3.2.2"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^3.2.1",
+		"@sjsf/form": "workspace:^3.2.2",
 		"beercss": "^3.13.0 || ^4.0.0",
 		"svelte": "^5.34.8"
 	},
