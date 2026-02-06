@@ -4,8 +4,9 @@ sidebar:
   order: 70
 ---
 
-import { Code } from '@astrojs/starlight/components';
+import { Code, LinkCard } from '@astrojs/starlight/components';
 
+import { withBase } from '@/lib/base-path';
 import FormCard from '@/components/form-card.astro'
 
 import Form from './programmatic-control.svelte';
@@ -18,3 +19,7 @@ You can bind to the from element to control it programmatically:
 <FormCard>
   <Form client:only="svelte" />
 </FormCard>
+
+Use the form methods to control and access the form state:
+
+<LinkCard title="Form Methods API Reference" href={withBase("/form/state/#methods")} />
