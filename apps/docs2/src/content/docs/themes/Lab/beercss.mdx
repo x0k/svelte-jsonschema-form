@@ -108,9 +108,12 @@ export const beerCssSettings = `
   --surface-container-highest: #363438;
 }`;
 
+import pkg from 'lab/beercss-theme/package.json'
+
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro';
 
 import { createExtraImports, createSchemas, replacer, validationEvents } from "../_demo-schema";
 import Form from './beercss/form.svelte';
@@ -121,6 +124,8 @@ export const schemas = createSchemas(specs)
 ## Installation
 
 <Npm pkg={themePkg('beercss')} />
+
+<Deps {...pkg} />
 
 ## Extra widgets
 

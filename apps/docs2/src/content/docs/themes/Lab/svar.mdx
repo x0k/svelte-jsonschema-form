@@ -12,9 +12,12 @@ sidebar:
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf-lab/svar-theme/specs';
 
+import pkg from 'lab/svar-theme/package.json'
+
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
+import Deps from '@/components/peer-dependencies.astro';
 
 import Form from './svar/form.svelte';
 import uiOptionsCode from './svar/ui-options?raw';
@@ -25,6 +28,8 @@ export const schemas = createSchemas(specs)
 ## Installation
 
 <Npm pkg={themePkg('svar')} />
+
+<Deps {...pkg} />
 
 ## Extra widgets
 
