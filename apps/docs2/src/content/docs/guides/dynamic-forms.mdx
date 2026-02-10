@@ -1,0 +1,115 @@
+---
+title: Dynamic forms
+sidebar:
+  order: 57
+---
+
+# Dynamic forms
+
+Dynamic forms are forms whose **structure, required fields, or available inputs change**
+in response to user input.
+
+## oneOf / anyOf
+
+Use when the **structure of the form changes** based on a selected value.
+
+```
+{
+  "type": "object",
+  "properties": {
+    "type": { "enum": ["a", "b"] }
+  },
+  "required": ["type"],
+  "oneOf": [
+    {
+      "properties": {
+        "type": { "const": "a" },
+        "aField": { "type": "string" }
+      },
+      "required": ["aField"]
+    },
+    {
+      "properties": {
+        "type": { "const": "b" },
+        "bField": { "type": "number" }
+      },
+      "required": ["bField"]
+    }
+  ]
+}
+```
+
+---
+
+## dependencies + required
+Use when **fields become required** after another field is present.  
+The overall structure does not change.
+
+```
+{
+  "type": "object",
+  "properties": {
+    "enabled": { "type": "boolean" },
+    "value": { "type": "string" }
+  },
+  "dependencies": {
+    "enabled": {
+      "required": ["value"]
+    }
+  }
+}
+```
+
+---
+
+## dependencies + oneOf
+Use when a field **switches between multiple schemas**.  
+Suitable for mutually exclusive configurations.
+
+```
+{
+  "type": "object",
+  "properties": {
+    "mode": { "enum": ["x", "y"] }
+  },
+  "required": ["mode"],
+  "dependencies": {
+    "mode": {
+      "oneOf": [
+        {
+          "properties": {
+            "mode": { "const": "x" },
+            "xValue": { "type": "string" }
+          },
+          "required": ["xValue"]
+        },
+        {
+          "properties": {
+            "mode": { "const": "y" },
+            "yValue": { "type": "number" }
+          },
+          "required": ["yValue"]
+        }
+      ]
+    }
+  }
+}
+```
+
+---
+
+## patternProperties
+Use when **field names are dynamic** and follow a known pattern.  
+Common for key-value inputs or user-defined parameters.
+
+```
+{
+  "type": "object",
+  "patternProperties": {
+    "^param_[a-z]+$": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
+```
