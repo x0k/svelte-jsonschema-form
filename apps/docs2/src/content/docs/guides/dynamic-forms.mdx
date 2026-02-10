@@ -1,0 +1,77 @@
+---
+title: Dynamic forms
+sidebar:
+  order: 57
+---
+
+import { Code, Card, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+
+import FormCard from '@/components/form-card.astro'
+
+import OneOfForm from './one-of.svelte'
+import oneOfFromCode from './one-of.svelte?raw'
+
+import DependenciesForm from './dependencies.svelte'
+import dependenciesFormCode from './dependencies.svelte?raw'
+
+import IfElseThenFrom from './if-then-else.svelte'
+import ifElseThenFromCode from './if-then-else.svelte?raw'
+
+Using the following JSON Schema keywords, you can build forms that change in
+response to user input.
+
+## oneOf / anyOf
+
+Fields `oneOf` or `anyOf` can be used as a **virtual selector**.
+This selector **does not modify form data directly** but determines which schema is active.
+
+When the form is initialized with `initialValue`, SJSF **automatically selects the most suitable schema** based on the data.
+
+<Tabs>
+  <TabItem label="Form">
+    <FormCard>
+      <OneOfForm client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="form.svelte">
+    <Code code={oneOfFromCode} lang="svelte" />
+  </TabItem>
+</Tabs>
+
+
+## dependencies
+
+The `dependencies` keyword allows you to declare relationships between fields,
+where the presence or value of one field affects the schema of others.
+
+<Tabs>
+  <TabItem label="Form">
+    <FormCard>
+      <DependenciesForm client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="form.svelte">
+    <Code code={dependenciesFormCode} lang="svelte" />
+  </TabItem>
+</Tabs>
+
+## if/then/else
+
+The `if/then/else` keywords allow you to define conditional schema branches based on form data.
+
+<Tabs>
+  <TabItem label="Form">
+    <FormCard>
+      <IfElseThenFrom client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="form.svelte">
+    <Code code={ifElseThenFromCode} lang="svelte" />
+  </TabItem>
+</Tabs>
+
+
+## patternProperties
+
+If your schema uses the `patternProperties` keyword, see the [advanced example](/examples/advanced/)
+`pattern-properties-validator` to improve the user experience.
