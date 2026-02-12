@@ -14,7 +14,7 @@
     <PreviewControls />
   </div>
 
-  <div class="pb-4 overflow-x-hidden">
+  <div class="pb-4">
     <PreviewContent {route} />
   </div>
 
