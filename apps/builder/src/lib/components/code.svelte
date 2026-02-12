@@ -31,28 +31,30 @@
 	let selected = $derived(files[selectedIndex]);
 </script>
 
-<div class="rounded-md border">
+<div>
 	{#if selected}
-		<div class="flex gap-2 border-b p-2">
-			{#each files as file, i (file.title)}
-				<Button
-					size="sm"
-					variant="ghost"
-					class={[selectedIndex === i && 'bg-accent text-accent-foreground dark:bg-accent/50']}
-					onclick={() => {
-						selectedIndex = i;
-					}}
-				>
-					<file.Icon />
-					{file.title}</Button
-				>
-			{/each}
-			<CopyButton class="ml-auto" size="sm" variant="ghost" text={() => selected.content} />
+		<div class="sticky top-(--header-height) bg-background">
+			<div class="flex gap-2 rounded-t-md border p-2">
+				{#each files as file, i (file.title)}
+					<Button
+						size="sm"
+						variant="ghost"
+						class={[selectedIndex === i && 'bg-accent text-accent-foreground dark:bg-accent/50']}
+						onclick={() => {
+							selectedIndex = i;
+						}}
+					>
+						<file.Icon />
+						{file.title}</Button
+					>
+				{/each}
+				<CopyButton class="ml-auto" size="sm" variant="ghost" text={() => selected.content} />
+			</div>
 		</div>
-		<div>
+		<div class="rounded-b-md border-x border-b">
 			{@html selected.content}
 		</div>
 	{:else}
-		<p class="p-4 text-center text-muted-foreground">No files</p>
+		<p class="rounded-md border p-4 text-center text-muted-foreground">No files</p>
 	{/if}
 </div>

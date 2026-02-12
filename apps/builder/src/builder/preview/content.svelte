@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { isRecordEmpty } from '@sjsf/form/lib/object';
 
-	import Code, { type CodeFile } from '$lib/components/code.svelte';
-
 	import DeviconPlainSvelte from '~icons/devicon-plain/svelte';
 	import DeviconPlainTypescript from '~icons/devicon-plain/typescript';
 	import DeviconPlainBash from '~icons/devicon-plain/bash';
 	import DeviconPlainCss from '~icons/devicon-plain/css';
 	import MdiCodeJson from '~icons/mdi/code-json';
+
+	import Code, { type CodeFile } from '$lib/components/code.svelte';
 
 	import { getBuilderContext } from '../context.svelte.js';
 	import { PreviewSubRouteName, type PreviewRoute } from '../model.js';
