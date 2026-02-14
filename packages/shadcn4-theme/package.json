@@ -90,7 +90,7 @@
 		}
 	},
 	"devDependencies": {
-		"@internationalized/date": "^3.11.0",
+		"@internationalized/date": "catalog:",
 		"@lucide/svelte": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",

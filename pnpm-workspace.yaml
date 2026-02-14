@@ -9,6 +9,8 @@ catalog:
   "@exodus/schemasafe": ^1.3.0
   "@tailwindcss/vite": ^4.1.18
   "@lucide/svelte": "^0.564.0"
+
+  "@internationalized/date": "3.11.0"
   ajv: ^8.17.1
   autoprefixer: ^10.4.24
   bits-ui: 2.15.5

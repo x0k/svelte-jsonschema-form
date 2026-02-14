@@ -38,7 +38,7 @@
     "svelte-tiler": "^0.4.0"
   },
   "devDependencies": {
-    "@internationalized/date": "~3.11.0",
+    "@internationalized/date": "catalog:",
     "@lucide/svelte": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "beercss": "^4.0.7",

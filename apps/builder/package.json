@@ -12,7 +12,7 @@
 	"devDependencies": {
 		"@iconify-json/devicon-plain": "^1.2.53",
 		"@iconify-json/mdi": "^1.2.3",
-		"@internationalized/date": "^3.11.0",
+		"@internationalized/date": "catalog:",
 		"@lucide/svelte": "catalog:",
 		"@tailwindcss/vite": "catalog:",
 		"beercss": "^4.0.7",

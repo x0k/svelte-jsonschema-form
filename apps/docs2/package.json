@@ -72,7 +72,7 @@
     "@astrojs/check": "^0.9.6",
     "@astrojs/starlight": "^0.37.6",
     "@astrojs/svelte": "^7.2.5",
-    "@internationalized/date": "^3.11.0",
+    "@internationalized/date": "catalog:",
     "@picocss/pico": "^2.1.1",
     "@skeletonlabs/skeleton-svelte4": "npm:@skeletonlabs/skeleton-svelte@^4.12.0",
     "@types/css-tree": "^2.3.11",
