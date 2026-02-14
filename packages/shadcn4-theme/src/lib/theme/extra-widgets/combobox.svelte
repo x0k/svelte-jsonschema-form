@@ -16,7 +16,15 @@
 
 	declare module '../context.js' {
 		interface ThemeComponents {
-			Command: Component<Command.RootProps, {}, 'ref' | 'value'>;
+			Command:
+				| Component<Command.RootProps, {}, 'ref' | 'value'>
+				| Component<
+						Command.RootProps & {
+							api?: Command.Root;
+						},
+						{},
+						'ref' | 'value' | 'api'
+				  >;
 			CommandInput: Component<Command.InputProps, {}, 'ref' | 'value'>;
 			CommandList: Component<Command.ListProps, {}, 'ref'>;
 			CommandEmpty: Component<Command.EmptyProps, {}, 'ref'>;
@@ -144,7 +152,9 @@
 							}}
 							disabled={option.disabled}
 						>
-							<Check class={cn('mr-2 size-4', mapped.current !== option.id && 'text-transparent')} />
+							<Check
+								class={cn('mr-2 size-4', mapped.current !== option.id && 'text-transparent')}
+							/>
 							{option.label}
 						</CommandItem>
 					{/each}
