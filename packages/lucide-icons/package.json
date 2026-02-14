@@ -48,7 +48,7 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.2.1",
-		"@lucide/svelte": ">=0.479.0 <0.563.0",
+		"@lucide/svelte": ">=0.479.0 <0.565.0",
 		"svelte": "^5.34.8"
 	},
 	"devDependencies": {
