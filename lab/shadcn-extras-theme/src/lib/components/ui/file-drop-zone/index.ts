@@ -1,11 +1,12 @@
-/*
-	Installed from @ieedan/shadcn-svelte-extras
-*/
+import Root from '$lib/components/ui/file-drop-zone/file-drop-zone.svelte';
+import Trigger from '$lib/components/ui/file-drop-zone/file-drop-zone-trigger.svelte';
+import Textarea from '$lib/components/ui/file-drop-zone/file-drop-zone-textarea.svelte';
+import type {
+	FileDropZoneRootProps,
+	FileRejectedReason
+} from '$lib/components/ui/file-drop-zone/types.js';
 
-import FileDropZone from './file-drop-zone.svelte';
-import { type FileRejectedReason, type FileDropZoneProps } from './types.js';
-
-export const displaySize = (bytes: number): string => {
+export function displaySize(bytes: number): string {
 	if (bytes < KILOBYTE) return `${bytes.toFixed(0)} B`;
 
 	if (bytes < MEGABYTE) return `${(bytes / KILOBYTE).toFixed(0)} KB`;
@@ -13,17 +14,17 @@ export const displaySize = (bytes: number): string => {
 	if (bytes < GIGABYTE) return `${(bytes / MEGABYTE).toFixed(0)} MB`;
 
 	return `${(bytes / GIGABYTE).toFixed(0)} GB`;
-};
+}
 
 // Utilities for working with file sizes
 export const BYTE = 1;
-export const KILOBYTE = 1024;
-export const MEGABYTE = 1024 * KILOBYTE;
-export const GIGABYTE = 1024 * MEGABYTE;
+export const KILOBYTE = 1000;
+export const MEGABYTE = 1000 * KILOBYTE;
+export const GIGABYTE = 1000 * MEGABYTE;
 
 // utilities for limiting accepted files
 export const ACCEPT_IMAGE = 'image/*';
 export const ACCEPT_VIDEO = 'video/*';
 export const ACCEPT_AUDIO = 'audio/*';
 
-export { FileDropZone, type FileRejectedReason, type FileDropZoneProps };
+export { Root, Trigger, Textarea, type FileDropZoneRootProps, type FileRejectedReason };

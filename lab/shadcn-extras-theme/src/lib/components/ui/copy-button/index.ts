@@ -1,3 +1,3 @@
-import CopyButton from './copy-button.svelte';
+import CopyButton from '$lib/components/ui/copy-button/copy-button.svelte';
 
 export { CopyButton };

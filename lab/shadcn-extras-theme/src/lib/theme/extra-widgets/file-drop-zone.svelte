@@ -2,7 +2,7 @@
 	import type { Component } from 'svelte';
 	import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
 
-	import type { FileDropZoneProps } from '$lib/components/ui/file-drop-zone/index.js';
+	import type { FileDropZoneRootProps } from '$lib/components/ui/file-drop-zone/index.js';
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
@@ -16,13 +16,14 @@
 			shadcnExtrasFileDropZoneWidget: 'value';
 		}
 		interface UiOptions {
-			shadcnExtrasFileDropZone?: Omit<FileDropZoneProps, 'onUpload'>;
+			shadcnExtrasFileDropZone?: Omit<FileDropZoneRootProps, 'onUpload'>;
 		}
 	}
 
 	declare module '@sjsf/shadcn4-theme' {
 		interface ThemeComponents {
-			FileDropZone: Component<FileDropZoneProps>;
+			FileDropZone: Component<FileDropZoneRootProps>;
+			FileDropZoneTrigger: Component<FileDropZoneTriggerProps>
 		}
 	}
 </script>
@@ -33,6 +34,7 @@
 	import { getThemeContext } from '@sjsf/shadcn4-theme';
 
 	import { displaySize } from '$lib/components/ui/file-drop-zone/index.js';
+	import type { FileDropZoneTriggerProps } from '$lib/components/ui/file-drop-zone/types.js';
 
 	let {
 		value = $bindable(),
@@ -43,7 +45,7 @@
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 
-	const { Button, FileDropZone } = $derived(themeCtx.components);
+	const { Button, FileDropZone, FileDropZoneTrigger } = $derived(themeCtx.components);
 
 	const id = $derived(getId(ctx, config.path));
 
@@ -68,7 +70,9 @@
 		{...customInputAttributes(ctx, config, 'shadcnExtrasFileDropZone', {
 			maxFiles: multiple ? config.schema.maxItems : 1
 		})}
-	/>
+	>
+		<FileDropZoneTrigger />
+	</FileDropZone>
 	<input name={id} {id} type="file" bind:files={value} class="hidden" />
 	<div class="flex flex-col gap-2">
 		{#each value as file, i (file)}

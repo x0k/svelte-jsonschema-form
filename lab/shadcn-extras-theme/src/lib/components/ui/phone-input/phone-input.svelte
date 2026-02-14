@@ -1,10 +1,6 @@
-<!--
-	Installed from @ieedan/shadcn-svelte-extras
--->
-
 <script lang="ts">
-	import CountrySelector from './country-selector.svelte';
-	import { defaultOptions, type PhoneInputProps } from './index.js';
+	import CountrySelector from '$lib/components/ui/phone-input/country-selector.svelte';
+	import { defaultOptions, type PhoneInputProps } from '$lib/components/ui/phone-input/index.js';
 	import { cn } from '$lib/utils.js';
 	import { TelInput, normalizedCountries } from 'svelte-tel-input';
 	import 'svelte-tel-input/styles/flags.css';
@@ -50,7 +46,6 @@
 		bind:placeholder
 		bind:el
 		{options}
-		required
 		class={cn(
 			'border-l-none flex h-9 w-full min-w-0 rounded-l-none rounded-r-md border-y border-r border-input bg-background px-3 py-1 text-base shadow-xs ring-offset-background transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30',
 			'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',

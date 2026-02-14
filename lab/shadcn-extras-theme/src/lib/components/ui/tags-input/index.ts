@@ -1,9 +1,5 @@
-/*
-	Installed from @ieedan/shadcn-svelte-extras
-*/
-
-import TagsInput from './tags-input.svelte';
+import TagsInput from '$lib/components/ui/tags-input/tags-input.svelte';
 
 export { TagsInput };
 
-export type * from './types.js';
+export type * from '$lib/components/ui/tags-input/types.js';
