@@ -15,7 +15,7 @@
   "dependencies": {
     "@exodus/schemasafe": "catalog:",
     "@json-table/core": "^0.1.0",
-    "@lucide/svelte": "^0.544.0",
+    "@lucide/svelte": "catalog:",
     "@sjsf-lab/beercss-theme": "workspace:*",
     "@sjsf-lab/shadcn-extras-theme": "workspace:*",
     "@sjsf-lab/svar-theme": "workspace:*",

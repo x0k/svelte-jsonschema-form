@@ -90,8 +90,8 @@
 		}
 	},
 	"devDependencies": {
-		"@internationalized/date": "^3.10.1",
-		"@lucide/svelte": "^0.544.0",
+		"@internationalized/date": "^3.11.0",
+		"@lucide/svelte": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
 		"@tailwindcss/vite": "catalog:",

@@ -21,9 +21,6 @@ exports[`widgets > checkbox > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -65,8 +62,6 @@ exports[`widgets > checkbox > snapshots > disabled 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -121,9 +116,6 @@ exports[`widgets > checkbox > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -184,9 +176,6 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -226,8 +215,6 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -310,9 +297,6 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -368,9 +352,6 @@ exports[`widgets > checkbox > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -410,8 +391,6 @@ exports[`widgets > checkbox > snapshots > normal 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -465,9 +444,6 @@ exports[`widgets > checkbox > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -527,9 +503,6 @@ exports[`widgets > checkbox > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -569,8 +542,6 @@ exports[`widgets > checkbox > snapshots > readonly 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -624,9 +595,6 @@ exports[`widgets > checkbox > snapshots > readonly 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -686,9 +654,6 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -731,8 +696,6 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -801,8 +764,6 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             data-slot="checkbox-indicator"
           >
             <!---->
-            
-            <!---->
           </div>
           <!---->
         </button>
@@ -869,8 +830,6 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -939,8 +898,6 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             data-slot="checkbox-indicator"
           >
             <!---->
-            
-            <!---->
           </div>
           <!---->
         </button>
@@ -995,9 +952,6 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -1058,9 +1012,6 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -1101,8 +1052,6 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -1168,8 +1117,6 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             data-slot="checkbox-indicator"
           >
             <!---->
-            
-            <!---->
           </div>
           <!---->
         </button>
@@ -1234,8 +1181,6 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             data-slot="checkbox-indicator"
           >
             <!---->
-            
-            <!---->
           </div>
           <!---->
         </button>
@@ -1299,8 +1244,6 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -1384,9 +1327,6 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -1442,9 +1382,6 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -1485,8 +1422,6 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -1552,8 +1487,6 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             data-slot="checkbox-indicator"
           >
             <!---->
-            
-            <!---->
           </div>
           <!---->
         </button>
@@ -1617,8 +1550,6 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -1684,8 +1615,6 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             data-slot="checkbox-indicator"
           >
             <!---->
-            
-            <!---->
           </div>
           <!---->
         </button>
@@ -1739,9 +1668,6 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -1801,9 +1727,6 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -1844,8 +1767,6 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -1911,8 +1832,6 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             data-slot="checkbox-indicator"
           >
             <!---->
-            
-            <!---->
           </div>
           <!---->
         </button>
@@ -1976,8 +1895,6 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             class="text-current transition-none"
             data-slot="checkbox-indicator"
           >
-            <!---->
-            
             <!---->
           </div>
           <!---->
@@ -2043,8 +1960,6 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             data-slot="checkbox-indicator"
           >
             <!---->
-            
-            <!---->
           </div>
           <!---->
         </button>
@@ -2102,9 +2017,6 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -2156,9 +2068,6 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -2272,9 +2181,6 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -2310,8 +2216,6 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -2342,9 +2246,6 @@ exports[`widgets > combobox > snapshots > error 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -2482,9 +2383,6 @@ exports[`widgets > combobox > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -2519,8 +2417,6 @@ exports[`widgets > combobox > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -2551,9 +2447,6 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -2666,9 +2559,6 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -2703,8 +2593,6 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -2735,9 +2623,6 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -2850,9 +2735,6 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -2887,8 +2769,6 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -2919,9 +2799,6 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -2998,9 +2875,6 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -3036,8 +2910,6 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -3068,9 +2940,6 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -3172,9 +3041,6 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -3209,8 +3075,6 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -3241,9 +3105,6 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -3320,9 +3181,6 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -3357,8 +3215,6 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -3389,9 +3245,6 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -3468,9 +3321,6 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -3505,8 +3355,6 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -3541,9 +3389,6 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -3574,7 +3419,7 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c983"
+        id="bits-c848"
         type="button"
       >
         <!---->
@@ -3660,9 +3505,6 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -3698,8 +3540,6 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -3734,9 +3574,6 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -3767,7 +3604,7 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c980"
+        id="bits-c845"
         type="button"
       >
         <!---->
@@ -3878,9 +3715,6 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -3915,8 +3749,6 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -3951,9 +3783,6 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -3984,7 +3813,7 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c977"
+        id="bits-c842"
         type="button"
       >
         <!---->
@@ -4070,9 +3899,6 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -4107,8 +3933,6 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -4143,9 +3967,6 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -4176,7 +3997,7 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c986"
+        id="bits-c851"
         type="button"
       >
         <!---->
@@ -4262,9 +4083,6 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -4299,8 +4117,6 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -4331,9 +4147,6 @@ exports[`widgets > file > snapshots > disabled 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -4383,9 +4196,6 @@ exports[`widgets > file > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -4446,9 +4256,6 @@ exports[`widgets > file > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -4522,9 +4329,6 @@ exports[`widgets > file > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -4580,9 +4384,6 @@ exports[`widgets > file > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -4627,9 +4428,6 @@ exports[`widgets > file > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -4689,9 +4487,6 @@ exports[`widgets > file > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -4737,9 +4532,6 @@ exports[`widgets > file > snapshots > readonly 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -4799,9 +4591,6 @@ exports[`widgets > multiFile > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -4848,9 +4637,6 @@ exports[`widgets > multiFile > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -4911,9 +4697,6 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -4988,9 +4771,6 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -5046,9 +4826,6 @@ exports[`widgets > multiFile > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -5094,9 +4871,6 @@ exports[`widgets > multiFile > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -5156,9 +4930,6 @@ exports[`widgets > multiFile > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -5205,9 +4976,6 @@ exports[`widgets > multiFile > snapshots > readonly 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -5263,9 +5031,6 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -5383,9 +5148,6 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -5421,8 +5183,6 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -5453,9 +5213,6 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -5596,9 +5353,6 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -5633,8 +5387,6 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -5665,9 +5417,6 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -5783,9 +5532,6 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -5820,8 +5566,6 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -5852,9 +5596,6 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -5971,9 +5712,6 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -6008,8 +5746,6 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -6040,9 +5776,6 @@ exports[`widgets > number > snapshots > disabled 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -6095,9 +5828,6 @@ exports[`widgets > number > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -6158,9 +5888,6 @@ exports[`widgets > number > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -6237,9 +5964,6 @@ exports[`widgets > number > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -6295,9 +6019,6 @@ exports[`widgets > number > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -6345,9 +6066,6 @@ exports[`widgets > number > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -6407,9 +6125,6 @@ exports[`widgets > number > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -6458,9 +6173,6 @@ exports[`widgets > number > snapshots > readonly 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -6520,9 +6232,6 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -6552,7 +6261,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c2533"
+        id="bits-c2398"
         role="radiogroup"
       >
         <!---->
@@ -6596,7 +6305,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c2535"
+            id="bits-c2400"
           >
             <!---->
             foo
@@ -6647,7 +6356,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c2537"
+            id="bits-c2402"
           >
             <!---->
             bar
@@ -6698,7 +6407,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c2539"
+            id="bits-c2404"
           >
             <!---->
             fuzz
@@ -6749,7 +6458,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c2541"
+            id="bits-c2406"
           >
             <!---->
             qux
@@ -6782,9 +6491,6 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -6845,9 +6551,6 @@ exports[`widgets > radio > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -6876,7 +6579,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c2524"
+        id="bits-c2389"
         role="radiogroup"
       >
         <!---->
@@ -6918,7 +6621,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c2526"
+            id="bits-c2391"
           >
             <!---->
             foo
@@ -6967,7 +6670,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c2528"
+            id="bits-c2393"
           >
             <!---->
             bar
@@ -7016,7 +6719,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c2530"
+            id="bits-c2395"
           >
             <!---->
             fuzz
@@ -7065,7 +6768,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c2532"
+            id="bits-c2397"
           >
             <!---->
             qux
@@ -7127,9 +6830,6 @@ exports[`widgets > radio > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -7185,9 +6885,6 @@ exports[`widgets > radio > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -7216,7 +6913,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c2515"
+        id="bits-c2380"
         role="radiogroup"
       >
         <!---->
@@ -7258,7 +6955,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c2517"
+            id="bits-c2382"
           >
             <!---->
             foo
@@ -7307,7 +7004,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c2519"
+            id="bits-c2384"
           >
             <!---->
             bar
@@ -7356,7 +7053,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c2521"
+            id="bits-c2386"
           >
             <!---->
             fuzz
@@ -7405,7 +7102,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c2523"
+            id="bits-c2388"
           >
             <!---->
             qux
@@ -7438,9 +7135,6 @@ exports[`widgets > radio > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -7500,9 +7194,6 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -7532,7 +7223,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c2542"
+        id="bits-c2407"
         role="radiogroup"
       >
         <!---->
@@ -7574,7 +7265,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c2544"
+            id="bits-c2409"
           >
             <!---->
             foo
@@ -7623,7 +7314,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c2546"
+            id="bits-c2411"
           >
             <!---->
             bar
@@ -7672,7 +7363,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c2548"
+            id="bits-c2413"
           >
             <!---->
             fuzz
@@ -7721,7 +7412,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c2550"
+            id="bits-c2415"
           >
             <!---->
             qux
@@ -7754,9 +7445,6 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -7816,9 +7504,6 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -7869,7 +7554,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__0"
           data-variant="outline"
           disabled=""
-          id="bits-c2491"
+          id="bits-c2356"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7896,7 +7581,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__1"
           data-variant="outline"
           disabled=""
-          id="bits-c2492"
+          id="bits-c2357"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7923,7 +7608,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__2"
           data-variant="outline"
           disabled=""
-          id="bits-c2493"
+          id="bits-c2358"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7950,7 +7635,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__3"
           data-variant="outline"
           disabled=""
-          id="bits-c2494"
+          id="bits-c2359"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7979,9 +7664,6 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -8042,9 +7724,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -8092,7 +7771,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__0"
           data-variant="outline"
-          id="bits-c2486"
+          id="bits-c2351"
           role="radio"
           tabindex="0"
           type="button"
@@ -8117,7 +7796,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__1"
           data-variant="outline"
-          id="bits-c2487"
+          id="bits-c2352"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8142,7 +7821,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__2"
           data-variant="outline"
-          id="bits-c2488"
+          id="bits-c2353"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8167,7 +7846,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__3"
           data-variant="outline"
-          id="bits-c2489"
+          id="bits-c2354"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8221,9 +7900,6 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -8283,9 +7959,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -8333,7 +8006,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__0"
           data-variant="outline"
-          id="bits-c2481"
+          id="bits-c2346"
           role="radio"
           tabindex="0"
           type="button"
@@ -8358,7 +8031,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__1"
           data-variant="outline"
-          id="bits-c2482"
+          id="bits-c2347"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8383,7 +8056,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__2"
           data-variant="outline"
-          id="bits-c2483"
+          id="bits-c2348"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8408,7 +8081,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__3"
           data-variant="outline"
-          id="bits-c2484"
+          id="bits-c2349"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8437,9 +8110,6 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -8499,9 +8169,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -8550,7 +8217,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__0"
           data-variant="outline"
-          id="bits-c2496"
+          id="bits-c2361"
           role="radio"
           tabindex="0"
           type="button"
@@ -8575,7 +8242,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__1"
           data-variant="outline"
-          id="bits-c2497"
+          id="bits-c2362"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8600,7 +8267,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__2"
           data-variant="outline"
-          id="bits-c2498"
+          id="bits-c2363"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8625,7 +8292,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__3"
           data-variant="outline"
-          id="bits-c2499"
+          id="bits-c2364"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8654,9 +8321,6 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -8716,9 +8380,6 @@ exports[`widgets > range > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -8762,7 +8423,7 @@ exports[`widgets > range > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2585"
+            id="bits-c2450"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -8785,7 +8446,7 @@ exports[`widgets > range > snapshots > disabled 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2586"
+          id="bits-c2451"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="-1"
@@ -8812,9 +8473,6 @@ exports[`widgets > range > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -8875,9 +8533,6 @@ exports[`widgets > range > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -8919,7 +8574,7 @@ exports[`widgets > range > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2582"
+            id="bits-c2447"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -8941,7 +8596,7 @@ exports[`widgets > range > snapshots > error 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2583"
+          id="bits-c2448"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -8993,9 +8648,6 @@ exports[`widgets > range > snapshots > error 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -9055,9 +8707,6 @@ exports[`widgets > range > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -9099,7 +8748,7 @@ exports[`widgets > range > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2579"
+            id="bits-c2444"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -9121,7 +8770,7 @@ exports[`widgets > range > snapshots > normal 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2580"
+          id="bits-c2445"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9148,9 +8797,6 @@ exports[`widgets > range > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -9210,9 +8856,6 @@ exports[`widgets > range > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -9255,7 +8898,7 @@ exports[`widgets > range > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2588"
+            id="bits-c2453"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -9277,7 +8920,7 @@ exports[`widgets > range > snapshots > readonly 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2589"
+          id="bits-c2454"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9304,9 +8947,6 @@ exports[`widgets > range > snapshots > readonly 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -9366,9 +9006,6 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -9412,7 +9049,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2605"
+            id="bits-c2470"
             style="position: absolute; left: 1.93237%; right: 98.0676%;"
           >
             <!---->
@@ -9435,7 +9072,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2606"
+          id="bits-c2471"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="-1"
@@ -9458,7 +9095,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2607"
+          id="bits-c2472"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="-1"
@@ -9485,9 +9122,6 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -9548,9 +9182,6 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -9592,7 +9223,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2601"
+            id="bits-c2466"
             style="position: absolute; left: 1.93237%; right: 98.0676%;"
           >
             <!---->
@@ -9614,7 +9245,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2602"
+          id="bits-c2467"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9636,7 +9267,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2603"
+          id="bits-c2468"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9688,9 +9319,6 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -9750,9 +9378,6 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -9794,7 +9419,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2597"
+            id="bits-c2462"
             style="position: absolute; left: 1.93237%; right: 98.0676%;"
           >
             <!---->
@@ -9816,7 +9441,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2598"
+          id="bits-c2463"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9838,7 +9463,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2599"
+          id="bits-c2464"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9865,9 +9490,6 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -9927,9 +9549,6 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -9972,7 +9591,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2609"
+            id="bits-c2474"
             style="position: absolute; left: 1.93237%; right: 98.0676%;"
           >
             <!---->
@@ -9994,7 +9613,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2610"
+          id="bits-c2475"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -10016,7 +9635,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2611"
+          id="bits-c2476"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -10043,9 +9662,6 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -10101,9 +9717,6 @@ exports[`widgets > select > snapshots > disabled 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -10218,9 +9831,6 @@ exports[`widgets > select > snapshots > disabled 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -10256,8 +9866,6 @@ exports[`widgets > select > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -10288,9 +9896,6 @@ exports[`widgets > select > snapshots > error 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -10428,9 +10033,6 @@ exports[`widgets > select > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -10465,8 +10067,6 @@ exports[`widgets > select > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -10497,9 +10097,6 @@ exports[`widgets > select > snapshots > normal 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -10612,9 +10209,6 @@ exports[`widgets > select > snapshots > normal 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -10649,8 +10243,6 @@ exports[`widgets > select > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -10681,9 +10273,6 @@ exports[`widgets > select > snapshots > readonly 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -10797,9 +10386,6 @@ exports[`widgets > select > snapshots > readonly 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -10834,8 +10420,6 @@ exports[`widgets > select > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    
     
     
     
@@ -10866,9 +10450,6 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
     />
     <!---->
      
-    <!---->
-    <!---->
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -10919,7 +10500,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2627"
+            id="bits-c2492"
           >
             <!---->
           </span>
@@ -10954,7 +10535,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2628"
+          id="bits-c2493"
         >
           <!---->
           switch
@@ -10977,9 +10558,6 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -11040,9 +10618,6 @@ exports[`widgets > switch > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -11086,7 +10661,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2624"
+            id="bits-c2489"
           >
             <!---->
           </span>
@@ -11120,7 +10695,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2625"
+          id="bits-c2490"
         >
           <!---->
           switch
@@ -11168,9 +10743,6 @@ exports[`widgets > switch > snapshots > error 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -11230,9 +10802,6 @@ exports[`widgets > switch > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -11276,7 +10845,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2621"
+            id="bits-c2486"
           >
             <!---->
           </span>
@@ -11310,7 +10879,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2622"
+          id="bits-c2487"
         >
           <!---->
           switch
@@ -11333,9 +10902,6 @@ exports[`widgets > switch > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -11395,9 +10961,6 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -11442,7 +11005,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2630"
+            id="bits-c2495"
           >
             <!---->
           </span>
@@ -11476,7 +11039,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2631"
+          id="bits-c2496"
         >
           <!---->
           switch
@@ -11499,9 +11062,6 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -11561,9 +11121,6 @@ exports[`widgets > text > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -11610,9 +11167,6 @@ exports[`widgets > text > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -11673,9 +11227,6 @@ exports[`widgets > text > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -11750,9 +11301,6 @@ exports[`widgets > text > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -11808,9 +11356,6 @@ exports[`widgets > text > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -11856,9 +11401,6 @@ exports[`widgets > text > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -11918,9 +11460,6 @@ exports[`widgets > text > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -11967,9 +11506,6 @@ exports[`widgets > text > snapshots > readonly 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -12029,9 +11565,6 @@ exports[`widgets > textarea > snapshots > disabled 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -12072,9 +11605,6 @@ exports[`widgets > textarea > snapshots > disabled 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -12135,9 +11665,6 @@ exports[`widgets > textarea > snapshots > error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="true"
@@ -12206,9 +11733,6 @@ exports[`widgets > textarea > snapshots > error 1`] = `
     
     
     
-    
-    
-    
     <!---->
     <!---->
      
@@ -12264,9 +11788,6 @@ exports[`widgets > textarea > snapshots > normal 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -12306,9 +11827,6 @@ exports[`widgets > textarea > snapshots > normal 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     
@@ -12368,9 +11886,6 @@ exports[`widgets > textarea > snapshots > readonly 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
-    <!---->
-    <!---->
     <div
       class="group/field data-[invalid=true]:text-destructive flex w-full gap-3 flex-col [&>*]:w-full [&>.sr-only]:w-auto"
       data-invalid="false"
@@ -12411,9 +11926,6 @@ exports[`widgets > textarea > snapshots > readonly 1`] = `
       
       <!---->
     </div>
-    
-    
-    
     
     
     

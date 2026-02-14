@@ -13,7 +13,7 @@
 		"@iconify-json/devicon-plain": "^1.2.52",
 		"@iconify-json/mdi": "^1.2.3",
 		"@internationalized/date": "^3.10.1",
-		"@lucide/svelte": "^0.544.0",
+		"@lucide/svelte": "catalog:",
 		"@tailwindcss/vite": "catalog:",
 		"beercss": "^4.0.2",
 		"bits-ui": "catalog:",

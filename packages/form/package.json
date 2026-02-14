@@ -60,7 +60,7 @@
     "@types/json-schema-merge-allof": "^0.6.5",
     "@types/json-schema-compare": "^0.2.4",
     "ajv": "catalog:",
-    "allof-merge": "^0.6.7",
+    "allof-merge": "^0.6.8",
     "deep-freeze-es6": "^5.0.0",
     "globals": "catalog:",
     "json-schema-compare": "^0.2.2",

@@ -74,8 +74,8 @@
 	"devDependencies": {
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
-		"@skeletonlabs/skeleton": "^4.10.0",
-		"@skeletonlabs/skeleton-svelte": "^4.10.0",
+		"@skeletonlabs/skeleton": "^4.12.0",
+		"@skeletonlabs/skeleton-svelte": "^4.12.0",
 		"@tailwindcss/forms": "^0.5.11",
 		"@tailwindcss/vite": "catalog:",
 		"ajv": "catalog:",

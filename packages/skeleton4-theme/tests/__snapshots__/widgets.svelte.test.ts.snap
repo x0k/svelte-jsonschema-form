@@ -8336,7 +8336,6 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               role="radio"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -8357,7 +8356,6 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -8380,7 +8378,6 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               role="radio"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -8401,7 +8398,6 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -8424,7 +8420,6 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               role="radio"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -8445,7 +8440,6 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -8468,7 +8462,6 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               role="radio"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -8489,7 +8482,6 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -8512,7 +8504,6 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               role="radio"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -8533,7 +8524,6 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -8670,7 +8660,6 @@ exports[`widgets > rating > snapshots > error 1`] = `
               tabindex="0"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -8691,7 +8680,6 @@ exports[`widgets > rating > snapshots > error 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -8714,7 +8702,6 @@ exports[`widgets > rating > snapshots > error 1`] = `
               tabindex="-1"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -8735,7 +8722,6 @@ exports[`widgets > rating > snapshots > error 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -8758,7 +8744,6 @@ exports[`widgets > rating > snapshots > error 1`] = `
               tabindex="-1"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -8779,7 +8764,6 @@ exports[`widgets > rating > snapshots > error 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -8802,7 +8786,6 @@ exports[`widgets > rating > snapshots > error 1`] = `
               tabindex="-1"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -8823,7 +8806,6 @@ exports[`widgets > rating > snapshots > error 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -8846,7 +8828,6 @@ exports[`widgets > rating > snapshots > error 1`] = `
               tabindex="-1"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -8867,7 +8848,6 @@ exports[`widgets > rating > snapshots > error 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -9014,7 +8994,6 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               tabindex="0"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -9035,7 +9014,6 @@ exports[`widgets > rating > snapshots > normal 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -9058,7 +9036,6 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               tabindex="-1"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -9079,7 +9056,6 @@ exports[`widgets > rating > snapshots > normal 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -9102,7 +9078,6 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               tabindex="-1"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -9123,7 +9098,6 @@ exports[`widgets > rating > snapshots > normal 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -9146,7 +9120,6 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               tabindex="-1"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -9167,7 +9140,6 @@ exports[`widgets > rating > snapshots > normal 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -9190,7 +9162,6 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               tabindex="-1"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -9211,7 +9182,6 @@ exports[`widgets > rating > snapshots > normal 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -9350,7 +9320,6 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               tabindex="0"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -9371,7 +9340,6 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -9394,7 +9362,6 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               role="radio"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -9415,7 +9382,6 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -9438,7 +9404,6 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               role="radio"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -9459,7 +9424,6 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -9482,7 +9446,6 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               role="radio"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -9503,7 +9466,6 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
@@ -9526,7 +9488,6 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               role="radio"
             >
               <!---->
-              <!---->
               <svg
                 fill="none"
                 height="24"
@@ -9547,7 +9508,6 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
                   stroke-linejoin="round"
                 />
               </svg>
-              
               
               <!---->
             </div>
