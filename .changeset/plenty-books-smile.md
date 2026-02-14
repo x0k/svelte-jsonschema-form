@@ -2,4 +2,6 @@
 "@sjsf-lab/shadcn-extras-theme": minor
 ---
 
-Update components (v6.7.6)
+[BREAKING] Update components (v6.7.6)
+
+New required component `FileDropZoneTrigger`
