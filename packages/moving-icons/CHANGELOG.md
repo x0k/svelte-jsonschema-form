@@ -1,5 +1,14 @@
 # @sjsf/moving-icons
 
+## 3.2.2
+
+### Patch Changes
+
+- Allow `@jis3r/icons@2` ([`0d244ac`](https://github.com/x0k/svelte-jsonschema-form/commit/0d244acfbffa345cef8ddbb8dcc0d6d7e69732d5))
+
+- Updated dependencies []:
+  - @sjsf/form@3.2.2
+
 ## 3.2.1
 
 ### Patch Changes

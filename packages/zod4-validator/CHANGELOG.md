@@ -1,5 +1,12 @@
 # @sjsf/zod4-validator
 
+## 3.2.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/form@3.2.2
+
 ## 3.2.1
 
 ### Patch Changes

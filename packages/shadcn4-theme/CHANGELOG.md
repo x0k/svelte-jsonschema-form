@@ -1,5 +1,17 @@
 # @sjsf/shadcn4-theme
 
+## 3.2.2
+
+### Patch Changes
+
+- Update shadcn components (14.02.2026) ([#321](https://github.com/x0k/svelte-jsonschema-form/pull/321))
+
+- Allow `@lucide/svelte@0.564.0` ([#321](https://github.com/x0k/svelte-jsonschema-form/pull/321))
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@3.2.2
+  - @sjsf/form@3.2.2
+
 ## 3.2.1
 
 ### Patch Changes

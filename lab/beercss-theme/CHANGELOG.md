@@ -1,5 +1,17 @@
 # @sjsf-lab/beercss-theme
 
+## 3.2.2
+
+### Patch Changes
+
+- Allow `beercss@4` ([#318](https://github.com/x0k/svelte-jsonschema-form/pull/318))
+
+- Remove unused `material-dynamic-colors` dependency ([`3d3fb34`](https://github.com/x0k/svelte-jsonschema-form/commit/3d3fb34b0c000885e9035f9bc518a3904224347e))
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@3.2.2
+  - @sjsf/form@3.2.2
+
 ## 3.2.1
 
 ### Patch Changes
