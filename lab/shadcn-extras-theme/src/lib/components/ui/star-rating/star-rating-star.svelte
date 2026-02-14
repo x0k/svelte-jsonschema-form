@@ -1,13 +1,9 @@
-<!--
-	Installed from @ieedan/shadcn-svelte-extras
--->
-
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
 	import StarHalfIcon from '@lucide/svelte/icons/star-half';
 	import StarIcon from '@lucide/svelte/icons/star';
 	import { RatingGroup } from 'bits-ui';
-	import type { StarRatingStarProps } from './types.js';
+	import type { StarRatingStarProps } from '$lib/components/ui/star-rating/types.js';
 
 	let { index, state, class: className }: StarRatingStarProps = $props();
 </script>

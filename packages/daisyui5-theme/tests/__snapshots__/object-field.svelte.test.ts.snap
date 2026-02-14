@@ -18,7 +18,6 @@ exports[`object fields > additionalProperties 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -27,14 +26,10 @@ exports[`object fields > additionalProperties 1`] = `
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -48,8 +43,6 @@ exports[`object fields > additionalProperties 1`] = `
           <!---->
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -58,13 +51,10 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -90,8 +80,6 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -134,17 +122,12 @@ exports[`object fields > additionalProperties 1`] = `
             
             
             
-            
             <!---->
           </div>
           
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <div
             class="grow"
@@ -155,13 +138,10 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -186,8 +166,6 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -230,16 +208,11 @@ exports[`object fields > additionalProperties 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -262,8 +235,6 @@ exports[`object fields > additionalProperties 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -273,12 +244,8 @@ exports[`object fields > additionalProperties 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -287,7 +254,6 @@ exports[`object fields > additionalProperties 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -332,7 +298,6 @@ exports[`object fields > additionalProperties with error 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -341,14 +306,10 @@ exports[`object fields > additionalProperties with error 1`] = `
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -362,8 +323,6 @@ exports[`object fields > additionalProperties with error 1`] = `
           <!---->
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -372,13 +331,10 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -404,8 +360,6 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -460,17 +414,12 @@ exports[`object fields > additionalProperties with error 1`] = `
             
             
             
-            
             <!---->
           </div>
           
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <div
             class="grow"
@@ -481,13 +430,10 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -512,8 +458,6 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -556,16 +500,11 @@ exports[`object fields > additionalProperties with error 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -588,8 +527,6 @@ exports[`object fields > additionalProperties with error 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -599,12 +536,8 @@ exports[`object fields > additionalProperties with error 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -613,7 +546,6 @@ exports[`object fields > additionalProperties with error 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -658,7 +590,6 @@ exports[`object fields > has errors 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -667,14 +598,10 @@ exports[`object fields > has errors 1`] = `
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -689,8 +616,6 @@ exports[`object fields > has errors 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -700,13 +625,10 @@ exports[`object fields > has errors 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -731,8 +653,6 @@ exports[`object fields > has errors 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -775,11 +695,8 @@ exports[`object fields > has errors 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -792,12 +709,8 @@ exports[`object fields > has errors 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -818,7 +731,6 @@ exports[`object fields > has errors 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -863,7 +775,6 @@ exports[`object fields > object 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -872,14 +783,10 @@ exports[`object fields > object 1`] = `
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -894,8 +801,6 @@ exports[`object fields > object 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -905,13 +810,10 @@ exports[`object fields > object 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -936,8 +838,6 @@ exports[`object fields > object 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -980,11 +880,8 @@ exports[`object fields > object 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -995,10 +892,6 @@ exports[`object fields > object 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1011,8 +904,6 @@ exports[`object fields > object 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1022,13 +913,10 @@ exports[`object fields > object 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -1053,8 +941,6 @@ exports[`object fields > object 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -1098,11 +984,8 @@ exports[`object fields > object 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -1115,12 +998,8 @@ exports[`object fields > object 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -1129,7 +1008,6 @@ exports[`object fields > object 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -1174,7 +1052,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -1182,14 +1059,10 @@ exports[`object fields > one of defaults > default preset 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="object-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1212,8 +1085,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -1221,19 +1092,13 @@ exports[`object fields > one of defaults > default preset 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1248,8 +1113,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1259,13 +1122,10 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -1291,8 +1151,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -1344,11 +1202,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -1359,10 +1214,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1375,13 +1226,10 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -1445,11 +1293,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -1460,10 +1305,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1476,8 +1317,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1487,13 +1326,10 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -1519,8 +1355,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -1577,11 +1411,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -1592,10 +1423,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1608,13 +1435,10 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -1678,11 +1502,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -1693,10 +1514,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1709,13 +1526,10 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -1779,11 +1593,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -1796,12 +1607,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -1810,7 +1617,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -1855,7 +1661,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -1863,14 +1668,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="object-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1893,8 +1694,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -1902,19 +1701,13 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1929,8 +1722,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -1940,13 +1731,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -1972,8 +1760,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -2025,11 +1811,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -2040,10 +1823,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2056,13 +1835,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -2126,11 +1902,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -2141,10 +1914,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2157,13 +1926,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -2227,11 +1993,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -2242,10 +2005,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2258,13 +2017,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -2328,11 +2084,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -2343,10 +2096,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2359,13 +2108,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -2429,11 +2175,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -2444,10 +2187,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2460,8 +2199,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -2471,13 +2208,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -2503,8 +2237,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -2558,11 +2290,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -2573,10 +2302,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2589,8 +2314,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -2600,13 +2323,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -2631,8 +2351,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -2683,11 +2401,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -2698,10 +2413,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2714,13 +2425,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -2784,11 +2492,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -2799,10 +2504,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2815,8 +2516,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -2826,13 +2525,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -2858,8 +2554,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -2916,11 +2610,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -2931,10 +2622,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2947,13 +2634,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -3017,11 +2701,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -3032,10 +2713,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3048,13 +2725,10 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -3118,11 +2792,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -3135,12 +2806,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -3149,7 +2816,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -3194,7 +2860,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -3203,14 +2868,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3224,8 +2885,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
           <!---->
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -3234,13 +2893,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -3266,8 +2922,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -3310,17 +2964,12 @@ exports[`object fields > show add button and fields if additionalProperties is t
             
             
             
-            
             <!---->
           </div>
           
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <div
             class="grow"
@@ -3331,13 +2980,10 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -3362,8 +3008,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -3406,16 +3050,11 @@ exports[`object fields > show add button and fields if additionalProperties is t
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -3438,8 +3077,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -3449,12 +3086,8 @@ exports[`object fields > show add button and fields if additionalProperties is t
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -3463,7 +3096,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -3508,7 +3140,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -3516,14 +3147,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="object-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3546,8 +3173,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -3563,19 +3188,13 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3589,8 +3208,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           <!---->
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -3599,13 +3216,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -3631,8 +3245,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -3675,17 +3287,12 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             
             
             
-            
             <!---->
           </div>
           
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <div
             class="grow"
@@ -3696,13 +3303,10 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -3727,8 +3331,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -3771,16 +3373,11 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -3803,8 +3400,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -3814,12 +3409,8 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -3828,7 +3419,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -3873,7 +3463,6 @@ exports[`object fields > with title and description > object 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -3881,14 +3470,10 @@ exports[`object fields > with title and description > object 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="object-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3911,8 +3496,6 @@ exports[`object fields > with title and description > object 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -3928,19 +3511,13 @@ exports[`object fields > with title and description > object 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3955,8 +3532,6 @@ exports[`object fields > with title and description > object 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -3966,13 +3541,10 @@ exports[`object fields > with title and description > object 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -3997,8 +3569,6 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -4049,11 +3619,8 @@ exports[`object fields > with title and description > object 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -4064,10 +3631,6 @@ exports[`object fields > with title and description > object 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4080,8 +3643,6 @@ exports[`object fields > with title and description > object 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -4091,13 +3652,10 @@ exports[`object fields > with title and description > object 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -4122,8 +3680,6 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -4175,11 +3731,8 @@ exports[`object fields > with title and description > object 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -4192,12 +3745,8 @@ exports[`object fields > with title and description > object 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -4206,7 +3755,6 @@ exports[`object fields > with title and description > object 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -4251,7 +3799,6 @@ exports[`object fields > with title and description > show add button and fields
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -4259,14 +3806,10 @@ exports[`object fields > with title and description > show add button and fields
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="object-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4289,8 +3832,6 @@ exports[`object fields > with title and description > show add button and fields
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -4306,19 +3847,13 @@ exports[`object fields > with title and description > show add button and fields
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4332,8 +3867,6 @@ exports[`object fields > with title and description > show add button and fields
           <!---->
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -4342,13 +3875,10 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -4374,8 +3904,6 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -4418,17 +3946,12 @@ exports[`object fields > with title and description > show add button and fields
             
             
             
-            
             <!---->
           </div>
           
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <div
             class="grow"
@@ -4439,13 +3962,10 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -4470,8 +3990,6 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -4514,16 +4032,11 @@ exports[`object fields > with title and description > show add button and fields
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -4546,8 +4059,6 @@ exports[`object fields > with title and description > show add button and fields
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -4557,12 +4068,8 @@ exports[`object fields > with title and description > show add button and fields
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -4571,7 +4078,6 @@ exports[`object fields > with title and description > show add button and fields
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -4616,7 +4122,6 @@ exports[`object fields > with title and description from both > additionalProper
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -4624,14 +4129,10 @@ exports[`object fields > with title and description from both > additionalProper
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="object-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4654,8 +4155,6 @@ exports[`object fields > with title and description from both > additionalProper
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -4671,19 +4170,13 @@ exports[`object fields > with title and description from both > additionalProper
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4697,8 +4190,6 @@ exports[`object fields > with title and description from both > additionalProper
           <!---->
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -4707,13 +4198,10 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -4739,8 +4227,6 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -4783,17 +4269,12 @@ exports[`object fields > with title and description from both > additionalProper
             
             
             
-            
             <!---->
           </div>
           
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <div
             class="grow"
@@ -4804,13 +4285,10 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -4835,8 +4313,6 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -4879,16 +4355,11 @@ exports[`object fields > with title and description from both > additionalProper
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -4911,8 +4382,6 @@ exports[`object fields > with title and description from both > additionalProper
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -4922,12 +4391,8 @@ exports[`object fields > with title and description from both > additionalProper
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -4936,7 +4401,6 @@ exports[`object fields > with title and description from both > additionalProper
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -4981,7 +4445,6 @@ exports[`object fields > with title and description from both > object 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -4989,14 +4452,10 @@ exports[`object fields > with title and description from both > object 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="object-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5019,8 +4478,6 @@ exports[`object fields > with title and description from both > object 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -5036,19 +4493,13 @@ exports[`object fields > with title and description from both > object 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5063,8 +4514,6 @@ exports[`object fields > with title and description from both > object 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -5074,13 +4523,10 @@ exports[`object fields > with title and description from both > object 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -5105,8 +4551,6 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -5157,11 +4601,8 @@ exports[`object fields > with title and description from both > object 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -5172,10 +4613,6 @@ exports[`object fields > with title and description from both > object 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5188,8 +4625,6 @@ exports[`object fields > with title and description from both > object 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -5199,13 +4634,10 @@ exports[`object fields > with title and description from both > object 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -5230,8 +4662,6 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -5283,11 +4713,8 @@ exports[`object fields > with title and description from both > object 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -5300,12 +4727,8 @@ exports[`object fields > with title and description from both > object 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -5314,7 +4737,6 @@ exports[`object fields > with title and description from both > object 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -5359,7 +4781,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -5367,14 +4788,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="object-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5397,8 +4814,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -5414,19 +4829,13 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5440,8 +4849,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           <!---->
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -5450,13 +4857,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -5482,8 +4886,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -5526,17 +4928,12 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             
             
             
-            
             <!---->
           </div>
           
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <div
             class="grow"
@@ -5547,13 +4944,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -5578,8 +4972,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -5622,16 +5014,11 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -5654,8 +5041,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -5665,12 +5050,8 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -5679,7 +5060,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -5724,7 +5104,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -5732,14 +5111,10 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="object-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5762,8 +5137,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -5779,19 +5152,13 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5806,8 +5173,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -5817,13 +5182,10 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -5848,8 +5210,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -5900,11 +5260,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -5915,10 +5272,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5931,8 +5284,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -5942,13 +5293,10 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -5973,8 +5321,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -6026,11 +5372,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -6043,12 +5386,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -6057,7 +5396,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -6102,7 +5440,6 @@ exports[`object fields > with title and description from uiSchema > show add but
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -6110,14 +5447,10 @@ exports[`object fields > with title and description from uiSchema > show add but
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="object-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -6140,8 +5473,6 @@ exports[`object fields > with title and description from uiSchema > show add but
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -6157,19 +5488,13 @@ exports[`object fields > with title and description from uiSchema > show add but
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -6183,8 +5508,6 @@ exports[`object fields > with title and description from uiSchema > show add but
           <!---->
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
@@ -6193,13 +5516,10 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -6225,8 +5545,6 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -6269,17 +5587,12 @@ exports[`object fields > with title and description from uiSchema > show add but
             
             
             
-            
             <!---->
           </div>
           
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <div
             class="grow"
@@ -6290,13 +5603,10 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -6321,8 +5631,6 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -6365,16 +5673,11 @@ exports[`object fields > with title and description from uiSchema > show add but
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -6397,8 +5700,6 @@ exports[`object fields > with title and description from uiSchema > show add but
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -6408,12 +5709,8 @@ exports[`object fields > with title and description from uiSchema > show add but
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -6422,7 +5719,6 @@ exports[`object fields > with title and description from uiSchema > show add but
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -6467,7 +5763,6 @@ exports[`object fields > with title and description with global label off > addi
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -6476,14 +5771,10 @@ exports[`object fields > with title and description with global label off > addi
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -6497,13 +5788,10 @@ exports[`object fields > with title and description with global label off > addi
           <!---->
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -6547,23 +5835,17 @@ exports[`object fields > with title and description with global label off > addi
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -6608,16 +5890,11 @@ exports[`object fields > with title and description with global label off > addi
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -6640,8 +5917,6 @@ exports[`object fields > with title and description with global label off > addi
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -6651,12 +5926,8 @@ exports[`object fields > with title and description with global label off > addi
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -6665,7 +5936,6 @@ exports[`object fields > with title and description with global label off > addi
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -6710,7 +5980,6 @@ exports[`object fields > with title and description with global label off > obje
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -6719,14 +5988,10 @@ exports[`object fields > with title and description with global label off > obje
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -6741,13 +6006,10 @@ exports[`object fields > with title and description with global label off > obje
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -6792,11 +6054,8 @@ exports[`object fields > with title and description with global label off > obje
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -6807,10 +6066,6 @@ exports[`object fields > with title and description with global label off > obje
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -6823,13 +6078,10 @@ exports[`object fields > with title and description with global label off > obje
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -6875,11 +6127,8 @@ exports[`object fields > with title and description with global label off > obje
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -6892,12 +6141,8 @@ exports[`object fields > with title and description with global label off > obje
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -6906,7 +6151,6 @@ exports[`object fields > with title and description with global label off > obje
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -6951,7 +6195,6 @@ exports[`object fields > with title and description with global label off > show
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -6960,14 +6203,10 @@ exports[`object fields > with title and description with global label off > show
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -6981,13 +6220,10 @@ exports[`object fields > with title and description with global label off > show
           <!---->
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-key-input"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -7031,23 +6267,17 @@ exports[`object fields > with title and description with global label off > show
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -7092,16 +6322,11 @@ exports[`object fields > with title and description with global label off > show
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -7124,8 +6349,6 @@ exports[`object fields > with title and description with global label off > show
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -7135,12 +6358,8 @@ exports[`object fields > with title and description with global label off > show
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -7149,7 +6368,6 @@ exports[`object fields > with title and description with global label off > show
       <!---->
       <!---->
     </fieldset>
-    
     
     
     

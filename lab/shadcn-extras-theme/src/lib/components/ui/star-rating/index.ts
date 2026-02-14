@@ -1,2 +1,2 @@
-export { default as Root } from './star-rating.svelte';
-export { default as Star } from './star-rating-star.svelte';
+export { default as Root } from '$lib/components/ui/star-rating/star-rating.svelte';
+export { default as Star } from '$lib/components/ui/star-rating/star-rating-star.svelte';

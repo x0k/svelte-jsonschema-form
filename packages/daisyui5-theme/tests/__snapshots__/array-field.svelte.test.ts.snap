@@ -18,7 +18,6 @@ exports[`array fields > array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -26,8 +25,6 @@ exports[`array fields > array 1`] = `
       <!---->
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
@@ -39,8 +36,6 @@ exports[`array fields > array 1`] = `
         
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -60,7 +55,6 @@ exports[`array fields > array 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -105,7 +99,6 @@ exports[`array fields > array icons 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -114,14 +107,10 @@ exports[`array fields > array icons 1`] = `
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -134,8 +123,6 @@ exports[`array fields > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -145,13 +132,10 @@ exports[`array fields > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -177,8 +161,6 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -222,16 +204,11 @@ exports[`array fields > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -295,8 +272,6 @@ exports[`array fields > array icons 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -304,10 +279,6 @@ exports[`array fields > array icons 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -316,8 +287,6 @@ exports[`array fields > array icons 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -329,13 +298,10 @@ exports[`array fields > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -361,8 +327,6 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -406,16 +370,11 @@ exports[`array fields > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -479,8 +438,6 @@ exports[`array fields > array icons 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -490,12 +447,8 @@ exports[`array fields > array icons 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -515,7 +468,6 @@ exports[`array fields > array icons 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -557,7 +509,6 @@ exports[`array fields > checkboxes 1`] = `
     />
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -633,7 +584,6 @@ exports[`array fields > checkboxes 1`] = `
     
     
     
-    
     <!---->
     <!---->
      
@@ -675,7 +625,6 @@ exports[`array fields > empty errors array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="object-field"
@@ -684,14 +633,10 @@ exports[`array fields > empty errors array 1`] = `
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="object-properties"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -706,8 +651,6 @@ exports[`array fields > empty errors array 1`] = `
           <!---->
            
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="object-property-content"
@@ -717,13 +660,10 @@ exports[`array fields > empty errors array 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -748,8 +688,6 @@ exports[`array fields > empty errors array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -792,11 +730,8 @@ exports[`array fields > empty errors array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -809,12 +744,8 @@ exports[`array fields > empty errors array 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -835,7 +766,6 @@ exports[`array fields > empty errors array 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -880,7 +810,6 @@ exports[`array fields > fixed array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -889,14 +818,10 @@ exports[`array fields > fixed array 1`] = `
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -909,13 +834,10 @@ exports[`array fields > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -961,11 +883,8 @@ exports[`array fields > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -976,10 +895,6 @@ exports[`array fields > fixed array 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -990,13 +905,10 @@ exports[`array fields > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -1043,11 +955,8 @@ exports[`array fields > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -1060,12 +969,8 @@ exports[`array fields > fixed array 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -1074,7 +979,6 @@ exports[`array fields > fixed array 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -1119,7 +1023,6 @@ exports[`with title and description > array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -1127,14 +1030,10 @@ exports[`with title and description > array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="array-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1157,8 +1056,6 @@ exports[`with title and description > array 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -1174,12 +1071,8 @@ exports[`with title and description > array 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
@@ -1191,8 +1084,6 @@ exports[`with title and description > array 1`] = `
         
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -1212,7 +1103,6 @@ exports[`with title and description > array 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -1257,7 +1147,6 @@ exports[`with title and description > array icons 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -1265,14 +1154,10 @@ exports[`with title and description > array icons 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="array-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1295,8 +1180,6 @@ exports[`with title and description > array icons 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -1312,19 +1195,13 @@ exports[`with title and description > array icons 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1337,8 +1214,6 @@ exports[`with title and description > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -1348,13 +1223,10 @@ exports[`with title and description > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -1380,8 +1252,6 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -1433,16 +1303,11 @@ exports[`with title and description > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -1506,8 +1371,6 @@ exports[`with title and description > array icons 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -1515,10 +1378,6 @@ exports[`with title and description > array icons 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1527,8 +1386,6 @@ exports[`with title and description > array icons 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -1540,13 +1397,10 @@ exports[`with title and description > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -1572,8 +1426,6 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -1625,16 +1477,11 @@ exports[`with title and description > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -1698,8 +1545,6 @@ exports[`with title and description > array icons 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -1709,12 +1554,8 @@ exports[`with title and description > array icons 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -1734,7 +1575,6 @@ exports[`with title and description > array icons 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -1779,13 +1619,10 @@ exports[`with title and description > checkboxes 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="field"
     >
-      <!---->
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -1811,8 +1648,6 @@ exports[`with title and description > checkboxes 1`] = `
         <!---->
         <!---->
       </div>
-      
-      
       
       
       <!---->
@@ -1896,7 +1731,6 @@ exports[`with title and description > checkboxes 1`] = `
     
     
     
-    
     <!---->
     <!---->
      
@@ -1938,7 +1772,6 @@ exports[`with title and description > fixed array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -1946,14 +1779,10 @@ exports[`with title and description > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="array-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1976,8 +1805,6 @@ exports[`with title and description > fixed array 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -1993,19 +1820,13 @@ exports[`with title and description > fixed array 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2018,8 +1839,6 @@ exports[`with title and description > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -2029,13 +1848,10 @@ exports[`with title and description > fixed array 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -2061,8 +1877,6 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -2114,11 +1928,8 @@ exports[`with title and description > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -2129,10 +1940,6 @@ exports[`with title and description > fixed array 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2141,8 +1948,6 @@ exports[`with title and description > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -2154,13 +1959,10 @@ exports[`with title and description > fixed array 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -2186,8 +1988,6 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -2240,11 +2040,8 @@ exports[`with title and description > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -2257,12 +2054,8 @@ exports[`with title and description > fixed array 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -2271,7 +2064,6 @@ exports[`with title and description > fixed array 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -2316,7 +2108,6 @@ exports[`with title and description from both > array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -2324,14 +2115,10 @@ exports[`with title and description from both > array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="array-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2354,8 +2141,6 @@ exports[`with title and description from both > array 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -2371,12 +2156,8 @@ exports[`with title and description from both > array 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
@@ -2388,8 +2169,6 @@ exports[`with title and description from both > array 1`] = `
         
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -2409,7 +2188,6 @@ exports[`with title and description from both > array 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -2454,7 +2232,6 @@ exports[`with title and description from both > array icons 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -2462,14 +2239,10 @@ exports[`with title and description from both > array icons 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="array-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2492,8 +2265,6 @@ exports[`with title and description from both > array icons 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -2509,19 +2280,13 @@ exports[`with title and description from both > array icons 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2534,8 +2299,6 @@ exports[`with title and description from both > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -2545,13 +2308,10 @@ exports[`with title and description from both > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -2577,8 +2337,6 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -2630,16 +2388,11 @@ exports[`with title and description from both > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -2703,8 +2456,6 @@ exports[`with title and description from both > array icons 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -2712,10 +2463,6 @@ exports[`with title and description from both > array icons 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2724,8 +2471,6 @@ exports[`with title and description from both > array icons 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -2737,13 +2482,10 @@ exports[`with title and description from both > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -2769,8 +2511,6 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -2822,16 +2562,11 @@ exports[`with title and description from both > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -2895,8 +2630,6 @@ exports[`with title and description from both > array icons 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -2906,12 +2639,8 @@ exports[`with title and description from both > array icons 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -2931,7 +2660,6 @@ exports[`with title and description from both > array icons 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -2976,13 +2704,10 @@ exports[`with title and description from both > checkboxes 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="field"
     >
-      <!---->
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -3008,8 +2733,6 @@ exports[`with title and description from both > checkboxes 1`] = `
         <!---->
         <!---->
       </div>
-      
-      
       
       
       <!---->
@@ -3090,7 +2813,6 @@ exports[`with title and description from both > checkboxes 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -3135,7 +2857,6 @@ exports[`with title and description from both > fixed array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -3143,14 +2864,10 @@ exports[`with title and description from both > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="array-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3173,8 +2890,6 @@ exports[`with title and description from both > fixed array 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -3190,19 +2905,13 @@ exports[`with title and description from both > fixed array 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3215,8 +2924,6 @@ exports[`with title and description from both > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -3226,13 +2933,10 @@ exports[`with title and description from both > fixed array 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -3258,8 +2962,6 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -3311,11 +3013,8 @@ exports[`with title and description from both > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -3326,10 +3025,6 @@ exports[`with title and description from both > fixed array 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3338,8 +3033,6 @@ exports[`with title and description from both > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -3351,13 +3044,10 @@ exports[`with title and description from both > fixed array 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -3383,8 +3073,6 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -3437,11 +3125,8 @@ exports[`with title and description from both > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -3454,12 +3139,8 @@ exports[`with title and description from both > fixed array 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -3468,7 +3149,6 @@ exports[`with title and description from both > fixed array 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -3513,7 +3193,6 @@ exports[`with title and description from uiSchema > array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -3521,14 +3200,10 @@ exports[`with title and description from uiSchema > array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="array-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3551,8 +3226,6 @@ exports[`with title and description from uiSchema > array 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -3568,12 +3241,8 @@ exports[`with title and description from uiSchema > array 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
@@ -3585,8 +3254,6 @@ exports[`with title and description from uiSchema > array 1`] = `
         
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -3606,7 +3273,6 @@ exports[`with title and description from uiSchema > array 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -3651,7 +3317,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -3659,14 +3324,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="array-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3689,8 +3350,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -3706,19 +3365,13 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3731,8 +3384,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -3742,13 +3393,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -3774,8 +3422,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -3827,16 +3473,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -3900,8 +3541,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -3909,10 +3548,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3921,8 +3556,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -3934,13 +3567,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -3966,8 +3596,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -4019,16 +3647,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -4092,8 +3715,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -4103,12 +3724,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -4128,7 +3745,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -4173,13 +3789,10 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="field"
     >
-      <!---->
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -4205,8 +3818,6 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
         <!---->
         <!---->
       </div>
-      
-      
       
       
       <!---->
@@ -4290,7 +3901,6 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
     
     
     
-    
     <!---->
     <!---->
      
@@ -4332,7 +3942,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -4340,14 +3949,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
-      <!---->
       <legend
         class="w-full"
         data-layout="array-field-meta"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4370,8 +3975,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         </div>
         
         
-        
-        
         <!---->
          
         <!---->
@@ -4387,19 +3990,13 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       </legend>
       
       
-      
-      
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4412,8 +4009,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
@@ -4423,13 +4018,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -4455,8 +4047,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -4508,11 +4098,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -4523,10 +4110,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4535,8 +4118,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
           class="flex gap-2 items-start"
           data-layout="array-item"
         >
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -4548,13 +4129,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
             >
-              <!---->
-              <!---->
               <!---->
               <!---->
               <!---->
@@ -4580,8 +4158,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
-              
               
               
               <!---->
@@ -4634,11 +4210,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -4651,12 +4224,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -4665,7 +4234,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -4710,7 +4278,6 @@ exports[`with title and description with global label off > array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -4718,8 +4285,6 @@ exports[`with title and description with global label off > array 1`] = `
       <!---->
       <!---->
        
-      <!---->
-      <!---->
       <!---->
       <div
         class="flex gap-2 flex-col"
@@ -4731,8 +4296,6 @@ exports[`with title and description with global label off > array 1`] = `
         
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -4752,7 +4315,6 @@ exports[`with title and description with global label off > array 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -4797,7 +4359,6 @@ exports[`with title and description with global label off > array icons 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -4806,14 +4367,10 @@ exports[`with title and description with global label off > array icons 1`] = `
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4826,13 +4383,10 @@ exports[`with title and description with global label off > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -4878,16 +4432,11 @@ exports[`with title and description with global label off > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -4951,8 +4500,6 @@ exports[`with title and description with global label off > array icons 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -4960,10 +4507,6 @@ exports[`with title and description with global label off > array icons 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4974,13 +4517,10 @@ exports[`with title and description with global label off > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -5026,16 +4566,11 @@ exports[`with title and description with global label off > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
-          
           <!---->
            
-          <!---->
-          <!---->
           <!---->
           <!---->
           <div
@@ -5099,8 +4634,6 @@ exports[`with title and description with global label off > array icons 1`] = `
           </div>
           
           
-          
-          
           <!---->
           <!---->
         </div>
@@ -5110,12 +4643,8 @@ exports[`with title and description with global label off > array icons 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -5135,7 +4664,6 @@ exports[`with title and description with global label off > array icons 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     
@@ -5177,7 +4705,6 @@ exports[`with title and description with global label off > checkboxes 1`] = `
     />
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -5253,7 +4780,6 @@ exports[`with title and description with global label off > checkboxes 1`] = `
     
     
     
-    
     <!---->
     <!---->
      
@@ -5295,7 +4821,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <fieldset
       class="fieldset gap-y-2"
       data-layout="array-field"
@@ -5304,14 +4829,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
       <!---->
        
       <!---->
-      <!---->
-      <!---->
       <div
         class="flex gap-2 flex-col"
         data-layout="array-items"
       >
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5324,13 +4845,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -5376,11 +4894,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -5391,10 +4906,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
         
         
         
-        
-        
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5405,13 +4916,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
-          <!---->
           <div
             class="grow"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -5458,11 +4966,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
-          
           
           <!---->
            
@@ -5475,12 +4980,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
         
         
         
-        
-        
         <!---->
       </div>
-      
-      
       
       <!---->
        
@@ -5489,7 +4990,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
       <!---->
       <!---->
     </fieldset>
-    
     
     
     

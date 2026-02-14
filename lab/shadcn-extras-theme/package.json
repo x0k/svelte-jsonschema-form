@@ -53,7 +53,7 @@
 		}
 	},
 	"peerDependencies": {
-		"@lucide/svelte": ">=0.544.0 <0.562.0",
+		"@lucide/svelte": ">=0.544.0 <0.565.0",
 		"@sjsf/form": "workspace:^3.2.1",
 		"@sjsf/shadcn4-theme": "workspace:^3.2.1",
 		"@zxcvbn-ts/core": "^3.0.0",
@@ -103,8 +103,8 @@
 		}
 	},
 	"devDependencies": {
-		"@jsrepo/transform-prettier": "^1.0.0",
-		"@lucide/svelte": "^0.561.0",
+		"@jsrepo/transform-prettier": "^3.0.0",
+		"@lucide/svelte": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
 		"@sjsf/shadcn4-theme": "workspace:*",
@@ -115,9 +115,9 @@
 		"ajv": "catalog:",
 		"bits-ui": "catalog:",
 		"clsx": "^2.1.1",
-		"country-flag-icons": "^1.6.7",
+		"country-flag-icons": "^1.6.13",
 		"globals": "catalog:",
-		"jsrepo": "^3.1.0",
+		"jsrepo": "^3.3.0",
 		"runed": "^0.37.1",
 		"svelte": "catalog:",
 		"svelte-tel-input": "^3.6.1",

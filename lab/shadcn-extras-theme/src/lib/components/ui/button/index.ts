@@ -6,7 +6,7 @@ import Root, {
 	type ButtonElementProps,
 	type ButtonPropsWithoutHTML,
 	buttonVariants
-} from './button.svelte';
+} from '$lib/components/ui/button/button.svelte';
 
 export {
 	Root,

@@ -1,9 +1,5 @@
-/*
-	Installed from @ieedan/shadcn-svelte-extras
-*/
-
-import NLPDateInput from './nlp-date-input.svelte';
+import NLPDateInput from '$lib/components/ui/nlp-date-input/nlp-date-input.svelte';
 
 export { NLPDateInput };
 
-export type * from './types.js';
+export type * from '$lib/components/ui/nlp-date-input/types.js';

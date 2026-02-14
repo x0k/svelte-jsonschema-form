@@ -12,7 +12,7 @@
   "dependencies": {
     "@codemirror/lang-json": "^6.0.2",
     "@codemirror/state": "^6.5.4",
-    "@codemirror/view": "^6.39.11",
+    "@codemirror/view": "^6.39.14",
     "@ddietr/codemirror-themes": "^1.5.2",
     "@picocss/pico": "^2.1.1",
     "@sjsf-lab/beercss-theme": "workspace:*",
@@ -35,13 +35,13 @@
     "codemirror": "^6.0.2",
     "lz-string": "^1.5.0",
     "svelte-exmarkdown": "^5.0.2",
-    "svelte-tiler": "^0.2.0"
+    "svelte-tiler": "^0.4.0"
   },
   "devDependencies": {
-    "@internationalized/date": "~3.10.1",
-    "@lucide/svelte": "^0.544.0",
+    "@internationalized/date": "catalog:",
+    "@lucide/svelte": "catalog:",
     "@tailwindcss/vite": "catalog:",
-    "beercss": "^4.0.2",
+    "beercss": "^4.0.7",
     "bits-ui": "catalog:",
     "clsx": "^2.1.1",
     "svelte": "catalog:",

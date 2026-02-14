@@ -1,13 +1,9 @@
-<!--
-	Installed from @ieedan/shadcn-svelte-extras
--->
-
 <script lang="ts">
 	import { Toggle } from '$lib/components/ui/toggle/index.js';
 	import EyeIcon from '@lucide/svelte/icons/eye';
 	import EyeOffIcon from '@lucide/svelte/icons/eye-off';
-	import { usePasswordToggleVisibility } from './password.svelte.js';
-	import type { PasswordToggleVisibilityProps } from './types.js';
+	import { usePasswordToggleVisibility } from '$lib/components/ui/password/password.svelte.js';
+	import type { PasswordToggleVisibilityProps } from '$lib/components/ui/password/types.js';
 	import { cn } from '$lib/utils.js';
 
 	let { ref = $bindable(null), class: className }: PasswordToggleVisibilityProps = $props();

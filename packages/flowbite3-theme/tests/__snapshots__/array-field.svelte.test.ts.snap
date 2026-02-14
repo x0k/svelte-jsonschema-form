@@ -41,7 +41,6 @@ exports[`array fields > array 1`] = `
        
       <!---->
       <!---->
-      <!---->
       <button
         class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
         type="button"
@@ -57,7 +56,6 @@ exports[`array fields > array 1`] = `
       </button>
       
       
-      
       <!---->
        
       <!---->
@@ -69,7 +67,6 @@ exports[`array fields > array 1`] = `
     <!---->
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <button
@@ -85,7 +82,6 @@ exports[`array fields > array 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -257,7 +253,6 @@ exports[`array fields > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg"
               disabled=""
@@ -273,10 +268,8 @@ exports[`array fields > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
              
-            <!---->
             <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg"
@@ -292,11 +285,9 @@ exports[`array fields > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -314,10 +305,8 @@ exports[`array fields > array icons 1`] = `
             </button>
             
             
-            
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -333,7 +322,6 @@ exports[`array fields > array icons 1`] = `
                
               <!---->
             </button>
-            
             
             
             <!---->
@@ -477,7 +465,6 @@ exports[`array fields > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg"
               type="button"
@@ -492,10 +479,8 @@ exports[`array fields > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
              
-            <!---->
             <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg"
@@ -512,11 +497,9 @@ exports[`array fields > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -534,10 +517,8 @@ exports[`array fields > array icons 1`] = `
             </button>
             
             
-            
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -553,7 +534,6 @@ exports[`array fields > array icons 1`] = `
                
               <!---->
             </button>
-            
             
             
             <!---->
@@ -578,7 +558,6 @@ exports[`array fields > array icons 1`] = `
        
       <!---->
       <!---->
-      <!---->
       <button
         class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
         type="button"
@@ -594,7 +573,6 @@ exports[`array fields > array icons 1`] = `
       </button>
       
       
-      
       <!---->
        
       <!---->
@@ -606,7 +584,6 @@ exports[`array fields > array icons 1`] = `
     <!---->
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <button
@@ -622,7 +599,6 @@ exports[`array fields > array icons 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -757,7 +733,6 @@ exports[`array fields > checkboxes 1`] = `
      
     <!---->
     <!---->
-    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -771,7 +746,6 @@ exports[`array fields > checkboxes 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -970,7 +944,6 @@ exports[`array fields > empty errors array 1`] = `
      
     <!---->
     <!---->
-    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -984,7 +957,6 @@ exports[`array fields > empty errors array 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -1219,7 +1191,6 @@ exports[`array fields > fixed array 1`] = `
      
     <!---->
     <!---->
-    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -1233,7 +1204,6 @@ exports[`array fields > fixed array 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -1328,7 +1298,6 @@ exports[`with title and description > array 1`] = `
        
       <!---->
       <!---->
-      <!---->
       <button
         class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
         type="button"
@@ -1344,7 +1313,6 @@ exports[`with title and description > array 1`] = `
       </button>
       
       
-      
       <!---->
        
       <!---->
@@ -1356,7 +1324,6 @@ exports[`with title and description > array 1`] = `
     <!---->
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <button
@@ -1372,7 +1339,6 @@ exports[`with title and description > array 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -1594,7 +1560,6 @@ exports[`with title and description > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg"
               disabled=""
@@ -1610,10 +1575,8 @@ exports[`with title and description > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
              
-            <!---->
             <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg"
@@ -1629,11 +1592,9 @@ exports[`with title and description > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -1651,10 +1612,8 @@ exports[`with title and description > array icons 1`] = `
             </button>
             
             
-            
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -1670,7 +1629,6 @@ exports[`with title and description > array icons 1`] = `
                
               <!---->
             </button>
-            
             
             
             <!---->
@@ -1822,7 +1780,6 @@ exports[`with title and description > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg"
               type="button"
@@ -1837,10 +1794,8 @@ exports[`with title and description > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
              
-            <!---->
             <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg"
@@ -1857,11 +1812,9 @@ exports[`with title and description > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -1879,10 +1832,8 @@ exports[`with title and description > array icons 1`] = `
             </button>
             
             
-            
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -1898,7 +1849,6 @@ exports[`with title and description > array icons 1`] = `
                
               <!---->
             </button>
-            
             
             
             <!---->
@@ -1923,7 +1873,6 @@ exports[`with title and description > array icons 1`] = `
        
       <!---->
       <!---->
-      <!---->
       <button
         class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
         type="button"
@@ -1939,7 +1888,6 @@ exports[`with title and description > array icons 1`] = `
       </button>
       
       
-      
       <!---->
        
       <!---->
@@ -1951,7 +1899,6 @@ exports[`with title and description > array icons 1`] = `
     <!---->
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <button
@@ -1967,7 +1914,6 @@ exports[`with title and description > array icons 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -2145,7 +2091,6 @@ exports[`with title and description > checkboxes 1`] = `
      
     <!---->
     <!---->
-    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -2159,7 +2104,6 @@ exports[`with title and description > checkboxes 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -2532,7 +2476,6 @@ exports[`with title and description > fixed array 1`] = `
      
     <!---->
     <!---->
-    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -2546,7 +2489,6 @@ exports[`with title and description > fixed array 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -2641,7 +2583,6 @@ exports[`with title and description from both > array 1`] = `
        
       <!---->
       <!---->
-      <!---->
       <button
         class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
         type="button"
@@ -2657,7 +2598,6 @@ exports[`with title and description from both > array 1`] = `
       </button>
       
       
-      
       <!---->
        
       <!---->
@@ -2669,7 +2609,6 @@ exports[`with title and description from both > array 1`] = `
     <!---->
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <button
@@ -2685,7 +2624,6 @@ exports[`with title and description from both > array 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -2907,7 +2845,6 @@ exports[`with title and description from both > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg"
               disabled=""
@@ -2923,10 +2860,8 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
              
-            <!---->
             <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg"
@@ -2942,11 +2877,9 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -2964,10 +2897,8 @@ exports[`with title and description from both > array icons 1`] = `
             </button>
             
             
-            
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -2983,7 +2914,6 @@ exports[`with title and description from both > array icons 1`] = `
                
               <!---->
             </button>
-            
             
             
             <!---->
@@ -3135,7 +3065,6 @@ exports[`with title and description from both > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg"
               type="button"
@@ -3150,10 +3079,8 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
              
-            <!---->
             <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg"
@@ -3170,11 +3097,9 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -3192,10 +3117,8 @@ exports[`with title and description from both > array icons 1`] = `
             </button>
             
             
-            
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -3211,7 +3134,6 @@ exports[`with title and description from both > array icons 1`] = `
                
               <!---->
             </button>
-            
             
             
             <!---->
@@ -3236,7 +3158,6 @@ exports[`with title and description from both > array icons 1`] = `
        
       <!---->
       <!---->
-      <!---->
       <button
         class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
         type="button"
@@ -3252,7 +3173,6 @@ exports[`with title and description from both > array icons 1`] = `
       </button>
       
       
-      
       <!---->
        
       <!---->
@@ -3264,7 +3184,6 @@ exports[`with title and description from both > array icons 1`] = `
     <!---->
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <button
@@ -3280,7 +3199,6 @@ exports[`with title and description from both > array icons 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -3458,7 +3376,6 @@ exports[`with title and description from both > checkboxes 1`] = `
      
     <!---->
     <!---->
-    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -3472,7 +3389,6 @@ exports[`with title and description from both > checkboxes 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -3845,7 +3761,6 @@ exports[`with title and description from both > fixed array 1`] = `
      
     <!---->
     <!---->
-    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -3859,7 +3774,6 @@ exports[`with title and description from both > fixed array 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -3954,7 +3868,6 @@ exports[`with title and description from uiSchema > array 1`] = `
        
       <!---->
       <!---->
-      <!---->
       <button
         class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
         type="button"
@@ -3970,7 +3883,6 @@ exports[`with title and description from uiSchema > array 1`] = `
       </button>
       
       
-      
       <!---->
        
       <!---->
@@ -3982,7 +3894,6 @@ exports[`with title and description from uiSchema > array 1`] = `
     <!---->
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <button
@@ -3998,7 +3909,6 @@ exports[`with title and description from uiSchema > array 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -4220,7 +4130,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg"
               disabled=""
@@ -4236,10 +4145,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
              
-            <!---->
             <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg"
@@ -4255,11 +4162,9 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -4277,10 +4182,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             </button>
             
             
-            
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -4296,7 +4199,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                
               <!---->
             </button>
-            
             
             
             <!---->
@@ -4448,7 +4350,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg"
               type="button"
@@ -4463,10 +4364,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
              
-            <!---->
             <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg"
@@ -4483,11 +4382,9 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -4505,10 +4402,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             </button>
             
             
-            
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -4524,7 +4419,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                
               <!---->
             </button>
-            
             
             
             <!---->
@@ -4549,7 +4443,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
        
       <!---->
       <!---->
-      <!---->
       <button
         class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
         type="button"
@@ -4565,7 +4458,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       </button>
       
       
-      
       <!---->
        
       <!---->
@@ -4577,7 +4469,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
     <!---->
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <button
@@ -4593,7 +4484,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -4771,7 +4661,6 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
      
     <!---->
     <!---->
-    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -4785,7 +4674,6 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -5158,7 +5046,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
      
     <!---->
     <!---->
-    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -5172,7 +5059,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -5225,7 +5111,6 @@ exports[`with title and description with global label off > array 1`] = `
        
       <!---->
       <!---->
-      <!---->
       <button
         class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
         type="button"
@@ -5241,7 +5126,6 @@ exports[`with title and description with global label off > array 1`] = `
       </button>
       
       
-      
       <!---->
        
       <!---->
@@ -5253,7 +5137,6 @@ exports[`with title and description with global label off > array 1`] = `
     <!---->
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <button
@@ -5269,7 +5152,6 @@ exports[`with title and description with global label off > array 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -5401,7 +5283,6 @@ exports[`with title and description with global label off > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg"
               disabled=""
@@ -5417,10 +5298,8 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
              
-            <!---->
             <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg"
@@ -5436,11 +5315,9 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -5458,10 +5335,8 @@ exports[`with title and description with global label off > array icons 1`] = `
             </button>
             
             
-            
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -5477,7 +5352,6 @@ exports[`with title and description with global label off > array icons 1`] = `
                
               <!---->
             </button>
-            
             
             
             <!---->
@@ -5581,7 +5455,6 @@ exports[`with title and description with global label off > array icons 1`] = `
             <!---->
             <!---->
             <!---->
-            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 rounded-lg"
               type="button"
@@ -5596,10 +5469,8 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
              
-            <!---->
             <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-2 focus-within:z-10 [&:not(:first-child)]:rounded-s-none [&:not(:last-child)]:rounded-e-none [&:not(:last-child)]:border-e-0 cursor-not-allowed opacity-50 rounded-lg"
@@ -5616,11 +5487,9 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
             </button>
             
-            
             <!---->
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -5638,10 +5507,8 @@ exports[`with title and description with global label off > array icons 1`] = `
             </button>
             
             
-            
             <!---->
              
-            <!---->
             <!---->
             <!---->
             <button
@@ -5657,7 +5524,6 @@ exports[`with title and description with global label off > array icons 1`] = `
                
               <!---->
             </button>
-            
             
             
             <!---->
@@ -5682,7 +5548,6 @@ exports[`with title and description with global label off > array icons 1`] = `
        
       <!---->
       <!---->
-      <!---->
       <button
         class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
         type="button"
@@ -5698,7 +5563,6 @@ exports[`with title and description with global label off > array icons 1`] = `
       </button>
       
       
-      
       <!---->
        
       <!---->
@@ -5710,7 +5574,6 @@ exports[`with title and description with global label off > array icons 1`] = `
     <!---->
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <button
@@ -5726,7 +5589,6 @@ exports[`with title and description with global label off > array icons 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -5861,7 +5723,6 @@ exports[`with title and description with global label off > checkboxes 1`] = `
      
     <!---->
     <!---->
-    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -5875,7 +5736,6 @@ exports[`with title and description with global label off > checkboxes 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->
@@ -6110,7 +5970,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
      
     <!---->
     <!---->
-    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -6124,7 +5983,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
        
       <!---->
     </button>
-    
     
     
     <!---->

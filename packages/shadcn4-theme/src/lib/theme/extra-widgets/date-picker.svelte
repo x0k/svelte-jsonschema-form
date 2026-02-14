@@ -38,6 +38,7 @@
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
+	import ChevronDownIcon from '@lucide/svelte/icons/chevron-down';
 
 	import { getThemeContext } from '../context.js';
 
@@ -91,7 +92,8 @@
 		{#snippet child({ props })}
 			<Button
 				{...props}
-				class={['w-full', parsedDate === undefined && 'text-muted-foreground']}
+				variant="outline"
+				class="w-full justify-between font-normal"
 				{...composeProps(
 					ctx,
 					config,
@@ -101,7 +103,10 @@
 					ariaInvalidProp
 				)}
 			>
-				{triggerContent}
+				<span>
+					{triggerContent}
+				</span>
+				<ChevronDownIcon />
 			</Button>
 		{/snippet}
 	</PopoverTrigger>
@@ -110,6 +115,9 @@
 			bind:value={
 				() => parsedDate,
 				(v) => {
+					if (parsedDate === v) {
+						return;
+					}
 					value = v?.toDate(getLocalTimeZone()).toLocaleDateString('en-CA');
 				}
 			}

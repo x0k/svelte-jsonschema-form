@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
-	import type { TagsInputProps } from './types.js';
-	import TagsInputTag from './tags-input-tag.svelte';
+	import type { TagsInputProps } from '$lib/components/ui/tags-input/types.js';
+	import TagsInputTag from '$lib/components/ui/tags-input/tags-input-tag.svelte';
 	import { untrack } from 'svelte';
 
 	const defaultValidate: TagsInputProps['validate'] = (val, tags) => {
@@ -22,6 +22,7 @@
 		class: className,
 		disabled = false,
 		validate = defaultValidate,
+		onValueChange,
 		...rest
 	}: TagsInputProps = $props();
 
@@ -51,6 +52,7 @@
 		}
 
 		value = [...value, validated];
+		onValueChange?.(value);
 		inputValue = '';
 	};
 
@@ -174,6 +176,7 @@
 
 	const deleteIndex = (index: number) => {
 		value = [...value.slice(0, index), ...value.slice(index + 1)];
+		onValueChange?.(value);
 	};
 
 	const blur = () => {

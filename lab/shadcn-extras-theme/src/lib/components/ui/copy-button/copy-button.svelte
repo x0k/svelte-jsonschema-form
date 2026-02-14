@@ -1,7 +1,3 @@
-<!--
-	Installed from @ieedan/shadcn-svelte-extras
--->
-
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { UseClipboard } from '$lib/hooks/use-clipboard.svelte';
@@ -10,7 +6,7 @@
 	import CopyIcon from '@lucide/svelte/icons/copy';
 	import XIcon from '@lucide/svelte/icons/x';
 	import { scale } from 'svelte/transition';
-	import type { CopyButtonProps } from './types.js';
+	import type { CopyButtonProps } from '$lib/components/ui/copy-button/types.js';
 
 	let {
 		ref = $bindable(null),

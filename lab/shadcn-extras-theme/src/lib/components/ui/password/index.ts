@@ -1,7 +1,7 @@
-import Root from './password.svelte';
-import Input from './password-input.svelte';
-import Strength from './password-strength.svelte';
-import Copy from './password-copy.svelte';
-import ToggleVisibility from './password-toggle-visibility.svelte';
+import Root from '$lib/components/ui/password/password.svelte';
+import Input from '$lib/components/ui/password/password-input.svelte';
+import Strength from '$lib/components/ui/password/password-strength.svelte';
+import Copy from '$lib/components/ui/password/password-copy.svelte';
+import ToggleVisibility from '$lib/components/ui/password/password-toggle-visibility.svelte';
 
 export { Root, Input, Strength, Copy, ToggleVisibility };

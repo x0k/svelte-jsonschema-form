@@ -18,7 +18,6 @@ exports[`array fields > array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -26,7 +25,6 @@ exports[`array fields > array 1`] = `
       <!---->
       <!---->
        
-      <!---->
       <!---->
       <div
         class="layout svelte-1fixc4e"
@@ -38,7 +36,6 @@ exports[`array fields > array 1`] = `
         
         <!---->
       </div>
-      
       
       <!---->
        
@@ -58,7 +55,6 @@ exports[`array fields > array 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -103,7 +99,6 @@ exports[`array fields > array icons 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -112,12 +107,10 @@ exports[`array fields > array icons 1`] = `
       <!---->
        
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -130,12 +123,10 @@ exports[`array fields > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -148,12 +139,10 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -176,13 +165,11 @@ exports[`array fields > array icons 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -219,14 +206,11 @@ exports[`array fields > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
           <!---->
            
-          <!---->
           <!---->
           <!---->
           <nav
@@ -289,7 +273,6 @@ exports[`array fields > array icons 1`] = `
           </nav>
           
           
-          
           <!---->
           <!---->
         </div>
@@ -297,8 +280,6 @@ exports[`array fields > array icons 1`] = `
         
         
         
-        
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -309,12 +290,10 @@ exports[`array fields > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -327,12 +306,10 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -355,13 +332,11 @@ exports[`array fields > array icons 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -398,14 +373,11 @@ exports[`array fields > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
           <!---->
            
-          <!---->
           <!---->
           <!---->
           <nav
@@ -468,7 +440,6 @@ exports[`array fields > array icons 1`] = `
           </nav>
           
           
-          
           <!---->
           <!---->
         </div>
@@ -478,10 +449,8 @@ exports[`array fields > array icons 1`] = `
         
         
         
-        
         <!---->
       </div>
-      
       
       <!---->
        
@@ -501,7 +470,6 @@ exports[`array fields > array icons 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -546,7 +514,6 @@ exports[`array fields > checkboxes 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="field border svelte-1fixc4e"
       data-layout="field"
@@ -623,7 +590,6 @@ exports[`array fields > checkboxes 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -668,7 +634,6 @@ exports[`array fields > empty errors array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="object-field"
@@ -677,12 +642,10 @@ exports[`array fields > empty errors array 1`] = `
       <!---->
        
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="object-properties"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -697,12 +660,10 @@ exports[`array fields > empty errors array 1`] = `
           <!---->
            
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="object-property-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -715,12 +676,10 @@ exports[`array fields > empty errors array 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -742,13 +701,11 @@ exports[`array fields > empty errors array 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -784,10 +741,8 @@ exports[`array fields > empty errors array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
           
           <!---->
            
@@ -800,10 +755,8 @@ exports[`array fields > empty errors array 1`] = `
         
         
         
-        
         <!---->
       </div>
-      
       
       <!---->
        
@@ -826,7 +779,6 @@ exports[`array fields > empty errors array 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -871,7 +823,6 @@ exports[`array fields > fixed array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -880,12 +831,10 @@ exports[`array fields > fixed array 1`] = `
       <!---->
        
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -898,12 +847,10 @@ exports[`array fields > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -948,10 +895,8 @@ exports[`array fields > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
           
           <!---->
            
@@ -962,8 +907,6 @@ exports[`array fields > fixed array 1`] = `
         
         
         
-        
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -974,12 +917,10 @@ exports[`array fields > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -1025,10 +966,8 @@ exports[`array fields > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
           
           <!---->
            
@@ -1041,10 +980,8 @@ exports[`array fields > fixed array 1`] = `
         
         
         
-        
         <!---->
       </div>
-      
       
       <!---->
        
@@ -1053,7 +990,6 @@ exports[`array fields > fixed array 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -1098,7 +1034,6 @@ exports[`with title and description > array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -1106,12 +1041,10 @@ exports[`with title and description > array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1135,7 +1068,6 @@ exports[`with title and description > array 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -1150,10 +1082,8 @@ exports[`with title and description > array 1`] = `
       </div>
       
       
-      
       <!---->
        
-      <!---->
       <!---->
       <div
         class="layout svelte-1fixc4e"
@@ -1165,7 +1095,6 @@ exports[`with title and description > array 1`] = `
         
         <!---->
       </div>
-      
       
       <!---->
        
@@ -1185,7 +1114,6 @@ exports[`with title and description > array 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -1230,7 +1158,6 @@ exports[`with title and description > array icons 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -1238,12 +1165,10 @@ exports[`with title and description > array icons 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1267,7 +1192,6 @@ exports[`with title and description > array icons 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -1282,16 +1206,13 @@ exports[`with title and description > array icons 1`] = `
       </div>
       
       
-      
       <!---->
        
-      <!---->
       <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1304,12 +1225,10 @@ exports[`with title and description > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -1322,12 +1241,10 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -1350,7 +1267,6 @@ exports[`with title and description > array icons 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -1363,7 +1279,6 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -1400,14 +1315,11 @@ exports[`with title and description > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
           <!---->
            
-          <!---->
           <!---->
           <!---->
           <nav
@@ -1470,7 +1382,6 @@ exports[`with title and description > array icons 1`] = `
           </nav>
           
           
-          
           <!---->
           <!---->
         </div>
@@ -1478,8 +1389,6 @@ exports[`with title and description > array icons 1`] = `
         
         
         
-        
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1490,12 +1399,10 @@ exports[`with title and description > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -1508,12 +1415,10 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -1536,7 +1441,6 @@ exports[`with title and description > array icons 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -1549,7 +1453,6 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -1586,14 +1489,11 @@ exports[`with title and description > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
           <!---->
            
-          <!---->
           <!---->
           <!---->
           <nav
@@ -1656,7 +1556,6 @@ exports[`with title and description > array icons 1`] = `
           </nav>
           
           
-          
           <!---->
           <!---->
         </div>
@@ -1666,10 +1565,8 @@ exports[`with title and description > array icons 1`] = `
         
         
         
-        
         <!---->
       </div>
-      
       
       <!---->
        
@@ -1689,7 +1586,6 @@ exports[`with title and description > array icons 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -1734,7 +1630,6 @@ exports[`with title and description > checkboxes 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="field border svelte-1fixc4e"
       data-layout="field"
@@ -1742,12 +1637,10 @@ exports[`with title and description > checkboxes 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1773,7 +1666,6 @@ exports[`with title and description > checkboxes 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -1786,7 +1678,6 @@ exports[`with title and description > checkboxes 1`] = `
         <!---->
         <!---->
       </div>
-      
       
       
       <!---->
@@ -1860,7 +1751,6 @@ exports[`with title and description > checkboxes 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -1905,7 +1795,6 @@ exports[`with title and description > fixed array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -1913,12 +1802,10 @@ exports[`with title and description > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1942,7 +1829,6 @@ exports[`with title and description > fixed array 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -1957,16 +1843,13 @@ exports[`with title and description > fixed array 1`] = `
       </div>
       
       
-      
       <!---->
        
-      <!---->
       <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1979,12 +1862,10 @@ exports[`with title and description > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -1997,12 +1878,10 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -2025,7 +1904,6 @@ exports[`with title and description > fixed array 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -2038,7 +1916,6 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -2075,10 +1952,8 @@ exports[`with title and description > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
           
           <!---->
            
@@ -2089,8 +1964,6 @@ exports[`with title and description > fixed array 1`] = `
         
         
         
-        
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2101,12 +1974,10 @@ exports[`with title and description > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -2119,12 +1990,10 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -2147,7 +2016,6 @@ exports[`with title and description > fixed array 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -2160,7 +2028,6 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -2198,10 +2065,8 @@ exports[`with title and description > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
           
           <!---->
            
@@ -2214,10 +2079,8 @@ exports[`with title and description > fixed array 1`] = `
         
         
         
-        
         <!---->
       </div>
-      
       
       <!---->
        
@@ -2226,7 +2089,6 @@ exports[`with title and description > fixed array 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -2271,7 +2133,6 @@ exports[`with title and description from both > array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -2279,12 +2140,10 @@ exports[`with title and description from both > array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2308,7 +2167,6 @@ exports[`with title and description from both > array 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -2323,10 +2181,8 @@ exports[`with title and description from both > array 1`] = `
       </div>
       
       
-      
       <!---->
        
-      <!---->
       <!---->
       <div
         class="layout svelte-1fixc4e"
@@ -2338,7 +2194,6 @@ exports[`with title and description from both > array 1`] = `
         
         <!---->
       </div>
-      
       
       <!---->
        
@@ -2358,7 +2213,6 @@ exports[`with title and description from both > array 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -2403,7 +2257,6 @@ exports[`with title and description from both > array icons 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -2411,12 +2264,10 @@ exports[`with title and description from both > array icons 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2440,7 +2291,6 @@ exports[`with title and description from both > array icons 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -2455,16 +2305,13 @@ exports[`with title and description from both > array icons 1`] = `
       </div>
       
       
-      
       <!---->
        
-      <!---->
       <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2477,12 +2324,10 @@ exports[`with title and description from both > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -2495,12 +2340,10 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -2523,7 +2366,6 @@ exports[`with title and description from both > array icons 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -2536,7 +2378,6 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -2573,14 +2414,11 @@ exports[`with title and description from both > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
           <!---->
            
-          <!---->
           <!---->
           <!---->
           <nav
@@ -2643,7 +2481,6 @@ exports[`with title and description from both > array icons 1`] = `
           </nav>
           
           
-          
           <!---->
           <!---->
         </div>
@@ -2651,8 +2488,6 @@ exports[`with title and description from both > array icons 1`] = `
         
         
         
-        
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2663,12 +2498,10 @@ exports[`with title and description from both > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -2681,12 +2514,10 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -2709,7 +2540,6 @@ exports[`with title and description from both > array icons 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -2722,7 +2552,6 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -2759,14 +2588,11 @@ exports[`with title and description from both > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
           <!---->
            
-          <!---->
           <!---->
           <!---->
           <nav
@@ -2829,7 +2655,6 @@ exports[`with title and description from both > array icons 1`] = `
           </nav>
           
           
-          
           <!---->
           <!---->
         </div>
@@ -2839,10 +2664,8 @@ exports[`with title and description from both > array icons 1`] = `
         
         
         
-        
         <!---->
       </div>
-      
       
       <!---->
        
@@ -2862,7 +2685,6 @@ exports[`with title and description from both > array icons 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -2907,7 +2729,6 @@ exports[`with title and description from both > checkboxes 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="field border svelte-1fixc4e"
       data-layout="field"
@@ -2915,12 +2736,10 @@ exports[`with title and description from both > checkboxes 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2946,7 +2765,6 @@ exports[`with title and description from both > checkboxes 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -2959,7 +2777,6 @@ exports[`with title and description from both > checkboxes 1`] = `
         <!---->
         <!---->
       </div>
-      
       
       
       <!---->
@@ -3033,7 +2850,6 @@ exports[`with title and description from both > checkboxes 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -3078,7 +2894,6 @@ exports[`with title and description from both > fixed array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -3086,12 +2901,10 @@ exports[`with title and description from both > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3115,7 +2928,6 @@ exports[`with title and description from both > fixed array 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -3130,16 +2942,13 @@ exports[`with title and description from both > fixed array 1`] = `
       </div>
       
       
-      
       <!---->
        
-      <!---->
       <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3152,12 +2961,10 @@ exports[`with title and description from both > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -3170,12 +2977,10 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -3198,7 +3003,6 @@ exports[`with title and description from both > fixed array 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -3211,7 +3015,6 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -3248,10 +3051,8 @@ exports[`with title and description from both > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
           
           <!---->
            
@@ -3262,8 +3063,6 @@ exports[`with title and description from both > fixed array 1`] = `
         
         
         
-        
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3274,12 +3073,10 @@ exports[`with title and description from both > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -3292,12 +3089,10 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -3320,7 +3115,6 @@ exports[`with title and description from both > fixed array 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -3333,7 +3127,6 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -3371,10 +3164,8 @@ exports[`with title and description from both > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
           
           <!---->
            
@@ -3387,10 +3178,8 @@ exports[`with title and description from both > fixed array 1`] = `
         
         
         
-        
         <!---->
       </div>
-      
       
       <!---->
        
@@ -3399,7 +3188,6 @@ exports[`with title and description from both > fixed array 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -3444,7 +3232,6 @@ exports[`with title and description from uiSchema > array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -3452,12 +3239,10 @@ exports[`with title and description from uiSchema > array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3481,7 +3266,6 @@ exports[`with title and description from uiSchema > array 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -3496,10 +3280,8 @@ exports[`with title and description from uiSchema > array 1`] = `
       </div>
       
       
-      
       <!---->
        
-      <!---->
       <!---->
       <div
         class="layout svelte-1fixc4e"
@@ -3511,7 +3293,6 @@ exports[`with title and description from uiSchema > array 1`] = `
         
         <!---->
       </div>
-      
       
       <!---->
        
@@ -3531,7 +3312,6 @@ exports[`with title and description from uiSchema > array 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -3576,7 +3356,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -3584,12 +3363,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3613,7 +3390,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -3628,16 +3404,13 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       </div>
       
       
-      
       <!---->
        
-      <!---->
       <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3650,12 +3423,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -3668,12 +3439,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -3696,7 +3465,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -3709,7 +3477,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -3746,14 +3513,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
           <!---->
            
-          <!---->
           <!---->
           <!---->
           <nav
@@ -3816,7 +3580,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           </nav>
           
           
-          
           <!---->
           <!---->
         </div>
@@ -3824,8 +3587,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         
         
         
-        
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3836,12 +3597,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -3854,12 +3613,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -3882,7 +3639,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -3895,7 +3651,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -3932,14 +3687,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
           <!---->
            
-          <!---->
           <!---->
           <!---->
           <nav
@@ -4002,7 +3754,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
           </nav>
           
           
-          
           <!---->
           <!---->
         </div>
@@ -4012,10 +3763,8 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         
         
         
-        
         <!---->
       </div>
-      
       
       <!---->
        
@@ -4035,7 +3784,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -4080,7 +3828,6 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="field border svelte-1fixc4e"
       data-layout="field"
@@ -4088,12 +3835,10 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4119,7 +3864,6 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -4132,7 +3876,6 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
         <!---->
         <!---->
       </div>
-      
       
       
       <!---->
@@ -4206,7 +3949,6 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -4251,7 +3993,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -4259,12 +4000,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-field-meta"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4288,7 +4027,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         </div>
         
         
-        
         <!---->
          
         <!---->
@@ -4303,16 +4041,13 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       </div>
       
       
-      
       <!---->
        
-      <!---->
       <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4325,12 +4060,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -4343,12 +4076,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -4371,7 +4102,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -4384,7 +4114,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -4421,10 +4150,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
           
           <!---->
            
@@ -4435,8 +4162,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         
         
         
-        
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4447,12 +4172,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -4465,12 +4188,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <!---->
-              <!---->
               <div
                 class="layout svelte-1fixc4e"
                 data-layout="field-meta"
               >
-                <!---->
                 <!---->
                 <!---->
                 <!---->
@@ -4493,7 +4214,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 </div>
                 
                 
-                
                 <!---->
                  
                 <!---->
@@ -4506,7 +4226,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <!---->
               </div>
-              
               
               
               <!---->
@@ -4544,10 +4263,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
           
           <!---->
            
@@ -4560,10 +4277,8 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         
         
         
-        
         <!---->
       </div>
-      
       
       <!---->
        
@@ -4572,7 +4287,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -4617,7 +4331,6 @@ exports[`with title and description with global label off > array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -4625,7 +4338,6 @@ exports[`with title and description with global label off > array 1`] = `
       <!---->
       <!---->
        
-      <!---->
       <!---->
       <div
         class="layout svelte-1fixc4e"
@@ -4637,7 +4349,6 @@ exports[`with title and description with global label off > array 1`] = `
         
         <!---->
       </div>
-      
       
       <!---->
        
@@ -4657,7 +4368,6 @@ exports[`with title and description with global label off > array 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -4702,7 +4412,6 @@ exports[`with title and description with global label off > array icons 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -4711,12 +4420,10 @@ exports[`with title and description with global label off > array icons 1`] = `
       <!---->
        
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4729,12 +4436,10 @@ exports[`with title and description with global label off > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -4779,14 +4484,11 @@ exports[`with title and description with global label off > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
           <!---->
            
-          <!---->
           <!---->
           <!---->
           <nav
@@ -4849,7 +4551,6 @@ exports[`with title and description with global label off > array icons 1`] = `
           </nav>
           
           
-          
           <!---->
           <!---->
         </div>
@@ -4857,8 +4558,6 @@ exports[`with title and description with global label off > array icons 1`] = `
         
         
         
-        
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4869,12 +4568,10 @@ exports[`with title and description with global label off > array icons 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -4919,14 +4616,11 @@ exports[`with title and description with global label off > array icons 1`] = `
             
             
             
-            
             <!---->
           </div>
           
-          
           <!---->
            
-          <!---->
           <!---->
           <!---->
           <nav
@@ -4989,7 +4683,6 @@ exports[`with title and description with global label off > array icons 1`] = `
           </nav>
           
           
-          
           <!---->
           <!---->
         </div>
@@ -4999,10 +4692,8 @@ exports[`with title and description with global label off > array icons 1`] = `
         
         
         
-        
         <!---->
       </div>
-      
       
       <!---->
        
@@ -5022,7 +4713,6 @@ exports[`with title and description with global label off > array icons 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
@@ -5064,7 +4754,6 @@ exports[`with title and description with global label off > checkboxes 1`] = `
     />
     <!---->
      
-    <!---->
     <!---->
     <!---->
     <!---->
@@ -5147,7 +4836,6 @@ exports[`with title and description with global label off > checkboxes 1`] = `
     
     
     
-    
     <!---->
     <!---->
      
@@ -5189,7 +4877,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
     <!---->
     <!---->
     <!---->
-    <!---->
     <div
       class="layout svelte-1fixc4e"
       data-layout="array-field"
@@ -5198,12 +4885,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
       <!---->
        
       <!---->
-      <!---->
       <div
         class="layout svelte-1fixc4e"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5216,12 +4901,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -5266,10 +4949,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
           
           <!---->
            
@@ -5280,8 +4961,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
         
         
         
-        
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5292,12 +4971,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
         >
           <!---->
           <!---->
-          <!---->
           <div
             class="layout svelte-1fixc4e"
             data-layout="array-item-content"
           >
-            <!---->
             <!---->
             <!---->
             <!---->
@@ -5343,10 +5020,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
             
             
             
-            
             <!---->
           </div>
-          
           
           <!---->
            
@@ -5359,10 +5034,8 @@ exports[`with title and description with global label off > fixed array 1`] = `
         
         
         
-        
         <!---->
       </div>
-      
       
       <!---->
        
@@ -5371,7 +5044,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
       <!---->
       <!---->
     </div>
-    
     
     
     
