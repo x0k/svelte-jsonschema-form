@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-  import { noop } from '@sjsf/form/lib/function';
+  import type { Snippet } from "svelte";
+  import { noop } from "@sjsf/form/lib/function";
 
   import type { Node } from "$lib/builder/index.js";
 
@@ -9,7 +9,7 @@
   interface Props {
     createNode: () => Node;
     title: string;
-    icon: Snippet
+    icon: Snippet;
   }
 
   const { createNode, title, icon }: Props = $props();
@@ -19,17 +19,17 @@
     unmount: noop,
     get node() {
       return createNode();
-    },
+    }
   });
 </script>
 
 <div
   class={[
-    "flex items-center gap-2 p-2 rounded-md cursor-grab border hover:bg-accent",
-    draggable.isDragged && "bg-accent",
+    "flex cursor-grab items-center gap-2 rounded-md border bg-background p-2 select-none hover:bg-accent",
+    draggable.isDragged && "bg-accent"
   ]}
   {@attach draggable.attach}
 >
-   {@render icon()}
+  {@render icon()}
   <span class="text-sm font-medium text-foreground">{title}</span>
 </div>
