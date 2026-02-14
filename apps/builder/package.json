@@ -10,12 +10,12 @@
 		"check": "svelte-check --tsconfig tsconfig.json"
 	},
 	"devDependencies": {
-		"@iconify-json/devicon-plain": "^1.2.52",
+		"@iconify-json/devicon-plain": "^1.2.53",
 		"@iconify-json/mdi": "^1.2.3",
-		"@internationalized/date": "^3.10.1",
+		"@internationalized/date": "^3.11.0",
 		"@lucide/svelte": "catalog:",
 		"@tailwindcss/vite": "catalog:",
-		"beercss": "^4.0.2",
+		"beercss": "^4.0.7",
 		"bits-ui": "catalog:",
 		"clsx": "^2.1.1",
 		"json-schema-to-ts": "^3.1.1",
@@ -28,11 +28,11 @@
 		"unplugin-icons": "^23.0.1"
 	},
 	"dependencies": {
-		"@dnd-kit/collision": "^0.2.3",
-		"@dnd-kit/dom": "^0.2.3",
+		"@dnd-kit/collision": "^0.2.4",
+		"@dnd-kit/dom": "^0.2.4",
 		"@picocss/pico": "^2.1.1",
-		"@shikijs/langs": "^3.21.0",
-		"@shikijs/themes": "^3.21.0",
+		"@shikijs/langs": "^3.22.0",
+		"@shikijs/themes": "^3.22.0",
 		"@sjsf-lab/beercss-theme": "workspace:*",
 		"@sjsf-lab/svar-theme": "workspace:*",
 		"@sjsf/ajv8-validator": "workspace:*",
@@ -56,6 +56,6 @@
 		"json-schema-to-valibot": "^0.3.0",
 		"json-schema-to-zod": "^2.7.0",
 		"lz-string": "^1.5.0",
-		"shiki": "^3.21.0"
+		"shiki": "^3.22.0"
 	}
 }

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { HTMLAttributes } from "svelte/elements";
   import { BitsConfig } from "bits-ui";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
@@ -535,9 +536,11 @@
   <Panel bind:layout />
 </div>
 
-{#snippet gripHeader(tile: Tiles["tabs"], index: number)}
-  <Grip />
-  {tile.titles[index]}
+{#snippet gripHeader(props: HTMLAttributes<HTMLElement>, tile: Tiles["tabs"], index: number)}
+  <div {...props}>
+    <Grip />
+    {tile.titles[index]}
+  </div>
 {/snippet}
 
 {#snippet smartActions(tile: Tiles["tabs"])}
