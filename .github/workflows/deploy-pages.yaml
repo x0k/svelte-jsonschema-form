@@ -1,6 +1,7 @@
 name: Deploy to GitHub Pages
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
   workflow_dispatch: # Adds the manual trigger
@@ -11,7 +12,7 @@ permissions:
 
 jobs:
   build_v1:
-    if: github.event_name == 'workflow_dispatch' || github.actor == 'github-actions[bot]'
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.user.login == 'github-actions[bot]')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout v1 branch
@@ -51,7 +52,7 @@ jobs:
             ./apps/playground/dist
 
   build_v2:
-    if: github.event_name == 'workflow_dispatch' || github.actor == 'github-actions[bot]'
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.user.login == 'github-actions[bot]')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout v2 branch
@@ -91,7 +92,7 @@ jobs:
             ./apps/playground2/dist
             ./apps/builder/dist
   build_v3:
-    if: github.event_name == 'workflow_dispatch' || github.actor == 'github-actions[bot]'
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.user.login == 'github-actions[bot]')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code repository
