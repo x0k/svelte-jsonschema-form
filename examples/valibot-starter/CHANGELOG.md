@@ -1,5 +1,14 @@
 # valibot-starter
 
+## 0.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@3.2.2
+  - @sjsf/form@3.2.2
+  - @sjsf/valibot-validator@3.2.2
+
 ## 0.0.9
 
 ### Patch Changes
