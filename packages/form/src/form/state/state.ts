@@ -11,10 +11,7 @@ import {
   type UiSchema,
   type UiSchemaRoot,
 } from "../ui-schema.js";
-import type {
-  FormSubmission,
-  FieldsValidation,
-} from "../errors.js";
+import type { FormSubmission, FieldsValidation } from "../errors.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Theme } from "../components.js";
@@ -48,10 +45,11 @@ import {
   FORM_ID_PREFIX,
   FormErrors,
   FORM_RETRIEVED_SCHEMA,
+  FORM_SCHEMAS_CACHE,
 } from "../internals.js";
 import type { FieldPath, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
-import type { FormValidator } from '../validator.js';
+import type { FormValidator } from "../validator.js";
 
 export interface FormState<T> {
   readonly submission: FormSubmission<T>;
@@ -91,6 +89,7 @@ export interface FormState<T> {
   readonly [FORM_RESOLVER]: ResolveFieldType;
   readonly [FORM_THEME]: Theme;
   readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<FieldPath, FieldState>;
+  readonly [FORM_SCHEMAS_CACHE]: WeakMap<FieldPath, Schema>;
 }
 
 export function getFormContext<T>(): FormState<T> {
