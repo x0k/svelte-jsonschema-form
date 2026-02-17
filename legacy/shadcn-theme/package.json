@@ -72,11 +72,11 @@
 		}
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^3.2.2"
+		"@sjsf/basic-theme": "workspace:^3.3.0"
 	},
 	"peerDependencies": {
 		"@internationalized/date": "^3.8.1",
-		"@sjsf/form": "workspace:^3.2.2",
+		"@sjsf/form": "workspace:^3.3.0",
 		"bits-ui": "^2.2.0",
 		"clsx": "^2.1.0",
 		"@lucide/svelte": "^0.501.0",
