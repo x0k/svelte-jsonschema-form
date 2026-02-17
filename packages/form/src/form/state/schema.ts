@@ -57,7 +57,6 @@ export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
 /**
  * @query
  */
-// TODO: Remove in v4
 export function retrieveSchema<T>(
   ctx: FormState<T>,
   schema: Schema,
