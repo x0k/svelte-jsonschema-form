@@ -312,14 +312,16 @@
       const tiles = new Array<Split.SplitTileOptions>(2);
       tiles[1 - offset] = { tile: pivot, constraints };
       tiles[offset] = { tile: adjacent, constraints };
-      ctx.replace(
-        parent && parent.children.length > 1 ? pivot : parent,
-        Split.create({
-          direction: type,
-          children: tiles,
-          gapPx,
-        }),
-      );
+      const split = Split.create({
+        direction: type,
+        children: tiles,
+        gapPx,
+      });
+      if (parent) {
+        ctx.replace(parent.children.length > 1 ? pivot : parent, split);
+      } else {
+        layout = split
+      }
     },
   });
   const gapPx = 8;
