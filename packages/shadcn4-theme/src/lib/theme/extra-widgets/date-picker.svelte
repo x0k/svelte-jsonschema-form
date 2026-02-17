@@ -113,13 +113,7 @@
 	<PopoverContent>
 		<Calendar
 			bind:value={
-				() => parsedDate,
-				(v) => {
-					if (parsedDate === v) {
-						return;
-					}
-					value = v?.toDate(getLocalTimeZone()).toLocaleDateString('en-CA');
-				}
+				() => parsedDate, (v) => (value = v?.toDate(getLocalTimeZone()).toLocaleDateString('en-CA'))
 			}
 			{...attributes}
 			type="single"
