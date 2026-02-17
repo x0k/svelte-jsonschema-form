@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 3.3.0
+
+### Minor Changes
+
+- Add `getStableConfig` form method. ([#323](https://github.com/x0k/svelte-jsonschema-form/pull/323))
+
 ## 3.2.2
 
 ## 3.2.1
