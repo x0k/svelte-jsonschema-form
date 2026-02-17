@@ -30,6 +30,7 @@ import {
   FIELD_CHANGED,
   getChildPath,
   type FieldErrors,
+  getStableConfig,
 } from "@/form/index.js";
 
 import { titleWithIndex, type ItemTitle } from "./model.js";
@@ -226,7 +227,7 @@ export function createArrayContext<T>({
     },
     itemConfig(config, item, index) {
       const schema = retrieveSchema(ctx, itemSchema, item);
-      return {
+      return getStableConfig(ctx, {
         path: getChildPath(ctx, config.path, index),
         title: items.itemTitle(
           itemUiTitle ?? schema.title ?? config.title,
@@ -237,7 +238,7 @@ export function createArrayContext<T>({
         schema,
         uiSchema: itemUiSchema,
         required: !isSchemaNullable(schema),
-      };
+      });
     },
   };
 }
@@ -346,7 +347,7 @@ export function createTupleContext<T>({
             ? config.uiSchema.items[index]
             : config.uiSchema.items
       );
-      return {
+      return getStableConfig(ctx, {
         path: getChildPath(ctx, config.path, index),
         title: items.itemTitle(
           uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
@@ -357,7 +358,7 @@ export function createTupleContext<T>({
         schema,
         uiSchema,
         required: !isSchemaNullable(schema),
-      };
+      });
     },
   };
 }

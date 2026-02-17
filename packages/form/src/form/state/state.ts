@@ -45,11 +45,12 @@ import {
   FORM_ID_PREFIX,
   FormErrors,
   FORM_RETRIEVED_SCHEMA,
-  FORM_SCHEMAS_CACHE,
+  FORM_CONFIGS_CACHE,
 } from "../internals.js";
 import type { FieldPath, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
 import type { FormValidator } from "../validator.js";
+import type { Config } from "../config.js";
 
 export interface FormState<T> {
   readonly submission: FormSubmission<T>;
@@ -89,7 +90,7 @@ export interface FormState<T> {
   readonly [FORM_RESOLVER]: ResolveFieldType;
   readonly [FORM_THEME]: Theme;
   readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<FieldPath, FieldState>;
-  readonly [FORM_SCHEMAS_CACHE]: WeakMap<FieldPath, Schema>;
+  readonly [FORM_CONFIGS_CACHE]: WeakMap<FieldPath, Config>;
 }
 
 export function getFormContext<T>(): FormState<T> {

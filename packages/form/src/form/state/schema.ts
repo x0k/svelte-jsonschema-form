@@ -14,12 +14,9 @@ import {
   FORM_MARK_SCHEMA_CHANGE,
   FORM_MERGER,
   FORM_SCHEMA,
-  FORM_SCHEMAS_CACHE,
   FORM_VALIDATOR,
-  internalGetStableSchema,
 } from "../internals.js";
 import type { FormState } from "./state.js";
-import type { FieldPath } from "../id.js";
 
 /**
  * @query
@@ -59,7 +56,6 @@ export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
 
 /**
  * @query
- * @deprecated use `retrieveStableSchema` instead
  */
 // TODO: Remove in v4
 export function retrieveSchema<T>(
@@ -75,23 +71,6 @@ export function retrieveSchema<T>(
     ctx[FORM_SCHEMA],
     formData,
     resolveAnyOfOrOneOfRefs
-  );
-}
-
-/**
- * @query
- */
-export function retrieveStableSchema<T>(
-  ctx: FormState<T>,
-  path: FieldPath,
-  schema: Schema,
-  formData: SchemaValue | undefined,
-  resolveAnyOfOrOneOfRefs?: boolean
-) {
-  return internalGetStableSchema(
-    ctx[FORM_SCHEMAS_CACHE],
-    path,
-    retrieveSchema(ctx, schema, formData, resolveAnyOfOrOneOfRefs)
   );
 }
 

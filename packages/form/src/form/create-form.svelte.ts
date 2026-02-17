@@ -89,8 +89,7 @@ import {
   FORM_ID_PREFIX,
   FormErrors,
   FORM_RETRIEVED_SCHEMA,
-  internalGetStableSchema,
-  FORM_SCHEMAS_CACHE,
+  FORM_CONFIGS_CACHE,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
 
@@ -320,19 +319,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       valueRef,
     })
   );
-  const schemasCache = new WeakMap<FieldPath, Schema>();
   // TODO: Move to `Content` component in v4
   const retrievedSchema = $derived(
-    internalGetStableSchema(
-      schemasCache,
-      rootPath,
-      retrieveSchema(
-        validator,
-        merger,
-        options.schema,
-        options.schema,
-        valueRef.current
-      )
+    retrieveSchema(
+      validator,
+      merger,
+      options.schema,
+      options.schema,
+      valueRef.current
     )
   );
   const idCache = new WeakMap<FieldPath, Id>();
@@ -522,6 +516,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     reset,
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
+    [FORM_CONFIGS_CACHE]: new WeakMap(),
     get [FORM_ID_PREFIX]() {
       return idPrefix;
     },
@@ -557,9 +552,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     get [FORM_RETRIEVED_SCHEMA]() {
       return retrievedSchema;
-    },
-    get [FORM_SCHEMAS_CACHE]() {
-      return schemasCache;
     },
     get [FORM_UI_SCHEMA_ROOT]() {
       return uiSchemaRoot;

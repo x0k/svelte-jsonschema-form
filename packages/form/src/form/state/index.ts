@@ -10,3 +10,4 @@ export * from "./files.js";
 export * from "./components.js";
 export * from "./array.js";
 export * from "./value.svelte.js";
+export * from "./config.js";
