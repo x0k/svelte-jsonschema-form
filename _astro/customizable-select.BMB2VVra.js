@@ -1,0 +1,1 @@
+import{G as a,L as i,v as r,r as o,H as p,A as d}from"./render.D5KaOs_C.js";let e=null;function f(){if(e===null){var t=d("select");t.innerHTML="<option><span>t</span></option>",e=t.firstChild?.firstChild?.nodeType===1}return e}function u(t,s){var n=r;f()||(a(!1),t.textContent="",t.append(i("")));try{s()}finally{n&&(r?o(t):(a(!0),p(t)))}}export{u as c};
