@@ -89,6 +89,7 @@ import {
   FORM_ID_PREFIX,
   FormErrors,
   FORM_RETRIEVED_SCHEMA,
+  FORM_CONFIGS_CACHE,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
 
@@ -167,11 +168,11 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * Enabling this option can reduce the number of irrelevant validation errors
    * (for example, when using `dependencies` keyword) by providing the validator
    * with a trimmed JSON Schema.
-   * 
+   *
    * However, this makes the schema reference unstable, which leads to cache misses
    * when using validators that rely on `WeakMap`-based memoization.
    * If this is a concern for your use case, use a validator with hash-based memoization instead.
-   * 
+   *
    * @deprecated If you need this kind of functionality, use the `retrieveSchema` function from `@sjsf/form/core` in your validator extension.
    */
   validateByRetrievedSchema?: boolean;
@@ -318,7 +319,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       valueRef,
     })
   );
-  // TODO: Remove in v4
+  // TODO: Move to `Content` component in v4
   const retrievedSchema = $derived(
     retrieveSchema(
       validator,
@@ -398,9 +399,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       setFieldState(formState, rootPath, FIELD_SUBMITTED);
       return await validateForm(
         signal,
-        options.validateByRetrievedSchema
-          ? retrievedSchema
-          : options.schema,
+        options.validateByRetrievedSchema ? retrievedSchema : options.schema,
         $state.snapshot(valueRef.current)
       );
     },
@@ -517,6 +516,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     reset,
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
+    [FORM_CONFIGS_CACHE]: new WeakMap(),
     get [FORM_ID_PREFIX]() {
       return idPrefix;
     },

@@ -24,7 +24,7 @@ export const FORM_FIELDS_VALIDATION_MODE = Symbol(
 export const FORM_SCHEMA = Symbol("form-schema");
 // TODO: Remove in v4
 /** @deprecated */
-export const FORM_RETRIEVED_SCHEMA = Symbol("form-retrieved-schema")
+export const FORM_RETRIEVED_SCHEMA = Symbol("form-retrieved-schema");
 export const FORM_ROOT_PATH = Symbol("form-root-path");
 export const FORM_UI_SCHEMA_ROOT = Symbol("form-ui-schema-root");
 export const FORM_UI_SCHEMA = Symbol("form-ui-schema");
@@ -40,6 +40,7 @@ export const FORM_TRANSLATE = Symbol("form-translate");
 export const FORM_RESOLVER = Symbol("form-resolver");
 export const FORM_THEME = Symbol("form-theme");
 export const FORM_FIELDS_STATE_MAP = Symbol("form-fields-state-map");
+export const FORM_CONFIGS_CACHE = Symbol("form-schemas-cache");
 
 export function internalRegisterFieldPath(
   ref: PathTrieRef<FieldPath>,

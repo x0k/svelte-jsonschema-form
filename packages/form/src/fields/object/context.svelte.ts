@@ -33,6 +33,7 @@ import {
   FIELD_CHANGED,
   getChildPath,
   type FieldErrors,
+  getStableConfig,
 } from "@/form/index.js";
 
 import {
@@ -202,13 +203,13 @@ export function createObjectContext<T>({
           ? config.uiSchema.additionalProperties
           : (config.uiSchema[property] as UiSchemaDefinition | undefined)
       );
-      return {
+      return getStableConfig(ctx, {
         path: getChildPath(ctx, config.path, property),
         title: uiTitleOption(ctx, uiSchema) ?? schema.title ?? property,
         schema,
         uiSchema,
         required: requiredProperties.has(property),
-      };
+      });
     },
     addProperty() {
       let val = value();
