@@ -114,6 +114,7 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [GenericExample.LabelOnLeft]: () => import("./examples/label-on-left"),
   [GenericExample.Draft2020]: () => import("./examples/draft-2020-12"),
   [GenericExample.MultiStep]: () => import("./examples/multi-step"),
+  [GenericExample.EnumWidgets]: () => import("./examples/enum-widgets"),
   [SvelteKitExample.FormActionsWithoutJs]: () =>
     import("./examples/form-actions-without-js"),
   [SvelteKitExample.MultiStepNativeForm]: () =>
