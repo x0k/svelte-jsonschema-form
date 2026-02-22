@@ -1,5 +1,11 @@
 # docs
 
+## 1.13.2
+
+### Patch Changes
+
+- Add `enum-widgets` example ([#325](https://github.com/x0k/svelte-jsonschema-form/pull/325))
+
 ## 1.13.1
 
 ### Patch Changes
