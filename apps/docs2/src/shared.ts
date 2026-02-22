@@ -86,6 +86,7 @@ export enum GenericExample {
   LabelOnLeft = "label-on-left",
   Draft2020 = "draft-2020-12",
   MultiStep = "multi-step",
+  EnumWidgets = "enum-widgets",
 }
 
 export const GENERIC_EXAMPLES = Object.values(GenericExample);
