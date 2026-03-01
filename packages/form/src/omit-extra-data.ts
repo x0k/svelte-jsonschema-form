@@ -220,11 +220,10 @@ export function omitExtraData(
     source: SchemaValue | undefined,
     target?: SchemaValue
   ): SchemaValue | undefined {
-    if (
-      source === undefined ||
-      typeof schema === "boolean" ||
-      isRecordEmpty(schema)
-    ) {
+    if (source === undefined || schema === false) {
+      return undefined;
+    }
+    if (schema === true || isRecordEmpty(schema)) {
       return source;
     }
     const { $ref: ref, allOf } = schema;
