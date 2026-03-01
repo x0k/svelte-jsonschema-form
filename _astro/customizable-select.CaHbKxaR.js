@@ -1,1 +1,0 @@
-import{D as a,$ as i,w as r,r as o,B as p,R as d,a0 as l}from"./render.DfiHKXfk.js";let e=null;function f(){if(e===null){var t=d("select");t.innerHTML=l("<option><span>t</span></option>"),e=t.firstChild?.firstChild?.nodeType===1}return e}function _(t,s){var n=r;f()||(a(!1),t.textContent="",t.append(i("")));try{s()}finally{n&&(r?o(t):(a(!0),p(t)))}}export{_ as c};
