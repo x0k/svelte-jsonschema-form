@@ -262,7 +262,6 @@ exports[`object fields > additionalProperties 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -540,7 +539,6 @@ exports[`object fields > additionalProperties with error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -713,7 +711,6 @@ exports[`object fields > has errors 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -974,7 +971,6 @@ exports[`object fields > object 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -1570,7 +1566,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -2756,7 +2751,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -3020,7 +3014,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -3322,7 +3315,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -3637,7 +3629,6 @@ exports[`object fields > with title and description > object 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -3939,7 +3930,6 @@ exports[`object fields > with title and description > show add button and fields
   </form>
   
   
-  
 </div>
 `;
 
@@ -4239,7 +4229,6 @@ exports[`object fields > with title and description from both > additionalProper
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -4554,7 +4543,6 @@ exports[`object fields > with title and description from both > object 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -4854,7 +4842,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -5169,7 +5156,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
   </form>
   
   
-  
 </div>
 `;
 
@@ -5471,7 +5457,6 @@ exports[`object fields > with title and description from uiSchema > show add but
   </form>
   
   
-  
 </div>
 `;
 
@@ -5676,7 +5661,6 @@ exports[`object fields > with title and description with global label off > addi
   </form>
   
   
-  
 </div>
 `;
 
@@ -5877,7 +5861,6 @@ exports[`object fields > with title and description with global label off > obje
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -6082,7 +6065,6 @@ exports[`object fields > with title and description with global label off > show
     <!---->
     <!---->
   </form>
-  
   
   
 </div>

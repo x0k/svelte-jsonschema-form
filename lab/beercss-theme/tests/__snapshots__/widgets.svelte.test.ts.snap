@@ -80,7 +80,6 @@ exports[`widgets > checkbox > snapshots > disabled 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -176,7 +175,6 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -256,7 +254,6 @@ exports[`widgets > checkbox > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -339,7 +336,6 @@ exports[`widgets > checkbox > snapshots > readonly 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -481,7 +477,6 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -634,7 +629,6 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -769,7 +763,6 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -912,7 +905,6 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -986,7 +978,6 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -1076,7 +1067,6 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -1148,7 +1138,6 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -1223,7 +1212,6 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -1305,7 +1293,6 @@ exports[`widgets > file > snapshots > disabled 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -1401,7 +1388,6 @@ exports[`widgets > file > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -1479,7 +1465,6 @@ exports[`widgets > file > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -1562,7 +1547,6 @@ exports[`widgets > file > snapshots > readonly 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -1643,7 +1627,6 @@ exports[`widgets > multiFile > snapshots > disabled 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -1740,7 +1723,6 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -1819,7 +1801,6 @@ exports[`widgets > multiFile > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -1903,7 +1884,6 @@ exports[`widgets > multiFile > snapshots > readonly 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -1982,7 +1962,6 @@ exports[`widgets > number > snapshots > disabled 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -2077,7 +2056,6 @@ exports[`widgets > number > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -2154,7 +2132,6 @@ exports[`widgets > number > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -2234,7 +2211,6 @@ exports[`widgets > number > snapshots > readonly 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -2376,7 +2352,6 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -2529,7 +2504,6 @@ exports[`widgets > radio > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -2664,7 +2638,6 @@ exports[`widgets > radio > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -2807,7 +2780,6 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -2888,7 +2860,6 @@ exports[`widgets > range > snapshots > disabled 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -2985,7 +2956,6 @@ exports[`widgets > range > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -3064,7 +3034,6 @@ exports[`widgets > range > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -3146,7 +3115,6 @@ exports[`widgets > range > snapshots > readonly 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -3249,7 +3217,6 @@ exports[`widgets > select > snapshots > disabled 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -3366,7 +3333,6 @@ exports[`widgets > select > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -3465,7 +3431,6 @@ exports[`widgets > select > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -3568,7 +3533,6 @@ exports[`widgets > select > snapshots > readonly 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -3652,7 +3616,6 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -3752,7 +3715,6 @@ exports[`widgets > switch > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -3834,7 +3796,6 @@ exports[`widgets > switch > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -3921,7 +3882,6 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -3999,7 +3959,6 @@ exports[`widgets > text > snapshots > disabled 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -4093,7 +4052,6 @@ exports[`widgets > text > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -4169,7 +4127,6 @@ exports[`widgets > text > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -4250,7 +4207,6 @@ exports[`widgets > text > snapshots > readonly 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -4323,7 +4279,6 @@ exports[`widgets > textarea > snapshots > disabled 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -4412,7 +4367,6 @@ exports[`widgets > textarea > snapshots > error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -4483,7 +4437,6 @@ exports[`widgets > textarea > snapshots > normal 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -4557,7 +4510,6 @@ exports[`widgets > textarea > snapshots > readonly 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>

@@ -84,7 +84,7 @@
 		"@types/pikaday": "^1.7.10",
 		"ajv": "catalog:",
 		"cally": "~0.9.2",
-		"daisyui": "^5.5.18",
+		"daisyui": "^5.5.19",
 		"globals": "catalog:",
 		"pikaday": "~1.8.2",
 		"svelte": "catalog:",

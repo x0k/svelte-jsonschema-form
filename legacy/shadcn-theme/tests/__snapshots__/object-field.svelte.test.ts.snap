@@ -298,7 +298,6 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -612,7 +611,6 @@ exports[`default-ui > object fields > additionalProperties with error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -803,7 +801,6 @@ exports[`default-ui > object fields > has errors 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -1095,7 +1092,6 @@ exports[`default-ui > object fields > object 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -2008,7 +2004,6 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -3792,7 +3787,6 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -4092,7 +4086,6 @@ exports[`default-ui > object fields > show add button and fields if additionalPr
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -4430,7 +4423,6 @@ exports[`default-ui > object fields > with title and description > additionalPro
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -4776,7 +4768,6 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
   </form>
   
   
-  
 </div>
 `;
 
@@ -5114,7 +5105,6 @@ exports[`default-ui > object fields > with title and description > show add butt
   </form>
   
   
-  
 </div>
 `;
 
@@ -5450,7 +5440,6 @@ exports[`default-ui > object fields > with title and description from both > add
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -5796,7 +5785,6 @@ exports[`default-ui > object fields > with title and description from both > obj
   </form>
   
   
-  
 </div>
 `;
 
@@ -6132,7 +6120,6 @@ exports[`default-ui > object fields > with title and description from uiSchema >
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -6478,7 +6465,6 @@ exports[`default-ui > object fields > with title and description from uiSchema >
   </form>
   
   
-  
 </div>
 `;
 
@@ -6816,7 +6802,6 @@ exports[`default-ui > object fields > with title and description from uiSchema >
   </form>
   
   
-  
 </div>
 `;
 
@@ -7039,7 +7024,6 @@ exports[`default-ui > object fields > with title and description with global lab
   </form>
   
   
-  
 </div>
 `;
 
@@ -7253,7 +7237,6 @@ exports[`default-ui > object fields > with title and description with global lab
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -7476,7 +7459,6 @@ exports[`default-ui > object fields > with title and description with global lab
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -7778,7 +7760,6 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -8094,7 +8075,6 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -8285,7 +8265,6 @@ exports[`new-york-ui > object fields > has errors 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -8577,7 +8556,6 @@ exports[`new-york-ui > object fields > object 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -9490,7 +9468,6 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -11274,7 +11251,6 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
   </form>
   
   
-  
 </div>
 `;
 
@@ -11574,7 +11550,6 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -11912,7 +11887,6 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -12258,7 +12232,6 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
   </form>
   
   
-  
 </div>
 `;
 
@@ -12596,7 +12569,6 @@ exports[`new-york-ui > object fields > with title and description > show add but
   </form>
   
   
-  
 </div>
 `;
 
@@ -12932,7 +12904,6 @@ exports[`new-york-ui > object fields > with title and description from both > ad
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -13278,7 +13249,6 @@ exports[`new-york-ui > object fields > with title and description from both > ob
   </form>
   
   
-  
 </div>
 `;
 
@@ -13614,7 +13584,6 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -13960,7 +13929,6 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
   </form>
   
   
-  
 </div>
 `;
 
@@ -14298,7 +14266,6 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
   </form>
   
   
-  
 </div>
 `;
 
@@ -14521,7 +14488,6 @@ exports[`new-york-ui > object fields > with title and description with global la
   </form>
   
   
-  
 </div>
 `;
 
@@ -14735,7 +14701,6 @@ exports[`new-york-ui > object fields > with title and description with global la
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
@@ -14958,7 +14923,6 @@ exports[`new-york-ui > object fields > with title and description with global la
     <!---->
     <!---->
   </form>
-  
   
   
 </div>
