@@ -1,4 +1,4 @@
-import { isObject } from "@/lib/object.js";
+import { isObject, isRecordEmpty } from "@/lib/object.js";
 import { isSchemaObject } from "@/lib/json-schema/index.js";
 import {
   getKnownProperties,
@@ -220,11 +220,12 @@ export function omitExtraData(
     source: SchemaValue | undefined,
     target?: SchemaValue
   ): SchemaValue | undefined {
-    if (source === undefined || schema === false) {
+    if (
+      source === undefined ||
+      typeof schema === "boolean" ||
+      isRecordEmpty(schema)
+    ) {
       return source;
-    }
-    if (schema === true) {
-      return target;
     }
     const { $ref: ref } = schema;
     if (ref !== undefined) {

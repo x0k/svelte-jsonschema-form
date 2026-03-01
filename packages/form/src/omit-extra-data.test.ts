@@ -1681,7 +1681,6 @@ describe("omitExtraData", () => {
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 describe("omitExtraData (RJSF tests)", () => {
-
   it("should omit fields not defined in the schema", () => {
     const schema: Schema = {
       type: "object",
@@ -1773,6 +1772,157 @@ describe("omitExtraData (RJSF tests)", () => {
 
     expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
       formData
+    );
+  });
+
+  it("should not omit additional properties when root schema has additionalProperties", () => {
+    const schema: Schema = {
+      type: "object",
+      additionalProperties: {
+        type: "string",
+      },
+    };
+    const formData = {
+      key1: "val1",
+      key2: "val2",
+    };
+
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
+      formData
+    );
+  });
+
+  it("should not omit additional properties within oneOf", () => {
+    validator = createValidator({
+      cases: [
+        {
+          schema: { type: "object", additionalProperties: { type: "string" } },
+          value: { key1: "val1", key2: "val2" },
+          result: true,
+        },
+      ],
+    });
+    const schema: Schema = {
+      oneOf: [
+        {
+          type: "object",
+          additionalProperties: {
+            type: "string",
+          },
+        },
+      ],
+    };
+    const formData = {
+      key1: "val1",
+      key2: "val2",
+    };
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
+      formData
+    );
+  });
+
+  it.only("should keep additional properties but strip extras from defined properties within oneOf", () => {
+    validator = createValidator({
+      cases: [
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  config: {
+                    type: "object",
+                    properties: { name: { type: "string" } },
+                  },
+                },
+                additionalProperties: true,
+              },
+              { anyOf: [{ required: ["config"] }] },
+            ],
+          },
+          value: {
+            config: { name: "test", extraField: "should be stripped" },
+            dynamicKey: "should be kept",
+          },
+          result: true,
+        },
+      ],
+    });
+    const schema: Schema = {
+      oneOf: [
+        {
+          type: "object",
+          properties: {
+            config: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+              },
+            },
+          },
+          additionalProperties: true,
+        },
+      ],
+    };
+    const formData = {
+      config: { name: "test", extraField: "should be stripped" },
+      dynamicKey: "should be kept",
+    };
+    const expectedFormData = {
+      config: { name: "test" },
+      dynamicKey: "should be kept",
+    };
+
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
+      expectedFormData
+    );
+  });
+
+  it("should strip extras from within additional property values with strict schemas", () => {
+    validator = createValidator({
+      cases: [
+        {
+          schema: {
+            type: "object",
+            additionalProperties: {
+              type: "object",
+              properties: { name: { type: "string" } },
+              additionalProperties: false,
+            },
+          },
+          value: {
+            server1: { name: "prod", secret: "oops" },
+            server2: { name: "staging" },
+          },
+          result: false,
+        },
+      ],
+    });
+    const schema: Schema = {
+      oneOf: [
+        {
+          type: "object",
+          additionalProperties: {
+            type: "object",
+            properties: {
+              name: { type: "string" },
+            },
+            additionalProperties: false,
+          },
+        },
+      ],
+    };
+    const formData = {
+      server1: { name: "prod", secret: "oops" },
+      server2: { name: "staging" },
+    };
+    const expectedFormData = {
+      server1: { name: "prod" },
+      server2: { name: "staging" },
+    };
+
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
+      expectedFormData
     );
   });
 
