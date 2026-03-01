@@ -99,7 +99,7 @@
 		"clsx": "^2.1.1",
 		"globals": "catalog:",
 		"svelte": "catalog:",
-		"tailwind-merge": "^3.4.0",
+		"tailwind-merge": "^3.5.0",
 		"tailwind-variants": "^3.2.2",
 		"tailwindcss": "catalog:",
 		"theme-testing": "workspace:*",
