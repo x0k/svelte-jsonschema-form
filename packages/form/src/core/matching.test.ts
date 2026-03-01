@@ -1121,4 +1121,70 @@ describe("oneOfMatchingOption", () => {
       )
     ).toEqual(1);
   });
+  it("should return -1 for unsuitable schemes", () => {
+    testValidator = createValidator({
+      cases: [
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: { discriminator: { const: "foo" } },
+                additionalProperties: true,
+              },
+              { anyOf: [{ required: ["discriminator"] }] },
+            ],
+          },
+          value: { discriminator: "bar", keep: false },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: { discriminator: { const: "bar" } },
+                additionalProperties: false,
+              },
+              { anyOf: [{ required: ["discriminator"] }] },
+            ],
+          },
+          value: { discriminator: "bar", keep: false },
+          result: false,
+        },
+      ],
+    });
+    const oneOf: Schema[] = [
+      {
+        type: "object",
+        properties: {
+          discriminator: { const: "foo" },
+        },
+        additionalProperties: true,
+      },
+      {
+        type: "object",
+        properties: {
+          discriminator: { const: "bar" },
+        },
+        additionalProperties: false,
+      },
+    ];
+    const schema: Schema = {
+      oneOf,
+    };
+    expect(
+      getClosestMatchingOption(
+        testValidator,
+        defaultMerger,
+        schema,
+        {
+          discriminator: "bar",
+          keep: false,
+        },
+        oneOf,
+        -1
+      )
+    ).toBe(-1);
+  });
 });

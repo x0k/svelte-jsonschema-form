@@ -2068,6 +2068,105 @@ describe("omitExtraData (RJSF tests)", () => {
     );
   });
 
+  it("should handle additional properties within oneOf", () => {
+    validator = createValidator({
+      cases: [
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: { discriminator: { const: "foo" } },
+                additionalProperties: true,
+              },
+              { anyOf: [{ required: ["discriminator"] }] },
+            ],
+          },
+          value: { discriminator: "foo", keep: true },
+          result: true,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: { discriminator: { const: "bar" } },
+                additionalProperties: true,
+              },
+              { anyOf: [{ required: ["discriminator"] }] },
+            ],
+          },
+          value: { discriminator: "foo", keep: true },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: { discriminator: { const: "foo" } },
+                additionalProperties: true,
+              },
+              { anyOf: [{ required: ["discriminator"] }] },
+            ],
+          },
+          value: { discriminator: "bar", keep: false },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: { discriminator: { const: "bar" } },
+                additionalProperties: true,
+              },
+              { anyOf: [{ required: ["discriminator"] }] },
+            ],
+          },
+          value: { discriminator: "bar", keep: false },
+          result: true,
+        },
+      ],
+    });
+    const schema: Schema = {
+      oneOf: [
+        {
+          type: "object",
+          properties: {
+            discriminator: { const: "foo" },
+          },
+          additionalProperties: true,
+        },
+        {
+          type: "object",
+          properties: {
+            discriminator: { const: "bar" },
+          },
+          additionalProperties: false,
+        },
+      ],
+    };
+
+    expect(
+      omitExtraData(validator, defaultMerger, schema, {
+        discriminator: "foo",
+        keep: true,
+      })
+    ).toEqual({
+      discriminator: "foo",
+      keep: true,
+    });
+    expect(
+      omitExtraData(validator, defaultMerger, schema, {
+        discriminator: "bar",
+        keep: false,
+      })
+    ).toEqual({
+      discriminator: "bar",
+    });
+  });
+
   it("No form data or RootSchema returns empty object", () => {
     const schema: Schema = {
       type: "object",

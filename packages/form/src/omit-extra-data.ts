@@ -155,7 +155,18 @@ export function omitExtraData(
       merger,
       rootSchema,
       source,
-      oneOf.map((d) => (isSchemaObject(d) ? d : d ? {} : { not: {} })),
+      oneOf.map((d) =>
+        isSchemaObject(d)
+          ? d.additionalProperties === false
+            ? {
+                ...d,
+                additionalProperties: true,
+              }
+            : d
+          : d
+            ? {}
+            : { not: {} }
+      ),
       0,
       getDiscriminatorFieldFromSchema(schema)
     );
