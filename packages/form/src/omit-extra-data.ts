@@ -1,4 +1,4 @@
-import { isObject } from "@/lib/object.js";
+import { isObject, isRecordEmpty } from "@/lib/object.js";
 import { isSchemaObject } from "@/lib/json-schema/index.js";
 import {
   getKnownProperties,
@@ -155,25 +155,22 @@ export function omitExtraData(
       merger,
       rootSchema,
       source,
-      oneOf.map((d) => (isSchemaObject(d) ? d : d ? {} : { not: {} })),
+      oneOf.map((d) =>
+        isSchemaObject(d)
+          ? d.additionalProperties === false
+            ? {
+                ...d,
+                additionalProperties: true,
+              }
+            : d
+          : d
+            ? {}
+            : { not: {} }
+      ),
       0,
       getDiscriminatorFieldFromSchema(schema)
     );
     return omit(oneOf[bestIndex]!, source, target);
-  }
-
-  function handleAllOf(
-    allOf: Schema["allOf"],
-    source: SchemaValue | undefined,
-    target: SchemaValue | undefined
-  ) {
-    if (!Array.isArray(allOf)) {
-      return target;
-    }
-    for (let i = 0; i < allOf.length; i++) {
-      target = omit(allOf[i]!, source, target);
-    }
-    return target;
   }
 
   function handleAnyOf(
@@ -192,7 +189,10 @@ export function omitExtraData(
           ? source.length === 0
           : Object.keys(source).length === 0))
     ) {
-      return handleAllOf(anyOf, source, target);
+      for (let i = 0; i < anyOf.length; i++) {
+        target = omit(anyOf[i]!, source, target);
+      }
+      return target;
     }
     return handleOneOf(anyOf, schema, source, target);
   }
@@ -220,24 +220,24 @@ export function omitExtraData(
     source: SchemaValue | undefined,
     target?: SchemaValue
   ): SchemaValue | undefined {
-    if (source === undefined || schema === false) {
+    if (
+      source === undefined ||
+      typeof schema === "boolean" ||
+      isRecordEmpty(schema)
+    ) {
       return source;
     }
-    if (schema === true) {
-      return target;
-    }
-    const { $ref: ref } = schema;
+    const { $ref: ref, allOf } = schema;
     if (ref !== undefined) {
       return omit(resolveRef(ref, rootSchema), source, target);
+    }
+    if (allOf) {
+      schema = merger.mergeAllOf(schema);
     }
     target = handleAnyOf(
       schema,
       source,
-      handleAllOf(
-        schema.allOf,
-        source,
-        handleOneOf(schema.oneOf, schema, source, target)
-      )
+      handleOneOf(schema.oneOf, schema, source, target)
     );
     const type = getSimpleSchemaType(schema);
     if (type === "object") {

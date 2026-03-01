@@ -649,6 +649,25 @@ describe("omitExtraData", () => {
     });
 
     it("should handle allOf", () => {
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { type: "object", properties: { age: { type: "number" } } },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                age: { type: "number" },
+              },
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         allOf: [
           {
@@ -832,6 +851,27 @@ describe("omitExtraData", () => {
 
   describe("allOf", () => {
     it("should handle allOf with property merging", () => {
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { type: "object", properties: { age: { type: "number" } } },
+                { type: "object", properties: { email: { type: "string" } } },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                age: { type: "number" },
+                email: { type: "string" },
+              },
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         allOf: [
           {
@@ -870,6 +910,46 @@ describe("omitExtraData", () => {
     });
 
     it("should handle allOf with nested object constraints", () => {
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    user: {
+                      type: "object",
+                      properties: { name: { type: "string" } },
+                    },
+                  },
+                },
+                {
+                  type: "object",
+                  properties: {
+                    user: {
+                      type: "object",
+                      properties: { age: { type: "number" } },
+                    },
+                  },
+                },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                user: {
+                  type: "object",
+                  properties: {
+                    name: { type: "string" },
+                    age: { type: "number" },
+                  },
+                },
+              },
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         allOf: [
           {
@@ -1271,6 +1351,40 @@ describe("omitExtraData", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                { type: "object", properties: { id: { type: "number" } } },
+                {
+                  anyOf: [
+                    {
+                      type: "object",
+                      properties: { name: { type: "string" } },
+                    },
+                    {
+                      type: "object",
+                      properties: { username: { type: "string" } },
+                    },
+                  ],
+                },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: { id: { type: "number" } },
+              anyOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                {
+                  type: "object",
+                  properties: { username: { type: "string" } },
+                },
+              ],
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         allOf: [
           {
@@ -1603,6 +1717,34 @@ describe("omitExtraData", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                { type: "object", properties: { type: { const: "user" } } },
+                {
+                  anyOf: [
+                    {
+                      type: "object",
+                      properties: { name: { type: "string" } },
+                    },
+                    { type: "object", properties: { id: { type: "number" } } },
+                  ],
+                },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: { type: { const: "user" } },
+              anyOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { type: "object", properties: { id: { type: "number" } } },
+              ],
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         oneOf: [
           {
@@ -1681,7 +1823,6 @@ describe("omitExtraData", () => {
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 describe("omitExtraData (RJSF tests)", () => {
-
   it("should omit fields not defined in the schema", () => {
     const schema: Schema = {
       type: "object",
@@ -1774,6 +1915,256 @@ describe("omitExtraData (RJSF tests)", () => {
     expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
       formData
     );
+  });
+
+  it("should not omit additional properties when root schema has additionalProperties", () => {
+    const schema: Schema = {
+      type: "object",
+      additionalProperties: {
+        type: "string",
+      },
+    };
+    const formData = {
+      key1: "val1",
+      key2: "val2",
+    };
+
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
+      formData
+    );
+  });
+
+  it("should not omit additional properties within oneOf", () => {
+    validator = createValidator({
+      cases: [
+        {
+          schema: { type: "object", additionalProperties: { type: "string" } },
+          value: { key1: "val1", key2: "val2" },
+          result: true,
+        },
+      ],
+    });
+    const schema: Schema = {
+      oneOf: [
+        {
+          type: "object",
+          additionalProperties: {
+            type: "string",
+          },
+        },
+      ],
+    };
+    const formData = {
+      key1: "val1",
+      key2: "val2",
+    };
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
+      formData
+    );
+  });
+
+  it("should keep additional properties but strip extras from defined properties within oneOf", () => {
+    validator = createValidator({
+      cases: [
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  config: {
+                    type: "object",
+                    properties: { name: { type: "string" } },
+                  },
+                },
+                additionalProperties: true,
+              },
+              { anyOf: [{ required: ["config"] }] },
+            ],
+          },
+          value: {
+            config: { name: "test", extraField: "should be stripped" },
+            dynamicKey: "should be kept",
+          },
+          result: true,
+        },
+      ],
+    });
+    const schema: Schema = {
+      oneOf: [
+        {
+          type: "object",
+          properties: {
+            config: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+              },
+            },
+          },
+          additionalProperties: true,
+        },
+      ],
+    };
+    const formData = {
+      config: { name: "test", extraField: "should be stripped" },
+      dynamicKey: "should be kept",
+    };
+    const expectedFormData = {
+      config: { name: "test" },
+      dynamicKey: "should be kept",
+    };
+
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
+      expectedFormData
+    );
+  });
+
+  it("should strip extras from within additional property values with strict schemas", () => {
+    validator = createValidator({
+      cases: [
+        {
+          schema: {
+            type: "object",
+            additionalProperties: {
+              type: "object",
+              properties: { name: { type: "string" } },
+              additionalProperties: false,
+            },
+          },
+          value: {
+            server1: { name: "prod", secret: "oops" },
+            server2: { name: "staging" },
+          },
+          result: false,
+        },
+      ],
+    });
+    const schema: Schema = {
+      oneOf: [
+        {
+          type: "object",
+          additionalProperties: {
+            type: "object",
+            properties: {
+              name: { type: "string" },
+            },
+            additionalProperties: false,
+          },
+        },
+      ],
+    };
+    const formData = {
+      server1: { name: "prod", secret: "oops" },
+      server2: { name: "staging" },
+    };
+    const expectedFormData = {
+      server1: { name: "prod" },
+      server2: { name: "staging" },
+    };
+
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
+      expectedFormData
+    );
+  });
+
+  it("should handle additional properties within oneOf", () => {
+    validator = createValidator({
+      cases: [
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: { discriminator: { const: "foo" } },
+                additionalProperties: true,
+              },
+              { anyOf: [{ required: ["discriminator"] }] },
+            ],
+          },
+          value: { discriminator: "foo", keep: true },
+          result: true,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: { discriminator: { const: "bar" } },
+                additionalProperties: true,
+              },
+              { anyOf: [{ required: ["discriminator"] }] },
+            ],
+          },
+          value: { discriminator: "foo", keep: true },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: { discriminator: { const: "foo" } },
+                additionalProperties: true,
+              },
+              { anyOf: [{ required: ["discriminator"] }] },
+            ],
+          },
+          value: { discriminator: "bar", keep: false },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: { discriminator: { const: "bar" } },
+                additionalProperties: true,
+              },
+              { anyOf: [{ required: ["discriminator"] }] },
+            ],
+          },
+          value: { discriminator: "bar", keep: false },
+          result: true,
+        },
+      ],
+    });
+    const schema: Schema = {
+      oneOf: [
+        {
+          type: "object",
+          properties: {
+            discriminator: { const: "foo" },
+          },
+          additionalProperties: true,
+        },
+        {
+          type: "object",
+          properties: {
+            discriminator: { const: "bar" },
+          },
+          additionalProperties: false,
+        },
+      ],
+    };
+
+    expect(
+      omitExtraData(validator, defaultMerger, schema, {
+        discriminator: "foo",
+        keep: true,
+      })
+    ).toEqual({
+      discriminator: "foo",
+      keep: true,
+    });
+    expect(
+      omitExtraData(validator, defaultMerger, schema, {
+        discriminator: "bar",
+        keep: false,
+      })
+    ).toEqual({
+      discriminator: "bar",
+    });
   });
 
   it("No form data or RootSchema returns empty object", () => {
