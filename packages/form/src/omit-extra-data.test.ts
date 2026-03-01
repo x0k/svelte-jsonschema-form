@@ -649,6 +649,25 @@ describe("omitExtraData", () => {
     });
 
     it("should handle allOf", () => {
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { type: "object", properties: { age: { type: "number" } } },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                age: { type: "number" },
+              },
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         allOf: [
           {
@@ -832,6 +851,27 @@ describe("omitExtraData", () => {
 
   describe("allOf", () => {
     it("should handle allOf with property merging", () => {
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { type: "object", properties: { age: { type: "number" } } },
+                { type: "object", properties: { email: { type: "string" } } },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                age: { type: "number" },
+                email: { type: "string" },
+              },
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         allOf: [
           {
@@ -870,6 +910,46 @@ describe("omitExtraData", () => {
     });
 
     it("should handle allOf with nested object constraints", () => {
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    user: {
+                      type: "object",
+                      properties: { name: { type: "string" } },
+                    },
+                  },
+                },
+                {
+                  type: "object",
+                  properties: {
+                    user: {
+                      type: "object",
+                      properties: { age: { type: "number" } },
+                    },
+                  },
+                },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: {
+                user: {
+                  type: "object",
+                  properties: {
+                    name: { type: "string" },
+                    age: { type: "number" },
+                  },
+                },
+              },
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         allOf: [
           {
@@ -1271,6 +1351,40 @@ describe("omitExtraData", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                { type: "object", properties: { id: { type: "number" } } },
+                {
+                  anyOf: [
+                    {
+                      type: "object",
+                      properties: { name: { type: "string" } },
+                    },
+                    {
+                      type: "object",
+                      properties: { username: { type: "string" } },
+                    },
+                  ],
+                },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: { id: { type: "number" } },
+              anyOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                {
+                  type: "object",
+                  properties: { username: { type: "string" } },
+                },
+              ],
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         allOf: [
           {
@@ -1603,6 +1717,34 @@ describe("omitExtraData", () => {
           },
         ],
       });
+      defaultMerger = createMerger({
+        allOfMerges: [
+          {
+            input: {
+              allOf: [
+                { type: "object", properties: { type: { const: "user" } } },
+                {
+                  anyOf: [
+                    {
+                      type: "object",
+                      properties: { name: { type: "string" } },
+                    },
+                    { type: "object", properties: { id: { type: "number" } } },
+                  ],
+                },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: { type: { const: "user" } },
+              anyOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { type: "object", properties: { id: { type: "number" } } },
+              ],
+            },
+          },
+        ],
+      });
       const schema: Schema = {
         oneOf: [
           {
@@ -1821,7 +1963,7 @@ describe("omitExtraData (RJSF tests)", () => {
     );
   });
 
-  it.only("should keep additional properties but strip extras from defined properties within oneOf", () => {
+  it("should keep additional properties but strip extras from defined properties within oneOf", () => {
     validator = createValidator({
       cases: [
         {

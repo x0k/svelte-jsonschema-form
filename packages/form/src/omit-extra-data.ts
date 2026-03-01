@@ -162,20 +162,6 @@ export function omitExtraData(
     return omit(oneOf[bestIndex]!, source, target);
   }
 
-  function handleAllOf(
-    allOf: Schema["allOf"],
-    source: SchemaValue | undefined,
-    target: SchemaValue | undefined
-  ) {
-    if (!Array.isArray(allOf)) {
-      return target;
-    }
-    for (let i = 0; i < allOf.length; i++) {
-      target = omit(allOf[i]!, source, target);
-    }
-    return target;
-  }
-
   function handleAnyOf(
     schema: Schema,
     source: SchemaValue | undefined,
@@ -192,7 +178,10 @@ export function omitExtraData(
           ? source.length === 0
           : Object.keys(source).length === 0))
     ) {
-      return handleAllOf(anyOf, source, target);
+      for (let i = 0; i < anyOf.length; i++) {
+        target = omit(anyOf[i]!, source, target);
+      }
+      return target;
     }
     return handleOneOf(anyOf, schema, source, target);
   }
@@ -227,18 +216,17 @@ export function omitExtraData(
     ) {
       return source;
     }
-    const { $ref: ref } = schema;
+    const { $ref: ref, allOf } = schema;
     if (ref !== undefined) {
       return omit(resolveRef(ref, rootSchema), source, target);
+    }
+    if (allOf) {
+      schema = merger.mergeAllOf(schema);
     }
     target = handleAnyOf(
       schema,
       source,
-      handleAllOf(
-        schema.allOf,
-        source,
-        handleOneOf(schema.oneOf, schema, source, target)
-      )
+      handleOneOf(schema.oneOf, schema, source, target)
     );
     const type = getSimpleSchemaType(schema);
     if (type === "object") {
