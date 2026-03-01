@@ -1,5 +1,15 @@
 # @sjsf/form
 
+## 3.3.1
+
+### Patch Changes
+
+- Explicitly return `undefined` for `false` schemes in `omitExtraData` ([#328](https://github.com/x0k/svelte-jsonschema-form/pull/328))
+
+- Fix handling `additionalProperties: boolean` within `oneOf` in `omitExtraData` ([#327](https://github.com/x0k/svelte-jsonschema-form/pull/327))
+
+- Fix `omitExtraData` for trivially valid schemas ([#327](https://github.com/x0k/svelte-jsonschema-form/pull/327))
+
 ## 3.3.0
 
 ### Minor Changes
