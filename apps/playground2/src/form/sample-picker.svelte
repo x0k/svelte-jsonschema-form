@@ -3,19 +3,19 @@
     SAMPLE_CATEGORIES,
     type Sample,
     type SampleCategory,
-  } from "./core/sample.js";
+  } from "../core/sample.js";
 
-  const sampleCategories = import.meta.glob("./samples/*.ts", {
+  const sampleCategories = import.meta.glob("@/samples/*.ts", {
     import: "category",
     eager: true,
   });
-  const sampleLoaders = import.meta.glob("./samples/*.ts", {
+  const sampleLoaders = import.meta.glob("@/samples/*.ts", {
     import: "default",
     eager: false,
   });
 
   function getSampleName(path: string) {
-    return path.substring(10, path.length - 3);
+    return path.substring(13, path.length - 3);
   }
 
   const sortedSamples = Object.keys(sampleLoaders)

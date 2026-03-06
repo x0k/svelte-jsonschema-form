@@ -1,13 +1,13 @@
+import type {
+  Experimental_ArrayMinItems,
+  Experimental_DefaultFormStateBehavior,
+} from "@sjsf/form/core";
 import type { FormValue, Schema, UiSchemaRoot } from "@sjsf/form";
 
 import type { validators } from "./validators.js";
 import type { themes } from "./themes.js";
 import type { icons } from "./icons.js";
 import type { resolvers } from "./resolvers.js";
-import type {
-  Experimental_ArrayMinItems,
-  Experimental_DefaultFormStateBehavior,
-} from "@sjsf/form/core";
 
 type Validators = typeof validators;
 type Themes = typeof themes;
@@ -30,7 +30,7 @@ export const ARRAY_MIN_ITEMS_POPULATE_TITLES: Record<
 };
 
 export const ARRAY_MIN_ITEMS_POPULATE = Object.keys(
-  ARRAY_MIN_ITEMS_POPULATE_TITLES
+  ARRAY_MIN_ITEMS_POPULATE_TITLES,
 ) as ArrayMinItemsPopulate[];
 
 type AllOfStateBehavior = Exclude<
@@ -45,7 +45,7 @@ export const ALL_OF_STATE_BEHAVIOR_TITLES: Record<AllOfStateBehavior, string> =
   };
 
 export const ALL_OF_STATE_BEHAVIOR = Object.keys(
-  ALL_OF_STATE_BEHAVIOR_TITLES
+  ALL_OF_STATE_BEHAVIOR_TITLES,
 ) as AllOfStateBehavior[];
 
 type ConstAsDefaultStateBehavior = Exclude<
@@ -64,7 +64,7 @@ export const CONST_AS_DEFAULT_STATE_BEHAVIOR_TITLES: Record<
 };
 
 export const CONST_AS_DEFAULT_STATE_BEHAVIOR = Object.keys(
-  CONST_AS_DEFAULT_STATE_BEHAVIOR_TITLES
+  CONST_AS_DEFAULT_STATE_BEHAVIOR_TITLES,
 ) as ConstAsDefaultStateBehavior[];
 
 type EmptyObjectFieldsStateBehavior = Exclude<
@@ -85,7 +85,7 @@ export const EMPTY_OBJECT_FIELDS_BEHAVIOR_TITLES: Record<
 };
 
 export const EMPTY_OBJECT_FIELDS_BEHAVIOR = Object.keys(
-  EMPTY_OBJECT_FIELDS_BEHAVIOR_TITLES
+  EMPTY_OBJECT_FIELDS_BEHAVIOR_TITLES,
 ) as EmptyObjectFieldsStateBehavior[];
 
 type MergeDefaultsIntoFormDataStateBehavior = Exclude<
@@ -102,7 +102,7 @@ export const MERGE_DEFAULTS_INTO_FORM_TITLES: Record<
 };
 
 export const MERGE_DEFAULTS_INTO_FORM = Object.keys(
-  MERGE_DEFAULTS_INTO_FORM_TITLES
+  MERGE_DEFAULTS_INTO_FORM_TITLES,
 ) as MergeDefaultsIntoFormDataStateBehavior[];
 
 export interface PlaygroundState {
