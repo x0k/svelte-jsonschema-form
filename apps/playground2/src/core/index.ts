@@ -3,3 +3,5 @@ export * from "./sample.js";
 export * from "./icons.js";
 export * from "./resolvers.js";
 export * from "./validators.js";
+export * from "./validator-page.js";
+export * from "./merger-page.js";

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button } from "$lib/components/ui/button/index.js";
 
-  import { copyTextToClipboard } from "./copy-to-clipboard.js";
+  import { copyTextToClipboard } from "../copy-to-clipboard.js";
 
   async function dumpEntries() {
     const form = document

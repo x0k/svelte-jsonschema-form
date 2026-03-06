@@ -1,5 +1,4 @@
 <script lang="ts" generics="T">
-  import type { HTMLAttributes } from "svelte/elements";
   import { basicSetup } from "codemirror";
   import { json } from "@codemirror/lang-json";
   import { EditorView } from "@codemirror/view";
@@ -7,14 +6,13 @@
   import { githubLight } from "@ddietr/codemirror-themes/github-light";
   import { githubDark } from "@ddietr/codemirror-themes/github-dark";
 
-  import { themeManager } from "./theme.svelte";
+  import { themeManager } from "../theme.svelte.js";
 
   let {
     value = $bindable(),
-    ...rest
   }: {
     value: T;
-  } & HTMLAttributes<HTMLDivElement> = $props();
+  } = $props();
 
   let view = $state.raw<EditorView>();
   let ignore = false;
@@ -59,6 +57,7 @@
 
 <div
   class="h-full"
+  data-error={error}
   {@attach (node) => {
     const onChange = EditorView.updateListener.of((update) => {
       if (
