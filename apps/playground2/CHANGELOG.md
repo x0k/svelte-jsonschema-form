@@ -1,5 +1,11 @@
 # playground2
 
+## 1.3.0
+
+### Minor Changes
+
+- Add `Validator` and `Merger` pages ([#330](https://github.com/x0k/svelte-jsonschema-form/pull/330))
+
 ## 1.2.2
 
 ### Patch Changes
