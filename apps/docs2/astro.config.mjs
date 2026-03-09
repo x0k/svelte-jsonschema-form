@@ -5,6 +5,7 @@ import starlight from "@astrojs/starlight";
 import svelte from "@astrojs/svelte";
 import starlightLinksValidator from "starlight-links-validator";
 import { visit } from "unist-util-visit";
+import starlightLlmsTxt from "starlight-llms-txt";
 
 const base = "/svelte-jsonschema-form/";
 
@@ -40,7 +41,12 @@ export default defineConfig({
     svelte(),
     starlight({
       // favicon: "src/assets/logo.svg",
-      plugins: process.env.CHECK_LINKS ? [starlightLinksValidator()] : [],
+      plugins: [
+        starlightLlmsTxt({
+          rawContent: true,
+          exclude: ["404", "changelogs/**", "examples/**"],
+        }),
+      ].concat(process.env.CHECK_LINKS ? [starlightLinksValidator()] : []),
       title: "svelte-jsonschema-form v3",
       // logo: {
       //   src: "./src/assets/logo.svg",
