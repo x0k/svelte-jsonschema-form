@@ -1,0 +1,11 @@
+# svelte-jsonschema-form v3
+
+## Documentation Sets
+
+- [Abridged documentation](https://x0k.github.io/svelte-jsonschema-form/llms-small.txt): a compact version of the documentation for svelte-jsonschema-form v3, with non-essential content removed
+- [Complete documentation](https://x0k.github.io/svelte-jsonschema-form/llms-full.txt): the full documentation for svelte-jsonschema-form v3
+
+## Notes
+
+- The complete documentation includes all content from the official documentation
+- The content is automatically generated from the same source as the official documentation
