@@ -406,7 +406,7 @@ const NODE_VALIDATORS: {
 			} else if (isCustomizableNode(node.property) && node.property.options.required) {
 				ctx.addWarning(
 					node.dependencies[0],
-					'Redundant dependency, because the condition (presence of a value in the parent field) is always true for required field'
+					'Redundant dependency, because current condition (field value presence) is always true for required field'
 				);
 			} else if (isObjectNode(node.property)) {
 				ctx.addWarning(
@@ -426,10 +426,8 @@ const NODE_VALIDATORS: {
 			}
 			validateNode(ctx, node.dependencies[i]);
 		}
-		if (emptyDeps.length === 1) {
-			if (node.dependencies.length === 1) {
-				ctx.addWarning(node.dependencies[0], 'Redundant dependency');
-			}
+		if (emptyDeps.length === 1 && node.dependencies.length === 1) {
+			ctx.addWarning(node.dependencies[0], 'Single empty dependency, add dependent fields or delete this node');
 		} else if (emptyDeps.length > 1) {
 			ctx.addWarning(
 				node,
