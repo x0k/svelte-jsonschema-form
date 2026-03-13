@@ -23,7 +23,12 @@
 	const selected = $derived(ctx.selectedNode);
 </script>
 
-<Container class="mb-4 flex flex-col gap-4 p-3">
+{#if selected && isCustomizableNode(selected)}
+	<Container class="p-3 mb-4">
+		<NodeSettings bind:node={() => selected, (n) => ctx.updateSelectedNode(n)} />
+	</Container>
+{/if}
+<Container class="flex flex-col gap-4 p-3">
 	<div class="text-md py-2 font-medium">Form options</div>
 	<div class="flex flex-col gap-1.5">
 		<Label for={`${uniqueId}-theme`}>Theme</Label>
@@ -89,8 +94,4 @@
 		}}>Share</CopyButton
 	>
 </Container>
-{#if selected && isCustomizableNode(selected)}
-	<Container class="p-3">
-		<NodeSettings bind:node={() => selected, (n) => ctx.updateSelectedNode(n)} />
-	</Container>
-{/if}
+
