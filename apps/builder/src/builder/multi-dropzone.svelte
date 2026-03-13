@@ -26,7 +26,7 @@
     accept,
     onDrop(node) {
       onDrop(node, 0);
-    },
+    }
   })}
   <DropZone {droppable}>
     {#snippet placeholder()}

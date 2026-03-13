@@ -7,7 +7,7 @@
     type ObjectPropertyNode,
     createObjectProperty,
     isCustomizableOrPropertyNode,
-    isObjectPropertyNode,
+    isObjectPropertyNode
   } from "$lib/builder/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
@@ -27,20 +27,15 @@
   let {
     node = $bindable(),
     draggable,
-    unmount,
+    unmount
   }: NodeProps<NodeType.ObjectPropertyDependency> = $props();
 
   const ctx = getBuilderContext();
   const objCtx = getObjectContext();
   const indexCtx = getIndexContext();
 
-  const onDrop = (
-    newNode: CustomizableNode | ObjectPropertyNode,
-    index: number
-  ) => {
-    const prop = isObjectPropertyNode(newNode)
-      ? newNode
-      : createObjectProperty(newNode);
+  const onDrop = (newNode: CustomizableNode | ObjectPropertyNode, index: number) => {
+    const prop = isObjectPropertyNode(newNode) ? newNode : createObjectProperty(newNode);
     node.properties.splice(index, 0, prop);
     ctx.selectNode(
       {
@@ -50,7 +45,7 @@
         update(newNode) {
           const idx = node.properties.findIndex((n) => n.id === prop.id);
           node.properties[idx].property = newNode;
-        },
+        }
       },
       false
     );
@@ -61,12 +56,7 @@
   const checkboxId = $props.id();
 </script>
 
-<NodeContainer
-  bind:node
-  {draggable}
-  showRequired={false}
-  class="flex flex-col gap-0.5"
->
+<NodeContainer bind:node {draggable} showRequired={false} class="flex flex-col gap-0.5">
   <NodeHeader
     {draggable}
     unmount={() => {
@@ -90,7 +80,7 @@
         />
         <Label
           for={checkboxId}
-          class="text-muted-foreground text-base"
+          class="text-base text-muted-foreground"
           onclick={(e) => e.stopPropagation()}
         >
           Complement

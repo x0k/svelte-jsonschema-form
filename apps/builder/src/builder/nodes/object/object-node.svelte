@@ -5,7 +5,7 @@
     isCustomizableOrPropertyNode,
     type NodeType,
     type ObjectPropertyNode,
-    type CustomizableNode,
+    type CustomizableNode
   } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
@@ -19,18 +19,13 @@
     node = $bindable(),
     draggable,
     unmount,
-    showRequired,
+    showRequired
   }: NodeProps<NodeType.Object> = $props();
 
   const ctx = getBuilderContext();
 
-  const onDrop = (
-    newNode: CustomizableNode | ObjectPropertyNode,
-    index: number
-  ) => {
-    const prop = isObjectPropertyNode(newNode)
-      ? newNode
-      : createObjectProperty(newNode);
+  const onDrop = (newNode: CustomizableNode | ObjectPropertyNode, index: number) => {
+    const prop = isObjectPropertyNode(newNode) ? newNode : createObjectProperty(newNode);
     node.properties.splice(index, 0, prop);
     ctx.selectNode(
       {
@@ -40,19 +35,14 @@
         update(newNode) {
           const idx = node.properties.findIndex((n) => n.id === prop.id);
           node.properties[idx].property = newNode;
-        },
+        }
       },
       true
     );
   };
 </script>
 
-<NodeContainer
-  bind:node
-  {draggable}
-  {showRequired}
-  class="flex flex-col gap-0.5"
->
+<NodeContainer bind:node {draggable} {showRequired} class="flex flex-col gap-0.5">
   <NodeHeader
     {node}
     {draggable}

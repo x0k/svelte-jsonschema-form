@@ -8,7 +8,7 @@ const bundledLanguages = {
   svelte: () => import("@shikijs/langs/svelte"),
   typescript: () => import("@shikijs/langs/typescript"),
   bash: () => import("@shikijs/langs/bash"),
-  css: () => import("@shikijs/langs/css"),
+  css: () => import("@shikijs/langs/css")
 };
 
 /** The languages configured for the highlighter */
@@ -18,32 +18,28 @@ export type SupportedLanguage = keyof typeof bundledLanguages;
 export const highlighterPromise = createHighlighterCore({
   themes: [
     import("@shikijs/themes/github-light-default"),
-    import("@shikijs/themes/github-dark-default"),
+    import("@shikijs/themes/github-dark-default")
   ],
   langs: Object.entries(bundledLanguages).map(([_, lang]) => lang),
-  engine: createJavaScriptRegexEngine(),
+  engine: createJavaScriptRegexEngine()
 });
 
-export function highlight(
-  highlighter: HighlighterCore,
-  lang: SupportedLanguage,
-  code: string
-) {
+export function highlight(highlighter: HighlighterCore, lang: SupportedLanguage, code: string) {
   return DOMPurify.sanitize(
     highlighter.codeToHtml(code, {
       lang,
       themes: {
         light: "github-light-default",
-        dark: "github-dark-default",
+        dark: "github-dark-default"
       },
       transformers: [
         {
           pre: (el) => {
             el.properties.style = "";
             return el;
-          },
-        },
-      ],
+          }
+        }
+      ]
     })
   );
 }

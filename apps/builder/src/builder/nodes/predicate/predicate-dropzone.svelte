@@ -3,7 +3,7 @@
     createPredicate,
     isPredicateNode,
     type ObjectPropertyDependencyNode,
-    type PredicateNode,
+    type PredicateNode
   } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 
@@ -26,7 +26,7 @@
     },
     update(n) {
       node.predicate = n as PredicateNode;
-    },
+    }
   };
 </script>
 
@@ -44,7 +44,7 @@
     onDrop(n) {
       node.predicate = n;
       ctx.selectNode(nodeRef, false);
-    },
+    }
   })}
   <DropZone {droppable}>
     {#snippet placeholder()}

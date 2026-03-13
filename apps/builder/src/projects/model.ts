@@ -17,16 +17,13 @@ export interface CreateProject<S> {
   state: S;
 }
 
-export function createProject<S>({
-  title,
-  state,
-}: CreateProject<S>): Project<S> {
+export function createProject<S>({ title, state }: CreateProject<S>): Project<S> {
   const now = new Date();
   return {
     id: crypto.randomUUID() as ProjectId,
     title,
     createdAt: now,
     updatedAt: now,
-    state,
+    state
   };
 }

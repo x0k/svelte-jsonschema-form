@@ -24,7 +24,5 @@
 {#if child}
   <OperatorDropzone bind:node={node.operand} />
 {:else}
-  <div class="text-destructive">
-    First, define the child element of the list
-  </div>
+  <div class="text-destructive">First, define the child element of the list</div>
 {/if}

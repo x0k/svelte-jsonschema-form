@@ -13,15 +13,15 @@
 
 <div
   class={[
-    "border-2 border-dashed rounded-md p-6 w-full h-full flex items-center justify-center",
-    droppable.isOver && "border-chart-2 bg-chart-2/5",
+    "flex h-full w-full items-center justify-center rounded-md border-2 border-dashed p-6",
+    droppable.isOver && "border-chart-2 bg-chart-2/5"
   ]}
   {@attach droppable.attach}
 >
   <div
     class={[
-      "text-lg text-center font-medium",
-      droppable.isReady ? "text-foreground" : "text-muted-foreground",
+      "text-center text-lg font-medium",
+      droppable.isReady ? "text-foreground" : "text-muted-foreground"
     ]}
   >
     {@render placeholder()}

@@ -16,7 +16,7 @@ export interface AppDBSchemaV1 extends DBSchema {
     value: ProjectSchemaV1;
     indexes: {
       updatedAtIndex: ProjectSchemaV1["updatedAt"];
-      titleIndex: ProjectSchemaV1['title']
+      titleIndex: ProjectSchemaV1["title"];
     };
   };
 }

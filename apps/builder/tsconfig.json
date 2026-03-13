@@ -2,31 +2,17 @@
   "extends": "@total-typescript/tsconfig/bundler/dom/app",
   "compilerOptions": {
     "target": "esnext",
-    "lib": [
-      "ESNext"
-    ],
+    "lib": ["ESNext"],
     "noUncheckedIndexedAccess": false,
     "moduleResolution": "nodenext",
     "module": "nodenext",
-    "types": [
-      "vite/client",
-    ],
+    "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
-      "$lib": [
-        "./src/lib"
-      ],
-      "$lib/*": [
-        "./src/lib/*"
-      ],
-      "$apps/*": [
-        "../*"
-      ]
+      "$lib": ["./src/lib"],
+      "$lib/*": ["./src/lib/*"],
+      "$apps/*": ["../*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.js",
-    "src/**/*.svelte"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }

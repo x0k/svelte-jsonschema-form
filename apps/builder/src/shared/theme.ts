@@ -1,14 +1,14 @@
 export enum Theme {
   System = "system",
   Light = "light",
-  Dark = "dark",
+  Dark = "dark"
 }
 
 export const THEME_TITLES: Record<Theme, string> = {
   [Theme.System]: "System",
   [Theme.Light]: "Light",
-  [Theme.Dark]: "Dark",
-}
+  [Theme.Dark]: "Dark"
+};
 
 export const THEMES = Object.values(Theme);
 

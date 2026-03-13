@@ -21,15 +21,10 @@
     mergeShrinkOrMove,
     Rect,
     type CheckRect,
-    type ToShrinkOrMove,
+    type ToShrinkOrMove
   } from "./grid.js";
 
-  let {
-    node = $bindable(),
-    draggable,
-    unmount,
-    showRequired,
-  }: NodeProps<NodeType.Grid> = $props();
+  let { node = $bindable(), draggable, unmount, showRequired }: NodeProps<NodeType.Grid> = $props();
 
   const id = (x: number, y: number) => `${x}-${y}`;
 
@@ -98,15 +93,15 @@
               y: i,
               w: 1,
               h: 1,
-              node: undefined,
-            },
+              node: undefined
+            }
           };
         } else if (!seen.has(v)) {
           seen.add(v);
           yield {
             id: allocateId(v, id(j, i)),
             index: indexes.get(v)!,
-            cell: cells.get(v)!,
+            cell: cells.get(v)!
           };
         }
       }
@@ -249,12 +244,7 @@
   const ctx = getBuilderContext();
 </script>
 
-<NodeContainer
-  bind:node
-  {draggable}
-  {showRequired}
-  class="flex flex-col gap-0.5"
->
+<NodeContainer bind:node {draggable} {showRequired} class="flex flex-col gap-0.5">
   <NodeHeader {node} {draggable} {unmount} {showRequired}>
     {#snippet append()}
       <div class="flex items-center gap-2 pr-2">
@@ -288,9 +278,7 @@
     {#each elements() as element (element.id)}
       {@const c = element.cell}
       {@const isReady =
-        c.node !== undefined &&
-        !ctx.isDragged &&
-        ctx.selectedNode?.id === c.node.id}
+        c.node !== undefined && !ctx.isDragged && ctx.selectedNode?.id === c.node.id}
       {@const rl = isReady && isAvailable(Rect.Left(c))}
       {@const rr = isReady && isAvailable(Rect.Right(c))}
       {@const rt = isReady && isAvailable(Rect.Top(c))}
@@ -298,14 +286,14 @@
       {@const sx = isReady && c.w > 1}
       {@const sy = isReady && c.h > 1}
       <div
-        class="relative flex justify-center items-center"
+        class="relative flex items-center justify-center"
         style="grid-column: span {c.w} / span {c.w}; grid-row: span {c.h} / span {c.h};"
       >
         <Button
           class={[
-            "absolute size-8 z-10 -left-10",
+            "absolute -left-10 z-10 size-8",
             rl ? "inline-flex" : "hidden",
-            sx && "top-[calc(50%-2.2rem)]",
+            sx && "top-[calc(50%-2.2rem)]"
           ]}
           variant="secondary"
           size="icon"
@@ -319,9 +307,9 @@
         </Button>
         <Button
           class={[
-            "absolute size-8 z-10 -left-10",
+            "absolute -left-10 z-10 size-8",
             sx ? "inline-flex" : "hidden",
-            rl && "top-[calc(50%+0.2rem)]",
+            rl && "top-[calc(50%+0.2rem)]"
           ]}
           variant="secondary"
           size="icon"
@@ -335,9 +323,9 @@
         </Button>
         <Button
           class={[
-            "absolute size-8 z-10 -right-10",
+            "absolute -right-10 z-10 size-8",
             rr ? "inline-flex" : "hidden",
-            sx && "top-[calc(50%-2.2rem)]",
+            sx && "top-[calc(50%-2.2rem)]"
           ]}
           variant="secondary"
           size="icon"
@@ -350,9 +338,9 @@
         </Button>
         <Button
           class={[
-            "absolute size-8 z-10 -right-10",
+            "absolute -right-10 z-10 size-8",
             sx ? "inline-flex" : "hidden",
-            rr && "top-[calc(50%+0.2rem)]",
+            rr && "top-[calc(50%+0.2rem)]"
           ]}
           variant="secondary"
           size="icon"
@@ -365,9 +353,9 @@
         </Button>
         <Button
           class={[
-            "absolute size-8 z-10 -top-10",
+            "absolute -top-10 z-10 size-8",
             rt ? "inline-flex" : "hidden",
-            sy && "left-[calc(50%-2.2rem)]",
+            sy && "left-[calc(50%-2.2rem)]"
           ]}
           variant="secondary"
           size="icon"
@@ -381,9 +369,9 @@
         </Button>
         <Button
           class={[
-            "absolute size-8 z-10 -top-10",
+            "absolute -top-10 z-10 size-8",
             sy ? "inline-flex" : "hidden",
-            rt && "left-[calc(50%+0.2rem)]",
+            rt && "left-[calc(50%+0.2rem)]"
           ]}
           variant="secondary"
           size="icon"
@@ -397,9 +385,9 @@
         </Button>
         <Button
           class={[
-            "absolute size-8 z-10 -bottom-10",
+            "absolute -bottom-10 z-10 size-8",
             rb ? "inline-flex" : "hidden",
-            sy && "left-[calc(50%-2.2rem)]",
+            sy && "left-[calc(50%-2.2rem)]"
           ]}
           variant="secondary"
           size="icon"
@@ -412,9 +400,9 @@
         </Button>
         <Button
           class={[
-            "absolute size-8 z-10 -bottom-10",
+            "absolute -bottom-10 z-10 size-8",
             sy ? "inline-flex" : "hidden",
-            rb && "left-[calc(50%+0.2rem)]",
+            rb && "left-[calc(50%+0.2rem)]"
           ]}
           variant="secondary"
           size="icon"

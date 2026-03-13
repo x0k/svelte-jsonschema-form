@@ -3,7 +3,7 @@
   import { formatFileSize } from "@sjsf/form/validators/file-size";
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { BitsConfig } from "bits-ui";
-  import { Willow, WillowDark } from '@svar-ui/svelte-core';
+  import { Willow, WillowDark } from "@svar-ui/svelte-core";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
   import { THEME_STYLES, SJSF_THEMES, ActualTheme, LabTheme } from "$lib/sjsf/theme.js";
@@ -16,7 +16,7 @@
 
   import { getBuilderContext } from "../context.svelte.js";
 
-  import Noop from './noop.svelte';
+  import Noop from "./noop.svelte";
 
   const ctx = getBuilderContext();
 
@@ -26,14 +26,14 @@
   const options = {
     getRootNode() {
       return rootNode;
-    },
+    }
   };
 
   const portalOptions = {
     get target() {
-      return portalEl
+      return portalEl;
     }
-  }
+  };
 
   const form = createForm({
     ...defaults,
@@ -72,7 +72,7 @@
     }),
     onSubmit: console.log,
     onSubmitError: console.warn,
-    onSubmissionFailure: console.error,
+    onSubmissionFailure: console.error
   });
 
   function withFile(_: string, value: any) {
@@ -82,9 +82,11 @@
     return value;
   }
 
-  const SvarProvider = $derived(ctx.theme === LabTheme.Svar ? themeManager.isDark ? WillowDark : Willow : Noop)
+  const SvarProvider = $derived(
+    ctx.theme === LabTheme.Svar ? (themeManager.isDark ? WillowDark : Willow) : Noop
+  );
 
-  const formValue = $derived(getValueSnapshot(form))
+  const formValue = $derived(getValueSnapshot(form));
 </script>
 
 <div class="flex flex-col gap-2">
@@ -93,7 +95,8 @@
     style={`${THEME_STYLES[ctx.theme]}\n${ICONS_STYLES[ctx.icons]}`}
   >
     <style>
-      .wx-willow-theme, .wx-willow-dark-theme {
+      .wx-willow-theme,
+      .wx-willow-dark-theme {
         height: auto !important;
         min-height: 100%;
       }

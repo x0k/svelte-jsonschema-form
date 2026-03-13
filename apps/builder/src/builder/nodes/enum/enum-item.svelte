@@ -7,13 +7,13 @@
   import type { NodeProps } from "../../model.js";
   import RemoveButton from "../../remove-button.svelte";
   import NodeContainer from "../../node-container.svelte";
-  import NodeIssues from '../../node-issues.svelte';
+  import NodeIssues from "../../node-issues.svelte";
 
   let {
     node = $bindable(),
     draggable,
     unmount,
-    toValue,
+    toValue
   }: NodeProps<NodeType.EnumItem> & {
     toValue: (v: string) => string;
   } = $props();
@@ -22,7 +22,7 @@
 <NodeContainer
   bind:node
   {draggable}
-  class="grid grid-cols-[auto_1fr_1fr_auto] gap-2 items-center"
+  class="grid grid-cols-[auto_1fr_1fr_auto] items-center gap-2"
   disableSelection
   showRequired={false}
 >

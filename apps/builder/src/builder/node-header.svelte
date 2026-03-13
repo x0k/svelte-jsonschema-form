@@ -10,7 +10,7 @@
     children,
     unmount,
     append,
-    disablePadding,
+    disablePadding
   }: {
     unmount: () => void;
     draggable: BuilderDraggable;
@@ -20,11 +20,11 @@
   } = $props();
 </script>
 
-<div class={["flex gap-2 items-center pt-2", disablePadding ? "pb-2" : "pb-4"]}>
+<div class={["flex items-center gap-2 pt-2", disablePadding ? "pb-2" : "pb-4"]}>
   <div class="cursor-grab" {@attach draggable.attachHandle}>
     <GripVertical class="size-5" />
   </div>
-  <div class="text-md truncate flex-1">
+  <div class="text-md flex-1 truncate">
     {@render children()}
   </div>
   {@render append?.()}

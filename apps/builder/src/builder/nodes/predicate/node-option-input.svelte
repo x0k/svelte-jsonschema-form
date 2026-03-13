@@ -49,10 +49,7 @@
     </Popover.Trigger>
     <Popover.Content class="p-0" portalProps={{ disabled: true }}>
       <Command.Root>
-        <Command.Input
-          bind:value={inputValue}
-          placeholder="Select some option"
-        />
+        <Command.Input bind:value={inputValue} placeholder="Select some option" />
         <Command.List>
           <Command.Empty>No option found.</Command.Empty>
           <Command.Group value="options">
@@ -65,9 +62,7 @@
                   onEnter?.();
                 }}
               >
-                <CheckIcon
-                  class={cn(value !== option.value && "text-transparent")}
-                />
+                <CheckIcon class={cn(value !== option.value && "text-transparent")} />
                 {option.label}
               </Command.Item>
             {/each}

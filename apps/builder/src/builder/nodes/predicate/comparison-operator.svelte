@@ -9,7 +9,4 @@
   let { node = $bindable() }: Props = $props();
 </script>
 
-<Input
-  placeholder="Value"
-  bind:value={() => node.value, (v) => (node.value = v ?? undefined)}
-/>
+<Input placeholder="Value" bind:value={() => node.value, (v) => (node.value = v ?? undefined)} />

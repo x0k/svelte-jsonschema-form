@@ -3,7 +3,7 @@
   import { Input } from "$lib/components/ui/input/index.js";
 
   interface Props {
-    node: SOperator
+    node: SOperator;
   }
 
   let { node = $bindable() }: Props = $props();

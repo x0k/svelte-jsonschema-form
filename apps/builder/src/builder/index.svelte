@@ -15,7 +15,7 @@
   setIndexContext({
     get current() {
       return index;
-    },
+    }
   });
 </script>
 

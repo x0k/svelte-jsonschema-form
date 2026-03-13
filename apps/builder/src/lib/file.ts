@@ -10,7 +10,7 @@ export function createJSONBlob(data: string): Blob {
 
 export async function blobSave(fileName: string, blob: Blob): Promise<void> {
   await fileSave(blob, {
-    fileName,
+    fileName
   });
 }
 

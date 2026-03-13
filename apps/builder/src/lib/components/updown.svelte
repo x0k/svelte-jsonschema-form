@@ -14,7 +14,7 @@
   let { value = $bindable(), onUp, onDown, minimum }: Props = $props();
 </script>
 
-<div class="flex items-center bg-background rounded-sm">
+<div class="flex items-center rounded-sm bg-background">
   <Button
     variant="outline"
     class="size-8 hover:bg-accent hover:text-accent-foreground"
@@ -24,7 +24,7 @@
   >
     <Minus />
   </Button>
-  <div class="px-2 flex items-center justify-center tabular-nums">
+  <div class="flex items-center justify-center px-2 tabular-nums">
     {value}
   </div>
   <Button
