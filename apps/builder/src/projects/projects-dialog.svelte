@@ -30,13 +30,13 @@
 </script>
 
 {#snippet buttons()}
-  <Button onclick={() => ctx.openCreateProjectDialog()}>
+  <Button onclick={() => ctx.openAddProjectDialog()}>
     <Plus />
-    Create Project
+    Add Form
   </Button>
   <Button variant="outline" onclick={() => ctx.openImportProjectDialog()}>
     <Upload />
-    Import Project
+    Import Form
   </Button>
 {/snippet}
 <Dialog.Root
@@ -48,11 +48,11 @@
   }}
 >
   <Dialog.Trigger class={buttonVariants({ variant: "ghost", className })}>
-    {currentProject?.title ?? "Projects"}
+    {currentProject?.title ?? "Forms"}
   </Dialog.Trigger>
   <Dialog.Content class="sm:max-w-[425px] md:max-w-xl lg:max-w-2xl">
     <Dialog.Header>
-      <Dialog.Title>Projects</Dialog.Title>
+      <Dialog.Title>Forms</Dialog.Title>
     </Dialog.Header>
     <div class="py-4">
       <Item.Group>
@@ -115,7 +115,7 @@
               <Empty.Media variant="icon">
                 <Folder />
               </Empty.Media>
-              <Empty.Title>No Projects Yet</Empty.Title>
+              <Empty.Title>No Forms Yet</Empty.Title>
             </Empty.Header>
             <Empty.Content>
               <div class="flex gap-2">

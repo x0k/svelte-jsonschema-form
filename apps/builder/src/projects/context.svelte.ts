@@ -102,7 +102,7 @@ export class ProjectsContext {
           this.setCurrentProject(p);
         },
         (err) => {
-          toast.error(`Failed to load last project`);
+          toast.error(`Failed to load last form`);
           console.error(err);
         }
       );
@@ -115,7 +115,7 @@ export class ProjectsContext {
         this.#recentProjects = projects;
       },
       (err) => {
-        toast.error(`Failed to load recent projects`);
+        toast.error(`Failed to load recent forms`);
         console.error(err);
       }
     );
@@ -129,14 +129,14 @@ export class ProjectsContext {
           onOpen();
         },
         (err) => {
-          toast.error(`Failed to load "${meta.title}" project`);
+          toast.error(`Failed to load "${meta.title}" form`);
           console.error(err);
         }
       );
     };
     if (this.isSaveRequired) {
       this.#confirmationDialogOptions = {
-        title: "Open Project Without Saving",
+        title: "Open Form Without Saving",
         description: "You have an unsaved state. Are you sure you want to continue?",
         variant: "warn",
         onConfirm: openProject
@@ -148,7 +148,7 @@ export class ProjectsContext {
 
   openEditProjectDialog(meta: ProjectMeta) {
     this.#genericProjectDialogOptions = {
-      title: "Edit project",
+      title: "Edit form",
       projectName: meta.title,
       projectAction: (title) => {
         this.projectsRepository.renameProject(meta.id, title).then(
@@ -163,7 +163,7 @@ export class ProjectsContext {
             this.#closeGenericDialog();
           },
           (err) => {
-            toast.error(`Failed to edit "${meta.title}" project`);
+            toast.error(`Failed to edit "${meta.title}" form`);
             console.error(err);
           }
         );
@@ -186,7 +186,7 @@ export class ProjectsContext {
               this.#closeGenericDialog();
             },
             (err) => {
-              toast.error(`Failed to fork "${p.title}" project`);
+              toast.error(`Failed to fork "${p.title}" form`);
               console.error(err);
             }
           );
@@ -197,7 +197,7 @@ export class ProjectsContext {
       this.#confirmationDialogOptions = {
         title: "Confirm Fork Without Saving",
         description:
-          "You have unsaved changes. If you continue, your current progress will be lost. Do you want to proceed with forking this project anyway?",
+          "You have unsaved changes. If you continue, your current progress will be lost. Do you want to proceed with forking this form anyway?",
         variant: "warn",
         onConfirm: forkProject
       };
@@ -215,7 +215,7 @@ export class ProjectsContext {
           createJSONBlob(JSON.stringify(loaded.state))
         );
       } catch (err) {
-        toast.error(`Failed to export "${p.title}" project`);
+        toast.error(`Failed to export "${p.title}" form`);
       }
     };
     if (this.#currentProject?.id === p.id && this.isSaveRequired) {
@@ -233,7 +233,7 @@ export class ProjectsContext {
   openDeleteProjectDialog(meta: ProjectMeta) {
     this.#confirmationDialogOptions = {
       title: "Confirm Deletion",
-      description: `Are you sure you want to delete the "${meta.title}" project?`,
+      description: `Are you sure you want to delete the "${meta.title}" form?`,
       variant: "destructive",
       onConfirm: () => {
         this.projectsRepository.removeProjectById(meta.id).then(
@@ -247,7 +247,7 @@ export class ProjectsContext {
             }
           },
           (err) => {
-            toast.error(`Failed to delete "${meta.title}" project`);
+            toast.error(`Failed to delete "${meta.title}" form`);
             console.error(err);
           }
         );
@@ -268,10 +268,10 @@ export class ProjectsContext {
     };
   }
 
-  openCreateProjectDialog() {
+  openAddProjectDialog() {
     this.#genericProjectDialogOptions = {
-      title: "Create Project",
-      projectName: "New Project",
+      title: "Add Form",
+      projectName: "Current Form Name",
       projectAction: (title) => {
         this.projectsRepository
           .createProject({
@@ -284,7 +284,7 @@ export class ProjectsContext {
               this.#closeGenericDialog();
             },
             (err) => {
-              toast.error(`Failed to create "${title}" project`);
+              toast.error(`Failed to create "${title}" form`);
               console.log(err);
             }
           );
@@ -296,8 +296,8 @@ export class ProjectsContext {
   openImportProjectDialog() {
     const importProject = () => {
       this.#genericProjectDialogOptions = {
-        title: "Import Project",
-        projectName: "Imported Project",
+        title: "Import Form",
+        projectName: "Imported Form",
         projectAction: async (title) => {
           try {
             const blob = await blobOpen({
@@ -312,7 +312,7 @@ export class ProjectsContext {
             this.appendProject(created);
             this.#closeGenericDialog();
           } catch (err) {
-            toast.error(`Failed to import "${title}" project`);
+            toast.error(`Failed to import "${title}" form`);
             console.error(err);
           }
         },
@@ -347,7 +347,7 @@ export class ProjectsContext {
         // NOTE: builder state is already up to date
       },
       (err) => {
-        toast.error(`Failed to save "${p.title}" project`);
+        toast.error(`Failed to save "${p.title}" form`);
         console.error(err);
       }
     );

@@ -70,7 +70,7 @@
       </DropdownMenu.Content>
     </DropdownMenu.Root>
   {:else}
-    <Button variant="outline" onclick={() => ctx.openCreateProjectDialog()}>
+    <Button variant="outline" onclick={() => ctx.openAddProjectDialog()}>
       <Save />
       Save
     </Button>

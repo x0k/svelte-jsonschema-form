@@ -46,7 +46,7 @@ export class IDBProjectsRepository<S> implements ProjectsRepository<S> {
   async loadProjectById(projectId: ProjectId): Promise<Project<S>> {
     const data = await this.db.get("projects", projectId);
     if (data === undefined) {
-      throw new Error(`Cannot find project with id: ${projectId}`);
+      throw new Error(`Cannot find form with id: ${projectId}`);
     }
     return schemaToProject(data);
   }
@@ -55,7 +55,7 @@ export class IDBProjectsRepository<S> implements ProjectsRepository<S> {
     const tx = this.db.transaction("projects", "readwrite");
     const project = await tx.objectStore("projects").get(projectId);
     if (project === undefined) {
-      throw new Error(`Cannot find project with id: "${projectId}"`);
+      throw new Error(`Cannot find form with id: "${projectId}"`);
     }
     project.title = newTitle;
     project.updatedAt = new Date();
@@ -67,7 +67,7 @@ export class IDBProjectsRepository<S> implements ProjectsRepository<S> {
     const tx = this.db.transaction("projects", "readwrite");
     const oldProject = await tx.objectStore("projects").get(projectId);
     if (oldProject === undefined) {
-      throw new Error(`Cannot find project with id: "${projectId}"`);
+      throw new Error(`Cannot find form with id: "${projectId}"`);
     }
     const { state } = schemaToProject<S>(oldProject);
     const newProject = createProject({ title: newTitle, state });
@@ -84,7 +84,7 @@ export class IDBProjectsRepository<S> implements ProjectsRepository<S> {
     const tx = this.db.transaction("projects", "readwrite");
     const project = await tx.objectStore("projects").get(projectId);
     if (project === undefined) {
-      throw new Error(`Cannot find project with id: "${projectId}"`);
+      throw new Error(`Cannot find form with id: "${projectId}"`);
     }
     project.state = state;
     project.updatedAt = new Date();
