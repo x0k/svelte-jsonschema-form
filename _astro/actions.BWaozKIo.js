@@ -1,0 +1,1 @@
+import{a1 as d,m as n,a3 as u,a4 as c,a5 as p}from"./render.CpdcQVrh.js";function m(s,o,r){d(()=>{var a=n(()=>o(s,r?.())||{});if(r&&a?.update){var t=!1,f={};u(()=>{var e=r();c(e),t&&p(f,e)&&(f=e,a.update(e))}),t=!0}if(a?.destroy)return()=>a.destroy()})}export{m as a};
