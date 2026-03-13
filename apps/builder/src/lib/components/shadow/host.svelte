@@ -22,7 +22,7 @@
   $effect(() => {
     const root = mount(Root, {
       target: shadowRoot,
-      props: { children, shadowRoot },
+      props: { children, shadowRoot }
     });
     let styleElement: HTMLStyleElement | undefined;
     if (style) {

@@ -3,16 +3,9 @@
 
   import { cn } from "$lib/utils.js";
 
-  const {
-    children,
-    class: className,
-    ...rest
-  }: HTMLAttributes<HTMLDivElement> = $props();
+  const { children, class: className, ...rest }: HTMLAttributes<HTMLDivElement> = $props();
 </script>
 
-<div
-  class={cn("rounded-md p-2 border bg-background w-full", className)}
-  {...rest}
->
+<div class={cn("w-full rounded-md border bg-background p-2", className)} {...rest}>
   {@render children?.()}
 </div>

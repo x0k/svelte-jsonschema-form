@@ -19,14 +19,14 @@
     unmount,
     get node() {
       return node;
-    },
+    }
   });
 
   const nodeCtx = getNodeContext();
   setNodeContext({
     get isDragged() {
       return nodeCtx.isDragged || draggable.isDragged;
-    },
+    }
   });
 
   const NodeComponent = $derived(NODES[node.type]);

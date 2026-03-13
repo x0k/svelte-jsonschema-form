@@ -12,8 +12,7 @@
 
 <Select.Root type="single" disabled={properties.size === 0} bind:value>
   <Select.Trigger class="w-full">
-    {(value !== undefined ? properties.get(value) : undefined) ??
-      "Select some property"}
+    {(value !== undefined ? properties.get(value) : undefined) ?? "Select some property"}
   </Select.Trigger>
   <Select.Content>
     {#each properties as [id, title] (id)}

@@ -42,12 +42,7 @@
 
 <div class="flex flex-col gap-2">
   <div class="flex items-center gap-2">
-    <NodeOptionInput
-      bind:this={input}
-      {options}
-      bind:value
-      onEnter={pushItem}
-    />
+    <NodeOptionInput bind:this={input} {options} bind:value onEnter={pushItem} />
     {#if options.length === 0}
       <Button variant="outline" size="icon" class="size-8" onclick={pushItem}>
         <Plus class="size-4" />

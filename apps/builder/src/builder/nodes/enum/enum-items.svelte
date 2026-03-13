@@ -11,7 +11,7 @@
     isEnumItemNode,
     createEnumItemNode,
     EnumValueType,
-    type EnumItemNode,
+    type EnumItemNode
   } from "$lib/builder/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
@@ -35,7 +35,7 @@
             return value;
           }
           return JSON.stringify(value);
-        },
+        }
       };
     }
     return { toValue: identity };
@@ -50,7 +50,7 @@
         return value;
       }
     },
-    [EnumValueType.String]: identity,
+    [EnumValueType.String]: identity
   };
 
   let previousValueType: EnumValueType | undefined;
@@ -90,7 +90,7 @@
   const ctx = getBuilderContext();
 </script>
 
-<div class="grid grid-cols-[1fr_1fr_auto] gap-2 items-center">
+<div class="grid grid-cols-[1fr_1fr_auto] items-center gap-2">
   <Input
     bind:ref={inputEl}
     placeholder="Enter label..."
@@ -105,11 +105,7 @@
     }
     onkeydown={onEnter}
   />
-  <Input
-    placeholder="Enter value..."
-    bind:value={nextValue}
-    onkeydown={onEnter}
-  />
+  <Input placeholder="Enter value..." bind:value={nextValue} onkeydown={onEnter} />
   <Button variant="outline" size="icon" class="size-8" onclick={pushItem}>
     <Plus class="size-4" />
   </Button>
@@ -123,7 +119,7 @@
       unmount,
       get node() {
         return items[i];
-      },
+      }
     })}
     <DropIndicator
       accept={isEnumItemNode}
@@ -131,13 +127,7 @@
         items.splice(i, 0, item);
       }}
     />
-    <EnumItem
-      showRequired={false}
-      bind:node={items[i]}
-      {draggable}
-      {toValue}
-      {unmount}
-    />
+    <EnumItem showRequired={false} bind:node={items[i]} {draggable} {toValue} {unmount} />
   {/each}
   <DropIndicator
     accept={isEnumItemNode}

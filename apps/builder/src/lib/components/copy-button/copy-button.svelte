@@ -20,7 +20,7 @@
     onCopy,
     class: className,
     tabindex = 0,
-    children,
+    children
   }: CopyButtonProps = $props();
 
   // this way if the user passes text then the button will be the default size
@@ -29,7 +29,7 @@
   }
 
   let status = $state.raw<"success" | "failure" | "idle">("idle");
-  let callbackId: number
+  let callbackId: number;
 </script>
 
 <Button

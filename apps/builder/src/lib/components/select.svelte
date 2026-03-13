@@ -11,13 +11,7 @@
     class?: ClassValue;
   }
 
-  let {
-    value = $bindable(),
-    items,
-    labelId,
-    labels,
-    class: className,
-  }: Props = $props();
+  let { value = $bindable(), items, labelId, labels, class: className }: Props = $props();
 </script>
 
 <Select.Root type="single" bind:value>

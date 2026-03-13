@@ -17,7 +17,7 @@
 
   const data = $derived({
     errors: ctx.errors[node.id],
-    warnings: ctx.warnings[node.id],
+    warnings: ctx.warnings[node.id]
   });
 </script>
 
@@ -29,8 +29,8 @@
         "list-inside list-disc",
         {
           "text-destructive": type === "errors",
-          "text-chart-3": type === "warnings",
-        },
+          "text-chart-3": type === "warnings"
+        }
       ]}
     >
       {#each issues as issue}
@@ -41,7 +41,7 @@
 {/snippet}
 
 {#if data.errors || data.warnings}
-  <div class={cn("p-2 flex flex-col gap-2", className)}>
+  <div class={cn("flex flex-col gap-2 p-2", className)}>
     {@render listOf("errors")}
     {@render listOf("warnings")}
   </div>

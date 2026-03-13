@@ -7,15 +7,11 @@
     OK_STATUS,
     WARNING_STATUS,
     type Node,
-    type OperatorStatus,
+    type OperatorStatus
   } from "$lib/builder/index.js";
   import { cn } from "$lib/utils.js";
 
-  import {
-    getBuilderContext,
-    type BuilderDraggable,
-    type NodeRef,
-  } from "./context.svelte.js";
+  import { getBuilderContext, type BuilderDraggable, type NodeRef } from "./context.svelte.js";
   import Container from "./container.svelte";
 
   interface Props {
@@ -37,7 +33,7 @@
     disableSelection,
     onSelect,
     showRequired,
-    status = OK_STATUS,
+    status = OK_STATUS
   }: Props = $props();
 
   const ctx = getBuilderContext();
@@ -47,7 +43,7 @@
     },
     update(v) {
       node = v;
-    },
+    }
   };
   const selectNode = (e: Event) => {
     e.stopPropagation();
@@ -57,12 +53,8 @@
     ctx.selectNode(nodeRef, showRequired);
     onSelect?.();
   };
-  const error = $derived(
-    status & ERROR_STATUS || ctx.errors[node.id] !== undefined
-  );
-  const warning = $derived(
-    status & WARNING_STATUS || ctx.warnings[node.id] !== undefined
-  );
+  const error = $derived(status & ERROR_STATUS || ctx.errors[node.id] !== undefined);
+  const warning = $derived(status & WARNING_STATUS || ctx.warnings[node.id] !== undefined);
 </script>
 
 <Container

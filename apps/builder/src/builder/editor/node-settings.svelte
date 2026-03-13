@@ -1,13 +1,6 @@
 <script lang="ts">
   import { onDestroy, untrack } from "svelte";
-  import {
-    Content,
-    createForm,
-    ON_CHANGE,
-    ON_INPUT,
-    setFormContext,
-    validate,
-  } from "@sjsf/form";
+  import { Content, createForm, ON_CHANGE, ON_INPUT, setFormContext, validate } from "@sjsf/form";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
   import type { CustomizableNode } from "$lib/builder/index.js";
@@ -32,14 +25,9 @@
       return {
         ...v,
         validateFormValue(rootSchema, formValue) {
-          const cleanData = omitExtraData(
-            v,
-            options.merger(),
-            options.schema,
-            formValue
-          );
+          const cleanData = omitExtraData(v, options.merger(), options.schema, formValue);
           return v.validateFormValue(rootSchema, cleanData);
-        },
+        }
       };
     },
     get initialValue() {
@@ -52,18 +40,18 @@
       return uiSchema;
     },
     fieldsValidationMode: ON_INPUT | ON_CHANGE,
-    fieldsValidationDebounceMs: 200,
+    fieldsValidationDebounceMs: 200
   });
   setFormContext(form);
   onDestroy(() => {
-    form.fieldsValidation.abort()
-  })
+    form.fieldsValidation.abort();
+  });
 
   $effect(() => {
     if (form.fieldsValidation.isProcessed) {
       return;
     }
-    const { value } = validate(form)
+    const { value } = validate(form);
     node.options = value as any;
   });
 </script>
