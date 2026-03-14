@@ -1,8 +1,8 @@
-import packageJson from "%/shadcn4-starter/package.json";
-import appCss from "%/shadcn4-starter/src/app.css?raw";
-import componentsJson from "%/shadcn4-starter/components.json?raw";
-import utilsTs from "%/shadcn4-starter/src/lib/utils?raw";
-import layoutSvelte from "%/shadcn4-starter/src/routes/+layout.svelte?raw";
+import packageJson from "examples/shadcn4-starter/package.json";
+import appCss from "examples/shadcn4-starter/src/app.css?raw";
+import componentsJson from "examples/shadcn4-starter/components.json?raw";
+import utilsTs from "examples/shadcn4-starter/src/lib/utils?raw";
+import layoutSvelte from "examples/shadcn4-starter/src/routes/+layout.svelte?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

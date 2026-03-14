@@ -1,4 +1,4 @@
-import sveltePage from "%/basic-starter/src/routes/+page.svelte?raw";
+import sveltePage from "examples/basic-starter/src/routes/+page.svelte?raw";
 
 import type { Layer } from "../layer";
 

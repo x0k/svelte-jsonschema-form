@@ -9,16 +9,16 @@ sidebar:
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
 import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id-builders/legacy';
 
-import pkg from '#/sveltekit/package.json'
+import pkg from 'pkgs/sveltekit/package.json'
 
 import Npm from '@/components/npm.astro';
 import Deps from '@/components/peer-dependencies.astro';
 
-import modelCode from '%/sveltekit-starter/src/lib/post.ts?raw'
-import clientCode from '%/sveltekit-starter/src/routes/form-actions/+page.svelte?raw';
-import serverCode from '%/sveltekit-starter/src/routes/form-actions/+page.server?raw'
-import clientFlexCode from '%/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw';
-import serverFlexCode from '%/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw';
+import modelCode from 'examples/sveltekit-starter/src/lib/post.ts?raw'
+import clientCode from 'examples/sveltekit-starter/src/routes/form-actions/+page.svelte?raw';
+import serverCode from 'examples/sveltekit-starter/src/routes/form-actions/+page.server?raw'
+import clientFlexCode from 'examples/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw';
+import serverFlexCode from 'examples/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw';
 
 Since this is a `Svelte` library, you may want to use it with the `SvelteKit`.
 

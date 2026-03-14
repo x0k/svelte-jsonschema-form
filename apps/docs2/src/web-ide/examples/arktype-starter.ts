@@ -1,5 +1,5 @@
-import sveltePage from "%/arktype-starter/src/routes/+page.svelte?raw";
-import packageJson from "%/arktype-starter/package.json";
+import sveltePage from "examples/arktype-starter/src/routes/+page.svelte?raw";
+import packageJson from "examples/arktype-starter/package.json";
 
 import type { Layer } from "../layer";
 

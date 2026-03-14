@@ -1,6 +1,6 @@
-import convertTs from "%/basic-starter/src/routes/draft-2020-12/convert.ts?raw";
-import pageSvelte from "%/basic-starter/src/routes/draft-2020-12/+page.svelte?raw";
-import packageJson from "%/basic-starter/package.json";
+import convertTs from "examples/basic-starter/src/routes/draft-2020-12/convert.ts?raw";
+import pageSvelte from "examples/basic-starter/src/routes/draft-2020-12/+page.svelte?raw";
+import packageJson from "examples/basic-starter/package.json";
 
 import { DRAFT_2020_12_PACKAGES, pickPackages, type Layer } from "../layer";
 

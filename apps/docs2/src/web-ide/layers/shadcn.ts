@@ -1,9 +1,9 @@
-import packageJson from "%/shadcn-starter/package.json";
-import appCss from "%/shadcn-starter/src/app.css?raw";
-import componentsJson from "%/shadcn-starter/components.json?raw";
-import utilsTs from "%/shadcn-starter/src/lib/utils?raw";
-import layoutSvelte from "%/shadcn-starter/src/routes/+layout.svelte?raw";
-import tailwindConfigJs from '%/shadcn-starter/tailwind.config.js?raw';
+import packageJson from "examples/shadcn-starter/package.json";
+import appCss from "examples/shadcn-starter/src/app.css?raw";
+import componentsJson from "examples/shadcn-starter/components.json?raw";
+import utilsTs from "examples/shadcn-starter/src/lib/utils?raw";
+import layoutSvelte from "examples/shadcn-starter/src/routes/+layout.svelte?raw";
+import tailwindConfigJs from "examples/shadcn-starter/tailwind.config.js?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

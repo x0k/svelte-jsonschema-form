@@ -1,6 +1,6 @@
 import type { StarlightIcon } from "@astrojs/starlight/types";
 
-import { version } from "#/form/package.json";
+import { version } from "pkgs/form/package.json";
 
 // NOTE: Required for correct UiSchema augmentation
 import "@sjsf/basic-theme";
@@ -274,7 +274,7 @@ export const PKG_MANGER_ICONS: Record<PackageManager, StarlightIcon> = {
 
 const packagesMeta = Object.values(
   import.meta.glob(
-    ["#/*/package.json", "legacy/*/package.json", "lab/*/package.json"],
+    ["pkgs/*/package.json", "legacy/*/package.json", "lab/*/package.json"],
     {
       import: "default",
       eager: true,

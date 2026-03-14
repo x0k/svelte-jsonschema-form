@@ -4,9 +4,10 @@ sidebar:
   order: 1
 ---
 
+import { PLAYGROUND_LINK } from '@/i18n'
 import Playground from './playground.svelte'
 
 You can familiarize yourself with the capabilities of the form
 using prepared examples of JSON and UI schemas on our playground.
 
-<Playground client:load />
+<Playground client:load playgroundLink={PLAYGROUND_LINK} />

@@ -1,4 +1,4 @@
-import sveltePage from "%/zod-starter/src/routes/+page.svelte?raw";
+import sveltePage from "examples/zod-starter/src/routes/+page.svelte?raw";
 
 import type { Layer } from "../layer";
 

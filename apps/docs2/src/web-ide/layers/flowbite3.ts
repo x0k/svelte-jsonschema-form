@@ -1,5 +1,5 @@
-import packageJson from "%/flowbite3-starter/package.json";
-import appCss from "%/flowbite3-starter/src/app.css?raw";
+import packageJson from "examples/flowbite3-starter/package.json";
+import appCss from "examples/flowbite3-starter/src/app.css?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

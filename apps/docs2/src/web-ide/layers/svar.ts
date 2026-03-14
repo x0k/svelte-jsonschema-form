@@ -1,5 +1,5 @@
-import packageJson from "%/svar-starter/package.json";
-import layoutSvelte from "%/svar-starter/src/routes/+layout.svelte?raw";
+import packageJson from "examples/svar-starter/package.json";
+import layoutSvelte from "examples/svar-starter/src/routes/+layout.svelte?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

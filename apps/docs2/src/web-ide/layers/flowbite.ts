@@ -1,5 +1,5 @@
-import packageJson from "%/flowbite-starter/package.json";
-import tailwindConfigJs from "%/flowbite-starter/tailwind.config.js?raw";
+import packageJson from "examples/flowbite-starter/package.json";
+import tailwindConfigJs from "examples/flowbite-starter/tailwind.config.js?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

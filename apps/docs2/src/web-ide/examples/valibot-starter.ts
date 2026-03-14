@@ -1,4 +1,4 @@
-import sveltePage from "%/valibot-starter/src/routes/+page.svelte?raw";
+import sveltePage from "examples/valibot-starter/src/routes/+page.svelte?raw";
 
 import type { Layer } from "../layer";
 

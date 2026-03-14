@@ -1,5 +1,5 @@
-import pageSvelte from "%/basic-starter/src/routes/multi-step/+page.svelte?raw";
-import multiStepFieldSvelte from "%/basic-starter/src/routes/multi-step/multi-step-field.svelte?raw";
+import pageSvelte from "examples/basic-starter/src/routes/multi-step/+page.svelte?raw";
+import multiStepFieldSvelte from "examples/basic-starter/src/routes/multi-step/multi-step-field.svelte?raw";
 
 import type { Layer } from "../layer";
 

@@ -1,6 +1,6 @@
-import descriptionSvelte from "%/basic-starter/src/routes/markdown-description/description.svelte?raw";
-import pageSvelte from "%/basic-starter/src/routes/markdown-description/+page.svelte?raw";
-import packageJson from "%/basic-starter/package.json";
+import descriptionSvelte from "examples/basic-starter/src/routes/markdown-description/description.svelte?raw";
+import pageSvelte from "examples/basic-starter/src/routes/markdown-description/+page.svelte?raw";
+import packageJson from "examples/basic-starter/package.json";
 
 import {
   MARKDOWN_DESCRIPTION_PACKAGES,

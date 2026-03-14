@@ -1,5 +1,5 @@
-import packageJson from "%/daisyui5-starter/package.json";
-import appCss from "%/daisyui5-starter/src/app.css?raw";
+import packageJson from "examples/daisyui5-starter/package.json";
+import appCss from "examples/daisyui5-starter/src/app.css?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

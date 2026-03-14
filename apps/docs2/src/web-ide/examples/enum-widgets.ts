@@ -1,5 +1,5 @@
-import pageSvelte from "%/basic-starter/src/routes/enum-widgets/+page.svelte?raw";
-import radioWithOrderSvelte from "%/basic-starter/src/routes/enum-widgets/radio-with-other.svelte?raw";
+import pageSvelte from "examples/basic-starter/src/routes/enum-widgets/+page.svelte?raw";
+import radioWithOrderSvelte from "examples/basic-starter/src/routes/enum-widgets/radio-with-other.svelte?raw";
 
 import type { Layer } from "../layer";
 
