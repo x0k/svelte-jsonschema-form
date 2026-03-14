@@ -103,7 +103,7 @@
 		}
 	},
 	"devDependencies": {
-		"@jsrepo/transform-prettier": "^6.0.1",
+		"@jsrepo/transform-prettier": "^6.0.2",
 		"@lucide/svelte": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
@@ -117,7 +117,7 @@
 		"clsx": "^2.1.1",
 		"country-flag-icons": "^1.6.15",
 		"globals": "catalog:",
-		"jsrepo": "^3.6.1",
+		"jsrepo": "^3.6.2",
 		"runed": "^0.37.1",
 		"svelte": "catalog:",
 		"svelte-tel-input": "^3.6.1",
