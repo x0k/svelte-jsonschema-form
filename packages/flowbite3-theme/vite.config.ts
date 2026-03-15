@@ -5,6 +5,9 @@ import { playwright } from '@vitest/browser-playwright';
 
 export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],
+	optimizeDeps: {
+		include: ['flowbite-svelte', 'flowbite-svelte/*']
+	},
 	test: {
 		projects: [
 			{
