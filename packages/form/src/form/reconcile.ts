@@ -54,9 +54,13 @@ export function createSchemaValuesReconciler(keyedArraysMap: KeyedArraysMap) {
         l = sKeys.length;
         for (let i = 0; i < l; i++) {
           const key = sKeys[i]!;
-          const v = reconcile(target[key], source[key]);
-          if (v !== UNCHANGED) {
-            target[key] = v;
+          if (key in target) {
+            const v = reconcile(target[key], source[key]);
+            if (v !== UNCHANGED) {
+              target[key] = v;
+            }
+          } else {
+            target[key] = source[key];
           }
         }
         return UNCHANGED;
