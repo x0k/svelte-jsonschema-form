@@ -4,7 +4,7 @@ import { on } from "svelte/events";
 
 import type { DeepPartial } from "@/lib/types.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
-import { refFromBind, type Bind, type Ref } from "@/lib/svelte.svelte.js";
+import { refFromBind, type Bind } from "@/lib/svelte.svelte.js";
 import { createDataURLtoBlob } from "@/lib/file.js";
 import {
   abortPrevious,
@@ -48,12 +48,13 @@ import {
   create,
   type Creatable,
   type FormValue,
+  type FormValueRef,
   type KeyedArraysMap,
   type PathTrieRef,
   type Update,
 } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
-import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
+import { createFormValueReconciler } from "./reconcile.js";
 import {
   setFieldState,
   updateErrors,
@@ -110,7 +111,7 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
       [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
 
-function createValueRef(initialValue: FormValue): Ref<FormValue> {
+function createValueRef(initialValue: FormValue): FormValueRef {
   let value = $state(initialValue);
   return {
     get current() {
@@ -129,7 +130,7 @@ export interface IdBuilderFactoryOptions {
   uiOptionsRegistry: UiOptionsRegistry;
   validator: Validator;
   merger: FormMerger;
-  valueRef: Ref<FormValue>;
+  valueRef: FormValueRef;
 }
 
 export interface ValidatorFactoryOptions {
@@ -348,9 +349,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const keyedArrays: KeyedArraysMap = $derived(
     options.keyedArraysMap ?? new WeakMap()
   );
-  const reconcileSchemaValues = $derived(
-    createSchemaValuesReconciler(keyedArrays)
-  );
+  const reconcileFormValue = $derived(createFormValueReconciler(keyedArrays));
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
       (typeof scheduler !== "undefined" && "yield" in scheduler))
@@ -606,10 +605,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       initialDefaultsGenerated,
     });
     initialDefaultsGenerated = true;
-    const change = reconcileSchemaValues(valueRef.current, nextValue);
-    if (change !== UNCHANGED) {
-      valueRef.current = change;
-    }
+    reconcileFormValue(valueRef, nextValue);
   }
   return formState;
 }

@@ -22,6 +22,8 @@ export type KeyedFieldValues = KeyedArray<number, FieldValue>;
 
 export type KeyedArraysMap = WeakMap<SchemaArrayValue, KeyedFieldValues>;
 
+export type FormValueRef = Ref<FormValue>;
+
 export type PathTrieRef<T> = Ref<Trie<RPath[number], T>>;
 
 export const DEFAULT_BOOLEAN_ENUM = [true, false];
