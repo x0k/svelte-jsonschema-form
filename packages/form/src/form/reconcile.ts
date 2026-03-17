@@ -1,12 +1,12 @@
 import { isRecordProto } from "@/lib/object.js";
 import type { SchemaValue } from "@/core/index.js";
 
-import type { FieldValue, KeyedArraysMap } from "./model.js";
+import type { FieldValue, FormValueRef, KeyedArraysMap } from "./model.js";
 
-export const UNCHANGED = Symbol("unchanged");
+const UNCHANGED = Symbol("unchanged");
 
-export function createSchemaValuesReconciler(keyedArraysMap: KeyedArraysMap) {
-  return function reconcile(
+export function createFormValueReconciler(keyedArraysMap: KeyedArraysMap) {
+  function reconcile(
     target: SchemaValue | undefined,
     source: SchemaValue | undefined
   ): SchemaValue | undefined | typeof UNCHANGED {
@@ -54,14 +54,24 @@ export function createSchemaValuesReconciler(keyedArraysMap: KeyedArraysMap) {
         l = sKeys.length;
         for (let i = 0; i < l; i++) {
           const key = sKeys[i]!;
-          const v = reconcile(target[key], source[key]);
-          if (v !== UNCHANGED) {
-            target[key] = v;
+          if (key in target) {
+            const v = reconcile(target[key], source[key]);
+            if (v !== UNCHANGED) {
+              target[key] = v;
+            }
+          } else {
+            target[key] = source[key];
           }
         }
         return UNCHANGED;
       }
     }
     return source;
+  }
+  return (targetRef: FormValueRef, source: SchemaValue | undefined) => {
+    const change = reconcile(targetRef.current, source);
+    if (change !== UNCHANGED) {
+      targetRef.current = change;
+    }
   };
 }
