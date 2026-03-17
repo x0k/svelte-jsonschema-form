@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { UiSchemaDefinition } from "@/form/index.js";
+  import type { FormValue, UiSchemaDefinition } from "@/form/index.js";
 
   import "./extra-templates/multi-field.js";
 
@@ -70,9 +70,21 @@
   const RestSchemaField = $derived(
     restFieldConfig && getFieldComponent(ctx, restFieldConfig)
   );
+
+  let ignoreUpdate = false;
+  let lastValueSnapshot: FormValue;
+  const valueSnapshot = $derived.by(() => {
+    if (ignoreUpdate) {
+      ignoreUpdate = false;
+      return lastValueSnapshot;
+    }
+    lastValueSnapshot = $state.snapshot(value);
+    return lastValueSnapshot;
+  });
+
   const retrievedOptions = $derived(
     (config.schema[combinationKey] ?? []).map((s) =>
-      typeof s !== "boolean" ? retrieveSchema(ctx, s, value) : {}
+      typeof s !== "boolean" ? retrieveSchema(ctx, s, valueSnapshot) : {}
     )
   );
 
@@ -80,17 +92,22 @@
   let nextSelectedOption = $derived(
     getClosestMatchingOption(
       ctx,
-      value,
+      valueSnapshot,
       retrievedOptions,
-      previousSelectedOption ?? 0,
+      untrack(() => previousSelectedOption ?? 0),
       getDiscriminatorFieldFromSchema(config.schema)
     )
   );
+  const currentSelectedOption = $derived(
+    previousSelectedOption ?? nextSelectedOption
+  );
+
   $effect(() => {
     const nextSelected = nextSelectedOption;
     if (previousSelectedOption === nextSelected) {
       return;
     }
+    ignoreUpdate = true;
     value = untrack(() => {
       const nextSchema = retrievedOptions[nextSelected];
       if (nextSchema === undefined) {
@@ -194,7 +211,7 @@
   const errors = $derived(getFieldErrors(ctx, config.path));
 
   const combinationFieldConfig: Config | null = $derived.by(() => {
-    const selected = previousSelectedOption ?? nextSelectedOption;
+    const selected = currentSelectedOption;
     if (selected < 0) {
       return null;
     }
@@ -269,10 +286,7 @@
       config={widgetConfig}
       uiOption={(opt) => retrieveUiOption(ctx, widgetConfig, opt)}
       options={enumOptions}
-      bind:value={
-        () => previousSelectedOption ?? nextSelectedOption,
-        (v) => (nextSelectedOption = v)
-      }
+      bind:value={() => currentSelectedOption, (v) => (nextSelectedOption = v)}
     />
   {/snippet}
   {#if combinationFieldConfig}
