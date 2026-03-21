@@ -6,7 +6,25 @@ import { playwright } from '@vitest/browser-playwright';
 export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],
 	optimizeDeps: {
-		include: ['flowbite-svelte', 'flowbite-svelte/*']
+		include: [
+			'flowbite-svelte/Button.svelte',
+			'flowbite-svelte/Checkbox.svelte',
+			'flowbite-svelte/Radio.svelte',
+			'flowbite-svelte/Datepicker.svelte',
+			'flowbite-svelte/Fileupload.svelte',
+			'flowbite-svelte/Range.svelte',
+			'flowbite-svelte/Textarea.svelte',
+			'flowbite-svelte/Label.svelte',
+			'flowbite-svelte/Input.svelte',
+			'flowbite-svelte/ButtonGroup.svelte',
+			'flowbite-svelte/Select.svelte',
+			'flowbite-svelte/ButtonToggle.svelte',
+			'flowbite-svelte/RadioButton.svelte',
+			'flowbite-svelte/MultiSelect.svelte',
+			'flowbite-svelte/Tags.svelte',
+			'flowbite-svelte/Toggle.svelte',
+			'flowbite-svelte/Helper.svelte'
+		]
 	},
 	test: {
 		projects: [
