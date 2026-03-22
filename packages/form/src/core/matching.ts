@@ -27,6 +27,7 @@ import { isSchemaObjectValue } from "./value.js";
 // - `@sjsf/ajv8-validator/precompile`
 // - `@sjsf/schemasafe-validator/precompile`
 // - `@sjsf/zod4-validator`
+// - `@sjsf/valibot-validator`
 export function createAugmentSchema({
   required,
   ...rest
@@ -61,11 +62,10 @@ function isOptionMatching(
   discriminatorField: string | undefined,
   discriminatorFormData: SchemaValue | undefined
 ): boolean {
-  // NOTE: This is possibly a bug since schema can be combinatorial (oneOf, anyOf)
   if (!isSchemaWithProperties(option)) {
     return validator.isValid(option, rootSchema, formData);
   }
-  // NOTE: Do not transform into `&&` expression!
+  // WARN: Do not transform into `&&` expression!
   const discriminator =
     discriminatorField !== undefined
       ? option.properties[discriminatorField]
