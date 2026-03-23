@@ -53,7 +53,7 @@
 		}
 	},
 	"peerDependencies": {
-		"@lucide/svelte": ">=0.479.0 <0.576.0",
+		"@lucide/svelte": ">=0.479.0 <1.0.0 || ^1.0.0",
 		"@sjsf/form": "workspace:^3.3.1",
 		"@sjsf/shadcn4-theme": "workspace:^3.3.1",
 		"@zxcvbn-ts/core": "^3.0.0",
