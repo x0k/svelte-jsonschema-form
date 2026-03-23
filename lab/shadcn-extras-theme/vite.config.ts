@@ -5,6 +5,9 @@ import { playwright } from '@vitest/browser-playwright';
 
 export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],
+	optimizeDeps: {
+		include: ['country-flag-icons/string/3x2']
+	},
 	test: {
 		expect: { requireAssertions: true },
 		projects: [

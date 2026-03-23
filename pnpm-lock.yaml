@@ -1549,8 +1549,8 @@ importers:
   lab/shadcn-extras-theme:
     devDependencies:
       '@jsrepo/transform-prettier':
-        specifier: ^6.0.2
-        version: 6.0.2(jsrepo@3.6.2(svelte@5.55.0))(prettier@3.8.1)
+        specifier: ^7.0.0
+        version: 7.0.0(jsrepo@3.7.0(svelte@5.55.0))(prettier@3.8.1)
       '@lucide/svelte':
         specifier: 'catalog:'
         version: 1.0.1(svelte@5.55.0)
@@ -1591,8 +1591,8 @@ importers:
         specifier: 'catalog:'
         version: 17.4.0
       jsrepo:
-        specifier: ^3.6.2
-        version: 3.6.2(svelte@5.55.0)
+        specifier: ^3.7.0
+        version: 3.7.0(svelte@5.55.0)
       runed:
         specifier: ^0.37.1
         version: 0.37.1(@sveltejs/kit@2.55.0(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.0)(vite@8.0.2(@types/node@25.5.0)(esbuild@0.27.4)(jiti@2.6.1)(yaml@2.8.2)))(svelte@5.55.0)(typescript@5.9.3)(vite@8.0.2(@types/node@25.5.0)(esbuild@0.27.4)(jiti@2.6.1)(yaml@2.8.2)))(svelte@5.55.0)(zod@4.3.6)
@@ -1637,8 +1637,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/form
       '@svar-ui/svelte-core':
-        specifier: ^2.4.1
-        version: 2.4.1
+        specifier: ^2.5.0
+        version: 2.5.0
       ajv:
         specifier: 'catalog:'
         version: 8.18.0
@@ -2239,14 +2239,14 @@ importers:
         specifier: workspace:*
         version: link:../form
       '@valibot/to-json-schema':
-        specifier: ^1.5.0
-        version: 1.5.0(valibot@1.2.0(typescript@5.9.3))
+        specifier: ^1.6.0
+        version: 1.6.0(valibot@1.3.1(typescript@5.9.3))
       svelte:
         specifier: 'catalog:'
         version: 5.55.0
       valibot:
-        specifier: ^1.2.0
-        version: 1.2.0(typescript@5.9.3)
+        specifier: ^1.3.1
+        version: 1.3.1(typescript@5.9.3)
       validator-testing:
         specifier: workspace:*
         version: link:../validator-testing
@@ -2978,10 +2978,10 @@ packages:
   '@json-table/core@0.3.0':
     resolution: {integrity: sha512-BGBOeBsnVXTmbYsEIBXhcVTifoLmlk2s+Up4QNuJJ00djh+JgrkS3m/tKvqDv3OU2SrenhGWruLcNBBGJ+9Zhg==}
 
-  '@jsrepo/transform-prettier@6.0.2':
-    resolution: {integrity: sha512-AVVajA0nyb35RQ44BputfVagp7tFJh2SNk5cC/8aV3vZm9hI41tKLaXFF58STUQkNSsogpw8v1gkFYeMMV4W7g==}
+  '@jsrepo/transform-prettier@7.0.0':
+    resolution: {integrity: sha512-dNV6tMYRN3Hycn9UyeVCElCM5GAm1A5m2RJhZStyPoBMLKDVKLnQAGvNCo6wC/A6y51Eq69sgb/6jg0wXFPB6Q==}
     peerDependencies:
-      jsrepo: 3.6.2
+      jsrepo: 3.7.0
       prettier: 3.x
 
   '@lezer/common@1.5.0':
@@ -3545,8 +3545,14 @@ packages:
   '@svar-ui/core-locales@2.4.1':
     resolution: {integrity: sha512-+vx5LzmVkzQDm0g0t3gVxzV+hkxyAETMfs8tS2bCEsUJp7KbFxlyIk/MyW/DuPwT1DicW1zy4fahsqP43PvRfg==}
 
+  '@svar-ui/core-locales@2.5.0':
+    resolution: {integrity: sha512-vL8y8B1/YeHd89cd6x5jzSWLxYxNICXZY2Gx4+Op26L8N8IhCR26r8fpuptugodKLIQkyua3fh27ZB+5sJSXHg==}
+
   '@svar-ui/lib-dom@0.12.0':
     resolution: {integrity: sha512-rrFdV/SlYsWFejtRHAltk/Tk91xM+uifvMwM0EmgTqi16BSe86DnnE7czMtEEVx0308cTcrD0OX2hmO+MFgArg==}
+
+  '@svar-ui/lib-dom@0.12.1':
+    resolution: {integrity: sha512-srvDleQqR6stBBDijCgzDHMFTTffI6sv3XCpNPKmurrnE83L1MDNqezqg6j3+0dUVPd4AAEGOez2DvK6byblTQ==}
 
   '@svar-ui/lib-state@1.9.6':
     resolution: {integrity: sha512-twoHa8wZvzdxtES68s6Wnp4Xi1WivScNaFFK6sJ6WDgqVYOzJw0ZhVVrdwHQgieLITTKl/DYh/U3nuqtMetKYw==}
@@ -3556,6 +3562,9 @@ packages:
 
   '@svar-ui/svelte-core@2.4.1':
     resolution: {integrity: sha512-Y/DDFSwl6KMzMV/Ar7ChIxY8uC2bDgNFlpWpTXLqEjQPboVUDLqtXToBwSfZKFEYo45xVEjeYqU6nbe2ndd56Q==}
+
+  '@svar-ui/svelte-core@2.5.0':
+    resolution: {integrity: sha512-POqG2dL6SeGcrFTYSxWWbbAdHoW9I6sdA7T9pld8/GnRn0X2sYnQBBvIPCMo5wC/zvEHVOpKGRiLZn6evTNQJw==}
 
   '@sveltejs/acorn-typescript@1.0.9':
     resolution: {integrity: sha512-lVJX6qEgs/4DOcRTpo56tmKzVPtoWAaVbL4hfO7t7NVwl9AAXzQR6cihesW1BmNMPl+bK6dreu2sOKBP2Q9CIA==}
@@ -4049,6 +4058,11 @@ packages:
     resolution: {integrity: sha512-GE7DmSr1C2UCWPiV0upRH6mv0cCPsqYGs819fb6srCS1tWhyXrkGGe+zxUiwzn/L1BOfADH4sNjY/YHCuP8phQ==}
     peerDependencies:
       valibot: ^1.2.0
+
+  '@valibot/to-json-schema@1.6.0':
+    resolution: {integrity: sha512-d6rYyK5KVa2XdqamWgZ4/Nr+cXhxjy7lmpe6Iajw15J/jmU+gyxl2IEd1Otg1d7Rl3gOQL5reulnSypzBtYy1A==}
+    peerDependencies:
+      valibot: ^1.3.0
 
   '@vitest/browser-playwright@4.1.1':
     resolution: {integrity: sha512-dtVSBZZha2k/7P7EAXXrEAoxuIKl8Yv9f2Dk4GN/DGfmhf4DQvkvu+57okR2wq/gan1xppKjL/aBxK/kbYrbGw==}
@@ -5658,8 +5672,8 @@ packages:
     resolution: {integrity: sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==}
     engines: {node: '>=0.10.0'}
 
-  jsrepo@3.6.2:
-    resolution: {integrity: sha512-TkH3OGpLNwhxM8Bble4iCuASfka8tm8WjYnhIkLUf3QhuyjcA5KvjHfJUkbPFWhc0BcFR6ts0vhVIFagwARUOA==}
+  jsrepo@3.7.0:
+    resolution: {integrity: sha512-Ds0ItLykeFm2MD5Px7FF7UXrHGUD21gLMOxxqwqgJsnWjZ/j6i9e/cgGwv3U2ZjlgxvHbmMyP9kYOmkULa0pSw==}
     hasBin: true
     peerDependencies:
       svelte: ^5.0.0
@@ -7256,6 +7270,14 @@ packages:
       typescript:
         optional: true
 
+  valibot@1.3.1:
+    resolution: {integrity: sha512-sfdRir/QFM0JaF22hqTroPc5xy4DimuGQVKFrzF1YfGwaS1nJot3Y8VqMdLO2Lg27fMzat2yD3pY5PbAYO39Gg==}
+    peerDependencies:
+      typescript: '>=5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   validate.io-array@1.0.6:
     resolution: {integrity: sha512-DeOy7CnPEziggrOO5CZhVKJw6S3Yi7e9e65R1Nl/RTN1vTQKnzjfvks0/8kQ40FP/dsjRAOd4hxmJ7uLa6vxkg==}
 
@@ -8417,9 +8439,9 @@ snapshots:
 
   '@json-table/core@0.3.0': {}
 
-  '@jsrepo/transform-prettier@6.0.2(jsrepo@3.6.2(svelte@5.55.0))(prettier@3.8.1)':
+  '@jsrepo/transform-prettier@7.0.0(jsrepo@3.7.0(svelte@5.55.0))(prettier@3.8.1)':
     dependencies:
-      jsrepo: 3.6.2(svelte@5.55.0)
+      jsrepo: 3.7.0(svelte@5.55.0)
       prettier: 3.8.1
 
   '@lezer/common@1.5.0': {}
@@ -8912,7 +8934,11 @@ snapshots:
 
   '@svar-ui/core-locales@2.4.1': {}
 
+  '@svar-ui/core-locales@2.5.0': {}
+
   '@svar-ui/lib-dom@0.12.0': {}
+
+  '@svar-ui/lib-dom@0.12.1': {}
 
   '@svar-ui/lib-state@1.9.6': {}
 
@@ -8924,6 +8950,12 @@ snapshots:
     dependencies:
       '@svar-ui/core-locales': 2.4.1
       '@svar-ui/lib-dom': 0.12.0
+      '@svar-ui/lib-svelte': 0.5.2
+
+  '@svar-ui/svelte-core@2.5.0':
+    dependencies:
+      '@svar-ui/core-locales': 2.5.0
+      '@svar-ui/lib-dom': 0.12.1
       '@svar-ui/lib-svelte': 0.5.2
 
   '@sveltejs/acorn-typescript@1.0.9(acorn@8.16.0)':
@@ -9501,6 +9533,10 @@ snapshots:
   '@valibot/to-json-schema@1.5.0(valibot@1.2.0(typescript@5.9.3))':
     dependencies:
       valibot: 1.2.0(typescript@5.9.3)
+
+  '@valibot/to-json-schema@1.6.0(valibot@1.3.1(typescript@5.9.3))':
+    dependencies:
+      valibot: 1.3.1(typescript@5.9.3)
 
   '@vitest/browser-playwright@4.1.1(playwright@1.57.0)(vite@8.0.2(@types/node@25.5.0)(esbuild@0.27.4)(jiti@2.6.1)(yaml@2.8.2))(vitest@4.1.1)':
     dependencies:
@@ -11764,7 +11800,7 @@ snapshots:
 
   jsonpointer@5.0.1: {}
 
-  jsrepo@3.6.2(svelte@5.55.0):
+  jsrepo@3.7.0(svelte@5.55.0):
     dependencies:
       commander: 14.0.3
       oxc-parser: 0.114.0
@@ -13727,6 +13763,10 @@ snapshots:
       typescript: 5.9.3
 
   valibot@1.2.0(typescript@5.9.3):
+    optionalDependencies:
+      typescript: 5.9.3
+
+  valibot@1.3.1(typescript@5.9.3):
     optionalDependencies:
       typescript: 5.9.3
 
