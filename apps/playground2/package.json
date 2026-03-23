@@ -30,7 +30,7 @@
     "@sjsf/schemasafe-validator": "workspace:*",
     "@sjsf/shadcn4-theme": "workspace:*",
     "@sjsf/skeleton4-theme": "workspace:*",
-    "@svar-ui/svelte-core": "^2.4.1",
+    "@svar-ui/svelte-core": "^2.5.0",
     "ajv": "catalog:",
     "codemirror": "^6.0.2",
     "lz-string": "^1.5.0",

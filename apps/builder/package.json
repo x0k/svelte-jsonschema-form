@@ -10,7 +10,7 @@
     "check": "svelte-check --tsconfig tsconfig.json"
   },
   "devDependencies": {
-    "@iconify-json/devicon-plain": "^1.2.55",
+    "@iconify-json/devicon-plain": "^1.2.56",
     "@iconify-json/mdi": "^1.2.3",
     "@internationalized/date": "catalog:",
     "@lucide/svelte": "catalog:",
@@ -48,7 +48,7 @@
     "@sjsf/schemasafe-validator": "workspace:*",
     "@sjsf/shadcn4-theme": "workspace:*",
     "@sjsf/skeleton4-theme": "workspace:*",
-    "@svar-ui/svelte-core": "^2.4.1",
+    "@svar-ui/svelte-core": "^2.5.0",
     "ajv": "catalog:",
     "browser-fs-access": "^0.38.0",
     "dompurify": "^3.3.3",
