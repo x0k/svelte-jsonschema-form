@@ -73,6 +73,8 @@
 		"@sjsf/form": "workspace:*",
 		"@tailwindcss/vite": "catalog:",
 		"ajv": "catalog:",
+		"esm-env": "catalog:",
+		"jsonpointer": "catalog:",
 		"flowbite": "^3.1.2",
 		"flowbite-svelte": "^1.31.0",
 		"globals": "catalog:",

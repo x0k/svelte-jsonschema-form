@@ -1,9 +1,9 @@
-import packageJson from "%/sveltekit-starter/package.json";
-import serverTs from "%/sveltekit-starter/src/lib/server.ts?raw";
-import layoutTs from "%/sveltekit-starter/src/routes/remote-functions-dynamic-schema/+layout.ts?raw";
-import pageSvelte from "%/sveltekit-starter/src/routes/remote-functions-dynamic-schema/+page.svelte?raw";
-import dataRemoteTs from "%/sveltekit-starter/src/routes/remote-functions-dynamic-schema/data.remote.ts?raw";
-import nestedPageSvelte from "%/sveltekit-starter/src/routes/remote-functions-dynamic-schema/[id]/+page.svelte?raw";
+import packageJson from "examples/sveltekit-starter/package.json";
+import serverTs from "examples/sveltekit-starter/src/lib/server.ts?raw";
+import layoutTs from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/+layout.ts?raw";
+import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/+page.svelte?raw";
+import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/data.remote.ts?raw";
+import nestedPageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/[id]/+page.svelte?raw";
 
 import { FORM_SVELTEKIT_RF_PACKAGE } from "@/shared";
 

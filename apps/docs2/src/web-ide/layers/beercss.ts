@@ -1,5 +1,5 @@
-import packageJson from "%/beercss-starter/package.json";
-import layoutSvelte from "%/beercss-starter/src/routes/+layout.svelte?raw";
+import packageJson from "examples/beercss-starter/package.json";
+import layoutSvelte from "examples/beercss-starter/src/routes/+layout.svelte?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

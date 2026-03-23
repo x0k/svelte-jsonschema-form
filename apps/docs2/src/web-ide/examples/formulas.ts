@@ -1,5 +1,5 @@
-import pageSvelte from "%/basic-starter/src/routes/formulas/+page.svelte?raw";
-import objectFieldSvelte from "%/basic-starter/src/routes/formulas/object-field.svelte?raw";
+import pageSvelte from "examples/basic-starter/src/routes/formulas/+page.svelte?raw";
+import objectFieldSvelte from "examples/basic-starter/src/routes/formulas/object-field.svelte?raw";
 
 import type { Layer } from "../layer";
 

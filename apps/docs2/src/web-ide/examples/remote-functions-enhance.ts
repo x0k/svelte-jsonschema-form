@@ -1,16 +1,16 @@
-import packageJson from "%/sveltekit-starter/package.json";
-import postModelTs from "%/sveltekit-starter/src/lib/post.ts?raw";
-import dataRemoteTs from "%/sveltekit-starter/src/routes/remote-functions-enhance/data.remote?raw";
-import pageSvelte from "%/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
+import packageJson from "examples/sveltekit-starter/package.json";
+import postModelTs from "examples/sveltekit-starter/src/lib/post.ts?raw";
+import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions-enhance/data.remote?raw";
+import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
 
-import { FORM_SVELTEKIT_RF_PACKAGE } from '@/shared';
+import { FORM_SVELTEKIT_RF_PACKAGE } from "@/shared";
 
 import { omitBasePackages, type Layer } from "../layer";
 
 export const layer = {
   package: omitBasePackages(packageJson),
   formDefaults: {
-    idBuilderPackage: FORM_SVELTEKIT_RF_PACKAGE
+    idBuilderPackage: FORM_SVELTEKIT_RF_PACKAGE,
   },
   files: {
     "src/lib/post.ts": postModelTs,

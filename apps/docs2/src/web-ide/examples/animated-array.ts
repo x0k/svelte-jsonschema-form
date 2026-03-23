@@ -1,5 +1,5 @@
-import animatedArraySvelte from "%/basic-starter/src/routes/animated-array/animated-array.svelte?raw";
-import pageSvelte from "%/basic-starter/src/routes/animated-array/+page.svelte?raw";
+import animatedArraySvelte from "examples/basic-starter/src/routes/animated-array/animated-array.svelte?raw";
+import pageSvelte from "examples/basic-starter/src/routes/animated-array/+page.svelte?raw";
 
 import type { Layer } from "../layer";
 

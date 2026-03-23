@@ -27,9 +27,10 @@
 
 <script lang="ts">
   import lz from "lz-string";
-  import { PLAYGROUND_LINK } from "@/i18n";
 
   import Buttons from "./buttons.svelte";
+
+  const { playgroundLink }: { playgroundLink: string } = $props();
 </script>
 
 {#each SAMPLE_CATEGORIES as category}
@@ -39,7 +40,7 @@
     onClick={async (path) => {
       const sample = await sampleLoaders[path]();
       window.open(
-        `${PLAYGROUND_LINK}#${lz.compressToEncodedURIComponent(JSON.stringify(sample))}`
+        `${playgroundLink}#${lz.compressToEncodedURIComponent(JSON.stringify(sample))}`
       );
     }}
     label={getSampleName}

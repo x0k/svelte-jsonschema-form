@@ -1,4 +1,4 @@
-import packageJson from "%/basic-starter/package.json";
+import packageJson from "examples/basic-starter/package.json";
 
 import { mergePackageConfigs, omitBasePackages, type Layer } from "../layer";
 

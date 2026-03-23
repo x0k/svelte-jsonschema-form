@@ -122,19 +122,23 @@ export default defineConfig({
       exclude: ["@jis3r/icons"],
       include: ["bits-ui"],
     },
-    ssr: {
-      noExternal: ["lucide-svelte", "zod"],
-    },
     resolve: {
       dedupe: ["bits-ui"],
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
-        "#": fileURLToPath(new URL("../../packages", import.meta.url)),
-        "%": fileURLToPath(new URL("../../examples", import.meta.url)),
+        examples: fileURLToPath(new URL("../../examples", import.meta.url)),
+        pkgs: fileURLToPath(new URL("../../packages", import.meta.url)),
         legacy: fileURLToPath(new URL("../../legacy", import.meta.url)),
         lab: fileURLToPath(new URL("../../lab", import.meta.url)),
         apps: fileURLToPath(new URL("..", import.meta.url)),
       },
+      noExternal: [
+        "@lucide/svelte",
+        "bits-ui",
+        "runed",
+        "svelte-toolbelt",
+        "@skeletonlabs/skeleton-svelte",
+      ],
     },
   },
 });

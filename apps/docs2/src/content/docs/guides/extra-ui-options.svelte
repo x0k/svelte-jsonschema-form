@@ -24,7 +24,7 @@
         }
       }),
       fromFactories({
-        help: (config: Config) => `${config.path.at(-1)} help`
+        help: (config: Config) => `${config.title} help`
       })
     )
   })

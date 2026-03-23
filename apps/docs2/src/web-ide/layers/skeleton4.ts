@@ -1,6 +1,6 @@
-import packageJson from "%/skeleton4-starter/package.json";
-import appCss from "%/skeleton4-starter/src/app.css?raw";
-import appHtml from "%/skeleton4-starter/src/app.html?raw";
+import packageJson from "examples/skeleton4-starter/package.json";
+import appCss from "examples/skeleton4-starter/src/app.css?raw";
+import appHtml from "examples/skeleton4-starter/src/app.html?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

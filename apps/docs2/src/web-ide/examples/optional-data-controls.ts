@@ -1,4 +1,4 @@
-import sveltePage from "%/basic-starter/src/routes/optional-data-controls/+page.svelte?raw";
+import sveltePage from "examples/basic-starter/src/routes/optional-data-controls/+page.svelte?raw";
 
 import type { Layer } from "../layer";
 
@@ -7,4 +7,3 @@ export const layer = {
     "src/routes/+page.svelte": sveltePage,
   },
 } satisfies Layer;
-

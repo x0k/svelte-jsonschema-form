@@ -1,6 +1,6 @@
-import packageJson from "%/basic-starter/package.json";
-import tsconfigJson from "%/basic-starter/tsconfig.json?raw";
-import appHtml from "%/basic-starter/src/app.html?raw";
+import packageJson from "examples/basic-starter/package.json";
+import tsconfigJson from "examples/basic-starter/tsconfig.json?raw";
+import appHtml from "examples/basic-starter/src/app.html?raw";
 
 import { omitBasePackages, type Layer } from "../layer";
 

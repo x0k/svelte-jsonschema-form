@@ -4,6 +4,9 @@ import { playwright } from '@vitest/browser-playwright';
 
 export default defineConfig({
 	plugins: [sveltekit()],
+	optimizeDeps: {
+		include: ['ajv', 'esm-env', 'jsonpointer', 'flowbite-svelte/*']
+	},
 	test: {
 		projects: [
 			{
@@ -19,7 +22,7 @@ export default defineConfig({
 					browser: {
 						enabled: true,
 						provider: playwright(),
-            headless: true,
+						headless: true,
 						instances: [
 							{
 								browser: 'chromium'

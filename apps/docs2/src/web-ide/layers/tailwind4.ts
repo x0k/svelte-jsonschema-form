@@ -1,4 +1,4 @@
-import layoutSvelte from "%/daisyui5-starter/src/routes/+layout.svelte?raw";
+import layoutSvelte from "examples/daisyui5-starter/src/routes/+layout.svelte?raw";
 
 import type { Layer } from "../layer";
 

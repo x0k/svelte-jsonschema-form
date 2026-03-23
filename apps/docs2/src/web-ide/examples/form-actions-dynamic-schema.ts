@@ -1,9 +1,9 @@
-import packageJson from "%/sveltekit-starter/package.json";
-import serverTs from "%/sveltekit-starter/src/lib/server.ts?raw";
-import layoutServerTs from "%/sveltekit-starter/src/routes/form-actions-dynamic-schema/+layout.server.ts?raw";
-import pageSvelte from "%/sveltekit-starter/src/routes/form-actions-dynamic-schema/+page.svelte?raw";
-import nestedPageSvelte from "%/sveltekit-starter/src/routes/form-actions-dynamic-schema/[id]/+page.svelte?raw";
-import pageServerTs from "%/sveltekit-starter/src/routes/form-actions-dynamic-schema/[id]/+page.server.ts?raw";
+import packageJson from "examples/sveltekit-starter/package.json";
+import serverTs from "examples/sveltekit-starter/src/lib/server.ts?raw";
+import layoutServerTs from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/+layout.server.ts?raw";
+import pageSvelte from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/+page.svelte?raw";
+import nestedPageSvelte from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/[id]/+page.svelte?raw";
+import pageServerTs from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/[id]/+page.server.ts?raw";
 
 import { FORM_SVELTEKIT_PACKAGE } from "@/shared";
 

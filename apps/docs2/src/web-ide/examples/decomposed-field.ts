@@ -1,4 +1,4 @@
-import pageSvelte from "%/basic-starter/src/routes/decomposed-field/+page.svelte?raw";
+import pageSvelte from "examples/basic-starter/src/routes/decomposed-field/+page.svelte?raw";
 
 import type { Layer } from "../layer";
 
