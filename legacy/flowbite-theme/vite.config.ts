@@ -5,7 +5,7 @@ import { playwright } from '@vitest/browser-playwright';
 export default defineConfig({
 	plugins: [sveltekit()],
 	optimizeDeps: {
-		include: ['flowbite-svelte/*']
+		include: ['ajv', 'esm-env', 'jsonpointer', 'flowbite-svelte/*']
 	},
 	test: {
 		projects: [

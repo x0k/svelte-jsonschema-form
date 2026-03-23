@@ -33,6 +33,9 @@ catalogs:
     globals:
       specifier: 17.4.0
       version: 17.4.0
+    jsonpointer:
+      specifier: ^5.0.1
+      version: 5.0.1
     postcss:
       specifier: ^8.5.8
       version: 8.5.8
@@ -1685,9 +1688,15 @@ importers:
       '@sjsf/form':
         specifier: workspace:*
         version: link:../../packages/form
+      ajv:
+        specifier: 'catalog:'
+        version: 8.18.0
       autoprefixer:
         specifier: 'catalog:'
         version: 10.4.27(postcss@8.5.8)
+      esm-env:
+        specifier: 'catalog:'
+        version: 1.2.2
       flowbite:
         specifier: ^2.5.2
         version: 2.5.2(rollup@4.57.1)
@@ -1697,6 +1706,9 @@ importers:
       globals:
         specifier: 'catalog:'
         version: 17.4.0
+      jsonpointer:
+        specifier: 'catalog:'
+        version: 5.0.1
       postcss:
         specifier: 'catalog:'
         version: 8.5.8
@@ -1939,6 +1951,9 @@ importers:
       ajv:
         specifier: 'catalog:'
         version: 8.18.0
+      esm-env:
+        specifier: 'catalog:'
+        version: 1.2.2
       flowbite:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.57.1)
@@ -1948,6 +1963,9 @@ importers:
       globals:
         specifier: 'catalog:'
         version: 17.4.0
+      jsonpointer:
+        specifier: 'catalog:'
+        version: 5.0.1
       svelte:
         specifier: 'catalog:'
         version: 5.55.0
@@ -1973,7 +1991,7 @@ importers:
         specifier: ^1.2.0
         version: 1.2.2
       jsonpointer:
-        specifier: ^5.0.1
+        specifier: 'catalog:'
         version: 5.0.1
     devDependencies:
       '@types/json-schema-compare':
