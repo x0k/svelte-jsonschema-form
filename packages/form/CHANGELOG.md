@@ -1,5 +1,15 @@
 # @sjsf/form
 
+## 3.3.2
+
+### Patch Changes
+
+- Fix the duplicate call to `getClosestMatchingOption` when selecting an option in a `oneOf/anyOf` field ([#336](https://github.com/x0k/svelte-jsonschema-form/pull/336))
+
+- Do not calculate default values during first object field render ([#338](https://github.com/x0k/svelte-jsonschema-form/pull/338))
+
+- Fix reconciliation of `undefined` properties ([#335](https://github.com/x0k/svelte-jsonschema-form/pull/335))
+
 ## 3.3.1
 
 ### Patch Changes
