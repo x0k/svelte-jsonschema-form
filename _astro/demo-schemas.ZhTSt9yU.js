@@ -1,0 +1,1 @@
+var e={type:`object`,title:`My form`,properties:{bool:{title:`bool (true)`,type:`boolean`,const:!0},number:{title:`number (min 1000)`,type:`number`,minimum:1e3},text:{title:`text (min length 5)`,type:`string`,minLength:5}},required:[`number`,`text`]},t={"ui:options":{form:{novalidate:!0}}};export{t as n,e as t};

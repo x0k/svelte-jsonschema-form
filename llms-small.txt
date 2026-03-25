@@ -23,7 +23,7 @@ The rest of the project is under the MIT license.
 
 import { Code } from '@astrojs/starlight/components'
 
-import basicFromCode from '#/form/src/form/basic-form.svelte?raw'
+import basicFromCode from 'pkgs/form/src/form/basic-form.svelte?raw'
 
 The `@sjsf/form` package exports several basic ui components for creating forms:
 
@@ -46,8 +46,8 @@ Components are linked through the context of the form, example:
 
 import { Code } from '@astrojs/starlight/components'
 
-import validationCode from '#/form/src/form/validation?raw'
-import stateCode from '#/form/src/form/field-state?raw'
+import validationCode from 'pkgs/form/src/form/validation?raw'
+import stateCode from 'pkgs/form/src/form/field-state?raw'
 
 ## Validation mode
 
@@ -771,7 +771,7 @@ implementation in your chosen theme.
 
 import { Code } from '@astrojs/starlight/components'
 
-import code from '#/form/src/form/translation?raw'
+import code from 'pkgs/form/src/form/translation?raw'
 
 <Code code={code} lang='typescript' />
 
@@ -1289,7 +1289,7 @@ to suitable JSON Schemas.
 
 import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
 
-import attributesTypesCode from '#/form/dist/form/state/attributes.d.ts?raw'
+import attributesTypesCode from 'pkgs/form/dist/form/state/attributes.d.ts?raw'
 
 You can create your own form components. Any built-in component can be replaced
 with a custom one, giving you full control over rendering and behavior.
@@ -1757,8 +1757,8 @@ If your schema uses the `patternProperties` keyword, see the [advanced example](
 
 import { Code } from '@astrojs/starlight/components'
 
-import basicResolverCode from '#/form/src/form/resolvers/basic?raw'
-import compatResolverCode from '#/form/src/form/resolvers/compat?raw'
+import basicResolverCode from 'pkgs/form/src/form/resolvers/basic?raw'
+import compatResolverCode from 'pkgs/form/src/form/resolvers/compat?raw'
 
 To determine which field to use to display your JSON schema,
 the form uses `resolver` function.
@@ -2297,7 +2297,7 @@ Use the form methods to control and access the form state:
 
 import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 
-import pkg from '#/form/package.json'
+import pkg from 'pkgs/form/package.json'
 
 import { withBase } from '@/lib/base-path';
 import { createThemeInstall } from '@/shared'
@@ -2768,16 +2768,16 @@ You can improve the experience of sending data to the server by using the `creat
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
 import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id-builders/legacy';
 
-import pkg from '#/sveltekit/package.json'
+import pkg from 'pkgs/sveltekit/package.json'
 
 import Npm from '@/components/npm.astro';
 import Deps from '@/components/peer-dependencies.astro';
 
-import modelCode from '%/sveltekit-starter/src/lib/post.ts?raw'
-import clientCode from '%/sveltekit-starter/src/routes/form-actions/+page.svelte?raw';
-import serverCode from '%/sveltekit-starter/src/routes/form-actions/+page.server?raw'
-import clientFlexCode from '%/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw';
-import serverFlexCode from '%/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw';
+import modelCode from 'examples/sveltekit-starter/src/lib/post.ts?raw'
+import clientCode from 'examples/sveltekit-starter/src/routes/form-actions/+page.svelte?raw';
+import serverCode from 'examples/sveltekit-starter/src/routes/form-actions/+page.server?raw'
+import clientFlexCode from 'examples/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw';
+import serverFlexCode from 'examples/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw';
 
 Since this is a `Svelte` library, you may want to use it with the `SvelteKit`.
 
@@ -3011,16 +3011,16 @@ const { form, request } = setupSvelteKitForm(meta, {
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
 
-import pkg from '#/sveltekit/package.json'
+import pkg from 'pkgs/sveltekit/package.json'
 
 import Npm from '@/components/npm.astro';
 import Deps from '@/components/peer-dependencies.astro';
 import { mergePackageConfigs } from '@/web-ide/layer';
 
-import modelCode from '%/sveltekit-starter/src/lib/post.ts?raw'
-import clientCode from '%/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw';
-import clientEnhanceCode from '%/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw';
-import serverCode from '%/sveltekit-starter/src/routes/remote-functions/data.remote?raw'
+import modelCode from 'examples/sveltekit-starter/src/lib/post.ts?raw'
+import clientCode from 'examples/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw';
+import clientEnhanceCode from 'examples/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw';
+import serverCode from 'examples/sveltekit-starter/src/routes/remote-functions/data.remote?raw'
 
 :::caution
 
@@ -3595,7 +3595,7 @@ import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/daisyui5-theme/specs';
 import styles from '@sjsf/daisyui5-theme/styles.css?inline';
 
-import pkg from '#/daisyui5-theme/package.json'
+import pkg from 'pkgs/daisyui5-theme/package.json'
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
@@ -3672,7 +3672,7 @@ import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/flowbite3-theme/specs';
 import styles from '@sjsf/flowbite3-theme/styles.css?inline';
 
-import pkg from '#/flowbite3-theme/package.json'
+import pkg from 'pkgs/flowbite3-theme/package.json'
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
@@ -4451,7 +4451,7 @@ import { specs, extraWidgets } from '@sjsf/shadcn4-theme/specs';
 import styles from '@sjsf/shadcn4-theme/styles.css?inline';
 
 import shadcnContextCode from 'apps/playground2/src/shadcn-context.ts?raw'
-import pkg from '#/shadcn4-theme/package.json'
+import pkg from 'pkgs/shadcn4-theme/package.json'
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
@@ -4563,7 +4563,7 @@ import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/skeleton4-theme/specs';
 import styles from "@sjsf/skeleton4-theme/styles.css?inline";
 
-import pkg from '#/skeleton4-theme/package.json'
+import pkg from 'pkgs/skeleton4-theme/package.json'
 
 import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';

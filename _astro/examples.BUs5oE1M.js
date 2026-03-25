@@ -1,0 +1,1 @@
+import{r as e}from"./chunk.4kkbojlz.js";var t=e({category:()=>n,default:()=>r}),n=`Schema Basics`,r={schema:{title:`Examples`,description:`A text field with example values.`,type:`object`,properties:{browser:{type:`string`,title:`Browser`,examples:[`Firefox`,`Chrome`,`Opera`,`Vivaldi`,`Safari`]}}},uiSchema:{},initialValue:{}};export{t as n,n as t};

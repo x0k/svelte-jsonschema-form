@@ -1,0 +1,1 @@
+import{r as e}from"./chunk.4kkbojlz.js";var t=e({category:()=>n,default:()=>r}),n=`Schema Basics`,r={schema:{title:`A single-field form`,type:`string`},initialValue:`initial value`,uiSchema:{}};export{t as n,n as t};

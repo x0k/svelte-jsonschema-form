@@ -1,0 +1,1 @@
+var e=e=>e;function t(t,{delay:n=0,duration:r=400,easing:i=e}={}){let a=+getComputedStyle(t).opacity;return{delay:n,duration:r,easing:i,css:e=>`opacity: ${e*a}`}}export{t};

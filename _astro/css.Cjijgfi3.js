@@ -1,1 +1,0 @@
-import{a1 as n,R as d}from"./render.CpdcQVrh.js";function s(r,t){n(()=>{var e=r.getRootNode(),a=e.host?e:e.head??e.ownerDocument.head;if(!a.querySelector("#"+t.hash)){const o=d("style");o.id=t.hash,o.textContent=t.code,a.appendChild(o)}})}export{s as a};
