@@ -1,1 +1,0 @@
-import{c as i,t as n}from"./en.BMk-hHpZ.js";import"./props.D-KTQNlX.js";import{t as c}from"./index.BrB4jcPM.js";import"./validator.6xf19_46.js";import{c as s}from"./factory.D2Uwa3cu.js";function x(o){const e=s(),a={...c,validator:e,translation:n};return i(new Proxy(o,{get(r,t,m){return t in r?Reflect.get(r,t,m):a[t]}}))}export{x as c};
