@@ -1,5 +1,30 @@
 # playground2
 
+## 1.3.0
+
+### Minor Changes
+
+- Add `Validator` and `Merger` pages ([#330](https://github.com/x0k/svelte-jsonschema-form/pull/330))
+
+### Patch Changes
+
+- Updated dependencies [[`01c0577`](https://github.com/x0k/svelte-jsonschema-form/commit/01c0577943ec2178bd80d2b8ea634bc2023983a6), [`277e539`](https://github.com/x0k/svelte-jsonschema-form/commit/277e539f22b6bf3b3b4fe7c89e8674a70b6424d6), [`8db4ae8`](https://github.com/x0k/svelte-jsonschema-form/commit/8db4ae82f355b19ed9a0587fb6fcc0ef69984805), [`b9c0139`](https://github.com/x0k/svelte-jsonschema-form/commit/b9c0139f0c864d8fb66c0a4edec2bbf25774cb7c)]:
+  - @sjsf/form@3.3.2
+  - @sjsf/shadcn4-theme@3.3.2
+  - @sjsf/lucide-icons@3.3.2
+  - @sjsf-lab/beercss-theme@3.2.2
+  - @sjsf-lab/svar-theme@3.2.1
+  - @sjsf/ajv8-validator@3.3.2
+  - @sjsf/basic-theme@3.3.2
+  - @sjsf/cfworker-validator@3.3.2
+  - @sjsf/daisyui5-theme@3.3.2
+  - @sjsf/flowbite-icons@3.3.2
+  - @sjsf/flowbite3-theme@3.3.2
+  - @sjsf/moving-icons@3.3.2
+  - @sjsf/radix-icons@3.3.2
+  - @sjsf/schemasafe-validator@3.3.2
+  - @sjsf/skeleton4-theme@3.3.2
+
 ## 1.2.2
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @sjsf/shadcn4-theme
 
+## 3.3.2
+
+### Patch Changes
+
+- Allow `@lucide/svelte@1` ([#334](https://github.com/x0k/svelte-jsonschema-form/pull/334))
+
+- Updated dependencies [[`01c0577`](https://github.com/x0k/svelte-jsonschema-form/commit/01c0577943ec2178bd80d2b8ea634bc2023983a6), [`277e539`](https://github.com/x0k/svelte-jsonschema-form/commit/277e539f22b6bf3b3b4fe7c89e8674a70b6424d6), [`b9c0139`](https://github.com/x0k/svelte-jsonschema-form/commit/b9c0139f0c864d8fb66c0a4edec2bbf25774cb7c)]:
+  - @sjsf/form@3.3.2
+  - @sjsf/basic-theme@3.3.2
+
 ## 3.3.1
 
 ### Patch Changes
