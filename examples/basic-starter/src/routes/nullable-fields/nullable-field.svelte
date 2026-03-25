@@ -37,8 +37,8 @@
 <script lang="ts">
   import { isNil } from "@sjsf/form/lib/types";
   import {
-    getDefaultValueForType,
     getSimpleSchemaType,
+    isPrimitiveSchemaType,
     type SchemaDefinition,
   } from "@sjsf/form/core";
   import {
@@ -94,37 +94,44 @@
           action: clearEdit,
           ...uiSchema["ui:options"],
         },
-        'ui:components': {
+        "ui:components": {
           objectTemplate: OptionalObjectTemplate,
           arrayTemplate: OptionalArrayTemplate,
           multiFieldTemplate: OptionalMultiFieldTemplate,
-          ...uiSchema['ui:components']
-        }
+          ...uiSchema["ui:components"],
+        },
       },
     };
   });
+  const schemaType = $derived(getSimpleSchemaType(fieldConfig.schema));
 
   const Field = $derived(getFieldComponent(ctx, fieldConfig));
 </script>
 
 {#snippet clearEdit()}
   {@const Button = getComponent(ctx, "button", config)}
+  {@const isUndefinedPrimitive =
+    isPrimitiveSchemaType(schemaType) && isNil(value)}
   <Button
     type="clear-edit-action"
     {config}
-    disabled={config.schema.readOnly || isDisabled(ctx)}
+    disabled={isUndefinedPrimitive || config.schema.readOnly || isDisabled(ctx)}
     errors={getFieldErrors(ctx, config.path)}
     onclick={() => {
       value = isNil(value)
-        ? (getDefaultFieldState(ctx, {
+        ? getDefaultFieldState(ctx, {
             schema: fieldConfig.schema,
             formData: undefined,
             includeUndefinedValues: "excludeObjectChildren",
-          }) ?? getDefaultValueForType(getSimpleSchemaType(fieldConfig.schema)))
+          })
         : null;
     }}
   >
-    <Text id={isNil(value) ? "edit" : "clear"} {config} {translate} />
+    <Text
+      id={isUndefinedPrimitive || !isNil(value) ? "clear" : "edit"}
+      {config}
+      {translate}
+    />
   </Button>
 {/snippet}
 

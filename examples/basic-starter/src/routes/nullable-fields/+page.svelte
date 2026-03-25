@@ -56,7 +56,7 @@
         ],
       },
     },
-    required: ["foo", "bar", "baz"],
+    required: ["foo"],
   } as const satisfies Schema;
 
   function resolver<T>(ctx: FormState<T>): ResolveFieldType {
