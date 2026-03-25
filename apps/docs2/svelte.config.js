@@ -1,6 +1,6 @@
 import { vitePreprocess } from "@astrojs/svelte";
 
-const injectedCss = ["@jis3r/icons", "basic", "svar", "beercss"];
+const injectedCss = ["@jis3r/icons", "basic", "svar", "beercss", "examples/"];
 const nonRunic = [
   "svelte-json-tree",
   "flowbite-svelte@0.47",
