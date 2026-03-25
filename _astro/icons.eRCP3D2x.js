@@ -1,0 +1,1 @@
+import"./disclose-version.BfTcoxsO.js";import{Bt as e,Jt as t,gt as n,i as r,qt as i}from"./client.DhLbB2_t.js";import{r as a,xn as o}from"./form.w48ksr9E.js";import{t as s}from"./defaults.CPkLOnDu.js";function c(c,l){t(l,!0);{let t=e(()=>o({submit:l.children}));a(c,r(()=>s,{schema:{title:`With icons`,type:`null`},get icons(){return n(t)}}))}i()}export{c as default};
