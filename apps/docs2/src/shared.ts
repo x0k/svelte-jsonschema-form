@@ -87,6 +87,7 @@ export enum GenericExample {
   Draft2020 = "draft-2020-12",
   MultiStep = "multi-step",
   EnumWidgets = "enum-widgets",
+  NullableFields = "nullable-fields",
 }
 
 export const GENERIC_EXAMPLES = Object.values(GenericExample);
