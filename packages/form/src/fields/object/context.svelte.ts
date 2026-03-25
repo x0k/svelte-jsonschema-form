@@ -94,16 +94,13 @@ export function createObjectContext<T>({
     const snap = $state.snapshot(retrievedSchema.properties);
     // NOTE: Cache hits are verified on `any-of` and `property-dependencies` examples.
     if (!isOrderedSchemaDeepEqual(lastSchemaProperties, snap)) {
+      // NOTE: `defaults` population
+      if (lastSchemaProperties !== undefined) {
+        markSchemaChange(ctx);
+      }
       lastSchemaProperties = snap;
     }
     return lastSchemaProperties;
-  });
-
-  // NOTE: `defaults` population
-  $effect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    schemaProperties;
-    markSchemaChange(ctx);
   });
 
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
