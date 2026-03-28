@@ -1,0 +1,66 @@
+---
+title: Anti-patterns
+sidebar:
+  order: 150
+---
+
+A list of approaches that should be avoided unless absolutely necessary.
+
+## Recreating `form`
+
+The following code is an anti-pattern:
+
+```svelte
+<script lang="ts">
+  let formId = $state.raw(crypto.randomUUID())
+  let form = createForm({
+    ...defaults,
+    schema
+  })
+
+  function update(schema: Schema) {
+    form = createForm({
+      ...defaults,
+      schema
+    })
+    formId = crypto.randomUUID()
+  }
+</script>
+
+{#key formId}
+  <BasicForm {form} />
+{/key}
+```
+
+Instead, use Svelte 5 reactivity:
+
+:::note
+
+All properties support reactivity
+
+:::
+
+```svelte
+<script lang="ts">
+  let schema: Schema = $state.raw({ ... })
+  const form = createForm({
+    ...defaults,
+    get schema() {
+      return schema
+    }
+  })
+</script>
+
+<BasicForm {form}/>
+```
+
+To understand the relationships between options, see the [Reactive flow](/form/reactive-flow/) diagram or
+the `create-form.ts` [source code](https://github.com/x0k/svelte-jsonschema-form/blob/main/packages/form/src/form/create-form.svelte.ts).
+
+## Using multiple forms to achieve the desired UI
+
+Instead of splitting a single entity into multiple forms to achieve the desired UI and
+manually managing state, you should create custom top-level components (e.g., `TupleField`)
+that implement the required UI.
+
+See the `multi-step` and `tabbed-layout` examples on the [Advanced Examples](/examples/advanced/) page.
