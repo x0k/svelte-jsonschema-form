@@ -116,8 +116,8 @@
   const data = $state(router.load(DEFAULT_PLAYGROUND_STATE));
 
   debouncedEffect(() => {
-    $state.snapshot(data);
-    return () => router.store(data);
+    const snap = $state.snapshot(data);
+    return () => router.store(snap);
   });
 
   const theme = $derived(extendByRecord(themes[data.theme], customComponents));

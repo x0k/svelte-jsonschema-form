@@ -53,6 +53,11 @@
   const data = $state(router.load(DEFAULT_PAGE_STATE));
 
   debouncedEffect(() => {
+    const snap = $state.snapshot(data);
+    return () => router.store(snap);
+  });
+
+  debouncedEffect(() => {
     data.schema;
     data.deep;
     const { compareSchemaDefinitions, compareSchemaValues } =

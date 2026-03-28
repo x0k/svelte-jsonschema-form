@@ -51,8 +51,8 @@
   const data = $state(router.load(DEFAULT_PAGE_STATE));
 
   debouncedEffect(() => {
-    $state.snapshot(data);
-    return () => router.store(data);
+    const snap = $state.snapshot(data);
+    return () => router.store(snap);
   });
 
   const { compareSchemaDefinitions, compareSchemaValues } = createComparator();
