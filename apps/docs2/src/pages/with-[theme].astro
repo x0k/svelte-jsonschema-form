@@ -21,7 +21,7 @@ function fixGetStartedUrl(
       actions: [
         {
           ...action,
-          link: `../${action.link}`,
+          link: `../..${action.link}`,
         },
         ...frontmatter.hero.actions.slice(1),
       ],
