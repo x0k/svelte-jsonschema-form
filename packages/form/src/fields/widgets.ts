@@ -1,13 +1,15 @@
-import type { EnumOption } from "@/core/index.js";
+import type { Ref } from "@/lib/svelte.svelte.js";
 import type {
   ComponentProps,
   ComponentType,
   Config,
   FieldErrors,
+  FormEnumOption,
   FoundationalComponentType,
   SchemaValue,
   UiOption,
 } from "@/form/index.js";
+import type { EnumValueMapper } from "@/options.svelte.js";
 
 export interface Handlers {
   onblur?: () => void;
@@ -38,7 +40,21 @@ export type FoundationalWidgetType = keyof {
 };
 
 export interface Options {
-  options: EnumOption<SchemaValue>[];
+  options: FormEnumOption[];
+  // TODO: Make required in v4
+  mapper?: EnumValueMapper;
+}
+
+export interface SingleSelectOptions extends Options {
+  // TODO: Make required in v4
+  hasInitialValue?: boolean;
+  // TODO: Make required in v4
+  mapped?: Ref<string>;
+}
+
+export interface MultiSelectOptions extends Options {
+  // TODO: Make required in v4
+  mapped?: Ref<string[]>;
 }
 
 declare module "../form/index.js" {
@@ -52,7 +68,7 @@ declare module "../form/index.js" {
   interface ComponentProps {
     textWidget: WidgetCommonProps<string>;
     numberWidget: WidgetCommonProps<number>;
-    selectWidget: WidgetCommonProps<SchemaValue> & Options;
+    selectWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     checkboxWidget: WidgetCommonProps<boolean>;
   }
   interface ComponentBindings {

@@ -1,4 +1,5 @@
 import type { SchemaValue } from "@/form/index.js";
+import type { EnumValueMapperBuilder } from "@/options.svelte.js";
 
 declare module "../form/index.js" {
   interface UiOptions {
@@ -14,6 +15,10 @@ declare module "../form/index.js" {
      * List of enum values that are disabled. Values are compared by strict equality.
      */
     disabledEnumValues?: SchemaValue[];
+    /**
+     * @default idToValueMapper
+     */
+    enumValueMapperBuilder?: () => EnumValueMapperBuilder;
     /**
      * Help text for the field (under the widget).
      */

@@ -1,10 +1,11 @@
 import type { KeyedArray } from "@/lib/keyed-array.svelte.js";
 import type { Ref } from "@/lib/svelte.svelte.js";
 import type { Trie } from "@/lib/trie.js";
-import {
-  type RPath,
-  type SchemaArrayValue,
-  type SchemaValue,
+import type {
+  EnumOption,
+  RPath,
+  SchemaArrayValue,
+  SchemaValue,
 } from "@/core/index.js";
 
 export type Creatable<Result, Options> =
@@ -25,6 +26,11 @@ export type KeyedArraysMap = WeakMap<SchemaArrayValue, KeyedFieldValues>;
 export type FormValueRef = Ref<FormValue>;
 
 export type PathTrieRef<T> = Ref<Trie<RPath[number], T>>;
+
+export type FormEnumOption = EnumOption<SchemaValue> & {
+  // TODO: Make required in v4
+  mappedValue?: string;
+};
 
 export const DEFAULT_BOOLEAN_ENUM = [true, false];
 
