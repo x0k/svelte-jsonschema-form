@@ -32,15 +32,15 @@
 		handlers,
 		value = $bindable(),
 		options,
-		config
+		config,
+		mapped = multipleOptions({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['multiSelectWidget'] = $props();
 
-	const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
-	const mapped = multipleOptions({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
+	const labels = $derived(new Map(options.map((o) => [o.mappedValue ?? o.id, o.label])));
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 
@@ -55,7 +55,7 @@
 	);
 
 	const triggerContent = $derived(
-		mapped.current.map((id) => labels.get(id)).join(', ') || selectAttributes.placeholder
+		mapped.current.map((v) => labels.get(v)).join(', ') || selectAttributes.placeholder
 	);
 
 	const id = $derived(getId(ctx, config.path));
@@ -80,7 +80,11 @@
 	</SelectTrigger>
 	<SelectContent>
 		{#each options as option (option.id)}
-			<SelectItem value={option.id} label={option.label} disabled={option.disabled} />
+			<SelectItem
+				value={option.mappedValue ?? option.id}
+				label={option.label}
+				disabled={option.disabled}
+			/>
 		{/each}
 	</SelectContent>
 </Select>

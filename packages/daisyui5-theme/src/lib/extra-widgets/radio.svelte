@@ -8,14 +8,13 @@
 		handlers,
 		value = $bindable(),
 		options,
-		errors
+		errors,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['radioWidget'] = $props();
-
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	const ctx = getFormContext();
 
@@ -27,7 +26,7 @@
 		<input
 			class={['radio', errors.length > 0 && 'radio-error']}
 			bind:group={mapped.current}
-			value={option.id}
+			value={option.mappedValue ?? option.id}
 			{...attributes}
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}

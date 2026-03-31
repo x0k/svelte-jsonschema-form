@@ -18,14 +18,14 @@
 		config,
 		handlers,
 		value = $bindable(),
-		options
+		options,
+		mapped = multipleOptions({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['checkboxesWidget'] = $props();
 
-	const mapped = multipleOptions({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 	const selected = $derived(new Set(mapped.current));
 
 	const ctx = getFormContext();
@@ -34,13 +34,14 @@
 </script>
 
 {#each options as option (option.id)}
+	{@const ov = option.mappedValue ?? option.id}
 	<Checkbox
 		bind:checked={
-			() => selected.has(option.id),
-			(v) => {
-				mapped.current = v
-					? mapped.current.concat(option.id)
-					: mapped.current.filter((id) => id !== option.id);
+			() => selected.has(ov),
+			(checked) => {
+				mapped.current = checked
+					? mapped.current.concat(ov)
+					: mapped.current.filter((v) => v !== ov);
 			}
 		}
 		{...attributes}

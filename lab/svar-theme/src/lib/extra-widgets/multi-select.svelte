@@ -25,16 +25,15 @@
 		options,
 		config,
 		handlers,
-		errors
+		errors,
+		mapped = multipleOptions({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['multiSelectWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const mapped = multipleOptions({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	const id = $derived(getId(ctx, config.path));
 
@@ -45,7 +44,7 @@
 </script>
 
 <SvarMultiCombo
-	{options}
+	options={options.map((o) => ({ id: o.mappedValue ?? o.id, label: o.label }))}
 	bind:value={mapped.current}
 	{...uiOptionProps('svarMultiSelect')(
 		{

@@ -25,14 +25,13 @@
 		config,
 		handlers,
 		value = $bindable(),
-		options
+		options,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['radioButtonsWidget'] = $props();
-
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	const ctx = getFormContext();
 
@@ -47,7 +46,7 @@
 	{#each options as option (option.id)}
 		<RadioButton
 			bind:group={mapped.current}
-			value={option.id}
+			value={option.mappedValue ?? option.id}
 			{...attributes}
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}>{option.label}</RadioButton

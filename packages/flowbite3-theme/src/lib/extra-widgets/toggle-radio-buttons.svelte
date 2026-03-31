@@ -1,11 +1,11 @@
 <script lang="ts" module>
 	import type { ButtonToggleGroupProps, ButtonToggleProps } from 'flowbite-svelte/types';
 	import type { SchemaValue } from '@sjsf/form';
-	import type { Options, WidgetCommonProps } from '@sjsf/form/fields/widgets';
+	import type { SingleSelectOptions, WidgetCommonProps } from '@sjsf/form/fields/widgets';
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
-			flowbite3ToggleRadioButtonsWidget: WidgetCommonProps<SchemaValue> & Options;
+			flowbite3ToggleRadioButtonsWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
 		}
 		interface ComponentBindings {
 			flowbite3ToggleRadioButtonsWidget: 'value';
@@ -28,20 +28,19 @@
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { idMapper, singleOption, UNDEFINED_ID } from '@sjsf/form/options.svelte';
+	import { idMapper, singleOption, EMPTY_VALUE } from '@sjsf/form/options.svelte';
 
 	let {
 		config,
 		handlers,
 		value = $bindable(),
-		options
+		options,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['flowbite3ToggleRadioButtonsWidget'] = $props();
-
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	const ctx = getFormContext();
 
@@ -53,13 +52,14 @@
 <ButtonToggleGroup
 	{...customInputAttributes(ctx, config, 'flowbite3ToggleRadioButtons', {
 		onSelect(val: string | string[] | null) {
-			mapped.current = (val as string) ?? UNDEFINED_ID;
+			mapped.current = (val as string) ?? EMPTY_VALUE;
 			handlers.onchange?.();
 		}
 	})}
 >
 	{#each options as option (option.id)}
-		<ButtonToggle {...itemAttributes} selected={mapped.current === option.id} value={option.id}
+		{@const ov = option.mappedValue ?? option.id}
+		<ButtonToggle {...itemAttributes} selected={mapped.current === ov} value={ov}
 			>{option.label}</ButtonToggle
 		>
 	{/each}

@@ -22,6 +22,11 @@
     config,
     value = $bindable(),
     options,
+    mapped = multipleOptions({
+      mapper: () => idMapper(options),
+      value: () => value,
+      update: (v) => (value = v),
+    }),
   }: ComponentProps["checkboxesWidget"] = $props();
 
   const ctx = getFormContext();
@@ -29,21 +34,15 @@
   const attributes = $derived(
     inputAttributes(ctx, config, "checkboxes", handlers, {
       type: "checkbox",
-    })
+    }),
   );
-
-  const mapped = multipleOptions({
-    mapper: () => idMapper(options),
-    value: () => value,
-    update: (v) => (value = v),
-  });
 </script>
 
 {#each options as option (option.id)}
   <label class="sjsf-checkboxes">
     <input
       bind:group={mapped.current}
-      value={option.id}
+      value={option.mappedValue ?? option.id}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}

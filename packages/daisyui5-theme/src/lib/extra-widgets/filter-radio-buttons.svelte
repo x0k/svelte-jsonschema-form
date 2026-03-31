@@ -1,11 +1,11 @@
 <script lang="ts" module>
 	import type { HTMLAttributes, HTMLInputAttributes } from 'svelte/elements';
 	import type { SchemaValue } from '@sjsf/form';
-	import type { Options, WidgetCommonProps } from '@sjsf/form/fields/widgets';
+	import type { SingleSelectOptions, WidgetCommonProps } from '@sjsf/form/fields/widgets';
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
-			daisyui5FilterRadioButtonsWidget: WidgetCommonProps<SchemaValue> & Options;
+			daisyui5FilterRadioButtonsWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
 		}
 		interface ComponentBindings {
 			daisyui5FilterRadioButtonsWidget: 'value';
@@ -26,14 +26,13 @@
 		options,
 		config,
 		errors,
-		handlers
+		handlers,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['daisyui5FilterRadioButtonsWidget'] = $props();
-
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	const ctx = getFormContext();
 
@@ -55,7 +54,7 @@
 		<input
 			class={['btn', errors.length > 0 && 'btn-error']}
 			bind:group={mapped.current}
-			value={option.id}
+			value={option.mappedValue ?? option.id}
 			aria-label={option.label}
 			{...itemAttributes}
 			id={option.id}

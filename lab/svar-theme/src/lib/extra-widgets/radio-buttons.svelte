@@ -12,23 +12,22 @@
 
 <script lang="ts">
 	import { on } from 'svelte/events';
-	import { getFormContext, isDisabled, uiOptionProps, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, uiOptionProps, type ComponentProps } from '@sjsf/form';
 	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	let {
 		value = $bindable(),
 		options,
 		config,
-		handlers
+		handlers,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['radioButtonsWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	function onchange() {
 		handlers.oninput?.();
@@ -38,7 +37,7 @@
 
 <div {@attach (n) => on(n, 'click', (e) => e.preventDefault())}>
 	<Segmented
-		{options}
+		options={options.map((o) => ({ id: o.mappedValue ?? o.id, label: o.label }))}
 		bind:value={mapped.current}
 		{...uiOptionProps('svarRadioButtons')(
 			{

@@ -21,21 +21,20 @@
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { idMapper, singleOption, UNDEFINED_ID } from '@sjsf/form/options.svelte';
+	import { idMapper, singleOption, EMPTY_VALUE } from '@sjsf/form/options.svelte';
 	import { SegmentedControl } from '@skeletonlabs/skeleton-svelte';
 
 	let {
 		config,
 		handlers,
 		value = $bindable(),
-		options
+		options,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['radioButtonsWidget'] = $props();
-
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	const ctx = getFormContext();
 
@@ -53,7 +52,7 @@
 		name: id,
 		readOnly: config.schema.readOnly,
 		onValueChange: (details) => {
-			mapped.current = details.value ?? UNDEFINED_ID;
+			mapped.current = details.value ?? EMPTY_VALUE;
 			handlers.oninput?.();
 			handlers.onchange?.();
 		}
@@ -63,7 +62,7 @@
 		<SegmentedControl.Indicator />
 		{#each options as option (option.id)}
 			<SegmentedControl.Item
-				value={option.id}
+				value={option.mappedValue ?? option.id}
 				disabled={option.disabled}
 				{...itemAttributes}
 			>
