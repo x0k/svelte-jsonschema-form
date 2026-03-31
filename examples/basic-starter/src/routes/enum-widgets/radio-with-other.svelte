@@ -33,8 +33,8 @@
     composeProps,
     handlersAttachment,
   } from "@sjsf/form";
-  import { createOptions } from "@sjsf/form/fields/enum";
-  import { idMapper, UNDEFINED_ID } from "@sjsf/form/options.svelte";
+  import { createFormOptions } from "@sjsf/form/fields/enum";
+  import { EMPTY_VALUE } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -53,18 +53,17 @@
     })
   );
 
-  const options = $derived(
-    createOptions(ctx, config, uiOption, {
+  const { options, mapper } = $derived(
+    createFormOptions(ctx, config, uiOption, {
       ...config.schema,
       enum: config.schema.enum ?? values,
     }) ?? []
   );
-  const mapper = $derived(idMapper(options));
   const mappedValue = $derived(mapper.fromValue(value));
   const mappedOther = $derived(mapper.fromValue(OTHER_VALUE));
   const isOther = $derived(
     typeof value === "string" &&
-      (value === OTHER_VALUE || mappedValue === UNDEFINED_ID)
+      (value === OTHER_VALUE || mappedValue === EMPTY_VALUE)
   );
   const mapped = {
     get current() {
@@ -80,7 +79,7 @@
   <label>
     <input
       bind:group={mapped.current}
-      value={option.id}
+      value={option.mappedValue ?? option.id}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
