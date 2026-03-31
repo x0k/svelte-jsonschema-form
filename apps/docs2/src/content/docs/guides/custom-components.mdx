@@ -297,7 +297,7 @@ and when it changes, value will be assigned the corresponding `option.value`:
 
 ```svelte
 <select bind:value={mapped.current} {...attributes}>
-  <option value={UNDEFINED_ID}>{placeholder}</option>
+  <option value={EMPTY_VALUE}>{placeholder}</option>
   {#each options as option (option.id)}
     <option value={option.id} disabled={option.disabled}>
       {option.label}
