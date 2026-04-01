@@ -1,4 +1,5 @@
 import type { Ref } from "@/lib/svelte.svelte.js";
+import { isObject } from "@/lib/object.js";
 import {
   isSchemaValueDeepEqual,
   type EnumOption,
@@ -41,8 +42,8 @@ export class IdEnumValueMapperBuilder implements EnumValueMapperBuilder {
           return EMPTY_VALUE;
         }
         const id = this.#valueToId.get(value);
-        if (id !== undefined) {
-          return id;
+        if (id !== undefined || !isObject(value)) {
+          return id ?? EMPTY_VALUE;
         }
         return (
           this.#valueToId
@@ -79,8 +80,8 @@ export class StringEnumValueMapperBuilder implements EnumValueMapperBuilder {
           return EMPTY_VALUE;
         }
         const str = this.#valueToStr.get(value);
-        if (str !== undefined) {
-          return str;
+        if (str !== undefined || !isObject(value)) {
+          return str ?? EMPTY_VALUE;
         }
         return (
           this.#valueToStr
