@@ -92,7 +92,7 @@
   addButton={objCtx.canExpand() ? addButton : undefined}
   action={action && renderAction}
 >
-  {#each objCtx.propertiesOrder() as property (property)}
+  {#each objCtx.propertiesOrder() as property (objCtx.key(property))}
     {@const isAdditional = objCtx.isAdditionalProperty(property)}
     {@const cfg = objCtx.propertyConfig(config, property, isAdditional)}
     <ObjectProperty
