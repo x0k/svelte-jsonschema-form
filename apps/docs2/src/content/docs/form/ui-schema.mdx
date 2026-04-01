@@ -177,6 +177,11 @@ interface UiOptions {
    */
   disabledEnumValues?: SchemaValue[];
   /**
+   * Overrides the enumeration value mapper (may be required for autofill to work)
+   * @default () => new IdEnumValueMapperBuilder()
+   */
+  enumValueMapperBuilder?: () => EnumValueMapperBuilder;
+  /**
    * Order of properties in the object schema.
    * You must specify all properties or use the wildcard `*`.
    */
