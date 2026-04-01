@@ -7276,7 +7276,7 @@ exports[`widgets > select > snapshots > disabled 1`] = `
           required=""
         >
           <option
-            value="-1"
+            value=""
           >
             
           </option>
@@ -7378,7 +7378,7 @@ exports[`widgets > select > snapshots > error 1`] = `
           required=""
         >
           <option
-            value="-1"
+            value=""
           >
             
           </option>
@@ -7491,7 +7491,7 @@ exports[`widgets > select > snapshots > normal 1`] = `
           required=""
         >
           <option
-            value="-1"
+            value=""
           >
             
           </option>
@@ -7592,7 +7592,7 @@ exports[`widgets > select > snapshots > readonly 1`] = `
           required=""
         >
           <option
-            value="-1"
+            value=""
           >
             
           </option>
