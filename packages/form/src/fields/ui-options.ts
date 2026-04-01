@@ -16,7 +16,8 @@ declare module "../form/index.js" {
      */
     disabledEnumValues?: SchemaValue[];
     /**
-     * @default idToValueMapper
+     * Overrides the enumeration value mapper (may be required for autofill to work)
+     * @default () => new IdEnumValueMapperBuilder()
      */
     enumValueMapperBuilder?: () => EnumValueMapperBuilder;
     /**
