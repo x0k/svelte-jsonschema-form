@@ -22,7 +22,7 @@
 </script>
 
 <select {...attributes} bind:value={mapped.current}>
-	{#if hasInitialValue}
+	{#if !hasInitialValue}
 		<option value={EMPTY_VALUE}>{attributes.placeholder}</option>
 	{/if}
 	{#each options as option (option.id)}
