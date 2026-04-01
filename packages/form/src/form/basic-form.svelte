@@ -15,6 +15,7 @@
     ref?: HTMLFormElement | undefined;
   } & HTMLFormAttributes = $props();
 
+  // svelte-ignore state_referenced_locally
   setFormContext(form);
 </script>
 

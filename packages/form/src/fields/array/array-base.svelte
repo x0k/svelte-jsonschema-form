@@ -51,6 +51,7 @@
   } = $props();
 
   const ctx = getFormContext();
+  // svelte-ignore state_referenced_locally
   const arrayCtx = createContext({
     ctx,
     config: () => config,

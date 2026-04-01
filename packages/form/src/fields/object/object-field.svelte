@@ -42,7 +42,9 @@
     config: () => config,
     value: () => value,
     setValue: (v) => (value = v),
-    translate,
+    get translate() {
+      return translate
+    },
   });
   setObjectContext(objCtx);
 

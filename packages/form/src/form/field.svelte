@@ -196,6 +196,7 @@
   const translate = $derived(retrieveTranslate(form, config));
   const uiOption: UiOption = (opt) => retrieveUiOption(form, config, opt);
 
+  // svelte-ignore state_referenced_locally
   setFormContext(form);
 </script>
 
