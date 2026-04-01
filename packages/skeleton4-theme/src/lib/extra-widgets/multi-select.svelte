@@ -7,16 +7,15 @@
 		value = $bindable(),
 		options,
 		config,
-		handlers
+		handlers,
+		mapped = multipleOptions({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['multiSelectWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const mapped = multipleOptions({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 </script>
 
 <select
@@ -26,7 +25,7 @@
 	{...selectAttributes(ctx, config, 'multiSelect', handlers, {})}
 >
 	{#each options as option (option.id)}
-		<option value={option.id} disabled={option.disabled}>
+		<option value={option.mappedValue ?? option.id} disabled={option.disabled}>
 			{option.label}
 		</option>
 	{/each}

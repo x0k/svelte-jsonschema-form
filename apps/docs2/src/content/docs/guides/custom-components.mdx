@@ -279,49 +279,54 @@ previous category, have the suffix `Attributes`.
 
 ## Working with enumerations
 
-To implement widgets that use enumerations (`options: EnumOption<SchemaValue>[]`),
-use the functions from the `@sjsf/form/options.svelte` module.
+Widgets that work with enumerations receive the following properties:
+
+```ts
+export interface Options {
+  options: FormEnumOption[];
+  mapper?: EnumValueMapper;
+}
+
+export interface SingleSelectOptions extends Options {
+  hasInitialValue?: boolean;
+  mapped?: Ref<string>;
+}
+
+export interface MultiSelectOptions extends Options {
+  mapped?: Ref<string[]>;
+}
+```
+
+These properties are marked as optional for backward compatibility,
+but in practice they are always defined.
+You can either use them with `!` or provide a fallback value:
 
 ```ts
 import { idMapper, singleOption } from "@sjsf/form/options.svelte";
 
-const mapped = singleOption({
-  mapper: () => idMapper(options),
-  value: () => value,
-  update: (v) => (value = v),
-});
+let {
+  hasInitialValue = config.schema.default !== undefined,
+  mapped = singleOption({
+    mapper: () => idMapper(options),
+    value: () => value,
+    update: (v) => (value = v),
+  }),
+}: ComponentProps["selectWidget"] = $props();
 ```
 
-Now, `mapped.current` will correspond to the `option.id` of the current option,
-and when it changes, value will be assigned the corresponding `option.value`:
+`mapped.current` contains the value produced by `EnumValueMapper` and can be used as follows:
 
 ```svelte
 <select bind:value={mapped.current} {...attributes}>
-  <option value={UNDEFINED_ID}>{placeholder}</option>
+  {#if !hasInitialValue}
+    <option value={EMPTY_VALUE}>{placeholder}</option>
+  {/if}
   {#each options as option (option.id)}
-    <option value={option.id} disabled={option.disabled}>
+    <option value={option.mappedValue ?? option.id} disabled={option.disabled}>
       {option.label}
     </option>
   {/each}
 </select>
-```
-
-You can also use the `multipleOptions` function to implement multi-select behavior.
-In this case, `mapped.current` will be an array of `option.id`:
-
-```svelte
-<script lang="ts">
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
-  
-  const mapped = multipleOptions({
-      mapper: () => idMapper(options),
-      value: () => value,
-      update: (v) => (value = v),
-    })
-</script>
-
-<select multiple bind:value={mapped.current} {...attributes}>
-  ...
 ```
 
 ## Retrieving theme components

@@ -18,14 +18,13 @@
 		handlers,
 		value = $bindable(),
 		options,
-		errors
+		errors,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['radioButtonsWidget'] = $props();
-
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	const ctx = getFormContext();
 
@@ -39,7 +38,7 @@
 		<input
 			class={['join-item btn', errors.length > 0 && 'btn-error']}
 			bind:group={mapped.current}
-			value={option.id}
+			value={option.mappedValue ?? option.id}
 			aria-label={option.label}
 			{...attributes}
 			id={option.id}

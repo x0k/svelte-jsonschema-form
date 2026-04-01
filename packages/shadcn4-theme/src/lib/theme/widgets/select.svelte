@@ -17,7 +17,7 @@
 		getId,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { singleOption, idMapper, UNDEFINED_ID } from '@sjsf/form/options.svelte';
+	import { singleOption, idMapper, EMPTY_VALUE } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context.js';
 
@@ -26,14 +26,20 @@
 
 	const { Select, SelectTrigger, SelectContent, SelectItem } = $derived(themeCtx.components);
 
-	let { handlers, value = $bindable(), options, config }: ComponentProps['selectWidget'] = $props();
+	let {
+		handlers,
+		value = $bindable(),
+		options,
+		config,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		}),
+		hasInitialValue = config.schema.default !== undefined
+	}: ComponentProps['selectWidget'] = $props();
 
-	const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
+	const labels = $derived(new Map(options.map((o) => [o.mappedValue ?? o.id, o.label])));
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 
@@ -70,15 +76,19 @@
 		</span>
 	</SelectTrigger>
 	<SelectContent>
-		{#if config.schema.default === undefined}
-			<SelectItem value={UNDEFINED_ID}>
+		{#if !hasInitialValue}
+			<SelectItem value={EMPTY_VALUE}>
 				<span class="min-h-5">
 					{selectAttributes.placeholder}
 				</span>
 			</SelectItem>
 		{/if}
 		{#each options as option (option.id)}
-			<SelectItem value={option.id} label={option.label} disabled={option.disabled} />
+			<SelectItem
+				value={option.mappedValue ?? option.id}
+				label={option.label}
+				disabled={option.disabled}
+			/>
 		{/each}
 	</SelectContent>
 </Select>

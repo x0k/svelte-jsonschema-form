@@ -22,26 +22,25 @@
     options,
     config,
     handlers,
+    mapped = multipleOptions({
+      mapper: () => idMapper(options),
+      value: () => value,
+      update: (v) => (value = v),
+    }),
   }: ComponentProps["multiSelectWidget"] = $props();
 
   const ctx = getFormContext();
 
   const attributes = $derived(
     selectAttributes(ctx, config, "multiSelect", handlers, {
-      class: "sjsf-multi-select"
-    })
+      class: "sjsf-multi-select",
+    }),
   );
-
-  const mapped = multipleOptions({
-      mapper: () => idMapper(options),
-      value: () => value,
-      update: (v) => (value = v),
-    })
 </script>
 
 <select multiple bind:value={mapped.current} {...attributes}>
   {#each options as option (option.id)}
-    <option value={option.id} disabled={option.disabled}>
+    <option value={option.mappedValue ?? option.id} disabled={option.disabled}>
       {option.label}
     </option>
   {/each}

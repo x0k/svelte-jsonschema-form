@@ -25,19 +25,20 @@
 		config,
 		handlers,
 		options,
-		value = $bindable()
+		value = $bindable(),
+		mapper = idMapper(options)
 	}: ComponentProps['comboboxWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const mapped = multipleOptions({
-		mapper: () => idMapper(options),
+		mapper: () => mapper,
 		value: () => (value === undefined ? undefined : [value]),
 		update: (v) => (value = v[0])
 	});
 
 	const originalItems = $derived(
-		options.map((o) => ({ disabled: o.disabled, label: o.label, value: o.id }))
+		options.map((o) => ({ disabled: o.disabled, label: o.label, value: o.mappedValue ?? o.id }))
 	);
 
 	let items = $derived(originalItems);

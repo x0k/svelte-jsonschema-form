@@ -33,14 +33,13 @@
 		value = $bindable(),
 		options,
 		config,
-		handlers
+		handlers,
+		mapped = multipleOptions({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['checkboxesWidget'] = $props();
-
-	const mapped = multipleOptions({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	const selected = $derived(new Set(mapped.current));
 
@@ -63,14 +62,15 @@
 </script>
 
 {#each options as option (option.id)}
+	{@const ov = option.mappedValue ?? option.id}
 	<div class="flex items-center space-x-3">
 		<Checkbox
-			checked={selected.has(option.id)}
-			value={option.id}
-			onCheckedChange={(v) => {
-				mapped.current = v
-					? mapped.current.concat(option.id)
-					: mapped.current.filter((id) => id !== option.id);
+			checked={selected.has(ov)}
+			value={ov}
+			onCheckedChange={(checked) => {
+				mapped.current = checked
+					? mapped.current.concat(ov)
+					: mapped.current.filter((v) => v !== ov);
 				oninput?.();
 				onchange?.();
 			}}

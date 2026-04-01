@@ -19,10 +19,12 @@
     DEFAULT_BOOLEAN_ENUM,
     getPseudoId,
     getFieldAction,
+    type FormEnumOption,
   } from "@/form/index.js";
   import "@/form/extra-fields/boolean-select.js";
+  import { IdEnumValueMapperBuilder, singleOption } from "@/options.svelte.js";
 
-  import { createOptions } from "../enum.js";
+  import { createFormOptions } from "../enum.js";
 
   const ctx = getFormContext();
 
@@ -37,25 +39,23 @@
   const widgetType = "selectWidget";
   const Widget = $derived(getComponent(ctx, widgetType, config));
 
-  const options = $derived.by(() => {
+  const { options, mapper } = $derived.by(() => {
     const yes = translate("yes", {});
     const no = translate("no", {});
     if (Array.isArray(config.schema.oneOf)) {
-      return (
-        createOptions(ctx, config, uiOption, {
-          oneOf: config.schema.oneOf.map((option): Schema => {
-            if (typeof option === "boolean") {
-              return option
-                ? { const: true, title: yes }
-                : { const: false, title: no };
-            }
-            return {
-              ...option,
-              title: option.title ?? (option.const === true ? yes : no),
-            };
-          }),
-        }) ?? []
-      );
+      return createFormOptions(ctx, config, uiOption, {
+        oneOf: config.schema.oneOf.map((option): Schema => {
+          if (typeof option === "boolean") {
+            return option
+              ? { const: true, title: yes }
+              : { const: false, title: no };
+          }
+          return {
+            ...option,
+            title: option.title ?? (option.const === true ? yes : no),
+          };
+        }),
+      });
     }
     const enumValues = config.schema.enum ?? DEFAULT_BOOLEAN_ENUM;
     if (
@@ -63,24 +63,35 @@
       enumValues.every((v) => typeof v === "boolean") &&
       uiOption("enumNames") === undefined
     ) {
-      return enumValues.map((v, i) => {
-        return {
+      const builder =
+        uiOption("enumValueMapperBuilder")?.() ??
+        new IdEnumValueMapperBuilder();
+      const options = enumValues.map((v, i) => {
+        const option: FormEnumOption = {
           id: getPseudoId(ctx, config.path, i),
           label: v ? yes : no,
           value: v,
           disabled: false,
         };
+        option.mappedValue = builder.push(option);
+        return option;
       });
+      return { options, mapper: builder.build() };
     }
-    return (
-      createOptions(
-        ctx,
-        config,
-        uiOption,
-        Object.setPrototypeOf({ enum: enumValues }, config.schema)
-      ) ?? []
+    return createFormOptions(
+      ctx,
+      config,
+      uiOption,
+      Object.setPrototypeOf({ enum: enumValues }, config.schema)
     );
   });
+
+  const mapped = singleOption({
+    mapper: () => mapper,
+    value: () => value ?? undefined,
+    update: (v) => (value = v === undefined ? undefined : Boolean(v)),
+  });
+  const hasInitialValue = $derived(config.schema.default !== undefined);
 
   const handlers = makeEventHandlers(
     ctx,
@@ -120,10 +131,13 @@
   <Widget
     type="widget"
     {options}
+    {mapper}
+    {mapped}
     bind:value
     {errors}
     {handlers}
     {uiOption}
     {config}
+    {hasInitialValue}
   />
 </Template>

@@ -1,4 +1,5 @@
 import type { SchemaValue } from "@/form/index.js";
+import type { EnumValueMapperBuilder } from "@/options.svelte.js";
 
 declare module "../form/index.js" {
   interface UiOptions {
@@ -14,6 +15,11 @@ declare module "../form/index.js" {
      * List of enum values that are disabled. Values are compared by strict equality.
      */
     disabledEnumValues?: SchemaValue[];
+    /**
+     * Overrides the enumeration value mapper (may be required for autofill to work)
+     * @default () => new IdEnumValueMapperBuilder()
+     */
+    enumValueMapperBuilder?: () => EnumValueMapperBuilder;
     /**
      * Help text for the field (under the widget).
      */

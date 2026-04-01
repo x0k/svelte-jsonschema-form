@@ -18,16 +18,15 @@
 		value = $bindable(),
 		options,
 		config,
-		handlers
+		handlers,
+		mapped = multipleOptions({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['checkboxesWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const mapped = multipleOptions({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	function onchange() {
 		handlers.oninput?.();
@@ -36,7 +35,7 @@
 </script>
 
 <SvarCheckboxGroup
-	{options}
+	options={options.map((o) => ({ id: o.mappedValue ?? o.id, label: o.label }))}
 	bind:value={mapped.current}
 	{...uiOptionProps('svarCheckboxes')({ onchange }, config, ctx)}
 />

@@ -13,13 +13,17 @@
 	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/extra-widgets/radio.svelte';
 
-	let { config, handlers, value = $bindable(), options }: ComponentProps['radioWidget'] = $props();
-
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
+	let {
+		config,
+		handlers,
+		value = $bindable(),
+		options,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
+	}: ComponentProps['radioWidget'] = $props();
 
 	const ctx = getFormContext();
 
@@ -32,7 +36,7 @@
 			<input
 				{...attributes}
 				bind:group={mapped.current}
-				value={option.id}
+				value={option.mappedValue ?? option.id}
 				id={option.id}
 				disabled={option.disabled || attributes.disabled}
 			/>

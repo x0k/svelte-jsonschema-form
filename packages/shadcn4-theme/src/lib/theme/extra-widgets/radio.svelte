@@ -43,13 +43,17 @@
 
 	const { RadioGroup, RadioGroupItem, FieldLabel } = $derived(themeCtx.components);
 
-	let { config, handlers, value = $bindable(), options }: ComponentProps['radioWidget'] = $props();
-
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
+	let {
+		config,
+		handlers,
+		value = $bindable(),
+		options,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
+	}: ComponentProps['radioWidget'] = $props();
 
 	const attributes = $derived(
 		customInputAttributes(ctx, config, 'shadcn4RadioGroup', {
@@ -76,7 +80,7 @@
 		<div class="flex items-center space-x-3">
 			<RadioGroupItem
 				{...itemAttributes}
-				value={option.id}
+				value={option.mappedValue ?? option.id}
 				id={option.id}
 				disabled={option.disabled}
 			/>

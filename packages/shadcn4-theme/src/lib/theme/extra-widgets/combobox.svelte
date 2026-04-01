@@ -75,15 +75,15 @@
 		value = $bindable(),
 		config,
 		handlers,
-		options
+		options,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['comboboxWidget'] = $props();
 
-	const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
+	const labels = $derived(new Map(options.map((o) => [o.mappedValue ?? o.id, o.label])));
 
 	let open = $state(false);
 	let triggerRef = $state<HTMLButtonElement>(null!);
@@ -142,19 +142,18 @@
 				{/if}
 				<CommandGroup>
 					{#each options as option (option.id)}
+						{@const ov = option.mappedValue ?? option.id}
 						<CommandItem
 							value={option.label}
 							onSelect={() => {
-								mapped.current = option.id;
+								mapped.current = ov;
 								oninput?.();
 								onchange?.();
 								closeAndFocusTrigger();
 							}}
 							disabled={option.disabled}
 						>
-							<Check
-								class={cn('mr-2 size-4', mapped.current !== option.id && 'text-transparent')}
-							/>
+							<Check class={cn('mr-2 size-4', mapped.current !== ov && 'text-transparent')} />
 							{option.label}
 						</CommandItem>
 					{/each}

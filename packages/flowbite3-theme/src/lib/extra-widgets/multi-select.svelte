@@ -18,20 +18,19 @@
 		handlers,
 		value = $bindable(),
 		options,
-		config
+		config,
+		mapped = multipleOptions({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['multiSelectWidget'] = $props();
 
 	const ctx = getFormContext();
 
-	const mapped = multipleOptions({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
-
 	const selectOptions = $derived(
 		options.map((option) => ({
-			value: option.id,
+			value: option.mappedValue ?? option.id,
 			name: option.label,
 			disabled: option.disabled
 		}))

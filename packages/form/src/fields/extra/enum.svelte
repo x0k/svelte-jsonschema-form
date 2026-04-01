@@ -18,8 +18,9 @@
     getFieldAction,
   } from "@/form/index.js";
   import "@/form/extra-fields/enum.js";
+  import { EMPTY_VALUE, singleOption } from "@/options.svelte.js";
 
-  import { createOptions } from "../enum.js";
+  import { createFormOptions } from "../enum.js";
 
   let {
     config,
@@ -38,8 +39,18 @@
     () => config,
     () => validateField(ctx, config, value)
   );
-  const options = $derived(
-    createOptions(ctx, config, uiOption, config.schema) ?? []
+  const { options, mapper } = $derived(
+    createFormOptions(ctx, config, uiOption, config.schema)
+  );
+
+  const mapped = singleOption({
+    mapper: () => mapper,
+    value: () => value,
+    update: (v) => (value = v),
+  });
+  const hasInitialValue = $derived(
+    config.schema.default !== undefined ||
+      mapper.toValue(EMPTY_VALUE) !== undefined
   );
   const errors = $derived(getFieldErrors(ctx, config.path));
   const action = $derived(getFieldAction(ctx, config, field));
@@ -79,5 +90,8 @@
     {uiOption}
     bind:value
     {options}
+    {mapper}
+    {mapped}
+    {hasInitialValue}
   />
 </Template>

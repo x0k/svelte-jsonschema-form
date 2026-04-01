@@ -8,14 +8,13 @@
 		options,
 		config,
 		errors,
-		handlers
+		handlers,
+		mapped = multipleOptions({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['multiSelectWidget'] = $props();
-
-	const mapped = multipleOptions({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	const ctx = getFormContext();
 </script>
@@ -27,7 +26,7 @@
 	{...selectAttributes(ctx, config, 'multiSelect', handlers, {})}
 >
 	{#each options as option (option.id)}
-		<option value={option.id} disabled={option.disabled}>
+		<option value={option.mappedValue ?? option.id} disabled={option.disabled}>
 			{option.label}
 		</option>
 	{/each}

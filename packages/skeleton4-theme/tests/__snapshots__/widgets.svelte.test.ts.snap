@@ -375,7 +375,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -394,7 +394,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -413,7 +413,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -432,7 +432,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -519,7 +519,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -537,7 +537,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -555,7 +555,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -573,7 +573,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -670,7 +670,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -688,7 +688,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -706,7 +706,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -724,7 +724,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -809,7 +809,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -828,7 +828,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -847,7 +847,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -866,7 +866,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5492,7 +5492,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5511,7 +5511,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5530,7 +5530,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5549,7 +5549,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5636,7 +5636,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5654,7 +5654,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5672,7 +5672,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5690,7 +5690,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5787,7 +5787,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5805,7 +5805,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5823,7 +5823,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5841,7 +5841,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5926,7 +5926,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5945,7 +5945,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5964,7 +5964,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -5983,7 +5983,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -9577,7 +9577,7 @@ exports[`widgets > select > snapshots > disabled 1`] = `
           required=""
         >
           <option
-            value="-1"
+            value=""
           >
             
           </option>
@@ -9679,7 +9679,7 @@ exports[`widgets > select > snapshots > error 1`] = `
           required=""
         >
           <option
-            value="-1"
+            value=""
           >
             
           </option>
@@ -9792,7 +9792,7 @@ exports[`widgets > select > snapshots > normal 1`] = `
           required=""
         >
           <option
-            value="-1"
+            value=""
           >
             
           </option>
@@ -9893,7 +9893,7 @@ exports[`widgets > select > snapshots > readonly 1`] = `
           required=""
         >
           <option
-            value="-1"
+            value=""
           >
             
           </option>

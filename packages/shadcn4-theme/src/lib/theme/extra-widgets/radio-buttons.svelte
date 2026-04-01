@@ -41,9 +41,9 @@
 		type ComponentProps,
 		ariaInvalidProp
 	} from '@sjsf/form';
+	import { singleOption, idMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context.js';
-	import { singleOption, idMapper } from '@sjsf/form/options.svelte';
 
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
@@ -54,14 +54,13 @@
 		value = $bindable(),
 		config,
 		handlers,
-		options
+		options,
+		mapped = singleOption({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['radioButtonsWidget'] = $props();
-
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	const { oninput, onchange, ...buttonHandles } = $derived(handlers);
 
@@ -85,7 +84,7 @@
 				ctx,
 				config,
 				{
-					value: option.id
+					value: option.mappedValue ?? option.id
 				},
 				uiOptionProps('shadcn4RadioButtonsItem'),
 				handlersAttachment(buttonHandles),

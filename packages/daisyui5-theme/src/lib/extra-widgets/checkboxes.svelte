@@ -8,14 +8,13 @@
 		config,
 		value = $bindable(),
 		options,
-		errors
+		errors,
+		mapped = multipleOptions({
+			mapper: () => idMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
 	}: ComponentProps['checkboxesWidget'] = $props();
-
-	const mapped = multipleOptions({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
 
 	const ctx = getFormContext();
 
@@ -29,7 +28,7 @@
 		<input
 			class={['checkbox', errors.length > 0 && 'checkbox-error']}
 			bind:group={mapped.current}
-			value={option.id}
+			value={option.mappedValue ?? option.id}
 			{...attributes}
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}

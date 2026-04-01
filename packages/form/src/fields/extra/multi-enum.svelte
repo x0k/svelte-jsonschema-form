@@ -18,12 +18,13 @@
     validateField,
     getFormContext,
     getComponent,
-    type ComponentProps,
     getFieldAction,
+    type ComponentProps,
   } from "@/form/index.js";
   import "@/form/extra-fields/multi-enum.js";
+  import { multipleOptions } from "@/options.svelte.js";
 
-  import { createOptions } from "../enum.js";
+  import { createFormOptions } from "../enum.js";
   import "../extra-widgets/checkboxes.js";
 
   let {
@@ -38,13 +39,20 @@
   const widgetType = "checkboxesWidget";
   const Widget = $derived(getComponent(ctx, widgetType, config));
 
-  const handlers = makeEventHandlers(ctx, () => config, () =>
-    validateField(ctx, config, value)
+  const handlers = makeEventHandlers(
+    ctx,
+    () => config,
+    () => validateField(ctx, config, value)
   );
-  const options = $derived.by(() => {
+  const { options, mapper } = $derived.by(() => {
     const { items } = config.schema;
     const itemSchema = isSchemaObjectValue(items) ? items : {};
-    return createOptions(ctx, config, uiOption, itemSchema) ?? [];
+    return createFormOptions(ctx, config, uiOption, itemSchema);
+  });
+  const mapped = multipleOptions({
+    mapper: () => mapper,
+    value: () => value ?? undefined,
+    update: (v) => (value = v),
   });
   const errors = $derived(getFieldErrors(ctx, config.path));
   const action = $derived(getFieldAction(ctx, config, field));
@@ -84,6 +92,8 @@
     {errors}
     bind:value={() => value ?? undefined, (v) => (value = v)}
     {options}
+    {mapper}
+    {mapped}
     {uiOption}
   />
 </Template>

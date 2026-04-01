@@ -1,6 +1,6 @@
 import type { ObjectProperties } from "@/lib/types.js";
 import { overrideByRecord } from "@/lib/resolver.js";
-import { getSchemaDefinitionByPath, type RPath } from "@/core/path.js";
+import { getSchemaDefinitionByPath, type RPath } from "@/core/index.js";
 
 import type { Config } from "../config.js";
 import {
@@ -180,7 +180,7 @@ export function getFieldTitle<T>(ctx: FormState<T>, path: RPath) {
 export function getFieldAction<T, const F extends ActionField>(
   ctx: FormState<T>,
   config: Config,
-  field: F,
+  field: F
 ) {
   const action = retrieveNestedUiOption(
     ctx,
