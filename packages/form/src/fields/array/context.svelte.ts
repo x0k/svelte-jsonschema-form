@@ -168,6 +168,8 @@ export interface ArrayContextOptions<T> {
   config: () => Config;
   value: () => SchemaArrayValue | null | undefined;
   keyedArray: () => KeyedFieldValues;
+  // TODO: Make required in v4
+  setValue?: (value: null | undefined) => void;
 }
 
 export function createArrayContext<T>({
@@ -175,6 +177,7 @@ export function createArrayContext<T>({
   config,
   value,
   keyedArray,
+  setValue = noop,
 }: ArrayContextOptions<T>): ArrayContext {
   const arr = $derived.by(value);
 
@@ -206,8 +209,16 @@ export function createArrayContext<T>({
 
   const canAdd = $derived.by(createCanAdd(config, length, items.addable));
 
+  const isNullable = $derived(isSchemaNullable(config().schema));
+
   return {
     ...items,
+    removeItem(index) {
+      items.removeItem(index);
+      if (length() === 0 && !config().required) {
+        setValue(isNullable ? null : undefined);
+      }
+    },
     length,
     set(index, itemValue) {
       arr![index] = itemValue;

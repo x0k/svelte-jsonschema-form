@@ -1,14 +1,17 @@
 import { getContext, setContext } from "svelte";
 
+import { isNil } from "@/lib/types.js";
 import {
   getDefaultValueForType,
   getSimpleSchemaType,
   isAdditionalProperty,
   isOrderedSchemaDeepEqual,
   isSchemaExpandable,
+  isSchemaNullable,
   isSchemaObjectValue,
   orderProperties,
   type SchemaObjectValue,
+  type SchemaValue,
 } from "@/core/index.js";
 import {
   AFTER_SUBMITTED,
@@ -56,6 +59,7 @@ export interface ObjectContext {
     isAdditional: boolean
   ) => Config;
   key: (property: string) => string;
+  set: (property: string, value: SchemaValue | undefined) => void;
 }
 
 const OBJECT_CONTEXT = Symbol("object-context");
@@ -72,7 +76,7 @@ export interface ObjectContextOptions<T> {
   ctx: FormState<T>;
   config: () => Config;
   value: () => SchemaObjectValue | null | undefined;
-  setValue: (value: SchemaObjectValue) => void;
+  setValue: (value: SchemaObjectValue | null | undefined) => void;
   translate: Translate;
 }
 
@@ -185,12 +189,28 @@ export function createObjectContext<T>({
     currentKey: undefined as string | undefined,
   };
 
+  const isNullable = $derived(isSchemaNullable(retrievedSchema));
+
   return {
     key(property) {
       if (lastRenamedProperty.currentKey === property) {
         return lastRenamedProperty.previousKey;
       }
       return property;
+    },
+    set(property, v) {
+      const obj = value();
+      if (!obj) {
+        setValue({ [property]: v });
+      } else if (
+        isNil(v) &&
+        !config().required &&
+        Object.keys(obj).every((k) => k === property || isNil(obj[k]))
+      ) {
+        setValue(isNullable ? null : undefined);
+      } else {
+        obj[property] = v;
+      }
     },
     errors() {
       return errors;
