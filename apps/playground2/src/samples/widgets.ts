@@ -219,6 +219,11 @@ export default {
         },
       },
     },
+    selectWidgetOptions2: {
+      "ui:options": {
+        enumValueMapperBuilder: "registry:stringEnumValueMapper",
+      },
+    },
   },
   initialValue: {
     stringFormats: {

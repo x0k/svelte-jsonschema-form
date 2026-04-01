@@ -1,3 +1,16 @@
+<script lang="ts" module>
+  import {
+    StringEnumValueMapperBuilder,
+    type EnumValueMapperBuilder,
+  } from "@sjsf/form/options.svelte";
+
+  declare module "@sjsf/form" {
+    interface UiOptionsRegistry {
+      stringEnumValueMapper: () => EnumValueMapperBuilder;
+    }
+  }
+</script>
+
 <script lang="ts">
   import { BitsConfig } from "bits-ui";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
@@ -229,6 +242,9 @@
       skeleton4DateRangePicker: options,
       skeleton4DateRangePickerPortal: portalOptions,
     }),
+    uiOptionsRegistry: {
+      stringEnumValueMapper: () => new StringEnumValueMapperBuilder(),
+    },
     onSubmit(value) {
       console.log("submit", value);
     },
