@@ -55,6 +55,7 @@ export interface ObjectContext {
     property: string,
     isAdditional: boolean
   ) => Config;
+  key: (property: string) => string;
 }
 
 const OBJECT_CONTEXT = Symbol("object-context");
@@ -162,7 +163,11 @@ export function createObjectContext<T>({
 
   const newKeyPrefix = $derived(translate("additional-property", {}));
 
-  function onChange(val: SchemaObjectValue | null | undefined) {
+  function onChange(
+    val: SchemaObjectValue | null | undefined,
+    currentKey: string | undefined = undefined
+  ) {
+    lastRenamedProperty.currentKey = currentKey;
     setFieldState(ctx, config().path, FIELD_CHANGED);
     const m = getFieldsValidationMode(ctx);
     if (!(m & ON_OBJECT_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
@@ -175,7 +180,18 @@ export function createObjectContext<T>({
     uiOption("additionalPropertyKey") ?? createAdditionalPropertyKey
   );
 
+  const lastRenamedProperty = {
+    previousKey: "",
+    currentKey: undefined as string | undefined,
+  };
+
   return {
+    key(property) {
+      if (lastRenamedProperty.currentKey === property) {
+        return lastRenamedProperty.previousKey;
+      }
+      return property;
+    },
     errors() {
       return errors;
     },
@@ -247,7 +263,10 @@ export function createObjectContext<T>({
       }
       val[newKey] = val[oldProp];
       delete val[oldProp];
-      onChange(val);
+      if (oldProp !== lastRenamedProperty.currentKey) {
+        lastRenamedProperty.previousKey = oldProp;
+      }
+      onChange(val, newKey);
     },
   };
 }
