@@ -1,6 +1,5 @@
 import { getContext, setContext } from "svelte";
 
-import { isNil } from "@/lib/types.js";
 import {
   getDefaultValueForType,
   getSimpleSchemaType,
@@ -185,18 +184,28 @@ export function createObjectContext<T>({
     currentKey: undefined as string | undefined,
   };
 
+  function isEmptyValue(v: SchemaValue | undefined) {
+    return (
+      v === undefined || v === null || (Array.isArray(v) && v.length === 0)
+    );
+  }
+
   function isObjectCanBeRemoved(
     obj: SchemaObjectValue,
     removedProperty: string
   ) {
     return (
       !config().required &&
-      Object.keys(obj).every((k) => k === removedProperty || isNil(obj[k]))
+      Object.keys(obj).every(
+        (k) => k === removedProperty || isEmptyValue(obj[k])
+      )
     );
   }
 
+  const isNullable = $derived(isSchemaNullable(config().schema));
+
   function removeObject() {
-    setValue(isSchemaNullable(config().schema) ? null : undefined);
+    setValue(isNullable ? null : undefined);
   }
 
   return {
@@ -210,7 +219,7 @@ export function createObjectContext<T>({
       const obj = value();
       if (!obj) {
         setValue({ [property]: v });
-      } else if (isNil(v) && isObjectCanBeRemoved(obj, property)) {
+      } else if (isEmptyValue(v) && isObjectCanBeRemoved(obj, property)) {
         removeObject();
       } else {
         obj[property] = v;
