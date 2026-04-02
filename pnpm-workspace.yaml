@@ -16,7 +16,7 @@ catalog:
   bits-ui: 2.16.3
   esm-env: ^1.2.2
   globals: 17.4.0
-  playwright: 1.57.0
+  playwright: 1.59.0
   postcss: ^8.5.8
   svelte: ^5.55.0
   tailwindcss: ^4.2.2
