@@ -71,7 +71,7 @@
 		"@sjsf/form": "workspace:*",
 		"@tailwindcss/vite": "catalog:",
 		"ajv": "catalog:",
-		"beercss": "^4.0.19",
+		"beercss": "^4.0.20",
 		"globals": "catalog:",
 		"svelte": "catalog:",
 		"theme-testing": "workspace:*"

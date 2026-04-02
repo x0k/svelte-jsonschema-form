@@ -10,12 +10,12 @@
     "check": "svelte-check --tsconfig tsconfig.json"
   },
   "devDependencies": {
-    "@iconify-json/devicon-plain": "^1.2.56",
+    "@iconify-json/devicon-plain": "^1.2.57",
     "@iconify-json/mdi": "^1.2.3",
     "@internationalized/date": "catalog:",
     "@lucide/svelte": "catalog:",
     "@tailwindcss/vite": "catalog:",
-    "beercss": "^4.0.19",
+    "beercss": "^4.0.20",
     "bits-ui": "catalog:",
     "clsx": "^2.1.1",
     "json-schema-to-ts": "^3.1.1",
@@ -48,13 +48,13 @@
     "@sjsf/schemasafe-validator": "workspace:*",
     "@sjsf/shadcn4-theme": "workspace:*",
     "@sjsf/skeleton4-theme": "workspace:*",
-    "@svar-ui/svelte-core": "^2.5.0",
+    "@svar-ui/svelte-core": "^2.5.1",
     "ajv": "catalog:",
     "browser-fs-access": "^0.38.0",
     "dompurify": "^3.3.3",
     "idb": "^8.0.3",
     "json-schema-to-valibot": "^0.3.0",
-    "json-schema-to-zod": "^2.7.0",
+    "json-schema-to-zod": "^2.8.1",
     "lz-string": "^1.5.0",
     "shiki": "^4.0.2"
   }

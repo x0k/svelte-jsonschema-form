@@ -6098,7 +6098,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               hidden=""
               id="radio-group:c31:indicator"
-              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: var(--transition-duration, 150ms); transition-timing-function: var(--transition-timing-function); left: var(--left);"
+              style="--transition-property: left, top, width, height; position: absolute; will-change: auto; transition-property: none; transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
             <!---->
@@ -6132,6 +6132,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c31:radio:label:root__0"
                 data-ownedby="root"
                 disabled=""
                 id="radio-group:c31:radio:input:root__0"
@@ -6175,6 +6176,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c31:radio:label:root__1"
                 data-ownedby="root"
                 disabled=""
                 id="radio-group:c31:radio:input:root__1"
@@ -6218,6 +6220,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c31:radio:label:root__2"
                 data-ownedby="root"
                 disabled=""
                 id="radio-group:c31:radio:input:root__2"
@@ -6261,6 +6264,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c31:radio:label:root__3"
                 data-ownedby="root"
                 disabled=""
                 id="radio-group:c31:radio:input:root__3"
@@ -6377,7 +6381,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               hidden=""
               id="radio-group:c30:indicator"
-              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: var(--transition-duration, 150ms); transition-timing-function: var(--transition-timing-function); left: var(--left);"
+              style="--transition-property: left, top, width, height; position: absolute; will-change: auto; transition-property: none; transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
             <!---->
@@ -6409,6 +6413,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c30:radio:label:root__0"
                 data-ownedby="root"
                 id="radio-group:c30:radio:input:root__0"
                 name="root"
@@ -6449,6 +6454,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c30:radio:label:root__1"
                 data-ownedby="root"
                 id="radio-group:c30:radio:input:root__1"
                 name="root"
@@ -6489,6 +6495,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c30:radio:label:root__2"
                 data-ownedby="root"
                 id="radio-group:c30:radio:input:root__2"
                 name="root"
@@ -6529,6 +6536,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c30:radio:label:root__3"
                 data-ownedby="root"
                 id="radio-group:c30:radio:input:root__3"
                 name="root"
@@ -6655,7 +6663,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               hidden=""
               id="radio-group:c29:indicator"
-              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: var(--transition-duration, 150ms); transition-timing-function: var(--transition-timing-function); left: var(--left);"
+              style="--transition-property: left, top, width, height; position: absolute; will-change: auto; transition-property: none; transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
             <!---->
@@ -6687,6 +6695,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c29:radio:label:root__0"
                 data-ownedby="root"
                 id="radio-group:c29:radio:input:root__0"
                 name="root"
@@ -6727,6 +6736,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c29:radio:label:root__1"
                 data-ownedby="root"
                 id="radio-group:c29:radio:input:root__1"
                 name="root"
@@ -6767,6 +6777,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c29:radio:label:root__2"
                 data-ownedby="root"
                 id="radio-group:c29:radio:input:root__2"
                 name="root"
@@ -6807,6 +6818,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c29:radio:label:root__3"
                 data-ownedby="root"
                 id="radio-group:c29:radio:input:root__3"
                 name="root"
@@ -6922,7 +6934,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               hidden=""
               id="radio-group:c32:indicator"
-              style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: var(--transition-duration, 150ms); transition-timing-function: var(--transition-timing-function); left: var(--left);"
+              style="--transition-property: left, top, width, height; position: absolute; will-change: auto; transition-property: none; transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
             <!---->
@@ -6956,6 +6968,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c32:radio:label:root__0"
                 data-ownedby="root"
                 disabled=""
                 id="radio-group:c32:radio:input:root__0"
@@ -6999,6 +7012,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c32:radio:label:root__1"
                 data-ownedby="root"
                 disabled=""
                 id="radio-group:c32:radio:input:root__1"
@@ -7042,6 +7056,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c32:radio:label:root__2"
                 data-ownedby="root"
                 disabled=""
                 id="radio-group:c32:radio:input:root__2"
@@ -7085,6 +7100,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                
               <!---->
               <input
+                aria-labelledby="radio-group:c32:radio:label:root__3"
                 data-ownedby="root"
                 disabled=""
                 id="radio-group:c32:radio:input:root__3"

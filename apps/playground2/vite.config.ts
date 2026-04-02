@@ -11,6 +11,6 @@ export default defineConfig({
   },
   optimizeDeps: {
     exclude: ["@jis3r/icons"],
-    include: ["svelte-tiler"],
+    include: ["svelte-tiler", "svelte-tiler/*"],
   },
 });

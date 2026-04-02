@@ -10,7 +10,7 @@ import type { Direction } from "svelte-tiler/shared/spatial";
 export function createTilerContext() {
   return new TilerContext({
     dnd: new DndContext({
-      feedback: (e, el) => new ClonedGhost(el, e).attach(document.body),
+      plugins: [new ClonedGhost()],
     }),
     definitions: { leaf: Leaf, split: Split, tabs: Tabs },
   });

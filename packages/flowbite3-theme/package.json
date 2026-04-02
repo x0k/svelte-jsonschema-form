@@ -76,7 +76,7 @@
 		"esm-env": "catalog:",
 		"jsonpointer": "catalog:",
 		"flowbite": "^3.1.2",
-		"flowbite-svelte": "^1.31.0",
+		"flowbite-svelte": "^1.33.0",
 		"globals": "catalog:",
 		"svelte": "catalog:",
 		"tailwind-variants": "^3.2.2",

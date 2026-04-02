@@ -8,6 +8,10 @@ dist/
 .astro/
 .svelte-kit/
 
+# vitest
+.vitest-attachments
+__screenshots__
+
 # dependencies
 node_modules/
 
