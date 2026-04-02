@@ -705,7 +705,7 @@ describe("basic", () => {
             },
           ],
         });
-      }).toThrow(/incompatible/);
+      }).toThrow(/No valid schema combinations/);
 
       expect(() => {
         merger({
@@ -726,7 +726,7 @@ describe("basic", () => {
             },
           ],
         });
-      }).toThrow(/incompatible/);
+      }).toThrow(/No valid schema combinations/);
     });
 
     it("merges more complex oneOf", () => {
@@ -814,51 +814,47 @@ describe("basic", () => {
       });
     });
 
-    // CHANGED: i don't see how `array` and `object` types
-    // in the first schema can be compatible
     it("merges nested allOf if inside multiple oneOf", () => {
-      expect(() => {
-        merger(
-          {
-            allOf: [
-              {
-                type: ["array", "string", "number"],
-                oneOf: [
-                  {
-                    type: ["array", "object"],
-                    allOf: [
-                      {
-                        type: "object",
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                type: ["array", "string"],
-                oneOf: [
-                  {
-                    type: "string",
-                  },
-                  {
-                    type: "object",
-                  },
-                ],
-              },
-            ],
-          },
-          true
-        );
-      }).toThrow(/incompatible/);
+      const result = merger(
+        {
+          allOf: [
+            {
+              type: ["array", "string", "number"],
+              oneOf: [
+                {
+                  type: ["array", "object"],
+                  allOf: [
+                    {
+                      type: "object",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: ["array", "string"],
+              oneOf: [
+                {
+                  type: "string",
+                },
+                {
+                  type: "object",
+                },
+              ],
+            },
+          ],
+        },
+        true
+      );
 
-      // expect(result).toEqual({
-      //   type: ["array", "string"],
-      //   oneOf: [
-      //     {
-      //       type: "object",
-      //     },
-      //   ],
-      // });
+      expect(result).toEqual({
+        type: ["array", "string"],
+        oneOf: [
+          {
+            type: "object",
+          },
+        ],
+      });
     });
 
     // NOTE: Don't see why this schemas are incompatible
@@ -912,7 +908,7 @@ describe("basic", () => {
             },
           ],
         });
-      }).toThrow(/incompatible/);
+      }).toThrow(/No valid schema combinations/);
     });
 
     // not ready to implement this yet
@@ -972,6 +968,44 @@ describe("basic", () => {
             minLength: 15,
           },
         },
+      });
+    });
+
+    it("ignores conflicting combinations in oneOf/anyOf", () => {
+      const result = merger({
+        allOf: [
+          {
+            oneOf: [
+              {
+                type: "string",
+              },
+              {
+                type: "number",
+              },
+            ],
+          },
+          {
+            oneOf: [
+              {
+                type: "string",
+              },
+              {
+                type: "number",
+              },
+            ],
+          },
+        ],
+      });
+
+      expect(result).toEqual({
+        oneOf: [
+          {
+            type: "string",
+          },
+          {
+            type: "number",
+          },
+        ],
       });
     });
 

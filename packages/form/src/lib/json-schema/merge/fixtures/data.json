@@ -571,7 +571,7 @@
     "a22": {
       "additionalItems": {
         "type": "integer",
-        "minimum": 50
+        "minimum": 10
       },
       "allOf": [
         {
