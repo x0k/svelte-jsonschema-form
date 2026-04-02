@@ -167,11 +167,7 @@ export function createObjectContext<T>({
 
   const newKeyPrefix = $derived(translate("additional-property", {}));
 
-  function onChange(
-    val: SchemaObjectValue | null | undefined,
-    currentKey: string | undefined = undefined
-  ) {
-    lastRenamedProperty.currentKey = currentKey;
+  function onChange(val: SchemaObjectValue | null | undefined) {
     setFieldState(ctx, config().path, FIELD_CHANGED);
     const m = getFieldsValidationMode(ctx);
     if (!(m & ON_OBJECT_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
@@ -270,6 +266,10 @@ export function createObjectContext<T>({
         val = { [newKey]: propValue };
         setValue(val);
       }
+      if (lastRenamedProperty.previousKey === newKey) {
+        lastRenamedProperty.currentKey = newKey;
+        lastRenamedProperty.previousKey = crypto.randomUUID();
+      }
       onChange(val);
     },
     removeProperty(prop) {
@@ -298,7 +298,8 @@ export function createObjectContext<T>({
       if (oldProp !== lastRenamedProperty.currentKey) {
         lastRenamedProperty.previousKey = oldProp;
       }
-      onChange(val, newKey);
+      lastRenamedProperty.currentKey = newKey;
+      onChange(val);
     },
   };
 }
