@@ -43,7 +43,7 @@
     value: () => value,
     setValue: (v) => (value = v),
     get translate() {
-      return translate
+      return translate;
     },
   });
   setObjectContext(objCtx);
@@ -99,17 +99,7 @@
       type="field"
       {property}
       {isAdditional}
-      bind:value={
-        () => value?.[property],
-        (v) => {
-          const c = value;
-          if (!c) {
-            value = { [property]: v };
-          } else {
-            c[property] = v;
-          }
-        }
-      }
+      bind:value={() => value?.[property], (v) => objCtx.set(property, v)}
       config={cfg}
       uiOption={(opt) => retrieveUiOption(ctx, cfg, opt)}
       translate={retrieveTranslate(ctx, cfg)}

@@ -1,14 +1,17 @@
 import { getContext, setContext } from "svelte";
 
+import { isNil } from "@/lib/types.js";
 import {
   getDefaultValueForType,
   getSimpleSchemaType,
   isAdditionalProperty,
   isOrderedSchemaDeepEqual,
   isSchemaExpandable,
+  isSchemaNullable,
   isSchemaObjectValue,
   orderProperties,
   type SchemaObjectValue,
+  type SchemaValue,
 } from "@/core/index.js";
 import {
   AFTER_SUBMITTED,
@@ -56,6 +59,7 @@ export interface ObjectContext {
     isAdditional: boolean
   ) => Config;
   key: (property: string) => string;
+  set: (property: string, value: SchemaValue | undefined) => void;
 }
 
 const OBJECT_CONTEXT = Symbol("object-context");
@@ -72,7 +76,7 @@ export interface ObjectContextOptions<T> {
   ctx: FormState<T>;
   config: () => Config;
   value: () => SchemaObjectValue | null | undefined;
-  setValue: (value: SchemaObjectValue) => void;
+  setValue: (value: SchemaObjectValue | null | undefined) => void;
   translate: Translate;
 }
 
@@ -185,12 +189,36 @@ export function createObjectContext<T>({
     currentKey: undefined as string | undefined,
   };
 
+  function isObjectCanBeRemoved(
+    obj: SchemaObjectValue,
+    removedProperty: string
+  ) {
+    return (
+      !config().required &&
+      Object.keys(obj).every((k) => k === removedProperty || isNil(obj[k]))
+    );
+  }
+
+  function removeObject() {
+    setValue(isSchemaNullable(config().schema) ? null : undefined);
+  }
+
   return {
     key(property) {
       if (lastRenamedProperty.currentKey === property) {
         return lastRenamedProperty.previousKey;
       }
       return property;
+    },
+    set(property, v) {
+      const obj = value();
+      if (!obj) {
+        setValue({ [property]: v });
+      } else if (isNil(v) && isObjectCanBeRemoved(obj, property)) {
+        removeObject();
+      } else {
+        obj[property] = v;
+      }
     },
     errors() {
       return errors;
@@ -245,12 +273,16 @@ export function createObjectContext<T>({
       onChange(val);
     },
     removeProperty(prop) {
-      const val = value();
-      if (!val) {
+      const obj = value();
+      if (!obj) {
         return;
       }
-      delete val[prop];
-      onChange(val);
+      if (isObjectCanBeRemoved(obj, prop)) {
+        removeObject();
+      } else {
+        delete obj[prop];
+        onChange(obj);
+      }
     },
     renameProperty(oldProp, newProp, fieldConfig) {
       const val = value();
