@@ -189,7 +189,19 @@ export function createObjectContext<T>({
     currentKey: undefined as string | undefined,
   };
 
-  const isNullable = $derived(isSchemaNullable(retrievedSchema));
+  function isObjectCanBeRemoved(
+    obj: SchemaObjectValue,
+    removedProperty: string
+  ) {
+    return (
+      !config().required &&
+      Object.keys(obj).every((k) => k === removedProperty || isNil(obj[k]))
+    );
+  }
+
+  function removeObject() {
+    setValue(isSchemaNullable(config().schema) ? null : undefined);
+  }
 
   return {
     key(property) {
@@ -202,12 +214,8 @@ export function createObjectContext<T>({
       const obj = value();
       if (!obj) {
         setValue({ [property]: v });
-      } else if (
-        isNil(v) &&
-        !config().required &&
-        Object.keys(obj).every((k) => k === property || isNil(obj[k]))
-      ) {
-        setValue(isNullable ? null : undefined);
+      } else if (isNil(v) && isObjectCanBeRemoved(obj, property)) {
+        removeObject();
       } else {
         obj[property] = v;
       }
@@ -265,12 +273,16 @@ export function createObjectContext<T>({
       onChange(val);
     },
     removeProperty(prop) {
-      const val = value();
-      if (!val) {
+      const obj = value();
+      if (!obj) {
         return;
       }
-      delete val[prop];
-      onChange(val);
+      if (isObjectCanBeRemoved(obj, prop)) {
+        removeObject();
+      } else {
+        delete obj[prop];
+        onChange(obj);
+      }
     },
     renameProperty(oldProp, newProp, fieldConfig) {
       const val = value();
