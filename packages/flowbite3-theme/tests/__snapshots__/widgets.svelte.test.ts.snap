@@ -2888,43 +2888,43 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
       >
         <!---->
         <!---->
-        <select
-          hidden=""
-          multiple=""
-          name="root"
-          required=""
-        >
-          <option
-            value="root__0"
-          >
-            foo
-          </option>
-          <option
-            value="root__1"
-          >
-            bar
-          </option>
-          <option
-            value="root__2"
-          >
-            fuzz
-          </option>
-          <option
-            value="root__3"
-          >
-            qux
-          </option>
-          
-        </select>
-         
         <div
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm cursor-not-allowed opacity-50 pointer-events-none rounded-lg grow"
-          id="root"
           role="listbox"
           tabindex="0"
         >
+          <select
+            hidden=""
+            id="root"
+            multiple=""
+            name="root"
+            required=""
+          >
+            <option
+              value="root__0"
+            >
+              foo
+            </option>
+            <option
+              value="root__1"
+            >
+              bar
+            </option>
+            <option
+              value="root__2"
+            >
+              fuzz
+            </option>
+            <option
+              value="root__3"
+            >
+              qux
+            </option>
+            
+          </select>
+           
           <span
             class="text-gray-400"
           >
@@ -3038,43 +3038,43 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
       >
         <!---->
         <!---->
-        <select
-          hidden=""
-          multiple=""
-          name="root"
-          required=""
-        >
-          <option
-            value="root__0"
-          >
-            foo
-          </option>
-          <option
-            value="root__1"
-          >
-            bar
-          </option>
-          <option
-            value="root__2"
-          >
-            fuzz
-          </option>
-          <option
-            value="root__3"
-          >
-            qux
-          </option>
-          
-        </select>
-         
         <div
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 rounded-lg grow"
-          id="root"
           role="listbox"
           tabindex="0"
         >
+          <select
+            hidden=""
+            id="root"
+            multiple=""
+            name="root"
+            required=""
+          >
+            <option
+              value="root__0"
+            >
+              foo
+            </option>
+            <option
+              value="root__1"
+            >
+              bar
+            </option>
+            <option
+              value="root__2"
+            >
+              fuzz
+            </option>
+            <option
+              value="root__3"
+            >
+              qux
+            </option>
+            
+          </select>
+           
           <span
             class="text-gray-400"
           >
@@ -3199,43 +3199,43 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
       >
         <!---->
         <!---->
-        <select
-          hidden=""
-          multiple=""
-          name="root"
-          required=""
-        >
-          <option
-            value="root__0"
-          >
-            foo
-          </option>
-          <option
-            value="root__1"
-          >
-            bar
-          </option>
-          <option
-            value="root__2"
-          >
-            fuzz
-          </option>
-          <option
-            value="root__3"
-          >
-            qux
-          </option>
-          
-        </select>
-         
         <div
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 rounded-lg grow"
-          id="root"
           role="listbox"
           tabindex="0"
         >
+          <select
+            hidden=""
+            id="root"
+            multiple=""
+            name="root"
+            required=""
+          >
+            <option
+              value="root__0"
+            >
+              foo
+            </option>
+            <option
+              value="root__1"
+            >
+              bar
+            </option>
+            <option
+              value="root__2"
+            >
+              fuzz
+            </option>
+            <option
+              value="root__3"
+            >
+              qux
+            </option>
+            
+          </select>
+           
           <span
             class="text-gray-400"
           >
@@ -3348,43 +3348,43 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
       >
         <!---->
         <!---->
-        <select
-          hidden=""
-          multiple=""
-          name="root"
-          required=""
-        >
-          <option
-            value="root__0"
-          >
-            foo
-          </option>
-          <option
-            value="root__1"
-          >
-            bar
-          </option>
-          <option
-            value="root__2"
-          >
-            fuzz
-          </option>
-          <option
-            value="root__3"
-          >
-            qux
-          </option>
-          
-        </select>
-         
         <div
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="relative border border-gray-300 w-full flex items-center gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 rounded-lg grow"
-          id="root"
           role="listbox"
           tabindex="0"
         >
+          <select
+            hidden=""
+            id="root"
+            multiple=""
+            name="root"
+            required=""
+          >
+            <option
+              value="root__0"
+            >
+              foo
+            </option>
+            <option
+              value="root__1"
+            >
+              bar
+            </option>
+            <option
+              value="root__2"
+            >
+              fuzz
+            </option>
+            <option
+              value="root__3"
+            >
+              qux
+            </option>
+            
+          </select>
+           
           <span
             class="text-gray-400"
           >
@@ -6618,16 +6618,16 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex flex-wrap focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 p-2 flex-1"
         >
           <!---->
            
           <div
-            class="relative w-full"
+            class="relative min-w-[8rem] flex-1 self-center"
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              class="block text-sm my-1 mx-2.5 p-0 bg-transparent border-none outline-none text-gray-900 w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
               disabled=""
               id="root"
               name="root"
@@ -6725,16 +6725,16 @@ exports[`widgets > tags > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex flex-wrap focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 p-2 flex-1"
         >
           <!---->
            
           <div
-            class="relative w-full"
+            class="relative min-w-[8rem] flex-1 self-center"
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              class="block text-sm my-1 mx-2.5 p-0 bg-transparent border-none outline-none text-gray-900 w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
               id="root"
               name="root"
               placeholder="Enter tags"
@@ -6842,16 +6842,16 @@ exports[`widgets > tags > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex flex-wrap focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 p-2 flex-1"
         >
           <!---->
            
           <div
-            class="relative w-full"
+            class="relative min-w-[8rem] flex-1 self-center"
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              class="block text-sm my-1 mx-2.5 p-0 bg-transparent border-none outline-none text-gray-900 w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
               id="root"
               name="root"
               placeholder="Enter tags"
@@ -6948,16 +6948,16 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex flex-wrap focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 p-2 flex-1"
         >
           <!---->
            
           <div
-            class="relative w-full"
+            class="relative min-w-[8rem] flex-1 self-center"
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              class="block text-sm my-1 mx-2.5 p-0 bg-transparent border-none outline-none text-gray-900 w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
               id="root"
               name="root"
               placeholder="Enter tags"
