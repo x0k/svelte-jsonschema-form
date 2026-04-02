@@ -179,7 +179,7 @@ export const schemaToZodTransform = createSchemaTransformer({
   createSchemaCode: (schema) =>
     jsonSchemaToZod(schema, {
       noImport: true,
-    }).replace(/\.record\(/g, ".record(z.string(), "),
+    }),
 });
 
 export const schemaToValibotTransform = createSchemaTransformer({

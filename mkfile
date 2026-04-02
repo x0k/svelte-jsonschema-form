@@ -4,6 +4,7 @@ set -xe
 
 update:
   pnpm -w update --no-save
+  pnpm dedupe
 
 d:
   pnpm run dev
