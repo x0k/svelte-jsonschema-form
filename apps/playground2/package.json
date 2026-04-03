@@ -38,12 +38,14 @@
     "svelte-tiler": "^0.7.0"
   },
   "devDependencies": {
+    "@fontsource-variable/inter": "catalog:",
     "@internationalized/date": "catalog:",
     "@lucide/svelte": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "beercss": "^4.0.20",
     "bits-ui": "catalog:",
     "clsx": "^2.1.1",
+    "shadcn-svelte": "catalog:",
     "svelte": "catalog:",
     "tailwind-merge": "^3.5.0",
     "tailwind-variants": "^3.2.2",
