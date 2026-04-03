@@ -1,4 +1,3 @@
-import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { createFormValidator as ajv8 } from "@sjsf/ajv8-validator";
 import { createFormValidator as cfworker } from "@sjsf/cfworker-validator";
 import { createFormValidator as schemasafe } from "@sjsf/schemasafe-validator";
@@ -6,11 +5,11 @@ import Ajv2020 from "ajv/dist/2020.js";
 
 export const validators = {
   ajv8,
-  ajv8_2020: <T>(options: ValidatorFactoryOptions) =>
+  ajv8_2020: <T>(options: Parameters<typeof ajv8>[0]) =>
     ajv8<T>({
       ...options,
-      // @ts-expect-error
-      Ajv: Ajv2020,
+      // Do not use `ts-expect-error` to avoid unused expect from docs build
+      Ajv: Ajv2020 as any,
     }),
   cfworker,
   schemasafe,
