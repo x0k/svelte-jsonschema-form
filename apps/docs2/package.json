@@ -50,7 +50,7 @@
     "arktype": "^2.2.0",
     "cally": "^0.9.2",
     "daisyui": "^5.5.19",
-    "esbuild": "^0.27.5",
+    "esbuild": "^0.27.7",
     "flowbite": "^3.1.2",
     "flowbite-svelte": "1.33.0",
     "json-schema-to-valibot": "^0.3.0",
