@@ -20,7 +20,7 @@
 		interface ThemeComponents {
 			PhoneInput: Component<
 				PhoneInputProps,
-				{ focus: () => void },
+				{},
 				'country' | 'placeholder' | 'readonly' | 'disabled' | 'value' | 'valid' | 'detailedValue'
 			>;
 		}
@@ -45,7 +45,7 @@
 </script>
 
 <PhoneInput
-	bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
+	bind:value={() => value ?? '', (v) => (value = v)}
 	{...inputAttributes(ctx, config, 'shadcnExtrasPhoneInput', handlers, {
 		valid: errors.length === 0
 	})}

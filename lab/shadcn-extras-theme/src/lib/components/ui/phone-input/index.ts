@@ -1,16 +1,5 @@
-/*
-	Installed from @ieedan/shadcn-svelte-extras
-*/
+import PhoneInput, { defaultOptions } from '$lib/components/ui/phone-input/phone-input.svelte';
 
-import PhoneInput from './phone-input.svelte';
-import type { TelInputOptions } from 'svelte-tel-input/types';
+export { PhoneInput, defaultOptions };
 
-export const defaultOptions: TelInputOptions = {
-	spaces: true,
-	autoPlaceholder: false,
-	format: 'international'
-};
-
-export { PhoneInput };
-
-export type * from './types.js';
+export type * from '$lib/components/ui/phone-input/types.js';
