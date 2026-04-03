@@ -1,15 +1,12 @@
 <script lang="ts">
   import type { JSONSchema } from "json-schema-typed/draft-2020-12";
   import { createForm, BasicForm } from "@sjsf/form";
+  import { convert } from "@sjsf/form/converters/draft-2020-12";
 
   import * as defaults from "$lib/form-defaults";
 
-  // This adapter is intended to produce a Draft-07 schema that is
-  // structurally equivalent to a Draft 2020-12 schema.
-  // It has some limitations — see the usage of the `noop` function.
-  import { convert } from "./convert";
-
   const schema = {
+    $schema: "https://json-schema.org/draft/2020-12/schema",
     type: "array",
     prefixItems: [
       { title: "foo", type: "string", default: "carp" },
