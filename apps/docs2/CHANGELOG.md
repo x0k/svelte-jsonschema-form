@@ -1,5 +1,43 @@
 # docs
 
+## 1.15.0
+
+### Minor Changes
+
+- Add `anti-patterns` page ([`053e85a`](https://github.com/x0k/svelte-jsonschema-form/commit/053e85ae00e6b9d9726aba8edc074732ac0a87a5))
+
+### Patch Changes
+
+- Fix get started link for theme pages ([`ef3c5b0`](https://github.com/x0k/svelte-jsonschema-form/commit/ef3c5b0d7d02520817eccba7bd2c02697d4efbfd))
+
+- Update `Working with enumerations` section ([#340](https://github.com/x0k/svelte-jsonschema-form/pull/340))
+
+- Updated dependencies [[`d2b2317`](https://github.com/x0k/svelte-jsonschema-form/commit/d2b231748792215b46f17e8400251e3d581bda12), [`de8780b`](https://github.com/x0k/svelte-jsonschema-form/commit/de8780be745b9ca7503322d35e6501f00c455875), [`e44b837`](https://github.com/x0k/svelte-jsonschema-form/commit/e44b837cf6d48a4f4db3963480584f855826fcf3), [`94c2d0c`](https://github.com/x0k/svelte-jsonschema-form/commit/94c2d0ca7f131ba4e790df7999661e309fdb923f), [`4277b7c`](https://github.com/x0k/svelte-jsonschema-form/commit/4277b7c5559436a19294a39176f76c535f4df25d), [`e1fcb52`](https://github.com/x0k/svelte-jsonschema-form/commit/e1fcb52a07a6ef05750e3f199068e73cadbc3239), [`e8619e4`](https://github.com/x0k/svelte-jsonschema-form/commit/e8619e4bf496be2c5bd1356e793dafdd6959400d), [`49c9df2`](https://github.com/x0k/svelte-jsonschema-form/commit/49c9df2d7bbf5f58e0aaab43c39fb8ca39ea46d9), [`70cbcac`](https://github.com/x0k/svelte-jsonschema-form/commit/70cbcaceb5400446130bcd336d7af01a92ab2027), [`a9f6cc1`](https://github.com/x0k/svelte-jsonschema-form/commit/a9f6cc12e077b195ac9f9c75cb5f7c0f21d6b16a), [`b5786cf`](https://github.com/x0k/svelte-jsonschema-form/commit/b5786cfd0e2675d6ae55a197fb8f0f48a9afc77c)]:
+  - @sjsf/form@3.4.0
+  - @sjsf-lab/shadcn-extras-theme@3.3.0
+  - @sjsf/ajv8-validator@3.4.0
+  - @sjsf/shadcn4-theme@3.4.0
+  - @sjsf-lab/beercss-theme@3.2.2
+  - @sjsf-lab/svar-theme@3.2.1
+  - @sjsf/daisyui-theme@3.0.0
+  - @sjsf/flowbite-theme@3.0.0
+  - @sjsf/shadcn-theme@3.0.0
+  - @sjsf/skeleton3-theme@3.0.1
+  - @sjsf/basic-theme@3.4.0
+  - @sjsf/cfworker-validator@3.4.0
+  - @sjsf/daisyui5-theme@3.4.0
+  - @sjsf/flowbite-icons@3.4.0
+  - @sjsf/flowbite3-theme@3.4.0
+  - @sjsf/lucide-icons@3.4.0
+  - @sjsf/moving-icons@3.4.0
+  - @sjsf/radix-icons@3.4.0
+  - @sjsf/schemasafe-validator@3.4.0
+  - @sjsf/skeleton4-theme@3.4.0
+  - @sjsf/sveltekit@3.4.0
+  - theme-testing@1.0.25
+  - @sjsf/valibot-validator@3.4.0
+  - @sjsf/zod4-validator@3.4.0
+
 ## 1.14.0
 
 ### Minor Changes

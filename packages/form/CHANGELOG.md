@@ -1,5 +1,27 @@
 # @sjsf/form
 
+## 3.4.0
+
+### Minor Changes
+
+- Add `enumValueMapperBuilder` UI option ([#340](https://github.com/x0k/svelte-jsonschema-form/pull/340))
+
+- Export `convert` function for converting Draft 2020-12 to Draft 07 from `@sjsf/form/converters/draft-2020-12` ([#348](https://github.com/x0k/svelte-jsonschema-form/pull/348))
+
+### Patch Changes
+
+- Fix `state_referenced_locally` warning ([`d2b2317`](https://github.com/x0k/svelte-jsonschema-form/commit/d2b231748792215b46f17e8400251e3d581bda12))
+
+- Filter out incompatible `oneOf/anyOf` combinations during schema merging ([#344](https://github.com/x0k/svelte-jsonschema-form/pull/344))
+
+- Treat empty arrays as empty values (follow-up to #342) ([#345](https://github.com/x0k/svelte-jsonschema-form/pull/345))
+
+- Fix the loss of focus when renaming an additional property ([#341](https://github.com/x0k/svelte-jsonschema-form/pull/341))
+
+- Automatically remove optional empty container values ([#342](https://github.com/x0k/svelte-jsonschema-form/pull/342))
+
+- Optimize the comparison of `Config` objects ([`a9f6cc1`](https://github.com/x0k/svelte-jsonschema-form/commit/a9f6cc12e077b195ac9f9c75cb5f7c0f21d6b16a))
+
 ## 3.3.2
 
 ### Patch Changes
