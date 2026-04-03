@@ -38,18 +38,25 @@
     "lint": "prettier --check . && eslint ."
   },
   "dependencies": {
-    "@standard-schema/spec": "^1.1.0",
     "@types/json-schema": "^7.0.15",
     "jsonpointer": "catalog:"
   },
   "peerDependencies": {
+    "@standard-schema/spec": "^1.1.0",
     "@types/json-schema-merge-allof": "^0.6.0",
     "esm-env": "^1.2.0",
+    "json-schema-typed": "^8.0.0",
     "json-schema-merge-allof": "^0.8.0",
     "svelte": "^5.34.8"
   },
   "peerDependenciesMeta": {
+    "@standard-schema/spec": {
+      "optional": true
+    },
     "@types/json-schema-merge-allof": {
+      "optional": true
+    },
+    "json-schema-typed": {
       "optional": true
     },
     "json-schema-merge-allof": {
@@ -57,13 +64,15 @@
     }
   },
   "devDependencies": {
-    "@types/json-schema-merge-allof": "^0.6.5",
+    "@standard-schema/spec": "^1.1.0",
     "@types/json-schema-compare": "^0.2.4",
+    "@types/json-schema-merge-allof": "^0.6.5",
     "ajv": "catalog:",
     "allof-merge": "^0.6.8",
     "deep-freeze-es6": "^5.0.0",
     "globals": "catalog:",
     "json-schema-compare": "^0.2.2",
+    "json-schema-typed": "^8.0.2",
     "json-schema-merge-allof": "^0.8.1",
     "svelte": "catalog:"
   },
@@ -170,6 +179,10 @@
     "./id-builders/*": {
       "types": "./dist/id-builders/*.d.ts",
       "default": "./dist/id-builders/*.js"
+    },
+    "./converters/*": {
+      "types": "./dist/converters/*.d.ts",
+      "default": "./dist/converters/*.js"
     },
     "./focus-on-first-error": {
       "types": "./dist/focus-on-first-error.d.ts",

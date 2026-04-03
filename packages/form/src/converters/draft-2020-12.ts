@@ -1,7 +1,7 @@
 import type { JSONSchema } from "json-schema-typed/draft-2020-12";
-import { identity, noop } from "@sjsf/form/lib/function";
-import type { SchemaDefinition } from "@sjsf/form/core";
-import type { Schema } from "@sjsf/form";
+
+import { identity, noop } from "@/lib/function.js";
+import type { SchemaDefinition, Schema } from "@/core/index.js";
 
 function assign<I, O>(convert: (input: I, baseUrl: string | undefined) => O) {
   return <K extends string>(
@@ -29,17 +29,47 @@ const ASSIGNERS: {
     key: K
   ) => void;
 } = {
-  $anchor: noop,
-  $vocabulary: noop,
-  $dynamicAnchor: noop,
-  $dynamicRef: noop,
-  unevaluatedItems: noop,
-  unevaluatedProperties: noop,
+  /** Unsupported **/
+  // contentSchema: no draft-07 equivalent, drop it
   contentSchema: noop,
+  // deprecated: no draft-07 standard equivalent, but some tools read it as-is
   deprecated: noop,
-  maxContains: noop,
-  minContains: noop,
-  //
+  // $vocabulary: draft-07 has no vocabulary mechanism, must drop
+  $vocabulary: noop,
+  // minContains / maxContains have no draft-07 equivalent but are harmless to carry over
+  // as custom keywords — validators ignore unknown keys
+  minContains: assignAsIs,
+  maxContains: assignAsIs,
+  /** Lossy conversions **/
+  // Approximate $anchor as a plain-name $id fragment
+  $anchor: (t, v) => {
+    t.$id ??= `#${v}`;
+  },
+  // $dynamicAnchor: approximate as a plain-name $id (loses dynamic resolution semantics)
+  $dynamicAnchor: (t, v) => {
+    t.$id ??= `#${v}`;
+  },
+  // $dynamicRef: approximate as a regular $ref (loses dynamic scoping semantics)
+  $dynamicRef: (t, v, b) => {
+    if (v.startsWith("#")) {
+      t.$ref = v;
+      return;
+    }
+    const url = new URL(v, b);
+    const hash = url.hash.slice(1);
+    url.hash = "";
+    const key = url.href.replaceAll("~", "~0").replaceAll("/", "~1");
+    t.$ref = `#/$defs/${key}${hash}`;
+  },
+  // unevaluatedItems: closest draft-07 equivalent is additionalItems
+  unevaluatedItems: (t, v, b) => {
+    t.additionalItems ??= convertSchemaDef(v, b);
+  },
+  // unevaluatedProperties: closest draft-07 equivalent is additionalProperties
+  unevaluatedProperties: (t, v, b) => {
+    t.additionalProperties ??= convertSchemaDef(v, b);
+  },
+  /** As is */
   $id: assignAsIs,
   $comment: assignAsIs,
   title: assignAsIs,
@@ -75,13 +105,13 @@ const ASSIGNERS: {
   contains: assign(convertSchemaDef),
   properties: assign(convertRecordOfSchemaDefs),
   propertyNames: assign(convertSchemaDef),
-  patternProperties: assign(convertSchemaDef),
+  patternProperties: assign(convertRecordOfSchemaDefs),
   if: assign(convertSchemaDef),
   then: assign(convertSchemaDef),
   else: assign(convertSchemaDef),
   not: assign(convertSchemaDef),
   //
-  $schema: (t) => (t.$schema = "http://json-schema.org/draft-07/schema#"),
+  $schema: (t) => (t.$schema = "http://json-schema.org/draft-07/schema"),
   $ref: (t, v, b) => {
     if (v.startsWith("#")) {
       t.$ref = v;
@@ -90,7 +120,7 @@ const ASSIGNERS: {
     const url = new URL(v, b);
     const hash = url.hash.slice(1);
     url.hash = "";
-    let key = url.href.replaceAll("~", "~0").replaceAll("/", "~1");
+    const key = url.href.replaceAll("~", "~0").replaceAll("/", "~1");
     t.$ref = `#/$defs/${key}${hash}`;
   },
   $defs: (t, v, b) => {
@@ -115,7 +145,7 @@ const ASSIGNERS: {
   items: (t, v, b, s) => {
     const def = convertSchemaDef(v, b);
     if (s.prefixItems) {
-      t.additionalItems = def;
+      t.additionalItems ??= def;
     } else {
       t.items = def;
     }
@@ -125,7 +155,7 @@ const ASSIGNERS: {
       ? convertArrayOfSchemaDefs(v, b)
       : convertSchemaDef(v as JSONSchema, b);
   },
-  // Deprecated
+  /** Deprecated **/
   additionalItems: assign(convertSchemaDef),
   definitions: assign(convertRecordOfSchemaDefs),
   dependencies: (t, v, b) => {
@@ -145,7 +175,8 @@ function convertSchema(
   const result: Schema = {};
   const keys = Object.keys(schema) as Array<keyof JSONSchema.Interface>;
   for (const key of keys) {
-    const v = schema[key];
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const v = schema[key]!;
     if (v === undefined) {
       continue;
     }
@@ -170,7 +201,7 @@ function convertRecordOfSchemaDefs(
 ) {
   const result: Record<string, SchemaDefinition> = {};
   for (const key of Object.keys(schemas)) {
-    result[key] = convertSchemaDef(schemas[key], baseUrl);
+    result[key] = convertSchemaDef(schemas[key]!, baseUrl);
   }
   return result;
 }
