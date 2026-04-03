@@ -39,6 +39,7 @@
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
+  import { convert } from "@sjsf/form/converters/draft-2020-12";
   import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
@@ -169,6 +170,18 @@
     },
   };
 
+  const isDraft2020 = $derived(
+    data.schema.$schema?.startsWith(
+      "https://json-schema.org/draft/2020-12/schema",
+    ) === true,
+  );
+
+  const finalSchema = $derived(
+    isDraft2020
+      ? convert(data.schema as Parameters<typeof convert>[0])
+      : data.schema,
+  );
+
   const focusOnFirstError = createFocusOnFirstError();
   const form = createForm({
     idBuilder: createFormIdBuilder,
@@ -186,7 +199,7 @@
       return theme;
     },
     get schema() {
-      return data.schema;
+      return finalSchema;
     },
     get uiSchema() {
       return data.uiSchema;
@@ -197,7 +210,9 @@
         ...v,
         validateFormValue(rootSchema, formValue) {
           return v.validateFormValue(
-            rootSchema,
+            isDraft2020 && data.validator === "ajv8_2020"
+              ? data.schema
+              : rootSchema,
             data.omitExtraData
               ? omitExtraData(v, options.merger(), options.schema, formValue)
               : formValue,
