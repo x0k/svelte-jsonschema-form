@@ -84,6 +84,7 @@
 				ctx,
 				config,
 				{
+					class: 'grow',
 					value: option.mappedValue ?? option.id
 				},
 				uiOptionProps('shadcn4RadioButtonsItem'),
