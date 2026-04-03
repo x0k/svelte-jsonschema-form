@@ -24,7 +24,7 @@
     // validator: <T,>(options: ValidatorFactoryOptions) => {
     //   const validator = defaults.validator<T>({
     //     ...options,
-    //     ajv: addFormComponents(new Ajv2020(DEFAULT_AJV_CONFIG)),
+    //     Ajv: Ajv2020,
     //   });
     //   // TODO: Pass the original schema parts to the `isValid` method.
     //   return {
