@@ -259,6 +259,9 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
     devDependencies:
+      '@fontsource-variable/inter':
+        specifier: 'catalog:'
+        version: 5.2.8
       '@iconify-json/devicon-plain':
         specifier: ^1.2.57
         version: 1.2.57
@@ -286,6 +289,9 @@ importers:
       json-schema-to-ts:
         specifier: ^3.1.1
         version: 3.1.1
+      shadcn-svelte:
+        specifier: 'catalog:'
+        version: 1.2.7(svelte@5.55.1)
       svelte:
         specifier: 'catalog:'
         version: 5.55.1
