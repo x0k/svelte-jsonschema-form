@@ -1,23 +1,29 @@
+<script lang="ts" module>
+	export const defaultOptions: TelInputOptions = {
+		spaces: true,
+		autoPlaceholder: true
+	};
+</script>
+
 <script lang="ts">
 	import CountrySelector from '$lib/components/ui/phone-input/country-selector.svelte';
-	import { defaultOptions, type PhoneInputProps } from '$lib/components/ui/phone-input/index.js';
+	import { type PhoneInputProps } from '$lib/components/ui/phone-input/index.js';
 	import { cn } from '$lib/utils.js';
-	import { TelInput, normalizedCountries } from 'svelte-tel-input';
+	import { TelInput, countries } from 'svelte-tel-input';
 	import 'svelte-tel-input/styles/flags.css';
-
-	const countries = normalizedCountries;
+	import type { TelInputOptions } from 'svelte-tel-input/types';
 
 	let {
 		class: className = undefined,
 		defaultCountry = null,
 		country = $bindable(defaultCountry),
 		options = defaultOptions,
-		placeholder = $bindable(undefined),
-		readonly = $bindable(false),
-		disabled = $bindable(false),
-		value = $bindable(null),
-		valid = $bindable(false),
-		detailedValue = $bindable(),
+		placeholder,
+		readonly = false,
+		disabled = false,
+		value = $bindable(''),
+		valid = $bindable(true),
+		detailedValue = $bindable(null),
 		order = undefined,
 		name = undefined,
 		...rest
@@ -25,12 +31,12 @@
 
 	let el: HTMLInputElement | undefined = $state();
 
-	export const focus = () => {
+	function focus() {
 		// sort of an after update kinda thing
 		setTimeout(() => {
 			el?.focus();
 		}, 0);
-	};
+	}
 </script>
 
 <div class="flex place-items-center">
@@ -41,9 +47,9 @@
 		bind:detailedValue
 		bind:value
 		bind:valid
-		bind:readonly
-		bind:disabled
-		bind:placeholder
+		{readonly}
+		{disabled}
+		{placeholder}
 		bind:el
 		{options}
 		class={cn(
