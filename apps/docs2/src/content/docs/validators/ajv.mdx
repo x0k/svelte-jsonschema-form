@@ -76,11 +76,12 @@ This validator supports async validation.
 ```typescript
 import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { createAsyncFormValidator } from "@sjsf/ajv8-validator";
+import { addFormComponents } from "@sjsf/ajv8-validator";
 
 export const validator = <T>(options: ValidatorFactoryOptions) =>
   createAsyncFormValidator<T>({
     ...options,
-    ajv: yourAjvInstance,
+    ajv: addFormComponents(yourAjvInstance),
   })
 ```
 
