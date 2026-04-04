@@ -25,49 +25,14 @@ export const EMPTY_VALUE = "";
 /** @deprecated use `EMPTY_VALUE` instead */
 export const UNDEFINED_ID = EMPTY_VALUE;
 
-export class IdEnumValueMapperBuilder implements EnumValueMapperBuilder {
-  #idToValue = new Map<string, SchemaValue>();
-  #valueToId = new Map<SchemaValue, string>();
-
-  push(option: EnumOption<SchemaValue>): string {
-    this.#idToValue.set(option.id, option.value);
-    this.#valueToId.set(option.value, option.id);
-    return option.id;
-  }
-
-  build(): EnumValueMapper {
-    return {
-      fromValue: (value) => {
-        if (value === undefined) {
-          return EMPTY_VALUE;
-        }
-        const id = this.#valueToId.get(value);
-        if (id !== undefined || !isObject(value)) {
-          return id ?? EMPTY_VALUE;
-        }
-        return (
-          this.#valueToId
-            .entries()
-            .find(([v]) => isSchemaValueDeepEqual(v, value))?.[1] ?? EMPTY_VALUE
-        );
-      },
-      toValue: (value) => this.#idToValue.get(value),
-    };
-  }
-}
-
-export class StringEnumValueMapperBuilder implements EnumValueMapperBuilder {
+abstract class AbstractValueMapperBuilder implements EnumValueMapperBuilder {
   #strToValue = new Map<string, SchemaValue>();
   #valueToStr = new Map<SchemaValue, string>();
 
+  protected abstract optionToStr(option: EnumOption<SchemaValue>): string;
+
   push(option: EnumOption<SchemaValue>): string {
-    // eslint-disable-next-line @typescript-eslint/no-base-to-string
-    const str = String(option.value);
-    if (this.#strToValue.has(str)) {
-      throw new Error(
-        `Stringified value "${str}" of "${JSON.stringify(option)}" options should be unique`
-      );
-    }
+    const str = this.optionToStr(option);
     this.#strToValue.set(str, option.value);
     this.#valueToStr.set(option.value, str);
     return str;
@@ -91,6 +56,23 @@ export class StringEnumValueMapperBuilder implements EnumValueMapperBuilder {
       },
       toValue: (str) => this.#strToValue.get(str),
     };
+  }
+}
+
+export class IdEnumValueMapperBuilder extends AbstractValueMapperBuilder {
+  protected override optionToStr(option: EnumOption<SchemaValue>): string {
+    return option.id;
+  }
+}
+
+export class StringEnumValueMapperBuilder extends AbstractValueMapperBuilder {
+  protected override optionToStr(option: EnumOption<SchemaValue>): string {
+    if (isObject(option.value)) {
+      throw new Error(
+        `Option "${JSON.stringify(option)}" can't be used with 'StringEnumValueMapperBuilder' due non primitive value`
+      );
+    }
+    return String(option.value);
   }
 }
 
