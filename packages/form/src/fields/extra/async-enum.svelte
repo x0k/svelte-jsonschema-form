@@ -1,7 +1,6 @@
 <script lang="ts" module>
   import type { EnumOption } from "@/core/index.js";
-  import type { Config } from "@/form/index.js";
-  import type { Task } from "@/lib/task.svelte.js";
+  import type { Query } from "@/lib/task.svelte.js";
 
   const field = "asyncEnumField";
   declare module "../../form/index.js" {
@@ -9,13 +8,12 @@
       [field]: {};
     }
     interface UiOptions {
-      loadEnumOptionsTask?: Task<[Config], EnumOption<SchemaValue>[], any>;
+      enumOptionsQuery?: Query<any, EnumOption<SchemaValue>[], any>;
     }
   }
 </script>
 
 <script lang="ts">
-  import { noop } from "@/lib/function.js";
   import {
     getFormContext,
     type ComponentProps,
@@ -52,25 +50,16 @@
     () => validateField(ctx, config, value)
   );
 
-  let originalOptions = $state.raw<EnumOption<SchemaValue>[]>([]);
-  const loadTask = $derived.by(() => {
-    const task = uiOption("loadEnumOptionsTask");
-    if (task === undefined) {
+  const optionsQuery = $derived.by(() => {
+    const query = uiOption("enumOptionsQuery");
+    if (query === undefined) {
       throw new Error(
-        `async enum field (${config.path.join(".")}): 'loadEnumOptionsTask' is undefined`
+        `async enum field (${config.path.join(".")}): 'enumOptionsQuery' is undefined`
       );
     }
-    return task;
+    return query;
   });
-
-  $effect(() => {
-    loadTask.runAsync(config).then((result) => {
-      originalOptions = result;
-    }, noop);
-    return () => {
-      loadTask.abort();
-    };
-  });
+  let originalOptions = $derived(optionsQuery.result ?? []);
 
   const { options, mapper } = $derived.by(() => {
     const builder =
