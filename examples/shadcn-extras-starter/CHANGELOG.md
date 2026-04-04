@@ -1,5 +1,16 @@
 # shadcn-extras-starter
 
+## 0.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`1811852`](https://github.com/x0k/svelte-jsonschema-form/commit/181185202c788f1bc8788ecb7dcf852498831c69)]:
+  - @sjsf/form@3.4.1
+  - @sjsf-lab/shadcn-extras-theme@3.3.0
+  - @sjsf/ajv8-validator@3.4.1
+  - @sjsf/basic-theme@3.4.1
+  - @sjsf/shadcn4-theme@3.4.1
+
 ## 0.0.14
 
 ### Patch Changes
