@@ -2,7 +2,7 @@
   import type { EnumOption } from "@/core/index.js";
   import type { Query } from "@/lib/task.svelte.js";
 
-  const field = "asyncEnumField";
+  const field = "remoteEnumField";
   declare module "../../form/index.js" {
     interface ActionFields {
       [field]: {};
@@ -25,7 +25,7 @@
     makeEventHandlers,
     validateField,
   } from "@/form/index.js";
-  import "@/form/extra-fields/async-enum.js";
+  import "@/form/extra-fields/remote-enum.js";
   import {
     EMPTY_VALUE,
     IdEnumValueMapperBuilder,
@@ -59,12 +59,12 @@
     }
     return query;
   });
-  let originalOptions = $derived(optionsQuery.result ?? []);
+  let remoteOptions = $derived(optionsQuery.result ?? []);
 
   const { options, mapper } = $derived.by(() => {
     const builder =
       uiOption("enumValueMapperBuilder")?.() ?? new IdEnumValueMapperBuilder();
-    const options: FormEnumOption[] = originalOptions.map((o) => ({
+    const options: FormEnumOption[] = remoteOptions.map((o) => ({
       ...o,
       mappedValue: builder.push(o),
     }));

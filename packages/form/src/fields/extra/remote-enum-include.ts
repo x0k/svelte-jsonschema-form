@@ -1,12 +1,12 @@
 import { definitions } from "../../theme/definitions.js";
 
-import AsyncEnum from "./async-enum.svelte";
-import "./async-enum.svelte";
+import AsyncEnum from "./remote-enum.svelte";
+import "./remote-enum.svelte";
 
 declare module "../../theme/definitions.js" {
   interface ExtraComponents {
-    asyncEnumField: {};
+    remoteEnumField: {};
   }
 }
 
-definitions.asyncEnumField = AsyncEnum;
+definitions.remoteEnumField = AsyncEnum;

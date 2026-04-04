@@ -4,12 +4,12 @@ import type { FieldCommonProps } from "../fields.js";
 
 declare module "../components.js" {
   interface FoundationalComponents {
-    asyncEnumField: {};
+    remoteEnumField: {};
   }
   interface ComponentProps {
-    asyncEnumField: FieldCommonProps<SchemaValue>;
+    remoteEnumField: FieldCommonProps<SchemaValue>;
   }
   interface ComponentBindings {
-    asyncEnumField: "value";
+    remoteEnumField: "value";
   }
 }
