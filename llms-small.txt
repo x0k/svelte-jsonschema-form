@@ -280,10 +280,14 @@ A simplified diagram of the form’s reactive flow:
 
 # Schema
 
-Currently we only support [JSON Schema Draft-07](https://json-schema.org/draft-07#draft-07)
-and [discriminator.propertyName](https://swagger.io/docs/specification/v3_0/data-models/inheritance-and-polymorphism/#discriminator) keyword.
+The form supports only [JSON Schema Draft-07](https://json-schema.org/draft-07#draft-07) and
+[discriminator.propertyName](https://swagger.io/docs/specification/v3_0/data-models/inheritance-and-polymorphism/#discriminator) keyword.
 
-For other drafts and schemes, adapters can be used; see the [advanced example](/examples/advanced/) `draft-2020-12` for more information.
+Using converters (`@sjsf/form/converters/draft-2020-12`) and
+adapters (`@sjsf/zod4-validator/classic`, `@sjsf/zod4-validator/mini`, `@sjsf/valibot-validator`),
+it is possible to generate forms from other formats and sources.
+
+See the [advanced example](/examples/advanced/) `draft-2020-12` for more information.
 
 ## String formats
 
@@ -950,6 +954,11 @@ interface UiOptions {
    */
   disabledEnumValues?: SchemaValue[];
   /**
+   * Overrides the enumeration value mapper (may be required for autofill to work)
+   * @default () => new IdEnumValueMapperBuilder()
+   */
+  enumValueMapperBuilder?: () => EnumValueMapperBuilder;
+  /**
    * Order of properties in the object schema.
    * You must specify all properties or use the wildcard `*`.
    */
@@ -1169,6 +1178,69 @@ export interface AsyncFileListValidator {
     config: Config
   ) => Promise<Update<string[]>>;
 }
+
+# Anti-patterns
+
+A list of approaches that should be avoided unless absolutely necessary.
+
+## Recreating `form`
+
+The following code is an anti-pattern:
+
+```svelte
+<script lang="ts">
+  let formId = $state.raw(crypto.randomUUID())
+  let form = createForm({
+    ...defaults,
+    schema
+  })
+
+  function update(schema: Schema) {
+    form = createForm({
+      ...defaults,
+      schema
+    })
+    formId = crypto.randomUUID()
+  }
+</script>
+
+{#key formId}
+  <BasicForm {form} />
+{/key}
+```
+
+Instead, use Svelte 5 reactivity:
+
+:::note
+
+All properties support reactivity
+
+:::
+
+```svelte
+<script lang="ts">
+  let schema: Schema = $state.raw({ ... })
+  const form = createForm({
+    ...defaults,
+    get schema() {
+      return schema
+    }
+  })
+</script>
+
+<BasicForm {form}/>
+```
+
+To understand the relationships between options, see the [Reactive flow](/form/reactive-flow/) diagram or
+the `create-form.ts` [source code](https://github.com/x0k/svelte-jsonschema-form/blob/main/packages/form/src/form/create-form.svelte.ts).
+
+## Using multiple forms to achieve the desired UI
+
+Instead of splitting a single entity into multiple forms to achieve the desired UI and
+manually managing state, you should create custom top-level components (e.g., `TupleField`)
+that implement the required UI.
+
+See the `multi-step` and `tabbed-layout` examples on the [Advanced Examples](/examples/advanced/) page.
 
 # Component casting
 
@@ -1562,49 +1634,54 @@ previous category, have the suffix `Attributes`.
 
 ## Working with enumerations
 
-To implement widgets that use enumerations (`options: EnumOption<SchemaValue>[]`),
-use the functions from the `@sjsf/form/options.svelte` module.
+Widgets that work with enumerations receive the following properties:
+
+```ts
+export interface Options {
+  options: FormEnumOption[];
+  mapper?: EnumValueMapper;
+}
+
+export interface SingleSelectOptions extends Options {
+  hasInitialValue?: boolean;
+  mapped?: Ref<string>;
+}
+
+export interface MultiSelectOptions extends Options {
+  mapped?: Ref<string[]>;
+}
+```
+
+These properties are marked as optional for backward compatibility,
+but in practice they are always defined.
+You can either use them with `!` or provide a fallback value:
 
 ```ts
 import { idMapper, singleOption } from "@sjsf/form/options.svelte";
 
-const mapped = singleOption({
-  mapper: () => idMapper(options),
-  value: () => value,
-  update: (v) => (value = v),
-});
+let {
+  hasInitialValue = config.schema.default !== undefined,
+  mapped = singleOption({
+    mapper: () => idMapper(options),
+    value: () => value,
+    update: (v) => (value = v),
+  }),
+}: ComponentProps["selectWidget"] = $props();
 ```
 
-Now, `mapped.current` will correspond to the `option.id` of the current option,
-and when it changes, value will be assigned the corresponding `option.value`:
+`mapped.current` contains the value produced by `EnumValueMapper` and can be used as follows:
 
 ```svelte
 <select bind:value={mapped.current} {...attributes}>
-  <option value={UNDEFINED_ID}>{placeholder}</option>
+  {#if !hasInitialValue}
+    <option value={EMPTY_VALUE}>{placeholder}</option>
+  {/if}
   {#each options as option (option.id)}
-    <option value={option.id} disabled={option.disabled}>
+    <option value={option.mappedValue ?? option.id} disabled={option.disabled}>
       {option.label}
     </option>
   {/each}
 </select>
-```
-
-You can also use the `multipleOptions` function to implement multi-select behavior.
-In this case, `mapped.current` will be an array of `option.id`:
-
-```svelte
-<script lang="ts">
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
-  
-  const mapped = multipleOptions({
-      mapper: () => idMapper(options),
-      value: () => value,
-      update: (v) => (value = v),
-    })
-</script>
-
-<select multiple bind:value={mapped.current} {...attributes}>
-  ...
 ```
 
 ## Retrieving theme components
@@ -4706,11 +4783,12 @@ This validator supports async validation.
 ```typescript
 import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { createAsyncFormValidator } from "@sjsf/ajv8-validator";
+import { addFormComponents } from "@sjsf/ajv8-validator";
 
 export const validator = <T>(options: ValidatorFactoryOptions) =>
   createAsyncFormValidator<T>({
     ...options,
-    ajv: yourAjvInstance,
+    ajv: addFormComponents(yourAjvInstance),
   })
 ```
 

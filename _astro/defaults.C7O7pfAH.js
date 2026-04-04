@@ -1,0 +1,1 @@
+import{r as e}from"./chunk.4kkbojlz.js";import{t}from"./dist.D8yFVkVG.js";import{n}from"./dist.DXen29vw.js";import"./file-include.Bc73t-9j.js";import"./checkboxes-include.BUp_OM4k.js";import{i as r,n as i,r as a,t as o}from"./en.DIH6vqqw.js";var s=e({idBuilder:()=>a,merger:()=>i,resolver:()=>r,theme:()=>t,translation:()=>o,validator:()=>n});export{s as t};
