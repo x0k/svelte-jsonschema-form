@@ -1,1 +1,0 @@
-import{r as t,a as o,t as r}from"./en.D5NSEaGz.js";import"./file-include.BuQ2Cd2Z.js";import"./file-include.CnMwKMUl.js";import"./definitions.BZT84N2k.js";import{c as e}from"./validator.DApRdJUF.js";const a=e(),n=Object.freeze(Object.defineProperty({__proto__:null,resolver:t,theme:o,translation:r,validator:a},Symbol.toStringTag,{value:"Module"}));export{n as d};
