@@ -11,6 +11,7 @@ import {
   createTask,
   type TasksCombinator,
   type FailedTask,
+  debounce,
 } from "@/lib/task.svelte.js";
 import { weakMemoize } from "@/lib/memoize.js";
 import { retrieveSchema, type Schema, type Validator } from "@/core/index.js";
@@ -442,28 +443,11 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     });
 
   const fieldsValidation: FieldsValidation = createTask({
-    execute(signal, config, value) {
-      const debounceMs = options.fieldsValidationDebounceMs ?? 300;
-      if (debounceMs < 0) {
-        return validateFields(signal, config, value);
-      }
-
-      const promise = Promise.withResolvers<Update<string[]>>();
-      const id = setTimeout(() => {
-        promise.resolve(validateFields(signal, config, value));
-      }, debounceMs);
-
-      const onAbort = () => {
-        clearTimeout(id);
-        promise.reject(
-          new DOMException("field validation has been aborted", "AbortError")
-        );
-      };
-      signal.addEventListener("abort", onAbort);
-      return promise.promise.finally(() => {
-        signal.removeEventListener("abort", onAbort);
-      });
-    },
+    execute: debounce(
+      // To maintain reactivity
+      (s, c, v) => validateFields(s, c, v),
+      () => options.fieldsValidationDebounceMs ?? 300
+    ),
     onSuccess(fieldErrors, config) {
       updateFieldErrors(formState, config.path, fieldErrors);
     },
