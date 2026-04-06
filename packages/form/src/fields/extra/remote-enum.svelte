@@ -1,6 +1,7 @@
 <script lang="ts" module>
-  import type { EnumOption } from "@/core/index.js";
+  import type { Expand } from "@/lib/types.js";
   import type { Query } from "@/lib/task.svelte.js";
+  import type { EnumOption } from "@/core/index.js";
 
   const field = "remoteEnumField";
   declare module "../../form/index.js" {
@@ -8,7 +9,7 @@
       [field]: {};
     }
     interface UiOptions {
-      enumOptionsQuery?: Query<any, EnumOption<SchemaValue>[], any>;
+      enumOptionsQuery?: Expand<Query<any, EnumOption<SchemaValue>[], any>>;
     }
   }
 </script>
