@@ -299,18 +299,16 @@ export type QueryOptions<
   R = unknown,
   E = unknown,
 > = TaskOptions<T, R, E> & {
-  enabled?: () => boolean;
+  /**
+   * Used to pass and track reactive values
+   * If not specified, automatic data loading is disabled
+   */
+  deps?: () => T;
   /**
    * @default abortPrevious
    */
   combinator?: TasksCombinator<T, R, E>;
-} & (T extends []
-    ? {
-        args?: undefined;
-      }
-    : {
-        args: () => T;
-      });
+};
 
 export interface Query<
   T extends ReadonlyArray<any>,
@@ -322,7 +320,7 @@ export interface Query<
 }
 
 export function createQuery<
-  T extends ReadonlyArray<any>,
+  T extends ReadonlyArray<any> = [],
   R = unknown,
   E = unknown,
 >(options: QueryOptions<T, R, E>) {
@@ -344,10 +342,10 @@ export function createQuery<
   );
 
   $effect(() => {
-    if (options.enabled?.() === false) {
+    if (options.deps === undefined) {
       return;
     }
-    task.run(...((options.args?.() ?? []) as T));
+    task.run(...options.deps());
     return () => {
       task.abort();
     };
