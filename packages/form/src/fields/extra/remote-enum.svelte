@@ -27,31 +27,34 @@
 
   const QUERIES_CONTEXT_KEY = Symbol("queries-context-key");
 
-  export function getEnumOptionQueriesContext(): EnumOptionsQueriesContext {
+  export function getEnumOptionsQueriesContext(): EnumOptionsQueriesContext {
     if (!hasContext(QUERIES_CONTEXT_KEY)) {
       throw new Error(`enum options queries context is missing`);
     }
     return getContext(QUERIES_CONTEXT_KEY);
   }
 
-  export function setEnumOptionQueriesContext(ctx: EnumOptionsQueries) {
+  export function setEnumOptionsQueriesContext(ctx: EnumOptionsQueries) {
     setContext(QUERIES_CONTEXT_KEY, ctx);
   }
 
-  export function getEnumOptionsQuery<T>(
-    ctx: FormState<T>,
-    config: Config,
-    queriesCtx: EnumOptionsQueriesContext
-  ) {
+  export function getEnumOptionsQueryKey<T>(ctx: FormState<T>, config: Config) {
     const key = retrieveUiOption(ctx, config, "enumOptionsQuery");
     if (key === undefined) {
       throw new Error(
         `${config.path.join(".")}: 'enumOptionsQuery' UI option is undefined`
       );
     }
-    const query = queriesCtx[key];
+    return key;
+  }
+
+  export function getEnumOptionsQuery<K extends keyof EnumOptionsQueries>(
+    queries: EnumOptionsQueriesContext,
+    key: K
+  ) {
+    const query = queries[key];
     if (query === undefined) {
-      throw new Error(`${config.path.join(".")}: query "${key}" not found`);
+      throw new Error(`query "${key}" not found`);
     }
     return query;
   }
@@ -94,8 +97,9 @@
     () => validateField(ctx, config, value)
   );
 
-  const queries = getEnumOptionQueriesContext();
-  const query = $derived(getEnumOptionsQuery(ctx, config, queries));
+  const queryKey = $derived(getEnumOptionsQueryKey(ctx, config));
+  const queries = getEnumOptionsQueriesContext();
+  const query = $derived(getEnumOptionsQuery(queries, queryKey));
   let remoteOptions = $derived(query.result ?? []);
 
   const { options, mapper } = $derived.by(() => {
