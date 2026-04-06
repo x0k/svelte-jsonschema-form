@@ -1,16 +1,59 @@
 <script lang="ts" module>
-  import type { Expand } from "@/lib/types.js";
+  import { getContext, hasContext, setContext } from "svelte";
+
   import type { Query } from "@/lib/task.svelte.js";
   import type { EnumOption } from "@/core/index.js";
+  import {
+    type Config,
+    type FormState,
+    retrieveUiOption,
+  } from "@/form/index.js";
 
   const field = "remoteEnumField";
+  export interface EnumOptionsQueries {}
+
   declare module "../../form/index.js" {
     interface ActionFields {
       [field]: {};
     }
     interface UiOptions {
-      enumOptionsQuery?: Expand<Query<any, EnumOption<SchemaValue>[], any>>;
+      enumOptionsQuery?: keyof EnumOptionsQueries;
     }
+  }
+
+  export type EnumOptionsQueriesContext = EnumOptionsQueries & {
+    [k: string]: Query<any, EnumOption<SchemaValue>[], any>;
+  };
+
+  const QUERIES_CONTEXT_KEY = Symbol("queries-context-key");
+
+  export function getEnumOptionQueriesContext(): EnumOptionsQueriesContext {
+    if (!hasContext(QUERIES_CONTEXT_KEY)) {
+      throw new Error(`enum options queries context is missing`);
+    }
+    return getContext(QUERIES_CONTEXT_KEY);
+  }
+
+  export function setEnumOptionQueriesContext(ctx: EnumOptionsQueries) {
+    setContext(QUERIES_CONTEXT_KEY, ctx);
+  }
+
+  export function getEnumOptionsQuery<T>(
+    ctx: FormState<T>,
+    config: Config,
+    queriesCtx: EnumOptionsQueriesContext
+  ) {
+    const key = retrieveUiOption(ctx, config, "enumOptionsQuery");
+    if (key === undefined) {
+      throw new Error(
+        `${config.path.join(".")}: 'enumOptionsQuery' UI option is undefined`
+      );
+    }
+    const query = queriesCtx[key];
+    if (query === undefined) {
+      throw new Error(`${config.path.join(".")}: query "${key}" not found`);
+    }
+    return query;
   }
 </script>
 
@@ -51,16 +94,9 @@
     () => validateField(ctx, config, value)
   );
 
-  const optionsQuery = $derived.by(() => {
-    const query = uiOption("enumOptionsQuery");
-    if (query === undefined) {
-      throw new Error(
-        `async enum field (${config.path.join(".")}): 'enumOptionsQuery' is undefined`
-      );
-    }
-    return query;
-  });
-  let remoteOptions = $derived(optionsQuery.result ?? []);
+  const queries = getEnumOptionQueriesContext();
+  const query = $derived(getEnumOptionsQuery(ctx, config, queries));
+  let remoteOptions = $derived(query.result ?? []);
 
   const { options, mapper } = $derived.by(() => {
     const builder =
