@@ -4,8 +4,8 @@
     "target": "esnext",
     "lib": ["ESNext"],
     "noUncheckedIndexedAccess": false,
-    "moduleResolution": "nodenext",
-    "module": "nodenext",
+    "moduleResolution": "bundler",
+    "module": "preserve",
     "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
