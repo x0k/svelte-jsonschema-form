@@ -4,8 +4,8 @@ import {
   getDefaultValueForType,
   getSimpleSchemaType,
   isAdditionalProperty,
+  isObjectSchemaExpandable,
   isOrderedSchemaDeepEqual,
-  isSchemaExpandable,
   isSchemaNullable,
   isSchemaObjectValue,
   orderProperties,
@@ -159,7 +159,7 @@ export function createObjectContext<T>({
 
   const canExpand = $derived(
     uiOption("expandable") !== false &&
-      isSchemaExpandable(retrievedSchema, value())
+      isObjectSchemaExpandable(retrievedSchema, value())
   );
 
   const errors = $derived(getFieldErrors(ctx, config().path));
