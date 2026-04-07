@@ -76,6 +76,16 @@ sjsf/:
   b:
     pnpm run build ${filter[@]} $@
 
+sv/:
+  pushd packages/sv
+  b:
+    pnpm run build
+  d:
+    pnpm run demo-create && pnpm run demo-add
+  t:
+    pnpm run test
+  popd
+
 ajv/:
   pushd packages/ajv8-validator
   b:
@@ -218,7 +228,7 @@ shad/:
     pnpm run test $@
   popd
 
-sv/:
+kit/:
   pushd packages/sveltekit
   c:
     pnpm run check
