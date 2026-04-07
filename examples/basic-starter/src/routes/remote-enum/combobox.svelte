@@ -52,22 +52,28 @@
       (v) => {
         mapped.current = v;
         input = v;
-        query.run(v);
+        query.runAsync(v).then(
+          () => (mapped.current = input),
+          () => {}
+        );
       }
     }
   />
   {#if !mapped.current}
-    {#each options as option (option.id)}
-      <button
-        type="button"
-        onclick={() => {
-          value = structuredClone(option.value);
-        }}>{option.label}</button
-      >
-    {/each}
-  {/if}
-  {#if query.isProcessed}
-    <div>Loading...</div>
+    {#if query.isProcessed}
+      <div>Loading...</div>
+    {:else}
+      {#each options as option (option.id)}
+        <button
+          type="button"
+          onclick={() => {
+            // mapped.current = option.mappedValue ?? option.id
+            // is equivalent to
+            value = structuredClone(option.value);
+          }}>{option.label}</button
+        >
+      {/each}
+    {/if}
   {/if}
 </div>
 

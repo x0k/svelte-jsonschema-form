@@ -12,6 +12,7 @@
 <script lang="ts">
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
+  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
   import {
     createForm,
     BasicForm,
@@ -30,7 +31,7 @@
   import comboboxWidget from "./combobox.svelte";
 
   const options: EnumOption<SchemaValue>[] = COUNTRIES.map((c) => ({
-    id: c,
+    id: crypto.randomUUID(),
     disabled: false,
     label: c,
     value: c,
@@ -65,6 +66,7 @@
     },
     "ui:options": {
       enumOptionsQuery: "foo",
+      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 

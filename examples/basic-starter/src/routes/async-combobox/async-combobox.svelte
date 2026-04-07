@@ -26,6 +26,7 @@
   import {
     abortPrevious,
     createTask,
+    debounce,
     type Task,
   } from "@sjsf/form/lib/task.svelte";
 
@@ -51,30 +52,21 @@
 
   // Create the search action with throttling
   const searchAction: Task<[string], T[], Error> = createTask({
-    execute: async (signal: AbortSignal, searchQuery: string) => {
-      if (searchQuery.length < minQueryLength) {
-        return [];
-      }
-      const promise = Promise.withResolvers<T[]>();
-      const id = setTimeout(() => {
-        promise.resolve(
-          searchFn(signal, searchQuery).then((r) => r.slice(0, maxResults))
-        );
-      }, debounceMs);
-      const onAbort = () => {
-        clearTimeout(id);
-        promise.reject(
-          new DOMException("The operation was aborted.", "AbortError")
-        );
-      };
-      signal.addEventListener("abort", onAbort);
-      return promise.promise.finally(() => {
-        signal.removeEventListener("abort", onAbort);
-      });
-    },
+    execute: debounce(
+      async (signal: AbortSignal, searchQuery: string) => {
+        if (searchQuery.length < minQueryLength) {
+          return [];
+        }
+        const r = await searchFn(signal, searchQuery);
+        return r.slice(0, maxResults);
+      },
+      () => debounceMs
+    ),
     combinator: abortPrevious,
     delayedMs: 150,
-    timeoutMs,
+    get timeoutMs() {
+      return timeoutMs
+    },
     onSuccess(results) {
       items = results;
       isOpen = results.length > 0;
