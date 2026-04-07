@@ -1,21 +1,37 @@
 import type { JSONSchema } from "json-schema-typed/draft-2020-12";
 
-import { identity, noop } from "@/lib/function.js";
+import { noop } from "@/lib/function.js";
 import type { SchemaDefinition, Schema } from "@/core/index.js";
 
-function assign<I, O>(convert: (input: I, baseUrl: string | undefined) => O) {
+interface Context {
+  baseUrl: string | undefined;
+  anchorMap: Map<string, string>;
+}
+
+function buildAnchorMap(schema: JSONSchema.Interface): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const [key, val] of Object.entries(schema.$defs ?? {})) {
+    if (typeof val === "object" && val !== null) {
+      const anchor = val.$dynamicAnchor ?? val.$anchor;
+      if (anchor) map.set(anchor, key);
+    }
+  }
+  return map;
+}
+
+function assign<I, O>(convert: (ctx: Context, input: I) => O) {
   return <K extends string>(
     target: { [k in K]?: O },
     value: I,
-    baseUrl: string | undefined,
+    ctx: Context,
     _: JSONSchema.Interface,
     key: K
   ) => {
-    target[key] = convert(value, baseUrl);
+    target[key] = convert(ctx, value);
   };
 }
 
-const assignAsIs = assign(identity) as <K extends string, V>(
+const assignAsIs = assign((_, v) => v) as <K extends string, V>(
   t: { [k in K]?: V },
   v: V | Readonly<V>
 ) => void;
@@ -24,52 +40,50 @@ const ASSIGNERS: {
   [K in keyof JSONSchema.Interface]-?: (
     target: Schema,
     value: Exclude<JSONSchema.Interface[K], undefined>,
-    baseUrl: string | undefined,
+    ctx: Context,
     schema: JSONSchema.Interface,
     key: K
   ) => void;
 } = {
   /** Unsupported **/
-  // contentSchema: no draft-07 equivalent, drop it
   contentSchema: noop,
-  // deprecated: no draft-07 standard equivalent, but some tools read it as-is
   deprecated: noop,
-  // $vocabulary: draft-07 has no vocabulary mechanism, must drop
   $vocabulary: noop,
-  // minContains / maxContains have no draft-07 equivalent but are harmless to carry over
-  // as custom keywords — validators ignore unknown keys
+  // $anchor/$dynamicAnchor: plain-name fragment $ids are not valid in draft-07;
+  // the $defs key path (#/$defs/{key}) is sufficient for referencing
+  $anchor: noop,
+  $dynamicAnchor: noop,
+
+  /** Carried over as custom keywords (no draft-07 equivalent) **/
   minContains: assignAsIs,
   maxContains: assignAsIs,
+
   /** Lossy conversions **/
-  // Approximate $anchor as a plain-name $id fragment
-  $anchor: (t, v) => {
-    t.$id ??= `#${v}`;
-  },
-  // $dynamicAnchor: approximate as a plain-name $id (loses dynamic resolution semantics)
-  $dynamicAnchor: (t, v) => {
-    t.$id ??= `#${v}`;
-  },
-  // $dynamicRef: approximate as a regular $ref (loses dynamic scoping semantics)
-  $dynamicRef: (t, v, b) => {
+  // $dynamicRef: resolve fragment via anchorMap → #/$defs/{key}; fall back to
+  // verbatim $ref for absolute URLs (loses dynamic scoping semantics)
+  $dynamicRef: (t, v, ctx) => {
     if (v.startsWith("#")) {
-      t.$ref = v;
+      const name = v.slice(1);
+      const key = ctx.anchorMap.get(name);
+      t.$ref = key ? `#/$defs/${key}` : v;
       return;
     }
-    const url = new URL(v, b);
+    const url = new URL(v, ctx.baseUrl);
     const hash = url.hash.slice(1);
     url.hash = "";
     const key = url.href.replaceAll("~", "~0").replaceAll("/", "~1");
     t.$ref = `#/$defs/${key}${hash}`;
   },
-  // unevaluatedItems: closest draft-07 equivalent is additionalItems
-  unevaluatedItems: (t, v, b) => {
-    t.additionalItems ??= convertSchemaDef(v, b);
+  // unevaluatedItems → additionalItems (??= so items handler takes priority)
+  unevaluatedItems: (t, v, ctx) => {
+    t.additionalItems ??= convertSchemaDef(ctx, v);
   },
-  // unevaluatedProperties: closest draft-07 equivalent is additionalProperties
-  unevaluatedProperties: (t, v, b) => {
-    t.additionalProperties ??= convertSchemaDef(v, b);
+  // unevaluatedProperties → additionalProperties (??= so explicit value takes priority)
+  unevaluatedProperties: (t, v, ctx) => {
+    t.additionalProperties ??= convertSchemaDef(ctx, v);
   },
-  /** As is */
+
+  /** As is **/
   $id: assignAsIs,
   $comment: assignAsIs,
   title: assignAsIs,
@@ -97,7 +111,8 @@ const ASSIGNERS: {
   const: assignAsIs,
   contentEncoding: assignAsIs,
   contentMediaType: assignAsIs,
-  //
+
+  /** Recursive schema conversions **/
   additionalProperties: assign(convertSchemaDef),
   allOf: assign(convertArrayOfSchemaDefs),
   anyOf: assign(convertArrayOfSchemaDefs),
@@ -110,109 +125,113 @@ const ASSIGNERS: {
   then: assign(convertSchemaDef),
   else: assign(convertSchemaDef),
   not: assign(convertSchemaDef),
-  //
+
+  /** Special **/
   $schema: (t) => (t.$schema = "http://json-schema.org/draft-07/schema"),
-  $ref: (t, v, b) => {
+  $ref: (t, v, ctx) => {
     if (v.startsWith("#")) {
       t.$ref = v;
       return;
     }
-    const url = new URL(v, b);
+    const url = new URL(v, ctx.baseUrl);
     const hash = url.hash.slice(1);
     url.hash = "";
     const key = url.href.replaceAll("~", "~0").replaceAll("/", "~1");
     t.$ref = `#/$defs/${key}${hash}`;
   },
-  $defs: (t, v, b) => {
+  $defs: (t, v, ctx) => {
     const result: Record<string, SchemaDefinition> = {};
     for (const [key, val] of Object.entries(v)) {
-      result[key] =
-        typeof val === "boolean" ? val : convertSchemaDef(val, val.$id ?? b);
+      if (typeof val === "boolean") {
+        result[key] = val;
+      } else {
+        result[key] = convertSchema(
+          { ...ctx, baseUrl: val.$id ?? ctx.baseUrl },
+          val
+        );
+      }
     }
     t.$defs = result;
   },
   type: (t, v) => (t.type = v as Schema["type"]),
-  dependentSchemas: (t, v, b) => {
+  dependentSchemas: (t, v, ctx) => {
     const deps = (t.dependencies ??= {});
     for (const [key, val] of Object.entries(v)) {
-      deps[key] = convertSchemaDef(val, b);
+      deps[key] = convertSchemaDef(ctx, val);
     }
   },
   dependentRequired: (t, v) => {
     const deps = (t.dependencies ??= {});
     Object.assign(deps, v);
   },
-  items: (t, v, b, s) => {
-    const def = convertSchemaDef(v, b);
+  items: (t, v, ctx, s) => {
+    const def = convertSchemaDef(ctx, v);
     if (s.prefixItems) {
       t.additionalItems ??= def;
     } else {
       t.items = def;
     }
   },
-  prefixItems: (t, v, b) => {
+  prefixItems: (t, v, ctx) => {
     t.items = Array.isArray(v)
-      ? convertArrayOfSchemaDefs(v, b)
-      : convertSchemaDef(v as JSONSchema, b);
+      ? convertArrayOfSchemaDefs(ctx, v)
+      : convertSchemaDef(ctx, v as JSONSchema);
   },
+
   /** Deprecated **/
   additionalItems: assign(convertSchemaDef),
   definitions: assign(convertRecordOfSchemaDefs),
-  dependencies: (t, v, b) => {
+  dependencies: (t, v, ctx) => {
     const deps = (t.dependencies ??= {});
     for (const [key, val] of Object.entries(v)) {
       deps[key] = Array.isArray(val)
         ? val
-        : convertSchemaDef(val as JSONSchema, b);
+        : convertSchemaDef(ctx, val as JSONSchema);
     }
   },
 };
 
-function convertSchema(
-  schema: JSONSchema.Interface,
-  baseUrl: string | undefined
-): Schema {
+function convertSchema(ctx: Context, schema: JSONSchema.Interface): Schema {
   const result: Schema = {};
   const keys = Object.keys(schema) as Array<keyof JSONSchema.Interface>;
   for (const key of keys) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const v = schema[key]!;
-    if (v === undefined) {
-      continue;
-    }
-    ASSIGNERS[key](result, v as never, baseUrl, schema, key as never);
+    const v = schema[key];
+    if (v === undefined) continue;
+    ASSIGNERS[key](result, v as never, ctx, schema, key as never);
   }
   return result;
 }
 
-function convertSchemaDef(
-  schema: JSONSchema,
-  baseUrl: string | undefined
-): SchemaDefinition {
-  if (typeof schema === "boolean") {
-    return schema;
-  }
-  return convertSchema(schema, baseUrl);
+function convertSchemaDef(ctx: Context, schema: JSONSchema): SchemaDefinition {
+  if (typeof schema === "boolean") return schema;
+  return convertSchema(ctx, schema);
 }
 
 function convertRecordOfSchemaDefs(
-  schemas: Record<string, JSONSchema>,
-  baseUrl: string | undefined
+  ctx: Context,
+  schemas: Record<string, JSONSchema>
 ) {
   const result: Record<string, SchemaDefinition> = {};
   for (const key of Object.keys(schemas)) {
-    result[key] = convertSchemaDef(schemas[key]!, baseUrl);
+    result[key] = convertSchemaDef(ctx, schemas[key]!);
   }
   return result;
 }
 
 function convertArrayOfSchemaDefs(
-  schemas: ReadonlyArray<JSONSchema>,
-  baseUrl: string | undefined
+  ctx: Context,
+  schemas: ReadonlyArray<JSONSchema>
 ) {
-  return schemas.map((s) => convertSchemaDef(s, baseUrl));
+  return schemas.map((s) => convertSchemaDef(ctx, s));
 }
 
-export function convert(schema: JSONSchema.Interface) {
-  return convertSchema(schema, schema.$id);
+export function convert(schema: JSONSchema.Interface): Schema {
+  return convertSchema(
+    {
+      baseUrl: schema.$id,
+      anchorMap: buildAnchorMap(schema),
+    },
+    schema
+  );
 }
