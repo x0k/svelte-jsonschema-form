@@ -2,4 +2,4 @@
 "@sjsf/form": minor
 ---
 
-Add `asyncEnum` extra field
+Add `remoteEnum` extra field
