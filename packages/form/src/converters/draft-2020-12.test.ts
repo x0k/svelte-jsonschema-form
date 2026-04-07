@@ -363,13 +363,9 @@ describe("unevaluatedProperties", () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// $anchor / $dynamicAnchor (lossy → $id fragment)
-// ---------------------------------------------------------------------------
-
 describe("$anchor", () => {
-  it("converts $anchor to an $id fragment when no $id is present", () => {
-    expect(convert({ $anchor: "myAnchor" }).$id).toBe("#myAnchor");
+  it("conversion of $anchor is unsupported", () => {
+    expect(convert({ $anchor: "myAnchor" }).$id).toBeUndefined();
   });
 
   it("does NOT overwrite an explicit $id (bug fix)", () => {
@@ -380,8 +376,8 @@ describe("$anchor", () => {
 });
 
 describe("$dynamicAnchor", () => {
-  it("converts $dynamicAnchor to an $id fragment when no $id is present", () => {
-    expect(convert({ $dynamicAnchor: "items" }).$id).toBe("#items");
+  it("conversion of $dynamicAnchor is unsupported", () => {
+    expect(convert({ $dynamicAnchor: "items" }).$id).toBeUndefined();
   });
 
   it("does NOT overwrite an explicit $id (bug fix)", () => {
@@ -665,6 +661,67 @@ describe("integration", () => {
       },
       properties: {
         billing: { $ref: "#/$defs/https:~1~1example.com~1address.json" },
+      },
+    });
+  });
+
+  it("handle $dynamicRef correctly", () => {
+    const input: JSONSchema.Interface = {
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      $id: "https://example.com/schema",
+
+      type: "object",
+
+      properties: {
+        tuple: {
+          type: "array",
+          prefixItems: [{ type: "string" }, { type: "integer" }],
+          items: { type: "boolean" },
+        },
+
+        extra: {
+          type: "object",
+          properties: {
+            known: { type: "string" },
+          },
+          unevaluatedProperties: { type: "number" },
+        },
+
+        refExample: {
+          $dynamicRef: "#node",
+        },
+      },
+
+      $defs: {
+        node: {
+          $dynamicAnchor: "node",
+          type: "object",
+          properties: {
+            value: { type: "string" },
+          },
+        },
+      },
+    };
+
+    expect(convert(input)).toEqual({
+      $schema: "http://json-schema.org/draft-07/schema",
+      $id: "https://example.com/schema",
+      type: "object",
+      properties: {
+        tuple: {
+          type: "array",
+          items: [{ type: "string" }, { type: "integer" }],
+          additionalItems: { type: "boolean" },
+        },
+        extra: {
+          type: "object",
+          properties: { known: { type: "string" } },
+          additionalProperties: { type: "number" },
+        },
+        refExample: { $ref: "#/$defs/node" },
+      },
+      $defs: {
+        node: { type: "object", properties: { value: { type: "string" } } },
       },
     });
   });

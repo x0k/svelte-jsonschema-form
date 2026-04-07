@@ -10,10 +10,12 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
+    "@cfworker/json-schema": "^4.1.1",
     "@codemirror/lang-json": "^6.0.2",
     "@codemirror/state": "^6.6.0",
     "@codemirror/view": "^6.41.0",
     "@ddietr/codemirror-themes": "^1.5.2",
+    "@exodus/schemasafe": "catalog:",
     "@picocss/pico": "^2.1.1",
     "@sjsf-lab/beercss-theme": "workspace:*",
     "@sjsf-lab/svar-theme": "workspace:*",
@@ -32,6 +34,7 @@
     "@sjsf/skeleton4-theme": "workspace:*",
     "@svar-ui/svelte-core": "^2.5.1",
     "ajv": "catalog:",
+    "ajv-formats": "^3.0.1",
     "codemirror": "^6.0.2",
     "lz-string": "^1.5.0",
     "svelte-exmarkdown": "^5.0.2",

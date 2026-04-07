@@ -182,6 +182,8 @@
       : data.schema,
   );
 
+  $inspect(finalSchema)
+
   const focusOnFirstError = createFocusOnFirstError();
   const form = createForm({
     idBuilder: createFormIdBuilder,
@@ -210,7 +212,7 @@
         ...v,
         validateFormValue(rootSchema, formValue) {
           return v.validateFormValue(
-            isDraft2020 && data.validator === "ajv8_2020"
+            isDraft2020 && data.validator.endsWith("_2020")
               ? data.schema
               : rootSchema,
             data.omitExtraData
