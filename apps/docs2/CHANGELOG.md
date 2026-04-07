@@ -1,5 +1,35 @@
 # docs
 
+## 1.15.1
+
+### Patch Changes
+
+- Updated dependencies [[`251fa20`](https://github.com/x0k/svelte-jsonschema-form/commit/251fa2002322ffed67cb5f99ff8297dcbc011910), [`251fa20`](https://github.com/x0k/svelte-jsonschema-form/commit/251fa2002322ffed67cb5f99ff8297dcbc011910), [`1811852`](https://github.com/x0k/svelte-jsonschema-form/commit/181185202c788f1bc8788ecb7dcf852498831c69)]:
+  - @sjsf/form@3.4.1
+  - @sjsf-lab/beercss-theme@3.2.2
+  - @sjsf-lab/shadcn-extras-theme@3.3.0
+  - @sjsf-lab/svar-theme@3.2.1
+  - @sjsf/daisyui-theme@3.0.0
+  - @sjsf/flowbite-theme@3.0.0
+  - @sjsf/shadcn-theme@3.0.0
+  - @sjsf/skeleton3-theme@3.0.1
+  - @sjsf/ajv8-validator@3.4.1
+  - @sjsf/basic-theme@3.4.1
+  - @sjsf/cfworker-validator@3.4.1
+  - @sjsf/daisyui5-theme@3.4.1
+  - @sjsf/flowbite-icons@3.4.1
+  - @sjsf/flowbite3-theme@3.4.1
+  - @sjsf/lucide-icons@3.4.1
+  - @sjsf/moving-icons@3.4.1
+  - @sjsf/radix-icons@3.4.1
+  - @sjsf/schemasafe-validator@3.4.1
+  - @sjsf/shadcn4-theme@3.4.1
+  - @sjsf/skeleton4-theme@3.4.1
+  - @sjsf/sveltekit@3.4.1
+  - theme-testing@1.0.26
+  - @sjsf/valibot-validator@3.4.1
+  - @sjsf/zod4-validator@3.4.1
+
 ## 1.15.0
 
 ### Minor Changes
