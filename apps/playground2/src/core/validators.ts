@@ -8,7 +8,7 @@ import {
   DEFAULT_VALIDATOR_OPTIONS,
   createFormValidator as schemasafe,
 } from "@sjsf/schemasafe-validator";
-import Ajv2020 from "ajv/dist/2020.js";
+import Ajv2020 from "ajv/dist/2020";
 import addFormats from "ajv-formats";
 import {
   Validator as CfValidator,
@@ -58,7 +58,7 @@ export const validators = {
 export type Validator = keyof typeof validators;
 
 export const REAL_VALIDATORS = (Object.keys(validators) as Validator[]).filter(
-  (k) => k === "ajv8" || validators[k] !== validators.ajv8,
+  (k) => k === "ajv8" || validators[k] !== ajv8,
 );
 
 export const VALIDATOR_TITLES: Record<Validator, string> = {
