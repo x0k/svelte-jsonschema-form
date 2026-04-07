@@ -1,5 +1,15 @@
 # @sjsf/form
 
+## 3.4.1
+
+### Patch Changes
+
+- Display `Add property` button for `undefined` objects ([#354](https://github.com/x0k/svelte-jsonschema-form/pull/354))
+
+- Fix `$dynamicRef` (draft 2020-12) conversion ([#354](https://github.com/x0k/svelte-jsonschema-form/pull/354))
+
+- Refactor enum value mapper builders ([#352](https://github.com/x0k/svelte-jsonschema-form/pull/352))
+
 ## 3.4.0
 
 ### Minor Changes
