@@ -365,6 +365,12 @@ export function createQuery<
   ) as Query<T, R, E>;
 }
 
+/**
+ * Wraps an action with a debounce delay.
+ * Cancellation is delegated to the caller - aborting the signal before
+ * the next call is what produces the debounce effect.
+ * Pairs naturally with the `abortPrevious` combinator.
+ */
 export function debounce<T extends ReadonlyArray<any>, R>(
   action: (signal: AbortSignal, ...args: T) => Promise<R>,
   getDebounceMs = () => 300
