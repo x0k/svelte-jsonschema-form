@@ -34,6 +34,7 @@
 	"types": "./dist/theme/index.d.ts",
 	"type": "module",
 	"exports": {
+    "./package.json": "./package.json",
 		"./extra-widgets/*": {
 			"types": "./dist/theme/extra-widgets/*.d.ts",
 			"svelte": "./dist/theme/extra-widgets/*"
