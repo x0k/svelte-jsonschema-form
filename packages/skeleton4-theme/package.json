@@ -34,6 +34,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"exports": {
+    "./package.json": "./package.json",
 		"./components/*": {
 			"types": "./dist/components/*.d.ts",
 			"svelte": "./dist/components/*"

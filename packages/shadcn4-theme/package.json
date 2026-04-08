@@ -41,6 +41,7 @@
 	"svelte": "./dist/theme/index.js",
 	"types": "./dist/theme/index.d.ts",
 	"exports": {
+    "./package.json": "./package.json",
 		"./internal": {
 			"types": "./dist/theme/internal.d.ts",
 			"default": "./dist/theme/internal.js"
