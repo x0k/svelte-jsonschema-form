@@ -242,40 +242,48 @@ kit/:
     pnpm run test $@
   popd
 
-docs/:
-  pushd apps/docs2
-  c:
-    pnpm run check
-  d:
-    pnpm run dev
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  popd
-
-pl/:
-  pushd apps/playground2
-  d:
-    pnpm run dev
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  popd
-
-bl/:
-  pushd apps/builder
-  d:
-    pnpm run dev
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
+l/:
+  pushd lab
+  hyper/:
+    pushd hyperjump-validator
+    b:
+      pnpm run build
+    t:
+      pnpm run test
+    popd
+  shad/:
+    pushd shadcn-extras-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  svar/:
+    pushd svar-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  beer/:
+    pushd beercss-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
   popd
 
 leg/:
@@ -321,50 +329,6 @@ leg/:
       pnpm run build
     p:
       pnpm run preview
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
-  popd
-
-lab/:
-  pushd lab
-  hyper/:
-    pushd hyperjump-validator
-    b:
-      pnpm run build
-    t:
-      pnpm run test
-    popd
-  shad/:
-    pushd shadcn-extras-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
-  svar/:
-    pushd svar-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
-  beer/:
-    pushd beercss-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
     d:
       pnpm run dev
     t:
@@ -495,4 +459,48 @@ e/:
     d:
       pnpm run dev
     popd
+  popd
+
+meta/:
+  pushd packages/meta
+  b:
+    pnpm run build
+  c:
+    pnpm run check
+  popd
+
+docs/:
+  pushd apps/docs2
+  c:
+    pnpm run check
+  d:
+    pnpm run dev
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
+  popd
+
+pl/:
+  pushd apps/playground2
+  d:
+    pnpm run dev
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
+  popd
+
+bl/:
+  pushd apps/builder
+  d:
+    pnpm run dev
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
   popd
