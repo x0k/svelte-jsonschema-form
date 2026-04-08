@@ -9,7 +9,7 @@ import beercssPackage from "@sjsf-lab/beercss-theme/package.json" with { type: "
 
 import type { Package } from "./package.js";
 
-export const ACTUAL_THEMES = [
+const ACTUAL_THEMES = [
   "basic",
   "daisyui5",
   "flowbite3",
@@ -19,16 +19,11 @@ export const ACTUAL_THEMES = [
 
 export type ActualTheme = (typeof ACTUAL_THEMES)[number];
 
-export const LEGACY_THEMES = [
-  "daisyui",
-  "flowbite",
-  "skeleton3",
-  "shadcn",
-] as const;
+const LEGACY_THEMES = ["daisyui", "flowbite", "skeleton3", "shadcn"] as const;
 
 export type LegacyTheme = (typeof LEGACY_THEMES)[number];
 
-export const LAB_THEMES = ["shadcn-extras", "svar", "beercss"] as const;
+const LAB_THEMES = ["shadcn-extras", "svar", "beercss"] as const;
 
 export type LabTheme = (typeof LAB_THEMES)[number];
 
@@ -40,11 +35,11 @@ export function isLabTheme(theme: string): theme is LabTheme {
 
 export type Theme = ActualTheme | LegacyTheme | LabTheme;
 
-export const THEME_SUB_THEMES = {
+const THEME_SUB_THEMES = {
   basic: ["pico"],
 } as const satisfies Partial<Record<Theme, string[]>>;
 
-export const SUB_THEMES = Object.values(THEME_SUB_THEMES).flat();
+const SUB_THEMES = Object.values(THEME_SUB_THEMES).flat();
 
 const SUB_THEMES_SET = new Set<string>(SUB_THEMES);
 
@@ -59,7 +54,7 @@ for (const [parentTheme, subThemes] of Object.entries(THEME_SUB_THEMES)) {
   }
 }
 
-export function getParentTheme(theme: SubTheme): Theme {
+export function parentTheme(theme: SubTheme): Theme {
   return SUB_THEME_PARENTS.get(theme)!;
 }
 
@@ -71,7 +66,7 @@ export type NonLegacyThemeOrSubTheme = Exclude<ThemeOrSubTheme, LegacyTheme>;
 
 export type NonLegacyTheme = Exclude<NonLegacyThemeOrSubTheme, SubTheme>;
 
-export const THEME_TITLES: Record<ThemeOrSubTheme, string> = {
+const THEME_TITLES: Record<ThemeOrSubTheme, string> = {
   basic: "basic",
   pico: "pico",
   daisyui: "daisyUI v4",
@@ -87,7 +82,11 @@ export const THEME_TITLES: Record<ThemeOrSubTheme, string> = {
   beercss: "Beer CSS",
 };
 
-export const THEME_BRAND = {
+export function themeTitle(theme: ThemeOrSubTheme) {
+  return THEME_TITLES[theme];
+}
+
+const THEME_BRAND = {
   basic: "",
   daisyui5: "daisyUI",
   flowbite3: "Flowbite",
@@ -95,10 +94,11 @@ export const THEME_BRAND = {
   shadcn4: "shadcn-svelte",
 } satisfies Record<ActualTheme, string>;
 
-export function themePackage(theme: ThemeOrSubTheme) {
-  if (isSubTheme(theme)) {
-    return themePackage(getParentTheme(theme));
-  }
+export function themeBrand(theme: ActualTheme) {
+  return THEME_BRAND[theme];
+}
+
+export function themePackage(theme: Theme) {
   return `@sjsf${isLabTheme(theme) ? "-lab" : ""}/${theme}-theme`;
 }
 
