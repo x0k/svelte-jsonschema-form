@@ -2082,6 +2082,82 @@ importers:
         specifier: workspace:*
         version: link:../theme-testing
 
+  packages/meta:
+    dependencies:
+      '@sjsf-lab/beercss-theme':
+        specifier: workspace:*
+        version: link:../../lab/beercss-theme
+      '@sjsf-lab/shadcn-extras-theme':
+        specifier: workspace:*
+        version: link:../../lab/shadcn-extras-theme
+      '@sjsf-lab/svar-theme':
+        specifier: workspace:*
+        version: link:../../lab/svar-theme
+      '@sjsf/ajv8-validator':
+        specifier: workspace:*
+        version: link:../ajv8-validator
+      '@sjsf/basic-theme':
+        specifier: workspace:*
+        version: link:../basic-theme
+      '@sjsf/cfworker-validator':
+        specifier: workspace:*
+        version: link:../cfworker-validator
+      '@sjsf/daisyui-theme':
+        specifier: workspace:*
+        version: link:../../legacy/daisyui-theme
+      '@sjsf/daisyui5-theme':
+        specifier: workspace:*
+        version: link:../daisyui5-theme
+      '@sjsf/flowbite-icons':
+        specifier: workspace:*
+        version: link:../flowbite-icons
+      '@sjsf/flowbite-theme':
+        specifier: workspace:*
+        version: link:../../legacy/flowbite-theme
+      '@sjsf/flowbite3-theme':
+        specifier: workspace:*
+        version: link:../flowbite3-theme
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../form
+      '@sjsf/lucide-icons':
+        specifier: workspace:*
+        version: link:../lucide-icons
+      '@sjsf/moving-icons':
+        specifier: workspace:*
+        version: link:../moving-icons
+      '@sjsf/radix-icons':
+        specifier: workspace:*
+        version: link:../radix-icons
+      '@sjsf/schemasafe-validator':
+        specifier: workspace:*
+        version: link:../schemasafe-validator
+      '@sjsf/shadcn-theme':
+        specifier: workspace:*
+        version: link:../../legacy/shadcn-theme
+      '@sjsf/shadcn4-theme':
+        specifier: workspace:*
+        version: link:../shadcn4-theme
+      '@sjsf/skeleton3-theme':
+        specifier: workspace:*
+        version: link:../../legacy/skeleton3-theme
+      '@sjsf/skeleton4-theme':
+        specifier: workspace:*
+        version: link:../skeleton4-theme
+      '@sjsf/sveltekit':
+        specifier: workspace:*
+        version: link:../sveltekit
+      '@sjsf/valibot-validator':
+        specifier: workspace:*
+        version: link:../valibot-validator
+      '@sjsf/zod4-validator':
+        specifier: workspace:*
+        version: link:../zod4-validator
+    devDependencies:
+      svelte:
+        specifier: 'catalog:'
+        version: 5.55.1
+
   packages/moving-icons:
     devDependencies:
       '@jis3r/icons':
@@ -2231,14 +2307,14 @@ importers:
   packages/sv:
     devDependencies:
       '@sveltejs/sv-utils':
-        specifier: 0.1.0
-        version: 0.1.0
+        specifier: ^0.2.0
+        version: 0.2.0
       '@types/node':
         specifier: ^25.5.2
         version: 25.5.2
       sv:
-        specifier: 0.14.1
-        version: 0.14.1
+        specifier: ^0.15.0
+        version: 0.15.0
       tsdown:
         specifier: ^0.21.7
         version: 0.21.7(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(publint@0.3.18)(typescript@5.9.3)
@@ -3795,8 +3871,8 @@ packages:
     peerDependencies:
       svelte: ^3.44.0 || ^4.0.0 || ^5.0.0-next.1
 
-  '@sveltejs/sv-utils@0.1.0':
-    resolution: {integrity: sha512-/rMSqcMtET+BPgsnpfiEhbsOIpy5dQpqDeU9bIEhzMGe6xGAfxPd4OcCoUsO7sQeav0HkxZTQwIKchhwbFhpvg==}
+  '@sveltejs/sv-utils@0.2.0':
+    resolution: {integrity: sha512-//YXcXgqRRMaevBlU7H1QQG6IPg/FvJuMXyMzFDW4N9fBOzVvpa3ZOvKVdlt6jaje5AVl6y4WwkNsGZ2gLJBeA==}
 
   '@sveltejs/svelte-json-tree@2.2.1':
     resolution: {integrity: sha512-M8l23/R3y1fI2+RaOzfUzmkysTWWsw/NClUgGpvydl9vXRonPN1/btQQievaNyeWNfUj12tjPfh5yTrXWpaKkg==}
@@ -7059,8 +7135,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  sv@0.14.1:
-    resolution: {integrity: sha512-TKrBT/urRXmyHzwPjUCpU98/UitWmfNUU91Lcfsw6tdojfmNtrDRmPw5LIHUzxVXkfGtdZTlq9q+CWaIrmFVXw==}
+  sv@0.15.0:
+    resolution: {integrity: sha512-QQcXnI5NW15zSJDKkRtxKn6p9tkmcv+srTf8y/PmgF2LAbDiubE+0AgQYLI63q7kzypN160yfcvra/Mb9Ycr1A==}
     hasBin: true
 
   svelte-check@4.4.6:
@@ -9434,7 +9510,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@sveltejs/sv-utils@0.1.0': {}
+  '@sveltejs/sv-utils@0.2.0': {}
 
   '@sveltejs/svelte-json-tree@2.2.1(svelte@5.55.1)':
     dependencies:
@@ -13766,9 +13842,9 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  sv@0.14.1:
+  sv@0.15.0:
     dependencies:
-      '@sveltejs/sv-utils': 0.1.0
+      '@sveltejs/sv-utils': 0.2.0
 
   svelte-check@4.4.6(picomatch@4.0.4)(svelte@5.55.1)(typescript@5.9.3):
     dependencies:
