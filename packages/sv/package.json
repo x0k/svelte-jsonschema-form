@@ -23,12 +23,12 @@
 		"access": "public"
 	},
 	"peerDependencies": {
-		"sv": "^0.14.0"
+		"sv": "^0.15.0"
 	},
 	"devDependencies": {
-		"@sveltejs/sv-utils": "0.1.0",
+		"@sveltejs/sv-utils": "^0.2.0",
 		"@types/node": "^25.5.2",
-		"sv": "0.14.1",
+		"sv": "^0.15.0",
 		"tsdown": "^0.21.7",
 		"vitest": "catalog:"
 	},
