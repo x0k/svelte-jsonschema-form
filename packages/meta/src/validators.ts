@@ -1,16 +1,20 @@
-export const JSON_SCHEMA_VALIDATORS = [
-  "ajv8",
-  "cfworker",
-  "schemasafe",
-] as const;
+import ajv8Package from "@sjsf/ajv8-validator/package.json" with { type: "json" };
+import cfworkerPackage from "@sjsf/cfworker-validator/package.json" with { type: "json" };
+import schemasafePackage from "@sjsf/schemasafe-validator/package.json" with { type: "json" };
+import zod4Package from "@sjsf/zod4-validator/package.json" with { type: "json" };
+import valibotPackage from "@sjsf/valibot-validator/package.json" with { type: "json" };
+
+import type { Package } from "./package.js";
+
+const JSON_SCHEMA_VALIDATORS = ["ajv8", "cfworker", "schemasafe"] as const;
 
 export type JsonSchemaValidator = (typeof JSON_SCHEMA_VALIDATORS)[number];
 
-export const SCHEMA_VALIDATORS = ["zod4", "valibot"] as const;
+const SCHEMA_VALIDATORS = ["zod4", "valibot"] as const;
 
 export type SchemaValidator = (typeof SCHEMA_VALIDATORS)[number];
 
-export const INTERNAL_VALIDATORS = ["noop", "standard-schema"] as const;
+const INTERNAL_VALIDATORS = ["noop", "standard-schema"] as const;
 
 export type InternalValidator = (typeof INTERNAL_VALIDATORS)[number];
 
@@ -29,7 +33,7 @@ export type Validator =
 
 export type ExternalValidator = Exclude<Validator, InternalValidator>;
 
-export const VALIDATOR_TITLES: Record<Validator, string> = {
+const VALIDATOR_TITLES: Record<Validator, string> = {
   ajv8: "Ajv v8",
   cfworker: "@cfworker/json-schema",
   schemasafe: "@exodus/schemasafe",
@@ -39,6 +43,10 @@ export const VALIDATOR_TITLES: Record<Validator, string> = {
   zod4: "Zod v4",
 };
 
+export function validatorTitle(validator: Validator) {
+  return VALIDATOR_TITLES[validator];
+}
+
 export function validatorPackage(validator: Validator) {
   if (isInternalValidator(validator)) {
     return `@sjsf/form/validators/${validator}`;
@@ -46,20 +54,10 @@ export function validatorPackage(validator: Validator) {
   return `@sjsf/${validator}-validator`;
 }
 
-export const VALIDATOR_DEPENDENCIES: Record<
-  ExternalValidator,
-  Record<string, string>
-> = {
-  ajv8: { ajv: "^8.17.0" },
-  cfworker: {
-    "@cfworker/json-schema": "^4.1.0",
-  },
-  schemasafe: {
-    "@exodus/schemasafe": "^1.3.0",
-  },
-  zod4: { zod: "^4.1.0" },
-  valibot: {
-    valibot: "^1.1.0",
-    "@valibot/to-json-schema": "^1.3.0",
-  },
-};
+const EXTERNAL_VALIDATOR_PACKAGES = {
+  ajv8: ajv8Package,
+  cfworker: cfworkerPackage,
+  schemasafe: schemasafePackage,
+  valibot: valibotPackage,
+  zod4: zod4Package,
+} satisfies Record<ExternalValidator, Package>;
