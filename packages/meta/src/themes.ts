@@ -29,10 +29,6 @@ export type LabTheme = (typeof LAB_THEMES)[number];
 
 const LAB_THEMES_SET = new Set<string>(LAB_THEMES);
 
-export function isLabTheme(theme: string): theme is LabTheme {
-  return LAB_THEMES_SET.has(theme);
-}
-
 export type Theme = ActualTheme | LegacyTheme | LabTheme;
 
 const THEME_SUB_THEMES = {
@@ -43,19 +39,11 @@ const SUB_THEMES = Object.values(THEME_SUB_THEMES).flat();
 
 const SUB_THEMES_SET = new Set<string>(SUB_THEMES);
 
-export function isSubTheme(theme: string): theme is SubTheme {
-  return SUB_THEMES_SET.has(theme);
-}
-
 const SUB_THEME_PARENTS: Map<SubTheme, Theme> = new Map();
 for (const [parentTheme, subThemes] of Object.entries(THEME_SUB_THEMES)) {
   for (const subTheme of subThemes) {
     SUB_THEME_PARENTS.set(subTheme, parentTheme as Theme);
   }
-}
-
-export function parentTheme(theme: SubTheme): Theme {
-  return SUB_THEME_PARENTS.get(theme)!;
 }
 
 export type SubTheme = (typeof SUB_THEMES)[number];
@@ -65,6 +53,21 @@ export type ThemeOrSubTheme = Theme | SubTheme;
 export type NonLegacyThemeOrSubTheme = Exclude<ThemeOrSubTheme, LegacyTheme>;
 
 export type NonLegacyTheme = Exclude<NonLegacyThemeOrSubTheme, SubTheme>;
+
+const NON_LEGACY_THEMES = [...ACTUAL_THEMES, ...LAB_THEMES] as const;
+
+const NON_LEGACY_THEME_OR_SUB_THEMES: NonLegacyThemeOrSubTheme[] =
+  NON_LEGACY_THEMES.slice();
+for (let i = NON_LEGACY_THEME_OR_SUB_THEMES.length - 1; i >= 0; i--) {
+  const t = NON_LEGACY_THEME_OR_SUB_THEMES[i]!;
+  const subThemes =
+    t in THEME_SUB_THEMES
+      ? THEME_SUB_THEMES[t as keyof typeof THEME_SUB_THEMES]
+      : undefined;
+  if (subThemes) {
+    NON_LEGACY_THEME_OR_SUB_THEMES.splice(i + 1, 0, ...subThemes);
+  }
+}
 
 const THEME_TITLES: Record<ThemeOrSubTheme, string> = {
   basic: "basic",
@@ -82,10 +85,6 @@ const THEME_TITLES: Record<ThemeOrSubTheme, string> = {
   beercss: "Beer CSS",
 };
 
-export function themeTitle(theme: ThemeOrSubTheme) {
-  return THEME_TITLES[theme];
-}
-
 const THEME_BRAND = {
   basic: "",
   daisyui5: "daisyUI",
@@ -93,14 +92,6 @@ const THEME_BRAND = {
   skeleton4: "Skeleton",
   shadcn4: "shadcn-svelte",
 } satisfies Record<ActualTheme, string>;
-
-export function themeBrand(theme: ActualTheme) {
-  return THEME_BRAND[theme];
-}
-
-export function themePackage(theme: Theme) {
-  return `@sjsf${isLabTheme(theme) ? "-lab" : ""}/${theme}-theme`;
-}
 
 const THEME_PACKAGES = {
   basic: basicPackage,
@@ -112,3 +103,35 @@ const THEME_PACKAGES = {
   beercss: beercssPackage,
   svar: svarPackage,
 } satisfies Record<NonLegacyTheme, Package>;
+
+export function nonLegacyThemeOrSubThemes(): NonLegacyThemeOrSubTheme[] {
+  return NON_LEGACY_THEME_OR_SUB_THEMES;
+}
+
+export function isLabTheme(theme: string): theme is LabTheme {
+  return LAB_THEMES_SET.has(theme);
+}
+
+export function isSubTheme(theme: string): theme is SubTheme {
+  return SUB_THEMES_SET.has(theme);
+}
+
+export function themeParent(theme: SubTheme): Theme {
+  return SUB_THEME_PARENTS.get(theme)!;
+}
+
+export function themeTitle(theme: ThemeOrSubTheme): string {
+  return THEME_TITLES[theme];
+}
+
+export function themeBrand(theme: ActualTheme): string {
+  return THEME_BRAND[theme];
+}
+
+export function themePackage(theme: Theme) {
+  return `@sjsf${isLabTheme(theme) ? "-lab" : ""}/${theme}-theme`;
+}
+
+export function themeOrSubThemePackage(theme: ThemeOrSubTheme): string {
+  return themePackage(isSubTheme(theme) ? themeParent(theme) : theme);
+}

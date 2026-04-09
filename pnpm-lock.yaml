@@ -2312,6 +2312,9 @@ importers:
       '@types/node':
         specifier: ^25.5.2
         version: 25.5.2
+      meta:
+        specifier: workspace:*
+        version: link:../meta
       sv:
         specifier: ^0.15.0
         version: 0.15.0
