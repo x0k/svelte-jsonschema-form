@@ -9,6 +9,8 @@ const ICON_SETS = ["flowbite", "lucide", "moving", "radix"] as const;
 
 export type IconSet = (typeof ICON_SETS)[number];
 
+const ICONS = [...ICON_SETS];
+
 const ICON_SET_TITLES: Record<IconSet, string> = {
   flowbite: "Flowbite",
   lucide: "lucide",
@@ -16,13 +18,21 @@ const ICON_SET_TITLES: Record<IconSet, string> = {
   radix: "Radix",
 };
 
-export function iconSetTitle(iconSet: IconSet) {
-  return ICON_SET_TITLES[iconSet];
-}
-
 const ICON_SET_PACKAGES = {
   flowbite: flowbitePackage,
   lucide: lucidePackage,
   moving: movingPackage,
   radix: radixPackage,
 } satisfies Record<IconSet, Package>;
+
+export function iconSets(): IconSet[] {
+  return ICONS;
+}
+
+export function iconSetTitle(iconSet: IconSet) {
+  return ICON_SET_TITLES[iconSet];
+}
+
+export function iconSetPackage(iconSet: IconSet) {
+  return `@sjsf/${iconSet}-icons`;
+}

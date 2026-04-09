@@ -2190,7 +2190,7 @@ importers:
     devDependencies:
       svelte:
         specifier: 'catalog:'
-        version: 5.55.1
+        version: 5.55.5
 
   packages/moving-icons:
     devDependencies:
@@ -2346,6 +2346,9 @@ importers:
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
+      meta:
+        specifier: workspace:*
+        version: link:../meta
       sv:
         specifier: ^0.15.0
         version: 0.15.0
