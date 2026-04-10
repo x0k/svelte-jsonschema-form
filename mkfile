@@ -80,8 +80,10 @@ sv/:
   pushd packages/sv
   b:
     pnpm run build
+  i:
+    pnpm run demo-create
   d:
-    pnpm run demo-create && pnpm run demo-add
+    pnpm run demo-add
   t:
     pnpm run test
   popd
