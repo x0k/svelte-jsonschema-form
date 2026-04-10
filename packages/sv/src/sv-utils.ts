@@ -10,21 +10,20 @@ export function createReExport(
 ): AstTypes.ExportNamedDeclaration {
   const localName = options.imported ?? options.name;
 
-  const namedExports = node.body.filter(
-    (item) => item.type === "ExportNamedDeclaration",
-  ) as AstTypes.ExportNamedDeclaration[];
-
-  let namedExport = namedExports.find((exportNode) => {
-    if (!exportNode.source) return false;
-
-    return exportNode.specifiers.some((s) => {
-      return (
-        s.type === "ExportSpecifier" &&
-        s.exported.type === "Identifier" &&
-        s.exported.name === options.name
-      );
-    });
-  });
+  let namedExport = node.body.find(
+    (item): item is AstTypes.ExportNamedDeclaration => {
+      if (item.type !== "ExportNamedDeclaration" || !item.source) {
+        return false;
+      }
+      return item.specifiers.some((s) => {
+        return (
+          s.type === "ExportSpecifier" &&
+          s.exported.type === "Identifier" &&
+          s.exported.name === options.name
+        );
+      });
+    },
+  );
 
   if (namedExport) return namedExport;
 
@@ -53,4 +52,27 @@ export function createReExport(
 
   node.body.push(namedExport);
   return namedExport;
+}
+
+export function getTopLevelFunction(node: AstTypes.Program, name: string) {
+  return node.body.find(
+    (
+      item,
+    ): item is AstTypes.FunctionDeclaration | AstTypes.VariableDeclaration =>
+      item.type === "FunctionDeclaration"
+        ? item.id.name === name
+        : item.type === "VariableDeclaration" &&
+          item.declarations.some((decl) => {
+            if (decl.id.type !== "Identifier") return false;
+            if (decl.id.name !== name) return false;
+
+            const init = decl.init;
+            if (!init) return false;
+
+            return (
+              init.type === "ArrowFunctionExpression" ||
+              init.type === "FunctionExpression"
+            );
+          }),
+  );
 }
