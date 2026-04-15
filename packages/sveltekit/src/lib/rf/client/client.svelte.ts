@@ -7,11 +7,14 @@ import { isRecordEmpty } from '@sjsf/form/lib/object';
 import {
   DEFAULT_ID_PREFIX,
   isUiSchemaRef,
+  resolveUiOptionValue,
   resolveUiRef,
   SJSF_ID_PREFIX,
   validate,
   type FormOptions,
   type FormState,
+  type ResolvableUiOptions,
+  type UiSchema,
   type UiSchemaRoot
 } from '@sjsf/form';
 
@@ -177,24 +180,31 @@ export async function connect<
       }
       return new Proxy(schema, {
         get(t, p, r) {
-          const value = Reflect.get(t, p, r);
+          const value: UiSchema[keyof UiSchema] = Reflect.get(t, p, r);
           return p === 'ui:options'
-            ? new Proxy(value, {
+            ? new Proxy((value as UiSchema['ui:options']) ?? {}, {
                 get(t, p, r) {
-                  const value = Reflect.get(t, p, r);
-                  return p === 'form'
-                    ? new Proxy(value, {
-                        get(t, p, r) {
-                          switch (p) {
-                            case 'action':
-                            case 'method':
-                              return remoteForm[p];
-                            default:
-                              return Reflect.get(t, p, r);
-                          }
-                        }
-                      })
-                    : value;
+                  const resolvableOption: ResolvableUiOptions[keyof ResolvableUiOptions] =
+                    Reflect.get(t, p, r);
+                  if (p !== 'form') {
+                    return resolvableOption;
+                  }
+                  const resolvableFormOption =
+                    (resolvableOption as ResolvableUiOptions['form']) ?? {};
+                  const formOptionValue =
+                    resolveUiOptionValue(options.uiOptionsRegistry ?? {}, resolvableFormOption) ??
+                    {};
+                  return new Proxy(formOptionValue, {
+                    get(t, p, r) {
+                      switch (p) {
+                        case 'action':
+                        case 'method':
+                          return remoteForm[p];
+                        default:
+                          return Reflect.get(t, p, r);
+                      }
+                    }
+                  });
                 }
               })
             : value;
