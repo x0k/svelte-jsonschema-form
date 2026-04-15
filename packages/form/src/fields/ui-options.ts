@@ -21,6 +21,10 @@ declare module "../form/index.js" {
      */
     enumValueMapperBuilder?: () => EnumValueMapperBuilder;
     /**
+     * Determines whether the current field can be cleared (e.g., the empty option in the select widget)
+     */
+    clearable?: boolean;
+    /**
      * Help text for the field (under the widget).
      */
     help?: string;

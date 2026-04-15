@@ -25,7 +25,7 @@
     value = $bindable(),
     options,
     config,
-    hasInitialValue = config.schema.default !== undefined,
+    clearable = config.schema.default === undefined,
     mapped = singleOption({
       mapper: () => idMapper(options),
       value: () => value,
@@ -43,7 +43,7 @@
 </script>
 
 <select bind:value={mapped.current} {...attributes}>
-  {#if !hasInitialValue}
+  {#if clearable}
     <option value={EMPTY_VALUE}>{placeholder}</option>
   {/if}
   {#each options as option (option.id)}

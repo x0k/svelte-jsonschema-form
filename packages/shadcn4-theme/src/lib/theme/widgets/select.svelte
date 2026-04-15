@@ -36,7 +36,7 @@
 			value: () => value,
 			update: (v) => (value = v)
 		}),
-		hasInitialValue = config.schema.default !== undefined
+		clearable = config.schema.default === undefined
 	}: ComponentProps['selectWidget'] = $props();
 
 	const labels = $derived(new Map(options.map((o) => [o.mappedValue ?? o.id, o.label])));
@@ -76,7 +76,7 @@
 		</span>
 	</SelectTrigger>
 	<SelectContent>
-		{#if !hasInitialValue}
+		{#if clearable}
 			<SelectItem value={EMPTY_VALUE}>
 				<span class="min-h-5">
 					{selectAttributes.placeholder}

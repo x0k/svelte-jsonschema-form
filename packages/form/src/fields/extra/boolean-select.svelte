@@ -91,7 +91,9 @@
     value: () => value ?? undefined,
     update: (v) => (value = v === undefined ? undefined : Boolean(v)),
   });
-  const hasInitialValue = $derived(config.schema.default !== undefined);
+  const clearable = $derived(
+    uiOption("clearable") ?? config.schema.default === undefined
+  );
 
   const handlers = makeEventHandlers(
     ctx,
@@ -138,6 +140,7 @@
     {handlers}
     {uiOption}
     {config}
-    {hasInitialValue}
+    {clearable}
+    hasInitialValue={!clearable}
   />
 </Template>

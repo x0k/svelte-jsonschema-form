@@ -31,7 +31,7 @@
 			value: () => value,
 			update: (v) => (value = v)
 		}),
-		hasInitialValue = config.schema.default !== undefined
+		clearable = config.schema.default === undefined
 	}: ComponentProps['comboboxWidget'] = $props();
 
 	const ctx = getFormContext();
@@ -58,7 +58,7 @@
 
 	const mappedOptions = $derived.by(() => {
 		const items: { id: string; label: string }[] = [];
-		if (!hasInitialValue) {
+		if (clearable) {
 			items.push({ id: EMPTY_VALUE, label: placeholder });
 		}
 		for (const o of options) {

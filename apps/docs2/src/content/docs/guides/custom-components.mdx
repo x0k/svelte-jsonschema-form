@@ -288,7 +288,7 @@ export interface Options {
 }
 
 export interface SingleSelectOptions extends Options {
-  hasInitialValue?: boolean;
+  clearable?: boolean;
   mapped?: Ref<string>;
 }
 
@@ -305,7 +305,7 @@ You can either use them with `!` or provide a fallback value:
 import { idMapper, singleOption } from "@sjsf/form/options.svelte";
 
 let {
-  hasInitialValue = config.schema.default !== undefined,
+  clearable = config.schema.default === undefined,
   mapped = singleOption({
     mapper: () => idMapper(options),
     value: () => value,
@@ -318,7 +318,7 @@ let {
 
 ```svelte
 <select bind:value={mapped.current} {...attributes}>
-  {#if !hasInitialValue}
+  {#if clearable}
     <option value={EMPTY_VALUE}>{placeholder}</option>
   {/if}
   {#each options as option (option.id)}
