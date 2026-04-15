@@ -46,8 +46,10 @@ export interface Options {
 }
 
 export interface SingleSelectOptions extends Options {
-  // TODO: Make required in v4
+  /** @deprecated use `clearable` instead */
   hasInitialValue?: boolean;
+  // TODO: Make required in v4
+  clearable?: boolean;
   // TODO: Make required in v4
   mapped?: Ref<string>;
 }
