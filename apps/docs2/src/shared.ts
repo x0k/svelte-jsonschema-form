@@ -75,6 +75,7 @@ export enum GenericExample {
   AnimatedArray = "animated-array",
   MarkdownDescription = "markdown-description",
   TabbedLayout = "tabbed-layout",
+  RemoteEnum = "remote-enum",
   AsyncCombobox = "async-combobox",
   Formulas = "formulas",
   PatternPropertiesValidator = "pattern-properties-validator",

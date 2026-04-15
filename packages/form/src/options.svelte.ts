@@ -119,29 +119,42 @@ export function singleOption<V>({
   };
 }
 
+function mapAndExclude<I, O>(items: I[], transform: (item: I) => O, ignore: O) {
+  const result: O[] = [];
+  for (const i of items) {
+    const o = transform(i);
+    if (o !== ignore) {
+      result.push(o);
+    }
+  }
+  return result;
+}
+
 export function multipleOptions<V>({
   mapper,
   value,
   update,
+  emptyValue = EMPTY_VALUE as V,
 }: {
   mapper: () => OptionsMapper<V>;
   value: () => SchemaArrayValue | undefined;
   update: (value: SchemaArrayValue) => void;
+  emptyValue?: V;
 }): OptionValue<V[]> & Ref<V[]> {
   const m = $derived(mapper());
-  const val = $derived(value()?.map(m.fromValue) ?? []);
+  const val = $derived(mapAndExclude(value() ?? [], m.fromValue, emptyValue));
   return {
     get value() {
       return val;
     },
     set value(v) {
-      update(v.map(m.toValue));
+      update(mapAndExclude(v, m.toValue, undefined));
     },
     get current() {
       return val;
     },
     set current(v) {
-      update(v.map(m.toValue));
+      update(mapAndExclude(v, m.toValue, undefined));
     },
   };
 }

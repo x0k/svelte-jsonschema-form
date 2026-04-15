@@ -100,6 +100,7 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [GenericExample.MarkdownDescription]: () =>
     import("./examples/markdown-description"),
   [GenericExample.TabbedLayout]: () => import("./examples/tabbed-layout"),
+  [GenericExample.RemoteEnum]: () => import("./examples/remote-enum"),
   [GenericExample.AsyncCombobox]: () => import("./examples/async-combobox"),
   [GenericExample.Formulas]: () => import("./examples/formulas"),
   [GenericExample.PatternPropertiesValidator]: () =>

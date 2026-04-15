@@ -15,27 +15,11 @@
     type MyAsyncComboboxOptions,
   } from "./async-combobox-widget.svelte";
 
-  async function searchFn(signal: AbortSignal, query: string) {
-    const promise = Promise.withResolvers<string[]>();
-    const id = setTimeout(
-      () =>
-        promise.resolve(
-          COUNTRIES.filter((c) =>
-            c.toLocaleLowerCase().includes(query.toLocaleLowerCase())
-          )
-        ),
-      1000
+  async function searchFn(_: AbortSignal, query: string) {
+    await new Promise((r) => setTimeout(r, 1000));
+    return COUNTRIES.filter((c) =>
+      c.toLocaleLowerCase().includes(query.toLocaleLowerCase())
     );
-    const onAbort = () => {
-      clearTimeout(id);
-      promise.reject(
-        new DOMException("The operation was aborted.", "AbortError")
-      );
-    };
-    signal.addEventListener("abort", onAbort);
-    return promise.promise.finally(() => {
-      signal.removeEventListener("abort", onAbort);
-    });
   }
 
   const schema = {

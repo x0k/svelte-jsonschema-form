@@ -11,8 +11,9 @@ export interface AbstractTaskState<S extends Status> {
 
 export type TaskFailureReason = "timeout" | "aborted" | "error";
 
-export interface AbstractFailedTask<R extends TaskFailureReason>
-  extends AbstractTaskState<"failed"> {
+export interface AbstractFailedTask<
+  R extends TaskFailureReason,
+> extends AbstractTaskState<"failed"> {
   reason: R;
 }
 
@@ -49,7 +50,6 @@ export interface TaskOptions<T extends ReadonlyArray<any>, R, E> {
   onSuccess?: (result: R, ...args: T) => void;
   onFailure?: (failure: FailedTask<E>, ...args: T) => void;
   /**
-   * The `combinator` runtime error is interpreted as `false`.
    * @default waitPrevious
    */
   combinator?: TasksCombinator<T, R, E>;
@@ -292,4 +292,109 @@ export function createTask<
     },
   };
   return task;
+}
+
+export type QueryOptions<
+  T extends ReadonlyArray<any>,
+  R = unknown,
+  E = unknown,
+> = TaskOptions<T, R, E> & {
+  /**
+   * Used to pass and track reactive values
+   * If not specified, automatic data loading is disabled
+   */
+  deps?: () => T;
+  /**
+   * @default abortPrevious
+   */
+  combinator?: TasksCombinator<T, R, E>;
+};
+
+export interface Query<
+  T extends ReadonlyArray<any>,
+  R = unknown,
+  E = unknown,
+> extends Task<T, R, E> {
+  readonly result: R | undefined;
+  readonly error: FailedTask<E> | undefined;
+}
+
+export function createQuery<
+  T extends ReadonlyArray<any> = [],
+  R = unknown,
+  E = unknown,
+>(options: QueryOptions<T, R, E>) {
+  let result = $state.raw<R>();
+
+  const task = createTask(
+    Object.setPrototypeOf(
+      {
+        onSuccess(r: R, ...args: T) {
+          result = r;
+          options.onSuccess?.(r, ...args);
+        },
+        get combinator() {
+          return options.combinator ?? abortPrevious;
+        },
+      },
+      options
+    ) as TaskOptions<T, R, E>
+  );
+
+  $effect(() => {
+    if (options.deps === undefined) {
+      return;
+    }
+    task.run(...options.deps());
+    return () => {
+      task.abort();
+    };
+  });
+
+  return Object.setPrototypeOf(
+    {
+      get result() {
+        return result;
+      },
+      get error() {
+        const s = task.state;
+        return s.status === "failed" ? s : undefined;
+      },
+    },
+    task
+  ) as Query<T, R, E>;
+}
+
+/**
+ * Wraps an action with a debounce delay.
+ * Cancellation is delegated to the caller - aborting the signal before
+ * the next call is what produces the debounce effect.
+ * Pairs naturally with the `abortPrevious` combinator.
+ */
+export function debounce<T extends ReadonlyArray<any>, R>(
+  action: (signal: AbortSignal, ...args: T) => Promise<R>,
+  getDebounceMs = () => 300
+) {
+  return (signal: AbortSignal, ...args: T): Promise<R> => {
+    if (signal.aborted) {
+      return Promise.reject(signal.reason as Error);
+    }
+
+    const debounceMs = getDebounceMs();
+    if (debounceMs < 0) return action(signal, ...args);
+
+    const { promise, resolve, reject } = Promise.withResolvers<R>();
+    const id = setTimeout(() => resolve(action(signal, ...args)), debounceMs);
+
+    signal.addEventListener(
+      "abort",
+      () => {
+        clearTimeout(id);
+        reject(signal.reason);
+      },
+      { once: true }
+    );
+
+    return promise;
+  };
 }
