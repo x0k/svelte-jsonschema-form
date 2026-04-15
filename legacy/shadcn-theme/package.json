@@ -37,6 +37,7 @@
 		"test:unit": "vitest"
 	},
 	"exports": {
+    "./package.json": "./package.json",
 		"./components/*": {
 			"types": "./dist/theme/components/*.d.ts",
 			"svelte": "./dist/theme/components/*"
