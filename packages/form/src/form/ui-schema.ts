@@ -106,6 +106,16 @@ export function resolveUiRef(
     : schemaDef;
 }
 
+export function resolveUiOptionValue<V>(
+  uiOptionsRegistry: UiOptionsRegistry,
+  value: V
+): Exclude<V, `registry:${keyof UiOptionsRegistry}`> {
+  if (typeof value === "string" && value.startsWith("registry:")) {
+    return uiOptionsRegistry[value.substring(9) as keyof UiOptionsRegistry];
+  }
+  return value;
+}
+
 export function resolveUiOption<O extends keyof UiOptions>(
   uiSchemaRoot: UiSchemaRoot,
   uiOptionsRegistry: UiOptionsRegistry,
@@ -117,10 +127,7 @@ export function resolveUiOption<O extends keyof UiOptions>(
     options && option in options
       ? options[option]
       : uiSchemaRoot["ui:globalOptions"]?.[option];
-  if (typeof value === "string" && value.startsWith("registry:")) {
-    return uiOptionsRegistry[value.substring(9) as keyof UiOptionsRegistry];
-  }
-  return value;
+  return resolveUiOptionValue(uiOptionsRegistry, value);
 }
 
 export function getUiSchemaByPath(
