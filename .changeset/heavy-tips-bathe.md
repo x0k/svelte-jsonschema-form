@@ -2,13 +2,17 @@
 "@sjsf/schemasafe-validator": minor
 "@sjsf/cfworker-validator": minor
 "@sjsf/valibot-validator": minor
+"@sjsf/flowbite-theme": minor
 "@sjsf/flowbite3-theme": minor
+"@sjsf/skeleton3-theme": minor
 "@sjsf/skeleton4-theme": minor
 "@sjsf-lab/shadcn-extras-theme": minor
 "@sjsf/ajv8-validator": minor
+"@sjsf/daisyui-theme": minor
 "@sjsf/daisyui5-theme": minor
 "@sjsf/flowbite-icons": minor
 "@sjsf/zod4-validator": minor
+"@sjsf/shadcn-theme": minor
 "@sjsf/shadcn4-theme": minor
 "@sjsf/lucide-icons": minor
 "@sjsf/moving-icons": minor
