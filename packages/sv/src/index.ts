@@ -3,6 +3,7 @@ import { defineAddon } from "sv";
 import { createPrinter } from "./sv-utils.js";
 import { options, type Context } from "./model.js";
 import { defaultsTs } from "./defaults.js";
+import { dependencies } from "./dependencies.js";
 
 export default defineAddon({
   id: "@sjsf/sv",
@@ -23,6 +24,7 @@ export default defineAddon({
       ts: ts!,
     };
 
+    dependencies(ctx);
     defaultsTs(ctx);
   },
 });

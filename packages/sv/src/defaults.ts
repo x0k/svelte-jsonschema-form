@@ -1,4 +1,10 @@
-import { iconSetPackage, themeOrSubThemePackage, validatorPackage } from "meta";
+import {
+  iconSetPackage,
+  isSubTheme,
+  themeParent,
+  themePackage,
+  validatorPackage,
+} from "meta";
 
 import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
 import type { Context, SvelteKitIntegrationOption } from "./model.js";
@@ -52,7 +58,11 @@ export function defaultsTs({
       });
       createReExport(ast, {
         name: "theme",
-        source: themeOrSubThemePackage(options.theme),
+        source: themePackage(
+          isSubTheme(options.theme)
+            ? themeParent(options.theme)
+            : options.theme,
+        ),
       });
       if (options.icons !== "none") {
         createReExport(ast, {
