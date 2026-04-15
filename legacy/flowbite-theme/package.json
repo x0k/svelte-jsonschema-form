@@ -37,7 +37,7 @@
 		"test:unit": "vitest"
 	},
 	"exports": {
-		"./package.json": "./package.json",
+    "./package.json": "./package.json",
 		"./components/*": {
 			"types": "./dist/components/*.d.ts",
 			"svelte": "./dist/components/*"
