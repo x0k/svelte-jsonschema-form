@@ -1,1 +1,0 @@
-import{y as e}from"./_baseUniq.CkQ_tno6.js";var t=4;function n(n){return e(n,t)}export{n as t};

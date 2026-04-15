@@ -1,0 +1,14 @@
+import{a as e}from"./layer.D0xDDSxh.js";var t={package:e({name:`beercss-starter`,private:!0,version:`0.0.11`,type:`module`,scripts:{dev:`vite dev`,preview:`vite preview`,prepare:`svelte-kit sync || echo ''`,check:`svelte-kit sync && svelte-check --tsconfig ./tsconfig.json`,"check:watch":`svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch`},devDependencies:{"@sveltejs/adapter-auto":`^6.1.0`,"@sveltejs/kit":`^2.49.5`,"@sveltejs/vite-plugin-svelte":`^6.1.2`,svelte:`^5.46.4`,"svelte-check":`^4.3.1`,typescript:`^5.9.2`,vite:`^7.1.2`},dependencies:{"@sjsf/ajv8-validator":`workspace:*`,"@sjsf/form":`workspace:*`,"@sjsf-lab/beercss-theme":`workspace:*`,ajv:`^8.17.1`,beercss:`^4.0.2`}}),formDefaults:{theme:`beercss`},files:{"src/routes/+layout.svelte":`<script lang="ts">
+  import "beercss/dist/cdn/beer.css";
+
+  let { children } = $props();
+<\/script>
+
+{@render children()}
+
+<style>
+  :global(html) {
+    padding: 2rem;
+  }
+</style>
+`}};export{t as layer};

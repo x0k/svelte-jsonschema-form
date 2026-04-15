@@ -700,6 +700,7 @@ Here is a list of extra fields that can be imported from `@sjsf/form/fields/extr
 - `multi-enum`
 - `native-file`
 - `native-files`
+- `remote-enum`
 - `tags`
 - `unknown-native-file`
 
@@ -958,6 +959,10 @@ interface UiOptions {
    * @default () => new IdEnumValueMapperBuilder()
    */
   enumValueMapperBuilder?: () => EnumValueMapperBuilder;
+  /**
+   * Determines whether the current field can be cleared (e.g., the empty option in the select widget)
+   */
+  clearable?: boolean;
   /**
    * Order of properties in the object schema.
    * You must specify all properties or use the wildcard `*`.
@@ -1643,7 +1648,7 @@ export interface Options {
 }
 
 export interface SingleSelectOptions extends Options {
-  hasInitialValue?: boolean;
+  clearable?: boolean;
   mapped?: Ref<string>;
 }
 
@@ -1660,7 +1665,7 @@ You can either use them with `!` or provide a fallback value:
 import { idMapper, singleOption } from "@sjsf/form/options.svelte";
 
 let {
-  hasInitialValue = config.schema.default !== undefined,
+  clearable = config.schema.default === undefined,
   mapped = singleOption({
     mapper: () => idMapper(options),
     value: () => value,
@@ -1673,7 +1678,7 @@ let {
 
 ```svelte
 <select bind:value={mapped.current} {...attributes}>
-  {#if !hasInitialValue}
+  {#if clearable}
     <option value={EMPTY_VALUE}>{placeholder}</option>
   {/if}
   {#each options as option (option.id)}
