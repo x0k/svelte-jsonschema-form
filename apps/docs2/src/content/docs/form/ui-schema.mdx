@@ -182,6 +182,10 @@ interface UiOptions {
    */
   enumValueMapperBuilder?: () => EnumValueMapperBuilder;
   /**
+   * Determines whether the current field can be cleared (e.g., the empty option in the select widget)
+   */
+  clearable?: boolean;
+  /**
    * Order of properties in the object schema.
    * You must specify all properties or use the wildcard `*`.
    */
