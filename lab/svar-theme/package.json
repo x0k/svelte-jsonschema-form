@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf-lab/svar-theme",
-	"version": "3.2.1",
+	"version": "3.3.0",
 	"description": "The SVAR v2 based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"scripts": {
@@ -33,7 +33,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"exports": {
-    "./package.json": "./package.json",
+		"./package.json": "./package.json",
 		"./components/*": {
 			"types": "./dist/components/*.d.ts",
 			"svelte": "./dist/components/*"
@@ -57,10 +57,10 @@
 		}
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^3.4.0"
+		"@sjsf/basic-theme": "workspace:^3.5.0"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^3.4.0",
+		"@sjsf/form": "workspace:^3.5.0",
 		"@svar-ui/svelte-core": "^2.3.0",
 		"svelte": "^5.34.8"
 	},
