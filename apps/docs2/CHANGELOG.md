@@ -1,5 +1,15 @@
 # docs
 
+## 1.15.2
+
+### Patch Changes
+
+- Updated dependencies [[`0d4e781`](https://github.com/x0k/svelte-jsonschema-form/commit/0d4e78159f83cb9eff8b297450fe4a8e2451500b)]:
+  - @sjsf/skeleton3-theme@3.1.1
+  - @sjsf/flowbite-theme@3.1.1
+  - @sjsf/daisyui-theme@3.1.1
+  - @sjsf/shadcn-theme@3.1.1
+
 ## 1.15.1
 
 ### Patch Changes

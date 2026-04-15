@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/flowbite-theme",
-	"version": "3.1.0",
+	"version": "3.1.1",
 	"description": "The flowbite based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -37,7 +37,7 @@
 		"test:unit": "vitest"
 	},
 	"exports": {
-    "./package.json": "./package.json",
+		"./package.json": "./package.json",
 		"./components/*": {
 			"types": "./dist/components/*.d.ts",
 			"svelte": "./dist/components/*"
