@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf-lab/shadcn-extras-theme",
-	"version": "3.3.0",
+	"version": "3.4.0",
 	"description": "The shadcn-svelte-extras based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"scripts": {
@@ -34,7 +34,7 @@
 	"types": "./dist/theme/index.d.ts",
 	"type": "module",
 	"exports": {
-    "./package.json": "./package.json",
+		"./package.json": "./package.json",
 		"./extra-widgets/*": {
 			"types": "./dist/theme/extra-widgets/*.d.ts",
 			"svelte": "./dist/theme/extra-widgets/*"
@@ -55,8 +55,8 @@
 	},
 	"peerDependencies": {
 		"@lucide/svelte": ">=0.479.0 <1.0.0 || ^1.0.0",
-		"@sjsf/form": "workspace:^3.4.0",
-		"@sjsf/shadcn4-theme": "workspace:^3.4.0",
+		"@sjsf/form": "workspace:^3.5.0",
+		"@sjsf/shadcn4-theme": "workspace:^3.5.0",
 		"@zxcvbn-ts/core": "^3.0.0",
 		"@zxcvbn-ts/language-common": "^3.0.0",
 		"@zxcvbn-ts/language-en": "^3.0.0",

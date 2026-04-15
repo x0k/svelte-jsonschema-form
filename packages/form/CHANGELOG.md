@@ -1,5 +1,29 @@
 # @sjsf/form
 
+## 3.5.0
+
+### Minor Changes
+
+- Export `resolveUiOptionValue` function ([#357](https://github.com/x0k/svelte-jsonschema-form/pull/357))
+
+- Add `remoteEnum` extra field ([#350](https://github.com/x0k/svelte-jsonschema-form/pull/350))
+
+- Add export for `package.json` ([#359](https://github.com/x0k/svelte-jsonschema-form/pull/359))
+
+- Export `createQuery`, `debounce` functions from `@sjsf/form/lib/task.svelte` ([#350](https://github.com/x0k/svelte-jsonschema-form/pull/350))
+
+- Add `clearable` UI option ([#358](https://github.com/x0k/svelte-jsonschema-form/pull/358))
+
+### Patch Changes
+
+- Display `Add property` button for `undefined` objects ([#354](https://github.com/x0k/svelte-jsonschema-form/pull/354))
+
+- Fix `$dynamicRef` (draft 2020-12) conversion ([#354](https://github.com/x0k/svelte-jsonschema-form/pull/354))
+
+- Refactor enum value mapper builders ([#352](https://github.com/x0k/svelte-jsonschema-form/pull/352))
+
+- Add filtering for empty values in `multiOptions` helper ([#350](https://github.com/x0k/svelte-jsonschema-form/pull/350))
+
 ## 3.4.0
 
 ### Minor Changes

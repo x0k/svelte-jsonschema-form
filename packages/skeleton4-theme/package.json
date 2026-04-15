@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/skeleton4-theme",
-	"version": "3.4.0",
+	"version": "3.5.0",
 	"description": "The skeleton v4 based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"scripts": {
@@ -34,7 +34,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"exports": {
-    "./package.json": "./package.json",
+		"./package.json": "./package.json",
 		"./components/*": {
 			"types": "./dist/components/*.d.ts",
 			"svelte": "./dist/components/*"
@@ -58,10 +58,10 @@
 		}
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^3.4.0"
+		"@sjsf/basic-theme": "workspace:^3.5.0"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^3.4.0",
+		"@sjsf/form": "workspace:^3.5.0",
 		"@skeletonlabs/skeleton": "^4.2.0",
 		"@skeletonlabs/skeleton-svelte": "^4.2.0",
 		"@tailwindcss/forms": "^0.5.0",

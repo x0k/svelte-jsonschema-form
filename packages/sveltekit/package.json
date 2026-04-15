@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/sveltekit",
-	"version": "3.4.0",
+	"version": "3.5.0",
 	"description": "The SvelteKit integration for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -38,7 +38,7 @@
 		"test:unit": "vitest"
 	},
 	"exports": {
-    "./package.json": "./package.json",
+		"./package.json": "./package.json",
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
@@ -65,7 +65,7 @@
 		}
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^3.4.0",
+		"@sjsf/form": "workspace:^3.5.0",
 		"@sveltejs/kit": "^2.48.3",
 		"esm-env": "^1.2.0",
 		"svelte": "^5.34.8"
