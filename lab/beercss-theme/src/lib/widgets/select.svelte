@@ -13,7 +13,7 @@
 			value: () => value,
 			update: (v) => (value = v)
 		}),
-		hasInitialValue = config.schema.default !== undefined
+		clearable = config.schema.default === undefined
 	}: ComponentProps['selectWidget'] = $props();
 
 	const ctx = getFormContext();
@@ -22,7 +22,7 @@
 </script>
 
 <select {...attributes} bind:value={mapped.current}>
-	{#if !hasInitialValue}
+	{#if clearable}
 		<option value={EMPTY_VALUE}>{attributes.placeholder}</option>
 	{/if}
 	{#each options as option (option.id)}
