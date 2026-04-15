@@ -4,7 +4,11 @@ import schemasafePackage from "@sjsf/schemasafe-validator/package.json" with { t
 import zod4Package from "@sjsf/zod4-validator/package.json" with { type: "json" };
 import valibotPackage from "@sjsf/valibot-validator/package.json" with { type: "json" };
 
-import type { Package } from "./package.js";
+import {
+  peerDependencies,
+  type Package,
+  type PeerDependenciesOptions,
+} from "./package.js";
 
 const JSON_SCHEMA_VALIDATORS = ["ajv8", "cfworker", "schemasafe"] as const;
 
@@ -67,7 +71,7 @@ export function isJsonSchemaValidator(
   return JSON_SCHEMA_VALIDATORS_SET.has(validator);
 }
 
-function isInternalValidator(
+export function isInternalValidator(
   validator: string,
 ): validator is InternalValidator {
   return INTERNAL_VALIDATORS_SET.has(validator);
@@ -77,5 +81,12 @@ export function validatorPackage(validator: Validator) {
   if (isInternalValidator(validator)) {
     return `@sjsf/form/validators/${validator}`;
   }
-  return `@sjsf/${validator}-validator`;
+  return EXTERNAL_VALIDATOR_PACKAGES[validator].name;
+}
+
+export function validatorDependencies(
+  validator: ExternalValidator,
+  options?: PeerDependenciesOptions,
+) {
+  return peerDependencies(EXTERNAL_VALIDATOR_PACKAGES[validator], options);
 }

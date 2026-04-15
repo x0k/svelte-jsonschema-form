@@ -3,7 +3,11 @@ import lucidePackage from "@sjsf/lucide-icons/package.json" with { type: "json" 
 import movingPackage from "@sjsf/moving-icons/package.json" with { type: "json" };
 import radixPackage from "@sjsf/radix-icons/package.json" with { type: "json" };
 
-import type { Package } from "./package.js";
+import {
+  peerDependencies,
+  type Package,
+  type PeerDependenciesOptions,
+} from "./package.js";
 
 const ICON_SETS = ["flowbite", "lucide", "moving", "radix"] as const;
 
@@ -34,5 +38,12 @@ export function iconSetTitle(iconSet: IconSet) {
 }
 
 export function iconSetPackage(iconSet: IconSet) {
-  return `@sjsf/${iconSet}-icons`;
+  return ICON_SET_PACKAGES[iconSet].name;
+}
+
+export function iconSetDependencies(
+  iconSet: IconSet,
+  options?: PeerDependenciesOptions,
+) {
+  return peerDependencies(ICON_SET_PACKAGES[iconSet], options);
 }

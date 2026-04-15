@@ -3,11 +3,21 @@ import daisyui5Package from "@sjsf/daisyui5-theme/package.json" with { type: "js
 import flowbite3Package from "@sjsf/flowbite3-theme/package.json" with { type: "json" };
 import skeleton4Package from "@sjsf/skeleton4-theme/package.json" with { type: "json" };
 import shadcn4Package from "@sjsf/shadcn4-theme/package.json" with { type: "json" };
+// Lab
 import shadcnExtrasPackage from "@sjsf-lab/shadcn-extras-theme/package.json" with { type: "json" };
 import svarPackage from "@sjsf-lab/svar-theme/package.json" with { type: "json" };
 import beercssPackage from "@sjsf-lab/beercss-theme/package.json" with { type: "json" };
+// Legacy
+import daisyuiPackage from "@sjsf/daisyui-theme/package.json" with { type: "json" };
+import flowbitePackage from "@sjsf/flowbite-theme/package.json" with { type: "json" };
+import skeleton3Package from "@sjsf/skeleton3-theme/package.json" with { type: "json" };
+import shadcnPackage from "@sjsf/shadcn4-theme/package.json" with { type: "json" };
 
-import type { Package } from "./package.js";
+import {
+  peerDependencies,
+  type Package,
+  type PeerDependenciesOptions,
+} from "./package.js";
 
 const ACTUAL_THEMES = [
   "basic",
@@ -102,7 +112,11 @@ const THEME_PACKAGES = {
   "shadcn-extras": shadcnExtrasPackage,
   beercss: beercssPackage,
   svar: svarPackage,
-} satisfies Record<NonLegacyTheme, Package>;
+  daisyui: daisyuiPackage,
+  flowbite: flowbitePackage,
+  shadcn: shadcnPackage,
+  skeleton3: skeleton3Package,
+} satisfies Record<Theme, Package>;
 
 export function nonLegacyThemeOrSubThemes(): NonLegacyThemeOrSubTheme[] {
   return NON_LEGACY_THEME_OR_SUB_THEMES;
@@ -129,9 +143,12 @@ export function themeBrand(theme: ActualTheme): string {
 }
 
 export function themePackage(theme: Theme) {
-  return `@sjsf${isLabTheme(theme) ? "-lab" : ""}/${theme}-theme`;
+  return THEME_PACKAGES[theme].name;
 }
 
-export function themeOrSubThemePackage(theme: ThemeOrSubTheme): string {
-  return themePackage(isSubTheme(theme) ? themeParent(theme) : theme);
+export function themeDependencies(
+  theme: Theme,
+  options?: PeerDependenciesOptions,
+) {
+  return peerDependencies(THEME_PACKAGES[theme], options);
 }
