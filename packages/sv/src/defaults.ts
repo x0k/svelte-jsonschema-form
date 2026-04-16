@@ -3,16 +3,16 @@ import {
   isSubTheme,
   themeParent,
   themePackage,
-  kitPackageName,
   formIdBuilderSubPath,
   kitRemoteFunctionsSubPath,
   externalValidatorPackage,
   isInternalValidator,
   internalValidatorSubPath,
-  formPackageName,
   formResolverSubPath,
   formTranslationSubPath,
   formMergerSubPath,
+  kitPackage,
+  formPackage,
 } from "meta";
 
 import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
@@ -23,7 +23,7 @@ const SVELTE_KIT_INTEGRATION_OPTION_ID_BUILDERS: Record<
   string
 > = {
   no: formIdBuilderSubPath("modern"),
-  formActions: kitPackageName(),
+  formActions: kitPackage.name,
   remoteFunctions: kitRemoteFunctionsSubPath(),
 };
 
@@ -42,7 +42,7 @@ export function defaultsTs({
 
       if (isAjv && isTs) {
         js.imports.addNamed(ast, {
-          from: formPackageName(),
+          from: formPackage.name,
           imports: ["ValidatorFactoryOptions"],
           isType: true,
         });

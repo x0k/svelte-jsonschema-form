@@ -1,15 +1,11 @@
-import ajv8Package from "@sjsf/ajv8-validator/package.json" with { type: "json" };
-import cfworkerPackage from "@sjsf/cfworker-validator/package.json" with { type: "json" };
-import schemasafePackage from "@sjsf/schemasafe-validator/package.json" with { type: "json" };
-import zod4Package from "@sjsf/zod4-validator/package.json" with { type: "json" };
-import valibotPackage from "@sjsf/valibot-validator/package.json" with { type: "json" };
+import _ajv8PackageJson from "@sjsf/ajv8-validator/package.json" with { type: "json" };
+import _cfworkerPackageJson from "@sjsf/cfworker-validator/package.json" with { type: "json" };
+import _schemasafePackageJson from "@sjsf/schemasafe-validator/package.json" with { type: "json" };
+import _zod4PackageJson from "@sjsf/zod4-validator/package.json" with { type: "json" };
+import _valibotPackageJson from "@sjsf/valibot-validator/package.json" with { type: "json" };
 
-import { formPackageName } from "./form.js";
-import {
-  peerDependencies,
-  type Package,
-  type PeerDependenciesOptions,
-} from "./package.js";
+import { type Package, fromPackageJson } from "./package.js";
+import { formPackage } from "./form.js";
 
 const JSON_SCHEMA_VALIDATORS = ["ajv8", "cfworker", "schemasafe"] as const;
 
@@ -51,11 +47,11 @@ const VALIDATOR_TITLES: Record<Validator, string> = {
 };
 
 const EXTERNAL_VALIDATOR_PACKAGES = {
-  ajv8: ajv8Package,
-  cfworker: cfworkerPackage,
-  schemasafe: schemasafePackage,
-  valibot: valibotPackage,
-  zod4: zod4Package,
+  ajv8: fromPackageJson(_ajv8PackageJson),
+  cfworker: fromPackageJson(_cfworkerPackageJson),
+  schemasafe: fromPackageJson(_schemasafePackageJson),
+  valibot: fromPackageJson(_valibotPackageJson),
+  zod4: fromPackageJson(_zod4PackageJson),
 } satisfies Record<ExternalValidator, Package>;
 
 export function validators(): Validator[] {
@@ -85,12 +81,5 @@ export function externalValidatorPackage(
 }
 
 export function internalValidatorSubPath(validator: InternalValidator) {
-  return `${formPackageName()}/validators/${validator}`;
-}
-
-export function externalValidatorDependencies(
-  validator: ExternalValidator,
-  options?: PeerDependenciesOptions,
-) {
-  return peerDependencies(EXTERNAL_VALIDATOR_PACKAGES[validator], options);
+  return `${formPackage.name}/validators/${validator}`;
 }
