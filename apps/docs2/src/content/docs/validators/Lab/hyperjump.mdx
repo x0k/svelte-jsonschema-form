@@ -1,0 +1,31 @@
+---
+title: hyperjump/json-schema
+type: package
+package: "@sjsf-lab/hyperjump-validator"
+sidebar:
+  order: 110
+---
+
+import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+
+import inputSchemaCode from '../shared/input-schema.json?raw'
+import compileSchemaCode from './hyperjump/compile-schema-script?raw'
+
+## Installation
+
+<Npm pkg="@sjsf-lab/hyperjump-validator @hyperjump/json-schema" />
+
+## Schema precompilation
+
+<Tabs>
+  <TabItem label="compile-schema-script.ts">
+    <Code code={compileSchemaCode} lang='typescript' />
+  </TabItem>
+  <TabItem label="input-schema.json">
+    <Code code={inputSchemaCode} lang='json' />
+  </TabItem>
+</Tabs>
+
+```shell
+node compile-schema-script.ts
+```

@@ -15,10 +15,10 @@ import Form from './schemasafe/form.svelte';
 import formCode from './schemasafe/form.svelte?raw';
 import sharedCode from './shared/index.ts?raw';
 
+import inputSchemaCode from './shared/input-schema.json?raw'
 import PrecompiledForm from './schemasafe/precompile/form.svelte'
 import precompiledFormCode from './schemasafe/precompile/form.svelte?raw'
 import compileSchemaCode from './schemasafe/precompile/compile-schema-script?raw'
-import inputSchemaCode from './schemasafe/precompile/input-schema.json?raw'
 import precompiledSchemaCode from './schemasafe/precompile/patched-schema?raw'
 
 Form validator implementation based on [@exodus/schemasafe](https://github.com/ExodusMovement/schemasafe)
@@ -65,7 +65,7 @@ The first step in the process is to compile a schema into a set of validate func
 </Tabs>
 
 ```shell
-node --experimental-strip-types compile-schema-script.ts
+node compile-schema-script.ts
 ```
 
 ### Usage

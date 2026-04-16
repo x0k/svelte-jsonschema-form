@@ -1,17 +1,17 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { validator } from "@exodus/schemasafe";
-
 import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import {
   insertSubSchemaIds,
   fragmentSchema,
 } from "@sjsf/form/validators/precompile";
 import {
-  DEFAULT_VALIDATOR_OPTIONS,
-  FORM_FORMATS,
-} from "@sjsf/schemasafe-validator";
+  registerSchema,
+  type SchemaObject,
+} from "@hyperjump/json-schema/draft-07";
+import { compile, getSchema } from "@hyperjump/json-schema/experimental";
+import { uneval } from "devalue";
 
 import inputSchema from "../../shared/input-schema.json" with { type: "json" };
 
@@ -19,7 +19,12 @@ const fieldsValidationMode = ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE;
 
 // NOTE: After calling this function, be sure to save the `schema` and
 // use it to generate the form
-const patch = insertSubSchemaIds(inputSchema as any, { fieldsValidationMode });
+let id = 0;
+const toId = (n: number) => `https://example.com/v${n}`;
+const patch = insertSubSchemaIds(inputSchema as any, {
+  fieldsValidationMode,
+  createId: () => toId(id++),
+});
 
 // It is easier to save as a TS file
 // https://github.com/microsoft/TypeScript/issues/32063
@@ -32,21 +37,18 @@ export const schema = ${JSON.stringify(patch.schema, null, 2)} as const satisfie
 
 const schemas = fragmentSchema(patch);
 
-// @ts-expect-error Typings for `multi` version are missing
-const validate = validator(schemas, {
-  ...DEFAULT_VALIDATOR_OPTIONS,
-  formats: {
-    ...FORM_FORMATS,
-    "phone-us": /\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{4}$/,
-    "area-code": /\d{3}/,
-  },
-  schemas: new Map(schemas.map((schema) => [schema.$id, schema])),
-  multi: true,
-});
+for (const schema of schemas) {
+  registerSchema(
+    Object.assign(
+      { $schema: "http://json-schema.org/draft-07/schema" },
+      schema as SchemaObject
+    )
+  );
+}
 
-const validateFunctions = `export const [${schemas.map((s) => s.$id).join(", ")}] = ${validate.toModule()}`;
+const { ast } = await compile(await getSchema(toId(0)));
 
 fs.writeFileSync(
-  path.join(import.meta.dirname, "validate-functions.js"),
-  validateFunctions
+  path.join(import.meta.dirname, "ast.js"),
+  `export const ast = ${uneval(ast)}`
 );
