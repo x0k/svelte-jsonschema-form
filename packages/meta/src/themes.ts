@@ -142,8 +142,8 @@ export function themeBrand(theme: ActualTheme): string {
   return THEME_BRAND[theme];
 }
 
-export function themePackage(theme: Theme) {
-  return THEME_PACKAGES[theme].name;
+export function themePackage(theme: Theme): Package {
+  return THEME_PACKAGES[theme];
 }
 
 export function themeDependencies(

@@ -37,8 +37,8 @@ export function iconSetTitle(iconSet: IconSet) {
   return ICON_SET_TITLES[iconSet];
 }
 
-export function iconSetPackage(iconSet: IconSet) {
-  return ICON_SET_PACKAGES[iconSet].name;
+export function iconSetPackage(iconSet: IconSet): Package {
+  return ICON_SET_PACKAGES[iconSet];
 }
 
 export function iconSetDependencies(
