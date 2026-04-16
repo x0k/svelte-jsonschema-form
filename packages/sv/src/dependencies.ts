@@ -1,13 +1,13 @@
 import {
   externalValidatorPackage,
-  EXTRA_PKG,
+  extraPackage,
   filterPackageDependencies,
   formPackage,
   iconSetPackage,
   isInternalValidator,
   isSubTheme,
   kitPackage,
-  OPTIONAL_PKG,
+  optionalPackageName,
   subThemeDependencies,
   themePackage,
   themeParent,
@@ -43,34 +43,30 @@ export function dependencies({ sv, options }: Context) {
       : themeOrSubTheme,
   );
   addDependency(themePkg);
-  addDependencies(
-    themePkg.dependencies,
-    new Set([
-      // daisyui5
-      OPTIONAL_PKG.pikaday,
-      // skeleton4
-      OPTIONAL_PKG.skeletonSvelte,
-      // shadcn4
-      OPTIONAL_PKG.internationalizedDate,
-    ]),
-  );
+  addDependencies(themePkg.dependencies, [
+    // daisyui5
+    optionalPackageName("pikaday"),
+    // skeleton4
+    optionalPackageName("skeletonSvelte"),
+    // shadcn4
+    optionalPackageName("internationalizedDate"),
+  ]);
   if (isSubTheme(themeOrSubTheme)) {
     addDependencies(subThemeDependencies(themeOrSubTheme));
   }
   // Validator
   if (isInternalValidator(validator)) {
     if (validator === "standard-schema") {
-      addDependencies(
-        formPackage.dependencies,
-        new Set([OPTIONAL_PKG.standardSchemaSpec]),
-      );
+      addDependencies(formPackage.dependencies, [
+        optionalPackageName("standardSchemaSpec"),
+      ]);
     }
   } else {
     const validatorPkg = externalValidatorPackage(validator);
     addDependency(validatorPkg);
     addDependencies(validatorPkg.dependencies);
     if (validator === "ajv8") {
-      addDependency(EXTRA_PKG.ajvFormat);
+      addDependency(extraPackage("ajvFormat"));
     }
   }
   // Icons
@@ -81,7 +77,7 @@ export function dependencies({ sv, options }: Context) {
   }
   // Type inference
   if (typeInference) {
-    addDependency(EXTRA_PKG.jsonSchemaToTs);
+    addDependency(extraPackage("jsonSchemaToTs"));
   }
   // Kit integration
   if (sveltekit !== "no") {

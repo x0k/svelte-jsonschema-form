@@ -21,7 +21,7 @@ export interface Package extends AbstractPackage {
   dependencies: PackageDependency[];
 }
 
-export const EXTRA_PKG = {
+const EXTRA_PACKAGES = {
   ajvFormat: {
     name: "avj-format",
     version: "^3.0.0",
@@ -34,13 +34,17 @@ export const EXTRA_PKG = {
   },
 } as const satisfies Record<string, AbstractPackage>;
 
-export const OPTIONAL_PKG = {
+export type ExtraPackage = keyof typeof EXTRA_PACKAGES;
+
+const OPTIONAL_PKG = {
   skeletonSvelte: "@skeletonlabs/skeleton-svelte",
   internationalizedDate: "@internationalized/date",
   standardSchemaSpec: "@standard-schema/spec",
   cally: "cally",
   pikaday: "pikaday",
 };
+
+export type OptionalPackage = keyof typeof OPTIONAL_PKG;
 
 const DEV_PACKAGES_REGISTRY = new Set([
   "@tailwindcss/forms",
@@ -76,20 +80,30 @@ function createMetaExtractor(peerDependenciesMeta: PeerDependenciesMeta) {
   return (name: string) => Boolean(peerDependenciesMeta[name]?.optional);
 }
 
-export type IncludeOptional = boolean | Set<string>;
+export type IncludeOptional = boolean | Iterable<string>;
 
 export function* filterPackageDependencies(
   dependencies: Iterable<PackageDependency>,
-  includeOptional: IncludeOptional = false,
+  includeOptional: IncludeOptional,
 ): Iterable<PackageDependency> {
-  const isBoolFilter = typeof includeOptional === "boolean";
-  for (const d of dependencies) {
-    if (
-      d.optional &&
-      !(isBoolFilter ? includeOptional : includeOptional.has(d.name))
-    ) {
-      continue;
-    }
-    yield d;
+  let isIncluded: (d: PackageDependency) => boolean;
+  if (typeof includeOptional === "boolean") {
+    isIncluded = () => includeOptional;
+  } else {
+    const toInclude = new Set(includeOptional);
+    isIncluded = (d) => toInclude.has(d.name);
   }
+  for (const d of dependencies) {
+    if (!d.optional || isIncluded(d)) {
+      yield d;
+    }
+  }
+}
+
+export function extraPackage(extraPkg: ExtraPackage): AbstractPackage {
+  return EXTRA_PACKAGES[extraPkg];
+}
+
+export function optionalPackageName(optionalPkg: OptionalPackage): string {
+  return OPTIONAL_PKG[optionalPkg];
 }
