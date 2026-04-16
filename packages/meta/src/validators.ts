@@ -4,6 +4,7 @@ import schemasafePackage from "@sjsf/schemasafe-validator/package.json" with { t
 import zod4Package from "@sjsf/zod4-validator/package.json" with { type: "json" };
 import valibotPackage from "@sjsf/valibot-validator/package.json" with { type: "json" };
 
+import { formPackageName } from "./form.js";
 import {
   peerDependencies,
   type Package,
@@ -77,14 +78,17 @@ export function isInternalValidator(
   return INTERNAL_VALIDATORS_SET.has(validator);
 }
 
-export function validatorPackage(validator: Validator) {
-  if (isInternalValidator(validator)) {
-    return `@sjsf/form/validators/${validator}`;
-  }
-  return EXTERNAL_VALIDATOR_PACKAGES[validator].name;
+export function externalValidatorPackage(
+  validator: ExternalValidator,
+): Package {
+  return EXTERNAL_VALIDATOR_PACKAGES[validator];
 }
 
-export function validatorDependencies(
+export function internalValidatorSubPath(validator: InternalValidator) {
+  return `${formPackageName()}/validators/${validator}`;
+}
+
+export function externalValidatorDependencies(
   validator: ExternalValidator,
   options?: PeerDependenciesOptions,
 ) {

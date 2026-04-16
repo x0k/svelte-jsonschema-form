@@ -1,6 +1,8 @@
 type PeerDependenciesMeta = Record<string, { optional?: boolean }>;
 
 export interface Package {
+  name: string;
+  version: string;
   peerDependencies?: Record<string, string>;
   peerDependenciesMeta?: PeerDependenciesMeta;
 }
