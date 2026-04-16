@@ -7,25 +7,39 @@ import {
   isSubTheme,
   kitDependencies,
   kitPackage,
+  subThemeDependencies,
   themeDependencies,
   themePackage,
   themeParent,
+  type PackageDependency,
 } from "meta";
 
 import type { Context } from "./model.js";
 
 export function dependencies({ sv, options }: Context) {
   const seen = new Set<string>();
-  function addDependency({ name, version }: { name: string; version: string }) {
+  function addDependency({
+    name,
+    version,
+    dev = false,
+  }: {
+    name: string;
+    version: string;
+    dev?: boolean;
+  }) {
     if (seen.has(name)) {
       return;
     }
     seen.add(name);
-    sv.dependency(name, version);
+    if (dev) {
+      sv.devDependency(name, version);
+    } else {
+      sv.dependency(name, version);
+    }
   }
-  function addDependencies(deps: Iterable<[string, string]>) {
-    for (const [name, version] of deps) {
-      addDependency({ name, version });
+  function addDependencies(deps: Iterable<PackageDependency>) {
+    for (const d of deps) {
+      addDependency(d);
     }
   }
   const { themeOrSubTheme, validator, icons, typeInference, sveltekit } =
@@ -36,6 +50,9 @@ export function dependencies({ sv, options }: Context) {
     : themeOrSubTheme;
   addDependency(themePackage(theme));
   addDependencies(themeDependencies(theme));
+  if (isSubTheme(themeOrSubTheme)) {
+    addDependencies(subThemeDependencies(themeOrSubTheme));
+  }
   // Validator
   if (!isInternalValidator(validator)) {
     addDependency(externalValidatorPackage(validator));
@@ -51,7 +68,7 @@ export function dependencies({ sv, options }: Context) {
   }
   // Type inference
   if (typeInference) {
-    addDependency({ name: "json-schema-to-ts", version: "^3.1.0" });
+    addDependency({ name: "json-schema-to-ts", version: "^3.1.0", dev: true });
   }
   // Kit integration
   if (sveltekit !== "no") {

@@ -1,11 +1,25 @@
 type PeerDependenciesMeta = Record<string, { optional?: boolean }>;
 
-export interface Package {
+export interface AbstractPackage {
   name: string;
   version: string;
+}
+
+export interface PackageDependency extends AbstractPackage {
+  optional: boolean;
+  dev: boolean;
+}
+
+export interface Package extends AbstractPackage {
   peerDependencies?: Record<string, string>;
   peerDependenciesMeta?: PeerDependenciesMeta;
 }
+
+const DEV_PACKAGES_REGISTRY = new Set([
+  "@picocss/pico",
+  "json-schema-to-ts",
+  "flowbite",
+]);
 
 function formatPeerDependencyVersion(version: string) {
   return version.replace("workspace:", "").split("||").at(-1)!.trim();
@@ -17,37 +31,47 @@ function createMetaExtractor(peerDependenciesMeta: PeerDependenciesMeta) {
 
 export type PeerDependenciesOptions = boolean | Set<string>;
 
-export function* peerDependencies(
-  { peerDependencies = {}, peerDependenciesMeta = {} }: Package,
+export function* filterPackageDependencies(
+  dependencies: Iterable<PackageDependency>,
   includeOptional: PeerDependenciesOptions = false,
-): Generator<[name: string, version: string]> {
-  const isOptional = createMetaExtractor(peerDependenciesMeta);
+): Iterable<PackageDependency> {
   const isBoolFilter = typeof includeOptional === "boolean";
-  for (const [name, version] of Object.entries(peerDependencies)) {
+  for (const d of dependencies) {
     if (
-      isOptional(name) &&
-      !(isBoolFilter ? includeOptional : includeOptional.has(name))
+      d.optional &&
+      !(isBoolFilter ? includeOptional : includeOptional.has(d.name))
     ) {
       continue;
     }
-    yield [name, formatPeerDependencyVersion(version)];
+    yield d;
   }
 }
 
-export interface PeerDependency {
-  name: string;
-  version: string;
-  optional: boolean;
+export function peerDependencies(
+  { peerDependencies = {}, peerDependenciesMeta = {} }: Package,
+  includeOptional?: PeerDependenciesOptions,
+): Iterable<PackageDependency> {
+  const isOptional = createMetaExtractor(peerDependenciesMeta);
+  return filterPackageDependencies(
+    Object.entries(peerDependencies).map(([name, version]) => ({
+      name,
+      version,
+      optional: isOptional(name),
+      dev: DEV_PACKAGES_REGISTRY.has(name),
+    })),
+    includeOptional,
+  );
 }
 
 export function peerDependenciesMetadata({
   peerDependencies = {},
   peerDependenciesMeta = {},
-}: Package): PeerDependency[] {
+}: Package): Iterable<PackageDependency> {
   const isOptional = createMetaExtractor(peerDependenciesMeta);
   return Object.entries(peerDependencies).map(([name, version]) => ({
     name,
     version: formatPeerDependencyVersion(version),
     optional: isOptional(name),
+    dev: DEV_PACKAGES_REGISTRY.has(name),
   }));
 }
