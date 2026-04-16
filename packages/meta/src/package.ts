@@ -21,10 +21,31 @@ export interface Package extends AbstractPackage {
   dependencies: PackageDependency[];
 }
 
+export const EXTRA_PKG = {
+  ajvFormat: {
+    name: "avj-format",
+    version: "^3.0.0",
+    dev: false,
+  },
+  jsonSchemaToTs: {
+    name: "json-schema-to-ts",
+    version: "^3.0.0",
+    dev: true,
+  },
+} as const satisfies Record<string, AbstractPackage>;
+
+export const OPTIONAL_PKG = {
+  skeletonSvelte: "@skeletonlabs/skeleton-svelte",
+  internationalizedDate: "@internationalized/date",
+  standardSchemaSpec: "@standard-schema/spec",
+  cally: "cally",
+  pikaday: "pikaday",
+};
+
 const DEV_PACKAGES_REGISTRY = new Set([
-  "@picocss/pico",
-  "json-schema-to-ts",
+  "@tailwindcss/forms",
   "flowbite",
+  "@picocss/pico",
 ]);
 
 export function fromPackageJson({
