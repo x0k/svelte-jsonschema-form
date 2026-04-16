@@ -16,7 +16,10 @@ import shadcnPackage from "@sjsf/shadcn4-theme/package.json" with { type: "json"
 import {
   peerDependencies,
   type Package,
+  type AbstractPackage,
+  type PackageDependency,
   type PeerDependenciesOptions,
+  filterPackageDependencies,
 } from "./package.js";
 import type { AtRule, AtRuleOptions } from "./css.js";
 
@@ -119,6 +122,16 @@ const THEME_PACKAGES = {
   skeleton3: skeleton3Package,
 } satisfies Record<Theme, Package>;
 
+const SUB_THEME_DEPENDENCIES: Record<SubTheme, PackageDependency[]> = {
+  pico: [
+    {
+      name: "@picocss/pico",
+      version: "^2.1.0",
+      optional: false,
+    },
+  ],
+};
+
 const THEME_OR_SUB_THEME_AT_RULES: Partial<
   Record<ThemeOrSubTheme, (options: AtRuleOptions) => AtRule[]>
 > = {
@@ -191,6 +204,13 @@ export function themeDependencies(
   options?: PeerDependenciesOptions,
 ) {
   return peerDependencies(THEME_PACKAGES[theme], options);
+}
+
+export function subThemeDependencies(
+  subTheme: SubTheme,
+  options?: PeerDependenciesOptions,
+): Iterable<PackageDependency> {
+  return filterPackageDependencies(SUB_THEME_DEPENDENCIES[subTheme], options);
 }
 
 export function themeOrSubThemeAtRules(
