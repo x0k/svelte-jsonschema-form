@@ -28,7 +28,7 @@ export type SvelteKitIntegrationOption =
   (typeof SVELTE_KIT_INTEGRATION_OPTIONS)[number]["value"];
 
 export const options = defineAddonOptions()
-  .add("theme", {
+  .add("themeOrSubTheme", {
     question: "Theme?",
     type: "select",
     default: "basic" satisfies NonLegacyThemeOrSubTheme,
@@ -42,7 +42,7 @@ export const options = defineAddonOptions()
     question: "Add `shadcn-svelte-extras` components (experimental)?",
     type: "boolean",
     default: false,
-    condition: (o) => o.theme === "shadcn4",
+    condition: (o) => o.themeOrSubTheme === "shadcn4",
   })
   .add("icons", {
     question: "Icons?",
