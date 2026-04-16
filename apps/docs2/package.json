@@ -18,6 +18,7 @@
     "@json-table/core": "^0.3.0",
     "@lucide/svelte": "catalog:",
     "@sjsf-lab/beercss-theme": "workspace:*",
+    "@sjsf-lab/hyperjump-validator": "workspace:*",
     "@sjsf-lab/shadcn-extras-theme": "workspace:*",
     "@sjsf-lab/svar-theme": "workspace:*",
     "@sjsf/ajv8-validator": "workspace:*",

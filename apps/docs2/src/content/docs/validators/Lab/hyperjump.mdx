@@ -8,8 +8,21 @@ sidebar:
 
 import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 
-import inputSchemaCode from '../shared/input-schema.json?raw'
-import compileSchemaCode from './hyperjump/compile-schema-script?raw'
+import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
+
+
+import inputSchemaCode from '../shared/input-schema.json?raw';
+import PrecompiledForm from './hyperjump/form.svelte';
+import precompiledFormCode from './hyperjump/form.svelte?raw';
+import compileSchemaCode from './hyperjump/compile-schema-script?raw';
+import precompiledSchemaCode from './hyperjump/patched-schema?raw';
+
+:::note
+
+This validator works only as precompiled.
+
+:::
 
 ## Installation
 
@@ -29,3 +42,18 @@ import compileSchemaCode from './hyperjump/compile-schema-script?raw'
 ```shell
 node compile-schema-script.ts
 ```
+
+## Usage
+
+<Tabs>
+  <TabItem label="form.svelte">
+    <Code code={precompiledFormCode} lang='svelte' />
+  </TabItem>
+  <TabItem label="patched-schema.ts">
+    <Code code={precompiledSchemaCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+<FormCard>
+  <PrecompiledForm client:only="svelte" />
+</FormCard>
