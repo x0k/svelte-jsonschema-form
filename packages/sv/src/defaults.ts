@@ -3,7 +3,16 @@ import {
   isSubTheme,
   themeParent,
   themePackage,
-  validatorPackage,
+  kitPackageName,
+  formIdBuilderSubPath,
+  kitRemoteFunctionsSubPath,
+  externalValidatorPackage,
+  isInternalValidator,
+  internalValidatorSubPath,
+  formPackageName,
+  formResolverSubPath,
+  formTranslationSubPath,
+  formMergerSubPath,
 } from "meta";
 
 import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
@@ -13,9 +22,9 @@ const SVELTE_KIT_INTEGRATION_OPTION_ID_BUILDERS: Record<
   SvelteKitIntegrationOption,
   string
 > = {
-  no: "@sjsf/form/id-builders/modern",
-  formActions: "@sjsf/sveltekit",
-  remoteFunctions: "@sjsf/sveltekit/rf",
+  no: formIdBuilderSubPath("modern"),
+  formActions: kitPackageName(),
+  remoteFunctions: kitRemoteFunctionsSubPath(),
 };
 
 export function defaultsTs({
@@ -28,11 +37,12 @@ export function defaultsTs({
   sv.file(
     `${directory.lib}/sjsf/defaults.${language}`,
     transforms.script(({ ast, comments, js }) => {
-      const isAjv = options.validator === "ajv8";
+      const validator = options.validator;
+      const isAjv = validator === "ajv8";
 
       if (isAjv && isTs) {
         js.imports.addNamed(ast, {
-          from: "@sjsf/form",
+          from: formPackageName(),
           imports: ["ValidatorFactoryOptions"],
           isType: true,
         });
@@ -40,34 +50,33 @@ export function defaultsTs({
 
       createReExport(ast, {
         name: "resolver",
-        source: "@sjsf/form/resolvers/basic",
+        source: formResolverSubPath("basic"),
       });
       createReExport(ast, {
         name: "translation",
-        source: "@sjsf/from/translations/en",
+        source: formTranslationSubPath("en"),
       });
       createReExport(ast, {
         name: "merger",
         imported: "createFormMerger",
-        source: "@sjsf/form/mergers/modern",
+        source: formMergerSubPath("modern"),
       });
       createReExport(ast, {
         name: "idBuilder",
         imported: "createFormIdBuilder",
         source: SVELTE_KIT_INTEGRATION_OPTION_ID_BUILDERS[options.sveltekit],
       });
+      const theme = isSubTheme(options.themeOrSubTheme)
+        ? themeParent(options.themeOrSubTheme)
+        : options.themeOrSubTheme;
       createReExport(ast, {
         name: "theme",
-        source: themePackage(
-          isSubTheme(options.theme)
-            ? themeParent(options.theme)
-            : options.theme,
-        ),
+        source: themePackage(theme).name,
       });
       if (options.icons !== "none") {
         createReExport(ast, {
           name: "icons",
-          source: iconSetPackage(options.icons),
+          source: iconSetPackage(options.icons).name,
         });
       }
 
@@ -77,7 +86,7 @@ export function defaultsTs({
 
       if (isAjv) {
         js.imports.addNamed(ast, {
-          from: validatorPackage(options.validator),
+          from: externalValidatorPackage(validator).name,
           imports: ["addFormComponents", "createFormValidator"],
         });
         js.imports.addDefault(ast, {
@@ -110,7 +119,9 @@ export const validator = (options) => createFormValidator({
         createReExport(ast, {
           name: "validator",
           imported: "createFormValidator",
-          source: validatorPackage(options.validator),
+          source: isInternalValidator(validator)
+            ? internalValidatorSubPath(validator)
+            : externalValidatorPackage(validator).name,
         });
       }
     }),
