@@ -18,6 +18,7 @@ import {
   type Package,
   type PeerDependenciesOptions,
 } from "./package.js";
+import type { AtRule, AtRuleOptions } from "./css.js";
 
 const ACTUAL_THEMES = [
   "basic",
@@ -80,8 +81,8 @@ for (let i = NON_LEGACY_THEME_OR_SUB_THEMES.length - 1; i >= 0; i--) {
 }
 
 const THEME_TITLES: Record<ThemeOrSubTheme, string> = {
-  basic: "basic",
-  pico: "pico",
+  basic: "Basic",
+  pico: "Pico",
   daisyui: "daisyUI v4",
   daisyui5: "daisyUI v5",
   flowbite: "Flowbite Svelte tw3",
@@ -118,6 +119,45 @@ const THEME_PACKAGES = {
   skeleton3: skeleton3Package,
 } satisfies Record<Theme, Package>;
 
+const THEME_OR_SUB_THEME_AT_RULES: Partial<
+  Record<ThemeOrSubTheme, (options: AtRuleOptions) => AtRule[]>
+> = {
+  basic: () => [
+    {
+      name: "import",
+      params: `${themePackage("basic").name}/css/basic.css`,
+    },
+  ],
+  pico: () => [
+    { name: "import", params: "@picocss/pico/css/pico.css" },
+    { name: "import", params: `${themePackage("basic").name}/css/pico.css` },
+  ],
+  daisyui5: ({ nodeModulesPath }) => [
+    {
+      name: "source",
+      params: `${nodeModulesPath}/${themePackage("daisyui5").name}/dist`,
+    },
+  ],
+  flowbite3: ({ nodeModulesPath }) => [
+    {
+      name: "source",
+      params: `${nodeModulesPath}/${themePackage("flowbite3").name}/dist`,
+    },
+  ],
+  skeleton4: ({ nodeModulesPath }) => [
+    {
+      name: "source",
+      params: `${nodeModulesPath}/${themePackage("skeleton4").name}/dist`,
+    },
+  ],
+  shadcn4: ({ nodeModulesPath }) => [
+    {
+      name: "source",
+      params: `${nodeModulesPath}/${themePackage("shadcn4").name}/dist`,
+    },
+  ],
+};
+
 export function nonLegacyThemeOrSubThemes(): NonLegacyThemeOrSubTheme[] {
   return NON_LEGACY_THEME_OR_SUB_THEMES;
 }
@@ -151,4 +191,11 @@ export function themeDependencies(
   options?: PeerDependenciesOptions,
 ) {
   return peerDependencies(THEME_PACKAGES[theme], options);
+}
+
+export function themeOrSubThemeAtRules(
+  theme: ThemeOrSubTheme,
+  options: AtRuleOptions,
+) {
+  return THEME_OR_SUB_THEME_AT_RULES[theme]?.(options) ?? [];
 }

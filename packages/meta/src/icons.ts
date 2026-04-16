@@ -8,6 +8,7 @@ import {
   type Package,
   type PeerDependenciesOptions,
 } from "./package.js";
+import type { AtRule, AtRuleOptions } from "./css.js";
 
 const ICON_SETS = ["flowbite", "lucide", "moving", "radix"] as const;
 
@@ -29,6 +30,17 @@ const ICON_SET_PACKAGES = {
   radix: radixPackage,
 } satisfies Record<IconSet, Package>;
 
+const ICON_SET_AT_RULES: Partial<
+  Record<IconSet, (options: AtRuleOptions) => AtRule[]>
+> = {
+  flowbite: ({ nodeModulesPath }) => [
+    {
+      name: "source",
+      params: `${nodeModulesPath}/${iconSetPackage("flowbite").name}/dist`,
+    },
+  ],
+};
+
 export function iconSets(): IconSet[] {
   return ICONS;
 }
@@ -46,4 +58,8 @@ export function iconSetDependencies(
   options?: PeerDependenciesOptions,
 ) {
   return peerDependencies(ICON_SET_PACKAGES[iconSet], options);
+}
+
+export function iconSetAtRules(iconSet: IconSet, options: AtRuleOptions) {
+  return ICON_SET_AT_RULES[iconSet]?.(options) ?? [];
 }

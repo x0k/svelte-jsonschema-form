@@ -12,7 +12,9 @@ import {
   iconSetTitle,
 } from "meta";
 
-export const ADDON_ID = "@sjsf/sv";
+import packageJson from "../package.json" with { type: "json" };
+
+const ADDON_ID = packageJson.name;
 
 const SVELTE_KIT_INTEGRATION_OPTIONS = [
   { value: "no", label: "No" },
