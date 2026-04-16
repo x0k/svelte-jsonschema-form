@@ -36,6 +36,8 @@ export function dependencies({ sv, options }: Context) {
   }
   const { themeOrSubTheme, validator, icons, typeInference, sveltekit } =
     options;
+  // Form
+  addDependency(formPackage);
   // Theme
   const themePkg = themePackage(
     isSubTheme(themeOrSubTheme)
