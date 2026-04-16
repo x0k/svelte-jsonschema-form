@@ -1,13 +1,9 @@
-import flowbitePackage from "@sjsf/flowbite-icons/package.json" with { type: "json" };
-import lucidePackage from "@sjsf/lucide-icons/package.json" with { type: "json" };
-import movingPackage from "@sjsf/moving-icons/package.json" with { type: "json" };
-import radixPackage from "@sjsf/radix-icons/package.json" with { type: "json" };
+import _flowbitePackageJson from "@sjsf/flowbite-icons/package.json" with { type: "json" };
+import _lucidePackageJson from "@sjsf/lucide-icons/package.json" with { type: "json" };
+import _movingPackageJson from "@sjsf/moving-icons/package.json" with { type: "json" };
+import _radixPackageJson from "@sjsf/radix-icons/package.json" with { type: "json" };
 
-import {
-  peerDependencies,
-  type Package,
-  type PeerDependenciesOptions,
-} from "./package.js";
+import { fromPackageJson, type Package } from "./package.js";
 import type { AtRule, AtRuleOptions } from "./css.js";
 
 const ICON_SETS = ["flowbite", "lucide", "moving", "radix"] as const;
@@ -24,10 +20,10 @@ const ICON_SET_TITLES: Record<IconSet, string> = {
 };
 
 const ICON_SET_PACKAGES = {
-  flowbite: flowbitePackage,
-  lucide: lucidePackage,
-  moving: movingPackage,
-  radix: radixPackage,
+  flowbite: fromPackageJson(_flowbitePackageJson),
+  lucide: fromPackageJson(_lucidePackageJson),
+  moving: fromPackageJson(_movingPackageJson),
+  radix: fromPackageJson(_radixPackageJson),
 } satisfies Record<IconSet, Package>;
 
 const ICON_SET_AT_RULES: Partial<
@@ -51,13 +47,6 @@ export function iconSetTitle(iconSet: IconSet) {
 
 export function iconSetPackage(iconSet: IconSet): Package {
   return ICON_SET_PACKAGES[iconSet];
-}
-
-export function iconSetDependencies(
-  iconSet: IconSet,
-  options?: PeerDependenciesOptions,
-) {
-  return peerDependencies(ICON_SET_PACKAGES[iconSet], options);
 }
 
 export function iconSetAtRules(iconSet: IconSet, options: AtRuleOptions) {

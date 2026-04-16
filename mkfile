@@ -458,10 +458,10 @@ e/:
 
 meta/:
   pushd packages/meta
-  b:
-    pnpm run build
   c:
     pnpm run check
+  b:
+    pnpm run build
   popd
 
 docs/:

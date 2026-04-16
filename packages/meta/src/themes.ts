@@ -1,25 +1,22 @@
-import basicPackage from "@sjsf/basic-theme/package.json" with { type: "json" };
-import daisyui5Package from "@sjsf/daisyui5-theme/package.json" with { type: "json" };
-import flowbite3Package from "@sjsf/flowbite3-theme/package.json" with { type: "json" };
-import skeleton4Package from "@sjsf/skeleton4-theme/package.json" with { type: "json" };
-import shadcn4Package from "@sjsf/shadcn4-theme/package.json" with { type: "json" };
+import _basicPackageJson from "@sjsf/basic-theme/package.json" with { type: "json" };
+import _daisyui5PackageJson from "@sjsf/daisyui5-theme/package.json" with { type: "json" };
+import _flowbite3PackageJson from "@sjsf/flowbite3-theme/package.json" with { type: "json" };
+import _skeleton4PackageJson from "@sjsf/skeleton4-theme/package.json" with { type: "json" };
+import _shadcn4PackageJson from "@sjsf/shadcn4-theme/package.json" with { type: "json" };
 // Lab
-import shadcnExtrasPackage from "@sjsf-lab/shadcn-extras-theme/package.json" with { type: "json" };
-import svarPackage from "@sjsf-lab/svar-theme/package.json" with { type: "json" };
-import beercssPackage from "@sjsf-lab/beercss-theme/package.json" with { type: "json" };
+import _shadcnExtrasPackageJson from "@sjsf-lab/shadcn-extras-theme/package.json" with { type: "json" };
+import _svarPackageJson from "@sjsf-lab/svar-theme/package.json" with { type: "json" };
+import _beercssPackageJson from "@sjsf-lab/beercss-theme/package.json" with { type: "json" };
 // Legacy
-import daisyuiPackage from "@sjsf/daisyui-theme/package.json" with { type: "json" };
-import flowbitePackage from "@sjsf/flowbite-theme/package.json" with { type: "json" };
-import skeleton3Package from "@sjsf/skeleton3-theme/package.json" with { type: "json" };
-import shadcnPackage from "@sjsf/shadcn4-theme/package.json" with { type: "json" };
+import _daisyuiPackageJson from "@sjsf/daisyui-theme/package.json" with { type: "json" };
+import _flowbitePackageJson from "@sjsf/flowbite-theme/package.json" with { type: "json" };
+import _skeleton3PackageJson from "@sjsf/skeleton3-theme/package.json" with { type: "json" };
+import _shadcnPackageJson from "@sjsf/shadcn4-theme/package.json" with { type: "json" };
 
 import {
-  peerDependencies,
   type Package,
-  type AbstractPackage,
   type PackageDependency,
-  type PeerDependenciesOptions,
-  filterPackageDependencies,
+  fromPackageJson,
 } from "./package.js";
 import type { AtRule, AtRuleOptions } from "./css.js";
 
@@ -108,18 +105,18 @@ const THEME_BRAND = {
 } satisfies Record<ActualTheme, string>;
 
 const THEME_PACKAGES = {
-  basic: basicPackage,
-  daisyui5: daisyui5Package,
-  flowbite3: flowbite3Package,
-  skeleton4: skeleton4Package,
-  shadcn4: shadcn4Package,
-  "shadcn-extras": shadcnExtrasPackage,
-  beercss: beercssPackage,
-  svar: svarPackage,
-  daisyui: daisyuiPackage,
-  flowbite: flowbitePackage,
-  shadcn: shadcnPackage,
-  skeleton3: skeleton3Package,
+  basic: fromPackageJson(_basicPackageJson),
+  daisyui5: fromPackageJson(_daisyui5PackageJson),
+  flowbite3: fromPackageJson(_flowbite3PackageJson),
+  skeleton4: fromPackageJson(_skeleton4PackageJson),
+  shadcn4: fromPackageJson(_shadcn4PackageJson),
+  "shadcn-extras": fromPackageJson(_shadcnExtrasPackageJson),
+  beercss: fromPackageJson(_beercssPackageJson),
+  svar: fromPackageJson(_svarPackageJson),
+  daisyui: fromPackageJson(_daisyuiPackageJson),
+  flowbite: fromPackageJson(_flowbitePackageJson),
+  shadcn: fromPackageJson(_shadcnPackageJson),
+  skeleton3: fromPackageJson(_skeleton3PackageJson),
 } satisfies Record<Theme, Package>;
 
 const SUB_THEME_DEPENDENCIES: Record<SubTheme, PackageDependency[]> = {
@@ -128,6 +125,7 @@ const SUB_THEME_DEPENDENCIES: Record<SubTheme, PackageDependency[]> = {
       name: "@picocss/pico",
       version: "^2.1.0",
       optional: false,
+      dev: true,
     },
   ],
 };
@@ -199,18 +197,10 @@ export function themePackage(theme: Theme): Package {
   return THEME_PACKAGES[theme];
 }
 
-export function themeDependencies(
-  theme: Theme,
-  options?: PeerDependenciesOptions,
-) {
-  return peerDependencies(THEME_PACKAGES[theme], options);
-}
-
 export function subThemeDependencies(
   subTheme: SubTheme,
-  options?: PeerDependenciesOptions,
 ): Iterable<PackageDependency> {
-  return filterPackageDependencies(SUB_THEME_DEPENDENCIES[subTheme], options);
+  return SUB_THEME_DEPENDENCIES[subTheme];
 }
 
 export function themeOrSubThemeAtRules(
