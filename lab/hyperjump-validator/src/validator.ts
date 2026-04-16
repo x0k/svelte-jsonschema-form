@@ -1,43 +1,31 @@
-import type { interpret } from "@hyperjump/json-schema/experimental";
+import {
+  DETAILED,
+  interpret,
+  type AST,
+} from "@hyperjump/json-schema/experimental";
+import { fromJs } from "@hyperjump/json-schema/instance/experimental";
 import type {
-  AsyncFieldValueValidator,
-  AsyncFormValueValidator,
   FieldValueValidator,
+  FormValue,
   FormValueValidator,
   Schema,
   Validator,
 } from "@sjsf/form";
 import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
 
-import {
-  createFormErrorsTransformer,
-  createFieldErrorsTransformer,
-  type ErrorsTransformerOptions,
-  validateAndTransformErrors,
-  validateAndTransformErrorsAsync,
-} from "../errors.js";
-import { CAST_FORM_DATA, NO_FILED_ERRORS } from "../internals.js";
-
-export type CompiledValidateFunction = {
-  (this: Ajv | any, data: any): boolean;
-} & Pick<ValidateFunction, "errors">;
-
-export type ValidateFunctions = {
-  [key: string]: CompiledValidateFunction;
-};
-
+import { transformFormErrors, transformFieldErrors } from "./errors.js";
 export interface ValidatorOptions {
-  validateFunctions: ValidateFunctions;
+  ast: AST;
   augmentSuffix?: string;
 }
 
-function getValidateFunction(
-  {
-    validateFunctions,
-    augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
-  }: ValidatorOptions,
+type HyperjumpJson = Parameters<typeof fromJs>[0];
+
+function validate(
+  { ast, augmentSuffix = DEFAULT_AUGMENT_SUFFIX }: ValidatorOptions,
   { $id: id, allOf }: Schema,
-): ValidateFunction {
+  value: FormValue,
+) {
   if (id === undefined) {
     const firstAllOfItem = allOf?.[0];
     if (
@@ -49,11 +37,14 @@ function getValidateFunction(
       throw new Error("Schema id not found");
     }
   }
-  const validate = validateFunctions[id];
-  if (validate === undefined) {
-    throw new Error(`Validate function with id "${id}" not found`);
-  }
-  return validate as ValidateFunction;
+  return interpret(
+    {
+      ast,
+      schemaUri: `${id}#`,
+    },
+    fromJs(value as HyperjumpJson),
+    DETAILED,
+  );
 }
 
 export function createValidator(options: ValidatorOptions): Validator {
@@ -62,32 +53,22 @@ export function createValidator(options: ValidatorOptions): Validator {
       if (typeof schema === "boolean") {
         return schema;
       }
-      const validate = getValidateFunction(options, schema);
-      try {
-        return validate(formValue);
-      } catch (e) {
-        console.warn("Failed to validate", e);
-        return false;
-      }
+      return validate(options, schema, formValue).valid;
     },
   };
 }
 
-export interface FormValueValidatorOptions
-  extends ValidatorOptions, ErrorsTransformerOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {
+  // merger: () => Merger;
+}
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions,
 ): FormValueValidator<T> {
-  const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
-      return validateAndTransformErrors(
-        getValidateFunction(options, rootSchema),
-        formValue,
-        CAST_FORM_DATA<T>,
-        transformErrors,
-      );
+      const out = validate(options, rootSchema, formValue);
+      return transformFormErrors(formValue, out);
     },
   };
 }
@@ -97,43 +78,8 @@ export function createFieldValueValidator(
 ): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
-      return validateAndTransformErrors(
-        getValidateFunction(options, field.schema),
-        fieldValue,
-        NO_FILED_ERRORS,
-        createFieldErrorsTransformer(field),
-      );
-    },
-  };
-}
-
-export function createAsyncFormValueValidator<T>(
-  options: FormValidatorOptions,
-): AsyncFormValueValidator<T> {
-  const transformErrors = createFormErrorsTransformer(options);
-  return {
-    validateFormValueAsync(_, rootSchema, formValue) {
-      return validateAndTransformErrorsAsync(
-        getValidateFunction(options, rootSchema) as AsyncValidateFunction,
-        formValue,
-        CAST_FORM_DATA<T>,
-        transformErrors,
-      );
-    },
-  };
-}
-
-export function createAsyncFieldValueValidator(
-  options: ValidatorOptions,
-): AsyncFieldValueValidator {
-  return {
-    validateFieldValueAsync(_, field, fieldValue) {
-      return validateAndTransformErrorsAsync(
-        getValidateFunction(options, field.schema) as AsyncValidateFunction,
-        fieldValue,
-        NO_FILED_ERRORS,
-        createFieldErrorsTransformer(field),
-      );
+      const out = validate(options, field.schema, fieldValue);
+      return transformFieldErrors(out);
     },
   };
 }
@@ -141,30 +87,16 @@ export function createAsyncFieldValueValidator(
 export interface FormValidatorOptions
   extends ValidatorOptions, FormValueValidatorOptions {}
 
-export function createFormValidatorFactory(vOptions: ValidatorOptions) {
+export function createFormValidatorFactory<T>(vOptions: ValidatorOptions) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
-    const full = {
+    const full: FormValidatorOptions = {
       ...vOptions,
       ...options,
     };
     return Object.assign(
       createValidator(full),
-      createFormValueValidator(full),
+      createFormValueValidator<T>(full),
       createFieldValueValidator(full),
-    );
-  };
-}
-
-export function createAsyncFormValidatorFactory(vOptions: ValidatorOptions) {
-  return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
-    const full = {
-      ...vOptions,
-      ...options,
-    };
-    return Object.assign(
-      createValidator(full),
-      createAsyncFormValueValidator(full),
-      createAsyncFieldValueValidator(full),
     );
   };
 }
