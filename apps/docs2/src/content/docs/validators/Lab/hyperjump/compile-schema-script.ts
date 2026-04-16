@@ -49,6 +49,7 @@ for (const schema of schemas) {
 const { ast } = await compile(await getSchema(toId(0)));
 
 fs.writeFileSync(
-  path.join(import.meta.dirname, "ast.js"),
-  `export const ast = ${uneval(ast)}`
+  path.join(import.meta.dirname, "ast.ts"),
+  `import type { AST } from "@hyperjump/json-schema/experimental";
+export const ast = ${uneval(ast)} as unknown as AST`
 );
