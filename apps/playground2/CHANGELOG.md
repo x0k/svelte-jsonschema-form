@@ -1,5 +1,11 @@
 # playground2
 
+## 1.6.0
+
+### Minor Changes
+
+- Add `Reset` and `Restore` buttons ([#362](https://github.com/x0k/svelte-jsonschema-form/pull/362))
+
 ## 1.5.0
 
 ### Minor Changes
