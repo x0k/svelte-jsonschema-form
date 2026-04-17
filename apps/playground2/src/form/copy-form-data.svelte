@@ -17,4 +17,4 @@
   }
 </script>
 
-<Button onclick={dumpEntries} size="sm" variant="ghost">Copy Form Data</Button>
+<Button onclick={dumpEntries} size="sm" variant="ghost">Copy FormData</Button>
