@@ -82,6 +82,9 @@
         @apply bg-chart-2/70;
       }
     }
+    [data-tabs-actions] {
+      @apply flex;
+    }
     [data-tabs-content] {
       @apply grow overflow-auto relative;
       &::after {
