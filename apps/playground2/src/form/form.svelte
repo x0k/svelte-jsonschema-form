@@ -17,6 +17,7 @@
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
+  import { isSchemaValueDeepEqual } from "@sjsf/form/core";
   import {
     ON_BLUR,
     ON_CHANGE,
@@ -33,6 +34,7 @@
     SubmitButton,
     type FormValue,
     getValueSnapshot,
+    setValue,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
@@ -127,7 +129,14 @@
     mergeDefaultsIntoFormData: "useFormDataIfPresent",
   };
 
-  const data = $state(router.load(DEFAULT_PLAYGROUND_STATE));
+  let originalInitialValue = $state.raw<FormValue>();
+  const data = $state(
+    (() => {
+      const data = router.load(DEFAULT_PLAYGROUND_STATE);
+      originalInitialValue = data.initialValue;
+      return data;
+    })(),
+  );
 
   debouncedEffect(() => {
     const snap = $state.snapshot(data);
@@ -181,8 +190,6 @@
       ? convert(data.schema as Parameters<typeof convert>[0])
       : data.schema,
   );
-
-  $inspect(finalSchema)
 
   const focusOnFirstError = createFocusOnFirstError();
   const form = createForm({
@@ -301,6 +308,8 @@
   });
 
   const LAYOUT_KEY = "layout";
+  const PREVIEW_TITLE = "Preview";
+  const FORM_DATA_TITLE = "Form Data";
   const saved = localStorage.getItem(LAYOUT_KEY);
   let layout = $state(
     saved
@@ -341,7 +350,7 @@
                           tile: createTabs({
                             actions: "smartActions",
                             tabHeader: "gripHeader",
-                            tabs: [["Form Data", createLeaf("formData")]],
+                            tabs: [[FORM_DATA_TITLE, createLeaf("formData")]],
                           }),
                         },
                       ],
@@ -356,7 +365,7 @@
               tile: createTabs({
                 actions: "smartActions",
                 tabHeader: "gripHeader",
-                tabs: [["Preview", createLeaf("preview")]],
+                tabs: [[PREVIEW_TITLE, createLeaf("preview")]],
               }),
             },
           ],
@@ -371,6 +380,7 @@
   });
 
   const editors: Record<string, Editor<any>> = $state({});
+  const formValueSnapshot = $derived(getValueSnapshot(form));
 </script>
 
 <Header
@@ -391,6 +401,7 @@
   <SamplePicker
     onSelect={(sample) => {
       Object.assign(data, sample);
+      originalInitialValue = sample.initialValue;
     }}
   />
   <Popup>
@@ -498,9 +509,33 @@
 <Panel bind:layout />
 
 {#snippet smartActions(tile: Tiles["tabs"])}
-  {#if tile.titles[tile.selectedTab] === "Preview"}
+  {#if tile.titles[tile.selectedTab] === PREVIEW_TITLE}
     <CopyFormData />
+    <Button
+      onclick={() => {
+        form.reset();
+      }}
+      size="sm"
+      variant="ghost"
+    >
+      Reset
+    </Button>
   {:else}
+    {#if tile.titles[tile.selectedTab] === FORM_DATA_TITLE}
+      <Button
+        onclick={() => {
+          setValue(form, originalInitialValue);
+        }}
+        size="sm"
+        variant="ghost"
+        disabled={isSchemaValueDeepEqual(
+          originalInitialValue,
+          formValueSnapshot,
+        )}
+      >
+        Restore
+      </Button>
+    {/if}
     <Button
       size="sm"
       variant="ghost"
@@ -528,7 +563,7 @@
   <Editor
     bind:this={editors["formData"]}
     bind:value={
-      () => getValueSnapshot(form),
+      () => formValueSnapshot,
       (v) => {
         data.initialValue = v;
       }
