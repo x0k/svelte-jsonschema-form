@@ -17,7 +17,6 @@
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
-  import { isSchemaValueDeepEqual } from "@sjsf/form/core";
   import {
     ON_BLUR,
     ON_CHANGE,
@@ -380,7 +379,6 @@
   });
 
   const editors: Record<string, Editor<any>> = $state({});
-  const formValueSnapshot = $derived(getValueSnapshot(form));
 </script>
 
 <Header
@@ -528,10 +526,6 @@
         }}
         size="sm"
         variant="ghost"
-        disabled={isSchemaValueDeepEqual(
-          originalInitialValue,
-          formValueSnapshot,
-        )}
       >
         Restore
       </Button>
@@ -563,7 +557,7 @@
   <Editor
     bind:this={editors["formData"]}
     bind:value={
-      () => formValueSnapshot,
+      () => getValueSnapshot(form),
       (v) => {
         data.initialValue = v;
       }
