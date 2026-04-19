@@ -1,72 +1,72 @@
-export const extraFields = [
-  {
-    "file": "aggregated",
+export const EXTRA_FIELDS = {
+  "aggregated": {
     "name": "aggregatedField",
+    "filename": "aggregated",
     "wrapperOf": null
   },
-  {
-    "file": "array-files",
+  "array-files": {
     "name": "arrayFilesField",
+    "filename": "array-files",
     "wrapperOf": "files"
   },
-  {
-    "file": "array-native-files",
+  "array-native-files": {
     "name": "arrayNativeFilesField",
+    "filename": "array-native-files",
     "wrapperOf": "native-files"
   },
-  {
-    "file": "array-tags",
+  "array-tags": {
     "name": "arrayTagsField",
+    "filename": "array-tags",
     "wrapperOf": "tags"
   },
-  {
-    "file": "boolean-select",
+  "boolean-select": {
     "name": "booleanSelectField",
+    "filename": "boolean-select",
     "wrapperOf": null
   },
-  {
-    "file": "enum",
+  "enum": {
     "name": "enumField",
+    "filename": "enum",
     "wrapperOf": null
   },
-  {
-    "file": "file",
+  "file": {
     "name": "fileField",
+    "filename": "file",
     "wrapperOf": null
   },
-  {
-    "file": "files",
+  "files": {
     "name": "filesField",
+    "filename": "files",
     "wrapperOf": null
   },
-  {
-    "file": "multi-enum",
+  "multi-enum": {
     "name": "multiEnumField",
+    "filename": "multi-enum",
     "wrapperOf": null
   },
-  {
-    "file": "native-file",
+  "native-file": {
     "name": "nativeFileField",
+    "filename": "native-file",
     "wrapperOf": null
   },
-  {
-    "file": "native-files",
+  "native-files": {
     "name": "nativeFilesField",
+    "filename": "native-files",
     "wrapperOf": null
   },
-  {
-    "file": "remote-enum",
+  "remote-enum": {
     "name": "remoteEnumField",
+    "filename": "remote-enum",
     "wrapperOf": null
   },
-  {
-    "file": "tags",
+  "tags": {
     "name": "tagsField",
+    "filename": "tags",
     "wrapperOf": null
   },
-  {
-    "file": "unknown-native-file",
+  "unknown-native-file": {
     "name": "unknownNativeFileField",
+    "filename": "unknown-native-file",
     "wrapperOf": "native-file"
   }
-] as const
+} as const

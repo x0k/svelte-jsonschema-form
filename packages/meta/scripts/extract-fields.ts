@@ -120,11 +120,14 @@ function analyzeComponent(source: string) {
 }
 
 async function main() {
-  const meta: {
-    name: string;
-    file: string;
-    wrapperOf: string | null;
-  }[] = [];
+  const meta: Record<
+    string,
+    {
+      name: string;
+      filename: string;
+      wrapperOf: string | null;
+    }
+  > = {};
   const dir = path.join(import.meta.dirname, "../../form/src/fields/extra");
   for (const e of await fs.readdir(dir, { withFileTypes: true })) {
     if (!e.isFile() || !e.name.endsWith(".svelte")) {
@@ -133,17 +136,15 @@ async function main() {
     const filepath = path.join(dir, e.name);
     const content = await fs.readFile(filepath, "utf-8");
     const { name, wrapperOf } = analyzeComponent(content);
-    meta.push({
-      file: path.basename(e.name, ".svelte"),
+    const filename = path.basename(e.name, ".svelte");
+    meta[filename] = {
       name,
+      filename,
       wrapperOf,
-    });
+    };
   }
-  const outDir = path.join(
-    import.meta.dirname,
-    "../src/extra-fields.generated.ts",
-  );
-  const output = `export const extraFields = ${JSON.stringify(meta, null, 2)} as const`;
+  const outDir = path.join(import.meta.dirname, "../src/fields.generated.ts");
+  const output = `export const EXTRA_FIELDS = ${JSON.stringify(meta, null, 2)} as const`;
   await fs.writeFile(outDir, output, "utf-8");
 }
 
