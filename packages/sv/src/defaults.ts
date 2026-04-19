@@ -13,6 +13,8 @@ import {
   formMergerSubPath,
   kitPackage,
   formPackage,
+  extraFields,
+  extraFieldSubPath,
 } from "meta";
 
 import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
@@ -48,10 +50,30 @@ export function defaultsTs({
         });
       }
 
-      createReExport(ast, {
+      const resolver = createReExport(ast, {
         name: "resolver",
         source: formResolverSubPath("basic"),
       });
+
+      comments.add(
+        resolver,
+        {
+          type: "Line",
+          value: "\n",
+        },
+        { position: "trailing" },
+      );
+      for (const f of extraFields({ wrappedFields: false })) {
+        comments.add(
+          resolver,
+          {
+            type: "Line",
+            value: ` import "${extraFieldSubPath(f, true)}";\n`,
+          },
+          { position: "trailing" },
+        );
+      }
+
       createReExport(ast, {
         name: "translation",
         source: formTranslationSubPath("en"),

@@ -5,8 +5,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "svelte-package && publint",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "extract-fields": "node scripts/extract-fields.ts",
+    "extract-metadata": "npm run collect-extra-fields",
+    "check": "npm run extract-metadata && svelte-check --tsconfig ./tsconfig.json",
+    "build": "svelte-package && publint"
   },
   "peerDependencies": {
     "svelte": "^5.34.8"
@@ -37,7 +39,6 @@
     "@sjsf/zod4-validator": "workspace:*"
   },
   "devDependencies": {
-    "@types/estree": "^1.0.8",
     "@typescript-eslint/types": "^8.58.0",
     "svelte": "catalog:"
   },

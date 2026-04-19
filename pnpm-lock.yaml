@@ -2099,9 +2099,6 @@ importers:
         specifier: workspace:*
         version: link:../zod4-validator
     devDependencies:
-      '@types/estree':
-        specifier: ^1.0.8
-        version: 1.0.8
       '@typescript-eslint/types':
         specifier: ^8.58.0
         version: 8.58.0
