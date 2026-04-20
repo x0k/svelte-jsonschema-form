@@ -3,8 +3,8 @@ import _lucidePackageJson from "@sjsf/lucide-icons/package.json" with { type: "j
 import _movingPackageJson from "@sjsf/moving-icons/package.json" with { type: "json" };
 import _radixPackageJson from "@sjsf/radix-icons/package.json" with { type: "json" };
 
-import { fromPackageJson, type Package } from "./package.js";
-import type { AtRule, AtRuleOptions } from "./css.js";
+import { fromPackageJson, type Package } from "./package.ts";
+import type { AtRule, AtRuleOptions } from "./css.ts";
 
 const ICON_SETS = ["flowbite", "lucide", "moving", "radix"] as const;
 

@@ -69,4 +69,4 @@ export const EXTRA_FIELDS = {
     "filename": "unknown-native-file",
     "wrapperOf": "native-file"
   }
-} as const
+} as const;

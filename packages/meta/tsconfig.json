@@ -5,6 +5,7 @@
     "moduleResolution": "nodenext",
     "outDir": "dist",
     "rootDir": "src",
+    "rewriteRelativeImportExtensions": true
   },
   "include": [
     "src/**/*.ts",

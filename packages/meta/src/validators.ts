@@ -4,8 +4,8 @@ import _schemasafePackageJson from "@sjsf/schemasafe-validator/package.json" wit
 import _zod4PackageJson from "@sjsf/zod4-validator/package.json" with { type: "json" };
 import _valibotPackageJson from "@sjsf/valibot-validator/package.json" with { type: "json" };
 
-import { type Package, fromPackageJson } from "./package.js";
-import { formPackage } from "./form.js";
+import { type Package, fromPackageJson } from "./package.ts";
+import { formPackage } from "./form.ts";
 
 const JSON_SCHEMA_VALIDATORS = ["ajv8", "cfworker", "schemasafe"] as const;
 

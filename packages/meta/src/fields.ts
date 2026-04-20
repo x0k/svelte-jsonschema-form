@@ -1,5 +1,5 @@
-import { EXTRA_FIELDS } from "./fields.generated.js";
-import { formPackage } from "./form.js";
+import { EXTRA_FIELDS } from "./fields.generated.ts";
+import { formPackage } from "./form.ts";
 
 type ExtraFields = typeof EXTRA_FIELDS;
 

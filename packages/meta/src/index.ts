@@ -1,9 +1,9 @@
-export * from "./css.js";
-export * from "./package.js";
+export * from "./css.ts";
+export * from "./package.ts";
 
-export * from "./form.js";
-export * from "./validators.js";
-export * from "./themes.js";
-export * from "./icons.js";
-export * from "./kit.js";
-export * from "./fields.js";
+export * from "./form.ts";
+export * from "./validators.ts";
+export * from "./themes.ts";
+export * from "./icons.ts";
+export * from "./kit.ts";
+export * from "./fields.ts";

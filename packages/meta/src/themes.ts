@@ -17,8 +17,8 @@ import {
   type Package,
   type PackageDependency,
   fromPackageJson,
-} from "./package.js";
-import type { AtRule, AtRuleOptions } from "./css.js";
+} from "./package.ts";
+import type { AtRule, AtRuleOptions } from "./css.ts";
 
 const ACTUAL_THEMES = [
   "basic",
@@ -169,7 +169,11 @@ const THEME_OR_SUB_THEME_AT_RULES: Partial<
   ],
 };
 
-export function nonLegacyThemeOrSubThemes(): NonLegacyThemeOrSubTheme[] {
+export function nonLegacyThemes(): ReadonlyArray<NonLegacyTheme> {
+  return NON_LEGACY_THEMES;
+}
+
+export function nonLegacyThemeOrSubThemes(): ReadonlyArray<NonLegacyThemeOrSubTheme> {
   return NON_LEGACY_THEME_OR_SUB_THEMES;
 }
 

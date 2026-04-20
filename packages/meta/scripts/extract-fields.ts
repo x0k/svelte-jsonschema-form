@@ -4,6 +4,8 @@ import path from "node:path";
 import type { TSESTree } from "@typescript-eslint/types";
 import { parse } from "svelte/compiler";
 
+import { resolveComponentName, extractComponentPropsIndex } from "./analyze.ts";
+
 function collectModuleConstants(
   moduleAst: TSESTree.Program,
 ): Map<string, string> {
@@ -26,51 +28,6 @@ function collectModuleConstants(
   return map;
 }
 
-function extractComponentPropsIndex(code: string): string | null {
-  const start = code.indexOf("ComponentProps[");
-  if (start === -1) return null;
-
-  let i = start + "ComponentProps[".length;
-  let depth = 1;
-  let result = "";
-
-  while (i < code.length) {
-    const char = code[i];
-
-    if (char === "[") depth++;
-    else if (char === "]") depth--;
-
-    if (depth === 0) break;
-
-    result += char;
-    i++;
-  }
-
-  return result.trim() || null;
-}
-
-function resolveComponentName(
-  raw: string,
-  moduleConstants: Map<string, string>,
-): string | null {
-  // "arrayFilesField"
-  if (raw.startsWith('"') || raw.startsWith("'")) {
-    try {
-      return JSON.parse(raw);
-    } catch {
-      return raw.slice(1, -1);
-    }
-  }
-
-  // typeof field
-  const typeofMatch = raw.match(/^typeof\s+(\w+)$/);
-  if (typeofMatch) {
-    return moduleConstants.get(typeofMatch[1]!) ?? null;
-  }
-
-  return null;
-}
-
 function getWrappedComponent(instanceAst: TSESTree.Program): string | null {
   for (const node of instanceAst.body) {
     if (node.type !== "ImportDeclaration") continue;
@@ -88,25 +45,27 @@ function getWrappedComponent(instanceAst: TSESTree.Program): string | null {
   return null;
 }
 
-function analyzeComponent(source: string) {
+async function analyzeComponent(filepath: string) {
+  const source = await fs.readFile(filepath, "utf-8");
   const ast = parse(source, { modern: true });
 
   if (ast.instance === null) {
-    throw new Error("Unexpected component without instance script");
+    throw new Error(
+      `Unexpected component without instance script "${filepath}"`,
+    );
   }
 
   const constants = ast.module
     ? collectModuleConstants(ast.module.content as TSESTree.Program)
-    : new Map();
+    : undefined;
 
   const instanceContent = source.slice(ast.instance.start, ast.instance.end);
   const componentPropsValue = extractComponentPropsIndex(instanceContent);
-  const name = componentPropsValue
-    ? resolveComponentName(componentPropsValue, constants)
-    : null;
+  const name =
+    componentPropsValue && resolveComponentName(componentPropsValue, constants);
 
-  if (name === null) {
-    throw new Error("Failed to detect component name");
+  if (!name) {
+    throw new Error(`Failed to detect component name for "${filepath}"`);
   }
 
   const wrapperOf = getWrappedComponent(
@@ -134,8 +93,7 @@ async function main() {
       continue;
     }
     const filepath = path.join(dir, e.name);
-    const content = await fs.readFile(filepath, "utf-8");
-    const { name, wrapperOf } = analyzeComponent(content);
+    const { name, wrapperOf } = await analyzeComponent(filepath);
     const filename = path.basename(e.name, ".svelte");
     meta[filename] = {
       name,
@@ -143,9 +101,9 @@ async function main() {
       wrapperOf,
     };
   }
-  const outDir = path.join(import.meta.dirname, "../src/fields.generated.ts");
-  const output = `export const EXTRA_FIELDS = ${JSON.stringify(meta, null, 2)} as const`;
-  await fs.writeFile(outDir, output, "utf-8");
+  const outPath = path.join(import.meta.dirname, "../src/fields.generated.ts");
+  const output = `export const EXTRA_FIELDS = ${JSON.stringify(meta, null, 2)} as const;`;
+  await fs.writeFile(outPath, output, "utf-8");
 }
 
 await main();

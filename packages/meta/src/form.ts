@@ -1,6 +1,6 @@
 import _packageJson from "@sjsf/form/package.json" with { type: "json" };
 
-import { fromPackageJson } from "./package.js";
+import { fromPackageJson } from "./package.ts";
 
 export const formPackage = fromPackageJson(_packageJson);
 
