@@ -10,6 +10,8 @@ import {
   type NonLegacyThemeOrSubTheme,
   iconSets,
   iconSetTitle,
+  isThemeExtension,
+  themeExtensionOrigin,
 } from "meta";
 
 import packageJson from "../package.json" with { type: "json" };
@@ -36,15 +38,11 @@ export const options = defineAddonOptions()
     default: "basic" satisfies NonLegacyThemeOrSubTheme,
     options: nonLegacyThemeOrSubThemes().map((t) => ({
       value: t,
-      label: themeTitle(t),
+      label: isThemeExtension(t)
+        ? `${themeTitle(themeExtensionOrigin(t))} & ${themeTitle(t)}`
+        : themeTitle(t),
       hint: isLabTheme(t) ? "experimental" : undefined,
     })),
-  })
-  .add("shadcnExtras", {
-    question: "Add `shadcn-svelte-extras` components (experimental)?",
-    type: "boolean",
-    default: false,
-    condition: (o) => o.themeOrSubTheme === "shadcn4",
   })
   .add("icons", {
     question: "Icons?",

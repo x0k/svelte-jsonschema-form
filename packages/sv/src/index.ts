@@ -5,6 +5,7 @@ import { options, type Context } from "./model.js";
 import { defaultsTs } from "./defaults.js";
 import { dependencies } from "./dependencies.js";
 import { appCss } from "./styles.js";
+import { shadcnTs } from "./shadcn.js";
 
 export default defineAddon({
   id: "@sjsf/sv",
@@ -27,6 +28,7 @@ export default defineAddon({
 
     dependencies(ctx);
     defaultsTs(ctx);
+    shadcnTs(ctx);
     appCss(ctx);
   },
 });
