@@ -3,13 +3,8 @@ import fs from "node:fs/promises";
 
 import { extractComponentPropsIndex, resolveComponentName } from "./analyze.ts";
 
-interface WidgetMeta {
-  filename: string;
-  name: string;
-}
-
 async function extractExtraWidgets(extraWidgetsDir: string) {
-  const components: WidgetMeta[] = [];
+  const widgets: Record<string, string> = {};
   for (const e of await fs.readdir(extraWidgetsDir, { withFileTypes: true })) {
     if (!e.isFile() || !e.name.endsWith(".svelte")) {
       continue;
@@ -25,24 +20,23 @@ async function extractExtraWidgets(extraWidgetsDir: string) {
         `Failed to detect component name for "${widgetFilepath}"`,
       );
     }
-    components.push({
-      name,
-      filename: path.basename(e.name, ".svelte"),
-    });
+    widgets[path.basename(e.name, ".svelte")] = name;
   }
-  return components;
+  return widgets;
 }
 
 async function main() {
   const packagesDir = path.join(import.meta.dirname, "../..");
   const labDir = path.join(import.meta.dirname, "../../../lab");
-  const libs: Record<string, WidgetMeta[]> = {};
+  const legacyDir = path.join(import.meta.dirname, "../../../legacy");
+  const libs: Record<string, Record<string, string>> = {};
   const THEME_SUFFIX = "-theme";
 
   for (const e of (
     await Promise.all([
       fs.readdir(packagesDir, { withFileTypes: true }),
       fs.readdir(labDir, { withFileTypes: true }),
+      fs.readdir(legacyDir, { withFileTypes: true }),
     ])
   ).flat()) {
     if (!e.isDirectory() || !e.name.endsWith(THEME_SUFFIX)) {

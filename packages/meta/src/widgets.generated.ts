@@ -1,358 +1,152 @@
 export const EXTRA_WIDGETS = {
-  "basic": [
-    {
-      "name": "checkboxesWidget",
-      "filename": "checkboxes"
-    },
-    {
-      "name": "datePickerWidget",
-      "filename": "date-picker"
-    },
-    {
-      "name": "fileWidget",
-      "filename": "file"
-    },
-    {
-      "name": "multiSelectWidget",
-      "filename": "multi-select"
-    },
-    {
-      "name": "radioWidget",
-      "filename": "radio"
-    },
-    {
-      "name": "rangeWidget",
-      "filename": "range"
-    },
-    {
-      "name": "textareaWidget",
-      "filename": "textarea"
-    }
-  ],
-  "daisyui5": [
-    {
-      "name": "daisyui5CallyDatePickerWidget",
-      "filename": "cally-date-picker"
-    },
-    {
-      "name": "checkboxesWidget",
-      "filename": "checkboxes"
-    },
-    {
-      "name": "datePickerWidget",
-      "filename": "date-picker"
-    },
-    {
-      "name": "fileWidget",
-      "filename": "file"
-    },
-    {
-      "name": "daisyui5FilterRadioButtonsWidget",
-      "filename": "filter-radio-buttons"
-    },
-    {
-      "name": "multiSelectWidget",
-      "filename": "multi-select"
-    },
-    {
-      "name": "radioButtonsWidget",
-      "filename": "radio-buttons"
-    },
-    {
-      "name": "radioWidget",
-      "filename": "radio"
-    },
-    {
-      "name": "rangeWidget",
-      "filename": "range"
-    },
-    {
-      "name": "ratingWidget",
-      "filename": "rating"
-    },
-    {
-      "name": "switchWidget",
-      "filename": "switch"
-    },
-    {
-      "name": "textareaWidget",
-      "filename": "textarea"
-    }
-  ],
-  "flowbite3": [
-    {
-      "name": "checkboxesWidget",
-      "filename": "checkboxes"
-    },
-    {
-      "name": "datePickerWidget",
-      "filename": "date-picker"
-    },
-    {
-      "name": "dateRangePickerWidget",
-      "filename": "date-range-picker"
-    },
-    {
-      "name": "fileWidget",
-      "filename": "file"
-    },
-    {
-      "name": "multiSelectWidget",
-      "filename": "multi-select"
-    },
-    {
-      "name": "radioButtonsWidget",
-      "filename": "radio-buttons"
-    },
-    {
-      "name": "radioWidget",
-      "filename": "radio"
-    },
-    {
-      "name": "rangeWidget",
-      "filename": "range"
-    },
-    {
-      "name": "switchWidget",
-      "filename": "switch"
-    },
-    {
-      "name": "tagsWidget",
-      "filename": "tags"
-    },
-    {
-      "name": "textareaWidget",
-      "filename": "textarea"
-    },
-    {
-      "name": "flowbite3ToggleRadioButtonsWidget",
-      "filename": "toggle-radio-buttons"
-    }
-  ],
-  "shadcn4": [
-    {
-      "name": "checkboxesWidget",
-      "filename": "checkboxes"
-    },
-    {
-      "name": "comboboxWidget",
-      "filename": "combobox"
-    },
-    {
-      "name": "datePickerWidget",
-      "filename": "date-picker"
-    },
-    {
-      "name": "dateRangePickerWidget",
-      "filename": "date-range-picker"
-    },
-    {
-      "name": "fileWidget",
-      "filename": "file"
-    },
-    {
-      "name": "multiSelectWidget",
-      "filename": "multi-select"
-    },
-    {
-      "name": "radioButtonsWidget",
-      "filename": "radio-buttons"
-    },
-    {
-      "name": "radioWidget",
-      "filename": "radio"
-    },
-    {
-      "name": "rangeSliderWidget",
-      "filename": "range-slider"
-    },
-    {
-      "name": "rangeWidget",
-      "filename": "range"
-    },
-    {
-      "name": "switchWidget",
-      "filename": "switch"
-    },
-    {
-      "name": "textareaWidget",
-      "filename": "textarea"
-    }
-  ],
-  "skeleton4": [
-    {
-      "name": "checkboxesWidget",
-      "filename": "checkboxes"
-    },
-    {
-      "name": "comboboxWidget",
-      "filename": "combobox"
-    },
-    {
-      "name": "datePickerWidget",
-      "filename": "date-picker"
-    },
-    {
-      "name": "dateRangePickerWidget",
-      "filename": "date-range-picker"
-    },
-    {
-      "name": "skeleton4FileUploadWidget",
-      "filename": "file-upload"
-    },
-    {
-      "name": "fileWidget",
-      "filename": "file"
-    },
-    {
-      "name": "multiSelectWidget",
-      "filename": "multi-select"
-    },
-    {
-      "name": "radioButtonsWidget",
-      "filename": "radio-buttons"
-    },
-    {
-      "name": "radioWidget",
-      "filename": "radio"
-    },
-    {
-      "name": "rangeSliderWidget",
-      "filename": "range-slider"
-    },
-    {
-      "name": "rangeWidget",
-      "filename": "range"
-    },
-    {
-      "name": "ratingWidget",
-      "filename": "rating"
-    },
-    {
-      "name": "skeleton4SliderWidget",
-      "filename": "slider"
-    },
-    {
-      "name": "switchWidget",
-      "filename": "switch"
-    },
-    {
-      "name": "tagsWidget",
-      "filename": "tags"
-    },
-    {
-      "name": "textareaWidget",
-      "filename": "textarea"
-    }
-  ],
-  "beercss": [
-    {
-      "name": "checkboxesWidget",
-      "filename": "checkboxes"
-    },
-    {
-      "name": "datePickerWidget",
-      "filename": "date-picker"
-    },
-    {
-      "name": "fileWidget",
-      "filename": "file"
-    },
-    {
-      "name": "radioWidget",
-      "filename": "radio"
-    },
-    {
-      "name": "rangeWidget",
-      "filename": "range"
-    },
-    {
-      "name": "switchWidget",
-      "filename": "switch"
-    },
-    {
-      "name": "textareaWidget",
-      "filename": "textarea"
-    }
-  ],
-  "shadcn-extras": [
-    {
-      "name": "shadcnExtrasFileDropZoneWidget",
-      "filename": "file-drop-zone"
-    },
-    {
-      "name": "shadcnExtrasIPv4AddressInputWidget",
-      "filename": "ip-v4-address-input"
-    },
-    {
-      "name": "shadcnExtrasNLPDateInputWidget",
-      "filename": "nlp-date-input"
-    },
-    {
-      "name": "shadcnExtrasPasswordWidget",
-      "filename": "password"
-    },
-    {
-      "name": "shadcnExtrasPhoneInputWidget",
-      "filename": "phone-input"
-    },
-    {
-      "name": "shadcnExtrasStarRatingWidget",
-      "filename": "star-rating"
-    },
-    {
-      "name": "shadcnExtrasTagsInputWidget",
-      "filename": "tags-input"
-    }
-  ],
-  "svar": [
-    {
-      "name": "checkboxesWidget",
-      "filename": "checkboxes"
-    },
-    {
-      "name": "svarColorPickerWidget",
-      "filename": "color-picker"
-    },
-    {
-      "name": "svarColorSelectWidget",
-      "filename": "color-select"
-    },
-    {
-      "name": "comboboxWidget",
-      "filename": "combobox"
-    },
-    {
-      "name": "datePickerWidget",
-      "filename": "date-picker"
-    },
-    {
-      "name": "dateRangePickerWidget",
-      "filename": "date-range-picker"
-    },
-    {
-      "name": "multiSelectWidget",
-      "filename": "multi-select"
-    },
-    {
-      "name": "radioButtonsWidget",
-      "filename": "radio-buttons"
-    },
-    {
-      "name": "radioWidget",
-      "filename": "radio"
-    },
-    {
-      "name": "rangeWidget",
-      "filename": "range"
-    },
-    {
-      "name": "switchWidget",
-      "filename": "switch"
-    },
-    {
-      "name": "textareaWidget",
-      "filename": "textarea"
-    }
-  ]
+  "basic": {
+    "checkboxes": "checkboxesWidget",
+    "date-picker": "datePickerWidget",
+    "file": "fileWidget",
+    "multi-select": "multiSelectWidget",
+    "radio": "radioWidget",
+    "range": "rangeWidget",
+    "textarea": "textareaWidget"
+  },
+  "daisyui5": {
+    "cally-date-picker": "daisyui5CallyDatePickerWidget",
+    "checkboxes": "checkboxesWidget",
+    "date-picker": "datePickerWidget",
+    "file": "fileWidget",
+    "filter-radio-buttons": "daisyui5FilterRadioButtonsWidget",
+    "multi-select": "multiSelectWidget",
+    "radio-buttons": "radioButtonsWidget",
+    "radio": "radioWidget",
+    "range": "rangeWidget",
+    "rating": "ratingWidget",
+    "switch": "switchWidget",
+    "textarea": "textareaWidget"
+  },
+  "flowbite3": {
+    "checkboxes": "checkboxesWidget",
+    "date-picker": "datePickerWidget",
+    "date-range-picker": "dateRangePickerWidget",
+    "file": "fileWidget",
+    "multi-select": "multiSelectWidget",
+    "radio-buttons": "radioButtonsWidget",
+    "radio": "radioWidget",
+    "range": "rangeWidget",
+    "switch": "switchWidget",
+    "tags": "tagsWidget",
+    "textarea": "textareaWidget",
+    "toggle-radio-buttons": "flowbite3ToggleRadioButtonsWidget"
+  },
+  "shadcn4": {
+    "checkboxes": "checkboxesWidget",
+    "combobox": "comboboxWidget",
+    "date-picker": "datePickerWidget",
+    "date-range-picker": "dateRangePickerWidget",
+    "file": "fileWidget",
+    "multi-select": "multiSelectWidget",
+    "radio-buttons": "radioButtonsWidget",
+    "radio": "radioWidget",
+    "range-slider": "rangeSliderWidget",
+    "range": "rangeWidget",
+    "switch": "switchWidget",
+    "textarea": "textareaWidget"
+  },
+  "skeleton4": {
+    "checkboxes": "checkboxesWidget",
+    "combobox": "comboboxWidget",
+    "date-picker": "datePickerWidget",
+    "date-range-picker": "dateRangePickerWidget",
+    "file-upload": "skeleton4FileUploadWidget",
+    "file": "fileWidget",
+    "multi-select": "multiSelectWidget",
+    "radio-buttons": "radioButtonsWidget",
+    "radio": "radioWidget",
+    "range-slider": "rangeSliderWidget",
+    "range": "rangeWidget",
+    "rating": "ratingWidget",
+    "slider": "skeleton4SliderWidget",
+    "switch": "switchWidget",
+    "tags": "tagsWidget",
+    "textarea": "textareaWidget"
+  },
+  "beercss": {
+    "checkboxes": "checkboxesWidget",
+    "date-picker": "datePickerWidget",
+    "file": "fileWidget",
+    "radio": "radioWidget",
+    "range": "rangeWidget",
+    "switch": "switchWidget",
+    "textarea": "textareaWidget"
+  },
+  "shadcn-extras": {
+    "file-drop-zone": "shadcnExtrasFileDropZoneWidget",
+    "ip-v4-address-input": "shadcnExtrasIPv4AddressInputWidget",
+    "nlp-date-input": "shadcnExtrasNLPDateInputWidget",
+    "password": "shadcnExtrasPasswordWidget",
+    "phone-input": "shadcnExtrasPhoneInputWidget",
+    "star-rating": "shadcnExtrasStarRatingWidget",
+    "tags-input": "shadcnExtrasTagsInputWidget"
+  },
+  "svar": {
+    "checkboxes": "checkboxesWidget",
+    "color-picker": "svarColorPickerWidget",
+    "color-select": "svarColorSelectWidget",
+    "combobox": "comboboxWidget",
+    "date-picker": "datePickerWidget",
+    "date-range-picker": "dateRangePickerWidget",
+    "multi-select": "multiSelectWidget",
+    "radio-buttons": "radioButtonsWidget",
+    "radio": "radioWidget",
+    "range": "rangeWidget",
+    "switch": "switchWidget",
+    "textarea": "textareaWidget"
+  },
+  "daisyui": {
+    "checkboxes": "checkboxesWidget",
+    "date-picker": "datePickerWidget",
+    "file": "fileWidget",
+    "multi-select": "multiSelectWidget",
+    "radio-buttons": "radioWidget",
+    "radio": "radioWidget",
+    "range": "rangeWidget",
+    "switch": "switchWidget",
+    "textarea": "textareaWidget"
+  },
+  "flowbite": {
+    "checkboxes": "checkboxesWidget",
+    "date-picker": "datePickerWidget",
+    "file": "fileWidget",
+    "multi-select": "multiSelectWidget",
+    "radio": "radioWidget",
+    "range": "rangeWidget",
+    "switch": "switchWidget",
+    "textarea": "textareaWidget"
+  },
+  "shadcn": {
+    "checkboxes": "checkboxesWidget",
+    "combobox": "selectWidget",
+    "date-picker": "datePickerWidget",
+    "file": "fileWidget",
+    "multi-select": "multiSelectWidget",
+    "radio-buttons": "radioButtonsWidget",
+    "radio": "radioWidget",
+    "range": "rangeWidget",
+    "switch": "switchWidget",
+    "textarea": "textareaWidget"
+  },
+  "skeleton3": {
+    "checkboxes": "checkboxesWidget",
+    "combobox": "comboboxWidget",
+    "date-picker": "datePickerWidget",
+    "file-upload": "skeleton3FileUploadWidget",
+    "file": "fileWidget",
+    "multi-select": "multiSelectWidget",
+    "radio-buttons": "radioButtonsWidget",
+    "radio": "radioWidget",
+    "range": "rangeWidget",
+    "rating": "ratingWidget",
+    "slider": "skeleton3SliderWidget",
+    "switch": "switchWidget",
+    "tags": "tagsWidget",
+    "textarea": "textareaWidget"
+  }
 } as const;

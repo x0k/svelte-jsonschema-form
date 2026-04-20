@@ -7,3 +7,4 @@ export * from "./themes.ts";
 export * from "./icons.ts";
 export * from "./kit.ts";
 export * from "./fields.ts";
+export * from "./widgets.ts";
