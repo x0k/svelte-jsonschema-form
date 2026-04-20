@@ -20,6 +20,7 @@ import {
   themeExtraWidgetSubPath,
   isThemeExtension,
   themeExtensionOrigin,
+  formCoreSubpath,
 } from "meta";
 
 import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
@@ -65,14 +66,50 @@ export function defaultsTs({
         });
       }
 
-      const resolver = createReExport(ast, {
-        name: "resolver",
-        source: formResolverSubPath("basic"),
-      });
-
-      appendComment(resolver, "\n");
-      for (const f of extraFields({ wrappedFields: false })) {
-        appendComment(resolver, ` import "${extraFieldSubPath(f, true)}";\n`);
+      if (!getTopLevelFunction(ast, "resolver")) {
+        js.imports.addNamed(ast, {
+          imports: ["getSimpleSchemaType", "isFixedItems"],
+          from: formCoreSubpath,
+        });
+        if (isTs) {
+          js.imports.addNamed(ast, {
+            imports: ["FormState", "ResolveFieldType"],
+            from: formPackage.name,
+            isType: true,
+          });
+        }
+        const extraFieldImports: string[] = [];
+        for (const f of extraFields({ wrappedFields: false })) {
+          extraFieldImports.push(`// import "${extraFieldSubPath(f, true)}";`);
+        }
+        const resolverCode =
+          `// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/\n` +
+          (isTs
+            ? `function resolver<T>(_ctx: FormState<T>): ResolveFieldType {`
+            : `/**
+ * @template T
+ * @param {import("@sjsf/form").FormState<T>} ctx
+ * @returns {import("@sjsf/form").ResolveFieldType}
+ */
+function resolver(_ctx) {`) +
+          `\n  return ({ schema }) => {
+    if (schema.oneOf !== undefined) {
+      return "oneOfField";
+    }
+    if (schema.anyOf !== undefined) {
+      return "anyOfField";
+    }
+    const type = getSimpleSchemaType(schema);
+    if (type === "array") {
+      return isFixedItems(schema) ? "tupleField" : "arrayField";
+    }
+    return \`\${type}Field\`;
+  };
+}\n${extraFieldImports.join("\n")}\nexport { resolver };`;
+        js.common.appendFromString(ast, {
+          code: resolverCode,
+          comments,
+        });
       }
 
       createReExport(ast, {

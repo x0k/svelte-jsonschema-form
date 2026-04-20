@@ -4,6 +4,8 @@ import { fromPackageJson } from "./package.ts";
 
 export const formPackage = fromPackageJson(_packageJson);
 
+export const formCoreSubpath = `${formPackage.name}/core`;
+
 const ID_BUILDERS = ["legacy", "modern"] as const;
 
 export type IdBuilder = (typeof ID_BUILDERS)[number];
