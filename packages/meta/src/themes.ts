@@ -42,6 +42,16 @@ const LAB_THEMES_SET = new Set<string>(LAB_THEMES);
 
 export type Theme = ActualTheme | LegacyTheme | LabTheme;
 
+const THEME_EXTENSION = ["shadcn-extras"] as const satisfies Theme[];
+
+export type ThemeExtension = (typeof THEME_EXTENSION)[number];
+
+const THEME_EXTENSION_SET = new Set<string>(THEME_EXTENSION);
+
+const THEME_EXTENSION_ORIGINS: Record<ThemeExtension, Theme> = {
+  "shadcn-extras": "shadcn4",
+};
+
 const THEME_SUB_THEMES = {
   basic: ["pico"],
 } as const satisfies Partial<Record<Theme, string[]>>;
@@ -179,6 +189,14 @@ export function nonLegacyThemeOrSubThemes(): ReadonlyArray<NonLegacyThemeOrSubTh
 
 export function isLabTheme(theme: string): theme is LabTheme {
   return LAB_THEMES_SET.has(theme);
+}
+
+export function isThemeExtension(theme: string): theme is ThemeExtension {
+  return THEME_EXTENSION_SET.has(theme);
+}
+
+export function themeExtensionOrigin(extension: ThemeExtension): Theme {
+  return THEME_EXTENSION_ORIGINS[extension];
 }
 
 export function isSubTheme(theme: string): theme is SubTheme {

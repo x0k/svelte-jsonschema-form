@@ -2346,6 +2346,9 @@ importers:
       '@sveltejs/sv-utils':
         specifier: ^0.2.0
         version: 0.2.0
+      '@types/estree':
+        specifier: ^1.0.8
+        version: 1.0.8
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0

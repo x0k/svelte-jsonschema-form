@@ -8,13 +8,13 @@ type ExtraWidgetFileNames = {
   [T in Theme]: keyof ExtraWidgets[T] & string;
 };
 
-export function* themeExtraWidgets<T extends Theme>(
+export function themeExtraWidgets<T extends Theme>(
   theme: T,
 ): Iterable<ExtraWidgetFileNames[T]> {
-  return Object.keys(EXTRA_WIDGETS[theme]);
+  return Object.keys(EXTRA_WIDGETS[theme]) as Iterable<ExtraWidgetFileNames[T]>;
 }
 
-export function extraWidgetSubPath<T extends Theme>(
+export function themeExtraWidgetSubPath<T extends Theme>(
   theme: T,
   widget: ExtraWidgetFileNames[T],
   include = false,

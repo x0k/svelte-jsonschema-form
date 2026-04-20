@@ -1,3 +1,4 @@
+import type { BaseNode } from "estree";
 import {
   iconSetPackage,
   isSubTheme,
@@ -15,6 +16,10 @@ import {
   formPackage,
   extraFields,
   extraFieldSubPath,
+  themeExtraWidgets,
+  themeExtraWidgetSubPath,
+  isThemeExtension,
+  themeExtensionOrigin,
 } from "meta";
 
 import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
@@ -42,6 +47,16 @@ export function defaultsTs({
       const validator = options.validator;
       const isAjv = validator === "ajv8";
 
+      const appendComment = (node: BaseNode, content: string) =>
+        comments.add(
+          node,
+          {
+            type: "Line",
+            value: content,
+          },
+          { position: "trailing" },
+        );
+
       if (isAjv && isTs) {
         js.imports.addNamed(ast, {
           from: formPackage.name,
@@ -55,23 +70,9 @@ export function defaultsTs({
         source: formResolverSubPath("basic"),
       });
 
-      comments.add(
-        resolver,
-        {
-          type: "Line",
-          value: "\n",
-        },
-        { position: "trailing" },
-      );
+      appendComment(resolver, "\n");
       for (const f of extraFields({ wrappedFields: false })) {
-        comments.add(
-          resolver,
-          {
-            type: "Line",
-            value: ` import "${extraFieldSubPath(f, true)}";\n`,
-          },
-          { position: "trailing" },
-        );
+        appendComment(resolver, ` import "${extraFieldSubPath(f, true)}";\n`);
       }
 
       createReExport(ast, {
@@ -88,13 +89,31 @@ export function defaultsTs({
         imported: "createFormIdBuilder",
         source: SVELTE_KIT_INTEGRATION_OPTION_ID_BUILDERS[options.sveltekit],
       });
+
       const theme = isSubTheme(options.themeOrSubTheme)
         ? themeParent(options.themeOrSubTheme)
         : options.themeOrSubTheme;
-      createReExport(ast, {
+      const themeNode = createReExport(ast, {
         name: "theme",
         source: themePackage(theme).name,
       });
+      appendComment(themeNode, "\n");
+      if (isThemeExtension(theme)) {
+        const originTheme = themeExtensionOrigin(theme);
+        for (const w of themeExtraWidgets(originTheme)) {
+          appendComment(
+            themeNode,
+            ` import "${themeExtraWidgetSubPath(originTheme, w, true)}";\n`,
+          );
+        }
+      }
+      for (const w of themeExtraWidgets(theme)) {
+        appendComment(
+          themeNode,
+          ` import "${themeExtraWidgetSubPath(theme, w, true)}";\n`,
+        );
+      }
+
       if (options.icons !== "none") {
         createReExport(ast, {
           name: "icons",
