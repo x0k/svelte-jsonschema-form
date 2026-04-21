@@ -48,3 +48,13 @@ const REQUIRED_COMPONENTS = {
     "SelectItem",
   ],
 } as const satisfies Record<string, string[]>;
+
+export function shadcnRequiredComponents(): Iterable<{
+  folder: string;
+  components: string[];
+}> {
+  return Object.entries(REQUIRED_COMPONENTS).map(([folder, components]) => ({
+    folder,
+    components,
+  }));
+}

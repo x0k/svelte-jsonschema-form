@@ -1,9 +1,9 @@
-import { themePackage } from "meta";
+import { shadcnRequiredComponents, themePackage } from "meta";
 
-import { transforms } from "./sv-utils.js";
+import { fileExists, transforms } from "./sv-utils.js";
 import type { Context } from "./model.js";
 
-export function shadcnTs({ options, sv, directory, language }: Context) {
+export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
   const isShadcn4 = options.themeOrSubTheme === "shadcn4";
   const isShadcnExtras = options.themeOrSubTheme === "shadcn-extras";
   if (!isShadcn4 && !isShadcnExtras) {
@@ -34,13 +34,11 @@ export function shadcnTs({ options, sv, directory, language }: Context) {
     }),
   );
 
-  function uiPathExists(folder: string) {
-    let isEmpty = false;
-    sv.file(`${realUiPath}/${folder}/index.ts`, (content) => {
-      isEmpty = content.trim() === "";
-      return false;
-    });
-    return !isEmpty;
+  function uiFolderExists(folder: string) {
+    return fileExists(cwd, `${realUiPath}/${folder}/index.ts`);
+  }
+
+  for (const { folder, components } of shadcnRequiredComponents()) {
   }
 
   sv.file(

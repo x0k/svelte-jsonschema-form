@@ -8,3 +8,4 @@ export * from "./icons.ts";
 export * from "./kit.ts";
 export * from "./fields.ts";
 export * from "./widgets.ts";
+export * from "./shadcn.ts";
