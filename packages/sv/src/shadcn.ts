@@ -1,4 +1,8 @@
-import { shadcnRequiredComponents, themePackage } from "meta";
+import {
+  shadcnNewYorkThemeSubPath,
+  shadcnRequiredComponents,
+  themePackage,
+} from "meta";
 
 import { fileExists, transforms } from "./sv-utils.js";
 import type { Context } from "./model.js";
@@ -34,34 +38,61 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
     }),
   );
 
-  function uiFolderExists(folder: string) {
-    return fileExists(cwd, `${realUiPath}/${folder}/index.ts`);
-  }
+  const importedComponents: string[] = [];
+  const libImports: string[] = [];
+  const localImports: [path: string, imports: string[]][] = [];
 
   for (const { folder, components } of shadcnRequiredComponents()) {
+    const uiComponentIndexFilePath = `${realUiPath}/${folder}/index.ts`;
+    if (!isConfigEmpty && fileExists(cwd, uiComponentIndexFilePath)) {
+      localImports.push([uiComponentIndexFilePath, components]);
+    } else {
+      libImports.push(...components);
+    }
+    importedComponents.push(...components);
   }
 
   sv.file(
     `${directory.lib}/sjsf/shadcn.${language}`,
-    transforms.script(({ ast, js }) => {
+    transforms.script(({ ast, js, comments }) => {
       js.imports.addNamed(ast, {
         imports: ["setThemeContext"],
         from: themePackage("shadcn4").name,
       });
+
+      if (libImports.length > 0) {
+        js.imports.addNamed(ast, {
+          imports: libImports,
+          from: shadcnNewYorkThemeSubPath,
+        });
+      }
+      for (const [source, imports] of localImports) {
+        js.imports.addNamed(ast, {
+          from: source,
+          imports,
+        });
+      }
+
       const expression = js.common.parseExpression(`() => {
   setThemeContext({
     components: {
-      
+      ${importedComponents.join(", ")}
     }
   })
 }`);
+      const declaration = js.variables.declaration(ast, {
+        kind: "const",
+        name: "setShadcnThemeContext",
+        value: expression,
+      });
+      comments.add(declaration, {
+        type: "Line",
+        value:
+          "https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/#components",
+      });
       js.exports.createNamed(ast, {
         name: "setShadcnThemeContext",
-        fallback: js.variables.declaration(ast, {
-          kind: "const",
-          name: "setShadcnThemeContext",
-          value: expression,
-        }),
+        fallback: declaration,
       });
     }),
   );

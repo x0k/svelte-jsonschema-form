@@ -4,7 +4,7 @@ import { themePackage, type Theme } from "./themes.ts";
 
 type ExtraWidgets = typeof EXTRA_WIDGETS;
 
-type ExtraWidgetFileNames = {
+export type ExtraWidgetFileNames = {
   [T in Theme]: keyof ExtraWidgets[T] & string;
 };
 
