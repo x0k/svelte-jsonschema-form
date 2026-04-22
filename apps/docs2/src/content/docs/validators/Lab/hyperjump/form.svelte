@@ -1,6 +1,7 @@
 <script lang="ts">
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
-  import { createFormValidatorFactory } from "@sjsf-lab/hyperjump-validator";
+  import { createAsyncFormValidatorFactory } from "@sjsf-lab/hyperjump-validator";
+  import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
   import { resolver } from "@sjsf/form/resolvers/compat";
   import "@hyperjump/json-schema/draft-07";
 
@@ -12,7 +13,7 @@
   const form = createForm({
     ...defaults,
     schema,
-    validator: createFormValidatorFactory({ ast }),
+    validator: createAsyncFormValidatorFactory({ ast, localization }),
     fieldsValidationMode,
     resolver,
   });
