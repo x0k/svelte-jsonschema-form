@@ -1,4 +1,3 @@
-import type { BaseNode } from "estree";
 import {
   iconSetPackage,
   isSubTheme,
@@ -9,7 +8,6 @@ import {
   externalValidatorPackage,
   isInternalValidator,
   internalValidatorSubPath,
-  formResolverSubPath,
   formTranslationSubPath,
   formMergerSubPath,
   kitPackage,
@@ -21,6 +19,7 @@ import {
   isThemeExtension,
   themeExtensionOrigin,
   formCoreSubpath,
+  isJsonSchemaValidator,
 } from "meta";
 
 import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
@@ -48,16 +47,6 @@ export function defaultsTs({
       const validator = options.validator;
       const isAjv = validator === "ajv8";
 
-      const appendComment = (node: BaseNode, content: string) =>
-        comments.add(
-          node,
-          {
-            type: "Line",
-            value: content,
-          },
-          { position: "trailing" },
-        );
-
       if (isAjv && isTs) {
         js.imports.addNamed(ast, {
           from: formPackage.name,
@@ -83,15 +72,15 @@ export function defaultsTs({
           extraFieldImports.push(`// import "${extraFieldSubPath(f, true)}";`);
         }
         const resolverCode =
-          `// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/\n` +
+          `${extraFieldImports.join("\n")}\n// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/\n` +
           (isTs
-            ? `function resolver<T>(_ctx: FormState<T>): ResolveFieldType {`
+            ? `export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {`
             : `/**
  * @template T
  * @param {import("@sjsf/form").FormState<T>} ctx
  * @returns {import("@sjsf/form").ResolveFieldType}
  */
-function resolver(_ctx) {`) +
+export function resolver(_ctx) {`) +
           `\n  return ({ schema }) => {
     if (schema.oneOf !== undefined) {
       return "oneOfField";
@@ -105,7 +94,7 @@ function resolver(_ctx) {`) +
     }
     return \`\${type}Field\`;
   };
-}\n${extraFieldImports.join("\n")}\nexport { resolver };`;
+}`;
         js.common.appendFromString(ast, {
           code: resolverCode,
           comments,
@@ -134,21 +123,20 @@ function resolver(_ctx) {`) +
         name: "theme",
         source: themePackage(theme).name,
       });
-      appendComment(themeNode, "\n");
       if (isThemeExtension(theme)) {
         const originTheme = themeExtensionOrigin(theme);
         for (const w of themeExtraWidgets(originTheme)) {
-          appendComment(
-            themeNode,
-            ` import "${themeExtraWidgetSubPath(originTheme, w, true)}";\n`,
-          );
+          comments.add(themeNode, {
+            type: "Line",
+            value: ` import "${themeExtraWidgetSubPath(originTheme, w, true)}";`,
+          });
         }
       }
       for (const w of themeExtraWidgets(theme)) {
-        appendComment(
-          themeNode,
-          ` import "${themeExtraWidgetSubPath(theme, w, true)}";\n`,
-        );
+        comments.add(themeNode, {
+          type: "Line",
+          value: ` import "${themeExtraWidgetSubPath(theme, w, true)}";`,
+        });
       }
 
       if (options.icons !== "none") {
@@ -158,7 +146,10 @@ function resolver(_ctx) {`) +
         });
       }
 
-      if (getTopLevelFunction(ast, "validator")) {
+      if (
+        getTopLevelFunction(ast, "validator") ||
+        !(isJsonSchemaValidator(validator) || isInternalValidator(validator))
+      ) {
         return;
       }
 
@@ -175,16 +166,15 @@ function resolver(_ctx) {`) +
         js.common.appendFromString(ast, {
           code: isTs
             ? // NOTE: Svelte ignores the generic type in an arrow function
-              `function validator<T>(options: ValidatorFactoryOptions) {
+              `export function validator<T>(options: ValidatorFactoryOptions) {
   return createFormValidator<T>({
     ...options,
     ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
   });
-}
-export { validator }`
+}`
             : `/**
  * @template T
- * @param {import("@sjsf/form").ValidatorFactoryOptions} options
+ * @param {import("${formPackage.name}").ValidatorFactoryOptions} options
  * @returns {ReturnType<typeof createFormValidator<T>>}
  */
 export const validator = (options) => createFormValidator({

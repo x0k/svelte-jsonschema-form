@@ -1,7 +1,7 @@
 import { themePackage } from "./themes.ts";
 import type { ExtraWidgetFileNames } from "./widgets.ts";
 
-type WidgetComponentsApproximation = Record<
+export type WidgetComponentsApproximation = Record<
   string,
   ReadonlyArray<string> | Record<string, string>
 >;
@@ -69,6 +69,8 @@ const REQUIRED_COMPONENTS = {
 
 export const shadcnNewYorkThemeSubPath = `${themePackage("shadcn").name}/new-york`;
 
+export const shadcnExtrasUiSubPath = `${themePackage("shadcn-extras").name}/ui`;
+
 export function shadcnRequiredComponents(): Iterable<{
   folder: string;
   components: ReadonlyArray<string>;
@@ -128,7 +130,21 @@ const SHADCN4_EXTRA_WIDGET_COMPONENTS = {
   WidgetComponentsApproximation
 >;
 
-const EXTRAS_EXTRA_WIDGET_COMPONENTS = {
+type Shadcn4ExtraWidgetComponent = {
+  [W in ExtraWidgetFileNames["shadcn4"]]: {
+    widget: W;
+    components: (typeof SHADCN4_EXTRA_WIDGET_COMPONENTS)[W];
+  };
+}[ExtraWidgetFileNames["shadcn4"]];
+
+export function shadcn4ExtraWidgetComponents(): Iterable<Shadcn4ExtraWidgetComponent> {
+  return Object.entries(SHADCN4_EXTRA_WIDGET_COMPONENTS).map(
+    ([widget, components]) =>
+      ({ widget, components }) as Shadcn4ExtraWidgetComponent,
+  );
+}
+
+const SHADCN_EXTRAS_EXTRA_WIDGET_COMPONENTS = {
   "file-drop-zone": {
     ...BUTTON_COMPONENTS,
     "file-drop-zone": {
@@ -166,3 +182,17 @@ const EXTRAS_EXTRA_WIDGET_COMPONENTS = {
   ExtraWidgetFileNames["shadcn-extras"],
   WidgetComponentsApproximation
 >;
+
+type ShadcnExtrasExtraWidgetComponent = {
+  [W in ExtraWidgetFileNames["shadcn-extras"]]: {
+    widget: W;
+    components: (typeof SHADCN_EXTRAS_EXTRA_WIDGET_COMPONENTS)[W];
+  };
+}[ExtraWidgetFileNames["shadcn-extras"]];
+
+export function shadcnExtrasExtraWidgetComponents(): Iterable<ShadcnExtrasExtraWidgetComponent> {
+  return Object.entries(SHADCN_EXTRAS_EXTRA_WIDGET_COMPONENTS).map(
+    ([widget, components]) =>
+      ({ widget, components }) as ShadcnExtrasExtraWidgetComponent,
+  );
+}
