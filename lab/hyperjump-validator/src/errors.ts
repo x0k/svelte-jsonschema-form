@@ -1,30 +1,44 @@
-import type { FormValue, ValidationResult } from "@sjsf/form";
+import { pathFromLocation } from "@sjsf/form/core";
+import type { FormValue, Schema, ValidationResult } from "@sjsf/form";
 import type { Output } from "@hyperjump/json-schema";
+import type { Localization } from "@hyperjump/json-schema-errors";
 
-export function transformFormErrors<T>(
+import { jsonSchemaErrors, type Context } from "./model.js";
+
+export async function transformFormErrors<T>(
+  ctx: Context,
+  schema: Schema,
   data: FormValue,
   out: Output,
-): ValidationResult<T> {
+  localization: Localization,
+): Promise<ValidationResult<T>> {
   if (out.valid) {
     return {
       value: data as T,
     };
   }
-  console.log("form", out);
+  const rawErrors = await jsonSchemaErrors(ctx, out, schema, localization);
+  const errors = rawErrors.map((e) => ({
+    path: pathFromLocation(e.instanceLocation, data),
+    message: e.message,
+  }));
+  console.log({ rawErrors, errors });
+
   return {
     value: data,
-    errors:
-      out.errors?.map((e) => ({
-        path: [],
-        message: e.keyword,
-      })) ?? [],
+    errors,
   };
 }
 
-export function transformFieldErrors(out: Output) {
+export async function transformFieldErrors(
+  ctx: Context,
+  schema: Schema,
+  out: Output,
+  localization: Localization,
+) {
   if (out.valid) {
     return [];
   }
-  console.log("field", out);
-  return out.errors?.map((e) => e.keyword) ?? [];
+  const errors = await jsonSchemaErrors(ctx, out, schema, localization);
+  return errors.map((e) => e.message);
 }

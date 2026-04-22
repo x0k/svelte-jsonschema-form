@@ -1589,7 +1589,20 @@ importers:
         version: link:../../packages/theme-testing
 
   lab/hyperjump-validator:
+    dependencies:
+      '@hyperjump/json-schema-errors':
+        specifier: github:hyperjump-io/json-schema-errors#8bda546feeca780ae02c1ebd7247291424ea4a98
+        version: https://codeload.github.com/hyperjump-io/json-schema-errors/tar.gz/8bda546feeca780ae02c1ebd7247291424ea4a98(@hyperjump/browser@1.3.1)
     devDependencies:
+      '@fluent/bundle':
+        specifier: ^0.19.1
+        version: 0.19.1
+      '@hyperjump/browser':
+        specifier: ^1.3.1
+        version: 1.3.1
+      '@hyperjump/json-pointer':
+        specifier: ^1.1.2
+        version: 1.1.2
       '@hyperjump/json-schema':
         specifier: ^1.17.5
         version: 1.17.5(@hyperjump/browser@1.3.1)
@@ -2847,6 +2860,10 @@ packages:
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
 
+  '@fluent/bundle@0.19.1':
+    resolution: {integrity: sha512-SWJLZrPamDPsJlFFOW1nkgN0j0rbPbmSdmK0XAoXlyqKieLtMVl4vzng3aR5pwKoUx0scug8+YY2oct3fdfy9A==}
+    engines: {node: '>=18.0.0', npm: '>=7.0.0'}
+
   '@fontsource-variable/inter@5.2.8':
     resolution: {integrity: sha512-kOfP2D+ykbcX/P3IFnokOhVRNoTozo5/JxhAIVYLpea/UBmCQ/YWPBfWIDuBImXX/15KH+eKh4xpEUyS2sQQGQ==}
 
@@ -2872,6 +2889,10 @@ packages:
 
   '@hyperjump/json-pointer@1.1.2':
     resolution: {integrity: sha512-zPNgu1zdhtjQHFNLGzvEsLDsLOEvhRj6u6ktIQmlz7YPESv5uF8SnAe3Dq0oL6gZ6OGWSLq2n7pphRNF6Hpg6w==}
+
+  '@hyperjump/json-schema-errors@https://codeload.github.com/hyperjump-io/json-schema-errors/tar.gz/8bda546feeca780ae02c1ebd7247291424ea4a98':
+    resolution: {tarball: https://codeload.github.com/hyperjump-io/json-schema-errors/tar.gz/8bda546feeca780ae02c1ebd7247291424ea4a98}
+    version: 0.1.0
 
   '@hyperjump/json-schema-formats@1.0.1':
     resolution: {integrity: sha512-qvcIxysnMfcPxyPSFFzzo28o2BN1CNT5b0tQXNUP0kaFpvptQNDg8SCLvlnMg2sYxuiuqna8+azGBaBthiskAw==}
@@ -8392,6 +8413,8 @@ snapshots:
 
   '@floating-ui/utils@0.2.11': {}
 
+  '@fluent/bundle@0.19.1': {}
+
   '@fontsource-variable/inter@5.2.8': {}
 
   '@humanfs/core@0.19.1': {}
@@ -8413,6 +8436,17 @@ snapshots:
       just-curry-it: 5.3.0
 
   '@hyperjump/json-pointer@1.1.2': {}
+
+  '@hyperjump/json-schema-errors@https://codeload.github.com/hyperjump-io/json-schema-errors/tar.gz/8bda546feeca780ae02c1ebd7247291424ea4a98(@hyperjump/browser@1.3.1)':
+    dependencies:
+      '@fluent/bundle': 0.19.1
+      '@hyperjump/json-pointer': 1.1.2
+      '@hyperjump/json-schema': 1.17.5(@hyperjump/browser@1.3.1)
+      '@hyperjump/pact': 1.4.0
+      '@hyperjump/uri': 1.3.3
+      json-stringify-deterministic: 1.0.13
+    transitivePeerDependencies:
+      - '@hyperjump/browser'
 
   '@hyperjump/json-schema-formats@1.0.1':
     dependencies:
