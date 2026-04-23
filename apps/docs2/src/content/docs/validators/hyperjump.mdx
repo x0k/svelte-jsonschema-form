@@ -4,6 +4,9 @@ type: package
 package: "@sjsf-lab/hyperjump-validator"
 sidebar:
   order: 110
+  badge:
+    text: exp
+    variant: caution
 ---
 
 import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
@@ -12,7 +15,7 @@ import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
 
-import inputSchemaCode from '../shared/input-schema.json?raw';
+import inputSchemaCode from './shared/input-schema.json?raw';
 import PrecompiledForm from './hyperjump/form.svelte';
 import precompiledFormCode from './hyperjump/form.svelte?raw';
 import compileSchemaCode from './hyperjump/compile-schema-script?raw';
