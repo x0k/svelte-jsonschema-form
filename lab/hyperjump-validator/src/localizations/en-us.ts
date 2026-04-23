@@ -1,4 +1,11 @@
+// This file is derived from:
+// https://github.com/hyperjump-io/json-schema-errors/blob/8bda546feeca780ae02c1ebd7247291424ea4a98/src/translations/en-US.ftl
+// Copyright (c) 2026 Hyperjump Software, LLC
+// Licensed under the MIT License
+// Modifications made by Roman Krasilnikov.
+
 import { FluentBundle, FluentResource } from "@fluent/bundle";
+
 import { Localization } from "../localization.js";
 
 const source = `// Any type keywords

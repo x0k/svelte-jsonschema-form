@@ -1,3 +1,9 @@
+// This file is derived from:
+// https://github.com/hyperjump-io/json-schema-errors/blob/8bda546feeca780ae02c1ebd7247291424ea4a98/src/localization.js
+// Copyright (c) 2026 Hyperjump Software, LLC
+// Licensed under the MIT License
+// Modifications made by Roman Krasilnikov.
+
 import type { FluentBundle, FluentVariable } from "@fluent/bundle";
 
 import type {
