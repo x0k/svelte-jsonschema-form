@@ -10,7 +10,7 @@ import {
   insertSubSchemaIds,
   fragmentSchema,
 } from "@sjsf/form/validators/precompile";
-import { addFormComponents } from "@sjsf/ajv8-validator";
+import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
 
 import { build } from "esbuild";
 
@@ -32,6 +32,7 @@ export const schema = ${JSON.stringify(patch.schema, null, 2)} as const satisfie
 );
 
 const ajv = new Ajv({
+  ...DEFAULT_AJV_CONFIG,
   schemas: fragmentSchema(patch),
   formats: {
     "phone-us": /\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{4}$/,

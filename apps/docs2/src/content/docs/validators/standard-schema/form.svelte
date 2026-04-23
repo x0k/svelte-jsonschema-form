@@ -1,5 +1,10 @@
 <script lang="ts">
-  import { BasicForm, createForm, getValueSnapshot, type Schema } from "@sjsf/form";
+  import {
+    BasicForm,
+    createForm,
+    getValueSnapshot,
+    type Schema,
+  } from "@sjsf/form";
   import { createFormValueValidator } from "@sjsf/form/validators/standard-schema";
   import { type } from "arktype";
 
@@ -22,11 +27,13 @@
     uiSchema,
     validator: {
       ...createFormValueValidator(schema),
-      isValid: () => true,
+      isValid: () => {
+        throw new Error("not implemented");
+      },
     },
     initialValue: {
       ...initialValue,
-      id: "123"
+      id: "123",
     },
   });
 </script>

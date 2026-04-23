@@ -32,7 +32,7 @@ spec and can be converted to JSON Schema for the full form validation step.
 
 ## Limitations
 
-You can use `isValid: () => true` as long as the generated form does not contain
+You can use `isValid: () => { throw new Error() }` as long as the generated form does not contain
 the following keywords `oneOf`, `anyOf` and `if,them,else`.
 
 In such cases, you will need a real `Validator` interface implementation
