@@ -3,9 +3,9 @@ import path from "node:path";
 
 import Ajv from "ajv";
 import standaloneCode from "ajv/dist/standalone/index.js";
-import addFormats from "ajv-formats"
+import addFormats from "ajv-formats";
 
-import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from '@sjsf/form';
+import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import {
   insertSubSchemaIds,
   fragmentSchema,
@@ -14,9 +14,9 @@ import { addFormComponents } from "@sjsf/ajv8-validator";
 
 import { build } from "esbuild";
 
-import inputSchema from './input-schema.json' with { type: "json" }
+import inputSchema from "../../shared/input-schema.json" with { type: "json" };
 
-const fieldsValidationMode = ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE
+const fieldsValidationMode = ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE;
 
 // NOTE: After calling this function, be sure to save the `schema` and
 // use it to generate the form
@@ -62,4 +62,7 @@ const { outputFiles } = await build({
 });
 const bundle = outputFiles[0].text;
 
-fs.writeFileSync(path.join(import.meta.dirname, "validate-functions.js"), bundle);
+fs.writeFileSync(
+  path.join(import.meta.dirname, "validate-functions.js"),
+  bundle
+);

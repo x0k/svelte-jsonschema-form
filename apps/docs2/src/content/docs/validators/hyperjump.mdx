@@ -1,0 +1,62 @@
+---
+title: hyperjump/json-schema
+type: package
+package: "@sjsf-lab/hyperjump-validator"
+sidebar:
+  order: 110
+  badge:
+    text: exp
+    variant: caution
+---
+
+import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+
+import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
+
+
+import inputSchemaCode from './shared/input-schema.json?raw';
+import PrecompiledForm from './hyperjump/form.svelte';
+import precompiledFormCode from './hyperjump/form.svelte?raw';
+import compileSchemaCode from './hyperjump/compile-schema-script?raw';
+import precompiledSchemaCode from './hyperjump/patched-schema?raw';
+
+:::note
+
+This validator works only as precompiled.
+
+:::
+
+## Installation
+
+<Npm pkg="@sjsf-lab/hyperjump-validator @hyperjump/json-schema" />
+
+## Schema precompilation
+
+<Tabs>
+  <TabItem label="compile-schema-script.ts">
+    <Code code={compileSchemaCode} lang='typescript' />
+  </TabItem>
+  <TabItem label="input-schema.json">
+    <Code code={inputSchemaCode} lang='json' />
+  </TabItem>
+</Tabs>
+
+```shell
+node compile-schema-script.ts
+```
+
+## Usage
+
+<Tabs>
+  <TabItem label="form.svelte">
+    <Code code={precompiledFormCode} lang='svelte' />
+  </TabItem>
+  <TabItem label="patched-schema.ts">
+    <Code code={precompiledSchemaCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+<FormCard>
+  <PrecompiledForm client:only="svelte" />
+</FormCard>

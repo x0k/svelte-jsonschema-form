@@ -1,18 +1,21 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { validator } from '@exodus/schemasafe'
+import { validator } from "@exodus/schemasafe";
 
-import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from '@sjsf/form';
+import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import {
   insertSubSchemaIds,
   fragmentSchema,
 } from "@sjsf/form/validators/precompile";
-import { DEFAULT_VALIDATOR_OPTIONS, FORM_FORMATS } from '@sjsf/schemasafe-validator'
+import {
+  DEFAULT_VALIDATOR_OPTIONS,
+  FORM_FORMATS,
+} from "@sjsf/schemasafe-validator";
 
-import inputSchema from './input-schema.json' with { type: "json" }
+import inputSchema from "../../shared/input-schema.json" with { type: "json" };
 
-const fieldsValidationMode = ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE
+const fieldsValidationMode = ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE;
 
 // NOTE: After calling this function, be sure to save the `schema` and
 // use it to generate the form
@@ -27,7 +30,7 @@ export const fieldsValidationMode = ${fieldsValidationMode}
 export const schema = ${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;`
 );
 
-const schemas = fragmentSchema(patch)
+const schemas = fragmentSchema(patch);
 
 // @ts-expect-error Typings for `multi` version are missing
 const validate = validator(schemas, {
@@ -37,10 +40,13 @@ const validate = validator(schemas, {
     "phone-us": /\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{4}$/,
     "area-code": /\d{3}/,
   },
-  schemas: new Map(schemas.map(schema => [schema.$id, schema])),
+  schemas: new Map(schemas.map((schema) => [schema.$id, schema])),
   multi: true,
-})
+});
 
-const validateFunctions = `export const [${schemas.map(s => s.$id).join(', ')}] = ${validate.toModule()}`
+const validateFunctions = `export const [${schemas.map((s) => s.$id).join(", ")}] = ${validate.toModule()}`;
 
-fs.writeFileSync(path.join(import.meta.dirname, "validate-functions.js"), validateFunctions)
+fs.writeFileSync(
+  path.join(import.meta.dirname, "validate-functions.js"),
+  validateFunctions
+);

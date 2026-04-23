@@ -320,6 +320,13 @@ leg/:
 
 lab/:
   pushd lab
+  hyper/:
+    pushd hyperjump-validator
+    b:
+      pnpm run build
+    t:
+      pnpm run test
+    popd
   shad/:
     pushd shadcn-extras-theme
     c:
