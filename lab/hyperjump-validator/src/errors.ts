@@ -22,7 +22,6 @@ export async function transformFormErrors<T>(
     path: pathFromLocation(e.instanceLocation, data),
     message: e.message,
   }));
-  console.log({ rawErrors, errors });
 
   return {
     value: data,

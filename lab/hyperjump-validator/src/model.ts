@@ -1,4 +1,4 @@
-import type { FormValue, Schema } from "@sjsf/form";
+import type { FormValue, Schema, SchemaValue } from "@sjsf/form";
 import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
 import {
   BASIC,
@@ -25,6 +25,7 @@ export interface ValidatorOptions {
   ast: AST;
   localization: Localization;
   augmentSuffix?: string;
+  valueToJSON?: (value: FormValue) => SchemaValue;
 }
 
 export interface Context {
@@ -33,8 +34,19 @@ export interface Context {
   value: JsonNode;
 }
 
+const defaultValueToJson = (v: FormValue): SchemaValue =>
+  v === undefined || v === null
+    ? null
+    : typeof v === "object"
+      ? JSON.parse(JSON.stringify(v))
+      : v;
+
 export function createContext(
-  { ast, augmentSuffix = DEFAULT_AUGMENT_SUFFIX }: ValidatorOptions,
+  {
+    ast,
+    augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
+    valueToJSON = defaultValueToJson,
+  }: ValidatorOptions,
   { $id: id, allOf }: Schema,
   value: FormValue,
 ): Context {
@@ -52,7 +64,7 @@ export function createContext(
   return {
     ast,
     schemaUri: `${id}#`,
-    value: fromJs(value as HyperjumpJson),
+    value: fromJs(valueToJSON(value) as HyperjumpJson),
   };
 }
 

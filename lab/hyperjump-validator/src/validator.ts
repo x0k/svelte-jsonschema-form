@@ -3,7 +3,6 @@ import type {
   AsyncFormValueValidator,
   Validator,
 } from "@sjsf/form";
-import type { Localization } from "@hyperjump/json-schema-errors";
 
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
 import { createContext, validate, type ValidatorOptions } from "./model.js";
@@ -14,7 +13,8 @@ export function createValidator(options: ValidatorOptions): Validator {
       if (typeof schema === "boolean") {
         return schema;
       }
-      return validate(createContext(options, schema, formValue)).valid;
+      const ctx = createContext(options, schema, formValue);
+      return validate(ctx).valid;
     },
   };
 }
