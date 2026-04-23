@@ -3,6 +3,7 @@
   import { createAsyncFormValidatorFactory } from "@sjsf-lab/hyperjump-validator";
   import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
   import { resolver } from "@sjsf/form/resolvers/compat";
+  import "@hyperjump/json-schema/formats-lite";
   import "@hyperjump/json-schema/draft-07";
 
   import * as defaults from "@/lib/form/defaults";
