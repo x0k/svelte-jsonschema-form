@@ -1,7 +1,10 @@
 import {
   create,
+  isAsyncFormValueValidator,
+  type AsyncFormValueValidator,
   type Creatable,
   type FormIdBuilder,
+  type FormValue,
   type FormValueValidator,
   type Schema,
   type UiOptionsRegistry,
@@ -14,7 +17,7 @@ import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { expect, it, describe } from "vitest";
 
 function createInitializer<V extends Validator>(
-  createValidator: Creatable<V, ValidatorFactoryOptions>
+  createValidator: Creatable<V, ValidatorFactoryOptions>,
 ) {
   return ({
     schema = {},
@@ -43,7 +46,7 @@ function createInitializer<V extends Validator>(
 }
 
 export function validatorTests(
-  createValidator: Creatable<Validator, ValidatorFactoryOptions>
+  createValidator: Creatable<Validator, ValidatorFactoryOptions>,
 ) {
   const init = createInitializer(createValidator);
   describe("Validator", () => {
@@ -58,12 +61,12 @@ export function validatorTests(
       validator.isValid(
         { $id: "foo", properties: { foo: { $id: "bar" } } },
         {},
-        undefined
+        undefined,
       );
       validator.isValid(
         { $id: "foo", properties: { foo: { $id: "bar" } } },
         {},
-        undefined
+        undefined,
       );
     });
   });
@@ -71,14 +74,22 @@ export function validatorTests(
 
 export function formValueValidatorTests<T>(
   createFormValueValidator: Creatable<
-    FormValueValidator<T> & Validator,
+    (FormValueValidator<T> | AsyncFormValueValidator<T>) & Validator,
     ValidatorFactoryOptions
-  >
+  >,
 ) {
   const init = createInitializer(createFormValueValidator);
+  function createValidator(params: Parameters<typeof init>[0]) {
+    const { validator } = init(params);
+    return isAsyncFormValueValidator(validator)
+      ? (signal: AbortSignal, schema: Schema, value: FormValue) =>
+          validator.validateFormValueAsync(signal, schema, value)
+      : (_: AbortSignal, schema: Schema, value: FormValue) =>
+          Promise.resolve(validator.validateFormValue(schema, value));
+  }
 
   describe("Form value validator", () => {
-    it("Should correctly infer path", () => {
+    it("Should correctly infer path", async ({ signal }) => {
       const schema: Schema = {
         type: "array",
         items: {
@@ -86,16 +97,16 @@ export function formValueValidatorTests<T>(
           minLength: 10,
         },
       };
-      const { validator } = init({ schema });
+      const validate = createValidator({ schema });
 
-      const { errors = [] } = validator.validateFormValue(schema, ["foo"]);
+      const { errors = [] } = await validate(signal, schema, ["foo"]);
       const error = errors.find(
-        ({ path }) => path.length === 1 && path[0] === 0
+        ({ path }) => path.length === 1 && path[0] === 0,
       );
       expect(error).toBeDefined();
     });
 
-    it("Should handle undefined", () => {
+    it("Should handle undefined", async ({ signal }) => {
       const schema: Schema = {
         title: "A registration form",
         description: "A simple form example.",
@@ -119,8 +130,8 @@ export function formValueValidatorTests<T>(
         firstName: undefined,
         items: [undefined, "value"],
       };
-      const { validator } = init({ schema });
-      const { errors = [] } = validator.validateFormValue(schema, value);
+      const validate = createValidator({ schema });
+      const { errors = [] } = await validate(signal, schema, value);
       expect(errors.length).toBeGreaterThan(1);
     });
   });

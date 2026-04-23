@@ -49,8 +49,9 @@
     "ajv": "^8.17.0"
   },
   "devDependencies": {
-    "ajv": "catalog:",
     "@sjsf/form": "workspace:*",
+    "ajv": "catalog:",
+    "esbuild": "^0.27.7",
     "svelte": "catalog:",
     "validator-testing": "workspace:*"
   }
