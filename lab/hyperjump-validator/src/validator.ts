@@ -1,11 +1,16 @@
 import type {
-  AsyncFieldValueValidator,
-  AsyncFormValueValidator,
+  FieldValueValidator,
+  FormValueValidator,
   Validator,
 } from "@sjsf/form";
 
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
-import { createContext, validate, type ValidatorOptions } from "./model.js";
+import {
+  createContext,
+  evaluateCompiledSchema,
+  validate,
+  type ValidatorOptions,
+} from "./model.js";
 
 export function createValidator(options: ValidatorOptions): Validator {
   return {
@@ -14,51 +19,40 @@ export function createValidator(options: ValidatorOptions): Validator {
         return schema;
       }
       const ctx = createContext(options, schema, formValue);
-      return validate(ctx).valid;
+      return validate(ctx);
     },
   };
 }
 
 export interface FormValueValidatorOptions extends ValidatorOptions {}
 
-export function createAsyncFormValueValidator<T>(
+export function createFormValueValidator<T>(
   options: FormValueValidatorOptions,
-): AsyncFormValueValidator<T> {
+): FormValueValidator<T> {
   return {
-    async validateFormValueAsync(_, rootSchema, formValue) {
+    validateFormValue(rootSchema, formValue) {
       const ctx = createContext(options, rootSchema, formValue);
-      const out = validate(ctx);
-      return await transformFormErrors(
-        ctx,
-        rootSchema,
-        formValue,
-        out,
-        options.localization,
-      );
+      const out = evaluateCompiledSchema(ctx, options.localization);
+      return transformFormErrors(out, formValue);
     },
   };
 }
 
-export function createAsyncFieldValueValidator(
+export function createFieldValueValidator(
   options: FormValidatorOptions,
-): AsyncFieldValueValidator {
+): FieldValueValidator {
   return {
-    async validateFieldValueAsync(_, field, fieldValue) {
+    validateFieldValue(field, fieldValue) {
       const ctx = createContext(options, field.schema, fieldValue);
-      const out = validate(ctx);
-      return await transformFieldErrors(
-        ctx,
-        field.schema,
-        out,
-        options.localization,
-      );
+      const out = evaluateCompiledSchema(ctx, options.localization);
+      return transformFieldErrors(out);
     },
   };
 }
 
 export interface FormValidatorOptions extends FormValueValidatorOptions {}
 
-export function createAsyncFormValidatorFactory<T>(vOptions: ValidatorOptions) {
+export function createFormValidatorFactory<T>(vOptions: ValidatorOptions) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
     const full: FormValidatorOptions = {
       ...vOptions,
@@ -66,8 +60,8 @@ export function createAsyncFormValidatorFactory<T>(vOptions: ValidatorOptions) {
     };
     return Object.assign(
       createValidator(full),
-      createAsyncFormValueValidator<T>(full),
-      createAsyncFieldValueValidator(full),
+      createFormValueValidator<T>(full),
+      createFieldValueValidator(full),
     );
   };
 }

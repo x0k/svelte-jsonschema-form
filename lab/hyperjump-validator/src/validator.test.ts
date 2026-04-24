@@ -10,14 +10,14 @@ import {
 } from "@sjsf/form/validators/precompile";
 import { formValueValidatorTests } from "validator-testing";
 
-import { createAsyncFormValidatorFactory } from "./validator.js";
+import { createFormValidatorFactory } from "./validator.js";
 import { localization } from "./localizations/en-us.js";
 
 formValueValidatorTests((options) => ({
   isValid: () => {
     throw new Error("'isValid' is not implemented");
   },
-  async validateFormValueAsync(signal, rootSchema, formValue) {
+  async validateFormValueAsync(_signal, rootSchema, formValue) {
     let id = 0;
     const toId = (n: number) => `https://example.com/v${n}`;
     const patch = insertSubSchemaIds(rootSchema, {
@@ -36,9 +36,9 @@ formValueValidatorTests((options) => ({
     }
     try {
       const { ast } = await compile(await getSchema(toId(0)));
-      const factory = createAsyncFormValidatorFactory({ ast, localization });
+      const factory = createFormValidatorFactory({ ast, localization });
       const v = factory(options);
-      return v.validateFormValueAsync(signal, patch.schema, formValue);
+      return v.validateFormValue(patch.schema, formValue);
     } finally {
       for (const s of schemas) {
         unregisterSchema(s.$id!);
