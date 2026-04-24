@@ -6,7 +6,7 @@ import {
   iconSetPackage,
   isInternalValidator,
   isSubTheme,
-  kitPackage,
+  sveltekitPackage,
   optionalPackageName,
   subThemeDependencies,
   themePackage,
@@ -83,7 +83,7 @@ export function dependencies({ sv, options }: Context) {
   }
   // Kit integration
   if (sveltekit !== "no") {
-    addDependency(kitPackage);
-    addDependencies(kitPackage.dependencies);
+    addDependency(sveltekitPackage);
+    addDependencies(sveltekitPackage.dependencies);
   }
 }

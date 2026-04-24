@@ -10,7 +10,7 @@ import {
   internalValidatorSubPath,
   formTranslationSubPath,
   formMergerSubPath,
-  kitPackage,
+  sveltekitPackage,
   formPackage,
   extraFields,
   extraFieldSubPath,
@@ -30,7 +30,7 @@ const SVELTE_KIT_INTEGRATION_OPTION_ID_BUILDERS: Record<
   string
 > = {
   no: formIdBuilderSubPath("modern"),
-  formActions: kitPackage.name,
+  formActions: sveltekitPackage.name,
   remoteFunctions: kitRemoteFunctionsSubPath(),
 };
 

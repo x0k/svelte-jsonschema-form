@@ -6,6 +6,7 @@ import { defaultsTs } from "./defaults.js";
 import { dependencies } from "./dependencies.js";
 import { appCss } from "./styles.js";
 import { shadcnTs } from "./shadcn.js";
+import { svelteKit } from "./sveltekit.js";
 
 export default defineAddon({
   id: "@sjsf/sv",
@@ -30,5 +31,6 @@ export default defineAddon({
     defaultsTs(ctx);
     shadcnTs(ctx);
     appCss(ctx);
+    svelteKit(ctx);
   },
 });
