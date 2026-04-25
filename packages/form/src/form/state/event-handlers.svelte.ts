@@ -81,7 +81,6 @@ export function hasFieldStateByPath<T>(
   );
 }
 
-
 const NO_ERRORS: string[] = [];
 
 export function makeEventHandlers<T>(
@@ -90,6 +89,7 @@ export function makeEventHandlers<T>(
   validate: () => void
 ) {
   const path = $derived(config().path);
+  const handlers = $derived(config().handlers ?? {});
 
   onMount(() => {
     // WARN: Read of derived during teardown will lead to
@@ -125,18 +125,22 @@ export function makeEventHandlers<T>(
   return {
     onfocus() {
       setFieldState(ctx, path, FIELD_FOCUSED);
+      handlers.onfocus?.();
     },
     oninput() {
       setFieldState(ctx, path, FIELD_INPUTTED);
       onInput?.();
+      handlers.oninput?.();
     },
     onchange() {
       setFieldState(ctx, path, FIELD_CHANGED);
       onChange?.();
+      handlers.onchange?.();
     },
     onblur() {
       setFieldState(ctx, path, FIELD_BLURRED);
       onBlur?.();
+      handlers.onblur?.();
     },
   };
 }

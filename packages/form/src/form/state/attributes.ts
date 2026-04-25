@@ -12,7 +12,7 @@ import { on } from "svelte/events";
 import type { Nullable, ObjectProperties } from "@/lib/types.js";
 import { weakMemoize } from "@/lib/memoize.js";
 
-import type { Config } from "../config.js";
+import type { Config, Handlers } from "../config.js";
 import type { FieldPseudoElement } from "../id.js";
 import type { UiOptions } from "../ui-schema.js";
 import { FORM_DISABLED, FORM_ERRORS } from "../internals.js";
@@ -27,13 +27,6 @@ import { getId, getPseudoId } from "./path.js";
 
 interface Disabled {
   disabled: boolean;
-}
-
-interface Handlers {
-  onfocus?: () => void;
-  onblur?: () => void;
-  oninput?: () => void;
-  onchange?: () => void;
 }
 
 interface Attachable {
