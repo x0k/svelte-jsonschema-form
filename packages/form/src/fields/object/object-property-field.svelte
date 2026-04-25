@@ -60,6 +60,14 @@
     schema: objCtx.keyInputSchema(),
     required: true,
     uiSchema: keyInputUiSchema,
+    handlers: {
+      onblur: () => {
+        if (key === undefined || key === property) {
+          return;
+        }
+        objCtx.renameProperty(property, key, keyInputConfig);
+      },
+    }
   }}
   {@const KeyInputField = getFieldComponent(ctx, keyInputConfig)}
   <KeyInputField

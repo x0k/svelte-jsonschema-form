@@ -210,9 +210,11 @@ export function createObjectContext<T>({
   }
 
   const keyInputSchema: Schema = $derived.by(() => {
-    const schema = config().schema.propertyNames;
-    return schema !== undefined && typeof schema !== "boolean"
-      ? schema
+    const { propertyNames } = config().schema;
+    return propertyNames !== undefined &&
+      typeof propertyNames !== "boolean" &&
+      getSimpleSchemaType(propertyNames) === "string"
+      ? propertyNames
       : { type: "string" };
   });
 
