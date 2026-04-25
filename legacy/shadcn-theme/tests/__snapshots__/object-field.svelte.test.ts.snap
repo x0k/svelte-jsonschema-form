@@ -46,6 +46,7 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -127,6 +128,7 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -347,6 +349,7 @@ exports[`default-ui > object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -440,6 +443,7 @@ exports[`default-ui > object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -3836,6 +3840,7 @@ exports[`default-ui > object fields > show add button and fields if additionalPr
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -3917,6 +3922,7 @@ exports[`default-ui > object fields > show add button and fields if additionalPr
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -4173,6 +4179,7 @@ exports[`default-ui > object fields > with title and description > additionalPro
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -4254,6 +4261,7 @@ exports[`default-ui > object fields > with title and description > additionalPro
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -4853,6 +4861,7 @@ exports[`default-ui > object fields > with title and description > show add butt
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -4934,6 +4943,7 @@ exports[`default-ui > object fields > with title and description > show add butt
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -5190,6 +5200,7 @@ exports[`default-ui > object fields > with title and description from both > add
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -5271,6 +5282,7 @@ exports[`default-ui > object fields > with title and description from both > add
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -5870,6 +5882,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -5951,6 +5964,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -6550,6 +6564,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -6631,6 +6646,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -6851,6 +6867,7 @@ exports[`default-ui > object fields > with title and description with global lab
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -6891,6 +6908,7 @@ exports[`default-ui > object fields > with title and description with global lab
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -7288,6 +7306,7 @@ exports[`default-ui > object fields > with title and description with global lab
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -7328,6 +7347,7 @@ exports[`default-ui > object fields > with title and description with global lab
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -7510,6 +7530,7 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -7591,6 +7612,7 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -7811,6 +7833,7 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -7904,6 +7927,7 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -11300,6 +11324,7 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -11381,6 +11406,7 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -11637,6 +11663,7 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -11718,6 +11745,7 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -12317,6 +12345,7 @@ exports[`new-york-ui > object fields > with title and description > show add but
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -12398,6 +12427,7 @@ exports[`new-york-ui > object fields > with title and description > show add but
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -12654,6 +12684,7 @@ exports[`new-york-ui > object fields > with title and description from both > ad
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -12735,6 +12766,7 @@ exports[`new-york-ui > object fields > with title and description from both > ad
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -13334,6 +13366,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -13415,6 +13448,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -14014,6 +14048,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -14095,6 +14130,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -14315,6 +14351,7 @@ exports[`new-york-ui > object fields > with title and description with global la
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -14355,6 +14392,7 @@ exports[`new-york-ui > object fields > with title and description with global la
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -14752,6 +14790,7 @@ exports[`new-york-ui > object fields > with title and description with global la
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -14792,6 +14831,7 @@ exports[`new-york-ui > object fields > with title and description with global la
               <!---->
               <!---->
             </div>
+            
             
             
             
