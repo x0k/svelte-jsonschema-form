@@ -36,8 +36,11 @@ import {
   getChildPath,
   type FieldErrors,
   getStableConfig,
+  isSelect,
+  type UiSchema,
 } from "@/form/index.js";
 
+import { createFormOptions } from "../enum.js";
 import {
   createAdditionalPropertyKey,
   generateNewKey,
@@ -49,7 +52,11 @@ export interface ObjectContext {
   canExpand: () => boolean;
   propertiesOrder: () => string[];
   addProperty: () => void;
-  renameProperty: (oldProp: string, newProp: string, config: Config) => void;
+  renameProperty: (
+    oldProp: string,
+    newProp: string | undefined,
+    config: Config
+  ) => void;
   removeProperty: (prop: string) => void;
   isAdditionalProperty: (property: string) => boolean;
   propertyConfig: (
@@ -59,6 +66,8 @@ export interface ObjectContext {
   ) => Config;
   key: (property: string) => string;
   set: (property: string, value: SchemaValue | undefined) => void;
+  keyInputSchemas: () => { schema: Schema; uiSchema: UiSchema };
+  isAvailablePropertyKey: (key: string) => boolean;
 }
 
 const OBJECT_CONTEXT = Symbol("object-context");
@@ -157,14 +166,60 @@ export function createObjectContext<T>({
     }
   );
 
+  const keyInputSchema: Schema = $derived.by(() => {
+    const { propertyNames } = config().schema;
+    return propertyNames !== undefined &&
+      typeof propertyNames !== "boolean" &&
+      getSimpleSchemaType(propertyNames) === "string"
+      ? propertyNames
+      : { type: "string" };
+  });
+
+  const additionalPropertiesUiSchema = $derived(
+    retrieveUiSchema(ctx, config().uiSchema.additionalProperties)
+  );
+
+  const keyInputUiSchema = $derived(
+    retrieveUiSchema(
+      ctx,
+      additionalPropertiesUiSchema.additionalPropertyKeyInput
+    )
+  );
+
+  const availablePropertyKeys = $derived.by(() => {
+    if (!isSelect(ctx, keyInputSchema)) {
+      return undefined;
+    }
+    const { options } = createFormOptions(
+      ctx,
+      config(),
+      uiOption,
+      keyInputSchema
+    );
+    const result = new Set<string>();
+    for (const o of options) {
+      if (
+        typeof o.value === "string" &&
+        (schemaProperties === undefined || !(o.value in schemaProperties))
+      ) {
+        result.add(o.value);
+      }
+    }
+    return result;
+  });
+
   const canExpand = $derived(
     uiOption("expandable") !== false &&
-      isObjectSchemaExpandable(retrievedSchema, value())
+      isObjectSchemaExpandable(retrievedSchema, value()) &&
+      (availablePropertyKeys === undefined || availablePropertyKeys.size > 0)
   );
 
   const errors = $derived(getFieldErrors(ctx, config().path));
 
-  const newKeyPrefix = $derived(translate("additional-property", {}));
+  const newKeyPrefix = $derived(
+    availablePropertyKeys?.values().next().value ??
+      translate("additional-property", {})
+  );
 
   function onChange(val: SchemaObjectValue | null | undefined) {
     setFieldState(ctx, config().path, FIELD_CHANGED);
@@ -243,12 +298,12 @@ export function createObjectContext<T>({
         typeof definition === "boolean"
           ? {}
           : retrieveSchema(ctx, definition, value()?.[property]);
-      const uiSchema = retrieveUiSchema(
-        ctx,
-        isAdditional
-          ? config.uiSchema.additionalProperties
-          : (config.uiSchema[property] as UiSchemaDefinition | undefined)
-      );
+      const uiSchema = isAdditional
+        ? additionalPropertiesUiSchema
+        : retrieveUiSchema(
+            ctx,
+            config.uiSchema[property] as UiSchemaDefinition | undefined
+          );
       return getStableConfig(ctx, {
         path: getChildPath(ctx, config.path, property),
         title: uiTitleOption(ctx, uiSchema) ?? schema.title ?? property,
@@ -295,7 +350,7 @@ export function createObjectContext<T>({
     },
     renameProperty(oldProp, newProp, fieldConfig) {
       const val = value();
-      if (!val) {
+      if (newProp === undefined || oldProp === newProp || !val) {
         return;
       }
       const newKey = generateNewKey(val, newProp, additionalPropertyKey);
@@ -309,6 +364,12 @@ export function createObjectContext<T>({
       }
       lastRenamedProperty.currentKey = newKey;
       onChange(val);
+    },
+    keyInputSchemas() {
+      return { schema: keyInputSchema, uiSchema: keyInputUiSchema };
+    },
+    isAvailablePropertyKey(key) {
+      return availablePropertyKeys?.has(key) ?? false;
     },
   };
 }

@@ -4,3 +4,4 @@ export type * from "./model.js";
 
 export { default as objectField } from "./object-field.svelte";
 export { default as objectPropertyField } from "./object-property-field.svelte";
+export { default as objectKeyInputField } from "./object-key-input-field.svelte";
