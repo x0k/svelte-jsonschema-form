@@ -11,17 +11,21 @@
 
 <script lang="ts">
   import {
+    type Config,
+    type ComponentProps,
     getComponent,
     getFieldErrors,
     getFieldComponent,
     getFormContext,
     retrieveUiSchema,
     Text,
-    type ComponentProps,
+    getPseudoPath,
+    uiTitleOption,
+    retrieveUiOption,
+    retrieveTranslate,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.svelte.js";
-  import ObjectKeyInput from "./object-key-input.svelte";
 
   let {
     config,
@@ -41,14 +45,29 @@
   const Field = $derived(getFieldComponent(ctx, config));
   const Button = $derived(getComponent(ctx, "button", config));
   const errors = $derived(getFieldErrors(ctx, config.path));
+
+  let key = $derived<string | undefined>(property);
 </script>
 
 {#snippet keyInput()}
-  <ObjectKeyInput
-    {translate}
-    {property}
-    parent={config}
-    uiSchema={retrieveUiSchema(ctx, config.uiSchema.additionalPropertyKeyInput)}
+  {@const keyInputUiSchema = retrieveUiSchema(
+    ctx,
+    config.uiSchema.additionalPropertyKeyInput
+  )}
+  {@const keyInputConfig: Config = {
+    path: getPseudoPath(ctx, config.path, 'key-input'),
+    title: uiTitleOption(ctx, keyInputUiSchema) ?? translate("key-input-title", { name: property }),
+    schema: objCtx.keyInputSchema(),
+    required: true,
+    uiSchema: keyInputUiSchema,
+  }}
+  {@const KeyInputField = getFieldComponent(ctx, keyInputConfig)}
+  <KeyInputField
+    type="field"
+    bind:value={key as undefined}
+    config={keyInputConfig}
+    uiOption={(opt) => retrieveUiOption(ctx, keyInputConfig, opt)}
+    translate={retrieveTranslate(ctx, keyInputConfig)}
   />
 {/snippet}
 {#snippet removeButton()}

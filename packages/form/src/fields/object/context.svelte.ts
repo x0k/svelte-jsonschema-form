@@ -59,6 +59,7 @@ export interface ObjectContext {
   ) => Config;
   key: (property: string) => string;
   set: (property: string, value: SchemaValue | undefined) => void;
+  keyInputSchema: () => Schema;
 }
 
 const OBJECT_CONTEXT = Symbol("object-context");
@@ -208,6 +209,13 @@ export function createObjectContext<T>({
     setValue(isNullable ? null : undefined);
   }
 
+  const keyInputSchema: Schema = $derived.by(() => {
+    const schema = config().schema.propertyNames;
+    return schema !== undefined && typeof schema !== "boolean"
+      ? schema
+      : { type: "string" };
+  });
+
   return {
     key(property) {
       if (lastRenamedProperty.currentKey === property) {
@@ -309,6 +317,9 @@ export function createObjectContext<T>({
       }
       lastRenamedProperty.currentKey = newKey;
       onChange(val);
+    },
+    keyInputSchema() {
+      return keyInputSchema;
     },
   };
 }
