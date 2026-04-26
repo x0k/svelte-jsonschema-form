@@ -60,6 +60,7 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="data-[invalid=true]:text-destructive gap-3 group/field flex w-full cn-field-orientation-vertical flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
@@ -151,6 +152,7 @@ exports[`object fields > additionalProperties 1`] = `
               
               <!---->
             </div>
+            
             
             
             
@@ -419,6 +421,7 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="data-[invalid=true]:text-destructive gap-3 group/field flex w-full cn-field-orientation-vertical flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="true"
@@ -535,6 +538,7 @@ exports[`object fields > additionalProperties with error 1`] = `
               
               <!---->
             </div>
+            
             
             
             
@@ -4402,6 +4406,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="data-[invalid=true]:text-destructive gap-3 group/field flex w-full cn-field-orientation-vertical flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
@@ -4493,6 +4498,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
               
               <!---->
             </div>
+            
             
             
             
@@ -4810,6 +4816,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="data-[invalid=true]:text-destructive gap-3 group/field flex w-full cn-field-orientation-vertical flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
@@ -4901,6 +4908,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               
               <!---->
             </div>
+            
             
             
             
@@ -5639,6 +5647,7 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="data-[invalid=true]:text-destructive gap-3 group/field flex w-full cn-field-orientation-vertical flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
@@ -5730,6 +5739,7 @@ exports[`object fields > with title and description > show add button and fields
               
               <!---->
             </div>
+            
             
             
             
@@ -6047,6 +6057,7 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="data-[invalid=true]:text-destructive gap-3 group/field flex w-full cn-field-orientation-vertical flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
@@ -6138,6 +6149,7 @@ exports[`object fields > with title and description from both > additionalProper
               
               <!---->
             </div>
+            
             
             
             
@@ -6876,6 +6888,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="data-[invalid=true]:text-destructive gap-3 group/field flex w-full cn-field-orientation-vertical flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
@@ -6967,6 +6980,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               
               <!---->
             </div>
+            
             
             
             
@@ -7705,6 +7719,7 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="data-[invalid=true]:text-destructive gap-3 group/field flex w-full cn-field-orientation-vertical flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
@@ -7796,6 +7811,7 @@ exports[`object fields > with title and description from uiSchema > show add but
               
               <!---->
             </div>
+            
             
             
             
@@ -8064,6 +8080,7 @@ exports[`object fields > with title and description with global label off > addi
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="data-[invalid=true]:text-destructive gap-3 group/field flex w-full cn-field-orientation-vertical flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
@@ -8109,6 +8126,7 @@ exports[`object fields > with title and description with global label off > addi
               
               <!---->
             </div>
+            
             
             
             
@@ -8596,6 +8614,7 @@ exports[`object fields > with title and description with global label off > show
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="data-[invalid=true]:text-destructive gap-3 group/field flex w-full cn-field-orientation-vertical flex-col [&>*]:w-full [&>.sr-only]:w-auto"
               data-invalid="false"
@@ -8641,6 +8660,7 @@ exports[`object fields > with title and description with global label off > show
               
               <!---->
             </div>
+            
             
             
             

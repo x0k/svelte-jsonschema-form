@@ -51,6 +51,7 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
@@ -118,6 +119,7 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
             </fieldset>
+            
             
             
             
@@ -330,6 +332,7 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
@@ -409,6 +412,7 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
             </fieldset>
+            
             
             
             
@@ -2887,6 +2891,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <!---->
             <!---->
+            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
@@ -2954,6 +2959,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
             </fieldset>
+            
             
             
             
@@ -3209,6 +3215,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <!---->
             <!---->
+            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
@@ -3276,6 +3283,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
             </fieldset>
+            
             
             
             
@@ -3866,6 +3874,7 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <!---->
             <!---->
+            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
@@ -3933,6 +3942,7 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
             </fieldset>
+            
             
             
             
@@ -4188,6 +4198,7 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <!---->
             <!---->
+            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
@@ -4255,6 +4266,7 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
             </fieldset>
+            
             
             
             
@@ -4845,6 +4857,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <!---->
             <!---->
+            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
@@ -4912,6 +4925,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
             </fieldset>
+            
             
             
             
@@ -5502,6 +5516,7 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <!---->
             <!---->
+            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
@@ -5569,6 +5584,7 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
             </fieldset>
+            
             
             
             
@@ -5781,6 +5797,7 @@ exports[`object fields > with title and description with global label off > addi
             <!---->
             <!---->
             <!---->
+            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
@@ -5816,6 +5833,7 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <!---->
             </fieldset>
+            
             
             
             
@@ -6211,6 +6229,7 @@ exports[`object fields > with title and description with global label off > show
             <!---->
             <!---->
             <!---->
+            <!---->
             <fieldset
               class="fieldset gap-y-2"
               data-layout="field"
@@ -6246,6 +6265,7 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <!---->
             </fieldset>
+            
             
             
             

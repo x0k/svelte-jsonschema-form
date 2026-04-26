@@ -51,6 +51,7 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -143,6 +144,7 @@ exports[`object fields > additionalProperties 1`] = `
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -386,6 +388,7 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -490,6 +493,7 @@ exports[`object fields > additionalProperties with error 1`] = `
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -3352,6 +3356,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -3444,6 +3449,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -3727,6 +3733,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -3819,6 +3826,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -4484,6 +4492,7 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -4576,6 +4585,7 @@ exports[`object fields > with title and description > show add button and fields
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -4859,6 +4869,7 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -4951,6 +4962,7 @@ exports[`object fields > with title and description from both > additionalProper
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -5616,6 +5628,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -5708,6 +5721,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -6373,6 +6387,7 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -6465,6 +6480,7 @@ exports[`object fields > with title and description from uiSchema > show add but
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -6708,6 +6724,7 @@ exports[`object fields > with title and description with global label off > addi
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -6761,6 +6778,7 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
               <!---->
             </div>
+            
             
             
             
@@ -7222,6 +7240,7 @@ exports[`object fields > with title and description with global label off > show
             <!---->
             <!---->
             <!---->
+            <!---->
             <div
               class="flex gap-2 flex-col"
               data-layout="field"
@@ -7275,6 +7294,7 @@ exports[`object fields > with title and description with global label off > show
               <!---->
               <!---->
             </div>
+            
             
             
             
