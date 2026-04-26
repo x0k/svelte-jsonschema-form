@@ -21,9 +21,13 @@ import precompiledFormCode from './hyperjump/form.svelte?raw';
 import compileSchemaCode from './hyperjump/compile-schema-script?raw';
 import precompiledSchemaCode from './hyperjump/patched-schema?raw';
 
+Form validator implementation based on [@hyperjump/json-schema](https://github.com/hyperjump-io/json-schema).
+
 :::note
 
-This validator works only as precompiled.
+This validator works only in precompiled mode, but the compilation can be performed at runtime (works
+with CSP
+[`unsafe-eval`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_eval_expressions))
 
 :::
 
