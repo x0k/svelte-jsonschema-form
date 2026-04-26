@@ -53,6 +53,11 @@ export default defineConfig({
       // },
       social: [
         {
+          icon: "discord",
+          href: "https://discord.gg/hVxFWk7dRn",
+          label: "Discord",
+        },
+        {
           icon: "github",
           href: "https://github.com/x0k/svelte-jsonschema-form",
           label: "GitHub",

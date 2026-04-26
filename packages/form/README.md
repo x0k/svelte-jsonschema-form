@@ -6,6 +6,7 @@ Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-js
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/)
 - [Form Builder](https://x0k.github.io/svelte-jsonschema-form/builder3)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground3/)
+- [Discord](https://discord.gg/hVxFWk7dRn)
 
 ## Installation
 
@@ -19,33 +20,33 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 
 ```svelte
 <script lang="ts">
-  import { createForm, BasicForm, type Schema } from '@sjsf/form';
-  import { resolver } from '@sjsf/form/resolvers/basic';
-  import { translation } from '@sjsf/form/translations/en';
-  import { createFormMerger } from '@sjsf/form/mergers/modern';
-  import { createFormIdBuilder } from '@sjsf/form/id-builders/modern';
-  import { createFormValidator } from '@sjsf/ajv8-validator';
-  import { theme } from '@sjsf/basic-theme';
-  import '@sjsf/basic-theme/css/basic.css';
+  import { createForm, BasicForm, type Schema } from "@sjsf/form";
+  import { resolver } from "@sjsf/form/resolvers/basic";
+  import { translation } from "@sjsf/form/translations/en";
+  import { createFormMerger } from "@sjsf/form/mergers/modern";
+  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
+  import { createFormValidator } from "@sjsf/ajv8-validator";
+  import { theme } from "@sjsf/basic-theme";
+  import "@sjsf/basic-theme/css/basic.css";
 
   const schema: Schema = {
-    title: 'Tasks',
-    type: 'array',
+    title: "Tasks",
+    type: "array",
     items: {
-      type: 'object',
+      type: "object",
       properties: {
         name: {
-          type: 'string',
-          title: 'Name',
+          type: "string",
+          title: "Name",
         },
         description: {
-          type: 'string',
-          title: 'Description',
+          type: "string",
+          title: "Description",
         },
       },
-      required: ["name"]
+      required: ["name"],
     },
-  }
+  };
 
   const form = createForm({
     theme,
@@ -55,8 +56,8 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
     merger: createFormMerger,
     validator: createFormValidator,
     idBuilder: createFormIdBuilder,
-    onSubmit: console.log
-  })
+    onSubmit: console.log,
+  });
 </script>
 
 <BasicForm {form} />
@@ -84,6 +85,7 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 - [@exodus/schemasafe](https://x0k.dev/svelte-jsonschema-form/validators/schemasafe/)
   - [Precompiled](https://x0k.dev/svelte-jsonschema-form/validators/schemasafe/#precompiled-validation)
 - [Standard Schema](https://x0k.dev/svelte-jsonschema-form/validators/standard-schema/)
+- [@hyperjump/json-schema](https://x0k.dev/svelte-jsonschema-form/validators/hyperjump/) (experimental)
 
 ## Integrations
 
@@ -98,9 +100,3 @@ This project includes modifications of code from [react-jsonschema-form](https:/
 The rest of the project is under the MIT license.
 
 See [LICENSE-MIT](LICENSE) and [LICENSE-APACHE](LICENSE-APACHE) for details.
-
-## See also
-
-- [Other JSON Schema to Web UI tools](https://json-schema.org/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=schema-to-web-UI)
-- [Converting JSON to table](https://github.com/x0k/json-to-table)
-- [Simple build automation tool - mk](https://github.com/x0k/mk)
