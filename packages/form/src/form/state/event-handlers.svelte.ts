@@ -28,6 +28,7 @@ import {
   type FieldState,
 } from "../field-state.js";
 import type { FormState } from "./state.js";
+import { retrieveUiOption } from "./ui-schema.js";
 
 export function setFieldState<T>(
   ctx: FormState<T>,
@@ -81,7 +82,6 @@ export function hasFieldStateByPath<T>(
   );
 }
 
-
 const NO_ERRORS: string[] = [];
 
 export function makeEventHandlers<T>(
@@ -104,7 +104,10 @@ export function makeEventHandlers<T>(
     };
   });
 
-  const mode = $derived(ctx[FORM_FIELDS_VALIDATION_MODE]);
+  const mode = $derived(
+    retrieveUiOption(ctx, config(), "validationMode") ??
+      ctx[FORM_FIELDS_VALIDATION_MODE]
+  );
   const flag = $derived(ctx[FORM_FIELDS_STATE_MAP].get(path) ?? 0);
 
   const makeHandler = (event: number) => {
