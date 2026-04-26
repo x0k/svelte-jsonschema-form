@@ -10,6 +10,7 @@ import type {
 import type { Config } from "./config.js";
 import type { ActionField, FieldAction } from "./field-actions.js";
 import type { TranslatorDefinitions } from "./translation.js";
+import type { FieldsValidationMode } from "./validation.js";
 
 export interface UiOptions {
   /**
@@ -30,6 +31,10 @@ export interface UiOptions {
   actions?: Partial<{
     [T in ActionField]: FieldAction<ComponentProps[T]["value"]>;
   }>;
+  /**
+   * Overrides the fields validation mode for this field
+   */
+  validationMode?: FieldsValidationMode;
 }
 
 export type UiOption = <O extends keyof UiOptions>(opt: O) => UiOptions[O];
