@@ -1,6 +1,6 @@
 {
   "name": "@sjsf-lab/hyperjump-validator",
-  "version": "3.0.0",
+  "version": "2.0.0",
   "description": "The @hyperjump/json-schema based validator for svelte-jsonschema-form",
   "license": "MIT",
   "keywords": [
