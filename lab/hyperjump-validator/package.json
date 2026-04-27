@@ -38,6 +38,11 @@
       "svelte": "./dist/index.js",
       "default": "./dist/index.js"
     },
+    "./precompile": {
+      "types": "./dist/precompile.d.ts",
+      "svelte": "./dist/precompile.js",
+      "default": "./dist/precompile.js"
+    },
     "./localizations/*": {
       "types": "./dist/localizations/*.d.ts",
       "default": "./dist/localizations/*.js"
