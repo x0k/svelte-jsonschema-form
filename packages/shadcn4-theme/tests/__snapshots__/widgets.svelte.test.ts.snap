@@ -2100,7 +2100,7 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
         data-slot="popover-trigger"
         data-state="closed"
         disabled=""
-        id="bits-c122"
+        id="bits-c119"
         role="combobox"
         type="button"
       >
@@ -2277,7 +2277,7 @@ exports[`widgets > combobox > snapshots > error 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c119"
+        id="bits-c116"
         role="combobox"
         type="button"
       >
@@ -2478,7 +2478,7 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c116"
+        id="bits-c113"
         role="combobox"
         type="button"
       >
@@ -2654,7 +2654,7 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c125"
+        id="bits-c122"
         role="combobox"
         type="button"
       >
@@ -2830,7 +2830,7 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c173"
+        id="bits-c170"
         type="button"
       >
         <span>
@@ -2999,7 +2999,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c170"
+        id="bits-c167"
         type="button"
       >
         <span>
@@ -3192,7 +3192,7 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c167"
+        id="bits-c164"
         type="button"
       >
         <span>
@@ -3360,7 +3360,7 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c176"
+        id="bits-c173"
         type="button"
       >
         <span>
@@ -3524,7 +3524,7 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c983"
+        id="bits-c980"
         type="button"
       >
         <!---->
@@ -3709,7 +3709,7 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c980"
+        id="bits-c977"
         type="button"
       >
         <!---->
@@ -3918,7 +3918,7 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c977"
+        id="bits-c974"
         type="button"
       >
         <!---->
@@ -4102,7 +4102,7 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
         data-popover-trigger=""
         data-slot="popover-trigger"
         data-state="closed"
-        id="bits-c986"
+        id="bits-c983"
         type="button"
       >
         <!---->
@@ -6353,7 +6353,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c2803"
+        id="bits-c2800"
         role="radiogroup"
       >
         <!---->
@@ -6397,7 +6397,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c2805"
+            id="bits-c2802"
           >
             <!---->
             foo
@@ -6448,7 +6448,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c2807"
+            id="bits-c2804"
           >
             <!---->
             bar
@@ -6499,7 +6499,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c2809"
+            id="bits-c2806"
           >
             <!---->
             fuzz
@@ -6550,7 +6550,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c2811"
+            id="bits-c2808"
           >
             <!---->
             qux
@@ -6670,7 +6670,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c2794"
+        id="bits-c2791"
         role="radiogroup"
       >
         <!---->
@@ -6712,7 +6712,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c2796"
+            id="bits-c2793"
           >
             <!---->
             foo
@@ -6761,7 +6761,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c2798"
+            id="bits-c2795"
           >
             <!---->
             bar
@@ -6810,7 +6810,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c2800"
+            id="bits-c2797"
           >
             <!---->
             fuzz
@@ -6859,7 +6859,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c2802"
+            id="bits-c2799"
           >
             <!---->
             qux
@@ -7003,7 +7003,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c2785"
+        id="bits-c2782"
         role="radiogroup"
       >
         <!---->
@@ -7045,7 +7045,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c2787"
+            id="bits-c2784"
           >
             <!---->
             foo
@@ -7094,7 +7094,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c2789"
+            id="bits-c2786"
           >
             <!---->
             bar
@@ -7143,7 +7143,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c2791"
+            id="bits-c2788"
           >
             <!---->
             fuzz
@@ -7192,7 +7192,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c2793"
+            id="bits-c2790"
           >
             <!---->
             qux
@@ -7312,7 +7312,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
         data-orientation="vertical"
         data-radio-group-root=""
         data-slot="radio-group"
-        id="bits-c2812"
+        id="bits-c2809"
         role="radiogroup"
       >
         <!---->
@@ -7354,7 +7354,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__0"
-            id="bits-c2814"
+            id="bits-c2811"
           >
             <!---->
             foo
@@ -7403,7 +7403,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__1"
-            id="bits-c2816"
+            id="bits-c2813"
           >
             <!---->
             bar
@@ -7452,7 +7452,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__2"
-            id="bits-c2818"
+            id="bits-c2815"
           >
             <!---->
             fuzz
@@ -7501,7 +7501,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             data-label-root=""
             data-slot="field-label"
             for="root__3"
-            id="bits-c2820"
+            id="bits-c2817"
           >
             <!---->
             qux
@@ -7645,7 +7645,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__0"
           data-variant="outline"
           disabled=""
-          id="bits-c2761"
+          id="bits-c2758"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7673,7 +7673,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__1"
           data-variant="outline"
           disabled=""
-          id="bits-c2762"
+          id="bits-c2759"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7701,7 +7701,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__2"
           data-variant="outline"
           disabled=""
-          id="bits-c2763"
+          id="bits-c2760"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7729,7 +7729,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           data-value="root__3"
           data-variant="outline"
           disabled=""
-          id="bits-c2764"
+          id="bits-c2761"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7867,7 +7867,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__0"
           data-variant="outline"
-          id="bits-c2756"
+          id="bits-c2753"
           role="radio"
           tabindex="0"
           type="button"
@@ -7893,7 +7893,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__1"
           data-variant="outline"
-          id="bits-c2757"
+          id="bits-c2754"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7919,7 +7919,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__2"
           data-variant="outline"
-          id="bits-c2758"
+          id="bits-c2755"
           role="radio"
           tabindex="-1"
           type="button"
@@ -7945,7 +7945,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
           data-toggle-group-item=""
           data-value="root__3"
           data-variant="outline"
-          id="bits-c2759"
+          id="bits-c2756"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8107,7 +8107,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__0"
           data-variant="outline"
-          id="bits-c2751"
+          id="bits-c2748"
           role="radio"
           tabindex="0"
           type="button"
@@ -8133,7 +8133,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__1"
           data-variant="outline"
-          id="bits-c2752"
+          id="bits-c2749"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8159,7 +8159,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__2"
           data-variant="outline"
-          id="bits-c2753"
+          id="bits-c2750"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8185,7 +8185,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
           data-toggle-group-item=""
           data-value="root__3"
           data-variant="outline"
-          id="bits-c2754"
+          id="bits-c2751"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8323,7 +8323,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__0"
           data-variant="outline"
-          id="bits-c2766"
+          id="bits-c2763"
           role="radio"
           tabindex="0"
           type="button"
@@ -8349,7 +8349,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__1"
           data-variant="outline"
-          id="bits-c2767"
+          id="bits-c2764"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8375,7 +8375,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__2"
           data-variant="outline"
-          id="bits-c2768"
+          id="bits-c2765"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8401,7 +8401,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
           data-toggle-group-item=""
           data-value="root__3"
           data-variant="outline"
-          id="bits-c2769"
+          id="bits-c2766"
           role="radio"
           tabindex="-1"
           type="button"
@@ -8531,7 +8531,7 @@ exports[`widgets > range > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2855"
+            id="bits-c2852"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -8554,7 +8554,7 @@ exports[`widgets > range > snapshots > disabled 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2856"
+          id="bits-c2853"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="-1"
@@ -8681,7 +8681,7 @@ exports[`widgets > range > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2852"
+            id="bits-c2849"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -8703,7 +8703,7 @@ exports[`widgets > range > snapshots > error 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2853"
+          id="bits-c2850"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -8854,7 +8854,7 @@ exports[`widgets > range > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2849"
+            id="bits-c2846"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -8876,7 +8876,7 @@ exports[`widgets > range > snapshots > normal 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2850"
+          id="bits-c2847"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9003,7 +9003,7 @@ exports[`widgets > range > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2858"
+            id="bits-c2855"
             style="position: absolute; left: 0%; right: 98.0676%;"
           >
             <!---->
@@ -9025,7 +9025,7 @@ exports[`widgets > range > snapshots > readonly 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2859"
+          id="bits-c2856"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9153,7 +9153,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2877"
+            id="bits-c2874"
             style="position: absolute; left: 1.93237%; right: 98.0676%;"
           >
             <!---->
@@ -9176,7 +9176,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2878"
+          id="bits-c2875"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="-1"
@@ -9199,7 +9199,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2879"
+          id="bits-c2876"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="-1"
@@ -9326,7 +9326,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2873"
+            id="bits-c2870"
             style="position: absolute; left: 1.93237%; right: 98.0676%;"
           >
             <!---->
@@ -9348,7 +9348,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2874"
+          id="bits-c2871"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9370,7 +9370,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2875"
+          id="bits-c2872"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9521,7 +9521,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2869"
+            id="bits-c2866"
             style="position: absolute; left: 1.93237%; right: 98.0676%;"
           >
             <!---->
@@ -9543,7 +9543,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2870"
+          id="bits-c2867"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9565,7 +9565,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2871"
+          id="bits-c2868"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9692,7 +9692,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-slider-range=""
             data-slot="slider-range"
-            id="bits-c2881"
+            id="bits-c2878"
             style="position: absolute; left: 1.93237%; right: 98.0676%;"
           >
             <!---->
@@ -9714,7 +9714,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2882"
+          id="bits-c2879"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -9736,7 +9736,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
           data-slider-thumb=""
           data-slot="slider-thumb"
           data-value="0"
-          id="bits-c2883"
+          id="bits-c2880"
           role="slider"
           style="position: absolute; left: 1.93237%; translate: -50%;"
           tabindex="0"
@@ -10605,7 +10605,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2907"
+            id="bits-c2904"
           >
             <!---->
           </span>
@@ -10640,7 +10640,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2908"
+          id="bits-c2905"
         >
           <!---->
           switch
@@ -10766,7 +10766,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2904"
+            id="bits-c2901"
           >
             <!---->
           </span>
@@ -10800,7 +10800,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2905"
+          id="bits-c2902"
         >
           <!---->
           switch
@@ -10950,7 +10950,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2901"
+            id="bits-c2898"
           >
             <!---->
           </span>
@@ -10984,7 +10984,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2902"
+          id="bits-c2899"
         >
           <!---->
           switch
@@ -11110,7 +11110,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c2910"
+            id="bits-c2907"
           >
             <!---->
           </span>
@@ -11144,7 +11144,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root"
-          id="bits-c2911"
+          id="bits-c2908"
         >
           <!---->
           switch
