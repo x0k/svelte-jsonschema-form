@@ -92,7 +92,7 @@
     update: (v) => (value = v === undefined ? undefined : Boolean(v)),
   });
   const clearable = $derived(
-    uiOption("clearable") ?? config.schema.default === undefined
+    uiOption("clearable") ?? !config.required
   );
 
   const handlers = makeEventHandlers(

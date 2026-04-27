@@ -50,8 +50,7 @@
   });
   const clearable = $derived(
     uiOption("clearable") ??
-      (config.schema.default === undefined &&
-        mapper.toValue(EMPTY_VALUE) === undefined)
+      (!config.required && mapper.toValue(EMPTY_VALUE) === undefined)
   );
   const errors = $derived(getFieldErrors(ctx, config.path));
   const action = $derived(getFieldAction(ctx, config, field));
