@@ -8,6 +8,7 @@ import "@sjsf/form/fields/extra/array-files-include";
 import "@sjsf/form/fields/extra/unknown-native-file-include";
 import "@sjsf/form/fields/extra/array-native-files-include";
 import "@sjsf/form/fields/extra/array-tags-include";
+import "@sjsf/form/fields/extra/object-key-enum-include";
 
 import { theme as basic } from "@sjsf/basic-theme";
 import basicStyles from "@sjsf/basic-theme/css/basic.css?raw";

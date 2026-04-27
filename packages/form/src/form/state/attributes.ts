@@ -12,7 +12,7 @@ import { on } from "svelte/events";
 import type { Nullable, ObjectProperties } from "@/lib/types.js";
 import { weakMemoize } from "@/lib/memoize.js";
 
-import type { Config } from "../config.js";
+import type { Config, EventHandlers } from "../config.js";
 import type { FieldPseudoElement } from "../id.js";
 import type { UiOptions } from "../ui-schema.js";
 import { FORM_DISABLED, FORM_ERRORS } from "../internals.js";
@@ -29,20 +29,13 @@ interface Disabled {
   disabled: boolean;
 }
 
-interface Handlers {
-  onfocus?: () => void;
-  onblur?: () => void;
-  oninput?: () => void;
-  onchange?: () => void;
-}
-
 interface Attachable {
   // allow any attachment and falsy values (by using false we prevent the usage of booleans values by themselves)
   [key: symbol]: Attachment<any> | false | undefined | null;
 }
 
 export const HANDLERS_ATTACHMENT_CACHE = new WeakMap<
-  Handlers,
+  EventHandlers,
   <P extends Attachable>(props: P) => P
 >();
 
@@ -493,7 +486,7 @@ export function inputAttributes<T, const O extends keyof ObjectUiOptions>(
   ctx: FormState<T>,
   config: Config,
   option: O,
-  handlers: Handlers,
+  handlers: EventHandlers,
   props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
@@ -513,7 +506,7 @@ export function selectAttributes<T, const O extends keyof ObjectUiOptions>(
   ctx: FormState<T>,
   config: Config,
   option: O,
-  handlers: Handlers,
+  handlers: EventHandlers,
   props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
@@ -533,7 +526,7 @@ export function textareaAttributes<T, const O extends keyof ObjectUiOptions>(
   ctx: FormState<T>,
   config: Config,
   option: O,
-  handlers: Handlers,
+  handlers: EventHandlers,
   props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(

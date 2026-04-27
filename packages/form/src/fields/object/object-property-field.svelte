@@ -1,6 +1,5 @@
 <script lang="ts" module>
   import "@/form/extra-fields/object-property.js";
-  import "@/form/extra-fields/object-key-input.js";
   import "../extra-templates/object-property.js";
 
   declare module "../components.js" {
@@ -12,14 +11,13 @@
 
 <script lang="ts">
   import {
+    type ComponentProps,
+    type Config,
     getComponent,
     getFieldErrors,
     getFieldComponent,
     getFormContext,
-    retrieveUiSchema,
     Text,
-    type ComponentProps,
-    type Config,
     getPseudoPath,
     uiTitleOption,
     retrieveUiOption,
@@ -46,26 +44,29 @@
   const Field = $derived(getFieldComponent(ctx, config));
   const Button = $derived(getComponent(ctx, "button", config));
   const errors = $derived(getFieldErrors(ctx, config.path));
+
+  let propertyNext = $derived<string | undefined>(property);
 </script>
 
 {#snippet keyInput()}
   {@const schemas = objCtx.keyInputSchemas()}
-  {@const keyInputConfig: Config = {
+  {@const keyInputConfig = {
     ...schemas,
-    path: getPseudoPath(ctx, config.path, 'key-input'),
-    title: uiTitleOption(ctx, schemas.uiSchema) ?? translate("key-input-title", { name: property }),
+    path: getPseudoPath(ctx, config.path, "key-input"),
+    title:
+      uiTitleOption(ctx, schemas.uiSchema) ??
+      translate("key-input-title", { name: property }),
     required: true,
-  }}
-  {@const KeyInputField = getComponent(
-    ctx,
-    "objectKeyInputField",
-    keyInputConfig
-  )}
+    eventHandlers: {
+      onchange() {
+        objCtx.renameProperty(property, propertyNext, keyInputConfig);
+      },
+    },
+  } satisfies Config}
+  {@const KeyInputField = getFieldComponent(ctx, keyInputConfig)}
   <KeyInputField
     type="field"
-    bind:value={
-      () => property, (v) => objCtx.renameProperty(property, v, keyInputConfig)
-    }
+    bind:value={propertyNext as undefined}
     config={keyInputConfig}
     uiOption={(opt) => retrieveUiOption(ctx, keyInputConfig, opt)}
     translate={retrieveTranslate(ctx, keyInputConfig)}

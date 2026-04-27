@@ -90,6 +90,7 @@ export function makeEventHandlers<T>(
   validate: () => void
 ) {
   const path = $derived(config().path);
+  const eventHandlers = $derived(config().eventHandlers ?? {});
 
   onMount(() => {
     // WARN: Read of derived during teardown will lead to
@@ -128,18 +129,22 @@ export function makeEventHandlers<T>(
   return {
     onfocus() {
       setFieldState(ctx, path, FIELD_FOCUSED);
+      eventHandlers.onfocus?.();
     },
     oninput() {
       setFieldState(ctx, path, FIELD_INPUTTED);
       onInput?.();
+      eventHandlers.oninput?.();
     },
     onchange() {
       setFieldState(ctx, path, FIELD_CHANGED);
       onChange?.();
+      eventHandlers.onchange?.();
     },
     onblur() {
       setFieldState(ctx, path, FIELD_BLURRED);
       onBlur?.();
+      eventHandlers.onblur?.();
     },
   };
 }

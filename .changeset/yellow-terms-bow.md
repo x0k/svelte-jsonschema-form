@@ -2,4 +2,4 @@
 "@sjsf/form": minor
 ---
 
-Define extra `object-key-input` field
+Use `propertyNames` schema to evaluate object key input field type

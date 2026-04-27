@@ -19,7 +19,6 @@
     validateField,
     getFieldsErrors,
     getFieldErrors,
-    type FieldPath,
     getFieldAction,
     getSubtreePaths,
   } from "@/form/index.js";
