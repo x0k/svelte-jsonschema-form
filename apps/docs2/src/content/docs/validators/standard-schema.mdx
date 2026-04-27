@@ -12,8 +12,9 @@ import Form from './standard-schema/form.svelte';
 import formCode from './standard-schema/form.svelte?raw';
 import sharedCode from './shared/index.ts?raw';
 
-You can use any validator that implements [Standard Schema](https://standardschema.dev/)
-spec and can be converted to JSON Schema for the full form validation step.
+You can use any entity that implements [Standard Schema](https://standardschema.dev/schema)
+or [Standard JSON Schema](https://standardschema.dev/json-schema) as a source for
+the JSON Schema and for performing full form validation.
 
 ## Example
 
@@ -32,7 +33,7 @@ spec and can be converted to JSON Schema for the full form validation step.
 
 ## Limitations
 
-You can use `isValid: () => { throw new Error() }` as long as the generated form does not contain
+You can use `adapt` as long as the generated schema does not contain
 the following keywords `oneOf`, `anyOf` and `if,them,else`.
 
 In such cases, you will need a real `Validator` interface implementation
@@ -43,10 +44,7 @@ In such cases, you will need a real `Validator` interface implementation
 This validator supports async validation.
 
 ```typescript
-import { createAsyncFormValueValidator } from "@sjsf/form/validators/standard-schema";
+import { adaptAsync } from "@sjsf/form/validators/standard-schema";
 
-export const validator = {
-  ...createAsyncFormValueValidator(schema),
-  isValid: () => true,
-};
+const { schema, validator } = adaptAsync(standardSchema);
 ```
