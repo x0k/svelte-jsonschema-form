@@ -3,9 +3,8 @@
     BasicForm,
     createForm,
     getValueSnapshot,
-    type Schema,
   } from "@sjsf/form";
-  import { createFormValueValidator } from "@sjsf/form/validators/standard-schema";
+  import { adapt } from "@sjsf/form/validators/standard-schema";
   import { type } from "arktype";
 
   import * as defaults from "@/lib/form/defaults";
@@ -21,16 +20,8 @@
 
   const form = createForm({
     ...defaults,
-    schema: schema.toJsonSchema({
-      dialect: "https://json-schema.org/draft-07/schema",
-    }) as Schema,
+    ...adapt(schema),
     uiSchema,
-    validator: {
-      ...createFormValueValidator(schema),
-      isValid: () => {
-        throw new Error("not implemented");
-      },
-    },
     initialValue: {
       ...initialValue,
       id: "123",
