@@ -7,7 +7,7 @@
   "scripts": {
     "extract-fields": "node scripts/extract-fields.ts",
     "extract-widgets": "node scripts/extract-widgets.ts",
-    "extract-metadata": "npm run collect-extra-fields && npm run extract-widgets",
+    "extract-metadata": "npm run extract-fields && npm run extract-widgets",
     "check": "npm run extract-metadata && svelte-check --tsconfig ./tsconfig.json",
     "build": "svelte-package && publint"
   },

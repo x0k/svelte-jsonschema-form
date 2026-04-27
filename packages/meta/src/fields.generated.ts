@@ -54,6 +54,11 @@ export const EXTRA_FIELDS = {
     "filename": "native-files",
     "wrapperOf": null
   },
+  "object-key-enum": {
+    "name": "objectKeyEnumField",
+    "filename": "object-key-enum",
+    "wrapperOf": null
+  },
   "remote-enum": {
     "name": "remoteEnumField",
     "filename": "remote-enum",
