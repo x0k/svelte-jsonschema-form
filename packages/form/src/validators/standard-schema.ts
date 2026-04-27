@@ -86,10 +86,10 @@ function isValid(schema: Schema): boolean {
 export function adapt<T extends CombinedSpec>(
   combined: T
 ): AdapterResult<typeof createFormValueValidator<T>>;
-export function adapt<
-  V extends StandardSchemaV1,
-  S extends StandardJSONSchemaV1,
->(validator: V, schema: S): AdapterResult<typeof createFormValueValidator<V>>;
+export function adapt<V extends StandardSchemaV1>(
+  validator: V,
+  schema: StandardJSONSchemaV1<StandardSchemaV1.InferInput<V>, any>
+): AdapterResult<typeof createFormValueValidator<V>>;
 export function adapt<V extends CombinedSpec | StandardSchemaV1>(
   validator: V,
   schema = validator as StandardJSONSchemaV1
@@ -108,12 +108,9 @@ export function adapt<V extends CombinedSpec | StandardSchemaV1>(
 export function adaptAsync<T extends CombinedSpec>(
   combined: T
 ): AdapterResult<typeof createAsyncFormValueValidator<T>>;
-export function adaptAsync<
-  V extends StandardSchemaV1,
-  S extends StandardJSONSchemaV1,
->(
+export function adaptAsync<V extends StandardSchemaV1>(
   validator: V,
-  schema: S
+  schema: StandardJSONSchemaV1<StandardSchemaV1.InferInput<V>, any>
 ): AdapterResult<typeof createAsyncFormValueValidator<V>>;
 export function adaptAsync<V extends CombinedSpec | StandardSchemaV1>(
   validator: V,
