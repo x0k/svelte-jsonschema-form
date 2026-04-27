@@ -1,7 +1,12 @@
-import type { StandardSchemaV1 } from "@standard-schema/spec";
-
-import type { Path } from "@/core/index.js";
 import type {
+  StandardJSONSchemaV1,
+  StandardSchemaV1,
+} from "@standard-schema/spec";
+
+import type {
+  Validator,
+  Schema,
+  Path,
   AsyncFormValueValidator,
   FormValue,
   FormValueValidator,
@@ -54,6 +59,73 @@ export function createAsyncFormValueValidator<T extends StandardSchemaV1>(
     async validateFormValueAsync(_, _1, formValue) {
       const result = await schema["~standard"].validate(formValue);
       return transformErrors(formValue, result);
+    },
+  };
+}
+
+interface CombinedProps<Input = unknown, Output = Input>
+  extends
+    StandardSchemaV1.Props<Input, Output>,
+    StandardJSONSchemaV1.Props<Input, Output> {}
+
+interface CombinedSpec<Input = unknown, Output = Input> {
+  "~standard": CombinedProps<Input, Output>;
+}
+
+interface AdapterResult<V extends (...args: any) => any> {
+  schema: Schema;
+  validator: Validator & ReturnType<V>;
+}
+
+function isValid(schema: Schema): boolean {
+  throw new Error(
+    `Methods 'isValid' is not implemented for "${JSON.stringify(schema)}"`
+  );
+}
+
+export function adapt<T extends CombinedSpec>(
+  combined: T
+): AdapterResult<typeof createFormValueValidator<T>>;
+export function adapt<
+  V extends StandardSchemaV1,
+  S extends StandardJSONSchemaV1,
+>(validator: V, schema: S): AdapterResult<typeof createFormValueValidator<V>>;
+export function adapt<V extends CombinedSpec | StandardSchemaV1>(
+  validator: V,
+  schema = validator as StandardJSONSchemaV1
+): AdapterResult<typeof createFormValueValidator<V>> {
+  return {
+    schema: schema["~standard"].jsonSchema.input({
+      target: "draft-07",
+    }),
+    validator: {
+      ...createFormValueValidator(validator),
+      isValid,
+    },
+  };
+}
+
+export function adaptAsync<T extends CombinedSpec>(
+  combined: T
+): AdapterResult<typeof createAsyncFormValueValidator<T>>;
+export function adaptAsync<
+  V extends StandardSchemaV1,
+  S extends StandardJSONSchemaV1,
+>(
+  validator: V,
+  schema: S
+): AdapterResult<typeof createAsyncFormValueValidator<V>>;
+export function adaptAsync<V extends CombinedSpec | StandardSchemaV1>(
+  validator: V,
+  schema = validator as StandardJSONSchemaV1
+): AdapterResult<typeof createAsyncFormValueValidator<V>> {
+  return {
+    schema: schema["~standard"].jsonSchema.input({
+      target: "draft-07",
+    }),
+    validator: {
+      ...createAsyncFormValueValidator(validator),
+      isValid,
     },
   };
 }
