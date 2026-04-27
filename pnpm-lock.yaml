@@ -2121,6 +2121,9 @@ importers:
       '@sjsf-lab/beercss-theme':
         specifier: workspace:*
         version: link:../../lab/beercss-theme
+      '@sjsf-lab/hyperjump-validator':
+        specifier: workspace:*
+        version: link:../../lab/hyperjump-validator
       '@sjsf-lab/shadcn-extras-theme':
         specifier: workspace:*
         version: link:../../lab/shadcn-extras-theme

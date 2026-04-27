@@ -3,6 +3,7 @@ import _cfworkerPackageJson from "@sjsf/cfworker-validator/package.json" with { 
 import _schemasafePackageJson from "@sjsf/schemasafe-validator/package.json" with { type: "json" };
 import _zod4PackageJson from "@sjsf/zod4-validator/package.json" with { type: "json" };
 import _valibotPackageJson from "@sjsf/valibot-validator/package.json" with { type: "json" };
+import _hyperjumpPackageJson from "@sjsf-lab/hyperjump-validator/package.json" with { type: "json" };
 
 import { type Package, fromPackageJson } from "./package.ts";
 import { formPackage } from "./form.ts";
@@ -16,6 +17,8 @@ export type JsonSchemaValidator = (typeof JSON_SCHEMA_VALIDATORS)[number];
 const SCHEMA_VALIDATORS = ["zod4", "valibot"] as const;
 
 export type SchemaValidator = (typeof SCHEMA_VALIDATORS)[number];
+
+const PRECOMPILED_VALIDATORS = ["hyperjump"] as const;
 
 const INTERNAL_VALIDATORS = ["standard-schema", "noop"] as const;
 
