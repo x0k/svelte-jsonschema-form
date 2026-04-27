@@ -13,7 +13,15 @@ export default {
       enum: ["foo", "bar", "baz"],
     },
   },
-  uiSchema: {},
+  uiSchema: {
+    additionalProperties: {
+      additionalPropertyKeyInput: {
+        "ui:components": {
+          enumField: "objectKeyEnumField",
+        },
+      },
+    },
+  },
   initialValue: {
     foo: 123,
   },
