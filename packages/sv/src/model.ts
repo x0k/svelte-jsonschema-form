@@ -63,7 +63,7 @@ export const options = defineAddonOptions()
     question: "Validator?",
     type: "select",
     default: "ajv8" satisfies Validator,
-    options: validators().map((v) => ({
+    options: Array.from(validators()).map((v) => ({
       value: v,
       label: validatorTitle(v),
     })),

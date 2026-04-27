@@ -148,7 +148,7 @@ export function resolver(_ctx) {`) +
 
       if (
         getTopLevelFunction(ast, "validator") ||
-        !(isJsonSchemaValidator(validator) || isInternalValidator(validator))
+        !(isJsonSchemaValidator(validator) || validator === "noop")
       ) {
         return;
       }
