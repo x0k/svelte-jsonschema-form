@@ -1,6 +1,6 @@
 <script lang="ts">
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
-  import { createFormValidatorFactory } from "@sjsf-lab/hyperjump-validator";
+  import { createFormValidatorFactory } from "@sjsf-lab/hyperjump-validator/precompile";
   import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
   import { resolver } from "@sjsf/form/resolvers/compat";
   import "@hyperjump/json-schema/formats-lite";
