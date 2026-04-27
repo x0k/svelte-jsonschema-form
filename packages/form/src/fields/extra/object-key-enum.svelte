@@ -1,29 +1,18 @@
 <script lang="ts" module>
-  import "@/form/extra-fields/object-key-input.js";
-  import type { FormEnumOption } from "@/form/index.js";
-  import {
-    EMPTY_VALUE,
-    singleOption,
-    type EnumValueMapper,
-  } from "@/options.svelte.js";
+  import type { FieldCommonProps, SchemaValue } from "@/form/index.js";
 
-  const field = "objectKeyInputField";
+  const field = "objectKeyEnumField";
   declare module "../../form/index.js" {
+    interface ComponentProps {
+      [field]: FieldCommonProps<SchemaValue>;
+    }
+    interface ComponentBindings {
+      [field]: "value";
+    }
     interface ActionFields {
       [field]: {};
     }
   }
-
-  const DEFAULT_FORM_OPTIONS: {
-    mapper: EnumValueMapper;
-    options: FormEnumOption[];
-  } = {
-    mapper: {
-      fromValue: () => EMPTY_VALUE,
-      toValue: () => undefined,
-    },
-    options: [],
-  };
 </script>
 
 <script lang="ts">
@@ -31,50 +20,43 @@
     getComponent,
     getFieldErrors,
     getFormContext,
-    isSelect,
-    retrieveUiOption,
     type ComponentProps,
-    type UiOption,
     getFieldAction,
+    makeEventHandlers,
+    validateField,
   } from "@/form/index.js";
+  import { singleOption } from "@/options.svelte.js";
 
+  import { getObjectContext } from "../object/context.svelte.js";
   import { createFormOptions } from "../enum.js";
-  import { getObjectContext } from "./context.svelte.js";
 
   let {
     config,
     value = $bindable(),
-    uiOption: fieldUiOption,
+    uiOption,
   }: ComponentProps[typeof field] = $props();
 
   const ctx = getFormContext();
   const objCtx = getObjectContext();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const widgetType = $derived(
-    isSelect(ctx, config.schema) ? "selectWidget" : "textWidget"
-  );
+  const widgetType = "selectWidget";
   const Widget = $derived(getComponent(ctx, widgetType, config));
 
-  const errors = $derived(getFieldErrors(ctx, config.path));
-  const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config, opt);
+  const handlers = makeEventHandlers(
+    ctx,
+    () => config,
+    () => validateField(ctx, config, value)
+  );
 
   const { options, mapper } = $derived(
-    widgetType === "selectWidget"
-      ? createFormOptions(ctx, config, fieldUiOption, config.schema)
-      : DEFAULT_FORM_OPTIONS
+    createFormOptions(ctx, config, uiOption, config.schema)
   );
+
   const mapped = singleOption({
     mapper: () => mapper,
     value: () => value,
-    update: (v) => {
-      if (v !== undefined && typeof v !== "string") {
-        throw new Error(
-          `Expected "string | undefined" key input value type, but got "${typeof v}"`
-        );
-      }
-      value = v;
-    },
+    update: (v) => (value = v),
   });
 
   const availableOptions = $derived(
@@ -85,13 +67,7 @@
     )
   );
 
-  let writable = $derived(value);
-  const handlers = {
-    onchange: () => {
-      value = writable;
-    },
-  };
-
+  const errors = $derived(getFieldErrors(ctx, config.path));
   const action = $derived(getFieldAction(ctx, config, field));
 </script>
 
@@ -115,7 +91,7 @@
   showTitle
   useLabel
   {widgetType}
-  value={writable}
+  {value}
   {config}
   {errors}
   {uiOption}
@@ -127,7 +103,7 @@
     {handlers}
     {config}
     {uiOption}
-    bind:value={writable as undefined}
+    bind:value
     options={availableOptions}
     {mapper}
     {mapped}
