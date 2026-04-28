@@ -5,13 +5,15 @@ import {
   themeTitle,
   validators,
   validatorTitle,
-  isJsonSchemaValidator,
   type Validator,
   type NonLegacyThemeOrSubTheme,
   iconSets,
   iconSetTitle,
   isThemeExtension,
   themeExtensionOrigin,
+  type PrecompiledValidator,
+  isPrecompiledOnlyValidator,
+  isPrecompiledValidator,
 } from "meta";
 
 import packageJson from "../package.json" with { type: "json" };
@@ -30,6 +32,24 @@ const SVELTE_KIT_INTEGRATION_OPTIONS = [
 
 export type SvelteKitIntegrationOption =
   (typeof SVELTE_KIT_INTEGRATION_OPTIONS)[number]["value"];
+
+function validatorOpt<V extends Validator>(v: V) {
+  return {
+    value: v,
+    label: validatorTitle(v),
+  } as const;
+}
+
+function precompiledOpt<V extends PrecompiledValidator>(v: V) {
+  return {
+    value: `${v}-precompiled`,
+    label: `${validatorTitle(v)} (precompiled)`,
+  } as const;
+}
+
+export function isEndsWithPrecompiled(v: string): v is `${string}-precompiled` {
+  return v.endsWith("-precompiled");
+}
 
 export const options = defineAddonOptions()
   .add("themeOrSubTheme", {
@@ -53,7 +73,7 @@ export const options = defineAddonOptions()
         value: "none",
         label: "None",
       },
-      ...iconSets().map((i) => ({
+      ...Array.from(iconSets()).map((i) => ({
         value: i,
         label: iconSetTitle(i),
       })),
@@ -62,11 +82,14 @@ export const options = defineAddonOptions()
   .add("validator", {
     question: "Validator?",
     type: "select",
-    default: "ajv8" satisfies Validator,
-    options: Array.from(validators()).map((v) => ({
-      value: v,
-      label: validatorTitle(v),
-    })),
+    default: "ajv8",
+    options: Array.from(validators()).flatMap((v) => [
+      ...(isPrecompiledOnlyValidator(v)
+        ? [precompiledOpt(v)]
+        : isPrecompiledValidator(v)
+          ? [validatorOpt(v), precompiledOpt(v)]
+          : [validatorOpt(v)]),
+    ]),
   })
   .add("sveltekit", {
     question: "Setup SvelteKit integration?",

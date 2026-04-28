@@ -10,8 +10,6 @@ const ICON_SETS = ["flowbite", "lucide", "moving", "radix"] as const;
 
 export type IconSet = (typeof ICON_SETS)[number];
 
-const ICONS = [...ICON_SETS];
-
 const ICON_SET_TITLES: Record<IconSet, string> = {
   flowbite: "Flowbite",
   lucide: "lucide",
@@ -37,8 +35,8 @@ const ICON_SET_AT_RULES: Partial<
   ],
 };
 
-export function iconSets(): IconSet[] {
-  return ICONS;
+export function iconSets(): Iterable<IconSet> {
+  return ICON_SETS;
 }
 
 export function iconSetTitle(iconSet: IconSet) {
