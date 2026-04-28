@@ -14,6 +14,7 @@ import {
   type AbstractPackage,
   type IncludeOptional,
   type PackageDependency,
+  isJsonSchemaValidator,
 } from "meta";
 
 import type { Context } from "./model.js";
@@ -34,8 +35,7 @@ export function dependencies({ sv, options }: Context) {
       addDependency(d);
     }
   }
-  const { themeOrSubTheme, validator, icons, typeInference, sveltekit } =
-    options;
+  const { themeOrSubTheme, validator, icons, sveltekit } = options;
   // Form
   addDependency(formPackage);
   // Theme
@@ -78,7 +78,7 @@ export function dependencies({ sv, options }: Context) {
     addDependencies(iconsPkg.dependencies);
   }
   // Type inference
-  if (typeInference) {
+  if (isJsonSchemaValidator(validator)) {
     addDependency(extraPackage("jsonSchemaToTs"));
   }
   // Kit integration

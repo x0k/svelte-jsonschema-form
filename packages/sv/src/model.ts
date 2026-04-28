@@ -68,13 +68,6 @@ export const options = defineAddonOptions()
       label: validatorTitle(v),
     })),
   })
-  .add("typeInference", {
-    question:
-      "Add library to infer TS types from JSON schemas (json-schema-to-ts)?",
-    type: "boolean",
-    default: true,
-    condition: (o) => isJsonSchemaValidator(o.validator),
-  })
   .add("sveltekit", {
     question: "Setup SvelteKit integration?",
     type: "select",
