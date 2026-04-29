@@ -1,5 +1,24 @@
 # @sjsf/form
 
+## 3.6.0
+
+### Minor Changes
+
+- Export `adapt` and `adaptAsync` functions from `@sjsf/form/validators/standard-schema` ([#368](https://github.com/x0k/svelte-jsonschema-form/pull/368))
+
+- Allow overriding the fields validation mode for specific fields ([#367](https://github.com/x0k/svelte-jsonschema-form/pull/367))
+
+- Add `object-key-enum` extra field (an enum field that takes existing keys into account) ([#370](https://github.com/x0k/svelte-jsonschema-form/pull/370))
+
+- Use `propertyNames` schema to evaluate object key input field type ([#366](https://github.com/x0k/svelte-jsonschema-form/pull/366))
+
+### Patch Changes
+
+- Fix calculation of the `clearable` condition ([#371](https://github.com/x0k/svelte-jsonschema-form/pull/371))
+
+  Previously: A field is `clearable` if no default value is defined for it
+  Now: A field is `clearable` if it is not required
+
 ## 3.5.0
 
 ### Minor Changes
