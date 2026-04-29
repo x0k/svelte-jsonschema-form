@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { tick } from "svelte";
   import { BasicForm, createForm } from "@sjsf/form";
   // WARN: You must export this ID Builder in your `defaults` file
   import { createFormIdBuilder } from "@sjsf/sveltekit/rf";
@@ -14,14 +13,10 @@
   const form = createForm(
     await connect(
       createPost.enhance(async ({ submit }) => {
-        await submit();
-        if (createPost.fields.allIssues()) {
-          return;
+        if (await submit()) {
+          console.log(createPost.result);
+          form.reset();
         }
-        console.log(createPost.result);
-        // Waiting for an update from remote function
-        await tick();
-        form.reset();
       }),
       {
         ...defaults,
@@ -29,8 +24,8 @@
         idBuilder: createFormIdBuilder,
         // Required due to the use of `enhance`
         fields: createPost.fields,
-      }
-    )
+      },
+    ),
   );
 </script>
 
