@@ -161,3 +161,5 @@ export function createContext(ws: Workspace): Context {
     ts: ts!,
   };
 }
+
+export const POST_JSON_SCHEMA_PATH = `/post/schema.json`;

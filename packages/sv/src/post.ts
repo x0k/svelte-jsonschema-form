@@ -2,7 +2,7 @@ import { extraPackage, formPackage, isJsonSchemaValidator } from "meta";
 
 import {
   isEndsWithPrecompiled,
-  withoutPrecompiledSuffix,
+  POST_JSON_SCHEMA_PATH,
   type Context,
 } from "./model.js";
 import { transforms } from "./sv-utils.js";
@@ -24,12 +24,19 @@ const schema = {
   required: ["title", "content"],
 };
 
-export function postTs({ isTs, sv, directory, language, options }: Context) {
-  const { validator } = options;
+export function postTs({
+  isTs,
+  sv,
+  directory,
+  language,
+  options,
+  ts,
+}: Context) {
+  const { validatorWithSuffix } = options;
 
-  if (isEndsWithPrecompiled(validator)) {
+  if (isEndsWithPrecompiled(validatorWithSuffix)) {
     sv.file(
-      `${directory.lib}/post/schema.json`,
+      `${directory.lib}${POST_JSON_SCHEMA_PATH}`,
       transforms.json(({ data }) => {
         if (Object.keys(data).length === 0) {
           Object.assign(data, schema);
@@ -40,7 +47,10 @@ export function postTs({ isTs, sv, directory, language, options }: Context) {
     sv.file(
       `${directory.lib}/post.${language}`,
       transforms.script(({ ast, js, comments }) => {
-        if (isJsonSchemaValidator(validator) || validator === "noop") {
+        if (
+          isJsonSchemaValidator(validatorWithSuffix) ||
+          validatorWithSuffix === "noop"
+        ) {
           if (isTs) {
             js.imports.addNamed(ast, {
               isType: true,
@@ -55,7 +65,7 @@ export function postTs({ isTs, sv, directory, language, options }: Context) {
           }
 
           const schemaExpression = js.common.parseExpression(
-            `${JSON.stringify(schema)}${isTs ? " as const satisfies Schema" : ""}`,
+            `${JSON.stringify(schema)}${ts(" as const satisfies Schema")}`,
           );
           const schemaDeclaration = js.variables.declaration(ast, {
             kind: "const",
@@ -72,7 +82,7 @@ export function postTs({ isTs, sv, directory, language, options }: Context) {
             fallback: schemaDeclaration,
           });
           // TODO: export type CreatePost = FromSchema<typeof schema>;
-        } else if (validator === "zod4") {
+        } else if (validatorWithSuffix === "zod4") {
           js.imports.addNamespace(ast, { from: "zod", as: "z" });
 
           const postExpression = js.common.parseExpression(`z
@@ -91,7 +101,7 @@ export function postTs({ isTs, sv, directory, language, options }: Context) {
             fallback: postDeclaration,
           });
           // TODO: export type Post = z.infer<typeof post>;
-        } else if (validator === "valibot") {
+        } else if (validatorWithSuffix === "valibot") {
           js.imports.addNamespace(ast, { from: "valibot", as: "v" });
 
           const postExpression = js.common.parseExpression(`v.pipe(
@@ -124,7 +134,7 @@ export function postTs({ isTs, sv, directory, language, options }: Context) {
             fallback: postDeclaration,
           });
           // TODO: export type Post = v.InferInput<typeof post>;
-        } else if (validator === "standard-schema") {
+        } else if (validatorWithSuffix === "standard-schema") {
           const postExpression = js.common.parseExpression(`{
   "~standard": {
     version: 1,
@@ -171,7 +181,7 @@ export function postTs({ isTs, sv, directory, language, options }: Context) {
             fallback: postDeclaration,
           });
         } else {
-          const unexpectedValidator: never = validator;
+          const unexpectedValidator: never = validatorWithSuffix;
           throw new Error(
             `Unexpected validator value: "${unexpectedValidator}"`,
           );

@@ -71,9 +71,14 @@ export type LabValidator = (typeof LAB_VALIDATORS)[number];
 
 const INTERNAL_VALIDATORS = ["standard-schema", "noop"] as const;
 
+const INTERNAL_VALIDATORS_SET = new Set<Validator>(INTERNAL_VALIDATORS);
+
 export type InternalValidator = (typeof INTERNAL_VALIDATORS)[number];
 
-const INTERNAL_VALIDATORS_SET = new Set<Validator>(INTERNAL_VALIDATORS);
+const INTERNAL_VALIDATOR_MODULES = ["precompile"] as const;
+
+export type InternalValidatorModule =
+  (typeof INTERNAL_VALIDATOR_MODULES)[number];
 
 export type ExternalValidator = Exclude<Validator, InternalValidator>;
 
@@ -151,6 +156,8 @@ export function externalValidatorPackage(
   return EXTERNAL_VALIDATOR_PACKAGES[validator];
 }
 
-export function internalValidatorSubPath(validator: InternalValidator) {
+export function internalValidatorSubPath(
+  validator: InternalValidator | InternalValidatorModule,
+) {
   return `${formPackage.name}/validators/${validator}`;
 }
