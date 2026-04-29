@@ -1,6 +1,10 @@
 import { extraPackage, formPackage, isJsonSchemaValidator } from "meta";
 
-import { isEndsWithPrecompiled, type Context } from "./model.js";
+import {
+  isEndsWithPrecompiled,
+  withoutPrecompiledSuffix,
+  type Context,
+} from "./model.js";
 import { transforms } from "./sv-utils.js";
 
 const schema = {

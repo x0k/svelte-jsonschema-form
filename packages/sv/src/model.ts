@@ -1,8 +1,7 @@
 import { defineAddon, defineAddonOptions, type SelectQuestion } from "sv";
 import {
   isLabTheme,
-  nonLegacyThemeOrSubThemes,
-  themeTitle,
+  themeOrSubThemeTitle,
   validators,
   validatorTitle,
   type Validator,
@@ -15,12 +14,18 @@ import {
   isPrecompiledOnlyValidator,
   isPrecompiledValidator,
   isLabValidator,
+  isThemeWithSubThemes,
+  themeSubThemes,
+  themes,
+  isLegacyTheme,
 } from "meta";
 
 import packageJson from "../package.json" with { type: "json" };
 import { createPrinter } from "./sv-utils.js";
 
 const ADDON_ID = packageJson.name;
+
+type SelectOption = SelectQuestion<string>["options"][number];
 
 const SVELTE_KIT_INTEGRATION_OPTIONS = [
   { value: "no", label: "No" },
@@ -30,7 +35,7 @@ const SVELTE_KIT_INTEGRATION_OPTIONS = [
     label: "Remote Functions",
     hint: "experimental",
   },
-] as const satisfies SelectQuestion<string>["options"];
+] as const satisfies SelectOption[];
 
 export type SvelteKitIntegrationOption =
   (typeof SVELTE_KIT_INTEGRATION_OPTIONS)[number]["value"];
@@ -43,16 +48,56 @@ function validatorOpt<V extends Validator>(v: V) {
   } as const;
 }
 
+const PRECOMPILED_SUFFIX = `-precompiled`;
+
+type WithPrecompiledSuffix<T extends string> =
+  `${T}${typeof PRECOMPILED_SUFFIX}`;
+
 function precompiledOpt<V extends PrecompiledValidator>(v: V) {
   return {
-    value: `${v}-precompiled`,
+    value: `${v}${PRECOMPILED_SUFFIX}`,
     label: `${validatorTitle(v)} (precompiled)`,
     hint: isLabValidator(v) ? "experimental" : undefined,
   } as const;
 }
 
-export function isEndsWithPrecompiled(v: string): v is `${string}-precompiled` {
-  return v.endsWith("-precompiled");
+export function isEndsWithPrecompiled(
+  v: string,
+): v is WithPrecompiledSuffix<string> {
+  return v.endsWith(PRECOMPILED_SUFFIX);
+}
+
+export function withoutPrecompiledSuffix<V extends string>(
+  v: V | WithPrecompiledSuffix<V>,
+): V {
+  return isEndsWithPrecompiled(v)
+    ? (v.slice(0, -PRECOMPILED_SUFFIX.length) as V)
+    : v;
+}
+
+function* themeOrSubThemeOptions() {
+  for (const t of themes()) {
+    if (isLegacyTheme(t)) {
+      continue;
+    }
+    const hint = isLabTheme(t) ? `experimental` : undefined;
+    yield {
+      label: isThemeExtension(t)
+        ? `${themeOrSubThemeTitle(themeExtensionOrigin(t))} & ${themeOrSubThemeTitle(t)}`
+        : themeOrSubThemeTitle(t),
+      value: t,
+      hint,
+    } satisfies SelectOption;
+    if (isThemeWithSubThemes(t)) {
+      for (const s of themeSubThemes(t)) {
+        yield {
+          label: themeOrSubThemeTitle(s),
+          value: s,
+          hint,
+        } satisfies SelectOption;
+      }
+    }
+  }
 }
 
 export const options = defineAddonOptions()
@@ -60,13 +105,7 @@ export const options = defineAddonOptions()
     question: "Theme?",
     type: "select",
     default: "basic" satisfies NonLegacyThemeOrSubTheme,
-    options: nonLegacyThemeOrSubThemes().map((t) => ({
-      value: t,
-      label: isThemeExtension(t)
-        ? `${themeTitle(themeExtensionOrigin(t))} & ${themeTitle(t)}`
-        : themeTitle(t),
-      hint: isLabTheme(t) ? "experimental" : undefined,
-    })),
+    options: Array.from(themeOrSubThemeOptions()),
   })
   .add("icons", {
     question: "Icons?",
@@ -83,7 +122,7 @@ export const options = defineAddonOptions()
       })),
     ],
   })
-  .add("validator", {
+  .add("validatorWithSuffix", {
     question: "Validator?",
     type: "select",
     default: "ajv8",

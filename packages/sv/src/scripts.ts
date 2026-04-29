@@ -8,15 +8,15 @@ export function scriptsFolder({
   language,
   sv,
 }: Context) {
-  const { validator } = options;
-  if (!isEndsWithPrecompiled(validator)) {
+  const { validatorWithSuffix } = options;
+  if (!isEndsWithPrecompiled(validatorWithSuffix)) {
     return;
   }
 
   sv.file(
     `scripts/compile-validators.${language}`,
     transforms.script(({ ast, comments, js }) => {
-      validator;
+      validatorWithSuffix;
     }),
   );
 }

@@ -17,7 +17,11 @@ import {
   isJsonSchemaValidator,
 } from "meta";
 
-import type { Context } from "./model.js";
+import {
+  isEndsWithPrecompiled,
+  withoutPrecompiledSuffix,
+  type Context,
+} from "./model.js";
 
 export function dependencies({ sv, options }: Context) {
   function addDependency({ name, version, dev }: AbstractPackage) {
@@ -35,7 +39,7 @@ export function dependencies({ sv, options }: Context) {
       addDependency(d);
     }
   }
-  const { themeOrSubTheme, validator, icons, sveltekit } = options;
+  const { themeOrSubTheme, validatorWithSuffix, icons, sveltekit } = options;
   // Form
   addDependency(formPackage);
   // Theme
@@ -57,18 +61,25 @@ export function dependencies({ sv, options }: Context) {
     addDependencies(subThemeDependencies(themeOrSubTheme));
   }
   // Validator
-  if (isInternalValidator(validator)) {
-    if (validator === "standard-schema") {
-      addDependencies(formPackage.dependencies, [
-        optionalPackageName("standardSchemaSpec"),
-      ]);
-    }
-  } else {
+  if (
+    isEndsWithPrecompiled(validatorWithSuffix) ||
+    !isInternalValidator(validatorWithSuffix)
+  ) {
+    const validator = withoutPrecompiledSuffix(validatorWithSuffix);
     const validatorPkg = externalValidatorPackage(validator);
     addDependency(validatorPkg);
     addDependencies(validatorPkg.dependencies);
     if (validator === "ajv8") {
       addDependency(extraPackage("ajvFormat"));
+    }
+    if (validatorWithSuffix === "ajv8-precompiled") {
+      addDependency(extraPackage("esbuild"));
+    }
+  } else {
+    if (validatorWithSuffix === "standard-schema") {
+      addDependencies(formPackage.dependencies, [
+        optionalPackageName("standardSchemaSpec"),
+      ]);
     }
   }
   // Icons
@@ -78,7 +89,7 @@ export function dependencies({ sv, options }: Context) {
     addDependencies(iconsPkg.dependencies);
   }
   // Type inference
-  if (isJsonSchemaValidator(validator)) {
+  if (isJsonSchemaValidator(withoutPrecompiledSuffix(validatorWithSuffix))) {
     addDependency(extraPackage("jsonSchemaToTs"));
   }
   // Kit integration

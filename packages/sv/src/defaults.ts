@@ -23,7 +23,11 @@ import {
 } from "meta";
 
 import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
-import type { Context, SvelteKitIntegrationOption } from "./model.js";
+import {
+  isEndsWithPrecompiled,
+  type Context,
+  type SvelteKitIntegrationOption,
+} from "./model.js";
 
 const SVELTE_KIT_INTEGRATION_OPTION_ID_BUILDERS: Record<
   SvelteKitIntegrationOption,
@@ -44,8 +48,8 @@ export function defaultsTs({
   sv.file(
     `${directory.lib}/sjsf/defaults.${language}`,
     transforms.script(({ ast, comments, js }) => {
-      const validator = options.validator;
-      const isAjv = validator === "ajv8";
+      const { validatorWithSuffix } = options;
+      const isAjv = validatorWithSuffix === "ajv8";
 
       if (isAjv && isTs) {
         js.imports.addNamed(ast, {
@@ -148,14 +152,18 @@ export function resolver(_ctx) {`) +
 
       if (
         getTopLevelFunction(ast, "validator") ||
-        !(isJsonSchemaValidator(validator) || validator === "noop")
+        isEndsWithPrecompiled(validatorWithSuffix) ||
+        !(
+          isJsonSchemaValidator(validatorWithSuffix) ||
+          validatorWithSuffix === "noop"
+        )
       ) {
         return;
       }
 
       if (isAjv) {
         js.imports.addNamed(ast, {
-          from: externalValidatorPackage(validator).name,
+          from: externalValidatorPackage(validatorWithSuffix).name,
           imports: ["addFormComponents", "createFormValidator"],
         });
         js.imports.addDefault(ast, {
@@ -187,9 +195,9 @@ export const validator = (options) => createFormValidator({
         createReExport(ast, {
           name: "validator",
           imported: "createFormValidator",
-          source: isInternalValidator(validator)
-            ? internalValidatorSubPath(validator)
-            : externalValidatorPackage(validator).name,
+          source: isInternalValidator(validatorWithSuffix)
+            ? internalValidatorSubPath(validatorWithSuffix)
+            : externalValidatorPackage(validatorWithSuffix).name,
         });
       }
     }),
