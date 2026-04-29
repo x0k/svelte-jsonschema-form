@@ -62,6 +62,8 @@ export type PrecompiledOnlyValidator =
 
 const LAB_VALIDATORS = ["hyperjump"] satisfies Validator[];
 
+const LAB_VALIDATORS_SET = new Set<string>(LAB_VALIDATORS);
+
 export type LabValidator = (typeof LAB_VALIDATORS)[number];
 
 const INTERNAL_VALIDATORS = ["standard-schema", "noop"] as const;
@@ -128,6 +130,10 @@ export function isPrecompiledOnlyValidator(
   validator: string,
 ): validator is PrecompiledOnlyValidator {
   return PRECOMPILED_ONLY_VALIDATORS_SET.has(validator);
+}
+
+export function isLabValidator(validator: string): validator is LabValidator {
+  return LAB_VALIDATORS_SET.has(validator);
 }
 
 export function externalValidatorPackage(

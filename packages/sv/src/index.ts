@@ -1,12 +1,13 @@
 import { defineAddon } from "sv";
 
-import { createPrinter } from "./sv-utils.js";
-import { options, type Context } from "./model.js";
+import { createContext, options } from "./model.js";
 import { defaultsTs } from "./defaults.js";
 import { dependencies } from "./dependencies.js";
 import { appCss } from "./styles.js";
 import { shadcnTs } from "./shadcn.js";
+import { postTs } from "./post.js";
 import { svelteKit } from "./sveltekit.js";
+import { scriptsFolder } from "./scripts.js";
 
 export default defineAddon({
   id: "@sjsf/sv",
@@ -17,20 +18,13 @@ export default defineAddon({
   // },
 
   run: (ws) => {
-    const { language } = ws;
-    const isTs = language === "ts";
-    const [ts] = createPrinter(isTs);
-
-    const ctx: Context = {
-      ...ws,
-      isTs,
-      ts: ts!,
-    };
-
+    const ctx = createContext(ws);
     dependencies(ctx);
     defaultsTs(ctx);
     shadcnTs(ctx);
     appCss(ctx);
+    postTs(ctx);
+    scriptsFolder(ctx);
     svelteKit(ctx);
   },
 });

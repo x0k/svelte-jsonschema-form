@@ -14,9 +14,11 @@ import {
   type PrecompiledValidator,
   isPrecompiledOnlyValidator,
   isPrecompiledValidator,
+  isLabValidator,
 } from "meta";
 
 import packageJson from "../package.json" with { type: "json" };
+import { createPrinter } from "./sv-utils.js";
 
 const ADDON_ID = packageJson.name;
 
@@ -37,6 +39,7 @@ function validatorOpt<V extends Validator>(v: V) {
   return {
     value: v,
     label: validatorTitle(v),
+    hint: isLabValidator(v) ? "experimental" : undefined,
   } as const;
 }
 
@@ -44,6 +47,7 @@ function precompiledOpt<V extends PrecompiledValidator>(v: V) {
   return {
     value: `${v}-precompiled`,
     label: `${validatorTitle(v)} (precompiled)`,
+    hint: isLabValidator(v) ? "experimental" : undefined,
   } as const;
 }
 
@@ -107,3 +111,14 @@ export type Context = Workspace & {
   isTs: boolean;
   ts: (content: string, alt?: string) => string;
 };
+
+export function createContext(ws: Workspace): Context {
+  const { language } = ws;
+  const isTs = language === "ts";
+  const [ts] = createPrinter(isTs);
+  return {
+    ...ws,
+    isTs,
+    ts: ts!,
+  };
+}
