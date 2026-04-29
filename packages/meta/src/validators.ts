@@ -19,15 +19,18 @@ const VALIDATORS = [
   "noop",
 ] as const;
 
+const VALIDATORS_SET = new Set<string>(VALIDATORS);
+
 export type Validator = (typeof VALIDATORS)[number];
 
 const JSON_SCHEMA_VALIDATORS = [
   "ajv8",
   "cfworker",
   "schemasafe",
+  "hyperjump",
 ] satisfies Validator[];
 
-const JSON_SCHEMA_VALIDATORS_SET = new Set<string>(JSON_SCHEMA_VALIDATORS);
+const JSON_SCHEMA_VALIDATORS_SET = new Set<Validator>(JSON_SCHEMA_VALIDATORS);
 
 export type JsonSchemaValidator = (typeof JSON_SCHEMA_VALIDATORS)[number];
 
@@ -37,7 +40,7 @@ const SCHEMA_VALIDATORS = [
   "standard-schema",
 ] satisfies Validator[];
 
-const SCHEMA_VALIDATORS_SET = new Set<string>(SCHEMA_VALIDATORS);
+const SCHEMA_VALIDATORS_SET = new Set<Validator>(SCHEMA_VALIDATORS);
 
 export type SchemaValidator = (typeof SCHEMA_VALIDATORS)[number];
 
@@ -47,13 +50,13 @@ const PRECOMPILED_VALIDATORS = [
   "schemasafe",
 ] satisfies Validator[];
 
-const PRECOMPILED_VALIDATORS_SET = new Set<string>(PRECOMPILED_VALIDATORS);
+const PRECOMPILED_VALIDATORS_SET = new Set<Validator>(PRECOMPILED_VALIDATORS);
 
 export type PrecompiledValidator = (typeof PRECOMPILED_VALIDATORS)[number];
 
 const PRECOMPILED_ONLY_VALIDATORS = ["hyperjump"] satisfies Validator[];
 
-const PRECOMPILED_ONLY_VALIDATORS_SET = new Set<string>(
+const PRECOMPILED_ONLY_VALIDATORS_SET = new Set<Validator>(
   PRECOMPILED_ONLY_VALIDATORS,
 );
 
@@ -62,7 +65,7 @@ export type PrecompiledOnlyValidator =
 
 const LAB_VALIDATORS = ["hyperjump"] satisfies Validator[];
 
-const LAB_VALIDATORS_SET = new Set<string>(LAB_VALIDATORS);
+const LAB_VALIDATORS_SET = new Set<Validator>(LAB_VALIDATORS);
 
 export type LabValidator = (typeof LAB_VALIDATORS)[number];
 
@@ -70,7 +73,7 @@ const INTERNAL_VALIDATORS = ["standard-schema", "noop"] as const;
 
 export type InternalValidator = (typeof INTERNAL_VALIDATORS)[number];
 
-const INTERNAL_VALIDATORS_SET = new Set<string>(INTERNAL_VALIDATORS);
+const INTERNAL_VALIDATORS_SET = new Set<Validator>(INTERNAL_VALIDATORS);
 
 export type ExternalValidator = Exclude<Validator, InternalValidator>;
 
@@ -102,37 +105,43 @@ export function validatorTitle(validator: Validator) {
   return VALIDATOR_TITLES[validator];
 }
 
+export function isValidator(v: string): v is Validator {
+  return VALIDATORS_SET.has(v);
+}
+
 export function isJsonSchemaValidator(
-  validator: string,
+  validator: Validator,
 ): validator is JsonSchemaValidator {
   return JSON_SCHEMA_VALIDATORS_SET.has(validator);
 }
 
 export function isSchemaValidator(
-  validator: string,
+  validator: Validator,
 ): validator is SchemaValidator {
   return SCHEMA_VALIDATORS_SET.has(validator);
 }
 
 export function isInternalValidator(
-  validator: string,
+  validator: Validator,
 ): validator is InternalValidator {
   return INTERNAL_VALIDATORS_SET.has(validator);
 }
 
 export function isPrecompiledValidator(
-  validator: string,
+  validator: Validator,
 ): validator is PrecompiledValidator {
   return PRECOMPILED_VALIDATORS_SET.has(validator);
 }
 
 export function isPrecompiledOnlyValidator(
-  validator: string,
+  validator: Validator,
 ): validator is PrecompiledOnlyValidator {
   return PRECOMPILED_ONLY_VALIDATORS_SET.has(validator);
 }
 
-export function isLabValidator(validator: string): validator is LabValidator {
+export function isLabValidator(
+  validator: Validator,
+): validator is LabValidator {
   return LAB_VALIDATORS_SET.has(validator);
 }
 

@@ -32,6 +32,11 @@ const EXTRA_PACKAGES = {
     version: "^3.0.0",
     dev: true,
   },
+  esbuild: {
+    name: "esbuild",
+    version: "^0.28.0",
+    dev: true,
+  },
 } as const satisfies Record<string, AbstractPackage>;
 
 export type ExtraPackage = keyof typeof EXTRA_PACKAGES;

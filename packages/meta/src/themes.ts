@@ -20,37 +20,53 @@ import {
 } from "./package.ts";
 import type { AtRule, AtRuleOptions } from "./css.ts";
 
-const ACTUAL_THEMES = [
+const THEMES = [
   "basic",
   "daisyui5",
   "flowbite3",
   "skeleton4",
   "shadcn4",
+  // Lab
+  "shadcn-extras",
+  "svar",
+  "beercss",
+  // Legacy
+  "daisyui",
+  "flowbite",
+  "skeleton3",
+  "shadcn",
 ] as const;
 
-export type ActualTheme = (typeof ACTUAL_THEMES)[number];
+const THEMES_SET = new Set<string>(THEMES);
 
-const LEGACY_THEMES = ["daisyui", "flowbite", "skeleton3", "shadcn"] as const;
+export type Theme = (typeof THEMES)[number];
+
+const LEGACY_THEMES = [
+  "daisyui",
+  "flowbite",
+  "skeleton3",
+  "shadcn",
+] satisfies Theme[];
+
+const LEGACY_THEMES_SET = new Set<Theme>(LEGACY_THEMES);
 
 export type LegacyTheme = (typeof LEGACY_THEMES)[number];
 
-const LAB_THEMES = ["shadcn-extras", "svar", "beercss"] as const;
+const LAB_THEMES = ["shadcn-extras", "svar", "beercss"] satisfies Theme[];
+
+const LAB_THEMES_SET = new Set<Theme>(LAB_THEMES);
 
 export type LabTheme = (typeof LAB_THEMES)[number];
 
-const LAB_THEMES_SET = new Set<string>(LAB_THEMES);
+const THEME_EXTENSION = ["shadcn-extras"] satisfies Theme[];
 
-export type Theme = ActualTheme | LegacyTheme | LabTheme;
+const THEME_EXTENSION_SET = new Set<Theme>(THEME_EXTENSION);
 
-const THEME_EXTENSION = ["shadcn-extras"] as const satisfies Theme[];
+const THEME_EXTENSION_ORIGINS = {
+  "shadcn-extras": "shadcn4",
+} satisfies Record<ThemeExtension, Theme>;
 
 export type ThemeExtension = (typeof THEME_EXTENSION)[number];
-
-const THEME_EXTENSION_SET = new Set<string>(THEME_EXTENSION);
-
-const THEME_EXTENSION_ORIGINS: Record<ThemeExtension, Theme> = {
-  "shadcn-extras": "shadcn4",
-};
 
 const THEME_SUB_THEMES = {
   basic: ["pico"],
@@ -67,30 +83,17 @@ for (const [parentTheme, subThemes] of Object.entries(THEME_SUB_THEMES)) {
   }
 }
 
+export type ActualTheme = Exclude<Theme, LegacyTheme | LabTheme>;
+
 export type SubTheme = (typeof SUB_THEMES)[number];
+
+export type ThemeWithSubThemes = keyof typeof THEME_SUB_THEMES;
 
 export type ThemeOrSubTheme = Theme | SubTheme;
 
 export type NonLegacyThemeOrSubTheme = Exclude<ThemeOrSubTheme, LegacyTheme>;
 
-export type NonLegacyTheme = Exclude<NonLegacyThemeOrSubTheme, SubTheme>;
-
-const NON_LEGACY_THEMES = [...ACTUAL_THEMES, ...LAB_THEMES] as const;
-
-const NON_LEGACY_THEME_OR_SUB_THEMES: NonLegacyThemeOrSubTheme[] =
-  NON_LEGACY_THEMES.slice();
-for (let i = NON_LEGACY_THEME_OR_SUB_THEMES.length - 1; i >= 0; i--) {
-  const t = NON_LEGACY_THEME_OR_SUB_THEMES[i]!;
-  const subThemes =
-    t in THEME_SUB_THEMES
-      ? THEME_SUB_THEMES[t as keyof typeof THEME_SUB_THEMES]
-      : undefined;
-  if (subThemes) {
-    NON_LEGACY_THEME_OR_SUB_THEMES.splice(i + 1, 0, ...subThemes);
-  }
-}
-
-const THEME_TITLES: Record<ThemeOrSubTheme, string> = {
+const THEME_OR_SUB_THEME_TITLES: Record<ThemeOrSubTheme, string> = {
   basic: "Basic",
   pico: "Pico",
   daisyui: "daisyUI v4",
@@ -179,19 +182,29 @@ const THEME_OR_SUB_THEME_AT_RULES: Partial<
   ],
 };
 
-export function nonLegacyThemes(): ReadonlyArray<NonLegacyTheme> {
-  return NON_LEGACY_THEMES;
+export function themes(): Iterable<Theme> {
+  return THEMES;
 }
 
-export function nonLegacyThemeOrSubThemes(): ReadonlyArray<NonLegacyThemeOrSubTheme> {
-  return NON_LEGACY_THEME_OR_SUB_THEMES;
+export function isTheme(theme: string): theme is Theme {
+  return THEMES_SET.has(theme);
 }
 
-export function isLabTheme(theme: string): theme is LabTheme {
+export function isLegacyTheme(theme: Theme): theme is LegacyTheme {
+  return LEGACY_THEMES_SET.has(theme);
+}
+
+export function isThemeWithSubThemes(
+  theme: Theme,
+): theme is ThemeWithSubThemes {
+  return theme in THEME_SUB_THEMES;
+}
+
+export function isLabTheme(theme: Theme): theme is LabTheme {
   return LAB_THEMES_SET.has(theme);
 }
 
-export function isThemeExtension(theme: string): theme is ThemeExtension {
+export function isThemeExtension(theme: Theme): theme is ThemeExtension {
   return THEME_EXTENSION_SET.has(theme);
 }
 
@@ -203,12 +216,16 @@ export function isSubTheme(theme: string): theme is SubTheme {
   return SUB_THEMES_SET.has(theme);
 }
 
+export function themeSubThemes(theme: ThemeWithSubThemes): Iterable<SubTheme> {
+  return THEME_SUB_THEMES[theme];
+}
+
 export function themeParent(theme: SubTheme): Theme {
   return SUB_THEME_PARENTS.get(theme)!;
 }
 
-export function themeTitle(theme: ThemeOrSubTheme): string {
-  return THEME_TITLES[theme];
+export function themeOrSubThemeTitle(theme: ThemeOrSubTheme): string {
+  return THEME_OR_SUB_THEME_TITLES[theme];
 }
 
 export function themeBrand(theme: ActualTheme): string {
