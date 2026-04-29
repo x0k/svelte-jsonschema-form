@@ -35,6 +35,12 @@ even if the user has `JavaScript` disabled.
 
 See details in the sections below
 
+:::note
+
+For correct operation, you must use ID Builder from the `@sjsf/sveltekit`.
+
+:::
+
 <Tabs>
   <TabItem label='+page.svelte' >
     <Code code={clientCode} lang='svelte' />
@@ -120,12 +126,6 @@ in every branch of the handler's code.
 
 On the client side you can use `SvelteKitForm` component ([see example](#example)).
 Or use more flexible solution:
-
-:::note
-
-For correct operation, you must use ID Builder from the `@sjsf/sveltekit` module.
-
-:::
 
 <Code code={clientFlexCode} lang='svelte' />
 
@@ -234,9 +234,9 @@ export const actions = {
 
 Use the `combinator` option to control the behavior of multiple form submissions.
 
+- `waitPrevious` (default)
 - `forgetPrevious`
 - `abortPrevious`
-- `waitPrevious`
 - `throttle`
 
 ```ts
