@@ -3,31 +3,7 @@ import { extraPackage, formPackage, isJsonSchemaValidator } from "meta";
 import { isEndsWithPrecompiled, type Context } from "./model.js";
 import { transforms } from "./sv-utils.js";
 
-export function postTs({ isTs, sv, directory, language, options }: Context) {
-  const { validator } = options;
-
-  if (isEndsWithPrecompiled(validator)) {
-    return;
-  }
-
-  sv.file(
-    `${directory.lib}/post.${language}`,
-    transforms.script(({ ast, js, comments }) => {
-      if (isJsonSchemaValidator(validator) || validator === "noop") {
-        if (isTs) {
-          js.imports.addNamed(ast, {
-            isType: true,
-            imports: ["FormSchema"],
-            from: extraPackage("jsonSchemaToTs").name,
-          });
-          js.imports.addNamed(ast, {
-            isType: true,
-            imports: ["Schema"],
-            from: formPackage.name,
-          });
-        }
-
-        const schemaExpression = js.common.parseExpression(`{
+const schema = {
   title: "Post",
   type: "object",
   properties: {
@@ -42,45 +18,79 @@ export function postTs({ isTs, sv, directory, language, options }: Context) {
     },
   },
   required: ["title", "content"],
-}${isTs ? " as const satisfies Schema" : ""}`);
-        const schemaDeclaration = js.variables.declaration(ast, {
-          kind: "const",
-          name: "schema",
-          value: schemaExpression,
-        });
-        if (!isTs) {
-          js.common.addJsDocTypeComment(schemaDeclaration, comments, {
-            type: `import(${formPackage.name}).Schema`,
-          });
-        }
-        js.exports.createNamed(ast, {
-          name: "schema",
-          fallback: schemaDeclaration,
-        });
-        // TODO: export type CreatePost = FromSchema<typeof schema>;
-      } else if (validator === "zod4") {
-        js.imports.addNamespace(ast, { from: "zod", as: "z" });
+};
 
-        const postExpression = js.common.parseExpression(`z
+export function postTs({ isTs, sv, directory, language, options }: Context) {
+  const { validator } = options;
+
+  if (isEndsWithPrecompiled(validator)) {
+    sv.file(
+      `${directory.lib}/post/schema.json`,
+      transforms.json(({ data }) => {
+        if (Object.keys(data).length === 0) {
+          Object.assign(data, schema);
+        }
+      }),
+    );
+  } else {
+    sv.file(
+      `${directory.lib}/post.${language}`,
+      transforms.script(({ ast, js, comments }) => {
+        if (isJsonSchemaValidator(validator) || validator === "noop") {
+          if (isTs) {
+            js.imports.addNamed(ast, {
+              isType: true,
+              imports: ["FormSchema"],
+              from: extraPackage("jsonSchemaToTs").name,
+            });
+            js.imports.addNamed(ast, {
+              isType: true,
+              imports: ["Schema"],
+              from: formPackage.name,
+            });
+          }
+
+          const schemaExpression = js.common.parseExpression(
+            `${JSON.stringify(schema)}${isTs ? " as const satisfies Schema" : ""}`,
+          );
+          const schemaDeclaration = js.variables.declaration(ast, {
+            kind: "const",
+            name: "schema",
+            value: schemaExpression,
+          });
+          if (!isTs) {
+            js.common.addJsDocTypeComment(schemaDeclaration, comments, {
+              type: `import(${formPackage.name}).Schema`,
+            });
+          }
+          js.exports.createNamed(ast, {
+            name: "schema",
+            fallback: schemaDeclaration,
+          });
+          // TODO: export type CreatePost = FromSchema<typeof schema>;
+        } else if (validator === "zod4") {
+          js.imports.addNamespace(ast, { from: "zod", as: "z" });
+
+          const postExpression = js.common.parseExpression(`z
   .object({
     title: z.string().meta({ title: "Title" }),
     content: z.string().min(50).meta({ title: "Content" }),
   })
   .meta({ title: "Post" })`);
-        const postDeclaration = js.variables.declaration(ast, {
-          kind: "const",
-          name: "post",
-          value: postExpression,
-        });
-        js.exports.createNamed(ast, {
-          name: "post",
-          fallback: postDeclaration,
-        });
-        // TODO: export type Post = z.infer<typeof post>;
-      } else if (validator === "valibot") {
-        js.imports.addNamespace(ast, { from: "valibot", as: "v" });
+          const postDeclaration = js.variables.declaration(ast, {
+            kind: "const",
+            name: "post",
+            value: postExpression,
+          });
+          js.exports.createNamed(ast, {
+            name: "post",
+            fallback: postDeclaration,
+          });
+          // TODO: export type Post = z.infer<typeof post>;
+        } else if (validator === "valibot") {
+          js.imports.addNamespace(ast, { from: "valibot", as: "v" });
 
-        const postExpression = js.common.parseExpression(`v.pipe(
+          const postExpression = js.common.parseExpression(`v.pipe(
     v.object({
       title: v.pipe(
         v.string(),
@@ -100,18 +110,18 @@ export function postTs({ isTs, sv, directory, language, options }: Context) {
       title: "Basic form",
     }),
   )`);
-        const postDeclaration = js.variables.declaration(ast, {
-          kind: "const",
-          name: "post",
-          value: postExpression,
-        });
-        js.exports.createNamed(ast, {
-          name: "post",
-          fallback: postDeclaration,
-        });
-        // TODO: export type Post = v.InferInput<typeof post>;
-      } else if (validator === "standard-schema") {
-        const postExpression = js.common.parseExpression(`{
+          const postDeclaration = js.variables.declaration(ast, {
+            kind: "const",
+            name: "post",
+            value: postExpression,
+          });
+          js.exports.createNamed(ast, {
+            name: "post",
+            fallback: postDeclaration,
+          });
+          // TODO: export type Post = v.InferInput<typeof post>;
+        } else if (validator === "standard-schema") {
+          const postExpression = js.common.parseExpression(`{
   "~standard": {
     version: 1,
     vendor: "sjsf",
@@ -136,45 +146,33 @@ export function postTs({ isTs, sv, directory, language, options }: Context) {
           };
     },
     jsonSchema: {
-      input: () => ({
-        title: "Post",
-        type: "object",
-        properties: {
-          title: {
-            title: "Title",
-            type: "string",
-          },
-          content: {
-            title: "Content",
-            type: "string",
-            minLength: 50,
-          },
-        },
-        required: ["title", "content"],
-      }),
+      input: () => (${JSON.stringify(schema)}),
       output() {
         throw new Error("not implemented");
       },
     },
   },
 }`);
-        const postDeclaration = js.variables.declaration(ast, {
-          kind: "const",
-          name: "post",
-          value: postExpression,
-        });
-        comments.add(postDeclaration, {
-          type: "Line",
-          value: "Replace with the actual schema",
-        });
-        js.exports.createNamed(ast, {
-          name: "post",
-          fallback: postDeclaration,
-        });
-      } else {
-        const unexpectedValidator: never = validator;
-        throw new Error(`Unexpected validator value: "${unexpectedValidator}"`);
-      }
-    }),
-  );
+          const postDeclaration = js.variables.declaration(ast, {
+            kind: "const",
+            name: "post",
+            value: postExpression,
+          });
+          comments.add(postDeclaration, {
+            type: "Line",
+            value: "Replace with the actual schema",
+          });
+          js.exports.createNamed(ast, {
+            name: "post",
+            fallback: postDeclaration,
+          });
+        } else {
+          const unexpectedValidator: never = validator;
+          throw new Error(
+            `Unexpected validator value: "${unexpectedValidator}"`,
+          );
+        }
+      }),
+    );
+  }
 }
