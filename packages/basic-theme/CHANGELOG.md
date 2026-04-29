@@ -1,5 +1,7 @@
 # @sjsf/basic-theme
 
+## 3.6.0
+
 ## 3.5.0
 
 ### Minor Changes
