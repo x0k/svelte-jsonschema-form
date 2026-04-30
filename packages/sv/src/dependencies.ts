@@ -75,6 +75,9 @@ export function dependencies({ sv, options }: Context) {
     if (validatorWithSuffix === "ajv8-precompiled") {
       addDependency(extraPackage("esbuild"));
     }
+    if (validatorWithSuffix === "hyperjump-precompiled") {
+      addDependency(extraPackage("devalue"));
+    }
   } else {
     if (validatorWithSuffix === "standard-schema") {
       addDependencies(formPackage.dependencies, [

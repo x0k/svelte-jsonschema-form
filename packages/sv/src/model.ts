@@ -149,16 +149,18 @@ type Workspace = Parameters<Addon["run"]>[0];
 export type Context = Workspace & {
   isTs: boolean;
   ts: (content: string, alt?: string) => string;
+  js: (content: string, alt?: string) => string;
 };
 
 export function createContext(ws: Workspace): Context {
   const { language } = ws;
   const isTs = language === "ts";
-  const [ts] = createPrinter(isTs);
+  const [ts, js] = createPrinter(isTs, !isTs);
   return {
     ...ws,
     isTs,
     ts: ts!,
+    js: js!,
   };
 }
 
