@@ -1,34 +1,79 @@
-import { sveltekitPackage, svelteKitSubPath, svelteKitRfSubPath } from "meta";
+import {
+  sveltekitPackage,
+  svelteKitSubPath,
+  svelteKitRfSubPath,
+  precompiledValidatorSubPath,
+  hyperjumpValidatorLocalizationSubPath,
+} from "meta";
 
-import { isEndsWithPrecompiled, type Context } from "./model.js";
-import { createPrinter, transforms } from "./sv-utils.js";
+import {
+  isEndsWithPrecompiled,
+  withoutPrecompiledSuffix,
+  type Context,
+} from "./model.js";
+import { transforms } from "./sv-utils.js";
+
+function createPost({
+  options: { validatorWithSuffix },
+  ts,
+  directory,
+}: Context): {
+  imports: string;
+  options: string;
+} {
+  if (isEndsWithPrecompiled(validatorWithSuffix)) {
+    const validator = withoutPrecompiledSuffix(validatorWithSuffix);
+    if (validator === "hyperjump") {
+      return {
+        imports: `import { createFormValidatorFactory } from "${precompiledValidatorSubPath(validator)}";
+import { localization } from "${hyperjumpValidatorLocalizationSubPath("en-us")}";
+import "@hyperjump/json-schema/formats-lite";
+import "@hyperjump/json-schema/draft-07";
+
+import { schema${ts(", type CreatePost")} } from "${directory.lib}/post/post.generated";
+import { ast } from "${directory.lib}/post/post.ast"`,
+        options: `schema,
+validator: createFormValidatorFactory({ ast, localization })`,
+      };
+    }
+    return {
+      imports: `import { createFormValidatorFactory } from "${precompiledValidatorSubPath(validator)}";
+
+import { schema${ts(", type CreatePost")} } from "${directory.lib}/post/post.generated";
+import * as validateFunctions from "${directory.lib}/post/post.validators"`,
+      options: `schema,
+validator: createFormValidatorFactory({ validateFunctions })`,
+    };
+  }
+  return {
+    imports: "",
+    options: "",
+  };
+}
 
 export function sveltekitTs(ctx: Context) {
   const {
     isKit,
-    options: { sveltekit, validatorWithSuffix },
+    options: { sveltekit },
     directory,
     language,
     sv,
+    ts,
   } = ctx;
   if (!isKit || sveltekit === "no") {
     return;
   }
 
-  const [isPrecompiled] = createPrinter(
-    isEndsWithPrecompiled(validatorWithSuffix),
-  );
+  const post = createPost(ctx);
 
   const setup = (
     {
       formActions: {
         filename: `+page.server.${language}`,
-        code: `import type { Actions } from "@sveltejs/kit";
-import type { InitialFormData } from "${sveltekitPackage.name}";
-import { createAction } from "${svelteKitSubPath("server")}";
-
-import { schema, type CreatePost } from "$lib/post";
-import * as defaults from "$lib/sjsf/defaults";
+        code: `${ts(`import type { Actions } from "@sveltejs/kit";
+import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createAction } from "${svelteKitSubPath("server")}";
+${post.imports};
+import * as defaults from "${directory.lib}/sjsf/defaults";
 
 export const load = async () => {
   return {
@@ -43,8 +88,8 @@ export const actions = {
   default: createAction(
     {
       ...defaults,
+      ${post.options},
       name: "postForm",
-      schema,
       sendData: true,
     },
     ({ title, content }: CreatePost) => {

@@ -161,3 +161,15 @@ export function internalValidatorSubPath(
 ) {
   return `${formPackage.name}/validators/${validator}`;
 }
+
+export function precompiledValidatorSubPath(validator: PrecompiledValidator) {
+  return `${externalValidatorPackage(validator)}/precompile`;
+}
+
+const HYPERJUMP_LOCALES = ["en-us"] as const;
+
+type HyperjumpLocale = (typeof HYPERJUMP_LOCALES)[number];
+
+export function hyperjumpValidatorLocalizationSubPath(locale: HyperjumpLocale) {
+  return `${externalValidatorPackage("hyperjump").name}/localizations/${locale}`;
+}
