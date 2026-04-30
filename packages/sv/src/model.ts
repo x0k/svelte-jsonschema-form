@@ -100,49 +100,53 @@ function* themeOrSubThemeOptions() {
   }
 }
 
-export const options = defineAddonOptions()
-  .add("themeOrSubTheme", {
-    question: "Theme?",
-    type: "select",
-    default: "basic" satisfies NonLegacyThemeOrSubTheme,
-    options: Array.from(themeOrSubThemeOptions()),
-  })
-  .add("icons", {
-    question: "Icons?",
-    type: "select",
-    default: "none",
-    options: [
-      {
-        value: "none",
-        label: "None",
-      },
-      ...Array.from(iconSets()).map((i) => ({
-        value: i,
-        label: iconSetTitle(i),
-      })),
-    ],
-  })
-  .add("validatorWithSuffix", {
-    question: "Validator?",
-    type: "select",
-    default: "ajv8",
-    options: Array.from(validators()).flatMap((v) => [
-      ...(isPrecompiledOnlyValidator(v)
-        ? [precompiledOpt(v)]
-        : isPrecompiledValidator(v)
-          ? [validatorOpt(v), precompiledOpt(v)]
-          : [validatorOpt(v)]),
-    ]),
-  })
-  .add("sveltekit", {
-    question: "Setup SvelteKit integration?",
-    type: "select",
-    default: "no" satisfies SvelteKitIntegrationOption,
-    options: SVELTE_KIT_INTEGRATION_OPTIONS,
-  })
-  .build();
+export const createOptions = ({ isKit }: AddonOptions) =>
+  defineAddonOptions()
+    .add("themeOrSubTheme", {
+      question: "Theme?",
+      type: "select",
+      default: "basic" satisfies NonLegacyThemeOrSubTheme,
+      options: Array.from(themeOrSubThemeOptions()),
+    })
+    .add("icons", {
+      question: "Icons?",
+      type: "select",
+      default: "none",
+      options: [
+        {
+          value: "none",
+          label: "None",
+        },
+        ...Array.from(iconSets()).map((i) => ({
+          value: i,
+          label: iconSetTitle(i),
+        })),
+      ],
+    })
+    .add("validatorWithSuffix", {
+      question: "Validator?",
+      type: "select",
+      default: "ajv8",
+      options: Array.from(validators()).flatMap((v) => [
+        ...(isPrecompiledOnlyValidator(v)
+          ? [precompiledOpt(v)]
+          : isPrecompiledValidator(v)
+            ? [validatorOpt(v), precompiledOpt(v)]
+            : [validatorOpt(v)]),
+      ]),
+    })
+    .add("sveltekit", {
+      question: "Setup SvelteKit integration?",
+      type: "select",
+      default: "no" satisfies SvelteKitIntegrationOption,
+      options: SVELTE_KIT_INTEGRATION_OPTIONS,
+      condition: () => isKit,
+    })
+    .build();
 
-type Addon = ReturnType<typeof defineAddon<typeof ADDON_ID, typeof options>>;
+type Addon = ReturnType<
+  typeof defineAddon<typeof ADDON_ID, ReturnType<typeof createOptions>>
+>;
 
 type Workspace = Parameters<Addon["run"]>[0];
 
@@ -151,6 +155,10 @@ export type Context = Workspace & {
   ts: (content: string, alt?: string) => string;
   js: (content: string, alt?: string) => string;
 };
+
+export interface AddonOptions {
+  isKit: boolean;
+}
 
 export function createContext(ws: Workspace): Context {
   const { language } = ws;

@@ -4,7 +4,7 @@ import {
   themeParent,
   themePackage,
   formIdBuilderSubPath,
-  kitRemoteFunctionsSubPath,
+  svelteKitRfSubPath,
   externalValidatorPackage,
   isInternalValidator,
   internalValidatorSubPath,
@@ -35,7 +35,7 @@ const SVELTE_KIT_INTEGRATION_OPTION_ID_BUILDERS: Record<
 > = {
   no: formIdBuilderSubPath("modern"),
   formActions: sveltekitPackage.name,
-  remoteFunctions: kitRemoteFunctionsSubPath(),
+  remoteFunctions: svelteKitRfSubPath(),
 };
 
 export function defaultsTs({

@@ -1,21 +1,29 @@
 import { defineAddon } from "sv";
 
-import { createContext, options } from "./model.js";
+import { createContext, createOptions, type AddonOptions } from "./model.js";
 import { defaultsTs } from "./defaults.js";
 import { dependencies } from "./dependencies.js";
 import { appCss } from "./styles.js";
 import { shadcnTs } from "./shadcn.js";
 import { postTs } from "./post.js";
-import { svelteKit } from "./sveltekit.js";
+import { sveltekitTs } from "./sveltekit.js";
 import { scriptsFolder } from "./scripts.js";
+
+const addonOptions: AddonOptions = {
+  isKit: true,
+};
 
 export default defineAddon({
   id: "@sjsf/sv",
-  options,
+  options: createOptions(addonOptions),
+  shortDescription: "forms library",
+  homepage: "https://x0k.github.io/svelte-jsonschema-form/",
 
-  // setup: ({ isKit, unsupported }) => {
-  // 	if (!isKit) unsupported('Requires SvelteKit');
-  // },
+  setup: ({ isKit }) => {
+    Object.assign(addonOptions, {
+      isKit,
+    } satisfies AddonOptions);
+  },
 
   run: (ws) => {
     const ctx = createContext(ws);
@@ -25,6 +33,14 @@ export default defineAddon({
     appCss(ctx);
     postTs(ctx);
     scriptsFolder(ctx);
-    svelteKit(ctx);
+    sveltekitTs(ctx);
+  },
+
+  nextSteps() {
+    // TODO: If the theme's UI library was not installed initially,
+    // display a warning stating that the UI library must be configured
+    // according to the maintainers' instructions for the theme
+    // to function properly.
+    return [];
   },
 });
