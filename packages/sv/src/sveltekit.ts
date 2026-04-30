@@ -4,6 +4,10 @@ import {
   svelteKitRfSubPath,
   precompiledValidatorSubPath,
   hyperjumpValidatorLocalizationSubPath,
+  isSchemaValidator,
+  externalValidatorPackage,
+  internalValidatorSubPath,
+  zod4ValidatorVersionSubPath,
 } from "meta";
 
 import {
@@ -43,6 +47,19 @@ import { schema${ts(", type CreatePost")} } from "${directory.lib}/post/post.gen
 import * as validateFunctions from "${directory.lib}/post/post.validators"`,
       options: `schema,
 validator: createFormValidatorFactory({ validateFunctions })`,
+    };
+  }
+  if (isSchemaValidator(validatorWithSuffix)) {
+    const paths = {
+      zod4: zod4ValidatorVersionSubPath("classic"),
+      valibot: externalValidatorPackage("valibot").name,
+      "standard-schema": internalValidatorSubPath("standard-schema"),
+    } satisfies Record<typeof validatorWithSuffix, string>;
+    return {
+      imports: `import { adapt } from "${paths[validatorWithSuffix]}";
+      
+import { post } from "${directory.lib}/post"`,
+      options: `...adapt(post)`,
     };
   }
   return {

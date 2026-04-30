@@ -173,3 +173,11 @@ type HyperjumpLocale = (typeof HYPERJUMP_LOCALES)[number];
 export function hyperjumpValidatorLocalizationSubPath(locale: HyperjumpLocale) {
   return `${externalValidatorPackage("hyperjump").name}/localizations/${locale}`;
 }
+
+const ZOD4_VERSIONS = ["classic", "mini"] as const;
+
+type Zod4Version = (typeof ZOD4_VERSIONS)[number];
+
+export function zod4ValidatorVersionSubPath(v: Zod4Version) {
+  return `${externalValidatorPackage("zod4").name}/${v}`;
+}

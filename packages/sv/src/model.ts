@@ -173,3 +173,7 @@ export function createContext(ws: Workspace): Context {
 }
 
 export const POST_JSON_SCHEMA_PATH = `/post/schema.json`;
+
+export function neverError(value: never, message: string) {
+  return new Error(`${message}: ${value}`);
+}

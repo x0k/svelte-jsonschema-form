@@ -2,6 +2,7 @@ import { extraPackage, formPackage, isJsonSchemaValidator } from "meta";
 
 import {
   isEndsWithPrecompiled,
+  neverError,
   POST_JSON_SCHEMA_PATH,
   type Context,
 } from "./model.js";
@@ -181,10 +182,7 @@ export function postTs({
             fallback: postDeclaration,
           });
         } else {
-          const unexpectedValidator: never = validatorWithSuffix;
-          throw new Error(
-            `Unexpected validator value: "${unexpectedValidator}"`,
-          );
+          throw neverError(validatorWithSuffix, "unexpected validator");
         }
       }),
     );
