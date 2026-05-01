@@ -6,7 +6,7 @@ import {
   POST_JSON_SCHEMA_PATH,
   type Context,
 } from "./model.js";
-import { createAsConst, transforms, type AstTypes } from "./sv-utils.js";
+import { transforms, type AstTypes } from "./sv-utils.js";
 
 const schema = {
   title: "Post",
@@ -47,7 +47,7 @@ export function postTs({
     );
   } else {
     sv.file(
-      lib(`post.${language}`),
+      `${directory.lib}/post.${language}`,
       transforms.script(({ ast, js, comments }) => {
         if (
           isJsonSchemaValidator(validatorWithSuffix) ||
@@ -82,7 +82,12 @@ export function postTs({
             name: "schema",
             fallback: schemaDeclaration,
           });
-          // TODO: export type CreatePost = FromSchema<typeof schema>;
+
+          if (isTs) {
+            js.common.appendFromString(ast, {
+              code: "export type CreatePost = FromSchema<typeof schema>;",
+            });
+          }
         } else if (validatorWithSuffix === "zod4") {
           js.imports.addNamespace(ast, { from: "zod", as: "z" });
 
@@ -101,7 +106,12 @@ export function postTs({
             name: "post",
             fallback: postDeclaration,
           });
-          // TODO: export type Post = z.infer<typeof post>;
+
+          if (isTs) {
+            js.common.appendFromString(ast, {
+              code: "export type Post = z.infer<typeof post>;",
+            });
+          }
         } else if (validatorWithSuffix === "valibot") {
           js.imports.addNamespace(ast, { from: "valibot", as: "v" });
 
@@ -134,9 +144,22 @@ export function postTs({
             name: "post",
             fallback: postDeclaration,
           });
-          // TODO: export type Post = v.InferInput<typeof post>;
+
+          if (isTs) {
+            js.common.appendFromString(ast, {
+              code: "export type Post = v.InferInput<typeof post>;",
+            });
+          }
         } else if (validatorWithSuffix === "standard-schema") {
-          const postExpression = js.common.parseExpression(`{
+          if (isTs) {
+            js.imports.addNamed(ast, {
+              imports: ["StandardSchemaV1", "StandardJSONSchemaV1"],
+              from: "@standard-schema/spec",
+              isType: true,
+            });
+          }
+
+          const postExpression = js.common.parseExpression(`({
   "~standard": {
     version: 1,
     vendor: "sjsf",
@@ -167,7 +190,7 @@ export function postTs({
       },
     },
   },
-}`);
+}${ts(" as const satisfies StandardSchemaV1 & StandardJSONSchemaV1")})`);
           const postDeclaration = js.variables.declaration(ast, {
             kind: "const",
             name: "post",
@@ -181,6 +204,12 @@ export function postTs({
             name: "post",
             fallback: postDeclaration,
           });
+
+          if (isTs) {
+            js.common.appendFromString(ast, {
+              code: "export type Post = StandardSchemaV1.InferInput<typeof post>;",
+            });
+          }
         } else {
           throw neverError(validatorWithSuffix, "unexpected validator");
         }

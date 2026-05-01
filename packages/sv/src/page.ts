@@ -16,6 +16,7 @@ function createForm(ctx: Context): {
 } {
   const {
     options: { sveltekit },
+    ts,
   } = ctx;
   const validator = createValidator(ctx);
   // const addOptions = sveltekit === "no" || validator.sendSchema === false;
@@ -84,7 +85,7 @@ const form = createForm(
   return {
     formPackageImports: ["BasicForm", "createForm"],
     additionalImports: validator.imports,
-    init: `const form = createForm({
+    init: `const form = createForm${ts(`<${validator.inputType}>`)}({
   ...defaults,
   onSubmit: console.log,
   ${validator.options}
@@ -124,8 +125,6 @@ export function pageSvelte(ctx: Context) {
         as: "defaults",
         from: lib("sjsf/defaults"),
       });
-
-      console.log(form.init);
 
       js.common.appendFromString(ast.instance.content, { code: form.init });
 

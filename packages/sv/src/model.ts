@@ -110,7 +110,8 @@ function* themeOrSubThemeOptions() {
   }
 }
 
-export const createOptions = ({ isKit }: AddonOptions) =>
+// WARN: DO NOT DESTRUCTURE
+export const createOptions = (options: AddonOptions) =>
   defineAddonOptions()
     .add("themeOrSubTheme", {
       question: "Theme?",
@@ -150,7 +151,7 @@ export const createOptions = ({ isKit }: AddonOptions) =>
       type: "select",
       default: "no" satisfies SvelteKitIntegrationOption,
       options: SVELTE_KIT_INTEGRATION_OPTIONS,
-      condition: () => isKit,
+      condition: () => options.isKit,
     })
     .build();
 
