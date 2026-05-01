@@ -1,5 +1,5 @@
 // This file is a separate entry point (see tsdown.config.js) so that
-import type { AstTypes } from "@sveltejs/sv-utils";
+import { transforms, type AstTypes, type SvelteAst } from "@sveltejs/sv-utils";
 
 // the addon's utilities are published as their own module on npm.
 export * from "@sveltejs/sv-utils";
@@ -75,4 +75,37 @@ export function getTopLevelFunction(node: AstTypes.Program, name: string) {
             );
           }),
   );
+}
+
+// https://github.com/sveltejs/cli/blob/19ed7a0f940816a63c1c7f963a04bb72d7b19a8f/packages/sv/src/addons/common.ts#L95
+export function addToDemoPage(path: string, language: "ts" | "js") {
+  return transforms.svelteScript({ language }, ({ ast, js, svelte }) => {
+    for (const node of ast.fragment.nodes) {
+      if (node.type === "RegularElement") {
+        const hrefAttribute = node.attributes.find(
+          (x) => x.type === "Attribute" && x.name === "href",
+        ) as SvelteAst.Attribute;
+        if (!hrefAttribute || !hrefAttribute.value) continue;
+
+        if (!Array.isArray(hrefAttribute.value)) continue;
+
+        const hasDemo = hrefAttribute.value.some(
+          // we use includes as it could be "/demo/${path}" or "resolve("demo/${path}")" or "resolve('demo/${path}')"
+          (x) => x.type === "Text" && x.data.includes(`/demo/${path}`),
+        );
+        if (hasDemo) {
+          return false;
+        }
+      }
+    }
+
+    js.imports.addNamed(ast.instance.content, {
+      imports: ["resolve"],
+      from: "$app/paths",
+    });
+
+    svelte.addFragment(ast, `<a href={resolve('/demo/${path}')}>${path}</a>`, {
+      mode: "prepend",
+    });
+  });
 }

@@ -182,7 +182,7 @@ export const createPost = form(
   )[sveltekit];
 
   sv.file(
-    `${directory.kitRoutes}/${setup.filename}.${language}`,
+    `${directory.kitRoutes}/demo/sjsf/${setup.filename}.${language}`,
     transforms.script(({ ast, comments, js }) => {
       js.common.appendFromString(ast, {
         comments,
