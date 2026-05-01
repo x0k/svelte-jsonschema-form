@@ -76,6 +76,8 @@ export function defaultsTs({
         for (const f of extraFields({ wrappedFields: false })) {
           extraFieldImports.push(`// import "${extraFieldSubPath(f, true)}";`);
         }
+        // NOTE: Produces invalid code
+        extraFieldImports.length = 0;
         const resolverCode =
           `${extraFieldImports.join("\n")}\n// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/\n` +
           (isTs

@@ -6,7 +6,7 @@ import {
   POST_JSON_SCHEMA_PATH,
   type Context,
 } from "./model.js";
-import { transforms } from "./sv-utils.js";
+import { createAsConst, transforms, type AstTypes } from "./sv-utils.js";
 
 const schema = {
   title: "Post",
@@ -64,10 +64,13 @@ export function postTs({
               from: formPackage.name,
             });
           }
-
-          const schemaExpression = js.common.parseExpression(
-            `${JSON.stringify(schema)}${ts(" as const satisfies Schema")}`,
-          );
+          let schemaExpression: AstTypes.Expression = js.object.create(schema);
+          if (isTs) {
+            schemaExpression = js.common.createSatisfies(
+              createAsConst(schemaExpression),
+              { type: "Schema" },
+            );
+          }
           const schemaDeclaration = js.variables.declaration(ast, {
             kind: "const",
             name: "schema",

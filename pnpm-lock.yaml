@@ -2347,19 +2347,19 @@ importers:
   packages/sv:
     devDependencies:
       '@sveltejs/sv-utils':
-        specifier: ^0.2.0
-        version: 0.2.0
+        specifier: ^0.2.1
+        version: 0.2.1
       '@types/node':
-        specifier: ^25.5.2
+        specifier: ^25.6.0
         version: 25.6.0
       meta:
         specifier: workspace:*
         version: link:../meta
       sv:
-        specifier: ^0.15.0
-        version: 0.15.0
+        specifier: ^0.15.2
+        version: 0.15.2
       tsdown:
-        specifier: ^0.21.7
+        specifier: ^0.21.10
         version: 0.21.10(publint@0.3.18)(typescript@5.9.3)
       vitest:
         specifier: 'catalog:'
@@ -3852,8 +3852,8 @@ packages:
     peerDependencies:
       svelte: ^3.44.0 || ^4.0.0 || ^5.0.0-next.1
 
-  '@sveltejs/sv-utils@0.2.0':
-    resolution: {integrity: sha512-//YXcXgqRRMaevBlU7H1QQG6IPg/FvJuMXyMzFDW4N9fBOzVvpa3ZOvKVdlt6jaje5AVl6y4WwkNsGZ2gLJBeA==}
+  '@sveltejs/sv-utils@0.2.1':
+    resolution: {integrity: sha512-+onpORoJnVUuRNZGnQeqqiW6dD1qsNS5plQiUIRaz+F5UUB/cU0WaNzWo62CryFq+5IoJNjhHEWfh6NStwiGDA==}
 
   '@sveltejs/svelte-json-tree@2.2.1':
     resolution: {integrity: sha512-M8l23/R3y1fI2+RaOzfUzmkysTWWsw/NClUgGpvydl9vXRonPN1/btQQievaNyeWNfUj12tjPfh5yTrXWpaKkg==}
@@ -7125,8 +7125,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  sv@0.15.0:
-    resolution: {integrity: sha512-QQcXnI5NW15zSJDKkRtxKn6p9tkmcv+srTf8y/PmgF2LAbDiubE+0AgQYLI63q7kzypN160yfcvra/Mb9Ycr1A==}
+  sv@0.15.2:
+    resolution: {integrity: sha512-cJhTiUZ8HowPOm6n7NP9Hl+i5FLsqTVUfUIA6T52ITCWTt8ZKoOSWHzq+NFlv7tWezrXvcWDqIWEvoo1DsxV6Q==}
     hasBin: true
 
   svelte-check@4.4.6:
@@ -9498,7 +9498,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@sveltejs/sv-utils@0.2.0': {}
+  '@sveltejs/sv-utils@0.2.1': {}
 
   '@sveltejs/svelte-json-tree@2.2.1(svelte@5.55.5)':
     dependencies:
@@ -13816,9 +13816,9 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  sv@0.15.0:
+  sv@0.15.2:
     dependencies:
-      '@sveltejs/sv-utils': 0.2.0
+      '@sveltejs/sv-utils': 0.2.1
 
   svelte-check@4.4.6(picomatch@4.0.4)(svelte@5.55.5)(typescript@5.9.3):
     dependencies:

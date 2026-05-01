@@ -90,22 +90,34 @@ export function getTopLevelFunction(node: AstTypes.Program, name: string) {
   return node.body.find(
     (
       item,
-    ): item is AstTypes.FunctionDeclaration | AstTypes.VariableDeclaration =>
-      item.type === "FunctionDeclaration"
-        ? item.id.name === name
-        : item.type === "VariableDeclaration" &&
-          item.declarations.some((decl) => {
-            if (decl.id.type !== "Identifier") return false;
-            if (decl.id.name !== name) return false;
+    ): item is
+      | AstTypes.FunctionDeclaration
+      | AstTypes.VariableDeclaration
+      | AstTypes.ExportNamedDeclaration => {
+      const decl =
+        item.type === "ExportNamedDeclaration" && item.declaration
+          ? item.declaration
+          : item;
 
-            const init = decl.init;
-            if (!init) return false;
+      if (decl.type === "FunctionDeclaration") {
+        return decl.id.name === name;
+      }
+      if (decl.type === "VariableDeclaration") {
+        return decl.declarations.some((decl) => {
+          if (decl.id.type !== "Identifier") return false;
+          if (decl.id.name !== name) return false;
 
-            return (
-              init.type === "ArrowFunctionExpression" ||
-              init.type === "FunctionExpression"
-            );
-          }),
+          const init = decl.init;
+          if (!init) return false;
+
+          return (
+            init.type === "ArrowFunctionExpression" ||
+            init.type === "FunctionExpression"
+          );
+        });
+      }
+      return false;
+    },
   );
 }
 
@@ -140,4 +152,20 @@ export function addToDemoPage(path: string, language: "ts" | "js") {
       mode: "prepend",
     });
   });
+}
+
+export function createAsConst(
+  node: AstTypes.Expression,
+): AstTypes.TSAsExpression {
+  return {
+    type: "TSAsExpression",
+    expression: node,
+    typeAnnotation: {
+      type: "TSTypeReference",
+      typeName: {
+        type: "Identifier",
+        name: "const",
+      },
+    },
+  };
 }
