@@ -18,10 +18,20 @@ import {
   themeSubThemes,
   themes,
   isLegacyTheme,
+  precompiledValidatorSubPath,
+  hyperjumpValidatorLocalizationSubPath,
+  isSchemaValidator,
+  zod4ValidatorVersionSubPath,
+  externalValidatorPackage,
+  internalValidatorSubPath,
 } from "meta";
 
 import packageJson from "../package.json" with { type: "json" };
-import { createPrinter } from "./sv-utils.js";
+import {
+  createPrinter,
+  type NamedImportOptions,
+  type NamespaceImportOptions,
+} from "./sv-utils.js";
 
 const ADDON_ID = packageJson.name;
 
@@ -150,17 +160,6 @@ type Addon = ReturnType<
 
 type Workspace = Parameters<Addon["run"]>[0];
 
-export interface NamedImportOptions {
-  /**
-   * ```ts
-   * imports: { 'name': 'alias' } | ['name']
-   * ```
-   */
-  imports: Record<string, string> | string[];
-  from: string;
-  isType?: boolean;
-}
-
 export type Context = Workspace & {
   isTs: boolean;
   ts: (content: string, alt?: string) => string;
@@ -187,4 +186,149 @@ export const POST_JSON_SCHEMA_PATH = `/post/schema.json`;
 
 export function neverError(value: never, message: string) {
   return new Error(`${message}: ${value}`);
+}
+
+const createPostType = {
+  inputType: "CreatePost",
+  sendSchema: false,
+};
+
+export function createValidator({
+  options: { validatorWithSuffix },
+  directory,
+  isTs,
+}: Context): {
+  imports: (NamedImportOptions | NamespaceImportOptions)[];
+  options: string;
+  inputType: string;
+  sendSchema: boolean;
+} {
+  if (isEndsWithPrecompiled(validatorWithSuffix)) {
+    const validator = withoutPrecompiledSuffix(validatorWithSuffix);
+    const types = isTs
+      ? [
+          {
+            imports: ["CreatePost"],
+            from: `${directory.lib}/post/post.generated`,
+            isType: true,
+          },
+        ]
+      : [];
+    if (validator === "hyperjump") {
+      return {
+        ...createPostType,
+        imports: [
+          {
+            imports: ["createFormValidatorFactory"],
+            from: precompiledValidatorSubPath(validator),
+          },
+          {
+            imports: ["localization"],
+            from: hyperjumpValidatorLocalizationSubPath("en-us"),
+          },
+          {
+            imports: ["schema", "ast"],
+            from: `${directory.lib}/post/post.generated`,
+          },
+          ...types,
+        ],
+        options: `schema,
+validator: createFormValidatorFactory({ ast, localization })`,
+      };
+    }
+    return {
+      ...createPostType,
+      imports: [
+        {
+          imports: ["createFormValidatorFactory"],
+          from: precompiledValidatorSubPath(validator),
+        },
+        {
+          imports: ["schema"],
+          from: `${directory.lib}/post/post.generated`,
+        },
+        {
+          as: "validateFunctions",
+          from: `${directory.lib}/post/post.validators`,
+        },
+        ...types,
+      ],
+      options: `schema,
+validator: createFormValidatorFactory({ validateFunctions })`,
+    };
+  }
+  if (isSchemaValidator(validatorWithSuffix)) {
+    const v = (
+      {
+        zod4: {
+          import: {
+            as: "z",
+            from: "zod",
+          },
+          path: zod4ValidatorVersionSubPath("classic"),
+          inferInput: "z.infer",
+        },
+        valibot: {
+          import: {
+            as: "v",
+            from: "valibot",
+          },
+          path: externalValidatorPackage("valibot").name,
+          inferInput: "v.InferInput",
+        },
+        "standard-schema": {
+          import: {
+            imports: ["StandardSchemaV1"],
+            from: "@standard-schema/spec",
+            isType: true,
+          },
+          path: internalValidatorSubPath("standard-schema"),
+          inferInput: "StandardSchemaV1.InferInput",
+        },
+      } satisfies Record<
+        typeof validatorWithSuffix,
+        {
+          import: NamedImportOptions | NamespaceImportOptions;
+          path: string;
+          inferInput: string;
+        }
+      >
+    )[validatorWithSuffix];
+    return {
+      imports: [
+        v.import,
+        {
+          imports: ["adapt"],
+          from: v.path,
+        },
+        {
+          imports: ["post"],
+          from: `${directory.lib}/post`,
+        },
+      ],
+      options: `...adapt(post)`,
+      inputType: `${v.inferInput}<typeof post>`,
+      sendSchema: false,
+    };
+  }
+  return {
+    ...createPostType,
+    sendSchema: true,
+    imports: [
+      {
+        imports: ["schema"],
+        from: `${directory.lib}/post`,
+      },
+      ...(isTs
+        ? [
+            {
+              imports: ["CreatePost"],
+              from: `${directory.lib}/post`,
+              isType: true,
+            },
+          ]
+        : []),
+    ],
+    options: "schema",
+  };
 }

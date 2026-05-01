@@ -4,6 +4,38 @@ import { transforms, type AstTypes, type SvelteAst } from "@sveltejs/sv-utils";
 // the addon's utilities are published as their own module on npm.
 export * from "@sveltejs/sv-utils";
 
+export interface NamedImportOptions {
+  /**
+   * ```ts
+   * imports: { 'name': 'alias' } | ['name']
+   * ```
+   */
+  imports: Record<string, string> | string[];
+  from: string;
+  isType?: boolean;
+}
+
+export interface NamespaceImportOptions {
+  from: string;
+  as: string;
+}
+
+export function renderImport(
+  options: NamedImportOptions | NamespaceImportOptions,
+) {
+  if ("as" in options) {
+    return `import * as ${options.as} from "${options.from}"`;
+  }
+  return `import ${options.isType ? "type " : ""}{ ${(Array.isArray(options.imports) ? options.imports : Object.entries(options.imports).map(([k, v]) => `${k} as ${v}`)).join(", ")} } from "${options.from}"`;
+}
+
+export function renderImports(
+  imports: (NamedImportOptions | NamespaceImportOptions)[],
+  separator = ";\n",
+) {
+  return imports.map(renderImport).join(separator);
+}
+
 export function createReExport(
   node: AstTypes.Program,
   options: { name: string; source: string; imported?: string },

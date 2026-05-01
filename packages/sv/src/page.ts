@@ -1,21 +1,16 @@
 import { formPackage, svelteKitRfSubPath, svelteKitSubPath } from "meta";
 
-import { neverError, type Context, type NamedImportOptions } from "./model.js";
-import { addToDemoPage, transforms } from "./sv-utils.js";
-
-function createValidator({ options: { validatorWithSuffix } }: Context): {
-  imports: NamedImportOptions[];
-  options: string;
-} {
-  return {
-    imports: [],
-    options: "",
-  };
-}
+import { neverError, createValidator, type Context } from "./model.js";
+import {
+  addToDemoPage,
+  transforms,
+  type NamedImportOptions,
+  type NamespaceImportOptions,
+} from "./sv-utils.js";
 
 function createForm(ctx: Context): {
   formPackageImports: string[];
-  additionalImports: NamedImportOptions[];
+  additionalImports: (NamedImportOptions | NamespaceImportOptions)[];
   init: string;
   attributes: string;
 } {
@@ -40,7 +35,7 @@ function createForm(ctx: Context): {
       ],
       init: `const meta = createMeta<ActionData, PageData>().postForm;
 const { form } = setupSvelteKitForm(meta, {
-  ...defaults,${validator.options}
+  ...defaults,${validator.sendSchema ? "" : validator.options}
   onSuccess: (result) => {
     if (result.type === "success") {
       console.log(result.data?.post);
@@ -114,7 +109,11 @@ export function pageSvelte(ctx: Context) {
       });
 
       for (const i of form.additionalImports) {
-        js.imports.addNamed(ast.instance.content, i);
+        if ("as" in i) {
+          js.imports.addNamespace(ast.instance.content, i);
+        } else {
+          js.imports.addNamed(ast.instance.content, i);
+        }
       }
 
       js.common.appendFromString(ast.instance.content, { code: form.init });

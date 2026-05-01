@@ -211,14 +211,6 @@ async function compileSchema(schemaPath${ts(": string")}) {
   const schemaDir = path.dirname(schemaPath);
   const schemaName = path.basename(schemaPath, ".json");
 
-  // It is easier to save as a TS file
-  // https://github.com/microsoft/TypeScript/issues/32063
-  await fs.writeFile(
-    path.join(schemaDir, \`\${schemaName}.generated.${language}\`),
-    \`${ts('import type { Schema } from "@sjsf/form";\n')}export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE}
-export const schema = \${JSON.stringify(patch.schema, null, 2)}${ts(" as const satisfies Schema")};\`
-  );
-
   const schemas = fragmentSchema(patch);
 
   for (const schema of schemas) {
@@ -233,8 +225,11 @@ export const schema = \${JSON.stringify(patch.schema, null, 2)}${ts(" as const s
   try {
     const { ast } = await compile(await getSchema(toId(0)));
     await fs.writeFile(
-      path.join(schemaDir, \`\${schemaName}.ast.${language}\`),
-      \`${ts('import type { AST } from "@hyperjump/json-schema/experimental";\n  ')}export const ast = \${uneval(ast)}${ts(" as unknown as AST")}\`
+      path.join(schemaDir, \`\${schemaName}.generated.${language}\`),
+      \`${ts('import type { Schema } from "@sjsf/form";\nimport type { AST } from "@hyperjump/json-schema/experimental";\n')}import { uneval } from "devalue";
+export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
+export const schema = \${JSON.stringify(patch.schema, null, 2)}${ts(" as const satisfies Schema")};
+export const ast = \${uneval(ast)}${ts(" as unknown as AST")};\`
     );
   } finally {
     for (const schema of schemas) {
