@@ -17,6 +17,11 @@ import {
 } from "./model.js";
 import { transforms } from "./sv-utils.js";
 
+const createPostType = {
+  inputType: "CreatePost",
+  sendSchema: true,
+};
+
 function createPost({
   options: { validatorWithSuffix },
   ts,
@@ -24,11 +29,14 @@ function createPost({
 }: Context): {
   imports: string;
   options: string;
+  inputType: string;
+  sendSchema: boolean;
 } {
   if (isEndsWithPrecompiled(validatorWithSuffix)) {
     const validator = withoutPrecompiledSuffix(validatorWithSuffix);
     if (validator === "hyperjump") {
       return {
+        ...createPostType,
         imports: `import { createFormValidatorFactory } from "${precompiledValidatorSubPath(validator)}";
 import { localization } from "${hyperjumpValidatorLocalizationSubPath("en-us")}";
 import "@hyperjump/json-schema/formats-lite";
@@ -41,6 +49,7 @@ validator: createFormValidatorFactory({ ast, localization })`,
       };
     }
     return {
+      ...createPostType,
       imports: `import { createFormValidatorFactory } from "${precompiledValidatorSubPath(validator)}";
 
 import { schema${ts(", type CreatePost")} } from "${directory.lib}/post/post.generated";
@@ -50,21 +59,47 @@ validator: createFormValidatorFactory({ validateFunctions })`,
     };
   }
   if (isSchemaValidator(validatorWithSuffix)) {
-    const paths = {
-      zod4: zod4ValidatorVersionSubPath("classic"),
-      valibot: externalValidatorPackage("valibot").name,
-      "standard-schema": internalValidatorSubPath("standard-schema"),
-    } satisfies Record<typeof validatorWithSuffix, string>;
+    const v = (
+      {
+        zod4: {
+          import: 'import * as z from "zod"',
+          path: zod4ValidatorVersionSubPath("classic"),
+          inputType: "z.infer<typeof post>",
+        },
+        valibot: {
+          import: 'import * as v from "valibot"',
+          path: externalValidatorPackage("valibot").name,
+          inputType: "v.InferInput<typeof post>",
+        },
+        "standard-schema": {
+          import:
+            'import type { StandardSchemaV1 } from "@standard-schema/spec"',
+          path: internalValidatorSubPath("standard-schema"),
+          inputType: "StandardSchemaV1.InferInput<typeof post>",
+        },
+      } satisfies Record<
+        typeof validatorWithSuffix,
+        {
+          import: string;
+          path: string;
+          inputType: string;
+        }
+      >
+    )[validatorWithSuffix];
     return {
-      imports: `import { adapt } from "${paths[validatorWithSuffix]}";
+      imports: `${v.import};
+import { adapt } from "${v.path}";
       
 import { post } from "${directory.lib}/post"`,
       options: `...adapt(post)`,
+      inputType: v.inputType,
+      sendSchema: false,
     };
   }
   return {
-    imports: "",
-    options: "",
+    ...createPostType,
+    imports: `import { schema${ts(", type CreatePost")} } from "${directory.lib}/post"`,
+    options: "schema",
   };
 }
 
@@ -76,6 +111,7 @@ export function sveltekitTs(ctx: Context) {
     language,
     sv,
     ts,
+    isTs,
   } = ctx;
   if (!isKit || sveltekit === "no") {
     return;
@@ -95,9 +131,9 @@ import * as defaults from "${directory.lib}/sjsf/defaults";
 export const load = async () => {
   return {
     postForm: {
-      schema,
+      ${post.sendSchema ? "schema," : ""}
       initialValue: { title: "New post", content: "" },
-    } satisfies InitialFormData<CreatePost>,
+    }${ts(` satisfies InitialFormData<${post.inputType}>`)},
   };
 };
 
@@ -109,12 +145,12 @@ export const actions = {
       name: "postForm",
       sendData: true,
     },
-    ({ title, content }: CreatePost) => {
+    ({ title, content }${isTs && post.sendSchema ? ": CreatePost" : ""}) => {
       // Your logic here
       return { post: { id: "new-post", title, content } };
     },
   ),
-} satisfies Actions;
+}${ts(" satisfies Actions")};
 `,
       },
       remoteFunctions: { filename: `data.remote.${language}`, code: "" },
