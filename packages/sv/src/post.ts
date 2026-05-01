@@ -85,7 +85,7 @@ export function postTs({
 
           if (isTs) {
             js.common.appendFromString(ast, {
-              code: "export type CreatePost = FromSchema<typeof schema>;",
+              code: "export type Post = FromSchema<typeof schema>;",
             });
           }
         } else if (validatorWithSuffix === "zod4") {

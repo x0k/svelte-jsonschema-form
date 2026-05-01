@@ -192,7 +192,7 @@ export function neverError(value: never, message: string) {
 }
 
 const createPostType = {
-  inputType: "CreatePost",
+  inputType: "Post",
   sendSchema: false,
 };
 
@@ -212,7 +212,7 @@ export function createValidator({
     const types = isTs
       ? [
           {
-            imports: ["CreatePost"],
+            imports: ["Post"],
             from: lib("post/post.generated"),
             isType: true,
           },
@@ -326,7 +326,7 @@ validator: createFormValidatorFactory({ validateFunctions })`,
       ...(isTs
         ? [
             {
-              imports: ["CreatePost"],
+              imports: ["Post"],
               from: lib("post"),
               isType: true,
             },

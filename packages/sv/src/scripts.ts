@@ -29,7 +29,7 @@ export function scriptsFolder({
 
   const validator = withoutPrecompiledSuffix(validatorWithSuffix);
 
-  // TODO: add `CreatePost` type generation in `generated` files
+  // TODO: add `Post` type generation in `generated` files
   const scripts: Record<PrecompiledValidator, string> = {
     ajv8: `import fs from "node:fs/promises";
 import path from "node:path";
