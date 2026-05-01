@@ -39,15 +39,9 @@ const SVELTE_KIT_INTEGRATION_OPTION_ID_BUILDERS: Record<
   remoteFunctions: svelteKitRfSubPath(),
 };
 
-export function defaultsTs({
-  options,
-  isTs,
-  sv,
-  directory,
-  language,
-}: Context) {
+export function defaultsTs({ options, isTs, sv, language, lib }: Context) {
   sv.file(
-    `${directory.lib}/sjsf/defaults.${language}`,
+    lib(`sjsf/defaults.${language}`),
     transforms.script(({ ast, comments, js }) => {
       const { validatorWithSuffix } = options;
       const isAjv = validatorWithSuffix === "ajv8";

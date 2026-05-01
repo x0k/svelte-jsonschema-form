@@ -11,7 +11,14 @@ import {
 import { fileExists, getTopLevelFunction, transforms } from "./sv-utils.js";
 import type { Context } from "./model.js";
 
-export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
+export function shadcnTs({
+  options,
+  sv,
+  directory,
+  language,
+  cwd,
+  lib,
+}: Context) {
   const isShadcn4 = options.themeOrSubTheme === "shadcn4";
   const isShadcnExtras = options.themeOrSubTheme === "shadcn-extras";
   if (!isShadcn4 && !isShadcnExtras) {
@@ -19,7 +26,7 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
   }
 
   let isConfigEmpty = false;
-  let realUiPath = `${directory.lib}/components/ui`;
+  let realUiPath = lib("components/ui");
 
   sv.file(
     "components.json",
@@ -106,7 +113,7 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
   }
 
   sv.file(
-    `${directory.lib}/sjsf/shadcn.${language}`,
+    lib(`sjsf/shadcn.${language}`),
     transforms.script(({ ast, js, comments }) => {
       js.imports.addNamed(ast, {
         imports: ["setThemeContext"],

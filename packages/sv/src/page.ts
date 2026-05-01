@@ -18,6 +18,7 @@ function createForm(ctx: Context): {
     options: { sveltekit },
   } = ctx;
   const validator = createValidator(ctx);
+  // const addOptions = sveltekit === "no" || validator.sendSchema === false;
   if (sveltekit === "formActions") {
     return {
       formPackageImports: ["BasicForm"],
@@ -35,12 +36,13 @@ function createForm(ctx: Context): {
       ],
       init: `const meta = createMeta<ActionData, PageData>().postForm;
 const { form } = setupSvelteKitForm(meta, {
-  ...defaults,${validator.sendSchema ? "" : validator.options}
+  ...defaults,
   onSuccess: (result) => {
     if (result.type === "success") {
       console.log(result.data?.post);
     }
   },
+  ${validator.sendSchema ? "" : validator.options}
 })`,
       attributes: 'method="POST"',
     };
@@ -67,9 +69,10 @@ const form = createForm(
       }
     }),
     {
-      ...defaults,${validator.options}
+      ...defaults,
       ...initialData,
       fields: createPost.fields,
+      ${validator.options}
     },
   ),
 )`,
@@ -80,17 +83,18 @@ const form = createForm(
   }
   return {
     formPackageImports: ["BasicForm", "createForm"],
-    additionalImports: [],
+    additionalImports: validator.imports,
     init: `const form = createForm({
-  ...defaults,${validator.options}
+  ...defaults,
   onSubmit: console.log,
+  ${validator.options}
 })`,
     attributes: "",
   };
 }
 
 export function pageSvelte(ctx: Context) {
-  const { sv, directory, language, isKit } = ctx;
+  const { sv, directory, language, isKit, lib } = ctx;
   if (isKit) {
     sv.file(
       `${directory.kitRoutes}/demo/+page.svelte`,
@@ -115,6 +119,13 @@ export function pageSvelte(ctx: Context) {
           js.imports.addNamed(ast.instance.content, i);
         }
       }
+
+      js.imports.addNamespace(ast.instance.content, {
+        as: "defaults",
+        from: lib("sjsf/defaults"),
+      });
+
+      console.log(form.init);
 
       js.common.appendFromString(ast.instance.content, { code: form.init });
 

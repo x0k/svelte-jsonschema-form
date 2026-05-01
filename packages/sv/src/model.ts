@@ -164,6 +164,7 @@ export type Context = Workspace & {
   isTs: boolean;
   ts: (content: string, alt?: string) => string;
   js: (content: string, alt?: string) => string;
+  lib: (path: string) => string;
 };
 
 export interface AddonOptions {
@@ -171,7 +172,7 @@ export interface AddonOptions {
 }
 
 export function createContext(ws: Workspace): Context {
-  const { language } = ws;
+  const { language, directory, isKit } = ws;
   const isTs = language === "ts";
   const [ts, js] = createPrinter(isTs, !isTs);
   return {
@@ -179,6 +180,7 @@ export function createContext(ws: Workspace): Context {
     isTs,
     ts: ts!,
     js: js!,
+    lib: (path) => `${isKit ? "$lib" : directory.lib}/${path}`,
   };
 }
 
@@ -197,6 +199,7 @@ export function createValidator({
   options: { validatorWithSuffix },
   directory,
   isTs,
+  lib,
 }: Context): {
   imports: (NamedImportOptions | NamespaceImportOptions)[];
   options: string;
@@ -209,7 +212,7 @@ export function createValidator({
       ? [
           {
             imports: ["CreatePost"],
-            from: `${directory.lib}/post/post.generated`,
+            from: lib("post/post.generated"),
             isType: true,
           },
         ]
@@ -228,7 +231,7 @@ export function createValidator({
           },
           {
             imports: ["schema", "ast"],
-            from: `${directory.lib}/post/post.generated`,
+            from: lib("post/post.generated"),
           },
           ...types,
         ],
@@ -245,11 +248,11 @@ validator: createFormValidatorFactory({ ast, localization })`,
         },
         {
           imports: ["schema"],
-          from: `${directory.lib}/post/post.generated`,
+          from: lib("post/post.generated"),
         },
         {
           as: "validateFunctions",
-          from: `${directory.lib}/post/post.validators`,
+          from: lib("post/post.validators"),
         },
         ...types,
       ],
@@ -303,7 +306,7 @@ validator: createFormValidatorFactory({ validateFunctions })`,
         },
         {
           imports: ["post"],
-          from: `${directory.lib}/post`,
+          from: lib("post"),
         },
       ],
       options: `...adapt(post)`,
@@ -317,13 +320,13 @@ validator: createFormValidatorFactory({ validateFunctions })`,
     imports: [
       {
         imports: ["schema"],
-        from: `${directory.lib}/post`,
+        from: lib("post"),
       },
       ...(isTs
         ? [
             {
               imports: ["CreatePost"],
-              from: `${directory.lib}/post`,
+              from: lib("post"),
               isType: true,
             },
           ]

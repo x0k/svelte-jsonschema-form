@@ -32,6 +32,7 @@ export function postTs({
   language,
   options,
   ts,
+  lib,
 }: Context) {
   const { validatorWithSuffix } = options;
 
@@ -46,7 +47,7 @@ export function postTs({
     );
   } else {
     sv.file(
-      `${directory.lib}/post.${language}`,
+      lib(`post.${language}`),
       transforms.script(({ ast, js, comments }) => {
         if (
           isJsonSchemaValidator(validatorWithSuffix) ||
@@ -55,7 +56,7 @@ export function postTs({
           if (isTs) {
             js.imports.addNamed(ast, {
               isType: true,
-              imports: ["FormSchema"],
+              imports: ["FromSchema"],
               from: extraPackage("jsonSchemaToTs").name,
             });
             js.imports.addNamed(ast, {
@@ -64,13 +65,9 @@ export function postTs({
               from: formPackage.name,
             });
           }
-          let schemaExpression: AstTypes.Expression = js.object.create(schema);
-          if (isTs) {
-            schemaExpression = js.common.createSatisfies(
-              createAsConst(schemaExpression),
-              { type: "Schema" },
-            );
-          }
+          let schemaExpression: AstTypes.Expression = js.common.parseFromString(
+            `(${JSON.stringify(schema)}${ts(" as const satisfies Schema")})`,
+          );
           const schemaDeclaration = js.variables.declaration(ast, {
             kind: "const",
             name: "schema",
