@@ -1,3 +1,4 @@
+import { invalid } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 
@@ -17,8 +18,10 @@ export const createPost = form(
     ...defaults,
     schema,
   }),
-  ({ data }) => {
-    console.log(data);
-    return { ...data, id: "new-post" };
+  ({ data: { title, content } }) => {
+    if (title.length > 100) {
+      invalid({ path: ["title"], message: "Title is too long" });
+    }
+    return { id: "new-post", title, content };
   },
 );
