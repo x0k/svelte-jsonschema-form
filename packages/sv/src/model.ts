@@ -150,6 +150,17 @@ type Addon = ReturnType<
 
 type Workspace = Parameters<Addon["run"]>[0];
 
+export interface NamedImportOptions {
+  /**
+   * ```ts
+   * imports: { 'name': 'alias' } | ['name']
+   * ```
+   */
+  imports: Record<string, string> | string[];
+  from: string;
+  isType?: boolean;
+}
+
 export type Context = Workspace & {
   isTs: boolean;
   ts: (content: string, alt?: string) => string;
