@@ -19,7 +19,7 @@ import { transforms } from "./sv-utils.js";
 
 const createPostType = {
   inputType: "CreatePost",
-  sendSchema: true,
+  isSchemaBased: true,
 };
 
 function createPost({
@@ -30,7 +30,7 @@ function createPost({
   imports: string;
   options: string;
   inputType: string;
-  sendSchema: boolean;
+  isSchemaBased: boolean;
 } {
   if (isEndsWithPrecompiled(validatorWithSuffix)) {
     const validator = withoutPrecompiledSuffix(validatorWithSuffix);
@@ -39,8 +39,6 @@ function createPost({
         ...createPostType,
         imports: `import { createFormValidatorFactory } from "${precompiledValidatorSubPath(validator)}";
 import { localization } from "${hyperjumpValidatorLocalizationSubPath("en-us")}";
-import "@hyperjump/json-schema/formats-lite";
-import "@hyperjump/json-schema/draft-07";
 
 import { schema${ts(", type CreatePost")} } from "${directory.lib}/post/post.generated";
 import { ast } from "${directory.lib}/post/post.ast"`,
@@ -64,25 +62,25 @@ validator: createFormValidatorFactory({ validateFunctions })`,
         zod4: {
           import: 'import * as z from "zod"',
           path: zod4ValidatorVersionSubPath("classic"),
-          inputType: "z.infer<typeof post>",
+          inferInput: "z.infer",
         },
         valibot: {
           import: 'import * as v from "valibot"',
           path: externalValidatorPackage("valibot").name,
-          inputType: "v.InferInput<typeof post>",
+          inferInput: "v.InferInput",
         },
         "standard-schema": {
           import:
             'import type { StandardSchemaV1 } from "@standard-schema/spec"',
           path: internalValidatorSubPath("standard-schema"),
-          inputType: "StandardSchemaV1.InferInput<typeof post>",
+          inferInput: "StandardSchemaV1.InferInput",
         },
       } satisfies Record<
         typeof validatorWithSuffix,
         {
           import: string;
           path: string;
-          inputType: string;
+          inferInput: string;
         }
       >
     )[validatorWithSuffix];
@@ -92,8 +90,8 @@ import { adapt } from "${v.path}";
       
 import { post } from "${directory.lib}/post"`,
       options: `...adapt(post)`,
-      inputType: v.inputType,
-      sendSchema: false,
+      inputType: `${v.inferInput}<typeof post>`,
+      isSchemaBased: false,
     };
   }
   return {
@@ -122,7 +120,7 @@ export function sveltekitTs(ctx: Context) {
   const setup = (
     {
       formActions: {
-        filename: `+page.server.${language}`,
+        filename: `+page.server`,
         code: `${ts(`import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createAction } from "${svelteKitSubPath("server")}";
 ${post.imports};
@@ -131,7 +129,7 @@ import * as defaults from "${directory.lib}/sjsf/defaults";
 export const load = async () => {
   return {
     postForm: {
-      ${post.sendSchema ? "schema," : ""}
+      ${post.isSchemaBased ? "schema," : ""}
       initialValue: { title: "New post", content: "" },
     }${ts(` satisfies InitialFormData<${post.inputType}>`)},
   };
@@ -145,20 +143,46 @@ export const actions = {
       name: "postForm",
       sendData: true,
     },
-    ({ title, content }${isTs && post.sendSchema ? ": CreatePost" : ""}) => {
-      // Your logic here
-      return { post: { id: "new-post", title, content } };
+    (post${isTs && post.isSchemaBased ? `: ${post.inputType}` : ""}) => {
+      console.log(post)
+      return { post: { ...post, id: "new-post" } };
     },
   ),
 }${ts(" satisfies Actions")};
 `,
       },
-      remoteFunctions: { filename: `data.remote.${language}`, code: "" },
+      remoteFunctions: {
+        filename: `data.remote`,
+        code: `${ts(`import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createServerValidator } from "${svelteKitRfSubPath("server")}";
+
+import { form, query } from "$app/server";
+${post.imports};
+import * as defaults from "${directory.lib}/sjsf/defaults";
+
+export const getInitialData = query(async () => {
+  return {
+    ${post.isSchemaBased ? "schema, " : ""}
+    initialValue: { title: "New post", content: "" },
+  }${ts(` satisfies InitialFormData<${post.inputType}>`)};
+});
+
+export const createPost = form(
+  createServerValidator${isTs && post.isSchemaBased ? `<${post.inputType}>` : ""}({
+    ...defaults,
+    ${post.options}
+  }),
+  ({ data }) => {
+    console.log(data);
+    return { ...data, id: "new-post" };
+  },
+);
+`,
+      },
     } satisfies Record<typeof sveltekit, { filename: string; code: string }>
   )[sveltekit];
 
   sv.file(
-    `${directory.kitRoutes}/${setup.filename}`,
+    `${directory.kitRoutes}/${setup.filename}.${language}`,
     transforms.script(({ ast, comments, js }) => {
       js.common.appendFromString(ast, {
         comments,

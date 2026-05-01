@@ -25,6 +25,7 @@ import {
 import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
 import {
   isEndsWithPrecompiled,
+  withoutPrecompiledSuffix,
   type Context,
   type SvelteKitIntegrationOption,
 } from "./model.js";
@@ -148,6 +149,13 @@ export function resolver(_ctx) {`) +
           name: "icons",
           source: iconSetPackage(options.icons).name,
         });
+      }
+
+      if (withoutPrecompiledSuffix(validatorWithSuffix) === "hyperjump") {
+        js.imports.addEmpty(ast, {
+          from: "@hyperjump/json-schema/formats-lite",
+        });
+        js.imports.addEmpty(ast, { from: "@hyperjump/json-schema/draft-07" });
       }
 
       if (
