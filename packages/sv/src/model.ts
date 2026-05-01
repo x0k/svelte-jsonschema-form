@@ -198,7 +198,6 @@ const createPostType = {
 
 export function createValidator({
   options: { validatorWithSuffix },
-  directory,
   isTs,
   lib,
 }: Context): {

@@ -23,7 +23,7 @@ export interface Package extends AbstractPackage {
 
 const EXTRA_PACKAGES = {
   ajvFormat: {
-    name: "avj-format",
+    name: "ajv-formats",
     version: "^3.0.0",
     dev: false,
   },

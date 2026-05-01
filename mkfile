@@ -78,14 +78,16 @@ sjsf/:
 
 sv/:
   pushd packages/sv
-  b:
-    pnpm run build
+  r: i d
+    rm -rf demo || true
   i:
     pnpm run demo-create
   d:
     pnpm run demo-add
   t:
     pnpm run test
+  b:
+    pnpm run build
   popd
 
 ajv/:
