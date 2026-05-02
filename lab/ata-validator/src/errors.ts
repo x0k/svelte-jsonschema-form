@@ -28,7 +28,7 @@ function createInstancePath(
 }
 
 function errorObjectToMessage(
-  { params: { missingProperty }, message }: ValidationError,
+  { params: { missingProperty }, message, parentSchema }: ValidationError,
   getPropertyTitle: (
     missingProperty: string,
     parentSchema?: Schema,
@@ -40,7 +40,7 @@ function errorObjectToMessage(
   if (typeof missingProperty !== "string") {
     return message;
   }
-  const propertyTitle = getPropertyTitle(missingProperty);
+  const propertyTitle = getPropertyTitle(missingProperty, parentSchema);
   if (propertyTitle === undefined) {
     return message;
   }
