@@ -8,6 +8,7 @@ import {
   DEFAULT_VALIDATOR_OPTIONS,
   createFormValidator as schemasafe,
 } from "@sjsf/schemasafe-validator";
+import { createFormValidator as ata } from "@sjsf-lab/ata-validator";
 import Ajv2020 from "ajv/dist/2020";
 import addFormats from "ajv-formats";
 import {
@@ -18,6 +19,7 @@ import {
   validator as safeValidator,
   type Schema as SafeSchema,
 } from "@exodus/schemasafe";
+import { Validator as AtaValidator } from "ata-validator";
 
 export const validators = {
   ajv8: <T>(options: Parameters<typeof ajv8>[0]) =>
@@ -51,6 +53,9 @@ export const validators = {
           },
         }),
     }),
+  ata,
+  ata_2020: <T>(options: Parameters<typeof ata>[0]) =>
+    ata<T>({ ...options, factory: (schema) => new AtaValidator(schema) }),
   zod4: ajv8,
   valibot: ajv8,
 };
@@ -68,6 +73,8 @@ export const VALIDATOR_TITLES: Record<Validator, string> = {
   cfworker_2020: "@cfworker/json-schema (2020-12)",
   schemasafe: "@exodus/schemasafe",
   schemasafe_2020: "@exodus/schemasafe (2020-12)",
+  ata: "ata",
+  ata_2020: "ata (2020-12)",
   zod4: "Ajv",
   valibot: "Ajv",
 };
