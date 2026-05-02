@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
-    "ata-validator": "^0.12.1",
+    "ata-validator": "catalog:",
     "svelte": "catalog:",
     "validator-testing": "workspace:*"
   }
