@@ -26,6 +26,69 @@ const validators=[(function(R){var E=function(d){var _all=true;const _e=[];
   if(!(d==="admin"||d==="editor"||d==="viewer")){_e.push({keyword:'enum',instancePath:"",schemaPath:'#/enum',params:{allowedValues:["admin","editor","viewer"]},message:'must be equal to one of the allowed values'});if(!_all)return{valid:false,errors:_e}}
   return{valid:_e.length===0,errors:_e}};return function(d){if(typeof d!=='string')return E(d)
   if(!(d==="admin"||d==="editor"||d==="viewer"))return E(d)
-  return R}})(R),null,null];
+  return R}})(R),(function(R){var E=function(d){var _all=true;const _e=[];
+  const _cpLen=s=>{let n=0;for(const _ of s)n++;return n}
+  if(!(Array.isArray(d))){_e.push({keyword:'type',instancePath:"",schemaPath:'#/type',params:{type:'array'},message:'must be array'});if(!_all)return{valid:false,errors:_e}}
+  if(Array.isArray(d)&&d.length<1){_e.push({keyword:'minItems',instancePath:"",schemaPath:'#/minItems',params:{limit:1},message:'must NOT have fewer than 1 items'});if(!_all)return{valid:false,errors:_e}}
+  if(Array.isArray(d)){const _cn0=function(x){if(x===null||typeof x!=='object')return typeof x+':'+x;if(Array.isArray(x))return'['+x.map(_cn0).join(',')+']';return'{'+Object.keys(x).sort().map(function(k){return JSON.stringify(k)+':'+_cn0(x[k])}).join(',')+'}'};const _s0=new Map();for(let _i=0;_i<d.length;_i++){const _k=_cn0(d[_i]);const _prev=_s0.get(_k);if(_prev!==undefined){_e.push({keyword:'uniqueItems',instancePath:"",schemaPath:'#/uniqueItems',params:{i:_prev,j:_i},message:'must NOT have duplicate items (items ## '+_i+' and '+_prev+' are identical)'});if(!_all)return{valid:false,errors:_e};break};_s0.set(_k,_i)}}
+  if(Array.isArray(d)){for(let _j1=0;_j1<d.length;_j1++){const _ei1=d[_j1]
+  if(!(typeof _ei1==='string')){_e.push({keyword:'type',instancePath:'/'+_j1,schemaPath:'#/items/type',params:{type:'string'},message:'must be string'});if(!_all)return{valid:false,errors:_e}}
+  if(!(_ei1==="admin"||_ei1==="editor"||_ei1==="viewer")){_e.push({keyword:'enum',instancePath:'/'+_j1,schemaPath:'#/items/enum',params:{allowedValues:["admin","editor","viewer"]},message:'must be equal to one of the allowed values'});if(!_all)return{valid:false,errors:_e}}
+  }}
+  return{valid:_e.length===0,errors:_e}};return function(d){if(!Array.isArray(d))return E(d)
+  if(d.length<1)return E(d)
+  {const _cn0=function(x){if(x===null||typeof x!=='object')return typeof x+':'+x;if(Array.isArray(x))return'['+x.map(_cn0).join(',')+']';return'{'+Object.keys(x).sort().map(function(k){return JSON.stringify(k)+':'+_cn0(x[k])}).join(',')+'}'};const _s0=new Set();for(let _i=0;_i<d.length;_i++){const _k=_cn0(d[_i]);if(_s0.has(_k))return E(d);_s0.add(_k)}}
+  for(let _j1=0;_j1<d.length;_j1++){const _e1=d[_j1]
+  if(typeof _e1!=='string')return E(d)
+  if(!(_e1==="admin"||_e1==="editor"||_e1==="viewer"))return E(d)
+  }
+  return R}})(R),(function(R){var E=function(d){var _all=true;const _e=[];
+  const _cpLen=s=>{let n=0;for(const _ of s)n++;return n}
+  if(!((typeof d==='object'&&d!==null&&!Array.isArray(d)))){_e.push({keyword:'type',instancePath:"",schemaPath:'#/type',params:{type:'object'},message:'must be object'});if(!_all)return{valid:false,errors:_e}}
+  if(typeof d==='object'&&d!==null&&!Array.isArray(d)&&!("id" in d)){_e.push({keyword:'required',instancePath:"",schemaPath:'#/required',params:{missingProperty:'id'},message:"must have required property 'id'"});if(!_all)return{valid:false,errors:_e}}
+  if(typeof d==='object'&&d!==null&&!Array.isArray(d)&&!("email" in d)){_e.push({keyword:'required',instancePath:"",schemaPath:'#/required',params:{missingProperty:'email'},message:"must have required property 'email'"});if(!_all)return{valid:false,errors:_e}}
+  if(typeof d==='object'&&d!==null&&!Array.isArray(d)&&!("age" in d)){_e.push({keyword:'required',instancePath:"",schemaPath:'#/required',params:{missingProperty:'age'},message:"must have required property 'age'"});if(!_all)return{valid:false,errors:_e}}
+  if(typeof d==='object'&&d!==null&&!Array.isArray(d)&&!("roles" in d)){_e.push({keyword:'required',instancePath:"",schemaPath:'#/required',params:{missingProperty:'roles'},message:"must have required property 'roles'"});if(!_all)return{valid:false,errors:_e}}
+  if(typeof d==='object'&&d!==null&&!Array.isArray(d)){const _k0=Object.keys(d);const _a0=new Set(["id","email","age","roles"]);for(let _i=0;_i<_k0.length;_i++){if(!_a0.has(_k0[_i])){_e.push({keyword:'additionalProperties',instancePath:"",schemaPath:'#/additionalProperties',params:{additionalProperty:_k0[_i]},message:'must NOT have additional properties'});if(!_all)return{valid:false,errors:_e}}}}
+  if(typeof d==='object'&&d!==null&&!Array.isArray(d)&&"id" in d){
+  if(!(Number.isInteger(d["id"]))){_e.push({keyword:'type',instancePath:'/id',schemaPath:'#/properties/id/type',params:{type:'integer'},message:'must be integer'});if(!_all)return{valid:false,errors:_e}}
+  if(typeof d["id"]==='number'&&d["id"]<1){_e.push({keyword:'minimum',instancePath:'/id',schemaPath:'#/properties/id/minimum',params:{comparison:'>=',limit:1},message:'must be >= 1'});if(!_all)return{valid:false,errors:_e}}
+  }
+  if(typeof d==='object'&&d!==null&&!Array.isArray(d)&&"email" in d){
+  if(!(typeof d["email"]==='string')){_e.push({keyword:'type',instancePath:'/email',schemaPath:'#/properties/email/type',params:{type:'string'},message:'must be string'});if(!_all)return{valid:false,errors:_e}}
+  if(typeof d["email"]==='string'){const _at=d["email"].indexOf('@');if(_at<=0||_at>=d["email"].length-1||d["email"].indexOf('.',_at)<=_at+1){_e.push({keyword:'format',instancePath:'/email',schemaPath:'#/properties/email/format',params:{format:'email'},message:'must match format "email"'});if(!_all)return{valid:false,errors:_e}}}
+  }
+  if(typeof d==='object'&&d!==null&&!Array.isArray(d)&&"age" in d){
+  if(!(Number.isInteger(d["age"]))){_e.push({keyword:'type',instancePath:'/age',schemaPath:'#/properties/age/type',params:{type:'integer'},message:'must be integer'});if(!_all)return{valid:false,errors:_e}}
+  if(typeof d["age"]==='number'&&d["age"]<21){_e.push({keyword:'minimum',instancePath:'/age',schemaPath:'#/properties/age/minimum',params:{comparison:'>=',limit:21},message:'must be >= 21'});if(!_all)return{valid:false,errors:_e}}
+  if(typeof d["age"]==='number'&&d["age"]>100){_e.push({keyword:'maximum',instancePath:'/age',schemaPath:'#/properties/age/maximum',params:{comparison:'<=',limit:100},message:'must be <= 100'});if(!_all)return{valid:false,errors:_e}}
+  }
+  if(typeof d==='object'&&d!==null&&!Array.isArray(d)&&"roles" in d){
+  if(!(Array.isArray(d["roles"]))){_e.push({keyword:'type',instancePath:'/roles',schemaPath:'#/properties/roles/type',params:{type:'array'},message:'must be array'});if(!_all)return{valid:false,errors:_e}}
+  if(Array.isArray(d["roles"])&&d["roles"].length<1){_e.push({keyword:'minItems',instancePath:'/roles',schemaPath:'#/properties/roles/minItems',params:{limit:1},message:'must NOT have fewer than 1 items'});if(!_all)return{valid:false,errors:_e}}
+  if(Array.isArray(d["roles"])){const _cn2=function(x){if(x===null||typeof x!=='object')return typeof x+':'+x;if(Array.isArray(x))return'['+x.map(_cn2).join(',')+']';return'{'+Object.keys(x).sort().map(function(k){return JSON.stringify(k)+':'+_cn2(x[k])}).join(',')+'}'};const _s2=new Map();for(let _i=0;_i<d["roles"].length;_i++){const _k=_cn2(d["roles"][_i]);const _prev=_s2.get(_k);if(_prev!==undefined){_e.push({keyword:'uniqueItems',instancePath:'/roles',schemaPath:'#/properties/roles/uniqueItems',params:{i:_prev,j:_i},message:'must NOT have duplicate items (items ## '+_i+' and '+_prev+' are identical)'});if(!_all)return{valid:false,errors:_e};break};_s2.set(_k,_i)}}
+  if(Array.isArray(d["roles"])){for(let _j3=0;_j3<d["roles"].length;_j3++){const _ei3=d["roles"][_j3]
+  if(!(typeof _ei3==='string')){_e.push({keyword:'type',instancePath:'/roles'+'/'+_j3,schemaPath:'#/properties/roles/items/type',params:{type:'string'},message:'must be string'});if(!_all)return{valid:false,errors:_e}}
+  if(!(_ei3==="admin"||_ei3==="editor"||_ei3==="viewer")){_e.push({keyword:'enum',instancePath:'/roles'+'/'+_j3,schemaPath:'#/properties/roles/items/enum',params:{allowedValues:["admin","editor","viewer"]},message:'must be equal to one of the allowed values'});if(!_all)return{valid:false,errors:_e}}
+  }}
+  }
+  return{valid:_e.length===0,errors:_e}};return function(d){if(typeof d!=='object'||d===null||Array.isArray(d))return E(d)
+  if(d["id"]===undefined||d["email"]===undefined||d["age"]===undefined||d["roles"]===undefined)return E(d)
+  if(!Number.isInteger(d["id"]))return E(d)
+  if(d["id"]<1)return E(d)
+  if(typeof d["email"]!=='string')return E(d)
+  {const _at=d["email"].indexOf('@');if(_at<=0||_at>=d["email"].length-1||d["email"].indexOf('.',_at)<=_at+1)return E(d)}
+  if(!Number.isInteger(d["age"]))return E(d)
+  if(d["age"]<21)return E(d)
+  if(d["age"]>100)return E(d)
+  if(!Array.isArray(d["roles"]))return E(d)
+  if(d["roles"].length<1)return E(d)
+  {const _cn0=function(x){if(x===null||typeof x!=='object')return typeof x+':'+x;if(Array.isArray(x))return'['+x.map(_cn0).join(',')+']';return'{'+Object.keys(x).sort().map(function(k){return JSON.stringify(k)+':'+_cn0(x[k])}).join(',')+'}'};const _s0=new Set();for(let _i=0;_i<d["roles"].length;_i++){const _k=_cn0(d["roles"][_i]);if(_s0.has(_k))return E(d);_s0.add(_k)}}
+  for(let _j1=0;_j1<d["roles"].length;_j1++){const _e1=d["roles"][_j1]
+  if(typeof _e1!=='string')return E(d)
+  if(!(_e1==="admin"||_e1==="editor"||_e1==="viewer"))return E(d)
+  }
+  var _n=0;for(var _k in d)_n++;if(_n!==4)return E(d)
+  return R}})(R)];
 export default validators;
 export { validators };

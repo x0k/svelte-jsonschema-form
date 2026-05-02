@@ -16,11 +16,8 @@ const fieldsValidationMode = ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE;
 
 // NOTE: After calling this function, be sure to save the `schema` and
 // use it to generate the form
-// let id = 0;
-// const toId = (n: number) => `https://example.com/v${n}`;
 const patch = insertSubSchemaIds(inputSchema as any, {
   fieldsValidationMode,
-  // createId: () => toId(id++),
 });
 
 // It is easier to save as a TS file
@@ -33,7 +30,6 @@ export const schema = ${JSON.stringify(patch.schema, null, 2)} as const satisfie
 );
 
 const base = { $schema: "http://json-schema.org/draft-07/schema" };
-
 const bundle = Validator.bundleStandalone(
   fragmentSchema(patch).map((s) => Object.assign(s, base)),
   { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }
