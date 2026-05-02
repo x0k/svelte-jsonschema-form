@@ -530,6 +530,9 @@ importers:
       astro-vtbot:
         specifier: ^2.1.12
         version: 2.1.12
+      ata-validator:
+        specifier: ^0.12.1
+        version: 0.12.1
       beercss:
         specifier: ^4.0.20
         version: 4.0.20

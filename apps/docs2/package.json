@@ -85,6 +85,7 @@
     "@webcontainer/api": "^1.6.1",
     "astro": "6.1.2",
     "astro-vtbot": "^2.1.12",
+    "ata-validator": "^0.12.1",
     "beercss": "^4.0.20",
     "bits-ui": "catalog:",
     "css-tree": "^3.2.1",
