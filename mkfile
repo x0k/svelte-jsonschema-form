@@ -258,6 +258,13 @@ kit/:
 
 l/:
   pushd lab
+  ata/:
+    pushd ata-validator
+    b:
+      pnpm run build
+    t:
+      pnpm run test
+    popd
   hyper/:
     pushd hyperjump-validator
     b:
