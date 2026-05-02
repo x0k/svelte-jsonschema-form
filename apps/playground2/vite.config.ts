@@ -7,8 +7,7 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 export default defineConfig({
   base: "/svelte-jsonschema-form/playground3/",
   plugins: [
-    ,
-    // visualizer({})
+    // visualizer(),
     tailwindcss(),
     svelte(),
   ],
