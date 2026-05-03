@@ -12,7 +12,9 @@ import {
   type ErrorsTransformerOptions,
 } from "../errors.js";
 
-export type CompiledValidator = (data: unknown) => AtaValidationResult;
+export type CompiledValidator = (
+  data: unknown,
+) => AtaValidationResult | { valid: true; errors: ReadonlyArray<never> };
 
 export type ValidateFunctions = {
   [key: string]: CompiledValidator;
