@@ -748,20 +748,22 @@ export function getObjectDefaults(
   }
   const schemaAdditionalProperties = retrievedSchema.additionalProperties;
   if (schemaAdditionalProperties !== undefined && !initialDefaultsGenerated) {
-    let keys = new Set(
-      isSchemaObjectValue(defaults)
-        ? schemaProperties === undefined
-          ? Object.keys(defaults)
-          : Object.keys(defaults).filter((key) => !(key in schemaProperties))
-        : undefined
-    );
-    const formDataKeys = Object.keys(formData);
-    const formDataRequired = new Set(
-      schemaProperties === undefined
-        ? formDataKeys
-        : formDataKeys.filter((key) => !(key in schemaProperties))
-    );
-    keys = keys.union(formDataRequired);
+    let formDataKeys = Object.keys(formData);
+    if (schemaProperties !== undefined) {
+      formDataKeys = formDataKeys.filter((k) => !(k in schemaProperties));
+    }
+    const formDataRequired = new Set(formDataKeys);
+    const keys = new Set(formDataRequired);
+    // Only seed keys from schema defaults when formData has no additionalProperties of its own.
+    // If the user already has data (e.g. after a key rename), injecting default keys would
+    // re-add stale entries that no longer exist in formData.
+    if (formDataRequired.size === 0 && isSchemaObjectValue(defaults)) {
+      for (const k of Object.keys(defaults)) {
+        if (schemaProperties === undefined || !(k in schemaProperties)) {
+          keys.add(k);
+        }
+      }
+    }
     const additionalPropertySchema =
       typeof schemaAdditionalProperties === "boolean"
         ? {}
