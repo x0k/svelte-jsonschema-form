@@ -36,10 +36,11 @@ export function appCss({
       for (const atRule of rules) {
         if (atRule.name === "import") {
           // TODO: Why?
-          imports.push(JSON.stringify(atRule.params));
+          imports.push(`"${atRule.params}"`);
         } else {
           css.addAtRule(ast, {
-            ...atRule,
+            name: atRule.name,
+            params: `"${atRule.params}"`,
             append: true,
           });
         }

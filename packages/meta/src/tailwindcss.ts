@@ -14,3 +14,9 @@ const TAILWINDCSS4_PLUGINS = {
 } as const satisfies Record<string, AbstractPackage>;
 
 export type Tailwindcss4Plugin = keyof typeof TAILWINDCSS4_PLUGINS;
+
+export function tailwindcss4PluginPackage(
+  plugin: Tailwindcss4Plugin,
+): AbstractPackage {
+  return TAILWINDCSS4_PLUGINS[plugin];
+}

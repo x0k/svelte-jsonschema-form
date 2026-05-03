@@ -82,7 +82,7 @@ const TAILWINDCSS4_THEMES_SET = new Set<Theme>(TAILWINDCSS4_THEMES);
 export type Tailwindcss4Theme = (typeof TAILWINDCSS4_THEMES)[number];
 
 const TAILWINDCSS4_THEME_PLUGINS = {
-  skeleton4: [],
+  skeleton4: ["forms"],
   "shadcn-extras": [],
   daisyui5: [],
   flowbite3: [],
@@ -231,6 +231,16 @@ export function isThemeExtension(theme: Theme): theme is ThemeExtension {
 
 export function themeExtensionOrigin(extension: ThemeExtension): Theme {
   return THEME_EXTENSION_ORIGINS[extension];
+}
+
+export function isTailwindcss4Theme(theme: Theme): theme is Tailwindcss4Theme {
+  return TAILWINDCSS4_THEMES_SET.has(theme);
+}
+
+export function tailwindcss4ThemePlugins(
+  theme: Tailwindcss4Theme,
+): Iterable<Tailwindcss4Plugin> {
+  return TAILWINDCSS4_THEME_PLUGINS[theme];
 }
 
 export function isSubTheme(theme: string): theme is SubTheme {
