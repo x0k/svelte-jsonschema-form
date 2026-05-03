@@ -1,0 +1,85 @@
+---
+title: ata-validator
+type: package
+package: "@sjsf-lab/ata-validator"
+sidebar:
+  order: 15
+  badge:
+    text: exp
+    variant: caution
+---
+
+import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+
+import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
+
+import Form from './ata/form.svelte';
+import formCode from './ata/form.svelte?raw';
+import sharedCode from './shared/index.ts?raw';
+
+import inputSchemaCode from './shared/input-schema.json?raw'
+import PrecompiledForm from './ata/precompile/form.svelte'
+import precompiledFormCode from './ata/precompile/form.svelte?raw'
+import compileSchemaCode from './ata/precompile/compile-schema-script?raw'
+import precompiledSchemaCode from './ata/precompile/patched-schema?raw'
+
+Form validator implementation based on [ata](https://github.com/ata-core/ata-validator)
+JSON schema validator.
+
+## Installation
+
+<Npm pkg="@sjsf-lab/ata-validator ata-validator" />
+
+## Example
+
+<Tabs>
+  <TabItem label="form.svelte">
+    <Code code={formCode} lang='svelte' />
+  </TabItem>
+  <TabItem label="shared.ts">
+    <Code code={sharedCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+<FormCard>
+  <Form client:only="svelte" />
+</FormCard>
+
+## Precompiled validation
+
+It is possible to use precompiled validator to avoid issues with `unsafe-eval`
+warnings from the browser caused by strict Content Security Policy settings.
+
+### Schema precompilation
+
+The first step in the process is to compile a schema into a set of validate functions.
+
+<Tabs>
+  <TabItem label="compile-schema-script.ts">
+    <Code code={compileSchemaCode} lang='typescript' />
+  </TabItem>
+  <TabItem label="input-schema.json">
+    <Code code={inputSchemaCode} lang='json' />
+  </TabItem>
+</Tabs>
+
+```shell
+node compile-schema-script.ts
+```
+
+### Usage
+
+<Tabs>
+  <TabItem label="form.svelte">
+    <Code code={precompiledFormCode} lang='svelte' />
+  </TabItem>
+  <TabItem label="patched-schema.ts">
+    <Code code={precompiledSchemaCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+<FormCard>
+  <PrecompiledForm client:only="svelte" />
+</FormCard>
+
