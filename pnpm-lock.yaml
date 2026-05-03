@@ -28,8 +28,8 @@ catalogs:
       specifier: ^8.18.0
       version: 8.20.0
     ata-validator:
-      specifier: ^0.12.5
-      version: 0.12.5
+      specifier: ^0.12.6
+      version: 0.12.6
     autoprefixer:
       specifier: ^10.4.27
       version: 10.4.27
@@ -538,7 +538,7 @@ importers:
         version: 2.1.12
       ata-validator:
         specifier: 'catalog:'
-        version: 0.12.5
+        version: 0.12.6
       beercss:
         specifier: ^4.0.20
         version: 4.0.20
@@ -658,7 +658,7 @@ importers:
         version: 3.0.1(ajv@8.20.0)
       ata-validator:
         specifier: 'catalog:'
-        version: 0.12.5
+        version: 0.12.6
       codemirror:
         specifier: ^6.0.2
         version: 6.0.2
@@ -1588,7 +1588,7 @@ importers:
         version: link:../../packages/form
       ata-validator:
         specifier: 'catalog:'
-        version: 0.12.5
+        version: 0.12.6
       svelte:
         specifier: 'catalog:'
         version: 5.55.5
@@ -4800,8 +4800,8 @@ packages:
     engines: {node: '>=22.12.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
-  ata-validator@0.12.5:
-    resolution: {integrity: sha512-9ueBn9DawcV/NpOSWyXIPxwRuyN2L7ajzlv1mhOVaIg/eqFHnFznKeKOumK5OY98/1RSXNzlyz03tBUkATHSNg==}
+  ata-validator@0.12.6:
+    resolution: {integrity: sha512-McMp9/VCCuRT1u50ROS6P793rRD204er6E2RWc3fs0Ddk0rN9iO6IP+vqjJKFgxdrCSQPqY97oBk8uTwqUzX3Q==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -11019,7 +11019,7 @@ snapshots:
       - uploadthing
       - yaml
 
-  ata-validator@0.12.5:
+  ata-validator@0.12.6:
     dependencies:
       node-addon-api: 8.7.0
       node-api-headers: 1.8.0

@@ -30,10 +30,16 @@ export const schema = ${JSON.stringify(patch.schema, null, 2)} as const satisfie
 );
 
 const base = { $schema: "http://json-schema.org/draft-07/schema" };
+const schemas = fragmentSchema(patch);
 const bundle = Validator.bundleStandalone(
-  fragmentSchema(patch).map((s) => Object.assign(s, base)),
+  schemas.map((s) => Object.assign(s, base)),
   { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }
-);
+)
+  .replace(
+    "const validators",
+    `export const [${schemas.map((s) => s.$id).join(", ")}]`
+  )
+  .slice(0, -50);
 
 fs.writeFileSync(
   path.join(import.meta.dirname, "validate-functions.js"),
