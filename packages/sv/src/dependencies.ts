@@ -23,7 +23,8 @@ import {
   type Context,
 } from "./model.js";
 
-export function dependencies({ sv, options }: Context) {
+export function dependencies(ctx: Context) {
+  const { sv, options } = ctx;
   function addDependency({ name, version, dev }: AbstractPackage) {
     if (dev) {
       sv.devDependency(name, version);

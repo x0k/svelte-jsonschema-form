@@ -19,6 +19,7 @@ import {
   fromPackageJson,
 } from "./package.ts";
 import type { AtRule, AtRuleOptions } from "./css.ts";
+import type { Tailwindcss4Plugin } from "./tailwindcss.ts";
 
 const THEMES = [
   "basic",
@@ -67,6 +68,26 @@ const THEME_EXTENSION_ORIGINS = {
 } satisfies Record<ThemeExtension, Theme>;
 
 export type ThemeExtension = (typeof THEME_EXTENSION)[number];
+
+const TAILWINDCSS4_THEMES = [
+  "daisyui5",
+  "flowbite3",
+  "shadcn4",
+  "shadcn-extras",
+  "skeleton4",
+] satisfies Theme[];
+
+const TAILWINDCSS4_THEMES_SET = new Set<Theme>(TAILWINDCSS4_THEMES);
+
+export type Tailwindcss4Theme = (typeof TAILWINDCSS4_THEMES)[number];
+
+const TAILWINDCSS4_THEME_PLUGINS = {
+  skeleton4: [],
+  "shadcn-extras": [],
+  daisyui5: [],
+  flowbite3: [],
+  shadcn4: [],
+} as const satisfies Record<Tailwindcss4Theme, Tailwindcss4Plugin[]>;
 
 const THEME_SUB_THEMES = {
   basic: ["pico"],
