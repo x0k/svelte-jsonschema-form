@@ -96,7 +96,14 @@ const form = createForm(
 }
 
 export function pageSvelte(ctx: Context) {
-  const { sv, directory, language, isKit, lib } = ctx;
+  const {
+    sv,
+    directory,
+    language,
+    isKit,
+    lib,
+    options: { themeOrSubTheme },
+  } = ctx;
   if (isKit) {
     sv.file(
       `${directory.kitRoutes}/demo/+page.svelte`,
@@ -128,6 +135,10 @@ export function pageSvelte(ctx: Context) {
       });
 
       js.common.appendFromString(ast.instance.content, { code: form.init });
+
+      if (themeOrSubTheme === "pico") {
+        form.attributes += ' style="padding: 2rem;"';
+      }
 
       svelte.addFragment(ast, `<BasicForm {form} ${form.attributes}/>`);
     }),
