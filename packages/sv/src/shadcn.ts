@@ -8,7 +8,12 @@ import {
   type WidgetComponentsApproximation,
 } from "meta";
 
-import { fileExists, getTopLevelFunction, transforms } from "./sv-utils.js";
+import {
+  fileExists,
+  getTopLevelFunction,
+  importsAddNamed,
+  transforms,
+} from "./sv-utils.js";
 import type { Context } from "./model.js";
 
 export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
@@ -108,19 +113,19 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
   sv.file(
     `${directory.lib}/sjsf/shadcn.${language}`,
     transforms.script(({ ast, js, comments }) => {
-      js.imports.addNamed(ast, {
+      importsAddNamed(ast, {
         imports: ["setThemeContext"],
         from: themePackage("shadcn4").name,
       });
 
       if (libImports.length > 0) {
-        js.imports.addNamed(ast, {
+        importsAddNamed(ast, {
           imports: libImports,
           from: shadcnNewYorkThemeSubPath,
         });
       }
       for (const [source, imports] of localImports) {
-        js.imports.addNamed(ast, {
+        importsAddNamed(ast, {
           from: source,
           imports,
         });

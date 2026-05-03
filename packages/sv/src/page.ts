@@ -3,6 +3,7 @@ import { formPackage, svelteKitRfSubPath, svelteKitSubPath } from "meta";
 import { neverError, createValidator, type Context } from "./model.js";
 import {
   addToDemoPage,
+  importsAddNamed,
   transforms,
   type NamedImportOptions,
   type NamespaceImportOptions,
@@ -108,7 +109,7 @@ export function pageSvelte(ctx: Context) {
     transforms.svelteScript({ language }, ({ ast, js, svelte }) => {
       const form = createForm(ctx);
 
-      js.imports.addNamed(ast.instance.content, {
+      importsAddNamed(ast.instance.content, {
         imports: form.formPackageImports,
         from: formPackage.name,
       });
@@ -117,7 +118,7 @@ export function pageSvelte(ctx: Context) {
         if ("as" in i) {
           js.imports.addNamespace(ast.instance.content, i);
         } else {
-          js.imports.addNamed(ast.instance.content, i);
+          importsAddNamed(ast.instance.content, i);
         }
       }
 

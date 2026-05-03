@@ -22,7 +22,12 @@ import {
   isJsonSchemaValidator,
 } from "meta";
 
-import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
+import {
+  createReExport,
+  getTopLevelFunction,
+  importsAddNamed,
+  transforms,
+} from "./sv-utils.js";
 import {
   isEndsWithPrecompiled,
   withoutPrecompiledSuffix,
@@ -60,7 +65,7 @@ export function defaultsTs({
     const isAjv = validatorWithSuffix === "ajv8";
 
     if (isAjv && isTs) {
-      js.imports.addNamed(ast, {
+      importsAddNamed(ast, {
         from: formPackage.name,
         imports: ["ValidatorFactoryOptions"],
         isType: true,
@@ -68,12 +73,12 @@ export function defaultsTs({
     }
 
     if (!getTopLevelFunction(ast, "resolver")) {
-      js.imports.addNamed(ast, {
+      importsAddNamed(ast, {
         imports: ["getSimpleSchemaType", "isFixedItems"],
         from: formCoreSubpath,
       });
       if (isTs) {
-        js.imports.addNamed(ast, {
+        importsAddNamed(ast, {
           imports: ["FormState", "ResolveFieldType"],
           from: formPackage.name,
           isType: true,
@@ -175,7 +180,7 @@ export function resolver(_ctx) {`,
     }
 
     if (isAjv) {
-      js.imports.addNamed(ast, {
+      importsAddNamed(ast, {
         from: externalValidatorPackage(validatorWithSuffix).name,
         imports: ["addFormComponents", "createFormValidator"],
       });

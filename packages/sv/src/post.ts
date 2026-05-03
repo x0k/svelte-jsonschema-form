@@ -6,7 +6,7 @@ import {
   POST_JSON_SCHEMA_PATH,
   type Context,
 } from "./model.js";
-import { transforms, type AstTypes } from "./sv-utils.js";
+import { importsAddNamed, transforms, type AstTypes } from "./sv-utils.js";
 
 const schema = {
   title: "Post",
@@ -19,7 +19,7 @@ const schema = {
     content: {
       title: "Content",
       type: "string",
-      minLength: 50,
+      minLength: 10,
     },
   },
   required: ["title", "content"],
@@ -32,7 +32,6 @@ export function postTs({
   language,
   options,
   ts,
-  lib,
 }: Context) {
   const { validatorWithSuffix } = options;
 
@@ -54,12 +53,12 @@ export function postTs({
           validatorWithSuffix === "noop"
         ) {
           if (isTs) {
-            js.imports.addNamed(ast, {
+            importsAddNamed(ast, {
               isType: true,
               imports: ["FromSchema"],
               from: extraPackage("jsonSchemaToTs").name,
             });
-            js.imports.addNamed(ast, {
+            importsAddNamed(ast, {
               isType: true,
               imports: ["Schema"],
               from: formPackage.name,
@@ -94,7 +93,7 @@ export function postTs({
           const postExpression = js.common.parseExpression(`z
   .object({
     title: z.string().meta({ title: "Title" }),
-    content: z.string().min(50).meta({ title: "Content" }),
+    content: z.string().min(10).meta({ title: "Content" }),
   })
   .meta({ title: "Post" })`);
           const postDeclaration = js.variables.declaration(ast, {
@@ -125,7 +124,7 @@ export function postTs({
       ),
       content: v.pipe(
         v.string(),
-        v.minLength(50),
+        v.minLength(10),
         v.metadata({
           title: "Content",
         }),
@@ -152,7 +151,7 @@ export function postTs({
           }
         } else if (validatorWithSuffix === "standard-schema") {
           if (isTs) {
-            js.imports.addNamed(ast, {
+            importsAddNamed(ast, {
               imports: ["StandardSchemaV1", "StandardJSONSchemaV1"],
               from: "@standard-schema/spec",
               isType: true,
@@ -170,7 +169,7 @@ export function postTs({
         typeof value.title === "string" &&
         "content" in value &&
         typeof value.content === "string" &&
-        value.content.length > 50
+        value.content.length > 10
         ? {
             value,
           }

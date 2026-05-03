@@ -78,12 +78,22 @@ sjsf/:
 
 sv/:
   pushd packages/sv
-  r: i d
+  dr:
     rm -rf demo || true
-  i:
+  dc:
     pnpm run demo-create
-  d:
+  da:
     pnpm run demo-add
+    # Basic setup
+    # pnpx sv@0.15.2 add file:../="themeOrSubTheme:basic+icons:none+validatorWithSuffix:ajv8+sveltekit:no" --cwd demo --no-git-check --no-install
+  demo/:
+    pushd demo
+    i:
+      npm install
+    d:
+      npm run dev
+    popd
+  d: dr dc da demo/*
   t:
     pnpm run test
   b:

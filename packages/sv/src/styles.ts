@@ -35,8 +35,8 @@ export function appCss({
       const imports: string[] = [];
       for (const atRule of rules) {
         if (atRule.name === "import") {
-          // TODO: Do we need `JSON.stringify` here?
-          imports.push(atRule.params);
+          // TODO: Why?
+          imports.push(JSON.stringify(atRule.params));
         } else {
           css.addAtRule(ast, {
             ...atRule,

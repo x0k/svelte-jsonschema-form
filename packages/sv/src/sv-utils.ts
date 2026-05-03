@@ -1,8 +1,87 @@
 // This file is a separate entry point (see tsdown.config.js) so that
-import { transforms, type AstTypes, type SvelteAst } from "@sveltejs/sv-utils";
+import {
+  transforms,
+  type AstTypes,
+  type SvelteAst,
+  Walker,
+} from "@sveltejs/sv-utils";
 
 // the addon's utilities are published as their own module on npm.
 export * from "@sveltejs/sv-utils";
+
+export function importsAddNamed(
+  node: AstTypes.Program,
+  options: {
+    imports: Record<string, string> | string[];
+    from: string;
+    isType?: boolean;
+  },
+): void {
+  const o_imports = Array.isArray(options.imports)
+    ? Object.fromEntries(options.imports.map((n) => [n, n]))
+    : options.imports;
+
+  const specifiers = Object.entries(o_imports).map(([key, value]) => {
+    const specifier: AstTypes.ImportSpecifier = {
+      type: "ImportSpecifier",
+      imported: {
+        type: "Identifier",
+        name: key,
+      },
+      local: {
+        type: "Identifier",
+        name: value,
+      },
+    };
+    return specifier;
+  });
+
+  const expectedImportKind = options.isType ? "type" : "value";
+  let importDecl: AstTypes.ImportDeclaration | undefined;
+
+  Walker.walk(node as AstTypes.Node, null, {
+    ImportDeclaration(declaration: AstTypes.ImportDeclaration) {
+      if (
+        declaration.source.value === options.from &&
+        declaration.specifiers &&
+        (declaration.importKind ?? "value") === expectedImportKind // <-- also match on kind
+      ) {
+        importDecl = declaration;
+      }
+    },
+  });
+
+  // merge the specifiers into a single import declaration if they share a source
+  if (importDecl) {
+    specifiers.forEach((specifierToAdd) => {
+      const sourceExists = importDecl?.specifiers?.every(
+        (existingSpecifier) =>
+          existingSpecifier.type === "ImportSpecifier" &&
+          existingSpecifier.local?.name !== specifierToAdd.local?.name &&
+          existingSpecifier.imported.type === "Identifier" &&
+          specifierToAdd.imported.type === "Identifier" &&
+          existingSpecifier.imported.name !== specifierToAdd.imported.name,
+      );
+      if (sourceExists) {
+        importDecl?.specifiers?.push(specifierToAdd);
+      }
+    });
+    return;
+  }
+
+  const expectedImportDeclaration: AstTypes.ImportDeclaration = {
+    type: "ImportDeclaration",
+    source: {
+      type: "Literal",
+      value: options.from,
+    },
+    specifiers,
+    attributes: [],
+    importKind: expectedImportKind,
+  };
+
+  node.body.unshift(expectedImportDeclaration);
+}
 
 export interface NamedImportOptions {
   /**
@@ -143,7 +222,7 @@ export function addToDemoPage(path: string, language: "ts" | "js") {
       }
     }
 
-    js.imports.addNamed(ast.instance.content, {
+    importsAddNamed(ast.instance.content, {
       imports: ["resolve"],
       from: "$app/paths",
     });
