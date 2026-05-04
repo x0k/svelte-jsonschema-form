@@ -6,17 +6,24 @@ import {
 } from "meta";
 
 import type { Context } from "./model.js";
-import { type SvelteAst, transforms } from "./sv-utils.js";
+import {
+  type SvelteAst,
+  transforms,
+  js as jsUtils,
+  cssAddPseudoRule,
+} from "./sv-utils.js";
+import { SET_SHADCN_THEME_CONTEXT_FN_NAME } from "./shadcn.js";
 
-export function appCss({
-  file,
-  sv,
-  options: { themeOrSubTheme, icons },
-  isKit,
-  directory,
-  dependencyVersion,
-  language,
-}: Context) {
+export function appCss(ctx: Context) {
+  const {
+    file,
+    sv,
+    options: { themeOrSubTheme, icons },
+    isKit,
+    directory,
+    dependencyVersion,
+    language,
+  } = ctx;
   let uiLibIsNotConfigured = false;
 
   sv.file(
@@ -119,6 +126,159 @@ export function appCss({
           params: '"@skeletonlabs/skeleton/themes/cerberus"',
           append: true,
         });
+      } else if (themeOrSubTheme.startsWith("shadcn")) {
+        css.addAtRule(ast, {
+          name: "custom-variant",
+          params: "dark (&:where(.dark *))",
+          append: true,
+        });
+
+        const rootSelector = cssAddPseudoRule(ast, { selector: "root" });
+        const rootProperties = [
+          { property: "--radius", value: "0.625rem" },
+          { property: "--background", value: "oklch(1 0 0)" },
+          { property: "--foreground", value: "oklch(0.145 0 0)" },
+          { property: "--card", value: "oklch(1 0 0)" },
+          { property: "--card-foreground", value: "oklch(0.145 0 0)" },
+          { property: "--popover", value: "oklch(1 0 0)" },
+          { property: "--popover-foreground", value: "oklch(0.145 0 0)" },
+          { property: "--primary", value: "oklch(0.205 0 0)" },
+          { property: "--primary-foreground", value: "oklch(0.985 0 0)" },
+          { property: "--secondary", value: "oklch(0.97 0 0)" },
+          { property: "--secondary-foreground", value: "oklch(0.205 0 0)" },
+          { property: "--muted", value: "oklch(0.97 0 0)" },
+          { property: "--muted-foreground", value: "oklch(0.556 0 0)" },
+          { property: "--accent", value: "oklch(0.97 0 0)" },
+          { property: "--accent-foreground", value: "oklch(0.205 0 0)" },
+          { property: "--destructive", value: "oklch(0.577 0.245 27.325)" },
+          { property: "--border", value: "oklch(0.922 0 0)" },
+          { property: "--input", value: "oklch(0.922 0 0)" },
+          { property: "--ring", value: "oklch(0.708 0 0)" },
+          { property: "--chart-1", value: "oklch(0.646 0.222 41.116)" },
+          { property: "--chart-2", value: "oklch(0.6 0.118 184.704)" },
+          { property: "--chart-3", value: "oklch(0.398 0.07 227.392)" },
+          { property: "--chart-4", value: "oklch(0.828 0.189 84.429)" },
+          { property: "--chart-5", value: "oklch(0.769 0.188 70.08)" },
+          { property: "--sidebar", value: "oklch(0.985 0 0)" },
+          { property: "--sidebar-foreground", value: "oklch(0.145 0 0)" },
+          { property: "--sidebar-primary", value: "oklch(0.205 0 0)" },
+          {
+            property: "--sidebar-primary-foreground",
+            value: "oklch(0.985 0 0)",
+          },
+          { property: "--sidebar-accent", value: "oklch(0.97 0 0)" },
+          {
+            property: "--sidebar-accent-foreground",
+            value: "oklch(0.205 0 0)",
+          },
+          { property: "--sidebar-border", value: "oklch(0.922 0 0)" },
+          { property: "--sidebar-ring", value: "oklch(0.708 0 0)" },
+        ];
+        for (const p of rootProperties) {
+          css.addDeclaration(rootSelector, p);
+        }
+
+        const darkSelector = css.addRule(ast, { selector: "dark" });
+        const darkProperties = [
+          { property: "--background", value: "oklch(0.145 0 0)" },
+          { property: "--foreground", value: "oklch(0.985 0 0)" },
+          { property: "--card", value: "oklch(0.205 0 0)" },
+          { property: "--card-foreground", value: "oklch(0.985 0 0)" },
+          { property: "--popover", value: "oklch(0.269 0 0)" },
+          { property: "--popover-foreground", value: "oklch(0.985 0 0)" },
+          { property: "--primary", value: "oklch(0.922 0 0)" },
+          { property: "--primary-foreground", value: "oklch(0.205 0 0)" },
+          { property: "--secondary", value: "oklch(0.269 0 0)" },
+          { property: "--secondary-foreground", value: "oklch(0.985 0 0)" },
+          { property: "--muted", value: "oklch(0.269 0 0)" },
+          { property: "--muted-foreground", value: "oklch(0.708 0 0)" },
+          { property: "--accent", value: "oklch(0.371 0 0)" },
+          { property: "--accent-foreground", value: "oklch(0.985 0 0)" },
+          { property: "--destructive", value: "oklch(0.704 0.191 22.216)" },
+          { property: "--border", value: "oklch(1 0 0 / 10%)" },
+          { property: "--input", value: "oklch(1 0 0 / 15%)" },
+          { property: "--ring", value: "oklch(0.556 0 0)" },
+          { property: "--chart-1", value: "oklch(0.488 0.243 264.376)" },
+          { property: "--chart-2", value: "oklch(0.696 0.17 162.48)" },
+          { property: "--chart-3", value: "oklch(0.769 0.188 70.08)" },
+          { property: "--chart-4", value: "oklch(0.627 0.265 303.9)" },
+          { property: "--chart-5", value: "oklch(0.645 0.246 16.439)" },
+          { property: "--sidebar", value: "oklch(0.205 0 0)" },
+          { property: "--sidebar-foreground", value: "oklch(0.985 0 0)" },
+          {
+            property: "--sidebar-primary",
+            value: "oklch(0.488 0.243 264.376)",
+          },
+          {
+            property: "--sidebar-primary-foreground",
+            value: "oklch(0.985 0 0)",
+          },
+          { property: "--sidebar-accent", value: "oklch(0.269 0 0)" },
+          {
+            property: "--sidebar-accent-foreground",
+            value: "oklch(0.985 0 0)",
+          },
+          { property: "--sidebar-border", value: "oklch(1 0 0 / 10%)" },
+          { property: "--sidebar-ring", value: "oklch(0.439 0 0)" },
+        ];
+        for (const p of darkProperties) {
+          css.addDeclaration(darkSelector, p);
+        }
+
+        css.addAtRule(ast, {
+          name: "theme",
+          params: `inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}`,
+          append: true,
+        });
+        css.addAtRule(ast, {
+          name: "layer",
+          params: `base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+ 
+  body {
+    @apply bg-background text-foreground;
+  }
+}`,
+          append: true,
+        });
       }
     }),
   );
@@ -158,6 +318,8 @@ export function appCss({
       transforms.svelteScript({ language }, ({ ast, svelte, js }) => {
         js.imports.addEmpty(ast.instance.content, { from: stylesheetRelative });
 
+        setupShadcnContext(ctx, ast.instance, js);
+
         if (ast.fragment.nodes.length === 0) {
           const svelteVersion = dependencyVersion("svelte");
           if (!svelteVersion)
@@ -176,6 +338,8 @@ export function appCss({
       appSvelte,
       transforms.svelteScript({ language }, ({ ast, js }) => {
         js.imports.addEmpty(ast.instance.content, { from: stylesheetRelative });
+
+        setupShadcnContext(ctx, ast.instance, js);
       }),
     );
   }
@@ -201,4 +365,22 @@ function isStyleSheetEmpty(
     }
   }
   return true;
+}
+
+function setupShadcnContext(
+  { lib, options: { themeOrSubTheme } }: Context,
+  instance: SvelteAst.Script,
+  js: typeof jsUtils,
+) {
+  if (themeOrSubTheme !== "shadcn4" && themeOrSubTheme !== "shadcn-extras") {
+    return;
+  }
+  js.imports.addNamed(instance.content, {
+    imports: [SET_SHADCN_THEME_CONTEXT_FN_NAME],
+    from: lib("sjsf/shadcn"),
+  });
+  const statement = js.common.parseStatement(
+    `${SET_SHADCN_THEME_CONTEXT_FN_NAME}();`,
+  );
+  js.common.appendStatement(instance.content, { statement });
 }

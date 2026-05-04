@@ -202,7 +202,7 @@ export function getTopLevelFunction(node: AstTypes.Program, name: string) {
 
 // https://github.com/sveltejs/cli/blob/19ed7a0f940816a63c1c7f963a04bb72d7b19a8f/packages/sv/src/addons/common.ts#L95
 export function addToDemoPage(path: string, language: "ts" | "js") {
-  return transforms.svelteScript({ language }, ({ ast, js, svelte }) => {
+  return transforms.svelteScript({ language }, ({ ast, svelte }) => {
     for (const node of ast.fragment.nodes) {
       if (node.type === "RegularElement") {
         const hrefAttribute = node.attributes.find(
@@ -233,7 +233,7 @@ export function addToDemoPage(path: string, language: "ts" | "js") {
   });
 }
 
-export function createAsConst(
+export function jsCreateAsConst(
   node: AstTypes.Expression,
 ): AstTypes.TSAsExpression {
   return {
@@ -247,4 +247,61 @@ export function createAsConst(
       },
     },
   };
+}
+
+// https://github.com/sveltejs/cli/blob/19ed7a0f940816a63c1c7f963a04bb72d7b19a8f/packages/sv-utils/src/tooling/css/index.ts#L3
+export function cssAddPseudoRule(
+  node: SvelteAst.CSS.StyleSheetBase,
+  options: { selector: string },
+): SvelteAst.CSS.Rule {
+  const selectorName = options.selector;
+
+  const rules = node.children.filter((x) => x.type === "Rule");
+  let rule = rules.find((x) => {
+    const selector = x.prelude.children[0]!.children[0]!.selectors[0]!;
+    return (
+      selector.type === "PseudoClassSelector" && selector.name === selectorName
+    );
+  });
+
+  if (!rule) {
+    rule = {
+      type: "Rule",
+      prelude: {
+        type: "SelectorList",
+        children: [
+          {
+            type: "ComplexSelector",
+            children: [
+              {
+                type: "RelativeSelector",
+                selectors: [
+                  {
+                    type: "PseudoClassSelector",
+                    name: selectorName,
+                    args: null,
+                    start: 0,
+                    end: 0,
+                  },
+                ],
+                combinator: null,
+                start: 0,
+                end: 0,
+              },
+            ],
+            start: 0,
+            end: 0,
+          },
+        ],
+        start: 0,
+        end: 0,
+      },
+      block: { type: "Block", children: [], start: 0, end: 0 },
+      start: 0,
+      end: 0,
+    };
+    node.children.push(rule);
+  }
+
+  return rule;
 }

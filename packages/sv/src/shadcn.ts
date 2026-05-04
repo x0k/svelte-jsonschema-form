@@ -16,6 +16,8 @@ import {
 } from "./sv-utils.js";
 import type { Context } from "./model.js";
 
+export const SET_SHADCN_THEME_CONTEXT_FN_NAME = "setShadcnThemeContext";
+
 export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
   const isShadcn4 = options.themeOrSubTheme === "shadcn4";
   const isShadcnExtras = options.themeOrSubTheme === "shadcn-extras";
@@ -103,8 +105,10 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
     handleExtraWidgetComponents(c.components, shadcn4ExtraLibImports);
   }
   const shadcnExtrasExtraLibImports: string[] = [];
-  for (const c of shadcnExtrasExtraWidgetComponents()) {
-    handleExtraWidgetComponents(c.components, shadcnExtrasExtraLibImports);
+  if (isShadcnExtras) {
+    for (const c of shadcnExtrasExtraWidgetComponents()) {
+      handleExtraWidgetComponents(c.components, shadcnExtrasExtraLibImports);
+    }
   }
   for (const c of importedComponents) {
     importedComponentsSet.delete(c);
@@ -131,9 +135,7 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
         });
       }
 
-      const FN_NAME = "setShadcnThemeContext";
-
-      if (getTopLevelFunction(ast, FN_NAME)) {
+      if (getTopLevelFunction(ast, SET_SHADCN_THEME_CONTEXT_FN_NAME)) {
         return;
       }
 
@@ -158,7 +160,7 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
 
       js.common.appendFromString(ast, {
         code: `// https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/#components
-export function ${FN_NAME}() {
+export function ${SET_SHADCN_THEME_CONTEXT_FN_NAME}() {
   setThemeContext({
     components: {
       ${importedComponents.join(", ")}\n${Array.from(importedComponentsSet)

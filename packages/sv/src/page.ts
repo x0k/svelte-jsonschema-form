@@ -19,6 +19,8 @@ const PADDED_THEMES: NonLegacyThemeOrSubTheme[] = [
   "daisyui5",
   "flowbite3",
   "skeleton4",
+  "shadcn4",
+  "shadcn-extras",
 ];
 
 export function pageSvelte(ctx: Context) {
