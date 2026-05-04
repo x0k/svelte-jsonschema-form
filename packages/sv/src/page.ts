@@ -1,4 +1,9 @@
-import { formPackage, svelteKitRfSubPath, svelteKitSubPath } from "meta";
+import {
+  formPackage,
+  svelteKitRfSubPath,
+  svelteKitSubPath,
+  type ThemeOrSubTheme,
+} from "meta";
 
 import { neverError, createValidator, type Context } from "./model.js";
 import {
@@ -136,7 +141,9 @@ export function pageSvelte(ctx: Context) {
 
       js.common.appendFromString(ast.instance.content, { code: form.init });
 
-      if (themeOrSubTheme === "pico") {
+      const paddedThemes: ThemeOrSubTheme[] = ["pico", "daisyui5"];
+
+      if (paddedThemes.includes(themeOrSubTheme)) {
         form.attributes += ' style="padding: 2rem;"';
       }
 

@@ -1,4 +1,3 @@
-import { transforms } from "@sveltejs/sv-utils";
 import {
   iconSetAtRules,
   themeOrSubThemeAtRules,
@@ -6,11 +5,12 @@ import {
 } from "meta";
 
 import type { Context } from "./model.js";
+import { type SvelteAst, transforms } from "./sv-utils.js";
 
 export function appCss({
   file,
   sv,
-  options,
+  options: { themeOrSubTheme, icons },
   isKit,
   directory,
   dependencyVersion,
@@ -19,23 +19,20 @@ export function appCss({
   sv.file(
     file.stylesheet,
     transforms.css(({ ast, css }) => {
+      const isEmpty = isStyleSheetEmpty(ast);
       const atRuleOptions: AtRuleOptions = {
         nodeModulesPath: file.getRelative({
           from: file.stylesheet,
           to: "node_modules",
         }),
       };
-      let rules = themeOrSubThemeAtRules(
-        options.themeOrSubTheme,
-        atRuleOptions,
-      );
-      if (options.icons !== "none") {
-        rules = rules.concat(iconSetAtRules(options.icons, atRuleOptions));
+      let rules = themeOrSubThemeAtRules(themeOrSubTheme, atRuleOptions);
+      if (icons !== "none") {
+        rules = rules.concat(iconSetAtRules(icons, atRuleOptions));
       }
       const imports: string[] = [];
       for (const atRule of rules) {
         if (atRule.name === "import") {
-          // TODO: Why?
           imports.push(`"${atRule.params}"`);
         } else {
           css.addAtRule(ast, {
@@ -47,6 +44,16 @@ export function appCss({
       }
       if (imports.length > 0) {
         css.addImports(ast, { imports });
+      }
+      if (!isEmpty) {
+        return;
+      }
+      if (themeOrSubTheme === "daisyui5") {
+        css.addAtRule(ast, {
+          name: "plugin",
+          params: '"daisyui"',
+          append: true,
+        });
       }
     }),
   );
@@ -85,4 +92,23 @@ export function appCss({
       }),
     );
   }
+}
+
+function isStyleSheetEmpty(
+  ast: Omit<SvelteAst.CSS.StyleSheetBase, "attributes" | "content">,
+) {
+  if (ast.children.length === 0) {
+    return true;
+  }
+  if (ast.children.length === 1) {
+    const child = ast.children[0]!;
+    if (
+      child.type === "Atrule" &&
+      child.name === "import" &&
+      child.prelude.includes("tailwindcss")
+    ) {
+      return true;
+    }
+  }
+  return false;
 }
