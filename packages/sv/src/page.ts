@@ -2,7 +2,7 @@ import {
   formPackage,
   svelteKitRfSubPath,
   svelteKitSubPath,
-  type ThemeOrSubTheme,
+  type NonLegacyThemeOrSubTheme,
 } from "meta";
 
 import { neverError, createValidator, type Context } from "./model.js";
@@ -13,6 +13,62 @@ import {
   type NamedImportOptions,
   type NamespaceImportOptions,
 } from "./sv-utils.js";
+
+const PADDED_THEMES: NonLegacyThemeOrSubTheme[] = [
+  "pico",
+  "daisyui5",
+  "flowbite3",
+];
+
+export function pageSvelte(ctx: Context) {
+  const {
+    sv,
+    directory,
+    language,
+    isKit,
+    lib,
+    options: { themeOrSubTheme },
+  } = ctx;
+  if (isKit) {
+    sv.file(
+      `${directory.kitRoutes}/demo/+page.svelte`,
+      addToDemoPage("sjsf", language),
+    );
+  }
+
+  sv.file(
+    `${directory.kitRoutes}${isKit ? "/demo/sjsf/+page.svelte" : "sjsf.svelte"}`,
+    transforms.svelteScript({ language }, ({ ast, js, svelte }) => {
+      const form = createForm(ctx);
+
+      importsAddNamed(ast.instance.content, {
+        imports: form.formPackageImports,
+        from: formPackage.name,
+      });
+
+      for (const i of form.additionalImports) {
+        if ("as" in i) {
+          js.imports.addNamespace(ast.instance.content, i);
+        } else {
+          importsAddNamed(ast.instance.content, i);
+        }
+      }
+
+      js.imports.addNamespace(ast.instance.content, {
+        as: "defaults",
+        from: lib("sjsf/defaults"),
+      });
+
+      js.common.appendFromString(ast.instance.content, { code: form.init });
+
+      if (PADDED_THEMES.includes(themeOrSubTheme)) {
+        form.attributes += ' style="padding: 2rem;"';
+      }
+
+      svelte.addFragment(ast, `<BasicForm {form} ${form.attributes}/>`);
+    }),
+  );
+}
 
 function createForm(ctx: Context): {
   formPackageImports: string[];
@@ -98,56 +154,4 @@ const form = createForm(
 })`,
     attributes: "",
   };
-}
-
-export function pageSvelte(ctx: Context) {
-  const {
-    sv,
-    directory,
-    language,
-    isKit,
-    lib,
-    options: { themeOrSubTheme },
-  } = ctx;
-  if (isKit) {
-    sv.file(
-      `${directory.kitRoutes}/demo/+page.svelte`,
-      addToDemoPage("sjsf", language),
-    );
-  }
-
-  sv.file(
-    `${directory.kitRoutes}${isKit ? "/demo/sjsf/+page.svelte" : "sjsf.svelte"}`,
-    transforms.svelteScript({ language }, ({ ast, js, svelte }) => {
-      const form = createForm(ctx);
-
-      importsAddNamed(ast.instance.content, {
-        imports: form.formPackageImports,
-        from: formPackage.name,
-      });
-
-      for (const i of form.additionalImports) {
-        if ("as" in i) {
-          js.imports.addNamespace(ast.instance.content, i);
-        } else {
-          importsAddNamed(ast.instance.content, i);
-        }
-      }
-
-      js.imports.addNamespace(ast.instance.content, {
-        as: "defaults",
-        from: lib("sjsf/defaults"),
-      });
-
-      js.common.appendFromString(ast.instance.content, { code: form.init });
-
-      const paddedThemes: ThemeOrSubTheme[] = ["pico", "daisyui5"];
-
-      if (paddedThemes.includes(themeOrSubTheme)) {
-        form.attributes += ' style="padding: 2rem;"';
-      }
-
-      svelte.addFragment(ast, `<BasicForm {form} ${form.attributes}/>`);
-    }),
-  );
 }

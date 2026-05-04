@@ -20,11 +20,12 @@ export function appCss({
     file.stylesheet,
     transforms.css(({ ast, css }) => {
       const isEmpty = isStyleSheetEmpty(ast);
+      const nodeModulesPath = file.getRelative({
+        from: file.stylesheet,
+        to: "node_modules",
+      });
       const atRuleOptions: AtRuleOptions = {
-        nodeModulesPath: file.getRelative({
-          from: file.stylesheet,
-          to: "node_modules",
-        }),
+        nodeModulesPath,
       };
       let rules = themeOrSubThemeAtRules(themeOrSubTheme, atRuleOptions);
       if (icons !== "none") {
@@ -52,6 +53,51 @@ export function appCss({
         css.addAtRule(ast, {
           name: "plugin",
           params: '"daisyui"',
+          append: true,
+        });
+      } else if (themeOrSubTheme === "flowbite3") {
+        // @plugin 'flowbite/plugin';
+        // @custom-variant dark (&:where(.dark, .dark *));
+        css.addAtRule(ast, {
+          name: "plugin",
+          params: '"flowbite/plugin"',
+          append: true,
+        });
+        css.addAtRule(ast, {
+          name: "custom-variant",
+          params: "dark (&:where(.dark, .dark *))",
+          append: true,
+        });
+        css.addAtRule(ast, {
+          name: "theme",
+          params: `{
+  --color-primary-50: #fff5f2;
+  --color-primary-100: #fff1ee;
+  --color-primary-200: #ffe4de;
+  --color-primary-300: #ffd5cc;
+  --color-primary-400: #ffbcad;
+  --color-primary-500: #fe795d;
+  --color-primary-600: #ef562f;
+  --color-primary-700: #eb4f27;
+  --color-primary-800: #cc4522;
+  --color-primary-900: #a5371b;
+
+  --color-secondary-50: #f0f9ff;
+  --color-secondary-100: #e0f2fe;
+  --color-secondary-200: #bae6fd;
+  --color-secondary-300: #7dd3fc;
+  --color-secondary-400: #38bdf8;
+  --color-secondary-500: #0ea5e9;
+  --color-secondary-600: #0284c7;
+  --color-secondary-700: #0369a1;
+  --color-secondary-800: #075985;
+  --color-secondary-900: #0c4a6e;
+}`,
+          append: true,
+        });
+        css.addAtRule(ast, {
+          name: "source",
+          params: `"${nodeModulesPath}/flowbite-svelte/dist"`,
           append: true,
         });
       }
