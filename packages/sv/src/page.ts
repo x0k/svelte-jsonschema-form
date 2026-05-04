@@ -18,6 +18,7 @@ const PADDED_THEMES: NonLegacyThemeOrSubTheme[] = [
   "pico",
   "daisyui5",
   "flowbite3",
+  "skeleton4",
 ];
 
 export function pageSvelte(ctx: Context) {

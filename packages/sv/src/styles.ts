@@ -1,6 +1,7 @@
 import {
   iconSetAtRules,
   themeOrSubThemeAtRules,
+  type AtRule,
   type AtRuleOptions,
 } from "meta";
 
@@ -16,10 +17,12 @@ export function appCss({
   dependencyVersion,
   language,
 }: Context) {
+  let uiLibIsNotConfigured = false;
+
   sv.file(
     file.stylesheet,
     transforms.css(({ ast, css }) => {
-      const isEmpty = isStyleSheetEmpty(ast);
+      uiLibIsNotConfigured = isStyleSheetEmpty(ast);
       const nodeModulesPath = file.getRelative({
         from: file.stylesheet,
         to: "node_modules",
@@ -46,7 +49,7 @@ export function appCss({
       if (imports.length > 0) {
         css.addImports(ast, { imports });
       }
-      if (!isEmpty) {
+      if (!uiLibIsNotConfigured) {
         return;
       }
       if (themeOrSubTheme === "daisyui5") {
@@ -100,9 +103,47 @@ export function appCss({
           params: `"${nodeModulesPath}/flowbite-svelte/dist"`,
           append: true,
         });
+      } else if (themeOrSubTheme === "skeleton4") {
+        css.addAtRule(ast, {
+          name: "import",
+          params: '"@skeletonlabs/skeleton"',
+          append: true,
+        });
+        css.addAtRule(ast, {
+          name: "import",
+          params: '"@skeletonlabs/skeleton-svelte"',
+          append: true,
+        });
+        css.addAtRule(ast, {
+          name: "import",
+          params: '"@skeletonlabs/skeleton/themes/cerberus"',
+          append: true,
+        });
       }
     }),
   );
+
+  if (uiLibIsNotConfigured) {
+    if (themeOrSubTheme === "skeleton4") {
+      // https://github.com/sveltejs/cli/blob/19ed7a0f940816a63c1c7f963a04bb72d7b19a8f/packages/sv/src/addons/paraglide.ts#L148
+      sv.file(
+        "src/app.html",
+        transforms.html(({ ast, html }) => {
+          const htmlNode = ast.nodes.find(
+            (child): child is SvelteAst.RegularElement =>
+              child.type === "RegularElement" && child.name === "html",
+          );
+          if (!htmlNode) {
+            console.warn(
+              "Could not find <html> node in app.html. You'll need to add the language placeholder manually",
+            );
+            return false;
+          }
+          html.addAttribute(htmlNode, "data-theme", "cerberus");
+        }),
+      );
+    }
+  }
 
   // Connect stylesheet
   // https://github.com/sveltejs/cli/blob/a260374df2f24d440eb6f25841dcc89278a8e00d/packages/sv/src/addons/tailwindcss.ts#L84
@@ -140,21 +181,24 @@ export function appCss({
   }
 }
 
+const INITIAL_AT_RULES = [
+  { name: "import", params: "tailwindcss" },
+  { name: "plugin", params: "@tailwindcss/forms" },
+  { name: "plugin", params: "@tailwindcss/typography" },
+] satisfies AtRule[];
+
 function isStyleSheetEmpty(
   ast: Omit<SvelteAst.CSS.StyleSheetBase, "attributes" | "content">,
 ) {
-  if (ast.children.length === 0) {
-    return true;
-  }
-  if (ast.children.length === 1) {
-    const child = ast.children[0]!;
+  for (const c of ast.children) {
     if (
-      child.type === "Atrule" &&
-      child.name === "import" &&
-      child.prelude.includes("tailwindcss")
+      c.type !== "Atrule" ||
+      INITIAL_AT_RULES.findIndex(
+        (r) => r.name === c.name && c.prelude.includes(r.params),
+      ) < 0
     ) {
-      return true;
+      return false;
     }
   }
-  return false;
+  return true;
 }
