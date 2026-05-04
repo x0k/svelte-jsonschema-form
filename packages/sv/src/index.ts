@@ -12,7 +12,7 @@ import { pageSvelte } from "./page.js";
 import { color } from "./sv-utils.js";
 
 const addonOptions: AddonOptions = {
-  isKit: true,
+  isKit: false,
 };
 
 export default defineAddon({
@@ -48,10 +48,6 @@ export default defineAddon({
           : `See ${color.route(`${directory.kitRoutes}/sjsf.svelte`)} file`
       } to view the demo`,
     );
-    // TODO: If the theme's UI library was not installed initially,
-    // display a warning stating that the UI library must be configured
-    // according to the maintainers' instructions for the theme
-    // to function properly.
-    return [];
+    return steps;
   },
 });
