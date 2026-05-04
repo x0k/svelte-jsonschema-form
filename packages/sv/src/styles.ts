@@ -302,6 +302,17 @@ export function appCss(ctx: Context) {
           html.addAttribute(htmlNode, "data-theme", "cerberus");
         }),
       );
+    } else if (themeOrSubTheme === "shadcn-extras") {
+      sv.file(
+        file.viteConfig,
+        transforms.script(({ ast, js }) => {
+          const config = js.vite.getConfig(ast);
+          js.vite.configProperty(ast, config, {
+            name: "ssr",
+            fallback: js.object.create({ noExternal: ["@lucide/svelte"] }),
+          });
+        }),
+      );
     }
   }
 

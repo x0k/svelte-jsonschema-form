@@ -201,6 +201,16 @@ const THEME_OR_SUB_THEME_AT_RULES: Partial<
       params: `${nodeModulesPath}/${themePackage("shadcn4").name}/dist`,
     },
   ],
+  "shadcn-extras": ({ nodeModulesPath }) => [
+    {
+      name: "source",
+      params: `${nodeModulesPath}/${themePackage("shadcn4").name}/dist`,
+    },
+    {
+      name: "source",
+      params: `${nodeModulesPath}/${themePackage("shadcn-extras").name}/dist`,
+    },
+  ],
 };
 
 export function themes(): Iterable<Theme> {
