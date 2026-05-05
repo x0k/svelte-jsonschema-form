@@ -305,3 +305,33 @@ export function cssAddPseudoRule(
 
   return rule;
 }
+
+const nodeBase = {
+  name_loc: { start: { column: 0, line: 0 }, end: { column: 0, line: 0 } },
+  start: 0,
+  end: 0,
+};
+
+export function svelteWrapFragment(
+  ast: SvelteAst.Root,
+  options: {
+    wrapper: string;
+    attributes?: Array<SvelteAst.Attribute>;
+  },
+): void {
+  const svelteHeadIndex = ast.fragment.nodes.findIndex(
+    (n) => n.type === "SvelteHead",
+  );
+  const existingNodes = ast.fragment.nodes.splice(svelteHeadIndex + 1);
+
+  ast.fragment.nodes.push({
+    ...nodeBase,
+    type: "Component",
+    name: options.wrapper,
+    attributes: options.attributes ?? [],
+    fragment: {
+      type: "Fragment",
+      nodes: existingNodes,
+    },
+  });
+}

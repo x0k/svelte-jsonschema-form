@@ -11,6 +11,8 @@ import {
   transforms,
   js as jsUtils,
   cssAddPseudoRule,
+  fileExists,
+  svelteWrapFragment,
 } from "./sv-utils.js";
 import { SET_SHADCN_THEME_CONTEXT_FN_NAME } from "./shadcn.js";
 
@@ -316,44 +318,38 @@ export function appCss(ctx: Context) {
     }
   }
 
+  const layoutSvelte = isKit
+    ? `${directory.kitRoutes}/+layout.svelte`
+    : `${directory.src}/App.svelte`;
+
   // Connect stylesheet
   // https://github.com/sveltejs/cli/blob/a260374df2f24d440eb6f25841dcc89278a8e00d/packages/sv/src/addons/tailwindcss.ts#L84
-  if (isKit) {
-    const layoutSvelte = `${directory.kitRoutes}/+layout.svelte`;
-    const stylesheetRelative = file.getRelative({
-      from: layoutSvelte,
-      to: file.stylesheet,
-    });
-    sv.file(
-      layoutSvelte,
-      transforms.svelteScript({ language }, ({ ast, svelte, js }) => {
-        js.imports.addEmpty(ast.instance.content, { from: stylesheetRelative });
+  sv.file(
+    layoutSvelte,
+    transforms.svelteScript({ language }, ({ ast, svelte, js }) => {
+      connectStylesheet(ctx, ast.instance, js, layoutSvelte);
+      setupShadcnContext(ctx, ast.instance, js);
 
-        setupShadcnContext(ctx, ast.instance, js);
-
+      if (isKit) {
         if (ast.fragment.nodes.length === 0) {
           const svelteVersion = dependencyVersion("svelte");
           if (!svelteVersion)
             throw new Error("Failed to determine svelte version");
           svelte.addSlot(ast, { svelteVersion });
         }
-      }),
-    );
-  } else {
-    const appSvelte = `${directory.src}/App.svelte`;
-    const stylesheetRelative = file.getRelative({
-      from: appSvelte,
-      to: file.stylesheet,
-    });
-    sv.file(
-      appSvelte,
-      transforms.svelteScript({ language }, ({ ast, js }) => {
-        js.imports.addEmpty(ast.instance.content, { from: stylesheetRelative });
+      }
 
-        setupShadcnContext(ctx, ast.instance, js);
-      }),
-    );
-  }
+      if (themeOrSubTheme === "svar") {
+        js.imports.addNamed(ast.instance.content, {
+          imports: ["Willow"],
+          from: "@svar-ui/svelte-core",
+        });
+        svelteWrapFragment(ast, {
+          wrapper: "Willow",
+        });
+      }
+    }),
+  );
 }
 
 const INITIAL_AT_RULES = [
@@ -376,6 +372,24 @@ function isStyleSheetEmpty(
     }
   }
   return true;
+}
+
+function connectStylesheet(
+  { cwd, file }: Context,
+  instance: SvelteAst.Script,
+  js: typeof jsUtils,
+  layoutSvelte: string,
+) {
+  if (!fileExists(cwd, file.stylesheet)) {
+    return;
+  }
+  const stylesheetRelative = file.getRelative({
+    from: layoutSvelte,
+    to: file.stylesheet,
+  });
+  js.imports.addEmpty(instance.content, {
+    from: stylesheetRelative,
+  });
 }
 
 function setupShadcnContext(
