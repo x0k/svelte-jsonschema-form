@@ -31,7 +31,7 @@ export function pageSvelte(ctx: Context) {
     language,
     isKit,
     lib,
-    options: { themeOrSubTheme },
+    options: { themeOrSubTheme, validatorWithSuffix },
   } = ctx;
   if (isKit) {
     sv.file(
@@ -65,14 +65,15 @@ export function pageSvelte(ctx: Context) {
 
       js.common.appendFromString(ast.instance.content, { code: form.init });
 
+      if (validatorWithSuffix !== "noop") {
+        form.attributes += " novalidate";
+      }
+
       if (PADDED_THEMES.includes(themeOrSubTheme)) {
         form.attributes += ' style="padding: 2rem;"';
       }
 
-      svelte.addFragment(
-        ast,
-        `<BasicForm {form} novalidate ${form.attributes}/>`,
-      );
+      svelte.addFragment(ast, `<BasicForm {form} ${form.attributes}/>`);
     }),
   );
 }
