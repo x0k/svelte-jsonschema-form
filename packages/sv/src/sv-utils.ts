@@ -165,6 +165,36 @@ export function createReExport(
   return namedExport;
 }
 
+export function exportsCreateNamed(
+  node: AstTypes.Program,
+  options: { name: string; fallback: AstTypes.VariableDeclaration },
+): AstTypes.ExportNamedDeclaration {
+  const namedExports = node.body.filter(
+    (item) => item.type === "ExportNamedDeclaration",
+  );
+  let namedExport = namedExports.find((exportNode) => {
+    if (!exportNode.declaration || !("declarations" in exportNode.declaration))
+      return false;
+    const variableDeclaration =
+      exportNode.declaration as AstTypes.VariableDeclaration;
+    const variableDeclarator = variableDeclaration
+      .declarations[0] as AstTypes.VariableDeclarator;
+    const identifier = variableDeclarator.id as AstTypes.Identifier;
+    return identifier.name === options.name;
+  });
+
+  if (namedExport) return namedExport;
+
+  namedExport = {
+    type: "ExportNamedDeclaration",
+    declaration: options.fallback,
+    specifiers: [],
+    attributes: [],
+  };
+  node.body.push(namedExport);
+  return namedExport;
+}
+
 export function getTopLevelFunction(node: AstTypes.Program, name: string) {
   return node.body.find(
     (

@@ -25,6 +25,7 @@ import {
 
 import {
   createReExport,
+  exportsCreateNamed,
   getTopLevelFunction,
   importsAddNamed,
   transforms,
@@ -181,7 +182,8 @@ export function resolver(_ctx) {`,
       name: "onSubmitError",
       value: onSubmitErrorExpression,
     });
-    js.exports.createNamed(ast, {
+
+    exportsCreateNamed(ast, {
       name: "onSubmitError",
       fallback: onSubmitErrorDeclaration,
     });
@@ -240,8 +242,6 @@ export const validator = (options) => createFormValidator({
 
   sv.file(`${directory.lib}/sjsf/defaults.${language}`, (content) => {
     const transformed = transform(content);
-    console.log("---------");
-    console.log(transformed);
     return transformed.replace(
       LINK_COMMENT,
       `${extraFieldImports.join("\n")}\n${LINK_COMMENT}`,
