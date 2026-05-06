@@ -20,6 +20,7 @@ import {
   themeExtensionOrigin,
   formCoreSubpath,
   isJsonSchemaValidator,
+  formUtilSubPath,
 } from "meta";
 
 import {
@@ -168,6 +169,23 @@ export function resolver(_ctx) {`,
       js.imports.addEmpty(ast, { from: "@hyperjump/json-schema/draft-07" });
     }
 
+    js.imports.addNamed(ast, {
+      imports: ["createFocusOnFirstError"],
+      from: formUtilSubPath("focus-on-first-error"),
+    });
+    const onSubmitErrorExpression = js.common.parseExpression(
+      "createFocusOnFirstError()",
+    );
+    const onSubmitErrorDeclaration = js.variables.declaration(ast, {
+      kind: "const",
+      name: "onSubmitError",
+      value: onSubmitErrorExpression,
+    });
+    js.exports.createNamed(ast, {
+      name: "onSubmitError",
+      fallback: onSubmitErrorDeclaration,
+    });
+
     if (
       getTopLevelFunction(ast, "validator") ||
       isEndsWithPrecompiled(validatorWithSuffix) ||
@@ -222,6 +240,8 @@ export const validator = (options) => createFormValidator({
 
   sv.file(`${directory.lib}/sjsf/defaults.${language}`, (content) => {
     const transformed = transform(content);
+    console.log("---------");
+    console.log(transformed);
     return transformed.replace(
       LINK_COMMENT,
       `${extraFieldImports.join("\n")}\n${LINK_COMMENT}`,

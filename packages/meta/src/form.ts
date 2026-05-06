@@ -37,3 +37,16 @@ export type Merger = (typeof MERGERS)[number];
 export function formMergerSubPath(merger: Merger) {
   return `${formPackage.name}/mergers/${merger}`;
 }
+
+const UTILS = [
+  "focus-on-first-error",
+  "omit-extra-data",
+  "options.svelte",
+  "prevent-page-reload.svelte",
+] as const;
+
+export type FormUtil = (typeof UTILS)[number];
+
+export function formUtilSubPath(util: FormUtil) {
+  return `${formPackage.name}/${util}`;
+}

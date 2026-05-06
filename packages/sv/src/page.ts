@@ -69,7 +69,10 @@ export function pageSvelte(ctx: Context) {
         form.attributes += ' style="padding: 2rem;"';
       }
 
-      svelte.addFragment(ast, `<BasicForm {form} ${form.attributes}/>`);
+      svelte.addFragment(
+        ast,
+        `<BasicForm {form} novalidate ${form.attributes}/>`,
+      );
     }),
   );
 }
