@@ -21,6 +21,7 @@ const PADDED_THEMES: NonLegacyThemeOrSubTheme[] = [
   "skeleton4",
   "shadcn4",
   "shadcn-extras",
+  "beercss",
 ];
 
 export function pageSvelte(ctx: Context) {

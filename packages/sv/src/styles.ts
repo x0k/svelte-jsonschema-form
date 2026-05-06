@@ -347,6 +347,10 @@ export function appCss(ctx: Context) {
         svelteWrapFragment(ast, {
           wrapper: "Willow",
         });
+      } else if (themeOrSubTheme === "beercss") {
+        js.imports.addEmpty(ast.instance.content, {
+          from: "beercss/dist/cdn/beer.css",
+        });
       }
     }),
   );
