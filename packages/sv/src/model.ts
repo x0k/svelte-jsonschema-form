@@ -37,8 +37,10 @@ const ADDON_ID = packageJson.name;
 
 type SelectOption = SelectQuestion<string>["options"][number];
 
-const SVELTE_KIT_INTEGRATION_OPTIONS = [
-  { value: "no", label: "No" },
+export const SVELTE_KIT_INTEGRATION_NO_OPTION_VALUE = "no";
+
+export const SVELTE_KIT_INTEGRATION_OPTIONS = [
+  { value: SVELTE_KIT_INTEGRATION_NO_OPTION_VALUE, label: "No" },
   { value: "formActions", label: "Form Actions" },
   {
     value: "remoteFunctions",
@@ -58,7 +60,7 @@ function validatorOpt<V extends Validator>(v: V) {
   } as const;
 }
 
-const PRECOMPILED_SUFFIX = `-precompiled`;
+export const PRECOMPILED_SUFFIX = `-precompiled`;
 
 type WithPrecompiledSuffix<T extends string> =
   `${T}${typeof PRECOMPILED_SUFFIX}`;
@@ -85,7 +87,7 @@ export function withoutPrecompiledSuffix<V extends string>(
     : v;
 }
 
-function* themeOrSubThemeOptions() {
+export function* themeOrSubThemeOptions() {
   for (const t of themes()) {
     if (isLegacyTheme(t)) {
       continue;
@@ -110,6 +112,32 @@ function* themeOrSubThemeOptions() {
   }
 }
 
+export function* validatorOptions() {
+  for (const v of validators()) {
+    if (!isPrecompiledOnlyValidator(v)) {
+      yield validatorOpt(v);
+    }
+    if (isPrecompiledValidator(v)) {
+      yield precompiledOpt(v);
+    }
+  }
+}
+
+export const ICONS_NONE_OPTION_VALUE = "none";
+
+export function* iconOptions() {
+  yield {
+    value: ICONS_NONE_OPTION_VALUE,
+    label: "None",
+  } as const;
+  for (const i of iconSets()) {
+    yield {
+      value: i,
+      label: iconSetTitle(i),
+    } as const;
+  }
+}
+
 // WARN: DO NOT DESTRUCTURE
 export const createOptions = (options: AddonOptions) =>
   defineAddonOptions()
@@ -123,28 +151,13 @@ export const createOptions = (options: AddonOptions) =>
       question: "Icons?",
       type: "select",
       default: "none",
-      options: [
-        {
-          value: "none",
-          label: "None",
-        },
-        ...Array.from(iconSets()).map((i) => ({
-          value: i,
-          label: iconSetTitle(i),
-        })),
-      ],
+      options: Array.from(iconOptions()),
     })
     .add("validatorWithSuffix", {
       question: "Validator?",
       type: "select",
       default: "ajv8",
-      options: Array.from(validators()).flatMap((v) => [
-        ...(isPrecompiledOnlyValidator(v)
-          ? [precompiledOpt(v)]
-          : isPrecompiledValidator(v)
-            ? [validatorOpt(v), precompiledOpt(v)]
-            : [validatorOpt(v)]),
-      ]),
+      options: Array.from(validatorOptions()),
     })
     .add("sveltekit", {
       question: "Setup SvelteKit integration?",
