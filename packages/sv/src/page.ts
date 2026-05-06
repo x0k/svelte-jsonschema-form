@@ -33,6 +33,7 @@ export function pageSvelte(ctx: Context) {
     lib,
     options: { themeOrSubTheme, validatorWithSuffix },
   } = ctx;
+
   if (isKit) {
     sv.file(
       `${directory.kitRoutes}/demo/+page.svelte`,
@@ -134,7 +135,7 @@ const { form } = setupSvelteKitForm(meta, {
           from: "./data.remote",
         },
       ],
-      init: `const initData = await getInitialData();
+      init: `const initialData = await getInitialData();
 const form = createForm(
   await connect(
     createPost.enhance(async ({ submit }) => {
