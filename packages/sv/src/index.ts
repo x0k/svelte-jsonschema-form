@@ -29,9 +29,6 @@ export default defineAddon({
 
   run: (ws) => {
     const ctx = createContext(ws);
-
-    ctx.sv.devDependency("@sveltejs/vite-plugin-svelte", "7.0.0");
-
     dependencies(ctx);
     defaultsTs(ctx);
     shadcnTs(ctx);
@@ -44,11 +41,6 @@ export default defineAddon({
 
   nextSteps({ isKit, directory }) {
     const steps: string[] = [];
-    steps.push(
-      color.warning(
-        `The version of the ${color.error("@sveltejs/vite-plugin-svelte")} package has been fixed due to ${color.website("https://github.com/sveltejs/vite-plugin-svelte/issues/1333")}`,
-      ),
-    );
     steps.push(
       `${
         isKit
