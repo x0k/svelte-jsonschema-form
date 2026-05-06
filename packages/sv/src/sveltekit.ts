@@ -50,7 +50,7 @@ export const actions = {
       sendData: true,
       ${validator.options}
     },
-    (data${isTs ? `: ${validator.inputType}` : ""}) => {
+    (data${isTs && !validator.schemaValidator ? `: ${validator.inputType}` : ""}) => {
       console.log(data)
       return { post: { ...data, id: "new-post" } };
     },
@@ -74,7 +74,7 @@ export const getInitialData = query(async () => {
 });
 
 export const createPost = form(
-  createServerValidator${isTs ? `<${validator.inputType}>` : ""}({
+  createServerValidator${isTs && !validator.schemaValidator ? `<${validator.inputType}>` : ""}({
     ...defaults,
     ${validator.options}
   }),
