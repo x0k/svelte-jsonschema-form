@@ -212,7 +212,7 @@ export function createValidator({
       ? [
           {
             imports: ["Post"],
-            from: lib("post/post.generated"),
+            from: lib("post/model.generated"),
             isType: true,
           },
         ]
@@ -231,7 +231,7 @@ export function createValidator({
           },
           {
             imports: ["schema", "ast"],
-            from: lib("post/post.generated"),
+            from: lib("post/model.generated"),
           },
           ...types,
         ],
@@ -248,11 +248,11 @@ validator: createFormValidatorFactory({ ast, localization })`,
         },
         {
           imports: ["schema"],
-          from: lib("post/post.generated"),
+          from: lib("post/model.generated"),
         },
         {
           as: "validateFunctions",
-          from: lib("post/post.validators"),
+          from: lib("post/validators.generated"),
         },
         ...types,
       ],

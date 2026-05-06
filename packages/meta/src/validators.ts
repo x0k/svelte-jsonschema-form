@@ -163,7 +163,7 @@ export function internalValidatorSubPath(
 }
 
 export function precompiledValidatorSubPath(validator: PrecompiledValidator) {
-  return `${externalValidatorPackage(validator)}/precompile`;
+  return `${externalValidatorPackage(validator).name}/precompile`;
 }
 
 const HYPERJUMP_LOCALES = ["en-us"] as const;
