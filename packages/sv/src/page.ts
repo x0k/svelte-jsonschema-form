@@ -85,7 +85,7 @@ function createForm(ctx: Context): {
 } {
   const {
     options: { sveltekit },
-    ts,
+    isTs,
   } = ctx;
   const validator = createValidator(ctx);
   // const addOptions = sveltekit === "no" || validator.sendSchema === false;
@@ -112,7 +112,7 @@ const { form } = setupSvelteKitForm(meta, {
       console.log(result.data?.post);
     }
   },
-  ${validator.sendSchema ? "" : validator.options}
+  ${validator.precompiled || validator.schemaValidator ? validator.options : ""}
 })`,
       attributes: 'method="POST"',
     };
@@ -153,8 +153,10 @@ const form = createForm(
   }
   return {
     formPackageImports: ["BasicForm", "createForm"],
-    additionalImports: validator.imports,
-    init: `const form = createForm${ts(`<${validator.inputType}>`)}({
+    additionalImports: validator.imports.slice(
+      validator.schemaValidator ? 1 : 0,
+    ),
+    init: `const form = createForm${isTs && !validator.schemaValidator ? `<${validator.inputType}>` : ""}({
   ...defaults,
   onSubmit: console.log,
   ${validator.options}

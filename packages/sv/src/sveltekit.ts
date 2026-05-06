@@ -31,7 +31,7 @@ import * as defaults from "${directory.lib}/sjsf/defaults";
 export const load = async () => {
   return {
     postForm: {
-      ${validator.sendSchema ? "schema," : ""}
+      ${!validator.schemaValidator ? "schema," : ""}
       initialValue: { title: "New post", content: "" },
     }${ts(` satisfies InitialFormData<${validator.inputType}>`)},
   };
@@ -63,7 +63,7 @@ import * as defaults from "${directory.lib}/sjsf/defaults";
 
 export const getInitialData = query(async () => {
   return {
-    ${validator.sendSchema ? "schema, " : ""}
+    ${!validator.schemaValidator ? "schema, " : ""}
     initialValue: { title: "New post", content: "" },
   }${ts(` satisfies InitialFormData<${validator.inputType}>`)};
 });

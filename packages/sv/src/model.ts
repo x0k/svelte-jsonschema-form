@@ -191,21 +191,25 @@ export function neverError(value: never, message: string) {
   return new Error(`${message}: ${value}`);
 }
 
+interface ValidatorDefinition {
+  imports: (NamedImportOptions | NamespaceImportOptions)[];
+  options: string;
+  inputType: string;
+  schemaValidator: boolean;
+  precompiled: boolean;
+}
+
 const createPostType = {
   inputType: "Post",
-  sendSchema: false,
-};
+  schemaValidator: false,
+  precompiled: false,
+} satisfies Omit<ValidatorDefinition, "imports" | "options">;
 
 export function createValidator({
   options: { validatorWithSuffix },
   isTs,
   lib,
-}: Context): {
-  imports: (NamedImportOptions | NamespaceImportOptions)[];
-  options: string;
-  inputType: string;
-  sendSchema: boolean;
-} {
+}: Context): ValidatorDefinition {
   if (isEndsWithPrecompiled(validatorWithSuffix)) {
     const validator = withoutPrecompiledSuffix(validatorWithSuffix);
     const types = isTs
@@ -220,6 +224,7 @@ export function createValidator({
     if (validator === "hyperjump") {
       return {
         ...createPostType,
+        precompiled: true,
         imports: [
           {
             imports: ["createFormValidatorFactory"],
@@ -241,6 +246,7 @@ validator: createFormValidatorFactory({ ast, localization })`,
     }
     return {
       ...createPostType,
+      precompiled: true,
       imports: [
         {
           imports: ["createFormValidatorFactory"],
@@ -311,12 +317,12 @@ validator: createFormValidatorFactory({ validateFunctions })`,
       ],
       options: `...adapt(post)`,
       inputType: `${v.inferInput}<typeof post>`,
-      sendSchema: false,
+      schemaValidator: true,
+      precompiled: false,
     };
   }
   return {
     ...createPostType,
-    sendSchema: true,
     imports: [
       {
         imports: ["schema"],
