@@ -192,18 +192,17 @@ export function neverError(value: never, message: string) {
 }
 
 interface ValidatorDefinition {
+  schemaImports: (NamedImportOptions | NamespaceImportOptions)[];
   imports: (NamedImportOptions | NamespaceImportOptions)[];
   options: string;
   inputType: string;
   schemaValidator: boolean;
-  precompiled: boolean;
 }
 
 const createPostType = {
   inputType: "Post",
   schemaValidator: false,
-  precompiled: false,
-} satisfies Omit<ValidatorDefinition, "imports" | "options">;
+} satisfies Omit<ValidatorDefinition, "imports" | "schemaImports" | "options">;
 
 export function createValidator({
   options: { validatorWithSuffix },
@@ -224,7 +223,13 @@ export function createValidator({
     if (validator === "hyperjump") {
       return {
         ...createPostType,
-        precompiled: true,
+        schemaImports: [
+          {
+            imports: ["schema"],
+            from: lib("post/model.generated"),
+          },
+          ...types,
+        ],
         imports: [
           {
             imports: ["createFormValidatorFactory"],
@@ -235,10 +240,9 @@ export function createValidator({
             from: hyperjumpValidatorLocalizationSubPath("en-us"),
           },
           {
-            imports: ["schema", "ast"],
+            imports: ["ast"],
             from: lib("post/model.generated"),
           },
-          ...types,
         ],
         options: `schema,
 validator: createFormValidatorFactory({ ast, localization })`,
@@ -246,21 +250,22 @@ validator: createFormValidatorFactory({ ast, localization })`,
     }
     return {
       ...createPostType,
-      precompiled: true,
+      schemaImports: [
+        {
+          imports: ["schema"],
+          from: lib("post/model.generated"),
+        },
+        ...types,
+      ],
       imports: [
         {
           imports: ["createFormValidatorFactory"],
           from: precompiledValidatorSubPath(validator),
         },
         {
-          imports: ["schema"],
-          from: lib("post/model.generated"),
-        },
-        {
           as: "validateFunctions",
           from: lib("post/validators.generated"),
         },
-        ...types,
       ],
       options: `schema,
 validator: createFormValidatorFactory({ validateFunctions })`,
@@ -304,8 +309,8 @@ validator: createFormValidatorFactory({ validateFunctions })`,
       >
     )[validatorWithSuffix];
     return {
+      schemaImports: [v.import],
       imports: [
-        v.import,
         {
           imports: ["adapt"],
           from: v.path,
@@ -318,12 +323,11 @@ validator: createFormValidatorFactory({ validateFunctions })`,
       options: `...adapt(post)`,
       inputType: `${v.inferInput}<typeof post>`,
       schemaValidator: true,
-      precompiled: false,
     };
   }
   return {
     ...createPostType,
-    imports: [
+    schemaImports: [
       {
         imports: ["schema"],
         from: lib("post"),
@@ -338,6 +342,7 @@ validator: createFormValidatorFactory({ validateFunctions })`,
           ]
         : []),
     ],
+    imports: [],
     options: "schema",
   };
 }

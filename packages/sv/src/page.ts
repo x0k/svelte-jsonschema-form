@@ -89,7 +89,10 @@ function createForm(ctx: Context): {
     isTs,
   } = ctx;
   const validator = createValidator(ctx);
-  // const addOptions = sveltekit === "no" || validator.sendSchema === false;
+  const validatorOptionsWithoutSchema = validator.options.replace(
+    /\bschema\b\s*,?\s*/,
+    "",
+  );
   if (sveltekit === "formActions") {
     return {
       formPackageImports: ["BasicForm"],
@@ -113,7 +116,7 @@ const { form } = setupSvelteKitForm(meta, {
       console.log(result.data?.post);
     }
   },
-  ${validator.precompiled || validator.schemaValidator ? validator.options : ""}
+  ${validatorOptionsWithoutSchema}
 })`,
       attributes: 'method="POST"',
     };
@@ -121,6 +124,7 @@ const { form } = setupSvelteKitForm(meta, {
     return {
       formPackageImports: ["BasicForm", "createForm"],
       additionalImports: [
+        ...validator.imports,
         {
           imports: ["connect"],
           from: svelteKitRfSubPath("client"),
@@ -143,7 +147,7 @@ const form = createForm(
       ...defaults,
       ...initialData,
       fields: createPost.fields,
-      ${validator.options}
+      ${validatorOptionsWithoutSchema}
     },
   ),
 )`,
@@ -154,9 +158,7 @@ const form = createForm(
   }
   return {
     formPackageImports: ["BasicForm", "createForm"],
-    additionalImports: validator.imports.slice(
-      validator.schemaValidator ? 1 : 0,
-    ),
+    additionalImports: validator.imports,
     init: `const form = createForm${isTs && !validator.schemaValidator ? `<${validator.inputType}>` : ""}({
   ...defaults,
   onSubmit: console.log,

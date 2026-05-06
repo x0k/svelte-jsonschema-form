@@ -12,12 +12,16 @@ export function sveltekitTs(ctx: Context) {
     sv,
     ts,
     isTs,
+    lib,
   } = ctx;
   if (!isKit || sveltekit === "no") {
     return;
   }
 
   const validator = createValidator(ctx);
+  const validatorImports = renderImports(
+    validator.imports.concat(validator.schemaImports),
+  );
 
   const setup = (
     {
@@ -25,8 +29,8 @@ export function sveltekitTs(ctx: Context) {
         filename: `+page.server`,
         code: `${ts(`import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createAction } from "${svelteKitSubPath("server")}";
-${renderImports(validator.imports)};
-import * as defaults from "${directory.lib}/sjsf/defaults";
+${validatorImports};
+import * as defaults from "${lib("sjsf/defaults")}";
 
 export const load = async () => {
   return {
@@ -41,13 +45,13 @@ export const actions = {
   default: createAction(
     {
       ...defaults,
-      ${validator.options},
       name: "postForm",
       sendData: true,
+      ${validator.options}
     },
-    (post${isTs ? `: ${validator.inputType}` : ""}) => {
-      console.log(post)
-      return { post: { ...post, id: "new-post" } };
+    (data${isTs ? `: ${validator.inputType}` : ""}) => {
+      console.log(data)
+      return { post: { ...data, id: "new-post" } };
     },
   ),
 }${ts(" satisfies Actions")};
@@ -58,7 +62,7 @@ export const actions = {
         code: `${ts(`import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createServerValidator } from "${svelteKitRfSubPath("server")}";
 
 import { form, query } from "$app/server";
-${renderImports(validator.imports)};
+${validatorImports};
 import * as defaults from "${directory.lib}/sjsf/defaults";
 
 export const getInitialData = query(async () => {
