@@ -37,10 +37,8 @@ const ADDON_ID = packageJson.name;
 
 type SelectOption = SelectQuestion<string>["options"][number];
 
-export const SVELTE_KIT_INTEGRATION_NO_OPTION_VALUE = "no";
-
 export const SVELTE_KIT_INTEGRATION_OPTIONS = [
-  { value: SVELTE_KIT_INTEGRATION_NO_OPTION_VALUE, label: "No" },
+  { value: "no", label: "No" },
   { value: "formActions", label: "Form Actions" },
   {
     value: "remoteFunctions",
@@ -60,7 +58,7 @@ function validatorOpt<V extends Validator>(v: V) {
   } as const;
 }
 
-export const PRECOMPILED_SUFFIX = `-precompiled`;
+const PRECOMPILED_SUFFIX = `-precompiled`;
 
 type WithPrecompiledSuffix<T extends string> =
   `${T}${typeof PRECOMPILED_SUFFIX}`;
@@ -123,11 +121,9 @@ export function* validatorOptions() {
   }
 }
 
-export const ICONS_NONE_OPTION_VALUE = "none";
-
 export function* iconOptions() {
   yield {
-    value: ICONS_NONE_OPTION_VALUE,
+    value: "none",
     label: "None",
   } as const;
   for (const i of iconSets()) {
@@ -139,28 +135,28 @@ export function* iconOptions() {
 }
 
 // WARN: DO NOT DESTRUCTURE
-export const createOptions = (options: AddonOptions) =>
+export const createOptions = (options: AddonSetupOptions) =>
   defineAddonOptions()
     .add("themeOrSubTheme", {
-      question: "Theme?",
+      question: "Select a theme (or sub-theme)",
       type: "select",
       default: "basic" satisfies NonLegacyThemeOrSubTheme,
       options: Array.from(themeOrSubThemeOptions()),
     })
     .add("icons", {
-      question: "Icons?",
+      question: "Choose an icon set",
       type: "select",
       default: "none",
       options: Array.from(iconOptions()),
     })
     .add("validatorWithSuffix", {
-      question: "Validator?",
+      question: "Select a validation engine",
       type: "select",
       default: "ajv8",
       options: Array.from(validatorOptions()),
     })
     .add("sveltekit", {
-      question: "Setup SvelteKit integration?",
+      question: "Enable SvelteKit integration?",
       type: "select",
       default: "no" satisfies SvelteKitIntegrationOption,
       options: SVELTE_KIT_INTEGRATION_OPTIONS,
@@ -174,6 +170,8 @@ type Addon = ReturnType<
 
 type Workspace = Parameters<Addon["run"]>[0];
 
+export type AddonOptions = Workspace["options"];
+
 export type Context = Workspace & {
   isTs: boolean;
   ts: (content: string, alt?: string) => string;
@@ -181,7 +179,7 @@ export type Context = Workspace & {
   lib: (path: string) => string;
 };
 
-export interface AddonOptions {
+export interface AddonSetupOptions {
   isKit: boolean;
 }
 

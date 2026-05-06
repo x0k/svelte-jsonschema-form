@@ -4,11 +4,8 @@ import path from "node:path";
 export type FsSnapshot = Record<string, string>;
 
 export type SnapshotFsOptions = {
-  /** Directories to skip entirely. Defaults to ['node_modules', '.git'] */
-  exclude?: string[];
-  /** File extensions to skip. Defaults to ['.lock'] */
-  excludeExtensions?: string[];
-  /** If provided, only include paths matching this predicate */
+  exclude?: Set<string>;
+  excludeExtensions?: Set<string>;
   filter?: (relativePath: string) => boolean;
 };
 
@@ -30,15 +27,13 @@ const DEFAULT_EXCLUDE_EXT = new Set([".lock"]);
 
 export function snapshotFs(
   dir: string,
-  options: SnapshotFsOptions = {},
+  {
+    exclude = DEFAULT_EXCLUDE,
+    excludeExtensions = DEFAULT_EXCLUDE_EXT,
+    filter,
+  }: SnapshotFsOptions = {},
   _root = dir,
 ): FsSnapshot {
-  const {
-    exclude = [...DEFAULT_EXCLUDE],
-    excludeExtensions = [...DEFAULT_EXCLUDE_EXT],
-    filter,
-  } = options;
-
   const excludeSet = new Set(exclude);
   const excludeExtSet = new Set(excludeExtensions);
 

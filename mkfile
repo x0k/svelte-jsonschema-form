@@ -84,12 +84,12 @@ sv/:
     pnpm run demo-create
   da:
     pnpm run demo-add
-    # Basic setup
-    # pnpx sv@0.15.2 add file:../="themeOrSubTheme:basic+icons:none+validatorWithSuffix:ajv8+sveltekit:no" --cwd demo --no-git-check --no-install
   demo/:
     pushd demo
     i:
       npm install
+    c:
+      npm run check
     d:
       npm run dev
     popd

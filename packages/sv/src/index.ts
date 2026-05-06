@@ -1,6 +1,10 @@
 import { defineAddon } from "sv";
 
-import { createContext, createOptions, type AddonOptions } from "./model.js";
+import {
+  createContext,
+  createOptions,
+  type AddonSetupOptions,
+} from "./model.js";
 import { defaultsTs } from "./defaults.js";
 import { dependencies } from "./dependencies.js";
 import { appCss } from "./styles.js";
@@ -11,7 +15,7 @@ import { scriptsFolder } from "./scripts.js";
 import { pageSvelte } from "./page.js";
 import { color } from "./sv-utils.js";
 
-const addonOptions: AddonOptions = {
+const addonOptions: AddonSetupOptions = {
   isKit: false,
 };
 
@@ -24,7 +28,7 @@ export default defineAddon({
   setup: ({ isKit }) => {
     Object.assign(addonOptions, {
       isKit,
-    } satisfies AddonOptions);
+    } satisfies AddonSetupOptions);
   },
 
   run: (ws) => {

@@ -1,11 +1,9 @@
 import { expect } from "vitest";
-import { NonLegacyThemeOrSubTheme, Validator } from "meta";
 
 import addon from "../src/index.js";
 import {
   iconOptions,
-  ICONS_NONE_OPTION_VALUE,
-  SVELTE_KIT_INTEGRATION_NO_OPTION_VALUE,
+  AddonOptions,
   SVELTE_KIT_INTEGRATION_OPTIONS,
   themeOrSubThemeOptions,
   validatorOptions,
@@ -17,10 +15,24 @@ function values<T>(options: Iterable<{ value: T; label: string }>): T[] {
   return Array.from(options, (o) => o.value);
 }
 
-const DEFAULT_THEME = "basic" satisfies NonLegacyThemeOrSubTheme;
-const DEFAULT_VALIDATOR = "ajv8" satisfies Validator;
-const DEFAULT_ICONS = ICONS_NONE_OPTION_VALUE;
-const DEFAULT_SVELTEKIT = SVELTE_KIT_INTEGRATION_NO_OPTION_VALUE;
+const BASE = {
+  themeOrSubTheme: "basic",
+  validatorWithSuffix: "ajv8",
+  icons: "none",
+  sveltekit: "no",
+} as const satisfies AddonOptions;
+
+function kind<O extends Partial<AddonOptions>>(type: string, options: O) {
+  return {
+    type,
+    options: {
+      [addon.id]: {
+        ...BASE,
+        ...options,
+      },
+    },
+  };
+}
 
 type ValidatorOptionValue = (ReturnType<
   typeof validatorOptions
@@ -28,53 +40,31 @@ type ValidatorOptionValue = (ReturnType<
   ? V
   : never)["value"];
 
-const FOCUSED_VALIDATORS = [
+const VALIDATOR_KINDS = [
+  // JSON schema validator
   "ajv8",
+  // Precompiled validator
   "ajv8-precompiled",
+  // Schema validator
   "zod4",
 ] satisfies ValidatorOptionValue[];
-const FOCUSED_SVELTEKIT = values(SVELTE_KIT_INTEGRATION_OPTIONS);
 
 function* kinds() {
   for (const themeOrSubTheme of values(themeOrSubThemeOptions())) {
-    yield {
-      type: `theme__${themeOrSubTheme}`,
-      options: {
-        [addon.id]: {
-          themeOrSubTheme,
-          icons: ICONS_NONE_OPTION_VALUE,
-          validatorWithSuffix: DEFAULT_VALIDATOR,
-          sveltekit: DEFAULT_SVELTEKIT,
-        } as const,
-      },
-    };
+    yield kind(`theme__${themeOrSubTheme}`, { themeOrSubTheme });
+  }
+  for (const validatorWithSuffix of values(validatorOptions())) {
+    yield kind(`validator__${validatorWithSuffix}`, { validatorWithSuffix });
   }
   for (const icons of values(iconOptions())) {
-    yield {
-      type: `icons__${icons}`,
-      options: {
-        [addon.id]: {
-          themeOrSubTheme: DEFAULT_THEME,
-          icons,
-          validatorWithSuffix: DEFAULT_VALIDATOR,
-          sveltekit: DEFAULT_SVELTEKIT,
-        } as const,
-      },
-    };
+    yield kind(`icons__${icons}`, { icons });
   }
-  for (const validatorWithSuffix of FOCUSED_VALIDATORS) {
-    for (const sveltekit of FOCUSED_SVELTEKIT) {
-      yield {
-        type: `validator__${validatorWithSuffix}__sk-${sveltekit}`,
-        options: {
-          [addon.id]: {
-            themeOrSubTheme: DEFAULT_THEME,
-            icons: DEFAULT_ICONS,
-            validatorWithSuffix,
-            sveltekit,
-          } as const,
-        },
-      };
+  for (const sveltekit of values(SVELTE_KIT_INTEGRATION_OPTIONS)) {
+    for (const validatorWithSuffix of VALIDATOR_KINDS) {
+      yield kind(`sveltekit__${sveltekit}__${validatorWithSuffix}`, {
+        sveltekit,
+        validatorWithSuffix,
+      });
     }
   }
 }

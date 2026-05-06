@@ -159,7 +159,7 @@ const form = createForm(
   }
   return {
     formPackageImports: ["BasicForm", "createForm"],
-    additionalImports: validator.imports,
+    additionalImports: validator.imports.concat(validator.schemaImports),
     init: `const form = createForm${isTs && !validator.schemaValidator ? `<${validator.inputType}>` : ""}({
   ...defaults,
   onSubmit: console.log,

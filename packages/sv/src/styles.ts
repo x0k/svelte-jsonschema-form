@@ -64,12 +64,10 @@ export function appCss(ctx: Context) {
       if (themeOrSubTheme === "daisyui5") {
         css.addAtRule(ast, {
           name: "plugin",
-          params: '"daisyui"',
+          params: '"daisyui/index.js"',
           append: true,
         });
       } else if (themeOrSubTheme === "flowbite3") {
-        // @plugin 'flowbite/plugin';
-        // @custom-variant dark (&:where(.dark, .dark *));
         css.addAtRule(ast, {
           name: "plugin",
           params: '"flowbite/plugin"',
