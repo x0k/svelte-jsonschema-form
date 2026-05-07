@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createForm, BasicForm, getValueSnapshot } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
 
   import {
     schema,
@@ -7,13 +7,13 @@
     initialValue,
     type CreateUser,
     withFile,
-  } from "../data";
+  } from "../model";
   import * as defaults from "./defaults";
 
   const form = createForm<CreateUser>({
     ...defaults,
     // required due to several forms on the page
-    idPrefix: "basic",
+    idPrefix: "daisyui5",
     initialValue,
     schema,
     uiSchema,

@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { BasicForm, createForm, getValueSnapshot, type ExtraUiOptions } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
+  import { setThemeContext } from "@sjsf/shadcn4-theme";
+  import * as components from "@sjsf/shadcn4-theme/new-york";
 
   import {
     schema,
@@ -7,22 +9,21 @@
     initialValue,
     type CreateUser,
     withFile,
-  } from "../data";
+  } from "../model";
   import * as defaults from "./defaults";
-
-  const { extraUiOptions }: { extraUiOptions: ExtraUiOptions } = $props()
 
   const form = createForm<CreateUser>({
     ...defaults,
     // required due to several forms on the page
-    idPrefix: "skeleton4",
+    idPrefix: "shadcn4",
     initialValue,
     schema,
     uiSchema,
     onSubmit: ({ name }) => window.alert(`Hello, ${name}`),
-    // to work in Shadow DOM
-    extraUiOptions,
   });
+
+  //@ts-expect-error shadcn-svelte-extras
+  setThemeContext({ components });
 </script>
 
 <BasicForm {form} />

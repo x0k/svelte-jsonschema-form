@@ -263,7 +263,7 @@ export const ICONS_PACKAGE_TITLES = {
   radix: "Radix",
 } satisfies Record<IconsPackage, string>;
 
-export const PKG_MANGERS = ["npm", "yarn", "pnpm", "bun"] as const;
+export const PKG_MANGERS = ["npm", "pnpm", "yarn", "bun", "deno"] as const;
 
 export type PackageManager = (typeof PKG_MANGERS)[number];
 
@@ -272,6 +272,7 @@ export const PKG_MANGER_ICONS: Record<PackageManager, StarlightIcon> = {
   yarn: "seti:yarn",
   pnpm: "pnpm",
   bun: "bun",
+  deno: "deno",
 };
 
 const packagesMeta = Object.values(

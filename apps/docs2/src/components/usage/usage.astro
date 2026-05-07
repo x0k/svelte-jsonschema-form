@@ -1,21 +1,17 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { Code, Tabs, TabItem, LinkCard } from "@astrojs/starlight/components";
+import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
 
 import {
-  createThemeInstall,
-  THEME_BRAND,
   THEME_TITLES,
   ACTUAL_THEMES,
   type ActualTheme,
 } from "@/shared";
 import { DEFAULT_LOCALE } from "@/i18n";
-import Npm from "@/components/npm.astro";
 import FormCard from "@/components/form-card.astro";
 
 import Form from "./form.svelte";
 
-import schemaCode from "./data?raw";
+import schemaCode from "./model?raw";
 import withBasicCode from "./basic/form.svelte?raw";
 import withSkeleton4Code from "./skeleton4/form.svelte?raw";
 import withDaisyui5Code from "./daisyui/form.svelte?raw";
@@ -88,26 +84,11 @@ const styles = ACTUAL_THEMES.map(
 {
   ACTUAL_THEMES.map((theme) => (
     <div class="theme-content" data-theme={theme}>
-      {THEME_BRAND[theme] && (
-        <p>
-          This theme is not affiliated with, endorsed by, or sponsored by
-          {/* Prevents incorrect formatting */}"{THEME_BRAND[theme]}" brand.
-        </p>
-      )}
-      <Npm pkg={createThemeInstall(theme)} />
-
-      <LinkCard
-        title={`${THEME_TITLES[theme]} theme setup`}
-        href={getRelativeLocaleUrl(locale, `/themes/${theme}/`)}
-      />
-
-      <h2 id="usage">Usage</h2>
-
       <Tabs>
         <TabItem label="form.svelte">
           <Code code={CODE[theme]} lang="svelte" />
         </TabItem>
-        <TabItem label="data.ts">
+        <TabItem label="model.ts">
           <Code code={schemaCode} lang="typescript" />
         </TabItem>
         <TabItem label="defaults.ts">

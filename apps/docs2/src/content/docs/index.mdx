@@ -27,13 +27,18 @@ hero:
 
 import { Code, Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-import Themes from '@/components/themes/themes.astro';
+import Npm from "@/components/npm.astro";
+import Usage from '@/components/usage/usage.astro';
 
 ## Installation
 
-Choose your favorite theme:
+Install as a community add-on using the Svelte CLI.
 
-<Themes />
+<Npm type="dlx" pkg="sv add @sjsf" />
+
+## Usage
+
+<Usage />
 
 ## License
 
