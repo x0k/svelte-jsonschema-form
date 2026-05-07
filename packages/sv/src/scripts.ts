@@ -172,7 +172,7 @@ export type Post = FromSchema<typeof schema>`)};
 ${exportStatements}\`
   )`,
     saveValidators: (content) =>
-      `await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\n\${${content}}\`)`,
+      `await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${${content}}\`)`,
   })}
 }
 
@@ -267,7 +267,14 @@ ${saveValidators("validateFunctions")};`,
 const ata = createScriptRenderer({
   parallel: true,
   vendorImports: `import { Validator } from "ata-validator";
-import { DEFAULT_VALIDATOR_OPTIONS } from "${externalValidatorPackage("ata").name}";`,
+import {
+  DEFAULT_VALIDATOR_OPTIONS,
+  COLOR_FORMAT_REGEX,
+  DATA_URL_FORMAT_REGEX,
+} from "${externalValidatorPackage("ata").name}"
+
+const FORM_FORMATS = \`const COLOR_FORMAT_REGEX = \${COLOR_FORMAT_REGEX.toString()};
+const DATA_URL_FORMAT_REGEX = \${DATA_URL_FORMAT_REGEX.toString()}\`;`,
   compileSchemaBody: ({
     definePatchAndSchemas,
     saveModel,
@@ -286,6 +293,6 @@ const bundle = Validator.bundleStandalone(
   )
   .slice(0, -50);
 
-${saveValidators("bundle")}
+${saveValidators("FORM_FORMATS}\\n${bundle")}
 `,
 });
