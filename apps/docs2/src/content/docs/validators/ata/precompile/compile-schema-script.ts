@@ -7,7 +7,11 @@ import {
   fragmentSchema,
 } from "@sjsf/form/validators/precompile";
 import { Validator } from "ata-validator";
-import { DEFAULT_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator";
+import {
+  DEFAULT_VALIDATOR_OPTIONS,
+  COLOR_FORMAT_REGEX,
+  DATA_URL_FORMAT_REGEX,
+} from "@sjsf-lab/ata-validator";
 
 import inputSchema from "../../shared/input-schema.json" with { type: "json" };
 
@@ -42,5 +46,7 @@ const bundle = Validator.bundleStandalone(
 
 fs.writeFileSync(
   path.join(import.meta.dirname, "validate-functions.js"),
-  bundle
+  `const COLOR_FORMAT_REGEX = ${COLOR_FORMAT_REGEX.toString()};
+const DATA_URL_FORMAT_REGEX = ${DATA_URL_FORMAT_REGEX.toString()};
+${bundle}`
 );

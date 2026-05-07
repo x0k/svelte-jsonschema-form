@@ -2990,8 +2990,7 @@ export type Post = FromSchema<typeof schema>;
 
 	const bundle = outputFiles[0].text;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck
-\${bundle}\`);
+	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
@@ -4061,8 +4060,7 @@ export type Post = FromSchema<typeof schema>;
 
 	const bundle = outputFiles[0].text;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck
-\${bundle}\`);
+	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
@@ -4355,8 +4353,7 @@ export type Post = FromSchema<typeof schema>;
 
 	const bundle = outputFiles[0].text;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck
-\${bundle}\`);
+	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
@@ -5483,8 +5480,7 @@ export type Post = FromSchema<typeof schema>;
 
 	const bundle = outputFiles[0].text;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck
-\${bundle}\`);
+	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
@@ -12045,8 +12041,7 @@ export type Post = FromSchema<typeof schema>;
 
 	const bundle = outputFiles[0].text;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck
-\${bundle}\`);
+	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
@@ -12339,8 +12334,7 @@ export type Post = FromSchema<typeof schema>;
 
 	const bundle = outputFiles[0].text;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck
-\${bundle}\`);
+	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
@@ -13179,7 +13173,15 @@ import path from "node:path";
 import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { Validator } from "ata-validator";
-import { DEFAULT_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator";
+
+import {
+	DEFAULT_VALIDATOR_OPTIONS,
+	COLOR_FORMAT_REGEX,
+	DATA_URL_FORMAT_REGEX
+} from "@sjsf-lab/ata-validator";
+
+const FORM_FORMATS = \`const COLOR_FORMAT_REGEX = \${COLOR_FORMAT_REGEX.toString()};
+const DATA_URL_FORMAT_REGEX = \${DATA_URL_FORMAT_REGEX.toString()}\`;
 
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
@@ -13211,8 +13213,7 @@ export type Post = FromSchema<typeof schema>;
 	const base = { $schema: "http://json-schema.org/draft-07/schema" };
 	const bundle = Validator.bundleStandalone(schemas.map((s) => Object.assign(s, base)), { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }).replace("const validators", \`export const [\${schemas.map((s) => s.$id).join(", ")}]\`).slice(0, -50);
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck
-\${bundle}\`);
+	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${FORM_FORMATS}\\n\${bundle}\`);
 }
 
 async function main() {
@@ -13444,7 +13445,15 @@ import path from "node:path";
 import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { Validator } from "ata-validator";
-import { DEFAULT_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator";
+
+import {
+	DEFAULT_VALIDATOR_OPTIONS,
+	COLOR_FORMAT_REGEX,
+	DATA_URL_FORMAT_REGEX
+} from "@sjsf-lab/ata-validator";
+
+const FORM_FORMATS = \`const COLOR_FORMAT_REGEX = \${COLOR_FORMAT_REGEX.toString()};
+const DATA_URL_FORMAT_REGEX = \${DATA_URL_FORMAT_REGEX.toString()}\`;
 
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
@@ -13476,8 +13485,7 @@ export type Post = FromSchema<typeof schema>;
 	const base = { $schema: "http://json-schema.org/draft-07/schema" };
 	const bundle = Validator.bundleStandalone(schemas.map((s) => Object.assign(s, base)), { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }).replace("const validators", \`export const [\${schemas.map((s) => s.$id).join(", ")}]\`).slice(0, -50);
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck
-\${bundle}\`);
+	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${FORM_FORMATS}\\n\${bundle}\`);
 }
 
 async function main() {
@@ -16035,8 +16043,7 @@ export type Post = FromSchema<typeof schema>;
 
 	const validateFunctions = \`export const [\${schemas.map((s) => s.$id).join(", ")}] = \${validate.toModule()}\`;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck
-\${validateFunctions}\`);
+	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${validateFunctions}\`);
 }
 
 async function main() {
@@ -16307,8 +16314,7 @@ export type Post = FromSchema<typeof schema>;
 
 	const validateFunctions = \`export const [\${schemas.map((s) => s.$id).join(", ")}] = \${validate.toModule()}\`;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck
-\${validateFunctions}\`);
+	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${validateFunctions}\`);
 }
 
 async function main() {
