@@ -97,7 +97,7 @@ sv/:
   c:
     pnpm run check
   t:
-    pnpm run test
+    pnpm run test $@
   b:
     pnpm run build
   popd
