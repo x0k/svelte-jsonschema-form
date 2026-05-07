@@ -72,8 +72,8 @@ export const VALIDATOR_DEPENDENCIES: Record<
 
 export enum GenericExample {
   Starter = "starter",
-  AnimatedArray = "animated-array",
   MarkdownDescription = "markdown-description",
+  DeprecatedKeyword = "deprecated-keyword",
   TabbedLayout = "tabbed-layout",
   RemoteEnum = "remote-enum",
   AsyncCombobox = "async-combobox",
@@ -84,6 +84,7 @@ export enum GenericExample {
   PreuploadFile = "preupload-file",
   OptionalDataControls = "optional-data-controls",
   SchemaTransformation = "schema-transformation",
+  AnimatedArray = "animated-array",
   LabelOnLeft = "label-on-left",
   Draft2020 = "draft-2020-12",
   MultiStep = "multi-step",
