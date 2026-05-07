@@ -10,10 +10,10 @@ Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-js
 
 ## Installation
 
-Install the library, basic theme and `ajv` for validation.
+Install as a community add-on using the Svelte CLI.
 
 ```shell
-npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
+npx sv add @sjsf
 ```
 
 ## Usage

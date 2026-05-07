@@ -76,6 +76,30 @@ sjsf/:
   b:
     pnpm run build ${filter[@]} $@
 
+sv/:
+  pushd packages/sv
+  dr:
+    rm -rf demo || true
+  dc:
+    pnpm run demo-create
+  da:
+    pnpm run demo-add
+  demo/:
+    pushd demo
+    i:
+      npm install
+    c:
+      npm run check
+    d:
+      npm run dev
+    popd
+  d: dr dc da demo/*
+  t:
+    pnpm run test
+  b:
+    pnpm run build
+  popd
+
 ajv/:
   pushd packages/ajv8-validator
   b:
@@ -218,7 +242,7 @@ shad/:
     pnpm run test $@
   popd
 
-sv/:
+kit/:
   pushd packages/sveltekit
   c:
     pnpm run check
@@ -232,40 +256,48 @@ sv/:
     pnpm run test $@
   popd
 
-docs/:
-  pushd apps/docs2
-  c:
-    pnpm run check
-  d:
-    pnpm run dev
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  popd
-
-pl/:
-  pushd apps/playground2
-  d:
-    pnpm run dev
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  popd
-
-bl/:
-  pushd apps/builder
-  d:
-    pnpm run dev
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
+l/:
+  pushd lab
+  hyper/:
+    pushd hyperjump-validator
+    b:
+      pnpm run build
+    t:
+      pnpm run test
+    popd
+  shad/:
+    pushd shadcn-extras-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  svar/:
+    pushd svar-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  beer/:
+    pushd beercss-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
   popd
 
 leg/:
@@ -311,50 +343,6 @@ leg/:
       pnpm run build
     p:
       pnpm run preview
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
-  popd
-
-lab/:
-  pushd lab
-  hyper/:
-    pushd hyperjump-validator
-    b:
-      pnpm run build
-    t:
-      pnpm run test
-    popd
-  shad/:
-    pushd shadcn-extras-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
-  svar/:
-    pushd svar-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
-  beer/:
-    pushd beercss-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
     d:
       pnpm run dev
     t:
@@ -485,4 +473,48 @@ e/:
     d:
       pnpm run dev
     popd
+  popd
+
+meta/:
+  pushd packages/meta
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  popd
+
+docs/:
+  pushd apps/docs2
+  c:
+    pnpm run check
+  d:
+    pnpm run dev
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
+  popd
+
+pl/:
+  pushd apps/playground2
+  d:
+    pnpm run dev
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
+  popd
+
+bl/:
+  pushd apps/builder
+  d:
+    pnpm run dev
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
   popd
