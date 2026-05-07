@@ -94,6 +94,8 @@ function createForm(ctx: Context): {
     /\bschema\b\s*,?\s*/,
     "",
   );
+  const isInputTypeRequired = isTs && !validator.schemaValidator;
+  const inputType = isInputTypeRequired ? `<${validator.inputType}>` : "";
   if (sveltekit === "formActions") {
     return {
       formPackageImports: ["BasicForm"],
@@ -126,6 +128,7 @@ const { form } = setupSvelteKitForm(meta, {
       formPackageImports: ["BasicForm", "createForm"],
       additionalImports: [
         ...validator.imports,
+        ...(isInputTypeRequired ? validator.schemaImports : []),
         {
           imports: ["connect"],
           from: svelteKitRfSubPath("client"),
@@ -136,7 +139,7 @@ const { form } = setupSvelteKitForm(meta, {
         },
       ],
       init: `const initialData = await getInitialData();
-const form = createForm(
+const form = createForm${inputType}(
   await connect(
     createPost.enhance(async ({ submit }) => {
       if (await submit()) {
@@ -160,7 +163,7 @@ const form = createForm(
   return {
     formPackageImports: ["BasicForm", "createForm"],
     additionalImports: validator.imports.concat(validator.schemaImports),
-    init: `const form = createForm${isTs && !validator.schemaValidator ? `<${validator.inputType}>` : ""}({
+    init: `const form = createForm${inputType}({
   ...defaults,
   onSubmit: console.log,
   ${validator.options}

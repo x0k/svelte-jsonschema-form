@@ -1,13 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { Validator } from "ata-validator";
-
 import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import {
   insertSubSchemaIds,
   fragmentSchema,
 } from "@sjsf/form/validators/precompile";
+import { Validator } from "ata-validator";
 import { DEFAULT_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator";
 
 import inputSchema from "../../shared/input-schema.json" with { type: "json" };

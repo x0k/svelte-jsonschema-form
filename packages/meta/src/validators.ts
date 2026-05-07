@@ -4,6 +4,7 @@ import _schemasafePackageJson from "@sjsf/schemasafe-validator/package.json" wit
 import _zod4PackageJson from "@sjsf/zod4-validator/package.json" with { type: "json" };
 import _valibotPackageJson from "@sjsf/valibot-validator/package.json" with { type: "json" };
 import _hyperjumpPackageJson from "@sjsf-lab/hyperjump-validator/package.json" with { type: "json" };
+import _ataPackageJson from "@sjsf-lab/ata-validator/package.json" with { type: "json" };
 
 import { type Package, fromPackageJson } from "./package.ts";
 import { formPackage } from "./form.ts";
@@ -14,6 +15,7 @@ const VALIDATORS = [
   "schemasafe",
   "zod4",
   "valibot",
+  "ata",
   "hyperjump",
   "standard-schema",
   "noop",
@@ -28,6 +30,7 @@ const JSON_SCHEMA_VALIDATORS = [
   "cfworker",
   "schemasafe",
   "hyperjump",
+  "ata",
 ] satisfies Validator[];
 
 const JSON_SCHEMA_VALIDATORS_SET = new Set<Validator>(JSON_SCHEMA_VALIDATORS);
@@ -48,13 +51,16 @@ const PRECOMPILED_VALIDATORS = [
   "hyperjump",
   "ajv8",
   "schemasafe",
+  "ata",
 ] satisfies Validator[];
 
 const PRECOMPILED_VALIDATORS_SET = new Set<Validator>(PRECOMPILED_VALIDATORS);
 
 export type PrecompiledValidator = (typeof PRECOMPILED_VALIDATORS)[number];
 
-const PRECOMPILED_ONLY_VALIDATORS = ["hyperjump"] satisfies Validator[];
+const PRECOMPILED_ONLY_VALIDATORS = [
+  "hyperjump",
+] satisfies PrecompiledValidator[];
 
 const PRECOMPILED_ONLY_VALIDATORS_SET = new Set<Validator>(
   PRECOMPILED_ONLY_VALIDATORS,
@@ -63,7 +69,7 @@ const PRECOMPILED_ONLY_VALIDATORS_SET = new Set<Validator>(
 export type PrecompiledOnlyValidator =
   (typeof PRECOMPILED_ONLY_VALIDATORS)[number];
 
-const LAB_VALIDATORS = ["hyperjump"] satisfies Validator[];
+const LAB_VALIDATORS = ["ata", "hyperjump"] satisfies Validator[];
 
 const LAB_VALIDATORS_SET = new Set<Validator>(LAB_VALIDATORS);
 
@@ -91,6 +97,7 @@ const VALIDATOR_TITLES: Record<Validator, string> = {
   valibot: "Valibot",
   zod4: "Zod v4",
   hyperjump: "@hyperjump/json-schema",
+  ata: "ata-validator",
 };
 
 const EXTERNAL_VALIDATOR_PACKAGES = {
@@ -100,6 +107,7 @@ const EXTERNAL_VALIDATOR_PACKAGES = {
   valibot: fromPackageJson(_valibotPackageJson),
   zod4: fromPackageJson(_zod4PackageJson),
   hyperjump: fromPackageJson(_hyperjumpPackageJson),
+  ata: fromPackageJson(_ataPackageJson),
 } satisfies Record<ExternalValidator, Package>;
 
 export function validators(): Iterable<Validator> {

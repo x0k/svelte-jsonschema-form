@@ -2151,6 +2151,9 @@ importers:
 
   packages/meta:
     dependencies:
+      '@sjsf-lab/ata-validator':
+        specifier: workspace:*
+        version: link:../../lab/ata-validator
       '@sjsf-lab/beercss-theme':
         specifier: workspace:*
         version: link:../../lab/beercss-theme

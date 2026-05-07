@@ -94,6 +94,8 @@ sv/:
       npm run dev
     popd
   d: dr dc da demo/*
+  c:
+    pnpm run check
   t:
     pnpm run test
   b:
