@@ -94,6 +94,8 @@ sv/:
       npm run dev
     popd
   d: dr dc da demo/*
+  c:
+    pnpm run check
   t:
     pnpm run test
   b:
@@ -258,6 +260,13 @@ kit/:
 
 l/:
   pushd lab
+  ata/:
+    pushd ata-validator
+    b:
+      pnpm run build
+    t:
+      pnpm run test
+    popd
   hyper/:
     pushd hyperjump-validator
     b:

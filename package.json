@@ -53,9 +53,8 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",
-      "core-js",
-      "esbuild",
-      "sharp"
+      "ata-validator",
+      "esbuild"
     ],
     "overrides": {
       "playwright": "catalog:",

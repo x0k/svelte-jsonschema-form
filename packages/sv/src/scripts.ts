@@ -69,6 +69,7 @@ import type { AST } from "@hyperjump/json-schema/experimental"`)};`,
     ajv8,
     schemasafe,
     hyperjump,
+    ata,
   };
 
   sv.file(
@@ -261,4 +262,30 @@ const validate = validator(schemas, {
 const validateFunctions = \`export const [\${schemas.map((s) => s.$id).join(", ")}] = \${validate.toModule()}\`;
 
 ${saveValidators("validateFunctions")};`,
+});
+
+const ata = createScriptRenderer({
+  parallel: true,
+  vendorImports: `import { Validator } from "ata-validator";
+import { DEFAULT_VALIDATOR_OPTIONS } from "${externalValidatorPackage("ata").name}";`,
+  compileSchemaBody: ({
+    definePatchAndSchemas,
+    saveModel,
+    saveValidators,
+  }) => `${definePatchAndSchemas()};
+${saveModel()};
+
+const base = { $schema: "http://json-schema.org/draft-07/schema" };
+const bundle = Validator.bundleStandalone(
+  schemas.map((s) => Object.assign(s, base)),
+  { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }
+)
+  .replace(
+    "const validators",
+    \`export const [\${schemas.map((s) => s.$id).join(", ")}]\`
+  )
+  .slice(0, -50);
+
+${saveValidators("bundle")}
+`,
 });

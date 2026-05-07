@@ -85,6 +85,8 @@ npx sv add @sjsf
 - [@exodus/schemasafe](https://x0k.dev/svelte-jsonschema-form/validators/schemasafe/)
   - [Precompiled](https://x0k.dev/svelte-jsonschema-form/validators/schemasafe/#precompiled-validation)
 - [Standard Schema](https://x0k.dev/svelte-jsonschema-form/validators/standard-schema/)
+- [ata-validator](https://x0k.dev/svelte-jsonschema-form/validators/ata/) (experimental)
+  - [Precompiled](https://x0k.dev/svelte-jsonschema-form/validators/ata/#precompiled-validation) (experimental)
 - [@hyperjump/json-schema](https://x0k.dev/svelte-jsonschema-form/validators/hyperjump/) (experimental)
 
 ## Integrations

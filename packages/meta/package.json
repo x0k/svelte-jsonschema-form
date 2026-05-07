@@ -15,6 +15,7 @@
     "svelte": "^5.34.8"
   },
   "dependencies": {
+    "@sjsf-lab/ata-validator": "workspace:*",
     "@sjsf-lab/beercss-theme": "workspace:*",
     "@sjsf-lab/hyperjump-validator": "workspace:*",
     "@sjsf-lab/shadcn-extras-theme": "workspace:*",
