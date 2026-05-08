@@ -11233,6 +11233,7 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
               data-scope="tags-input"
               dir="ltr"
               disabled=""
+              enterkeyhint="done"
               id="root"
             />
             
@@ -11361,6 +11362,7 @@ exports[`widgets > tags > snapshots > error 1`] = `
               data-part="input"
               data-scope="tags-input"
               dir="ltr"
+              enterkeyhint="done"
               id="root"
             />
             
@@ -11495,6 +11497,7 @@ exports[`widgets > tags > snapshots > normal 1`] = `
               data-part="input"
               data-scope="tags-input"
               dir="ltr"
+              enterkeyhint="done"
               id="root"
             />
             
@@ -11623,6 +11626,7 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
               data-scope="tags-input"
               dir="ltr"
               disabled=""
+              enterkeyhint="done"
               id="root"
             />
             

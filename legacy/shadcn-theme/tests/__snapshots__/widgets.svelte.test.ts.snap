@@ -54,6 +54,7 @@ exports[`default-ui > widgets > checkbox > snapshots > disabled 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -74,8 +75,6 @@ exports[`default-ui > widgets > checkbox > snapshots > disabled 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -90,7 +89,7 @@ exports[`default-ui > widgets > checkbox > snapshots > disabled 1`] = `
             disabled=""
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="on"
@@ -210,6 +209,7 @@ exports[`default-ui > widgets > checkbox > snapshots > error 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -230,8 +230,6 @@ exports[`default-ui > widgets > checkbox > snapshots > error 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -245,7 +243,7 @@ exports[`default-ui > widgets > checkbox > snapshots > error 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="on"
@@ -376,6 +374,7 @@ exports[`default-ui > widgets > checkbox > snapshots > normal 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -396,8 +395,6 @@ exports[`default-ui > widgets > checkbox > snapshots > normal 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -411,7 +408,7 @@ exports[`default-ui > widgets > checkbox > snapshots > normal 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="on"
@@ -530,6 +527,7 @@ exports[`default-ui > widgets > checkbox > snapshots > readonly 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -550,8 +548,6 @@ exports[`default-ui > widgets > checkbox > snapshots > readonly 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -565,7 +561,7 @@ exports[`default-ui > widgets > checkbox > snapshots > readonly 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="on"
@@ -687,6 +683,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -707,8 +704,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -723,7 +718,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             disabled=""
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -773,6 +768,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -793,8 +789,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -809,7 +803,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             disabled=""
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -859,6 +853,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -879,8 +874,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -895,7 +888,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             disabled=""
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -945,6 +938,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -965,8 +959,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -981,7 +973,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             disabled=""
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__3"
@@ -1103,6 +1095,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -1123,8 +1116,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -1138,7 +1129,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -1186,6 +1177,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -1206,8 +1198,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -1221,7 +1211,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -1269,6 +1259,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -1289,8 +1280,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -1304,7 +1293,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -1352,6 +1341,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -1372,8 +1362,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -1387,7 +1375,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__3"
@@ -1520,6 +1508,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -1540,8 +1529,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -1555,7 +1542,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -1603,6 +1590,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -1623,8 +1611,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -1638,7 +1624,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -1686,6 +1672,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -1706,8 +1693,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -1721,7 +1706,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -1769,6 +1754,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -1789,8 +1775,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -1804,7 +1788,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__3"
@@ -1925,6 +1909,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -1945,8 +1930,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -1960,7 +1943,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -2008,6 +1991,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -2028,8 +2012,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -2043,7 +2025,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -2091,6 +2073,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -2111,8 +2094,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -2126,7 +2107,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -2174,6 +2155,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -2194,8 +2176,6 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -2209,7 +2189,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__3"
@@ -2329,6 +2309,7 @@ exports[`default-ui > widgets > combobox > snapshots > disabled 1`] = `
         >
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
@@ -2355,8 +2336,6 @@ exports[`default-ui > widgets > combobox > snapshots > disabled 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -2470,6 +2449,7 @@ exports[`default-ui > widgets > combobox > snapshots > error 1`] = `
         >
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
@@ -2496,8 +2476,6 @@ exports[`default-ui > widgets > combobox > snapshots > error 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -2622,6 +2600,7 @@ exports[`default-ui > widgets > combobox > snapshots > normal 1`] = `
         >
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
@@ -2648,8 +2627,6 @@ exports[`default-ui > widgets > combobox > snapshots > normal 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -2762,6 +2739,7 @@ exports[`default-ui > widgets > combobox > snapshots > readonly 1`] = `
         >
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
@@ -2788,8 +2766,6 @@ exports[`default-ui > widgets > combobox > snapshots > readonly 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -4076,6 +4052,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > disabled 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -4095,8 +4072,6 @@ exports[`default-ui > widgets > multiSelect > snapshots > disabled 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -4225,6 +4200,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > error 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -4244,8 +4220,6 @@ exports[`default-ui > widgets > multiSelect > snapshots > error 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -4385,6 +4359,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > normal 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -4404,8 +4379,6 @@ exports[`default-ui > widgets > multiSelect > snapshots > normal 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -4534,6 +4507,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > readonly 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -4553,8 +4527,6 @@ exports[`default-ui > widgets > multiSelect > snapshots > readonly 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -7406,6 +7378,7 @@ exports[`default-ui > widgets > select > snapshots > disabled 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -7425,8 +7398,6 @@ exports[`default-ui > widgets > select > snapshots > disabled 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -7553,6 +7524,7 @@ exports[`default-ui > widgets > select > snapshots > error 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -7572,8 +7544,6 @@ exports[`default-ui > widgets > select > snapshots > error 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -7711,6 +7681,7 @@ exports[`default-ui > widgets > select > snapshots > normal 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -7730,8 +7701,6 @@ exports[`default-ui > widgets > select > snapshots > normal 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -7858,6 +7827,7 @@ exports[`default-ui > widgets > select > snapshots > readonly 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -7877,8 +7847,6 @@ exports[`default-ui > widgets > select > snapshots > readonly 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -8017,7 +7985,7 @@ exports[`default-ui > widgets > switch > snapshots > disabled 1`] = `
           disabled=""
           name="root"
           required=""
-          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
           value="on"
@@ -8138,7 +8106,7 @@ exports[`default-ui > widgets > switch > snapshots > error 1`] = `
           aria-hidden="true"
           name="root"
           required=""
-          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
           value="on"
@@ -8270,7 +8238,7 @@ exports[`default-ui > widgets > switch > snapshots > normal 1`] = `
           aria-hidden="true"
           name="root"
           required=""
-          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
           value="on"
@@ -8391,7 +8359,7 @@ exports[`default-ui > widgets > switch > snapshots > readonly 1`] = `
           aria-hidden="true"
           name="root"
           required=""
-          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
           value="on"
@@ -9198,6 +9166,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > disabled 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -9218,8 +9187,6 @@ exports[`new-york-ui > widgets > checkbox > snapshots > disabled 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -9234,7 +9201,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > disabled 1`] = `
             disabled=""
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="on"
@@ -9354,6 +9321,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > error 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -9374,8 +9342,6 @@ exports[`new-york-ui > widgets > checkbox > snapshots > error 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -9389,7 +9355,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > error 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="on"
@@ -9520,6 +9486,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > normal 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -9540,8 +9507,6 @@ exports[`new-york-ui > widgets > checkbox > snapshots > normal 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -9555,7 +9520,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > normal 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="on"
@@ -9674,6 +9639,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > readonly 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -9694,8 +9660,6 @@ exports[`new-york-ui > widgets > checkbox > snapshots > readonly 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -9709,7 +9673,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > readonly 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="on"
@@ -9831,6 +9795,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -9851,8 +9816,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -9867,7 +9830,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             disabled=""
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -9917,6 +9880,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -9937,8 +9901,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -9953,7 +9915,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             disabled=""
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -10003,6 +9965,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -10023,8 +9986,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -10039,7 +10000,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             disabled=""
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -10089,6 +10050,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -10109,8 +10071,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -10125,7 +10085,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             disabled=""
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__3"
@@ -10247,6 +10207,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -10267,8 +10228,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -10282,7 +10241,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -10330,6 +10289,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -10350,8 +10310,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -10365,7 +10323,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -10413,6 +10371,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -10433,8 +10392,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -10448,7 +10405,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -10496,6 +10453,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -10516,8 +10474,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -10531,7 +10487,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__3"
@@ -10664,6 +10620,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -10684,8 +10641,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -10699,7 +10654,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -10747,6 +10702,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -10767,8 +10723,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -10782,7 +10736,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -10830,6 +10784,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -10850,8 +10805,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -10865,7 +10818,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -10913,6 +10866,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -10933,8 +10887,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -10948,7 +10900,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__3"
@@ -11069,6 +11021,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -11089,8 +11042,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -11104,7 +11055,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -11152,6 +11103,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -11172,8 +11124,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -11187,7 +11137,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -11235,6 +11185,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -11255,8 +11206,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -11270,7 +11219,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -11318,6 +11267,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -11338,8 +11288,6 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -11353,7 +11301,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__3"
@@ -11473,6 +11421,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > disabled 1`] = `
         >
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
@@ -11499,8 +11448,6 @@ exports[`new-york-ui > widgets > combobox > snapshots > disabled 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -11614,6 +11561,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > error 1`] = `
         >
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
@@ -11640,8 +11588,6 @@ exports[`new-york-ui > widgets > combobox > snapshots > error 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -11766,6 +11712,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > normal 1`] = `
         >
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
@@ -11792,8 +11739,6 @@ exports[`new-york-ui > widgets > combobox > snapshots > normal 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -11906,6 +11851,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > readonly 1`] = `
         >
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
@@ -11932,8 +11878,6 @@ exports[`new-york-ui > widgets > combobox > snapshots > readonly 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -13220,6 +13164,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > disabled 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -13239,8 +13184,6 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > disabled 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -13369,6 +13312,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > error 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -13388,8 +13332,6 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > error 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -13529,6 +13471,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > normal 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -13548,8 +13491,6 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > normal 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -13678,6 +13619,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > readonly 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -13697,8 +13639,6 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > readonly 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -16550,6 +16490,7 @@ exports[`new-york-ui > widgets > select > snapshots > disabled 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -16569,8 +16510,6 @@ exports[`new-york-ui > widgets > select > snapshots > disabled 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -16697,6 +16636,7 @@ exports[`new-york-ui > widgets > select > snapshots > error 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -16716,8 +16656,6 @@ exports[`new-york-ui > widgets > select > snapshots > error 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -16855,6 +16793,7 @@ exports[`new-york-ui > widgets > select > snapshots > normal 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -16874,8 +16813,6 @@ exports[`new-york-ui > widgets > select > snapshots > normal 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -17002,6 +16939,7 @@ exports[`new-york-ui > widgets > select > snapshots > readonly 1`] = `
           <!---->
            
           <svg
+            aria-hidden="true"
             class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
             fill="none"
             height="24"
@@ -17021,8 +16959,6 @@ exports[`new-york-ui > widgets > select > snapshots > readonly 1`] = `
             </path>
             
             <!---->
-            <!---->
-            
             <!---->
           </svg>
           <!---->
@@ -17161,7 +17097,7 @@ exports[`new-york-ui > widgets > switch > snapshots > disabled 1`] = `
           disabled=""
           name="root"
           required=""
-          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
           value="on"
@@ -17282,7 +17218,7 @@ exports[`new-york-ui > widgets > switch > snapshots > error 1`] = `
           aria-hidden="true"
           name="root"
           required=""
-          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
           value="on"
@@ -17414,7 +17350,7 @@ exports[`new-york-ui > widgets > switch > snapshots > normal 1`] = `
           aria-hidden="true"
           name="root"
           required=""
-          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
           value="on"
@@ -17535,7 +17471,7 @@ exports[`new-york-ui > widgets > switch > snapshots > readonly 1`] = `
           aria-hidden="true"
           name="root"
           required=""
-          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
           value="on"

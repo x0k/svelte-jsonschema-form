@@ -621,6 +621,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -641,8 +642,6 @@ exports[`default-ui > array fields > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -656,7 +655,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -704,6 +703,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -724,8 +724,6 @@ exports[`default-ui > array fields > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -739,7 +737,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -787,6 +785,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -807,8 +806,6 @@ exports[`default-ui > array fields > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -822,7 +819,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -2040,6 +2037,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -2060,8 +2058,6 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -2075,7 +2071,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -2123,6 +2119,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -2143,8 +2140,6 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -2158,7 +2153,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -2206,6 +2201,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -2226,8 +2222,6 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -2241,7 +2235,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -3401,6 +3395,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -3421,8 +3416,6 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -3436,7 +3429,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -3484,6 +3477,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -3504,8 +3498,6 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -3519,7 +3511,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -3567,6 +3559,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -3587,8 +3580,6 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -3602,7 +3593,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -4762,6 +4753,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -4782,8 +4774,6 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -4797,7 +4787,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -4845,6 +4835,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -4865,8 +4856,6 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -4880,7 +4869,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -4928,6 +4917,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -4948,8 +4938,6 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -4963,7 +4951,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -5917,6 +5905,7 @@ exports[`default-ui > with title and description with global label off > checkbo
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -5937,8 +5926,6 @@ exports[`default-ui > with title and description with global label off > checkbo
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -5952,7 +5939,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -6000,6 +5987,7 @@ exports[`default-ui > with title and description with global label off > checkbo
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -6020,8 +6008,6 @@ exports[`default-ui > with title and description with global label off > checkbo
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -6035,7 +6021,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -6083,6 +6069,7 @@ exports[`default-ui > with title and description with global label off > checkbo
               class="flex size-4 items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                 fill="none"
                 height="24"
@@ -6103,8 +6090,6 @@ exports[`default-ui > with title and description with global label off > checkbo
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </div>
@@ -6118,7 +6103,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -7020,6 +7005,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -7040,8 +7026,6 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -7055,7 +7039,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -7103,6 +7087,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -7123,8 +7108,6 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -7138,7 +7121,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -7186,6 +7169,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -7206,8 +7190,6 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -7221,7 +7203,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -8439,6 +8421,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -8459,8 +8442,6 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -8474,7 +8455,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -8522,6 +8503,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -8542,8 +8524,6 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -8557,7 +8537,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -8605,6 +8585,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -8625,8 +8606,6 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -8640,7 +8619,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -9800,6 +9779,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -9820,8 +9800,6 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -9835,7 +9813,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -9883,6 +9861,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -9903,8 +9882,6 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -9918,7 +9895,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -9966,6 +9943,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -9986,8 +9964,6 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -10001,7 +9977,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -11161,6 +11137,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -11181,8 +11158,6 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -11196,7 +11171,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -11244,6 +11219,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -11264,8 +11240,6 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -11279,7 +11253,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -11327,6 +11301,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -11347,8 +11322,6 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -11362,7 +11335,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"
@@ -12316,6 +12289,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -12336,8 +12310,6 @@ exports[`new-york-ui > with title and description with global label off > checkb
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -12351,7 +12323,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__0"
@@ -12399,6 +12371,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -12419,8 +12392,6 @@ exports[`new-york-ui > with title and description with global label off > checkb
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -12434,7 +12405,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__1"
@@ -12482,6 +12453,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
               class="flex items-center justify-center text-current"
             >
               <svg
+                aria-hidden="true"
                 class="lucide-icon lucide lucide-check size-4 text-transparent"
                 fill="none"
                 height="24"
@@ -12502,8 +12474,6 @@ exports[`new-york-ui > with title and description with global label off > checkb
                 
                 <!---->
                 <!---->
-                
-                <!---->
               </svg>
               <!---->
             </span>
@@ -12517,7 +12487,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             aria-hidden="true"
             name="root"
             required=""
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
             value="root__2"

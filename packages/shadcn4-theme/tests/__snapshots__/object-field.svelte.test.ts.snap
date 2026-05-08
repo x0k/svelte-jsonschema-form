@@ -1532,6 +1532,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                  
                 <svg
+                  aria-hidden="true"
                   class="lucide-icon lucide lucide-chevron-down text-muted-foreground size-4 pointer-events-none"
                   fill="none"
                   height="24"
@@ -1551,8 +1552,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   </path>
                   
                   <!---->
-                  <!---->
-                  
                   <!---->
                 </svg>
                 <!---->
@@ -1702,7 +1701,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <input
                   aria-hidden="true"
                   name="root_transform"
-                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                   tabindex="-1"
                   type="checkbox"
                   value="on"
@@ -1877,6 +1876,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                  
                 <svg
+                  aria-hidden="true"
                   class="lucide-icon lucide lucide-chevron-down text-muted-foreground size-4 pointer-events-none"
                   fill="none"
                   height="24"
@@ -1896,8 +1896,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   </path>
                   
                   <!---->
-                  <!---->
-                  
                   <!---->
                 </svg>
                 <!---->
@@ -2047,7 +2045,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <input
                   aria-hidden="true"
                   name="root_paginate"
-                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                   tabindex="-1"
                   type="checkbox"
                   value="on"
@@ -2190,6 +2188,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                     data-slot="checkbox-indicator"
                   >
                     <svg
+                      aria-hidden="true"
                       class="lucide-icon lucide lucide-check"
                       fill="none"
                       height="24"
@@ -2210,8 +2209,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
                       
                       <!---->
                       <!---->
-                      
-                      <!---->
                     </svg>
                     <!---->
                   </div>
@@ -2224,7 +2221,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <input
                   aria-hidden="true"
                   name="root_createOnOpen"
-                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                   tabindex="-1"
                   type="checkbox"
                   value="on"
@@ -2551,6 +2548,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                  
                 <svg
+                  aria-hidden="true"
                   class="lucide-icon lucide lucide-chevron-down text-muted-foreground size-4 pointer-events-none"
                   fill="none"
                   height="24"
@@ -2570,8 +2568,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   </path>
                   
                   <!---->
-                  <!---->
-                  
                   <!---->
                 </svg>
                 <!---->
@@ -2711,6 +2707,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                     data-slot="checkbox-indicator"
                   >
                     <svg
+                      aria-hidden="true"
                       class="lucide-icon lucide lucide-check"
                       fill="none"
                       height="24"
@@ -2731,8 +2728,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                       
                       <!---->
                       <!---->
-                      
-                      <!---->
                     </svg>
                     <!---->
                   </div>
@@ -2745,7 +2740,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <input
                   aria-hidden="true"
                   name="root_collapseIndexes"
-                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                   tabindex="-1"
                   type="checkbox"
                   value="on"
@@ -2888,6 +2883,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                     data-slot="checkbox-indicator"
                   >
                     <svg
+                      aria-hidden="true"
                       class="lucide-icon lucide lucide-check"
                       fill="none"
                       height="24"
@@ -2908,8 +2904,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                       
                       <!---->
                       <!---->
-                      
-                      <!---->
                     </svg>
                     <!---->
                   </div>
@@ -2922,7 +2916,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <input
                   aria-hidden="true"
                   name="root_joinPrimitiveArrayValues"
-                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                   tabindex="-1"
                   type="checkbox"
                   value="on"
@@ -3075,7 +3069,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <input
                   aria-hidden="true"
                   name="root_combineArraysOfObjects"
-                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                   tabindex="-1"
                   type="checkbox"
                   value="on"
@@ -3218,6 +3212,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                     data-slot="checkbox-indicator"
                   >
                     <svg
+                      aria-hidden="true"
                       class="lucide-icon lucide lucide-check"
                       fill="none"
                       height="24"
@@ -3238,8 +3233,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                       
                       <!---->
                       <!---->
-                      
-                      <!---->
                     </svg>
                     <!---->
                   </div>
@@ -3252,7 +3245,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <input
                   aria-hidden="true"
                   name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
-                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                   tabindex="-1"
                   type="checkbox"
                   value="on"
@@ -3690,7 +3683,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <input
                   aria-hidden="true"
                   name="root_transform"
-                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                   tabindex="-1"
                   type="checkbox"
                   value="on"
@@ -3865,6 +3858,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                  
                 <svg
+                  aria-hidden="true"
                   class="lucide-icon lucide lucide-chevron-down text-muted-foreground size-4 pointer-events-none"
                   fill="none"
                   height="24"
@@ -3884,8 +3878,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   </path>
                   
                   <!---->
-                  <!---->
-                  
                   <!---->
                 </svg>
                 <!---->
@@ -4035,7 +4027,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <input
                   aria-hidden="true"
                   name="root_paginate"
-                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                   tabindex="-1"
                   type="checkbox"
                   value="on"
@@ -4178,6 +4170,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                     data-slot="checkbox-indicator"
                   >
                     <svg
+                      aria-hidden="true"
                       class="lucide-icon lucide lucide-check"
                       fill="none"
                       height="24"
@@ -4198,8 +4191,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                       
                       <!---->
                       <!---->
-                      
-                      <!---->
                     </svg>
                     <!---->
                   </div>
@@ -4212,7 +4203,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <input
                   aria-hidden="true"
                   name="root_createOnOpen"
-                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+                  style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                   tabindex="-1"
                   type="checkbox"
                   value="on"

@@ -12655,7 +12655,7 @@ exports[`@sjsf/sv 'validator__ata' 'kit-ts' 1`] = `
 		"@sjsf-lab/ata-validator": "^2.0.0",
 		"@sjsf/basic-theme": "^3.5.0",
 		"@sjsf/form": "^3.5.0",
-		"ata-validator": "^0.12.0",
+		"ata-validator": "^0.12.6",
 		"svelte": "^5.34.8"
 	}
 }
@@ -12858,7 +12858,7 @@ exports[`@sjsf/sv 'validator__ata' 'vite-ts' 1`] = `
     "@sjsf-lab/ata-validator": "^2.0.0",
     "@sjsf/basic-theme": "^3.5.0",
     "@sjsf/form": "^3.5.0",
-    "ata-validator": "^0.12.0",
+    "ata-validator": "^0.12.6",
     "svelte": "^5.34.8"
   }
 }
@@ -13163,7 +13163,7 @@ exports[`@sjsf/sv 'validator__ata-precompiled' 'kit-ts' 1`] = `
 		"@sjsf-lab/ata-validator": "^2.0.0",
 		"@sjsf/basic-theme": "^3.5.0",
 		"@sjsf/form": "^3.5.0",
-		"ata-validator": "^0.12.0",
+		"ata-validator": "^0.12.6",
 		"svelte": "^5.34.8"
 	}
 }
@@ -13435,7 +13435,7 @@ exports[`@sjsf/sv 'validator__ata-precompiled' 'vite-ts' 1`] = `
     "@sjsf-lab/ata-validator": "^2.0.0",
     "@sjsf/basic-theme": "^3.5.0",
     "@sjsf/form": "^3.5.0",
-    "ata-validator": "^0.12.0",
+    "ata-validator": "^0.12.6",
     "svelte": "^5.34.8"
   }
 }
