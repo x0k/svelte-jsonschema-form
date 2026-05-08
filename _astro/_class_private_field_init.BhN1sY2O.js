@@ -1,0 +1,1 @@
+function e(e,t){if(t.has(e))throw TypeError(`Cannot initialize the same private elements twice on an object`)}function t(t,n,r){e(t,n),n.set(t,r)}export{t};

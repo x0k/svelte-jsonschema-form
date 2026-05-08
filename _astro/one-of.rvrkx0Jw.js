@@ -1,1 +1,0 @@
-import{r as e}from"./chunk.4kkbojlz.js";var t=e({category:()=>n,default:()=>r}),n=`Schema Logic`,r={schema:{type:`object`,oneOf:[{properties:{lorem:{type:`string`}},required:[`lorem`]},{properties:{ipsum:{type:`string`}},required:[`ipsum`]}]},uiSchema:{},initialValue:{}};export{t as n,n as t};

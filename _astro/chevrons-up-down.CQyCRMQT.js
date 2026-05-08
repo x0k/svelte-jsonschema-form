@@ -1,0 +1,1 @@
+import"./disclose-version.9lSVa_-p.js";import{i as e,r as t}from"./client.DDIiam73.js";import{t as n}from"./Icon.DpVq8Zhr.js";function r(r,i){let a=t(i,[`$$slots`,`$$events`,`$$legacy`]),o=[[`path`,{d:`m7 15 5 5 5-5`}],[`path`,{d:`m7 9 5-5 5 5`}]];n(r,e({name:`chevrons-up-down`},()=>a,{get iconNode(){return o}}))}export{r as t};
