@@ -16,7 +16,7 @@ import {
   validateAndTransformErrors,
   validateAndTransformErrorsAsync,
 } from "../errors.js";
-import { CAST_FORM_DATA, NO_FILED_ERRORS } from '../internals.js';
+import { CAST_FORM_DATA, NO_FILED_ERRORS } from "../internals.js";
 
 export type CompiledValidateFunction = {
   (this: Ajv | any, data: any): boolean;
@@ -36,7 +36,7 @@ function getValidateFunction(
     validateFunctions,
     augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
   }: ValidatorOptions,
-  { $id: id, allOf }: Schema
+  { $id: id, allOf }: Schema,
 ): ValidateFunction {
   if (id === undefined) {
     const firstAllOfItem = allOf?.[0];
@@ -74,11 +74,10 @@ export function createValidator(options: ValidatorOptions): Validator {
 }
 
 export interface FormValueValidatorOptions
-  extends ValidatorOptions,
-    ErrorsTransformerOptions {}
+  extends ValidatorOptions, ErrorsTransformerOptions {}
 
 export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions
+  options: FormValueValidatorOptions,
 ): FormValueValidator<T> {
   const transformErrors = createFormErrorsTransformer(options);
   return {
@@ -87,14 +86,14 @@ export function createFormValueValidator<T>(
         getValidateFunction(options, rootSchema),
         formValue,
         CAST_FORM_DATA<T>,
-        transformErrors
+        transformErrors,
       );
     },
   };
 }
 
 export function createFieldValueValidator(
-  options: ValidatorOptions
+  options: ValidatorOptions,
 ): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
@@ -102,14 +101,14 @@ export function createFieldValueValidator(
         getValidateFunction(options, field.schema),
         fieldValue,
         NO_FILED_ERRORS,
-        createFieldErrorsTransformer(field)
+        createFieldErrorsTransformer(field),
       );
     },
   };
 }
 
 export function createAsyncFormValueValidator<T>(
-  options: FormValidatorOptions
+  options: FormValidatorOptions,
 ): AsyncFormValueValidator<T> {
   const transformErrors = createFormErrorsTransformer(options);
   return {
@@ -118,14 +117,14 @@ export function createAsyncFormValueValidator<T>(
         getValidateFunction(options, rootSchema) as AsyncValidateFunction,
         formValue,
         CAST_FORM_DATA<T>,
-        transformErrors
+        transformErrors,
       );
     },
   };
 }
 
 export function createAsyncFieldValueValidator(
-  options: ValidatorOptions
+  options: ValidatorOptions,
 ): AsyncFieldValueValidator {
   return {
     validateFieldValueAsync(_, field, fieldValue) {
@@ -133,17 +132,16 @@ export function createAsyncFieldValueValidator(
         getValidateFunction(options, field.schema) as AsyncValidateFunction,
         fieldValue,
         NO_FILED_ERRORS,
-        createFieldErrorsTransformer(field)
+        createFieldErrorsTransformer(field),
       );
     },
   };
 }
 
 export interface FormValidatorOptions
-  extends ValidatorOptions,
-    FormValueValidatorOptions {}
+  extends ValidatorOptions, FormValueValidatorOptions {}
 
-export function createFormValidatorFactory(vOptions: ValidatorOptions) {
+export function createFormValidatorFactory<T>(vOptions: ValidatorOptions) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
     const full = {
       ...vOptions,
@@ -151,13 +149,13 @@ export function createFormValidatorFactory(vOptions: ValidatorOptions) {
     };
     return Object.assign(
       createValidator(full),
-      createFormValueValidator(full),
-      createFieldValueValidator(full)
+      createFormValueValidator<T>(full),
+      createFieldValueValidator(full),
     );
   };
 }
 
-export function createAsyncFormValidatorFactory(vOptions: ValidatorOptions) {
+export function createAsyncFormValidatorFactory<T>(vOptions: ValidatorOptions) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
     const full = {
       ...vOptions,
@@ -165,8 +163,8 @@ export function createAsyncFormValidatorFactory(vOptions: ValidatorOptions) {
     };
     return Object.assign(
       createValidator(full),
-      createAsyncFormValueValidator(full),
-      createAsyncFieldValueValidator(full)
+      createAsyncFormValueValidator<T>(full),
+      createAsyncFieldValueValidator(full),
     );
   };
 }
