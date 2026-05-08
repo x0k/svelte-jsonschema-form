@@ -7,7 +7,7 @@ export function sveltekitTs(ctx: Context) {
   const {
     file,
     isKit,
-    options: { sveltekit },
+    options: { sveltekit, demo },
     directory,
     language,
     sv,
@@ -24,11 +24,12 @@ export function sveltekitTs(ctx: Context) {
     validator.imports.concat(validator.schemaImports),
   );
 
-  const setup = (
-    {
-      formActions: {
-        filename: `+page.server`,
-        code: `${ts(`import type { Actions } from "@sveltejs/kit";
+  if (demo) {
+    const setup = (
+      {
+        formActions: {
+          filename: `+page.server`,
+          code: `${ts(`import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createAction } from "${svelteKitSubPath("server")}";
 ${validatorImports};
 import * as defaults from "${lib("sjsf/defaults")}";
@@ -57,10 +58,10 @@ export const actions = {
   ),
 }${ts(" satisfies Actions")};
 `,
-      },
-      remoteFunctions: {
-        filename: `data.remote`,
-        code: `${ts(`import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createServerValidator } from "${svelteKitRfSubPath("server")}";
+        },
+        remoteFunctions: {
+          filename: `data.remote`,
+          code: `${ts(`import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createServerValidator } from "${svelteKitRfSubPath("server")}";
 
 import { form, query } from "$app/server";
 ${validatorImports};
@@ -84,19 +85,20 @@ export const createPost = form(
   },
 );
 `,
-      },
-    } satisfies Record<typeof sveltekit, { filename: string; code: string }>
-  )[sveltekit];
+        },
+      } satisfies Record<typeof sveltekit, { filename: string; code: string }>
+    )[sveltekit];
 
-  sv.file(
-    `${directory.kitRoutes}/demo/sjsf/${setup.filename}.${language}`,
-    transforms.script(({ ast, comments, js }) => {
-      js.common.appendFromString(ast, {
-        comments,
-        code: setup.code,
-      });
-    }),
-  );
+    sv.file(
+      `${directory.kitRoutes}/demo/sjsf/${setup.filename}.${language}`,
+      transforms.script(({ ast, comments, js }) => {
+        js.common.appendFromString(ast, {
+          comments,
+          code: setup.code,
+        });
+      }),
+    );
+  }
 
   if (sveltekit === "remoteFunctions") {
     sv.file(

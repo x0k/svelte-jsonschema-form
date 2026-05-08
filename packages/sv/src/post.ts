@@ -30,10 +30,12 @@ export function postTs({
   sv,
   directory,
   language,
-  options,
+  options: { validatorWithSuffix, demo },
   ts,
 }: Context) {
-  const { validatorWithSuffix } = options;
+  if (!demo) {
+    return;
+  }
 
   if (isEndsWithPrecompiled(validatorWithSuffix)) {
     sv.file(

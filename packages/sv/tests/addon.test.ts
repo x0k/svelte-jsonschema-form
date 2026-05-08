@@ -20,6 +20,7 @@ const BASE = {
   validatorWithSuffix: "ajv8",
   icons: "none",
   sveltekit: "no",
+  demo: true,
 } as const satisfies AddonOptions;
 
 function kind<O extends Partial<AddonOptions>>(type: string, options: O) {

@@ -16,13 +16,13 @@ import { transforms } from "./sv-utils.js";
 
 export function scriptsFolder(ctx: Context) {
   const {
-    options: { validatorWithSuffix },
+    options: { validatorWithSuffix, demo },
     file,
     language,
     sv,
     ts,
   } = ctx;
-  if (!isEndsWithPrecompiled(validatorWithSuffix)) {
+  if (!demo || !isEndsWithPrecompiled(validatorWithSuffix)) {
     return;
   }
 

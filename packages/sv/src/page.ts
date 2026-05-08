@@ -30,8 +30,12 @@ export function pageSvelte(ctx: Context) {
     language,
     isKit,
     lib,
-    options: { themeOrSubTheme, validatorWithSuffix },
+    options: { themeOrSubTheme, validatorWithSuffix, demo },
   } = ctx;
+
+  if (!demo) {
+    return;
+  }
 
   if (isKit) {
     sv.file(
