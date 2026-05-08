@@ -2449,8 +2449,8 @@ importers:
   packages/sv:
     devDependencies:
       '@sveltejs/sv-utils':
-        specifier: ^0.2.1
-        version: 0.2.1
+        specifier: ^0.2.2
+        version: 0.2.2
       '@types/node':
         specifier: ^25.6.2
         version: 25.6.2
@@ -2458,8 +2458,8 @@ importers:
         specifier: workspace:*
         version: link:../meta
       sv:
-        specifier: ^0.15.2
-        version: 0.15.2
+        specifier: ^0.15.3
+        version: 0.15.3
       tsdown:
         specifier: ^0.21.10
         version: 0.21.10(publint@0.3.19)(typescript@5.9.3)
@@ -4297,8 +4297,8 @@ packages:
     peerDependencies:
       svelte: ^3.44.0 || ^4.0.0 || ^5.0.0-next.1
 
-  '@sveltejs/sv-utils@0.2.1':
-    resolution: {integrity: sha512-+onpORoJnVUuRNZGnQeqqiW6dD1qsNS5plQiUIRaz+F5UUB/cU0WaNzWo62CryFq+5IoJNjhHEWfh6NStwiGDA==}
+  '@sveltejs/sv-utils@0.2.2':
+    resolution: {integrity: sha512-2rmR7HKhqcMR6vz9eoYPPMgVaKLME2+tZGFsxy1QV44HkVrLttXzUrE8GXBHDsd2uMOr945cBnQLs7+DYPNopA==}
 
   '@sveltejs/svelte-json-tree@2.2.1':
     resolution: {integrity: sha512-M8l23/R3y1fI2+RaOzfUzmkysTWWsw/NClUgGpvydl9vXRonPN1/btQQievaNyeWNfUj12tjPfh5yTrXWpaKkg==}
@@ -7681,8 +7681,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  sv@0.15.2:
-    resolution: {integrity: sha512-cJhTiUZ8HowPOm6n7NP9Hl+i5FLsqTVUfUIA6T52ITCWTt8ZKoOSWHzq+NFlv7tWezrXvcWDqIWEvoo1DsxV6Q==}
+  sv@0.15.3:
+    resolution: {integrity: sha512-sNvvuw6aERuwf8KqGKWtYk+H15IM4pc3l+8dwE+0U2s6rshEVg32wJ4RDyQOPgSW0/u6EbH0+uK0TSlJrYBTpA==}
     hasBin: true
 
   svelte-check@4.4.8:
@@ -10239,7 +10239,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@sveltejs/sv-utils@0.2.1': {}
+  '@sveltejs/sv-utils@0.2.2': {}
 
   '@sveltejs/svelte-json-tree@2.2.1(svelte@5.55.5)':
     dependencies:
@@ -14714,9 +14714,9 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  sv@0.15.2:
+  sv@0.15.3:
     dependencies:
-      '@sveltejs/sv-utils': 0.2.1
+      '@sveltejs/sv-utils': 0.2.2
 
   svelte-check@4.4.8(picomatch@4.0.4)(svelte@5.55.5)(typescript@5.9.3):
     dependencies:

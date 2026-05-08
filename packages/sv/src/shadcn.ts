@@ -8,12 +8,7 @@ import {
   type WidgetComponentsApproximation,
 } from "meta";
 
-import {
-  fileExists,
-  getTopLevelFunction,
-  importsAddNamed,
-  transforms,
-} from "./sv-utils.js";
+import { fileExists, getTopLevelFunction, transforms } from "./sv-utils.js";
 import type { Context } from "./model.js";
 
 export const SET_SHADCN_THEME_CONTEXT_FN_NAME = "setShadcnThemeContext";
@@ -117,19 +112,19 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
   sv.file(
     `${directory.lib}/sjsf/shadcn.${language}`,
     transforms.script(({ ast, js, comments }) => {
-      importsAddNamed(ast, {
+      js.imports.addNamed(ast, {
         imports: ["setThemeContext"],
         from: themePackage("shadcn4").name,
       });
 
       if (libImports.length > 0) {
-        importsAddNamed(ast, {
+        js.imports.addNamed(ast, {
           imports: libImports,
           from: shadcnNewYorkThemeSubPath,
         });
       }
       for (const [source, imports] of localImports) {
-        importsAddNamed(ast, {
+        js.imports.addNamed(ast, {
           from: source,
           imports,
         });

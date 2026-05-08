@@ -162,6 +162,11 @@ export const createOptions = (options: AddonSetupOptions) =>
       options: SVELTE_KIT_INTEGRATION_OPTIONS,
       condition: () => options.isKit,
     })
+    .add("demo", {
+      type: "boolean",
+      default: true,
+      question: "Do you want to include a demo?",
+    })
     .build();
 
 type Addon = ReturnType<

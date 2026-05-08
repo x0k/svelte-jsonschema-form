@@ -23,13 +23,7 @@ import {
   formUtilSubPath,
 } from "meta";
 
-import {
-  createReExport,
-  exportsCreateNamed,
-  getTopLevelFunction,
-  importsAddNamed,
-  transforms,
-} from "./sv-utils.js";
+import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
 import {
   isEndsWithPrecompiled,
   withoutPrecompiledSuffix,
@@ -62,42 +56,41 @@ export function defaultsTs({
     extraFieldImports.push(`// import "${extraFieldSubPath(f, true)}";`);
   }
 
-  const transform = transforms.script(({ ast, comments, js }) => {
-    const { validatorWithSuffix } = options;
-    const isAjv = validatorWithSuffix === "ajv8";
+  sv.file(
+    `${directory.lib}/sjsf/defaults.${language}`,
+    transforms.script(({ ast, comments, js }) => {
+      const { validatorWithSuffix } = options;
+      const isAjv = validatorWithSuffix === "ajv8";
 
-    if (isAjv && isTs) {
-      importsAddNamed(ast, {
-        from: formPackage.name,
-        imports: ["ValidatorFactoryOptions"],
-        isType: true,
-      });
-    }
-
-    if (!getTopLevelFunction(ast, "resolver")) {
-      importsAddNamed(ast, {
-        imports: ["getSimpleSchemaType", "isFixedItems"],
-        from: formCoreSubpath,
-      });
-      if (isTs) {
-        importsAddNamed(ast, {
-          imports: ["FormState", "ResolveFieldType"],
+      if (isAjv && isTs) {
+        js.imports.addNamed(ast, {
           from: formPackage.name,
+          imports: ["ValidatorFactoryOptions"],
           isType: true,
         });
       }
 
-      // NOTE: Produces invalid code
-      // `${extraFieldImports.join("\n")}\n
-      const resolverCode = `${LINK_COMMENT}\n${ts(
-        `export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {`,
-        `/**
+      if (!getTopLevelFunction(ast, "resolver")) {
+        js.imports.addNamed(ast, {
+          imports: ["getSimpleSchemaType", "isFixedItems"],
+          from: formCoreSubpath,
+        });
+        if (isTs) {
+          js.imports.addNamed(ast, {
+            imports: ["FormState", "ResolveFieldType"],
+            from: formPackage.name,
+            isType: true,
+          });
+        }
+        const resolverCode = `${extraFieldImports.join("\n")}\n${LINK_COMMENT}\n${ts(
+          `export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {`,
+          `/**
  * @template T
  * @param {import("@sjsf/form").FormState<T>} ctx
  * @returns {import("@sjsf/form").ResolveFieldType}
  */
 export function resolver(_ctx) {`,
-      )}
+        )}
   return ({ schema }) => {
     if (schema.oneOf !== undefined) {
       return "oneOfField";
@@ -112,113 +105,113 @@ export function resolver(_ctx) {`,
     return \`\${type}Field\`;
   };
 }`;
-      js.common.appendFromString(ast, {
-        code: resolverCode,
-        comments,
-      });
-    }
-
-    createReExport(ast, {
-      name: "translation",
-      source: formTranslationSubPath("en"),
-    });
-    createReExport(ast, {
-      name: "merger",
-      imported: "createFormMerger",
-      source: formMergerSubPath("modern"),
-    });
-    createReExport(ast, {
-      name: "idBuilder",
-      imported: "createFormIdBuilder",
-      source: SVELTE_KIT_INTEGRATION_OPTION_ID_BUILDERS[options.sveltekit],
-    });
-
-    const theme = isSubTheme(options.themeOrSubTheme)
-      ? themeParent(options.themeOrSubTheme)
-      : options.themeOrSubTheme;
-    const themeNode = createReExport(ast, {
-      name: "theme",
-      source: themePackage(theme).name,
-    });
-    if (isThemeExtension(theme)) {
-      const originTheme = themeExtensionOrigin(theme);
-      for (const w of themeExtraWidgets(originTheme)) {
-        comments.add(themeNode, {
-          type: "Line",
-          value: ` import "${themeExtraWidgetSubPath(originTheme, w, true)}";`,
+        js.common.appendFromString(ast, {
+          code: resolverCode,
+          comments,
         });
       }
-    }
-    for (const w of themeExtraWidgets(theme)) {
-      comments.add(themeNode, {
-        type: "Line",
-        value: ` import "${themeExtraWidgetSubPath(theme, w, true)}";`,
-      });
-    }
 
-    if (options.icons !== "none") {
       createReExport(ast, {
-        name: "icons",
-        source: iconSetPackage(options.icons).name,
+        name: "translation",
+        source: formTranslationSubPath("en"),
       });
-    }
-
-    if (withoutPrecompiledSuffix(validatorWithSuffix) === "hyperjump") {
-      js.imports.addEmpty(ast, {
-        from: "@hyperjump/json-schema/formats-lite",
+      createReExport(ast, {
+        name: "merger",
+        imported: "createFormMerger",
+        source: formMergerSubPath("modern"),
       });
-      js.imports.addEmpty(ast, { from: "@hyperjump/json-schema/draft-07" });
-    }
-
-    js.imports.addNamed(ast, {
-      imports: ["createFocusOnFirstError"],
-      from: formUtilSubPath("focus-on-first-error"),
-    });
-    const onSubmitErrorExpression = js.common.parseExpression(
-      "createFocusOnFirstError()",
-    );
-    const onSubmitErrorDeclaration = js.variables.declaration(ast, {
-      kind: "const",
-      name: "onSubmitError",
-      value: onSubmitErrorExpression,
-    });
-
-    exportsCreateNamed(ast, {
-      name: "onSubmitError",
-      fallback: onSubmitErrorDeclaration,
-    });
-
-    if (
-      getTopLevelFunction(ast, "validator") ||
-      isEndsWithPrecompiled(validatorWithSuffix) ||
-      !(
-        isJsonSchemaValidator(validatorWithSuffix) ||
-        validatorWithSuffix === "noop"
-      )
-    ) {
-      return;
-    }
-
-    if (isAjv) {
-      importsAddNamed(ast, {
-        from: externalValidatorPackage(validatorWithSuffix).name,
-        imports: ["addFormComponents", "createFormValidator"],
-      });
-      js.imports.addDefault(ast, {
-        from: "ajv-formats",
-        as: "addFormats",
+      createReExport(ast, {
+        name: "idBuilder",
+        imported: "createFormIdBuilder",
+        source: SVELTE_KIT_INTEGRATION_OPTION_ID_BUILDERS[options.sveltekit],
       });
 
-      js.common.appendFromString(ast, {
-        code: isTs
-          ? // NOTE: Svelte ignores the generic type in an arrow function
-            `export function validator<T>(options: ValidatorFactoryOptions) {
+      const theme = isSubTheme(options.themeOrSubTheme)
+        ? themeParent(options.themeOrSubTheme)
+        : options.themeOrSubTheme;
+      const themeNode = createReExport(ast, {
+        name: "theme",
+        source: themePackage(theme).name,
+      });
+      if (isThemeExtension(theme)) {
+        const originTheme = themeExtensionOrigin(theme);
+        for (const w of themeExtraWidgets(originTheme)) {
+          comments.add(themeNode, {
+            type: "Line",
+            value: ` import "${themeExtraWidgetSubPath(originTheme, w, true)}";`,
+          });
+        }
+      }
+      for (const w of themeExtraWidgets(theme)) {
+        comments.add(themeNode, {
+          type: "Line",
+          value: ` import "${themeExtraWidgetSubPath(theme, w, true)}";`,
+        });
+      }
+
+      if (options.icons !== "none") {
+        createReExport(ast, {
+          name: "icons",
+          source: iconSetPackage(options.icons).name,
+        });
+      }
+
+      if (withoutPrecompiledSuffix(validatorWithSuffix) === "hyperjump") {
+        js.imports.addEmpty(ast, {
+          from: "@hyperjump/json-schema/formats-lite",
+        });
+        js.imports.addEmpty(ast, { from: "@hyperjump/json-schema/draft-07" });
+      }
+
+      js.imports.addNamed(ast, {
+        imports: ["createFocusOnFirstError"],
+        from: formUtilSubPath("focus-on-first-error"),
+      });
+      const onSubmitErrorExpression = js.common.parseExpression(
+        "createFocusOnFirstError()",
+      );
+      const onSubmitErrorDeclaration = js.variables.declaration(ast, {
+        kind: "const",
+        name: "onSubmitError",
+        value: onSubmitErrorExpression,
+      });
+
+      js.exports.createNamed(ast, {
+        name: "onSubmitError",
+        fallback: onSubmitErrorDeclaration,
+      });
+
+      if (
+        getTopLevelFunction(ast, "validator") ||
+        isEndsWithPrecompiled(validatorWithSuffix) ||
+        !(
+          isJsonSchemaValidator(validatorWithSuffix) ||
+          validatorWithSuffix === "noop"
+        )
+      ) {
+        return;
+      }
+
+      if (isAjv) {
+        js.imports.addNamed(ast, {
+          from: externalValidatorPackage(validatorWithSuffix).name,
+          imports: ["addFormComponents", "createFormValidator"],
+        });
+        js.imports.addDefault(ast, {
+          from: "ajv-formats",
+          as: "addFormats",
+        });
+
+        js.common.appendFromString(ast, {
+          code: isTs
+            ? // NOTE: Svelte ignores the generic type in an arrow function
+              `export function validator<T>(options: ValidatorFactoryOptions) {
   return createFormValidator<T>({
     ...options,
     ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
   });
 }`
-          : `/**
+            : `/**
  * @template T
  * @param {import("${formPackage.name}").ValidatorFactoryOptions} options
  * @returns {ReturnType<typeof createFormValidator<T>>}
@@ -227,24 +220,17 @@ export const validator = (options) => createFormValidator({
     ...options,
     ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
   });`,
-        comments,
-      });
-    } else {
-      createReExport(ast, {
-        name: "validator",
-        imported: "createFormValidator",
-        source: isInternalValidator(validatorWithSuffix)
-          ? internalValidatorSubPath(validatorWithSuffix)
-          : externalValidatorPackage(validatorWithSuffix).name,
-      });
-    }
-  });
-
-  sv.file(`${directory.lib}/sjsf/defaults.${language}`, (content) => {
-    const transformed = transform(content);
-    return transformed.replace(
-      LINK_COMMENT,
-      `${extraFieldImports.join("\n")}\n${LINK_COMMENT}`,
-    );
-  });
+          comments,
+        });
+      } else {
+        createReExport(ast, {
+          name: "validator",
+          imported: "createFormValidator",
+          source: isInternalValidator(validatorWithSuffix)
+            ? internalValidatorSubPath(validatorWithSuffix)
+            : externalValidatorPackage(validatorWithSuffix).name,
+        });
+      }
+    }),
+  );
 }
