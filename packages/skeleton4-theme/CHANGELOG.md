@@ -1,5 +1,12 @@
 # @sjsf/skeleton4-theme
 
+## 3.6.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@3.6.0
+
 ## 3.5.0
 
 ### Minor Changes

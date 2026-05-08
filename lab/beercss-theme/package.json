@@ -60,7 +60,7 @@
 		}
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^3.5.0"
+		"@sjsf/basic-theme": "workspace:^3.6.0"
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.5.0",

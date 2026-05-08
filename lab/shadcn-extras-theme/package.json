@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf-lab/shadcn-extras-theme",
-	"version": "3.4.0",
+	"version": "3.4.1",
 	"description": "The shadcn-svelte-extras based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"scripts": {
