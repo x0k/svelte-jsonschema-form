@@ -38,6 +38,12 @@ function transformErrors<O>(
   };
 }
 
+function isValid(schema: Schema): boolean {
+  throw new Error(
+    `Method 'isValid' is not implemented for "${JSON.stringify(schema)}"`
+  );
+}
+
 export function createFormValueValidator<T extends StandardSchemaV1>(
   schema: T
 ): FormValueValidator<StandardSchemaV1.InferOutput<T>> {
@@ -63,6 +69,16 @@ export function createAsyncFormValueValidator<T extends StandardSchemaV1>(
   };
 }
 
+export function createFormValidator<T extends StandardSchemaV1>(schema: T) {
+  return Object.assign({ isValid }, createFormValueValidator(schema));
+}
+
+export function createAsyncFormValidator<T extends StandardSchemaV1>(
+  schema: T
+) {
+  return Object.assign({ isValid }, createAsyncFormValueValidator(schema));
+}
+
 interface CombinedProps<Input = unknown, Output = Input>
   extends
     StandardSchemaV1.Props<Input, Output>,
@@ -75,12 +91,6 @@ interface CombinedSpec<Input = unknown, Output = Input> {
 interface AdapterResult<V extends (...args: any) => any> {
   schema: Schema;
   validator: Validator & ReturnType<V>;
-}
-
-function isValid(schema: Schema): boolean {
-  throw new Error(
-    `Methods 'isValid' is not implemented for "${JSON.stringify(schema)}"`
-  );
 }
 
 export function adapt<T extends CombinedSpec>(
@@ -98,10 +108,7 @@ export function adapt<V extends CombinedSpec | StandardSchemaV1>(
     schema: schema["~standard"].jsonSchema.input({
       target: "draft-07",
     }),
-    validator: {
-      ...createFormValueValidator(validator),
-      isValid,
-    },
+    validator: createFormValidator(validator),
   };
 }
 
@@ -120,9 +127,6 @@ export function adaptAsync<V extends CombinedSpec | StandardSchemaV1>(
     schema: schema["~standard"].jsonSchema.input({
       target: "draft-07",
     }),
-    validator: {
-      ...createAsyncFormValueValidator(validator),
-      isValid,
-    },
+    validator: createAsyncFormValidator(validator),
   };
 }
