@@ -83,6 +83,6 @@
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"dependencies": {
-		"@standard-schema/spec": "^1.1.0"
+		"@standard-schema/spec": "catalog:"
 	}
 }

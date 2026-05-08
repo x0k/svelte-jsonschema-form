@@ -76,37 +76,41 @@ export default defineConfig({
       sidebar: [
         {
           label: "Guides",
-          autogenerate: { directory: "guides" },
+          items: [{ autogenerate: { directory: "guides" } }],
         },
         {
           label: "Form",
-          autogenerate: { directory: "form" },
-          collapsed: true,
+          items: [
+            {
+              autogenerate: { directory: "form", collapsed: true },
+            },
+          ],
         },
         {
           label: "Examples",
-          autogenerate: { directory: "examples" },
+          items: [{ autogenerate: { directory: "examples" } }],
         },
         {
           label: "Themes",
-          autogenerate: { directory: "themes" },
+          items: [{ autogenerate: { directory: "themes" } }],
         },
         {
           label: "Validators",
-          autogenerate: { directory: "validators" },
+          items: [{ autogenerate: { directory: "validators" } }],
         },
         {
           label: "Integrations",
-          autogenerate: { directory: "integrations" },
+          items: [{ autogenerate: { directory: "integrations" } }],
         },
         {
           label: "Misc",
-          autogenerate: { directory: "misc" },
+          items: [{ autogenerate: { directory: "misc" } }],
         },
         {
           label: "Changelogs",
-          autogenerate: { directory: "changelogs" },
-          collapsed: true,
+          items: [
+            { autogenerate: { directory: "changelogs", collapsed: true } },
+          ],
         },
         { label: "Documentation v2", link: "/v2/" },
       ],
@@ -123,6 +127,19 @@ export default defineConfig({
     remarkPlugins: [[remarkBasePath, base]],
   },
   vite: {
+    // https://github.com/withastro/astro/issues/16636#issue-4397624688
+    // NOTE: astro@@7.0.0-alpha.0 also has an issue with missing CSS
+    // plugins: [
+    //   {
+    //     name: "fix-rolldown-esbuild-compat",
+    //     enforce: "pre",
+    //     configResolved(config) {
+    //       if (config.optimizeDeps?.esbuildOptions?.plugins) {
+    //         config.optimizeDeps.esbuildOptions.plugins = [];
+    //       }
+    //     },
+    //   },
+    // ],
     optimizeDeps: {
       exclude: ["@jis3r/icons"],
       include: ["bits-ui"],

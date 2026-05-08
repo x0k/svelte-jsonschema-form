@@ -42,7 +42,7 @@
     "@sjsf/zod4-validator": "workspace:*"
   },
   "devDependencies": {
-    "@typescript-eslint/types": "^8.58.0",
+    "@typescript-eslint/types": "catalog:",
     "svelte": "catalog:"
   },
   "exports": {

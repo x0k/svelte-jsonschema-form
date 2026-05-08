@@ -46,7 +46,7 @@
   },
   "peerDependencies": {
     "@sjsf/form": "workspace:^3.5.0",
-    "ata-validator": "^0.12.0"
+    "ata-validator": "^0.12.6"
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",

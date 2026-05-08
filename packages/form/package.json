@@ -64,7 +64,7 @@
     }
   },
   "devDependencies": {
-    "@standard-schema/spec": "^1.1.0",
+    "@standard-schema/spec": "catalog:",
     "@types/json-schema-compare": "^0.2.4",
     "@types/json-schema-merge-allof": "^0.6.5",
     "ajv": "catalog:",

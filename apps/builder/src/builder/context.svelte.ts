@@ -128,7 +128,7 @@ obj.options.title = "Form title";
 obj.properties.push(createObjectProperty(createNode(NodeType.String)));
 
 export class BuilderContext {
-  #dnd = new DragDropManager<DndData>({ plugins: [Feedback.configure({ dropAnimation: null })] });
+  #dnd = new DragDropManager({ plugins: [Feedback.configure({ dropAnimation: null })] });
   #validator = createFormValidator({
     ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv))
   });
@@ -486,7 +486,7 @@ export class BuilderContext {
             return nodeSnapshot;
           }
         },
-        feedback: "clone",
+        plugins: [Feedback.configure({ feedback: "clone" })],
         id
       },
       this.#dnd

@@ -67,7 +67,7 @@
 	"devDependencies": {
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
-		"@svar-ui/svelte-core": "^2.5.1",
+		"@svar-ui/svelte-core": "catalog:",
 		"ajv": "catalog:",
 		"globals": "catalog:",
 		"svelte": "catalog:",
