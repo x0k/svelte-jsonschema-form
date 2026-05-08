@@ -1,5 +1,11 @@
 # @sjsf-lab/shadcn-extras-theme
 
+## 3.4.1
+
+### Patch Changes
+
+- Fix required `runed` version ([`7ad3034`](https://github.com/x0k/svelte-jsonschema-form/commit/7ad30345506ac99e0597e661a1ed41398c3c67d4))
+
 ## 3.4.0
 
 ### Minor Changes

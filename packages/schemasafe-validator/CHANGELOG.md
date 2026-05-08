@@ -1,5 +1,7 @@
 # @sjsf/schemasafe
 
+## 3.6.0
+
 ## 3.5.0
 
 ### Minor Changes

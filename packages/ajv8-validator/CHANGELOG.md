@@ -1,5 +1,11 @@
 # @sjsf/ajv8-validator
 
+## 3.6.0
+
+### Patch Changes
+
+- Pass a generic parameter to a precompiled validator ([#377](https://github.com/x0k/svelte-jsonschema-form/pull/377))
+
 ## 3.5.0
 
 ### Minor Changes
