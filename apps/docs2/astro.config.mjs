@@ -80,9 +80,10 @@ export default defineConfig({
         },
         {
           label: "Form",
+          collapsed: true,
           items: [
             {
-              autogenerate: { directory: "form", collapsed: true },
+              autogenerate: { directory: "form" },
             },
           ],
         },
@@ -108,9 +109,8 @@ export default defineConfig({
         },
         {
           label: "Changelogs",
-          items: [
-            { autogenerate: { directory: "changelogs", collapsed: true } },
-          ],
+          collapsed: true,
+          items: [{ autogenerate: { directory: "changelogs" } }],
         },
         { label: "Documentation v2", link: "/v2/" },
       ],
