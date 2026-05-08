@@ -8,7 +8,6 @@ import {
 import { neverError, createValidator, type Context } from "./model.js";
 import {
   addToDemoPage,
-  importsAddNamed,
   transforms,
   type NamedImportOptions,
   type NamespaceImportOptions,
@@ -46,7 +45,7 @@ export function pageSvelte(ctx: Context) {
     transforms.svelteScript({ language }, ({ ast, js, svelte }) => {
       const form = createForm(ctx);
 
-      importsAddNamed(ast.instance.content, {
+      js.imports.addNamed(ast.instance.content, {
         imports: form.formPackageImports,
         from: formPackage.name,
       });
@@ -55,7 +54,7 @@ export function pageSvelte(ctx: Context) {
         if ("as" in i) {
           js.imports.addNamespace(ast.instance.content, i);
         } else {
-          importsAddNamed(ast.instance.content, i);
+          js.imports.addNamed(ast.instance.content, i);
         }
       }
 

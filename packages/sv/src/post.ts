@@ -6,7 +6,7 @@ import {
   POST_JSON_SCHEMA_PATH,
   type Context,
 } from "./model.js";
-import { importsAddNamed, transforms, type AstTypes } from "./sv-utils.js";
+import { transforms, type AstTypes } from "./sv-utils.js";
 
 const schema = {
   title: "Post",
@@ -53,12 +53,12 @@ export function postTs({
           validatorWithSuffix === "noop"
         ) {
           if (isTs) {
-            importsAddNamed(ast, {
+            js.imports.addNamed(ast, {
               isType: true,
               imports: ["FromSchema"],
               from: extraPackage("jsonSchemaToTs").name,
             });
-            importsAddNamed(ast, {
+            js.imports.addNamed(ast, {
               isType: true,
               imports: ["Schema"],
               from: formPackage.name,
@@ -151,7 +151,7 @@ export function postTs({
           }
         } else if (validatorWithSuffix === "standard-schema") {
           if (isTs) {
-            importsAddNamed(ast, {
+            js.imports.addNamed(ast, {
               imports: ["StandardSchemaV1", "StandardJSONSchemaV1"],
               from: "@standard-schema/spec",
               isType: true,

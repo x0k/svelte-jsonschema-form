@@ -1,87 +1,8 @@
 // This file is a separate entry point (see tsdown.config.js) so that
-import {
-  transforms,
-  type AstTypes,
-  type SvelteAst,
-  Walker,
-} from "@sveltejs/sv-utils";
+import { transforms, type AstTypes, type SvelteAst } from "@sveltejs/sv-utils";
 
 // the addon's utilities are published as their own module on npm.
 export * from "@sveltejs/sv-utils";
-
-export function importsAddNamed(
-  node: AstTypes.Program,
-  options: {
-    imports: Record<string, string> | string[];
-    from: string;
-    isType?: boolean;
-  },
-): void {
-  const o_imports = Array.isArray(options.imports)
-    ? Object.fromEntries(options.imports.map((n) => [n, n]))
-    : options.imports;
-
-  const specifiers = Object.entries(o_imports).map(([key, value]) => {
-    const specifier: AstTypes.ImportSpecifier = {
-      type: "ImportSpecifier",
-      imported: {
-        type: "Identifier",
-        name: key,
-      },
-      local: {
-        type: "Identifier",
-        name: value,
-      },
-    };
-    return specifier;
-  });
-
-  const expectedImportKind = options.isType ? "type" : "value";
-  let importDecl: AstTypes.ImportDeclaration | undefined;
-
-  Walker.walk(node as AstTypes.Node, null, {
-    ImportDeclaration(declaration: AstTypes.ImportDeclaration) {
-      if (
-        declaration.source.value === options.from &&
-        declaration.specifiers &&
-        (declaration.importKind ?? "value") === expectedImportKind // <-- also match on kind
-      ) {
-        importDecl = declaration;
-      }
-    },
-  });
-
-  // merge the specifiers into a single import declaration if they share a source
-  if (importDecl) {
-    specifiers.forEach((specifierToAdd) => {
-      const sourceExists = importDecl?.specifiers?.every(
-        (existingSpecifier) =>
-          existingSpecifier.type === "ImportSpecifier" &&
-          existingSpecifier.local?.name !== specifierToAdd.local?.name &&
-          existingSpecifier.imported.type === "Identifier" &&
-          specifierToAdd.imported.type === "Identifier" &&
-          existingSpecifier.imported.name !== specifierToAdd.imported.name,
-      );
-      if (sourceExists) {
-        importDecl?.specifiers?.push(specifierToAdd);
-      }
-    });
-    return;
-  }
-
-  const expectedImportDeclaration: AstTypes.ImportDeclaration = {
-    type: "ImportDeclaration",
-    source: {
-      type: "Literal",
-      value: options.from,
-    },
-    specifiers,
-    attributes: [],
-    importKind: expectedImportKind,
-  };
-
-  node.body.unshift(expectedImportDeclaration);
-}
 
 export interface NamedImportOptions {
   /**
@@ -165,36 +86,6 @@ export function createReExport(
   return namedExport;
 }
 
-export function exportsCreateNamed(
-  node: AstTypes.Program,
-  options: { name: string; fallback: AstTypes.VariableDeclaration },
-): AstTypes.ExportNamedDeclaration {
-  const namedExports = node.body.filter(
-    (item) => item.type === "ExportNamedDeclaration",
-  );
-  let namedExport = namedExports.find((exportNode) => {
-    if (!exportNode.declaration || !("declarations" in exportNode.declaration))
-      return false;
-    const variableDeclaration =
-      exportNode.declaration as AstTypes.VariableDeclaration;
-    const variableDeclarator = variableDeclaration
-      .declarations[0] as AstTypes.VariableDeclarator;
-    const identifier = variableDeclarator.id as AstTypes.Identifier;
-    return identifier.name === options.name;
-  });
-
-  if (namedExport) return namedExport;
-
-  namedExport = {
-    type: "ExportNamedDeclaration",
-    declaration: options.fallback,
-    specifiers: [],
-    attributes: [],
-  };
-  node.body.push(namedExport);
-  return namedExport;
-}
-
 export function getTopLevelFunction(node: AstTypes.Program, name: string) {
   return node.body.find(
     (
@@ -232,7 +123,7 @@ export function getTopLevelFunction(node: AstTypes.Program, name: string) {
 
 // https://github.com/sveltejs/cli/blob/19ed7a0f940816a63c1c7f963a04bb72d7b19a8f/packages/sv/src/addons/common.ts#L95
 export function addToDemoPage(path: string, language: "ts" | "js") {
-  return transforms.svelteScript({ language }, ({ ast, svelte }) => {
+  return transforms.svelteScript({ language }, ({ ast, svelte, js }) => {
     for (const node of ast.fragment.nodes) {
       if (node.type === "RegularElement") {
         const hrefAttribute = node.attributes.find(
@@ -252,7 +143,7 @@ export function addToDemoPage(path: string, language: "ts" | "js") {
       }
     }
 
-    importsAddNamed(ast.instance.content, {
+    js.imports.addNamed(ast.instance.content, {
       imports: ["resolve"],
       from: "$app/paths",
     });
