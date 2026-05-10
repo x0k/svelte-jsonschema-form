@@ -1243,6 +1243,68 @@ describe("omitExtraData", () => {
         omitExtraData(validator, defaultMerger, schema, ["a", 1, "b"])
       ).toEqual(["a", 1, "b"]);
     });
+
+    it("should not treat oneOf properties as additionalProperties", () => {
+      validator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                {
+                  properties: { kind: { const: "a" }, bar: { type: "string" } },
+                },
+                { anyOf: [{ required: ["kind"] }, { required: ["bar"] }] },
+              ],
+            },
+            value: { kind: "a", foo: "hello", extra: "keep me" },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  properties: { kind: { const: "b" }, foo: { type: "string" } },
+                },
+                { anyOf: [{ required: ["kind"] }, { required: ["foo"] }] },
+              ],
+            },
+            value: { kind: "a", foo: "hello", extra: "keep me" },
+            result: false,
+          },
+        ],
+      });
+      const schema: Schema = {
+        type: "object",
+        oneOf: [
+          {
+            properties: {
+              kind: { const: "a" },
+              bar: { type: "string" },
+            },
+          },
+          {
+            properties: {
+              kind: { const: "b" },
+              foo: { type: "string" },
+            },
+          },
+        ],
+        additionalProperties: {
+          type: "string",
+        },
+      };
+
+      expect(
+        omitExtraData(validator, defaultMerger, schema, {
+          kind: "a",
+          foo: "hello",
+          extra: "keep me",
+        })
+      ).toEqual({
+        kind: "a",
+        extra: "keep me",
+      });
+    });
   });
 
   describe("not", () => {
