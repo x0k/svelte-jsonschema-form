@@ -6,6 +6,8 @@ import type {
 } from "@sjsf/form";
 import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
 import type { ValidationResult as AtaValidationResult } from "ata-validator";
+
+import type { ValueCloner } from "../validator.js";
 import {
   createFormErrorsTransformer,
   transformFieldErrors,
@@ -20,7 +22,7 @@ export type ValidateFunctions = {
   [key: string]: CompiledValidator;
 };
 
-export interface ValidatorOptions {
+export interface ValidatorOptions extends ValueCloner {
   validateFunctions: ValidateFunctions;
   augmentSuffix?: string;
 }
@@ -57,13 +59,13 @@ export function createValidator(options: ValidatorOptions): Validator {
         return schema;
       }
       const validator = getValidator(options, schema);
-      return validator(formValue).valid;
+      return validator(options.cloneValue(formValue)).valid;
     },
   };
 }
 
 export interface FormValueValidatorOptions
-  extends ValidatorOptions, ErrorsTransformerOptions {}
+  extends ValidatorOptions, ErrorsTransformerOptions, ValueCloner {}
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions,
@@ -72,7 +74,7 @@ export function createFormValueValidator<T>(
   return {
     validateFormValue(rootSchema, formValue) {
       const validator = getValidator(options, rootSchema);
-      const { valid, errors } = validator(formValue);
+      const { valid, errors } = validator(options.cloneValue(formValue));
       if (valid) {
         return {
           value: formValue as T,
@@ -83,7 +85,8 @@ export function createFormValueValidator<T>(
   };
 }
 
-export interface FieldValueValidatorOptions extends ValidatorOptions {}
+export interface FieldValueValidatorOptions
+  extends ValidatorOptions, ValueCloner {}
 
 export function createFieldValueValidator(
   options: FieldValueValidatorOptions,
@@ -91,7 +94,7 @@ export function createFieldValueValidator(
   return {
     validateFieldValue(field, fieldValue) {
       const validator = getValidator(options, field.schema);
-      const { valid, errors } = validator(fieldValue);
+      const { valid, errors } = validator(options.cloneValue(fieldValue));
       if (valid) {
         return [];
       }
@@ -106,9 +109,13 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createFormValidatorFactory<T>(vOptions: ValidatorOptions) {
+export function createFormValidatorFactory<T>({
+  cloneValue = structuredClone,
+  ...vOptions
+}: Omit<ValidatorOptions, keyof ValueCloner> & Partial<ValueCloner>) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
     const full = {
+      cloneValue,
       ...vOptions,
       ...options,
     };
