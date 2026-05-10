@@ -12652,7 +12652,7 @@ exports[`@sjsf/sv 'validator__ata' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf-lab/ata-validator": "^3.0.0",
+		"@sjsf-lab/ata-validator": "^3.1.0",
 		"@sjsf/basic-theme": "^3.6.0",
 		"@sjsf/form": "^3.5.0",
 		"ata-validator": "^0.13.1",
@@ -12855,7 +12855,7 @@ exports[`@sjsf/sv 'validator__ata' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf-lab/ata-validator": "^3.0.0",
+    "@sjsf-lab/ata-validator": "^3.1.0",
     "@sjsf/basic-theme": "^3.6.0",
     "@sjsf/form": "^3.5.0",
     "ata-validator": "^0.13.1",
@@ -13160,7 +13160,7 @@ exports[`@sjsf/sv 'validator__ata-precompiled' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf-lab/ata-validator": "^3.0.0",
+		"@sjsf-lab/ata-validator": "^3.1.0",
 		"@sjsf/basic-theme": "^3.6.0",
 		"@sjsf/form": "^3.5.0",
 		"ata-validator": "^0.13.1",
@@ -13432,7 +13432,7 @@ exports[`@sjsf/sv 'validator__ata-precompiled' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf-lab/ata-validator": "^3.0.0",
+    "@sjsf-lab/ata-validator": "^3.1.0",
     "@sjsf/basic-theme": "^3.6.0",
     "@sjsf/form": "^3.5.0",
     "ata-validator": "^0.13.1",
