@@ -55,8 +55,8 @@ catalogs:
       specifier: ^3.0.1
       version: 3.0.1
     ata-validator:
-      specifier: ^0.12.6
-      version: 0.12.6
+      specifier: ^0.13.2
+      version: 0.13.2
     autoprefixer:
       specifier: ^10.5.0
       version: 10.5.0
@@ -604,7 +604,7 @@ importers:
         version: 2.1.12
       ata-validator:
         specifier: 'catalog:'
-        version: 0.12.6
+        version: 0.13.2(yaml@2.8.3)
       beercss:
         specifier: 'catalog:'
         version: 4.0.21
@@ -724,7 +724,7 @@ importers:
         version: 3.0.1(ajv@8.20.0)
       ata-validator:
         specifier: 'catalog:'
-        version: 0.12.6
+        version: 0.13.2(yaml@2.8.3)
       codemirror:
         specifier: ^6.0.2
         version: 6.0.2
@@ -1654,7 +1654,7 @@ importers:
         version: link:../../packages/form
       ata-validator:
         specifier: 'catalog:'
-        version: 0.12.6
+        version: 0.13.2(yaml@2.8.3)
       svelte:
         specifier: 'catalog:'
         version: 5.55.5
@@ -5216,10 +5216,15 @@ packages:
     engines: {node: '>=22.12.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
-  ata-validator@0.12.6:
-    resolution: {integrity: sha512-McMp9/VCCuRT1u50ROS6P793rRD204er6E2RWc3fs0Ddk0rN9iO6IP+vqjJKFgxdrCSQPqY97oBk8uTwqUzX3Q==}
+  ata-validator@0.13.2:
+    resolution: {integrity: sha512-/nmbhE5eJzqqPUFG+41MRYoRjToikIb2kAe3JQTzjsU0HulviVMit4op6HvN9eLtC/nTEHYquYw8f/l1XIuwEQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
+    peerDependencies:
+      yaml: ^2.0.0
+    peerDependenciesMeta:
+      yaml:
+        optional: true
 
   atomico@1.79.2:
     resolution: {integrity: sha512-mshhLRMeIltNYbnQnqgnrvJ/uDa8XDfTQcjw3ymOygQqwHIQ4Sp0LcNYMCbACkV3DtV+eDXb9szwU4qMUuGwYQ==}
@@ -11646,11 +11651,13 @@ snapshots:
       - uploadthing
       - yaml
 
-  ata-validator@0.12.6:
+  ata-validator@0.13.2(yaml@2.8.3):
     dependencies:
       node-addon-api: 8.7.0
       node-api-headers: 1.8.0
       pkg-prebuilds: 1.0.0
+    optionalDependencies:
+      yaml: 2.8.3
 
   atomico@1.79.2: {}
 
