@@ -1,5 +1,12 @@
 # playground2
 
+## 1.6.1
+
+### Patch Changes
+
+- Updated dependencies [[`639a816`](https://github.com/x0k/svelte-jsonschema-form/commit/639a816861c1d6082de8e56145d0e8298aac9872), [`639a816`](https://github.com/x0k/svelte-jsonschema-form/commit/639a816861c1d6082de8e56145d0e8298aac9872)]:
+  - @sjsf-lab/ata-validator@3.1.0
+
 ## 1.6.0
 
 ### Minor Changes
