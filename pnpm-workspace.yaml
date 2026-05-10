@@ -21,7 +21,7 @@ catalog:
   "@types/pikaday": "^1.7.10"
   ajv: ^8.20.0
   ajv-formats: ^3.0.1
-  ata-validator: ^0.12.6
+  ata-validator: ^0.13.2
   autoprefixer: ^10.5.0
   beercss: "4.0.21"
   bits-ui: 2.18.1

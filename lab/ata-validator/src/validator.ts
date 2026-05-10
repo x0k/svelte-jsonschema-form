@@ -1,6 +1,7 @@
 import type {
   Config,
   FieldValueValidator,
+  FormValue,
   FormValueValidator,
   Schema,
   Validator,
@@ -22,6 +23,11 @@ import {
   transformFieldErrors,
   type ErrorsTransformerOptions,
 } from "./errors.js";
+
+// https://github.com/rjsf-team/react-jsonschema-form/pull/5063#issuecomment-4413555901
+export interface ValueCloner {
+  cloneValue: (value: FormValue) => FormValue;
+}
 
 export type AtaValidatorFactory = (schema: Schema) => AtaValidator;
 
@@ -87,12 +93,13 @@ export function createFieldSchemaValidatorFactory(
   return (config: Config) => makeValidator(config.schema);
 }
 
-export interface ValidatorOptions {
+export interface ValidatorOptions extends ValueCloner {
   createSchemaValidator: (schema: Schema, rootSchema: Schema) => AtaValidator;
 }
 
 export function createValidator({
   createSchemaValidator,
+  cloneValue,
 }: ValidatorOptions): Validator {
   return {
     isValid(schemaDef, rootSchema, formValue) {
@@ -100,13 +107,13 @@ export function createValidator({
         return schemaDef;
       }
       const validator = createSchemaValidator(schemaDef, rootSchema);
-      return validator.isValidObject(formValue);
+      return validator.isValidObject(cloneValue(formValue));
     },
   };
 }
 
 export interface FormValueValidatorOptions
-  extends ValidatorOptions, ErrorsTransformerOptions {}
+  extends ValidatorOptions, ErrorsTransformerOptions, ValueCloner {}
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions,
@@ -115,7 +122,9 @@ export function createFormValueValidator<T>(
   return {
     validateFormValue(rootSchema, formValue) {
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
-      const { valid, errors } = validator.validate(formValue);
+      const { valid, errors } = validator.validate(
+        options.cloneValue(formValue),
+      );
       if (valid) {
         return {
           value: formValue as T,
@@ -126,17 +135,18 @@ export function createFormValueValidator<T>(
   };
 }
 
-export interface FieldValueValidatorOptions {
+export interface FieldValueValidatorOptions extends ValueCloner {
   compileFieldSchema: (config: Config) => AtaValidator;
 }
 
 export function createFieldValueValidator({
   compileFieldSchema,
+  cloneValue,
 }: FieldValueValidatorOptions): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
       const validator = compileFieldSchema(field);
-      const { valid, errors } = validator.validate(fieldValue);
+      const { valid, errors } = validator.validate(cloneValue(fieldValue));
       if (valid) {
         return [];
       }
@@ -163,6 +173,7 @@ export function createFormValidator<T>({
     factory,
     fieldsValidatorsCache,
   ),
+  cloneValue = structuredClone,
   ...rest
 }: Partial<FormValidatorOptions> & {
   factory?: AtaValidatorFactory;
@@ -171,6 +182,7 @@ export function createFormValidator<T>({
 } = {}) {
   const options: FormValidatorOptions = {
     ...rest,
+    cloneValue,
     createSchemaValidator,
     compileFieldSchema,
   };
