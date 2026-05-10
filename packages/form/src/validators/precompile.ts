@@ -33,6 +33,7 @@ export interface SchemaMeta {
 
 export type SubSchemas = Trie<Path[number], SchemaMeta>;
 
+/** @deprecated */
 export const DEFAULT_AUGMENT_SUFFIX = "ag";
 
 export function createIdFactory() {
@@ -150,17 +151,33 @@ export function insertSubSchemaIds(
   };
 }
 
+export type IdAugmentationType = "combination";
+
+type IdAugmentations = Record<IdAugmentationType, (id: string) => string>;
+
 export interface FragmentSchemaOptions {
   schema: Schema;
   subSchemas: SubSchemas;
+  /** @deprecated use `idAugmentations` property instead */
   augmentSuffix?: string;
+  idAugmentations?: Partial<IdAugmentations>;
 }
+
+const DEFAULT_ID_AUGMENTATIONS: IdAugmentations = {
+  combination: (id) => id + DEFAULT_AUGMENT_SUFFIX,
+};
 
 export function fragmentSchema({
   schema,
   subSchemas,
   augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
+  idAugmentations,
 }: FragmentSchemaOptions): Schema[] {
+  const augmentations: IdAugmentations = {
+    ...DEFAULT_ID_AUGMENTATIONS,
+    combination: (id) => id + augmentSuffix,
+    ...idAugmentations,
+  };
   const schemas: Schema[] = [];
   const rootId = schema.$id!;
   schemas.push(
@@ -176,7 +193,7 @@ export function fragmentSchema({
         };
         if (meta.combinationBranch && isSchemaWithProperties(copy)) {
           const augmentedSchema: Schema = createAugmentSchema(copy);
-          augmentedSchema.$id = meta.id + augmentSuffix;
+          augmentedSchema.$id = augmentations.combination(meta.id);
           if (!copy.required?.length) {
             if (augmentedSchema.allOf?.[0] === undefined) {
               throw new Error(
@@ -196,4 +213,38 @@ export function fragmentSchema({
     }) as Schema
   );
   return schemas;
+}
+
+export interface ValidatorsRegistry<F> {
+  has(id: string): boolean;
+  get(id: string): F | undefined;
+}
+
+export interface ValidatorRetrieverOption<F> {
+  registry: ValidatorsRegistry<F>;
+  idAugmentations?: Partial<IdAugmentations>;
+}
+
+export function createValidatorRetriever<F>({
+  registry,
+  idAugmentations,
+}: ValidatorRetrieverOption<F>) {
+  const augmentations: IdAugmentations = {
+    ...DEFAULT_ID_AUGMENTATIONS,
+    ...idAugmentations,
+  };
+  return ({ $id: id, allOf }: Schema) => {
+    if (id === undefined) {
+      const firstAllOfItem = allOf?.[0];
+      if (
+        typeof firstAllOfItem === "object" &&
+        firstAllOfItem.$id !== undefined
+      ) {
+        id = augmentations.combination(firstAllOfItem.$id);
+      } else {
+        throw new Error("Schema id not found");
+      }
+    }
+    return registry.get(id);
+  };
 }
