@@ -2,4 +2,4 @@
 "@sjsf/form": minor
 ---
 
-Export `createValidatorRetriever` from `@sjsf/form/validators/precompile`
+Export `createValidatorRetriever` and `fromValidators` functions from `@sjsf/form/validators/precompile`

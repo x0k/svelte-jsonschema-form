@@ -216,7 +216,6 @@ export function fragmentSchema({
 }
 
 export interface ValidatorsRegistry<F> {
-  has(id: string): boolean;
   get(id: string): F | undefined;
 }
 
@@ -245,6 +244,24 @@ export function createValidatorRetriever<F>({
         throw new Error("Schema id not found");
       }
     }
-    return registry.get(id);
+    const validator = registry.get(id);
+    if (validator === undefined) {
+      throw new Error(`Validator with id "${id}" not found`);
+    }
+    return validator;
   };
+}
+
+// createValidatorResolver ?
+// validatorRetrieverFromRecord ?
+export function fromValidators<F>(
+  validators: Record<string, F>,
+  options?: Partial<Omit<ValidatorRetrieverOption<F>, "registry">>
+) {
+  return createValidatorRetriever({
+    registry: {
+      get: (id) => validators[id],
+    },
+    ...options,
+  });
 }
