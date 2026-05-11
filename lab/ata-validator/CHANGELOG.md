@@ -1,5 +1,11 @@
 # @sjsf-lab/ata-validator
 
+## 3.1.1
+
+### Patch Changes
+
+- Fix `cloneValue` implementation for proxied values ([#384](https://github.com/x0k/svelte-jsonschema-form/pull/384))
+
 ## 3.1.0
 
 ### Minor Changes
