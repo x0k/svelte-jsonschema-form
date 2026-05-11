@@ -1,5 +1,12 @@
 # meta
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`8955fa5`](https://github.com/x0k/svelte-jsonschema-form/commit/8955fa51295ffd332012008683967e68a2c7051e)]:
+  - @sjsf-lab/ata-validator@3.1.1
+
 ## 1.0.2
 
 ### Patch Changes
