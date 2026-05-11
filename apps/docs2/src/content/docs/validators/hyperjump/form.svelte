@@ -1,5 +1,6 @@
 <script lang="ts">
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
+  import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
   import { createFormValidatorFactory } from "@sjsf-lab/hyperjump-validator/precompile";
   import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -14,7 +15,22 @@
   const form = createForm({
     ...defaults,
     schema,
-    validator: createFormValidatorFactory({ ast, localization }),
+    validator: createFormValidatorFactory({
+      validatorRetriever: createValidatorRetriever({
+        registry: {
+          get(id) {
+            const schemaUri = `${id}#`;
+            return schemaUri in ast
+              ? {
+                  schemaUri,
+                  ast,
+                }
+              : undefined;
+          },
+        },
+      }),
+      localization,
+    }),
     fieldsValidationMode,
     resolver,
   });
