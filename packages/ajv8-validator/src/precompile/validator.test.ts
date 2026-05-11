@@ -1,5 +1,6 @@
 import {
   fragmentSchema,
+  fromValidators,
   insertSubSchemaIds,
 } from "@sjsf/form/validators/precompile";
 import standaloneCode from "ajv/dist/standalone/index.js";
@@ -50,7 +51,9 @@ formValueValidatorTests((options) => ({
     const code = outputFiles[0]!.text;
 
     const validateFunctions = await importModule<ValidateFunctions>(code);
-    const factory = createFormValidatorFactory({ validateFunctions });
+    const factory = createFormValidatorFactory({
+      validatorRetriever: fromValidators(validateFunctions),
+    });
     const v = factory(options);
     return v.validateFormValue(patch.schema, formValue);
   },

@@ -1,5 +1,6 @@
 import {
   fragmentSchema,
+  fromValidators,
   insertSubSchemaIds,
 } from "@sjsf/form/validators/precompile";
 import { formValueValidatorTests, importModule } from "validator-testing";
@@ -29,7 +30,9 @@ formValueValidatorTests((options) => ({
     );
     const code = `export const [${schemas.map((s) => s.$id).join(", ")}] = ${validate.toModule()}`;
     const validateFunctions = await importModule<ValidateFunctions>(code);
-    const factory = createFormValidatorFactory({ validateFunctions });
+    const factory = createFormValidatorFactory({
+      validatorRetriever: fromValidators(validateFunctions),
+    });
     const v = factory(options);
     return v.validateFormValue(patch.schema, formValue);
   },

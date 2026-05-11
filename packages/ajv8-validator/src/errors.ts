@@ -6,7 +6,6 @@ import {
   type FormValue,
   type Schema,
   type UiSchemaRoot,
-  type ValidationResult,
 } from "@sjsf/form";
 import { pathFromLocation, type Path } from "@sjsf/form/core";
 import {
@@ -15,6 +14,8 @@ import {
   type ErrorObject,
   type ValidateFunction,
 } from "ajv";
+
+import type { CompiledValidateFunction } from "./internals.js";
 
 export interface ErrorsTransformerOptions {
   uiSchema?: UiSchemaRoot;
@@ -25,7 +26,7 @@ function createInstancePath(
     params: { missingProperty, propertyName: propertyNameParam },
     propertyName = propertyNameParam,
   }: ErrorObject,
-  path: Path
+  path: Path,
 ) {
   let id = path;
   id = missingProperty !== undefined ? path.concat(missingProperty) : id;
@@ -40,8 +41,8 @@ function errorObjectToMessage(
   { params: { missingProperty }, parentSchema, message }: ErrorObject,
   getPropertyTitle: (
     missingProperty: string,
-    parentSchema?: Schema
-  ) => string | undefined
+    parentSchema?: Schema,
+  ) => string | undefined,
 ): string {
   if (!message) {
     return "";
@@ -71,7 +72,7 @@ export function createFormErrorsTransformer({
             (missingProperty, parentSchema) => {
               const uiSchemaTitle = getRootUiSchemaTitleByPath(
                 uiSchema,
-                path.concat(missingProperty)
+                path.concat(missingProperty),
               );
               if (uiSchemaTitle !== undefined) {
                 return uiSchemaTitle;
@@ -81,7 +82,7 @@ export function createFormErrorsTransformer({
                 return prop.title;
               }
               return undefined;
-            }
+            },
           ),
         };
       }),
@@ -108,10 +109,10 @@ export type TransformInput<T> = (data: FormValue) => T;
 export type TransformErrors<R> = (errors: ErrorObject[], data: FormValue) => R;
 
 export function validateAndTransformErrors<T, R>(
-  validate: ValidateFunction,
+  validate: ValidateFunction | CompiledValidateFunction,
   data: FormValue,
   transformData: TransformInput<T>,
-  transformErrors: TransformErrors<R>
+  transformErrors: TransformErrors<R>,
 ): T | R {
   validate(data);
   const errors = validate.errors;
@@ -126,7 +127,7 @@ export async function validateAndTransformErrorsAsync<T, R>(
   validate: AsyncValidateFunction,
   data: FormValue,
   transformInput: TransformInput<T>,
-  transformErrors: TransformErrors<R>
+  transformErrors: TransformErrors<R>,
 ): Promise<T | R> {
   try {
     await validate(data);

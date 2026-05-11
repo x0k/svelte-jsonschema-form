@@ -5,6 +5,7 @@ import {
 } from "@hyperjump/json-schema/draft-07";
 import { compile, getSchema } from "@hyperjump/json-schema/experimental";
 import {
+  createValidatorRetriever,
   fragmentSchema,
   insertSubSchemaIds,
 } from "@sjsf/form/validators/precompile";
@@ -36,7 +37,22 @@ formValueValidatorTests((options) => ({
     }
     try {
       const { ast } = await compile(await getSchema(toId(0)));
-      const factory = createFormValidatorFactory({ ast, localization });
+      const factory = createFormValidatorFactory({
+        localization,
+        validatorRetriever: createValidatorRetriever({
+          registry: {
+            get: (id) => {
+              const schemaUri = `${id}#`;
+              return schemaUri in ast
+                ? {
+                    schemaUri,
+                    ast,
+                  }
+                : undefined;
+            },
+          },
+        }),
+      });
       const v = factory(options);
       return v.validateFormValue(patch.schema, formValue);
     } finally {

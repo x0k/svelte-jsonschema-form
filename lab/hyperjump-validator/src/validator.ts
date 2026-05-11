@@ -7,9 +7,12 @@ import type {
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
 import {
   createContext,
+  createRetriever,
   evaluateCompiledSchema,
   validate,
+  type CoreValidatorOptions,
   type ValidatorOptions,
+  type ValueToJSON,
 } from "./model.js";
 
 export function createValidator(options: ValidatorOptions): Validator {
@@ -24,7 +27,7 @@ export function createValidator(options: ValidatorOptions): Validator {
   };
 }
 
-export interface FormValueValidatorOptions extends ValidatorOptions {}
+export type FormValueValidatorOptions = ValidatorOptions;
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions,
@@ -38,8 +41,10 @@ export function createFormValueValidator<T>(
   };
 }
 
+export type FieldValueValidatorOptions = ValidatorOptions;
+
 export function createFieldValueValidator(
-  options: FormValidatorOptions,
+  options: FieldValueValidatorOptions,
 ): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
@@ -50,13 +55,27 @@ export function createFieldValueValidator(
   };
 }
 
-export interface FormValidatorOptions extends FormValueValidatorOptions {}
+export type FormValidatorOptions = ValidatorOptions &
+  FormValueValidatorOptions &
+  FieldValueValidatorOptions;
 
-export function createFormValidatorFactory<T>(vOptions: ValidatorOptions) {
+export function createFormValidatorFactory<T>(
+  vOptions: CoreValidatorOptions & Partial<ValueToJSON>,
+) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
     const full: FormValidatorOptions = {
-      ...vOptions,
       ...options,
+      ...vOptions,
+      validatorRetriever:
+        vOptions.validatorRetriever ?? createRetriever(vOptions),
+      valueToJSON:
+        vOptions.valueToJSON ??
+        ((v) =>
+          v === undefined || v === null
+            ? null
+            : typeof v === "object"
+              ? JSON.parse(JSON.stringify(v))
+              : v),
     };
     return Object.assign(
       createValidator(full),
