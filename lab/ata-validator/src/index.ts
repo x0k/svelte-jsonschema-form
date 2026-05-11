@@ -1,1 +1,1 @@
-export * from "./validator.js";
+export * from "./validator.svelte.js";

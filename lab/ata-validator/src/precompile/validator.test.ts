@@ -5,11 +5,11 @@ import {
 import { Validator } from "ata-validator";
 import { formValueValidatorTests, importModule } from "validator-testing";
 
-import { DEFAULT_VALIDATOR_OPTIONS } from "../validator.js";
+import { DEFAULT_VALIDATOR_OPTIONS } from "../validator.svelte.js";
 import {
   createFormValidatorFactory,
   type ValidateFunctions,
-} from "./validator.js";
+} from "./validator.svelte.js";
 
 formValueValidatorTests((options) => ({
   isValid: () => {
@@ -28,7 +28,6 @@ formValueValidatorTests((options) => ({
         `export const [${schemas.map((s) => s.$id).join(", ")}]`,
       )
       .slice(0, -50);
-    console.log(bundle);
     const validateFunctions = await importModule<ValidateFunctions>(bundle);
     const factory = createFormValidatorFactory({ validateFunctions });
     const v = factory(options);
