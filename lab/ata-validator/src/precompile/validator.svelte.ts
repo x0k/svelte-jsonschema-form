@@ -7,7 +7,7 @@ import type {
 import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
 import type { ValidationResult as AtaValidationResult } from "ata-validator";
 
-import type { ValueCloner } from "../validator.js";
+import type { ValueCloner } from "../validator.svelte.js";
 import {
   createFormErrorsTransformer,
   transformFieldErrors,
@@ -110,7 +110,7 @@ export interface FormValidatorOptions
     FieldValueValidatorOptions {}
 
 export function createFormValidatorFactory<T>({
-  cloneValue = structuredClone,
+  cloneValue = (value) => $state.snapshot(value),
   ...vOptions
 }: Omit<ValidatorOptions, keyof ValueCloner> & Partial<ValueCloner>) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {

@@ -173,7 +173,7 @@ export function createFormValidator<T>({
     factory,
     fieldsValidatorsCache,
   ),
-  cloneValue = structuredClone,
+  cloneValue = (value) => $state.snapshot(value),
   ...rest
 }: Partial<FormValidatorOptions> & {
   factory?: AtaValidatorFactory;
