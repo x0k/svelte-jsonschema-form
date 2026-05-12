@@ -18,6 +18,11 @@ import {
   getDiscriminatorFieldFromSchema,
 } from "@/core/index.js";
 
+// WARN: Any change to this function must be synchronized with `validators/precompile`
+export function allowAdditionalProperties(s: Schema): Schema {
+  return { ...s, additionalProperties: true };
+}
+
 export function omitExtraData(
   validator: Validator,
   merger: Merger,
@@ -156,16 +161,9 @@ export function omitExtraData(
       rootSchema,
       source,
       oneOf.map((d) =>
-        isSchemaObject(d)
-          ? d.additionalProperties === false
-            ? {
-                ...d,
-                additionalProperties: true,
-              }
-            : d
+        isSchemaObject(d) && d.additionalProperties === false
+          ? allowAdditionalProperties(d)
           : d
-            ? {}
-            : { not: {} }
       ),
       0,
       getDiscriminatorFieldFromSchema(schema)

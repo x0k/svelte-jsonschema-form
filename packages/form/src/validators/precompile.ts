@@ -25,6 +25,7 @@ import {
   type FieldsValidationMode,
   type Schema,
 } from "@/form/main.js";
+import { allowAdditionalProperties } from "@/omit-extra-data.js";
 
 export interface SchemaMeta {
   id: string;
@@ -89,6 +90,7 @@ export function isValidatableNode(
 }
 
 export interface InsertSubSchemaIdsOptions {
+  /** @default 0 */
   fieldsValidationMode?: FieldsValidationMode;
   /**
    * Created id should be valid ESM export name
@@ -151,7 +153,7 @@ export function insertSubSchemaIds(
   };
 }
 
-export type IdAugmentationType = "combination";
+export type IdAugmentationType = "combination" | "open";
 
 type IdAugmentations = Record<IdAugmentationType, (id: string) => string>;
 
@@ -161,10 +163,13 @@ export interface FragmentSchemaOptions {
   /** @deprecated use `idAugmentations` property instead */
   augmentSuffix?: string;
   idAugmentations?: Partial<IdAugmentations>;
+  /** @default false */
+  omitExtraDataSupport?: boolean;
 }
 
 const DEFAULT_ID_AUGMENTATIONS: IdAugmentations = {
   combination: (id) => id + DEFAULT_AUGMENT_SUFFIX,
+  open: (id) => `${id}-open`,
 };
 
 export function fragmentSchema({
@@ -172,6 +177,7 @@ export function fragmentSchema({
   subSchemas,
   augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
   idAugmentations,
+  omitExtraDataSupport = false,
 }: FragmentSchemaOptions): Schema[] {
   const augmentations: IdAugmentations = {
     ...DEFAULT_ID_AUGMENTATIONS,
@@ -191,18 +197,25 @@ export function fragmentSchema({
         const refSchema: Schema = {
           $ref: `${meta.id}#`,
         };
-        if (meta.combinationBranch && isSchemaWithProperties(copy)) {
-          const augmentedSchema: Schema = createAugmentSchema(copy);
-          augmentedSchema.$id = augmentations.combination(meta.id);
-          if (!copy.required?.length) {
-            if (augmentedSchema.allOf?.[0] === undefined) {
-              throw new Error(
-                "Schema augmentation algorithm was changed, but not synchronized with this function, please report this error"
-              );
+        if (meta.combinationBranch) {
+          if (isSchemaWithProperties(copy)) {
+            const augmentedSchema: Schema = createAugmentSchema(copy);
+            augmentedSchema.$id = augmentations.combination(meta.id);
+            if (!copy.required?.length) {
+              if (augmentedSchema.allOf?.[0] === undefined) {
+                throw new Error(
+                  "Schema augmentation algorithm was changed, but not synchronized with this function, please report this error"
+                );
+              }
+              augmentedSchema.allOf[0] = refSchema;
             }
-            augmentedSchema.allOf[0] = refSchema;
+            schemas.push(augmentedSchema);
           }
-          schemas.push(augmentedSchema);
+          if (omitExtraDataSupport && copy.additionalProperties === false) {
+            const augmentedSchema = allowAdditionalProperties(copy);
+            augmentedSchema.$id = augmentations.open(meta.id);
+            schemas.push(augmentedSchema);
+          }
         }
         return refSchema;
       }
