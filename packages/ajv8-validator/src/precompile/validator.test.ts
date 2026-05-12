@@ -56,10 +56,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
     const factory = createFormValidatorFactory({
       validatorRetriever: fromValidators(validateFunctions),
     });
-    return {
-      validator: factory(options),
-      rootSchema: patch.schema,
-    };
+    return factory(options);
   },
 );
 

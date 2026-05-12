@@ -29,13 +29,14 @@ export interface ValidatorOptions extends ValueToJSON {
 
 export type CfValidatorFactory = (schema: Schema) => CfValidator;
 
-export const defaultValidatorFactory: CfValidatorFactory = (schema) => new CfValidator(schema as CfSchema, "7", false)
+export const defaultValidatorFactory: CfValidatorFactory = (schema) =>
+  new CfValidator(schema as CfSchema, "7", false);
 
-export type ValidatorsCache = MapLike<Schema, CfValidator>
+export type ValidatorsCache = MapLike<Schema, CfValidator>;
 
 export function createSchemaValidatorFactory(
   factory: CfValidatorFactory,
-  validatorsCache: ValidatorsCache = new WeakMap()
+  validatorsCache: ValidatorsCache = new WeakMap(),
 ) {
   let rootSchemaId = "";
   let usePrefixSchemaRefs = false;
@@ -47,9 +48,9 @@ export function createSchemaValidatorFactory(
       return factory(
         usePrefixSchemaRefs
           ? prefixSchemaRefs(snapshot, rootSchemaId)
-          : snapshot
+          : snapshot,
       );
-    }
+    },
   );
   return (schema: Schema, rootSchema: Schema) => {
     rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
@@ -59,7 +60,7 @@ export function createSchemaValidatorFactory(
       lastRootSchema = new WeakRef(rootSchema);
       validator.addSchema(
         $state.snapshot(rootSchema) as CfSchema,
-        rootSchemaId
+        rootSchemaId,
       );
     }
     return validator;
@@ -90,13 +91,14 @@ export function createValidator({
 export interface FormValueValidatorOptions extends ValidatorOptions {}
 
 export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions
+  options: FormValueValidatorOptions,
 ): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
+      console.log(JSON.stringify(rootSchema, null, 2));
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
       const { valid, errors } = validator.validate(
-        options.valueToJSON(formValue)
+        options.valueToJSON(formValue),
       );
       if (valid) {
         return {
@@ -145,14 +147,18 @@ export function createFieldValueValidator({
 }
 
 export interface FormValidatorOptions
-  extends ValidatorOptions,
+  extends
+    ValidatorOptions,
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
 export function createFormValidator<T>({
   factory = defaultValidatorFactory,
   validatorsCache,
-  createSchemaValidator = createSchemaValidatorFactory(factory, validatorsCache),
+  createSchemaValidator = createSchemaValidatorFactory(
+    factory,
+    validatorsCache,
+  ),
   createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
   valueToJSON = (v) =>
     v === undefined || v === null
@@ -163,7 +169,7 @@ export function createFormValidator<T>({
   ...rest
 }: Partial<FormValidatorOptions> & {
   factory?: CfValidatorFactory;
-  validatorsCache?: ValidatorsCache
+  validatorsCache?: ValidatorsCache;
 } = {}) {
   const options: FormValidatorOptions = {
     ...rest,
@@ -174,6 +180,6 @@ export function createFormValidator<T>({
   return Object.assign(
     createValidator(options),
     createFormValueValidator<T>(options),
-    createFieldValueValidator(options)
+    createFieldValueValidator(options),
   );
 }

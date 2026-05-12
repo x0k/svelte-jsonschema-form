@@ -59,7 +59,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
           },
         }),
       });
-      return { validator: factory(options), rootSchema: patch.schema };
+      return factory(options);
     } finally {
       for (const s of schemas) {
         unregisterSchema(s.$id!);
@@ -69,4 +69,4 @@ const createFormValidator = createPrecompiledValidatorFactory(
 );
 
 validatorTests(createFormValidator, { createIdFactory });
-formValueValidatorTests(createFormValidator);
+formValueValidatorTests(createFormValidator, { createIdFactory });

@@ -39,7 +39,7 @@ function createInitializer<V extends Validator>(
   { createIdFactory = defaultCreateIdFactory }: InitializerOptions = {},
 ) {
   return async ({
-    schema,
+    schema: originalSchema,
     idBuilder = createFormIdBuilder(),
     uiSchema = {},
     uiOptionsRegistry = {},
@@ -49,6 +49,10 @@ function createInitializer<V extends Validator>(
     idBuilder?: FormIdBuilder;
     uiOptionsRegistry?: UiOptionsRegistry;
   }) => {
+    const { schema } = insertSubSchemaIds(originalSchema, {
+      fieldsValidationMode,
+      createId: createIdFactory(),
+    });
     const validator = await create(createValidator, {
       idBuilder,
       merger: () => merger,
@@ -64,10 +68,7 @@ function createInitializer<V extends Validator>(
       validator,
       idBuilder,
       merger,
-      schema: insertSubSchemaIds(schema, {
-        fieldsValidationMode,
-        createId: createIdFactory(),
-      }).schema,
+      schema,
     };
   };
 }
@@ -101,6 +102,11 @@ export function validatorTests(
   });
 }
 
+export interface FormValueValidatorTestsOptions extends InitializerOptions {
+  /** @default false */
+  useOriginalSchema?: boolean;
+}
+
 export function formValueValidatorTests<T>(
   createFormValueValidator: Creatable<
     MaybePromise<
@@ -108,16 +114,25 @@ export function formValueValidatorTests<T>(
     >,
     ValidatorFactoryOptions
   >,
-  options?: InitializerOptions,
+  options: FormValueValidatorTestsOptions = {},
 ) {
   const init = createInitializer(createFormValueValidator, options);
   async function createValidator(params: Parameters<typeof init>[0]) {
-    const { validator } = await init(params);
+    const { validator, schema } = await init(params);
     return isAsyncFormValueValidator(validator)
-      ? (signal: AbortSignal, schema: Schema, value: FormValue) =>
-          validator.validateFormValueAsync(signal, schema, value)
-      : (_: AbortSignal, schema: Schema, value: FormValue) =>
-          Promise.resolve(validator.validateFormValue(schema, value));
+      ? (signal: AbortSignal, originalSchema: Schema, value: FormValue) =>
+          validator.validateFormValueAsync(
+            signal,
+            options.useOriginalSchema ? originalSchema : schema,
+            value,
+          )
+      : (_: AbortSignal, originalSchema: Schema, value: FormValue) =>
+          Promise.resolve(
+            validator.validateFormValue(
+              options.useOriginalSchema ? originalSchema : schema,
+              value,
+            ),
+          );
   }
 
   describe("Form value validator", () => {
