@@ -37,9 +37,9 @@ export type SubSchemas = Trie<Path[number], SchemaMeta>;
 /** @deprecated */
 export const DEFAULT_AUGMENT_SUFFIX = "ag";
 
-export function createIdFactory() {
+export function createIdFactory(): IdFactory {
   let id = 0;
-  return () => `v${id++}`;
+  return (n) => n.$id ?? `v${id++}`;
 }
 
 const INPUTS_VALIDATION = ON_INPUT | ON_CHANGE | ON_BLUR;
@@ -89,16 +89,18 @@ export function isValidatableNode(
   );
 }
 
+export type IdFactory = (
+  schema: Schema,
+  ctx: SchemaTraverserContext<AnySubSchemaKey>
+) => string;
+
 export interface InsertSubSchemaIdsOptions {
   /** @default 0 */
   fieldsValidationMode?: FieldsValidationMode;
   /**
    * Created id should be valid ESM export name
    */
-  createId?: (
-    schema: Schema,
-    ctx: SchemaTraverserContext<AnySubSchemaKey>
-  ) => string;
+  createId?: IdFactory;
 }
 
 // TODO: Support ref for ref
