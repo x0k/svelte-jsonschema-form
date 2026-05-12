@@ -89,16 +89,18 @@ export function isValidatableNode(
   );
 }
 
+export type IdFactory = (
+  schema: Schema,
+  ctx: SchemaTraverserContext<AnySubSchemaKey>
+) => string;
+
 export interface InsertSubSchemaIdsOptions {
   /** @default 0 */
   fieldsValidationMode?: FieldsValidationMode;
   /**
    * Created id should be valid ESM export name
    */
-  createId?: (
-    schema: Schema,
-    ctx: SchemaTraverserContext<AnySubSchemaKey>
-  ) => string;
+  createId?: IdFactory;
 }
 
 // TODO: Support ref for ref
