@@ -245,7 +245,7 @@ export function createValidatorRetriever<F>({
     ...DEFAULT_ID_AUGMENTATIONS,
     ...idAugmentations,
   };
-  return ({ $id: id, allOf }: Schema) => {
+  return ({ $id: id, allOf, additionalProperties }: Schema) => {
     if (id === undefined) {
       const firstAllOfItem = allOf?.[0];
       if (
@@ -255,6 +255,11 @@ export function createValidatorRetriever<F>({
         id = augmentations.combination(firstAllOfItem.$id);
       } else {
         throw new Error("Schema id not found");
+      }
+    } else if (additionalProperties === true) {
+      const validator = registry.get(augmentations.open(id));
+      if (validator !== undefined) {
+        return validator;
       }
     }
     const validator = registry.get(id);

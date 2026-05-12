@@ -11,6 +11,7 @@ import {
 } from "@/form/main.js";
 
 import {
+  createValidatorRetriever,
   fragmentSchema,
   insertSubSchemaIds,
   type SchemaMeta,
@@ -429,5 +430,232 @@ describe("fragmentSchema", () => {
         ],
       },
     ]);
+  });
+});
+
+type FakeValidator = { name: string };
+
+function makeRegistry(entries: Record<string, FakeValidator>) {
+  return {
+    get: (id: string) => entries[id],
+  };
+}
+
+describe("createValidatorRetriever", () => {
+  describe("when $id is present", () => {
+    it("returns the validator from the registry", () => {
+      const validator: FakeValidator = { name: "my-validator" };
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({ "schema/foo": validator }),
+      });
+
+      const result = retriever({ $id: "schema/foo" });
+
+      expect(result).toBe(validator);
+    });
+
+    it("throws when the validator is not in the registry", () => {
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({}),
+      });
+
+      expect(() =>
+        retriever({ $id: "schema/missing" } satisfies Schema)
+      ).toThrow('Validator with id "schema/missing" not found');
+    });
+  });
+
+  describe("when $id is present and additionalProperties is true", () => {
+    it("returns the open validator when it exists", () => {
+      const openValidator: FakeValidator = { name: "open-validator" };
+      const baseValidator: FakeValidator = { name: "base-validator" };
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({
+          "schema/foo": baseValidator,
+          "schema/foo-open": openValidator,
+        }),
+      });
+
+      const result = retriever({
+        $id: "schema/foo",
+        additionalProperties: true,
+      });
+
+      expect(result).toBe(openValidator);
+    });
+
+    it("falls through to the base id when the open variant is absent", () => {
+      const baseValidator: FakeValidator = { name: "base-validator" };
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({ "schema/foo": baseValidator }),
+      });
+
+      const result = retriever({
+        $id: "schema/foo",
+        additionalProperties: true,
+      });
+
+      expect(result).toBe(baseValidator);
+    });
+
+    it("throws when neither open nor base validator exists", () => {
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({}),
+      });
+
+      expect(() =>
+        retriever({
+          $id: "schema/missing",
+          additionalProperties: true,
+        } satisfies Schema)
+      ).toThrow('Validator with id "schema/missing" not found');
+    });
+
+    it("does NOT do an open lookup when additionalProperties is false", () => {
+      const openValidator: FakeValidator = { name: "open-validator" };
+      const baseValidator: FakeValidator = { name: "base-validator" };
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({
+          "schema/foo": baseValidator,
+          "schema/foo-open": openValidator,
+        }),
+      });
+
+      const result = retriever({
+        $id: "schema/foo",
+        additionalProperties: false,
+      });
+
+      // should get the base validator, not the open one
+      expect(result).toBe(baseValidator);
+    });
+  });
+
+  describe("when $id is absent", () => {
+    it("derives the id via the combination augmentation from allOf[0].$id", () => {
+      const combinedValidator: FakeValidator = { name: "combined" };
+      // We need to know what key the default combination augmentation produces.
+      // Use the augmentation itself to avoid hard-coding the suffix here.
+      const baseId = "schema/base";
+      let combinedId!: string;
+      createValidatorRetriever({
+        registry: {
+          get: (id) => {
+            combinedId = id;
+            return combinedValidator;
+          },
+        },
+      })({ allOf: [{ $id: baseId }] } satisfies Schema);
+
+      // The combined id should differ from the base id (suffix was appended)
+      expect(combinedId).not.toBe(baseId);
+      expect(combinedId).toContain(baseId);
+
+      // A fresh retriever with the real key returns the validator
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({ [combinedId]: combinedValidator }),
+      });
+      const result = retriever({ allOf: [{ $id: baseId }] });
+      expect(result).toBe(combinedValidator);
+    });
+
+    it("throws when allOf is empty", () => {
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({}),
+      });
+
+      expect(() => retriever({ allOf: [] } satisfies Schema)).toThrow(
+        "Schema id not found"
+      );
+    });
+
+    it("throws when allOf is undefined", () => {
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({}),
+      });
+
+      expect(() => retriever({} satisfies Schema)).toThrow(
+        "Schema id not found"
+      );
+    });
+
+    it("throws when allOf[0] is not an object", () => {
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({}),
+      });
+
+      expect(() => retriever({ allOf: [true] } satisfies Schema)).toThrow(
+        "Schema id not found"
+      );
+    });
+
+    it("throws when allOf[0] is an object without $id", () => {
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({}),
+      });
+
+      expect(() => retriever({ allOf: [{}] } satisfies Schema)).toThrow(
+        "Schema id not found"
+      );
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Custom idAugmentations
+  // -------------------------------------------------------------------------
+
+  describe("custom idAugmentations", () => {
+    it("overrides the combination augmentation", () => {
+      const validator: FakeValidator = { name: "custom-combined" };
+      const customKey = "schema/base__CUSTOM";
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({ [customKey]: validator }),
+        idAugmentations: {
+          combination: (id) => `${id}__CUSTOM`,
+        },
+      });
+
+      const result = retriever({
+        allOf: [{ $id: "schema/base" }],
+      });
+
+      expect(result).toBe(validator);
+    });
+
+    it("overrides the open augmentation", () => {
+      const openValidator: FakeValidator = { name: "custom-open" };
+      const customOpenKey = "schema/foo__OPEN";
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({ [customOpenKey]: openValidator }),
+        idAugmentations: {
+          open: (id) => `${id}__OPEN`,
+        },
+      });
+
+      const result = retriever({
+        $id: "schema/foo",
+        additionalProperties: true,
+      });
+
+      expect(result).toBe(openValidator);
+    });
+
+    it("leaves the other augmentation at its default when only one is overridden", () => {
+      // Override combination, leave open at default
+      const defaultOpenValidator: FakeValidator = { name: "default-open" };
+      const retriever = createValidatorRetriever({
+        registry: makeRegistry({ "schema/foo-open": defaultOpenValidator }),
+        idAugmentations: {
+          combination: (id) => `${id}__CUSTOM`,
+        },
+      });
+
+      const result = retriever({
+        $id: "schema/foo",
+        additionalProperties: true,
+      });
+
+      expect(result).toBe(defaultOpenValidator);
+    });
   });
 });
