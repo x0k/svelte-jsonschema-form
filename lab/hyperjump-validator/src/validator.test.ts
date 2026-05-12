@@ -8,21 +8,27 @@ import {
   createValidatorRetriever,
   fragmentSchema,
   insertSubSchemaIds,
+  type IdFactory,
 } from "@sjsf/form/validators/precompile";
-import { formValueValidatorTests } from "validator-testing";
+import {
+  createPrecompiledValidatorFactory,
+  formValueValidatorTests,
+  validatorTests,
+} from "validator-testing";
 
 import { createFormValidatorFactory } from "./validator.js";
 import { localization } from "./localizations/en-us.js";
 
-formValueValidatorTests((options) => ({
-  isValid: () => {
-    throw new Error("'isValid' is not implemented");
-  },
-  async validateFormValueAsync(_signal, rootSchema, formValue) {
-    let id = 0;
-    const toId = (n: number) => `https://example.com/v${n}`;
-    const patch = insertSubSchemaIds(rootSchema, {
-      createId: () => toId(id++),
+const toId = (n: number) => `https://example.com/v${n}`;
+const createIdFactory = (): IdFactory => {
+  let id = 0;
+  return () => toId(id++);
+};
+
+const createFormValidator = createPrecompiledValidatorFactory(
+  async (options) => {
+    const patch = insertSubSchemaIds(options.schema, {
+      createId: createIdFactory(),
     });
     const schemas = fragmentSchema(patch);
     for (const schema of schemas) {
@@ -53,12 +59,14 @@ formValueValidatorTests((options) => ({
           },
         }),
       });
-      const v = factory(options);
-      return v.validateFormValue(patch.schema, formValue);
+      return { validator: factory(options), rootSchema: patch.schema };
     } finally {
       for (const s of schemas) {
         unregisterSchema(s.$id!);
       }
     }
   },
-}));
+);
+
+validatorTests(createFormValidator, { createIdFactory });
+formValueValidatorTests(createFormValidator);

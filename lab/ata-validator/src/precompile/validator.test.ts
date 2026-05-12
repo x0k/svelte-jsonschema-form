@@ -4,7 +4,12 @@ import {
   insertSubSchemaIds,
 } from "@sjsf/form/validators/precompile";
 import { Validator } from "ata-validator";
-import { formValueValidatorTests, importModule } from "validator-testing";
+import {
+  createPrecompiledValidatorFactory,
+  formValueValidatorTests,
+  importModule,
+  validatorTests,
+} from "validator-testing";
 
 import { DEFAULT_VALIDATOR_OPTIONS } from "../validator.svelte.js";
 import {
@@ -12,12 +17,9 @@ import {
   type ValidateFunctions,
 } from "./validator.svelte.js";
 
-formValueValidatorTests((options) => ({
-  isValid: () => {
-    throw new Error("'isValid' is not implemented");
-  },
-  async validateFormValueAsync(_signal, rootSchema, formValue) {
-    const patch = insertSubSchemaIds(rootSchema);
+const createFormValidator = createPrecompiledValidatorFactory(
+  async (options) => {
+    const patch = insertSubSchemaIds(options.schema);
     const base = { $schema: "http://json-schema.org/draft-07/schema" };
     const schemas = fragmentSchema(patch);
     const bundle = Validator.bundleStandalone(
@@ -33,7 +35,9 @@ formValueValidatorTests((options) => ({
     const factory = createFormValidatorFactory({
       validatorRetriever: fromValidators(validateFunctions),
     });
-    const v = factory(options);
-    return v.validateFormValue(patch.schema, formValue);
+    return { validator: factory(options), rootSchema: patch.schema };
   },
-}));
+);
+
+validatorTests(createFormValidator);
+formValueValidatorTests(createFormValidator);

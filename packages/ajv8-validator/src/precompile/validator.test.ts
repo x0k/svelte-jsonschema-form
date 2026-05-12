@@ -5,7 +5,12 @@ import {
 } from "@sjsf/form/validators/precompile";
 import standaloneCode from "ajv/dist/standalone/index.js";
 import { Ajv } from "ajv";
-import { formValueValidatorTests, importModule } from "validator-testing";
+import {
+  formValueValidatorTests,
+  importModule,
+  validatorTests,
+  createPrecompiledValidatorFactory,
+} from "validator-testing";
 import { build } from "esbuild";
 
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "../model.js";
@@ -14,12 +19,9 @@ import {
   type ValidateFunctions,
 } from "./validator.js";
 
-formValueValidatorTests((options) => ({
-  isValid: () => {
-    throw new Error("'isValid' is not implemented");
-  },
-  async validateFormValueAsync(_signal, rootSchema, formValue) {
-    const patch = insertSubSchemaIds(rootSchema);
+const createFormValidator = createPrecompiledValidatorFactory(
+  async (options) => {
+    const patch = insertSubSchemaIds(options.schema);
     const ajv = new Ajv({
       ...DEFAULT_AJV_CONFIG,
       schemas: fragmentSchema(patch),
@@ -54,7 +56,12 @@ formValueValidatorTests((options) => ({
     const factory = createFormValidatorFactory({
       validatorRetriever: fromValidators(validateFunctions),
     });
-    const v = factory(options);
-    return v.validateFormValue(patch.schema, formValue);
+    return {
+      validator: factory(options),
+      rootSchema: patch.schema,
+    };
   },
-}));
+);
+
+validatorTests(createFormValidator);
+formValueValidatorTests(createFormValidator);

@@ -1,6 +1,12 @@
+import type { MaybePromise } from "@sjsf/form/lib/types";
 import {
   create,
   isAsyncFormValueValidator,
+  ON_ARRAY_CHANGE,
+  ON_BLUR,
+  ON_CHANGE,
+  ON_INPUT,
+  ON_OBJECT_CHANGE,
   type AsyncFormValueValidator,
   type Creatable,
   type FormIdBuilder,
@@ -15,22 +21,35 @@ import {
 import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { expect, it, describe } from "vitest";
+import {
+  insertSubSchemaIds,
+  createIdFactory as defaultCreateIdFactory,
+  type IdFactory,
+} from "@sjsf/form/validators/precompile";
+
+const fieldsValidationMode =
+  ON_INPUT | ON_CHANGE | ON_BLUR | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE;
+
+export interface InitializerOptions {
+  createIdFactory?: () => IdFactory;
+}
 
 function createInitializer<V extends Validator>(
-  createValidator: Creatable<V, ValidatorFactoryOptions>,
+  createValidator: Creatable<V | Promise<V>, ValidatorFactoryOptions>,
+  { createIdFactory = defaultCreateIdFactory }: InitializerOptions = {},
 ) {
-  return ({
-    schema = {},
+  return async ({
+    schema,
     idBuilder = createFormIdBuilder(),
     uiSchema = {},
     uiOptionsRegistry = {},
   }: {
-    schema?: Schema;
+    schema: Schema;
     uiSchema?: UiSchemaRoot;
     idBuilder?: FormIdBuilder;
     uiOptionsRegistry?: UiOptionsRegistry;
-  } = {}) => {
-    const validator = create(createValidator, {
+  }) => {
+    const validator = await create(createValidator, {
       idBuilder,
       merger: () => merger,
       schema,
@@ -41,46 +60,59 @@ function createInitializer<V extends Validator>(
       schema,
       validator,
     });
-    return { validator, idBuilder, merger };
+    return {
+      validator,
+      idBuilder,
+      merger,
+      schema: insertSubSchemaIds(schema, {
+        fieldsValidationMode,
+        createId: createIdFactory(),
+      }).schema,
+    };
   };
 }
 
 export function validatorTests(
-  createValidator: Creatable<Validator, ValidatorFactoryOptions>,
+  createValidator: Creatable<MaybePromise<Validator>, ValidatorFactoryOptions>,
+  options?: InitializerOptions,
 ) {
-  const init = createInitializer(createValidator);
+  const init = createInitializer(createValidator, options);
   describe("Validator", () => {
-    it("Should compile schemas with identical ids", () => {
-      const { validator } = init();
-      validator.isValid({ $id: "foo" }, {}, undefined);
-      validator.isValid({ $id: "foo" }, {}, undefined);
+    it("Should compile schemas with identical ids", async () => {
+      const { validator, schema } = await init({
+        schema: { $id: "foo", type: "string" },
+      });
+      const schema2 = structuredClone(schema);
+      validator.isValid(schema, schema, undefined);
+      validator.isValid(schema2, schema2, undefined);
     });
 
-    it("Should compile schemas with subSchemas with identical ids", () => {
-      const { validator } = init();
-      validator.isValid(
-        { $id: "foo", properties: { foo: { $id: "bar" } } },
-        {},
-        undefined,
-      );
-      validator.isValid(
-        { $id: "foo", properties: { foo: { $id: "bar" } } },
-        {},
-        undefined,
-      );
+    it("Should compile schemas with subSchemas with identical ids", async () => {
+      const { validator, schema } = await init({
+        schema: {
+          $id: "foo",
+          properties: { foo: { $id: "bar" } },
+        },
+      });
+      const schema2 = structuredClone(schema);
+      validator.isValid(schema, schema, undefined);
+      validator.isValid(schema2, schema2, undefined);
     });
   });
 }
 
 export function formValueValidatorTests<T>(
   createFormValueValidator: Creatable<
-    (FormValueValidator<T> | AsyncFormValueValidator<T>) & Validator,
+    MaybePromise<
+      (FormValueValidator<T> | AsyncFormValueValidator<T>) & Validator
+    >,
     ValidatorFactoryOptions
   >,
+  options?: InitializerOptions,
 ) {
-  const init = createInitializer(createFormValueValidator);
-  function createValidator(params: Parameters<typeof init>[0]) {
-    const { validator } = init(params);
+  const init = createInitializer(createFormValueValidator, options);
+  async function createValidator(params: Parameters<typeof init>[0]) {
+    const { validator } = await init(params);
     return isAsyncFormValueValidator(validator)
       ? (signal: AbortSignal, schema: Schema, value: FormValue) =>
           validator.validateFormValueAsync(signal, schema, value)
@@ -97,7 +129,7 @@ export function formValueValidatorTests<T>(
           minLength: 10,
         },
       };
-      const validate = createValidator({ schema });
+      const validate = await createValidator({ schema });
 
       const { errors = [] } = await validate(signal, schema, ["foo"]);
       const error = errors.find(
@@ -130,7 +162,7 @@ export function formValueValidatorTests<T>(
         firstName: undefined,
         items: [undefined, "value"],
       };
-      const validate = createValidator({ schema });
+      const validate = await createValidator({ schema });
       const { errors = [] } = await validate(signal, schema, value);
       expect(errors.length).toBeGreaterThan(1);
     });

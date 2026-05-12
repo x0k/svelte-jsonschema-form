@@ -3,7 +3,12 @@ import {
   fromValidators,
   insertSubSchemaIds,
 } from "@sjsf/form/validators/precompile";
-import { formValueValidatorTests, importModule } from "validator-testing";
+import {
+  createPrecompiledValidatorFactory,
+  formValueValidatorTests,
+  importModule,
+  validatorTests,
+} from "validator-testing";
 import { validator } from "@exodus/schemasafe";
 
 import { DEFAULT_VALIDATOR_OPTIONS } from "../model.js";
@@ -12,12 +17,9 @@ import {
   type ValidateFunctions,
 } from "./validator.js";
 
-formValueValidatorTests((options) => ({
-  isValid: () => {
-    throw new Error("'isValid' is not implemented");
-  },
-  async validateFormValueAsync(_signal, rootSchema, formValue) {
-    const patch = insertSubSchemaIds(rootSchema);
+const createFormValidator = createPrecompiledValidatorFactory(
+  async (options) => {
+    const patch = insertSubSchemaIds(options.schema);
     const schemas = fragmentSchema(patch);
     const validate = validator(
       // @ts-expect-error Typings for `multi` version are missing
@@ -33,7 +35,9 @@ formValueValidatorTests((options) => ({
     const factory = createFormValidatorFactory({
       validatorRetriever: fromValidators(validateFunctions),
     });
-    const v = factory(options);
-    return v.validateFormValue(patch.schema, formValue);
+    return { validator: factory(options), rootSchema: patch.schema };
   },
-}));
+);
+
+validatorTests(createFormValidator);
+formValueValidatorTests(createFormValidator);
