@@ -3,7 +3,6 @@
 // Modifications made by Roman Krasilnikov.
 
 import { weakMemoize } from "@/lib/memoize.js";
-import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import {
   getDiscriminatorFieldFromSchema,
@@ -15,6 +14,7 @@ import {
   isSchemaWithProperties,
   REF_KEY,
   type Schema,
+  type SchemaDefinition,
   type SchemaValue,
   type SchemaWithProperties,
 } from "./schema.js";
@@ -22,12 +22,7 @@ import { typeOfValue } from "./type.js";
 import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
-// WARN: Any change to this function must be synchronized with:
-// - `validators/precompile`
-// - `@sjsf/ajv8-validator/precompile`
-// - `@sjsf/schemasafe-validator/precompile`
-// - `@sjsf/zod4-validator`
-// - `@sjsf/valibot-validator`
+// WARN: Any change to this function must be synchronized with `validators/precompile`
 export function createAugmentSchema({
   required,
   ...rest
@@ -55,13 +50,16 @@ const memoizedAugmentSchema = weakMemoize(
 );
 
 function isOptionMatching(
-  option: Schema,
+  option: SchemaDefinition,
   validator: Validator,
   formData: SchemaValue,
   rootSchema: Schema,
   discriminatorField: string | undefined,
   discriminatorFormData: SchemaValue | undefined
 ): boolean {
+  if (typeof option === "boolean") {
+    return option;
+  }
   if (!isSchemaWithProperties(option)) {
     return validator.isValid(option, rootSchema, formData);
   }
@@ -79,7 +77,7 @@ function isOptionMatching(
 export function getFirstMatchingOption(
   validator: Validator,
   formData: SchemaValue | undefined,
-  options: Schema[],
+  options: SchemaDefinition[],
   rootSchema: Schema,
   discriminatorField?: string
 ): number {
@@ -121,10 +119,13 @@ export function calculateIndexScore(
   validator: Validator,
   merger: Merger,
   rootSchema: Schema,
-  schema?: Schema,
+  schema?: SchemaDefinition,
   formData?: SchemaValue
 ): number {
   let totalScore = 0;
+  if (typeof schema === "boolean") {
+    return 0;
+  }
   if (schema) {
     const schemaProperties = schema.properties;
     if (schemaProperties && isSchemaObjectValue(formData)) {
@@ -158,7 +159,7 @@ export function calculateIndexScore(
             merger,
             rootSchema,
             formValue,
-            altSchemas.filter(isSchemaObject),
+            altSchemas,
             -1,
             discriminator
           );
@@ -207,7 +208,7 @@ export function getClosestMatchingOption(
   merger: Merger,
   rootSchema: Schema,
   formData: SchemaValue | undefined,
-  options: Schema[],
+  options: SchemaDefinition[],
   selectedOption = -1,
   discriminatorField?: string
 ): number {
@@ -215,16 +216,18 @@ export function getClosestMatchingOption(
     return selectedOption;
   }
   // First resolve any refs in the options
-  const resolvedOptions = options.map((option) => {
-    return resolveAllReferences(merger, option, rootSchema);
-  });
+  const resolvedOptions = options.map((option) =>
+    typeof option === "boolean"
+      ? option
+      : resolveAllReferences(merger, option, rootSchema)
+  );
 
   const simpleDiscriminatorMatch = getOptionMatchingSimpleDiscriminator(
     formData,
-    options,
+    resolvedOptions,
     discriminatorField
   );
-  if (typeof simpleDiscriminatorMatch === "number") {
+  if (simpleDiscriminatorMatch !== undefined) {
     return simpleDiscriminatorMatch;
   }
 

@@ -2,8 +2,13 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { type Schema, type SchemaValue } from "./schema.js";
+import {
+  type Schema,
+  type SchemaDefinition,
+  type SchemaValue,
+} from "./schema.js";
 import { isSchemaObjectValue } from "./value.js";
+import { getSimpleSchemaType, isArrayOrObjectSchemaType } from "./type.js";
 
 export function getDiscriminatorFieldFromSchema(
   schema: Schema
@@ -13,7 +18,7 @@ export function getDiscriminatorFieldFromSchema(
 
 export function getOptionMatchingSimpleDiscriminator<T extends SchemaValue>(
   formData: T | undefined,
-  options: Schema[],
+  options: SchemaDefinition[],
   discriminatorField?: string
 ): number | undefined {
   if (discriminatorField && isSchemaObjectValue(formData)) {
@@ -23,21 +28,23 @@ export function getOptionMatchingSimpleDiscriminator<T extends SchemaValue>(
     }
     for (let i = 0; i < options.length; i++) {
       const option = options[i]!;
+      if (typeof option === "boolean") {
+        continue;
+      }
       const discriminator = option.properties?.[discriminatorField] ?? {};
       if (discriminator === true) {
         return i;
       }
       if (
         discriminator === false ||
-        discriminator.type === "object" ||
-        discriminator.type === "array"
+        isArrayOrObjectSchemaType(getSimpleSchemaType(discriminator))
       ) {
         continue;
       }
-      if (discriminator.const === value) {
-        return i;
-      }
-      if ((discriminator.enum as SchemaValue[] | undefined)?.includes(value)) {
+      if (
+        discriminator.const === value ||
+        (discriminator.enum as SchemaValue[] | undefined)?.includes(value)
+      ) {
         return i;
       }
     }
