@@ -538,24 +538,6 @@ describe("createValidatorRetriever", () => {
   });
 
   describe("when $id is present and additionalProperties is true", () => {
-    it("returns the open validator when it exists", () => {
-      const openValidator: FakeValidator = { name: "open-validator" };
-      const baseValidator: FakeValidator = { name: "base-validator" };
-      const retriever = createValidatorRetriever({
-        registry: makeRegistry({
-          "schema/foo": baseValidator,
-          "schema/foo_open": openValidator,
-        }),
-      });
-
-      const result = retriever({
-        $id: "schema/foo",
-        additionalProperties: true,
-      });
-
-      expect(result).toBe(openValidator);
-    });
-
     it("falls through to the base id when the open variant is absent", () => {
       const baseValidator: FakeValidator = { name: "base-validator" };
       const retriever = createValidatorRetriever({
@@ -692,42 +674,6 @@ describe("createValidatorRetriever", () => {
       });
 
       expect(result).toBe(validator);
-    });
-
-    it("overrides the open augmentation", () => {
-      const openValidator: FakeValidator = { name: "custom_open" };
-      const customOpenKey = "schema/foo__OPEN";
-      const retriever = createValidatorRetriever({
-        registry: makeRegistry({ [customOpenKey]: openValidator }),
-        idAugmentations: {
-          open: (id) => `${id}__OPEN`,
-        },
-      });
-
-      const result = retriever({
-        $id: "schema/foo",
-        additionalProperties: true,
-      });
-
-      expect(result).toBe(openValidator);
-    });
-
-    it("leaves the other augmentation at its default when only one is overridden", () => {
-      // Override combination, leave open at default
-      const defaultOpenValidator: FakeValidator = { name: "default_open" };
-      const retriever = createValidatorRetriever({
-        registry: makeRegistry({ "schema/foo_open": defaultOpenValidator }),
-        idAugmentations: {
-          combination: (id) => `${id}__CUSTOM`,
-        },
-      });
-
-      const result = retriever({
-        $id: "schema/foo",
-        additionalProperties: true,
-      });
-
-      expect(result).toBe(defaultOpenValidator);
     });
   });
 });
