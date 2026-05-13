@@ -12,7 +12,7 @@ catalog:
   "@fontsource-variable/inter": ^5.2.8
   "@internationalized/date": 3.12.1
   "@lucide/svelte": ^1.14.0
-  "@tailwindcss/vite": ^4.2.4
+  "@tailwindcss/vite": ^4.3.0
   "@typescript-eslint/types": 8.59.2
   "@standard-schema/spec": ^1.1.0
   "@picocss/pico": ^2.1.1
@@ -40,7 +40,7 @@ catalog:
   shadcn-svelte: ^1.2.7
   svelte: ^5.55.5
   svelte-exmarkdown: ^5.0.2
-  tailwindcss: ^4.2.4
+  tailwindcss: ^4.3.0
   lz-string: ^1.5.0
   json-schema-to-zod: ^2.8.1
   json-schema-to-valibot: 0.3.0
