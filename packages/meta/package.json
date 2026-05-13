@@ -49,6 +49,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
+    },
+    "./playground-presets/*": {
+      "types": "./dist/playground-presets/*.d.ts",
+      "default": "./dist/playground-presets/*.js"
     }
   }
 }
