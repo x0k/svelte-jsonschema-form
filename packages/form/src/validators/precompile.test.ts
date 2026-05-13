@@ -431,6 +431,78 @@ describe("fragmentSchema", () => {
       },
     ]);
   });
+  it("should remove $id in augmented schema", () => {
+    const data = insertSubSchemaIds(
+      {
+        oneOf: [
+          {
+            type: "object",
+            properties: {
+              kind: { type: "string", enum: ["cat"] },
+              lives: { type: "number" },
+            },
+            required: ["kind"],
+            additionalProperties: false,
+          },
+          {
+            type: "object",
+            properties: {
+              kind: { type: "string", enum: ["dog"] },
+              breed: { type: "string" },
+            },
+            required: ["kind"],
+            additionalProperties: false,
+          },
+        ],
+      },
+      {
+        fieldsValidationMode: ON_INPUT | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE,
+      }
+    );
+    expect(fragmentSchema(data)).toEqual([
+      { type: "string", enum: ["cat"], $id: "v2" },
+      { type: "number", $id: "v3" },
+      {
+        type: "object",
+        properties: { kind: { $ref: "v2#" }, lives: { $ref: "v3#" } },
+        required: ["kind"],
+        additionalProperties: false,
+        $id: "v1",
+      },
+      {
+        allOf: [
+          {
+            type: "object",
+            properties: { kind: { $ref: "v2#" }, lives: { $ref: "v3#" } },
+            additionalProperties: false,
+          },
+          { anyOf: [{ required: ["kind"] }, { required: ["lives"] }] },
+        ],
+        $id: "v1ag",
+      },
+      { type: "string", enum: ["dog"], $id: "v5" },
+      { type: "string", $id: "v6" },
+      {
+        type: "object",
+        properties: { kind: { $ref: "v5#" }, breed: { $ref: "v6#" } },
+        required: ["kind"],
+        additionalProperties: false,
+        $id: "v4",
+      },
+      {
+        allOf: [
+          {
+            type: "object",
+            properties: { kind: { $ref: "v5#" }, breed: { $ref: "v6#" } },
+            additionalProperties: false,
+          },
+          { anyOf: [{ required: ["kind"] }, { required: ["breed"] }] },
+        ],
+        $id: "v4ag",
+      },
+      { oneOf: [{ $ref: "v1#" }, { $ref: "v4#" }], $id: "v0" },
+    ]);
+  });
 });
 
 type FakeValidator = { name: string };

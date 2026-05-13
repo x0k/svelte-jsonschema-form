@@ -203,13 +203,18 @@ export function fragmentSchema({
           if (isSchemaWithProperties(copy)) {
             const augmentedSchema: Schema = createAugmentSchema(copy);
             augmentedSchema.$id = augmentations.combination(meta.id);
+            const { allOf } = augmentedSchema;
+            if (allOf?.[0] === undefined) {
+              throw new Error(
+                "Schema augmentation algorithm was changed, but not synchronized with this function, please report this error"
+              );
+            }
+            // first slot of `allOf` is identical to copy and can be replaced with ref
             if (!copy.required?.length) {
-              if (augmentedSchema.allOf?.[0] === undefined) {
-                throw new Error(
-                  "Schema augmentation algorithm was changed, but not synchronized with this function, please report this error"
-                );
-              }
-              augmentedSchema.allOf[0] = refSchema;
+              allOf[0] = refSchema;
+            } else if (typeof allOf[0] !== "boolean") {
+              // avoid usage of same $id
+              delete allOf[0].$id;
             }
             schemas.push(augmentedSchema);
           }
