@@ -109,6 +109,10 @@
       "svelte": "./dist/form/index.js",
       "default": "./dist/form/main.js"
     },
+    "./main": {
+      "types": "./dist/form/main.d.ts",
+      "default": "./dist/form/main.js"
+    },
     "./resolvers/*": {
       "types": "./dist/form/resolvers/*.d.ts",
       "svelte": "./dist/form/resolvers/*"

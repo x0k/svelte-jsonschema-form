@@ -4,7 +4,7 @@ import type {
   Schema,
   Validator,
 } from "@sjsf/form";
-import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
+import { fromValidators } from "@sjsf/form/validators/precompile";
 import type { ValidationResult as AtaValidationResult } from "ata-validator";
 
 import type { ValueCloner } from "../validator.svelte.js";
@@ -22,58 +22,65 @@ export type ValidateFunctions = {
   [key: string]: CompiledValidator;
 };
 
-export interface ValidatorOptions extends ValueCloner {
+// TODO: Remove in v4
+interface LegacyValidatorOptions {
+  /** @deprecated use `validatorRetriever` instead */
   validateFunctions: ValidateFunctions;
+  /** @deprecated use `validatorRetriever` instead */
   augmentSuffix?: string;
+  validatorRetriever?: (schema: Schema) => CompiledValidator;
 }
 
-function getValidator(
-  {
-    validateFunctions,
-    augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
-  }: ValidatorOptions,
-  { $id: id, allOf }: Schema,
-): CompiledValidator {
-  if (id === undefined) {
-    const firstAllOfItem = allOf?.[0];
-    if (
-      typeof firstAllOfItem === "object" &&
-      firstAllOfItem.$id !== undefined
-    ) {
-      id = firstAllOfItem.$id + augmentSuffix;
-    } else {
-      throw new Error("Schema id not found");
-    }
-  }
-  const validator = validateFunctions[id];
-  if (validator === undefined) {
-    throw new Error(`Validate function with id "${id}" not found`);
-  }
-  return validator;
+interface ModernValidatorOptions {
+  validatorRetriever: (schema: Schema) => CompiledValidator;
 }
+
+type CoreValidatorOptions = LegacyValidatorOptions | ModernValidatorOptions;
+
+// TODO: Remove in v4
+function createRetriever(options: CoreValidatorOptions) {
+  return "validateFunctions" in options
+    ? (options.validatorRetriever ??
+        fromValidators(
+          options.validateFunctions,
+          options.augmentSuffix
+            ? {
+                idAugmentations: {
+                  combination: (id) => id + options.augmentSuffix,
+                },
+              }
+            : undefined,
+        ))
+    : options.validatorRetriever;
+}
+
+export type ValidatorOptions = ValueCloner & CoreValidatorOptions;
 
 export function createValidator(options: ValidatorOptions): Validator {
+  const getValidator = createRetriever(options);
   return {
     isValid(schema, _, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }
-      const validator = getValidator(options, schema);
+      const validator = getValidator(schema);
       return validator(options.cloneValue(formValue)).valid;
     },
   };
 }
 
-export interface FormValueValidatorOptions
-  extends ValidatorOptions, ErrorsTransformerOptions, ValueCloner {}
+export type FormValueValidatorOptions = ValidatorOptions &
+  ErrorsTransformerOptions &
+  ValueCloner;
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions,
 ): FormValueValidator<T> {
+  const getValidator = createRetriever(options);
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
-      const validator = getValidator(options, rootSchema);
+      const validator = getValidator(rootSchema);
       const { valid, errors } = validator(options.cloneValue(formValue));
       if (valid) {
         return {
@@ -85,15 +92,15 @@ export function createFormValueValidator<T>(
   };
 }
 
-export interface FieldValueValidatorOptions
-  extends ValidatorOptions, ValueCloner {}
+export type FieldValueValidatorOptions = ValidatorOptions & ValueCloner;
 
 export function createFieldValueValidator(
   options: FieldValueValidatorOptions,
 ): FieldValueValidator {
+  const getValidator = createRetriever(options);
   return {
     validateFieldValue(field, fieldValue) {
-      const validator = getValidator(options, field.schema);
+      const validator = getValidator(field.schema);
       const { valid, errors } = validator(options.cloneValue(fieldValue));
       if (valid) {
         return [];
@@ -103,21 +110,20 @@ export function createFieldValueValidator(
   };
 }
 
-export interface FormValidatorOptions
-  extends
-    ValidatorOptions,
-    FormValueValidatorOptions,
-    FieldValueValidatorOptions {}
+export type FormValidatorOptions = ValidatorOptions &
+  FormValueValidatorOptions &
+  FieldValueValidatorOptions;
 
-export function createFormValidatorFactory<T>({
-  cloneValue = (value) => $state.snapshot(value),
-  ...vOptions
-}: Omit<ValidatorOptions, keyof ValueCloner> & Partial<ValueCloner>) {
+export function createFormValidatorFactory<T>(
+  vOptions: CoreValidatorOptions & Partial<ValueCloner>,
+) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
-    const full = {
-      cloneValue,
-      ...vOptions,
+    const full: FormValidatorOptions = {
       ...options,
+      ...vOptions,
+      validatorRetriever:
+        vOptions.validatorRetriever ?? createRetriever(vOptions),
+      cloneValue: vOptions.cloneValue ?? ((value) => $state.snapshot(value)),
     };
     return Object.assign(
       createValidator(full),

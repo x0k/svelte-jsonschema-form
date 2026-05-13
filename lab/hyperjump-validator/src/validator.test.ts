@@ -3,46 +3,73 @@ import {
   unregisterSchema,
   type SchemaObject,
 } from "@hyperjump/json-schema/draft-07";
-import { compile, getSchema } from "@hyperjump/json-schema/experimental";
 import {
+  getSchema,
+  Validation,
+  type AST,
+} from "@hyperjump/json-schema/experimental";
+import {
+  createValidatorRetriever,
   fragmentSchema,
-  insertSubSchemaIds,
+  type IdFactory,
 } from "@sjsf/form/validators/precompile";
-import { formValueValidatorTests } from "validator-testing";
+import {
+  createPrecompiledValidatorFactory,
+  formValueValidatorTests,
+  validatorTests,
+} from "validator-testing";
 
 import { createFormValidatorFactory } from "./validator.js";
 import { localization } from "./localizations/en-us.js";
 
-formValueValidatorTests((options) => ({
-  isValid: () => {
-    throw new Error("'isValid' is not implemented");
-  },
-  async validateFormValueAsync(_signal, rootSchema, formValue) {
-    let id = 0;
-    const toId = (n: number) => `https://example.com/v${n}`;
-    const patch = insertSubSchemaIds(rootSchema, {
-      createId: () => toId(id++),
-    });
-    const schemas = fragmentSchema(patch);
+const toId = (n: number) => `https://example.com/v${n}`;
+const createIdFactory = (): IdFactory => {
+  let id = 0;
+  return () => toId(id++);
+};
+
+const createFormValidator = createPrecompiledValidatorFactory(
+  async (options) => {
+    const schemas = fragmentSchema(options.patch);
     for (const schema of schemas) {
       registerSchema(
         Object.assign(
-          Object.assign(
-            { $schema: "http://json-schema.org/draft-07/schema" },
-            schema as SchemaObject,
-          ),
+          { $schema: "http://json-schema.org/draft-07/schema" },
+          schema as SchemaObject,
         ),
       );
     }
     try {
-      const { ast } = await compile(await getSchema(toId(0)));
-      const factory = createFormValidatorFactory({ ast, localization });
-      const v = factory(options);
-      return v.validateFormValue(patch.schema, formValue);
+      // https://github.com/hyperjump-io/json-schema/issues/116
+      const ast = { metaData: {}, plugins: new Set() } as unknown as AST;
+      for (const schema of schemas) {
+        const s = await getSchema(schema.$id!);
+        await Validation.compile(s, ast, s);
+      }
+      const factory = createFormValidatorFactory({
+        localization,
+        validatorRetriever: createValidatorRetriever({
+          registry: {
+            get: (id) => {
+              const schemaUri = `${id}#`;
+              return schemaUri in ast
+                ? {
+                    schemaUri,
+                    ast,
+                  }
+                : undefined;
+            },
+          },
+        }),
+      });
+      return factory(options);
     } finally {
       for (const s of schemas) {
         unregisterSchema(s.$id!);
       }
     }
   },
-}));
+);
+
+validatorTests(createFormValidator, { createIdFactory });
+formValueValidatorTests(createFormValidator, { createIdFactory });

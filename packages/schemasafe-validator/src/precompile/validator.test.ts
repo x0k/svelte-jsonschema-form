@@ -1,8 +1,14 @@
 import {
   fragmentSchema,
+  fromValidators,
   insertSubSchemaIds,
 } from "@sjsf/form/validators/precompile";
-import { formValueValidatorTests, importModule } from "validator-testing";
+import {
+  createPrecompiledValidatorFactory,
+  formValueValidatorTests,
+  importModule,
+  validatorTests,
+} from "validator-testing";
 import { validator } from "@exodus/schemasafe";
 
 import { DEFAULT_VALIDATOR_OPTIONS } from "../model.js";
@@ -11,13 +17,9 @@ import {
   type ValidateFunctions,
 } from "./validator.js";
 
-formValueValidatorTests((options) => ({
-  isValid: () => {
-    throw new Error("'isValid' is not implemented");
-  },
-  async validateFormValueAsync(_signal, rootSchema, formValue) {
-    const patch = insertSubSchemaIds(rootSchema);
-    const schemas = fragmentSchema(patch);
+const createFormValidator = createPrecompiledValidatorFactory(
+  async (options) => {
+    const schemas = fragmentSchema(options.patch);
     const validate = validator(
       // @ts-expect-error Typings for `multi` version are missing
       schemas,
@@ -29,8 +31,12 @@ formValueValidatorTests((options) => ({
     );
     const code = `export const [${schemas.map((s) => s.$id).join(", ")}] = ${validate.toModule()}`;
     const validateFunctions = await importModule<ValidateFunctions>(code);
-    const factory = createFormValidatorFactory({ validateFunctions });
-    const v = factory(options);
-    return v.validateFormValue(patch.schema, formValue);
+    const factory = createFormValidatorFactory({
+      validatorRetriever: fromValidators(validateFunctions),
+    });
+    return factory(options);
   },
-}));
+);
+
+validatorTests(createFormValidator);
+formValueValidatorTests(createFormValidator);

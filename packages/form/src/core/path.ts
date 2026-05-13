@@ -84,31 +84,27 @@ export function getSchemaDefinitionByPath(
     path: RPath,
     value: SchemaValue | undefined
   ) {
-    const schemas: Schema[] = schemaDefs.map((s) =>
-      typeof s === "boolean" ? (s ? {} : { not: {} }) : s
-    );
-
     const index = getClosestMatchingOption(
       validator,
       merger,
       rootSchema,
       value,
-      schemas,
+      schemaDefs,
       -1,
       getDiscriminatorFieldFromSchema(schema)
     );
 
-    const subSchema = getSchemaDefinition(schemas[index], path, value);
+    const subSchema = getSchemaDefinition(schemaDefs[index], path, value);
     if (subSchema !== undefined) {
       return subSchema;
     }
 
     let lastBool: boolean | undefined;
-    for (const subSchema of schemas) {
-      if (!isSchemaObject(subSchema)) {
+    for (const subSchemaDef of schemaDefs) {
+      if (!isSchemaObject(subSchemaDef)) {
         continue;
       }
-      const def = getSchemaDefinition(subSchema, path, value);
+      const def = getSchemaDefinition(subSchemaDef, path, value);
       if (def === undefined) {
         continue;
       }

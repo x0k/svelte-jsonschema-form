@@ -1,6 +1,10 @@
 import type { FormValue, Schema, SchemaValue } from "@sjsf/form";
-import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
-import { Validation, type AST } from "@hyperjump/json-schema/experimental";
+import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
+import {
+  Validation,
+  type AST,
+  type CompiledSchema,
+} from "@hyperjump/json-schema/experimental";
 import {
   fromJs,
   type JsonNode,
@@ -13,50 +17,70 @@ import {
 
 import { JsonSchemaErrorsOutputPlugin } from "./output-plugin.js";
 
-export interface ValidatorOptions {
+// TODO: Remove in v4
+interface LegacyValidatorOptions {
+  /** @deprecated use `validatorRetriever` instead */
   ast: AST;
-  localization: Localization;
+  /** @deprecated use `validatorRetriever` instead */
   augmentSuffix?: string;
-  valueToJSON?: (value: FormValue) => SchemaValue;
+  validatorRetriever?: (schema: Schema) => CompiledSchema;
 }
 
-export interface Context {
-  ast: AST;
-  schemaUri: string;
+interface ModernValidatorOptions {
+  validatorRetriever: (schema: Schema) => CompiledSchema;
+}
+
+export type CoreValidatorOptions = (
+  | LegacyValidatorOptions
+  | ModernValidatorOptions
+) & {
+  localization: Localization;
+};
+
+// TODO: Remove in v4
+export function createRetriever(options: CoreValidatorOptions) {
+  return "ast" in options
+    ? (options.validatorRetriever ??
+        createValidatorRetriever({
+          registry: {
+            get: (id) => {
+              const schemaUri = `${id}#`;
+              return schemaUri in options.ast
+                ? {
+                    schemaUri,
+                    ast: options.ast,
+                  }
+                : undefined;
+            },
+          },
+          idAugmentations: options.augmentSuffix
+            ? {
+                combination: (id) => id + options.augmentSuffix,
+              }
+            : undefined,
+        }))
+    : options.validatorRetriever;
+}
+
+export interface ValueToJSON {
+  valueToJSON: (value: FormValue) => SchemaValue;
+}
+
+export type ValidatorOptions = CoreValidatorOptions & ValueToJSON;
+
+export interface Context extends CompiledSchema {
   value: JsonNode;
 }
 
-const defaultValueToJson = (v: FormValue): SchemaValue =>
-  v === undefined || v === null
-    ? null
-    : typeof v === "object"
-      ? JSON.parse(JSON.stringify(v))
-      : v;
-
 export function createContext(
-  {
-    ast,
-    augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
-    valueToJSON = defaultValueToJson,
-  }: ValidatorOptions,
-  { $id: id, allOf }: Schema,
+  options: ValidatorOptions,
+  schema: Schema,
   value: FormValue,
 ): Context {
-  if (id === undefined) {
-    const firstAllOfItem = allOf?.[0];
-    if (
-      typeof firstAllOfItem === "object" &&
-      firstAllOfItem.$id !== undefined
-    ) {
-      id = firstAllOfItem.$id + augmentSuffix;
-    } else {
-      throw new Error("Schema id not found");
-    }
-  }
+  const getCompiledSchema = createRetriever(options);
   return {
-    ast,
-    schemaUri: `${id}#`,
-    value: fromJs(valueToJSON(value) as HyperjumpJson),
+    ...getCompiledSchema(schema),
+    value: fromJs(options.valueToJSON(value) as HyperjumpJson),
   };
 }
 

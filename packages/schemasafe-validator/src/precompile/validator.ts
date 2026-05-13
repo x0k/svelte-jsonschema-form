@@ -6,7 +6,7 @@ import type {
   Schema,
   Validator,
 } from "@sjsf/form";
-import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
+import { fromValidators } from "@sjsf/form/validators/precompile";
 
 import type { ValueToJSON } from "../validator.js";
 import { transformFormErrors, transformFieldErrors } from "../errors.js";
@@ -17,106 +17,116 @@ export type ValidateFunctions = {
   [key: string]: CompiledValidateFunction;
 };
 
-export interface ValidatorOptions extends ValueToJSON {
+// TODO: Remove in v4
+interface LegacyValidatorOptions {
+  /** @deprecated use `validatorRetriever` instead */
   validateFunctions: ValidateFunctions;
+  /** @deprecated use `validatorRetriever` instead */
   augmentSuffix?: string;
+  validatorRetriever?: (schema: Schema) => CompiledValidateFunction;
 }
 
-function getValidate(
-  {
-    validateFunctions,
-    augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
-  }: ValidatorOptions,
-  { $id: id, allOf }: Schema
-): Validate {
-  if (id === undefined) {
-    const firstAllOfItem = allOf?.[0];
-    if (
-      typeof firstAllOfItem === "object" &&
-      firstAllOfItem.$id !== undefined
-    ) {
-      id = firstAllOfItem.$id + augmentSuffix;
-    } else {
-      throw new Error("Schema id not found");
-    }
-  }
-  const validate = validateFunctions[id];
-  if (validate === undefined) {
-    throw new Error(`Validate function with id "${id}" not found`);
-  }
-  return validate as Validate;
+interface ModernValidatorOptions {
+  validatorRetriever: (schema: Schema) => CompiledValidateFunction;
 }
+
+type CoreValidatorOptions = LegacyValidatorOptions | ModernValidatorOptions;
+
+// TODO: Remove in v4
+function createRetriever(options: CoreValidatorOptions) {
+  return "validateFunctions" in options
+    ? (options.validatorRetriever ??
+        fromValidators(
+          options.validateFunctions,
+          options.augmentSuffix
+            ? {
+                idAugmentations: {
+                  combination: (id) => id + options.augmentSuffix,
+                },
+              }
+            : undefined,
+        ))
+    : options.validatorRetriever;
+}
+
+function createAndCastRetriever(options: CoreValidatorOptions) {
+  return createRetriever(options) as (schema: Schema) => Validate;
+}
+
+export type ValidatorOptions = ValueToJSON & CoreValidatorOptions;
 
 export function createValidator(options: ValidatorOptions): Validator {
+  const getValidate = createRetriever(options);
   return {
     isValid(schema, _, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }
-      const validate = getValidate(options, schema);
+      const validate = getValidate(schema);
       return validate(options.valueToJSON(formValue));
     },
   };
 }
 
-export interface FormValueValidatorOptions extends ValidatorOptions {
+export type FormValueValidatorOptions = ValidatorOptions & {
   merger: () => Merger;
-}
+};
 
 export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions
+  options: FormValueValidatorOptions,
 ): FormValueValidator<T> {
+  const getValidate = createAndCastRetriever(options);
   return {
     validateFormValue(rootSchema, formValue) {
-      const validate = getValidate(options, rootSchema);
+      const validate = getValidate(rootSchema);
       validate(options.valueToJSON(formValue));
       return transformFormErrors(
         createValidator(options),
         options.merger(),
         rootSchema,
         validate.errors,
-        formValue
+        formValue,
       );
     },
   };
 }
 
 export function createFieldValueValidator(
-  options: ValidatorOptions
+  options: ValidatorOptions,
 ): FieldValueValidator {
+  const getValidate = createAndCastRetriever(options);
   return {
     validateFieldValue(field, fieldValue) {
-      const validate = getValidate(options, field.schema);
+      const validate = getValidate(field.schema);
       validate(options.valueToJSON(fieldValue));
       return transformFieldErrors(field, validate.errors, fieldValue);
     },
   };
 }
 
-export interface FormValidatorOptions
-  extends ValidatorOptions,
-    FormValueValidatorOptions {}
+export type FormValidatorOptions = ValidatorOptions & FormValueValidatorOptions;
 
-export function createFormValidatorFactory<T>({
-  // `isJSON` validator option is `false` by default
-  valueToJSON = (value) => value as Json,
-  ...vOptions
-}: Omit<ValidatorOptions, keyof ValueToJSON> & Partial<ValueToJSON>) {
+export function createFormValidatorFactory<T>(
+  vOptions: CoreValidatorOptions & Partial<ValueToJSON>,
+) {
   return (
     options: Omit<
       FormValidatorOptions,
       keyof ValueToJSON | keyof ValidatorOptions
-    >
+    >,
   ) => {
     const full: FormValidatorOptions = {
-      valueToJSON,
-      ...vOptions,
       ...options,
+      ...vOptions,
+      validatorRetriever:
+        vOptions.validatorRetriever ?? createRetriever(vOptions),
+      // `isJSON` validator option is `false` by default
+      valueToJSON: vOptions.valueToJSON ?? ((value) => value as Json),
     };
     return Object.assign(
       createValidator(full),
       createFormValueValidator<T>(full),
-      createFieldValueValidator(full)
+      createFieldValueValidator(full),
     );
   };
 }

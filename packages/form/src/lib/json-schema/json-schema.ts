@@ -107,6 +107,12 @@ export function isSchemaObject<D extends JSONSchema7Definition>(
   return typeof schemaDef === "object";
 }
 
+/**
+ * WARN: This function returns an incorrect result for schemas
+ * containing only the `metadata` and/or `annotation` keywords.
+ *
+ * This behavior will not be changed in order to preserve the correct function signature.
+ */
 export function isAllowAnySchema(
   def: JSONSchema7Definition
 ): def is true | Record<string, never> {

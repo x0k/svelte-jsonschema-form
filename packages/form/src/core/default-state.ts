@@ -3,7 +3,6 @@
 // Modifications made by Roman Krasilnikov.
 
 import { isRecordEmpty, isObject } from "@/lib/object.js";
-import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import { resolveDependencies, retrieveSchema } from "./resolve.js";
 import {
@@ -384,7 +383,7 @@ export function computeDefaults(
           merger,
           rootSchema,
           rawFormData ?? schemaDefault,
-          schemaOneOf.filter(isSchemaObject),
+          schemaOneOf,
           0,
           getDiscriminatorFieldFromSchema(schema)
         )
@@ -407,7 +406,7 @@ export function computeDefaults(
           merger,
           rootSchema,
           rawFormData ?? schemaDefault,
-          schemaAnyOf.filter(isSchemaObject),
+          schemaAnyOf,
           0,
           getDiscriminatorFieldFromSchema(schema)
         )

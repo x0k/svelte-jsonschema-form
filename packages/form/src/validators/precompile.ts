@@ -25,6 +25,7 @@ import {
   type FieldsValidationMode,
   type Schema,
 } from "@/form/main.js";
+import { allowAdditionalProperties } from "@/omit-extra-data.js";
 
 export interface SchemaMeta {
   id: string;
@@ -33,6 +34,7 @@ export interface SchemaMeta {
 
 export type SubSchemas = Trie<Path[number], SchemaMeta>;
 
+/** @deprecated */
 export const DEFAULT_AUGMENT_SUFFIX = "ag";
 
 export function createIdFactory() {
@@ -87,15 +89,18 @@ export function isValidatableNode(
   );
 }
 
+export type IdFactory = (
+  schema: Schema,
+  ctx: SchemaTraverserContext<AnySubSchemaKey>
+) => string;
+
 export interface InsertSubSchemaIdsOptions {
+  /** @default 0 */
   fieldsValidationMode?: FieldsValidationMode;
   /**
    * Created id should be valid ESM export name
    */
-  createId?: (
-    schema: Schema,
-    ctx: SchemaTraverserContext<AnySubSchemaKey>
-  ) => string;
+  createId?: IdFactory;
 }
 
 // TODO: Support ref for ref
@@ -150,17 +155,38 @@ export function insertSubSchemaIds(
   };
 }
 
+export type IdAugmentationType = "combination" | "open";
+
+type IdAugmentations = Record<IdAugmentationType, (id: string) => string>;
+
 export interface FragmentSchemaOptions {
   schema: Schema;
   subSchemas: SubSchemas;
+  /** @deprecated use `idAugmentations` property instead */
   augmentSuffix?: string;
+  /** New IDs should be valid ECMAScript identifiers (if possible) */
+  idAugmentations?: Partial<IdAugmentations>;
+  /** @default false */
+  omitExtraDataSupport?: boolean;
 }
+
+const DEFAULT_ID_AUGMENTATIONS: IdAugmentations = {
+  combination: (id) => id + DEFAULT_AUGMENT_SUFFIX,
+  open: (id) => `${id}_open`,
+};
 
 export function fragmentSchema({
   schema,
   subSchemas,
   augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
+  idAugmentations,
+  omitExtraDataSupport = false,
 }: FragmentSchemaOptions): Schema[] {
+  const augmentations: IdAugmentations = {
+    ...DEFAULT_ID_AUGMENTATIONS,
+    combination: (id) => id + augmentSuffix,
+    ...idAugmentations,
+  };
   const schemas: Schema[] = [];
   const rootId = schema.$id!;
   schemas.push(
@@ -174,18 +200,30 @@ export function fragmentSchema({
         const refSchema: Schema = {
           $ref: `${meta.id}#`,
         };
-        if (meta.combinationBranch && isSchemaWithProperties(copy)) {
-          const augmentedSchema: Schema = createAugmentSchema(copy);
-          augmentedSchema.$id = meta.id + augmentSuffix;
-          if (!copy.required?.length) {
-            if (augmentedSchema.allOf?.[0] === undefined) {
+        if (meta.combinationBranch) {
+          if (isSchemaWithProperties(copy)) {
+            const augmentedSchema: Schema = createAugmentSchema(copy);
+            augmentedSchema.$id = augmentations.combination(meta.id);
+            const { allOf } = augmentedSchema;
+            if (allOf?.[0] === undefined) {
               throw new Error(
                 "Schema augmentation algorithm was changed, but not synchronized with this function, please report this error"
               );
             }
-            augmentedSchema.allOf[0] = refSchema;
+            // first slot of `allOf` is identical to copy and can be replaced with ref
+            if (!copy.required?.length) {
+              allOf[0] = refSchema;
+            } else if (typeof allOf[0] !== "boolean") {
+              // avoid usage of same $id
+              delete allOf[0].$id;
+            }
+            schemas.push(augmentedSchema);
           }
-          schemas.push(augmentedSchema);
+          if (omitExtraDataSupport && copy.additionalProperties === false) {
+            const augmentedSchema = allowAdditionalProperties(copy);
+            augmentedSchema.$id = augmentations.open(meta.id);
+            schemas.push(augmentedSchema);
+          }
         }
         return refSchema;
       }
@@ -196,4 +234,60 @@ export function fragmentSchema({
     }) as Schema
   );
   return schemas;
+}
+
+export interface ValidatorsRegistry<F> {
+  get(id: string): F | undefined;
+}
+
+export interface ValidatorRetrieverOption<F> {
+  registry: ValidatorsRegistry<F>;
+  idAugmentations?: Partial<IdAugmentations>;
+}
+
+export function createValidatorRetriever<F>({
+  registry,
+  idAugmentations,
+}: ValidatorRetrieverOption<F>) {
+  const augmentations: IdAugmentations = {
+    ...DEFAULT_ID_AUGMENTATIONS,
+    ...idAugmentations,
+  };
+  return ({ $id: id, allOf, additionalProperties }: Schema) => {
+    if (id === undefined) {
+      const firstAllOfItem = allOf?.[0];
+      if (
+        typeof firstAllOfItem === "object" &&
+        firstAllOfItem.$id !== undefined
+      ) {
+        id = augmentations.combination(firstAllOfItem.$id);
+      } else {
+        throw new Error("Schema id not found");
+      }
+    } else if (additionalProperties === true) {
+      const validator = registry.get(augmentations.open(id));
+      if (validator !== undefined) {
+        return validator;
+      }
+    }
+    const validator = registry.get(id);
+    if (validator === undefined) {
+      throw new Error(`Validator with id "${id}" not found`);
+    }
+    return validator;
+  };
+}
+
+// createValidatorResolver ?
+// validatorRetrieverFromRecord ?
+export function fromValidators<F>(
+  validators: Record<string, F>,
+  options?: Partial<Omit<ValidatorRetrieverOption<F>, "registry">>
+) {
+  return createValidatorRetriever({
+    registry: {
+      get: (id) => validators[id],
+    },
+    ...options,
+  });
 }

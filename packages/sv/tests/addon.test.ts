@@ -55,12 +55,21 @@ function* kinds() {
     yield kind(`theme__${themeOrSubTheme}`, { themeOrSubTheme });
   }
   for (const validatorWithSuffix of values(validatorOptions())) {
+    if (validatorWithSuffix === BASE.validatorWithSuffix) {
+      continue;
+    }
     yield kind(`validator__${validatorWithSuffix}`, { validatorWithSuffix });
   }
   for (const icons of values(iconOptions())) {
+    if (icons === BASE.icons) {
+      continue;
+    }
     yield kind(`icons__${icons}`, { icons });
   }
   for (const sveltekit of values(SVELTE_KIT_INTEGRATION_OPTIONS)) {
+    if (sveltekit === BASE.sveltekit) {
+      continue;
+    }
     for (const validatorWithSuffix of VALIDATOR_KINDS) {
       yield kind(`sveltekit__${sveltekit}__${validatorWithSuffix}`, {
         sveltekit,

@@ -1,4 +1,4 @@
-import type { Ajv, AsyncValidateFunction, ValidateFunction } from "ajv";
+import type { AsyncValidateFunction } from "ajv";
 import type {
   AsyncFieldValueValidator,
   AsyncFormValueValidator,
@@ -7,7 +7,7 @@ import type {
   Schema,
   Validator,
 } from "@sjsf/form";
-import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
+import { fromValidators } from "@sjsf/form/validators/precompile";
 
 import {
   createFormErrorsTransformer,
@@ -16,53 +16,56 @@ import {
   validateAndTransformErrors,
   validateAndTransformErrorsAsync,
 } from "../errors.js";
-import { CAST_FORM_DATA, NO_FILED_ERRORS } from "../internals.js";
-
-export type CompiledValidateFunction = {
-  (this: Ajv | any, data: any): boolean;
-} & Pick<ValidateFunction, "errors">;
+import {
+  CAST_FORM_DATA,
+  NO_FILED_ERRORS,
+  type CompiledValidateFunction,
+} from "../internals.js";
 
 export type ValidateFunctions = {
   [key: string]: CompiledValidateFunction;
 };
 
-export interface ValidatorOptions {
+// TODO: Remove in v4
+interface LegacyValidatorOptions {
+  /** @deprecated use `validatorRetriever` instead */
   validateFunctions: ValidateFunctions;
+  /** @deprecated use `validatorRetriever` instead */
   augmentSuffix?: string;
+  validatorRetriever?: (schema: Schema) => CompiledValidateFunction;
 }
 
-function getValidateFunction(
-  {
-    validateFunctions,
-    augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
-  }: ValidatorOptions,
-  { $id: id, allOf }: Schema,
-): ValidateFunction {
-  if (id === undefined) {
-    const firstAllOfItem = allOf?.[0];
-    if (
-      typeof firstAllOfItem === "object" &&
-      firstAllOfItem.$id !== undefined
-    ) {
-      id = firstAllOfItem.$id + augmentSuffix;
-    } else {
-      throw new Error("Schema id not found");
-    }
-  }
-  const validate = validateFunctions[id];
-  if (validate === undefined) {
-    throw new Error(`Validate function with id "${id}" not found`);
-  }
-  return validate as ValidateFunction;
+interface ModernValidatorOptions {
+  validatorRetriever: (schema: Schema) => CompiledValidateFunction;
+}
+
+export type ValidatorOptions = LegacyValidatorOptions | ModernValidatorOptions;
+
+// TODO: Remove in v4
+function createRetriever(options: ValidatorOptions) {
+  return "validateFunctions" in options
+    ? (options.validatorRetriever ??
+        fromValidators(
+          options.validateFunctions,
+          options.augmentSuffix
+            ? {
+                idAugmentations: {
+                  combination: (id) => id + options.augmentSuffix,
+                },
+              }
+            : undefined,
+        ))
+    : options.validatorRetriever;
 }
 
 export function createValidator(options: ValidatorOptions): Validator {
+  const getValidateFunction = createRetriever(options);
   return {
     isValid(schema, _, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }
-      const validate = getValidateFunction(options, schema);
+      const validate = getValidateFunction(schema);
       try {
         return validate(formValue);
       } catch (e) {
@@ -73,17 +76,18 @@ export function createValidator(options: ValidatorOptions): Validator {
   };
 }
 
-export interface FormValueValidatorOptions
-  extends ValidatorOptions, ErrorsTransformerOptions {}
+export type FormValueValidatorOptions = ValidatorOptions &
+  ErrorsTransformerOptions;
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions,
 ): FormValueValidator<T> {
+  const getValidateFunction = createRetriever(options);
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
       return validateAndTransformErrors(
-        getValidateFunction(options, rootSchema),
+        getValidateFunction(rootSchema),
         formValue,
         CAST_FORM_DATA<T>,
         transformErrors,
@@ -95,10 +99,11 @@ export function createFormValueValidator<T>(
 export function createFieldValueValidator(
   options: ValidatorOptions,
 ): FieldValueValidator {
+  const getValidateFunction = createRetriever(options);
   return {
     validateFieldValue(field, fieldValue) {
       return validateAndTransformErrors(
-        getValidateFunction(options, field.schema),
+        getValidateFunction(field.schema),
         fieldValue,
         NO_FILED_ERRORS,
         createFieldErrorsTransformer(field),
@@ -110,11 +115,12 @@ export function createFieldValueValidator(
 export function createAsyncFormValueValidator<T>(
   options: FormValidatorOptions,
 ): AsyncFormValueValidator<T> {
+  const getValidateFunction = createRetriever(options);
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValueAsync(_, rootSchema, formValue) {
       return validateAndTransformErrorsAsync(
-        getValidateFunction(options, rootSchema) as AsyncValidateFunction,
+        getValidateFunction(rootSchema) as AsyncValidateFunction,
         formValue,
         CAST_FORM_DATA<T>,
         transformErrors,
@@ -126,10 +132,11 @@ export function createAsyncFormValueValidator<T>(
 export function createAsyncFieldValueValidator(
   options: ValidatorOptions,
 ): AsyncFieldValueValidator {
+  const getValidateFunction = createRetriever(options);
   return {
     validateFieldValueAsync(_, field, fieldValue) {
       return validateAndTransformErrorsAsync(
-        getValidateFunction(options, field.schema) as AsyncValidateFunction,
+        getValidateFunction(field.schema) as AsyncValidateFunction,
         fieldValue,
         NO_FILED_ERRORS,
         createFieldErrorsTransformer(field),
@@ -138,14 +145,15 @@ export function createAsyncFieldValueValidator(
   };
 }
 
-export interface FormValidatorOptions
-  extends ValidatorOptions, FormValueValidatorOptions {}
+export type FormValidatorOptions = ValidatorOptions & FormValueValidatorOptions;
 
 export function createFormValidatorFactory<T>(vOptions: ValidatorOptions) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
-    const full = {
-      ...vOptions,
+    const full: FormValidatorOptions = {
       ...options,
+      ...vOptions,
+      validatorRetriever:
+        vOptions.validatorRetriever ?? createRetriever(vOptions),
     };
     return Object.assign(
       createValidator(full),
@@ -157,9 +165,11 @@ export function createFormValidatorFactory<T>(vOptions: ValidatorOptions) {
 
 export function createAsyncFormValidatorFactory<T>(vOptions: ValidatorOptions) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
-    const full = {
-      ...vOptions,
+    const full: FormValidatorOptions = {
       ...options,
+      ...vOptions,
+      validatorRetriever:
+        vOptions.validatorRetriever ?? createRetriever(vOptions),
     };
     return Object.assign(
       createValidator(full),
