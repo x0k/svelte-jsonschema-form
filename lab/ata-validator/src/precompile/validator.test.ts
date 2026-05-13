@@ -39,8 +39,5 @@ const createFormValidator = createPrecompiledValidatorFactory(
   },
 );
 
-validatorTests(createFormValidator, {
-  // https://github.com/ata-core/ata-validator/issues/24
-  skipIntegrationTests: true,
-});
+validatorTests(createFormValidator);
 formValueValidatorTests(createFormValidator);
