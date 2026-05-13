@@ -19,8 +19,7 @@ import {
 
 const createFormValidator = createPrecompiledValidatorFactory(
   async (options) => {
-    const patch = insertSubSchemaIds(options.schema);
-    const schemas = fragmentSchema(patch);
+    const schemas = fragmentSchema(options.patch);
     const validate = validator(
       // @ts-expect-error Typings for `multi` version are missing
       schemas,

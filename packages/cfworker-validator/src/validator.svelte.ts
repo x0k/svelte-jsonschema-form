@@ -95,7 +95,6 @@ export function createFormValueValidator<T>(
 ): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
-      console.log(JSON.stringify(rootSchema, null, 2));
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
       const { valid, errors } = validator.validate(
         options.valueToJSON(formValue),

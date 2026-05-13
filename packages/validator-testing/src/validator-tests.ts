@@ -18,6 +18,7 @@ import {
   type Validator,
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
+import { omitExtraData } from "@sjsf/form/omit-extra-data";
 import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { expect, it, describe } from "vitest";
@@ -32,11 +33,20 @@ const fieldsValidationMode =
 
 export interface InitializerOptions {
   createIdFactory?: () => IdFactory;
+  /** @default false */
+  useOriginalSchema?: boolean;
+}
+
+export interface ExtraValidatorFactoryOptions extends ValidatorFactoryOptions {
+  patch: ReturnType<typeof insertSubSchemaIds>;
 }
 
 function createInitializer<V extends Validator>(
-  createValidator: Creatable<V | Promise<V>, ValidatorFactoryOptions>,
-  { createIdFactory = defaultCreateIdFactory }: InitializerOptions = {},
+  createValidator: Creatable<V | Promise<V>, ExtraValidatorFactoryOptions>,
+  {
+    createIdFactory = defaultCreateIdFactory,
+    useOriginalSchema = false,
+  }: InitializerOptions = {},
 ) {
   return async ({
     schema: originalSchema,
@@ -49,16 +59,18 @@ function createInitializer<V extends Validator>(
     idBuilder?: FormIdBuilder;
     uiOptionsRegistry?: UiOptionsRegistry;
   }) => {
-    const { schema } = insertSubSchemaIds(originalSchema, {
+    const patch = insertSubSchemaIds(originalSchema, {
       fieldsValidationMode,
       createId: createIdFactory(),
     });
+    const schema = useOriginalSchema ? originalSchema : patch.schema;
     const validator = await create(createValidator, {
       idBuilder,
       merger: () => merger,
       schema,
       uiOptionsRegistry,
       uiSchema,
+      patch,
     });
     const merger = createFormMerger({
       schema,
@@ -73,9 +85,14 @@ function createInitializer<V extends Validator>(
   };
 }
 
+export interface ValidatorTestOptions extends InitializerOptions {}
+
 export function validatorTests(
-  createValidator: Creatable<MaybePromise<Validator>, ValidatorFactoryOptions>,
-  options?: InitializerOptions,
+  createValidator: Creatable<
+    MaybePromise<Validator>,
+    ExtraValidatorFactoryOptions
+  >,
+  options?: ValidatorTestOptions,
 ) {
   const init = createInitializer(createValidator, options);
   describe("Validator", () => {
@@ -100,19 +117,118 @@ export function validatorTests(
       validator.isValid(schema2, schema2, undefined);
     });
   });
+
+  describe("omitExtraData", () => {
+    it("Should pick correct oneOf branch when additionalProperties is augmented", async () => {
+      // Both branches have additionalProperties: false, which forces
+      // allowAdditionalProperties() augmentation inside handleOneOf so that
+      // getClosestMatchingOption / validator.isValid can still match on value shape.
+      const { validator, merger, schema } = await init({
+        schema: {
+          oneOf: [
+            {
+              type: "object",
+              properties: {
+                kind: { type: "string", enum: ["cat"] },
+                lives: { type: "number" },
+              },
+              required: ["kind"],
+              additionalProperties: false,
+            },
+            {
+              type: "object",
+              properties: {
+                kind: { type: "string", enum: ["dog"] },
+                breed: { type: "string" },
+              },
+              required: ["kind"],
+              additionalProperties: false,
+            },
+          ],
+        },
+      });
+
+      // Extra key "noise" must be stripped; only the matching branch's
+      // known properties should survive.
+      const value = {
+        kind: "dog",
+        breed: "labrador",
+        noise: "should be removed",
+      };
+
+      const result = omitExtraData(validator, merger, schema, value);
+
+      expect(result).toEqual({ kind: "dog", breed: "labrador" });
+    });
+
+    it("Should strip fields from both branches independently", async () => {
+      const { validator, merger, schema } = await init({
+        schema: {
+          oneOf: [
+            {
+              type: "object",
+              properties: {
+                kind: { type: "string", enum: ["a"] },
+                x: { type: "number" },
+              },
+              required: ["kind"],
+              additionalProperties: false,
+            },
+            {
+              type: "object",
+              properties: {
+                kind: { type: "string", enum: ["b"] },
+                y: { type: "string" },
+              },
+              required: ["kind"],
+              additionalProperties: false,
+            },
+          ],
+        },
+      });
+
+      // Branch "a" matched — "y" and "extra" must both be gone
+      const result = omitExtraData(validator, merger, schema, {
+        kind: "a",
+        x: 42,
+        y: "belongs to branch b, not a",
+        extra: "also unwanted",
+      });
+
+      expect(result).toEqual({ kind: "a", x: 42 });
+    });
+
+    it("Should return undefined for value that matches no branch", async () => {
+      const { validator, merger, schema } = await init({
+        schema: {
+          oneOf: [
+            {
+              type: "object",
+              properties: { kind: { type: "string", enum: ["a"] } },
+              required: ["kind"],
+              additionalProperties: false,
+            },
+          ],
+        },
+      });
+
+      // getClosestMatchingOption falls back to index 0, but the branch
+      // schema type is "object" while source is a string → omit returns undefined
+      const result = omitExtraData(validator, merger, schema, "not an object");
+
+      expect(result).toBeUndefined();
+    });
+  });
 }
 
-export interface FormValueValidatorTestsOptions extends InitializerOptions {
-  /** @default false */
-  useOriginalSchema?: boolean;
-}
+export interface FormValueValidatorTestsOptions extends InitializerOptions {}
 
 export function formValueValidatorTests<T>(
   createFormValueValidator: Creatable<
     MaybePromise<
       (FormValueValidator<T> | AsyncFormValueValidator<T>) & Validator
     >,
-    ValidatorFactoryOptions
+    ExtraValidatorFactoryOptions
   >,
   options: FormValueValidatorTestsOptions = {},
 ) {

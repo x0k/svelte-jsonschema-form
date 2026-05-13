@@ -21,10 +21,10 @@ import {
 
 const createFormValidator = createPrecompiledValidatorFactory(
   async (options) => {
-    const patch = insertSubSchemaIds(options.schema);
+    const schemas = fragmentSchema(options.patch);
     const ajv = new Ajv({
       ...DEFAULT_AJV_CONFIG,
-      schemas: fragmentSchema(patch),
+      schemas,
       code: {
         source: true,
         esm: true,

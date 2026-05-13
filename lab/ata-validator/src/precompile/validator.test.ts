@@ -1,7 +1,6 @@
 import {
   fragmentSchema,
   fromValidators,
-  insertSubSchemaIds,
 } from "@sjsf/form/validators/precompile";
 import { Validator } from "ata-validator";
 import {
@@ -19,9 +18,8 @@ import {
 
 const createFormValidator = createPrecompiledValidatorFactory(
   async (options) => {
-    const patch = insertSubSchemaIds(options.schema);
     const base = { $schema: "http://json-schema.org/draft-07/schema" };
-    const schemas = fragmentSchema(patch);
+    const schemas = fragmentSchema(options.patch);
     const bundle = Validator.bundleStandalone(
       schemas.map((s) => Object.assign(s, base)),
       { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" },

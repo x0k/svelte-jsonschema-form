@@ -7,7 +7,6 @@ import { compile, getSchema } from "@hyperjump/json-schema/experimental";
 import {
   createValidatorRetriever,
   fragmentSchema,
-  insertSubSchemaIds,
   type IdFactory,
 } from "@sjsf/form/validators/precompile";
 import {
@@ -27,10 +26,7 @@ const createIdFactory = (): IdFactory => {
 
 const createFormValidator = createPrecompiledValidatorFactory(
   async (options) => {
-    const patch = insertSubSchemaIds(options.schema, {
-      createId: createIdFactory(),
-    });
-    const schemas = fragmentSchema(patch);
+    const schemas = fragmentSchema(options.patch);
     for (const schema of schemas) {
       registerSchema(
         Object.assign(
