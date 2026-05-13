@@ -544,7 +544,7 @@ describe("createValidatorRetriever", () => {
       const retriever = createValidatorRetriever({
         registry: makeRegistry({
           "schema/foo": baseValidator,
-          "schema/foo-open": openValidator,
+          "schema/foo_open": openValidator,
         }),
       });
 
@@ -589,7 +589,7 @@ describe("createValidatorRetriever", () => {
       const retriever = createValidatorRetriever({
         registry: makeRegistry({
           "schema/foo": baseValidator,
-          "schema/foo-open": openValidator,
+          "schema/foo_open": openValidator,
         }),
       });
 
@@ -695,7 +695,7 @@ describe("createValidatorRetriever", () => {
     });
 
     it("overrides the open augmentation", () => {
-      const openValidator: FakeValidator = { name: "custom-open" };
+      const openValidator: FakeValidator = { name: "custom_open" };
       const customOpenKey = "schema/foo__OPEN";
       const retriever = createValidatorRetriever({
         registry: makeRegistry({ [customOpenKey]: openValidator }),
@@ -714,9 +714,9 @@ describe("createValidatorRetriever", () => {
 
     it("leaves the other augmentation at its default when only one is overridden", () => {
       // Override combination, leave open at default
-      const defaultOpenValidator: FakeValidator = { name: "default-open" };
+      const defaultOpenValidator: FakeValidator = { name: "default_open" };
       const retriever = createValidatorRetriever({
-        registry: makeRegistry({ "schema/foo-open": defaultOpenValidator }),
+        registry: makeRegistry({ "schema/foo_open": defaultOpenValidator }),
         idAugmentations: {
           combination: (id) => `${id}__CUSTOM`,
         },

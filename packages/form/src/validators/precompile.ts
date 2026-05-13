@@ -164,6 +164,7 @@ export interface FragmentSchemaOptions {
   subSchemas: SubSchemas;
   /** @deprecated use `idAugmentations` property instead */
   augmentSuffix?: string;
+  /** New IDs should be valid ECMAScript identifiers (if possible) */
   idAugmentations?: Partial<IdAugmentations>;
   /** @default false */
   omitExtraDataSupport?: boolean;
@@ -171,7 +172,7 @@ export interface FragmentSchemaOptions {
 
 const DEFAULT_ID_AUGMENTATIONS: IdAugmentations = {
   combination: (id) => id + DEFAULT_AUGMENT_SUFFIX,
-  open: (id) => `${id}-open`,
+  open: (id) => `${id}_open`,
 };
 
 export function fragmentSchema({
