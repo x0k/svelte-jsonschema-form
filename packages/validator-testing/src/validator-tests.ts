@@ -29,6 +29,7 @@ import {
   insertSubSchemaIds,
   createIdFactory as defaultCreateIdFactory,
   type IdFactory,
+  type FragmentSchemaOptions,
 } from "@sjsf/form/validators/precompile";
 import { expect, it, describe } from "vitest";
 
@@ -39,6 +40,8 @@ export interface InitializerOptions {
   createIdFactory?: () => IdFactory;
   /** @default false */
   useOriginalSchema?: boolean;
+  /** @default true */
+  omitExtraDataSupport?: boolean;
 }
 
 export interface ExtraValidatorFactoryOptions extends ValidatorFactoryOptions {
@@ -50,6 +53,7 @@ function createInitializer<V extends Validator>(
   {
     createIdFactory = defaultCreateIdFactory,
     useOriginalSchema = false,
+    omitExtraDataSupport = true,
   }: InitializerOptions = {},
 ) {
   return async ({
@@ -74,7 +78,10 @@ function createInitializer<V extends Validator>(
       schema,
       uiOptionsRegistry,
       uiSchema,
-      patch,
+      patch: {
+        ...patch,
+        omitExtraDataSupport,
+      } satisfies FragmentSchemaOptions,
     });
     const merger = createFormMerger({
       schema,
@@ -452,6 +459,52 @@ export function validatorTests(
         });
         // "extra" survives because the branch allows additional properties
         expect(result).toEqual({ kind: "a", extra: "keep me" });
+      });
+
+      it("Should select correct branch via isValid when scores are equal due to cross-branch property pollution", async () => {
+        // Branch 0: kind enum ["a"], has property p
+        // Branch 1: kind enum ["b"], has property q
+        const { validator, merger, schema } = await init({
+          schema: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  kind: { type: "string", enum: ["a"] },
+                  p: { type: "string" },
+                },
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  kind: { type: "string", enum: ["b"] },
+                  q: { type: "number" },
+                },
+                additionalProperties: false,
+              },
+            ],
+          },
+        });
+
+        // Value contains p (branch 0's property) AND q (branch 1's property) AND noise.
+        // Scoring: enum is NOT scored — both branches see `kind: string` → +1.
+        //          branch 0 sees `p: string` → +1. Total: 2.
+        //          branch 1 sees `q: number` → +1. Total: 2.
+        // Equal scores → selectedOption=0 wins → wrong branch → p kept, q dropped.
+        //
+        // With omitExtraDataSupport, open validators run:
+        //   open branch 0: kind="b" fails enum ["a"] → false
+        //   open branch 1: kind="b" passes enum ["b"], extras allowed → true
+        // branch 1 wins → q kept, p dropped → correct.
+        const result = omitExtraData(validator, merger, schema, {
+          kind: "b",
+          p: "cross-branch pollution",
+          q: 42,
+          noise: "drop",
+        });
+
+        expect(result).toEqual({ kind: "b", q: 42 });
       });
     });
   });

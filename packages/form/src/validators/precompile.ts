@@ -155,7 +155,7 @@ export function insertSubSchemaIds(
   };
 }
 
-export type IdAugmentationType = "combination" | "open";
+export type IdAugmentationType = "combination";
 
 type IdAugmentations = Record<IdAugmentationType, (id: string) => string>;
 
@@ -172,7 +172,6 @@ export interface FragmentSchemaOptions {
 
 const DEFAULT_ID_AUGMENTATIONS: IdAugmentations = {
   combination: (id) => id + DEFAULT_AUGMENT_SUFFIX,
-  open: (id) => `${id}_open`,
 };
 
 export function fragmentSchema({
@@ -210,18 +209,16 @@ export function fragmentSchema({
                 "Schema augmentation algorithm was changed, but not synchronized with this function, please report this error"
               );
             }
-            // first slot of `allOf` is identical to copy and can be replaced with ref
-            if (!copy.required?.length) {
-              allOf[0] = refSchema;
-            } else if (typeof allOf[0] !== "boolean") {
+            if (typeof allOf[0] !== "boolean") {
               // avoid usage of same $id
               delete allOf[0].$id;
+              if (omitExtraDataSupport && copy.additionalProperties === false) {
+                allOf[0] = allowAdditionalProperties(allOf[0]);
+              } else if (!copy.required?.length) {
+                // first slot of `allOf` is identical to copy and can be replaced with ref
+                allOf[0] = refSchema;
+              }
             }
-            schemas.push(augmentedSchema);
-          }
-          if (omitExtraDataSupport && copy.additionalProperties === false) {
-            const augmentedSchema = allowAdditionalProperties(copy);
-            augmentedSchema.$id = augmentations.open(meta.id);
             schemas.push(augmentedSchema);
           }
         }
@@ -253,7 +250,7 @@ export function createValidatorRetriever<F>({
     ...DEFAULT_ID_AUGMENTATIONS,
     ...idAugmentations,
   };
-  return ({ $id: id, allOf, additionalProperties }: Schema) => {
+  return ({ $id: id, allOf }: Schema) => {
     if (id === undefined) {
       const firstAllOfItem = allOf?.[0];
       if (
@@ -263,11 +260,6 @@ export function createValidatorRetriever<F>({
         id = augmentations.combination(firstAllOfItem.$id);
       } else {
         throw new Error("Schema id not found");
-      }
-    } else if (additionalProperties === true) {
-      const validator = registry.get(augmentations.open(id));
-      if (validator !== undefined) {
-        return validator;
       }
     }
     const validator = registry.get(id);
