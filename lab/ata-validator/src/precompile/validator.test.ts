@@ -19,11 +19,13 @@ import {
 const createFormValidator = createPrecompiledValidatorFactory(
   async (options) => {
     const base = { $schema: "http://json-schema.org/draft-07/schema" };
-    const schemas = fragmentSchema(options.patch);
-    const bundle = Validator.bundleStandalone(
-      schemas.map((s) => Object.assign(s, base)),
-      { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" },
-    )
+    const schemas = fragmentSchema(options.patch).map((s) =>
+      Object.assign(s, base),
+    );
+    const bundle = Validator.bundleStandalone(schemas, {
+      ...DEFAULT_VALIDATOR_OPTIONS,
+      format: "esm",
+    })
       .replace(
         "const validators",
         `export const [${schemas.map((s) => s.$id).join(", ")}]`,
@@ -37,5 +39,8 @@ const createFormValidator = createPrecompiledValidatorFactory(
   },
 );
 
-validatorTests(createFormValidator);
+validatorTests(createFormValidator, {
+  // https://github.com/ata-core/ata-validator/issues/24
+  skipOmitExtraDataTests: true,
+});
 formValueValidatorTests(createFormValidator);

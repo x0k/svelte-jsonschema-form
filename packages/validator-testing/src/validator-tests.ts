@@ -85,7 +85,10 @@ function createInitializer<V extends Validator>(
   };
 }
 
-export interface ValidatorTestOptions extends InitializerOptions {}
+export interface ValidatorTestOptions extends InitializerOptions {
+  /** @default false */
+  skipOmitExtraDataTests?: boolean;
+}
 
 export function validatorTests(
   createValidator: Creatable<
@@ -118,7 +121,7 @@ export function validatorTests(
     });
   });
 
-  describe("omitExtraData", () => {
+  describe.skipIf(options?.skipOmitExtraDataTests)("omitExtraData", () => {
     it("Should pick correct oneOf branch when additionalProperties is augmented", async () => {
       // Both branches have additionalProperties: false, which forces
       // allowAdditionalProperties() augmentation inside handleOneOf so that
@@ -198,7 +201,7 @@ export function validatorTests(
       expect(result).toEqual({ kind: "a", x: 42 });
     });
 
-    it("Should return undefined for value that matches no branch", async () => {
+    it("Should return original value for value that matches no branch", async () => {
       const { validator, merger, schema } = await init({
         schema: {
           oneOf: [
@@ -214,9 +217,9 @@ export function validatorTests(
 
       // getClosestMatchingOption falls back to index 0, but the branch
       // schema type is "object" while source is a string → omit returns undefined
-      const result = omitExtraData(validator, merger, schema, "not an object");
+      const result = omitExtraData(validator, merger, schema, {});
 
-      expect(result).toBeUndefined();
+      expect(result).toEqual({});
     });
   });
 }

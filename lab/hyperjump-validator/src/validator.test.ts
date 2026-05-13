@@ -3,7 +3,11 @@ import {
   unregisterSchema,
   type SchemaObject,
 } from "@hyperjump/json-schema/draft-07";
-import { compile, getSchema } from "@hyperjump/json-schema/experimental";
+import {
+  getSchema,
+  Validation,
+  type AST,
+} from "@hyperjump/json-schema/experimental";
 import {
   createValidatorRetriever,
   fragmentSchema,
@@ -30,15 +34,18 @@ const createFormValidator = createPrecompiledValidatorFactory(
     for (const schema of schemas) {
       registerSchema(
         Object.assign(
-          Object.assign(
-            { $schema: "http://json-schema.org/draft-07/schema" },
-            schema as SchemaObject,
-          ),
+          { $schema: "http://json-schema.org/draft-07/schema" },
+          schema as SchemaObject,
         ),
       );
     }
     try {
-      const { ast } = await compile(await getSchema(toId(0)));
+      // https://github.com/hyperjump-io/json-schema/issues/116
+      const ast = { metaData: {}, plugins: new Set() } as unknown as AST;
+      for (const schema of schemas) {
+        const s = await getSchema(schema.$id!);
+        await Validation.compile(s, ast, s);
+      }
       const factory = createFormValidatorFactory({
         localization,
         validatorRetriever: createValidatorRetriever({

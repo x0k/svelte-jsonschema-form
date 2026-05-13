@@ -1,7 +1,6 @@
 import {
   fragmentSchema,
   fromValidators,
-  insertSubSchemaIds,
 } from "@sjsf/form/validators/precompile";
 import standaloneCode from "ajv/dist/standalone/index.js";
 import { Ajv } from "ajv";
