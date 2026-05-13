@@ -1,5 +1,9 @@
 import type { MaybePromise } from "@sjsf/form/lib/types";
 import {
+  getClosestMatchingOption,
+  getFirstMatchingOption,
+} from "@sjsf/form/core";
+import {
   create,
   isAsyncFormValueValidator,
   ON_ARRAY_CHANGE,
@@ -21,12 +25,12 @@ import {
 import { omitExtraData } from "@sjsf/form/omit-extra-data";
 import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
-import { expect, it, describe } from "vitest";
 import {
   insertSubSchemaIds,
   createIdFactory as defaultCreateIdFactory,
   type IdFactory,
 } from "@sjsf/form/validators/precompile";
+import { expect, it, describe } from "vitest";
 
 const fieldsValidationMode =
   ON_INPUT | ON_CHANGE | ON_BLUR | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE;
@@ -87,7 +91,7 @@ function createInitializer<V extends Validator>(
 
 export interface ValidatorTestOptions extends InitializerOptions {
   /** @default false */
-  skipOmitExtraDataTests?: boolean;
+  skipIntegrationTests?: boolean;
 }
 
 export function validatorTests(
@@ -121,105 +125,334 @@ export function validatorTests(
     });
   });
 
-  describe.skipIf(options?.skipOmitExtraDataTests)("omitExtraData", () => {
-    it("Should pick correct oneOf branch when additionalProperties is augmented", async () => {
-      // Both branches have additionalProperties: false, which forces
-      // allowAdditionalProperties() augmentation inside handleOneOf so that
-      // getClosestMatchingOption / validator.isValid can still match on value shape.
-      const { validator, merger, schema } = await init({
-        schema: {
-          oneOf: [
-            {
-              type: "object",
-              properties: {
-                kind: { type: "string", enum: ["cat"] },
-                lives: { type: "number" },
+  describe.skipIf(options?.skipIntegrationTests)("integration", () => {
+    describe("getFirstMatchingOption — createAugmentSchema path", () => {
+      // isOptionMatching takes the memoizedAugmentSchema branch when:
+      //   isSchemaWithProperties(option) === true && discriminatorField === undefined
+
+      it("Should match branch by present property when required is stripped", async () => {
+        // Without augmentation, required: ["kind"] would reject a value
+        // missing other required fields. createAugmentSchema strips required
+        // and replaces it with anyOf[{ required: [key] }...], so a value
+        // with ANY known property satisfies the branch.
+        const { validator, schema } = await init({
+          schema: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  kind: { type: "string", enum: ["cat"] },
+                  lives: { type: "number" },
+                },
+                required: ["kind", "lives"],
               },
-              required: ["kind"],
-              additionalProperties: false,
-            },
-            {
-              type: "object",
-              properties: {
-                kind: { type: "string", enum: ["dog"] },
-                breed: { type: "string" },
+              {
+                type: "object",
+                properties: {
+                  kind: { type: "string", enum: ["dog"] },
+                  breed: { type: "string" },
+                },
+                required: ["kind", "breed"],
               },
-              required: ["kind"],
-              additionalProperties: false,
-            },
-          ],
-        },
+            ],
+          },
+        });
+        const options = schema.oneOf as Schema[];
+
+        // Value only has "kind" — original required would reject both branches,
+        // but augmented anyOf([{required:["kind"]},{required:["lives"]}]) accepts.
+        const index = getFirstMatchingOption(
+          validator,
+          { kind: "cat" },
+          options,
+          schema,
+        );
+        expect(index).toBe(0);
       });
 
-      // Extra key "noise" must be stripped; only the matching branch's
-      // known properties should survive.
-      const value = {
-        kind: "dog",
-        breed: "labrador",
-        noise: "should be removed",
-      };
+      it("Should return 0 when formData is undefined", async () => {
+        const { validator, schema } = await init({
+          schema: {
+            oneOf: [
+              {
+                type: "object",
+                properties: { a: { type: "string" } },
+                required: ["a"],
+              },
+              {
+                type: "object",
+                properties: { b: { type: "number" } },
+                required: ["b"],
+              },
+            ],
+          },
+        });
+        const index = getFirstMatchingOption(
+          validator,
+          undefined,
+          schema.oneOf as Schema[],
+          schema,
+        );
+        expect(index).toBe(0);
+      });
 
-      const result = omitExtraData(validator, merger, schema, value);
-
-      expect(result).toEqual({ kind: "dog", breed: "labrador" });
+      it("Should pick first matching branch among multiple property-bearing schemas", async () => {
+        const { validator, schema } = await init({
+          schema: {
+            oneOf: [
+              {
+                type: "object",
+                properties: { x: { type: "number" } },
+                required: ["x"],
+              },
+              {
+                type: "object",
+                properties: { y: { type: "string" } },
+                required: ["y"],
+              },
+              {
+                type: "object",
+                properties: { z: { type: "boolean" } },
+                required: ["z"],
+              },
+            ],
+          },
+        });
+        const index = getFirstMatchingOption(
+          validator,
+          { y: "hello" },
+          schema.oneOf as Schema[],
+          schema,
+        );
+        expect(index).toBe(1);
+      });
     });
 
-    it("Should strip fields from both branches independently", async () => {
-      const { validator, merger, schema } = await init({
-        schema: {
-          oneOf: [
-            {
-              type: "object",
-              properties: {
-                kind: { type: "string", enum: ["a"] },
-                x: { type: "number" },
+    describe("getClosestMatchingOption — scoring and augmentation", () => {
+      it("Should score branches and pick best matching one", async () => {
+        // Both branches are valid (augmented required passes),
+        // but branch 1 has more matching typed properties → higher score.
+        const { validator, merger, schema } = await init({
+          schema: {
+            oneOf: [
+              {
+                type: "object",
+                properties: { kind: { type: "string" } },
+                required: ["kind"],
               },
-              required: ["kind"],
-              additionalProperties: false,
-            },
-            {
-              type: "object",
-              properties: {
-                kind: { type: "string", enum: ["b"] },
-                y: { type: "string" },
+              {
+                type: "object",
+                properties: {
+                  kind: { type: "string" },
+                  count: { type: "number" },
+                  label: { type: "string" },
+                },
+                required: ["kind"],
               },
-              required: ["kind"],
-              additionalProperties: false,
-            },
-          ],
-        },
+            ],
+          },
+        });
+        const index = getClosestMatchingOption(
+          validator,
+          merger,
+          schema,
+          { kind: "x", count: 3, label: "foo" },
+          schema.oneOf as Schema[],
+        );
+        expect(index).toBe(1);
       });
 
-      // Branch "a" matched — "y" and "extra" must both be gone
-      const result = omitExtraData(validator, merger, schema, {
-        kind: "a",
-        x: 42,
-        y: "belongs to branch b, not a",
-        extra: "also unwanted",
+      it("Should fall back to selectedOption when all scores are equal", async () => {
+        const { validator, merger, schema } = await init({
+          schema: {
+            oneOf: [
+              {
+                type: "object",
+                properties: { a: { type: "string" } },
+                required: ["a"],
+              },
+              {
+                type: "object",
+                properties: { b: { type: "string" } },
+                required: ["b"],
+              },
+            ],
+          },
+        });
+
+        // Both branches score equally for a value that matches neither specifically.
+        const index = getClosestMatchingOption(
+          validator,
+          merger,
+          schema,
+          {},
+          schema.oneOf as Schema[],
+          1, // selectedOption
+        );
+        expect(index).toBe(1);
       });
 
-      expect(result).toEqual({ kind: "a", x: 42 });
+      it("Should use discriminator field to short-circuit augmentation", async () => {
+        const { validator, merger, schema } = await init({
+          schema: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  kind: { type: "string", const: "circle" },
+                  radius: { type: "number" },
+                },
+                required: ["kind"],
+              },
+              {
+                type: "object",
+                properties: {
+                  kind: { type: "string", const: "rect" },
+                  width: { type: "number" },
+                },
+                required: ["kind"],
+              },
+            ],
+          },
+        });
+        // With a discriminator, isOptionMatching validates only the
+        // discriminator property schema — createAugmentSchema is NOT called.
+        const index = getClosestMatchingOption(
+          validator,
+          merger,
+          schema,
+          { kind: "rect", width: 100 },
+          schema.oneOf as Schema[],
+          0,
+          "kind",
+        );
+        expect(index).toBe(1);
+      });
     });
 
-    it("Should return original value for value that matches no branch", async () => {
-      const { validator, merger, schema } = await init({
-        schema: {
-          oneOf: [
-            {
-              type: "object",
-              properties: { kind: { type: "string", enum: ["a"] } },
-              required: ["kind"],
-              additionalProperties: false,
-            },
-          ],
-        },
+    describe("omitExtraData", () => {
+      it("Should pick correct oneOf branch when additionalProperties is augmented", async () => {
+        // Both branches have additionalProperties: false, which forces
+        // allowAdditionalProperties() augmentation inside handleOneOf so that
+        // getClosestMatchingOption / validator.isValid can still match on value shape.
+        const { validator, merger, schema } = await init({
+          schema: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  kind: { type: "string", enum: ["cat"] },
+                  lives: { type: "number" },
+                },
+                required: ["kind"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  kind: { type: "string", enum: ["dog"] },
+                  breed: { type: "string" },
+                },
+                required: ["kind"],
+                additionalProperties: false,
+              },
+            ],
+          },
+        });
+
+        // Extra key "noise" must be stripped; only the matching branch's
+        // known properties should survive.
+        const value = {
+          kind: "dog",
+          breed: "labrador",
+          noise: "should be removed",
+        };
+
+        const result = omitExtraData(validator, merger, schema, value);
+
+        expect(result).toEqual({ kind: "dog", breed: "labrador" });
       });
 
-      // getClosestMatchingOption falls back to index 0, but the branch
-      // schema type is "object" while source is a string → omit returns undefined
-      const result = omitExtraData(validator, merger, schema, {});
+      it("Should strip fields from both branches independently", async () => {
+        const { validator, merger, schema } = await init({
+          schema: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  kind: { type: "string", enum: ["a"] },
+                  x: { type: "number" },
+                },
+                required: ["kind"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  kind: { type: "string", enum: ["b"] },
+                  y: { type: "string" },
+                },
+                required: ["kind"],
+                additionalProperties: false,
+              },
+            ],
+          },
+        });
 
-      expect(result).toEqual({});
+        // Branch "a" matched — "y" and "extra" must both be gone
+        const result = omitExtraData(validator, merger, schema, {
+          kind: "a",
+          x: 42,
+          y: "belongs to branch b, not a",
+          extra: "also unwanted",
+        });
+
+        expect(result).toEqual({ kind: "a", x: 42 });
+      });
+
+      it("Should return original value for value that matches no branch", async () => {
+        const { validator, merger, schema } = await init({
+          schema: {
+            oneOf: [
+              {
+                type: "object",
+                properties: { kind: { type: "string", enum: ["a"] } },
+                required: ["kind"],
+                additionalProperties: false,
+              },
+            ],
+          },
+        });
+
+        // getClosestMatchingOption falls back to index 0, but the branch
+        // schema type is "object" while source is a string → omit returns undefined
+        const result = omitExtraData(validator, merger, schema, {});
+
+        expect(result).toEqual({});
+      });
+
+      it("Should not strip extra keys when additionalProperties is not false", async () => {
+        // allowAdditionalProperties augmentation is skipped for this branch,
+        // confirming the condition `additionalProperties === false` is the trigger.
+        const { validator, merger, schema } = await init({
+          schema: {
+            oneOf: [
+              {
+                type: "object",
+                properties: { kind: { type: "string", enum: ["a"] } },
+                required: ["kind"],
+                additionalProperties: true,
+              },
+            ],
+          },
+        });
+        const result = omitExtraData(validator, merger, schema, {
+          kind: "a",
+          extra: "keep me",
+        });
+        // "extra" survives because the branch allows additional properties
+        expect(result).toEqual({ kind: "a", extra: "keep me" });
+      });
     });
   });
 }
