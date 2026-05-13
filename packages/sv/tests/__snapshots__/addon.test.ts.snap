@@ -4938,7 +4938,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/layout.css": "@import 'tailwindcss';
 @source "../../node_modules/@sjsf/daisyui5-theme/dist";
-@plugin "daisyui/index.js";
+@plugin "daisyui";
 ",
   "svelte.config.js": "import adapter from '@sveltejs/adapter-auto';
 
