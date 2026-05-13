@@ -64,7 +64,7 @@ export function appCss(ctx: Context) {
       if (themeOrSubTheme === "daisyui5") {
         css.addAtRule(ast, {
           name: "plugin",
-          params: '"daisyui/index.js"',
+          params: '"daisyui"',
           append: true,
         });
       } else if (themeOrSubTheme === "flowbite3") {
