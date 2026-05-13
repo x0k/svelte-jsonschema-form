@@ -248,6 +248,10 @@ export function createValidator({
         ],
         imports: [
           {
+            imports: ["createValidatorRetriever"],
+            from: internalValidatorSubPath("precompile"),
+          },
+          {
             imports: ["createFormValidatorFactory"],
             from: precompiledValidatorSubPath(validator),
           },
@@ -261,7 +265,22 @@ export function createValidator({
           },
         ],
         options: `schema,
-validator: createFormValidatorFactory({ ast, localization })`,
+validator: createFormValidatorFactory({ 
+  validatorRetriever: createValidatorRetriever({
+    registry: {
+      get(id) {
+        const schemaUri = \`\${id}#\`;
+        return schemaUri in ast
+          ? {
+              schemaUri,
+              ast,
+            }
+          : undefined;
+      },
+    },
+  }),
+  localization
+})`,
       };
     }
     return {
@@ -275,6 +294,10 @@ validator: createFormValidatorFactory({ ast, localization })`,
       ],
       imports: [
         {
+          imports: ["fromValidators"],
+          from: internalValidatorSubPath("precompile"),
+        },
+        {
           imports: ["createFormValidatorFactory"],
           from: precompiledValidatorSubPath(validator),
         },
@@ -284,7 +307,9 @@ validator: createFormValidatorFactory({ ast, localization })`,
         },
       ],
       options: `schema,
-validator: createFormValidatorFactory({ validateFunctions })`,
+validator: createFormValidatorFactory({
+  validatorRetriever: fromValidators(validateFunctions),
+})`,
     };
   }
   if (isSchemaValidator(validatorWithSuffix)) {

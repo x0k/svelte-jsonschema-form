@@ -50,7 +50,12 @@ for (const schema of schemas) {
 }
 
 try {
-  const { ast } = await compile(await getSchema(toId(0)));
+  // https://github.com/hyperjump-io/json-schema/issues/116
+  const ast = { metaData: {}, plugins: new Set() }${ts(" as unknown as AST")};
+  for (const schema of schemas) {
+    const s = await getSchema(schema.$id!);
+    await Validation.compile(s, ast, s);
+  }
   ${saveModel({
     importStatements: `import { uneval } from "devalue"${ts(`;
 import type { AST } from "@hyperjump/json-schema/experimental"`)};`,

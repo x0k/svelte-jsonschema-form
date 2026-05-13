@@ -3124,6 +3124,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/demo/sjsf/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
+import { fromValidators } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf/ajv8-validator/precompile";
 import * as validateFunctions from "$lib/post/validators.generated";
 import { schema } from "$lib/post/model.generated";
@@ -3143,7 +3144,7 @@ export const actions = ({
 			name: "postForm",
 			sendData: true,
 			schema,
-			validator: createFormValidatorFactory({ validateFunctions })
+			validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 		},
 		(data: Post) => {
 			console.log(data);
@@ -3159,6 +3160,7 @@ export const actions = ({
 	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
 	import * as validateFunctions from '$lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
+	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm } from '@sjsf/form';
 
 	const meta = createMeta<ActionData, PageData>().postForm;
@@ -3170,7 +3172,7 @@ export const actions = ({
 				console.log(result.data?.post);
 			}
 		},
-		validator: createFormValidatorFactory({ validateFunctions })
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
 
@@ -4197,13 +4199,14 @@ export const onSubmitError = createFocusOnFirstError();
 	import { schema } from '$lib/post/model.generated';
 	import * as validateFunctions from '$lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
+	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<Post>({
 		...defaults,
 		onSubmit: console.log,
 		schema,
-		validator: createFormValidatorFactory({ validateFunctions })
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
 
@@ -4613,13 +4616,14 @@ export default app
 	import { schema } from 'src/lib/post/model.generated';
 	import * as validateFunctions from 'src/lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
+	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<Post>({
 		...defaults,
 		onSubmit: console.log,
 		schema,
-		validator: createFormValidatorFactory({ validateFunctions })
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
 
@@ -5619,6 +5623,7 @@ export const onSubmitError = createFocusOnFirstError();
 	import { schema } from '$lib/post/model.generated';
 	import * as validateFunctions from '$lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
+	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const initialData = await getInitialData();
@@ -5634,7 +5639,7 @@ export const onSubmitError = createFocusOnFirstError();
 			...defaults,
 			...initialData,
 			fields: createPost.fields,
-			validator: createFormValidatorFactory({ validateFunctions })
+			validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 		}
 	));
 </script>
@@ -5644,6 +5649,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit";
 import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 import { form, query } from "$app/server";
+import { fromValidators } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf/ajv8-validator/precompile";
 import * as validateFunctions from "$lib/post/validators.generated";
 import { schema } from "$lib/post/model.generated";
@@ -5658,7 +5664,7 @@ export const createPost = form(
 	createServerValidator<Post>({
 		...defaults,
 		schema,
-		validator: createFormValidatorFactory({ validateFunctions })
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	}),
 	({ data }) => {
 		console.log(data);
@@ -12178,13 +12184,14 @@ export const onSubmitError = createFocusOnFirstError();
 	import { schema } from '$lib/post/model.generated';
 	import * as validateFunctions from '$lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
+	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<Post>({
 		...defaults,
 		onSubmit: console.log,
 		schema,
-		validator: createFormValidatorFactory({ validateFunctions })
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
 
@@ -12594,13 +12601,14 @@ export default app
 	import { schema } from 'src/lib/post/model.generated';
 	import * as validateFunctions from 'src/lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
+	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<Post>({
 		...defaults,
 		onSubmit: console.log,
 		schema,
-		validator: createFormValidatorFactory({ validateFunctions })
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
 
@@ -13350,13 +13358,14 @@ export const onSubmitError = createFocusOnFirstError();
 	import { schema } from '$lib/post/model.generated';
 	import * as validateFunctions from '$lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf-lab/ata-validator/precompile';
+	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<Post>({
 		...defaults,
 		onSubmit: console.log,
 		schema,
-		validator: createFormValidatorFactory({ validateFunctions })
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
 
@@ -13745,13 +13754,14 @@ export default app
 	import { schema } from 'src/lib/post/model.generated';
 	import * as validateFunctions from 'src/lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf-lab/ata-validator/precompile';
+	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<Post>({
 		...defaults,
 		onSubmit: console.log,
 		schema,
-		validator: createFormValidatorFactory({ validateFunctions })
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
 
@@ -14356,7 +14366,14 @@ async function compileSchema(schemaRelPath: string) {
 	}
 
 	try {
-		const { ast } = await compile(await getSchema(toId(0)));
+		// https://github.com/hyperjump-io/json-schema/issues/116
+		const ast = { metaData: {}, plugins: new Set() } as unknown as AST;
+
+		for (const schema of schemas) {
+			const s = await getSchema(schema.$id!);
+
+			await Validation.compile(s, ast, s);
+		}
 
 		// It is easier to save as a TS file
 		// https://github.com/microsoft/TypeScript/issues/32063
@@ -14515,13 +14532,25 @@ export const onSubmitError = createFocusOnFirstError();
 	import { ast, schema } from '$lib/post/model.generated';
 	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory } from '@sjsf-lab/hyperjump-validator/precompile';
+	import { createValidatorRetriever } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<Post>({
 		...defaults,
 		onSubmit: console.log,
 		schema,
-		validator: createFormValidatorFactory({ ast, localization })
+		validator: createFormValidatorFactory({
+			validatorRetriever: createValidatorRetriever({
+				registry: {
+					get(id) {
+						const schemaUri = \`\${id}#\`;
+
+						return schemaUri in ast ? { schemaUri, ast } : undefined;
+					}
+				}
+			}),
+			localization
+		})
 	});
 </script>
 
@@ -14642,7 +14671,14 @@ async function compileSchema(schemaRelPath: string) {
 	}
 
 	try {
-		const { ast } = await compile(await getSchema(toId(0)));
+		// https://github.com/hyperjump-io/json-schema/issues/116
+		const ast = { metaData: {}, plugins: new Set() } as unknown as AST;
+
+		for (const schema of schemas) {
+			const s = await getSchema(schema.$id!);
+
+			await Validation.compile(s, ast, s);
+		}
 
 		// It is easier to save as a TS file
 		// https://github.com/microsoft/TypeScript/issues/32063
@@ -14924,13 +14960,25 @@ export default app
 	import { ast, schema } from 'src/lib/post/model.generated';
 	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory } from '@sjsf-lab/hyperjump-validator/precompile';
+	import { createValidatorRetriever } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<Post>({
 		...defaults,
 		onSubmit: console.log,
 		schema,
-		validator: createFormValidatorFactory({ ast, localization })
+		validator: createFormValidatorFactory({
+			validatorRetriever: createValidatorRetriever({
+				registry: {
+					get(id) {
+						const schemaUri = \`\${id}#\`;
+
+						return schemaUri in ast ? { schemaUri, ast } : undefined;
+					}
+				}
+			}),
+			localization
+		})
 	});
 </script>
 
@@ -16180,13 +16228,14 @@ export const onSubmitError = createFocusOnFirstError();
 	import { schema } from '$lib/post/model.generated';
 	import * as validateFunctions from '$lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/schemasafe-validator/precompile';
+	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<Post>({
 		...defaults,
 		onSubmit: console.log,
 		schema,
-		validator: createFormValidatorFactory({ validateFunctions })
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
 
@@ -16574,13 +16623,14 @@ export default app
 	import { schema } from 'src/lib/post/model.generated';
 	import * as validateFunctions from 'src/lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/schemasafe-validator/precompile';
+	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<Post>({
 		...defaults,
 		onSubmit: console.log,
 		schema,
-		validator: createFormValidatorFactory({ validateFunctions })
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
 
