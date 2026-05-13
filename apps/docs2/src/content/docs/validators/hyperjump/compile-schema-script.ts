@@ -10,7 +10,11 @@ import {
   registerSchema,
   type SchemaObject,
 } from "@hyperjump/json-schema/draft-07";
-import { compile, getSchema } from "@hyperjump/json-schema/experimental";
+import {
+  getSchema,
+  Validation,
+  type AST,
+} from "@hyperjump/json-schema/experimental";
 import { uneval } from "devalue";
 
 import inputSchema from "../shared/input-schema.json" with { type: "json" };
@@ -46,7 +50,12 @@ for (const schema of schemas) {
   );
 }
 
-const { ast } = await compile(await getSchema(toId(0)));
+// https://github.com/hyperjump-io/json-schema/issues/116
+const ast = { metaData: {}, plugins: new Set() } as unknown as AST;
+for (const schema of schemas) {
+  const s = await getSchema(schema.$id!);
+  await Validation.compile(s, ast, s);
+}
 
 fs.writeFileSync(
   path.join(import.meta.dirname, "ast.ts"),
