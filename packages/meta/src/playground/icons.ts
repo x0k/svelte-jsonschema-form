@@ -5,18 +5,17 @@ import { icons as flowbite } from "@sjsf/flowbite-icons";
 import flowbiteStyles from "@sjsf/flowbite-icons/styles.css?raw";
 import { icons as radix } from "@sjsf/radix-icons";
 
+import type { Generated } from "../types.ts";
 import { iconSets } from "../icons.ts";
 
-function* playgroundIconSets() {
+export function* playgroundIconSets() {
   yield "none";
   yield* iconSets();
 }
 
-const PLAYGROUND_ICON_SETS = Array.from(playgroundIconSets());
+export type PlaygroundIconSet = Generated<typeof playgroundIconSets>;
 
-export type PlaygroundIconSet = (typeof PLAYGROUND_ICON_SETS)[number];
-
-export const icons = {
+export const PLAYGROUND_ICON_SETS = {
   none: undefined,
   flowbite,
   lucide,
@@ -24,7 +23,7 @@ export const icons = {
   radix,
 } satisfies Record<PlaygroundIconSet, Icons | undefined>;
 
-export const iconsStyles = {
+export const PLAYGROUND_ICON_SET_STYLES = {
   none: "",
   flowbite: flowbiteStyles,
   lucide: "",

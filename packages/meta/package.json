@@ -12,7 +12,12 @@
     "build": "svelte-package && publint"
   },
   "peerDependencies": {
+    "@cfworker/json-schema": "catalog:",
+    "@exodus/schemasafe": "catalog:",
     "@picocss/pico": "catalog:",
+    "ajv": "catalog:",
+    "ajv-formats": "catalog:",
+    "ata-validator": "catalog:",
     "beercss": "catalog:",
     "svelte": "^5.34.8"
   },
@@ -44,8 +49,13 @@
     "@sjsf/zod4-validator": "workspace:*"
   },
   "devDependencies": {
+    "@cfworker/json-schema": "catalog:",
+    "@exodus/schemasafe": "catalog:",
     "@picocss/pico": "catalog:",
     "@typescript-eslint/types": "catalog:",
+    "ajv": "catalog:",
+    "ajv-formats": "catalog:",
+    "ata-validator": "catalog:",
     "beercss": "catalog:",
     "svelte": "catalog:"
   },

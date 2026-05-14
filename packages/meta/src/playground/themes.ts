@@ -9,6 +9,7 @@ import skeleton4Styles from "@sjsf/skeleton4-theme/styles.css?raw";
 import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?raw";
 import beercssStyles from "beercss/dist/cdn/beer.min.css?raw";
 
+import type { Generated } from "../types.ts";
 import {
   isLegacyTheme,
   isThemeExtension,
@@ -26,7 +27,7 @@ import {
   svarTheme,
 } from "./themes.generated.ts";
 
-function* playgroundThemes() {
+export function* playgroundThemes() {
   for (const t of themes()) {
     if (isLegacyTheme(t) || isThemeExtension(t)) {
       continue;
@@ -38,9 +39,7 @@ function* playgroundThemes() {
   }
 }
 
-const PLAYGROUND_THEMES = Array.from(playgroundThemes());
-
-export type PlaygroundTheme = (typeof PLAYGROUND_THEMES)[number];
+export type PlaygroundTheme = Generated<typeof playgroundThemes>;
 
 export const PLAYGROUND_SJSF_THEMES = {
   basic: basicTheme,

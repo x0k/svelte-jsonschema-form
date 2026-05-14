@@ -2296,12 +2296,27 @@ importers:
         specifier: workspace:*
         version: link:../zod4-validator
     devDependencies:
+      '@cfworker/json-schema':
+        specifier: 'catalog:'
+        version: 4.1.1
+      '@exodus/schemasafe':
+        specifier: 'catalog:'
+        version: 1.3.0
       '@picocss/pico':
         specifier: 'catalog:'
         version: 2.1.1
       '@typescript-eslint/types':
         specifier: 'catalog:'
         version: 8.59.2
+      ajv:
+        specifier: 'catalog:'
+        version: 8.20.0
+      ajv-formats:
+        specifier: 'catalog:'
+        version: 3.0.1(ajv@8.20.0)
+      ata-validator:
+        specifier: 'catalog:'
+        version: 0.13.3(yaml@2.8.3)
       beercss:
         specifier: 'catalog:'
         version: 4.0.21
