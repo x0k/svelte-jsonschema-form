@@ -6,7 +6,7 @@ import flowbiteStyles from "@sjsf/flowbite-icons/styles.css?raw";
 import { icons as radix } from "@sjsf/radix-icons";
 
 import type { Generated } from "../types.ts";
-import { iconSets } from "../icons.ts";
+import { iconSets, iconSetTitle } from "../icons.ts";
 
 export function* playgroundIconSets() {
   yield "none";
@@ -14,6 +14,10 @@ export function* playgroundIconSets() {
 }
 
 export type PlaygroundIconSet = Generated<typeof playgroundIconSets>;
+
+export function playgroundIconSetTitle(iconSet: PlaygroundIconSet) {
+  return iconSet === "none" ? "None" : iconSetTitle(iconSet);
+}
 
 export const PLAYGROUND_ICON_SETS = {
   none: undefined,

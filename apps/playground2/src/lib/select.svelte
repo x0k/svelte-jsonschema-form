@@ -4,15 +4,22 @@
   interface Props {
     label: string;
     value: T;
-    items: T[];
+    items: Iterable<T>;
+    itemLabel?: (item: T) => string;
     labels?: Record<T, string>;
   }
 
-  let { value = $bindable(), items, label, labels }: Props = $props();
+  let {
+    value = $bindable(),
+    items,
+    label,
+    labels,
+    itemLabel,
+  }: Props = $props();
 </script>
 
 <Select.Root type="single" name="favoriteFruit" bind:value>
-  <Select.Trigger class="truncate" >
+  <Select.Trigger class="truncate">
     {labels?.[value] ?? value}
   </Select.Trigger>
   <Select.Content>
@@ -20,7 +27,7 @@
       <Select.Label>{label}</Select.Label>
       {#each items as item (item)}
         <Select.Item value={item} label={item}>
-          {labels?.[item] ?? item}
+          {itemLabel?.(item) ?? labels?.[item] ?? item}
         </Select.Item>
       {/each}
     </Select.Group>

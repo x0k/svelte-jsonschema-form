@@ -8,6 +8,7 @@
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
   import AlignLeft from "@lucide/svelte/icons/align-left";
+  import type { ValidatorState } from 'meta/playground';
 
   import Select from "$lib/select.svelte";
   import Editor from "$lib/editor.svelte";
@@ -19,7 +20,6 @@
     REAL_VALIDATORS,
     VALIDATOR_TITLES,
     validators,
-    type ValidatorPageState,
   } from "@/core/index.js";
 
   import Header from "./header.svelte";
@@ -31,7 +31,7 @@
     gapPx,
   } from "./lib/tiler.js";
 
-  const DEFAULT_PAGE_STATE: ValidatorPageState = {
+  const DEFAULT_PAGE_STATE: ValidatorState = {
     schema: {
       type: "object",
       title: "Basic form",

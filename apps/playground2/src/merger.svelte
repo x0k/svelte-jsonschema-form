@@ -12,6 +12,7 @@
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
   import AlignLeft from "@lucide/svelte/icons/align-left";
+  import type { MergerState } from 'meta/playground'
 
   import { debouncedEffect } from "$lib/svelte.svelte.js";
   import { Button } from "$lib/components/ui/button/index.js";
@@ -27,12 +28,10 @@
     gapPx,
   } from "$lib/tiler.js";
 
-  import type { MergerPageState } from "@/core/index.js";
-
   import Header from "./header.svelte";
   import { router } from "./router.js";
 
-  const DEFAULT_PAGE_STATE: MergerPageState = {
+  const DEFAULT_PAGE_STATE: MergerState = {
     schema: {
       allOf: [
         {
