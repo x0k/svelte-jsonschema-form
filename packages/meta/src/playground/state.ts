@@ -10,12 +10,6 @@ import type {
 } from "@sjsf/form";
 import type { EnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
-import "@sjsf/form/fields/extra/enum.svelte";
-import "@sjsf/form/fields/extra/array-native-files.svelte";
-import "@sjsf/form/fields/extra/unknown-native-file.svelte";
-import "@sjsf/form/fields/extra/object-key-enum.svelte";
-import "@sjsf/form/fields/extra/boolean-select.svelte";
-import "@sjsf/form/fields/extra/multi-enum.svelte";
 import "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/radio.svelte";
 import "@sjsf/basic-theme/extra-widgets/textarea.svelte";

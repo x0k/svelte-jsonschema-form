@@ -1,0 +1,15 @@
+import "@sjsf/form/fields/extra/aggregated.svelte";
+import "@sjsf/form/fields/extra/array-files.svelte";
+import "@sjsf/form/fields/extra/array-native-files.svelte";
+import "@sjsf/form/fields/extra/array-tags.svelte";
+import "@sjsf/form/fields/extra/boolean-select.svelte";
+import "@sjsf/form/fields/extra/enum.svelte";
+import "@sjsf/form/fields/extra/file.svelte";
+import "@sjsf/form/fields/extra/files.svelte";
+import "@sjsf/form/fields/extra/multi-enum.svelte";
+import "@sjsf/form/fields/extra/native-file.svelte";
+import "@sjsf/form/fields/extra/native-files.svelte";
+import "@sjsf/form/fields/extra/object-key-enum.svelte";
+import "@sjsf/form/fields/extra/remote-enum.svelte";
+import "@sjsf/form/fields/extra/tags.svelte";
+import "@sjsf/form/fields/extra/unknown-native-file.svelte";

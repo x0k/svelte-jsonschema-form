@@ -101,9 +101,24 @@ async function main() {
       wrapperOf,
     };
   }
-  const outPath = path.join(import.meta.dirname, "../src/fields.generated.ts");
-  const output = `export const EXTRA_FIELDS = ${JSON.stringify(meta, null, 2)} as const;`;
-  await fs.writeFile(outPath, output, "utf-8");
+  //
+  const fieldsOutPath = path.join(
+    import.meta.dirname,
+    "../src/fields.generated.ts",
+  );
+  const fieldsContent = `export const EXTRA_FIELDS = ${JSON.stringify(meta, null, 2)} as const;`;
+  await fs.writeFile(fieldsOutPath, fieldsContent, "utf-8");
+  //
+  const preludeOutPath = path.join(
+    import.meta.dirname,
+    "../src/playground/prelude.generated.d.ts",
+  );
+  const preludeContent = Object.values(meta)
+    .map(
+      ({ filename }) => `import "@sjsf/form/fields/extra/${filename}.svelte";`,
+    )
+    .join("\n");
+  await fs.writeFile(preludeOutPath, preludeContent, "utf-8");
 }
 
 await main();
