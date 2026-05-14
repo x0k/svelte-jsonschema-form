@@ -47,6 +47,7 @@
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
   import AlignLeft from "@lucide/svelte/icons/align-left";
+  import { PLAYGROUND_SJSF_THEMES, PLAYGROUND_SJSF_THEME_STYLES } from 'meta/playground'
 
   import { Button } from "$lib/components/ui/button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
@@ -80,8 +81,6 @@
     icons,
     iconsStyles,
     resolvers,
-    themes,
-    themeStyles,
     validators,
     VALIDATOR_TITLES,
     type PlaygroundState,
@@ -142,8 +141,8 @@
     return () => router.store(snap);
   });
 
-  const theme = $derived(extendByRecord(themes[data.theme], customComponents));
-  const themeStyle = $derived(themeStyles[data.theme]);
+  const theme = $derived(extendByRecord(PLAYGROUND_SJSF_THEMES[data.theme], customComponents));
+  const themeStyle = $derived(PLAYGROUND_SJSF_THEME_STYLES[data.theme]);
   const iconsSet = $derived(data.icons && icons[data.icons]);
   const iconSetStyle = $derived(data.icons && iconsStyles[data.icons]);
   const fieldsValidationCount = $derived.by(() => {
@@ -501,7 +500,7 @@
     items={REAL_VALIDATORS}
     labels={VALIDATOR_TITLES}
   />
-  <Select label="Theme" bind:value={data.theme} items={Object.keys(themes)} />
+  <Select label="Theme" bind:value={data.theme} items={Object.keys(PLAYGROUND_SJSF_THEMES)} />
   <Select label="Icons" bind:value={data.icons} items={Object.keys(icons)} />
 </Header>
 <Panel bind:layout />
