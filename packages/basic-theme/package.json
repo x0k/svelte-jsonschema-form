@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/basic-theme",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "description": "Basic theme for svelte-jsonschema-form",
   "license": "MIT",
   "keywords": [

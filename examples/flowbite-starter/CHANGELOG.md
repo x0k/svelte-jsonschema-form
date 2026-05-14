@@ -1,5 +1,15 @@
 # flowbite-starter
 
+## 0.0.18
+
+### Patch Changes
+
+- Updated dependencies [[`2018c3a`](https://github.com/x0k/svelte-jsonschema-form/commit/2018c3a03ed757c57d713bbbb0278324c24878d2), [`3ba0ae7`](https://github.com/x0k/svelte-jsonschema-form/commit/3ba0ae7aab68632ed91fe4b5806af8efeddf2603), [`2018c3a`](https://github.com/x0k/svelte-jsonschema-form/commit/2018c3a03ed757c57d713bbbb0278324c24878d2), [`2018c3a`](https://github.com/x0k/svelte-jsonschema-form/commit/2018c3a03ed757c57d713bbbb0278324c24878d2), [`2018c3a`](https://github.com/x0k/svelte-jsonschema-form/commit/2018c3a03ed757c57d713bbbb0278324c24878d2)]:
+  - @sjsf/form@3.7.0
+  - @sjsf/flowbite-theme@3.1.1
+  - @sjsf/ajv8-validator@3.7.0
+  - @sjsf/basic-theme@3.7.0
+
 ## 0.0.17
 
 ### Patch Changes
