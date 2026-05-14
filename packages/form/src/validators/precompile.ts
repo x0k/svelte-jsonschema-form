@@ -166,8 +166,6 @@ export interface FragmentSchemaOptions {
   augmentSuffix?: string;
   /** New IDs should be valid ECMAScript identifiers (if possible) */
   idAugmentations?: Partial<IdAugmentations>;
-  /** @default false */
-  omitExtraDataSupport?: boolean;
 }
 
 const DEFAULT_ID_AUGMENTATIONS: IdAugmentations = {
@@ -179,7 +177,6 @@ export function fragmentSchema({
   subSchemas,
   augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
   idAugmentations,
-  omitExtraDataSupport = false,
 }: FragmentSchemaOptions): Schema[] {
   const augmentations: IdAugmentations = {
     ...DEFAULT_ID_AUGMENTATIONS,
@@ -212,7 +209,7 @@ export function fragmentSchema({
             if (typeof allOf[0] !== "boolean") {
               // avoid usage of same $id
               delete allOf[0].$id;
-              if (omitExtraDataSupport && copy.additionalProperties === false) {
+              if (copy.additionalProperties === false) {
                 allOf[0] = allowAdditionalProperties(allOf[0]);
               } else if (!copy.required?.length) {
                 // first slot of `allOf` is identical to copy and can be replaced with ref

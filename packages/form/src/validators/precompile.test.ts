@@ -474,7 +474,7 @@ describe("fragmentSchema", () => {
           {
             type: "object",
             properties: { kind: { $ref: "v2#" }, lives: { $ref: "v3#" } },
-            additionalProperties: false,
+            additionalProperties: true,
           },
           { anyOf: [{ required: ["kind"] }, { required: ["lives"] }] },
         ],
@@ -494,7 +494,7 @@ describe("fragmentSchema", () => {
           {
             type: "object",
             properties: { kind: { $ref: "v5#" }, breed: { $ref: "v6#" } },
-            additionalProperties: false,
+            additionalProperties: true,
           },
           { anyOf: [{ required: ["kind"] }, { required: ["breed"] }] },
         ],

@@ -29,7 +29,6 @@ import {
   insertSubSchemaIds,
   createIdFactory as defaultCreateIdFactory,
   type IdFactory,
-  type FragmentSchemaOptions,
 } from "@sjsf/form/validators/precompile";
 import { expect, it, describe } from "vitest";
 
@@ -40,8 +39,6 @@ export interface InitializerOptions {
   createIdFactory?: () => IdFactory;
   /** @default false */
   useOriginalSchema?: boolean;
-  /** @default true */
-  omitExtraDataSupport?: boolean;
 }
 
 export interface ExtraValidatorFactoryOptions extends ValidatorFactoryOptions {
@@ -53,7 +50,6 @@ function createInitializer<V extends Validator>(
   {
     createIdFactory = defaultCreateIdFactory,
     useOriginalSchema = false,
-    omitExtraDataSupport = true,
   }: InitializerOptions = {},
 ) {
   return async ({
@@ -78,10 +74,7 @@ function createInitializer<V extends Validator>(
       schema,
       uiOptionsRegistry,
       uiSchema,
-      patch: {
-        ...patch,
-        omitExtraDataSupport,
-      } satisfies FragmentSchemaOptions,
+      patch,
     });
     const merger = createFormMerger({
       schema,
