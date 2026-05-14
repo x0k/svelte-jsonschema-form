@@ -731,6 +731,9 @@ importers:
       lz-string:
         specifier: 'catalog:'
         version: 1.5.0
+      meta:
+        specifier: workspace:*
+        version: link:../../packages/meta
       svelte-exmarkdown:
         specifier: 'catalog:'
         version: 5.0.2(svelte@5.55.5)
@@ -2293,9 +2296,15 @@ importers:
         specifier: workspace:*
         version: link:../zod4-validator
     devDependencies:
+      '@picocss/pico':
+        specifier: 'catalog:'
+        version: 2.1.1
       '@typescript-eslint/types':
         specifier: 'catalog:'
         version: 8.59.2
+      beercss:
+        specifier: 'catalog:'
+        version: 4.0.21
       svelte:
         specifier: 'catalog:'
         version: 5.55.5

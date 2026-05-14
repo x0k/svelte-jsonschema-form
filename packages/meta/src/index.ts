@@ -10,5 +10,3 @@ export * from "./fields.ts";
 export * from "./widgets.ts";
 export * from "./shadcn.ts";
 export * from "./tailwindcss.ts";
-
-export * from "./playground/index.ts";

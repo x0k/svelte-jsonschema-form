@@ -5,6 +5,9 @@
     "moduleResolution": "nodenext",
     "outDir": "dist",
     "rootDir": "src",
+    "types": [
+      "vite/client",
+    ],
     "rewriteRelativeImportExtensions": true
   },
   "include": [

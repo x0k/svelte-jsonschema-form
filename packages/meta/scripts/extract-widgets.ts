@@ -1,6 +1,14 @@
 import path from "node:path";
 import fs from "node:fs/promises";
 
+import {
+  isLegacyTheme,
+  isTheme,
+  isThemeExtension,
+  themePackage,
+  themes,
+  type Theme,
+} from "../src/themes.ts";
 import { extractComponentPropsIndex, resolveComponentName } from "./analyze.ts";
 
 async function extractExtraWidgets(extraWidgetsDir: string) {
@@ -69,9 +77,43 @@ async function main() {
     );
     libs[theme] = await extractExtraWidgets(extraWidgetsPath);
   }
-  const outPath = path.join(import.meta.dirname, "../src/widgets.generated.ts");
-  const output = `export const EXTRA_WIDGETS = ${JSON.stringify(libs, null, 2)} as const;`;
-  await fs.writeFile(outPath, output, "utf-8");
+  const widgetsOutPath = path.join(
+    import.meta.dirname,
+    "../src/widgets.generated.ts",
+  );
+  const widgetsContent = `export const EXTRA_WIDGETS = ${JSON.stringify(libs, null, 2)} as const;`;
+  await fs.writeFile(widgetsOutPath, widgetsContent, "utf-8");
+  const themesOutPath = path.join(
+    import.meta.dirname,
+    "../src/playground/themes.generated.ts",
+  );
+  const themesContent =
+    'import { extendByRecord } from "@sjsf/form/lib/resolver";\n' +
+    Object.entries(libs)
+      .map(([theme, widgets]) => {
+        if (!isTheme(theme)) {
+          throw new Error(
+            `Unknown theme "${theme}", expected: "${Array.from(themes()).join('" | "')}"`,
+          );
+        }
+        if (isLegacyTheme(theme) || isThemeExtension(theme)) {
+          return `// skip "${theme}" theme`;
+        }
+        return `import { theme as ${theme}Base } from "${themePackage(theme).name}";
+${Object.entries(widgets)
+  .map(
+    ([filename, widgetName]) =>
+      `import ${theme}_${widgetName} from "${themePackage(theme).name}/extra-widgets/${filename}.svelte";`,
+  )
+  .join("\n")}
+export const ${theme}Theme = extendByRecord(${theme}Base, {
+  ${Object.values(widgets)
+    .map((w) => `${w}: ${theme}_${w}`)
+    .join(",\n  ")}
+});`;
+      })
+      .join("\n\n");
+  await fs.writeFile(themesOutPath, themesContent, "utf-8");
 }
 
 await main();

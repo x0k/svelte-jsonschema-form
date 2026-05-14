@@ -12,6 +12,8 @@
     "build": "svelte-package && publint"
   },
   "peerDependencies": {
+    "@picocss/pico": "catalog:",
+    "beercss": "catalog:",
     "svelte": "^5.34.8"
   },
   "dependencies": {
@@ -42,7 +44,9 @@
     "@sjsf/zod4-validator": "workspace:*"
   },
   "devDependencies": {
+    "@picocss/pico": "catalog:",
     "@typescript-eslint/types": "catalog:",
+    "beercss": "catalog:",
     "svelte": "catalog:"
   },
   "exports": {
@@ -50,9 +54,13 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
-    "./playground-presets/*": {
-      "types": "./dist/playground/presets/*.d.ts",
-      "default": "./dist/playground/presets/*.js"
+    "./playground": {
+      "types": "./dist/playground/index.d.ts",
+      "default": "./dist/playground/index.js"
+    },
+    "./playground/form-presets/*": {
+      "types": "./dist/playground/form-presets/*.d.ts",
+      "default": "./dist/playground/form-presets/*.js"
     }
   }
 }
