@@ -1,5 +1,11 @@
 # @sjsf-lab/ata-validator
 
+## 3.2.0
+
+### Minor Changes
+
+- Bump minimal required version of `ata-validator` to `0.13.3` ([`6b7ed38`](https://github.com/x0k/svelte-jsonschema-form/commit/6b7ed384c7243ffd6752300ea03d26d0bd392a50))
+
 ## 3.1.1
 
 ### Patch Changes

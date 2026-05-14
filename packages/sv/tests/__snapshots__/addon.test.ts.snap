@@ -26,9 +26,9 @@ exports[`@sjsf/sv 'icons__flowbite' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/basic-theme": "^3.6.0",
-		"@sjsf/flowbite-icons": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/basic-theme": "^3.7.0",
+		"@sjsf/flowbite-icons": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
@@ -243,9 +243,9 @@ exports[`@sjsf/sv 'icons__flowbite' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/ajv8-validator": "^3.6.0",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/flowbite-icons": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/flowbite-icons": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0",
@@ -562,10 +562,10 @@ exports[`@sjsf/sv 'icons__lucide' 'kit-ts' 1`] = `
 	},
 	"dependencies": {
 		"@lucide/svelte": "^1.0.0",
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/lucide-icons": "^3.6.0",
+		"@sjsf/lucide-icons": "^3.7.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
 		"svelte": "^5.34.8"
@@ -777,10 +777,10 @@ exports[`@sjsf/sv 'icons__lucide' 'vite-ts' 1`] = `
   },
   "dependencies": {
     "@lucide/svelte": "^1.0.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
-    "@sjsf/lucide-icons": "^3.6.0",
+    "@sjsf/lucide-icons": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0",
     "svelte": "^5.34.8"
@@ -1093,10 +1093,10 @@ exports[`@sjsf/sv 'icons__moving' 'kit-ts' 1`] = `
 	},
 	"dependencies": {
 		"@jis3r/icons": "^2.0.0",
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/moving-icons": "^3.6.0",
+		"@sjsf/moving-icons": "^3.7.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
 		"svelte": "^5.34.8"
@@ -1308,10 +1308,10 @@ exports[`@sjsf/sv 'icons__moving' 'vite-ts' 1`] = `
   },
   "dependencies": {
     "@jis3r/icons": "^2.0.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
-    "@sjsf/moving-icons": "^3.6.0",
+    "@sjsf/moving-icons": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0",
     "svelte": "^5.34.8"
@@ -1623,10 +1623,10 @@ exports[`@sjsf/sv 'icons__radix' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/radix-icons": "^3.6.0",
+		"@sjsf/radix-icons": "^3.7.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
 		"svelte": "^5.34.8",
@@ -1838,10 +1838,10 @@ exports[`@sjsf/sv 'icons__radix' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/ajv8-validator": "^3.6.0",
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
-    "@sjsf/radix-icons": "^3.6.0",
+    "@sjsf/radix-icons": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0",
     "svelte": "^5.34.8",
@@ -2154,10 +2154,10 @@ exports[`@sjsf/sv 'sveltekit__formActions__ajv8' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/sveltekit": "^3.6.0",
+		"@sjsf/sveltekit": "^3.7.0",
 		"@sveltejs/kit": "^2.48.3",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
@@ -2389,10 +2389,10 @@ exports[`@sjsf/sv 'sveltekit__formActions__ajv8-precompi…' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/sveltekit": "^3.6.0",
+		"@sjsf/sveltekit": "^3.7.0",
 		"@sveltejs/kit": "^2.48.3",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
@@ -2708,10 +2708,10 @@ exports[`@sjsf/sv 'sveltekit__formActions__zod4' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/sveltekit": "^3.6.0",
-		"@sjsf/zod4-validator": "^3.6.0",
+		"@sjsf/sveltekit": "^3.7.0",
+		"@sjsf/zod4-validator": "^3.7.0",
 		"@sveltejs/kit": "^2.48.3",
 		"esm-env": "^1.2.0",
 		"svelte": "^5.34.8",
@@ -2937,10 +2937,10 @@ exports[`@sjsf/sv 'sveltekit__remoteFunctions__ajv8' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/sveltekit": "^3.6.0",
+		"@sjsf/sveltekit": "^3.7.0",
 		"@sveltejs/kit": "^2.48.3",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
@@ -3177,10 +3177,10 @@ exports[`@sjsf/sv 'sveltekit__remoteFunctions__ajv8-prec…' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/sveltekit": "^3.6.0",
+		"@sjsf/sveltekit": "^3.7.0",
 		"@sveltejs/kit": "^2.48.3",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
@@ -3503,10 +3503,10 @@ exports[`@sjsf/sv 'sveltekit__remoteFunctions__zod4' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/sveltekit": "^3.6.0",
-		"@sjsf/zod4-validator": "^3.6.0",
+		"@sjsf/sveltekit": "^3.7.0",
+		"@sjsf/zod4-validator": "^3.7.0",
 		"@sveltejs/kit": "^2.48.3",
 		"esm-env": "^1.2.0",
 		"svelte": "^5.34.8",
@@ -3731,8 +3731,8 @@ exports[`@sjsf/sv 'theme__basic' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
@@ -3943,8 +3943,8 @@ exports[`@sjsf/sv 'theme__basic' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/ajv8-validator": "^3.6.0",
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0",
@@ -4257,7 +4257,7 @@ exports[`@sjsf/sv 'theme__beercss' 'kit-ts' 1`] = `
 	},
 	"dependencies": {
 		"@sjsf-lab/beercss-theme": "^3.3.0",
-		"@sjsf/ajv8-validator": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
@@ -4468,7 +4468,7 @@ exports[`@sjsf/sv 'theme__beercss' 'vite-ts' 1`] = `
   },
   "dependencies": {
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0",
@@ -4782,8 +4782,8 @@ exports[`@sjsf/sv 'theme__daisyui5' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/daisyui5-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/daisyui5-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
@@ -5007,8 +5007,8 @@ exports[`@sjsf/sv 'theme__daisyui5' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/ajv8-validator": "^3.6.0",
-    "@sjsf/daisyui5-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
+    "@sjsf/daisyui5-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0",
@@ -5333,8 +5333,8 @@ exports[`@sjsf/sv 'theme__flowbite3' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/flowbite3-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/flowbite3-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
@@ -5583,8 +5583,8 @@ exports[`@sjsf/sv 'theme__flowbite3' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/ajv8-validator": "^3.6.0",
-    "@sjsf/flowbite3-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
+    "@sjsf/flowbite3-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0",
@@ -5906,8 +5906,8 @@ exports[`@sjsf/sv 'theme__pico' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
@@ -6120,8 +6120,8 @@ exports[`@sjsf/sv 'theme__pico' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/ajv8-validator": "^3.6.0",
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0",
@@ -6441,7 +6441,7 @@ exports[`@sjsf/sv 'theme__shadcn-extras' 'kit-ts' 1`] = `
 	},
 	"dependencies": {
 		"@sjsf-lab/shadcn-extras-theme": "^3.4.1",
-		"@sjsf/ajv8-validator": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"@sjsf/shadcn4-theme": "^3.5.0",
 		"ajv": "^8.17.0",
@@ -6880,7 +6880,7 @@ exports[`@sjsf/sv 'theme__shadcn-extras' 'vite-ts' 1`] = `
   },
   "dependencies": {
     "@sjsf-lab/shadcn-extras-theme": "^3.4.1",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "@sjsf/shadcn4-theme": "^3.5.0",
     "ajv": "^8.17.0",
@@ -7301,9 +7301,9 @@ exports[`@sjsf/sv 'theme__shadcn4' 'kit-ts' 1`] = `
 	"dependencies": {
 		"@internationalized/date": "^3.10.0",
 		"@lucide/svelte": "^1.0.0",
-		"@sjsf/ajv8-validator": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/shadcn4-theme": "^3.6.0",
+		"@sjsf/shadcn4-theme": "^3.7.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
 		"bits-ui": "^2.14.0",
@@ -7718,9 +7718,9 @@ exports[`@sjsf/sv 'theme__shadcn4' 'vite-ts' 1`] = `
   "dependencies": {
     "@internationalized/date": "^3.10.0",
     "@lucide/svelte": "^1.0.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "@sjsf/form": "^3.5.0",
-    "@sjsf/shadcn4-theme": "^3.6.0",
+    "@sjsf/shadcn4-theme": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0",
     "bits-ui": "^2.14.0",
@@ -8114,9 +8114,9 @@ exports[`@sjsf/sv 'theme__skeleton4' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/skeleton4-theme": "^3.6.0",
+		"@sjsf/skeleton4-theme": "^3.7.0",
 		"@skeletonlabs/skeleton": "^4.2.0",
 		"@skeletonlabs/skeleton-svelte": "^4.2.0",
 		"ajv": "^8.17.0",
@@ -8352,9 +8352,9 @@ exports[`@sjsf/sv 'theme__skeleton4' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "@sjsf/form": "^3.5.0",
-    "@sjsf/skeleton4-theme": "^3.6.0",
+    "@sjsf/skeleton4-theme": "^3.7.0",
     "@skeletonlabs/skeleton": "^4.2.0",
     "@skeletonlabs/skeleton-svelte": "^4.2.0",
     "ajv": "^8.17.0",
@@ -8681,7 +8681,7 @@ exports[`@sjsf/sv 'theme__svar' 'kit-ts' 1`] = `
 	},
 	"dependencies": {
 		"@sjsf-lab/svar-theme": "^3.3.0",
-		"@sjsf/ajv8-validator": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"@svar-ui/svelte-core": "^2.3.0",
 		"ajv": "^8.17.0",
@@ -8897,7 +8897,7 @@ exports[`@sjsf/sv 'theme__svar' 'vite-ts' 1`] = `
   },
   "dependencies": {
     "@sjsf-lab/svar-theme": "^3.3.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "@svar-ui/svelte-core": "^2.3.0",
     "ajv": "^8.17.0",
@@ -9218,8 +9218,8 @@ exports[`@sjsf/sv 'validator__ajv8-precompiled' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.6.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/ajv8-validator": "^3.7.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.0",
@@ -9512,8 +9512,8 @@ exports[`@sjsf/sv 'validator__ajv8-precompiled' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/ajv8-validator": "^3.6.0",
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0",
@@ -9904,8 +9904,8 @@ exports[`@sjsf/sv 'validator__ata' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf-lab/ata-validator": "^3.1.1",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf-lab/ata-validator": "^3.2.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"ata-validator": "^0.13.3",
 		"svelte": "^5.34.8"
@@ -10107,8 +10107,8 @@ exports[`@sjsf/sv 'validator__ata' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf-lab/ata-validator": "^3.1.1",
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf-lab/ata-validator": "^3.2.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "ata-validator": "^0.13.3",
     "svelte": "^5.34.8"
@@ -10412,8 +10412,8 @@ exports[`@sjsf/sv 'validator__ata-precompiled' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf-lab/ata-validator": "^3.1.1",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf-lab/ata-validator": "^3.2.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"ata-validator": "^0.13.3",
 		"svelte": "^5.34.8"
@@ -10685,8 +10685,8 @@ exports[`@sjsf/sv 'validator__ata-precompiled' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf-lab/ata-validator": "^3.1.1",
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf-lab/ata-validator": "^3.2.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "ata-validator": "^0.13.3",
     "svelte": "^5.34.8"
@@ -11058,8 +11058,8 @@ exports[`@sjsf/sv 'validator__cfworker' 'kit-ts' 1`] = `
 	},
 	"dependencies": {
 		"@cfworker/json-schema": "^4.1.0",
-		"@sjsf/basic-theme": "^3.6.0",
-		"@sjsf/cfworker-validator": "^3.6.0",
+		"@sjsf/basic-theme": "^3.7.0",
+		"@sjsf/cfworker-validator": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"svelte": "^5.34.8"
 	}
@@ -11261,8 +11261,8 @@ exports[`@sjsf/sv 'validator__cfworker' 'vite-ts' 1`] = `
   },
   "dependencies": {
     "@cfworker/json-schema": "^4.1.0",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/cfworker-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/cfworker-validator": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "svelte": "^5.34.8"
   }
@@ -11569,7 +11569,7 @@ exports[`@sjsf/sv 'validator__hyperjump-precompiled' 'kit-ts' 1`] = `
 		"@fluent/bundle": "^0.19.0",
 		"@hyperjump/json-schema": "^1.17.0",
 		"@sjsf-lab/hyperjump-validator": "^3.0.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"svelte": "^5.34.8"
 	}
@@ -11874,7 +11874,7 @@ exports[`@sjsf/sv 'validator__hyperjump-precompiled' 'vite-ts' 1`] = `
     "@fluent/bundle": "^0.19.0",
     "@hyperjump/json-schema": "^1.17.0",
     "@sjsf-lab/hyperjump-validator": "^3.0.0",
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "svelte": "^5.34.8"
   }
@@ -12273,7 +12273,7 @@ exports[`@sjsf/sv 'validator__noop' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"svelte": "^5.34.8"
 	}
@@ -12473,7 +12473,7 @@ exports[`@sjsf/sv 'validator__noop' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "svelte": "^5.34.8"
   }
@@ -12776,9 +12776,9 @@ exports[`@sjsf/sv 'validator__schemasafe' 'kit-ts' 1`] = `
 	},
 	"dependencies": {
 		"@exodus/schemasafe": "^1.3.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/schemasafe-validator": "^3.6.0",
+		"@sjsf/schemasafe-validator": "^3.7.0",
 		"svelte": "^5.34.8"
 	}
 }
@@ -12979,9 +12979,9 @@ exports[`@sjsf/sv 'validator__schemasafe' 'vite-ts' 1`] = `
   },
   "dependencies": {
     "@exodus/schemasafe": "^1.3.0",
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
-    "@sjsf/schemasafe-validator": "^3.6.0",
+    "@sjsf/schemasafe-validator": "^3.7.0",
     "svelte": "^5.34.8"
   }
 }
@@ -13284,9 +13284,9 @@ exports[`@sjsf/sv 'validator__schemasafe-precompiled' 'kit-ts' 1`] = `
 	},
 	"dependencies": {
 		"@exodus/schemasafe": "^1.3.0",
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/schemasafe-validator": "^3.6.0",
+		"@sjsf/schemasafe-validator": "^3.7.0",
 		"svelte": "^5.34.8"
 	}
 }
@@ -13556,9 +13556,9 @@ exports[`@sjsf/sv 'validator__schemasafe-precompiled' 'vite-ts' 1`] = `
   },
   "dependencies": {
     "@exodus/schemasafe": "^1.3.0",
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
-    "@sjsf/schemasafe-validator": "^3.6.0",
+    "@sjsf/schemasafe-validator": "^3.7.0",
     "svelte": "^5.34.8"
   }
 }
@@ -13925,7 +13925,7 @@ exports[`@sjsf/sv 'validator__standard-schema' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
 		"@standard-schema/spec": "^1.1.0",
 		"esm-env": "^1.2.0",
@@ -14145,7 +14145,7 @@ exports[`@sjsf/sv 'validator__standard-schema' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
     "@standard-schema/spec": "^1.1.0",
     "esm-env": "^1.2.0",
@@ -14466,9 +14466,9 @@ exports[`@sjsf/sv 'validator__valibot' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/valibot-validator": "^3.6.0",
+		"@sjsf/valibot-validator": "^3.7.0",
 		"@valibot/to-json-schema": "^1.3.0",
 		"svelte": "^5.34.8",
 		"valibot": "^1.2.0"
@@ -14666,9 +14666,9 @@ exports[`@sjsf/sv 'validator__valibot' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
-    "@sjsf/valibot-validator": "^3.6.0",
+    "@sjsf/valibot-validator": "^3.7.0",
     "@valibot/to-json-schema": "^1.3.0",
     "svelte": "^5.34.8",
     "valibot": "^1.2.0"
@@ -14967,9 +14967,9 @@ exports[`@sjsf/sv 'validator__zod4' 'kit-ts' 1`] = `
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/basic-theme": "^3.7.0",
 		"@sjsf/form": "^3.5.0",
-		"@sjsf/zod4-validator": "^3.6.0",
+		"@sjsf/zod4-validator": "^3.7.0",
 		"svelte": "^5.34.8",
 		"zod": "^4.1.0"
 	}
@@ -15163,9 +15163,9 @@ exports[`@sjsf/sv 'validator__zod4' 'vite-ts' 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
     "@sjsf/form": "^3.5.0",
-    "@sjsf/zod4-validator": "^3.6.0",
+    "@sjsf/zod4-validator": "^3.7.0",
     "svelte": "^5.34.8",
     "zod": "^4.1.0"
   }

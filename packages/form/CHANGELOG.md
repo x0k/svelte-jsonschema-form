@@ -1,5 +1,21 @@
 # @sjsf/form
 
+## 3.7.0
+
+### Minor Changes
+
+- Add explicit non-svelte entrypoint ([#386](https://github.com/x0k/svelte-jsonschema-form/pull/386))
+
+- Allow passing schema definitions to `getClosestMatchingOption` ([#386](https://github.com/x0k/svelte-jsonschema-form/pull/386))
+
+- Export `createValidatorRetriever` and `fromValidators` functions from `@sjsf/form/validators/precompile` ([#386](https://github.com/x0k/svelte-jsonschema-form/pull/386))
+
+### Patch Changes
+
+- Fix precompiled validators support for `omitExtraData` ([#389](https://github.com/x0k/svelte-jsonschema-form/pull/389))
+
+- Fix the multiple use of a single $id ([#386](https://github.com/x0k/svelte-jsonschema-form/pull/386))
+
 ## 3.6.0
 
 ### Minor Changes

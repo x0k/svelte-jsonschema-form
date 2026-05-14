@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/skeleton4-theme",
-	"version": "3.6.0",
+	"version": "3.7.0",
 	"description": "The skeleton v4 based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"scripts": {
@@ -58,7 +58,7 @@
 		}
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^3.6.0"
+		"@sjsf/basic-theme": "workspace:^3.7.0"
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.5.0",

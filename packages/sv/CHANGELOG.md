@@ -1,5 +1,13 @@
 # @sjsf/sv
 
+## 0.2.1
+
+### Patch Changes
+
+- Update precompiled validators usage ([#386](https://github.com/x0k/svelte-jsonschema-form/pull/386))
+
+- Remove workaround for `@tailwindcss/vite@4.2.4` ([#388](https://github.com/x0k/svelte-jsonschema-form/pull/388))
+
 ## 0.2.0
 
 ### Minor Changes

@@ -73,7 +73,7 @@
 		}
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^3.6.0"
+		"@sjsf/basic-theme": "workspace:^3.7.0"
 	},
 	"peerDependencies": {
 		"@internationalized/date": "^3.8.1",
