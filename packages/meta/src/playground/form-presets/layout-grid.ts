@@ -1,6 +1,6 @@
 import type { UiOptions, UiSchema, UiSchemaRef } from "@sjsf/form";
 
-import type { FormPresetCategory, FormPreset } from "../form-state.ts";
+import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
 
 export const category: FormPresetCategory = "UI customization";
 

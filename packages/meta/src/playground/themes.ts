@@ -26,6 +26,7 @@ import {
   skeleton4Theme,
   svarTheme,
 } from "./themes.generated.ts";
+import "./themes.generated.ts";
 
 export function* playgroundThemes() {
   for (const t of themes()) {

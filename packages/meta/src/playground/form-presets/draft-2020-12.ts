@@ -1,4 +1,4 @@
-import type { FormPreset, FormPresetCategory } from "../form-state.ts";
+import type { FormPreset, FormPresetCategory } from "../form-preset.ts";
 
 export const category: FormPresetCategory = "Schema Basics";
 

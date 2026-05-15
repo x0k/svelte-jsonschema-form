@@ -87,32 +87,37 @@ async function main() {
     import.meta.dirname,
     "../src/playground/themes.generated.ts",
   );
-  const themesContent =
-    'import { extendByRecord } from "@sjsf/form/lib/resolver";\n' +
-    Object.entries(libs)
-      .map(([theme, widgets]) => {
-        if (!isTheme(theme)) {
-          throw new Error(
-            `Unknown theme "${theme}", expected: "${Array.from(themes()).join('" | "')}"`,
-          );
-        }
-        if (isLegacyTheme(theme) || isThemeExtension(theme)) {
-          return `// skip "${theme}" theme`;
-        }
-        return `import { theme as ${theme}Base } from "${themePackage(theme).name}";
+  const themesContent = `import { extendByRecord } from "@sjsf/form/lib/resolver";
+
+import { fields } from "./fields.generated.ts";
+import "./fields.generated.ts";
+
+${Object.entries(libs)
+  .map(([theme, widgets]) => {
+    if (!isTheme(theme)) {
+      throw new Error(
+        `Unknown theme "${theme}", expected: "${Array.from(themes()).join('" | "')}"`,
+      );
+    }
+    if (isLegacyTheme(theme) || isThemeExtension(theme)) {
+      return `// skip "${theme}" theme`;
+    }
+    return `import { theme as ${theme}Base } from "${themePackage(theme).name}";
 ${Object.entries(widgets)
   .map(
     ([filename, widgetName]) =>
-      `import ${theme}_${widgetName} from "${themePackage(theme).name}/extra-widgets/${filename}.svelte";`,
+      `import ${theme}_${widgetName} from "${themePackage(theme).name}/extra-widgets/${filename}.svelte";\nimport "${themePackage(theme).name}/extra-widgets/${filename}.svelte";`,
   )
   .join("\n")}
 export const ${theme}Theme = extendByRecord(${theme}Base, {
+  ...fields,
   ${Object.values(widgets)
     .map((w) => `${w}: ${theme}_${w}`)
     .join(",\n  ")}
 });`;
-      })
-      .join("\n\n");
+  })
+  .join("\n\n")}
+`;
   await fs.writeFile(themesOutPath, themesContent, "utf-8");
 }
 

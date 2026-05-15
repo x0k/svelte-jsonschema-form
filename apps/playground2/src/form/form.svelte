@@ -1,16 +1,3 @@
-<script lang="ts" module>
-  import {
-    StringEnumValueMapperBuilder,
-    type EnumValueMapperBuilder,
-  } from "@sjsf/form/options.svelte";
-
-  declare module "@sjsf/form" {
-    interface UiOptionsRegistry {
-      stringEnumValueMapper: () => EnumValueMapperBuilder;
-    }
-  }
-</script>
-
 <script lang="ts">
   import { BitsConfig } from "bits-ui";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
@@ -41,6 +28,7 @@
   import { createFormMerger } from "@sjsf/form/mergers/modern";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { convert } from "@sjsf/form/converters/draft-2020-12";
+  import { StringEnumValueMapperBuilder } from '@sjsf/form/options.svelte';
   import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";

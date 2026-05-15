@@ -1,5 +1,3 @@
-import "./prelude.generated.d.ts";
-
 export * from "./form-state.ts";
 export * from "./form-preset.ts";
 export * from "./validator-state.ts";

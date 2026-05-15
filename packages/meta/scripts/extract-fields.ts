@@ -109,16 +109,21 @@ async function main() {
   const fieldsContent = `export const EXTRA_FIELDS = ${JSON.stringify(meta, null, 2)} as const;`;
   await fs.writeFile(fieldsOutPath, fieldsContent, "utf-8");
   //
-  const preludeOutPath = path.join(
+  const pgFieldsOutPath = path.join(
     import.meta.dirname,
-    "../src/playground/prelude.generated.d.ts",
+    "../src/playground/fields.generated.ts",
   );
-  const preludeContent = Object.values(meta)
+  const fields = Object.values(meta);
+  const pgFieldsContent = `${fields
     .map(
-      ({ filename }) => `import "@sjsf/form/fields/extra/${filename}.svelte";`,
+      ({ filename, name }) =>
+        `import ${name} from "@sjsf/form/fields/extra/${filename}.svelte";\nimport "@sjsf/form/fields/extra/${filename}.svelte";`,
     )
-    .join("\n");
-  await fs.writeFile(preludeOutPath, preludeContent, "utf-8");
+    .join("\n")}
+export const fields = {
+  ${fields.map(({ name }) => name).join(",\n  ")}
+} as const`;
+  await fs.writeFile(pgFieldsOutPath, pgFieldsContent, "utf-8");
 }
 
 await main();
