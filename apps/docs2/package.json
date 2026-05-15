@@ -59,6 +59,7 @@
     "json-schema-to-valibot": "catalog:",
     "json-schema-to-zod": "catalog:",
     "lz-string": "catalog:",
+    "meta": "workspace:*",
     "mermaid": "^11.14.0",
     "panzoom": "^9.4.4",
     "pikaday": "catalog:",

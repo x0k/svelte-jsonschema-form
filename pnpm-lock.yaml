@@ -529,6 +529,9 @@ importers:
       mermaid:
         specifier: ^11.14.0
         version: 11.14.0
+      meta:
+        specifier: workspace:*
+        version: link:../../packages/meta
       panzoom:
         specifier: ^9.4.4
         version: 9.4.4
