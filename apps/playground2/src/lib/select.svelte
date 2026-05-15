@@ -16,18 +16,24 @@
     labels,
     itemLabel,
   }: Props = $props();
+
+  const itemsArray = $derived(Array.isArray(items) ? items : Array.from(items))
+
+  function lbl(item: T) {
+    return itemLabel?.(item) ?? labels?.[item] ?? item
+  }
 </script>
 
-<Select.Root type="single" name="favoriteFruit" bind:value>
+<Select.Root type="single" bind:value>
   <Select.Trigger class="truncate">
-    {labels?.[value] ?? value}
+    {lbl(value)}
   </Select.Trigger>
   <Select.Content>
     <Select.Group>
       <Select.Label>{label}</Select.Label>
-      {#each items as item (item)}
+      {#each itemsArray as item (item)}
         <Select.Item value={item} label={item}>
-          {itemLabel?.(item) ?? labels?.[item] ?? item}
+          {lbl(item)}
         </Select.Item>
       {/each}
     </Select.Group>

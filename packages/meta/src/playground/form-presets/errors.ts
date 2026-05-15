@@ -1,6 +1,6 @@
-import type { PlaygroundPresetCategory, FormPreset } from "../form-state.ts";
+import type { FormPresetCategory, FormPreset } from "../form-state.ts";
 
-export const category: PlaygroundPresetCategory = "Other";
+export const category: FormPresetCategory = "Other";
 
 export default {
   resolver: "compat",

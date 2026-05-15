@@ -1,6 +1,6 @@
-import type { PlaygroundPresetCategory, FormPreset } from "../form-state.ts";
+import type { FormPresetCategory, FormPreset } from "../form-state.ts";
 
-export const category: PlaygroundPresetCategory = "UI customization";
+export const category: FormPresetCategory = "UI customization";
 
 export default {
   // Based on https://habr.com/ru/articles/884862/ (RU)

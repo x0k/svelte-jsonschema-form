@@ -52,24 +52,6 @@ export interface FormState {
   mergeDefaultsIntoFormData: MergeDefaultsIntoFormDataStateBehavior;
 }
 
-type RequiredFormPresetProperties = "schema" | "uiSchema" | "initialValue";
-
-export type FormPreset = Pick<FormState, RequiredFormPresetProperties> &
-  Partial<Omit<FormState, RequiredFormPresetProperties>>;
-
-export const PLAYGROUND_PRESET_CATEGORY = {
-  SchemaBasics: "Schema Basics",
-  SchemaLogic: "Schema Logic",
-  UiCustomization: "UI customization",
-  Other: "Other",
-} as const;
-
-export type PlaygroundPresetCategory =
-  (typeof PLAYGROUND_PRESET_CATEGORY)[keyof typeof PLAYGROUND_PRESET_CATEGORY];
-
-export const PLAYGROUND_PRESET_CATEGORIES: PlaygroundPresetCategory[] =
-  Object.values(PLAYGROUND_PRESET_CATEGORY);
-
 type ArrayMinItemsPopulate = Exclude<
   Experimental_ArrayMinItems["populate"],
   undefined

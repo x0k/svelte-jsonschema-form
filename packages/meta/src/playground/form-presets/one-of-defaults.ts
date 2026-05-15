@@ -1,7 +1,7 @@
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
-import type { PlaygroundPresetCategory, FormPreset } from "../form-state.ts";
+import type { FormPresetCategory, FormPreset } from "../form-state.ts";
 
-export const category: PlaygroundPresetCategory = "Schema Logic";
+export const category: FormPresetCategory = "Schema Logic";
 
 enum TransformPreset {
   Default = "Default",

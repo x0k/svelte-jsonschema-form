@@ -49,17 +49,17 @@
   import AlignLeft from "@lucide/svelte/icons/align-left";
   import { themeOrSubThemeTitle } from "meta";
   import {
-  ALL_OF_STATE_BEHAVIOR,
-  ALL_OF_STATE_BEHAVIOR_TITLES,
-  ARRAY_MIN_ITEMS_POPULATE,
-  ARRAY_MIN_ITEMS_POPULATE_TITLES,
-  CONST_AS_DEFAULT_STATE_BEHAVIOR,
-  CONST_AS_DEFAULT_STATE_BEHAVIOR_TITLES,
-  EMPTY_OBJECT_FIELDS_BEHAVIOR,
-  EMPTY_OBJECT_FIELDS_BEHAVIOR_TITLES,
-  MERGE_DEFAULTS_INTO_FORM,
-  MERGE_DEFAULTS_INTO_FORM_TITLES,
-  PLAYGROUND_ICON_SETS,
+    ALL_OF_STATE_BEHAVIOR,
+    ALL_OF_STATE_BEHAVIOR_TITLES,
+    ARRAY_MIN_ITEMS_POPULATE,
+    ARRAY_MIN_ITEMS_POPULATE_TITLES,
+    CONST_AS_DEFAULT_STATE_BEHAVIOR,
+    CONST_AS_DEFAULT_STATE_BEHAVIOR_TITLES,
+    EMPTY_OBJECT_FIELDS_BEHAVIOR,
+    EMPTY_OBJECT_FIELDS_BEHAVIOR_TITLES,
+    MERGE_DEFAULTS_INTO_FORM,
+    MERGE_DEFAULTS_INTO_FORM_TITLES,
+    PLAYGROUND_ICON_SETS,
     PLAYGROUND_ICON_SET_STYLES,
     PLAYGROUND_RESOLVERS,
     PLAYGROUND_SJSF_THEMES,
@@ -92,24 +92,6 @@
     gapPx,
   } from "$lib/tiler.js";
 
-  // import {
-  //   ALL_OF_STATE_BEHAVIOR,
-  //   ALL_OF_STATE_BEHAVIOR_TITLES,
-  //   ARRAY_MIN_ITEMS_POPULATE,
-  //   ARRAY_MIN_ITEMS_POPULATE_TITLES,
-  //   CONST_AS_DEFAULT_STATE_BEHAVIOR,
-  //   CONST_AS_DEFAULT_STATE_BEHAVIOR_TITLES,
-  //   EMPTY_OBJECT_FIELDS_BEHAVIOR,
-  //   EMPTY_OBJECT_FIELDS_BEHAVIOR_TITLES,
-  //   MERGE_DEFAULTS_INTO_FORM,
-  //   MERGE_DEFAULTS_INTO_FORM_TITLES,
-  //   icons,
-  //   iconsStyles,
-  //   resolvers,
-  //   validators,
-  //   VALIDATOR_TITLES,
-  //   REAL_VALIDATORS,
-  // } from "@/core/index.js";
   import { themeManager } from "@/theme.svelte";
   import { setShadcnContext } from "@/shadcn-context.js";
   import Header from "@/header.svelte";
@@ -170,7 +152,9 @@
   );
   const themeStyle = $derived(PLAYGROUND_SJSF_THEME_STYLES[data.theme]);
   const iconsSet = $derived(data.icons && PLAYGROUND_ICON_SETS[data.icons]);
-  const iconSetStyle = $derived(data.icons && PLAYGROUND_ICON_SET_STYLES[data.icons]);
+  const iconSetStyle = $derived(
+    data.icons && PLAYGROUND_ICON_SET_STYLES[data.icons],
+  );
   const fieldsValidationCount = $derived.by(() => {
     let count = 0;
     let snap = data.fieldsValidationMode;

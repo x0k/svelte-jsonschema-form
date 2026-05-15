@@ -1,8 +1,8 @@
 import type { UiOptions, UiSchema, UiSchemaRef } from "@sjsf/form";
 
-import type { PlaygroundPresetCategory, FormPreset } from "../form-state.ts";
+import type { FormPresetCategory, FormPreset } from "../form-state.ts";
 
-export const category: PlaygroundPresetCategory = "UI customization";
+export const category: FormPresetCategory = "UI customization";
 
 function propertyStyles(
   style: string,

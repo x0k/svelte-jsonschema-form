@@ -1,6 +1,6 @@
-import type { FormPreset, PlaygroundPresetCategory } from "../form-state.ts";
+import type { FormPreset, FormPresetCategory } from "../form-state.ts";
 
-export const category: PlaygroundPresetCategory = "Schema Basics";
+export const category: FormPresetCategory = "Schema Basics";
 
 export default {
   schema: {
