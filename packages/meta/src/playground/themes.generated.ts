@@ -1,4 +1,5 @@
 import { extendByRecord } from "@sjsf/form/lib/resolver";
+import { clientOnly } from "@sjsf/form/lib/env";
 
 import { fields } from "./fields.generated.ts";
 import "./fields.generated.ts";
@@ -30,8 +31,7 @@ export const basicTheme = extendByRecord(basicBase, {
 });
 
 import { theme as daisyui5Base } from "@sjsf/daisyui5-theme";
-import daisyui5_daisyui5CallyDatePickerWidget from "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker.svelte";
-import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker.svelte";
+export type * as daisyui5_daisyui5CallyDatePickerWidget from "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker.svelte";
 import daisyui5_checkboxesWidget from "@sjsf/daisyui5-theme/extra-widgets/checkboxes.svelte";
 import "@sjsf/daisyui5-theme/extra-widgets/checkboxes.svelte";
 import daisyui5_datePickerWidget from "@sjsf/daisyui5-theme/extra-widgets/date-picker.svelte";
@@ -56,7 +56,7 @@ import daisyui5_textareaWidget from "@sjsf/daisyui5-theme/extra-widgets/textarea
 import "@sjsf/daisyui5-theme/extra-widgets/textarea.svelte";
 export const daisyui5Theme = extendByRecord(daisyui5Base, {
   ...fields,
-  daisyui5CallyDatePickerWidget: daisyui5_daisyui5CallyDatePickerWidget,
+  daisyui5CallyDatePickerWidget: clientOnly(() => import("@sjsf/daisyui5-theme/extra-widgets/cally-date-picker.svelte")),
   checkboxesWidget: daisyui5_checkboxesWidget,
   datePickerWidget: daisyui5_datePickerWidget,
   fileWidget: daisyui5_fileWidget,

@@ -7,8 +7,11 @@ import {
   isThemeExtension,
   themePackage,
   themes,
-  type Theme,
 } from "../src/themes.ts";
+import {
+  isThemeClientSideOnlyExtraWidget,
+  type ExtraWidgetFileNames,
+} from "../src/widgets.ts";
 import { extractComponentPropsIndex, resolveComponentName } from "./analyze.ts";
 
 async function extractExtraWidgets(extraWidgetsDir: string) {
@@ -88,6 +91,7 @@ async function main() {
     "../src/playground/themes.generated.ts",
   );
   const themesContent = `import { extendByRecord } from "@sjsf/form/lib/resolver";
+import { clientOnly } from "@sjsf/form/lib/env";
 
 import { fields } from "./fields.generated.ts";
 import "./fields.generated.ts";
@@ -104,15 +108,27 @@ ${Object.entries(libs)
     }
     return `import { theme as ${theme}Base } from "${themePackage(theme).name}";
 ${Object.entries(widgets)
-  .map(
-    ([filename, widgetName]) =>
-      `import ${theme}_${widgetName} from "${themePackage(theme).name}/extra-widgets/${filename}.svelte";\nimport "${themePackage(theme).name}/extra-widgets/${filename}.svelte";`,
+  .map(([filename, widgetName]) =>
+    isThemeClientSideOnlyExtraWidget(
+      theme,
+      filename as ExtraWidgetFileNames[typeof theme],
+    )
+      ? `export type * as ${theme}_${widgetName} from "${themePackage(theme).name}/extra-widgets/${filename}.svelte";`
+      : `import ${theme}_${widgetName} from "${themePackage(theme).name}/extra-widgets/${filename}.svelte";
+import "${themePackage(theme).name}/extra-widgets/${filename}.svelte";`,
   )
   .join("\n")}
 export const ${theme}Theme = extendByRecord(${theme}Base, {
   ...fields,
-  ${Object.values(widgets)
-    .map((w) => `${w}: ${theme}_${w}`)
+  ${Object.entries(widgets)
+    .map(([filename, widgetName]) =>
+      isThemeClientSideOnlyExtraWidget(
+        theme,
+        filename as ExtraWidgetFileNames[typeof theme],
+      )
+        ? `${widgetName}: clientOnly(() => import("${themePackage(theme).name}/extra-widgets/${filename}.svelte"))`
+        : `${widgetName}: ${theme}_${widgetName}`,
+    )
     .join(",\n  ")}
 });`;
   })
