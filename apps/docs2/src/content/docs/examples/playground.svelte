@@ -1,48 +1,22 @@
-<script lang="ts" module>
-  import {
-    type SampleCategory,
-    SAMPLE_CATEGORIES,
-  } from "apps/playground2/src/core/sample";
-
-  const sampleCategories = import.meta.glob(
-    "apps/playground2/src/samples/*.ts",
-    {
-      import: "category",
-      eager: true,
-    }
-  );
-  const sampleLoaders = import.meta.glob("apps/playground2/src/samples/*.ts", {
-    eager: false,
-    import: "default",
-  });
-
-  function getSampleName(path: string) {
-    return path.substring(27, path.length - 3);
-  }
-  const groupedSamples = Object.groupBy(
-    Object.keys(sampleCategories),
-    (s) => sampleCategories[s] as SampleCategory
-  );
-</script>
-
 <script lang="ts">
   import lz from "lz-string";
+  import { formPresetCategories, GROUPED_FORM_PRESETS } from "meta/playground";
 
   import Buttons from "./buttons.svelte";
 
   const { playgroundLink }: { playgroundLink: string } = $props();
 </script>
 
-{#each SAMPLE_CATEGORIES as category}
+{#each formPresetCategories() as category}
   <h3>{category}</h3>
   <Buttons
-    items={groupedSamples[category]!}
-    onClick={async (path) => {
-      const sample = await sampleLoaders[path]();
+    items={GROUPED_FORM_PRESETS[category]!}
+    onClick={async (preset) => {
+      const data = await preset.load();
       window.open(
-        `${playgroundLink}#${lz.compressToEncodedURIComponent(JSON.stringify(sample))}`
+        `${playgroundLink}#${lz.compressToEncodedURIComponent(JSON.stringify(data))}`
       );
     }}
-    label={getSampleName}
+    label={(p) => p.name}
   />
 {/each}

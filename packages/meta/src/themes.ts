@@ -157,7 +157,7 @@ const SUB_THEME_DEPENDENCIES: Record<SubTheme, PackageDependency[]> = {
   pico: [
     {
       name: "@picocss/pico",
-      version: "^2.1.0",
+      version: "2.1.0",
       optional: false,
       dev: true,
     },

@@ -5,6 +5,14 @@
     "moduleResolution": "nodenext",
     "outDir": "dist",
     "rootDir": "src",
+    "types": [
+      "vite/client",
+    ],
+    "lib": [
+      "es2024",
+      "DOM.Iterable",
+      "DOM"
+    ],
     "rewriteRelativeImportExtensions": true
   },
   "include": [

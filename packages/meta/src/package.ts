@@ -5,6 +5,9 @@ interface RawPackage {
   version: string;
   peerDependencies?: Record<string, string>;
   peerDependenciesMeta?: PeerDependenciesMeta;
+  repository?: {
+    directory?: string;
+  };
 }
 
 export interface AbstractPackage {
@@ -18,28 +21,29 @@ export interface PackageDependency extends AbstractPackage {
 }
 
 export interface Package extends AbstractPackage {
+  directory: string;
   dependencies: PackageDependency[];
 }
 
 const EXTRA_PACKAGES = {
   ajvFormat: {
     name: "ajv-formats",
-    version: "^3.0.0",
+    version: "3.0.0",
     dev: false,
   },
   jsonSchemaToTs: {
     name: "json-schema-to-ts",
-    version: "^3.0.0",
+    version: "3.0.0",
     dev: true,
   },
   esbuild: {
     name: "esbuild",
-    version: "^0.28.0",
+    version: "0.28.0",
     dev: true,
   },
   devalue: {
     name: "devalue",
-    version: "^5.7.0",
+    version: "5.7.0",
     dev: true,
   },
 } as const satisfies Record<string, AbstractPackage>;
@@ -67,12 +71,14 @@ export function fromPackageJson({
   version,
   peerDependencies = {},
   peerDependenciesMeta = {},
+  repository: { directory = "" } = {},
 }: RawPackage): Package {
   const isOptional = createMetaExtractor(peerDependenciesMeta);
   return {
     name,
-    version: `^${version}`,
+    version,
     dev: DEV_PACKAGES_REGISTRY.has(name),
+    directory,
     dependencies: Object.entries(peerDependencies).map(([name, version]) => ({
       name,
       version: formatPeerDependencyVersion(version),
@@ -82,8 +88,14 @@ export function fromPackageJson({
   };
 }
 
+const VERSION_MODIFIERS = ["^", "~"];
 function formatPeerDependencyVersion(version: string) {
-  return version.replace("workspace:", "").split("||").at(-1)!.trim();
+  let v = version.replace("workspace:", "").split("||").at(-1)!.trim();
+  const m = VERSION_MODIFIERS.find((m) => v.startsWith(m));
+  if (m) {
+    v = v.slice(m.length);
+  }
+  return v;
 }
 
 function createMetaExtractor(peerDependenciesMeta: PeerDependenciesMeta) {

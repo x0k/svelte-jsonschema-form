@@ -1,9 +1,6 @@
 <script lang="ts" module>
-  import type {
-    PlaygroundState,
-    ValidatorPageState,
-    MergerPageState,
-  } from "./core/index.js";
+  import type { FormState, MergerState, ValidatorState } from "meta/playground";
+
   import type { Page } from "./router.js";
 
   const clearUrl = new URL(location.href);
@@ -18,9 +15,9 @@
   };
 
   interface PageStates {
-    "": PlaygroundState;
-    v: ValidatorPageState;
-    m: MergerPageState;
+    "": FormState;
+    v: ValidatorState;
+    m: MergerState;
   }
 </script>
 

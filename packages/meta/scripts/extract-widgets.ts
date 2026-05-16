@@ -1,6 +1,17 @@
 import path from "node:path";
 import fs from "node:fs/promises";
 
+import {
+  isLegacyTheme,
+  isTheme,
+  isThemeExtension,
+  themePackage,
+  themes,
+} from "../src/themes.ts";
+import {
+  isThemeClientSideOnlyExtraWidget,
+  type ExtraWidgetFileNames,
+} from "../src/widgets.ts";
 import { extractComponentPropsIndex, resolveComponentName } from "./analyze.ts";
 
 async function extractExtraWidgets(extraWidgetsDir: string) {
@@ -69,9 +80,61 @@ async function main() {
     );
     libs[theme] = await extractExtraWidgets(extraWidgetsPath);
   }
-  const outPath = path.join(import.meta.dirname, "../src/widgets.generated.ts");
-  const output = `export const EXTRA_WIDGETS = ${JSON.stringify(libs, null, 2)} as const;`;
-  await fs.writeFile(outPath, output, "utf-8");
+  const widgetsOutPath = path.join(
+    import.meta.dirname,
+    "../src/widgets.generated.ts",
+  );
+  const widgetsContent = `export const EXTRA_WIDGETS = ${JSON.stringify(libs, null, 2)} as const;`;
+  await fs.writeFile(widgetsOutPath, widgetsContent, "utf-8");
+  const themesOutPath = path.join(
+    import.meta.dirname,
+    "../src/playground/themes.generated.ts",
+  );
+  const themesContent = `import { extendByRecord } from "@sjsf/form/lib/resolver";
+import { clientOnly } from "@sjsf/form/lib/env";
+
+import { fields } from "./fields.generated.ts";
+import "./fields.generated.ts";
+
+${Object.entries(libs)
+  .map(([theme, widgets]) => {
+    if (!isTheme(theme)) {
+      throw new Error(
+        `Unknown theme "${theme}", expected: "${Array.from(themes()).join('" | "')}"`,
+      );
+    }
+    if (isLegacyTheme(theme) || isThemeExtension(theme)) {
+      return `// skip "${theme}" theme`;
+    }
+    return `import { theme as ${theme}Base } from "${themePackage(theme).name}";
+${Object.entries(widgets)
+  .map(([filename, widgetName]) =>
+    isThemeClientSideOnlyExtraWidget(
+      theme,
+      filename as ExtraWidgetFileNames[typeof theme],
+    )
+      ? `export type * as ${theme}_${widgetName} from "${themePackage(theme).name}/extra-widgets/${filename}.svelte";`
+      : `import ${theme}_${widgetName} from "${themePackage(theme).name}/extra-widgets/${filename}.svelte";
+import "${themePackage(theme).name}/extra-widgets/${filename}.svelte";`,
+  )
+  .join("\n")}
+export const ${theme}Theme = extendByRecord(${theme}Base, {
+  ...fields,
+  ${Object.entries(widgets)
+    .map(([filename, widgetName]) =>
+      isThemeClientSideOnlyExtraWidget(
+        theme,
+        filename as ExtraWidgetFileNames[typeof theme],
+      )
+        ? `${widgetName}: clientOnly(() => import("${themePackage(theme).name}/extra-widgets/${filename}.svelte"))`
+        : `${widgetName}: ${theme}_${widgetName}`,
+    )
+    .join(",\n  ")}
+});`;
+  })
+  .join("\n\n")}
+`;
+  await fs.writeFile(themesOutPath, themesContent, "utf-8");
 }
 
 await main();

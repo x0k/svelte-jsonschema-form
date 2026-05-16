@@ -1,0 +1,56 @@
+import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+
+export const category: FormPresetCategory = "Schema Logic";
+
+export default {
+  schema: {
+    title: "A customizable registration form",
+    description: "A simple form with pattern properties example.",
+    type: "object",
+    required: ["firstName", "lastName"],
+    properties: {
+      firstName: {
+        type: "string",
+        title: "First name",
+      },
+      lastName: {
+        type: "string",
+        title: "Last name",
+      },
+    },
+    additionalProperties: false,
+    patternProperties: {
+      "^foo.*$": {
+        type: "string",
+      },
+      "^bar.*$": {
+        type: "number",
+      },
+    },
+  },
+  uiSchema: {
+    "ui:options": {
+      translations: {
+        "add-object-property": "Add property",
+        "additional-property": "fooProp",
+      },
+    },
+    firstName: {
+      "ui:options": {
+        text: {
+          autofocus: true,
+        },
+        shadcn4Text: {
+          autofocus: true,
+        },
+        stringEmptyValue: "",
+      },
+    },
+  },
+  initialValue: {
+    firstName: "Chuck",
+    lastName: "Norris",
+    fooPropertyExample: "foo",
+    barPropertyExample: 123,
+  },
+} satisfies FormPreset;

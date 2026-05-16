@@ -1,16 +1,3 @@
-<script lang="ts" module>
-  import {
-    StringEnumValueMapperBuilder,
-    type EnumValueMapperBuilder,
-  } from "@sjsf/form/options.svelte";
-
-  declare module "@sjsf/form" {
-    interface UiOptionsRegistry {
-      stringEnumValueMapper: () => EnumValueMapperBuilder;
-    }
-  }
-</script>
-
 <script lang="ts">
   import { BitsConfig } from "bits-ui";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
@@ -41,12 +28,39 @@
   import { createFormMerger } from "@sjsf/form/mergers/modern";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { convert } from "@sjsf/form/converters/draft-2020-12";
+  import { StringEnumValueMapperBuilder } from '@sjsf/form/options.svelte';
   import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
   import AlignLeft from "@lucide/svelte/icons/align-left";
+  import { themeOrSubThemeTitle } from "meta";
+  import {
+    ALL_OF_STATE_BEHAVIOR,
+    ALL_OF_STATE_BEHAVIOR_TITLES,
+    ARRAY_MIN_ITEMS_POPULATE,
+    ARRAY_MIN_ITEMS_POPULATE_TITLES,
+    CONST_AS_DEFAULT_STATE_BEHAVIOR,
+    CONST_AS_DEFAULT_STATE_BEHAVIOR_TITLES,
+    EMPTY_OBJECT_FIELDS_BEHAVIOR,
+    EMPTY_OBJECT_FIELDS_BEHAVIOR_TITLES,
+    MERGE_DEFAULTS_INTO_FORM,
+    MERGE_DEFAULTS_INTO_FORM_TITLES,
+    PLAYGROUND_ICON_SETS,
+    PLAYGROUND_ICON_SET_STYLES,
+    PLAYGROUND_RESOLVERS,
+    PLAYGROUND_SJSF_THEMES,
+    PLAYGROUND_SJSF_THEME_STYLES,
+    PLAYGROUND_VALIDATORS,
+    playgroundIconSetTitle,
+    playgroundIconSets,
+    playgroundResolvers,
+    playgroundThemes,
+    playgroundValidatorTitle,
+    playgroundValidators,
+    type FormState,
+  } from "meta/playground";
 
   import { Button } from "$lib/components/ui/button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
@@ -66,27 +80,6 @@
     gapPx,
   } from "$lib/tiler.js";
 
-  import {
-    ALL_OF_STATE_BEHAVIOR,
-    ALL_OF_STATE_BEHAVIOR_TITLES,
-    ARRAY_MIN_ITEMS_POPULATE,
-    ARRAY_MIN_ITEMS_POPULATE_TITLES,
-    CONST_AS_DEFAULT_STATE_BEHAVIOR,
-    CONST_AS_DEFAULT_STATE_BEHAVIOR_TITLES,
-    EMPTY_OBJECT_FIELDS_BEHAVIOR,
-    EMPTY_OBJECT_FIELDS_BEHAVIOR_TITLES,
-    MERGE_DEFAULTS_INTO_FORM,
-    MERGE_DEFAULTS_INTO_FORM_TITLES,
-    icons,
-    iconsStyles,
-    resolvers,
-    themes,
-    themeStyles,
-    validators,
-    VALIDATOR_TITLES,
-    type PlaygroundState,
-    REAL_VALIDATORS,
-  } from "@/core/index.js";
   import { themeManager } from "@/theme.svelte";
   import { setShadcnContext } from "@/shadcn-context.js";
   import Header from "@/header.svelte";
@@ -96,7 +89,7 @@
   import SamplePicker from "./sample-picker.svelte";
   import CopyFormData from "./copy-form-data.svelte";
 
-  const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
+  const DEFAULT_PLAYGROUND_STATE: FormState = {
     schema: {
       type: "object",
       title: "Basic form",
@@ -142,10 +135,14 @@
     return () => router.store(snap);
   });
 
-  const theme = $derived(extendByRecord(themes[data.theme], customComponents));
-  const themeStyle = $derived(themeStyles[data.theme]);
-  const iconsSet = $derived(data.icons && icons[data.icons]);
-  const iconSetStyle = $derived(data.icons && iconsStyles[data.icons]);
+  const theme = $derived(
+    extendByRecord(PLAYGROUND_SJSF_THEMES[data.theme], customComponents),
+  );
+  const themeStyle = $derived(PLAYGROUND_SJSF_THEME_STYLES[data.theme]);
+  const iconsSet = $derived(data.icons && PLAYGROUND_ICON_SETS[data.icons]);
+  const iconSetStyle = $derived(
+    data.icons && PLAYGROUND_ICON_SET_STYLES[data.icons],
+  );
   const fieldsValidationCount = $derived.by(() => {
     let count = 0;
     let snap = data.fieldsValidationMode;
@@ -194,7 +191,7 @@
   const form = createForm({
     idBuilder: createFormIdBuilder,
     get resolver() {
-      return resolvers[data.resolver];
+      return PLAYGROUND_RESOLVERS[data.resolver];
     },
     value: [
       () => data.initialValue,
@@ -213,7 +210,7 @@
       return data.uiSchema;
     },
     validator: (options) => {
-      const v = validators[data.validator]<FormValue>(options);
+      const v = PLAYGROUND_VALIDATORS[data.validator]<FormValue>(options);
       return {
         ...v,
         validateFormValue(rootSchema, formValue) {
@@ -493,16 +490,26 @@
   <Select
     label="Resolver"
     bind:value={data.resolver}
-    items={Object.keys(resolvers)}
+    items={playgroundResolvers()}
   />
   <Select
     label="Validator"
     bind:value={data.validator}
-    items={REAL_VALIDATORS}
-    labels={VALIDATOR_TITLES}
+    items={playgroundValidators()}
+    itemLabel={playgroundValidatorTitle}
   />
-  <Select label="Theme" bind:value={data.theme} items={Object.keys(themes)} />
-  <Select label="Icons" bind:value={data.icons} items={Object.keys(icons)} />
+  <Select
+    label="Theme"
+    bind:value={data.theme}
+    items={playgroundThemes()}
+    itemLabel={themeOrSubThemeTitle}
+  />
+  <Select
+    label="Icons"
+    bind:value={data.icons}
+    items={playgroundIconSets()}
+    itemLabel={playgroundIconSetTitle}
+  />
 </Header>
 <Panel bind:layout />
 

@@ -38,6 +38,7 @@
     "ajv-formats": "catalog:",
     "ata-validator": "catalog:",
     "codemirror": "^6.0.2",
+    "meta": "workspace:*",
     "lz-string": "catalog:",
     "svelte-exmarkdown": "catalog:",
     "svelte-tiler": "^0.7.0"

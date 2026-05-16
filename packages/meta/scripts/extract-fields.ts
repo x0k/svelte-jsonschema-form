@@ -101,9 +101,29 @@ async function main() {
       wrapperOf,
     };
   }
-  const outPath = path.join(import.meta.dirname, "../src/fields.generated.ts");
-  const output = `export const EXTRA_FIELDS = ${JSON.stringify(meta, null, 2)} as const;`;
-  await fs.writeFile(outPath, output, "utf-8");
+  //
+  const fieldsOutPath = path.join(
+    import.meta.dirname,
+    "../src/fields.generated.ts",
+  );
+  const fieldsContent = `export const EXTRA_FIELDS = ${JSON.stringify(meta, null, 2)} as const;`;
+  await fs.writeFile(fieldsOutPath, fieldsContent, "utf-8");
+  //
+  const pgFieldsOutPath = path.join(
+    import.meta.dirname,
+    "../src/playground/fields.generated.ts",
+  );
+  const fields = Object.values(meta);
+  const pgFieldsContent = `${fields
+    .map(
+      ({ filename, name }) =>
+        `import ${name} from "@sjsf/form/fields/extra/${filename}.svelte";\nimport "@sjsf/form/fields/extra/${filename}.svelte";`,
+    )
+    .join("\n")}
+export const fields = {
+  ${fields.map(({ name }) => name).join(",\n  ")}
+} as const`;
+  await fs.writeFile(pgFieldsOutPath, pgFieldsContent, "utf-8");
 }
 
 await main();
