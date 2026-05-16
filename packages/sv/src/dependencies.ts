@@ -31,10 +31,11 @@ import { pnpm, transforms } from "./sv-utils.js";
 export function dependencies(ctx: Context) {
   const { sv, options } = ctx;
   function addDependency({ name, version, dev }: AbstractPackage) {
+    const v = `^${version}`;
     if (dev) {
-      sv.devDependency(name, version);
+      sv.devDependency(name, v);
     } else {
-      sv.dependency(name, version);
+      sv.dependency(name, v);
     }
   }
   function addDependencies(
@@ -66,7 +67,11 @@ export function dependencies(ctx: Context) {
     addDependencies(subThemeDependencies(themeOrSubTheme));
   }
   if (isTailwindcss4Theme(theme)) {
-    dependenciesTailwindCss4(ctx, tailwindcss4ThemePlugins(theme));
+    dependenciesTailwindCss4(
+      ctx,
+      tailwindcss4ThemePlugins(theme),
+      addDependency,
+    );
   }
   if (
     isEndsWithPrecompiled(validatorWithSuffix) ||
@@ -122,6 +127,7 @@ function dependenciesTailwindCss4(
     packageManager,
   }: Context,
   plugins: Iterable<Tailwindcss4Plugin>,
+  addDependency: (pkg: AbstractPackage) => void,
 ) {
   const prettierInstalled = Boolean(dependencyVersion("prettier"));
 
@@ -138,8 +144,7 @@ function dependenciesTailwindCss4(
     sv.devDependency("prettier-plugin-tailwindcss", "^0.7.2");
 
   for (const plugin of plugins) {
-    const pkg = tailwindcss4PluginPackage(plugin);
-    sv.devDependency(pkg.name, pkg.version);
+    addDependency(tailwindcss4PluginPackage(plugin));
   }
 
   // add the vite plugin
