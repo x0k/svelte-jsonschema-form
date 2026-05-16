@@ -88,8 +88,14 @@ export function fromPackageJson({
   };
 }
 
+const VERSION_MODIFIERS = ["^", "~"];
 function formatPeerDependencyVersion(version: string) {
-  return version.replace("workspace:", "").split("||").at(-1)!.trim();
+  let v = version.replace("workspace:", "").split("||").at(-1)!.trim();
+  const m = VERSION_MODIFIERS.find((m) => v.startsWith(m));
+  if (m) {
+    v = v.slice(m.length);
+  }
+  return v;
 }
 
 function createMetaExtractor(peerDependenciesMeta: PeerDependenciesMeta) {
