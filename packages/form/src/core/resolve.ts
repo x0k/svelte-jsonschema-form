@@ -2,6 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+// TODO: Remove all usage of `expandAllBranches` in v4
+
 import { array } from "@/lib/array.js";
 import { isRecordEmpty } from "@/lib/object.js";
 import { isJsonSchemaType, isSchemaObject } from "@/lib/json-schema/index.js";
