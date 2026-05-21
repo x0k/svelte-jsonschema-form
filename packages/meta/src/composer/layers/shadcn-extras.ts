@@ -1,12 +1,16 @@
-import packageJson from "examples/shadcn-extras-starter/package.json";
 import appCss from "examples/shadcn-extras-starter/src/app.css?raw";
 import componentsJson from "examples/shadcn-extras-starter/components.json?raw";
 import layoutSvelte from "examples/shadcn-extras-starter/src/routes/+layout.svelte?raw";
 
-import { omitBasePackages, type Layer } from "../layer.ts";
+import { optionalPackageName } from "../../package.ts";
+import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = {
-  package: omitBasePackages(packageJson),
+export const layer = defineLayer({
+  package: {
+    dependencies: themeDependencies("shadcn-extras", [
+      optionalPackageName("internationalizedDate"),
+    ]),
+  },
   formDefaults: { theme: "shadcn-extras" },
   files: {
     "src/routes/+layout.svelte": layoutSvelte,
@@ -18,4 +22,4 @@ export const layer = {
       runes: false,
     },
   },
-} satisfies Layer;
+});

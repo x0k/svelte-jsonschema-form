@@ -1,13 +1,14 @@
 import layoutSvelte from "examples/daisyui5-starter/src/routes/+layout.svelte?raw";
 
-import type { Layer } from "../layer.ts";
+import { extraPackage } from "../../package.ts";
+import { defineLayer } from "../layer.ts";
 
-export const layer = {
+export const layer = defineLayer({
   package: {
-    devDependencies: {
-      "@tailwindcss/vite": "^4.0.0",
-      tailwindcss: "^4.0.0",
-    },
+    dependencies: [
+      extraPackage("tailwindcss4"),
+      extraPackage("tailwindcss4Vite"),
+    ],
   },
   vite: {
     plugins: {
@@ -21,4 +22,4 @@ export const layer = {
     "src/routes/+layout.svelte": layoutSvelte,
     "src/app.css": "@import 'tailwindcss'",
   },
-} satisfies Layer;
+});

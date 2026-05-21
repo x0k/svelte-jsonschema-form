@@ -1,13 +1,13 @@
-import packageJson from "examples/basic-starter/package.json";
+import { subThemeDependencies } from "../../themes.ts";
+import { defineLayer, themeDependencies } from "../layer.ts";
 
-import { mergePackageConfigs, omitBasePackages, type Layer } from "../layer.ts";
-
-export const layer = {
-  package: mergePackageConfigs(omitBasePackages(packageJson), {
-    dependencies: {
-      "@picocss/pico": "^2.1.0",
-    },
-  }),
+export const layer = defineLayer({
+  package: {
+    dependencies: [
+      ...themeDependencies("basic"),
+      ...subThemeDependencies("pico"),
+    ],
+  },
   formDefaults: { theme: "basic" },
   files: {
     "src/routes/+layout.svelte": `<script lang="ts">
@@ -28,4 +28,4 @@ export const layer = {
 </style>
 `,
   },
-} satisfies Layer;
+});

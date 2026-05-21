@@ -1,13 +1,17 @@
-import packageJson from "examples/shadcn4-starter/package.json";
 import appCss from "examples/shadcn4-starter/src/app.css?raw";
 import componentsJson from "examples/shadcn4-starter/components.json?raw";
 import utilsTs from "examples/shadcn4-starter/src/lib/utils?raw";
 import layoutSvelte from "examples/shadcn4-starter/src/routes/+layout.svelte?raw";
 
-import { omitBasePackages, type Layer } from "../layer.ts";
+import { optionalPackageName } from "../../package.ts";
+import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = {
-  package: omitBasePackages(packageJson),
+export const layer = defineLayer({
+  package: {
+    dependencies: themeDependencies("shadcn4", [
+      optionalPackageName("internationalizedDate"),
+    ]),
+  },
   formDefaults: { theme: "shadcn4" },
   files: {
     "src/routes/+layout.svelte": layoutSvelte,
@@ -15,4 +19,4 @@ export const layer = {
     "src/app.css": appCss,
     "components.json": componentsJson,
   },
-} satisfies Layer;
+});

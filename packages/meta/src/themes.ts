@@ -16,6 +16,7 @@ import _shadcnPackageJson from "@sjsf/shadcn4-theme/package.json" with { type: "
 import {
   type Package,
   type PackageDependency,
+  extraPackage,
   fromPackageJson,
 } from "./package.ts";
 import type { AtRule, AtRuleOptions } from "./css.ts";
@@ -156,10 +157,8 @@ const THEME_PACKAGES = {
 const SUB_THEME_DEPENDENCIES: Record<SubTheme, PackageDependency[]> = {
   pico: [
     {
-      name: "@picocss/pico",
-      version: "2.1.0",
+      ...extraPackage("pico"),
       optional: false,
-      dev: true,
     },
   ],
 };

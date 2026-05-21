@@ -1,14 +1,18 @@
-import packageJson from "examples/shadcn-starter/package.json";
 import appCss from "examples/shadcn-starter/src/app.css?raw";
 import componentsJson from "examples/shadcn-starter/components.json?raw";
 import utilsTs from "examples/shadcn-starter/src/lib/utils?raw";
 import layoutSvelte from "examples/shadcn-starter/src/routes/+layout.svelte?raw";
 import tailwindConfigJs from "examples/shadcn-starter/tailwind.config.js?raw";
 
-import { omitBasePackages, type Layer } from "../layer.ts";
+import { optionalPackageName } from "../../package.ts";
+import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = {
-  package: omitBasePackages(packageJson),
+export const layer = defineLayer({
+  package: {
+    dependencies: themeDependencies("shadcn", [
+      optionalPackageName("internationalizedDate"),
+    ]),
+  },
   formDefaults: { theme: "shadcn" },
   files: {
     "src/routes/+layout.svelte": layoutSvelte,
@@ -17,4 +21,4 @@ export const layer = {
     "components.json": componentsJson,
     "tailwind.config.js": tailwindConfigJs,
   },
-} satisfies Layer;
+});

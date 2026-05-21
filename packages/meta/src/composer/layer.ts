@@ -1,6 +1,11 @@
 import { unique } from "@sjsf/form/lib/array";
 
-import { themePackage, type Theme } from "../themes.ts";
+import {
+  isSubTheme,
+  subThemeDependencies,
+  themePackage,
+  type Theme,
+} from "../themes.ts";
 import {
   externalValidatorPackage,
   isJsonSchemaValidator,
@@ -11,11 +16,15 @@ import {
   themeExtraWidgetSubPath,
   type ExtraWidgetFileNames,
 } from "../widgets.ts";
-import type { AbstractPackage } from "../package.ts";
+import {
+  filterPackageDependencies,
+  type AbstractPackage,
+  type IncludeOptional,
+} from "../package.ts";
 
 export interface PackageConfig {
   name?: string;
-  dependencies?: AbstractPackage[];
+  dependencies?: Iterable<AbstractPackage>;
 }
 
 export interface VitePluginConfig {
@@ -59,13 +68,13 @@ export interface SvelteConfig {
   kit?: SvelteKitConfig;
 }
 
-export interface Layer {
+export interface Layer<T extends Theme> {
   svelte?: SvelteConfig;
   package?: PackageConfig;
   vite?: ViteConfig;
   files?: LayerFiles;
-  codeTransformers?: CodeTransformer[];
-  formDefaults?: FormDefaultsConfig<"basic">;
+  codeTransformers?: Iterable<CodeTransformer>;
+  formDefaults?: FormDefaultsConfig<T>;
 }
 
 // export const MARKDOWN_DESCRIPTION_PACKAGES = ["svelte-exmarkdown"];
@@ -76,7 +85,10 @@ export interface Layer {
 //   ...MARKDOWN_DESCRIPTION_PACKAGES,
 //   ...DRAFT_2020_12_PACKAGES,
 // ];
-function mergeArrays<T>(a: T[] | undefined, b: T[] | undefined) {
+function mergeIterables<T>(
+  a: Iterable<T> | undefined,
+  b: Iterable<T> | undefined,
+) {
   return a ? (b ? [...a, ...b] : a) : b;
 }
 
@@ -124,7 +136,7 @@ export function mergePackageConfigs(
   return {
     ...a,
     ...b,
-    dependencies: mergeArrays(a.dependencies, b.dependencies),
+    dependencies: mergeIterables(a.dependencies, b.dependencies),
   };
 }
 
@@ -163,7 +175,10 @@ function mergeFormDefaultsConfig<T extends Theme>(
   };
 }
 
-export function mergeLayers(a: Layer, b: Layer): Layer {
+export function mergeLayers<T extends Theme>(
+  a: Layer<T>,
+  b: Layer<T>,
+): Layer<T> {
   return {
     package:
       a.package && b.package
@@ -179,7 +194,7 @@ export function mergeLayers(a: Layer, b: Layer): Layer {
       ...a.files,
       ...b.files,
     },
-    codeTransformers: mergeArrays(a.codeTransformers, b.codeTransformers),
+    codeTransformers: mergeIterables(a.codeTransformers, b.codeTransformers),
     svelte:
       a.svelte && b.svelte
         ? mergeSvelteConfig(a.svelte, b.svelte)
@@ -281,7 +296,7 @@ export default config;
 `;
 }
 
-export function buildLayer(layer: Layer): LayerFiles {
+export function buildLayer<T extends Theme>(layer: Layer<T>): LayerFiles {
   const files: LayerFiles = {
     ...layer.files,
     "svelte.config.js": buildSvelteConfig(layer.svelte),
@@ -307,6 +322,22 @@ export function buildLayer(layer: Layer): LayerFiles {
   return files;
 }
 
-export function buildLayers(layers: Layer[]): LayerFiles {
+export function buildLayers<T extends Theme>(layers: Layer<T>[]): LayerFiles {
   return buildLayer(layers.reduce(mergeLayers));
+}
+
+export function* themeDependencies(
+  theme: Theme,
+  filter: IncludeOptional = false,
+) {
+  const pkg = themePackage(theme);
+  yield pkg;
+  yield* filterPackageDependencies(pkg.dependencies, filter);
+  if (isSubTheme(theme)) {
+    yield* subThemeDependencies(theme);
+  }
+}
+
+export function defineLayer<T extends Theme>(layer: Layer<T>) {
+  return layer;
 }

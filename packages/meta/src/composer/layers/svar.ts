@@ -1,12 +1,13 @@
-import packageJson from "examples/svar-starter/package.json";
 import layoutSvelte from "examples/svar-starter/src/routes/+layout.svelte?raw";
 
-import { omitBasePackages, type Layer } from "../layer.ts";
+import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = {
-  package: omitBasePackages(packageJson),
+export const layer = defineLayer({
+  package: {
+    dependencies: themeDependencies("svar"),
+  },
   formDefaults: { theme: "svar" },
   files: {
     "src/routes/+layout.svelte": layoutSvelte,
   },
-} satisfies Layer;
+});

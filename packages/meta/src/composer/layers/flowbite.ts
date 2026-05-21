@@ -1,10 +1,11 @@
-import packageJson from "examples/flowbite-starter/package.json";
 import tailwindConfigJs from "examples/flowbite-starter/tailwind.config.js?raw";
 
-import { omitBasePackages, type Layer } from "../layer.ts";
+import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = {
-  package: omitBasePackages(packageJson),
+export const layer = defineLayer({
+  package: {
+    dependencies: themeDependencies("flowbite"),
+  },
   formDefaults: { theme: "flowbite" },
   files: {
     "tailwind.config.js": tailwindConfigJs,
@@ -14,4 +15,4 @@ export const layer = {
       runes: false,
     },
   },
-} satisfies Layer;
+});

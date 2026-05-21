@@ -46,6 +46,51 @@ const EXTRA_PACKAGES = {
     version: "5.7.0",
     dev: true,
   },
+  pico: {
+    name: "@picocss/pico",
+    version: "2.1.0",
+    dev: true,
+  },
+  vite: {
+    name: "vite",
+    version: "8.0.10",
+    dev: true,
+  },
+  typescript: {
+    name: "typescript",
+    version: "6.0.0",
+    dev: true,
+  },
+  svelteVitePlugin: {
+    name: "@sveltejs/vite-plugin-svelte",
+    version: "7.1.2",
+    dev: true,
+  },
+  svelteAdapterAuto: {
+    name: "@sveltejs/adapter-auto",
+    version: "7.0.1",
+    dev: true,
+  },
+  tailwindcss3: {
+    name: "tailwindcss",
+    version: "3.4.17",
+    dev: true,
+  },
+  postcss: {
+    name: "postcss",
+    version: "8.5.6",
+    dev: true,
+  },
+  tailwindcss4: {
+    name: "tailwindcss",
+    version: "4.3.0",
+    dev: true,
+  },
+  tailwindcss4Vite: {
+    name: "@tailwindcss/vite",
+    version: "4.3.0",
+    dev: true,
+  },
 } as const satisfies Record<string, AbstractPackage>;
 
 export type ExtraPackage = keyof typeof EXTRA_PACKAGES;
