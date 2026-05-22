@@ -91,6 +91,26 @@ const EXTRA_PACKAGES = {
     version: "4.3.0",
     dev: true,
   },
+  typebox: {
+    name: "typebox",
+    version: "1.0.7",
+    dev: false,
+  },
+  arktype: {
+    name: "arktype",
+    version: "2.1.21",
+    dev: false,
+  },
+  jsonSchemaTyped: {
+    name: "json-schema-typed",
+    version: "8.0.0",
+    dev: true,
+  },
+  svelteExmarkdown: {
+    name: "svelte-exmarkdown",
+    version: "5.0.2",
+    dev: false,
+  },
 } as const satisfies Record<string, AbstractPackage>;
 
 export type ExtraPackage = keyof typeof EXTRA_PACKAGES;

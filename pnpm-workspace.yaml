@@ -14,12 +14,14 @@ catalog:
   "@internationalized/date": 3.12.1
   "@lucide/svelte": ^1.14.0
   "@picocss/pico": ^2.1.1
+  "@stackblitz/sdk": ^1.11.0
   "@playwright/test": 1.59.1
   "@standard-schema/spec": ^1.1.0
   "@svar-ui/svelte-core": ^2.5.1
   "@tailwindcss/vite": ^4.3.0
   "@types/pikaday": ^1.7.10
   "@typescript-eslint/types": 8.59.2
+  "@webcontainer/api": ^1.6.4
   "@valibot/to-json-schema": ^1.7.0
   ajv: ^8.20.0
   ajv-formats: ^3.0.1

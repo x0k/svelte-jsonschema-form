@@ -338,6 +338,6 @@ export function* themeDependencies(
   }
 }
 
-export function defineLayer<T extends Theme>(layer: Layer<T>) {
+export function defineLayer<T extends Theme = any>(layer: Layer<T>) {
   return layer;
 }

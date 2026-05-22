@@ -15,10 +15,13 @@
     "@cfworker/json-schema": "catalog:",
     "@exodus/schemasafe": "catalog:",
     "@picocss/pico": "catalog:",
+    "@stackblitz/sdk": "catalog:",
+    "@webcontainer/api": "catalog:",
     "ajv": "catalog:",
     "ajv-formats": "catalog:",
     "ata-validator": "catalog:",
     "beercss": "catalog:",
+    "lz-string": "catalog:",
     "svelte": "^5.34.8"
   },
   "dependencies": {
@@ -52,11 +55,14 @@
     "@cfworker/json-schema": "catalog:",
     "@exodus/schemasafe": "catalog:",
     "@picocss/pico": "catalog:",
+    "@stackblitz/sdk": "catalog:",
     "@typescript-eslint/types": "catalog:",
+    "@webcontainer/api": "catalog:",
     "ajv": "catalog:",
     "ajv-formats": "catalog:",
     "ata-validator": "catalog:",
     "beercss": "catalog:",
+    "lz-string": "catalog:",
     "svelte": "catalog:"
   },
   "exports": {
