@@ -61,6 +61,7 @@
     playgroundValidators,
     type FormState,
   } from "meta/playground";
+  import 'meta/playground/augmentations';
 
   import { Button } from "$lib/components/ui/button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
