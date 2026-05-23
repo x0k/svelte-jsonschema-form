@@ -105,8 +105,6 @@ for (const [parentTheme, subThemes] of Object.entries(THEME_SUB_THEMES)) {
   }
 }
 
-export type ActualTheme = Exclude<Theme, LegacyTheme | LabTheme>;
-
 export type SubTheme = (typeof SUB_THEMES)[number];
 
 export type ThemeWithSubThemes = keyof typeof THEME_SUB_THEMES;
@@ -133,11 +131,18 @@ const THEME_OR_SUB_THEME_TITLES: Record<ThemeOrSubTheme, string> = {
 
 const THEME_BRAND = {
   basic: "",
+  daisyui: "daisyUI",
   daisyui5: "daisyUI",
+  flowbite: "Flowbite",
   flowbite3: "Flowbite",
+  skeleton3: "Skeleton",
   skeleton4: "Skeleton",
+  shadcn: "shadcn-svelte",
   shadcn4: "shadcn-svelte",
-} satisfies Record<ActualTheme, string>;
+  "shadcn-extras": "shadcn-svelte-extras",
+  beercss: "Beer CSS",
+  svar: "SVAR",
+} satisfies Record<Theme, string>;
 
 const THEME_PACKAGES = {
   basic: fromPackageJson(_basicPackageJson),
@@ -268,7 +273,7 @@ export function themeOrSubThemeTitle(theme: ThemeOrSubTheme): string {
   return THEME_OR_SUB_THEME_TITLES[theme];
 }
 
-export function themeBrand(theme: ActualTheme): string {
+export function themeBrand(theme: Theme): string {
   return THEME_BRAND[theme];
 }
 

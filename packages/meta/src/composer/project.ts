@@ -1,4 +1,11 @@
-import type { SubTheme, Theme, ThemeOrSubTheme } from "../themes.ts";
+import {
+  isThemeWithSubThemes,
+  themes,
+  themeSubThemes,
+  type SubTheme,
+  type Theme,
+  type ThemeOrSubTheme,
+} from "../themes.ts";
 import type { Generated } from "../types.ts";
 import {
   externalValidatorPackage,
@@ -16,14 +23,14 @@ import {
 } from "./layer.ts";
 import type { SchemaTransformer } from "./schema-transform.ts";
 
-export enum Platform {
+export enum ProjectPlatform {
   StackBlitz = "StackBlitz",
   SvelteLab = "SvelteLab",
 }
 
-export const PLATFORMS = Object.values(Platform);
+export const PROJECT_PLATFORMS = Object.values(ProjectPlatform);
 
-export enum GenericExample {
+export enum ProjectGenericExample {
   Starter = "starter",
   MarkdownDescription = "markdown-description",
   DeprecatedKeyword = "deprecated-keyword",
@@ -45,9 +52,9 @@ export enum GenericExample {
   NullableFields = "nullable-fields",
 }
 
-export const GENERIC_EXAMPLES = Object.values(GenericExample);
+export const PROJECT_GENERIC_EXAMPLES = Object.values(ProjectGenericExample);
 
-export enum SvelteKitExample {
+export enum ProjectSvelteKitExample {
   FormActions = "form-actions",
   FormActionsFlex = "form-actions-flex",
   FormActionsWithoutJs = "form-actions-without-js",
@@ -59,19 +66,35 @@ export enum SvelteKitExample {
   MultiStepNativeForm = "multi-step-native-form",
 }
 
-export const SVELTE_KIT_EXAMPLES = Object.values(SvelteKitExample);
+export const PROJECT_SVELTE_KIT_EXAMPLES = Object.values(
+  ProjectSvelteKitExample,
+);
 
-export enum ValidatorSpecificExample {
+export enum ProjectValidatorSpecificExample {
   ZodStarter = "zod-starter",
   ValibotStarter = "valibot-starter",
   ArkTypeStarter = "arktype-starter",
   TypeBoxStarter = "typebox-starter",
 }
 
-export type Example =
-  | GenericExample
-  | SvelteKitExample
-  | ValidatorSpecificExample;
+export const PROJECT_VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS: Record<
+  ProjectValidatorSpecificExample,
+  ProjectValidator
+> = {
+  [ProjectValidatorSpecificExample.ZodStarter]: "zod4",
+  [ProjectValidatorSpecificExample.ValibotStarter]: "valibot",
+  [ProjectValidatorSpecificExample.ArkTypeStarter]: "standard-schema",
+  [ProjectValidatorSpecificExample.TypeBoxStarter]: "standard-schema",
+};
+
+export const PROJECT_VALIDATOR_SPECIFIC_EXAMPLES = Object.values(
+  ProjectValidatorSpecificExample,
+);
+
+export type ProjectExample =
+  | ProjectGenericExample
+  | ProjectSvelteKitExample
+  | ProjectValidatorSpecificExample;
 
 type ImportPromise<T> = Promise<{ default: T }>;
 
@@ -122,99 +145,111 @@ export const THEME_LAYERS: {
 };
 
 export const EXAMPLE_LAYERS: Record<
-  Example,
+  ProjectExample,
   () => ImportPromise<Layer<any>>[]
 > = {
-  [GenericExample.Starter]: () => [import("./examples/starter.ts")],
-  [GenericExample.AnimatedArray]: () => [
+  [ProjectGenericExample.Starter]: () => [import("./examples/starter.ts")],
+  [ProjectGenericExample.AnimatedArray]: () => [
     import("./examples/animated-array.ts"),
   ],
-  [GenericExample.MarkdownDescription]: () => [
+  [ProjectGenericExample.MarkdownDescription]: () => [
     import("./examples/markdown-description.ts"),
   ],
-  [GenericExample.DeprecatedKeyword]: () => [
+  [ProjectGenericExample.DeprecatedKeyword]: () => [
     import("./examples/deprecated-keyword.ts"),
   ],
-  [GenericExample.TabbedLayout]: () => [import("./examples/tabbed-layout.ts")],
-  [GenericExample.RemoteEnum]: () => [import("./examples/remote-enum.ts")],
-  [GenericExample.AsyncCombobox]: () => [
+  [ProjectGenericExample.TabbedLayout]: () => [
+    import("./examples/tabbed-layout.ts"),
+  ],
+  [ProjectGenericExample.RemoteEnum]: () => [
+    import("./examples/remote-enum.ts"),
+  ],
+  [ProjectGenericExample.AsyncCombobox]: () => [
     import("./examples/async-combobox.ts"),
   ],
-  [GenericExample.Formulas]: () => [import("./examples/formulas.ts")],
-  [GenericExample.PatternPropertiesValidator]: () => [
+  [ProjectGenericExample.Formulas]: () => [import("./examples/formulas.ts")],
+  [ProjectGenericExample.PatternPropertiesValidator]: () => [
     import("./examples/pattern-properties-validator.ts"),
   ],
-  [GenericExample.DecomposedField]: () => [
+  [ProjectGenericExample.DecomposedField]: () => [
     import("./examples/decomposed-field.ts"),
   ],
-  [GenericExample.LayoutSlots]: () => [import("./examples/layout-slots.ts")],
-  [GenericExample.PreuploadFile]: () => [
+  [ProjectGenericExample.LayoutSlots]: () => [
+    import("./examples/layout-slots.ts"),
+  ],
+  [ProjectGenericExample.PreuploadFile]: () => [
     import("./examples/preupload-file.ts"),
   ],
-  [GenericExample.OptionalDataControls]: () => [
+  [ProjectGenericExample.OptionalDataControls]: () => [
     import("./examples/optional-data-controls.ts"),
   ],
-  [GenericExample.SchemaTransformation]: () => [
+  [ProjectGenericExample.SchemaTransformation]: () => [
     import("./examples/schema-transformation.ts"),
   ],
-  [GenericExample.LabelOnLeft]: () => [import("./examples/label-on-left.ts")],
-  [GenericExample.Draft2020]: () => [import("./examples/draft-2020-12.ts")],
-  [GenericExample.MultiStep]: () => [import("./examples/multi-step.ts")],
-  [GenericExample.EnumWidgets]: () => [import("./examples/enum-widgets.ts")],
-  [GenericExample.NullableFields]: () => [
+  [ProjectGenericExample.LabelOnLeft]: () => [
+    import("./examples/label-on-left.ts"),
+  ],
+  [ProjectGenericExample.Draft2020]: () => [
+    import("./examples/draft-2020-12.ts"),
+  ],
+  [ProjectGenericExample.MultiStep]: () => [import("./examples/multi-step.ts")],
+  [ProjectGenericExample.EnumWidgets]: () => [
+    import("./examples/enum-widgets.ts"),
+  ],
+  [ProjectGenericExample.NullableFields]: () => [
     import("./examples/nullable-fields.ts"),
   ],
-  [SvelteKitExample.FormActionsWithoutJs]: () => [
+  [ProjectSvelteKitExample.FormActionsWithoutJs]: () => [
     import("./layers/form-actions.ts"),
     import("./examples/form-actions-without-js.ts"),
   ],
-  [SvelteKitExample.MultiStepNativeForm]: () => [
+  [ProjectSvelteKitExample.MultiStepNativeForm]: () => [
     import("./layers/form-actions.ts"),
     import("./examples/multi-step-native-form.ts"),
   ],
-  [SvelteKitExample.FormActions]: () => [
+  [ProjectSvelteKitExample.FormActions]: () => [
     import("./layers/form-actions.ts"),
     import("./examples/form-actions.ts"),
   ],
-  [SvelteKitExample.FormActionsFlex]: () => [
+  [ProjectSvelteKitExample.FormActionsFlex]: () => [
     import("./layers/form-actions.ts"),
     import("./examples/form-actions-flex.ts"),
   ],
-  [SvelteKitExample.FormActionsDynamicSchema]: () => [
+  [ProjectSvelteKitExample.FormActionsDynamicSchema]: () => [
     import("./layers/form-actions.ts"),
     import("./examples/form-actions-dynamic-schema.ts"),
   ],
-  [SvelteKitExample.RemoteFunctions]: () => [
+  [ProjectSvelteKitExample.RemoteFunctions]: () => [
     import("./layers/remote-functions.ts"),
     import("./examples/remote-functions.ts"),
   ],
-  [SvelteKitExample.RemoteFunctionsEnhance]: () => [
+  [ProjectSvelteKitExample.RemoteFunctionsEnhance]: () => [
     import("./layers/remote-functions.ts"),
     import("./examples/remote-functions-enhance.ts"),
   ],
-  [SvelteKitExample.RemoteFunctionsDynamicSchema]: () => [
+  [ProjectSvelteKitExample.RemoteFunctionsDynamicSchema]: () => [
     import("./layers/remote-functions.ts"),
     import("./examples/remote-functions-dynamic-schema.ts"),
   ],
-  [SvelteKitExample.RemoteFunctionsWithoutJs]: () => [
+  [ProjectSvelteKitExample.RemoteFunctionsWithoutJs]: () => [
     import("./layers/remote-functions.ts"),
     import("./examples/remote-functions-without-js.ts"),
   ],
-  [ValidatorSpecificExample.ZodStarter]: () => [
+  [ProjectValidatorSpecificExample.ZodStarter]: () => [
     import("./examples/zod-starter.ts"),
   ],
-  [ValidatorSpecificExample.ValibotStarter]: () => [
+  [ProjectValidatorSpecificExample.ValibotStarter]: () => [
     import("./examples/valibot-starter.ts"),
   ],
-  [ValidatorSpecificExample.ArkTypeStarter]: () => [
+  [ProjectValidatorSpecificExample.ArkTypeStarter]: () => [
     import("./examples/arktype-starter.ts"),
   ],
-  [ValidatorSpecificExample.TypeBoxStarter]: () => [
+  [ProjectValidatorSpecificExample.TypeBoxStarter]: () => [
     import("./examples/typebox-starter.ts"),
   ],
 };
 
-function* projectValidators() {
+export function* projectValidators() {
   for (const v of validators()) {
     if (
       (isJsonSchemaValidator(v) && !isPrecompiledOnlyValidator(v)) ||
@@ -264,10 +299,21 @@ export const VALIDATOR_LAYERS = Object.fromEntries(
   projectValidatorPackages(),
 ) as Record<ProjectValidator, ImportPromise<Layer<any>>>;
 
+export function* projectThemes() {
+  for (const t of themes()) {
+    yield t;
+    if (isThemeWithSubThemes(t)) {
+      yield* themeSubThemes(t);
+    }
+  }
+}
+
+export type ProjectTheme = Generated<typeof projectThemes>;
+
 export interface ProjectOptions {
-  platform: Platform;
-  example: Example;
-  theme: Theme;
+  platform: ProjectPlatform;
+  example: ProjectExample;
+  theme: ProjectTheme;
   validator: ProjectValidator;
 }
 
@@ -277,14 +323,14 @@ export type OpenPlatformProject = (
 ) => void;
 
 export const PLATFORM_FACTORIES: Record<
-  Platform,
+  ProjectPlatform,
   () => ImportPromise<OpenPlatformProject>
 > = {
-  [Platform.StackBlitz]: () => import("./platforms/stackblitz.ts"),
-  [Platform.SvelteLab]: () => import("./platforms/svelte-lab.ts"),
+  [ProjectPlatform.StackBlitz]: () => import("./platforms/stackblitz.ts"),
+  [ProjectPlatform.SvelteLab]: () => import("./platforms/svelte-lab.ts"),
 };
 
-export async function openProject(options: ProjectOptions) {
+export async function projectOpen(options: ProjectOptions) {
   const { example, theme, validator, platform } = options;
   const layers: Awaited<ImportPromise<Layer<any>>>[] = await Promise.all([
     import("./layers/sveltekit.ts"),

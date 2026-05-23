@@ -86,9 +86,17 @@
       "types": "./dist/playground/index.d.ts",
       "default": "./dist/playground/index.js"
     },
+    "./playground/augmentations": {
+      "types": "./dist/playground/augmentations.d.ts",
+      "default": "./dist/playground/augmentations.js"
+    },
     "./playground/form-presets/*": {
       "types": "./dist/playground/form-presets/*.d.ts",
       "default": "./dist/playground/form-presets/*.js"
+    },
+    "./composer": {
+      "types": "./dist/composer/index.d.ts",
+      "default": "./dist/composer/index.js"
     }
   }
 }

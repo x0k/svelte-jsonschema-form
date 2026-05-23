@@ -8,26 +8,11 @@ import type {
   Schema,
   UiSchemaRoot,
 } from "@sjsf/form";
-import type { EnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
 import type { PlaygroundValidator } from "./validators.ts";
 import type { PlaygroundTheme } from "./themes.ts";
 import type { PlaygroundIconSet } from "./icons.ts";
 import type { PlaygroundResolver } from "./resolvers.ts";
-
-declare module "@sjsf/form" {
-  interface ComponentProps {
-    markdownDescription: ComponentProps["description"];
-    transparentLayout: ComponentProps["layout"];
-  }
-  interface ComponentBindings {
-    markdownDescription: "";
-    transparentLayout: "";
-  }
-  interface UiOptionsRegistry {
-    stringEnumValueMapper: () => EnumValueMapperBuilder;
-  }
-}
 
 export interface FormState {
   schema: Schema;
