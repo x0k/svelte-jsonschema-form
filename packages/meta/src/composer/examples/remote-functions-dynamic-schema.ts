@@ -6,7 +6,7 @@ import nestedPageSvelte from "examples/sveltekit-starter/src/routes/remote-funct
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "remote-functions-dynamic-schema",
   },

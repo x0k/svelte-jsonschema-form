@@ -10,7 +10,7 @@ const files = {
   "src/app.html": appHtml,
 } as const;
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     dependencies: [
       ...sveltekitPackage.dependencies,

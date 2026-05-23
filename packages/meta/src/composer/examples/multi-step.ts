@@ -3,7 +3,7 @@ import multiStepFieldSvelte from "examples/basic-starter/src/routes/multi-step/m
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "multi-step",
   },

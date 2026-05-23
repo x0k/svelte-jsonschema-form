@@ -1,7 +1,7 @@
 import { sveltekitPackage, svelteKitRfSubPath } from "../../sveltekit.ts";
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     dependencies: [sveltekitPackage],
   },

@@ -1,7 +1,7 @@
 import { subThemeDependencies } from "../../themes.ts";
 import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     dependencies: [
       ...themeDependencies("basic"),

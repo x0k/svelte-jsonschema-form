@@ -4,7 +4,7 @@ import appHtml from "examples/skeleton3-starter/src/app.html?raw";
 import { optionalPackageName } from "../../package.ts";
 import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     dependencies: themeDependencies("skeleton3", [
       optionalPackageName("skeletonSvelte"),

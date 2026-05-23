@@ -3,7 +3,7 @@ import layoutSvelte from "examples/basic-starter/src/routes/layout-slots/layout.
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "layout-slots",
   },

@@ -2,7 +2,7 @@ import sveltePage from "examples/zod-starter/src/routes/+page.svelte?raw";
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "zod-starter",
   },

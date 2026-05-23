@@ -5,7 +5,7 @@ import postcssConfigJs from "examples/daisyui-starter/postcss.config.js?raw";
 import { extraPackage } from "../../package.ts";
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     dependencies: [extraPackage("tailwindcss3"), extraPackage("postcss")],
   },

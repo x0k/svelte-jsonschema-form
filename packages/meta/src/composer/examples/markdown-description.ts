@@ -4,7 +4,7 @@ import pageSvelte from "examples/basic-starter/src/routes/markdown-description/+
 import { defineLayer } from "../layer.ts";
 import { extraPackage } from "../../package.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "markdown-description",
     dependencies: [extraPackage("svelteExmarkdown")],

@@ -3,7 +3,7 @@ import pageSvelte from "examples/basic-starter/src/routes/draft-2020-12/+page.sv
 import { extraPackage } from "../../package.ts";
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "draft-2020-12",
     dependencies: [extraPackage("jsonSchemaTyped")],

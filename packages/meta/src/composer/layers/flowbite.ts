@@ -2,7 +2,7 @@ import tailwindConfigJs from "examples/flowbite-starter/tailwind.config.js?raw";
 
 import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     dependencies: themeDependencies("flowbite"),
   },

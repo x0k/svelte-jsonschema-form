@@ -6,7 +6,7 @@ import svelteStoredFileField from "examples/basic-starter/src/routes/preupload-f
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "preupload-file",
   },

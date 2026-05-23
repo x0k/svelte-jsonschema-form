@@ -2,7 +2,7 @@ import sveltePage from "examples/basic-starter/src/routes/schema-transformation/
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "schema-transformation",
   },

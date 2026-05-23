@@ -3,7 +3,7 @@ import objectFieldSvelte from "examples/basic-starter/src/routes/formulas/object
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "formulas",
   },

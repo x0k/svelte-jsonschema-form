@@ -22,7 +22,13 @@
     "ata-validator": "catalog:",
     "beercss": "catalog:",
     "lz-string": "catalog:",
-    "svelte": "^5.34.8"
+    "svelte": "^5.34.8",
+    "@sveltejs/acorn-typescript": "catalog:",
+    "@types/estree": "catalog:",
+    "acorn": "catalog:",
+    "json-schema-to-valibot": "catalog:",
+    "json-schema-to-zod": "catalog:",
+    "zimmerframe": "catalog:"
   },
   "dependencies": {
     "@sjsf-lab/ata-validator": "workspace:*",
@@ -56,14 +62,20 @@
     "@exodus/schemasafe": "catalog:",
     "@picocss/pico": "catalog:",
     "@stackblitz/sdk": "catalog:",
+    "@sveltejs/acorn-typescript": "catalog:",
+    "@types/estree": "catalog:",
     "@typescript-eslint/types": "catalog:",
     "@webcontainer/api": "catalog:",
+    "acorn": "catalog:",
     "ajv": "catalog:",
     "ajv-formats": "catalog:",
     "ata-validator": "catalog:",
     "beercss": "catalog:",
+    "json-schema-to-valibot": "catalog:",
+    "json-schema-to-zod": "catalog:",
     "lz-string": "catalog:",
-    "svelte": "catalog:"
+    "svelte": "catalog:",
+    "zimmerframe": "catalog:"
   },
   "exports": {
     ".": {

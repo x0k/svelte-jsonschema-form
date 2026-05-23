@@ -2,7 +2,7 @@ import sveltePage from "examples/basic-starter/src/routes/optional-data-controls
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "optional-data-controls",
   },

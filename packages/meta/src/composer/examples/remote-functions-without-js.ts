@@ -5,7 +5,7 @@ import formContentSvelte from "examples/sveltekit-starter/src/routes/remote-func
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: { name: "remote-functions-without-js" },
   files: {
     "src/lib/post.ts": postModelTs,

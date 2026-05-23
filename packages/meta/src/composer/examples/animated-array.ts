@@ -3,7 +3,7 @@ import pageSvelte from "examples/basic-starter/src/routes/animated-array/+page.s
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "animated-array",
   },

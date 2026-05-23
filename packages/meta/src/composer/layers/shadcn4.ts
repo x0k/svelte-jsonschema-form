@@ -6,7 +6,7 @@ import layoutSvelte from "examples/shadcn4-starter/src/routes/+layout.svelte?raw
 import { optionalPackageName } from "../../package.ts";
 import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     dependencies: themeDependencies("shadcn4", [
       optionalPackageName("internationalizedDate"),

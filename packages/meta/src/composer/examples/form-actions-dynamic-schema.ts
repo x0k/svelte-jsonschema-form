@@ -6,7 +6,7 @@ import pageServerTs from "examples/sveltekit-starter/src/routes/form-actions-dyn
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "form-actions-dynamic-schema",
   },

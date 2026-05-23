@@ -5,7 +5,7 @@ import asyncComboboxWidgetSvelte from "examples/basic-starter/src/routes/async-c
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "async-combobox",
   },

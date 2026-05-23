@@ -3,7 +3,7 @@ import nullableFieldSvelte from "examples/basic-starter/src/routes/nullable-fiel
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "nullable-fields",
   },

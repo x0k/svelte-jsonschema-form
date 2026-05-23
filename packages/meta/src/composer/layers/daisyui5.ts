@@ -3,7 +3,7 @@ import appCss from "examples/daisyui5-starter/src/app.css?raw";
 import { optionalPackageName } from "../../package.ts";
 import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     dependencies: themeDependencies("daisyui5", [
       optionalPackageName("pikaday"),

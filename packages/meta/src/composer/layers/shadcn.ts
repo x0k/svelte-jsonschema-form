@@ -7,7 +7,7 @@ import tailwindConfigJs from "examples/shadcn-starter/tailwind.config.js?raw";
 import { optionalPackageName } from "../../package.ts";
 import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     dependencies: themeDependencies("shadcn", [
       optionalPackageName("internationalizedDate"),

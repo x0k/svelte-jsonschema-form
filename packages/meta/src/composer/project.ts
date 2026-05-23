@@ -7,11 +7,14 @@ import {
   isPrecompiledOnlyValidator,
   isSchemaValidator,
   validators,
-  type JsonSchemaValidator,
-  type PrecompiledOnlyValidator,
-  type SchemaValidator,
 } from "../validators.ts";
-import { defineLayer, type Layer, type LayerFiles } from "./layer.ts";
+import {
+  buildLayers,
+  defineLayer,
+  type Layer,
+  type LayerFiles,
+} from "./layer.ts";
+import type { SchemaTransformer } from "./schema-transform.ts";
 
 export enum Platform {
   StackBlitz = "StackBlitz",
@@ -70,13 +73,13 @@ export type Example =
   | SvelteKitExample
   | ValidatorSpecificExample;
 
-type LayerPromise<T extends Theme> = Promise<{ layer: Layer<T> }>;
+type ImportPromise<T> = Promise<{ default: T }>;
 
 export const INITIAL_FILE = "src/routes/+page.svelte";
 
 export const THEME_LAYERS: {
-  [T in ThemeOrSubTheme]: () => LayerPromise<
-    T extends SubTheme ? "basic" : T
+  [T in ThemeOrSubTheme]: () => ImportPromise<
+    Layer<T extends SubTheme ? "basic" : T>
   >[];
 } = {
   basic: () => [import("./layers/basic.ts")],
@@ -118,7 +121,10 @@ export const THEME_LAYERS: {
   beercss: () => [import("./layers/beercss.ts")],
 };
 
-export const EXAMPLE_LAYERS = {
+export const EXAMPLE_LAYERS: Record<
+  Example,
+  () => ImportPromise<Layer<any>>[]
+> = {
   [GenericExample.Starter]: () => [import("./examples/starter.ts")],
   [GenericExample.AnimatedArray]: () => [
     import("./examples/animated-array.ts"),
@@ -206,7 +212,7 @@ export const EXAMPLE_LAYERS = {
   [ValidatorSpecificExample.TypeBoxStarter]: () => [
     import("./examples/typebox-starter.ts"),
   ],
-} as const;
+};
 
 function* projectValidators() {
   for (const v of validators()) {
@@ -221,36 +227,42 @@ function* projectValidators() {
 
 export type ProjectValidator = Generated<typeof projectValidators>;
 
-function createValidatorLayer(validator: ProjectValidator) {
-  const formDefaults = {
-    validator,
-  };
-  // const transform = VALIDATOR_TRANSFORMERS[validator];
+const SCHEMA_TRANSFORMERS: Partial<
+  Record<ProjectValidator, () => ImportPromise<SchemaTransformer>>
+> = {
+  valibot: () => import("./schema-transformers/schema-to-valibot.ts"),
+  zod4: () => import("./schema-transformers/schema-to-zod.ts"),
+};
+
+async function createValidatorLayer(validator: ProjectValidator) {
+  const transform = await SCHEMA_TRANSFORMERS[validator]?.();
+  const base = defineLayer({
+    formDefaults: {
+      validator,
+    },
+    codeTransformers: transform && [transform.default],
+  });
   if (isInternalValidator(validator)) {
-    return defineLayer({
-      formDefaults,
-      // codeTransformers: transform && [transform],
-    });
+    return base;
   }
   const pkg = externalValidatorPackage(validator);
   return defineLayer({
+    ...base,
     package: {
       dependencies: [pkg, ...pkg.dependencies],
     },
-    formDefaults,
-    // codeTransformers: transform && [transform],
   });
 }
 
 function* projectValidatorPackages() {
   for (const v of projectValidators()) {
-    yield [v, Promise.resolve({ layer: createValidatorLayer(v) })] as const;
+    yield [v, createValidatorLayer(v).then((l) => ({ default: l }))] as const;
   }
 }
 
 export const VALIDATOR_LAYERS = Object.fromEntries(
   projectValidatorPackages(),
-) as Record<ProjectValidator, LayerPromise<any>>;
+) as Record<ProjectValidator, ImportPromise<Layer<any>>>;
 
 export interface ProjectOptions {
   platform: Platform;
@@ -263,3 +275,24 @@ export type OpenPlatformProject = (
   options: ProjectOptions,
   files: LayerFiles,
 ) => void;
+
+export const PLATFORM_FACTORIES: Record<
+  Platform,
+  () => ImportPromise<OpenPlatformProject>
+> = {
+  [Platform.StackBlitz]: () => import("./platforms/stackblitz.ts"),
+  [Platform.SvelteLab]: () => import("./platforms/svelte-lab.ts"),
+};
+
+export async function openProject(options: ProjectOptions) {
+  const { example, theme, validator, platform } = options;
+  const layers: Awaited<ImportPromise<Layer<any>>>[] = await Promise.all([
+    import("./layers/sveltekit.ts"),
+    ...THEME_LAYERS[theme](),
+    VALIDATOR_LAYERS[validator],
+    ...EXAMPLE_LAYERS[example](),
+  ]);
+  const files = buildLayers(layers.map((l) => l.default));
+  const factory = await PLATFORM_FACTORIES[platform]();
+  factory.default(options, files);
+}

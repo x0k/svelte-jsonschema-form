@@ -2,7 +2,7 @@ import layoutSvelte from "examples/svar-starter/src/routes/+layout.svelte?raw";
 
 import { defineLayer, themeDependencies } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     dependencies: themeDependencies("svar"),
   },

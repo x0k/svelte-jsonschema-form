@@ -4,7 +4,7 @@ import modelTs from "examples/sveltekit-starter/src/routes/multi-step-native-for
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "multi-step-native-form",
   },

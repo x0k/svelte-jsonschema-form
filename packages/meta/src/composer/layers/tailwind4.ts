@@ -3,7 +3,7 @@ import layoutSvelte from "examples/daisyui5-starter/src/routes/+layout.svelte?ra
 import { extraPackage } from "../../package.ts";
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     dependencies: [
       extraPackage("tailwindcss4"),

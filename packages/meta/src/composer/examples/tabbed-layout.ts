@@ -11,7 +11,7 @@ import topTabsSvelte from "examples/basic-starter/src/routes/tabbed-layout/top-t
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "tabbed-layout",
   },

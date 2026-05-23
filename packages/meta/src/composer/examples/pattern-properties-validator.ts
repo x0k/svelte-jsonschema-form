@@ -2,7 +2,7 @@ import pageSvelte from "examples/basic-starter/src/routes/pattern-properties-val
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "pattern-properties-validator",
   },

@@ -2,7 +2,7 @@ import pageSvelte from "examples/basic-starter/src/routes/decomposed-field/+page
 
 import { defineLayer } from "../layer.ts";
 
-export const layer = defineLayer({
+export default defineLayer({
   package: {
     name: "decomposed-field",
   },
