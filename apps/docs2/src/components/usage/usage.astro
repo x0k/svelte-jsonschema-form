@@ -1,12 +1,7 @@
 ---
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
 
-import {
-  THEME_TITLES,
-  ACTUAL_THEMES,
-  type ActualTheme,
-} from "@/shared";
-import { DEFAULT_LOCALE } from "@/i18n";
+import { actualThemes, type ActualTheme } from "@/shared";
 import FormCard from "@/components/form-card.astro";
 
 import Form from "./form.svelte";
@@ -29,6 +24,7 @@ import daisyu5Styles from "@sjsf/daisyui5-theme/styles.css?raw";
 import flowbiteStyles from "@sjsf/flowbite3-theme/styles.css?raw";
 import skeleton4Styles from "@sjsf/skeleton4-theme/styles.css?raw";
 import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?raw";
+import { themeOrSubThemeTitle } from 'pkgs/meta/dist';
 
 const CODE = {
   basic: withBasicCode,
@@ -54,8 +50,9 @@ const STYLES = {
   shadcn4: shadcn4Styles,
 } satisfies Record<ActualTheme, string>;
 
-const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
 const initialTheme = (Astro.params.theme ?? "basic") as ActualTheme;
+
+const ACTUAL_THEMES = Array.from(actualThemes());
 
 const styles = ACTUAL_THEMES.map(
   (theme) => `
@@ -74,7 +71,7 @@ const styles = ACTUAL_THEMES.map(
         type="radio"
         name="theme-input"
         class="theme-tab"
-        aria-label={THEME_TITLES[theme]}
+        aria-label={themeOrSubThemeTitle(theme)}
         checked={theme === initialTheme}
         data-theme={theme}
       />

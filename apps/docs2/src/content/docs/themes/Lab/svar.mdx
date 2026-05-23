@@ -1,7 +1,7 @@
 ---
 title: SVAR
 type: package
-package: "@sjsf-lab/svar-theme"
+packageCodeName: "svar"
 sidebar:
   order: 130
   badge:
@@ -11,10 +11,9 @@ sidebar:
 
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf-lab/svar-theme/specs';
+import { themePackage } from "meta";
 
-import pkg from 'lab/svar-theme/package.json'
-
-import { themePkg } from '@/shared';
+import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 import Deps from '@/components/peer-dependencies.astro';
@@ -24,12 +23,13 @@ import uiOptionsCode from './svar/ui-options?raw';
 import { createExtraImports, createSchemas, replacer, validationEvents } from "../_demo-schema";
 
 export const schemas = createSchemas(specs)
+export const pkg = themePackage('svar')
 
 ## Installation
 
-<Npm pkg={themePkg('svar')} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ## Extra widgets
 

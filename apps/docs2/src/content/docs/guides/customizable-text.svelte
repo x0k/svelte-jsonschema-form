@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Content, createForm, setFormContext } from '@sjsf/form';
 
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
 
   let width = $state(50)
 

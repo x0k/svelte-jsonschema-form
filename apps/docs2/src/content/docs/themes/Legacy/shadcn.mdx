@@ -1,7 +1,7 @@
 ---
 title: shadcn-svelte tw3
 type: package
-package: "@sjsf/shadcn-theme"
+packageCodeName: "shadcn"
 sidebar:
   order: 209
 ---
@@ -9,10 +9,9 @@ sidebar:
 import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/shadcn-theme/specs';
 import styles from '@sjsf/shadcn-theme/styles.css?inline';
+import { themePackage } from "meta";
 
-import pkg from 'legacy/shadcn-theme/package.json';
-
-import { themePkg } from '@/shared';
+import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 import Deps from '@/components/peer-dependencies.astro'
@@ -22,10 +21,11 @@ import uiOptionsCode from './shadcn/ui-options?raw';
 import { createSchemas, replacer, createExtraImports } from "../_demo-schema";
 
 export const schemas = createSchemas(specs)
+export const pkg = themePackage("shadcn")
 
 ## Installation
 
-<Npm pkg={themePkg("shadcn")} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
 :::note
 
@@ -33,7 +33,7 @@ This is `shadcn-svelte` based theme (Tailwind v3).
 
 :::
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ### Install shadcn-svelte
 

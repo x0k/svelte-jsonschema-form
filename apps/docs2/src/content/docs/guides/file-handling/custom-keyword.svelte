@@ -12,7 +12,7 @@
   import { formatFileSize } from "@sjsf/form/validators/file-size";
   import { addFormComponents } from "@sjsf/ajv8-validator";
 
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
 
   function addKeywords(ajv: Ajv): Ajv {
     ajv.addKeyword({

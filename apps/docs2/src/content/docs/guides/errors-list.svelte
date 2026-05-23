@@ -1,7 +1,7 @@
 <script lang="ts">
   import { BasicForm, createForm, getErrors, hasErrors } from "@sjsf/form";
 
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
 
   import { objectSchema } from "./demo-schemas";
 

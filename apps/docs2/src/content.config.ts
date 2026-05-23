@@ -2,7 +2,7 @@ import { docsLoader } from "@astrojs/starlight/loaders";
 import { docsSchema } from "@astrojs/starlight/schema";
 import { defineCollection, type CollectionEntry } from "astro:content";
 import { z } from "astro/zod";
-import { isValidPackageName } from "./shared";
+import { isValidPackageCodeName } from "./shared";
 
 export const baseSchema = z.object({
   type: z.literal("base").optional().default("base"),
@@ -10,8 +10,8 @@ export const baseSchema = z.object({
 
 export const packageSchema = baseSchema.extend({
   type: z.literal("package"),
-  package: z.string().refine((name) => isValidPackageName(name), {
-    message: `Invalid package name`,
+  packageCodeName: z.string().refine((name) => isValidPackageCodeName(name), {
+    message: `Invalid package code name`,
   }),
 });
 

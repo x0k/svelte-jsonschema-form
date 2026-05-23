@@ -7,7 +7,7 @@
   import "@hyperjump/json-schema/formats-lite";
   import "@hyperjump/json-schema/draft-07";
 
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
 
   import { schema, fieldsValidationMode } from "./patched-schema";
   import { ast } from "./ast";

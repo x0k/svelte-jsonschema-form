@@ -11,7 +11,7 @@
   import { z } from "zod";
   import { en } from "zod/locales";
 
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
 
   import { initialValue, uiSchema } from "../shared";
 

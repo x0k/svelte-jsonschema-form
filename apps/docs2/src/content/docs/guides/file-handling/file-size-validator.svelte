@@ -1,7 +1,7 @@
 <script>
   import { BasicForm, createForm } from "@sjsf/form";
 
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
   import {
     createFileSizeValidator,
     formatFileSize,

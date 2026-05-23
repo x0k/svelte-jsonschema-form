@@ -3,7 +3,7 @@
   import { theme } from "@sjsf/basic-theme";
   import { specs } from "@sjsf/basic-theme/specs";
 
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
   import { createAstro } from "@/astro.svelte";
 
   import { createSchemas } from "../_demo-schema";

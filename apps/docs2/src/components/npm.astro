@@ -1,11 +1,12 @@
 ---
-import { PKG_MANGERS, packages } from "@/shared";
 import {
   PackageManagers,
   type PackageManagersProps,
 } from "starlight-package-managers";
 
+import { PKG_MANGERS } from "@/shared";
+
 export type Props = PackageManagersProps;
 ---
 
-<PackageManagers pkgManagers={[...PKG_MANGERS]} {...Astro.props} pkg={Astro.props.pkg && packages(Astro.props.pkg)} />
+<PackageManagers pkgManagers={[...PKG_MANGERS]} {...Astro.props} />

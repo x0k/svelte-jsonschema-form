@@ -1,7 +1,7 @@
 ---
 title: Remote functions
 type: package
-package: "@sjsf/sveltekit"
+packageCodeName: "sveltekit"
 sidebar:
   order: 1
   badge:
@@ -10,12 +10,10 @@ sidebar:
 ---
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
-
-import pkg from 'pkgs/sveltekit/package.json'
+import { sveltekitPackage } from 'meta';
 
 import Npm from '@/components/npm.astro';
 import Deps from '@/components/peer-dependencies.astro';
-import { mergePackageConfigs } from '@/web-ide/layer';
 
 import modelCode from 'examples/sveltekit-starter/src/lib/post.ts?raw'
 import clientCode from 'examples/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw';
@@ -30,15 +28,14 @@ Remote functions integration is experimental
 
 ## Installation
 
-<Npm pkg="@sjsf/sveltekit" />
+<Npm pkg={sveltekitPackage} />
+{/* // Cause `hydratable` API
+// https://github.com/sveltejs/svelte/pull/17154
+svelte: "^5.44.0"
+sveltekit: 2.61.0
+*/}
 
-<Deps {...mergePackageConfigs(pkg, {
-  peerDependencies: {
-    // Cause `hydratable` API
-    // https://github.com/sveltejs/svelte/pull/17154
-    svelte: "^5.44.0"
-  }
-})} />
+<Deps pkg={sveltekitPackage} />
 
 ## Example
 

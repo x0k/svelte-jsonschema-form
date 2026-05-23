@@ -5,6 +5,7 @@ sidebar:
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components';
+import { extraFields } from 'meta';
 
 Essentially theme is a simple function:
 
@@ -212,20 +213,9 @@ fields, as well as a set of definitions for extra widgets.
 
 Here is a list of extra fields that can be imported from `@sjsf/form/fields/extra/*`.
 
-- `aggregated`
-- `array-files`
-- `array-native-files`
-- `array-tags`
-- `boolean-select`
-- `enum`
-- `file`
-- `files`
-- `multi-enum`
-- `native-file`
-- `native-files`
-- `remote-enum`
-- `tags`
-- `unknown-native-file`
+<ul>
+  {Array.from(extraFields()).map(f => <li><code>{f}</code></li>)}
+</ul>
 
 To use them you can import them directly
 

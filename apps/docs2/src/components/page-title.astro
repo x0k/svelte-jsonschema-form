@@ -1,17 +1,17 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { Icon } from "@astrojs/starlight/components";
 import Default from "@astrojs/starlight/components/PageTitle.astro";
 
-import { getPackageMetadata } from "@/shared";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { getPackageMetadataByCodeName } from "@/shared";
 
 const { data } = Astro.locals.starlightRoute.entry;
-let meta: ReturnType<typeof getPackageMetadata>;
+let meta: ReturnType<typeof getPackageMetadataByCodeName>;
 ---
 
 {
   data.type === "package" ? (
-    ((meta = getPackageMetadata(data.package)),
+    ((meta = getPackageMetadataByCodeName(data.packageCodeName)),
     (
       <div class="wrapper">
         <h1 id="_top">
@@ -26,16 +26,23 @@ let meta: ReturnType<typeof getPackageMetadata>;
             <Icon size="1rem" name="github" /> GitHub
           </a>
           <a href={meta.npmUrl}>
+            <Icon size="1rem" name="npm" /> npm
+          </a>
+          <a href={meta.npmxUrl}>
             <svg
               width="16"
               height="16"
-              viewBox="0 0 576 512"
+              version="1.1"
               fill="currentColor"
-              aria-hidden="true"
+              viewBox="0 0 153 153"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M288 288h-32v-64h32v64zm288-128v192H288v32H160v-32H0V160h576zm-416 32H32v128h64v-96h32v96h32V192zm160 0H192v160h64v-32h64V192zm224 0H352v128h64v-96h32v96h32v-96h32v96h32V192z" />
+              <g transform="translate(16.704 9.9827)">
+                <path d="m0.93476 97.205h24.081v23.693h-24.081z" />
+                <path d="m103.12-9.2307-3.6211 10.246-46.309 131-3.6211 10.246h15.537l3.6211-10.246 11.717-33.148 38.211-108.1z" />
+              </g>
             </svg>
-            npm
+            npmx
           </a>
           <a
             href={getRelativeLocaleUrl(

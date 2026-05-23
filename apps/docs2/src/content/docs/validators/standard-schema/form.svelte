@@ -7,7 +7,7 @@
   import { adapt } from "@sjsf/form/validators/standard-schema";
   import { type } from "arktype";
 
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
 
   import { initialValue, uiSchema } from "../shared";
 

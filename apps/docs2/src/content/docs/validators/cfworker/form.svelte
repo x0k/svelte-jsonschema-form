@@ -9,7 +9,7 @@
   } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/cfworker-validator";
 
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
 
   import { initialValue, schema, uiSchema } from "../shared";
 

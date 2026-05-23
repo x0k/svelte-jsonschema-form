@@ -1,17 +1,15 @@
 ---
 title: Quickstart
 type: package
-package: "@sjsf/form"
+packageCodeName: "form"
 sidebar:
   order: 0
 ---
 
 import { Code, Card, LinkCard } from '@astrojs/starlight/components';
-
-import pkg from 'pkgs/form/package.json'
+import { formPackage } from 'meta';
 
 import { withBase } from '@/lib/base-path';
-import { createThemeInstall } from '@/shared'
 import FormCard from '@/components/form-card.astro'
 import Npm from "@/components/npm.astro";
 import Deps from '@/components/peer-dependencies.astro';
@@ -34,7 +32,7 @@ Install as a community add-on using the Svelte CLI.
 
 <Npm type="dlx" pkg="sv add @sjsf" />
 
-<Deps hideOptional {...pkg} />
+<Deps hideOptional pkg={formPackage} />
 
 ## Usage
 

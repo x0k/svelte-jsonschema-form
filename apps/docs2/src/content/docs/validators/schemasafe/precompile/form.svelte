@@ -4,7 +4,7 @@
   import { createFormValidatorFactory } from "@sjsf/schemasafe-validator/precompile";
   import { resolver } from "@sjsf/form/resolvers/compat";
 
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
 
   import { schema, fieldsValidationMode } from "./patched-schema";
   import * as validateFunctions from "./validate-functions";

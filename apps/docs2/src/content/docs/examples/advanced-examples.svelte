@@ -1,24 +1,25 @@
 <script lang="ts">
   import { identity } from "@sjsf/form/lib/function";
-
+  import { themeOrSubThemeTitle, validatorTitle } from "meta";
   import {
-    GENERIC_EXAMPLES,
-    THEME_TITLES,
-    type ActualTheme,
-    type Validator,
-    VALIDATOR_SPECIFIC_EXAMPLES,
-    VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
-    VALIDATORS,
-    SVELTE_KIT_EXAMPLES,
-    THEMES,
-  } from "@/shared";
-  import { openProject, Platform, PLATFORMS } from "@/web-ide";
+    PROJECT_GENERIC_EXAMPLES,
+    PROJECT_PLATFORMS,
+    PROJECT_SVELTE_KIT_EXAMPLES,
+    PROJECT_VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
+    PROJECT_VALIDATOR_SPECIFIC_EXAMPLES,
+    projectOpen,
+    ProjectPlatform,
+    projectThemes,
+    projectValidators,
+    type ProjectTheme,
+    type ProjectValidator,
+  } from "meta/composer";
 
   import Buttons from "./buttons.svelte";
 
-  let platform: Platform = $state.raw(Platform.StackBlitz);
-  let theme: ActualTheme = $state.raw("basic");
-  let validator: Validator = $state.raw("Ajv");
+  let platform: ProjectPlatform = $state.raw(ProjectPlatform.StackBlitz);
+  let theme: ProjectTheme = $state.raw("basic");
+  let validator: ProjectValidator = $state.raw("ajv8");
 </script>
 
 <div class="pickers">
@@ -26,7 +27,7 @@
   <label>
     <span>Platform</span>
     <select bind:value={platform}>
-      {#each PLATFORMS as v (v)}
+      {#each PROJECT_PLATFORMS as v (v)}
         <option value={v}>
           {v}
         </option>
@@ -36,9 +37,9 @@
   <label>
     <span>Validator</span>
     <select bind:value={validator}>
-      {#each VALIDATORS as v (v)}
+      {#each projectValidators() as v (v)}
         <option value={v}>
-          {v}
+          {validatorTitle(v)}
         </option>
       {/each}
     </select>
@@ -46,9 +47,9 @@
   <label>
     <span>Theme</span>
     <select bind:value={theme}>
-      {#each THEMES as t (t)}
+      {#each projectThemes() as t (t)}
         <option value={t}>
-          {THEME_TITLES[t]}
+          {themeOrSubThemeTitle(t)}
         </option>
       {/each}
     </select>
@@ -58,9 +59,9 @@
 <h3>Generic</h3>
 
 <Buttons
-  items={GENERIC_EXAMPLES}
+  items={PROJECT_GENERIC_EXAMPLES}
   onClick={(example) => {
-    openProject({
+    projectOpen({
       platform,
       example,
       theme,
@@ -73,9 +74,9 @@
 <h3>SvelteKit</h3>
 
 <Buttons
-  items={SVELTE_KIT_EXAMPLES}
+  items={PROJECT_SVELTE_KIT_EXAMPLES}
   onClick={(example) => {
-    openProject({
+    projectOpen({
       platform,
       example,
       theme,
@@ -89,13 +90,13 @@
 <p><em>Validator selector will be ignored</em></p>
 
 <Buttons
-  items={VALIDATOR_SPECIFIC_EXAMPLES}
+  items={PROJECT_VALIDATOR_SPECIFIC_EXAMPLES}
   onClick={(example) => {
-    openProject({
+    projectOpen({
       platform,
       example,
       theme,
-      validator: VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
+      validator: PROJECT_VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
     });
   }}
   label={identity}

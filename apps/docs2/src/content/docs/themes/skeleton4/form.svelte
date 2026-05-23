@@ -5,7 +5,7 @@
   import { specs } from "@sjsf/skeleton4-theme/specs";
 
   import { createAstro } from "@/astro.svelte";
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
 
   import { createSchemas } from "../_demo-schema";
 

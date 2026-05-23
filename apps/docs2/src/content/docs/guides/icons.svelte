@@ -3,7 +3,7 @@
   import { fromRecord } from "@sjsf/form/lib/resolver";
   import { SimpleForm } from "@sjsf/form";
 
-  import * as defaults from "@/lib/form/defaults";
+  import * as defaults from "@/lib/sjsf/defaults";
 
   const { children }: { children: Snippet } = $props();
 </script>
