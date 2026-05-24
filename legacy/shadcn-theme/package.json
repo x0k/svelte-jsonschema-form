@@ -83,10 +83,14 @@
 		"@lucide/svelte": "^0.501.0",
 		"svelte": "^5.33.0",
 		"tailwind-merge": "^2.6.0",
-		"tailwind-variants": "^0.3.0"
+		"tailwind-variants": "^0.3.0",
+		"tailwindcss-animate": "^1.0.0"
 	},
 	"peerDependenciesMeta": {
 		"@internationalized/date": {
+			"optional": true
+		},
+		"tailwindcss-animate": {
 			"optional": true
 		}
 	},
