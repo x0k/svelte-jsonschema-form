@@ -81,6 +81,11 @@ const EXTRA_PACKAGES = {
     version: "8.5.6",
     dev: true,
   },
+  autoprefixer: {
+    name: "autoprefixer",
+    version: "10.5.0",
+    dev: true,
+  },
   tailwindcss4: {
     name: "tailwindcss",
     version: "4.3.0",
@@ -121,14 +126,20 @@ const OPTIONAL_PKG = {
   standardSchemaSpec: "@standard-schema/spec",
   cally: "cally",
   pikaday: "pikaday",
+  fontsourceVariableInter: "@fontsource-variable/inter",
+  tailwindcssAnimate: "tailwindcss-animate",
+  twAnimateCss: "tw-animate-css",
 };
 
 export type OptionalPackage = keyof typeof OPTIONAL_PKG;
 
 const DEV_PACKAGES_REGISTRY = new Set([
+  "esm-env",
   "@tailwindcss/forms",
   "flowbite",
   "@picocss/pico",
+  "@fontsource-variable/inter",
+  "tw-animate-css",
 ]);
 
 export function fromPackageJson({
@@ -153,14 +164,28 @@ export function fromPackageJson({
   };
 }
 
-const VERSION_MODIFIERS = ["^", "~"];
-function formatPeerDependencyVersion(version: string) {
-  let v = version.replace("workspace:", "").split("||").at(-1)!.trim();
-  const m = VERSION_MODIFIERS.find((m) => v.startsWith(m));
-  if (m) {
-    v = v.slice(m.length);
+type Version = [number, number, number];
+
+function createVersion(versionStr: string) {
+  const t = versionStr.split(".").map(Number);
+  if (t.length !== 3 || t.some(isNaN)) {
+    throw new Error(`Unexpected version format: "${versionStr}"`);
   }
-  return v;
+  return t as Version;
+}
+
+const VERSION_MODIFIERS = ["^", "~", "<=", "<"] as const;
+function formatPeerDependencyVersion(version: string) {
+  let str = version.replace("workspace:", "").split(" ").at(-1)!.trim();
+  const m = VERSION_MODIFIERS.find((m) => str.startsWith(m));
+  if (m) {
+    str = str.slice(m.length);
+  }
+  const ver = createVersion(str);
+  if (m === "<") {
+    ver[ver[0] === 0 ? 1 : 0]--;
+  }
+  return ver.join(".");
 }
 
 function createMetaExtractor(peerDependenciesMeta: PeerDependenciesMeta) {

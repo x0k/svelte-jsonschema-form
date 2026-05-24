@@ -11,7 +11,7 @@ import _beercssPackageJson from "@sjsf-lab/beercss-theme/package.json" with { ty
 import _daisyuiPackageJson from "@sjsf/daisyui-theme/package.json" with { type: "json" };
 import _flowbitePackageJson from "@sjsf/flowbite-theme/package.json" with { type: "json" };
 import _skeleton3PackageJson from "@sjsf/skeleton3-theme/package.json" with { type: "json" };
-import _shadcnPackageJson from "@sjsf/shadcn4-theme/package.json" with { type: "json" };
+import _shadcnPackageJson from "@sjsf/shadcn-theme/package.json" with { type: "json" };
 
 import {
   type Package,

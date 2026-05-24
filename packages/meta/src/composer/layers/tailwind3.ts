@@ -7,7 +7,11 @@ import { defineLayer } from "../layer.ts";
 
 export default defineLayer({
   package: {
-    dependencies: [extraPackage("tailwindcss3"), extraPackage("postcss")],
+    dependencies: [
+      extraPackage("tailwindcss3"),
+      extraPackage("postcss"),
+      extraPackage("autoprefixer"),
+    ],
   },
   files: {
     "src/app.css": appCss,

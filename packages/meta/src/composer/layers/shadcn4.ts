@@ -11,6 +11,8 @@ export default defineLayer({
     dependencies: Array.from(
       themeDependencies("shadcn4", [
         optionalPackageName("internationalizedDate"),
+        optionalPackageName("fontsourceVariableInter"),
+        optionalPackageName("twAnimateCss"),
       ]),
     ),
   },

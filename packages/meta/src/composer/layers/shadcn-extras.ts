@@ -2,16 +2,11 @@ import appCss from "examples/shadcn-extras-starter/src/app.css?raw";
 import componentsJson from "examples/shadcn-extras-starter/components.json?raw";
 import layoutSvelte from "examples/shadcn-extras-starter/src/routes/+layout.svelte?raw";
 
-import { optionalPackageName } from "../../package.ts";
 import { defineLayer, themeDependencies } from "../layer.ts";
 
 export default defineLayer({
   package: {
-    dependencies: Array.from(
-      themeDependencies("shadcn-extras", [
-        optionalPackageName("internationalizedDate"),
-      ]),
-    ),
+    dependencies: Array.from(themeDependencies("shadcn-extras", true)),
   },
   formDefaults: { theme: "shadcn-extras" },
   files: {
@@ -19,9 +14,9 @@ export default defineLayer({
     "src/app.css": appCss,
     "components.json": componentsJson,
   },
-  svelte: {
-    compilerOptions: {
-      runes: false,
+  vite: {
+    resolve: {
+      noExternal: ["@lucide/svelte"],
     },
   },
 });

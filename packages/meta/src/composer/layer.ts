@@ -1,4 +1,5 @@
 import { unique } from "@sjsf/form/lib/array";
+import type { Config as KitConfig } from "@sveltejs/kit";
 
 import {
   isSubTheme,
@@ -41,9 +42,14 @@ export interface ViteOptimizeDepsConfig {
   exclude?: string[];
 }
 
+export interface ViteResolveConfig {
+  noExternal?: string[];
+}
+
 export interface ViteConfig {
   plugins?: Record<string, VitePluginConfig>;
   optimizeDeps?: ViteOptimizeDepsConfig;
+  resolve?: ViteResolveConfig;
 }
 
 export interface LayerFiles {
@@ -61,7 +67,7 @@ export interface FormDefaultsConfig<T extends Theme> {
 }
 
 export interface SvelteCompilerOptions {
-  runes?: boolean;
+  runes?: NonNullable<KitConfig["compilerOptions"]>["runes"];
 }
 
 export interface SvelteKitConfig {
@@ -82,16 +88,20 @@ export interface Layer<T extends Theme> {
   formDefaults?: FormDefaultsConfig<T>;
 }
 
-// export const MARKDOWN_DESCRIPTION_PACKAGES = ["svelte-exmarkdown"];
-// export const DRAFT_2020_12_PACKAGES = ["json-schema-typed"];
-// export const BASE_PACKAGES = [
-//   "ajv",
-//   "@sjsf/ajv8-validator",
-//   ...MARKDOWN_DESCRIPTION_PACKAGES,
-//   ...DRAFT_2020_12_PACKAGES,
-// ];
-function mergeArrays<T>(a: T[] | undefined, b: T[] | undefined) {
-  return a ? (b ? [...a, ...b] : a) : b;
+function mergeArrays<T>(
+  a: T[] | undefined,
+  b: T[] | undefined,
+  merge = (arr: T[]) => arr,
+) {
+  return a ? (b ? merge([...a, ...b]) : a) : b;
+}
+
+function mergeObjects<T>(
+  a: T | undefined,
+  b: T | undefined,
+  merge: (a: T, b: T) => T,
+) {
+  return a !== undefined ? (b !== undefined ? merge(a, b) : a) : b;
 }
 
 function mergerSvelteCompilerOptions(
@@ -123,11 +133,12 @@ function mergeSvelteConfig(a: SvelteConfig, b: SvelteConfig): SvelteConfig {
   return {
     ...a,
     ...b,
-    compilerOptions:
-      a.compilerOptions && b.compilerOptions
-        ? mergerSvelteCompilerOptions(a.compilerOptions, b.compilerOptions)
-        : (a.compilerOptions ?? b.compilerOptions),
-    kit: a.kit && b.kit ? mergeSvelteKitConfig(a.kit, b.kit) : (a.kit ?? b.kit),
+    compilerOptions: mergeObjects(
+      a.compilerOptions,
+      b.compilerOptions,
+      mergerSvelteCompilerOptions,
+    ),
+    kit: mergeObjects(a.kit, b.kit, mergeSvelteKitConfig),
   };
 }
 
@@ -149,7 +160,18 @@ function mergeViteOptimizeDepsConfigs(
   return {
     ...a,
     ...b,
-    exclude: unique([...(a.exclude ?? []), ...(b.exclude ?? [])]),
+    exclude: mergeArrays(a.exclude, b.exclude, unique),
+  };
+}
+
+function mergeViteResolveConfigs(
+  a: ViteResolveConfig,
+  b: ViteResolveConfig,
+): ViteResolveConfig {
+  return {
+    ...a,
+    ...b,
+    noExternal: mergeArrays(a.noExternal, b.noExternal, unique),
   };
 }
 
@@ -159,10 +181,12 @@ function mergeViteConfigs(a: ViteConfig, b: ViteConfig): ViteConfig {
       ...a.plugins,
       ...b.plugins,
     },
-    optimizeDeps:
-      a.optimizeDeps && b.optimizeDeps
-        ? mergeViteOptimizeDepsConfigs(a.optimizeDeps, b.optimizeDeps)
-        : (a.optimizeDeps ?? b.optimizeDeps),
+    optimizeDeps: mergeObjects(
+      a.optimizeDeps,
+      b.optimizeDeps,
+      mergeViteOptimizeDepsConfigs,
+    ),
+    resolve: mergeObjects(a.resolve, b.resolve, mergeViteResolveConfigs),
   };
 }
 
@@ -173,7 +197,7 @@ function mergeFormDefaultsConfig<T extends Theme>(
   return {
     ...a,
     ...b,
-    widgets: unique([...(a.widgets ?? []), ...(b.widgets ?? [])]),
+    widgets: mergeArrays(a.widgets, b.widgets, unique),
   };
 }
 
@@ -182,25 +206,19 @@ export function mergeLayers<T extends Theme>(
   b: Layer<T>,
 ): Layer<T> {
   return {
-    package:
-      a.package && b.package
-        ? mergePackageConfigs(a.package, b.package)
-        : (b.package ?? a.package),
-    vite:
-      a.vite && b.vite ? mergeViteConfigs(a.vite, b.vite) : (b.vite ?? a.vite),
-    formDefaults:
-      a.formDefaults && b.formDefaults
-        ? mergeFormDefaultsConfig(a.formDefaults, b.formDefaults)
-        : (b.formDefaults ?? a.formDefaults),
+    package: mergeObjects(a.package, b.package, mergePackageConfigs),
+    vite: mergeObjects(a.vite, b.vite, mergeViteConfigs),
+    formDefaults: mergeObjects(
+      a.formDefaults,
+      b.formDefaults,
+      mergeFormDefaultsConfig,
+    ),
     files: {
       ...a.files,
       ...b.files,
     },
     codeTransformers: mergeArrays(a.codeTransformers, b.codeTransformers),
-    svelte:
-      a.svelte && b.svelte
-        ? mergeSvelteConfig(a.svelte, b.svelte)
-        : (a.svelte ?? b.svelte),
+    svelte: mergeObjects(a.svelte, b.svelte, mergeSvelteConfig),
   };
 }
 
@@ -221,7 +239,7 @@ function buildPackageConfig({
       dependencies,
       devDependencies,
       scripts: {
-        start: "vite dev",
+        dev: "vite dev",
       },
     },
     null,
@@ -232,6 +250,7 @@ function buildPackageConfig({
 function buildViteConfig({
   plugins = {},
   optimizeDeps = {},
+  resolve = {},
 }: ViteConfig): string {
   return `import { defineConfig } from 'vite';
 ${Object.entries(plugins)
@@ -241,7 +260,8 @@ export default defineConfig({
   plugins: [${Object.values(plugins)
     .map((p) => p.call)
     .join(", ")}],
-  optimizeDeps: ${JSON.stringify(optimizeDeps)}
+  optimizeDeps: ${JSON.stringify(optimizeDeps)},
+  resolve: ${JSON.stringify(resolve)}
 })`;
 }
 
@@ -287,7 +307,7 @@ const config = {
     alias: ${JSON.stringify(kitAlias)},
   },
   compilerOptions: {
-    runes: ${runes ? "true" : "undefined"},
+    runes: ${runes ? runes : "undefined"},
     experimental: {
       async: true,
     },

@@ -12,6 +12,7 @@ export default defineLayer({
     dependencies: Array.from(
       themeDependencies("shadcn", [
         optionalPackageName("internationalizedDate"),
+        optionalPackageName("tailwindcssAnimate"),
       ]),
     ),
   },
