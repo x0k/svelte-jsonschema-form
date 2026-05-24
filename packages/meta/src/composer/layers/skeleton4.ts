@@ -6,9 +6,9 @@ import { defineLayer, themeDependencies } from "../layer.ts";
 
 export default defineLayer({
   package: {
-    dependencies: themeDependencies("skeleton4", [
-      optionalPackageName("skeletonSvelte"),
-    ]),
+    dependencies: Array.from(
+      themeDependencies("skeleton4", [optionalPackageName("skeletonSvelte")]),
+    ),
   },
   formDefaults: { theme: "skeleton4" },
   files: {

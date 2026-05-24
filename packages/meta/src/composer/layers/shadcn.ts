@@ -9,9 +9,11 @@ import { defineLayer, themeDependencies } from "../layer.ts";
 
 export default defineLayer({
   package: {
-    dependencies: themeDependencies("shadcn", [
-      optionalPackageName("internationalizedDate"),
-    ]),
+    dependencies: Array.from(
+      themeDependencies("shadcn", [
+        optionalPackageName("internationalizedDate"),
+      ]),
+    ),
   },
   formDefaults: { theme: "shadcn" },
   files: {

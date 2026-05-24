@@ -6,7 +6,7 @@ const openProject: OpenPlatformProject = (
   { example, theme, validator },
   files,
 ) =>
-  sdk.default.openProject(
+  (sdk as unknown as typeof sdk.default).openProject(
     {
       title: `${example} (${theme}, ${validator})`,
       files,

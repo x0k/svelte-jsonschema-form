@@ -4,7 +4,7 @@ import { defineLayer, themeDependencies } from "../layer.ts";
 
 export default defineLayer({
   package: {
-    dependencies: themeDependencies("basic"),
+    dependencies: Array.from(themeDependencies("basic")),
   },
   formDefaults: { theme: "basic" },
   files: {

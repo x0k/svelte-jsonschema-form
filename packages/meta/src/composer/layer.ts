@@ -11,7 +11,12 @@ import {
   isJsonSchemaValidator,
   type Validator,
 } from "../validators.ts";
-import type { Resolver } from "../form.ts";
+import {
+  formMergerSubPath,
+  formResolverSubPath,
+  formTranslationSubPath,
+  type Resolver,
+} from "../form.ts";
 import {
   themeExtraWidgetSubPath,
   type ExtraWidgetFileNames,
@@ -24,7 +29,7 @@ import {
 
 export interface PackageConfig {
   name?: string;
-  dependencies?: Iterable<AbstractPackage>;
+  dependencies?: AbstractPackage[];
 }
 
 export interface VitePluginConfig {
@@ -73,7 +78,7 @@ export interface Layer<T extends Theme> {
   package?: PackageConfig;
   vite?: ViteConfig;
   files?: LayerFiles;
-  codeTransformers?: Iterable<CodeTransformer>;
+  codeTransformers?: CodeTransformer[];
   formDefaults?: FormDefaultsConfig<T>;
 }
 
@@ -85,10 +90,7 @@ export interface Layer<T extends Theme> {
 //   ...MARKDOWN_DESCRIPTION_PACKAGES,
 //   ...DRAFT_2020_12_PACKAGES,
 // ];
-function mergeIterables<T>(
-  a: Iterable<T> | undefined,
-  b: Iterable<T> | undefined,
-) {
+function mergeArrays<T>(a: T[] | undefined, b: T[] | undefined) {
   return a ? (b ? [...a, ...b] : a) : b;
 }
 
@@ -136,7 +138,7 @@ export function mergePackageConfigs(
   return {
     ...a,
     ...b,
-    dependencies: mergeIterables(a.dependencies, b.dependencies),
+    dependencies: mergeArrays(a.dependencies, b.dependencies),
   };
 }
 
@@ -194,7 +196,7 @@ export function mergeLayers<T extends Theme>(
       ...a.files,
       ...b.files,
     },
-    codeTransformers: mergeIterables(a.codeTransformers, b.codeTransformers),
+    codeTransformers: mergeArrays(a.codeTransformers, b.codeTransformers),
     svelte:
       a.svelte && b.svelte
         ? mergeSvelteConfig(a.svelte, b.svelte)
@@ -255,16 +257,16 @@ function buildFormDefaultsConfig<T extends Theme>({
 export { createFormValidator as validator } from "${externalValidatorPackage(validator).name}";
 `
     : "";
-  return `export { resolver } from "@sjsf/form/resolvers/${resolver}";
+  return `export { resolver } from "${formResolverSubPath(resolver)}";
 
 export { theme } from "${themePackage(theme).name}";
 ${widgets.map((w) => `import "${themeExtraWidgetSubPath(theme, w, true)}";`).join("\n")}
 
-export { translation } from "@sjsf/form/translations/en";
+export { translation } from "${formTranslationSubPath("en")}";
 
 export { createFormIdBuilder as idBuilder } from "${idBuilderPackage}";
 
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
+export { createFormMerger as merger } from "${formMergerSubPath("modern")}";
 ${validatorCode}`;
 }
 

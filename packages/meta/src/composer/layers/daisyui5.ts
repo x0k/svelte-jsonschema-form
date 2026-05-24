@@ -5,9 +5,9 @@ import { defineLayer, themeDependencies } from "../layer.ts";
 
 export default defineLayer({
   package: {
-    dependencies: themeDependencies("daisyui5", [
-      optionalPackageName("pikaday"),
-    ]),
+    dependencies: Array.from(
+      themeDependencies("daisyui5", [optionalPackageName("pikaday")]),
+    ),
   },
   formDefaults: { theme: "daisyui5" },
   files: {

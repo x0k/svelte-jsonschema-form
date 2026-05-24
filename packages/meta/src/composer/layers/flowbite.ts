@@ -4,7 +4,7 @@ import { defineLayer, themeDependencies } from "../layer.ts";
 
 export default defineLayer({
   package: {
-    dependencies: themeDependencies("flowbite"),
+    dependencies: Array.from(themeDependencies("flowbite")),
   },
   formDefaults: { theme: "flowbite" },
   files: {

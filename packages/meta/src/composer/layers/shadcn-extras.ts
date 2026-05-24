@@ -7,9 +7,11 @@ import { defineLayer, themeDependencies } from "../layer.ts";
 
 export default defineLayer({
   package: {
-    dependencies: themeDependencies("shadcn-extras", [
-      optionalPackageName("internationalizedDate"),
-    ]),
+    dependencies: Array.from(
+      themeDependencies("shadcn-extras", [
+        optionalPackageName("internationalizedDate"),
+      ]),
+    ),
   },
   formDefaults: { theme: "shadcn-extras" },
   files: {
