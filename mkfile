@@ -416,6 +416,17 @@ e/:
     d:
       pnpm run dev
     popd
+  shad-extras/:
+    pushd shadcn4-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   mark/:
     pushd markdown-description
     c:

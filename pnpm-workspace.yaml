@@ -12,7 +12,7 @@ catalog:
   "@fontsource-variable/inter": ^5.2.8
   "@hyperjump/json-schema": ^1.17.6
   "@internationalized/date": 3.12.1
-  "@lucide/svelte": ^1.14.0
+  "@lucide/svelte": ^1.16.0
   "@picocss/pico": ^2.1.1
   "@playwright/test": 1.59.1
   "@stackblitz/sdk": ^1.11.0

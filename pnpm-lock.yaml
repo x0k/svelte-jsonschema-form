@@ -22,8 +22,8 @@ catalogs:
       specifier: 3.12.1
       version: 3.12.1
     '@lucide/svelte':
-      specifier: ^1.14.0
-      version: 1.14.0
+      specifier: ^1.16.0
+      version: 1.16.0
     '@picocss/pico':
       specifier: ^2.1.1
       version: 2.1.1
@@ -366,7 +366,7 @@ importers:
         version: 3.12.1
       '@lucide/svelte':
         specifier: 'catalog:'
-        version: 1.14.0(svelte@5.55.5)
+        version: 1.16.0(svelte@5.55.5)
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.3.0(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
@@ -417,7 +417,7 @@ importers:
         version: 0.3.0
       '@lucide/svelte':
         specifier: 'catalog:'
-        version: 1.14.0(svelte@5.55.5)
+        version: 1.16.0(svelte@5.55.5)
       '@sjsf-lab/ata-validator':
         specifier: workspace:*
         version: link:../../lab/ata-validator
@@ -770,7 +770,7 @@ importers:
         version: 3.12.1
       '@lucide/svelte':
         specifier: 'catalog:'
-        version: 1.14.0(svelte@5.55.5)
+        version: 1.16.0(svelte@5.55.5)
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.3.0(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
@@ -1160,66 +1160,45 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
       ajv:
-        specifier: ^8.17.1
+        specifier: 'catalog:'
         version: 8.20.0
       bits-ui:
-        specifier: ^2.14.0
-        version: 2.18.1(@internationalized/date@3.12.1)(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(typescript@5.9.3)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)
+        specifier: 'catalog:'
+        version: 2.18.1(@internationalized/date@3.12.1)(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(typescript@5.9.3)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)
       country-flag-icons:
-        specifier: ^1.5.21
+        specifier: ^1.6.17
         version: 1.6.17
       runed:
-        specifier: ^0.31.1
-        version: 0.31.1(svelte@5.55.5)
+        specifier: ^0.37.1
+        version: 0.37.1(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(typescript@5.9.3)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(zod@4.4.3)
       svelte-tel-input:
-        specifier: ^3.6.0
-        version: 3.6.1(svelte@5.55.5)
+        specifier: ^4.2.0
+        version: 4.2.0(svelte@5.55.5)
       svelte-toolbelt:
-        specifier: ^0.9.3
-        version: 0.9.3(svelte@5.55.5)
+        specifier: ^0.10.6
+        version: 0.10.6(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(typescript@5.9.3)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)
       yeezy-dates:
-        specifier: ^1.0.1
+        specifier: ^1.1.0
         version: 1.1.0
     devDependencies:
-      '@lucide/svelte':
-        specifier: ^0.544.0
-        version: 0.544.0(svelte@5.55.5)
-      '@sveltejs/adapter-auto':
-        specifier: ^6.1.0
-        version: 6.1.1(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(typescript@5.9.3)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))
-      '@sveltejs/kit':
-        specifier: ^2.49.5
-        version: 2.59.1(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(typescript@5.9.3)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
-      '@sveltejs/vite-plugin-svelte':
-        specifier: ^6.1.2
-        version: 6.2.4(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
       '@tailwindcss/vite':
-        specifier: ^4.1.11
-        version: 4.2.4(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
+        specifier: 'catalog:'
+        version: 4.3.0(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
       svelte:
-        specifier: ^5.46.4
+        specifier: 'catalog:'
         version: 5.55.5
-      svelte-check:
-        specifier: ^4.3.1
-        version: 4.4.8(picomatch@4.0.4)(svelte@5.55.5)(typescript@5.9.3)
       tailwind-merge:
-        specifier: ^3.3.1
-        version: 3.5.0
+        specifier: ^3.6.0
+        version: 3.6.0
       tailwind-variants:
-        specifier: ^3.1.1
-        version: 3.2.2(tailwind-merge@3.5.0)(tailwindcss@4.2.4)
+        specifier: ^3.2.2
+        version: 3.2.2(tailwind-merge@3.6.0)(tailwindcss@4.3.0)
       tailwindcss:
-        specifier: ^4.1.11
-        version: 4.2.4
+        specifier: 'catalog:'
+        version: 4.3.0
       tw-animate-css:
-        specifier: ^1.3.6
+        specifier: ^1.4.0
         version: 1.4.0
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.3
       vite:
         specifier: ^8.0.11
         version: 8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)
@@ -1746,7 +1725,7 @@ importers:
         version: 7.0.0(jsrepo@3.7.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(svelte@5.55.5))(prettier@3.8.3)
       '@lucide/svelte':
         specifier: 'catalog:'
-        version: 1.14.0(svelte@5.55.5)
+        version: 1.16.0(svelte@5.55.5)
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
@@ -1926,7 +1905,7 @@ importers:
         version: 3.8.1
       '@lucide/svelte':
         specifier: 'catalog:'
-        version: 1.14.0(svelte@5.55.5)
+        version: 1.16.0(svelte@5.55.5)
       '@sjsf/form':
         specifier: workspace:*
         version: link:../../packages/form
@@ -2167,7 +2146,7 @@ importers:
         version: 5.55.5
       tailwind-variants:
         specifier: ^3.2.2
-        version: 3.2.2(tailwind-merge@3.5.0)(tailwindcss@4.3.0)
+        version: 3.2.2(tailwind-merge@3.6.0)(tailwindcss@4.3.0)
       tailwindcss:
         specifier: 'catalog:'
         version: 4.3.0
@@ -2225,7 +2204,7 @@ importers:
     devDependencies:
       '@lucide/svelte':
         specifier: 'catalog:'
-        version: 1.14.0(svelte@5.55.5)
+        version: 1.16.0(svelte@5.55.5)
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
@@ -2437,7 +2416,7 @@ importers:
         version: 3.12.1
       '@lucide/svelte':
         specifier: 'catalog:'
-        version: 1.14.0(svelte@5.55.5)
+        version: 1.16.0(svelte@5.55.5)
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
@@ -3595,13 +3574,13 @@ packages:
     peerDependencies:
       svelte: ^5
 
-  '@lucide/svelte@0.544.0':
-    resolution: {integrity: sha512-9f9O6uxng2pLB01sxNySHduJN3HTl5p0HDu4H26VR51vhZfiMzyOMe9Mhof3XAk4l813eTtl+/DYRvGyoRR+yw==}
+  '@lucide/svelte@1.14.0':
+    resolution: {integrity: sha512-MVuP5VRCBQa2OaIpaRbuEV4k5OV2dy9MyxA6Tf4Sz/IN0v3zzUU72ObHc9r2Zn/wSMXDg6lLrHrczqI7w7gCzQ==}
     peerDependencies:
       svelte: ^5
 
-  '@lucide/svelte@1.14.0':
-    resolution: {integrity: sha512-MVuP5VRCBQa2OaIpaRbuEV4k5OV2dy9MyxA6Tf4Sz/IN0v3zzUU72ObHc9r2Zn/wSMXDg6lLrHrczqI7w7gCzQ==}
+  '@lucide/svelte@1.16.0':
+    resolution: {integrity: sha512-AvvPJnaWxeiNkAljI5MsSEc84yHPLMaWQIAJOcbX7k9au/f9ITS7cxTTQiautDiOFKVOXiYdZ+d6mtl88J+Kbg==}
     peerDependencies:
       svelte: ^5
 
@@ -6674,9 +6653,6 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
-  libphonenumber-js@1.10.43:
-    resolution: {integrity: sha512-M/iPACJGsTvEy8QmUY4K0SoIFB71X2j7y2JvUMYzUXUxCNmiU+NTfHdz7gt+dC48BVfBzZi2oO6s9TDGllCfxA==}
-
   libphonenumber-js@1.12.42:
     resolution: {integrity: sha512-oKQFPTibqQwZZkChCDVMFVJXMZdyJNqDWZWYNn8BgyAaK/6yFJEowxCY0RVFirRyWP63hMRuKlkSEd9qlvbWXg==}
 
@@ -7654,16 +7630,6 @@ packages:
     peerDependencies:
       svelte: ^5.7.0
 
-  runed@0.29.2:
-    resolution: {integrity: sha512-0cq6cA6sYGZwl/FvVqjx9YN+1xEBu9sDDyuWdDW1yWX7JF2wmvmVKfH+hVCZs+csW+P3ARH92MjI3H9QTagOQA==}
-    peerDependencies:
-      svelte: ^5.7.0
-
-  runed@0.31.1:
-    resolution: {integrity: sha512-v3czcTnO+EJjiPvD4dwIqfTdHLZ8oH0zJheKqAHh9QMViY7Qb29UlAMRpX7ZtHh7AFqV60KmfxaJ9QMy+L1igQ==}
-    peerDependencies:
-      svelte: ^5.7.0
-
   runed@0.35.1:
     resolution: {integrity: sha512-2F4Q/FZzbeJTFdIS/PuOoPRSm92sA2LhzTnv6FXhCoENb3huf5+fDuNOg1LNvGOouy3u/225qxmuJvcV3IZK5Q==}
     peerDependencies:
@@ -7892,12 +7858,6 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
-  svelte-tel-input@3.6.1:
-    resolution: {integrity: sha512-rUys8jXv4BTmpIub/GpOkZaxLYwrNZgh0tEFeo9ltl09rCxqFAbppT1XUL8W8fMHC6EzaivK28z0vhzsQZyBXA==}
-    engines: {node: '>= 18', npm: '>= 8', pnpm: '>= 8', yarn: '>= 1'}
-    peerDependencies:
-      svelte: ^3.58.0 || ^4.0.0 || ^5.0.0
-
   svelte-tel-input@4.2.0:
     resolution: {integrity: sha512-ggUNYngtJYNfgVjSmXalhpx4MMbCisA2bRHWZfKO9uIUDa03XLm28MTZr+IN/hR4gpV0qTurm+tl+k5kgbmqfQ==}
     engines: {node: '>= 22', npm: '>= 10', pnpm: '>= 10', yarn: '>= 1'}
@@ -7911,12 +7871,6 @@ packages:
 
   svelte-toolbelt@0.10.6:
     resolution: {integrity: sha512-YWuX+RE+CnWYx09yseAe4ZVMM7e7GRFZM6OYWpBKOb++s+SQ8RBIMMe+Bs/CznBMc0QPLjr+vDBxTAkozXsFXQ==}
-    engines: {node: '>=18', pnpm: '>=8.7.0'}
-    peerDependencies:
-      svelte: ^5.30.2
-
-  svelte-toolbelt@0.9.3:
-    resolution: {integrity: sha512-HCSWxCtVmv+c6g1ACb8LTwHVbDqLKJvHpo6J8TaqwUme2hj9ATJCpjCPNISR1OCq2Q4U1KT41if9ON0isINQZw==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.30.2
@@ -7978,6 +7932,9 @@ packages:
 
   tailwind-merge@3.5.0:
     resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==}
+
+  tailwind-merge@3.6.0:
+    resolution: {integrity: sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w==}
 
   tailwind-variants@0.3.1:
     resolution: {integrity: sha512-krn67M3FpPwElg4FsZrOQd0U26o7UDH/QOkK8RNaiCCrr052f6YJPBUfNKnPo/s/xRzNPtv1Mldlxsg8Tb46BQ==}
@@ -9764,11 +9721,11 @@ snapshots:
     dependencies:
       svelte: 5.55.5
 
-  '@lucide/svelte@0.544.0(svelte@5.55.5)':
+  '@lucide/svelte@1.14.0(svelte@5.55.5)':
     dependencies:
       svelte: 5.55.5
 
-  '@lucide/svelte@1.14.0(svelte@5.55.5)':
+  '@lucide/svelte@1.16.0(svelte@5.55.5)':
     dependencies:
       svelte: 5.55.5
 
@@ -12853,7 +12810,7 @@ snapshots:
     dependencies:
       clsx: 2.1.1
       svelte: 5.55.5
-      tailwind-merge: 3.5.0
+      tailwind-merge: 3.6.0
 
   flowbite-svelte@0.47.4(rollup@4.57.1)(svelte@5.55.5):
     dependencies:
@@ -13416,8 +13373,6 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
-
-  libphonenumber-js@1.10.43: {}
 
   libphonenumber-js@1.12.42: {}
 
@@ -14752,16 +14707,6 @@ snapshots:
       esm-env: 1.2.2
       svelte: 5.55.5
 
-  runed@0.29.2(svelte@5.55.5):
-    dependencies:
-      esm-env: 1.2.2
-      svelte: 5.55.5
-
-  runed@0.31.1(svelte@5.55.5):
-    dependencies:
-      esm-env: 1.2.2
-      svelte: 5.55.5
-
   runed@0.35.1(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(typescript@5.9.3)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5):
     dependencies:
       dequal: 2.0.3
@@ -15049,11 +14994,6 @@ snapshots:
       runed: 0.28.0(svelte@5.55.5)
       svelte: 5.55.5
 
-  svelte-tel-input@3.6.1(svelte@5.55.5):
-    dependencies:
-      libphonenumber-js: 1.10.43
-      svelte: 5.55.5
-
   svelte-tel-input@4.2.0(svelte@5.55.5):
     dependencies:
       libphonenumber-js: 1.12.42
@@ -15080,13 +15020,6 @@ snapshots:
       svelte: 5.55.5
     transitivePeerDependencies:
       - '@sveltejs/kit'
-
-  svelte-toolbelt@0.9.3(svelte@5.55.5):
-    dependencies:
-      clsx: 2.1.1
-      runed: 0.29.2(svelte@5.55.5)
-      style-to-object: 1.0.14
-      svelte: 5.55.5
 
   svelte2tsx@0.7.55(svelte@5.55.5)(typescript@5.9.3):
     dependencies:
@@ -15163,6 +15096,8 @@ snapshots:
 
   tailwind-merge@3.5.0: {}
 
+  tailwind-merge@3.6.0: {}
+
   tailwind-variants@0.3.1(tailwindcss@3.4.19(yaml@2.8.3)):
     dependencies:
       tailwind-merge: 2.5.4
@@ -15179,6 +15114,12 @@ snapshots:
       tailwindcss: 4.3.0
     optionalDependencies:
       tailwind-merge: 3.5.0
+
+  tailwind-variants@3.2.2(tailwind-merge@3.6.0)(tailwindcss@4.3.0):
+    dependencies:
+      tailwindcss: 4.3.0
+    optionalDependencies:
+      tailwind-merge: 3.6.0
 
   tailwindcss-animate@1.0.7(tailwindcss@3.4.19(yaml@2.8.3)):
     dependencies:
