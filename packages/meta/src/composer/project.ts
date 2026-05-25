@@ -44,7 +44,6 @@ export enum ProjectGenericExample {
   PreuploadFile = "preupload-file",
   OptionalDataControls = "optional-data-controls",
   SchemaTransformation = "schema-transformation",
-  AnimatedArray = "animated-array",
   LabelOnLeft = "label-on-left",
   Draft2020 = "draft-2020-12",
   MultiStep = "multi-step",
@@ -149,9 +148,6 @@ export const EXAMPLE_LAYERS: Record<
   () => ImportPromise<Layer<any>>[]
 > = {
   [ProjectGenericExample.Starter]: () => [import("./examples/starter.ts")],
-  [ProjectGenericExample.AnimatedArray]: () => [
-    import("./examples/animated-array.ts"),
-  ],
   [ProjectGenericExample.MarkdownDescription]: () => [
     import("./examples/markdown-description.ts"),
   ],

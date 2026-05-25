@@ -1,4 +1,4 @@
-import sveltePage from "examples/valibot-starter/src/routes/+page.svelte?raw";
+import pageSvelte from "examples/basic-starter/src/routes/valibot-starter/+page.svelte?raw";
 
 import { defineLayer } from "../layer.ts";
 
@@ -7,6 +7,6 @@ export default defineLayer({
     name: "valibot-starter",
   },
   files: {
-    "src/routes/+page.svelte": sveltePage,
+    "src/routes/+page.svelte": pageSvelte,
   },
 });

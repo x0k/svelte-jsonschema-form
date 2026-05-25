@@ -1,5 +1,5 @@
-import sveltePage from "examples/typebox-starter/src/routes/+page.svelte?raw";
-import standardTs from "examples/typebox-starter/src/lib/standard.ts?raw";
+import pageSvelte from "examples/basic-starter/src/routes/typebox-starter/+page.svelte?raw";
+import standardTs from "examples/basic-starter/src/lib/standard.ts?raw";
 
 import { extraPackage } from "../../package.ts";
 import { defineLayer } from "../layer.ts";
@@ -10,7 +10,7 @@ export default defineLayer({
     dependencies: [extraPackage("typebox")],
   },
   files: {
-    "src/routes/+page.svelte": sveltePage,
+    "src/routes/+page.svelte": pageSvelte,
     "src/lib/standard.ts": standardTs,
   },
 });

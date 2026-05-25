@@ -1,4 +1,4 @@
-import sveltePage from "examples/arktype-starter/src/routes/+page.svelte?raw";
+import sveltePage from "examples/basic-starter/src/routes/arktype-starter/+page.svelte?raw";
 
 import { extraPackage } from "../../package.ts";
 import { defineLayer } from "../layer.ts";
