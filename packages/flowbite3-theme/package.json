@@ -80,7 +80,6 @@
 		"flowbite-svelte": "catalog:",
 		"globals": "catalog:",
 		"svelte": "catalog:",
-		"tailwind-variants": "^3.2.2",
 		"tailwindcss": "catalog:",
 		"theme-testing": "workspace:*"
 	},

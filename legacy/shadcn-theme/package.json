@@ -91,12 +91,12 @@
 		}
 	},
 	"devDependencies": {
-		"@internationalized/date": "3.8.1",
+		"@internationalized/date": "catalog:legacy",
 		"@lucide/svelte": "catalog:",
 		"@sjsf/form": "workspace:*",
 		"autoprefixer": "catalog:",
 		"bits-ui": "catalog:",
-		"clsx": "^2.1.1",
+		"clsx": "catalog:shadcn",
 		"globals": "catalog:",
 		"postcss": "catalog:",
 		"svelte": "catalog:",
