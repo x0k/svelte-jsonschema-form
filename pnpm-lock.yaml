@@ -1116,6 +1116,9 @@ importers:
       bits-ui:
         specifier: 'catalog:'
         version: 2.18.1(@internationalized/date@3.12.1)(@sveltejs/kit@2.61.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.9(@typescript-eslint/types@8.60.0))(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.9(@typescript-eslint/types@8.60.0))(typescript@5.9.3)(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.9(@typescript-eslint/types@8.60.0))
+      clsx:
+        specifier: catalog:shadcn
+        version: 2.1.1
       country-flag-icons:
         specifier: catalog:shadcn
         version: 1.6.17
@@ -1132,6 +1135,9 @@ importers:
         specifier: catalog:shadcn
         version: 1.1.0
     devDependencies:
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.3.0(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
       svelte:
         specifier: 'catalog:'
         version: 5.55.9(@typescript-eslint/types@8.60.0)

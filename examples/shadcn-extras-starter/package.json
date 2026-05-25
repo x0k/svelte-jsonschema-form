@@ -11,6 +11,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@tailwindcss/vite": "catalog:",
 		"svelte": "catalog:",
 		"tailwind-merge": "catalog:shadcn",
 		"tailwind-variants": "catalog:shadcn",
@@ -28,6 +29,7 @@
 		"@zxcvbn-ts/language-common": "catalog:shadcn",
 		"ajv": "catalog:",
 		"bits-ui": "catalog:",
+		"clsx": "catalog:shadcn",
 		"@zxcvbn-ts/language-en": "catalog:shadcn",
 		"country-flag-icons": "catalog:shadcn",
 		"runed": "catalog:shadcn",
