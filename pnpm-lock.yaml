@@ -814,27 +814,12 @@ importers:
         specifier: workspace:*
         version: link:../../packages/form
       arktype:
-        specifier: ^2.1.21
+        specifier: ^2.2.0
         version: 2.2.0
     devDependencies:
-      '@sveltejs/adapter-auto':
-        specifier: ^6.1.0
-        version: 6.1.1(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(typescript@5.9.3)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))
-      '@sveltejs/kit':
-        specifier: ^2.49.5
-        version: 2.59.1(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(typescript@5.9.3)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
-      '@sveltejs/vite-plugin-svelte':
-        specifier: ^6.1.2
-        version: 6.2.4(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
       svelte:
-        specifier: ^5.46.4
+        specifier: 'catalog:'
         version: 5.55.5
-      svelte-check:
-        specifier: ^4.3.1
-        version: 4.4.8(picomatch@4.0.4)(svelte@5.55.5)(typescript@5.9.3)
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.3
       vite:
         specifier: ^8.0.11
         version: 8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)
@@ -1548,27 +1533,12 @@ importers:
         specifier: workspace:*
         version: link:../../packages/form
       typebox:
-        specifier: ^1.0.7
+        specifier: ^1.1.38
         version: 1.1.38
     devDependencies:
-      '@sveltejs/adapter-auto':
-        specifier: ^6.1.0
-        version: 6.1.1(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(typescript@5.9.3)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))
-      '@sveltejs/kit':
-        specifier: ^2.49.5
-        version: 2.59.1(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.5)(typescript@5.9.3)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
-      '@sveltejs/vite-plugin-svelte':
-        specifier: ^6.1.2
-        version: 6.2.4(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
       svelte:
-        specifier: ^5.46.4
+        specifier: 'catalog:'
         version: 5.55.5
-      svelte-check:
-        specifier: ^4.3.1
-        version: 4.4.8(picomatch@4.0.4)(svelte@5.55.5)(typescript@5.9.3)
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.3
       vite:
         specifier: ^8.0.11
         version: 8.0.11(@types/node@25.6.2)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3)

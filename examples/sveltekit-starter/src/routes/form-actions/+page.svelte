@@ -1,7 +1,5 @@
 <script lang="ts">
   import { createMeta, SvelteKitForm } from "@sjsf/sveltekit/client";
-  // WARN: You must export this ID Builder in your `defaults` file
-  import { createFormIdBuilder } from "@sjsf/sveltekit";
 
   import * as defaults from "$lib/form-defaults";
 
@@ -13,7 +11,6 @@
 <SvelteKitForm
   {...defaults}
   {meta}
-  idBuilder={createFormIdBuilder}
   onSuccess={(result) => {
     if (result.type === "success") {
       console.log(result.data?.post);

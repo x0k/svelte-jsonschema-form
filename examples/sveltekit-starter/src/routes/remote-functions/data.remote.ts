@@ -18,10 +18,11 @@ export const createPost = form(
     ...defaults,
     schema,
   }),
-  ({ data: { title, content } }) => {
-    if (title.length > 100) {
+  ({ data }) => {
+    if (data.title.length > 100) {
       invalid({ path: ["title"], message: "Title is too long" });
     }
-    return { id: "new-post", title, content };
+    console.log(data);
+    return { ...data, id: "new-post" };
   },
 );

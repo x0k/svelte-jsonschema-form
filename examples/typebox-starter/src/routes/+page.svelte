@@ -1,25 +1,18 @@
 <script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
-  import { createFormValueValidator } from "@sjsf/form/validators/standard-schema";
+  import { adapt } from "@sjsf/form/validators/standard-schema";
   import Type from "typebox";
-  import { Compile } from "typebox/compile";
 
   import * as defaults from "$lib/form-defaults";
+  import { StandardSchemaV1 } from '$lib/standard';
 
-  const schema = Type.Object({
+  const schema = StandardSchemaV1(Type.Object({
     hello: Type.String(),
-  });
+  }));
 
   const form = createForm({
     ...defaults,
-    validator: {
-      ...createFormValueValidator(
-        //@ts-expect-error
-        Compile(schema)
-      ),
-      isValid: () => true,
-    },
-    schema,
+    ...adapt(schema),
     uiSchema: {
       "ui:options": {
         title: "Basic form",
@@ -34,4 +27,4 @@
   });
 </script>
 
-<BasicForm {form} />
+<BasicForm {form} novalidate />

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { createForm, BasicForm, type Schema } from "@sjsf/form";
-  import { createFormValueValidator } from "@sjsf/form/validators/standard-schema";
+  import { createForm, BasicForm } from "@sjsf/form";
+  import { adapt } from "@sjsf/form/validators/standard-schema";
   import { type } from "arktype";
 
   import * as defaults from "$lib/form-defaults";
@@ -11,13 +11,7 @@
 
   const form = createForm({
     ...defaults,
-    validator: {
-      ...createFormValueValidator(schema),
-      isValid: () => true,
-    },
-    schema: schema.toJsonSchema({
-      dialect: null,
-    }) as Schema,
+    ...adapt(schema),
     uiSchema: {
       "ui:options": {
         title: "Basic form",
@@ -32,4 +26,4 @@
   });
 </script>
 
-<BasicForm {form} />
+<BasicForm {form} novalidate />

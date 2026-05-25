@@ -18,4 +18,4 @@
   });
 </script>
 
-<BasicForm {form} />
+<BasicForm {form} novalidate />
