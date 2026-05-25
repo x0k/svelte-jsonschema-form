@@ -71,9 +71,9 @@ npx sv add @sjsf
 - [Flowbite Svelte](https://x0k.dev/svelte-jsonschema-form/themes/flowbite3/)
 - [Skeleton v4](https://x0k.dev/svelte-jsonschema-form/themes/skeleton4/)
 - [shadcn-svelte](https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/)
-  - [shadcn-svelte-extras](https://x0k.dev/svelte-jsonschema-form/themes/lab/shadcn-extras/) (experimental)
-- [SVAR](https://x0k.dev/svelte-jsonschema-form/themes/lab/svar/) (experimental)
-- [Beer CSS](https://x0k.dev/svelte-jsonschema-form/themes/lab/beercss/) (experimental)
+  - [shadcn-svelte-extras](https://x0k.dev/svelte-jsonschema-form/themes/shadcn-extras/) (experimental)
+- [SVAR](https://x0k.dev/svelte-jsonschema-form/themes/svar/) (experimental)
+- [Beer CSS](https://x0k.dev/svelte-jsonschema-form/themes/beercss/) (experimental)
 
 ## Supported Validators
 

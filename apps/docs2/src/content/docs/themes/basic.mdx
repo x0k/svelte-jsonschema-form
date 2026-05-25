@@ -8,13 +8,12 @@ sidebar:
 
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/basic-theme/specs';
-import styles from '@sjsf/basic-theme/css/basic.css?raw';
-import picoCssStyles from "@picocss/pico/css/pico.css?raw";
-import basicThemePicoCssStyles from "@sjsf/basic-theme/css/pico.css?raw";
 import { themePackage } from "meta";
+import { PLAYGROUND_SJSF_THEME_STYLES } from 'meta/playground'
 
 import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
+import Deps from '@/components/peer-dependencies.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './basic/form.svelte';
@@ -27,6 +26,8 @@ export const pkg = themePackage('basic')
 ## Installation
 
 <Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ### Configuration
 
@@ -63,12 +64,12 @@ or used in the field as the default widget.
 
 <Tabs>
   <TabItem label='Form'>
-    <FormCard style={styles}>
+    <FormCard style={PLAYGROUND_SJSF_THEME_STYLES['basic']}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
   <TabItem label='Form (Pico CSS)'>
-    <FormCard style={`${picoCssStyles}\n${basicThemePicoCssStyles}`}>
+    <FormCard style={PLAYGROUND_SJSF_THEME_STYLES['pico']}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>

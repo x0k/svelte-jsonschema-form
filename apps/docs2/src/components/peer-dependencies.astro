@@ -14,7 +14,7 @@ const {
 const required: string[] = []
 const optional: string[] = []
 for (const d of pkg.dependencies) {
-  (d.optional ? optional : required).push(`${pkg.name}@${pkg.version}`)
+  (d.optional ? optional : required).push(`${d.name}@${d.version}`)
 }
 ---
 

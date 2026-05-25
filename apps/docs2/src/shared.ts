@@ -1,7 +1,6 @@
 import type { StarlightIcon } from "@astrojs/starlight/types";
 import {
   externalValidatorPackage,
-  filterPackageDependencies,
   formPackage,
   isInternalValidator,
   isLabTheme,
@@ -77,14 +76,24 @@ export function getPackageMetadataByCodeName(pkgCodeName: string) {
   };
 }
 
+const allowedOptionalDeps = new Set([
+  optionalPackageName("cally"),
+  optionalPackageName("internationalizedDate"),
+  optionalPackageName("skeletonSvelte"),
+]);
+
+function* packageInstallPackages(pkg: Package) {
+  yield pkg;
+  for (const d of pkg.dependencies) {
+    if (!d.optional || !allowedOptionalDeps.has(d.name)) {
+      continue;
+    }
+    yield d;
+  }
+}
+
 export function getPackageDependencies(pkg: Package) {
-  const deps = [
-    pkg,
-    ...filterPackageDependencies(pkg.dependencies, [
-      optionalPackageName("cally"),
-      optionalPackageName("internationalizedDate"),
-      optionalPackageName("skeletonSvelte"),
-    ]),
-  ];
-  return deps.map((p) => p.name).join(" ");
+  return Array.from(packageInstallPackages(pkg))
+    .map((p) => p.name)
+    .join(" ");
 }

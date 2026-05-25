@@ -93,7 +93,7 @@ export default defineConfig({
         },
         {
           label: "Themes",
-          items: [{ autogenerate: { directory: "themes" } }],
+          items: [{ autogenerate: { directory: "themes", collapsed: true } }],
         },
         {
           label: "Validators",
