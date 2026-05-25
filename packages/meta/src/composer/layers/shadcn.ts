@@ -4,17 +4,17 @@ import utilsTs from "examples/shadcn-starter/src/lib/utils?raw";
 import layoutSvelte from "examples/shadcn-starter/src/routes/+layout.svelte?raw";
 import tailwindConfigJs from "examples/shadcn-starter/tailwind.config.js?raw";
 
-import { optionalPackageName } from "../../package.ts";
+import { extraPackage, optionalPackageName } from "../../package.ts";
 import { defineLayer, themeDependencies } from "../layer.ts";
 
 export default defineLayer({
   package: {
-    dependencies: Array.from(
-      themeDependencies("shadcn", [
+    dependencies: [
+      ...themeDependencies("shadcn", [
         optionalPackageName("internationalizedDate"),
-        optionalPackageName("tailwindcssAnimate"),
       ]),
-    ),
+      extraPackage("tailwindcssAnimate"),
+    ],
   },
   formDefaults: { theme: "shadcn" },
   files: {

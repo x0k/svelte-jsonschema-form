@@ -2,11 +2,15 @@ import appCss from "examples/shadcn-extras-starter/src/app.css?raw";
 import componentsJson from "examples/shadcn-extras-starter/components.json?raw";
 import layoutSvelte from "examples/shadcn-extras-starter/src/routes/+layout.svelte?raw";
 
+import { extraPackage } from "../../package.ts";
 import { defineLayer, themeDependencies } from "../layer.ts";
 
 export default defineLayer({
   package: {
-    dependencies: Array.from(themeDependencies("shadcn-extras", true)),
+    dependencies: [
+      ...themeDependencies("shadcn-extras", true),
+      extraPackage("twAnimateCss"),
+    ],
   },
   formDefaults: { theme: "shadcn-extras" },
   files: {

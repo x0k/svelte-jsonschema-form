@@ -116,6 +116,17 @@ const EXTRA_PACKAGES = {
     version: "5.0.2",
     dev: false,
   },
+  fontsourceVariableInter: {
+    name: "@fontsource-variable/inter",
+    version: "5.2.0",
+    dev: true,
+  },
+  tailwindcssAnimate: {
+    name: "tailwindcss-animate",
+    version: "1.0.0",
+    dev: true,
+  },
+  twAnimateCss: { name: "tw-animate-css", version: "1.4.0", dev: true },
 } as const satisfies Record<string, AbstractPackage>;
 
 export type ExtraPackage = keyof typeof EXTRA_PACKAGES;
@@ -126,9 +137,6 @@ const OPTIONAL_PKG = {
   standardSchemaSpec: "@standard-schema/spec",
   cally: "cally",
   pikaday: "pikaday",
-  fontsourceVariableInter: "@fontsource-variable/inter",
-  tailwindcssAnimate: "tailwindcss-animate",
-  twAnimateCss: "tw-animate-css",
 };
 
 export type OptionalPackage = keyof typeof OPTIONAL_PKG;
@@ -138,8 +146,6 @@ const DEV_PACKAGES_REGISTRY = new Set([
   "@tailwindcss/forms",
   "flowbite",
   "@picocss/pico",
-  "@fontsource-variable/inter",
-  "tw-animate-css",
 ]);
 
 export function fromPackageJson({
@@ -164,9 +170,9 @@ export function fromPackageJson({
   };
 }
 
-type Version = [number, number, number];
+export type Version = [number, number, number];
 
-function createVersion(versionStr: string) {
+export function createVersion(versionStr: string) {
   const t = versionStr.split(".").map(Number);
   if (t.length !== 3 || t.some(isNaN)) {
     throw new Error(`Unexpected version format: "${versionStr}"`);
