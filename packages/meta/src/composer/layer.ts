@@ -56,7 +56,7 @@ export interface LayerFiles {
   [filename: string]: string;
 }
 
-export type CodeTransformer = (filename: string, code: string) => string;
+export type CodeTransformer = (filepath: string, code: string) => string;
 
 export interface FormDefaultsConfig<T extends Theme> {
   theme?: T;

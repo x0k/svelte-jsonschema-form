@@ -89,14 +89,14 @@ export function createSchemaTransformer({
   additionalImports,
   createSchemaCode,
 }: SchemaTransformerOptions): SchemaTransformer {
-  return (filename, content) => {
+  return (filepath, content) => {
     if (
-      !filename.endsWith(".svelte") ||
+      !filepath.endsWith(".svelte") ||
       !/(const\s+schema\s*?=\s*?{|)/gm.test(content)
     ) {
       return content;
     }
-    const ast = parse(content, { filename, modern: true });
+    const ast = parse(content, { filename: filepath, modern: true });
 
     const state = {
       isSchemaTransformed: false,
