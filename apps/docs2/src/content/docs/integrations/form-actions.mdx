@@ -3,13 +3,14 @@ title: Form actions
 type: package
 packageCodeName: "sveltekit"
 sidebar:
-  order: 0
+  order: 100
 ---
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
 import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id-builders/legacy';
 import { sveltekitPackage } from 'meta';
 
+import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Deps from '@/components/peer-dependencies.astro';
 
@@ -26,7 +27,7 @@ even if the user has `JavaScript` disabled.
 
 ## Installation
 
-<Npm pkg={sveltekitPackage} />
+<Npm pkg={getPackageDependencies(sveltekitPackage)} />
 
 <Deps pkg={sveltekitPackage} />
 

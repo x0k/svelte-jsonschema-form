@@ -92,9 +92,8 @@ npx sv add @sjsf
 ## Integrations
 
 - [Generic backend](https://x0k.dev/svelte-jsonschema-form/integrations/generic-backend/)
-- SvelteKit
-  - [Form actions](https://x0k.dev/svelte-jsonschema-form/integrations/sveltekit/form-actions/)
-  - [Remote functions](https://x0k.dev/svelte-jsonschema-form/integrations/sveltekit/remote-functions/) (experimental)
+- [Form actions](https://x0k.dev/svelte-jsonschema-form/integrations/form-actions/)
+- [Remote functions](https://x0k.dev/svelte-jsonschema-form/integrations/remote-functions/) (experimental)
 
 ## License
 

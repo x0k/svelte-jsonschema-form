@@ -19,8 +19,8 @@
     value: string;
   }
 
-  const resolve = createTask({
-    execute: (_signal, { reject: isError, delay, value }: Config) =>
+  const resolve = createTask<[Config], string>({
+    execute: (_signal, { reject: isError, delay, value }) =>
       new Promise<string>((resolve, reject) => {
         data = undefined;
         setTimeout(() => {
@@ -31,7 +31,7 @@
           }
         }, delay);
       }),
-    onSuccess(response: string) {
+    onSuccess(response) {
       data = response;
     },
     onFailure: console.error,

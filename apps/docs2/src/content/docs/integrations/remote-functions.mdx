@@ -3,7 +3,7 @@ title: Remote functions
 type: package
 packageCodeName: "sveltekit"
 sidebar:
-  order: 1
+  order: 200
   badge:
     text: exp
     variant: caution
@@ -12,6 +12,7 @@ sidebar:
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
 import { sveltekitPackage } from 'meta';
 
+import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Deps from '@/components/peer-dependencies.astro';
 
@@ -28,13 +29,12 @@ Remote functions integration is experimental
 
 ## Installation
 
-<Npm pkg={sveltekitPackage} />
+<Npm pkg={getPackageDependencies(sveltekitPackage)} />
 {/* // Cause `hydratable` API
 // https://github.com/sveltejs/svelte/pull/17154
 svelte: "^5.44.0"
 sveltekit: 2.61.0
 */}
-
 <Deps pkg={sveltekitPackage} />
 
 ## Example
@@ -44,6 +44,8 @@ sveltekit: 2.61.0
 For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
 
 :::
+
+{/* TODO: Fix `$lib/remote-form-defaults` */}
 
 <Tabs>
   <TabItem label='+page.svelte' >
