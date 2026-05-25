@@ -4,7 +4,8 @@ import type { FormValue, Schema, SchemaValue, UiSchema } from "@sjsf/form";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { DragDropManager, Draggable, Droppable, Feedback } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
-import type { Sample } from "$apps/playground2/src/core/sample.js";
+import type { FormPreset } from "meta/playground";
+import { isSchemaValidator } from "meta";
 
 import {
   createNode,
@@ -423,13 +424,13 @@ export class BuilderContext {
     });
   }
 
-  createPlaygroundSample(): Readonly<Sample> {
+  createPlaygroundSample(): Readonly<FormPreset> {
     return {
       schema: this.schema,
       uiSchema: this.uiSchema ?? {},
       initialValue: null,
-      validator: this.validator,
-      theme: this.theme === ActualTheme.Daisy5 ? "daisy5" : this.theme,
+      validator: isSchemaValidator(this.validator) ? "ajv8" : this.validator,
+      theme: this.theme,
       resolver: this.resolver,
       icons: this.icons,
       html5Validation: this.html5Validation
