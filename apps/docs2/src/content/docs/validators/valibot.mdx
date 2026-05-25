@@ -7,13 +7,18 @@ sidebar:
 ---
 
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { externalValidatorPackage } from "meta";
 
+import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
+import Deps from '@/components/peer-dependencies.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './valibot/form.svelte';
 import formCode from './valibot/form.svelte?raw';
 import sharedCode from './shared/index.ts?raw';
+
+export const pkg = externalValidatorPackage('valibot')
 
 You may want to use Valibot validator because:
 
@@ -29,7 +34,9 @@ See the [supported features](https://github.com/fabian-hiller/valibot/blob/main/
 
 ## Installation
 
-<Npm pkg="@sjsf/valibot-validator @valibot/to-json-schema valibot" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Example
 

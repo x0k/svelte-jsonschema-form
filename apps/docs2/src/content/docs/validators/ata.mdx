@@ -10,8 +10,11 @@ sidebar:
 ---
 
 import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { externalValidatorPackage } from "meta";
 
+import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
+import Deps from '@/components/peer-dependencies.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './ata/form.svelte';
@@ -24,12 +27,16 @@ import precompiledFormCode from './ata/precompile/form.svelte?raw'
 import compileSchemaCode from './ata/precompile/compile-schema-script?raw'
 import precompiledSchemaCode from './ata/precompile/patched-schema?raw'
 
+export const pkg = externalValidatorPackage('ata')
+
 Form validator implementation based on [ata-validator](https://github.com/ata-core/ata-validator)
 JSON schema validator.
 
 ## Installation
 
-<Npm pkg="@sjsf-lab/ata-validator ata-validator" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Example
 

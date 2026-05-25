@@ -7,8 +7,11 @@ sidebar:
 ---
 
 import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { externalValidatorPackage } from "meta";
 
+import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
+import Deps from '@/components/peer-dependencies.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './ajv/form.svelte';
@@ -21,12 +24,16 @@ import precompiledFormCode from './ajv/precompile/form.svelte?raw'
 import compileSchemaCode from './ajv/precompile/compile-schema-script?raw'
 import precompiledSchemaCode from './ajv/precompile/patched-schema?raw'
 
+export const pkg = externalValidatorPackage('ajv8')
+
 Form validator implementation based on [Ajv@8](https://github.com/ajv-validator/ajv)
 JSON schema validator.
 
 ## Installation
 
-<Npm pkg="@sjsf/ajv8-validator ajv@8" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Example
 

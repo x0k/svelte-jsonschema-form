@@ -10,16 +10,20 @@ sidebar:
 ---
 
 import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { externalValidatorPackage } from "meta";
 
+import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
+import Deps from '@/components/peer-dependencies.astro';
 import FormCard from '@/components/form-card.astro';
-
 
 import inputSchemaCode from './shared/input-schema.json?raw';
 import PrecompiledForm from './hyperjump/form.svelte';
 import precompiledFormCode from './hyperjump/form.svelte?raw';
 import compileSchemaCode from './hyperjump/compile-schema-script?raw';
 import precompiledSchemaCode from './hyperjump/patched-schema?raw';
+
+export const pkg = externalValidatorPackage('hyperjump')
 
 Form validator implementation based on [@hyperjump/json-schema](https://github.com/hyperjump-io/json-schema).
 
@@ -33,7 +37,9 @@ with CSP
 
 ## Installation
 
-<Npm pkg="@sjsf-lab/hyperjump-validator @hyperjump/json-schema" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Schema precompilation
 

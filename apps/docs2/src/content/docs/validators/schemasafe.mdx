@@ -7,8 +7,11 @@ sidebar:
 ---
 
 import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { externalValidatorPackage } from "meta";
 
+import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
+import Deps from '@/components/peer-dependencies.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './schemasafe/form.svelte';
@@ -21,12 +24,16 @@ import precompiledFormCode from './schemasafe/precompile/form.svelte?raw'
 import compileSchemaCode from './schemasafe/precompile/compile-schema-script?raw'
 import precompiledSchemaCode from './schemasafe/precompile/patched-schema?raw'
 
+export const pkg = externalValidatorPackage('schemasafe')
+
 Form validator implementation based on [@exodus/schemasafe](https://github.com/ExodusMovement/schemasafe)
 a code-generating JSON Schema validator.
 
 ## Installation
 
-<Npm pkg="@sjsf/schemasafe-validator ajv@8" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Example
 
