@@ -2,7 +2,6 @@ import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 import type { UiOptions, UiSchema } from "@sjsf/form";
 
 import { constant } from "$lib/function.js";
-import { Resolver } from "$lib/sjsf/resolver.js";
 import {
   BOOLEAN_NODE_OPTIONS_SCHEMA,
   buildEnumValues,
@@ -27,6 +26,7 @@ import {
 } from "$lib/sjsf/theme.js";
 
 import type { BuilderDraggable } from "./context.svelte.js";
+import type { PlaygroundResolver } from "meta/playground";
 
 export interface NodeProps<T extends NodeType> {
   node: Extract<Node, AbstractNode<T>>;
@@ -182,14 +182,14 @@ export const RADIO_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOptions>
 };
 
 export const DEFAULT_COMPONENTS: Record<
-  Resolver,
+  PlaygroundResolver,
   {
     [T in WidgetNodeType]: (
       node: Extract<WidgetNode, AbstractNode<T>>
     ) => UiSchema["ui:components"];
   }
 > = {
-  [Resolver.Basic]: {
+  basic: {
     [NodeType.Enum]: (node) => {
       const items = buildEnumValues(node.valueType, node.items);
       const type = pickSchemaType(items.map(typeOfValue));
@@ -224,7 +224,7 @@ export const DEFAULT_COMPONENTS: Record<
       objectField: "aggregatedField"
     })
   },
-  [Resolver.Compat]: {
+  compat: {
     [NodeType.Enum]: constant(undefined),
     [NodeType.MultiEnum]: constant(undefined),
     [NodeType.String]: constant(undefined),

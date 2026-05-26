@@ -1,13 +1,12 @@
 <script lang="ts">
   import ExternalLink from "@lucide/svelte/icons/external-link";
-  import { playgroundIconSets, playgroundIconSetTitle } from "meta/playground";
+  import { playgroundIconSets, playgroundIconSetTitle, playgroundResolvers } from "meta/playground";
+  import { builderValidators, builderValidatorTitle } from 'meta/builder';
 
   import { Button } from "$lib/components/ui/button/index.js";
   import { CopyButton } from "$lib/components/copy-button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import { THEME_TITLES, THEMES } from "$lib/sjsf/theme.js";
-  import { RESOLVER_TITLES, RESOLVERS } from "$lib/sjsf/resolver.js";
-  import { VALIDATOR_TITLES, VALIDATORS } from "$lib/sjsf/validators.js";
   import Select from "$lib/components/select.svelte";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import { encodeJson } from "$lib/url.js";
@@ -39,8 +38,7 @@
       class="w-full"
       labelId="{uniqueId}-resolver"
       bind:value={ctx.resolver}
-      items={RESOLVERS}
-      labels={RESOLVER_TITLES}
+      items={playgroundResolvers()}
     />
   </div>
   <div class="flex flex-col gap-1.5">
@@ -49,8 +47,8 @@
       class="w-full"
       labelId="{uniqueId}-validator"
       bind:value={ctx.validator}
-      items={VALIDATORS}
-      labels={VALIDATOR_TITLES}
+      items={builderValidators()}
+      itemLabel={builderValidatorTitle}
     />
   </div>
   <div class="flex flex-col gap-1.5">
