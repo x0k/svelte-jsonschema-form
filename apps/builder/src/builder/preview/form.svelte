@@ -4,12 +4,13 @@
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { BitsConfig } from "bits-ui";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
+  import { PLAYGROUND_ICON_SET_STYLES } from "meta/playground";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
   import { THEME_STYLES, SJSF_THEMES, ActualTheme, LabTheme } from "$lib/sjsf/theme.js";
   import * as defaults from "$lib/form/defaults.js";
   import { SJSF_RESOLVERS } from "$lib/sjsf/resolver.js";
-  import { ICONS_STYLES, SJSF_ICONS } from "$lib/sjsf/icons.js";
+  import { SJSF_ICONS } from "$lib/sjsf/icons.js";
   import { SJSF_VALIDATORS } from "$lib/sjsf/validators.js";
 
   import { themeManager } from "../../theme.svelte.js";
@@ -92,7 +93,7 @@
 <div class="flex flex-col gap-2">
   <ShadowHost
     class="rounded-md border border-(--global-border)"
-    style={`${THEME_STYLES[ctx.theme]}\n${ICONS_STYLES[ctx.icons]}`}
+    style={`${THEME_STYLES[ctx.theme]}\n${PLAYGROUND_ICON_SET_STYLES[ctx.icons]}`}
   >
     <style>
       .wx-willow-theme,

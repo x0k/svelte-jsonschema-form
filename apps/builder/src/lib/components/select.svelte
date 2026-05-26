@@ -34,8 +34,8 @@
   </Select.Trigger>
   <Select.Content>
     {#each itemsArray as item (item)}
-      <Select.Item value={item} label={item}>
-        {lbl(value)}
+      <Select.Item value={item}>
+        {lbl(item)}
       </Select.Item>
     {/each}
   </Select.Content>

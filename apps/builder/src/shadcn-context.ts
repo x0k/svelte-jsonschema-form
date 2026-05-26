@@ -1,4 +1,5 @@
 import { setThemeContext } from "@sjsf/shadcn4-theme";
+import * as components from "@sjsf-lab/shadcn-extras-theme/ui";
 
 import { Button } from "$lib/components/ui/button/index.js";
 import { Checkbox } from "$lib/components/ui/checkbox/index.js";
@@ -40,6 +41,7 @@ import { RangeCalendar } from "$lib/components/ui/range-calendar/index.js";
 export function setShadcnContext() {
   setThemeContext({
     components: {
+      ...components,
       RangeCalendar,
       ButtonGroup,
       Field,

@@ -5,7 +5,7 @@ import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { DragDropManager, Draggable, Droppable, Feedback } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
 import type { FormPreset, PlaygroundIconSet } from "meta/playground";
-import { isSchemaValidator } from "meta";
+import { iconSetAtRules, isSchemaValidator, renderAtRule } from "meta";
 
 import {
   createNode,
@@ -324,7 +324,14 @@ export class BuilderContext {
     )
   );
   readonly appCss = $derived.by(() => {
-    const content = join(THEME_APP_CSS[this.theme], ICONS_APP_CSS[this.icons]);
+    const themeCss = THEME_APP_CSS[this.theme];
+    const content =
+      this.icons === "none"
+        ? themeCss
+        : join(
+            themeCss,
+            ...iconSetAtRules(this.icons, { nodeModulesPath: "../node_modules" }).map(renderAtRule)
+          );
     return (
       content && this.highlight("css", `/* Add these lines to the app.css file */\n${content}`)
     );

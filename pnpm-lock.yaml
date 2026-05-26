@@ -355,6 +355,9 @@ importers:
       '@sjsf-lab/beercss-theme':
         specifier: workspace:*
         version: link:../../lab/beercss-theme
+      '@sjsf-lab/shadcn-extras-theme':
+        specifier: workspace:*
+        version: link:../../lab/shadcn-extras-theme
       '@sjsf-lab/svar-theme':
         specifier: workspace:*
         version: link:../../lab/svar-theme
@@ -768,6 +771,9 @@ importers:
       '@sjsf-lab/beercss-theme':
         specifier: workspace:*
         version: link:../../lab/beercss-theme
+      '@sjsf-lab/shadcn-extras-theme':
+        specifier: workspace:*
+        version: link:../../lab/shadcn-extras-theme
       '@sjsf-lab/svar-theme':
         specifier: workspace:*
         version: link:../../lab/svar-theme

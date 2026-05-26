@@ -333,7 +333,14 @@ export const WIDGET_EXTRA_FIELD: Record<WidgetType, StripFieldSuffix<FieldType> 
   svarColorSelectWidget: undefined,
   svarDateRangePickerWidget: "aggregated",
   dateRangePickerWidget: "aggregated",
-  rangeSliderWidget: "aggregated"
+  rangeSliderWidget: "aggregated",
+  shadcnExtrasFileDropZoneWidget: undefined,
+  shadcnExtrasIPv4AddressInputWidget: undefined,
+  shadcnExtrasNLPDateInputWidget: undefined,
+  shadcnExtrasPasswordWidget: undefined,
+  shadcnExtrasPhoneInputWidget: undefined,
+  shadcnExtrasStarRatingWidget: undefined,
+  shadcnExtrasTagsInputWidget: "tags"
 };
 
 export const WIDGET_NAMES: Record<WidgetType, string> = {
@@ -365,7 +372,14 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
   svarColorPickerWidget: "Color picker",
   svarColorSelectWidget: "Color select",
   dateRangePickerWidget: "Date range picker",
-  rangeSliderWidget: "Range slider"
+  rangeSliderWidget: "Range slider",
+  shadcnExtrasFileDropZoneWidget: "Drop zone",
+  shadcnExtrasIPv4AddressInputWidget: "IP v4 address input",
+  shadcnExtrasNLPDateInputWidget: "NLP date input",
+  shadcnExtrasPasswordWidget: "Password input",
+  shadcnExtrasPhoneInputWidget: "Phone input",
+  shadcnExtrasStarRatingWidget: "Rating",
+  shadcnExtrasTagsInputWidget: "Tags"
 };
 
 const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<Theme>> = {
@@ -397,7 +411,14 @@ const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<Theme>> = {
   svarColorSelectWidget: true,
   svarDateRangePickerWidget: true,
   dateRangePickerWidget: new Set([LabTheme.Svar, ActualTheme.Flowbite3]),
-  rangeSliderWidget: false
+  rangeSliderWidget: false,
+  shadcnExtrasFileDropZoneWidget: true,
+  shadcnExtrasIPv4AddressInputWidget: false,
+  shadcnExtrasNLPDateInputWidget: false,
+  shadcnExtrasPasswordWidget: true,
+  shadcnExtrasPhoneInputWidget: true,
+  shadcnExtrasStarRatingWidget: false,
+  shadcnExtrasTagsInputWidget: true
 };
 
 export function getUseLabel(theme: Theme, widgetType: WidgetType): boolean {
@@ -433,5 +454,12 @@ export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
   svarColorSelectWidget: "color-select",
   aggregatedWidget: "virtual-widget-import",
   dateRangePickerWidget: "date-range-picker",
-  rangeSliderWidget: "range-slider"
+  rangeSliderWidget: "range-slider",
+  shadcnExtrasFileDropZoneWidget: "file-drop-zone",
+  shadcnExtrasIPv4AddressInputWidget: "ip-v4-address-input",
+  shadcnExtrasNLPDateInputWidget: "nlp-date-input",
+  shadcnExtrasPasswordWidget: "password",
+  shadcnExtrasPhoneInputWidget: "phone-input",
+  shadcnExtrasStarRatingWidget: "star-rating",
+  shadcnExtrasTagsInputWidget: "tags-input"
 };
