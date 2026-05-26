@@ -1,11 +1,5 @@
-import {
-  isThemeWithSubThemes,
-  themes,
-  themeSubThemes,
-  type SubTheme,
-  type Theme,
-  type ThemeOrSubTheme,
-} from "../themes.ts";
+import { playgroundThemes } from "../playground/index.ts";
+import type { SubTheme } from "../themes.ts";
 import type { Generated } from "../types.ts";
 import {
   externalValidatorPackage,
@@ -100,44 +94,27 @@ type ImportPromise<T> = Promise<{ default: T }>;
 export const INITIAL_FILE = "src/routes/+page.svelte";
 
 export const THEME_LAYERS: {
-  [T in ThemeOrSubTheme]: () => ImportPromise<
+  [T in ProjectTheme]: () => ImportPromise<
     Layer<T extends SubTheme ? "basic" : T>
   >[];
 } = {
   basic: () => [import("./layers/basic.ts")],
   pico: () => [import("./layers/pico.ts")],
-  daisyui: () => [
-    import("./layers/tailwind3.ts"),
-    import("./layers/daisyui.ts"),
-  ],
   daisyui5: () => [
     import("./layers/tailwind4.ts"),
     import("./layers/daisyui5.ts"),
-  ],
-  flowbite: () => [
-    import("./layers/tailwind3.ts"),
-    import("./layers/flowbite.ts"),
   ],
   flowbite3: () => [
     import("./layers/tailwind4.ts"),
     import("./layers/flowbite3.ts"),
   ],
-  skeleton3: () => [
-    import("./layers/tailwind4.ts"),
-    import("./layers/skeleton3.ts"),
-  ],
   skeleton4: () => [
     import("./layers/tailwind4.ts"),
     import("./layers/skeleton4.ts"),
   ],
-  shadcn: () => [import("./layers/tailwind3.ts"), import("./layers/shadcn.ts")],
   shadcn4: () => [
     import("./layers/tailwind4.ts"),
     import("./layers/shadcn4.ts"),
-  ],
-  "shadcn-extras": () => [
-    import("./layers/tailwind4.ts"),
-    import("./layers/shadcn-extras.ts"),
   ],
   svar: () => [import("./layers/svar.ts")],
   beercss: () => [import("./layers/beercss.ts")],
@@ -295,14 +272,7 @@ export const VALIDATOR_LAYERS = Object.fromEntries(
   projectValidatorPackages(),
 ) as Record<ProjectValidator, ImportPromise<Layer<any>>>;
 
-export function* projectThemes() {
-  for (const t of themes()) {
-    yield t;
-    if (isThemeWithSubThemes(t)) {
-      yield* themeSubThemes(t);
-    }
-  }
-}
+export const projectThemes = playgroundThemes;
 
 export type ProjectTheme = Generated<typeof projectThemes>;
 
