@@ -74,19 +74,6 @@ src/routes/              # Demo/playground app (not published)
 - **JSON chunking**: Form values are serialized to JSON, split into ~500KB chunks (`JSON_CHUNKS_KEY`), and sent as multiple FormData entries. Files use `FORM_DATA_FILE_PREFIX` placeholders in JSON; actual `File` objects are appended separately.
 - **`src/routes/`** is a demo app (not published).
 
-## Testing
-
-Three Vitest projects (configured in `vite.config.ts`), selected by file naming:
-
-| Project  | Environment                    | File pattern                       | What runs                     |
-| -------- | ------------------------------ | ---------------------------------- | ----------------------------- |
-| `client` | Browser (Playwright/Chromium)  | `*.svelte.test.ts`                 | Svelte component tests        |
-| `ssr`    | Node (with `$app/state` mocks) | `*.ssr.test.ts`                    | SSR rendering tests           |
-| `server` | Node                           | `*.test.ts` (excluding svelte/ssr) | Server logic, codecs, parsers |
-
-- SSR tests alias `$app/state` to `mocks/app-state.ts` (empty stubs for `page`, `navigating`, `updated`).
-- E2E tests via Playwright (`pnpm run test:integration`) — builds and previews the app on port 4173.
-
 ## Config Quirks
 
 - **`svelte-kit sync`** is required before `svelte-check` (handled by `check` script).
