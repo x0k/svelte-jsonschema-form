@@ -6,10 +6,15 @@ import {
   isThemeClientSideOnlyExtraWidget,
   type ExtraWidgetFileNames,
 } from "../src/widgets.ts";
+import type { AbstractPackage } from "../src/package.ts";
 import { extractComponentPropsIndex, resolveComponentName } from "./analyze.ts";
 
-async function extractExtraWidgets(extraWidgetsDir: string) {
+async function extractExtraWidgets(
+  extraWidgetsDir: string,
+  themeOptionalDeps: AbstractPackage[],
+) {
   const widgets: Record<string, string> = {};
+  const widgetOptionalDeps: Record<string, string[]> = {};
   for (const e of await fs.readdir(extraWidgetsDir, { withFileTypes: true })) {
     if (!e.isFile() || !e.name.endsWith(".svelte")) {
       continue;
@@ -25,16 +30,32 @@ async function extractExtraWidgets(extraWidgetsDir: string) {
         `Failed to detect component name for "${widgetFilepath}"`,
       );
     }
-    widgets[path.basename(e.name, ".svelte")] = name;
+    const widgetFileName = path.basename(e.name, ".svelte");
+    widgets[widgetFileName] = name;
+    const optionalDeps: string[] = [];
+    for (const d of themeOptionalDeps) {
+      if (!content.includes(d.name)) {
+        continue;
+      }
+      optionalDeps.push(d.name);
+    }
+    if (optionalDeps.length > 0) {
+      widgetOptionalDeps[widgetFileName] = optionalDeps;
+    }
   }
-  return widgets;
+  return { widgets, widgetOptionalDeps };
+}
+
+interface LibMeta {
+  widgets: Record<string, string>;
+  optionalDeps: Record<string, string[]>;
 }
 
 async function main() {
   const packagesDir = path.join(import.meta.dirname, "../..");
   const labDir = path.join(import.meta.dirname, "../../../lab");
   const legacyDir = path.join(import.meta.dirname, "../../../legacy");
-  const libs: Record<string, Record<string, string>> = {};
+  const libs: Record<string, LibMeta> = {};
   const THEME_SUFFIX = "-theme";
 
   for (const e of (
@@ -48,6 +69,9 @@ async function main() {
       continue;
     }
     const theme = e.name.slice(0, -THEME_SUFFIX.length);
+    if (!isTheme(theme)) {
+      throw new Error(`Unknown theme: "${theme}"`);
+    }
     const packagePath = (...paths: string[]) =>
       path.join(e.parentPath, e.name, ...paths);
     const packageJsonPath = packagePath("package.json");
@@ -72,7 +96,22 @@ async function main() {
       svelteConfig.default.kit?.files?.lib ?? "src/lib",
       exportPath.slice(DIST_PREFIX.length, -STAR_SUFFIX.length),
     );
-    libs[theme] = await extractExtraWidgets(extraWidgetsPath);
+    const { widgets, widgetOptionalDeps } = await extractExtraWidgets(
+      extraWidgetsPath,
+      themePackage(theme).dependencies.filter((d) => d.optional),
+    );
+    const optionalDeps: Record<string, string[]> = {};
+    for (const [widget, deps] of Object.entries(widgetOptionalDeps)) {
+      for (const d of deps) {
+        let widgets = optionalDeps[d];
+        if (widgets === undefined) {
+          widgets = [];
+          optionalDeps[d] = widgets;
+        }
+        widgets.push(widget);
+      }
+    }
+    libs[theme] = { widgets, optionalDeps };
   }
   const widgetsOutPath = path.join(
     import.meta.dirname,
@@ -91,7 +130,7 @@ import { fields } from "./fields.generated.ts";
 import "./fields.generated.ts";
 
 ${Object.entries(libs)
-  .map(([theme, widgets]) => {
+  .map(([theme, { widgets }]) => {
     if (!isTheme(theme)) {
       throw new Error(
         `Unknown theme "${theme}", expected: "${Array.from(themes()).join('" | "')}"`,

@@ -12,22 +12,19 @@ import {
   formTranslationSubPath,
   iconSetPackage,
   isSchemaValidator,
+  themeExtraWidgetOptionalDependencies,
   themePackage,
+  toTheme,
   zod4ValidatorVersionSubPath,
-  type SchemaValidator
+  type ExtraWidgetFileNames,
+  type SchemaValidator,
+  type Theme,
+  type ToTheme
 } from "meta";
-import type { PlaygroundIconSet, PlaygroundResolver } from "meta/playground";
+import type { PlaygroundIconSet, PlaygroundResolver, PlaygroundTheme } from "meta/playground";
 import type { BuilderValidator } from "meta/builder";
 
-import {
-  ActualTheme,
-  LabTheme,
-  packageFromTheme,
-  type Theme,
-  THEME_OPTIONAL_DEPS,
-  THEME_PEER_DEPS,
-  type WidgetType
-} from "$lib/sjsf/theme.js";
+import type { WidgetType } from "$lib/sjsf/theme.js";
 
 import {
   isBaseWidget,
@@ -41,7 +38,7 @@ import {
 export interface FormDefaultsOptions {
   widgets: Set<WidgetType>;
   resolver: PlaygroundResolver;
-  theme: Theme;
+  theme: PlaygroundTheme;
   icons: PlaygroundIconSet;
   validator: BuilderValidator;
   fileFieldMode: FileFieldMode;
@@ -86,6 +83,8 @@ export function buildFormDefaults({
   const iconsExport =
     icons === "none" ? false : `export { icons } from "${iconSetPackage(icons).name}";`;
 
+  const themePkg = themePackage(toTheme(theme));
+
   return join2(
     join(
       `export { resolver } from "${formResolverSubPath(resolver)}";`,
@@ -94,10 +93,9 @@ export function buildFormDefaults({
       )
     ),
     join(
-      `export { theme } from "${packageFromTheme(theme)}";`,
+      `export { theme } from "${themePkg.name}";`,
       ...extraWidgetTypes.map(
-        (w) =>
-          `import "${packageFromTheme(theme)}/extra-widgets/${EXTRA_WIDGET_IMPORTS[w]}-include";`
+        (w) => `import "${themePkg.name}/extra-widgets/${EXTRA_WIDGET_IMPORTS[w]}-include";`
       )
     ),
     iconsExport,
@@ -110,7 +108,7 @@ export function buildFormDefaults({
 }
 
 export interface FormDotSvelteOptions {
-  theme: Theme;
+  theme: PlaygroundTheme;
   schema: Schema;
   validator: BuilderValidator;
   uiSchema: UiSchema | undefined;
@@ -161,8 +159,8 @@ export function buildFormDotSvelte({
   html5Validation,
   validator
 }: FormDotSvelteOptions): string {
-  const isShadcn = theme === ActualTheme.Shadcn4;
-  const isSvar = theme === LabTheme.Svar;
+  const isShadcn = theme === "shadcn4";
+  const isSvar = theme === "svar";
   const validatorAdapter = isSchemaValidator(validator) ? VALIDATOR_ADAPTERS[validator] : false;
   const code = join(
     `<script lang="ts">
@@ -198,45 +196,39 @@ export function buildFormDotSvelte({
     : code;
 }
 
-export interface InstallShOptions {
-  theme: Theme;
+export interface InstallShOptions<T extends PlaygroundTheme> {
+  theme: T;
   validator: BuilderValidator;
   icons: PlaygroundIconSet;
-  widgets: Set<WidgetType>;
+  widgets: Set<ExtraWidgetFileNames[ToTheme<T>]>;
 }
 
-export function buildInstallSh({ theme, validator, icons, widgets }: InstallShOptions) {
+function* themeOptionalDeps<T extends Theme>(theme: T, widgets: Iterable<ExtraWidgetFileNames[T]>) {
+  for (const w of widgets) {
+    yield* themeExtraWidgetOptionalDependencies(theme, w);
+  }
+}
+
+export function buildInstallSh<T extends PlaygroundTheme>({
+  theme,
+  validator,
+  icons,
+  widgets
+}: InstallShOptions<T>) {
+  const t = toTheme(theme);
+  const themePkg = themePackage(t);
   const deps = [
-    Array.from(filterPackageDependencies(externalValidatorPackage(validator).dependencies, false))
-      .map((d) => d.name)
-      .join(" "),
-    THEME_PEER_DEPS[theme]
+    ...filterPackageDependencies(externalValidatorPackage(validator).dependencies, false),
+    ...filterPackageDependencies(themePkg.dependencies, Array.from(themeOptionalDeps(t, widgets)))
   ];
 
-  let cmd = `npm i ${formPackage.name} ${packageFromTheme(theme)} ${externalValidatorPackage(validator).name}`;
+  let cmd = `npm i ${formPackage.name} ${themePkg.name} ${externalValidatorPackage(validator).name}`;
   if (icons !== "none") {
     const pkg = iconSetPackage(icons);
     cmd += ` ${pkg.name}`;
-    deps.push(
-      Array.from(filterPackageDependencies(pkg.dependencies, false))
-        .map((d) => d.name)
-        .join(" ")
-    );
+    deps.push(...filterPackageDependencies(pkg.dependencies, false));
   }
-  const optional = Object.entries(THEME_OPTIONAL_DEPS[theme])
-    .filter(([_, libWidgets]) => {
-      for (const w of libWidgets) {
-        if (widgets.has(w)) {
-          return true;
-        }
-      }
-      return false;
-    })
-    .map(([lib]) => lib);
-  if (optional.length > 0) {
-    cmd += ` ${optional.join(" ")}`;
-  }
-  const peerSet = new Set(deps.filter(Boolean).flatMap((s) => s.split(" ")));
+  const peerSet = new Set(deps.map((d) => d.name));
   peerSet.delete("svelte");
   peerSet.delete(formPackage.name);
   const peer = Array.from(peerSet);

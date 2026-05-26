@@ -5,7 +5,7 @@ import { themePackage, type Theme } from "./themes.ts";
 type ExtraWidgets = typeof EXTRA_WIDGETS;
 
 export type ExtraWidgetFileNames = {
-  [T in Theme]: keyof ExtraWidgets[T] & string;
+  [T in Theme]: keyof ExtraWidgets[T]["widgets"] & string;
 };
 
 export function themeExtraWidgets<T extends Theme>(
@@ -33,4 +33,19 @@ export function isThemeClientSideOnlyExtraWidget<T extends Theme>(
   widget: ExtraWidgetFileNames[T],
 ) {
   return CLIENT_SIDE_ONLY_EXTRA_WIDGETS[theme]?.includes(widget);
+}
+
+export function* themeExtraWidgetOptionalDependencies<T extends Theme>(
+  theme: T,
+  widget: ExtraWidgetFileNames[T],
+) {
+  const deps = EXTRA_WIDGETS[theme].optionalDeps;
+  for (const [lib, widgets] of Object.entries(deps)) {
+    for (const w of widgets) {
+      if (w === widget) {
+        yield lib;
+        break;
+      }
+    }
+  }
 }

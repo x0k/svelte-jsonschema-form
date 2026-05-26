@@ -105,13 +105,25 @@ for (const [parentTheme, subThemes] of Object.entries(THEME_SUB_THEMES)) {
   }
 }
 
+type ThemeSubThemes = typeof THEME_SUB_THEMES;
+
 export type SubTheme = (typeof SUB_THEMES)[number];
 
-export type ThemeWithSubThemes = keyof typeof THEME_SUB_THEMES;
+export type ThemeWithSubThemes = keyof ThemeSubThemes;
 
 export type ThemeOrSubTheme = Theme | SubTheme;
 
 export type NonLegacyThemeOrSubTheme = Exclude<ThemeOrSubTheme, LegacyTheme>;
+
+export type ParentTheme<S extends SubTheme> = keyof {
+  [T in ThemeWithSubThemes as S extends ThemeSubThemes[T][number]
+    ? T
+    : never]: true;
+};
+
+export type ToTheme<T extends ThemeOrSubTheme> = T extends SubTheme
+  ? ParentTheme<T>
+  : T;
 
 const THEME_OR_SUB_THEME_TITLES: Record<ThemeOrSubTheme, string> = {
   basic: "Basic",
@@ -265,8 +277,12 @@ export function themeSubThemes(theme: ThemeWithSubThemes): Iterable<SubTheme> {
   return THEME_SUB_THEMES[theme];
 }
 
-export function themeParent(theme: SubTheme): Theme {
-  return SUB_THEME_PARENTS.get(theme)!;
+export function themeParent<S extends SubTheme>(theme: S): ParentTheme<S> {
+  return SUB_THEME_PARENTS.get(theme)! as ParentTheme<S>;
+}
+
+export function toTheme<T extends ThemeOrSubTheme>(theme: T) {
+  return (isSubTheme(theme) ? themeParent(theme) : theme) as ToTheme<T>;
 }
 
 export function themeOrSubThemeTitle(theme: ThemeOrSubTheme): string {

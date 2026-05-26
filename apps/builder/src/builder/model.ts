@@ -17,16 +17,10 @@ import {
   type WidgetNode,
   type WidgetNodeType
 } from "$lib/builder/index.js";
-import {
-  ActualTheme,
-  LabTheme,
-  type Theme,
-  type FieldType,
-  type WidgetType
-} from "$lib/sjsf/theme.js";
+import type { FieldType, WidgetType } from "$lib/sjsf/theme.js";
 
 import type { BuilderDraggable } from "./context.svelte.js";
-import type { PlaygroundResolver } from "meta/playground";
+import type { PlaygroundResolver, PlaygroundTheme } from "meta/playground";
 
 export interface NodeProps<T extends NodeType> {
   node: Extract<Node, AbstractNode<T>>;
@@ -61,21 +55,22 @@ function basicTextOptions(params: TextWidgetParams): UiOptions {
   return { text: { ...params } };
 }
 
-export const TEXT_WIDGET_OPTIONS: Record<Theme, (params: TextWidgetParams) => UiOptions> = {
-  [ActualTheme.Basic]: basicTextOptions,
-  [ActualTheme.Pico]: basicTextOptions,
-  [ActualTheme.Daisy5]: basicTextOptions,
-  [ActualTheme.Flowbite3]: (params) => ({ flowbite3Text: { ...params } }),
-  [ActualTheme.Skeleton4]: basicTextOptions,
-  [ActualTheme.Shadcn4]: (params) => ({ shadcn4Text: { ...params } }),
-  [LabTheme.Svar]: (params) => ({
-    svarText: { placeholder: params.placeholder, type: params.type as any }
-  }),
-  [LabTheme.BeerCSS]: basicTextOptions
-};
+export const TEXT_WIDGET_OPTIONS: Record<PlaygroundTheme, (params: TextWidgetParams) => UiOptions> =
+  {
+    basic: basicTextOptions,
+    pico: basicTextOptions,
+    daisyui5: basicTextOptions,
+    flowbite3: (params) => ({ flowbite3Text: { ...params } }),
+    skeleton4: basicTextOptions,
+    shadcn4: (params) => ({ shadcn4Text: { ...params } }),
+    svar: (params) => ({
+      svarText: { placeholder: params.placeholder, type: params.type as any }
+    }),
+    beercss: basicTextOptions
+  };
 
-export const CHECKBOXES_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOptions> = {
-  [ActualTheme.Basic]: (inline) =>
+export const CHECKBOXES_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean) => UiOptions> = {
+  basic: (inline) =>
     inline
       ? {}
       : {
@@ -85,7 +80,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOpt
             }
           }
         },
-  [ActualTheme.Pico]: (inline) =>
+  pico: (inline) =>
     inline
       ? {}
       : {
@@ -95,7 +90,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOpt
             }
           }
         },
-  [ActualTheme.Daisy5]: (inline) =>
+  daisyui5: (inline) =>
     inline
       ? {
           layouts: {
@@ -105,7 +100,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOpt
           }
         }
       : {},
-  [ActualTheme.Flowbite3]: (inline) =>
+  flowbite3: (inline) =>
     inline
       ? {}
       : {
@@ -115,7 +110,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOpt
             }
           }
         },
-  [ActualTheme.Skeleton4]: (inline) =>
+  skeleton4: (inline) =>
     inline
       ? {}
       : {
@@ -125,7 +120,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOpt
             }
           }
         },
-  [ActualTheme.Shadcn4]: (inline) =>
+  shadcn4: (inline) =>
     inline
       ? {
           layouts: {
@@ -135,7 +130,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOpt
           }
         }
       : {},
-  [LabTheme.Svar]: (inline) =>
+  svar: (inline) =>
     inline
       ? {
           svarCheckboxes: {
@@ -143,7 +138,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOpt
           }
         }
       : {},
-  [LabTheme.BeerCSS]: (inline) =>
+  beercss: (inline) =>
     inline
       ? {}
       : {
@@ -153,9 +148,9 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOpt
         }
 };
 
-export const RADIO_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOptions> = {
+export const RADIO_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean) => UiOptions> = {
   ...CHECKBOXES_WIDGET_OPTIONS,
-  [ActualTheme.Shadcn4]: (inline) =>
+  shadcn4: (inline) =>
     inline
       ? {
           shadcn4RadioGroup: {
@@ -163,7 +158,7 @@ export const RADIO_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOptions>
           }
         }
       : {},
-  [LabTheme.Svar]: (inline) =>
+  svar: (inline) =>
     inline
       ? {
           svarRadio: {
@@ -171,7 +166,7 @@ export const RADIO_WIDGET_OPTIONS: Record<Theme, (inline: boolean) => UiOptions>
           }
         }
       : {},
-  [LabTheme.BeerCSS]: (inline) =>
+  beercss: (inline) =>
     inline
       ? {}
       : {
@@ -382,7 +377,7 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
   shadcnExtrasTagsInputWidget: "Tags"
 };
 
-const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<Theme>> = {
+const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<PlaygroundTheme>> = {
   textWidget: true,
   numberWidget: true,
   selectWidget: true,
@@ -410,7 +405,7 @@ const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<Theme>> = {
   svarColorPickerWidget: true,
   svarColorSelectWidget: true,
   svarDateRangePickerWidget: true,
-  dateRangePickerWidget: new Set([LabTheme.Svar, ActualTheme.Flowbite3]),
+  dateRangePickerWidget: new Set(["svar", "flowbite3"]),
   rangeSliderWidget: false,
   shadcnExtrasFileDropZoneWidget: true,
   shadcnExtrasIPv4AddressInputWidget: false,
@@ -421,7 +416,7 @@ const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<Theme>> = {
   shadcnExtrasTagsInputWidget: true
 };
 
-export function getUseLabel(theme: Theme, widgetType: WidgetType): boolean {
+export function getUseLabel(theme: PlaygroundTheme, widgetType: WidgetType): boolean {
   const useLabel = WIDGET_USE_LABEL[widgetType];
   if (typeof useLabel === "boolean") {
     return useLabel;

@@ -198,7 +198,8 @@ function createMetaExtractor(peerDependenciesMeta: PeerDependenciesMeta) {
   return (name: string) => Boolean(peerDependenciesMeta[name]?.optional);
 }
 
-export type IncludeOptional = boolean | Iterable<string>;
+// `true` filter is redundant
+export type IncludeOptional = false | Iterable<string>;
 
 export function* filterPackageDependencies(
   dependencies: Iterable<PackageDependency>,

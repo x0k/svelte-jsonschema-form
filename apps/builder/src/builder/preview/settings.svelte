@@ -1,12 +1,17 @@
 <script lang="ts">
   import ExternalLink from "@lucide/svelte/icons/external-link";
-  import { playgroundIconSets, playgroundIconSetTitle, playgroundResolvers } from "meta/playground";
-  import { builderValidators, builderValidatorTitle } from 'meta/builder';
+  import { themeOrSubThemeTitle } from "meta";
+  import {
+    playgroundIconSets,
+    playgroundIconSetTitle,
+    playgroundResolvers,
+    playgroundThemes
+  } from "meta/playground";
+  import { builderValidators, builderValidatorTitle } from "meta/builder";
 
   import { Button } from "$lib/components/ui/button/index.js";
   import { CopyButton } from "$lib/components/copy-button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
-  import { THEME_TITLES, THEMES } from "$lib/sjsf/theme.js";
   import Select from "$lib/components/select.svelte";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import { encodeJson } from "$lib/url.js";
@@ -28,8 +33,8 @@
       class="w-full"
       labelId="{uniqueId}-theme"
       bind:value={ctx.theme}
-      items={THEMES}
-      labels={THEME_TITLES}
+      items={playgroundThemes()}
+      itemLabel={themeOrSubThemeTitle}
     />
   </div>
   <div class="flex flex-col gap-1.5">

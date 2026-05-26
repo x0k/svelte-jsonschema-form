@@ -7,12 +7,14 @@
   import {
     PLAYGROUND_ICON_SET_STYLES,
     PLAYGROUND_ICON_SETS,
-    PLAYGROUND_RESOLVERS
+    PLAYGROUND_RESOLVERS,
+    PLAYGROUND_SJSF_THEME_STYLES,
+    PLAYGROUND_SJSF_THEMES,
+    type PlaygroundTheme
   } from "meta/playground";
   import { BUILDER_VALIDATORS } from "meta/builder";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
-  import { THEME_STYLES, SJSF_THEMES, ActualTheme, LabTheme } from "$lib/sjsf/theme.js";
   import * as defaults from "$lib/form/defaults.js";
 
   import { themeManager } from "../../theme.svelte.js";
@@ -50,7 +52,7 @@
       return ctx.uiSchema;
     },
     get theme() {
-      return SJSF_THEMES[ctx.theme];
+      return PLAYGROUND_SJSF_THEMES[ctx.theme];
     },
     get resolver() {
       return PLAYGROUND_RESOLVERS[ctx.resolver];
@@ -86,7 +88,7 @@
   }
 
   const SvarProvider = $derived(
-    ctx.theme === LabTheme.Svar ? (themeManager.isDark ? WillowDark : Willow) : Noop
+    ctx.theme === "svar" ? (themeManager.isDark ? WillowDark : Willow) : Noop
   );
 
   const formValue = $derived(getValueSnapshot(form));
@@ -95,7 +97,7 @@
 <div class="flex flex-col gap-2">
   <ShadowHost
     class="rounded-md border border-(--global-border)"
-    style={`${THEME_STYLES[ctx.theme]}\n${PLAYGROUND_ICON_SET_STYLES[ctx.icons]}`}
+    style={`${PLAYGROUND_SJSF_THEME_STYLES[ctx.theme]}\n${PLAYGROUND_ICON_SET_STYLES[ctx.icons]}`}
   >
     <style>
       .wx-willow-theme,
@@ -113,7 +115,7 @@
             novalidate={!ctx.html5Validation}
             class={themeManager.darkOrLight}
             style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
-            data-theme={ctx.theme.startsWith(ActualTheme.Skeleton4)
+            data-theme={ctx.theme.startsWith("skeleton4" satisfies PlaygroundTheme)
               ? "cerberus"
               : themeManager.darkOrLight}
           />
