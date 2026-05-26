@@ -32,7 +32,7 @@
     <Select.Group>
       <Select.Label>{label}</Select.Label>
       {#each itemsArray as item (item)}
-        <Select.Item value={item} label={item}>
+        <Select.Item value={item}>
           {lbl(item)}
         </Select.Item>
       {/each}
