@@ -4,7 +4,7 @@ import type { FormValue, Schema, SchemaValue, UiSchema } from "@sjsf/form";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { DragDropManager, Draggable, Droppable, Feedback } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
-import type { FormPreset } from "meta/playground";
+import type { FormPreset, PlaygroundIconSet } from "meta/playground";
 import { isSchemaValidator } from "meta";
 
 import {
@@ -34,7 +34,6 @@ import {
 import { ActualTheme, mergeUiSchemas, type Theme, type WidgetType } from "$lib/sjsf/theme.js";
 import { Validator } from "$lib/sjsf/validators.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
-import { Icons, ICONS_APP_CSS } from "$lib/sjsf/icons.js";
 import { highlight, type SupportedLanguage } from "$lib/shiki.js";
 import { mergeSchemas } from "$lib/json-schema.js";
 import { addBuilderFormats } from "$lib/ajv.js";
@@ -99,7 +98,7 @@ export interface BuilderState1 {
   rootNode?: CustomizableNode;
   theme: Theme;
   resolver: Resolver;
-  icons: Icons;
+  icons: PlaygroundIconSet;
   validator: Validator;
   ignoreWarnings: boolean;
   html5Validation: boolean;
@@ -165,7 +164,7 @@ export class BuilderContext {
 
   theme = $state.raw<Theme>(ActualTheme.Shadcn4);
   resolver = $state.raw(Resolver.Basic);
-  icons = $state.raw(Icons.None);
+  icons = $state.raw<PlaygroundIconSet>("none");
   validator = $state.raw(Validator.Ajv);
 
   readonly availableCustomizableNodeTypes = $derived(THEME_CUSTOMIZABLE_NODE_TYPES[this.theme]);

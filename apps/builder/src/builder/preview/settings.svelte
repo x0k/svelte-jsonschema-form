@@ -1,12 +1,12 @@
 <script lang="ts">
   import ExternalLink from "@lucide/svelte/icons/external-link";
+  import { playgroundIconSets, playgroundIconSetTitle } from "meta/playground";
 
   import { Button } from "$lib/components/ui/button/index.js";
   import { CopyButton } from "$lib/components/copy-button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import { THEME_TITLES, THEMES } from "$lib/sjsf/theme.js";
   import { RESOLVER_TITLES, RESOLVERS } from "$lib/sjsf/resolver.js";
-  import { ICONS, ICONS_TITLES } from "$lib/sjsf/icons.js";
   import { VALIDATOR_TITLES, VALIDATORS } from "$lib/sjsf/validators.js";
   import Select from "$lib/components/select.svelte";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
@@ -59,8 +59,8 @@
       class="w-full"
       labelId="{uniqueId}-icons"
       bind:value={ctx.icons}
-      items={ICONS}
-      labels={ICONS_TITLES}
+      items={playgroundIconSets()}
+      itemLabel={playgroundIconSetTitle}
     />
   </div>
   <div class="flex items-center gap-2">

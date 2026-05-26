@@ -6,22 +6,36 @@
   interface Props {
     labelId?: string;
     value: T;
-    items: T[];
+    items: Iterable<T>;
+    itemLabel?: (item: T) => string;
     labels?: Record<T, string>;
     class?: ClassValue;
   }
 
-  let { value = $bindable(), items, labelId, labels, class: className }: Props = $props();
+  let {
+    value = $bindable(),
+    items,
+    labelId,
+    labels,
+    itemLabel,
+    class: className
+  }: Props = $props();
+
+  const itemsArray = $derived(Array.isArray(items) ? items : Array.from(items));
+
+  function lbl(item: T) {
+    return itemLabel?.(item) ?? labels?.[item] ?? item;
+  }
 </script>
 
 <Select.Root type="single" bind:value>
   <Select.Trigger id={labelId} class={className}>
-    {labels?.[value] ?? value}
+    {lbl(value)}
   </Select.Trigger>
   <Select.Content>
-    {#each items as item (item)}
+    {#each itemsArray as item (item)}
       <Select.Item value={item} label={item}>
-        {labels?.[item] ?? item}
+        {lbl(value)}
       </Select.Item>
     {/each}
   </Select.Content>
