@@ -97,6 +97,10 @@
     "./composer": {
       "types": "./dist/composer/index.d.ts",
       "default": "./dist/composer/index.js"
+    },
+    "./builder": {
+      "types": "./dist/builder/index.d.ts",
+      "default": "./dist/builder/index.js"
     }
   }
 }
