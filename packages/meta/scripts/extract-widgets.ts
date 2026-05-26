@@ -1,13 +1,7 @@
 import path from "node:path";
 import fs from "node:fs/promises";
 
-import {
-  isLegacyTheme,
-  isTheme,
-  isThemeExtension,
-  themePackage,
-  themes,
-} from "../src/themes.ts";
+import { isLegacyTheme, isTheme, themePackage, themes } from "../src/themes.ts";
 import {
   isThemeClientSideOnlyExtraWidget,
   type ExtraWidgetFileNames,
@@ -103,32 +97,45 @@ ${Object.entries(libs)
         `Unknown theme "${theme}", expected: "${Array.from(themes()).join('" | "')}"`,
       );
     }
-    if (isLegacyTheme(theme) || isThemeExtension(theme)) {
+    if (isLegacyTheme(theme)) {
       return `// skip "${theme}" theme`;
     }
-    return `import { theme as ${theme}Base } from "${themePackage(theme).name}";
+    const themeEscaped = theme.replaceAll("-", "_");
+    const themePkgName = themePackage(theme).name;
+    const importedWidgets = new Set<string>();
+    const exportedWidgets = new Set<string>();
+    return `import { theme as ${themeEscaped}Base } from "${themePkgName}";
 ${Object.entries(widgets)
-  .map(([filename, widgetName]) =>
-    isThemeClientSideOnlyExtraWidget(
+  .map(([filename, widgetName]) => {
+    if (importedWidgets.has(widgetName)) {
+      return `// skip ${widgetName} (${filename})`;
+    }
+    importedWidgets.add(widgetName);
+    return isThemeClientSideOnlyExtraWidget(
       theme,
       filename as ExtraWidgetFileNames[typeof theme],
     )
-      ? `export type * as ${theme}_${widgetName} from "${themePackage(theme).name}/extra-widgets/${filename}.svelte";`
-      : `import ${theme}_${widgetName} from "${themePackage(theme).name}/extra-widgets/${filename}.svelte";
-import "${themePackage(theme).name}/extra-widgets/${filename}.svelte";`,
-  )
+      ? `export type * as ${themeEscaped}_${widgetName} from "${themePkgName}/extra-widgets/${filename}.svelte";`
+      : `import ${themeEscaped}_${widgetName} from "${themePkgName}/extra-widgets/${filename}.svelte";
+import "${themePkgName}/extra-widgets/${filename}.svelte";`;
+  })
   .join("\n")}
-export const ${theme}Theme = extendByRecord(${theme}Base, {
+export const ${themeEscaped}Theme = extendByRecord(${themeEscaped}Base, {
   ...fields,
   ${Object.entries(widgets)
-    .map(([filename, widgetName]) =>
-      isThemeClientSideOnlyExtraWidget(
+    .map(([filename, widgetName]) => {
+      const definition = isThemeClientSideOnlyExtraWidget(
         theme,
         filename as ExtraWidgetFileNames[typeof theme],
       )
-        ? `${widgetName}: clientOnly(() => import("${themePackage(theme).name}/extra-widgets/${filename}.svelte"))`
-        : `${widgetName}: ${theme}_${widgetName}`,
-    )
+        ? `${widgetName}: clientOnly(() => import("${themePkgName}/extra-widgets/${filename}.svelte"))`
+        : `${widgetName}: ${themeEscaped}_${widgetName}`;
+      if (exportedWidgets.has(widgetName)) {
+        return `// skip ${definition}`;
+      }
+      exportedWidgets.add(widgetName);
+      return definition;
+    })
     .join(",\n  ")}
 });`;
   })

@@ -8,5 +8,5 @@ export interface AtRuleOptions {
 }
 
 export function renderAtRule(rule: AtRule) {
-  return `${rule.name} "${rule.params}";`;
+  return `@${rule.name} "${rule.params}";`;
 }

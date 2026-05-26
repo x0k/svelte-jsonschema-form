@@ -231,7 +231,31 @@ export const beercssTheme = extendByRecord(beercssBase, {
   textareaWidget: beercss_textareaWidget
 });
 
-// skip "shadcn-extras" theme
+import { theme as shadcn_extrasBase } from "@sjsf-lab/shadcn-extras-theme";
+import shadcn_extras_shadcnExtrasFileDropZoneWidget from "@sjsf-lab/shadcn-extras-theme/extra-widgets/file-drop-zone.svelte";
+import "@sjsf-lab/shadcn-extras-theme/extra-widgets/file-drop-zone.svelte";
+import shadcn_extras_shadcnExtrasIPv4AddressInputWidget from "@sjsf-lab/shadcn-extras-theme/extra-widgets/ip-v4-address-input.svelte";
+import "@sjsf-lab/shadcn-extras-theme/extra-widgets/ip-v4-address-input.svelte";
+import shadcn_extras_shadcnExtrasNLPDateInputWidget from "@sjsf-lab/shadcn-extras-theme/extra-widgets/nlp-date-input.svelte";
+import "@sjsf-lab/shadcn-extras-theme/extra-widgets/nlp-date-input.svelte";
+import shadcn_extras_shadcnExtrasPasswordWidget from "@sjsf-lab/shadcn-extras-theme/extra-widgets/password.svelte";
+import "@sjsf-lab/shadcn-extras-theme/extra-widgets/password.svelte";
+import shadcn_extras_shadcnExtrasPhoneInputWidget from "@sjsf-lab/shadcn-extras-theme/extra-widgets/phone-input.svelte";
+import "@sjsf-lab/shadcn-extras-theme/extra-widgets/phone-input.svelte";
+import shadcn_extras_shadcnExtrasStarRatingWidget from "@sjsf-lab/shadcn-extras-theme/extra-widgets/star-rating.svelte";
+import "@sjsf-lab/shadcn-extras-theme/extra-widgets/star-rating.svelte";
+import shadcn_extras_shadcnExtrasTagsInputWidget from "@sjsf-lab/shadcn-extras-theme/extra-widgets/tags-input.svelte";
+import "@sjsf-lab/shadcn-extras-theme/extra-widgets/tags-input.svelte";
+export const shadcn_extrasTheme = extendByRecord(shadcn_extrasBase, {
+  ...fields,
+  shadcnExtrasFileDropZoneWidget: shadcn_extras_shadcnExtrasFileDropZoneWidget,
+  shadcnExtrasIPv4AddressInputWidget: shadcn_extras_shadcnExtrasIPv4AddressInputWidget,
+  shadcnExtrasNLPDateInputWidget: shadcn_extras_shadcnExtrasNLPDateInputWidget,
+  shadcnExtrasPasswordWidget: shadcn_extras_shadcnExtrasPasswordWidget,
+  shadcnExtrasPhoneInputWidget: shadcn_extras_shadcnExtrasPhoneInputWidget,
+  shadcnExtrasStarRatingWidget: shadcn_extras_shadcnExtrasStarRatingWidget,
+  shadcnExtrasTagsInputWidget: shadcn_extras_shadcnExtrasTagsInputWidget
+});
 
 import { theme as svarBase } from "@sjsf-lab/svar-theme";
 import svar_checkboxesWidget from "@sjsf-lab/svar-theme/extra-widgets/checkboxes.svelte";
