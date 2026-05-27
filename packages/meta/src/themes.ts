@@ -70,6 +70,13 @@ const THEME_EXTENSION_ORIGINS = {
 
 export type ThemeExtension = (typeof THEME_EXTENSION)[number];
 
+export type ThemeOrigin<T extends ThemeExtension> =
+  (typeof THEME_EXTENSION_ORIGINS)[T];
+
+export type WithOrigin<T extends Theme> = T extends ThemeExtension
+  ? T | ThemeOrigin<T>
+  : T;
+
 const TAILWINDCSS4_THEMES = [
   "daisyui5",
   "flowbite3",

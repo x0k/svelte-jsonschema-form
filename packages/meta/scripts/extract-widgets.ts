@@ -1,7 +1,13 @@
 import path from "node:path";
 import fs from "node:fs/promises";
 
-import { isLegacyTheme, isTheme, themePackage, themes } from "../src/themes.ts";
+import {
+  isLegacyTheme,
+  isTheme,
+  themePackage,
+  themes,
+  type Theme,
+} from "../src/themes.ts";
 import {
   isThemeClientSideOnlyExtraWidget,
   type ExtraWidgetFileNames,
@@ -9,7 +15,7 @@ import {
 import type { AbstractPackage } from "../src/package.ts";
 import { extractComponentPropsIndex, resolveComponentName } from "./analyze.ts";
 
-async function extractExtraWidgets(
+async function extractWidgetData(
   extraWidgetsDir: string,
   themeOptionalDeps: AbstractPackage[],
 ) {
@@ -43,11 +49,32 @@ async function extractExtraWidgets(
       widgetOptionalDeps[widgetFileName] = optionalDeps;
     }
   }
-  return { widgets, widgetOptionalDeps };
+  return [widgets, widgetOptionalDeps] as const;
+}
+
+const DIST_PREFIX = "./dist/";
+const STAR_SUFFIX = "/*";
+
+function getExportPath(pkg: any, exportName: "extra-widgets" | "widgets") {
+  return pkg.exports[`./${exportName}/*`]?.["svelte"];
+}
+
+function formatExportPath(theme: Theme, exportPath: string) {
+  if (
+    typeof exportPath !== "string" ||
+    !exportPath.startsWith(DIST_PREFIX) ||
+    !exportPath.endsWith(STAR_SUFFIX)
+  ) {
+    throw new Error(
+      `Unexpected extra widgets export path: "${exportPath}", expected string starting with '${DIST_PREFIX}' and ends with '${STAR_SUFFIX}' in "${theme}" theme`,
+    );
+  }
+  return exportPath.slice(DIST_PREFIX.length, -STAR_SUFFIX.length);
 }
 
 interface LibMeta {
   widgets: Record<string, string>;
+  extraWidgets: Record<string, string>;
   optionalDeps: Record<string, string[]>;
 }
 
@@ -78,30 +105,36 @@ async function main() {
     const packageJson = JSON.parse(
       await fs.readFile(packageJsonPath, { encoding: "utf-8" }),
     );
-    const exportPath = packageJson.exports["./extra-widgets/*"]["svelte"];
-    const DIST_PREFIX = "./dist/";
-    const STAR_SUFFIX = "/*";
-    if (
-      typeof exportPath !== "string" ||
-      !exportPath.startsWith(DIST_PREFIX) ||
-      !exportPath.endsWith(STAR_SUFFIX)
-    ) {
-      throw new Error(
-        `Unexpected extra widgets export path: "${exportPath}", expected string starting with '${DIST_PREFIX}' and ends with '${STAR_SUFFIX}' in "${theme}" theme`,
-      );
-    }
     const svelteConfigPath = packagePath("svelte.config.js");
     const svelteConfig = await import(svelteConfigPath);
-    const extraWidgetsPath = packagePath(
-      svelteConfig.default.kit?.files?.lib ?? "src/lib",
-      exportPath.slice(DIST_PREFIX.length, -STAR_SUFFIX.length),
+    const libDir = svelteConfig.default.kit?.files?.lib ?? "src/lib";
+    const themeOptionalDeps = themePackage(theme).dependencies.filter(
+      (d) => d.optional,
     );
-    const { widgets, widgetOptionalDeps } = await extractExtraWidgets(
-      extraWidgetsPath,
-      themePackage(theme).dependencies.filter((d) => d.optional),
-    );
+    const extract = (path: string) =>
+      extractWidgetData(
+        packagePath(libDir, formatExportPath(theme, path)),
+        themeOptionalDeps,
+      );
+
+    let widgets: Record<string, string> = {};
+    const widgetsExportPath = getExportPath(packageJson, "widgets");
+    if (widgetsExportPath) {
+      // Standard widgets should not contain optional dependencies
+      [widgets] = await extract(widgetsExportPath);
+    }
+
+    let extraWidgets: Record<string, string> = {};
+    let extraWidgetOptionalDeps: Record<string, string[]> = {};
+    const extraWidgetsExportPath = getExportPath(packageJson, "extra-widgets");
+    if (extraWidgetsExportPath) {
+      [extraWidgets, extraWidgetOptionalDeps] = await extract(
+        extraWidgetsExportPath,
+      );
+    }
+
     const optionalDeps: Record<string, string[]> = {};
-    for (const [widget, deps] of Object.entries(widgetOptionalDeps)) {
+    for (const [widget, deps] of Object.entries(extraWidgetOptionalDeps)) {
       for (const d of deps) {
         let widgets = optionalDeps[d];
         if (widgets === undefined) {
@@ -111,13 +144,13 @@ async function main() {
         widgets.push(widget);
       }
     }
-    libs[theme] = { widgets, optionalDeps };
+    libs[theme] = { widgets, extraWidgets, optionalDeps };
   }
   const widgetsOutPath = path.join(
     import.meta.dirname,
     "../src/widgets.generated.ts",
   );
-  const widgetsContent = `export const EXTRA_WIDGETS = ${JSON.stringify(libs, null, 2)} as const;`;
+  const widgetsContent = `export const WIDGETS = ${JSON.stringify(libs, null, 2)} as const;\n`;
   await fs.writeFile(widgetsOutPath, widgetsContent, "utf-8");
   const themesOutPath = path.join(
     import.meta.dirname,
@@ -130,7 +163,7 @@ import { fields } from "./fields.generated.ts";
 import "./fields.generated.ts";
 
 ${Object.entries(libs)
-  .map(([theme, { widgets }]) => {
+  .map(([theme, { extraWidgets }]) => {
     if (!isTheme(theme)) {
       throw new Error(
         `Unknown theme "${theme}", expected: "${Array.from(themes()).join('" | "')}"`,
@@ -144,7 +177,7 @@ ${Object.entries(libs)
     const importedWidgets = new Set<string>();
     const exportedWidgets = new Set<string>();
     return `import { theme as ${themeEscaped}Base } from "${themePkgName}";
-${Object.entries(widgets)
+${Object.entries(extraWidgets)
   .map(([filename, widgetName]) => {
     if (importedWidgets.has(widgetName)) {
       return `// skip ${widgetName} (${filename})`;
@@ -161,7 +194,7 @@ import "${themePkgName}/extra-widgets/${filename}.svelte";`;
   .join("\n")}
 export const ${themeEscaped}Theme = extendByRecord(${themeEscaped}Base, {
   ...fields,
-  ${Object.entries(widgets)
+  ${Object.entries(extraWidgets)
     .map(([filename, widgetName]) => {
       const definition = isThemeClientSideOnlyExtraWidget(
         theme,

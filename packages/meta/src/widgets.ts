@@ -1,18 +1,30 @@
-import { EXTRA_WIDGETS } from "./widgets.generated.ts";
+import { WIDGETS } from "./widgets.generated.ts";
 
 import { themePackage, type Theme } from "./themes.ts";
 
-type ExtraWidgets = typeof EXTRA_WIDGETS;
+type Widgets = typeof WIDGETS;
 
-export type ExtraWidgetFileNames = {
-  [T in Theme]: keyof ExtraWidgets[T]["widgets"] & string;
+export type WidgetFileNames = {
+  [T in Theme]: keyof Widgets[T]["widgets"] & string;
 };
 
-export function themeExtraWidgets<T extends Theme>(
-  theme: T,
-): Iterable<ExtraWidgetFileNames[T]> {
-  return Object.keys(EXTRA_WIDGETS[theme]) as Iterable<ExtraWidgetFileNames[T]>;
-}
+export type ExtraWidgetFileNames = {
+  [T in Theme]: keyof Widgets[T]["extraWidgets"] & string;
+};
+
+export type WidgetTypes = {
+  [T in Theme]:
+    | Widgets[T]["widgets"][WidgetFileNames[T]]
+    | Widgets[T]["extraWidgets"][ExtraWidgetFileNames[T]];
+};
+
+// export function themeExtraWidgets<T extends Theme>(
+//   theme: T,
+// ): Iterable<ExtraWidgetFileNames[T]> {
+//   return Object.keys(WIDGETS[theme]["extraWidgets"]) as Iterable<
+//     ExtraWidgetFileNames[T]
+//   >;
+// }
 
 export function themeExtraWidgetSubPath<T extends Theme>(
   theme: T,
@@ -39,7 +51,7 @@ export function* themeExtraWidgetOptionalDependencies<T extends Theme>(
   theme: T,
   widget: ExtraWidgetFileNames[T],
 ) {
-  const deps = EXTRA_WIDGETS[theme].optionalDeps;
+  const deps = WIDGETS[theme].optionalDeps;
   for (const [lib, widgets] of Object.entries(deps)) {
     for (const w of widgets) {
       if (w === widget) {

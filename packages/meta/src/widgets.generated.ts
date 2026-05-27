@@ -1,6 +1,12 @@
-export const EXTRA_WIDGETS = {
+export const WIDGETS = {
   "basic": {
     "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
       "file": "fileWidget",
@@ -13,6 +19,12 @@ export const EXTRA_WIDGETS = {
   },
   "daisyui5": {
     "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
       "cally-date-picker": "daisyui5CallyDatePickerWidget",
       "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
@@ -37,6 +49,12 @@ export const EXTRA_WIDGETS = {
   },
   "flowbite3": {
     "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
       "date-range-picker": "dateRangePickerWidget",
@@ -54,6 +72,12 @@ export const EXTRA_WIDGETS = {
   },
   "shadcn4": {
     "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "combobox": "comboboxWidget",
       "date-picker": "datePickerWidget",
@@ -76,6 +100,12 @@ export const EXTRA_WIDGETS = {
   },
   "skeleton4": {
     "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "combobox": "comboboxWidget",
       "date-picker": "datePickerWidget",
@@ -110,6 +140,12 @@ export const EXTRA_WIDGETS = {
   },
   "beercss": {
     "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
       "file": "fileWidget",
@@ -121,7 +157,8 @@ export const EXTRA_WIDGETS = {
     "optionalDeps": {}
   },
   "shadcn-extras": {
-    "widgets": {
+    "widgets": {},
+    "extraWidgets": {
       "file-drop-zone": "shadcnExtrasFileDropZoneWidget",
       "ip-v4-address-input": "shadcnExtrasIPv4AddressInputWidget",
       "nlp-date-input": "shadcnExtrasNLPDateInputWidget",
@@ -138,6 +175,12 @@ export const EXTRA_WIDGETS = {
   },
   "svar": {
     "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "color-picker": "svarColorPickerWidget",
       "color-select": "svarColorSelectWidget",
@@ -155,6 +198,12 @@ export const EXTRA_WIDGETS = {
   },
   "daisyui": {
     "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
       "file": "fileWidget",
@@ -169,6 +218,12 @@ export const EXTRA_WIDGETS = {
   },
   "flowbite": {
     "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
       "file": "fileWidget",
@@ -182,6 +237,12 @@ export const EXTRA_WIDGETS = {
   },
   "shadcn": {
     "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "combobox": "selectWidget",
       "date-picker": "datePickerWidget",
@@ -201,6 +262,12 @@ export const EXTRA_WIDGETS = {
   },
   "skeleton3": {
     "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "combobox": "comboboxWidget",
       "date-picker": "datePickerWidget",
