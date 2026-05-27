@@ -5,15 +5,14 @@ import type {
   UiOptions,
   UiSchema
 } from "@sjsf/form";
-import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+import type { ToTheme, WidgetTypes } from "meta";
+import type { PlaygroundTheme } from "meta/playground";
 
 export type FieldType = {
   [T in ComponentType]: ComponentProps[T] extends FieldCommonProps<any> ? T : never;
 }[ComponentType];
 
-export type WidgetType = {
-  [T in ComponentType]: ComponentProps[T] extends WidgetCommonProps<any> ? T : never;
-}[ComponentType];
+export type WidgetType = WidgetTypes[ToTheme<PlaygroundTheme>];
 
 interface MergeArraysOptions<T> {
   merge?: (l: T, r: T) => T;
