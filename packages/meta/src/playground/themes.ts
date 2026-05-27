@@ -8,11 +8,11 @@ import flowbite3Styles from "@sjsf/flowbite3-theme/styles.css?raw";
 import skeleton4Styles from "@sjsf/skeleton4-theme/styles.css?raw";
 import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?raw";
 import beercssStyles from "beercss/dist/cdn/beer.min.css?raw";
+import shadcnExtrasStyles from "@sjsf-lab/shadcn-extras-theme/styles.css?raw";
 
 import type { Generated } from "../types.ts";
 import {
   isLegacyTheme,
-  isThemeExtension,
   isThemeWithSubThemes,
   themes,
   themeSubThemes,
@@ -25,12 +25,13 @@ import {
   shadcn4Theme,
   skeleton4Theme,
   svarTheme,
+  shadcn_extrasTheme,
 } from "./themes.generated.ts";
 import "./themes.generated.ts";
 
 export function* playgroundThemes() {
   for (const t of themes()) {
-    if (isLegacyTheme(t) || isThemeExtension(t)) {
+    if (isLegacyTheme(t)) {
       continue;
     }
     yield t;
@@ -51,6 +52,7 @@ export const PLAYGROUND_SJSF_THEMES = {
   shadcn4: shadcn4Theme,
   skeleton4: skeleton4Theme,
   svar: svarTheme,
+  "shadcn-extras": shadcn_extrasTheme,
 } satisfies Record<PlaygroundTheme, Theme>;
 
 const beerCssSettings = `
@@ -158,4 +160,5 @@ export const PLAYGROUND_SJSF_THEME_STYLES = {
   svar: "",
   pico: `${picoStyles}${picoAdapterStyles}`,
   beercss: `${beercssStyles}\n${beerCssSettings}`,
+  "shadcn-extras": shadcnExtrasStyles,
 } satisfies Record<PlaygroundTheme, string>;

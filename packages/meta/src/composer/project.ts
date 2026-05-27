@@ -116,6 +116,10 @@ export const THEME_LAYERS: {
     import("./layers/tailwind4.ts"),
     import("./layers/shadcn4.ts"),
   ],
+  "shadcn-extras": () => [
+    import("./layers/tailwind4.ts"),
+    import("./layers/shadcn-extras.ts"),
+  ],
   svar: () => [import("./layers/svar.ts")],
   beercss: () => [import("./layers/beercss.ts")],
 };

@@ -78,18 +78,19 @@ async function analyzeComponent(filepath: string) {
   };
 }
 
-async function main() {
-  const meta: Record<
-    string,
-    {
-      name: string;
-      filename: string;
-      wrapperOf: string | null;
-    }
-  > = {};
-  const dir = path.join(import.meta.dirname, "../../form/src/fields/extra");
+interface FieldMeta {
+  name: string;
+  filename: string;
+  wrapperOf: string | null;
+}
+
+async function analyzeDir(
+  dir: string,
+  meta: Record<string, FieldMeta>,
+  skip = new Set<string>(),
+) {
   for (const e of await fs.readdir(dir, { withFileTypes: true })) {
-    if (!e.isFile() || !e.name.endsWith(".svelte")) {
+    if (!e.isFile() || !e.name.endsWith(".svelte") || skip.has(e.name)) {
       continue;
     }
     const filepath = path.join(dir, e.name);
@@ -101,19 +102,47 @@ async function main() {
       wrapperOf,
     };
   }
-  //
+}
+
+const FIELDS_TO_SKIP = new Set([
+  "field-base.svelte",
+  "combination.svelte",
+  "array-base.svelte",
+]);
+
+async function main() {
+  const fieldsPath = (p: string) =>
+    path.join(import.meta.dirname, "../../form/src/fields", p);
+  const fieldsMeta: Record<string, FieldMeta> = {};
+  const fieldsDir = fieldsPath("");
+  await analyzeDir(fieldsDir, fieldsMeta, FIELDS_TO_SKIP);
+  for (const e of await fs.readdir(fieldsDir, { withFileTypes: true })) {
+    if (
+      !e.isDirectory() ||
+      e.name.startsWith("extra") ||
+      e.name === "actions"
+    ) {
+      continue;
+    }
+    await analyzeDir(fieldsPath(e.name), fieldsMeta, FIELDS_TO_SKIP);
+  }
+  const extraFieldsMeta: Record<string, FieldMeta> = {};
+  await analyzeDir(fieldsPath("extra"), extraFieldsMeta);
   const fieldsOutPath = path.join(
     import.meta.dirname,
     "../src/fields.generated.ts",
   );
-  const fieldsContent = `export const EXTRA_FIELDS = ${JSON.stringify(meta, null, 2)} as const;`;
+  const fieldsContent = `export const FIELDS = ${JSON.stringify(fieldsMeta, null, 2)} as const;
+
+export const EXTRA_FIELDS = ${JSON.stringify(extraFieldsMeta, null, 2)} as const;
+`;
   await fs.writeFile(fieldsOutPath, fieldsContent, "utf-8");
   //
   const pgFieldsOutPath = path.join(
     import.meta.dirname,
     "../src/playground/fields.generated.ts",
   );
-  const fields = Object.values(meta);
+  const fields = Object.values(extraFieldsMeta);
   const pgFieldsContent = `${fields
     .map(
       ({ filename, name }) =>

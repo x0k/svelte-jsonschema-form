@@ -1,9 +1,19 @@
-import { EXTRA_FIELDS } from "./fields.generated.ts";
+import { FIELDS, EXTRA_FIELDS } from "./fields.generated.ts";
 import { formPackage } from "./form.ts";
+
+type Fields = typeof FIELDS;
+
+export type FieldFileName = keyof Fields;
 
 type ExtraFields = typeof EXTRA_FIELDS;
 
 type ExtraFieldFileName = keyof ExtraFields;
+
+export function* fields() {
+  for (const f of Object.values(FIELDS)) {
+    yield f.filename;
+  }
+}
 
 const EXTRA_FIELD_WRAPPERS = new Map<
   ExtraFieldFileName,
@@ -29,9 +39,7 @@ export interface ExtraFieldsFilter {
   wrappedFields?: boolean;
 }
 
-export function* extraFields({
-  wrappedFields = true,
-}: ExtraFieldsFilter = {}): Iterable<ExtraFieldFileName> {
+export function* extraFields({ wrappedFields = true }: ExtraFieldsFilter = {}) {
   for (const f of EXTRA_FIELDS_LIST) {
     if (wrappedFields === false && EXTRA_FIELD_WRAPPERS.has(f.filename)) {
       continue;

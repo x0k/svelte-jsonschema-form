@@ -350,11 +350,13 @@ export function buildLayers<T extends Theme>(layers: Layer<T>[]): LayerFiles {
 
 export function* themeDependencies(
   theme: Theme,
-  filter: IncludeOptional = false,
+  filter: IncludeOptional | true = false,
 ) {
   const pkg = themePackage(theme);
   yield pkg;
-  yield* filterPackageDependencies(pkg.dependencies, filter);
+  yield* filter === true
+    ? pkg.dependencies
+    : filterPackageDependencies(pkg.dependencies, filter);
   if (isSubTheme(theme)) {
     yield* subThemeDependencies(theme);
   }
