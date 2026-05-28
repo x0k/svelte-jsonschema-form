@@ -23,13 +23,10 @@ import {
   type ExtraFieldFileName,
   type SchemaValidator,
   type Theme,
-  type ToTheme,
   type WidgetTypes
 } from "meta";
-import { WIDGET_EXTRA_FIELD } from "meta/builder";
 import type { PlaygroundIconSet, PlaygroundResolver, PlaygroundTheme } from "meta/playground";
-import type { BuilderValidator } from "meta/builder";
-import type { WidgetType } from "meta/builder";
+import { type BuilderValidator, type WidgetType, WIDGET_EXTRA_FIELD } from "meta/builder";
 
 import { isBaseWidget, type FileFieldMode, fileFieldModeToFields } from "./model.js";
 

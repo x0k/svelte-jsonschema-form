@@ -16,18 +16,18 @@ import {
   themeRangeValueTypes,
   NodeType,
   type BuilderValidator,
-  type WidgetType
+  type WidgetType,
+  getUseLabel,
+  type NodeId
 } from "meta/builder";
 
 import {
   createNode,
   type Node,
   type CustomizableNode,
-  type CustomizableNodeType,
   type ObjectNode,
   NODE_OPTIONS_SCHEMAS,
   NODE_OPTIONS_UI_SCHEMAS,
-  type NodeId,
   type OperatorNode,
   summarizeOperator,
   OK_STATUS,
@@ -59,8 +59,7 @@ import {
   FILE_FIELD_SINGLE_MODE,
   RADIO_WIDGET_OPTIONS,
   RouteName,
-  TEXT_WIDGET_OPTIONS,
-  getUseLabel
+  TEXT_WIDGET_OPTIONS
 } from "./model.js";
 import type { NodeContext } from "./node-context.js";
 import {
@@ -171,9 +170,7 @@ export class BuilderContext {
   icons = $state.raw<PlaygroundIconSet>("none");
   validator = $state.raw<BuilderValidator>("ajv8");
 
-  readonly availableCustomizableNodeTypes = $derived(
-    themeCustomizableNodeTypes(this.theme) as CustomizableNodeType[]
-  );
+  readonly availableCustomizableNodeTypes = $derived(themeCustomizableNodeTypes(this.theme));
   readonly availableRangeValueTypes = $derived(themeRangeValueTypes(this.theme));
 
   get isDragged() {

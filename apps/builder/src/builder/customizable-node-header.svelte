@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { WIDGET_NAMES } from "meta/builder";
-  import type { WidgetType } from "meta/builder";
+  import { type WidgetType, WIDGET_NAMES } from "meta/builder";
 
   import type { CustomizableNodeType } from "$lib/builder/index.js";
 

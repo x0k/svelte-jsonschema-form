@@ -2,7 +2,13 @@ import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 import type { UiOptions, UiSchema } from "@sjsf/form";
 import type { ExtraFieldFileName } from "meta";
 import type { PlaygroundResolver, PlaygroundTheme } from "meta/playground";
-import { type WidgetType, NodeType } from "meta/builder";
+import {
+  type WidgetType,
+  NodeType,
+  type AbstractNode,
+  NUMBER_NODE_OPTIONS_SCHEMA,
+  STRING_NODE_OPTIONS_SCHEMA
+} from "meta/builder";
 
 import { constant } from "$lib/function.js";
 import {
@@ -11,10 +17,7 @@ import {
   ENUM_OPTIONS_SCHEMA,
   FILE_NODE_OPTIONS_SCHEMA,
   MULTI_ENUM_OPTIONS_SCHEMA,
-  NUMBER_NODE_OPTIONS_SCHEMA,
-  STRING_NODE_OPTIONS_SCHEMA,
   TAGS_NODE_OPTIONS_SCHEMA,
-  type AbstractNode,
   type Node,
   type TextWidgetParams,
   type WidgetNode,
@@ -313,48 +316,4 @@ export function fileFieldModeToFields(mode: FileFieldMode): ExtraFieldFileName[]
     fields.push("array-native-files");
   }
   return fields;
-}
-
-const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<PlaygroundTheme>> = {
-  textWidget: true,
-  numberWidget: true,
-  selectWidget: true,
-  checkboxWidget: true,
-  fileWidget: true,
-  checkboxesWidget: false,
-  tagsWidget: true,
-  datePickerWidget: true,
-  multiSelectWidget: true,
-  radioWidget: false,
-  rangeWidget: true,
-  textareaWidget: true,
-  radioButtonsWidget: false,
-  ratingWidget: false,
-  switchWidget: true,
-  comboboxWidget: true,
-  daisyui5FilterRadioButtonsWidget: false,
-  daisyui5CallyDatePickerWidget: true,
-  skeleton4SliderWidget: true,
-  skeleton4FileUploadWidget: true,
-  flowbite3ToggleRadioButtonsWidget: false,
-  aggregatedWidget: false,
-  svarColorPickerWidget: true,
-  svarColorSelectWidget: true,
-  dateRangePickerWidget: new Set(["svar", "flowbite3"]),
-  rangeSliderWidget: false,
-  shadcnExtrasFileDropZoneWidget: true,
-  shadcnExtrasIPv4AddressInputWidget: false,
-  shadcnExtrasNLPDateInputWidget: false,
-  shadcnExtrasPasswordWidget: true,
-  shadcnExtrasPhoneInputWidget: true,
-  shadcnExtrasStarRatingWidget: false,
-  shadcnExtrasTagsInputWidget: true
-};
-
-export function getUseLabel(theme: PlaygroundTheme, widgetType: WidgetType): boolean {
-  const useLabel = WIDGET_USE_LABEL[widgetType];
-  if (typeof useLabel === "boolean") {
-    return useLabel;
-  }
-  return useLabel.has(theme);
 }

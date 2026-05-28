@@ -1,11 +1,15 @@
-import type { FromSchema } from "json-schema-to-ts";
-import type { Schema } from "@sjsf/form";
-import { NodeType, RangeValueType } from "meta/builder";
+import {
+  NodeType,
+  RangeValueType,
+  type NodeId,
+  type CommonOptions,
+  type RangeOptions,
+  type RangeNode,
+  type CustomizableNodeType,
+  type NodeOverridesMap,
+  RANGE_VALUE_TYPE_TO_WIDGET
+} from "meta/builder";
 
-import type { AbstractCustomizableNode, CommonOptions, NodeId } from "./node-base.js";
-import type { StringNode } from "./string-node.js";
-import type { NumberNode } from "./number-node.js";
-import type { CustomizableNodeType, NodeOverridesMap } from "./node.js";
 import { createNode } from "./node-factories.js";
 
 export const RANGE_VALUE_TYPE_TITLES: Record<RangeValueType, string> = {
@@ -18,44 +22,6 @@ export const RANGE_VALUE_TYPES = Object.values(RangeValueType);
 export const RANGE_VALUE_TYPE_TO_NODE_TYPE: Record<RangeValueType, NodeType> = {
   [RangeValueType.String]: NodeType.String,
   [RangeValueType.Number]: NodeType.Number
-};
-
-export const RANGE_NODE_OPTIONS_SCHEMA = {
-  title: "Range options",
-  type: "object",
-  properties: {
-    widget: {
-      title: "Widget",
-      type: "string",
-      default: "dateRangePickerWidget"
-    },
-    help: {
-      title: "Help",
-      type: "string"
-    }
-  },
-  required: ["widget"]
-} as const satisfies Schema;
-
-export type RangeOptions = FromSchema<typeof RANGE_NODE_OPTIONS_SCHEMA>;
-
-export type RangeNode = AbstractCustomizableNode<NodeType.Range, RangeOptions> &
-  (
-    | {
-        valueType: RangeValueType.String;
-        startNode: StringNode;
-        endNode: StringNode;
-      }
-    | {
-        valueType: RangeValueType.Number;
-        startNode: NumberNode;
-        endNode: NumberNode;
-      }
-  );
-
-const RANGE_VALUE_TYPE_TO_WIDGET: Record<RangeValueType, string> = {
-  [RangeValueType.String]: "dateRangePickerWidget",
-  [RangeValueType.Number]: "rangeSliderWidget"
 };
 
 function createNodeWithTitle<T extends CustomizableNodeType>(

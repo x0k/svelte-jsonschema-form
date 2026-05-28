@@ -1,6 +1,15 @@
-import { NodeType } from "meta/builder";
+import {
+  NodeType,
+  CUSTOMIZABLE_TYPE_TITLES,
+  OperatorType,
+  U_OPERATORS_SET,
+  N_OPERATORS_SET,
+  S_OPERATORS_SET,
+  COMPARISON_OPERATORS_SET,
+  type AbstractOperator,
+  type AbstractNode
+} from "meta/builder";
 
-import type { AbstractNode } from "./node-base.js";
 import {
   type Node,
   type ComparisonOperator,
@@ -10,17 +19,8 @@ import {
   type Operator,
   type OperatorNode,
   type SOperator,
-  type UOperator,
-  CUSTOMIZABLE_TYPE_TITLES
+  type UOperator
 } from "./node.js";
-import {
-  U_OPERATORS_SET,
-  N_OPERATORS_SET,
-  S_OPERATORS_SET,
-  COMPARISON_OPERATORS_SET,
-  OperatorType,
-  type AbstractOperator
-} from "./operator.js";
 
 export function isUOperator(node: Operator): node is UOperator {
   return U_OPERATORS_SET.has(node.op);

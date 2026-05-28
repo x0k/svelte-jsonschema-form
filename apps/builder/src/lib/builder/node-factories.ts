@@ -1,8 +1,10 @@
-import { NodeType, RangeValueType } from "meta/builder";
-
-import { EnumValueType } from "./enum.js";
-import type { AbstractNode, NodeId } from "./node-base.js";
 import {
+  NodeType,
+  RangeValueType,
+  EnumValueType,
+  OperatorType,
+  type NodeId,
+  type AbstractNode,
   type Node,
   type CustomizableNode,
   type CustomizableNodeType,
@@ -15,12 +17,13 @@ import {
   MULTI_ENUM_OPTIONS_SCHEMA,
   BOOLEAN_NODE_OPTIONS_SCHEMA,
   FILE_NODE_OPTIONS_SCHEMA,
-  TAGS_NODE_OPTIONS_SCHEMA
-} from "./node.js";
-import { NUMBER_NODE_OPTIONS_SCHEMA } from "./number-node.js";
-import { OperatorType } from "./operator.js";
-import { createRangeNode, RANGE_NODE_OPTIONS_SCHEMA } from "./range-node.js";
-import { STRING_NODE_OPTIONS_SCHEMA } from "./string-node.js";
+  TAGS_NODE_OPTIONS_SCHEMA,
+  NUMBER_NODE_OPTIONS_SCHEMA,
+  STRING_NODE_OPTIONS_SCHEMA,
+  RANGE_NODE_OPTIONS_SCHEMA
+} from "meta/builder";
+
+import { createRangeNode } from "./range-node.js";
 
 function nodeId(): NodeId {
   return crypto.randomUUID() as NodeId;

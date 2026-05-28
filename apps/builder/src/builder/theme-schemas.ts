@@ -6,10 +6,10 @@ import {
   WIDGET_RANGE_VALUE_TYPE,
   WIDGET_NAMES,
   NodeType,
-  type WidgetType
+  type WidgetType,
+  type Node,
+  type NodeOverridesMap
 } from "meta/builder";
-
-import type { Node, NodeOverridesMap } from "$lib/builder/index.js";
 
 export function themeNodeWidgetSchema(
   theme: PlaygroundTheme,
@@ -22,8 +22,8 @@ export function themeNodeWidgetSchema(
 
   if (nodeType === NodeType.Range && node) {
     const rvt = (node as any).valueType;
-    const filtered = widgets.filter((w: string) => {
-      const rvtForWidget = WIDGET_RANGE_VALUE_TYPE[w as WidgetType];
+    const filtered = widgets.filter((w) => {
+      const rvtForWidget = WIDGET_RANGE_VALUE_TYPE[w];
       return rvtForWidget === undefined || rvtForWidget === rvt;
     });
     return filtered.length
