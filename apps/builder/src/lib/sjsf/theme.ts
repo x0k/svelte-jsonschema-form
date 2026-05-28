@@ -1,18 +1,4 @@
-import type {
-  ComponentProps,
-  ComponentType,
-  FieldCommonProps,
-  UiOptions,
-  UiSchema
-} from "@sjsf/form";
-import type { ToTheme, WidgetTypes } from "meta";
-import type { PlaygroundTheme } from "meta/playground";
-
-export type FieldType = {
-  [T in ComponentType]: ComponentProps[T] extends FieldCommonProps<any> ? T : never;
-}[ComponentType];
-
-export type WidgetType = WidgetTypes[ToTheme<PlaygroundTheme>];
+import type { UiOptions, UiSchema } from "@sjsf/form";
 
 interface MergeArraysOptions<T> {
   merge?: (l: T, r: T) => T;

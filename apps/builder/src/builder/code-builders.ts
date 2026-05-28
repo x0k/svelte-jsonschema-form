@@ -4,6 +4,7 @@ import { jsonSchemaToZod } from "json-schema-to-zod";
 import { jsonSchemaToValibot, type JsonSchema as ValibotJsonSchema } from "json-schema-to-valibot";
 import {
   externalValidatorPackage,
+  extraFieldSubPath,
   filterPackageDependencies,
   formIdBuilderSubPath,
   formMergerSubPath,
@@ -13,27 +14,24 @@ import {
   iconSetPackage,
   isSchemaValidator,
   themeExtraWidgetOptionalDependencies,
+  themeExtraWidgetSubPath,
   themePackage,
   toTheme,
+  widgetFileName,
   zod4ValidatorVersionSubPath,
   type ExtraWidgetFileNames,
+  type ExtraFieldFileName,
   type SchemaValidator,
   type Theme,
-  type ToTheme
+  type ToTheme,
+  type WidgetTypes
 } from "meta";
+import { WIDGET_EXTRA_FIELD } from "meta/builder";
 import type { PlaygroundIconSet, PlaygroundResolver, PlaygroundTheme } from "meta/playground";
 import type { BuilderValidator } from "meta/builder";
+import type { WidgetType } from "meta/builder";
 
-import type { WidgetType } from "$lib/sjsf/theme.js";
-
-import {
-  isBaseWidget,
-  WIDGET_EXTRA_FIELD,
-  type ExtraWidgetType,
-  EXTRA_WIDGET_IMPORTS,
-  type FileFieldMode,
-  fileFieldModeToFields
-} from "./model.js";
+import { isBaseWidget, type FileFieldMode, fileFieldModeToFields } from "./model.js";
 
 export interface FormDefaultsOptions {
   widgets: Set<WidgetType>;
@@ -42,10 +40,6 @@ export interface FormDefaultsOptions {
   icons: PlaygroundIconSet;
   validator: BuilderValidator;
   fileFieldMode: FileFieldMode;
-}
-
-function camelToKebabCase(str: string): string {
-  return str.replace(/([A-Z])/g, "-$1").toLowerCase();
 }
 
 export function join(...args: (string | false)[]) {
@@ -64,19 +58,18 @@ export function buildFormDefaults({
   validator,
   fileFieldMode
 }: FormDefaultsOptions): string {
-  const extraFields = new Set<string>();
-  const extraWidgetTypes: ExtraWidgetType[] = [];
+  const extraFields = new Set<ExtraFieldFileName>();
+  const extraWidgetTypes: WidgetType[] = [];
   for (const w of widgets) {
     if (!isBaseWidget(w)) {
       extraWidgetTypes.push(w);
     }
-    const fields = fileFieldModeToFields(fileFieldMode);
+    for (const f of fileFieldModeToFields(fileFieldMode)) {
+      extraFields.add(f);
+    }
     const widgetExtraField = WIDGET_EXTRA_FIELD[w];
     if (widgetExtraField !== undefined) {
-      fields.push(widgetExtraField);
-    }
-    for (const f of fields) {
-      extraFields.add(f);
+      extraFields.add(widgetExtraField);
     }
   }
 
@@ -88,14 +81,13 @@ export function buildFormDefaults({
   return join2(
     join(
       `export { resolver } from "${formResolverSubPath(resolver)}";`,
-      ...Array.from(extraFields).map(
-        (f) => `import "@sjsf/form/fields/extra/${camelToKebabCase(f)}-include";`
-      )
+      ...Array.from(extraFields).map((f) => `import "${extraFieldSubPath(f, true)}";`)
     ),
     join(
       `export { theme } from "${themePkg.name}";`,
       ...extraWidgetTypes.map(
-        (w) => `import "${themePkg.name}/extra-widgets/${EXTRA_WIDGET_IMPORTS[w]}-include";`
+        (w) =>
+          `import "${themeExtraWidgetSubPath(toTheme(theme), widgetFileName(toTheme(theme), w) as ExtraWidgetFileNames[Theme], true)}";`
       )
     ),
     iconsExport,
@@ -159,16 +151,18 @@ export function buildFormDotSvelte({
   html5Validation,
   validator
 }: FormDotSvelteOptions): string {
-  const isShadcn = theme === "shadcn4";
   const isSvar = theme === "svar";
   const validatorAdapter = isSchemaValidator(validator) ? VALIDATOR_ADAPTERS[validator] : false;
   const code = join(
     `<script lang="ts">
   import { createForm, BasicForm, type Schema, type UiSchemaRoot } from "${formPackage.name}";`,
     validatorAdapter && `  ${toLines(validatorAdapter)}`,
-    isShadcn &&
-      `  import { setThemeContext } from "${themePackage("shadcn4").name}";
-  import * as components from "${themePackage("shadcn4").name}/new-york";`,
+    (theme === "shadcn4" || theme === "shadcn-extras") &&
+      `  import { setThemeContext } from "${themePackage("shadcn4").name}";`,
+    theme === "shadcn4" &&
+      `  import * as components from "${themePackage("shadcn4").name}/new-york";`,
+    theme === "shadcn-extras" &&
+      `  import * as components from "${themePackage("shadcn-extras").name}/ui";`,
     isSvar && `  import { Willow } from "@svar-ui/svelte-core";`,
     `
   import * as defaults from "$lib/form/defaults.js";
@@ -183,7 +177,7 @@ export function buildFormDotSvelte({
     uiSchema,
     onSubmit: console.log
   })`,
-    isShadcn &&
+    (theme === "shadcn4" || theme === "shadcn-extras") &&
       `
   setThemeContext({ components })`,
     `</script>`,
@@ -200,7 +194,7 @@ export interface InstallShOptions<T extends PlaygroundTheme> {
   theme: T;
   validator: BuilderValidator;
   icons: PlaygroundIconSet;
-  widgets: Set<ExtraWidgetFileNames[ToTheme<T>]>;
+  widgets: Set<WidgetType>;
 }
 
 function* themeOptionalDeps<T extends Theme>(theme: T, widgets: Iterable<ExtraWidgetFileNames[T]>) {
@@ -217,9 +211,15 @@ export function buildInstallSh<T extends PlaygroundTheme>({
 }: InstallShOptions<T>) {
   const t = toTheme(theme);
   const themePkg = themePackage(t);
+  const widgetFileNames = new Set(
+    Array.from(widgets, (w) => widgetFileName(t, w as WidgetTypes[typeof t]))
+  );
   const deps = [
     ...filterPackageDependencies(externalValidatorPackage(validator).dependencies, false),
-    ...filterPackageDependencies(themePkg.dependencies, Array.from(themeOptionalDeps(t, widgets)))
+    ...filterPackageDependencies(
+      themePkg.dependencies,
+      Array.from(themeOptionalDeps(t, widgetFileNames as Set<ExtraWidgetFileNames[typeof t]>))
+    )
   ];
 
   let cmd = `npm i ${formPackage.name} ${themePkg.name} ${externalValidatorPackage(validator).name}`;

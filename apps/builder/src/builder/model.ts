@@ -1,5 +1,8 @@
 import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 import type { UiOptions, UiSchema } from "@sjsf/form";
+import type { ExtraFieldFileName } from "meta";
+import type { PlaygroundResolver, PlaygroundTheme } from "meta/playground";
+import type { WidgetType } from "meta/builder";
 
 import { constant } from "$lib/function.js";
 import {
@@ -17,10 +20,7 @@ import {
   type WidgetNode,
   type WidgetNodeType
 } from "$lib/builder/index.js";
-import type { FieldType, WidgetType } from "$lib/sjsf/theme.js";
-
 import type { BuilderDraggable } from "./context.svelte.js";
-import type { PlaygroundResolver, PlaygroundTheme } from "meta/playground";
 
 export interface NodeProps<T extends NodeType> {
   node: Extract<Node, AbstractNode<T>>;
@@ -66,7 +66,8 @@ export const TEXT_WIDGET_OPTIONS: Record<PlaygroundTheme, (params: TextWidgetPar
     svar: (params) => ({
       svarText: { placeholder: params.placeholder, type: params.type as any }
     }),
-    beercss: basicTextOptions
+    beercss: basicTextOptions,
+    "shadcn-extras": (params) => ({ shadcn4Text: { ...params } })
   };
 
 export const CHECKBOXES_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean) => UiOptions> = {
@@ -145,7 +146,17 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean
           beercssCheckboxesContainer: {
             class: "vertical"
           }
+        },
+  "shadcn-extras": (inline) =>
+    inline
+      ? {
+          layouts: {
+            "field-content": {
+              style: "display: flex; gap: 1rem;"
+            }
+          }
         }
+      : {}
 };
 
 export const RADIO_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean) => UiOptions> = {
@@ -173,7 +184,15 @@ export const RADIO_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean) => 
           beercssRadioContainer: {
             class: "vertical"
           }
+        },
+  "shadcn-extras": (inline) =>
+    inline
+      ? {
+          shadcn4RadioGroup: {
+            style: "grid-auto-flow: column; grid-auto-columns: max-content;"
+          }
         }
+      : {}
 };
 
 export const DEFAULT_COMPONENTS: Record<
@@ -272,18 +291,14 @@ export function isBaseWidget(w: WidgetType): w is BaseWidgetType {
   return BASE_WIDGETS_SET.has(w);
 }
 
-export type ExtraWidgetType = Exclude<WidgetType, BaseWidgetType>;
-
 export type FileFieldMode = number;
 export const FILE_FIELD_SINGLE_MODE = 1;
 export const FILE_FIELD_MULTIPLE_MODE = FILE_FIELD_SINGLE_MODE << 1;
 export const FILE_FIELD_NATIVE_SINGLE_MODE = FILE_FIELD_MULTIPLE_MODE << 1;
 export const FILE_FIELD_NATIVE_MULTIPLE_MODE = FILE_FIELD_NATIVE_SINGLE_MODE << 1;
 
-type StripFieldSuffix<T> = T extends `${infer U}Field` ? U : T;
-
-export function fileFieldModeToFields(mode: FileFieldMode): StripFieldSuffix<FieldType>[] {
-  const fields: StripFieldSuffix<FieldType>[] = [];
+export function fileFieldModeToFields(mode: FileFieldMode): ExtraFieldFileName[] {
+  const fields: ExtraFieldFileName[] = [];
   if (mode & FILE_FIELD_SINGLE_MODE) {
     fields.push("file");
   }
@@ -291,91 +306,13 @@ export function fileFieldModeToFields(mode: FileFieldMode): StripFieldSuffix<Fie
     fields.push("files");
   }
   if (mode & FILE_FIELD_NATIVE_SINGLE_MODE) {
-    fields.push("unknownNativeFile");
+    fields.push("unknown-native-file");
   }
   if (mode & FILE_FIELD_NATIVE_MULTIPLE_MODE) {
-    fields.push("arrayNativeFiles");
+    fields.push("array-native-files");
   }
   return fields;
 }
-
-export const WIDGET_EXTRA_FIELD: Record<WidgetType, StripFieldSuffix<FieldType> | undefined> = {
-  textWidget: undefined,
-  numberWidget: undefined,
-  selectWidget: "enum",
-  checkboxWidget: undefined,
-  fileWidget: undefined,
-  checkboxesWidget: "multiEnum",
-  tagsWidget: "tags",
-  datePickerWidget: undefined,
-  multiSelectWidget: "multiEnum",
-  radioWidget: "enum",
-  rangeWidget: undefined,
-  textareaWidget: undefined,
-  radioButtonsWidget: "enum",
-  ratingWidget: undefined,
-  switchWidget: undefined,
-  comboboxWidget: "enum",
-  daisyui5FilterRadioButtonsWidget: "enum",
-  daisyui5CallyDatePickerWidget: undefined,
-  skeleton4SliderWidget: undefined,
-  skeleton4FileUploadWidget: undefined,
-  flowbite3ToggleRadioButtonsWidget: "enum",
-  shadcn4DateRangePickerWidget: "aggregated",
-  aggregatedWidget: "aggregated",
-  skeleton4DateRangePickerWidget: "aggregated",
-  svarColorPickerWidget: undefined,
-  svarColorSelectWidget: undefined,
-  svarDateRangePickerWidget: "aggregated",
-  dateRangePickerWidget: "aggregated",
-  rangeSliderWidget: "aggregated",
-  shadcnExtrasFileDropZoneWidget: undefined,
-  shadcnExtrasIPv4AddressInputWidget: undefined,
-  shadcnExtrasNLPDateInputWidget: undefined,
-  shadcnExtrasPasswordWidget: undefined,
-  shadcnExtrasPhoneInputWidget: undefined,
-  shadcnExtrasStarRatingWidget: undefined,
-  shadcnExtrasTagsInputWidget: "tags"
-};
-
-export const WIDGET_NAMES: Record<WidgetType, string> = {
-  textWidget: "Text input",
-  numberWidget: "Number input",
-  selectWidget: "Select",
-  checkboxWidget: "Checkbox",
-  fileWidget: "File input",
-  checkboxesWidget: "Checkboxes",
-  tagsWidget: "Tags",
-  datePickerWidget: "Date picker",
-  multiSelectWidget: "Multi Select",
-  radioWidget: "Radio group",
-  rangeWidget: "Range",
-  textareaWidget: "Textarea",
-  radioButtonsWidget: "Radio buttons",
-  ratingWidget: "Rating",
-  switchWidget: "Switch",
-  comboboxWidget: "Combobox",
-  daisyui5FilterRadioButtonsWidget: "Filter radio buttons",
-  daisyui5CallyDatePickerWidget: "Cally date picker",
-  skeleton4FileUploadWidget: "Drop zone",
-  skeleton4SliderWidget: "Slider",
-  flowbite3ToggleRadioButtonsWidget: "Toggle radio buttons",
-  aggregatedWidget: "Invalid widget",
-  shadcn4DateRangePickerWidget: "Date range picker",
-  skeleton4DateRangePickerWidget: "Date range picker",
-  svarDateRangePickerWidget: "Date range picker",
-  svarColorPickerWidget: "Color picker",
-  svarColorSelectWidget: "Color select",
-  dateRangePickerWidget: "Date range picker",
-  rangeSliderWidget: "Range slider",
-  shadcnExtrasFileDropZoneWidget: "Drop zone",
-  shadcnExtrasIPv4AddressInputWidget: "IP v4 address input",
-  shadcnExtrasNLPDateInputWidget: "NLP date input",
-  shadcnExtrasPasswordWidget: "Password input",
-  shadcnExtrasPhoneInputWidget: "Phone input",
-  shadcnExtrasStarRatingWidget: "Rating",
-  shadcnExtrasTagsInputWidget: "Tags"
-};
 
 const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<PlaygroundTheme>> = {
   textWidget: true,
@@ -400,11 +337,8 @@ const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<PlaygroundTheme>> = {
   skeleton4FileUploadWidget: true,
   flowbite3ToggleRadioButtonsWidget: false,
   aggregatedWidget: false,
-  shadcn4DateRangePickerWidget: false,
-  skeleton4DateRangePickerWidget: false,
   svarColorPickerWidget: true,
   svarColorSelectWidget: true,
-  svarDateRangePickerWidget: true,
   dateRangePickerWidget: new Set(["svar", "flowbite3"]),
   rangeSliderWidget: false,
   shadcnExtrasFileDropZoneWidget: true,
@@ -423,38 +357,3 @@ export function getUseLabel(theme: PlaygroundTheme, widgetType: WidgetType): boo
   }
   return useLabel.has(theme);
 }
-
-export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
-  fileWidget: "file",
-  checkboxesWidget: "checkboxes",
-  tagsWidget: "tags",
-  datePickerWidget: "date-picker",
-  multiSelectWidget: "multi-select",
-  radioWidget: "radio",
-  rangeWidget: "range",
-  textareaWidget: "textarea",
-  radioButtonsWidget: "radio-buttons",
-  ratingWidget: "rating",
-  switchWidget: "switch",
-  comboboxWidget: "combobox",
-  daisyui5FilterRadioButtonsWidget: "filter-radio-buttons",
-  daisyui5CallyDatePickerWidget: "cally-date-picker",
-  skeleton4SliderWidget: "slider",
-  skeleton4FileUploadWidget: "file-upload",
-  flowbite3ToggleRadioButtonsWidget: "toggle-radio-buttons",
-  skeleton4DateRangePickerWidget: "date-range-picker",
-  shadcn4DateRangePickerWidget: "date-range-picker",
-  svarDateRangePickerWidget: "date-range-picker",
-  svarColorPickerWidget: "color-picker",
-  svarColorSelectWidget: "color-select",
-  aggregatedWidget: "virtual-widget-import",
-  dateRangePickerWidget: "date-range-picker",
-  rangeSliderWidget: "range-slider",
-  shadcnExtrasFileDropZoneWidget: "file-drop-zone",
-  shadcnExtrasIPv4AddressInputWidget: "ip-v4-address-input",
-  shadcnExtrasNLPDateInputWidget: "nlp-date-input",
-  shadcnExtrasPasswordWidget: "password",
-  shadcnExtrasPhoneInputWidget: "phone-input",
-  shadcnExtrasStarRatingWidget: "star-rating",
-  shadcnExtrasTagsInputWidget: "tags-input"
-};

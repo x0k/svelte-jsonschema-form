@@ -4,7 +4,7 @@ import type { FormValue, Schema, SchemaValue, UiSchema } from "@sjsf/form";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { DragDropManager, Draggable, Droppable, Feedback } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
-import { iconSetAtRules, isSchemaValidator, renderAtRule } from "meta";
+import { iconSetAtRules, isSchemaValidator, renderAtRule, themeOrSubThemeAtRules } from "meta";
 import type {
   FormPreset,
   PlaygroundIconSet,
@@ -37,7 +37,8 @@ import {
   isFileNode,
   createObjectProperty
 } from "$lib/builder/index.js";
-import { mergeUiSchemas, type WidgetType } from "$lib/sjsf/theme.js";
+import { mergeUiSchemas } from "$lib/sjsf/theme.js";
+import type { WidgetType } from "meta/builder";
 import { highlight, type SupportedLanguage } from "$lib/shiki.js";
 import { mergeSchemas } from "$lib/json-schema.js";
 import { addBuilderFormats } from "$lib/ajv.js";
@@ -58,7 +59,6 @@ import {
 } from "./model.js";
 import type { NodeContext } from "./node-context.js";
 import {
-  THEME_APP_CSS,
   THEME_CUSTOMIZABLE_NODE_TYPES,
   THEME_RANGE_VALUE_TYPES,
   THEME_SCHEMAS,
@@ -328,14 +328,15 @@ export class BuilderContext {
     )
   );
   readonly appCss = $derived.by(() => {
-    const themeCss = THEME_APP_CSS[this.theme];
-    const content =
-      this.icons === "none"
-        ? themeCss
-        : join(
-            themeCss,
-            ...iconSetAtRules(this.icons, { nodeModulesPath: "../node_modules" }).map(renderAtRule)
-          );
+    const rules = themeOrSubThemeAtRules(this.theme, { nodeModulesPath: "../node_modules" }).map(
+      renderAtRule
+    );
+    if (this.icons !== "none") {
+      rules.push(
+        ...iconSetAtRules(this.icons, { nodeModulesPath: "../node_modules" }).map(renderAtRule)
+      );
+    }
+    const content = join(...rules);
     return (
       content && this.highlight("css", `/* Add these lines to the app.css file */\n${content}`)
     );

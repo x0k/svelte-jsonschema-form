@@ -1,8 +1,10 @@
 import { isObject } from "@sjsf/form/lib/object";
 import type { CompatibleComponentType, Schema, UiSchemaRoot } from "@sjsf/form";
+import type { PlaygroundTheme } from "meta/playground";
+import { WIDGET_NAMES } from "meta/builder";
+import type { WidgetType } from "meta/builder";
 
 import { constant } from "$lib/function.js";
-import { ActualTheme, LabTheme, type Theme, type WidgetType } from "$lib/sjsf/theme.js";
 import {
   NodeType,
   RangeValueType,
@@ -10,8 +12,6 @@ import {
   type CustomizableNodeType,
   type Node
 } from "$lib/builder/index.js";
-
-import { WIDGET_NAMES } from "./model.js";
 
 type Factory<T extends NodeType, R> = (node: Extract<Node, AbstractNode<T>>) => R;
 
@@ -69,10 +69,10 @@ const basicThemeSchema: Factories<Schema> = {
   })
 };
 
-export const THEME_SCHEMAS: Record<Theme, Factories<Schema>> = {
-  [ActualTheme.Basic]: basicThemeSchema,
-  [ActualTheme.Pico]: basicThemeSchema,
-  [ActualTheme.Daisy5]: {
+export const THEME_SCHEMAS: Record<PlaygroundTheme, Factories<Schema>> = {
+  basic: basicThemeSchema,
+  pico: basicThemeSchema,
+  daisyui5: {
     [NodeType.Enum]: constant({
       properties: {
         widget: {
@@ -136,7 +136,7 @@ export const THEME_SCHEMAS: Record<Theme, Factories<Schema>> = {
       }
     })
   },
-  [ActualTheme.Flowbite3]: {
+  flowbite3: {
     [NodeType.Enum]: constant({
       properties: {
         widget: {
@@ -214,7 +214,7 @@ export const THEME_SCHEMAS: Record<Theme, Factories<Schema>> = {
       }
     })
   },
-  [ActualTheme.Skeleton4]: {
+  skeleton4: {
     [NodeType.Enum]: constant({
       properties: {
         widget: {
@@ -302,7 +302,7 @@ export const THEME_SCHEMAS: Record<Theme, Factories<Schema>> = {
       }
     })
   },
-  [ActualTheme.Shadcn4]: {
+  shadcn4: {
     [NodeType.Enum]: constant({
       properties: {
         widget: {
@@ -374,7 +374,7 @@ export const THEME_SCHEMAS: Record<Theme, Factories<Schema>> = {
       }
     })
   },
-  [LabTheme.Svar]: {
+  svar: {
     [NodeType.Enum]: constant({
       properties: {
         widget: {
@@ -440,7 +440,7 @@ export const THEME_SCHEMAS: Record<Theme, Factories<Schema>> = {
       }
     })
   },
-  [LabTheme.BeerCSS]: {
+  beercss: {
     [NodeType.Enum]: constant({
       properties: {
         widget: {
@@ -490,18 +490,109 @@ export const THEME_SCHEMAS: Record<Theme, Factories<Schema>> = {
         }
       }
     })
+  },
+  "shadcn-extras": {
+    [NodeType.Enum]: constant({
+      properties: {
+        widget: {
+          enum: [
+            "selectWidget",
+            "radioWidget",
+            "comboboxWidget"
+          ] satisfies CompatibleComponentType<"selectWidget">[]
+        }
+      }
+    }),
+    [NodeType.MultiEnum]: constant({
+      properties: {
+        widget: {
+          enum: [
+            "checkboxesWidget",
+            "multiSelectWidget"
+          ] satisfies CompatibleComponentType<"checkboxesWidget">[]
+        }
+      }
+    }),
+    [NodeType.String]: constant({
+      properties: {
+        widget: {
+          enum: [
+            "textWidget",
+            "textareaWidget",
+            "datePickerWidget",
+            "shadcnExtrasIPv4AddressInputWidget",
+            "shadcnExtrasNLPDateInputWidget",
+            "shadcnExtrasPasswordWidget",
+            "shadcnExtrasPhoneInputWidget"
+          ] satisfies CompatibleComponentType<"textWidget">[]
+        }
+      }
+    }),
+    [NodeType.Number]: constant({
+      properties: {
+        widget: {
+          enum: [
+            "numberWidget",
+            "rangeWidget",
+            "shadcnExtrasStarRatingWidget"
+          ] satisfies CompatibleComponentType<"numberWidget">[]
+        }
+      }
+    }),
+    [NodeType.Boolean]: constant({
+      properties: {
+        widget: {
+          enum: [
+            "checkboxWidget",
+            "switchWidget"
+          ] satisfies CompatibleComponentType<"checkboxWidget">[]
+        }
+      }
+    }),
+    [NodeType.File]: constant({
+      properties: {
+        widget: {
+          enum: [
+            "fileWidget",
+            "shadcnExtrasFileDropZoneWidget"
+          ] satisfies CompatibleComponentType<"fileWidget">[]
+        }
+      }
+    }),
+    [NodeType.Tags]: constant({
+      properties: {
+        widget: {
+          enum: ["shadcnExtrasTagsInputWidget"] satisfies CompatibleComponentType<"tagsWidget">[]
+        }
+      }
+    }),
+    [NodeType.Range]: (node) => ({
+      properties: {
+        widget: {
+          enum: {
+            [RangeValueType.String]: [
+              "dateRangePickerWidget"
+            ] satisfies CompatibleComponentType<"dateRangePickerWidget">[],
+            [RangeValueType.Number]: [
+              "rangeSliderWidget"
+            ] satisfies CompatibleComponentType<"rangeSliderWidget">[]
+          }[node.valueType]
+        }
+      }
+    })
   }
 };
 
-export const THEME_UI_SCHEMAS: Record<Theme, Factories<UiSchemaRoot | undefined>> = {
-  [ActualTheme.Basic]: schemasToEnumNames(THEME_SCHEMAS[ActualTheme.Basic]),
-  [ActualTheme.Pico]: schemasToEnumNames(THEME_SCHEMAS[ActualTheme.Pico]),
-  [ActualTheme.Daisy5]: schemasToEnumNames(THEME_SCHEMAS[ActualTheme.Daisy5]),
-  [ActualTheme.Flowbite3]: schemasToEnumNames(THEME_SCHEMAS[ActualTheme.Flowbite3]),
-  [ActualTheme.Skeleton4]: schemasToEnumNames(THEME_SCHEMAS[ActualTheme.Skeleton4]),
-  [ActualTheme.Shadcn4]: schemasToEnumNames(THEME_SCHEMAS[ActualTheme.Shadcn4]),
-  [LabTheme.Svar]: schemasToEnumNames(THEME_SCHEMAS[LabTheme.Svar]),
-  [LabTheme.BeerCSS]: schemasToEnumNames(THEME_SCHEMAS[LabTheme.BeerCSS])
+export const THEME_UI_SCHEMAS: Record<PlaygroundTheme, Factories<UiSchemaRoot | undefined>> = {
+  basic: schemasToEnumNames(THEME_SCHEMAS.basic),
+  pico: schemasToEnumNames(THEME_SCHEMAS.pico),
+  daisyui5: schemasToEnumNames(THEME_SCHEMAS.daisyui5),
+  flowbite3: schemasToEnumNames(THEME_SCHEMAS.flowbite3),
+  skeleton4: schemasToEnumNames(THEME_SCHEMAS.skeleton4),
+  shadcn4: schemasToEnumNames(THEME_SCHEMAS.shadcn4),
+  svar: schemasToEnumNames(THEME_SCHEMAS.svar),
+  beercss: schemasToEnumNames(THEME_SCHEMAS.beercss),
+  "shadcn-extras": schemasToEnumNames(THEME_SCHEMAS["shadcn-extras"])
 };
 
 function schemasToEnumNames(schemas: Factories<Schema>) {
@@ -547,39 +638,26 @@ const BASIC_THEME_CUSTOMIZABLE_NODE_TYPES = [
   NodeType.File
 ] satisfies CustomizableNodeType[];
 
-export const THEME_CUSTOMIZABLE_NODE_TYPES: Record<Theme, CustomizableNodeType[]> = {
-  [ActualTheme.Basic]: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES,
-  [ActualTheme.Pico]: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES,
-  [ActualTheme.Daisy5]: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES,
-  [ActualTheme.Flowbite3]: [...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES, NodeType.Tags, NodeType.Range],
-  [ActualTheme.Skeleton4]: [...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES, NodeType.Tags, NodeType.Range],
-  [ActualTheme.Shadcn4]: [...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES, NodeType.Range],
-  [LabTheme.Svar]: [
-    ...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES.filter((t) => t !== NodeType.File),
-    NodeType.Range
-  ],
-  [LabTheme.BeerCSS]: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES
+export const THEME_CUSTOMIZABLE_NODE_TYPES: Record<PlaygroundTheme, CustomizableNodeType[]> = {
+  basic: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES,
+  pico: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES,
+  daisyui5: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES,
+  flowbite3: [...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES, NodeType.Tags, NodeType.Range],
+  skeleton4: [...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES, NodeType.Tags, NodeType.Range],
+  shadcn4: [...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES, NodeType.Range],
+  svar: [...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES.filter((t) => t !== NodeType.File), NodeType.Range],
+  beercss: BASIC_THEME_CUSTOMIZABLE_NODE_TYPES,
+  "shadcn-extras": [...BASIC_THEME_CUSTOMIZABLE_NODE_TYPES, NodeType.Tags, NodeType.Range]
 };
 
-export const THEME_RANGE_VALUE_TYPES: Record<Theme, RangeValueType[]> = {
-  [ActualTheme.Basic]: [],
-  [ActualTheme.Pico]: [],
-  [ActualTheme.Daisy5]: [],
-  [ActualTheme.Flowbite3]: [RangeValueType.String],
-  [ActualTheme.Skeleton4]: [RangeValueType.String, RangeValueType.Number],
-  [ActualTheme.Shadcn4]: [RangeValueType.String, RangeValueType.Number],
-  [LabTheme.Svar]: [RangeValueType.String],
-  [LabTheme.BeerCSS]: []
-};
-
-export const THEME_APP_CSS: Record<Theme, string> = {
-  [ActualTheme.Basic]: "@import '@sjsf/basic-theme/css/basic.css';",
-  [ActualTheme.Pico]:
-    "@import '@picocss/pico/css/pico.css';\n@import '@sjsf/basic-theme/css/pico.css';",
-  [ActualTheme.Daisy5]: '@source "../node_modules/@sjsf/daisyui5-theme/dist";',
-  [ActualTheme.Flowbite3]: '@source "../node_modules/@sjsf/flowbite3-theme/dist";',
-  [ActualTheme.Skeleton4]: '@source "../node_modules/@sjsf/skeleton3-theme/dist";',
-  [ActualTheme.Shadcn4]: '@source "../node_modules/@sjsf/shadcn4-theme/dist";',
-  [LabTheme.Svar]: "",
-  [LabTheme.BeerCSS]: ""
+export const THEME_RANGE_VALUE_TYPES: Record<PlaygroundTheme, RangeValueType[]> = {
+  basic: [],
+  pico: [],
+  daisyui5: [],
+  flowbite3: [RangeValueType.String],
+  skeleton4: [RangeValueType.String, RangeValueType.Number],
+  shadcn4: [RangeValueType.String, RangeValueType.Number],
+  svar: [RangeValueType.String],
+  beercss: [],
+  "shadcn-extras": [RangeValueType.String, RangeValueType.Number]
 };
