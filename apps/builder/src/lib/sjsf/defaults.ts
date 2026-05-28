@@ -1,8 +1,9 @@
 import type { ValidatorFactoryOptions } from "@sjsf/form";
+import { PLAYGROUND_SJSF_THEMES } from "meta/playground";
 
 export { resolver } from "@sjsf/form/resolvers/basic";
 
-export { theme } from "@sjsf/shadcn4-theme";
+export const theme = PLAYGROUND_SJSF_THEMES["shadcn4"];
 
 export { translation } from "@sjsf/form/translations/en";
 

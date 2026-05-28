@@ -9,7 +9,7 @@ import {
 } from "./node-base.js";
 import type { StringNode } from "./string-node.js";
 import type { NumberNode } from "./number-node.js";
-import type { CustomizableNodeType } from "./node.js";
+import type { CustomizableNodeType, NodeOverridesMap } from "./node.js";
 import { createNode } from "./node-factories.js";
 
 export enum RangeValueType {
@@ -67,8 +67,12 @@ const RANGE_VALUE_TYPE_TO_WIDGET: Record<RangeValueType, string> = {
   [RangeValueType.Number]: "rangeSliderWidget"
 };
 
-function createNodeWithTitle<T extends CustomizableNodeType>(type: T, title: string) {
-  const node = createNode(type);
+function createNodeWithTitle<T extends CustomizableNodeType>(
+  type: T,
+  title: string,
+  overrides: NodeOverridesMap
+) {
+  const node = createNode(type, overrides);
   node.options.title = title;
   return node;
 }
@@ -76,7 +80,8 @@ function createNodeWithTitle<T extends CustomizableNodeType>(type: T, title: str
 export function createRangeNode<T extends RangeValueType>(
   id: NodeId,
   valueType: T,
-  options: RangeOptions & CommonOptions
+  options: RangeOptions & CommonOptions,
+  overrides: NodeOverridesMap
 ): RangeNode {
   const base = {
     id,
@@ -91,15 +96,15 @@ export function createRangeNode<T extends RangeValueType>(
       return {
         ...base,
         valueType,
-        startNode: createNodeWithTitle(NodeType.String, "Start"),
-        endNode: createNodeWithTitle(NodeType.String, "End")
+        startNode: createNodeWithTitle(NodeType.String, "Start", overrides),
+        endNode: createNodeWithTitle(NodeType.String, "End", overrides)
       };
     case RangeValueType.Number:
       return {
         ...base,
         valueType,
-        startNode: createNodeWithTitle(NodeType.Number, "Start"),
-        endNode: createNodeWithTitle(NodeType.Number, "End")
+        startNode: createNodeWithTitle(NodeType.Number, "Start", overrides),
+        endNode: createNodeWithTitle(NodeType.Number, "End", overrides)
       };
   }
 }

@@ -1,7 +1,7 @@
 import type { Schema, UiOptions, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-import { mergeUiSchemas } from "$lib/sjsf/theme.js";
+import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 import { mergeSchemas } from "$lib/json-schema.js";
 import { constant } from "$lib/function.js";
 
@@ -470,6 +470,10 @@ export type Node =
 
 export type CustomizableNode = Extract<Node, AbstractCustomizableNode<NodeType, any>>;
 export type CustomizableNodeType = CustomizableNode["type"];
+
+export type NodeOverridesMap = {
+  [T in CustomizableNodeType]?: Partial<Extract<CustomizableNode, AbstractNode<T>>["options"]>;
+};
 
 export type WidgetNode = Extract<Node, { options: { widget: string } }>;
 export type WidgetNodeType = WidgetNode["type"];

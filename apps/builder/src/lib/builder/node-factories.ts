@@ -4,6 +4,7 @@ import {
   type Node,
   type CustomizableNode,
   type CustomizableNodeType,
+  type NodeOverridesMap,
   type EnumItemNode,
   type ObjectPropertyDependencyNode,
   type ObjectPropertyNode,
@@ -24,7 +25,10 @@ function nodeId(): NodeId {
 }
 
 const NODE_FACTORIES: {
-  [T in CustomizableNodeType]: (id: NodeId) => Extract<Node, AbstractNode<T>>;
+  [T in CustomizableNodeType]: (
+    id: NodeId,
+    overrides: NodeOverridesMap
+  ) => Extract<Node, AbstractNode<T>>;
 } = {
   [NodeType.Object]: (id) => ({
     id,
@@ -125,18 +129,29 @@ const NODE_FACTORIES: {
       widget: TAGS_NODE_OPTIONS_SCHEMA.properties.widget.default
     }
   }),
-  [NodeType.Range]: (id) =>
-    createRangeNode(id, RangeValueType.String, {
-      title: "Range field",
-      required: true,
-      widget: RANGE_NODE_OPTIONS_SCHEMA.properties.widget.default
-    })
+  [NodeType.Range]: (id, overrides) =>
+    createRangeNode(
+      id,
+      RangeValueType.String,
+      {
+        title: "Range field",
+        required: true,
+        widget: RANGE_NODE_OPTIONS_SCHEMA.properties.widget.default
+      },
+      overrides
+    )
 };
 
 export function createNode<T extends CustomizableNodeType>(
-  type: T
+  type: T,
+  overrides: NodeOverridesMap
 ): Extract<CustomizableNode, AbstractNode<T>> {
-  return NODE_FACTORIES[type](nodeId());
+  const node = NODE_FACTORIES[type](nodeId(), overrides) as Extract<
+    CustomizableNode,
+    AbstractNode<T>
+  >;
+  Object.assign(node.options, overrides[type]);
+  return node;
 }
 
 export function createOperatorNode(op: OperatorType): OperatorNode {

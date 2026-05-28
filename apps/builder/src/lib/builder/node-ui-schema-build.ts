@@ -2,7 +2,7 @@ import { identity } from "@sjsf/form/lib/function";
 import type { UiOptions, UiSchema } from "@sjsf/form";
 
 import { assertThing } from "$lib/assert.js";
-import { mergeUiSchemas } from "$lib/sjsf/theme.js";
+import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 
 import { NodeType, type AbstractNode, type NodeId } from "./node-base.js";
 import type { EnumItemNode, Node, WidgetNode } from "./node.js";

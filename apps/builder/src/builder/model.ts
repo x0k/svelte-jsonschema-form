@@ -14,12 +14,14 @@ import {
   NodeType,
   NUMBER_NODE_OPTIONS_SCHEMA,
   STRING_NODE_OPTIONS_SCHEMA,
+  TAGS_NODE_OPTIONS_SCHEMA,
   type AbstractNode,
   type Node,
   type TextWidgetParams,
   type WidgetNode,
   type WidgetNodeType
 } from "$lib/builder/index.js";
+
 import type { BuilderDraggable } from "./context.svelte.js";
 
 export interface NodeProps<T extends NodeType> {
@@ -272,7 +274,7 @@ export const DEFAULT_WIDGETS: Record<WidgetNodeType, WidgetType> = {
   [NodeType.Number]: NUMBER_NODE_OPTIONS_SCHEMA.properties.widget.default,
   [NodeType.Boolean]: BOOLEAN_NODE_OPTIONS_SCHEMA.properties.widget.default,
   [NodeType.File]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
-  [NodeType.Tags]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
+  [NodeType.Tags]: TAGS_NODE_OPTIONS_SCHEMA.properties.widget.default,
   [NodeType.Range]: "aggregatedWidget"
 };
 

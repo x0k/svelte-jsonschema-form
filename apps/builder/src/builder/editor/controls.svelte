@@ -49,6 +49,7 @@
   } from "$lib/builder/index.js";
 
   import { getBuilderContext } from "../context.svelte.js";
+  import { THEME_NODE_OVERRIDES } from "../theme-schemas.js";
   import NodeFactory from "../node-factory.svelte";
 
   const NODE_ICONS: Record<NodeType, Component<SVGAttributes<SVGSVGElement>> | null> = {
@@ -120,7 +121,7 @@
     }
     return ctx.availableCustomizableNodeTypes.map((t) => ({
       id: `node::${t}`,
-      factory: () => createNode(t),
+      factory: () => createNode(t, THEME_NODE_OVERRIDES[ctx.theme]),
       title: CUSTOMIZABLE_TYPE_TITLES[t],
       nodeType: t
     }));

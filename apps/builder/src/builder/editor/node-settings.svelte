@@ -4,7 +4,7 @@
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
   import type { CustomizableNode } from "$lib/builder/index.js";
-  import * as defaults from "$lib/form/defaults.js";
+  import * as defaults from "$lib/sjsf/defaults.js";
 
   import { getBuilderContext } from "../context.svelte.js";
 

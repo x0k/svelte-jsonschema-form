@@ -1,8 +1,7 @@
 import { isObject } from "@sjsf/form/lib/object";
 import type { CompatibleComponentType, Schema, UiSchemaRoot } from "@sjsf/form";
 import type { PlaygroundTheme } from "meta/playground";
-import { WIDGET_NAMES } from "meta/builder";
-import type { WidgetType } from "meta/builder";
+import { WIDGET_NAMES, type WidgetType } from "meta/builder";
 
 import { constant } from "$lib/function.js";
 import {
@@ -10,7 +9,8 @@ import {
   RangeValueType,
   type AbstractNode,
   type CustomizableNodeType,
-  type Node
+  type Node,
+  type NodeOverridesMap
 } from "$lib/builder/index.js";
 
 type Factory<T extends NodeType, R> = (node: Extract<Node, AbstractNode<T>>) => R;
@@ -660,4 +660,18 @@ export const THEME_RANGE_VALUE_TYPES: Record<PlaygroundTheme, RangeValueType[]> 
   svar: [RangeValueType.String],
   beercss: [],
   "shadcn-extras": [RangeValueType.String, RangeValueType.Number]
+};
+
+export const THEME_NODE_OVERRIDES: Record<PlaygroundTheme, NodeOverridesMap> = {
+  basic: {},
+  pico: {},
+  daisyui5: {},
+  flowbite3: {},
+  skeleton4: {},
+  shadcn4: {},
+  svar: {},
+  beercss: {},
+  "shadcn-extras": {
+    [NodeType.Tags]: { widget: "shadcnExtrasTagsInputWidget" }
+  }
 };

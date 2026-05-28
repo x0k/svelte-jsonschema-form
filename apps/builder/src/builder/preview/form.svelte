@@ -15,12 +15,10 @@
   import { BUILDER_VALIDATORS } from "meta/builder";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
-  import * as defaults from "$lib/form/defaults.js";
+  import * as defaults from "$lib/sjsf/defaults.js";
 
   import { themeManager } from "../../theme.svelte.js";
-
   import { getBuilderContext } from "../context.svelte.js";
-
   import Noop from "./noop.svelte";
 
   const ctx = getBuilderContext();

@@ -11,7 +11,7 @@ import type {
   PlaygroundResolver,
   PlaygroundTheme
 } from "meta/playground";
-import type { BuilderValidator } from "meta/builder";
+import type { BuilderValidator, WidgetType } from "meta/builder";
 
 import {
   createNode,
@@ -37,8 +37,7 @@ import {
   isFileNode,
   createObjectProperty
 } from "$lib/builder/index.js";
-import { mergeUiSchemas } from "$lib/sjsf/theme.js";
-import type { WidgetType } from "meta/builder";
+import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 import { highlight, type SupportedLanguage } from "$lib/shiki.js";
 import { mergeSchemas } from "$lib/json-schema.js";
 import { addBuilderFormats } from "$lib/ajv.js";
@@ -60,6 +59,7 @@ import {
 import type { NodeContext } from "./node-context.js";
 import {
   THEME_CUSTOMIZABLE_NODE_TYPES,
+  THEME_NODE_OVERRIDES,
   THEME_RANGE_VALUE_TYPES,
   THEME_SCHEMAS,
   THEME_UI_SCHEMAS
@@ -127,10 +127,6 @@ const noopReadonlyNodeRef: ReadonlyNodeRef = {
   current: undefined
 };
 
-const obj = createNode(NodeType.Object) as ObjectNode;
-obj.options.title = "Form title";
-obj.properties.push(createObjectProperty(createNode(NodeType.String)));
-
 export class BuilderContext {
   #dnd = new DragDropManager({ plugins: [Feedback.configure({ dropAnimation: null })] });
   #validator = createFormValidator({
@@ -145,7 +141,7 @@ export class BuilderContext {
   #dropHandlers = new Map<UniqueId, (node: Node) => void>();
   #draggedNode = $state.raw<Node>();
 
-  rootNode = $state<CustomizableNode | undefined>(obj);
+  rootNode = $state<CustomizableNode | undefined>();
 
   #selectedNodeRef = $state.raw(noopNodeRef);
   readonly selectedNode = $derived.by(() => {
@@ -357,6 +353,11 @@ export class BuilderContext {
     onDestroy(() => {
       this.#dnd.destroy();
     });
+    const overrides = THEME_NODE_OVERRIDES[this.theme];
+    const obj = createNode(NodeType.Object, overrides) as ObjectNode;
+    obj.options.title = "Form title";
+    obj.properties.push(createObjectProperty(createNode(NodeType.String, overrides)));
+    this.rootNode = obj;
     this.#dnd.monitor.addEventListener("beforedragstart", ({ operation: { source } }) => {
       if (source === null) {
         return;

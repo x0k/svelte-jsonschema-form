@@ -11,6 +11,7 @@
   import NodeHeader from "../customizable-node-header.svelte";
   import NodeIssues from "../node-issues.svelte";
   import { getBuilderContext } from "../context.svelte.js";
+  import { THEME_NODE_OVERRIDES } from "../theme-schemas.js";
 
   import ValueTypeSelect from "./value-type-select.svelte";
 
@@ -31,7 +32,7 @@
         bind:value={
           () => node.valueType,
           (t) => {
-            node = createRangeNode(node.id, t, node.options);
+            node = createRangeNode(node.id, t, node.options, THEME_NODE_OVERRIDES[ctx.theme]);
           }
         }
         items={ctx.availableRangeValueTypes}
