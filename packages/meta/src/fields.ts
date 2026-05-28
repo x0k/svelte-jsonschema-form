@@ -7,7 +7,7 @@ export type FieldFileName = keyof Fields;
 
 type ExtraFields = typeof EXTRA_FIELDS;
 
-type ExtraFieldFileName = keyof ExtraFields;
+export type ExtraFieldFileName = keyof ExtraFields;
 
 export function* fields() {
   for (const f of Object.values(FIELDS)) {

@@ -15,16 +15,40 @@ export type ExtraWidgetFileNames = {
 export type WidgetTypes = {
   [T in Theme]:
     | Widgets[T]["widgets"][WidgetFileNames[T]]
-    | Widgets[T]["extraWidgets"][ExtraWidgetFileNames[T]];
+    | Widgets[T]["extraWidgets"][ExtraWidgetFileNames[T]]
+    | "aggregatedWidget";
 };
 
-// export function themeExtraWidgets<T extends Theme>(
-//   theme: T,
-// ): Iterable<ExtraWidgetFileNames[T]> {
-//   return Object.keys(WIDGETS[theme]["extraWidgets"]) as Iterable<
-//     ExtraWidgetFileNames[T]
-//   >;
-// }
+export type WidgetType = WidgetTypes[Theme];
+
+const _widgetFileNames = {} as Record<WidgetType, string>;
+for (const _theme of Object.values(WIDGETS)) {
+  for (const [f, t] of Object.entries(_theme.widgets)) {
+    _widgetFileNames[t] = f;
+  }
+  for (const [f, t] of Object.entries(_theme.extraWidgets)) {
+    _widgetFileNames[t] = f;
+  }
+}
+_widgetFileNames["aggregatedWidget"] = "virtual-widget-import";
+
+export function widgetFileName<T extends Theme>(
+  _theme: T,
+  widgetType: WidgetTypes[T],
+) {
+  return _widgetFileNames[widgetType as WidgetType] as
+    | WidgetFileNames[T]
+    | ExtraWidgetFileNames[T]
+    | "virtual-widget-import";
+}
+
+export function themeExtraWidgets<T extends Theme>(
+  theme: T,
+): Iterable<ExtraWidgetFileNames[T]> {
+  return Object.keys(WIDGETS[theme]["extraWidgets"]) as Iterable<
+    ExtraWidgetFileNames[T]
+  >;
+}
 
 export function themeExtraWidgetSubPath<T extends Theme>(
   theme: T,
