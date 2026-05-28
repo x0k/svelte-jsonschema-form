@@ -1,4 +1,6 @@
-import { NodeType, type AbstractNode } from "./node-base.js";
+import { NodeType } from "meta/builder";
+
+import type { AbstractNode } from "./node-base.js";
 import {
   type Node,
   type ComparisonOperator,

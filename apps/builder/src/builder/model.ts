@@ -2,7 +2,7 @@ import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 import type { UiOptions, UiSchema } from "@sjsf/form";
 import type { ExtraFieldFileName } from "meta";
 import type { PlaygroundResolver, PlaygroundTheme } from "meta/playground";
-import type { WidgetType } from "meta/builder";
+import { type WidgetType, NodeType } from "meta/builder";
 
 import { constant } from "$lib/function.js";
 import {
@@ -11,7 +11,6 @@ import {
   ENUM_OPTIONS_SCHEMA,
   FILE_NODE_OPTIONS_SCHEMA,
   MULTI_ENUM_OPTIONS_SCHEMA,
-  NodeType,
   NUMBER_NODE_OPTIONS_SCHEMA,
   STRING_NODE_OPTIONS_SCHEMA,
   TAGS_NODE_OPTIONS_SCHEMA,

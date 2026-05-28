@@ -1,7 +1,8 @@
 import type { FromSchema } from "json-schema-to-ts";
 import type { Schema } from "@sjsf/form";
+import type { NodeType } from "meta/builder";
 
-import type { AbstractCustomizableNode, NodeType } from "./node-base.js";
+import type { AbstractCustomizableNode } from "./node-base.js";
 
 export const NUMBER_NODE_OPTIONS_SCHEMA = {
   title: "Number options",

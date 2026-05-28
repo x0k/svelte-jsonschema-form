@@ -1,8 +1,9 @@
 <script lang="ts">
+  import type { NodeType } from "meta/builder";
+
   import {
     createObjectPropertyDependency,
-    isObjectPropertyDependencyNode,
-    type NodeType
+    isObjectPropertyDependencyNode
   } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 

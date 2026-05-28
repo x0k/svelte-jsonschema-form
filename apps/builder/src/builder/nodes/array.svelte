@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { NodeType } from "$lib/builder/index.js";
+  import type { NodeType } from "meta/builder";
 
   import type { NodeProps } from "../model.js";
   import NodeContainer from "../node-container.svelte";

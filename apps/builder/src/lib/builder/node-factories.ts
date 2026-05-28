@@ -1,5 +1,7 @@
+import { NodeType, RangeValueType } from "meta/builder";
+
 import { EnumValueType } from "./enum.js";
-import { NodeType, type AbstractNode, type NodeId } from "./node-base.js";
+import type { AbstractNode, NodeId } from "./node-base.js";
 import {
   type Node,
   type CustomizableNode,
@@ -17,7 +19,7 @@ import {
 } from "./node.js";
 import { NUMBER_NODE_OPTIONS_SCHEMA } from "./number-node.js";
 import { OperatorType } from "./operator.js";
-import { createRangeNode, RANGE_NODE_OPTIONS_SCHEMA, RangeValueType } from "./range-node.js";
+import { createRangeNode, RANGE_NODE_OPTIONS_SCHEMA } from "./range-node.js";
 import { STRING_NODE_OPTIONS_SCHEMA } from "./string-node.js";
 
 function nodeId(): NodeId {

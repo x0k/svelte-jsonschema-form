@@ -1,9 +1,10 @@
 import type { Schema } from "@sjsf/form";
+import { NodeType } from "meta/builder";
 
 import { assertThing } from "$lib/assert.js";
 import { mergeSchemas } from "$lib/json-schema.js";
 
-import { NodeType, type AbstractNode, type NodeId } from "./node-base.js";
+import type { AbstractNode, NodeId } from "./node-base.js";
 import type {
   CustomizableNode,
   EnumItemNode,

@@ -1,9 +1,9 @@
 import type { Schema, UiOptions, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
+import { NodeType } from "meta/builder";
 
 import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 import { mergeSchemas } from "$lib/json-schema.js";
-import { constant } from "$lib/function.js";
 
 import {
   OperatorType,
@@ -16,7 +16,6 @@ import {
 import { EnumValueType } from "./enum.js";
 import {
   COMMON_OPTIONS_SCHEMA,
-  NodeType,
   type AbstractCustomizableNode,
   type AbstractNode,
   type NodeId

@@ -1,21 +1,12 @@
 import type { FromSchema } from "json-schema-to-ts";
 import type { Schema } from "@sjsf/form";
+import { NodeType, RangeValueType } from "meta/builder";
 
-import {
-  NodeType,
-  type AbstractCustomizableNode,
-  type CommonOptions,
-  type NodeId
-} from "./node-base.js";
+import type { AbstractCustomizableNode, CommonOptions, NodeId } from "./node-base.js";
 import type { StringNode } from "./string-node.js";
 import type { NumberNode } from "./number-node.js";
 import type { CustomizableNodeType, NodeOverridesMap } from "./node.js";
 import { createNode } from "./node-factories.js";
-
-export enum RangeValueType {
-  String = "string",
-  Number = "number"
-}
 
 export const RANGE_VALUE_TYPE_TITLES: Record<RangeValueType, string> = {
   [RangeValueType.String]: "String",

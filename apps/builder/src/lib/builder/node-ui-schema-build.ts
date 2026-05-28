@@ -1,10 +1,11 @@
 import { identity } from "@sjsf/form/lib/function";
 import type { UiOptions, UiSchema } from "@sjsf/form";
+import { NodeType } from "meta/builder";
 
 import { assertThing } from "$lib/assert.js";
 import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 
-import { NodeType, type AbstractNode, type NodeId } from "./node-base.js";
+import type { AbstractNode, NodeId } from "./node-base.js";
 import type { EnumItemNode, Node, WidgetNode } from "./node.js";
 import { EnumValueType } from "./enum.js";
 

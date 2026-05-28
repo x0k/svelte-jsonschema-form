@@ -1,6 +1,7 @@
 import type { Component } from "svelte";
+import { NodeType } from "meta/builder";
 
-import { NodeType, type CustomizableNodeType } from "$lib/builder/index.js";
+import type { CustomizableNodeType } from "$lib/builder/index.js";
 
 import type { NodeProps } from "../model.js";
 

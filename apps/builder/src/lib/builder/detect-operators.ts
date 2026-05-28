@@ -1,6 +1,8 @@
+import { NodeType } from "meta/builder";
+
 import { constant } from "$lib/function.js";
 
-import { NodeType, type AbstractNode } from "./node-base.js";
+import type { AbstractNode } from "./node-base.js";
 import type { Node } from "./node.js";
 import { OperatorType } from "./operator.js";
 import { createNodeTraverser } from "./node-traverser.js";

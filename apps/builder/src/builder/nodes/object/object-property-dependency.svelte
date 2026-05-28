@@ -1,9 +1,9 @@
 <script lang="ts">
+  import type { NodeType } from "meta/builder";
   import Info from "@lucide/svelte/icons/info";
 
   import {
     type CustomizableNode,
-    type NodeType,
     type ObjectPropertyNode,
     createObjectProperty,
     isCustomizableOrPropertyNode,

@@ -1,9 +1,10 @@
 <script lang="ts">
+  import type { NodeType } from "meta/builder";
+
   import {
     createObjectProperty,
     isObjectPropertyNode,
     isCustomizableOrPropertyNode,
-    type NodeType,
     type ObjectPropertyNode,
     type CustomizableNode
   } from "$lib/builder/index.js";

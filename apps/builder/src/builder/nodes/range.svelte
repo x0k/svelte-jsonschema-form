@@ -1,9 +1,10 @@
 <script lang="ts">
+  import type { NodeType } from "meta/builder";
+
   import {
     createRangeNode,
     RANGE_VALUE_TYPE_TITLES,
-    RANGE_VALUE_TYPES,
-    type NodeType
+    RANGE_VALUE_TYPES
   } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../model.js";

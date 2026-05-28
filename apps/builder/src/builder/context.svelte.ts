@@ -11,13 +11,19 @@ import type {
   PlaygroundResolver,
   PlaygroundTheme
 } from "meta/playground";
-import type { BuilderValidator, WidgetType } from "meta/builder";
+import {
+  themeCustomizableNodeTypes,
+  themeRangeValueTypes,
+  NodeType,
+  type BuilderValidator,
+  type WidgetType
+} from "meta/builder";
 
 import {
   createNode,
-  NodeType,
   type Node,
   type CustomizableNode,
+  type CustomizableNodeType,
   type ObjectNode,
   NODE_OPTIONS_SCHEMAS,
   NODE_OPTIONS_UI_SCHEMAS,
@@ -58,11 +64,9 @@ import {
 } from "./model.js";
 import type { NodeContext } from "./node-context.js";
 import {
-  THEME_CUSTOMIZABLE_NODE_TYPES,
-  THEME_NODE_OVERRIDES,
-  THEME_RANGE_VALUE_TYPES,
-  THEME_SCHEMAS,
-  THEME_UI_SCHEMAS
+  themeNodeWidgetSchema,
+  themeNodeWidgetUiSchema,
+  THEME_NODE_OVERRIDES
 } from "./theme-schemas.js";
 import { buildFormDefaults, buildFormDotSvelte, buildInstallSh, join } from "./code-builders.js";
 
@@ -167,8 +171,10 @@ export class BuilderContext {
   icons = $state.raw<PlaygroundIconSet>("none");
   validator = $state.raw<BuilderValidator>("ajv8");
 
-  readonly availableCustomizableNodeTypes = $derived(THEME_CUSTOMIZABLE_NODE_TYPES[this.theme]);
-  readonly availableRangeValueTypes = $derived(THEME_RANGE_VALUE_TYPES[this.theme]);
+  readonly availableCustomizableNodeTypes = $derived(
+    themeCustomizableNodeTypes(this.theme) as CustomizableNodeType[]
+  );
+  readonly availableRangeValueTypes = $derived(themeRangeValueTypes(this.theme));
 
   get isDragged() {
     return this.#sourceId !== undefined;
@@ -535,7 +541,7 @@ export class BuilderContext {
 
   nodeSchema(node: CustomizableNode) {
     const original = NODE_OPTIONS_SCHEMAS[node.type];
-    const augmentation = THEME_SCHEMAS[this.theme][node.type]?.(node as never);
+    const augmentation = themeNodeWidgetSchema(this.theme, node.type, node);
     return augmentation ? mergeSchemas(original, augmentation) : original;
   }
 
@@ -551,7 +557,7 @@ export class BuilderContext {
         }
       }
     });
-    const augmentation = THEME_UI_SCHEMAS[this.theme][node.type]?.(node as never);
+    const augmentation = themeNodeWidgetUiSchema(this.theme, node.type, node);
     return augmentation ? mergeUiSchemas(next, augmentation as UiSchema) : next;
   }
 

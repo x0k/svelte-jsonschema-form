@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Component } from "svelte";
   import type { SVGAttributes } from "svelte/elements";
+import { NodeType } from "meta/builder";
 
   import MdiSegment from "~icons/mdi/segment";
   import MdiGridLarge from "~icons/mdi/grid-large";
@@ -41,7 +42,6 @@
     createOperatorNode,
     CUSTOMIZABLE_TYPE_TITLES,
     detectApplicableOperators,
-    NodeType,
     OPERATOR_TITLES,
     OPERATOR_TYPES,
     OperatorType,
