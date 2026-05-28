@@ -262,7 +262,7 @@ export function isThemeExtension(theme: Theme): theme is ThemeExtension {
   return THEME_EXTENSION_SET.has(theme);
 }
 
-export function themeExtensionOrigin(extension: ThemeExtension): Theme {
+export function themeExtensionOrigin(extension: ThemeExtension) {
   return THEME_EXTENSION_ORIGINS[extension];
 }
 
