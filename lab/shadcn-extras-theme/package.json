@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && publint",
+		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && ../../scripts/validate-theme-css.sh && publint",
 		"preview": "vite preview",
 		"test": "npm run test:unit -- --run",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -104,6 +104,7 @@
 		}
 	},
 	"devDependencies": {
+		"@fontsource-variable/inter": "catalog:",
 		"@jsrepo/transform-prettier": "^7.0.0",
 		"jsrepo": "^3.7.0",
 		"@lucide/svelte": "catalog:",

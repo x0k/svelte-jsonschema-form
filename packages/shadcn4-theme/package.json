@@ -29,7 +29,7 @@
 		"build": "svelte-package && npm run extract-css && publint",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
-		"extract-css": "vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css",
+		"extract-css": "vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && ../../scripts/validate-theme-css.sh",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
