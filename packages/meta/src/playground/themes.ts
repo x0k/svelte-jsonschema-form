@@ -160,5 +160,5 @@ export const PLAYGROUND_SJSF_THEME_STYLES = {
   svar: "",
   pico: `${picoStyles}${picoAdapterStyles}`,
   beercss: `${beercssStyles}\n${beerCssSettings}`,
-  "shadcn-extras": shadcnExtrasStyles,
+  "shadcn-extras": `${shadcn4Styles}\n${shadcnExtrasStyles}`,
 } satisfies Record<PlaygroundTheme, string>;

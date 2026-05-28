@@ -4,6 +4,8 @@ import fs from "node:fs/promises";
 import {
   isLegacyTheme,
   isTheme,
+  isThemeExtension,
+  themeExtensionOrigin,
   themePackage,
   themes,
   type Theme,
@@ -172,11 +174,12 @@ ${Object.entries(libs)
     if (isLegacyTheme(theme)) {
       return `// skip "${theme}" theme`;
     }
-    const themeEscaped = theme.replaceAll("-", "_");
+    const themeEscaped = escapeTheme(theme);
     const themePkgName = themePackage(theme).name;
     const importedWidgets = new Set<string>();
     const exportedWidgets = new Set<string>();
-    return `import { theme as ${themeEscaped}Base } from "${themePkgName}";
+    const isExtension = isThemeExtension(theme);
+    return `${isExtension ? "// " : ""}import { theme as ${themeEscaped}Base } from "${themePkgName}";
 ${Object.entries(extraWidgets)
   .map(([filename, widgetName]) => {
     if (importedWidgets.has(widgetName)) {
@@ -192,7 +195,7 @@ ${Object.entries(extraWidgets)
 import "${themePkgName}/extra-widgets/${filename}.svelte";`;
   })
   .join("\n")}
-export const ${themeEscaped}Theme = extendByRecord(${themeEscaped}Base, {
+export const ${themeEscaped}Theme = extendByRecord(${isExtension ? `${escapeTheme(themeExtensionOrigin(theme))}Theme` : `${themeEscaped}Base`}, {
   ...fields,
   ${Object.entries(extraWidgets)
     .map(([filename, widgetName]) => {
@@ -214,6 +217,10 @@ export const ${themeEscaped}Theme = extendByRecord(${themeEscaped}Base, {
   .join("\n\n")}
 `;
   await fs.writeFile(themesOutPath, themesContent, "utf-8");
+}
+
+function escapeTheme(theme: Theme) {
+  return theme.replaceAll("-", "_");
 }
 
 await main();

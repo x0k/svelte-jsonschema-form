@@ -231,7 +231,7 @@ export const beercssTheme = extendByRecord(beercssBase, {
   textareaWidget: beercss_textareaWidget
 });
 
-import { theme as shadcn_extrasBase } from "@sjsf-lab/shadcn-extras-theme";
+// import { theme as shadcn_extrasBase } from "@sjsf-lab/shadcn-extras-theme";
 import shadcn_extras_shadcnExtrasFileDropZoneWidget from "@sjsf-lab/shadcn-extras-theme/extra-widgets/file-drop-zone.svelte";
 import "@sjsf-lab/shadcn-extras-theme/extra-widgets/file-drop-zone.svelte";
 import shadcn_extras_shadcnExtrasIPv4AddressInputWidget from "@sjsf-lab/shadcn-extras-theme/extra-widgets/ip-v4-address-input.svelte";
@@ -246,7 +246,7 @@ import shadcn_extras_shadcnExtrasStarRatingWidget from "@sjsf-lab/shadcn-extras-
 import "@sjsf-lab/shadcn-extras-theme/extra-widgets/star-rating.svelte";
 import shadcn_extras_shadcnExtrasTagsInputWidget from "@sjsf-lab/shadcn-extras-theme/extra-widgets/tags-input.svelte";
 import "@sjsf-lab/shadcn-extras-theme/extra-widgets/tags-input.svelte";
-export const shadcn_extrasTheme = extendByRecord(shadcn_extrasBase, {
+export const shadcn_extrasTheme = extendByRecord(shadcn4Theme, {
   ...fields,
   shadcnExtrasFileDropZoneWidget: shadcn_extras_shadcnExtrasFileDropZoneWidget,
   shadcnExtrasIPv4AddressInputWidget: shadcn_extras_shadcnExtrasIPv4AddressInputWidget,
