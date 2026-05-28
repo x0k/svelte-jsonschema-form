@@ -28,7 +28,8 @@
     "acorn": "catalog:",
     "json-schema-to-valibot": "catalog:",
     "json-schema-to-zod": "catalog:",
-    "zimmerframe": "catalog:"
+    "zimmerframe": "catalog:",
+    "json-schema-to-ts": "catalog:"
   },
   "dependencies": {
     "@sjsf-lab/ata-validator": "workspace:*",

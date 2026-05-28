@@ -7,6 +7,8 @@ import {
 } from "./widget-node-type.ts";
 import type { WidgetType } from "./widget-names.ts";
 import { NodeType, RangeValueType } from "./node-types.ts";
+import type { CustomizableNodeType } from "./node-types-full.ts";
+import { BASE_CUSTOMIZABLE_NODE_TYPES } from "./customizable-node-types.ts";
 
 export function themeWidgetAvailability(theme: PlaygroundTheme) {
   const actualTheme = toTheme(theme);
@@ -39,19 +41,9 @@ export function themeWidgetAvailability(theme: PlaygroundTheme) {
   return result;
 }
 
-const BASE_CUSTOMIZABLE_NODE_TYPES: NodeType[] = [
-  NodeType.Object,
-  NodeType.Grid,
-  NodeType.Array,
-  NodeType.Enum,
-  NodeType.MultiEnum,
-  NodeType.String,
-  NodeType.Number,
-  NodeType.Boolean,
-  NodeType.File,
-];
-
-export function themeCustomizableNodeTypes(theme: PlaygroundTheme): NodeType[] {
+export function themeCustomizableNodeTypes(
+  theme: PlaygroundTheme,
+): CustomizableNodeType[] {
   const avail = themeWidgetAvailability(theme);
   const types = [...BASE_CUSTOMIZABLE_NODE_TYPES];
 
