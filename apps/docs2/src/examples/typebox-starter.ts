@@ -1,0 +1,16 @@
+import pageSvelte from "examples/basic-starter/src/routes/typebox-starter/+page.svelte?raw";
+import standardTs from "examples/basic-starter/src/lib/standard.ts?raw";
+
+import { extraPackage } from "meta";
+import { defineLayer } from "meta/composer";
+
+export default defineLayer({
+  package: {
+    name: "typebox-starter",
+    dependencies: [extraPackage("typebox")],
+  },
+  files: {
+    "src/routes/+page.svelte": pageSvelte,
+    "src/lib/standard.ts": standardTs,
+  },
+});

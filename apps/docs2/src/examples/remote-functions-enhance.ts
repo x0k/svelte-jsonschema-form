@@ -1,0 +1,14 @@
+import postModelTs from "examples/sveltekit-starter/src/lib/post.ts?raw";
+import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions-enhance/data.remote?raw";
+import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
+
+import { defineLayer } from "meta/composer";
+
+export default defineLayer({
+  package: { name: "remote-functions-enhance" },
+  files: {
+    "src/lib/post.ts": postModelTs,
+    "src/routes/data.remote.ts": dataRemoteTs,
+    "src/routes/+page.svelte": pageSvelte,
+  },
+});

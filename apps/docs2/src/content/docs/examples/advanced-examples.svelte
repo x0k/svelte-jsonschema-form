@@ -2,18 +2,23 @@
   import { identity } from "@sjsf/form/lib/function";
   import { themeOrSubThemeTitle, validatorTitle } from "meta";
   import {
-    PROJECT_GENERIC_EXAMPLES,
     PROJECT_PLATFORMS,
-    PROJECT_SVELTE_KIT_EXAMPLES,
-    PROJECT_VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
-    PROJECT_VALIDATOR_SPECIFIC_EXAMPLES,
     projectOpen,
     ProjectPlatform,
     projectThemes,
     projectValidators,
     type ProjectTheme,
     type ProjectValidator,
+    ProjectSvelteKitIntegration,
   } from "meta/composer";
+
+  import {
+    EXAMPLE_LAYERS,
+    GENERIC_EXAMPLES,
+    SVELTE_KIT_EXAMPLES,
+    VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
+    VALIDATOR_SPECIFIC_EXAMPLES,
+  } from "@/shared";
 
   import Buttons from "./buttons.svelte";
 
@@ -59,13 +64,15 @@
 <h3>Generic</h3>
 
 <Buttons
-  items={PROJECT_GENERIC_EXAMPLES}
+  items={GENERIC_EXAMPLES}
   onClick={(example) => {
     projectOpen({
+      name: example,
       platform,
-      example,
       theme,
       validator,
+      svelteKitIntegration: undefined,
+      content: EXAMPLE_LAYERS[example](),
     });
   }}
   label={identity}
@@ -74,13 +81,17 @@
 <h3>SvelteKit</h3>
 
 <Buttons
-  items={PROJECT_SVELTE_KIT_EXAMPLES}
+  items={SVELTE_KIT_EXAMPLES}
   onClick={(example) => {
     projectOpen({
+      name: example,
       platform,
-      example,
       theme,
       validator,
+      svelteKitIntegration: example.startsWith("remote-functions")
+        ? ProjectSvelteKitIntegration.RemoteFunctions
+        : ProjectSvelteKitIntegration.FormActions,
+      content: EXAMPLE_LAYERS[example](),
     });
   }}
   label={identity}
@@ -90,13 +101,15 @@
 <p><em>Validator selector will be ignored</em></p>
 
 <Buttons
-  items={PROJECT_VALIDATOR_SPECIFIC_EXAMPLES}
+  items={VALIDATOR_SPECIFIC_EXAMPLES}
   onClick={(example) => {
     projectOpen({
+      name: example,
       platform,
-      example,
       theme,
-      validator: PROJECT_VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
+      validator: VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
+      svelteKitIntegration: undefined,
+      content: EXAMPLE_LAYERS[example](),
     });
   }}
   label={identity}
