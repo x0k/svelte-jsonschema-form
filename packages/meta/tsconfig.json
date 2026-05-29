@@ -13,7 +13,12 @@
       "DOM.Iterable",
       "DOM"
     ],
-    "rewriteRelativeImportExtensions": true
+    "rewriteRelativeImportExtensions": true,
+    "paths": {
+      "examples/*": [
+        "../../examples/*"
+      ],
+    }
   },
   "include": [
     "src/**/*.ts",

@@ -37,6 +37,18 @@ const addFormats = _addFormats as unknown as FormatsPlugin;
 
 const _2020_SUFFIX = "_2020";
 
+type With2020Suffix<T extends string> = `${T}${typeof _2020_SUFFIX}`;
+
+export function isEndsWith2020(v: string): v is With2020Suffix<string> {
+  return v.endsWith(_2020_SUFFIX);
+}
+
+export function without2020Suffix<V extends string>(
+  v: V | With2020Suffix<V>,
+): V {
+  return isEndsWith2020(v) ? (v.slice(0, -_2020_SUFFIX.length) as V) : v;
+}
+
 export function* playgroundValidators() {
   for (const v of validators()) {
     if (!isJsonSchemaValidator(v) || isPrecompiledOnlyValidator(v)) {
@@ -49,26 +61,8 @@ export function* playgroundValidators() {
 
 export type PlaygroundValidator = Generated<typeof playgroundValidators>;
 
-type Playground2020Validator = Extract<
-  PlaygroundValidator,
-  `${string}${typeof _2020_SUFFIX}`
->;
-
-function isPlayground2020Validator(
-  v: PlaygroundValidator,
-): v is Playground2020Validator {
-  return v.endsWith(_2020_SUFFIX);
-}
-
-function without2020Suffix<V extends Playground2020Validator>(v: V) {
-  return v.slice(
-    0,
-    -_2020_SUFFIX.length,
-  ) as V extends `${infer v}${typeof _2020_SUFFIX}` ? v : never;
-}
-
 export function playgroundValidatorTitle(v: PlaygroundValidator) {
-  if (isPlayground2020Validator(v)) {
+  if (isEndsWith2020(v)) {
     return `${validatorTitle(without2020Suffix(v))} (2020-12)`;
   }
   return validatorTitle(v);
