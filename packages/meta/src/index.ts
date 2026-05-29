@@ -1,6 +1,7 @@
 export * from "./types.ts";
 export * from "./css.ts";
 export * from "./package.ts";
+export * from "./errors.ts";
 
 export * from "./form.ts";
 export * from "./validators.ts";

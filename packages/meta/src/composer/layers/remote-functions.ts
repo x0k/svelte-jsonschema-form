@@ -9,10 +9,7 @@ export default defineLayer({
     idBuilderPackage: svelteKitRfSubPath(),
   },
   codeTransformers: [
-    (filepath, code) =>
-      filepath.endsWith("+page.svelte")
-        ? code.replace("remote-form-defaults", "form-defaults")
-        : code,
+    (_filepath, code) => code.replace("remote-form-defaults", "form-defaults"),
   ],
   vite: {
     optimizeDeps: {

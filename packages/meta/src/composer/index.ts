@@ -1,18 +1,13 @@
+export { defineLayer, type Layer } from "./layer.ts";
 export {
+  type ImportPromise,
   type ProjectOptions,
   projectOpen,
   ProjectPlatform,
-  ProjectGenericExample,
-  ProjectSvelteKitExample,
-  ProjectValidatorSpecificExample,
   PROJECT_PLATFORMS,
-  PROJECT_GENERIC_EXAMPLES,
-  PROJECT_SVELTE_KIT_EXAMPLES,
-  PROJECT_VALIDATOR_SPECIFIC_EXAMPLES,
-  PROJECT_VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
   projectValidators,
   projectThemes,
   type ProjectTheme,
   type ProjectValidator,
-  type ProjectExample,
+  ProjectSvelteKitIntegration,
 } from "./project.ts";
