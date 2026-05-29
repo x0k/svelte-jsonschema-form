@@ -91,6 +91,7 @@ catalogs:
     svelte-tel-input: ^4.2.0
     svelte-toolbelt: ^0.10.6
     yeezy-dates: ^1.1.0
+    svelte-sonner: ^1.1.1
 
 onlyBuiltDependencies:
   - esbuild

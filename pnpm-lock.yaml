@@ -224,6 +224,9 @@ catalogs:
     runed:
       specifier: ^0.37.1
       version: 0.37.1
+    svelte-sonner:
+      specifier: ^1.1.1
+      version: 1.1.1
     svelte-tel-input:
       specifier: ^4.2.0
       version: 4.2.0
@@ -486,7 +489,7 @@ importers:
         specifier: 'catalog:'
         version: 5.55.9(@typescript-eslint/types@8.60.0)
       svelte-sonner:
-        specifier: ^1.1.1
+        specifier: catalog:shadcn
         version: 1.1.1(svelte@5.55.9(@typescript-eslint/types@8.60.0))
       tailwind-merge:
         specifier: catalog:shadcn
@@ -892,6 +895,9 @@ importers:
       svelte:
         specifier: 'catalog:'
         version: 5.55.9(@typescript-eslint/types@8.60.0)
+      svelte-sonner:
+        specifier: catalog:shadcn
+        version: 1.1.1(svelte@5.55.9(@typescript-eslint/types@8.60.0))
       tailwind-merge:
         specifier: catalog:shadcn
         version: 3.6.0

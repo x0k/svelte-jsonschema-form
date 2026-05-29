@@ -25,8 +25,8 @@
 </script>
 
 <Select.Root type="single" bind:value>
-  <Select.Trigger class="truncate">
-    {lbl(value)}
+  <Select.Trigger class="max-w-66">
+    <span class="truncate">{lbl(value)}</span>
   </Select.Trigger>
   <Select.Content>
     <Select.Group>

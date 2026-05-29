@@ -12,10 +12,14 @@ export default defineConfig({
     svelte(),
   ],
   resolve: {
-    alias: { "@": resolve(__dirname, "./src"), $lib: resolve("./src/lib") },
+    alias: {
+      "@": resolve(__dirname, "./src"),
+      $lib: resolve("./src/lib"),
+      examples: resolve(__dirname, "../../examples"),
+    },
   },
   optimizeDeps: {
     exclude: ["@jis3r/icons"],
-    include: ["svelte-tiler", "svelte-tiler/*"],
+    include: ["svelte-tiler", "svelte-tiler/*", "svelte-sonner"],
   },
 });

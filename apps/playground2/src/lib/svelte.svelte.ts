@@ -2,7 +2,7 @@ export function debouncedEffect(
   actionFactory: () => () => void,
   ms: number = 300,
 ) {
-  let callbackId: number | undefined;
+  let callbackId: NodeJS.Timeout | undefined;
   $effect(() => {
     clearTimeout(callbackId);
     const action = actionFactory();

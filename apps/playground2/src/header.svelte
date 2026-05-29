@@ -23,11 +23,13 @@
 
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import Sun from "@lucide/svelte/icons/sun";
+  import Moon from "@lucide/svelte/icons/moon";
+  import Monitor from "@lucide/svelte/icons/monitor";
 
   import { Button } from "$lib/components/ui/button/index.js";
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
-  import { THEME_TITLES, THEMES } from "$lib/theme.js";
-  import Select from "$lib/select.svelte";
+  import { Theme } from "$lib/theme.js";
   import Github from "$lib/github.svelte";
   import OpenBook from "$lib/open-book.svelte";
 
@@ -64,25 +66,41 @@
   </ButtonGroup.Root>
   <div class="grow"></div>
   {@render children?.()}
-  <Button
-    variant="ghost"
-    size="icon"
-    href="https://x0k.github.io/svelte-jsonschema-form/"
-  >
-    <OpenBook class="size-6" />
-  </Button>
-  <Button
-    target="_blank"
-    href="https://github.com/x0k/svelte-jsonschema-form/"
-    size="icon"
-    variant="ghost"
-  >
-    <Github class="size-6" />
-  </Button>
-  <Select
-    label="App theme"
-    bind:value={themeManager.theme}
-    items={THEMES}
-    labels={THEME_TITLES}
-  />
+  <ButtonGroup.Root>
+    <Button
+      variant="ghost"
+      size="icon"
+      href="https://x0k.github.io/svelte-jsonschema-form/"
+    >
+      <OpenBook class="size-6" />
+    </Button>
+    <Button
+      target="_blank"
+      href="https://github.com/x0k/svelte-jsonschema-form/"
+      size="icon"
+      variant="ghost"
+    >
+      <Github class="size-6" />
+    </Button>
+    <Button
+      size="icon"
+      variant="ghost"
+      onclick={() => {
+        themeManager.theme =
+          themeManager.theme === Theme.System
+            ? Theme.Light
+            : themeManager.theme === Theme.Light
+              ? Theme.Dark
+              : Theme.System;
+      }}
+    >
+      {#if themeManager.theme === Theme.Light}
+        <Sun class="size-6" />
+      {:else if themeManager.theme === Theme.Dark}
+        <Moon class="size-6" />
+      {:else}
+        <Monitor class="size-6" />
+      {/if}
+    </Button>
+  </ButtonGroup.Root>
 </div>

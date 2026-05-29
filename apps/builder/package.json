@@ -23,7 +23,7 @@
     "json-schema-to-ts": "catalog:",
     "shadcn-svelte": "catalog:",
     "svelte": "catalog:",
-    "svelte-sonner": "^1.1.1",
+    "svelte-sonner": "catalog:shadcn",
     "tailwind-merge": "catalog:shadcn",
     "tailwind-variants": "catalog:shadcn",
     "tailwindcss": "catalog:",

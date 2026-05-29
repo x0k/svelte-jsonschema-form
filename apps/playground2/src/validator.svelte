@@ -19,6 +19,7 @@
   import Editor from "$lib/editor.svelte";
   import { gripHeader } from "$lib/grip-header.svelte";
   import { Button } from "$lib/components/ui/button/index.js";
+  import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
   import { debouncedEffect } from "$lib/svelte.svelte.js";
 
   import Header from "./header.svelte";
@@ -187,11 +188,13 @@
     }),
   }}
 >
-  <Select
-    label="Validator"
-    bind:value={data.validator}
-    items={playgroundValidators()}
-    itemLabel={playgroundValidatorTitle}
-  />
+  <ButtonGroup.Root>
+    <Select
+      label="Validator"
+      bind:value={data.validator}
+      items={playgroundValidators()}
+      itemLabel={playgroundValidatorTitle}
+    />
+  </ButtonGroup.Root>
 </Header>
 <Panel bind:layout />

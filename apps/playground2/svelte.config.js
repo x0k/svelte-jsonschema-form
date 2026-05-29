@@ -1,6 +1,12 @@
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
-const injectedCss = ["@jis3r/icons", "svar", "beercss", "svelte-tiler"];
+const injectedCss = [
+  "@jis3r/icons",
+  "svar",
+  "svelte-sonner",
+  "beercss",
+  "svelte-tiler",
+];
 
 export default {
   // Consult https://svelte.dev/docs#compile-time-svelte-preprocess
