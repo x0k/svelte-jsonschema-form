@@ -1,8 +1,12 @@
-import { extraPackage, formPackage, isJsonSchemaValidator } from "meta";
+import {
+  extraPackage,
+  formPackage,
+  isJsonSchemaValidator,
+  neverError,
+} from "meta";
 
 import {
   isEndsWithPrecompiled,
-  neverError,
   POST_JSON_SCHEMA_PATH,
   type Context,
 } from "./model.js";

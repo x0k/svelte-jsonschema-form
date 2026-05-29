@@ -3,9 +3,10 @@ import {
   svelteKitRfSubPath,
   svelteKitSubPath,
   type NonLegacyThemeOrSubTheme,
+  neverError,
 } from "meta";
 
-import { neverError, createValidator, type Context } from "./model.js";
+import { createValidator, type Context } from "./model.js";
 import {
   addToDemoPage,
   transforms,
