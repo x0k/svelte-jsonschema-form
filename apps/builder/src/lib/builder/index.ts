@@ -1,7 +1,6 @@
 export * from "./node.js";
 export * from "./range-node.js";
 
-export * from "./range-node.js";
 export * from "./node-factories.js";
 export * from "./node-props.js";
 export * from "./node-guards.js";

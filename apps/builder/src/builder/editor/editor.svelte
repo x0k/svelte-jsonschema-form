@@ -23,6 +23,7 @@
       // NOTE: `setTimeout` is required for correct operation of the conditions
       // in `settings.svelte` for the `NodeSettings` component.
       // And i can't explain why
+      // This may be related to event delegation in Svelte
       setTimeout(() => {
         ctx.clearSelection();
       });
