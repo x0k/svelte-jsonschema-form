@@ -27,7 +27,7 @@
 		"sv": "^0.15.0"
 	},
 	"devDependencies": {
-		"@sveltejs/sv-utils": "^0.2.2",
+		"@sveltejs/sv-utils": "catalog:",
 		"@types/node": "^25.6.2",
 		"meta": "workspace:*",
 		"sv": "^0.15.3",
