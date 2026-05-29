@@ -91,7 +91,7 @@
     "beercss": "catalog:",
     "bits-ui": "catalog:",
     "css-tree": "^3.2.1",
-    "devalue": "^5.8.0",
+    "devalue": "catalog:",
     "flowbite-svelte2": "npm:flowbite-svelte@0.47.4",
     "json-schema-to-ts": "catalog:",
     "sharp": "^0.34.5",

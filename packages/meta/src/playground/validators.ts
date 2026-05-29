@@ -6,7 +6,7 @@ import {
 } from "@sjsf/ajv8-validator";
 import { createFormValidator as cfworker } from "@sjsf/cfworker-validator";
 import {
-  DEFAULT_VALIDATOR_OPTIONS as DEFAULT_CFWORKER_OPTIONS,
+  DEFAULT_VALIDATOR_OPTIONS as DEFAULT_SCHEMASAFE_OPTIONS,
   createFormValidator as schemasafe,
 } from "@sjsf/schemasafe-validator";
 import {
@@ -99,7 +99,7 @@ export const PLAYGROUND_VALIDATORS = {
       ...options,
       factory: (schema, rootSchema) =>
         safeValidator(schema as SafeSchema, {
-          ...DEFAULT_CFWORKER_OPTIONS,
+          ...DEFAULT_SCHEMASAFE_OPTIONS,
           $schemaDefault: "https://json-schema.org/draft/2020-12/schema",
           schemas: {
             [ROOT_SCHEMA_PREFIX]: rootSchema as SafeSchema,

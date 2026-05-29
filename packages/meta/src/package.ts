@@ -1,3 +1,5 @@
+import { EXTRA_PACKAGES } from "./packages.generated.ts";
+
 type PeerDependenciesMeta = Record<string, { optional?: boolean }>;
 
 interface RawPackage {
@@ -24,110 +26,6 @@ export interface Package extends AbstractPackage {
   directory: string;
   dependencies: PackageDependency[];
 }
-
-const EXTRA_PACKAGES = {
-  ajvFormat: {
-    name: "ajv-formats",
-    version: "3.0.0",
-    dev: false,
-  },
-  jsonSchemaToTs: {
-    name: "json-schema-to-ts",
-    version: "3.0.0",
-    dev: true,
-  },
-  esbuild: {
-    name: "esbuild",
-    version: "0.28.0",
-    dev: true,
-  },
-  devalue: {
-    name: "devalue",
-    version: "5.7.0",
-    dev: true,
-  },
-  pico: {
-    name: "@picocss/pico",
-    version: "2.1.0",
-    dev: true,
-  },
-  vite: {
-    name: "vite",
-    version: "8.0.10",
-    dev: true,
-  },
-  typescript: {
-    name: "typescript",
-    version: "6.0.0",
-    dev: true,
-  },
-  svelteVitePlugin: {
-    name: "@sveltejs/vite-plugin-svelte",
-    version: "7.1.2",
-    dev: true,
-  },
-  svelteAdapterAuto: {
-    name: "@sveltejs/adapter-auto",
-    version: "7.0.1",
-    dev: true,
-  },
-  tailwindcss3: {
-    name: "tailwindcss",
-    version: "3.4.17",
-    dev: true,
-  },
-  postcss: {
-    name: "postcss",
-    version: "8.5.6",
-    dev: true,
-  },
-  autoprefixer: {
-    name: "autoprefixer",
-    version: "10.5.0",
-    dev: true,
-  },
-  tailwindcss4: {
-    name: "tailwindcss",
-    version: "4.3.0",
-    dev: true,
-  },
-  tailwindcss4Vite: {
-    name: "@tailwindcss/vite",
-    version: "4.3.0",
-    dev: true,
-  },
-  typebox: {
-    name: "typebox",
-    version: "1.0.7",
-    dev: false,
-  },
-  arktype: {
-    name: "arktype",
-    version: "2.1.21",
-    dev: false,
-  },
-  jsonSchemaTyped: {
-    name: "json-schema-typed",
-    version: "8.0.0",
-    dev: true,
-  },
-  svelteExmarkdown: {
-    name: "svelte-exmarkdown",
-    version: "5.0.2",
-    dev: false,
-  },
-  fontsourceVariableInter: {
-    name: "@fontsource-variable/inter",
-    version: "5.2.0",
-    dev: true,
-  },
-  tailwindcssAnimate: {
-    name: "tailwindcss-animate",
-    version: "1.0.0",
-    dev: true,
-  },
-  twAnimateCss: { name: "tw-animate-css", version: "1.4.0", dev: true },
-} as const satisfies Record<string, AbstractPackage>;
 
 export type ExtraPackage = keyof typeof EXTRA_PACKAGES;
 
@@ -181,17 +79,22 @@ export function createVersion(versionStr: string) {
 }
 
 const VERSION_MODIFIERS = ["^", "~", "<=", "<"] as const;
-function formatPeerDependencyVersion(version: string) {
-  let str = version.replace("workspace:", "").split(" ").at(-1)!.trim();
-  const m = VERSION_MODIFIERS.find((m) => str.startsWith(m));
+
+export function resolveExactVersion(versionStr: string): string {
+  const m = VERSION_MODIFIERS.find((m) => versionStr.startsWith(m));
   if (m) {
-    str = str.slice(m.length);
+    versionStr = versionStr.slice(m.length);
   }
-  const ver = createVersion(str);
+  const ver = createVersion(versionStr);
   if (m === "<") {
     ver[ver[0] === 0 ? 1 : 0]--;
   }
   return ver.join(".");
+}
+
+function formatPeerDependencyVersion(version: string) {
+  const str = version.replace("workspace:", "").split(" ").at(-1)!.trim();
+  return resolveExactVersion(str);
 }
 
 function createMetaExtractor(peerDependenciesMeta: PeerDependenciesMeta) {

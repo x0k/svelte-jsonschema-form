@@ -92,7 +92,7 @@ export function createSchemaTransformer({
   return (filepath, content) => {
     if (
       !filepath.endsWith(".svelte") ||
-      !/(const\s+schema\s*?=\s*?{|)/gm.test(content)
+      !/const\s+schema\s*?=\s*?{/gm.test(content)
     ) {
       return content;
     }
