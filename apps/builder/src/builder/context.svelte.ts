@@ -300,6 +300,8 @@ export class BuilderContext {
     });
   });
   readonly uiSchema = $derived(this.#uiSchemaOutput.uiSchema);
+  readonly uiSchemaWidgets = $derived(this.#uiSchemaOutput.widgets);
+  readonly uiSchemaFileFieldMode = $derived(this.#uiSchemaOutput.fileFieldMode);
 
   readonly formDotSvelte = $derived(
     this.highlight(
