@@ -1,3 +1,4 @@
+import type { AtRule } from "../css.ts";
 import { formPackage } from "../form.ts";
 import { iconSetPackage } from "../icons.ts";
 import {
@@ -9,7 +10,10 @@ import {
   type PackageDependency,
 } from "../package.ts";
 import { sveltekitPackage } from "../sveltekit.ts";
-import type { Tailwindcss4Plugin } from "../tailwindcss.ts";
+import {
+  tailwindcss4PluginPackage,
+  type Tailwindcss4Plugin,
+} from "../tailwindcss.ts";
 import {
   isSubTheme,
   isTailwindcss4Theme,
@@ -31,6 +35,7 @@ import {
   type CodegenIconSet,
   type SvelteKitIntegrationOption,
 } from "./model.ts";
+import type { NamespaceImportOptions } from "./utils.ts";
 
 interface DependenciesOptions {
   themeOrSubTheme: NonLegacyThemeOrSubTheme;
@@ -41,15 +46,14 @@ interface DependenciesOptions {
   addTailwindCss4: (plugins: Iterable<Tailwindcss4Plugin>) => void;
 }
 
-export function resolveDependencies(options: DependenciesOptions) {
-  const {
-    addDependency,
-    addTailwindCss4,
-    themeOrSubTheme,
-    validatorWithSuffix,
-    icons,
-    sveltekit,
-  } = options;
+export function resolveDependencies({
+  addDependency,
+  addTailwindCss4,
+  themeOrSubTheme,
+  validatorWithSuffix,
+  icons,
+  sveltekit,
+}: DependenciesOptions) {
   function addDependencies(
     deps: Iterable<PackageDependency>,
     filter: IncludeOptional = false,
@@ -118,4 +122,39 @@ export function resolveDependencies(options: DependenciesOptions) {
     addDependency(sveltekitPackage);
     addDependencies(sveltekitPackage.dependencies);
   }
+}
+
+export interface AddTailwindCss4Options {
+  addDependency: (pkg: AbstractPackage) => void;
+  addVitePlugin: (options: NamespaceImportOptions) => void;
+  addAppCssRule: (rules: AtRule) => void;
+}
+
+export function createAddTailwind4Css({
+  addDependency,
+  addVitePlugin,
+  addAppCssRule,
+}: AddTailwindCss4Options) {
+  return (plugins: Iterable<Tailwindcss4Plugin>) => {
+    addDependency(extraPackage("tailwindcss4"));
+    addDependency(extraPackage("tailwindcss4Vite"));
+    for (const p of plugins) {
+      addDependency(tailwindcss4PluginPackage(p));
+    }
+    addVitePlugin({
+      as: "tailwindcss",
+      from: "@tailwindcss/vite",
+    });
+    addAppCssRule({
+      name: "import",
+      params: `'tailwindcss'`,
+    });
+    for (const p of plugins) {
+      const pkg = tailwindcss4PluginPackage(p);
+      addAppCssRule({
+        name: "plugin",
+        params: `'${pkg.name}'`,
+      });
+    }
+  };
 }

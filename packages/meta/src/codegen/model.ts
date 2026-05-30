@@ -6,24 +6,15 @@ import {
   validators,
 } from "../validators.ts";
 
-export interface SelectOption {
-  value: string;
-  label?: string | undefined;
-  hint?: string | undefined;
+export function* svelteKitIntegrationOptions() {
+  yield "no";
+  yield "formActions";
+  yield "remoteFunctions";
 }
 
-export const SVELTE_KIT_INTEGRATION_OPTIONS = [
-  { value: "no", label: "No" },
-  { value: "formActions", label: "Form Actions" },
-  {
-    value: "remoteFunctions",
-    label: "Remote Functions",
-    hint: "experimental",
-  },
-] as const satisfies SelectOption[];
-
-export type SvelteKitIntegrationOption =
-  (typeof SVELTE_KIT_INTEGRATION_OPTIONS)[number]["value"];
+export type SvelteKitIntegrationOption = Generated<
+  typeof svelteKitIntegrationOptions
+>;
 
 const PRECOMPILED_SUFFIX = `_precompiled`;
 
