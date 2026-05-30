@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
 import {
-  createPlaygroundLayer,
+  createSandboxLayer,
   type PlaygroundLayerOptions,
-} from "./create-playground-layer";
+} from "./create-sandbox-layer";
 
 function makeState(
   overrides?: Partial<PlaygroundLayerOptions>,
@@ -33,42 +33,42 @@ function makeState(
 
 describe("createPlaygroundLayer", () => {
   it("bare minimum", () => {
-    expect(createPlaygroundLayer(makeState())).toMatchSnapshot();
+    expect(createSandboxLayer(makeState())).toMatchSnapshot();
   });
 
   it("with html5 validation off", () => {
     expect(
-      createPlaygroundLayer(makeState({ html5Validation: false })),
+      createSandboxLayer(makeState({ html5Validation: false })),
     ).toMatchSnapshot();
   });
 
   it("with fields validation mode", () => {
     expect(
-      createPlaygroundLayer(makeState({ fieldsValidationMode: 3 })),
+      createSandboxLayer(makeState({ fieldsValidationMode: 3 })),
     ).toMatchSnapshot();
   });
 
   it("with custom merger options", () => {
     expect(
-      createPlaygroundLayer(makeState({ allOf: "populateDefaults" })),
+      createSandboxLayer(makeState({ allOf: "populateDefaults" })),
     ).toMatchSnapshot();
   });
 
   it("with focus on first error", () => {
     expect(
-      createPlaygroundLayer(makeState({ focusOnFirstError: true })),
+      createSandboxLayer(makeState({ focusOnFirstError: true })),
     ).toMatchSnapshot();
   });
 
   it("with omit extra data", () => {
     expect(
-      createPlaygroundLayer(makeState({ omitExtraData: true })),
+      createSandboxLayer(makeState({ omitExtraData: true })),
     ).toMatchSnapshot();
   });
 
   it("with transparentLayout component", () => {
     expect(
-      createPlaygroundLayer(
+      createSandboxLayer(
         makeState({
           uiSchema: { "ui:components": { layout: "transparentLayout" } },
         }),
@@ -78,7 +78,7 @@ describe("createPlaygroundLayer", () => {
 
   it("with markdownDescription component", () => {
     expect(
-      createPlaygroundLayer(
+      createSandboxLayer(
         makeState({
           uiSchema: {
             "ui:components": { description: "markdownDescription" },
@@ -90,7 +90,7 @@ describe("createPlaygroundLayer", () => {
 
   it("with string enum value mapper", () => {
     expect(
-      createPlaygroundLayer(
+      createSandboxLayer(
         makeState({
           uiSchema: {
             "ui:options": {
@@ -104,7 +104,7 @@ describe("createPlaygroundLayer", () => {
 
   it("with everything enabled", () => {
     expect(
-      createPlaygroundLayer(
+      createSandboxLayer(
         makeState({
           html5Validation: false,
           fieldsValidationMode: 7,

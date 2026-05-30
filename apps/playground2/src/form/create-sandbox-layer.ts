@@ -37,7 +37,7 @@ export type PlaygroundLayerOptions = Omit<FormState, "validator"> & {
   validator: Validator;
 };
 
-export function createPlaygroundLayer({
+export function createSandboxLayer({
   schema,
   uiSchema,
   initialValue,

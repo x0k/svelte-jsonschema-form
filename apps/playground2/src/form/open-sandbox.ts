@@ -6,7 +6,7 @@ import {
 import { projectOpen, ProjectPlatform } from "meta/composer";
 import { toast } from "svelte-sonner";
 
-import { createPlaygroundLayer } from "./create-playground-layer";
+import { createSandboxLayer } from "./create-sandbox-layer";
 
 export interface SandboxOptions {
   formState: FormState;
@@ -22,14 +22,14 @@ export async function openSandbox({ formState, platform }: SandboxOptions) {
   }
 
   projectOpen({
-    name: `Playground (${validator}, ${theme})`,
+    name: "Sandbox",
     platform: platform,
     theme,
     validator,
     svelteKitIntegration: undefined,
     content: [
       Promise.resolve({
-        default: createPlaygroundLayer({
+        default: createSandboxLayer({
           ...formState,
           validator: without2020Suffix(validator),
         }),
