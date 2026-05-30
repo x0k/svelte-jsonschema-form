@@ -9,6 +9,7 @@
   import { builderValidators, builderValidatorTitle } from "meta/builder";
   import { ProjectPlatform } from "meta/composer";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
+  import ExternalLink from "@lucide/svelte/icons/external-link";
 
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
@@ -106,8 +107,9 @@
   </Button>
   <div class="flex flex-col gap-2">
     <ButtonGroup.Root class="w-full">
-      <Button variant="ghost" class="flex-1" onclick={handleMainClick}>
+      <Button variant="ghost" class="flex-1 gap-2" onclick={handleMainClick}>
         Open in {selectedTarget === "playground" ? "Playground" : selectedTarget}
+        <ExternalLink tabindex={-1} />
       </Button>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger class={buttonVariants({ variant: "ghost" })}>
