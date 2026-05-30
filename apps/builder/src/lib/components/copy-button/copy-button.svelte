@@ -29,7 +29,7 @@
   }
 
   let status = $state.raw<"success" | "failure" | "idle">("idle");
-  let callbackId: number;
+  let callbackId: NodeJS.Timeout;
 </script>
 
 <Button
