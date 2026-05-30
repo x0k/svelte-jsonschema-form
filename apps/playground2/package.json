@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test": "vitest run"
   },
   "dependencies": {
     "@cfworker/json-schema": "catalog:",
@@ -59,6 +60,7 @@
     "tailwind-merge": "catalog:shadcn",
     "tailwind-variants": "catalog:shadcn",
     "tailwindcss": "catalog:",
-    "tw-animate-css": "catalog:shadcn"
+    "tw-animate-css": "catalog:shadcn",
+    "vitest": "catalog:"
   }
 }

@@ -1,5 +1,5 @@
 import { resolve } from "node:path";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import tailwindcss from "@tailwindcss/vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 // import { visualizer } from "rollup-plugin-visualizer";
@@ -21,5 +21,8 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ["@jis3r/icons"],
     include: ["svelte-tiler", "svelte-tiler/*", "svelte-sonner"],
+  },
+  test: {
+    include: ["src/**/*.test.ts"],
   },
 });

@@ -91,6 +91,7 @@
   import Header from "@/header.svelte";
   import { router } from "@/router.js";
 
+  import { getChangedMergerOptionsCount } from "./merger-options";
   import * as customComponents from "./custom-form-components/index.js";
   import SamplePicker from "./sample-picker.svelte";
   import CopyFormData from "./copy-form-data.svelte";
@@ -162,20 +163,9 @@
     return count;
   });
 
-  function isChanged(key: keyof FormState) {
-    return data[key] !== DEFAULT_PLAYGROUND_STATE[key] ? 1 : 0;
-  }
-
   let sandboxPlatform = $state(PROJECT_PLATFORMS[0]!);
 
-  const mergerOptionsCount = $derived(
-    isChanged("arrayMinItemsMergeExtraDefaults") +
-      isChanged("arrayMinItemsPopulate") +
-      isChanged("allOf") +
-      isChanged("constAsDefault") +
-      isChanged("emptyObjectFields") +
-      isChanged("mergeDefaultsIntoFormData"),
-  );
+  const changedMergerOptionsCount = $derived(getChangedMergerOptionsCount(data));
 
   const { compareSchemaDefinitions, compareSchemaValues } = createComparator();
   const jsonSchemaMerger = createMerger({
@@ -455,7 +445,7 @@
           +data.focusOnFirstError +
           +data.omitExtraData +
           fieldsValidationCount +
-          mergerOptionsCount})
+          changedMergerOptionsCount})
       {/snippet}
       <p class="text-sm font-medium">Form</p>
       <Label>

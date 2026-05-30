@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
   import Markdown from "svelte-exmarkdown";
   import {
     descriptionAttributes,
@@ -12,7 +11,7 @@
   const ctx = getFormContext();
 </script>
 
-<Markdown md={description as string & Snippet}>
+<Markdown md={description}>
   {#snippet p({ children })}
     <div {...descriptionAttributes(ctx, config, "descriptionAttributes", {})}>
       {@render children?.()}
