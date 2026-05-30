@@ -13,8 +13,10 @@ import {
   formTranslationSubPath,
   iconSetPackage,
   isSchemaValidator,
+  isThemeExtension,
+  themeExtensionOrigin,
   themeExtraWidgetOptionalDependencies,
-  themeExtraWidgetSubPath,
+  themeExtraWidgets,
   themePackage,
   toTheme,
   widgetFileName,
@@ -23,7 +25,8 @@ import {
   type ExtraFieldFileName,
   type SchemaValidator,
   type Theme,
-  type WidgetTypes
+  type WidgetTypes,
+  type ToTheme
 } from "meta";
 import type { PlaygroundIconSet, PlaygroundResolver, PlaygroundTheme } from "meta/playground";
 import { type BuilderValidator, type WidgetType, WIDGET_EXTRA_FIELD } from "meta/builder";
@@ -73,20 +76,33 @@ export function buildFormDefaults({
   const iconsExport =
     icons === "none" ? false : `export { icons } from "${iconSetPackage(icons).name}";`;
 
-  const themePkg = themePackage(toTheme(theme));
+  const effectiveTheme = toTheme(theme);
+  const effectiveThemePackage = themePackage(effectiveTheme);
+  const originThemePackage = isThemeExtension(effectiveTheme)
+    ? themePackage(themeExtensionOrigin(effectiveTheme))
+    : effectiveThemePackage;
+
+  const extensionWidgetNames = isThemeExtension(effectiveTheme)
+    ? new Set<ReturnType<typeof widgetFileName<ToTheme<PlaygroundTheme>>>>(
+        themeExtraWidgets(effectiveTheme)
+      )
+    : null;
+
+  const extraWidgetImports = extraWidgetTypes.map((widgetType) => {
+    const fileName = widgetFileName(effectiveTheme, widgetType);
+    const pkg =
+      !extensionWidgetNames || extensionWidgetNames.has(fileName)
+        ? effectiveThemePackage
+        : originThemePackage;
+    return `import "${pkg.name}/extra-widgets/${fileName}-include";`;
+  });
 
   return join2(
     join(
       `export { resolver } from "${formResolverSubPath(resolver)}";`,
       ...Array.from(extraFields).map((f) => `import "${extraFieldSubPath(f, true)}";`)
     ),
-    join(
-      `export { theme } from "${themePkg.name}";`,
-      ...extraWidgetTypes.map(
-        (w) =>
-          `import "${themeExtraWidgetSubPath(toTheme(theme), widgetFileName(toTheme(theme), w) as ExtraWidgetFileNames[Theme], true)}";`
-      )
-    ),
+    join(`export { theme } from "${effectiveThemePackage.name}";`, ...extraWidgetImports),
     iconsExport,
     `export { translation } from "${formTranslationSubPath("en")}";`,
     `export { createFormIdBuilder as idBuilder } from "${formIdBuilderSubPath("modern")}";`,
@@ -159,7 +175,8 @@ export function buildFormDotSvelte({
     theme === "shadcn4" &&
       `  import * as components from "${themePackage("shadcn4").name}/new-york";`,
     theme === "shadcn-extras" &&
-      `  import * as components from "${themePackage("shadcn-extras").name}/ui";`,
+      `  import * as components from "${themePackage("shadcn4").name}/new-york";
+  import * as extraComponents from "${themePackage("shadcn-extras").name}/ui";`,
     isSvar && `  import { Willow } from "@svar-ui/svelte-core";`,
     `
   import * as defaults from "$lib/form/defaults.js";
@@ -174,9 +191,12 @@ export function buildFormDotSvelte({
     uiSchema,
     onSubmit: console.log
   })`,
-    (theme === "shadcn4" || theme === "shadcn-extras") &&
+    theme === "shadcn4" &&
       `
   setThemeContext({ components })`,
+    theme === "shadcn-extras" &&
+      `
+  setThemeContext({ components: { ...components, ...extraComponents } })`,
     `</script>`,
     isSvar && `<Willow>`,
     `<BasicForm {form}${html5Validation ? "" : " novalidate"} />`,
