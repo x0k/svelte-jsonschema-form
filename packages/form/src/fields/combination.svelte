@@ -71,51 +71,73 @@
     restFieldConfig && getFieldComponent(ctx, restFieldConfig)
   );
 
-  let ignoreUpdate = false;
-  let lastValueSnapshot: FormValue;
-  const valueSnapshot = $derived.by(() => {
-    if (ignoreUpdate) {
-      ignoreUpdate = false;
-      return lastValueSnapshot;
-    }
-    lastValueSnapshot = $state.snapshot(value);
-    return lastValueSnapshot;
-  });
-
   const retrievedOptions = $derived(
     (config.schema[combinationKey] ?? []).map((s) =>
-      typeof s !== "boolean" ? retrieveSchema(ctx, s, valueSnapshot) : {}
+      typeof s !== "boolean" ? retrieveSchema(ctx, s, value) : {}
     )
   );
 
-  let previousSelectedOption = $state.raw<number>();
-  let nextSelectedOption = $derived(
-    getClosestMatchingOption(
+  let internalValueWriteVersion = 0;
+  let consumedInternalValueWriteVersion = 0;
+
+  function setNormalizedValue(nextValue: FormValue) {
+    const currentValue = untrack(() => value);
+    if (
+      !Object.is(currentValue, nextValue) ||
+      (nextValue !== null && typeof nextValue === "object")
+    ) {
+      internalValueWriteVersion += 1;
+    }
+    value = nextValue;
+  }
+
+  function consumePendingInternalValueWrite() {
+    if (consumedInternalValueWriteVersion === internalValueWriteVersion) {
+      return false;
+    }
+    consumedInternalValueWriteVersion = internalValueWriteVersion;
+    return true;
+  }
+
+  let normalizedSelectedOption = $state.raw<number>();
+  let pendingSelectedOption = $derived.by(() => {
+    const options = retrievedOptions;
+    const selectedFallback = untrack(() => normalizedSelectedOption ?? 0);
+    if (consumePendingInternalValueWrite()) {
+      return selectedFallback;
+    }
+    return getClosestMatchingOption(
       ctx,
-      valueSnapshot,
-      retrievedOptions,
-      untrack(() => previousSelectedOption ?? 0),
+      value,
+      options,
+      selectedFallback,
       getDiscriminatorFieldFromSchema(config.schema)
-    )
+    );
+  });
+  const displayedSelectedOption = $derived(
+    normalizedSelectedOption ?? pendingSelectedOption
   );
-  const currentSelectedOption = $derived(
-    previousSelectedOption ?? nextSelectedOption
-  );
+
+  function selectOption(nextSelected: number | undefined) {
+    if (typeof nextSelected === "number") {
+      pendingSelectedOption = nextSelected;
+    }
+  }
 
   $effect(() => {
-    const nextSelected = nextSelectedOption;
-    if (previousSelectedOption === nextSelected) {
+    const pendingSelected = pendingSelectedOption;
+    const normalizedSelected = normalizedSelectedOption;
+    if (normalizedSelected === pendingSelected) {
       return;
     }
-    ignoreUpdate = true;
-    value = untrack(() => {
-      const nextSchema = retrievedOptions[nextSelected];
+    const nextValue = untrack(() => {
+      const nextSchema = retrievedOptions[pendingSelected];
       if (nextSchema === undefined) {
         return undefined;
       }
       const oldSchema =
-        previousSelectedOption !== undefined
-          ? retrievedOptions[previousSelectedOption]
+        normalizedSelected !== undefined
+          ? retrievedOptions[normalizedSelected]
           : undefined;
       return getDefaultFieldState(ctx, {
         schema: nextSchema,
@@ -126,7 +148,8 @@
         includeUndefinedValues: "excludeObjectChildren",
       });
     });
-    previousSelectedOption = nextSelected;
+    normalizedSelectedOption = pendingSelected;
+    setNormalizedValue(nextValue);
   });
 
   const optionsUiSchemas = $derived.by(() => {
@@ -150,9 +173,9 @@
   });
   const optionTitles = $derived.by(() => {
     const discriminator = getDiscriminatorFieldFromSchema(config.schema);
-    return retrievedOptions.map((s, i) => {
+    return retrievedOptions.map((schema, index) => {
       if (discriminator !== undefined) {
-        const uiSchemaDefinition = optionsUiSchemas[i]?.[discriminator];
+        const uiSchemaDefinition = optionsUiSchemas[index]?.[discriminator];
         if (
           typeof uiSchemaDefinition === "object" &&
           !Array.isArray(uiSchemaDefinition)
@@ -165,20 +188,23 @@
             return title;
           }
         }
-        const schemaDef = s.properties?.[discriminator];
-        if (schemaDef !== undefined && typeof schemaDef !== "boolean") {
+        const schemaDefinition = schema.properties?.[discriminator];
+        if (
+          schemaDefinition !== undefined &&
+          typeof schemaDefinition !== "boolean"
+        ) {
           // NOTE: I don't think it's worth adding a `value` dependency here
-          const { title } = retrieveSchema(ctx, schemaDef, undefined);
+          const { title } = retrieveSchema(ctx, schemaDefinition, undefined);
           if (title !== undefined) {
             return title;
           }
         }
       }
-      const uiSchema = optionsUiSchemas[i];
+      const uiSchema = optionsUiSchemas[index];
       return (
         (uiSchema && uiTitleOption(ctx, uiSchema)) ??
-        s.title ??
-        enumOptionLabel(i)
+        schema.title ??
+        enumOptionLabel(index)
       );
     });
   });
@@ -211,7 +237,7 @@
   const errors = $derived(getFieldErrors(ctx, config.path));
 
   const combinationFieldConfig: Config | null = $derived.by(() => {
-    const selected = currentSelectedOption;
+    const selected = displayedSelectedOption;
     if (selected < 0) {
       return null;
     }
@@ -286,7 +312,7 @@
       config={widgetConfig}
       uiOption={(opt) => retrieveUiOption(ctx, widgetConfig, opt)}
       options={enumOptions}
-      bind:value={() => currentSelectedOption, (v) => (nextSelectedOption = v)}
+      bind:value={() => displayedSelectedOption, selectOption}
     />
   {/snippet}
   {#if combinationFieldConfig}
