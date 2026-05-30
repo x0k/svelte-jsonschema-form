@@ -2,7 +2,10 @@
   import { onDestroy, untrack } from "svelte";
   import { Content, createForm, ON_CHANGE, ON_INPUT, setFormContext, validate } from "@sjsf/form";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
+  import XIcon from "@lucide/svelte/icons/x";
 
+  import { mergeUiSchemas } from "$lib/sjsf/ui-schema";
+  import { Button } from "$lib/components/ui/button/index.js";
   import type { CustomizableNode } from "$lib/builder/index.js";
   import * as defaults from "$lib/sjsf/defaults.js";
 
@@ -17,7 +20,13 @@
   const ctx = getBuilderContext();
 
   const schema = $derived(ctx.nodeSchema(node));
-  const uiSchema = $derived(ctx.nodeUiSchema(node));
+  const uiSchema = $derived(
+    mergeUiSchemas(ctx.nodeUiSchema(node), {
+      "ui:options": {
+        action: clearSelection
+      }
+    })
+  );
   const form = createForm({
     ...defaults,
     validator: (options) => {
@@ -57,3 +66,9 @@
 </script>
 
 <Content />
+
+{#snippet clearSelection()}
+  <Button variant="ghost" size="icon" onclick={() => ctx.clearSelection()}>
+    <XIcon />
+  </Button>
+{/snippet}
