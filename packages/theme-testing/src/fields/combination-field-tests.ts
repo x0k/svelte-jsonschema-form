@@ -1,17 +1,19 @@
 import { render } from "vitest-browser-svelte";
 import { describe, expect, test } from "vitest";
 import { type Theme } from "@sjsf/form";
+import { type Locator } from "vitest/browser";
 
+import * as defaults from "../lib/form-defaults.js";
 import TestForm from "./test-form.svelte";
 import {
-  ambiguousSchema,
   type CombinationFieldTestOptions,
-  defaultsWith,
+  type CombinationTestFormOptions,
+} from "./combination-field-core.js";
+import {
+  ambiguousSchema,
   discriminatedSchema,
   discriminatedUiSchema,
-  type CombinationTestFormOptions,
-  withTestSelect,
-} from "./combination-field-core.js";
+} from "./test-data/combination-defaults.js";
 
 function renderForm(
   options: CombinationTestFormOptions,
@@ -21,11 +23,11 @@ function renderForm(
   return render(TestForm, {
     target,
     context: testOptions?.context,
-    props: defaultsWith({
+    props: {
+      ...defaults,
       ...testOptions?.defaultFormOptions,
       ...options,
-      theme: withTestSelect(options.theme),
-    }),
+    } as const,
   });
 }
 
@@ -35,11 +37,68 @@ function readValue(screen: ReturnType<typeof render>): unknown {
   return JSON.parse(text!);
 }
 
-async function selectOption(screen: ReturnType<typeof render>, label: string) {
-  const option = screen.getByRole("option", { name: label }).first();
-  const value = option.element().getAttribute("value");
-  expect(value).toBeTruthy();
-  await screen.getByTestId("combination-selector").selectOptions(value!);
+function getCombinationSelector(locator: Locator) {
+  return locator.getByRole("combobox").first();
+}
+
+async function defaultSelectOption(locator: Locator, label: string) {
+  const selector = getCombinationSelector(locator);
+  const select = selector.element() as HTMLSelectElement;
+  const option = Array.from(select.options).find(
+    (option) => option.textContent?.trim() === label,
+  );
+  expect(option).toBeDefined();
+  await selector.selectOptions(option!.value);
+}
+
+async function defaultAssertSelectedOption(locator: Locator, label: string) {
+  const selector = getCombinationSelector(locator);
+  const select = selector.element() as HTMLSelectElement;
+  const selected = Array.from(select.selectedOptions).some(
+    (option) => option.textContent?.trim() === label,
+  );
+  expect(selected).toBe(true);
+}
+
+async function assertSelectedOption(
+  screen: ReturnType<typeof render>,
+  testOptions: CombinationFieldTestOptions | undefined,
+  label: string,
+) {
+  await (testOptions?.assertSelectedOption ?? defaultAssertSelectedOption)(
+    screen.locator,
+    label,
+  );
+}
+
+async function defaultAssertOptionLabels(locator: Locator, labels: string[]) {
+  for (const label of labels) {
+    await expect
+      .element(locator.getByRole("option", { name: label }))
+      .toBeInTheDocument();
+  }
+}
+
+async function assertOptionLabels(
+  screen: ReturnType<typeof render>,
+  testOptions: CombinationFieldTestOptions | undefined,
+  labels: string[],
+) {
+  await (testOptions?.assertOptionLabels ?? defaultAssertOptionLabels)(
+    screen.locator,
+    labels,
+  );
+}
+
+async function selectOption(
+  screen: ReturnType<typeof render>,
+  testOptions: CombinationFieldTestOptions | undefined,
+  label: string,
+) {
+  await (testOptions?.selectOption ?? defaultSelectOption)(
+    screen.locator,
+    label,
+  );
 }
 
 export function combinationFieldTests(
@@ -58,9 +117,7 @@ export function combinationFieldTests(
         testOptions,
       );
 
-      await expect
-        .element(screen.getByTestId("combination-selector"))
-        .toHaveValue("1");
+      await assertSelectedOption(screen, testOptions, "Company kind");
       expect(readValue(screen)).toEqual({
         kind: "company",
         shared: "kept",
@@ -98,9 +155,7 @@ export function combinationFieldTests(
         testOptions,
       );
 
-      await expect
-        .element(screen.getByTestId("combination-selector"))
-        .toHaveValue("0");
+      await assertSelectedOption(screen, testOptions, "String branch");
       expect(readValue(screen)).toEqual({ shared: "string-default" });
     });
 
@@ -119,10 +174,8 @@ export function combinationFieldTests(
         testOptions,
       );
 
-      await selectOption(screen, "Company kind");
-      await expect
-        .element(screen.getByTestId("combination-selector"))
-        .toHaveValue("1");
+      await selectOption(screen, testOptions, "Company kind");
+      await assertSelectedOption(screen, testOptions, "Company kind");
       expect(readValue(screen)).toEqual({
         kind: "company",
         companyName: "Acme",
@@ -140,12 +193,10 @@ export function combinationFieldTests(
         testOptions,
       );
 
-      await expect
-        .element(screen.getByRole("option", { name: "Person from UI" }))
-        .toBeInTheDocument();
-      await expect
-        .element(screen.getByRole("option", { name: "Company kind" }))
-        .toBeInTheDocument();
+      await assertOptionLabels(screen, testOptions, [
+        "Person from UI",
+        "Company kind",
+      ]);
     });
   });
 }
