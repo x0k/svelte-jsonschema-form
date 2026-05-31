@@ -23,9 +23,9 @@ import {
 import {
   codegenValidators,
   isEndsWithPrecompiled,
-  svelteKitIntegrationOptions,
+  svelteKitIntegrations,
   withoutPrecompiledSuffix,
-  type SvelteKitIntegrationOption,
+  type SvelteKitIntegration,
 } from "meta/codegen";
 
 import packageJson from "../package.json" with { type: "json" };
@@ -39,8 +39,8 @@ const ADDON_ID = packageJson.name;
 
 type SelectOption = SelectQuestion<string>["options"][number];
 
-const SVELTE_KIT_INTEGRATION_OPTION_META: Record<
-  SvelteKitIntegrationOption,
+const SVELTE_KIT_INTEGRATION_META: Record<
+  SvelteKitIntegration,
   { label: string; experimental?: true }
 > = {
   no: { label: "No" },
@@ -48,9 +48,9 @@ const SVELTE_KIT_INTEGRATION_OPTION_META: Record<
   remoteFunctions: { label: "Remote Functions", experimental: true },
 };
 
-function* svelteKitIntegrationQuestionOptions() {
-  for (const value of svelteKitIntegrationOptions()) {
-    const { label, experimental } = SVELTE_KIT_INTEGRATION_OPTION_META[value];
+function* svelteKitIntegrationOptions() {
+  for (const value of svelteKitIntegrations()) {
+    const { label, experimental } = SVELTE_KIT_INTEGRATION_META[value];
     yield {
       value,
       label,
@@ -132,8 +132,8 @@ export const createOptions = (options: AddonSetupOptions) =>
     .add("sveltekit", {
       question: "Enable SvelteKit integration?",
       type: "select",
-      default: "no" satisfies SvelteKitIntegrationOption,
-      options: Array.from(svelteKitIntegrationQuestionOptions()),
+      default: "no" satisfies SvelteKitIntegration,
+      options: Array.from(svelteKitIntegrationOptions()),
       condition: () => options.isKit,
     })
     .add("demo", {

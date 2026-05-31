@@ -1,5 +1,5 @@
 import { expect } from "vitest";
-import { svelteKitIntegrationOptions } from "meta/codegen";
+import { svelteKitIntegrations } from "meta/codegen";
 
 import addon from "../src/index.js";
 import {
@@ -66,7 +66,7 @@ function* kinds() {
     }
     yield kind(`icons__${icons}`, { icons });
   }
-  for (const sveltekit of svelteKitIntegrationOptions()) {
+  for (const sveltekit of svelteKitIntegrations()) {
     if (sveltekit === BASE.sveltekit) {
       continue;
     }
