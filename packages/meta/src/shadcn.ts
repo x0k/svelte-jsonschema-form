@@ -67,7 +67,7 @@ const REQUIRED_COMPONENTS = {
   ...SELECT_COMPONENTS,
 } as const satisfies WidgetComponentsApproximation;
 
-export const shadcnNewYorkThemeSubPath = `${themePackage("shadcn").name}/new-york`;
+export const shadcnNewYorkThemeSubPath = `${themePackage("shadcn4").name}/new-york`;
 
 export const shadcnExtrasUiSubPath = `${themePackage("shadcn-extras").name}/ui`;
 
