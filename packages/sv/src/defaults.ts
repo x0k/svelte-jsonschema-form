@@ -22,14 +22,14 @@ import {
   isJsonSchemaValidator,
   formUtilSubPath,
 } from "meta";
-
-import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
 import {
   isEndsWithPrecompiled,
   withoutPrecompiledSuffix,
-  type Context,
   type SvelteKitIntegrationOption,
-} from "./model.js";
+} from "meta/codegen";
+
+import { createReExport, getTopLevelFunction, transforms } from "./sv-utils.js";
+import { type Context } from "./model.js";
 
 const SVELTE_KIT_INTEGRATION_OPTION_ID_BUILDERS: Record<
   SvelteKitIntegrationOption,

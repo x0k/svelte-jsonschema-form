@@ -1,31 +1,11 @@
 import {
-  externalValidatorPackage,
-  extraPackage,
-  filterPackageDependencies,
-  formPackage,
-  iconSetPackage,
-  isInternalValidator,
-  isSubTheme,
-  sveltekitPackage,
-  optionalPackageName,
-  subThemeDependencies,
-  themePackage,
-  themeParent,
   type AbstractPackage,
-  type IncludeOptional,
-  type PackageDependency,
-  isJsonSchemaValidator,
-  isTailwindcss4Theme,
-  tailwindcss4ThemePlugins,
   type Tailwindcss4Plugin,
   tailwindcss4PluginPackage,
 } from "meta";
+import { resolveDependencies } from "meta/codegen";
 
-import {
-  isEndsWithPrecompiled,
-  withoutPrecompiledSuffix,
-  type Context,
-} from "./model.js";
+import { type Context } from "./model.js";
 import { pnpm, transforms } from "./sv-utils.js";
 
 export function dependencies(ctx: Context) {
@@ -38,81 +18,11 @@ export function dependencies(ctx: Context) {
       sv.dependency(name, v);
     }
   }
-  function addDependencies(
-    deps: Iterable<PackageDependency>,
-    filter: IncludeOptional = false,
-  ) {
-    for (const d of filterPackageDependencies(deps, filter)) {
-      addDependency(d);
-    }
-  }
-  const { themeOrSubTheme, validatorWithSuffix, icons, sveltekit } = options;
-  // Form
-  addDependency(formPackage);
-  // Theme
-  const theme = isSubTheme(themeOrSubTheme)
-    ? themeParent(themeOrSubTheme)
-    : themeOrSubTheme;
-  const themePkg = themePackage(theme);
-  addDependency(themePkg);
-  addDependencies(themePkg.dependencies, [
-    // daisyui5
-    optionalPackageName("pikaday"),
-    // skeleton4
-    optionalPackageName("skeletonSvelte"),
-    // shadcn4
-    optionalPackageName("internationalizedDate"),
-  ]);
-  if (isSubTheme(themeOrSubTheme)) {
-    addDependencies(subThemeDependencies(themeOrSubTheme));
-  }
-  if (isTailwindcss4Theme(theme)) {
-    dependenciesTailwindCss4(
-      ctx,
-      tailwindcss4ThemePlugins(theme),
-      addDependency,
-    );
-  }
-  if (
-    isEndsWithPrecompiled(validatorWithSuffix) ||
-    !isInternalValidator(validatorWithSuffix)
-  ) {
-    // Validator
-    const validator = withoutPrecompiledSuffix(validatorWithSuffix);
-    const validatorPkg = externalValidatorPackage(validator);
-    addDependency(validatorPkg);
-    addDependencies(validatorPkg.dependencies);
-    if (validator === "ajv8") {
-      addDependency(extraPackage("ajvFormat"));
-    }
-    if (validatorWithSuffix === "ajv8-precompiled") {
-      addDependency(extraPackage("esbuild"));
-    }
-    if (validatorWithSuffix === "hyperjump-precompiled") {
-      addDependency(extraPackage("devalue"));
-    }
-  } else {
-    if (validatorWithSuffix === "standard-schema") {
-      addDependencies(formPackage.dependencies, [
-        optionalPackageName("standardSchemaSpec"),
-      ]);
-    }
-  }
-  // Icons
-  if (icons !== "none") {
-    const iconsPkg = iconSetPackage(icons);
-    addDependency(iconsPkg);
-    addDependencies(iconsPkg.dependencies);
-  }
-  // Type inference
-  if (isJsonSchemaValidator(withoutPrecompiledSuffix(validatorWithSuffix))) {
-    addDependency(extraPackage("jsonSchemaToTs"));
-  }
-  // Kit integration
-  if (sveltekit !== "no") {
-    addDependency(sveltekitPackage);
-    addDependencies(sveltekitPackage.dependencies);
-  }
+  resolveDependencies({
+    ...options,
+    addDependency,
+    addTailwindCss4: (ps) => dependenciesTailwindCss4(ctx, ps, addDependency),
+  });
 }
 
 // https://github.com/sveltejs/cli/blob/19ed7a0f940816a63c1c7f963a04bb72d7b19a8f/packages/sv/src/addons/tailwindcss.ts#L33

@@ -4,12 +4,9 @@ import {
   isJsonSchemaValidator,
   neverError,
 } from "meta";
+import { isEndsWithPrecompiled } from "meta/codegen";
 
-import {
-  isEndsWithPrecompiled,
-  POST_JSON_SCHEMA_PATH,
-  type Context,
-} from "./model.js";
+import { POST_JSON_SCHEMA_PATH, type Context } from "./model.js";
 import { transforms, type AstTypes } from "./sv-utils.js";
 
 const schema = {

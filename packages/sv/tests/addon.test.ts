@@ -1,10 +1,10 @@
 import { expect } from "vitest";
+import { svelteKitIntegrationOptions } from "meta/codegen";
 
 import addon from "../src/index.js";
 import {
   iconOptions,
   AddonOptions,
-  SVELTE_KIT_INTEGRATION_OPTIONS,
   themeOrSubThemeOptions,
   validatorOptions,
 } from "../src/model";
@@ -45,7 +45,7 @@ const VALIDATOR_KINDS = [
   // JSON schema validator
   "ajv8",
   // Precompiled validator
-  "ajv8-precompiled",
+  "ajv8_precompiled",
   // Schema validator
   "zod4",
 ] satisfies ValidatorOptionValue[];
@@ -66,7 +66,7 @@ function* kinds() {
     }
     yield kind(`icons__${icons}`, { icons });
   }
-  for (const sveltekit of values(SVELTE_KIT_INTEGRATION_OPTIONS)) {
+  for (const sveltekit of svelteKitIntegrationOptions()) {
     if (sveltekit === BASE.sveltekit) {
       continue;
     }

@@ -2,17 +2,12 @@ import { defineAddon, defineAddonOptions, type SelectQuestion } from "sv";
 import {
   isLabTheme,
   themeOrSubThemeTitle,
-  validators,
   validatorTitle,
-  type Validator,
   type NonLegacyThemeOrSubTheme,
   iconSets,
   iconSetTitle,
   isThemeExtension,
   themeExtensionOrigin,
-  type PrecompiledValidator,
-  isPrecompiledOnlyValidator,
-  isPrecompiledValidator,
   isLabValidator,
   isThemeWithSubThemes,
   themeSubThemes,
@@ -25,6 +20,13 @@ import {
   externalValidatorPackage,
   internalValidatorSubPath,
 } from "meta";
+import {
+  codegenValidators,
+  isEndsWithPrecompiled,
+  svelteKitIntegrationOptions,
+  withoutPrecompiledSuffix,
+  type SvelteKitIntegrationOption,
+} from "meta/codegen";
 
 import packageJson from "../package.json" with { type: "json" };
 import {
@@ -37,52 +39,24 @@ const ADDON_ID = packageJson.name;
 
 type SelectOption = SelectQuestion<string>["options"][number];
 
-export const SVELTE_KIT_INTEGRATION_OPTIONS = [
-  { value: "no", label: "No" },
-  { value: "formActions", label: "Form Actions" },
-  {
-    value: "remoteFunctions",
-    label: "Remote Functions",
-    hint: "experimental",
-  },
-] as const satisfies SelectOption[];
+const SVELTE_KIT_INTEGRATION_OPTION_META: Record<
+  SvelteKitIntegrationOption,
+  { label: string; experimental?: true }
+> = {
+  no: { label: "No" },
+  formActions: { label: "Form Actions" },
+  remoteFunctions: { label: "Remote Functions", experimental: true },
+};
 
-export type SvelteKitIntegrationOption =
-  (typeof SVELTE_KIT_INTEGRATION_OPTIONS)[number]["value"];
-
-function validatorOpt<V extends Validator>(v: V) {
-  return {
-    value: v,
-    label: validatorTitle(v),
-    hint: isLabValidator(v) ? "experimental" : undefined,
-  } as const;
-}
-
-const PRECOMPILED_SUFFIX = `-precompiled`;
-
-type WithPrecompiledSuffix<T extends string> =
-  `${T}${typeof PRECOMPILED_SUFFIX}`;
-
-function precompiledOpt<V extends PrecompiledValidator>(v: V) {
-  return {
-    value: `${v}${PRECOMPILED_SUFFIX}`,
-    label: `${validatorTitle(v)} (precompiled)`,
-    hint: isLabValidator(v) ? "experimental" : undefined,
-  } as const;
-}
-
-export function isEndsWithPrecompiled(
-  v: string,
-): v is WithPrecompiledSuffix<string> {
-  return v.endsWith(PRECOMPILED_SUFFIX);
-}
-
-export function withoutPrecompiledSuffix<V extends string>(
-  v: V | WithPrecompiledSuffix<V>,
-): V {
-  return isEndsWithPrecompiled(v)
-    ? (v.slice(0, -PRECOMPILED_SUFFIX.length) as V)
-    : v;
+function* svelteKitIntegrationQuestionOptions() {
+  for (const value of svelteKitIntegrationOptions()) {
+    const { label, experimental } = SVELTE_KIT_INTEGRATION_OPTION_META[value];
+    yield {
+      value,
+      label,
+      hint: experimental && "experimental",
+    } satisfies SelectOption;
+  }
 }
 
 export function* themeOrSubThemeOptions() {
@@ -111,13 +85,13 @@ export function* themeOrSubThemeOptions() {
 }
 
 export function* validatorOptions() {
-  for (const v of validators()) {
-    if (!isPrecompiledOnlyValidator(v)) {
-      yield validatorOpt(v);
-    }
-    if (isPrecompiledValidator(v)) {
-      yield precompiledOpt(v);
-    }
+  for (const value of codegenValidators()) {
+    const withoutSuffix = withoutPrecompiledSuffix(value);
+    yield {
+      value,
+      label: validatorTitle(withoutSuffix),
+      hint: isLabValidator(withoutSuffix) ? "experimental" : undefined,
+    } satisfies SelectOption;
   }
 }
 
@@ -159,7 +133,7 @@ export const createOptions = (options: AddonSetupOptions) =>
       question: "Enable SvelteKit integration?",
       type: "select",
       default: "no" satisfies SvelteKitIntegrationOption,
-      options: SVELTE_KIT_INTEGRATION_OPTIONS,
+      options: Array.from(svelteKitIntegrationQuestionOptions()),
       condition: () => options.isKit,
     })
     .add("demo", {

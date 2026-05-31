@@ -5,13 +5,9 @@ import {
   internalValidatorSubPath,
   type PrecompiledValidator,
 } from "meta";
+import { isEndsWithPrecompiled, withoutPrecompiledSuffix } from "meta/codegen";
 
-import {
-  isEndsWithPrecompiled,
-  POST_JSON_SCHEMA_PATH,
-  withoutPrecompiledSuffix,
-  type Context,
-} from "./model.js";
+import { POST_JSON_SCHEMA_PATH, type Context } from "./model.js";
 import { transforms } from "./sv-utils.js";
 
 export function scriptsFolder(ctx: Context) {
