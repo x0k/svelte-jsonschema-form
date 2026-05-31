@@ -13,6 +13,10 @@
       "types": "./dist/snapshots/*.d.ts",
       "default": "./dist/snapshots/*.js"
     },
+    "./fields/*": {
+      "types": "./dist/fields/*.d.ts",
+      "default": "./dist/fields/*.js"
+    },
     "./specs": {
       "types": "./dist/specs/index.d.ts",
       "default": "./dist/specs/index.js"
