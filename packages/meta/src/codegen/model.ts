@@ -6,15 +6,15 @@ import {
   validators,
 } from "../validators.ts";
 
-export function* svelteKitIntegrationOptions() {
+export type ConditionalPrinter = (content: string, alt?: string) => string;
+
+export function* svelteKitIntegrations() {
   yield "no";
   yield "formActions";
   yield "remoteFunctions";
 }
 
-export type SvelteKitIntegrationOption = Generated<
-  typeof svelteKitIntegrationOptions
->;
+export type SvelteKitIntegration = Generated<typeof svelteKitIntegrations>;
 
 const PRECOMPILED_SUFFIX = `_precompiled`;
 

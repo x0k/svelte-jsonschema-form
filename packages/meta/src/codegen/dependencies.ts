@@ -28,12 +28,13 @@ import {
   isInternalValidator,
   isJsonSchemaValidator,
 } from "../validators.ts";
+
 import {
   isEndsWithPrecompiled,
   withoutPrecompiledSuffix,
   type CodegenValidator,
   type CodegenIconSet,
-  type SvelteKitIntegrationOption,
+  type SvelteKitIntegration,
 } from "./model.ts";
 import type { NamespaceImportOptions } from "./utils.ts";
 
@@ -41,7 +42,7 @@ interface DependenciesOptions {
   themeOrSubTheme: NonLegacyThemeOrSubTheme;
   validatorWithSuffix: CodegenValidator;
   icons: CodegenIconSet;
-  sveltekit: SvelteKitIntegrationOption;
+  sveltekit: SvelteKitIntegration;
   addDependency: (pkg: AbstractPackage) => void;
   addTailwindCss4: (plugins: Iterable<Tailwindcss4Plugin>) => void;
 }
