@@ -1,102 +1,34 @@
-import { sveltekitPackage, svelteKitSubPath, svelteKitRfSubPath } from "meta";
+import { createSvelteKitIntegration } from "meta/codegen";
 
-import { createValidator, type Context } from "./model.js";
-import { renderImports, transforms } from "./sv-utils.js";
+import type { Context } from "./model.js";
+import { transforms } from "./sv-utils.js";
 
-export function sveltekitTs(ctx: Context) {
-  const {
-    file,
-    isKit,
-    options: { sveltekit, demo },
-    directory,
-    language,
-    sv,
-    ts,
-    isTs,
-    lib,
-  } = ctx;
+export function sveltekitTs({
+  file,
+  isKit,
+  options: { sveltekit, demo, validatorWithSuffix },
+  directory,
+  language,
+  sv,
+  ts,
+  isTs,
+  lib,
+}: Context) {
   if (!isKit || sveltekit === "no") {
     return;
   }
 
-  const validator = createValidator(ctx);
-  const validatorImports = renderImports(
-    validator.imports.concat(validator.schemaImports),
-  );
-
   if (demo) {
-    const setup = (
-      {
-        formActions: {
-          filename: `+page.server`,
-          code: `${ts(`import type { Actions } from "@sveltejs/kit";
-import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createAction } from "${svelteKitSubPath("server")}";
-${validatorImports};
-import * as defaults from "${lib("sjsf/defaults")}";
-
-export const load = async () => {
-  return {
-    postForm: {
-      ${!validator.schemaValidator ? "schema," : ""}
-      initialValue: { title: "New post", content: "" },
-    }${ts(` satisfies InitialFormData<${validator.inputType}>`)},
-  };
-};
-
-export const actions = {
-  default: createAction(
-    {
-      ...defaults,
-      name: "postForm",
-      sendData: true,
-      ${validator.options}
-    },
-    (data${isTs && !validator.schemaValidator ? `: ${validator.inputType}` : ""}) => {
-      console.log(data)
-      return { post: { ...data, id: "new-post" } };
-    },
-  ),
-}${ts(" satisfies Actions")};
-`,
-        },
-        remoteFunctions: {
-          filename: `data.remote`,
-          code: `${ts(`import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createServerValidator } from "${svelteKitRfSubPath("server")}";
-
-import { form, query } from "$app/server";
-${validatorImports};
-import * as defaults from "${lib("sjsf/defaults")}";
-
-export const getInitialData = query(async () => {
-  return {
-    ${!validator.schemaValidator ? "schema, " : ""}
-    initialValue: { title: "New post", content: "" },
-  }${ts(` satisfies InitialFormData<${validator.inputType}>`)};
-});
-
-export const createPost = form(
-  createServerValidator${isTs && !validator.schemaValidator ? `<${validator.inputType}>` : ""}({
-    ...defaults,
-    ${validator.options}
-  }),
-  ({ data }) => {
-    console.log(data);
-    return { ...data, id: "new-post" };
-  },
-);
-`,
-        },
-      } satisfies Record<typeof sveltekit, { filename: string; code: string }>
-    )[sveltekit];
-
+    const { filename, transform } = createSvelteKitIntegration({
+      isTs,
+      lib,
+      sveltekit,
+      ts,
+      validatorWithSuffix,
+    });
     sv.file(
-      `${directory.kitRoutes}/demo/sjsf/${setup.filename}.${language}`,
-      transforms.script(({ ast, comments, js }) => {
-        js.common.appendFromString(ast, {
-          comments,
-          code: setup.code,
-        });
-      }),
+      `${directory.kitRoutes}/demo/sjsf/${filename}.${language}`,
+      transform,
     );
   }
 

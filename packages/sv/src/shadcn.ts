@@ -1,17 +1,13 @@
 import {
   shadcn4ExtraWidgetComponents,
   shadcnExtrasExtraWidgetComponents,
-  shadcnExtrasUiSubPath,
-  shadcnNewYorkThemeSubPath,
   shadcnRequiredComponents,
-  themePackage,
   type WidgetComponentsApproximation,
 } from "meta";
+import { createShadcnContext } from "meta/codegen";
 
-import { fileExists, getTopLevelFunction, transforms } from "./sv-utils.js";
+import { fileExists, transforms } from "./sv-utils.js";
 import type { Context } from "./model.js";
-
-export const SET_SHADCN_THEME_CONTEXT_FN_NAME = "setShadcnThemeContext";
 
 export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
   const isShadcn4 = options.themeOrSubTheme === "shadcn4";
@@ -111,61 +107,16 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
 
   sv.file(
     `${directory.lib}/sjsf/shadcn.${language}`,
-    transforms.script(({ ast, js, comments }) => {
-      js.imports.addNamed(ast, {
-        imports: ["setThemeContext"],
-        from: themePackage("shadcn4").name,
-      });
+    createShadcnContext({
+      importedComponents,
+      nonImportedComponents: importedComponentsSet,
 
-      if (libImports.length > 0) {
-        js.imports.addNamed(ast, {
-          imports: libImports,
-          from: shadcnNewYorkThemeSubPath,
-        });
-      }
-      for (const [source, imports] of localImports) {
-        js.imports.addNamed(ast, {
-          from: source,
-          imports,
-        });
-      }
+      localImports,
+      extraLocalImports,
 
-      if (getTopLevelFunction(ast, SET_SHADCN_THEME_CONTEXT_FN_NAME)) {
-        return;
-      }
-
-      if (shadcn4ExtraLibImports.length > 0) {
-        comments.add(ast, {
-          type: "Line",
-          value: `import { ${shadcn4ExtraLibImports.join(", ")} } from "${shadcnNewYorkThemeSubPath}";`,
-        });
-      }
-      if (shadcnExtrasExtraLibImports.length > 0) {
-        comments.add(ast, {
-          type: "Line",
-          value: `import { ${shadcnExtrasExtraLibImports.join(", ")} } from "${shadcnExtrasUiSubPath}";`,
-        });
-      }
-      for (const [path, components] of extraLocalImports) {
-        comments.add(ast, {
-          type: "Line",
-          value: `import { ${components.join(", ")} } from "${path}";`,
-        });
-      }
-
-      js.common.appendFromString(ast, {
-        code: `// https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/#components
-export function ${SET_SHADCN_THEME_CONTEXT_FN_NAME}() {
-  setThemeContext({
-    components: {
-      ${importedComponents.join(", ")}\n${Array.from(importedComponentsSet)
-        .map((c) => `// ${c}`)
-        .join(",\n")}
-    }
-  })
-}`,
-        comments,
-      });
+      libImports,
+      shadcn4ExtraLibImports,
+      shadcnExtrasExtraLibImports,
     }),
   );
 }
