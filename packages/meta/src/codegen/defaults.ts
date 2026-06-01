@@ -34,7 +34,7 @@ import {
   type ConditionalPrinter,
   type SvelteKitIntegration,
 } from "./model.ts";
-import { createReExport, getTopLevelFunction } from "./utils.ts";
+import { createReExport, getTopLevelFunction } from "./lib.ts";
 
 export interface DefaultsOptions {
   themeOrSubTheme: ThemeOrSubTheme;

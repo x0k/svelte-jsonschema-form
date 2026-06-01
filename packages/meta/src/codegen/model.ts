@@ -1,3 +1,5 @@
+import type { Schema } from "@sjsf/form";
+
 import { iconSets } from "../icons.ts";
 import type { Generated } from "../types.ts";
 import {
@@ -6,7 +8,13 @@ import {
   validators,
 } from "../validators.ts";
 
+export type { Schema };
+
+export type Language = "ts" | "js";
+
 export type ConditionalPrinter = (content: string, alt?: string) => string;
+
+export type PathFactory = (path: string) => string;
 
 export function* svelteKitIntegrations() {
   yield "no";
@@ -47,6 +55,16 @@ export function* codegenValidators() {
 }
 
 export type CodegenValidator = Generated<typeof codegenValidators>;
+
+export type CodegenNonPrecompiledValidator = Exclude<
+  CodegenValidator,
+  WithPrecompiledSuffix<string>
+>;
+
+export type CodegenPrecompiledValidator = Extract<
+  CodegenValidator,
+  WithPrecompiledSuffix<string>
+>;
 
 export function* codegenIconSets() {
   yield "none";

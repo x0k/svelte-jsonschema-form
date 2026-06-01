@@ -36,7 +36,7 @@ import {
   type CodegenIconSet,
   type SvelteKitIntegration,
 } from "./model.ts";
-import type { NamespaceImportOptions } from "./utils.ts";
+import type { NamespaceImportOptions } from "./lib.ts";
 
 interface DependenciesOptions {
   themeOrSubTheme: NonLegacyThemeOrSubTheme;
