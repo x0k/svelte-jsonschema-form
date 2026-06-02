@@ -1,9 +1,9 @@
 import { expect } from "vitest";
 import {
   codegenIconSets,
+  codegenSvelteKitIntegrations,
   codegenThemeOrSubTheme,
   codegenValidators,
-  svelteKitIntegrations,
 } from "meta/codegen";
 
 import addon from "../src/index.js";
@@ -62,7 +62,7 @@ function* kinds() {
     }
     yield kind(`icons__${icons}`, { icons });
   }
-  for (const sveltekit of svelteKitIntegrations()) {
+  for (const sveltekit of codegenSvelteKitIntegrations()) {
     if (sveltekit === BASE.sveltekit) {
       continue;
     }

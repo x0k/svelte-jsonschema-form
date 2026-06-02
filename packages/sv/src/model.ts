@@ -8,19 +8,15 @@ import {
   isThemeExtension,
   themeExtensionOrigin,
   isLabValidator,
-  isThemeWithSubThemes,
-  themeSubThemes,
-  themes,
-  isLegacyTheme,
   toTheme,
 } from "meta";
 import {
+  codegenSvelteKitIntegrations,
   codegenThemeOrSubTheme,
   codegenValidators,
-  svelteKitIntegrations,
   withoutPrecompiledSuffix,
+  type CodegenSvelteKitIntegration,
   type CodegenThemeOrSubTheme,
-  type SvelteKitIntegration,
 } from "meta/codegen";
 
 import packageJson from "../package.json" with { type: "json" };
@@ -31,7 +27,7 @@ const ADDON_ID = packageJson.name;
 type SelectOption = SelectQuestion<string>["options"][number];
 
 const SVELTE_KIT_INTEGRATION_META: Record<
-  SvelteKitIntegration,
+  CodegenSvelteKitIntegration,
   { label: string; experimental?: true }
 > = {
   no: { label: "No" },
@@ -40,7 +36,7 @@ const SVELTE_KIT_INTEGRATION_META: Record<
 };
 
 function* svelteKitIntegrationOptions() {
-  for (const value of svelteKitIntegrations()) {
+  for (const value of codegenSvelteKitIntegrations()) {
     const { label, experimental } = SVELTE_KIT_INTEGRATION_META[value];
     yield {
       value,
@@ -112,7 +108,7 @@ export const createOptions = (options: AddonSetupOptions) =>
     .add("sveltekit", {
       question: "Enable SvelteKit integration?",
       type: "select",
-      default: "no" satisfies SvelteKitIntegration,
+      default: "no" satisfies CodegenSvelteKitIntegration,
       options: Array.from(svelteKitIntegrationOptions()),
       condition: () => options.isKit,
     })
