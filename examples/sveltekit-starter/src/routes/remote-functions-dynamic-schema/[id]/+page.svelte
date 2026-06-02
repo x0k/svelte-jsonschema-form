@@ -4,7 +4,7 @@
 
   import { page } from '$app/state'
 
-  import * as defaults from "$lib/remote-form-defaults";
+  import * as defaults from "$lib/sjsf/remote-defaults";
 
   import { createResult, getCurrentSchema } from "../data.remote";
 

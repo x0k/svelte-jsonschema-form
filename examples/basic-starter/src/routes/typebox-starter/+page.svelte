@@ -3,7 +3,7 @@
   import { adapt } from "@sjsf/form/validators/standard-schema";
   import Type from "typebox";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
   import { StandardSchemaV1 } from '$lib/standard';
 
   const schema = StandardSchemaV1(Type.Object({

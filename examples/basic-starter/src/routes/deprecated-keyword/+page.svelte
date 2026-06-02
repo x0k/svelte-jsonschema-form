@@ -11,7 +11,7 @@
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { createForm, BasicForm, type Schema, type Config } from "@sjsf/form";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
 
   const schema = {
     type: "object",

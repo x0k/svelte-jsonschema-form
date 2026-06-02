@@ -1,7 +1,7 @@
 <script lang="ts">
   import { connect } from "@sjsf/sveltekit/rf/client";
 
-  import * as defaults from "$lib/remote-form-defaults";
+  import * as defaults from "$lib/sjsf/remote-defaults";
 
   import { createPost, getInitialData } from "./data.remote";
   import FormContent from "./form-content.svelte";

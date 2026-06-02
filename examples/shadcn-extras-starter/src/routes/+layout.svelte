@@ -3,7 +3,7 @@
   import * as components from "@sjsf/shadcn4-theme/new-york";
   import * as extraComponents from '@sjsf-lab/shadcn-extras-theme/ui';
 
-  import "../app.css";
+  import "./layout.css";
 
   const { children } = $props();
 

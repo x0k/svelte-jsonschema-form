@@ -2,7 +2,7 @@
   import { overrideByRecord } from '@sjsf/form/lib/resolver';
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
 
   import Description from './description.svelte';
 

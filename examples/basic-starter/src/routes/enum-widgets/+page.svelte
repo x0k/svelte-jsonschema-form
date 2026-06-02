@@ -24,7 +24,7 @@
   } from "@sjsf/form";
   import "@sjsf/form/fields/extra/enum-include";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
   import RadioWithOther, { OTHER_VALUE } from "./radio-with-other.svelte";
 
   const schema = {

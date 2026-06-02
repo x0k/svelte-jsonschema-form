@@ -10,7 +10,7 @@
   } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
 
   import type { ActionData, PageData } from "./$types";
   import { STEP_KEY } from "./model";

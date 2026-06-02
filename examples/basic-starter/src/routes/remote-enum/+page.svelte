@@ -25,7 +25,7 @@
     type EnumOptionsQueries,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
 
   import { COUNTRIES } from "./countries";
   import comboboxWidget from "./combobox.svelte";

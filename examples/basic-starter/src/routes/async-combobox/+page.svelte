@@ -8,7 +8,7 @@
   } from "@sjsf/form";
 
   import { browser } from "$app/environment";
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
 
   import { COUNTRIES } from "./countries";
   import AsyncComboboxWidget, {

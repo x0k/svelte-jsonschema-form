@@ -3,7 +3,7 @@
   import { adapt } from "@sjsf/zod4-validator/classic";
   import * as z from "zod";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
 
   const schema = z
     .object({

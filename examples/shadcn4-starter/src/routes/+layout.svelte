@@ -2,7 +2,7 @@
   import { setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
 
-  import "../app.css";
+  import "./layout.css";
 
   const { children } = $props();
 

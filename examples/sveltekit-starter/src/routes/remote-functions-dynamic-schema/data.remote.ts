@@ -3,7 +3,7 @@ import { error, invalid, redirect } from "@sveltejs/kit";
 
 import { form, getRequestEvent, query } from "$app/server";
 import { loadResults, loadSchemaById, saveResult } from "$lib/server";
-import * as defaults from "$lib/remote-form-defaults";
+import * as defaults from "$lib/sjsf/remote-defaults";
 
 export const getResults = query(loadResults);
 
