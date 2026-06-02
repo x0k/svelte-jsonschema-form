@@ -3,7 +3,6 @@ import {
   isLabTheme,
   themeOrSubThemeTitle,
   validatorTitle,
-  type NonLegacyThemeOrSubTheme,
   iconSets,
   iconSetTitle,
   isThemeExtension,
@@ -13,11 +12,14 @@ import {
   themeSubThemes,
   themes,
   isLegacyTheme,
+  toTheme,
 } from "meta";
 import {
+  codegenThemeOrSubTheme,
   codegenValidators,
   svelteKitIntegrations,
   withoutPrecompiledSuffix,
+  type CodegenThemeOrSubTheme,
   type SvelteKitIntegration,
 } from "meta/codegen";
 
@@ -49,27 +51,16 @@ function* svelteKitIntegrationOptions() {
 }
 
 export function* themeOrSubThemeOptions() {
-  for (const t of themes()) {
-    if (isLegacyTheme(t)) {
-      continue;
-    }
-    const hint = isLabTheme(t) ? `experimental` : undefined;
+  for (const t of codegenThemeOrSubTheme()) {
+    const theme = toTheme(t);
+    const hint = isLabTheme(theme) ? `experimental` : undefined;
     yield {
-      label: isThemeExtension(t)
-        ? `${themeOrSubThemeTitle(themeExtensionOrigin(t))} & ${themeOrSubThemeTitle(t)}`
+      label: isThemeExtension(theme)
+        ? `${themeOrSubThemeTitle(themeExtensionOrigin(theme))} & ${themeOrSubThemeTitle(t)}`
         : themeOrSubThemeTitle(t),
       value: t,
       hint,
     } satisfies SelectOption;
-    if (isThemeWithSubThemes(t)) {
-      for (const s of themeSubThemes(t)) {
-        yield {
-          label: themeOrSubThemeTitle(s),
-          value: s,
-          hint,
-        } satisfies SelectOption;
-      }
-    }
   }
 }
 
@@ -103,7 +94,7 @@ export const createOptions = (options: AddonSetupOptions) =>
     .add("themeOrSubTheme", {
       question: "Select a theme (or sub-theme)",
       type: "select",
-      default: "basic" satisfies NonLegacyThemeOrSubTheme,
+      default: "basic" satisfies CodegenThemeOrSubTheme,
       options: Array.from(themeOrSubThemeOptions()),
     })
     .add("icons", {

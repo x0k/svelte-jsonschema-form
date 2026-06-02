@@ -1,19 +1,15 @@
 import { expect } from "vitest";
-import { svelteKitIntegrations } from "meta/codegen";
+import {
+  codegenIconSets,
+  codegenThemeOrSubTheme,
+  codegenValidators,
+  svelteKitIntegrations,
+} from "meta/codegen";
 
 import addon from "../src/index.js";
-import {
-  iconOptions,
-  AddonOptions,
-  themeOrSubThemeOptions,
-  validatorOptions,
-} from "../src/model";
+import { AddonOptions, validatorOptions } from "../src/model";
 import { snapshotFs } from "./setup/snapshot-fs.js";
 import { setupSnapshotTest } from "./setup/snapshot-suit";
-
-function values<T>(options: Iterable<{ value: T; label: string }>): T[] {
-  return Array.from(options, (o) => o.value);
-}
 
 const BASE = {
   themeOrSubTheme: "basic",
@@ -51,16 +47,16 @@ const VALIDATOR_KINDS = [
 ] satisfies ValidatorOptionValue[];
 
 function* kinds() {
-  for (const themeOrSubTheme of values(themeOrSubThemeOptions())) {
+  for (const themeOrSubTheme of codegenThemeOrSubTheme()) {
     yield kind(`theme__${themeOrSubTheme}`, { themeOrSubTheme });
   }
-  for (const validatorWithSuffix of values(validatorOptions())) {
+  for (const validatorWithSuffix of codegenValidators()) {
     if (validatorWithSuffix === BASE.validatorWithSuffix) {
       continue;
     }
     yield kind(`validator__${validatorWithSuffix}`, { validatorWithSuffix });
   }
-  for (const icons of values(iconOptions())) {
+  for (const icons of codegenIconSets()) {
     if (icons === BASE.icons) {
       continue;
     }
