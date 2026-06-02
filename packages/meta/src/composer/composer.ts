@@ -161,6 +161,7 @@ export function createComposer(
     themeOrSubTheme,
     validatorWithSuffix,
     icons,
+    resolver: "basic",
     sveltekit,
     isTs,
     ts,
@@ -179,6 +180,7 @@ export function createComposer(
     nodeModulesPath,
     themeOrSubTheme,
     icons,
+    sandbox: true,
   })("");
 
   if (sveltekit !== "no") {

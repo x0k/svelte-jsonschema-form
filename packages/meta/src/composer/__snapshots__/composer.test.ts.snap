@@ -36,11 +36,10 @@ exports[`createComposer > 'icons__flowbite' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -54,29 +53,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -85,9 +66,9 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
-export { icons } from "@sjsf/flowbite-icons";
+export { icons } from '@sjsf/flowbite-icons';
 export const onSubmitError = createFocusOnFirstError();
 
 export function validator<T>(options: ValidatorFactoryOptions) {
@@ -115,7 +96,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";
-@source "../../node_modules/@sjsf/flowbite-icons/dist";",
+@import "@sjsf/flowbite-icons/styles.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -198,11 +179,10 @@ exports[`createComposer > 'icons__lucide' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -216,29 +196,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -247,9 +209,9 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
-export { icons } from "@sjsf/lucide-icons";
+export { icons } from '@sjsf/lucide-icons';
 export const onSubmitError = createFocusOnFirstError();
 
 export function validator<T>(options: ValidatorFactoryOptions) {
@@ -359,11 +321,10 @@ exports[`createComposer > 'icons__moving' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -377,29 +338,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -408,9 +351,9 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
-export { icons } from "@sjsf/moving-icons";
+export { icons } from '@sjsf/moving-icons';
 export const onSubmitError = createFocusOnFirstError();
 
 export function validator<T>(options: ValidatorFactoryOptions) {
@@ -520,11 +463,10 @@ exports[`createComposer > 'icons__radix' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -538,29 +480,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -569,9 +493,9 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
-export { icons } from "@sjsf/radix-icons";
+export { icons } from '@sjsf/radix-icons';
 export const onSubmitError = createFocusOnFirstError();
 
 export function validator<T>(options: ValidatorFactoryOptions) {
@@ -682,11 +606,10 @@ exports[`createComposer > 'sveltekit__formActions__ajv8' > matches snapshot 1`] 
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -700,29 +623,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -731,7 +636,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -873,9 +778,7 @@ exports[`createComposer > 'sveltekit__formActions__ajv8_precompi…' > matches s
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -889,29 +792,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -920,7 +805,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
@@ -1068,9 +953,7 @@ exports[`createComposer > 'sveltekit__formActions__zod4' > matches snapshot 1`] 
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -1084,29 +967,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -1115,7 +980,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
@@ -1261,11 +1126,10 @@ exports[`createComposer > 'sveltekit__remoteFunctions__ajv8' > matches snapshot 
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -1279,29 +1143,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit/rf';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -1310,7 +1156,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -1451,9 +1297,7 @@ exports[`createComposer > 'sveltekit__remoteFunctions__ajv8_prec…' > matches s
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -1467,29 +1311,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit/rf';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -1498,7 +1324,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
@@ -1647,9 +1473,7 @@ exports[`createComposer > 'sveltekit__remoteFunctions__zod4' > matches snapshot 
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -1663,29 +1487,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit/rf';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -1694,7 +1500,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
@@ -1831,11 +1637,10 @@ exports[`createComposer > 'theme__beercss' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -1849,29 +1654,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf-lab/beercss-theme/extra-widgets/checkboxes-include";
 // import "@sjsf-lab/beercss-theme/extra-widgets/date-picker-include";
@@ -1880,7 +1667,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf-lab/beercss-theme/extra-widgets/range-include";
 // import "@sjsf-lab/beercss-theme/extra-widgets/switch-include";
 // import "@sjsf-lab/beercss-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf-lab/beercss-theme";
+export { theme } from '@sjsf-lab/beercss-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -1994,11 +1781,10 @@ exports[`createComposer > 'theme__daisyui5' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -2012,29 +1798,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/checkboxes-include";
@@ -2048,7 +1816,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/daisyui5-theme/extra-widgets/rating-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/switch-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/daisyui5-theme";
+export { theme } from '@sjsf/daisyui5-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -2076,7 +1844,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-  "src/routes/layout.css": "@source "../../node_modules/@sjsf/daisyui5-theme/dist";
+  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -2163,11 +1931,10 @@ exports[`createComposer > 'theme__flowbite3' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -2181,29 +1948,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/flowbite3-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/date-picker-include";
@@ -2217,7 +1966,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/flowbite3-theme/extra-widgets/tags-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
-export { theme } from "@sjsf/flowbite3-theme";
+export { theme } from '@sjsf/flowbite3-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -2245,7 +1994,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-  "src/routes/layout.css": "@source "../../node_modules/@sjsf/flowbite3-theme/dist";
+  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -2270,8 +2019,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   --color-secondary-700: #0369a1;
   --color-secondary-800: #075985;
   --color-secondary-900: #0c4a6e;
-};
-@source "../../node_modules/flowbite-svelte/dist";",
+};",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -2354,11 +2102,10 @@ exports[`createComposer > 'theme__pico' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -2372,29 +2119,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -2403,7 +2132,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -2519,11 +2248,10 @@ exports[`createComposer > 'theme__shadcn-extras' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -2537,29 +2265,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
@@ -2580,7 +2290,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf-lab/shadcn-extras-theme/extra-widgets/phone-input-include";
 // import "@sjsf-lab/shadcn-extras-theme/extra-widgets/star-rating-include";
 // import "@sjsf-lab/shadcn-extras-theme/extra-widgets/tags-input-include";
-export { theme } from "@sjsf-lab/shadcn-extras-theme";
+export { theme } from '@sjsf-lab/shadcn-extras-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -2611,8 +2321,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-  "src/routes/layout.css": "@source "../../node_modules/@sjsf/shadcn4-theme/dist";
-@source "../../node_modules/@sjsf-lab/shadcn-extras-theme/dist";
+  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+@import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -2820,11 +2530,10 @@ exports[`createComposer > 'theme__shadcn4' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -2838,29 +2547,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
@@ -2874,7 +2565,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/shadcn4-theme/extra-widgets/range-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/shadcn4-theme";
+export { theme } from '@sjsf/shadcn4-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -2905,7 +2596,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-  "src/routes/layout.css": "@source "../../node_modules/@sjsf/shadcn4-theme/dist";
+  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -3109,11 +2800,10 @@ exports[`createComposer > 'theme__skeleton4' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -3127,29 +2817,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/skeleton4-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/skeleton4-theme/extra-widgets/combobox-include";
@@ -3167,7 +2839,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/skeleton4-theme/extra-widgets/switch-include";
 // import "@sjsf/skeleton4-theme/extra-widgets/tags-include";
 // import "@sjsf/skeleton4-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/skeleton4-theme";
+export { theme } from '@sjsf/skeleton4-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -3195,7 +2867,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-  "src/routes/layout.css": "@source "../../node_modules/@sjsf/skeleton4-theme/dist";
+  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -3281,11 +2953,10 @@ exports[`createComposer > 'theme__svar' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -3299,29 +2970,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf-lab/svar-theme/extra-widgets/checkboxes-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/color-picker-include";
@@ -3335,7 +2988,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf-lab/svar-theme/extra-widgets/range-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/switch-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf-lab/svar-theme";
+export { theme } from '@sjsf-lab/svar-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -3446,9 +3099,7 @@ exports[`createComposer > 'validator__ajv8_precompiled' > matches snapshot 1`] =
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -3462,29 +3113,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -3493,7 +3126,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
@@ -3602,9 +3235,7 @@ exports[`createComposer > 'validator__ata' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -3618,29 +3249,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -3649,10 +3262,10 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from "@sjsf-lab/ata-validator";",
+export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -3751,9 +3364,7 @@ exports[`createComposer > 'validator__ata_precompiled' > matches snapshot 1`] = 
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -3767,29 +3378,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -3798,7 +3391,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
@@ -3907,9 +3500,7 @@ exports[`createComposer > 'validator__cfworker' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -3923,29 +3514,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -3954,10 +3527,10 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from "@sjsf/cfworker-validator";",
+export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -4058,11 +3631,9 @@ exports[`createComposer > 'validator__hyperjump_precompiled' > matches snapshot 
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import "@hyperjump/json-schema/draft-07";
-import "@hyperjump/json-schema/formats-lite";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import '@hyperjump/json-schema/draft-07';
+import '@hyperjump/json-schema/formats-lite';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -4076,29 +3647,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -4107,7 +3660,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
@@ -4223,9 +3776,7 @@ exports[`createComposer > 'validator__noop' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -4239,29 +3790,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -4270,10 +3803,10 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from "@sjsf/form/validators/noop";",
+export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -4372,9 +3905,7 @@ exports[`createComposer > 'validator__schemasafe' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -4388,29 +3919,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -4419,10 +3932,10 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from "@sjsf/schemasafe-validator";",
+export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -4521,9 +4034,7 @@ exports[`createComposer > 'validator__schemasafe_precompiled' > matches snapshot
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -4537,29 +4048,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -4568,7 +4061,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
@@ -4676,9 +4169,7 @@ exports[`createComposer > 'validator__standard-schema' > matches snapshot 1`] = 
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -4692,29 +4183,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -4723,7 +4196,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
@@ -4824,9 +4297,7 @@ exports[`createComposer > 'validator__valibot' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -4840,29 +4311,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -4871,7 +4324,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
@@ -4971,9 +4424,7 @@ exports[`createComposer > 'validator__zod4' > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormState, ResolveFieldType } from "@sjsf/form";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -4987,29 +4438,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -5018,7 +4451,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
@@ -5121,11 +4554,10 @@ exports[`createComposer > code transformers > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -5139,29 +4571,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -5170,7 +4584,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -5280,11 +4694,10 @@ exports[`createComposer > extra dependencies > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -5298,29 +4711,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -5329,7 +4724,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -5439,11 +4834,10 @@ exports[`createComposer > extra files > matches snapshot 1`] = `
   </body>
 </html>",
   "src/lib/helper.ts": "export const greet = () => 'hello';",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -5457,29 +4851,11 @@ import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -5488,7 +4864,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -5598,10 +4974,9 @@ exports[`createComposer > js language > matches snapshot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -5615,34 +4990,11 @@ import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 // import "@sjsf/form/fields/extra/remote-enum-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-/**
-* @template T
-* @param {import("@sjsf/form").FormState<T>} ctx
-* @returns {import("@sjsf/form").ResolveFieldType}
-*/
-export function resolver(_ctx) {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
+export { resolver } from '@sjsf/form/resolvers/basic';
 
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -5651,7 +5003,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
 // import "@sjsf/basic-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/basic-theme";
+export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 

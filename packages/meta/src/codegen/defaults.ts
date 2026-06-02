@@ -5,8 +5,10 @@ import {
   formIdBuilderSubPath,
   formMergerSubPath,
   formPackage,
+  formResolverSubPath,
   formTranslationSubPath,
   formUtilSubPath,
+  type Resolver,
 } from "../form.ts";
 import {
   isThemeExtension,
@@ -40,7 +42,7 @@ export interface DefaultsOptions {
   themeOrSubTheme: CodegenThemeOrSubTheme;
   validatorWithSuffix: CodegenValidator;
   icons: CodegenIconSet;
-  // resolver: Resolver;
+  resolver: Resolver | "inline";
   sveltekit: CodegenSvelteKitIntegration;
   isTs: boolean;
   ts: ConditionalPrinter;
@@ -62,14 +64,11 @@ export function createDefaults({
   themeOrSubTheme,
   validatorWithSuffix,
   icons,
+  resolver,
   sveltekit,
   isTs,
   ts,
 }: DefaultsOptions) {
-  const extraFieldImports: string[] = [];
-  for (const f of extraFields({ wrappedFields: false })) {
-    extraFieldImports.push(`// import "${extraFieldSubPath(f, true)}";`);
-  }
   return transforms.script(({ ast, comments, js }) => {
     const isAjv = validatorWithSuffix === "ajv8";
 
@@ -81,27 +80,32 @@ export function createDefaults({
       });
     }
 
-    if (!getTopLevelFunction(ast, "resolver")) {
-      js.imports.addNamed(ast, {
-        imports: ["getSimpleSchemaType", "isFixedItems"],
-        from: formCoreSubpath,
-      });
-      if (isTs) {
+    if (resolver === "inline") {
+      if (!getTopLevelFunction(ast, "resolver")) {
         js.imports.addNamed(ast, {
-          imports: ["FormState", "ResolveFieldType"],
-          from: formPackage.name,
-          isType: true,
+          imports: ["getSimpleSchemaType", "isFixedItems"],
+          from: formCoreSubpath,
         });
-      }
-      const resolverCode = `${extraFieldImports.join("\n")}\n${LINK_COMMENT}\n${ts(
-        `export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {`,
-        `/**
+        if (isTs) {
+          js.imports.addNamed(ast, {
+            imports: ["FormState", "ResolveFieldType"],
+            from: formPackage.name,
+            isType: true,
+          });
+        }
+        const extraFieldImports = Array.from(
+          extraFields({ wrappedFields: false }),
+          (f) => `// import "${extraFieldSubPath(f, true)}";`,
+        );
+        const resolverCode = `${extraFieldImports.join("\n")}\n${LINK_COMMENT}\n${ts(
+          `export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {`,
+          `/**
  * @template T
  * @param {import("@sjsf/form").FormState<T>} ctx
  * @returns {import("@sjsf/form").ResolveFieldType}
  */
 export function resolver(_ctx) {`,
-      )}
+        )}
   return ({ schema }) => {
     if (schema.oneOf !== undefined) {
       return "oneOfField";
@@ -116,9 +120,25 @@ export function resolver(_ctx) {`,
     return \`\${type}Field\`;
   };
 }`;
-      js.common.appendFromString(ast, {
-        code: resolverCode,
-        comments,
+        js.common.appendFromString(ast, {
+          code: resolverCode,
+          comments,
+        });
+      }
+    } else {
+      const resolverExport = createReExport(ast, {
+        name: "resolver",
+        source: formResolverSubPath(resolver),
+      });
+      for (const f of extraFields({ wrappedFields: false })) {
+        comments.add(resolverExport, {
+          type: "Line",
+          value: ` import "${extraFieldSubPath(f, true)}";`,
+        });
+      }
+      comments.add(resolverExport, {
+        type: "Line",
+        value: LINK_COMMENT.slice(2),
       });
     }
 

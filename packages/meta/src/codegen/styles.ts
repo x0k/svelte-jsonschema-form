@@ -11,18 +11,21 @@ export interface StylesOptions {
   nodeModulesPath: string;
   themeOrSubTheme: CodegenThemeOrSubTheme;
   icons: CodegenIconSet;
+  sandbox: boolean;
 }
 
 export function createStyles({
   nodeModulesPath,
   themeOrSubTheme,
   icons,
+  sandbox,
 }: StylesOptions) {
   return transforms.css(({ ast, css }) => {
     let uiLibIsNotConfigured = isStyleSheetEmpty(ast);
 
     const atRuleOptions: AtRuleOptions = {
       nodeModulesPath,
+      sandbox,
     };
     let rules = themeOrSubThemeAtRules(themeOrSubTheme, atRuleOptions);
     if (icons !== "none") {
@@ -90,11 +93,13 @@ export function createStyles({
 }`,
         append: true,
       });
-      css.addAtRule(ast, {
-        name: "source",
-        params: `"${nodeModulesPath}/flowbite-svelte/dist"`,
-        append: true,
-      });
+      if (!sandbox) {
+        css.addAtRule(ast, {
+          name: "source",
+          params: `"${nodeModulesPath}/flowbite-svelte/dist"`,
+          append: true,
+        });
+      }
     } else if (themeOrSubTheme === "skeleton4") {
       css.addAtRule(ast, {
         name: "import",

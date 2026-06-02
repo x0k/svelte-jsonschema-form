@@ -198,40 +198,84 @@ const THEME_OR_SUB_THEME_AT_RULES: Partial<
     { name: "import", params: "@picocss/pico/css/pico.css" },
     { name: "import", params: `${themePackage("basic").name}/css/pico.css` },
   ],
-  daisyui5: ({ nodeModulesPath }) => [
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("daisyui5").name}/dist`,
-    },
-  ],
-  flowbite3: ({ nodeModulesPath }) => [
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("flowbite3").name}/dist`,
-    },
-  ],
-  skeleton4: ({ nodeModulesPath }) => [
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("skeleton4").name}/dist`,
-    },
-  ],
-  shadcn4: ({ nodeModulesPath }) => [
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("shadcn4").name}/dist`,
-    },
-  ],
-  "shadcn-extras": ({ nodeModulesPath }) => [
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("shadcn4").name}/dist`,
-    },
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("shadcn-extras").name}/dist`,
-    },
-  ],
+  daisyui5: ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${themePackage("daisyui5").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("daisyui5").name}/dist`,
+          },
+        ],
+  flowbite3: ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${themePackage("flowbite3").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("flowbite3").name}/dist`,
+          },
+        ],
+  skeleton4: ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${themePackage("skeleton4").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("skeleton4").name}/dist`,
+          },
+        ],
+  shadcn4: ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${themePackage("shadcn4").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("shadcn4").name}/dist`,
+          },
+        ],
+  "shadcn-extras": ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${themePackage("shadcn4").name}/styles.css`,
+          },
+          {
+            name: "import",
+            params: `${themePackage("shadcn-extras").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("shadcn4").name}/dist`,
+          },
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("shadcn-extras").name}/dist`,
+          },
+        ],
 };
 
 export function themes(): Iterable<Theme> {
