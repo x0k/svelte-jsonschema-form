@@ -2,11 +2,11 @@ import { neverError } from "../errors.ts";
 import { svelteKitRfSubPath, svelteKitSubPath } from "../sveltekit.ts";
 
 import type { NamedImportOptions, NamespaceImportOptions } from "./lib.ts";
-import type { SvelteKitIntegration } from "./model.ts";
+import type { CodegenSvelteKitIntegration } from "./model.ts";
 import { createValidator, type ValidatorOptions } from "./validator.ts";
 
 export interface FormOptions extends ValidatorOptions {
-  sveltekit: SvelteKitIntegration;
+  sveltekit: CodegenSvelteKitIntegration;
 }
 
 export function createForm(ctx: FormOptions): {

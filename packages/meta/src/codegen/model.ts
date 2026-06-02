@@ -38,13 +38,15 @@ export function* codegenThemeOrSubTheme() {
 
 export type CodegenThemeOrSubTheme = Generated<typeof codegenThemeOrSubTheme>;
 
-export function* svelteKitIntegrations() {
+export function* codegenSvelteKitIntegrations() {
   yield "no";
   yield "formActions";
   yield "remoteFunctions";
 }
 
-export type SvelteKitIntegration = Generated<typeof svelteKitIntegrations>;
+export type CodegenSvelteKitIntegration = Generated<
+  typeof codegenSvelteKitIntegrations
+>;
 
 const PRECOMPILED_SUFFIX = `_precompiled`;
 

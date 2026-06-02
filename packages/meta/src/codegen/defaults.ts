@@ -32,7 +32,7 @@ import {
   type CodegenThemeOrSubTheme,
   type CodegenValidator,
   type ConditionalPrinter,
-  type SvelteKitIntegration,
+  type CodegenSvelteKitIntegration,
 } from "./model.ts";
 import { createReExport, getTopLevelFunction } from "./lib.ts";
 
@@ -41,17 +41,19 @@ export interface DefaultsOptions {
   validatorWithSuffix: CodegenValidator;
   icons: CodegenIconSet;
   // resolver: Resolver;
-  sveltekit: SvelteKitIntegration;
+  sveltekit: CodegenSvelteKitIntegration;
   isTs: boolean;
   ts: ConditionalPrinter;
 }
 
-const SVELTE_KIT_INTEGRATION_ID_BUILDERS: Record<SvelteKitIntegration, string> =
-  {
-    no: formIdBuilderSubPath("modern"),
-    formActions: sveltekitPackage.name,
-    remoteFunctions: svelteKitRfSubPath(),
-  };
+const SVELTE_KIT_INTEGRATION_ID_BUILDERS: Record<
+  CodegenSvelteKitIntegration,
+  string
+> = {
+  no: formIdBuilderSubPath("modern"),
+  formActions: sveltekitPackage.name,
+  remoteFunctions: svelteKitRfSubPath(),
+};
 
 const LINK_COMMENT =
   "// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/";

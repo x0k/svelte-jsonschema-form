@@ -6,12 +6,15 @@ import {
   svelteKitSubPath,
 } from "../sveltekit.ts";
 
-import type { ConditionalPrinter, SvelteKitIntegration } from "./model.ts";
+import type {
+  ConditionalPrinter,
+  CodegenSvelteKitIntegration,
+} from "./model.ts";
 import { createValidator, type ValidatorOptions } from "./validator.ts";
 import { renderImports } from "./lib.ts";
 
 export interface SvelteKitIntegrationOptions extends ValidatorOptions {
-  sveltekit: Exclude<SvelteKitIntegration, "no">;
+  sveltekit: Exclude<CodegenSvelteKitIntegration, "no">;
   ts: ConditionalPrinter;
 }
 

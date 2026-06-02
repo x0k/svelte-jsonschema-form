@@ -33,7 +33,7 @@ import {
   withoutPrecompiledSuffix,
   type CodegenValidator,
   type CodegenIconSet,
-  type SvelteKitIntegration,
+  type CodegenSvelteKitIntegration,
   type CodegenThemeOrSubTheme,
 } from "./model.ts";
 import type { NamespaceImportOptions } from "./lib.ts";
@@ -42,7 +42,7 @@ interface DependenciesOptions {
   themeOrSubTheme: CodegenThemeOrSubTheme;
   validatorWithSuffix: CodegenValidator;
   icons: CodegenIconSet;
-  sveltekit: SvelteKitIntegration;
+  sveltekit: CodegenSvelteKitIntegration;
   addDependency: (pkg: AbstractPackage) => void;
   addTailwindCss4: (plugins: Iterable<Tailwindcss4Plugin>) => void;
 }
