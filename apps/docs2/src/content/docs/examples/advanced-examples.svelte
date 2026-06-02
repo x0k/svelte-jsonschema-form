@@ -1,16 +1,17 @@
 <script lang="ts">
   import { identity } from "@sjsf/form/lib/function";
   import { themeOrSubThemeTitle, validatorTitle } from "meta";
+  import { createComposer, type CodeTransformer } from "meta/composer";
   import {
-    PROJECT_PLATFORMS,
-    projectOpen,
-    ProjectPlatform,
-    projectThemes,
-    projectValidators,
-    type ProjectTheme,
-    type ProjectValidator,
-    ProjectSvelteKitIntegration,
-  } from "meta/composer";
+    codegenThemeOrSubTheme,
+    type CodegenThemeOrSubTheme,
+    type CodegenValidator,
+  } from "meta/codegen";
+  import {
+    sandboxOpen,
+    SandboxPlatform,
+    SANDBOX_PLATFORMS,
+  } from "meta/sandbox";
 
   import {
     EXAMPLE_LAYERS,
@@ -18,13 +19,52 @@
     SVELTE_KIT_EXAMPLES,
     VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
     VALIDATOR_SPECIFIC_EXAMPLES,
+    nonPrecompiledValidators,
+    type Example,
   } from "@/shared";
 
   import Buttons from "./buttons.svelte";
 
-  let platform: ProjectPlatform = $state.raw(ProjectPlatform.StackBlitz);
-  let theme: ProjectTheme = $state.raw("basic");
-  let validator: ProjectValidator = $state.raw("ajv8");
+  const VALIDATOR_TRANSFORMERS: Partial<
+    Record<CodegenValidator, () => Promise<{ default: CodeTransformer }>>
+  > = {
+    zod4: () => import("meta/schema-transformers/schema-to-zod"),
+    valibot: () => import("meta/schema-transformers/schema-to-valibot"),
+  };
+
+  let platform: SandboxPlatform = $state.raw(SandboxPlatform.StackBlitz);
+  let theme: CodegenThemeOrSubTheme = $state.raw("basic");
+  let validator: CodegenValidator = $state.raw("ajv8");
+
+  async function openExample(
+    example: Example,
+    validatorOverride: CodegenValidator | undefined
+  ) {
+    const effectiveValidator = validatorOverride ?? validator;
+    const { default: exampleContent } = await EXAMPLE_LAYERS[example]();
+
+    const codeTransformers: CodeTransformer[] = [
+      ...exampleContent.codeTransformers,
+    ];
+    const validatorTransformer = VALIDATOR_TRANSFORMERS[effectiveValidator]?.();
+    if (validatorTransformer) {
+      codeTransformers.push((await validatorTransformer).default);
+    }
+
+    const files = createComposer({
+      name: example,
+      language: "ts",
+      themeOrSubTheme: theme,
+      icons: "none",
+      validatorWithSuffix: effectiveValidator,
+      sveltekit: exampleContent.sveltekit,
+      extraFiles: exampleContent.files,
+      extraDependencies: exampleContent.dependencies,
+      codeTransformers,
+    });
+
+    await sandboxOpen({ name: example, platform, files });
+  }
 </script>
 
 <div class="pickers">
@@ -32,7 +72,7 @@
   <label>
     <span>Platform</span>
     <select bind:value={platform}>
-      {#each PROJECT_PLATFORMS as v (v)}
+      {#each SANDBOX_PLATFORMS as v (v)}
         <option value={v}>
           {v}
         </option>
@@ -42,7 +82,7 @@
   <label>
     <span>Validator</span>
     <select bind:value={validator}>
-      {#each projectValidators() as v (v)}
+      {#each nonPrecompiledValidators() as v (v)}
         <option value={v}>
           {validatorTitle(v)}
         </option>
@@ -52,7 +92,7 @@
   <label>
     <span>Theme</span>
     <select bind:value={theme}>
-      {#each projectThemes() as t (t)}
+      {#each codegenThemeOrSubTheme() as t (t)}
         <option value={t}>
           {themeOrSubThemeTitle(t)}
         </option>
@@ -66,14 +106,7 @@
 <Buttons
   items={GENERIC_EXAMPLES}
   onClick={(example) => {
-    projectOpen({
-      name: example,
-      platform,
-      theme,
-      validator,
-      svelteKitIntegration: undefined,
-      content: EXAMPLE_LAYERS[example](),
-    });
+    openExample(example, undefined);
   }}
   label={identity}
 />
@@ -83,16 +116,7 @@
 <Buttons
   items={SVELTE_KIT_EXAMPLES}
   onClick={(example) => {
-    projectOpen({
-      name: example,
-      platform,
-      theme,
-      validator,
-      svelteKitIntegration: example.startsWith("remote-functions")
-        ? ProjectSvelteKitIntegration.RemoteFunctions
-        : ProjectSvelteKitIntegration.FormActions,
-      content: EXAMPLE_LAYERS[example](),
-    });
+    openExample(example, undefined);
   }}
   label={identity}
 />
@@ -103,14 +127,7 @@
 <Buttons
   items={VALIDATOR_SPECIFIC_EXAMPLES}
   onClick={(example) => {
-    projectOpen({
-      name: example,
-      platform,
-      theme,
-      validator: VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
-      svelteKitIntegration: undefined,
-      content: EXAMPLE_LAYERS[example](),
-    });
+    openExample(example, VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example]);
   }}
   label={identity}
 />

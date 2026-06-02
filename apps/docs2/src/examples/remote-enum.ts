@@ -2,12 +2,9 @@ import countriesTs from "examples/basic-starter/src/routes/remote-enum/countries
 import pageSvelte from "examples/basic-starter/src/routes/remote-enum/+page.svelte?raw";
 import comboboxSvelte from "examples/basic-starter/src/routes/remote-enum/combobox.svelte?raw";
 
-import { defineLayer } from "meta/composer";
+import { defineExample } from "../shared.js";
 
-export default defineLayer({
-  package: {
-    name: "remote-enum",
-  },
+export default defineExample({
   files: {
     "src/routes/countries.ts": countriesTs,
     "src/routes/+page.svelte": pageSvelte,

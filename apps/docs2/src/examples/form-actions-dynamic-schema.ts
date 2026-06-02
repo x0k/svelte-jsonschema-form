@@ -4,12 +4,10 @@ import pageSvelte from "examples/sveltekit-starter/src/routes/form-actions-dynam
 import nestedPageSvelte from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/[id]/+page.svelte?raw";
 import pageServerTs from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/[id]/+page.server.ts?raw";
 
-import { defineLayer } from "meta/composer";
+import { defineExample } from "../shared.js";
 
-export default defineLayer({
-  package: {
-    name: "form-actions-dynamic-schema",
-  },
+export default defineExample({
+  sveltekit: "formActions",
   files: {
     "src/lib/server.ts": serverTs,
     "src/routes/+layout.server.ts": layoutServerTs,

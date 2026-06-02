@@ -2,12 +2,10 @@ import pageServerTs from "examples/sveltekit-starter/src/routes/multi-step-nativ
 import pageSvelte from "examples/sveltekit-starter/src/routes/multi-step-native-form/+page.svelte?raw";
 import modelTs from "examples/sveltekit-starter/src/routes/multi-step-native-form/model.ts?raw";
 
-import { defineLayer } from "meta/composer";
+import { defineExample } from "../shared.js";
 
-export default defineLayer({
-  package: {
-    name: "multi-step-native-form",
-  },
+export default defineExample({
+  sveltekit: "formActions",
   files: {
     "src/routes/+page.server.ts": pageServerTs,
     "src/routes/+page.svelte": pageSvelte,

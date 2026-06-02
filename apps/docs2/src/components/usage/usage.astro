@@ -1,5 +1,6 @@
 ---
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
+import { themeOrSubThemeTitle } from "meta";
 
 import { actualThemes, type ActualTheme } from "@/shared";
 import FormCard from "@/components/form-card.astro";
@@ -24,7 +25,6 @@ import daisyu5Styles from "@sjsf/daisyui5-theme/styles.css?raw";
 import flowbiteStyles from "@sjsf/flowbite3-theme/styles.css?raw";
 import skeleton4Styles from "@sjsf/skeleton4-theme/styles.css?raw";
 import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?raw";
-import { themeOrSubThemeTitle } from 'pkgs/meta/dist';
 
 const CODE = {
   basic: withBasicCode,

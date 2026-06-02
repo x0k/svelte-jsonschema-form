@@ -16,8 +16,41 @@ import {
   themes,
   type Generated,
   type Package,
+  type AbstractPackage,
 } from "meta";
-import type { ImportPromise, Layer, ProjectValidator } from "meta/composer";
+import {
+  codegenValidators,
+  isEndsWithPrecompiled,
+  type CodegenValidator,
+  type CodegenSvelteKitIntegration,
+} from "meta/codegen";
+import type { CodeTransformer } from "meta/composer";
+
+export interface ExampleContent {
+  files: Record<string, string>;
+  dependencies: AbstractPackage[];
+  codeTransformers: CodeTransformer[];
+  sveltekit: CodegenSvelteKitIntegration;
+}
+
+export function defineExample(c: Partial<ExampleContent>): ExampleContent {
+  return {
+    files: {},
+    dependencies: [],
+    codeTransformers: [],
+    sveltekit: "no",
+    ...c,
+  };
+}
+
+export const remoteFormDefaultsReplacer: CodeTransformer = (_filepath, code) =>
+  code.replace("remote-form-defaults", "form-defaults");
+
+export function* nonPrecompiledValidators() {
+  for (const v of codegenValidators()) {
+    if (!isEndsWithPrecompiled(v)) yield v;
+  }
+}
 
 export function* actualThemes() {
   for (const t of themes()) {
@@ -145,7 +178,7 @@ export enum ValidatorSpecificExample {
 
 export const VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS: Record<
   ValidatorSpecificExample,
-  ProjectValidator
+  CodegenValidator
 > = {
   [ValidatorSpecificExample.ZodStarter]: "zod4",
   [ValidatorSpecificExample.ValibotStarter]: "valibot",
@@ -164,90 +197,56 @@ export type Example =
 
 export const EXAMPLE_LAYERS: Record<
   Example,
-  () => ImportPromise<Layer<any>>[]
+  () => Promise<{ default: ExampleContent }>
 > = {
-  [GenericExample.Starter]: () => [import("./examples/starter.js")],
-  [GenericExample.MarkdownDescription]: () => [
+  [GenericExample.Starter]: () => import("./examples/starter.js"),
+  [GenericExample.MarkdownDescription]: () =>
     import("./examples/markdown-description.js"),
-  ],
-  [GenericExample.DeprecatedKeyword]: () => [
+  [GenericExample.DeprecatedKeyword]: () =>
     import("./examples/deprecated-keyword.js"),
-  ],
-  [GenericExample.TabbedLayout]: () => [import("./examples/tabbed-layout.js")],
-  [GenericExample.RemoteEnum]: () => [import("./examples/remote-enum.js")],
-  [GenericExample.AsyncCombobox]: () => [
-    import("./examples/async-combobox.js"),
-  ],
-  [GenericExample.Formulas]: () => [import("./examples/formulas.js")],
-  [GenericExample.PatternPropertiesValidator]: () => [
+  [GenericExample.TabbedLayout]: () => import("./examples/tabbed-layout.js"),
+  [GenericExample.RemoteEnum]: () => import("./examples/remote-enum.js"),
+  [GenericExample.AsyncCombobox]: () => import("./examples/async-combobox.js"),
+  [GenericExample.Formulas]: () => import("./examples/formulas.js"),
+  [GenericExample.PatternPropertiesValidator]: () =>
     import("./examples/pattern-properties-validator.js"),
-  ],
-  [GenericExample.DecomposedField]: () => [
+  [GenericExample.DecomposedField]: () =>
     import("./examples/decomposed-field.js"),
-  ],
-  [GenericExample.LayoutSlots]: () => [import("./examples/layout-slots.js")],
-  [GenericExample.PreuploadFile]: () => [
-    import("./examples/preupload-file.js"),
-  ],
-  [GenericExample.OptionalDataControls]: () => [
+  [GenericExample.LayoutSlots]: () => import("./examples/layout-slots.js"),
+  [GenericExample.PreuploadFile]: () => import("./examples/preupload-file.js"),
+  [GenericExample.OptionalDataControls]: () =>
     import("./examples/optional-data-controls.js"),
-  ],
-  [GenericExample.SchemaTransformation]: () => [
+  [GenericExample.SchemaTransformation]: () =>
     import("./examples/schema-transformation.js"),
-  ],
-  [GenericExample.LabelOnLeft]: () => [import("./examples/label-on-left.js")],
-  [GenericExample.Draft2020]: () => [import("./examples/draft-2020-12.js")],
-  [GenericExample.MultiStep]: () => [import("./examples/multi-step.js")],
-  [GenericExample.EnumWidgets]: () => [import("./examples/enum-widgets.js")],
-  [GenericExample.NullableFields]: () => [
+  [GenericExample.LabelOnLeft]: () => import("./examples/label-on-left.js"),
+  [GenericExample.Draft2020]: () => import("./examples/draft-2020-12.js"),
+  [GenericExample.MultiStep]: () => import("./examples/multi-step.js"),
+  [GenericExample.EnumWidgets]: () => import("./examples/enum-widgets.js"),
+  [GenericExample.NullableFields]: () =>
     import("./examples/nullable-fields.js"),
-  ],
-  [SvelteKitExample.FormActionsWithoutJs]: () => [
-    // import("meta/composer/layers/form-actions"),
+  [SvelteKitExample.FormActionsWithoutJs]: () =>
     import("./examples/form-actions-without-js.js"),
-  ],
-  [SvelteKitExample.MultiStepNativeForm]: () => [
-    // import("meta/composer/layers/form-actions"),
+  [SvelteKitExample.MultiStepNativeForm]: () =>
     import("./examples/multi-step-native-form.js"),
-  ],
-  [SvelteKitExample.FormActions]: () => [
-    // import("meta/composer/layers/form-actions"),
-    import("./examples/form-actions.js"),
-  ],
-  [SvelteKitExample.FormActionsFlex]: () => [
-    // import("meta/composer/layers/form-actions"),
+  [SvelteKitExample.FormActions]: () => import("./examples/form-actions.js"),
+  [SvelteKitExample.FormActionsFlex]: () =>
     import("./examples/form-actions-flex.js"),
-  ],
-  [SvelteKitExample.FormActionsDynamicSchema]: () => [
-    // import("meta/composer/layers/form-actions"),
+  [SvelteKitExample.FormActionsDynamicSchema]: () =>
     import("./examples/form-actions-dynamic-schema.js"),
-  ],
-  [SvelteKitExample.RemoteFunctions]: () => [
-    // import("meta/composer/layers/remote-functions"),
+  [SvelteKitExample.RemoteFunctions]: () =>
     import("./examples/remote-functions.js"),
-  ],
-  [SvelteKitExample.RemoteFunctionsEnhance]: () => [
-    // import("meta/composer/layers/remote-functions"),
+  [SvelteKitExample.RemoteFunctionsEnhance]: () =>
     import("./examples/remote-functions-enhance.js"),
-  ],
-  [SvelteKitExample.RemoteFunctionsDynamicSchema]: () => [
-    // import("meta/composer/layers/remote-functions"),
+  [SvelteKitExample.RemoteFunctionsDynamicSchema]: () =>
     import("./examples/remote-functions-dynamic-schema.js"),
-  ],
-  [SvelteKitExample.RemoteFunctionsWithoutJs]: () => [
-    // import("meta/composer/layers/remote-functions"),
+  [SvelteKitExample.RemoteFunctionsWithoutJs]: () =>
     import("./examples/remote-functions-without-js.js"),
-  ],
-  [ValidatorSpecificExample.ZodStarter]: () => [
+  [ValidatorSpecificExample.ZodStarter]: () =>
     import("./examples/zod-starter.js"),
-  ],
-  [ValidatorSpecificExample.ValibotStarter]: () => [
+  [ValidatorSpecificExample.ValibotStarter]: () =>
     import("./examples/valibot-starter.js"),
-  ],
-  [ValidatorSpecificExample.ArkTypeStarter]: () => [
+  [ValidatorSpecificExample.ArkTypeStarter]: () =>
     import("./examples/arktype-starter.js"),
-  ],
-  [ValidatorSpecificExample.TypeBoxStarter]: () => [
+  [ValidatorSpecificExample.TypeBoxStarter]: () =>
     import("./examples/typebox-starter.js"),
-  ],
 };

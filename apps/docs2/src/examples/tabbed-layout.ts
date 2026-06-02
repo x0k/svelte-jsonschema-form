@@ -9,12 +9,9 @@ import subTabsSvelte from "examples/basic-starter/src/routes/tabbed-layout/sub-t
 import pageSvelte from "examples/basic-starter/src/routes/tabbed-layout/+page.svelte?raw";
 import topTabsSvelte from "examples/basic-starter/src/routes/tabbed-layout/top-tabs.svelte?raw";
 
-import { defineLayer } from "meta/composer";
+import { defineExample } from "../shared.js";
 
-export default defineLayer({
-  package: {
-    name: "tabbed-layout",
-  },
+export default defineExample({
   files: {
     "src/lib/tabs/context.svelte.ts": contextSvelteTs,
     "src/lib/tabs/layout.svelte": tabsLayoutSvelte,

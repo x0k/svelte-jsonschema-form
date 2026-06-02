@@ -2,12 +2,10 @@ import postModelTs from "examples/sveltekit-starter/src/lib/post.ts?raw";
 import pageServerTs from "examples/sveltekit-starter/src/routes/form-actions/+page.server.ts?raw";
 import pageSvelte from "examples/sveltekit-starter/src/routes/form-actions/+page.svelte?raw";
 
-import { defineLayer } from "meta/composer";
+import { defineExample } from "../shared.js";
 
-export default defineLayer({
-  package: {
-    name: "form-actions",
-  },
+export default defineExample({
+  sveltekit: "formActions",
   files: {
     "src/lib/post.ts": postModelTs,
     "src/routes/+page.server.ts": pageServerTs,

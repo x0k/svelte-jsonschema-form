@@ -3,14 +3,15 @@ import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions
 import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-without-js/+page.svelte?raw";
 import formContentSvelte from "examples/sveltekit-starter/src/routes/remote-functions-without-js/form-content.svelte?raw";
 
-import { defineLayer } from "meta/composer";
+import { defineExample, remoteFormDefaultsReplacer } from "../shared.js";
 
-export default defineLayer({
-  package: { name: "remote-functions-without-js" },
+export default defineExample({
+  sveltekit: "remoteFunctions",
   files: {
     "src/lib/post.ts": postModelTs,
     "src/routes/data.remote.ts": dataRemoteTs,
     "src/routes/+page.svelte": pageSvelte,
     "src/routes/form-content.svelte": formContentSvelte,
   },
+  codeTransformers: [remoteFormDefaultsReplacer],
 });

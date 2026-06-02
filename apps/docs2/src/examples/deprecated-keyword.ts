@@ -1,11 +1,8 @@
 import sveltePage from "examples/basic-starter/src/routes/deprecated-keyword/+page.svelte?raw";
 
-import { defineLayer } from "meta/composer";
+import { defineExample } from "../shared.js";
 
-export default defineLayer({
-  package: {
-    name: "deprecated-keyword",
-  },
+export default defineExample({
   files: {
     "src/routes/+page.svelte": sveltePage,
   },

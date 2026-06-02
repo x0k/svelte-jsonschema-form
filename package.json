@@ -53,6 +53,7 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",
+      "@sveltejs/sv-utils",
       "esbuild",
       "sharp"
     ],

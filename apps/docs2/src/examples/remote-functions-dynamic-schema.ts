@@ -4,12 +4,10 @@ import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-d
 import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/data.remote.ts?raw";
 import nestedPageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/[id]/+page.svelte?raw";
 
-import { defineLayer } from "meta/composer";
+import { defineExample, remoteFormDefaultsReplacer } from "../shared.js";
 
-export default defineLayer({
-  package: {
-    name: "remote-functions-dynamic-schema",
-  },
+export default defineExample({
+  sveltekit: "remoteFunctions",
   files: {
     "src/lib/server.ts": serverTs,
     "src/routes/+layout.ts": layoutTs,
@@ -17,4 +15,5 @@ export default defineLayer({
     "src/routes/data.remote.ts": dataRemoteTs,
     "src/routes/[id]/+page.svelte": nestedPageSvelte,
   },
+  codeTransformers: [remoteFormDefaultsReplacer],
 });

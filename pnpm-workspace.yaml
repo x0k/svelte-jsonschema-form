@@ -29,7 +29,7 @@ catalog:
   "@valibot/to-json-schema": ^1.7.0
   "@webcontainer/api": ^1.6.4
   "@sveltejs/kit": ^2.59.1
-  "@sveltejs/sv-utils": ^0.2.2
+  "@sveltejs/sv-utils": github:x0k/svelte-cli#cf19b89&path:/packages/sv-utils
   acorn: ^8.16.0
   ajv: ^8.20.0
   ajv-formats: ^3.0.1
@@ -93,7 +93,3 @@ catalogs:
     svelte-toolbelt: ^0.10.6
     yeezy-dates: ^1.1.0
     svelte-sonner: ^1.1.1
-
-onlyBuiltDependencies:
-  - esbuild
-  - "@tailwindcss/oxide"

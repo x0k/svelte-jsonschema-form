@@ -4,15 +4,9 @@ import contextTs from "examples/basic-starter/src/routes/preupload-file/context.
 import svelteFrom from "examples/basic-starter/src/routes/preupload-file/form.svelte?raw";
 import svelteStoredFileField from "examples/basic-starter/src/routes/preupload-file/stored-file-field.svelte?raw";
 
-import { defineLayer } from "meta/composer";
+import { defineExample } from "../shared.js";
 
-export default defineLayer({
-  package: {
-    name: "preupload-file",
-  },
-  formDefaults: {
-    widgets: ["file"],
-  },
+export default defineExample({
   files: {
     "src/routes/+page.svelte": sveltePage,
     "src/routes/[id]/+page.svelte": nestedSveltePage,

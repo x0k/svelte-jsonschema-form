@@ -55,7 +55,7 @@ catalogs:
       specifier: ^2.59.1
       version: 2.61.1
     '@sveltejs/sv-utils':
-      specifier: ^0.2.2
+      specifier: github:x0k/svelte-cli#cf19b89&path:/packages/sv-utils
       version: 0.2.2
     '@sveltejs/vite-plugin-svelte':
       specifier: ^7.1.2
@@ -2089,7 +2089,7 @@ importers:
         version: 1.0.10(acorn@8.16.0)
       '@sveltejs/sv-utils':
         specifier: 'catalog:'
-        version: 0.2.2
+        version: https://codeload.github.com/x0k/svelte-cli/tar.gz/cf19b89514a4efbd2097e8305a489fafa0ae026b#path:/packages/sv-utils
       '@types/estree':
         specifier: 'catalog:'
         version: 1.0.9
@@ -2283,7 +2283,7 @@ importers:
     devDependencies:
       '@sveltejs/sv-utils':
         specifier: 'catalog:'
-        version: 0.2.2
+        version: https://codeload.github.com/x0k/svelte-cli/tar.gz/cf19b89514a4efbd2097e8305a489fafa0ae026b#path:/packages/sv-utils
       '@types/node':
         specifier: ^25.6.2
         version: 25.9.1
@@ -4022,6 +4022,10 @@ packages:
 
   '@sveltejs/sv-utils@0.2.2':
     resolution: {integrity: sha512-2rmR7HKhqcMR6vz9eoYPPMgVaKLME2+tZGFsxy1QV44HkVrLttXzUrE8GXBHDsd2uMOr945cBnQLs7+DYPNopA==}
+
+  '@sveltejs/sv-utils@https://codeload.github.com/x0k/svelte-cli/tar.gz/cf19b89514a4efbd2097e8305a489fafa0ae026b#path:/packages/sv-utils':
+    resolution: {path: /packages/sv-utils, tarball: https://codeload.github.com/x0k/svelte-cli/tar.gz/cf19b89514a4efbd2097e8305a489fafa0ae026b}
+    version: 0.2.2
 
   '@sveltejs/svelte-json-tree@2.2.1':
     resolution: {integrity: sha512-M8l23/R3y1fI2+RaOzfUzmkysTWWsw/NClUgGpvydl9vXRonPN1/btQQievaNyeWNfUj12tjPfh5yTrXWpaKkg==}
@@ -9853,6 +9857,8 @@ snapshots:
       - typescript
 
   '@sveltejs/sv-utils@0.2.2': {}
+
+  '@sveltejs/sv-utils@https://codeload.github.com/x0k/svelte-cli/tar.gz/cf19b89514a4efbd2097e8305a489fafa0ae026b#path:/packages/sv-utils': {}
 
   '@sveltejs/svelte-json-tree@2.2.1(svelte@5.55.9(@typescript-eslint/types@8.60.0))':
     dependencies:
