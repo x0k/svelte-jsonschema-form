@@ -18,6 +18,7 @@
     "@picocss/pico": "catalog:",
     "@stackblitz/sdk": "catalog:",
     "@sveltejs/acorn-typescript": "catalog:",
+    "@sveltejs/kit": "catalog:",
     "@types/estree": "catalog:",
     "@webcontainer/api": "catalog:",
     "acorn": "catalog:",
@@ -32,6 +33,11 @@
     "svelte": "^5.34.8",
     "zimmerframe": "catalog:",
     "@sveltejs/sv-utils": "catalog:"
+  },
+  "peerDependenciesMeta": {
+    "@sveltejs/kit": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@sjsf-lab/ata-validator": "workspace:*",
@@ -102,6 +108,10 @@
     "./composer": {
       "types": "./dist/composer/index.d.ts",
       "default": "./dist/composer/index.js"
+    },
+    "./sandbox": {
+      "types": "./dist/sandbox/index.d.ts",
+      "default": "./dist/sandbox/index.js"
     },
     "./codegen": {
       "types": "./dist/codegen/index.d.ts",
