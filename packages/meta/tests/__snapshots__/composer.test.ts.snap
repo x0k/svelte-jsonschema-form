@@ -24,8 +24,6 @@ exports[`createComposer > 'icons__flowbite' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";
-@source "node_modules/@sjsf/flowbite-icons/dist";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -109,6 +107,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";
+@source "node_modules/@sjsf/flowbite-icons/dist";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -179,7 +179,6 @@ exports[`createComposer > 'icons__lucide' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -263,6 +262,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -333,7 +333,6 @@ exports[`createComposer > 'icons__moving' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -417,6 +416,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -487,7 +487,6 @@ exports[`createComposer > 'icons__radix' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -571,6 +570,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -642,7 +642,6 @@ exports[`createComposer > 'sveltekit__formActions__ajv8' > matches snapshot 1`] 
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -754,6 +753,7 @@ export const actions = ({
 </script>
 
 <BasicForm form={form} method="POST" novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -826,7 +826,6 @@ exports[`createComposer > 'sveltekit__formActions__ajv8_precompi…' > matches s
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -945,6 +944,7 @@ export const actions = ({
 </script>
 
 <BasicForm form={form} method="POST" novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -1014,7 +1014,6 @@ exports[`createComposer > 'sveltekit__formActions__zod4' > matches snapshot 1`] 
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -1129,6 +1128,7 @@ export const actions = ({
 </script>
 
 <BasicForm form={form} method="POST" novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -1200,7 +1200,6 @@ exports[`createComposer > 'sveltekit__remoteFunctions__ajv8' > matches snapshot 
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -1311,6 +1310,7 @@ export const createPost = form(createServerValidator<Post>({ ...defaults, schema
 
 	return { ...data, id: "new-post" };
 });",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -1383,7 +1383,6 @@ exports[`createComposer > 'sveltekit__remoteFunctions__ajv8_prec…' > matches s
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -1503,6 +1502,7 @@ export const createPost = form(
 		return { ...data, id: "new-post" };
 	}
 );",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -1572,7 +1572,6 @@ exports[`createComposer > 'sveltekit__remoteFunctions__zod4' > matches snapshot 
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -1680,6 +1679,7 @@ export const createPost = form(createServerValidator({ ...defaults, ...adapt(pos
 
 	return { ...data, id: "new-post" };
 });",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -1749,7 +1749,6 @@ exports[`createComposer > 'theme__beercss' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -1832,6 +1831,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -1904,8 +1904,6 @@ exports[`createComposer > 'theme__daisyui5' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@source "node_modules/@sjsf/daisyui5-theme/dist";
-@plugin "daisyui";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -1993,6 +1991,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@source "node_modules/@sjsf/daisyui5-theme/dist";
+@plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -2066,33 +2066,6 @@ exports[`createComposer > 'theme__flowbite3' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@source "node_modules/@sjsf/flowbite3-theme/dist";
-@plugin "flowbite/plugin";
-@custom-variant dark (&:where(.dark, .dark *));
-@theme {
-  --color-primary-50: #fff5f2;
-  --color-primary-100: #fff1ee;
-  --color-primary-200: #ffe4de;
-  --color-primary-300: #ffd5cc;
-  --color-primary-400: #ffbcad;
-  --color-primary-500: #fe795d;
-  --color-primary-600: #ef562f;
-  --color-primary-700: #eb4f27;
-  --color-primary-800: #cc4522;
-  --color-primary-900: #a5371b;
-
-  --color-secondary-50: #f0f9ff;
-  --color-secondary-100: #e0f2fe;
-  --color-secondary-200: #bae6fd;
-  --color-secondary-300: #7dd3fc;
-  --color-secondary-400: #38bdf8;
-  --color-secondary-500: #0ea5e9;
-  --color-secondary-600: #0284c7;
-  --color-secondary-700: #0369a1;
-  --color-secondary-800: #075985;
-  --color-secondary-900: #0c4a6e;
-};
-@source "node_modules/flowbite-svelte/dist";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -2180,6 +2153,33 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@source "node_modules/@sjsf/flowbite3-theme/dist";
+@plugin "flowbite/plugin";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-primary-50: #fff5f2;
+  --color-primary-100: #fff1ee;
+  --color-primary-200: #ffe4de;
+  --color-primary-300: #ffd5cc;
+  --color-primary-400: #ffbcad;
+  --color-primary-500: #fe795d;
+  --color-primary-600: #ef562f;
+  --color-primary-700: #eb4f27;
+  --color-primary-800: #cc4522;
+  --color-primary-900: #a5371b;
+
+  --color-secondary-50: #f0f9ff;
+  --color-secondary-100: #e0f2fe;
+  --color-secondary-200: #bae6fd;
+  --color-secondary-300: #7dd3fc;
+  --color-secondary-400: #38bdf8;
+  --color-secondary-500: #0ea5e9;
+  --color-secondary-600: #0284c7;
+  --color-secondary-700: #0369a1;
+  --color-secondary-800: #075985;
+  --color-secondary-900: #0c4a6e;
+};
+@source "node_modules/flowbite-svelte/dist";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -2250,8 +2250,6 @@ exports[`createComposer > 'theme__pico' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@picocss/pico/css/pico.css";
-@import "@sjsf/basic-theme/css/pico.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -2334,6 +2332,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@import "@picocss/pico/css/pico.css";
+@import "@sjsf/basic-theme/css/pico.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -2408,7 +2408,101 @@ exports[`createComposer > 'theme__shadcn-extras' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@source "node_modules/@sjsf/shadcn4-theme/dist";
+  "src/app.html": "<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
+import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
+import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
+	return ({ schema }) => {
+		if (schema.oneOf !== undefined) {
+			return "oneOfField";
+		}
+
+		if (schema.anyOf !== undefined) {
+			return "anyOfField";
+		}
+
+		const type = getSimpleSchemaType(schema);
+
+		if (type === "array") {
+			return isFixedItems(schema) ? "tupleField" : "arrayField";
+		}
+
+		return \`\${type}Field\`;
+	};
+}
+
+export { translation } from "@sjsf/form/translations/en";
+export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
+export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+
+// import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/date-range-picker-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/file-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/multi-select-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/radio-buttons-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/range-slider-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/range-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/file-drop-zone-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/ip-v4-address-input-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/nlp-date-input-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/password-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/phone-input-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/star-rating-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/tags-input-include";
+export { theme } from "@sjsf-lab/shadcn-extras-theme";
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import type { Post } from '$lib/post';
+	import { schema } from '$lib/post';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+</script>
+
+<BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@source "node_modules/@sjsf/shadcn4-theme/dist";
 @source "node_modules/@sjsf-lab/shadcn-extras-theme/dist";
 @custom-variant dark (&:where(.dark *));
 
@@ -2527,100 +2621,6 @@ exports[`createComposer > 'theme__shadcn-extras' > matches snapshot 1`] = `
     @apply bg-background text-foreground;
   }
 };",
-  "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
-
-// import "@sjsf/form/fields/extra/aggregated-include";
-// import "@sjsf/form/fields/extra/array-files-include";
-// import "@sjsf/form/fields/extra/array-native-files-include";
-// import "@sjsf/form/fields/extra/array-tags-include";
-// import "@sjsf/form/fields/extra/boolean-select-include";
-// import "@sjsf/form/fields/extra/enum-include";
-// import "@sjsf/form/fields/extra/file-include";
-// import "@sjsf/form/fields/extra/multi-enum-include";
-// import "@sjsf/form/fields/extra/object-key-enum-include";
-// import "@sjsf/form/fields/extra/remote-enum-include";
-// import "@sjsf/form/fields/extra/unknown-native-file-include";
-// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
-
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
-
-// import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/date-range-picker-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/file-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/multi-select-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/radio-buttons-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/range-slider-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/range-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
-// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/file-drop-zone-include";
-// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/ip-v4-address-input-include";
-// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/nlp-date-input-include";
-// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/password-include";
-// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/phone-input-include";
-// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/star-rating-include";
-// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/tags-input-include";
-export { theme } from "@sjsf-lab/shadcn-extras-theme";
-
-export const onSubmitError = createFocusOnFirstError();
-
-export function validator<T>(options: ValidatorFactoryOptions) {
-	return createFormValidator<T>({
-		...options,
-		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
-	});
-}",
-  "src/routes/+layout.svelte": "<slot />",
-  "src/routes/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
-	import { BasicForm, createForm } from '@sjsf/form';
-
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
-</script>
-
-<BasicForm form={form} novalidate style="padding: 2rem;" />",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -2699,7 +2699,94 @@ exports[`createComposer > 'theme__shadcn4' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@source "node_modules/@sjsf/shadcn4-theme/dist";
+  "src/app.html": "<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
+import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
+import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
+	return ({ schema }) => {
+		if (schema.oneOf !== undefined) {
+			return "oneOfField";
+		}
+
+		if (schema.anyOf !== undefined) {
+			return "anyOfField";
+		}
+
+		const type = getSimpleSchemaType(schema);
+
+		if (type === "array") {
+			return isFixedItems(schema) ? "tupleField" : "arrayField";
+		}
+
+		return \`\${type}Field\`;
+	};
+}
+
+export { translation } from "@sjsf/form/translations/en";
+export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
+export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+
+// import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/date-range-picker-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/file-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/multi-select-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/radio-buttons-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/range-slider-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/range-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
+export { theme } from "@sjsf/shadcn4-theme";
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import type { Post } from '$lib/post';
+	import { schema } from '$lib/post';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+</script>
+
+<BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@source "node_modules/@sjsf/shadcn4-theme/dist";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -2817,93 +2904,6 @@ exports[`createComposer > 'theme__shadcn4' > matches snapshot 1`] = `
     @apply bg-background text-foreground;
   }
 };",
-  "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
-  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
-
-// import "@sjsf/form/fields/extra/aggregated-include";
-// import "@sjsf/form/fields/extra/array-files-include";
-// import "@sjsf/form/fields/extra/array-native-files-include";
-// import "@sjsf/form/fields/extra/array-tags-include";
-// import "@sjsf/form/fields/extra/boolean-select-include";
-// import "@sjsf/form/fields/extra/enum-include";
-// import "@sjsf/form/fields/extra/file-include";
-// import "@sjsf/form/fields/extra/multi-enum-include";
-// import "@sjsf/form/fields/extra/object-key-enum-include";
-// import "@sjsf/form/fields/extra/remote-enum-include";
-// import "@sjsf/form/fields/extra/unknown-native-file-include";
-// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
-export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
-	return ({ schema }) => {
-		if (schema.oneOf !== undefined) {
-			return "oneOfField";
-		}
-
-		if (schema.anyOf !== undefined) {
-			return "anyOfField";
-		}
-
-		const type = getSimpleSchemaType(schema);
-
-		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
-		}
-
-		return \`\${type}Field\`;
-	};
-}
-
-export { translation } from "@sjsf/form/translations/en";
-export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
-
-// import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/date-range-picker-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/file-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/multi-select-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/radio-buttons-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/range-slider-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/range-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
-export { theme } from "@sjsf/shadcn4-theme";
-
-export const onSubmitError = createFocusOnFirstError();
-
-export function validator<T>(options: ValidatorFactoryOptions) {
-	return createFormValidator<T>({
-		...options,
-		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
-	});
-}",
-  "src/routes/+layout.svelte": "<slot />",
-  "src/routes/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
-	import { BasicForm, createForm } from '@sjsf/form';
-
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
-</script>
-
-<BasicForm form={form} novalidate style="padding: 2rem;" />",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -2978,10 +2978,6 @@ exports[`createComposer > 'theme__skeleton4' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@source "node_modules/@sjsf/skeleton4-theme/dist";
-@import "@skeletonlabs/skeleton";
-@import "@skeletonlabs/skeleton-svelte";
-@import "@skeletonlabs/skeleton/themes/cerberus";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -3073,6 +3069,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@source "node_modules/@sjsf/skeleton4-theme/dist";
+@import "@skeletonlabs/skeleton";
+@import "@skeletonlabs/skeleton-svelte";
+@import "@skeletonlabs/skeleton/themes/cerberus";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -3143,7 +3143,6 @@ exports[`createComposer > 'theme__svar' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -3231,6 +3230,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -3300,7 +3300,6 @@ exports[`createComposer > 'validator__ajv8_precompiled' > matches snapshot 1`] =
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -3382,6 +3381,7 @@ export const onSubmitError = createFocusOnFirstError();",
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -3449,7 +3449,6 @@ exports[`createComposer > 'validator__ata' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -3524,6 +3523,7 @@ export { createFormValidator as validator } from "@sjsf-lab/ata-validator";",
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -3591,7 +3591,6 @@ exports[`createComposer > 'validator__ata_precompiled' > matches snapshot 1`] = 
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -3673,6 +3672,7 @@ export const onSubmitError = createFocusOnFirstError();",
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -3740,7 +3740,6 @@ exports[`createComposer > 'validator__cfworker' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -3815,6 +3814,7 @@ export { createFormValidator as validator } from "@sjsf/cfworker-validator";",
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -3884,7 +3884,6 @@ exports[`createComposer > 'validator__hyperjump_precompiled' > matches snapshot 
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -3979,6 +3978,7 @@ export const onSubmitError = createFocusOnFirstError();",
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -4042,7 +4042,6 @@ exports[`createComposer > 'validator__noop' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -4117,6 +4116,7 @@ export { createFormValidator as validator } from "@sjsf/form/validators/noop";",
 </script>
 
 <BasicForm form={form} />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -4184,7 +4184,6 @@ exports[`createComposer > 'validator__schemasafe' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -4259,6 +4258,7 @@ export { createFormValidator as validator } from "@sjsf/schemasafe-validator";",
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -4326,7 +4326,6 @@ exports[`createComposer > 'validator__schemasafe_precompiled' > matches snapshot
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -4408,6 +4407,7 @@ export const onSubmitError = createFocusOnFirstError();",
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -4474,7 +4474,6 @@ exports[`createComposer > 'validator__standard-schema' > matches snapshot 1`] = 
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -4549,6 +4548,7 @@ export const onSubmitError = createFocusOnFirstError();",
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -4615,7 +4615,6 @@ exports[`createComposer > 'validator__valibot' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -4690,6 +4689,7 @@ export const onSubmitError = createFocusOnFirstError();",
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -4755,7 +4755,6 @@ exports[`createComposer > 'validator__zod4' > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -4830,6 +4829,7 @@ export const onSubmitError = createFocusOnFirstError();",
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -4898,7 +4898,6 @@ exports[`createComposer > code transformers > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -4981,6 +4980,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -5050,7 +5050,6 @@ exports[`createComposer > extra dependencies > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -5133,6 +5132,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -5201,7 +5201,6 @@ exports[`createComposer > extra files > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -5286,6 +5285,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/custom.svelte": "<h1>Custom</h1>",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -5354,7 +5354,6 @@ exports[`createComposer > js language > matches snapshot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/app.html": "<!doctype html>
 <html lang="en">
   <head>
@@ -5443,6 +5442,7 @@ export const validator = (options) => createFormValidator({
 </script>
 
 <BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 

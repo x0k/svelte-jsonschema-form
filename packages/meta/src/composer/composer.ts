@@ -161,7 +161,7 @@ export function createComposer(
     lib,
   })("");
 
-  files["src/app.css"] = createStyles({
+  files["src/routes/layout.css"] = createStyles({
     nodeModulesPath,
     themeOrSubTheme,
     icons,
