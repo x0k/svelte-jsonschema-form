@@ -120,8 +120,6 @@ export type ThemeWithSubThemes = keyof ThemeSubThemes;
 
 export type ThemeOrSubTheme = Theme | SubTheme;
 
-export type NonLegacyThemeOrSubTheme = Exclude<ThemeOrSubTheme, LegacyTheme>;
-
 export type ParentTheme<S extends SubTheme> = keyof {
   [T in ThemeWithSubThemes as S extends ThemeSubThemes[T][number]
     ? T

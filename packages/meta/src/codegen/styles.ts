@@ -1,15 +1,15 @@
 import { transforms, type SvelteAst } from "@sveltejs/sv-utils";
 
 import type { AtRule, AtRuleOptions } from "../css.ts";
-import { themeOrSubThemeAtRules, type ThemeOrSubTheme } from "../themes.ts";
+import { themeOrSubThemeAtRules } from "../themes.ts";
 
-import type { CodegenIconSet } from "./model.ts";
+import type { CodegenIconSet, CodegenThemeOrSubTheme } from "./model.ts";
 import { iconSetAtRules } from "../icons.ts";
 import { cssAddPseudoRule } from "./lib.ts";
 
 export interface StylesOptions {
   nodeModulesPath: string;
-  themeOrSubTheme: ThemeOrSubTheme;
+  themeOrSubTheme: CodegenThemeOrSubTheme;
   icons: CodegenIconSet;
 }
 

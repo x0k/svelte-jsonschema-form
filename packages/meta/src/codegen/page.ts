@@ -1,17 +1,16 @@
 import { transforms } from "@sveltejs/sv-utils";
 
-import type { ThemeOrSubTheme } from "../themes.ts";
 import { formPackage } from "../form.ts";
 
-import type { Language } from "./model.ts";
+import type { CodegenThemeOrSubTheme, Language } from "./model.ts";
 import { createForm, type FormOptions } from "./form.ts";
 
 export interface PageOptions extends FormOptions {
   language: Language;
-  themeOrSubTheme: ThemeOrSubTheme;
+  themeOrSubTheme: CodegenThemeOrSubTheme;
 }
 
-const PADDED_THEMES: ThemeOrSubTheme[] = [
+const PADDED_THEMES: CodegenThemeOrSubTheme[] = [
   "pico",
   "daisyui5",
   "flowbite3",

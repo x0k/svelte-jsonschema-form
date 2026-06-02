@@ -21,7 +21,6 @@ import {
   tailwindcss4ThemePlugins,
   themePackage,
   toTheme,
-  type NonLegacyThemeOrSubTheme,
 } from "../themes.ts";
 import {
   externalValidatorPackage,
@@ -35,11 +34,12 @@ import {
   type CodegenValidator,
   type CodegenIconSet,
   type SvelteKitIntegration,
+  type CodegenThemeOrSubTheme,
 } from "./model.ts";
 import type { NamespaceImportOptions } from "./lib.ts";
 
 interface DependenciesOptions {
-  themeOrSubTheme: NonLegacyThemeOrSubTheme;
+  themeOrSubTheme: CodegenThemeOrSubTheme;
   validatorWithSuffix: CodegenValidator;
   icons: CodegenIconSet;
   sveltekit: SvelteKitIntegration;

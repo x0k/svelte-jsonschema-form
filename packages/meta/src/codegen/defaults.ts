@@ -13,7 +13,6 @@ import {
   themeExtensionOrigin,
   themePackage,
   toTheme,
-  type ThemeOrSubTheme,
 } from "../themes.ts";
 import { sveltekitPackage, svelteKitRfSubPath } from "../sveltekit.ts";
 import { extraFields, extraFieldSubPath } from "../fields.ts";
@@ -30,6 +29,7 @@ import {
   isEndsWithPrecompiled,
   withoutPrecompiledSuffix,
   type CodegenIconSet,
+  type CodegenThemeOrSubTheme,
   type CodegenValidator,
   type ConditionalPrinter,
   type SvelteKitIntegration,
@@ -37,7 +37,7 @@ import {
 import { createReExport, getTopLevelFunction } from "./lib.ts";
 
 export interface DefaultsOptions {
-  themeOrSubTheme: ThemeOrSubTheme;
+  themeOrSubTheme: CodegenThemeOrSubTheme;
   validatorWithSuffix: CodegenValidator;
   icons: CodegenIconSet;
   // resolver: Resolver;

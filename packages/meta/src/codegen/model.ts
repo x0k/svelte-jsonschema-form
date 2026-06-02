@@ -7,6 +7,12 @@ import {
   isPrecompiledValidator,
   validators,
 } from "../validators.ts";
+import {
+  isLegacyTheme,
+  isThemeWithSubThemes,
+  themes,
+  themeSubThemes,
+} from "../themes.ts";
 
 export type { Schema };
 
@@ -15,6 +21,22 @@ export type Language = "ts" | "js";
 export type ConditionalPrinter = (content: string, alt?: string) => string;
 
 export type PathFactory = (path: string) => string;
+
+export function* codegenThemeOrSubTheme() {
+  for (const t of themes()) {
+    if (isLegacyTheme(t)) {
+      continue;
+    }
+    yield t;
+    if (isThemeWithSubThemes(t)) {
+      for (const s of themeSubThemes(t)) {
+        yield s;
+      }
+    }
+  }
+}
+
+export type CodegenThemeOrSubTheme = Generated<typeof codegenThemeOrSubTheme>;
 
 export function* svelteKitIntegrations() {
   yield "no";

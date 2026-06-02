@@ -1,6 +1,6 @@
 import { transforms, type SvelteAst, js as jsUtils } from "@sveltejs/sv-utils";
 
-import { themePackage, type ThemeOrSubTheme } from "../themes.ts";
+import { themePackage } from "../themes.ts";
 import { shadcnExtrasUiSubPath, shadcnNewYorkThemeSubPath } from "../shadcn.ts";
 import { getTopLevelFunction } from "./lib.ts";
 import type { PathFactory } from "./model.ts";
