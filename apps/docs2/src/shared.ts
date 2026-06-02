@@ -44,7 +44,7 @@ export function defineExample(c: Partial<ExampleContent>): ExampleContent {
 }
 
 export const remoteFormDefaultsReplacer: CodeTransformer = (_filepath, code) =>
-  code.replace("remote-form-defaults", "form-defaults");
+  code.replace("sjsf/remote-defaults", "sjsf/defaults");
 
 export function* nonPrecompiledValidators() {
   for (const v of codegenValidators()) {
