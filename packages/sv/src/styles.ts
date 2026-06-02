@@ -1,16 +1,9 @@
-import { isThemeExtension, themeExtensionOrigin, toTheme } from "meta";
-import {
-  createStyles,
-  isStyleSheetEmpty,
-  setupShadcnContext,
-  svelteWrapFragment,
-} from "meta/codegen";
+import { createLayout, createStyles, isStyleSheetEmpty } from "meta/codegen";
 
 import type { Context } from "./model.js";
 import {
   type SvelteAst,
   transforms,
-  js as jsUtils,
   fileExists,
   loadFile,
   parse,
@@ -23,7 +16,6 @@ export function appCss(ctx: Context) {
     options: { themeOrSubTheme, icons },
     isKit,
     directory,
-    dependencyVersion,
     language,
     cwd,
     lib,
@@ -81,60 +73,21 @@ export function appCss(ctx: Context) {
     ? `${directory.kitRoutes}/+layout.svelte`
     : `${directory.src}/App.svelte`;
 
-  // Connect stylesheet
-  // https://github.com/sveltejs/cli/blob/a260374df2f24d440eb6f25841dcc89278a8e00d/packages/sv/src/addons/tailwindcss.ts#L84
+  const stylesheetPath = fileExists(cwd, file.stylesheet)
+    ? file.getRelative({
+        from: layoutSvelte,
+        to: file.stylesheet,
+      })
+    : undefined;
+
   sv.file(
     layoutSvelte,
-    transforms.svelteScript({ language }, ({ ast, svelte, js }) => {
-      connectStylesheet(ctx, ast.instance, js, layoutSvelte);
-      const themeOrExtension = toTheme(themeOrSubTheme);
-      const theme = isThemeExtension(themeOrExtension)
-        ? themeExtensionOrigin(themeOrExtension)
-        : themeOrExtension;
-      if (theme === "shadcn4") {
-        setupShadcnContext({ instance: ast.instance, js, lib, theme });
-      }
-
-      if (isKit) {
-        if (ast.fragment.nodes.length === 0) {
-          const svelteVersion = dependencyVersion("svelte");
-          if (!svelteVersion)
-            throw new Error("Failed to determine svelte version");
-          svelte.addSlot(ast, { svelteVersion });
-        }
-      }
-
-      if (themeOrSubTheme === "svar") {
-        js.imports.addNamed(ast.instance.content, {
-          imports: ["Willow"],
-          from: "@svar-ui/svelte-core",
-        });
-        svelteWrapFragment(ast, {
-          wrapper: "Willow",
-        });
-      } else if (themeOrSubTheme === "beercss") {
-        js.imports.addEmpty(ast.instance.content, {
-          from: "beercss/dist/cdn/beer.css",
-        });
-      }
+    createLayout({
+      language,
+      themeOrSubTheme,
+      lib,
+      isKit,
+      stylesheetPath,
     }),
   );
-}
-
-function connectStylesheet(
-  { cwd, file }: Context,
-  instance: SvelteAst.Script,
-  js: typeof jsUtils,
-  layoutSvelte: string,
-) {
-  if (!fileExists(cwd, file.stylesheet)) {
-    return;
-  }
-  const stylesheetRelative = file.getRelative({
-    from: layoutSvelte,
-    to: file.stylesheet,
-  });
-  js.imports.addEmpty(instance.content, {
-    from: stylesheetRelative,
-  });
 }

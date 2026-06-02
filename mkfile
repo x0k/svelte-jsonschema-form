@@ -76,32 +76,6 @@ sjsf/:
   b:
     pnpm run build ${filter[@]} $@
 
-sv/:
-  pushd packages/sv
-  dr:
-    rm -rf demo || true
-  dc:
-    pnpm run demo-create
-  da:
-    pnpm run demo-add
-  demo/:
-    pushd demo
-    i:
-      npm install
-    c:
-      npm run check
-    d:
-      npm run dev
-    popd
-  d: dr dc da demo/*
-  c:
-    pnpm run check
-  t:
-    pnpm run test $@
-  b:
-    pnpm run build
-  popd
-
 ajv/:
   pushd packages/ajv8-validator
   b:
@@ -497,6 +471,32 @@ e/:
 
 meta/:
   pushd packages/meta
+  c:
+    pnpm run check
+  t:
+    pnpm run test $@
+  b:
+    pnpm run build
+  popd
+
+sv/:
+  pushd packages/sv
+  dr:
+    rm -rf demo || true
+  dc:
+    pnpm run demo-create
+  da:
+    pnpm run demo-add
+  demo/:
+    pushd demo
+    i:
+      npm install
+    c:
+      npm run check
+    d:
+      npm run dev
+    popd
+  d: dr dc da demo/*
   c:
     pnpm run check
   t:
