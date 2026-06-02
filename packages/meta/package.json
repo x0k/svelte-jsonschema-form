@@ -10,7 +10,8 @@
     "extract-packages": "node scripts/extract-packages.ts",
     "extract-metadata": "npm run extract-fields && npm run extract-widgets && npm run extract-packages",
     "check": "npm run extract-metadata && svelte-check --tsconfig ./tsconfig.json",
-    "build": "svelte-package && publint"
+    "build": "svelte-package && publint",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "@cfworker/json-schema": "catalog:",
@@ -85,6 +86,7 @@
     "json-schema-to-zod": "catalog:",
     "lz-string": "catalog:",
     "svelte": "catalog:",
+    "vitest": "catalog:",
     "yaml": "^2.8.3",
     "zimmerframe": "catalog:"
   },

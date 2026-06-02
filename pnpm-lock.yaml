@@ -2126,6 +2126,9 @@ importers:
       svelte:
         specifier: 'catalog:'
         version: 5.55.9(@typescript-eslint/types@8.60.0)
+      vitest:
+        specifier: 'catalog:'
+        version: 4.1.7(@types/node@25.9.1)(@vitest/browser-playwright@4.1.7)(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(yaml@2.8.3))
       yaml:
         specifier: ^2.8.3
         version: 2.8.3
