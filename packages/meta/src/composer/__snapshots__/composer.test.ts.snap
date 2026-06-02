@@ -96,7 +96,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -108,7 +115,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";
-@source "node_modules/@sjsf/flowbite-icons/dist";",
+@source "../../node_modules/@sjsf/flowbite-icons/dist";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -251,7 +258,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -405,7 +419,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -559,7 +580,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -713,7 +741,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -888,7 +923,14 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -1076,7 +1118,14 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -1271,7 +1320,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import { createPost, getInitialData } from './data.remote';
@@ -1445,7 +1501,14 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import { createPost, getInitialData } from './data.remote';
@@ -1634,7 +1697,14 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import { createPost, getInitialData } from './data.remote';
@@ -1820,7 +1890,15 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import 'beercss/dist/cdn/beer.css';
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -1980,7 +2058,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -1991,7 +2076,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-  "src/routes/layout.css": "@source "node_modules/@sjsf/daisyui5-theme/dist";
+  "src/routes/layout.css": "@source "../../node_modules/@sjsf/daisyui5-theme/dist";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -2142,7 +2227,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -2153,7 +2245,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-  "src/routes/layout.css": "@source "node_modules/@sjsf/flowbite3-theme/dist";
+  "src/routes/layout.css": "@source "../../node_modules/@sjsf/flowbite3-theme/dist";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -2179,7 +2271,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   --color-secondary-800: #075985;
   --color-secondary-900: #0c4a6e;
 };
-@source "node_modules/flowbite-svelte/dist";",
+@source "../../node_modules/flowbite-svelte/dist";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -2321,7 +2413,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -2491,7 +2590,17 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+
+	setShadcnThemeContext();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -2502,8 +2611,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-  "src/routes/layout.css": "@source "node_modules/@sjsf/shadcn4-theme/dist";
-@source "node_modules/@sjsf-lab/shadcn-extras-theme/dist";
+  "src/routes/layout.css": "@source "../../node_modules/@sjsf/shadcn4-theme/dist";
+@source "../../node_modules/@sjsf-lab/shadcn-extras-theme/dist";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -2775,7 +2884,17 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+
+	setShadcnThemeContext();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -2786,7 +2905,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-  "src/routes/layout.css": "@source "node_modules/@sjsf/shadcn4-theme/dist";
+  "src/routes/layout.css": "@source "../../node_modules/@sjsf/shadcn4-theme/dist";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -3058,7 +3177,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -3069,7 +3195,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-  "src/routes/layout.css": "@source "node_modules/@sjsf/skeleton4-theme/dist";
+  "src/routes/layout.css": "@source "../../node_modules/@sjsf/skeleton4-theme/dist";
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -3219,7 +3345,15 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import { Willow } from '@svar-ui/svelte-core';
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+<Willow>{@render children()}</Willow>",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -3362,7 +3496,14 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post/model.generated';
@@ -3512,7 +3653,14 @@ export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
 export { createFormValidator as validator } from "@sjsf-lab/ata-validator";",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -3653,7 +3801,14 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post/model.generated';
@@ -3803,7 +3958,14 @@ export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
 export { createFormValidator as validator } from "@sjsf/cfworker-validator";",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -3948,7 +4110,14 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post/model.generated';
@@ -4105,7 +4274,14 @@ export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
 export { createFormValidator as validator } from "@sjsf/form/validators/noop";",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -4247,7 +4423,14 @@ export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
 export { createFormValidator as validator } from "@sjsf/schemasafe-validator";",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -4388,7 +4571,14 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post/model.generated';
@@ -4536,7 +4726,14 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { StandardSchemaV1 } from '@standard-schema/spec';
@@ -4677,7 +4874,14 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as v from 'valibot';
@@ -4817,7 +5021,14 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as z from 'zod';
@@ -4969,7 +5180,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -5121,7 +5339,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -5273,7 +5498,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { Post } from '$lib/post';
@@ -5432,7 +5664,14 @@ export const validator = (options) => createFormValidator({
 	...options,
 	ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 });",
-  "src/routes/+layout.svelte": "<slot />",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
   "src/routes/+page.svelte": "<script>
 	import * as defaults from '$lib/sjsf/defaults';
 	import { schema } from '$lib/post';

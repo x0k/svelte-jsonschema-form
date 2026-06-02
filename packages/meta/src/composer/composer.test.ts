@@ -1,16 +1,17 @@
 import { describe, it, expect } from "vitest";
 import {
-  createComposer,
-  type ComposerOptions,
-  type CodeTransformer,
-} from "../src/composer/composer.ts";
-import {
   codegenThemeOrSubTheme,
   codegenValidators,
   codegenIconSets,
   codegenSvelteKitIntegrations,
-} from "../src/codegen/model.ts";
-import type { AbstractPackage } from "../src/package.ts";
+} from "../codegen/model.ts";
+import type { AbstractPackage } from "../package.ts";
+
+import {
+  createComposer,
+  type ComposerOptions,
+  type CodeTransformer,
+} from "./composer.ts";
 
 const BASE = {
   name: "test-project",

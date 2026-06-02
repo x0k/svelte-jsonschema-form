@@ -9,6 +9,7 @@ import {
   type PathFactory,
   createAddTailwind4Css,
   createDefaults,
+  createLayout,
   createPage,
   createStyles,
   createSvelteKitIntegration,
@@ -67,7 +68,14 @@ const APP_HTML = `<!doctype html>
   </body>
 </html>`;
 
-const LAYOUT = `<slot />`;
+const LAYOUT = `<script lang="ts">
+  import type { Snippet } from 'svelte';
+
+  const { children }: { children: Snippet } = $props()
+</script>
+
+{@render children()}
+`;
 
 export function createComposer(
   options: ComposerOptions,
@@ -83,11 +91,11 @@ export function createComposer(
     extraDependencies,
     codeTransformers,
   } = options;
+  const isKit = true;
+  const nodeModulesPath = "../../node_modules";
   const isTs = language === "ts";
-  const ts: ConditionalPrinter = (content, alt) =>
-    isTs ? content : (alt ?? "");
+  const ts: ConditionalPrinter = (content, alt = "") => (isTs ? content : alt);
   const lib: PathFactory = (path) => `$lib/${path}`;
-  const nodeModulesPath = "node_modules";
 
   const dependencies: AbstractPackage[] = [];
   const vitePlugins: Record<string, VitePluginConfig> = {};
@@ -140,7 +148,13 @@ export function createComposer(
     "svelte.config.js": buildSvelteConfig({}),
     "tsconfig.json": TSCONFIG,
     "src/app.html": APP_HTML,
-    "src/routes/+layout.svelte": LAYOUT,
+    "src/routes/+layout.svelte": createLayout({
+      language,
+      themeOrSubTheme,
+      lib,
+      isKit,
+      stylesheetPath: "./layout.css",
+    })(LAYOUT),
   };
 
   files["src/lib/sjsf/defaults.ts"] = createDefaults({

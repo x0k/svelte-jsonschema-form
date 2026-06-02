@@ -499,6 +499,8 @@ meta/:
   pushd packages/meta
   c:
     pnpm run check
+  t:
+    pnpm run test $@
   b:
     pnpm run build
   popd
