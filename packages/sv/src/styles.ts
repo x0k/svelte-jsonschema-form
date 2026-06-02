@@ -33,6 +33,7 @@ export function appCss(ctx: Context) {
       nodeModulesPath,
       icons,
       themeOrSubTheme,
+      sandbox: false,
     }),
   );
 
