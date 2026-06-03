@@ -111,10 +111,6 @@
       "types": "./dist/composer/index.d.ts",
       "default": "./dist/composer/index.js"
     },
-    "./schema-transformers/*": {
-      "types": "./dist/schema-transformers/*.d.ts",
-      "default": "./dist/schema-transformers/*.js"
-    },
     "./sandbox": {
       "types": "./dist/sandbox/index.d.ts",
       "default": "./dist/sandbox/index.js"
@@ -126,6 +122,10 @@
     "./builder": {
       "types": "./dist/builder/index.d.ts",
       "default": "./dist/builder/index.js"
+    },
+    "./demos": {
+      "types": "./dist/demos/index.d.ts",
+      "default": "./dist/demos/index.js"
     }
   }
 }
