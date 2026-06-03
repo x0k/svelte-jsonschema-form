@@ -21,7 +21,12 @@ import {
   tailwindcss4ThemePlugins,
   themePackage,
   toTheme,
+  type ToTheme,
 } from "../themes.ts";
+import {
+  themeExtraWidgetOptionalDependencies,
+  type ExtraWidgetFileNames,
+} from "../widgets.ts";
 import {
   externalValidatorPackage,
   isInternalValidator,
@@ -38,23 +43,25 @@ import {
 } from "./model.ts";
 import type { NamespaceImportOptions } from "./lib.ts";
 
-interface DependenciesOptions {
-  themeOrSubTheme: CodegenThemeOrSubTheme;
+interface DependenciesOptions<T extends CodegenThemeOrSubTheme> {
+  themeOrSubTheme: T;
   validatorWithSuffix: CodegenValidator;
   icons: CodegenIconSet;
   sveltekit: CodegenSvelteKitIntegration;
+  widgets: ExtraWidgetFileNames[ToTheme<T>][];
   addDependency: (pkg: AbstractPackage) => void;
   addTailwindCss4: (plugins: Iterable<Tailwindcss4Plugin>) => void;
 }
 
-export function resolveDependencies({
+export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
   addDependency,
   addTailwindCss4,
   themeOrSubTheme,
   validatorWithSuffix,
   icons,
   sveltekit,
-}: DependenciesOptions) {
+  widgets,
+}: DependenciesOptions<T>) {
   function addDependencies(
     deps: Iterable<PackageDependency>,
     filter: IncludeOptional = false,
@@ -69,14 +76,21 @@ export function resolveDependencies({
   const theme = toTheme(themeOrSubTheme);
   const themePkg = themePackage(theme);
   addDependency(themePkg);
-  addDependencies(themePkg.dependencies, [
-    // daisyui5
-    optionalPackageName("pikaday"),
-    // skeleton4
-    optionalPackageName("skeletonSvelte"),
-    // shadcn4
-    optionalPackageName("internationalizedDate"),
-  ]);
+  const optionalDeps: string[] = [];
+  if (widgets.length > 0) {
+    for (const w of widgets) {
+      for (const lib of themeExtraWidgetOptionalDependencies(theme, w)) {
+        optionalDeps.push(lib);
+      }
+    }
+  } else {
+    optionalDeps.push(
+      optionalPackageName("pikaday"),
+      optionalPackageName("skeletonSvelte"),
+      optionalPackageName("internationalizedDate"),
+    );
+  }
+  addDependencies(themePkg.dependencies, optionalDeps);
   if (isSubTheme(themeOrSubTheme)) {
     addDependencies(subThemeDependencies(themeOrSubTheme));
   }

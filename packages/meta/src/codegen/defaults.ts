@@ -15,10 +15,15 @@ import {
   themeExtensionOrigin,
   themePackage,
   toTheme,
+  type ToTheme,
 } from "../themes.ts";
 import { sveltekitPackage, svelteKitRfSubPath } from "../sveltekit.ts";
 import { extraFields, extraFieldSubPath } from "../fields.ts";
-import { themeExtraWidgets, themeExtraWidgetSubPath } from "../widgets.ts";
+import {
+  themeExtraWidgets,
+  themeExtraWidgetSubPath,
+  type ExtraWidgetFileNames,
+} from "../widgets.ts";
 import { iconSetPackage } from "../icons.ts";
 import {
   externalValidatorPackage,
@@ -38,12 +43,13 @@ import {
 } from "./model.ts";
 import { createReExport, getTopLevelFunction } from "./lib.ts";
 
-export interface DefaultsOptions {
-  themeOrSubTheme: CodegenThemeOrSubTheme;
+export interface DefaultsOptions<T extends CodegenThemeOrSubTheme> {
+  themeOrSubTheme: T;
   validatorWithSuffix: CodegenValidator;
   icons: CodegenIconSet;
   resolver: Resolver | "inline";
   sveltekit: CodegenSvelteKitIntegration;
+  widgets: ExtraWidgetFileNames[ToTheme<T>][];
   isTs: boolean;
   ts: ConditionalPrinter;
 }
@@ -60,15 +66,16 @@ const SVELTE_KIT_INTEGRATION_ID_BUILDERS: Record<
 const LINK_COMMENT =
   "// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/";
 
-export function createDefaults({
+export function createDefaults<T extends CodegenThemeOrSubTheme>({
   themeOrSubTheme,
   validatorWithSuffix,
   icons,
   resolver,
   sveltekit,
+  widgets,
   isTs,
   ts,
-}: DefaultsOptions) {
+}: DefaultsOptions<T>) {
   return transforms.script(({ ast, comments, js }) => {
     const isAjv = validatorWithSuffix === "ajv8";
 
@@ -162,20 +169,34 @@ export function resolver(_ctx) {`,
       name: "theme",
       source: themePackage(theme).name,
     });
+    const activeWidgets = new Set<ExtraWidgetFileNames[ToTheme<T>]>(widgets);
     if (isThemeExtension(theme)) {
-      const originTheme = themeExtensionOrigin(theme);
+      // TODO: Remove this type cast
+      const originTheme = themeExtensionOrigin(theme) as ToTheme<T>;
       for (const w of themeExtraWidgets(originTheme)) {
-        comments.add(themeNode, {
-          type: "Line",
-          value: ` import "${themeExtraWidgetSubPath(originTheme, w, true)}";`,
-        });
+        if (activeWidgets.has(w)) {
+          js.imports.addEmpty(ast, {
+            from: themeExtraWidgetSubPath(originTheme, w, true),
+          });
+        } else {
+          comments.add(themeNode, {
+            type: "Line",
+            value: ` import "${themeExtraWidgetSubPath(originTheme, w, true)}";`,
+          });
+        }
       }
     }
     for (const w of themeExtraWidgets(theme)) {
-      comments.add(themeNode, {
-        type: "Line",
-        value: ` import "${themeExtraWidgetSubPath(theme, w, true)}";`,
-      });
+      if (activeWidgets.has(w)) {
+        js.imports.addEmpty(ast, {
+          from: themeExtraWidgetSubPath(theme, w, true),
+        });
+      } else {
+        comments.add(themeNode, {
+          type: "Line",
+          value: ` import "${themeExtraWidgetSubPath(theme, w, true)}";`,
+        });
+      }
     }
 
     if (icons !== "none") {

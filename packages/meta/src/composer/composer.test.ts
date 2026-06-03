@@ -4,6 +4,7 @@ import {
   codegenValidators,
   codegenIconSets,
   codegenSvelteKitIntegrations,
+  type CodegenThemeOrSubTheme,
 } from "../codegen/model.ts";
 import type { AbstractPackage } from "../package.ts";
 
@@ -20,9 +21,13 @@ const BASE = {
   icons: "none",
   validatorWithSuffix: "ajv8",
   sveltekit: "no",
-} as const satisfies ComposerOptions;
+  widgets: [],
+} as const satisfies ComposerOptions<"basic">;
 
-function kind<O extends Partial<ComposerOptions>>(type: string, options: O) {
+function kind<O extends Partial<ComposerOptions<any>>>(
+  type: string,
+  options: O,
+) {
   return { type, options };
 }
 
@@ -30,7 +35,7 @@ const VALIDATOR_KINDS = [
   "ajv8",
   "ajv8_precompiled",
   "zod4",
-] satisfies ComposerOptions["validatorWithSuffix"][];
+] satisfies ComposerOptions<CodegenThemeOrSubTheme>["validatorWithSuffix"][];
 
 function* kinds() {
   for (const themeOrSubTheme of codegenThemeOrSubTheme()) {

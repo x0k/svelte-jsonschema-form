@@ -17,20 +17,27 @@ import {
 } from "../codegen/index.ts";
 import type { AtRule } from "../css.ts";
 import type { AbstractPackage } from "../package.ts";
+import type { ToTheme } from "../themes.ts";
+import type { ExtraWidgetFileNames } from "../widgets.ts";
 
 import { buildPackageJson } from "./package-json.ts";
 import { buildSvelteConfig } from "./svelte-config.ts";
-import { buildViteConfig, type VitePluginConfig } from "./vite-config.ts";
+import {
+  buildViteConfig,
+  type VitePluginConfig,
+  type ViteConfig,
+} from "./vite-config.ts";
 
 export type CodeTransformer = (filepath: string, code: string) => string;
 
-export interface ComposerOptions {
+export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   name: string;
   language: Language;
-  themeOrSubTheme: CodegenThemeOrSubTheme;
+  themeOrSubTheme: T;
   icons: CodegenIconSet;
   validatorWithSuffix: CodegenValidator;
   sveltekit: CodegenSvelteKitIntegration;
+  widgets: ExtraWidgetFileNames[ToTheme<T>][];
   extraFiles?: Record<string, string>;
   extraDependencies?: AbstractPackage[];
   codeTransformers?: CodeTransformer[];
@@ -77,8 +84,8 @@ const LAYOUT = `<script lang="ts">
 {@render children()}
 `;
 
-export function createComposer(
-  options: ComposerOptions,
+export function createComposer<T extends CodegenThemeOrSubTheme>(
+  options: ComposerOptions<T>,
 ): Record<string, string> {
   const {
     name,
@@ -87,6 +94,7 @@ export function createComposer(
     icons,
     validatorWithSuffix,
     sveltekit,
+    widgets,
     extraFiles,
     extraDependencies,
     codeTransformers,
@@ -129,6 +137,7 @@ export function createComposer(
     validatorWithSuffix,
     icons,
     sveltekit,
+    widgets,
   });
 
   vitePlugins["@sveltejs/kit/vite"] = {
@@ -142,9 +151,16 @@ export function createComposer(
     }
   }
 
+  const viteConfig: ViteConfig = { plugins: vitePlugins };
+  if (sveltekit === "remoteFunctions") {
+    viteConfig.optimizeDeps = {
+      exclude: ["@sjsf/form", "@sjsf/sveltekit/rf/client"],
+    };
+  }
+
   const files: Record<string, string> = {
     "package.json": buildPackageJson({ name, dependencies }),
-    "vite.config.js": buildViteConfig({ plugins: vitePlugins }),
+    "vite.config.js": buildViteConfig(viteConfig),
     "svelte.config.js": buildSvelteConfig({}),
     "tsconfig.json": TSCONFIG,
     "src/app.html": APP_HTML,
@@ -163,6 +179,7 @@ export function createComposer(
     icons,
     resolver: "basic",
     sveltekit,
+    widgets,
     isTs,
     ts,
   })("");
