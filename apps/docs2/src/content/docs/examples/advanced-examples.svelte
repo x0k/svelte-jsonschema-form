@@ -1,71 +1,27 @@
 <script lang="ts">
   import { identity } from "@sjsf/form/lib/function";
   import { themeOrSubThemeTitle, validatorTitle } from "meta";
-  import { createComposer, type CodeTransformer } from "meta/composer";
   import {
     codegenThemeOrSubTheme,
     type CodegenThemeOrSubTheme,
     type CodegenValidator,
   } from "meta/codegen";
-  import {
-    sandboxOpen,
-    SandboxPlatform,
-    SANDBOX_PLATFORMS,
-  } from "meta/sandbox";
+  import { SandboxPlatform, SANDBOX_PLATFORMS } from "meta/sandbox";
 
   import {
-    EXAMPLE_LAYERS,
     GENERIC_EXAMPLES,
     SVELTE_KIT_EXAMPLES,
     VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
     VALIDATOR_SPECIFIC_EXAMPLES,
     nonPrecompiledValidators,
-    type Example,
-  } from "@/shared";
+    openExample,
+  } from "meta/demos";
 
   import Buttons from "./buttons.svelte";
-
-  const VALIDATOR_TRANSFORMERS: Partial<
-    Record<CodegenValidator, () => Promise<{ default: CodeTransformer }>>
-  > = {
-    zod4: () => import("meta/schema-transformers/schema-to-zod"),
-    valibot: () => import("meta/schema-transformers/schema-to-valibot"),
-  };
 
   let platform: SandboxPlatform = $state.raw(SandboxPlatform.StackBlitz);
   let theme: CodegenThemeOrSubTheme = $state.raw("basic");
   let validator: CodegenValidator = $state.raw("ajv8");
-
-  async function openExample(
-    example: Example,
-    validatorOverride: CodegenValidator | undefined
-  ) {
-    const effectiveValidator = validatorOverride ?? validator;
-    const { default: exampleContent } = await EXAMPLE_LAYERS[example]();
-
-    const codeTransformers: CodeTransformer[] = [
-      ...exampleContent.codeTransformers,
-    ];
-    const validatorTransformer = VALIDATOR_TRANSFORMERS[effectiveValidator]?.();
-    if (validatorTransformer) {
-      codeTransformers.push((await validatorTransformer).default);
-    }
-
-    const files = createComposer({
-      name: example,
-      language: "ts",
-      themeOrSubTheme: theme,
-      icons: "none",
-      validatorWithSuffix: effectiveValidator,
-      sveltekit: exampleContent.sveltekit,
-      widgets: exampleContent.widgets,
-      extraFiles: exampleContent.files,
-      extraDependencies: exampleContent.dependencies,
-      codeTransformers,
-    });
-
-    await sandboxOpen({ name: example, platform, files });
-  }
 </script>
 
 <div class="pickers">
@@ -107,7 +63,7 @@
 <Buttons
   items={GENERIC_EXAMPLES}
   onClick={(example) => {
-    openExample(example, undefined);
+    openExample(example, { themeOrSubTheme: theme, validator, platform });
   }}
   label={identity}
 />
@@ -117,7 +73,7 @@
 <Buttons
   items={SVELTE_KIT_EXAMPLES}
   onClick={(example) => {
-    openExample(example, undefined);
+    openExample(example, { themeOrSubTheme: theme, validator, platform });
   }}
   label={identity}
 />
@@ -128,7 +84,12 @@
 <Buttons
   items={VALIDATOR_SPECIFIC_EXAMPLES}
   onClick={(example) => {
-    openExample(example, VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example]);
+    openExample(example, {
+      themeOrSubTheme: theme,
+      validator,
+      platform,
+      validatorOverride: VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
+    });
   }}
   label={identity}
 />
