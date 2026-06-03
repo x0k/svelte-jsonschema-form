@@ -34,7 +34,9 @@ export const remoteFormDefaultsReplacer: CodeTransformer = (_filepath, code) =>
 
 export function* nonPrecompiledValidators() {
   for (const v of codegenValidators()) {
-    if (!isEndsWithPrecompiled(v)) yield v;
+    if (!isEndsWithPrecompiled(v)) {
+      yield v;
+    }
   }
 }
 

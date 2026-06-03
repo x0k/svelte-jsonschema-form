@@ -3,7 +3,7 @@ import type {
   CodegenThemeOrSubTheme,
   CodegenValidator,
 } from "../codegen/index.ts";
-import { codegenThemeOrSubTheme, codegenValidators } from "../codegen/index.ts";
+import { codegenThemeOrSubTheme } from "../codegen/index.ts";
 
 import {
   GENERIC_EXAMPLES,
@@ -11,6 +11,7 @@ import {
   VALIDATOR_SPECIFIC_EXAMPLES,
   VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
   createExampleFiles,
+  nonPrecompiledValidators,
 } from "./model.ts";
 
 const BASE = { themeOrSubTheme: "basic", validator: "ajv8" } as const;
@@ -26,7 +27,7 @@ function* getGenericExampleVariants(): Generator<ExampleVariant> {
     if (t === BASE.themeOrSubTheme) continue;
     yield { themeOrSubTheme: t, validator: BASE.validator };
   }
-  for (const v of codegenValidators()) {
+  for (const v of nonPrecompiledValidators()) {
     if (v === BASE.validator) continue;
     yield { themeOrSubTheme: BASE.themeOrSubTheme, validator: v };
   }
@@ -38,7 +39,7 @@ function* getSvelteKitExampleVariants(): Generator<ExampleVariant> {
     if (t === BASE.themeOrSubTheme) continue;
     yield { themeOrSubTheme: t, validator: BASE.validator };
   }
-  for (const v of codegenValidators()) {
+  for (const v of nonPrecompiledValidators()) {
     if (v === BASE.validator) continue;
     yield { themeOrSubTheme: BASE.themeOrSubTheme, validator: v };
   }
