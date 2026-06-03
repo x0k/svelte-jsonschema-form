@@ -4,10 +4,9 @@
   import {
     codegenThemeOrSubTheme,
     type CodegenThemeOrSubTheme,
-    type CodegenValidator,
+    type CodegenNonPrecompiledValidator,
   } from "meta/codegen";
   import { SandboxPlatform, SANDBOX_PLATFORMS } from "meta/sandbox";
-
   import {
     GENERIC_EXAMPLES,
     SVELTE_KIT_EXAMPLES,
@@ -21,7 +20,7 @@
 
   let platform: SandboxPlatform = $state.raw(SandboxPlatform.StackBlitz);
   let theme: CodegenThemeOrSubTheme = $state.raw("basic");
-  let validator: CodegenValidator = $state.raw("ajv8");
+  let validator: CodegenNonPrecompiledValidator = $state.raw("ajv8");
 </script>
 
 <div class="pickers">
@@ -63,7 +62,7 @@
 <Buttons
   items={GENERIC_EXAMPLES}
   onClick={(example) => {
-    openExample(example, { themeOrSubTheme: theme, validator, platform });
+    openExample({ example, themeOrSubTheme: theme, validator, platform });
   }}
   label={identity}
 />
@@ -73,7 +72,7 @@
 <Buttons
   items={SVELTE_KIT_EXAMPLES}
   onClick={(example) => {
-    openExample(example, { themeOrSubTheme: theme, validator, platform });
+    openExample({ example, themeOrSubTheme: theme, validator, platform });
   }}
   label={identity}
 />
@@ -84,11 +83,11 @@
 <Buttons
   items={VALIDATOR_SPECIFIC_EXAMPLES}
   onClick={(example) => {
-    openExample(example, {
+    openExample({
+      example,
       themeOrSubTheme: theme,
-      validator,
+      validator: VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
       platform,
-      validatorOverride: VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
     });
   }}
   label={identity}
