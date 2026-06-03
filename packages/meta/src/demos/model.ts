@@ -8,7 +8,7 @@ import {
   type CodegenValidator,
   type CodegenSvelteKitIntegration,
 } from "../codegen/index.ts";
-import type { CodeTransformer } from "../composer/index.ts";
+import { createComposer, type CodeTransformer } from "../composer/index.ts";
 
 export interface ExampleContent {
   files: Record<string, string>;
@@ -163,3 +163,35 @@ export const VALIDATOR_TRANSFORMERS: Partial<
   zod4: () => import("./schema-transformers/schema-to-zod.ts"),
   valibot: () => import("./schema-transformers/schema-to-valibot.ts"),
 };
+
+export interface CreateExampleFilesOptions {
+  example: Example;
+  themeOrSubTheme: CodegenThemeOrSubTheme;
+  validator: CodegenValidator;
+}
+
+export async function createExampleFiles(
+  options: CreateExampleFilesOptions,
+): Promise<Record<string, string>> {
+  const { example, themeOrSubTheme, validator } = options;
+  const { default: content } = await EXAMPLE_LAYERS[example]();
+
+  const codeTransformers: CodeTransformer[] = [...content.codeTransformers];
+  const transformers = VALIDATOR_TRANSFORMERS[validator]?.();
+  if (transformers) {
+    codeTransformers.push((await transformers).default);
+  }
+
+  return createComposer({
+    name: example,
+    language: "ts",
+    icons: "none",
+    themeOrSubTheme,
+    validatorWithSuffix: validator,
+    sveltekit: content.sveltekit,
+    widgets: content.widgets,
+    extraFiles: content.files,
+    extraDependencies: content.dependencies,
+    codeTransformers,
+  });
+}
