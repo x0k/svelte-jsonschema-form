@@ -22,6 +22,7 @@ export function dependencies(ctx: Context) {
     ...options,
     addDependency,
     addTailwindCss4: (ps) => dependenciesTailwindCss4(ctx, ps, addDependency),
+    widgets: [],
   });
 }
 

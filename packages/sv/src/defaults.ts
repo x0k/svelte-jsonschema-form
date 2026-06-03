@@ -12,6 +12,6 @@ export function defaultsTs({
 }: Context) {
   sv.file(
     `${directory.lib}/sjsf/defaults.${language}`,
-    createDefaults({ ...options, isTs, ts, resolver: "inline" }),
+    createDefaults({ ...options, isTs, ts, resolver: "inline", widgets: [] }),
   );
 }
