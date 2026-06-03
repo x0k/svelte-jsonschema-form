@@ -5478,6 +5478,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	}
 
 	const schema = v.string();
+	const { schema: sjsfSchema, validator: sjsfValidator } = adapt(schema);
 
 	const uiSchema: UiSchemaRoot = {
 		"ui:components": { textWidget: AsyncComboboxWidget },
@@ -5494,7 +5495,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const form = createForm({
 		...defaults,
 		validator: (options) => {
-			const defaultValidator = defaults.validator<string>(options);
+			const defaultValidator = sjsfValidator(options);
 
 			return {
 				...defaultValidator,
@@ -5525,7 +5526,7 @@ export const onSubmitError = createFocusOnFirstError();",
 		get disabled(): boolean {
 			return browser && form.submission.isProcessed;
 		},
-		...adapt(schema),
+		schema: sjsfSchema,
 		uiSchema,
 		onSubmit: console.log
 	});
@@ -6351,6 +6352,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	}
 
 	const schema = z.string();
+	const { schema: sjsfSchema, validator: sjsfValidator } = adapt(schema);
 
 	const uiSchema: UiSchemaRoot = {
 		"ui:components": { textWidget: AsyncComboboxWidget },
@@ -6367,7 +6369,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const form = createForm({
 		...defaults,
 		validator: (options) => {
-			const defaultValidator = defaults.validator<string>(options);
+			const defaultValidator = sjsfValidator(options);
 
 			return {
 				...defaultValidator,
@@ -6398,7 +6400,7 @@ export const onSubmitError = createFocusOnFirstError();",
 		get disabled(): boolean {
 			return browser && form.submission.isProcessed;
 		},
-		...adapt(schema),
+		schema: sjsfSchema,
 		uiSchema,
 		onSubmit: console.log
 	});
@@ -64996,6 +64998,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	import * as defaults from "$lib/sjsf/defaults";
 
 	const schema = v.strictObject({});
+	const { schema: sjsfSchema, validator: sjsfValidator } = adapt(schema);
 
 	const uiSchema: UiSchemaRoot = {
 		"ui:options": {
@@ -65012,14 +65015,14 @@ export const onSubmitError = createFocusOnFirstError();",
 	const form = createForm({
 		...defaults,
 		validator: (options) => ({
-			...defaults.validator(options),
+			...sjsfValidator(options),
 			...createPatternPropertyKeyValidator(({ patternProperties }) => {
 				const keys = Object.keys(patternProperties);
 
 				return \`Must match "\${keys.length < 2 ? keys[0] : keys.join('" or "')}"\`;
 			})
 		}),
-		...adapt(schema),
+		schema: sjsfSchema,
 		uiSchema,
 		onSubmit: console.log
 	});
@@ -65183,6 +65186,8 @@ export const onSubmitError = createFocusOnFirstError();",
 		}
 	});
 
+	const { schema: sjsfSchema, validator: sjsfValidator } = adapt(schema);
+
 	const uiSchema: UiSchemaRoot = {
 		"ui:options": {
 			translations: {
@@ -65196,14 +65201,14 @@ export const onSubmitError = createFocusOnFirstError();",
 	const form = createForm({
 		...defaults,
 		validator: (options) => ({
-			...defaults.validator(options),
+			...sjsfValidator(options),
 			...createPatternPropertyKeyValidator(({ patternProperties }) => {
 				const keys = Object.keys(patternProperties);
 
 				return \`Must match "\${keys.length < 2 ? keys[0] : keys.join('" or "')}"\`;
 			})
 		}),
-		...adapt(schema),
+		schema: sjsfSchema,
 		uiSchema,
 		onSubmit: console.log
 	});

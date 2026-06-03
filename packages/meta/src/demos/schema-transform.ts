@@ -9,7 +9,7 @@ import type {
 import { AST_NODE_TYPES, type TSESTree } from "@typescript-eslint/types";
 import { parse, print, type AST } from "svelte/compiler";
 import { walk } from "zimmerframe";
-import type { Expression } from "estree";
+import type { Expression, Program, VariableDeclaration } from "estree";
 
 const acornTsParser = acorn.Parser.extend(tsPlugin());
 
@@ -96,11 +96,13 @@ export function createSchemaTransformer({
     ) {
       return content;
     }
+
     const ast = parse(content, { filename: filepath, modern: true });
 
     const state = {
       isSchemaTransformed: false,
       isOptionsTransformed: false,
+      isDefaultValidatorReferenced: false,
     };
 
     const transformed = walk<AST.SvelteNode, typeof state>(ast, state, {
@@ -112,10 +114,12 @@ export function createSchemaTransformer({
         }
         const objExpr = getObjectExpression(init as TSESTree.Expression);
         if (state.isSchemaTransformed || objExpr === undefined) {
+          next();
           return;
         }
         const schema = astToSchemaValue(objExpr);
         if (schema === undefined) {
+          next();
           return;
         }
         const code = createSchemaCode(schema as Schema);
@@ -130,10 +134,13 @@ export function createSchemaTransformer({
           init: expr as Expression,
         } satisfies AST.SvelteNode;
       },
-      ObjectExpression(node, { state }) {
+      ObjectExpression(node, { state, next }) {
         if (state.isOptionsTransformed) {
+          next();
           return;
         }
+
+        let schemaIndex = -1;
         for (let i = 0; i < node.properties.length; i++) {
           const prop = node.properties[i]!;
           if (
@@ -141,33 +148,103 @@ export function createSchemaTransformer({
             prop.key.type === "Identifier" &&
             prop.key.name === "schema"
           ) {
-            state.isOptionsTransformed = true;
-            return {
-              ...node,
-              properties: node.properties.with(i, {
-                type: "SpreadElement",
-                argument: {
-                  type: "CallExpression",
-                  callee: {
-                    type: "Identifier",
-                    name: "adapt",
-                  },
-                  arguments: [{ type: "Identifier", name: "schema" }],
-                  optional: false,
-                },
-              }),
-            };
+            schemaIndex = i;
+            break;
           }
         }
+
+        if (schemaIndex === -1) {
+          next();
+          return;
+        }
+
+        state.isOptionsTransformed = true;
+
+        const walked = next();
+        const target = (walked ?? node) as typeof node;
+
+        if (state.isDefaultValidatorReferenced) {
+          return {
+            ...target,
+            properties: target.properties.with(schemaIndex, {
+              type: "Property",
+              method: false,
+              shorthand: false,
+              computed: false,
+              key: { type: "Identifier", name: "schema" },
+              value: { type: "Identifier", name: "sjsfSchema" },
+              kind: "init",
+            }),
+          };
+        }
+
+        return {
+          ...target,
+          properties: target.properties.with(schemaIndex, {
+            type: "SpreadElement",
+            argument: {
+              type: "CallExpression",
+              callee: {
+                type: "Identifier",
+                name: "adapt",
+              },
+              arguments: [{ type: "Identifier", name: "schema" }],
+              optional: false,
+            },
+          }),
+        };
+      },
+      CallExpression(node, { state, next }) {
+        if (
+          state.isOptionsTransformed &&
+          node.callee.type === "MemberExpression" &&
+          node.callee.object.type === "Identifier" &&
+          node.callee.object.name === "defaults" &&
+          node.callee.property.type === "Identifier" &&
+          node.callee.property.name === "validator"
+        ) {
+          state.isDefaultValidatorReferenced = true;
+          return {
+            type: "CallExpression",
+            callee: { type: "Identifier", name: "sjsfValidator" },
+            arguments: node.arguments,
+            optional: node.optional ?? false,
+          };
+        }
+        next();
       },
     }) as AST.Root;
     if (state.isSchemaTransformed && state.isOptionsTransformed) {
-      const { body } = acornTsParser.parse(additionalImports, {
+      const importProgram = acornTsParser.parse(additionalImports, {
         sourceType: "module",
         ecmaVersion: 16,
-      });
-      // @ts-expect-error
-      transformed.instance?.content.body.unshift(...body);
+      }) as unknown as Program;
+      const body = transformed.instance?.content.body;
+      body?.unshift(...importProgram.body);
+
+      if (state.isDefaultValidatorReferenced) {
+        const destructuringProgram = acornTsParser.parse(
+          "const { schema: sjsfSchema, validator: sjsfValidator } = adapt(schema);",
+          {
+            sourceType: "module",
+            ecmaVersion: 16,
+          },
+        ) as unknown as Program;
+        if (body) {
+          const schemaDeclIndex = body.findIndex((stmt) => {
+            const decl = (stmt as VariableDeclaration).declarations?.[0];
+            return (
+              stmt.type === "VariableDeclaration" &&
+              decl?.id.type === "Identifier" &&
+              decl.id.name === "schema"
+            );
+          });
+          if (schemaDeclIndex >= 0) {
+            body.splice(schemaDeclIndex + 1, 0, ...destructuringProgram.body);
+          }
+        }
+      }
+
       return print(transformed).code;
     }
     return content;

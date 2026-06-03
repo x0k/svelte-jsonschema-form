@@ -1,10 +1,9 @@
 import { describe, it, expect } from "vitest";
 import type {
+  CodegenNonPrecompiledValidator,
   CodegenThemeOrSubTheme,
-  CodegenValidator,
 } from "../codegen/index.ts";
 import { codegenThemeOrSubTheme } from "../codegen/index.ts";
-
 import {
   GENERIC_EXAMPLES,
   SVELTE_KIT_EXAMPLES,
@@ -18,7 +17,7 @@ const BASE = { themeOrSubTheme: "basic", validator: "ajv8" } as const;
 
 interface ExampleVariant {
   themeOrSubTheme: CodegenThemeOrSubTheme;
-  validator: CodegenValidator;
+  validator: CodegenNonPrecompiledValidator;
 }
 
 function* getGenericExampleVariants(): Generator<ExampleVariant> {

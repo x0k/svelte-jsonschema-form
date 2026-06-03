@@ -98,6 +98,10 @@ export const VALIDATOR_SPECIFIC_EXAMPLES = Object.values(
   ValidatorSpecificExample,
 );
 
+const VALIDATOR_SPECIFIC_EXAMPLES_SET = new Set<Example>(
+  VALIDATOR_SPECIFIC_EXAMPLES,
+);
+
 export type Example =
   | GenericExample
   | SvelteKitExample
@@ -179,9 +183,12 @@ export async function createExampleFiles(
   const { default: content } = await EXAMPLE_LAYERS[example]();
 
   const codeTransformers: CodeTransformer[] = [...content.codeTransformers];
-  const transformers = VALIDATOR_TRANSFORMERS[validator]?.();
-  if (transformers) {
-    codeTransformers.push((await transformers).default);
+
+  if (!VALIDATOR_SPECIFIC_EXAMPLES_SET.has(example)) {
+    const transformers = VALIDATOR_TRANSFORMERS[validator]?.();
+    if (transformers) {
+      codeTransformers.push((await transformers).default);
+    }
   }
 
   return createComposer({
