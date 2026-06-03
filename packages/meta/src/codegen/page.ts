@@ -10,7 +10,7 @@ export interface PageOptions extends FormOptions {
   themeOrSubTheme: CodegenThemeOrSubTheme;
 }
 
-const PADDED_THEMES: CodegenThemeOrSubTheme[] = [
+export const PADDED_THEMES: CodegenThemeOrSubTheme[] = [
   "pico",
   "daisyui5",
   "flowbite3",

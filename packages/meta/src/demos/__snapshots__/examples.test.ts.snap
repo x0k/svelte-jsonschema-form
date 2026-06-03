@@ -7279,7 +7279,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { identity } from "@sjsf/form/lib/function";
   import {
@@ -8202,7 +8202,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { identity } from "@sjsf/form/lib/function";
   import {
@@ -9127,7 +9127,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { identity } from "@sjsf/form/lib/function";
   import {
@@ -10068,7 +10068,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { identity } from "@sjsf/form/lib/function";
   import {
@@ -11004,7 +11004,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { identity } from "@sjsf/form/lib/function";
   import {
@@ -12054,7 +12054,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { identity } from "@sjsf/form/lib/function";
   import {
@@ -13100,7 +13100,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { identity } from "@sjsf/form/lib/function";
   import {
@@ -16774,7 +16774,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { FromSchema } from 'json-schema-to-ts';
   import {
@@ -17025,7 +17025,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { FromSchema } from 'json-schema-to-ts';
   import {
@@ -17278,7 +17278,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { FromSchema } from 'json-schema-to-ts';
   import {
@@ -17547,7 +17547,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { FromSchema } from 'json-schema-to-ts';
   import {
@@ -17811,7 +17811,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { FromSchema } from 'json-schema-to-ts';
   import {
@@ -18189,7 +18189,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { FromSchema } from 'json-schema-to-ts';
   import {
@@ -18563,7 +18563,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { FromSchema } from 'json-schema-to-ts';
   import {
@@ -20471,7 +20471,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   declare module "@sjsf/form" {
     interface Schema {
@@ -20670,7 +20670,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   declare module "@sjsf/form" {
     interface Schema {
@@ -20871,7 +20871,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   declare module "@sjsf/form" {
     interface Schema {
@@ -21088,7 +21088,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   declare module "@sjsf/form" {
     interface Schema {
@@ -21300,7 +21300,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   declare module "@sjsf/form" {
     interface Schema {
@@ -21626,7 +21626,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   declare module "@sjsf/form" {
     interface Schema {
@@ -21948,7 +21948,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   declare module "@sjsf/form" {
     interface Schema {
@@ -23671,7 +23671,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { JSONSchema } from "json-schema-typed/draft-2020-12";
   import { createForm, BasicForm } from "@sjsf/form";
@@ -23858,7 +23858,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { JSONSchema } from "json-schema-typed/draft-2020-12";
   import { createForm, BasicForm } from "@sjsf/form";
@@ -24047,7 +24047,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { JSONSchema } from "json-schema-typed/draft-2020-12";
   import { createForm, BasicForm } from "@sjsf/form";
@@ -24252,7 +24252,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { JSONSchema } from "json-schema-typed/draft-2020-12";
   import { createForm, BasicForm } from "@sjsf/form";
@@ -24452,7 +24452,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { JSONSchema } from "json-schema-typed/draft-2020-12";
   import { createForm, BasicForm } from "@sjsf/form";
@@ -24766,7 +24766,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { JSONSchema } from "json-schema-typed/draft-2020-12";
   import { createForm, BasicForm } from "@sjsf/form";
@@ -25076,7 +25076,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { JSONSchema } from "json-schema-typed/draft-2020-12";
   import { createForm, BasicForm } from "@sjsf/form";
@@ -28159,7 +28159,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
@@ -28523,7 +28523,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
@@ -28889,7 +28889,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
@@ -29271,7 +29271,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
@@ -29648,7 +29648,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
@@ -30139,7 +30139,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
@@ -30626,7 +30626,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
@@ -33402,7 +33402,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { SchemaObjectValue } from "@sjsf/form/core";
   import {
@@ -33685,7 +33685,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { SchemaObjectValue } from "@sjsf/form/core";
   import {
@@ -33970,7 +33970,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { SchemaObjectValue } from "@sjsf/form/core";
   import {
@@ -34271,7 +34271,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { SchemaObjectValue } from "@sjsf/form/core";
   import {
@@ -34567,7 +34567,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { SchemaObjectValue } from "@sjsf/form/core";
   import {
@@ -34977,7 +34977,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { SchemaObjectValue } from "@sjsf/form/core";
   import {
@@ -35383,7 +35383,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { SchemaObjectValue } from "@sjsf/form/core";
   import {
@@ -37501,7 +37501,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { createForm, BasicForm, type Schema, type Config } from "@sjsf/form";
@@ -37723,7 +37723,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { createForm, BasicForm, type Schema, type Config } from "@sjsf/form";
@@ -37947,7 +37947,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { createForm, BasicForm, type Schema, type Config } from "@sjsf/form";
@@ -38187,7 +38187,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { createForm, BasicForm, type Schema, type Config } from "@sjsf/form";
@@ -38422,7 +38422,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { createForm, BasicForm, type Schema, type Config } from "@sjsf/form";
@@ -38771,7 +38771,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { createForm, BasicForm, type Schema, type Config } from "@sjsf/form";
@@ -39116,7 +39116,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { createForm, BasicForm, type Schema, type Config } from "@sjsf/form";
@@ -41368,7 +41368,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -41618,7 +41618,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -41870,7 +41870,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -42138,7 +42138,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -42401,7 +42401,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -42778,7 +42778,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -43151,7 +43151,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -45028,7 +45028,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from '@sjsf/form/lib/resolver';
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
@@ -45223,7 +45223,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from '@sjsf/form/lib/resolver';
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
@@ -45420,7 +45420,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from '@sjsf/form/lib/resolver';
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
@@ -45633,7 +45633,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from '@sjsf/form/lib/resolver';
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
@@ -45841,7 +45841,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from '@sjsf/form/lib/resolver';
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
@@ -46163,7 +46163,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from '@sjsf/form/lib/resolver';
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
@@ -46481,7 +46481,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { overrideByRecord } from '@sjsf/form/lib/resolver';
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
@@ -49962,7 +49962,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { Ref } from "@sjsf/form/lib/svelte.svelte";
   import {
@@ -50368,7 +50368,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { Ref } from "@sjsf/form/lib/svelte.svelte";
   import {
@@ -50776,7 +50776,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { Ref } from "@sjsf/form/lib/svelte.svelte";
   import {
@@ -51200,7 +51200,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { Ref } from "@sjsf/form/lib/svelte.svelte";
   import {
@@ -51619,7 +51619,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { Ref } from "@sjsf/form/lib/svelte.svelte";
   import {
@@ -52152,7 +52152,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { Ref } from "@sjsf/form/lib/svelte.svelte";
   import {
@@ -52681,7 +52681,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import type { Ref } from "@sjsf/form/lib/svelte.svelte";
   import {
@@ -56257,7 +56257,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -56632,7 +56632,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -57009,7 +57009,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -57402,7 +57402,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -57790,7 +57790,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -58292,7 +58292,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -58790,7 +58790,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -61984,7 +61984,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { chain, fromFactories } from "@sjsf/form/lib/resolver";
   import { getSimpleSchemaType } from "@sjsf/form/core";
@@ -62346,7 +62346,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { chain, fromFactories } from "@sjsf/form/lib/resolver";
   import { getSimpleSchemaType } from "@sjsf/form/core";
@@ -62710,7 +62710,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { chain, fromFactories } from "@sjsf/form/lib/resolver";
   import { getSimpleSchemaType } from "@sjsf/form/core";
@@ -63090,7 +63090,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { chain, fromFactories } from "@sjsf/form/lib/resolver";
   import { getSimpleSchemaType } from "@sjsf/form/core";
@@ -63465,7 +63465,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { chain, fromFactories } from "@sjsf/form/lib/resolver";
   import { getSimpleSchemaType } from "@sjsf/form/core";
@@ -63954,7 +63954,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { chain, fromFactories } from "@sjsf/form/lib/resolver";
   import { getSimpleSchemaType } from "@sjsf/form/core";
@@ -64439,7 +64439,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { chain, fromFactories } from "@sjsf/form/lib/resolver";
   import { getSimpleSchemaType } from "@sjsf/form/core";
@@ -66574,7 +66574,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     createForm,
@@ -66769,7 +66769,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     createForm,
@@ -66966,7 +66966,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     createForm,
@@ -67179,7 +67179,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     createForm,
@@ -67387,7 +67387,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     createForm,
@@ -67709,7 +67709,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     createForm,
@@ -68027,7 +68027,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     createForm,
@@ -71563,7 +71563,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { onMount } from "svelte";
   import { SvelteSet } from "svelte/reactivity";
@@ -71980,7 +71980,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { onMount } from "svelte";
   import { SvelteSet } from "svelte/reactivity";
@@ -72400,7 +72400,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { onMount } from "svelte";
   import { SvelteSet } from "svelte/reactivity";
@@ -72836,7 +72836,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { onMount } from "svelte";
   import { SvelteSet } from "svelte/reactivity";
@@ -73267,7 +73267,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { onMount } from "svelte";
   import { SvelteSet } from "svelte/reactivity";
@@ -73811,7 +73811,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { onMount } from "svelte";
   import { SvelteSet } from "svelte/reactivity";
@@ -74351,7 +74351,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { onMount } from "svelte";
   import { SvelteSet } from "svelte/reactivity";
@@ -79153,7 +79153,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Query } from "@sjsf/form/lib/task.svelte";
   import type { EnumOption, SchemaValue } from "@sjsf/form/core";
@@ -79672,7 +79672,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Query } from "@sjsf/form/lib/task.svelte";
   import type { EnumOption, SchemaValue } from "@sjsf/form/core";
@@ -80193,7 +80193,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Query } from "@sjsf/form/lib/task.svelte";
   import type { EnumOption, SchemaValue } from "@sjsf/form/core";
@@ -80730,7 +80730,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Query } from "@sjsf/form/lib/task.svelte";
   import type { EnumOption, SchemaValue } from "@sjsf/form/core";
@@ -81262,7 +81262,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Query } from "@sjsf/form/lib/task.svelte";
   import type { EnumOption, SchemaValue } from "@sjsf/form/core";
@@ -81908,7 +81908,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Query } from "@sjsf/form/lib/task.svelte";
   import type { EnumOption, SchemaValue } from "@sjsf/form/core";
@@ -82550,7 +82550,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
   import type { Query } from "@sjsf/form/lib/task.svelte";
   import type { EnumOption, SchemaValue } from "@sjsf/form/core";
@@ -85952,7 +85952,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     transformSchemaDefinition,
@@ -86267,7 +86267,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     transformSchemaDefinition,
@@ -86584,7 +86584,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     transformSchemaDefinition,
@@ -86917,7 +86917,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     transformSchemaDefinition,
@@ -87245,7 +87245,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     transformSchemaDefinition,
@@ -87687,7 +87687,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     transformSchemaDefinition,
@@ -88125,7 +88125,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import {
     transformSchemaDefinition,
@@ -89929,7 +89929,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
 
@@ -90099,7 +90099,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
 
@@ -90271,7 +90271,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
 
@@ -90459,7 +90459,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
 
@@ -90642,7 +90642,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
 
@@ -90939,7 +90939,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
 
@@ -91232,7 +91232,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
 
@@ -95490,7 +95490,7 @@ export const schema = {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import TopTabs from "./top-tabs.svelte";
   import SubTabs from "./sub-tabs.svelte";
@@ -95968,7 +95968,7 @@ export const schema = {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import TopTabs from "./top-tabs.svelte";
   import SubTabs from "./sub-tabs.svelte";
@@ -96448,7 +96448,7 @@ export const schema = {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import TopTabs from "./top-tabs.svelte";
   import SubTabs from "./sub-tabs.svelte";
@@ -96944,7 +96944,7 @@ export const schema = {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import TopTabs from "./top-tabs.svelte";
   import SubTabs from "./sub-tabs.svelte";
@@ -97435,7 +97435,7 @@ export const schema = {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import TopTabs from "./top-tabs.svelte";
   import SubTabs from "./sub-tabs.svelte";
@@ -98040,7 +98040,7 @@ export const schema = {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import TopTabs from "./top-tabs.svelte";
   import SubTabs from "./sub-tabs.svelte";
@@ -98641,7 +98641,7 @@ export const schema = {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import TopTabs from "./top-tabs.svelte";
   import SubTabs from "./sub-tabs.svelte";
@@ -100990,7 +100990,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -101212,7 +101212,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -101436,7 +101436,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -101676,7 +101676,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -101911,7 +101911,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -102260,7 +102260,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -102605,7 +102605,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -105365,7 +105365,7 @@ export const load: LayoutServerLoad = async () => {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -105667,7 +105667,7 @@ export const load: LayoutServerLoad = async () => {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -105971,7 +105971,7 @@ export const load: LayoutServerLoad = async () => {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -106291,7 +106291,7 @@ export const load: LayoutServerLoad = async () => {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -106606,7 +106606,7 @@ export const load: LayoutServerLoad = async () => {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -107035,7 +107035,7 @@ export const load: LayoutServerLoad = async () => {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -107460,7 +107460,7 @@ export const load: LayoutServerLoad = async () => {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -109727,7 +109727,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail, type Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -109958,7 +109958,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail, type Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -110191,7 +110191,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail, type Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -110440,7 +110440,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail, type Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -110684,7 +110684,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail, type Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -111042,7 +111042,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail, type Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -111396,7 +111396,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail, type Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -113472,7 +113472,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Schema } from "@sjsf/form";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -113696,7 +113696,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Schema } from "@sjsf/form";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -113922,7 +113922,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Schema } from "@sjsf/form";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -114164,7 +114164,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Schema } from "@sjsf/form";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -114401,7 +114401,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Schema } from "@sjsf/form";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -114752,7 +114752,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Schema } from "@sjsf/form";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -115099,7 +115099,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import type { Schema } from "@sjsf/form";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
@@ -117887,7 +117887,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -118199,7 +118199,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -118513,7 +118513,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -118843,7 +118843,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -119168,7 +119168,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -119607,7 +119607,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -120042,7 +120042,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.server.ts": "import { fail } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
@@ -122260,7 +122260,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -122476,7 +122476,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -122694,7 +122694,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -122928,7 +122928,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -123157,7 +123157,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -123500,7 +123500,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -123839,7 +123839,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -126268,7 +126268,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+layout.ts": "export const trailingSlash = "always";",
   "src/routes/+page.svelte": "<script lang="ts">
   import { getResults } from './data.remote';
@@ -126535,7 +126535,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+layout.ts": "export const trailingSlash = "always";",
   "src/routes/+page.svelte": "<script lang="ts">
   import { getResults } from './data.remote';
@@ -126804,7 +126804,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+layout.ts": "export const trailingSlash = "always";",
   "src/routes/+page.svelte": "<script lang="ts">
   import { getResults } from './data.remote';
@@ -127089,7 +127089,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+layout.ts": "export const trailingSlash = "always";",
   "src/routes/+page.svelte": "<script lang="ts">
   import { getResults } from './data.remote';
@@ -127369,7 +127369,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+layout.ts": "export const trailingSlash = "always";",
   "src/routes/+page.svelte": "<script lang="ts">
   import { getResults } from './data.remote';
@@ -127763,7 +127763,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+layout.ts": "export const trailingSlash = "always";",
   "src/routes/+page.svelte": "<script lang="ts">
   import { getResults } from './data.remote';
@@ -128153,7 +128153,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+layout.ts": "export const trailingSlash = "always";",
   "src/routes/+page.svelte": "<script lang="ts">
   import { getResults } from './data.remote';
@@ -130322,7 +130322,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -130548,7 +130548,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -130776,7 +130776,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -131020,7 +131020,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -131259,7 +131259,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -131612,7 +131612,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -131961,7 +131961,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit/rf/client";
@@ -134145,7 +134145,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { connect } from "@sjsf/sveltekit/rf/client";
 
@@ -134381,7 +134381,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { connect } from "@sjsf/sveltekit/rf/client";
 
@@ -134619,7 +134619,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { connect } from "@sjsf/sveltekit/rf/client";
 
@@ -134873,7 +134873,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { connect } from "@sjsf/sveltekit/rf/client";
 
@@ -135122,7 +135122,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { connect } from "@sjsf/sveltekit/rf/client";
 
@@ -135485,7 +135485,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { connect } from "@sjsf/sveltekit/rf/client";
 
@@ -135844,7 +135844,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { connect } from "@sjsf/sveltekit/rf/client";
 
@@ -136429,7 +136429,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -136591,7 +136591,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -136755,7 +136755,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -136935,7 +136935,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -137110,7 +137110,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -137399,7 +137399,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -137684,7 +137684,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -138681,7 +138681,7 @@ export declare namespace StandardJSONSchemaV1 {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -139106,7 +139106,7 @@ export declare namespace StandardJSONSchemaV1 {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -139533,7 +139533,7 @@ export declare namespace StandardJSONSchemaV1 {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -139976,7 +139976,7 @@ export declare namespace StandardJSONSchemaV1 {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -140414,7 +140414,7 @@ export declare namespace StandardJSONSchemaV1 {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -140966,7 +140966,7 @@ export declare namespace StandardJSONSchemaV1 {
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -141514,7 +141514,7 @@ export declare namespace StandardJSONSchemaV1 {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
@@ -142247,7 +142247,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from '@sjsf/valibot-validator';
@@ -142405,7 +142405,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from '@sjsf/valibot-validator';
@@ -142565,7 +142565,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from '@sjsf/valibot-validator';
@@ -142741,7 +142741,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from '@sjsf/valibot-validator';
@@ -142912,7 +142912,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from '@sjsf/valibot-validator';
@@ -143197,7 +143197,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from '@sjsf/valibot-validator';
@@ -143478,7 +143478,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from '@sjsf/valibot-validator';
@@ -143933,7 +143933,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/zod4-validator/classic";
@@ -144087,7 +144087,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/zod4-validator/classic";
@@ -144243,7 +144243,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/zod4-validator/classic";
@@ -144415,7 +144415,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/zod4-validator/classic";
@@ -144582,7 +144582,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/zod4-validator/classic";
@@ -144863,7 +144863,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	setShadcnThemeContext();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/zod4-validator/classic";
@@ -145140,7 +145140,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	const { children }: { children: Snippet } = $props();
 </script>
 
-{@render children()}",
+<div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
   import { adapt } from "@sjsf/zod4-validator/classic";

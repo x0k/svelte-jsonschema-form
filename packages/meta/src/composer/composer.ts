@@ -14,6 +14,7 @@ import {
   createStyles,
   createSvelteKitIntegration,
   resolveDependencies,
+  PADDED_THEMES,
 } from "../codegen/index.ts";
 import type { AtRule } from "../css.ts";
 import {
@@ -80,13 +81,17 @@ const APP_HTML = `<!doctype html>
   </body>
 </html>`;
 
-const LAYOUT = `<script lang="ts">
+const getLayoutContent = (padded: boolean) => `<script lang="ts">
   import type { Snippet } from 'svelte';
 
   const { children }: { children: Snippet } = $props()
 </script>
 
-{@render children()}
+${
+  padded
+    ? `<div style="padding: 2rem">{@render children()}</div>`
+    : `{@render children()}`
+}
 `;
 
 export function createComposer<T extends CodegenThemeOrSubTheme>(
@@ -178,6 +183,8 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     };
   }
 
+  const layout = getLayoutContent(PADDED_THEMES.includes(themeOrSubTheme));
+
   const files: Record<string, string> = {
     "package.json": buildPackageJson({ name, dependencies }),
     "vite.config.js": buildViteConfig(viteConfig),
@@ -190,7 +197,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       lib,
       isKit,
       stylesheetPath: "./layout.css",
-    })(LAYOUT),
+    })(layout),
   };
 
   files["src/lib/sjsf/defaults.ts"] = createDefaults({
