@@ -30,17 +30,31 @@ let meta: ReturnType<typeof getPackageMetadataByCodeName>;
           </a>
           <a href={meta.npmxUrl}>
             <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
               width="16"
               height="16"
               version="1.1"
-              fill="currentColor"
-              viewBox="0 0 153 153"
-              xmlns="http://www.w3.org/2000/svg"
             >
-              <g transform="translate(16.704 9.9827)">
-                <path d="m0.93476 97.205h24.081v23.693h-24.081z" />
-                <path d="m103.12-9.2307-3.6211 10.246-46.309 131-3.6211 10.246h15.537l3.6211-10.246 11.717-33.148 38.211-108.1z" />
-              </g>
+              <rect width="512" height="512" rx="64" fill="currentColor" />
+              <rect
+                x="110"
+                y="310"
+                width="60"
+                height="60"
+                fill="var(--sl-color-bg)"
+              />
+              <text
+                x="320"
+                y="370"
+                font-family="'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
+                font-size="420"
+                font-weight="500"
+                text-anchor="middle"
+                fill="var(--sl-color-bg)"
+              >
+                <tspan>/</tspan>
+              </text>
             </svg>
             npmx
           </a>
