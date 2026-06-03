@@ -16,7 +16,12 @@ import {
   resolveDependencies,
 } from "../codegen/index.ts";
 import type { AtRule } from "../css.ts";
-import type { AbstractPackage } from "../package.ts";
+import {
+  extraPackage,
+  filterPackageDependencies,
+  type AbstractPackage,
+} from "../package.ts";
+import { sveltekitPackage } from "../sveltekit.ts";
 import type { ToTheme } from "../themes.ts";
 import type { ExtraWidgetFileNames } from "../widgets.ts";
 
@@ -105,7 +110,22 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
   const ts: ConditionalPrinter = (content, alt = "") => (isTs ? content : alt);
   const lib: PathFactory = (path) => `$lib/${path}`;
 
-  const dependencies: AbstractPackage[] = [];
+  const dependencies: AbstractPackage[] = [
+    extraPackage("vite"),
+    extraPackage("svelteAdapterAuto"),
+    extraPackage("svelteVitePlugin"),
+    extraPackage("typescript"),
+  ];
+
+  if (sveltekit === "no") {
+    for (const d of filterPackageDependencies(
+      sveltekitPackage.dependencies,
+      false,
+    )) {
+      dependencies.push(d);
+    }
+  }
+
   const vitePlugins: Record<string, VitePluginConfig> = {};
   const appCssRules: AtRule[] = [];
 
