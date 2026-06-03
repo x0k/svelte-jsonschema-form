@@ -17,6 +17,8 @@ import {
   type Generated,
   type Package,
   type AbstractPackage,
+  type ExtraWidgetFileNames,
+  type Theme,
 } from "meta";
 import {
   codegenValidators,
@@ -26,11 +28,19 @@ import {
 } from "meta/codegen";
 import type { CodeTransformer } from "meta/composer";
 
+type _WidgetToFunction<T extends Theme> = T extends any
+  ? (w: ExtraWidgetFileNames[T]) => void
+  : never;
+
+type CommonExtraWidget =
+  _WidgetToFunction<ActualTheme> extends (w: infer I) => void ? I : never;
+
 export interface ExampleContent {
   files: Record<string, string>;
   dependencies: AbstractPackage[];
   codeTransformers: CodeTransformer[];
   sveltekit: CodegenSvelteKitIntegration;
+  widgets: CommonExtraWidget[];
 }
 
 export function defineExample(c: Partial<ExampleContent>): ExampleContent {
@@ -39,6 +49,7 @@ export function defineExample(c: Partial<ExampleContent>): ExampleContent {
     dependencies: [],
     codeTransformers: [],
     sveltekit: "no",
+    widgets: [],
     ...c,
   };
 }

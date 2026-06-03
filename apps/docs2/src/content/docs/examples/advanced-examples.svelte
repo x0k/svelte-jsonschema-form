@@ -58,6 +58,7 @@
       icons: "none",
       validatorWithSuffix: effectiveValidator,
       sveltekit: exampleContent.sveltekit,
+      widgets: exampleContent.widgets,
       extraFiles: exampleContent.files,
       extraDependencies: exampleContent.dependencies,
       codeTransformers,

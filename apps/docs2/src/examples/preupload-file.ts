@@ -7,6 +7,7 @@ import svelteStoredFileField from "examples/basic-starter/src/routes/preupload-f
 import { defineExample } from "../shared.js";
 
 export default defineExample({
+  widgets: ["file"],
   files: {
     "src/routes/+page.svelte": sveltePage,
     "src/routes/[id]/+page.svelte": nestedSveltePage,
