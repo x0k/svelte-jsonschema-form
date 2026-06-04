@@ -49,7 +49,7 @@ export function appCss(ctx: Context) {
         from: layoutSvelte,
         to: file.stylesheet,
       })
-    : undefined;
+    : "";
 
   sv.file(
     layoutSvelte,

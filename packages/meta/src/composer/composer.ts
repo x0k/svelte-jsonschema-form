@@ -38,9 +38,9 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   validatorWithSuffix: CodegenValidator;
   sveltekit: CodegenSvelteKitIntegration;
   widgets: ExtraWidgetFileNames[ToTheme<T>][];
-  extraFiles?: Record<string, string>;
-  extraDependencies?: AbstractPackage[];
-  codeTransformers?: CodeTransformer[];
+  extraFiles: Record<string, string>;
+  extraDependencies: AbstractPackage[];
+  codeTransformers: CodeTransformer[];
 }
 
 const TSCONFIG = JSON.stringify(
@@ -142,20 +142,13 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     extraPackage("svelteAdapterAuto"),
     extraPackage("svelteVitePlugin"),
     extraPackage("typescript"),
+    ...extraDependencies,
+    ...filterPackageDependencies(sveltekitPackage.dependencies, false),
   ];
 
-  if (sveltekit === "no") {
-    for (const d of filterPackageDependencies(
-      sveltekitPackage.dependencies,
-      false,
-    )) {
-      dependencies.push(d);
-    }
-  }
-
-  const addDependency = (pkg: AbstractPackage) => {
+  function addDependency(pkg: AbstractPackage) {
     dependencies.push(pkg);
-  };
+  }
 
   resolveDependencies({
     addDependency,
@@ -166,16 +159,11 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     widgets,
   });
 
-  if (extraDependencies) {
-    for (const dep of extraDependencies) {
-      dependencies.push(dep);
-    }
-  }
-
-  const layout = getLayoutContent(PADDED_THEMES.includes(themeOrSubTheme));
-
   const files: Record<string, string> = {
-    "package.json": buildPackageJson({ name, dependencies }),
+    "package.json": buildPackageJson({
+      name,
+      dependencies: new Map(dependencies.map((d) => [d.name, d])).values(),
+    }),
     "vite.config.js": createViteConfig({
       themeOrSubTheme,
       icons,
@@ -184,51 +172,62 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     "svelte.config.js": SVELTE_CONFIG,
     "tsconfig.json": TSCONFIG,
     "src/app.html": createAppHtml({ themeOrSubTheme })(APP_HTML),
-    "src/routes/+layout.svelte": createLayout({
+    "src/lib/sjsf/defaults.ts": createDefaults({
+      themeOrSubTheme,
+      validatorWithSuffix,
+      icons,
+      resolver: "basic",
+      sveltekit,
+      widgets,
+      isTs,
+      ts,
+    })(""),
+    "src/routes/+page.svelte": createPage({
       language,
       themeOrSubTheme,
+      validatorWithSuffix,
+      sveltekit,
+      isTs,
       lib,
-      isKit,
-      stylesheetPath: "./layout.css",
-    })(layout),
+    })(""),
   };
 
-  files["src/lib/sjsf/defaults.ts"] = createDefaults({
-    themeOrSubTheme,
-    validatorWithSuffix,
-    icons,
-    resolver: "basic",
-    sveltekit,
-    widgets,
-    isTs,
-    ts,
-  })("");
+  function addFile(filePath: string, content: string) {
+    if (content) {
+      files[filePath] = content;
+    }
+    return content;
+  }
 
-  files["src/routes/+page.svelte"] = createPage({
+  const stylesContent = addFile(
+    "src/routes/layout.css",
+    createStyles({
+      nodeModulesPath,
+      themeOrSubTheme,
+      icons,
+      sandbox: true,
+    })(""),
+  );
+
+  // NOTE: We cannot move the padding functionality to `createLayout` because
+  // it is used in `sv` to create the global layout (should not be padded)
+  const layout = getLayoutContent(PADDED_THEMES.includes(themeOrSubTheme));
+  files["src/routes/+layout.svelte"] = createLayout({
     language,
     themeOrSubTheme,
-    validatorWithSuffix,
-    sveltekit,
-    isTs,
     lib,
-  })("");
+    isKit,
+    stylesheetPath: stylesContent && "./layout.css",
+  })(layout);
 
-  files["src/routes/layout.css"] = createStyles({
-    nodeModulesPath,
-    themeOrSubTheme,
-    icons,
-    sandbox: true,
-  })("");
-
-  const shadcnLibContent = createShadcnLib({
-    themeOrSubTheme,
-    resolveImportPath: (_, libPath) => libPath,
-    widgets,
-  })("");
-
-  if (shadcnLibContent) {
-    files[`src/lib/sjsf/shadcn.${language}`] = shadcnLibContent;
-  }
+  addFile(
+    `src/lib/sjsf/shadcn.${language}`,
+    createShadcnLib({
+      themeOrSubTheme,
+      resolveImportPath: (_, libPath) => libPath,
+      widgets,
+    })(""),
+  );
 
   if (sveltekit !== "no") {
     const { filename, transform } = createSvelteKitIntegration({

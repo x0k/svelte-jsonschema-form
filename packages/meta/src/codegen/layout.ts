@@ -10,7 +10,7 @@ export interface CreateLayoutOptions {
   lib: PathFactory;
   isKit: boolean;
   svelteVersion?: string;
-  stylesheetPath?: string;
+  stylesheetPath: string;
 }
 
 export function createLayout({

@@ -2,7 +2,7 @@ import type { AbstractPackage } from "../package.ts";
 
 export interface PackageJson {
   name: string;
-  dependencies: AbstractPackage[];
+  dependencies: Iterable<AbstractPackage>;
 }
 
 export function buildPackageJson({ name, dependencies: deps }: PackageJson) {
