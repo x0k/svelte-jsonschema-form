@@ -29,7 +29,6 @@ import type { ToTheme } from "../themes.ts";
 import type { ExtraWidgetFileNames } from "../widgets.ts";
 
 import { buildPackageJson } from "./package-json.ts";
-import { buildSvelteConfig } from "./svelte-config.ts";
 import {
   buildViteConfig,
   type VitePluginConfig,
@@ -94,6 +93,29 @@ ${
     ? `<div style="padding: 2rem">{@render children()}</div>`
     : `{@render children()}`
 }
+`;
+
+const SVELTE_CONFIG = `import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
 `;
 
 export function createComposer<T extends CodegenThemeOrSubTheme>(
@@ -192,7 +214,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     "vite.config.js": createViteConfig({ themeOrSubTheme })(
       buildViteConfig(viteConfig),
     ),
-    "svelte.config.js": buildSvelteConfig({}),
+    "svelte.config.js": SVELTE_CONFIG,
     "tsconfig.json": TSCONFIG,
     "src/app.html": createAppHtml({ themeOrSubTheme })(APP_HTML),
     "src/routes/+layout.svelte": createLayout({
