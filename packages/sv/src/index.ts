@@ -8,6 +8,7 @@ import {
 import { defaultsTs } from "./defaults.js";
 import { dependencies } from "./dependencies.js";
 import { appCss } from "./styles.js";
+import { viteConfig } from "./vite.js";
 import { shadcnTs } from "./shadcn.js";
 import { postTs } from "./post.js";
 import { sveltekitTs } from "./sveltekit.js";
@@ -39,6 +40,7 @@ export default defineAddon({
     appCss(ctx);
     postTs(ctx);
     scriptsFolder(ctx);
+    viteConfig(ctx);
     sveltekitTs(ctx);
     pageSvelte(ctx);
   },

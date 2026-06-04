@@ -199,7 +199,8 @@ export default config;
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [sveltekit()]
+	plugins: [sveltekit()],
+	ssr: { noExternal: ['flowbite-svelte-icons'] }
 });
 ",
 }
@@ -504,7 +505,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -524,13 +525,14 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [svelte()],
-})
+  ssr: { noExternal: ['flowbite-svelte-icons'] }
+});
 ",
 }
 `;
@@ -732,7 +734,8 @@ export default config;
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [sveltekit()]
+	plugins: [sveltekit()],
+	ssr: { noExternal: ['@lucide/svelte'] }
 });
 ",
 }
@@ -1035,7 +1038,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -1055,13 +1058,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()], ssr: { noExternal: ['@lucide/svelte'] } });
 ",
 }
 `;
@@ -1263,7 +1264,8 @@ export default config;
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [sveltekit()]
+	plugins: [sveltekit()],
+	ssr: { noExternal: ['@jis3r/icons'] }
 });
 ",
 }
@@ -1566,7 +1568,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -1586,13 +1588,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()], ssr: { noExternal: ['@jis3r/icons'] } });
 ",
 }
 `;
@@ -1794,7 +1794,8 @@ export default config;
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [sveltekit()]
+	plugins: [sveltekit()],
+	ssr: { noExternal: ['svelte-radix'] }
 });
 ",
 }
@@ -2097,7 +2098,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -2117,13 +2118,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()], ssr: { noExternal: ['svelte-radix'] } });
 ",
 }
 `;
@@ -2354,9 +2353,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -2676,9 +2673,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -2904,9 +2899,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -3898,9 +3891,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -4199,7 +4190,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -4219,13 +4210,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -4422,9 +4411,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -4723,7 +4710,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -4743,13 +4730,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -4773,11 +4758,11 @@ exports[`@sjsf/sv 'theme__daisyui5' 'kit-ts' 1`] = `
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"@tailwindcss/vite": "^4.2.2",
+		"@tailwindcss/vite": "^4.3.0",
 		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
-		"tailwindcss": "^4.2.2",
+		"tailwindcss": "^4.3.0",
 		"typescript": "^6.0.2",
 		"vite": "^8.0.7"
 	},
@@ -4962,7 +4947,7 @@ export default config;
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [tailwindcss(), sveltekit()] });
+export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });
 ",
 }
 `;
@@ -4996,13 +4981,13 @@ exports[`@sjsf/sv 'theme__daisyui5' 'vite-ts' 1`] = `
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
-    "@tailwindcss/vite": "^4.2.2",
+    "@tailwindcss/vite": "^4.3.0",
     "@tsconfig/svelte": "^5.0.6",
     "@types/node": "^24.10.1",
     "json-schema-to-ts": "^3.1.1",
     "svelte": "^5.45.2",
     "svelte-check": "^4.3.4",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "^4.3.0",
     "typescript": "~5.9.3",
     "vite": "^7.3.1"
   },
@@ -5274,7 +5259,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -5299,7 +5284,7 @@ import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({ plugins: [tailwindcss(), svelte()] });
+export default defineConfig({ plugins: [svelte(), tailwindcss()] });
 ",
 }
 `;
@@ -5323,12 +5308,12 @@ exports[`@sjsf/sv 'theme__flowbite3' 'kit-ts' 1`] = `
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"@tailwindcss/vite": "^4.2.2",
+		"@tailwindcss/vite": "^4.3.0",
 		"flowbite": "^3.1.0",
 		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
-		"tailwindcss": "^4.2.2",
+		"tailwindcss": "^4.3.0",
 		"typescript": "^6.0.2",
 		"vite": "^8.0.7"
 	},
@@ -5537,7 +5522,7 @@ export default config;
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [tailwindcss(), sveltekit()] });
+export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });
 ",
 }
 `;
@@ -5571,14 +5556,14 @@ exports[`@sjsf/sv 'theme__flowbite3' 'vite-ts' 1`] = `
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
-    "@tailwindcss/vite": "^4.2.2",
+    "@tailwindcss/vite": "^4.3.0",
     "@tsconfig/svelte": "^5.0.6",
     "@types/node": "^24.10.1",
     "flowbite": "^3.1.0",
     "json-schema-to-ts": "^3.1.1",
     "svelte": "^5.45.2",
     "svelte-check": "^4.3.4",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "^4.3.0",
     "typescript": "~5.9.3",
     "vite": "^7.3.1"
   },
@@ -5849,7 +5834,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -5874,7 +5859,7 @@ import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({ plugins: [tailwindcss(), svelte()] });
+export default defineConfig({ plugins: [svelte(), tailwindcss()] });
 ",
 }
 `;
@@ -6074,9 +6059,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -6377,7 +6360,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -6397,13 +6380,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -6431,11 +6412,11 @@ exports[`@sjsf/sv 'theme__shadcn-extras' 'kit-ts' 1`] = `
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"@tailwindcss/vite": "^4.2.2",
+		"@tailwindcss/vite": "^4.3.0",
 		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
-		"tailwindcss": "^4.2.2",
+		"tailwindcss": "^4.3.0",
 		"typescript": "^6.0.2",
 		"vite": "^8.0.7"
 	},
@@ -6828,7 +6809,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
+	plugins: [sveltekit(), tailwindcss()],
 	ssr: { noExternal: ['@lucide/svelte'] }
 });
 ",
@@ -6868,13 +6849,13 @@ exports[`@sjsf/sv 'theme__shadcn-extras' 'vite-ts' 1`] = `
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
-    "@tailwindcss/vite": "^4.2.2",
+    "@tailwindcss/vite": "^4.3.0",
     "@tsconfig/svelte": "^5.0.6",
     "@types/node": "^24.10.1",
     "json-schema-to-ts": "^3.1.1",
     "svelte": "^5.45.2",
     "svelte-check": "^4.3.4",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "^4.3.0",
     "typescript": "~5.9.3",
     "vite": "^7.3.1"
   },
@@ -7237,7 +7218,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -7262,7 +7243,10 @@ import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({ plugins: [tailwindcss(), svelte()] });
+export default defineConfig({
+  plugins: [svelte(), tailwindcss()],
+  ssr: { noExternal: ['@lucide/svelte'] }
+});
 ",
 }
 `;
@@ -7290,11 +7274,11 @@ exports[`@sjsf/sv 'theme__shadcn4' 'kit-ts' 1`] = `
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"@tailwindcss/vite": "^4.2.2",
+		"@tailwindcss/vite": "^4.3.0",
 		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
-		"tailwindcss": "^4.2.2",
+		"tailwindcss": "^4.3.0",
 		"typescript": "^6.0.2",
 		"vite": "^8.0.7"
 	},
@@ -7668,7 +7652,10 @@ export default config;
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [tailwindcss(), sveltekit()] });
+export default defineConfig({
+	plugins: [sveltekit(), tailwindcss()],
+	ssr: { noExternal: ['@lucide/svelte'] }
+});
 ",
 }
 `;
@@ -7706,13 +7693,13 @@ exports[`@sjsf/sv 'theme__shadcn4' 'vite-ts' 1`] = `
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
-    "@tailwindcss/vite": "^4.2.2",
+    "@tailwindcss/vite": "^4.3.0",
     "@tsconfig/svelte": "^5.0.6",
     "@types/node": "^24.10.1",
     "json-schema-to-ts": "^3.1.1",
     "svelte": "^5.45.2",
     "svelte-check": "^4.3.4",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "^4.3.0",
     "typescript": "~5.9.3",
     "vite": "^7.3.1"
   },
@@ -8057,7 +8044,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -8082,7 +8069,10 @@ import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({ plugins: [tailwindcss(), svelte()] });
+export default defineConfig({
+  plugins: [svelte(), tailwindcss()],
+  ssr: { noExternal: ['@lucide/svelte'] }
+});
 ",
 }
 `;
@@ -8107,11 +8097,11 @@ exports[`@sjsf/sv 'theme__skeleton4' 'kit-ts' 1`] = `
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
 		"@tailwindcss/forms": "^0.5.11",
-		"@tailwindcss/vite": "^4.2.2",
+		"@tailwindcss/vite": "^4.3.0",
 		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
-		"tailwindcss": "^4.2.2",
+		"tailwindcss": "^4.3.0",
 		"typescript": "^6.0.2",
 		"vite": "^8.0.7"
 	},
@@ -8308,7 +8298,7 @@ export default config;
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [tailwindcss(), sveltekit()] });
+export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });
 ",
 }
 `;
@@ -8343,13 +8333,13 @@ exports[`@sjsf/sv 'theme__skeleton4' 'vite-ts' 1`] = `
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "@tailwindcss/forms": "^0.5.11",
-    "@tailwindcss/vite": "^4.2.2",
+    "@tailwindcss/vite": "^4.3.0",
     "@tsconfig/svelte": "^5.0.6",
     "@types/node": "^24.10.1",
     "json-schema-to-ts": "^3.1.1",
     "svelte": "^5.45.2",
     "svelte-check": "^4.3.4",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "^4.3.0",
     "typescript": "~5.9.3",
     "vite": "^7.3.1"
   },
@@ -8626,7 +8616,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -8651,7 +8641,7 @@ import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({ plugins: [tailwindcss(), svelte()] });
+export default defineConfig({ plugins: [svelte(), tailwindcss()] });
 ",
 }
 `;
@@ -8853,9 +8843,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -9161,7 +9149,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -9181,13 +9169,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -9466,9 +9452,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -9841,7 +9825,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post/model.generated';
 	import { schema } from 'src/lib/post/model.generated';
@@ -9869,13 +9853,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -10064,9 +10046,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -10356,7 +10336,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -10376,13 +10356,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -10640,9 +10618,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -10994,7 +10970,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post/model.generated';
 	import { schema } from 'src/lib/post/model.generated';
@@ -11022,13 +10998,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -11217,9 +11191,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -11509,7 +11481,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -11529,13 +11501,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -11825,9 +11795,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -12200,7 +12168,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post/model.generated';
 	import { ast, schema } from 'src/lib/post/model.generated';
@@ -12239,13 +12207,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -12431,9 +12397,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -12720,7 +12684,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -12740,13 +12704,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -12935,9 +12897,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -13227,7 +13187,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post';
 	import { schema } from 'src/lib/post';
@@ -13247,13 +13207,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -13510,9 +13468,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -13863,7 +13819,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { Post } from 'src/lib/post/model.generated';
 	import { schema } from 'src/lib/post/model.generated';
@@ -13891,13 +13847,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -14103,9 +14057,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -14411,7 +14363,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import type { StandardSchemaV1 } from '@standard-schema/spec';
 	import { post } from 'src/lib/post';
@@ -14432,13 +14384,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -14624,9 +14574,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -14912,7 +14860,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import * as v from 'valibot';
 	import { post } from 'src/lib/post';
@@ -14933,13 +14881,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;
@@ -15121,9 +15067,7 @@ export default config;
   "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+export default defineConfig({ plugins: [sveltekit()] });
 ",
 }
 `;
@@ -15405,7 +15349,7 @@ const app = mount(App, {
 
 export default app
 ",
-  "src/routessjsf.svelte": "<script lang="ts">
+  "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
 	import * as z from 'zod';
 	import { post } from 'src/lib/post';
@@ -15426,13 +15370,11 @@ export default {
   preprocess: vitePreprocess(),
 }
 ",
-  "vite.config.ts": "import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+  "vite.config.ts": "import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [svelte()],
-})
+export default defineConfig({ plugins: [svelte()] });
 ",
 }
 `;

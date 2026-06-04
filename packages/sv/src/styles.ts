@@ -2,7 +2,6 @@ import {
   createAppHtml,
   createLayout,
   createStyles,
-  createViteConfig,
   isStyleSheetEmpty,
 } from "meta/codegen";
 
@@ -34,13 +33,11 @@ export function appCss(ctx: Context) {
       icons,
       themeOrSubTheme,
       sandbox: false,
-      preludeRules: [],
     }),
   );
 
   if (uiLibIsNotConfigured) {
     sv.file("src/app.html", createAppHtml({ themeOrSubTheme }));
-    sv.file(file.viteConfig, createViteConfig({ themeOrSubTheme }));
   }
 
   const layoutSvelte = isKit

@@ -1,8 +1,4 @@
-import {
-  type AbstractPackage,
-  type Tailwindcss4Plugin,
-  tailwindcss4PluginPackage,
-} from "meta";
+import { type AbstractPackage, isTailwindcss4Theme, toTheme } from "meta";
 import { resolveDependencies } from "meta/codegen";
 
 import { type Context } from "./model.js";
@@ -21,29 +17,24 @@ export function dependencies(ctx: Context) {
   resolveDependencies({
     ...options,
     addDependency,
-    addTailwindCss4: (ps) => dependenciesTailwindCss4(ctx, ps, addDependency),
     widgets: [],
   });
+
+  if (isTailwindcss4Theme(toTheme(options.themeOrSubTheme))) {
+    dependenciesTailwindCss4(ctx);
+  }
 }
 
 // https://github.com/sveltejs/cli/blob/19ed7a0f940816a63c1c7f963a04bb72d7b19a8f/packages/sv/src/addons/tailwindcss.ts#L33
-function dependenciesTailwindCss4(
-  {
-    sv,
-    file,
-    isKit,
-    directory,
-    dependencyVersion,
-    language,
-    packageManager,
-  }: Context,
-  plugins: Iterable<Tailwindcss4Plugin>,
-  addDependency: (pkg: AbstractPackage) => void,
-) {
-  const prettierInstalled = Boolean(dependencyVersion("prettier"));
-
-  sv.devDependency("tailwindcss", "^4.2.2");
-  sv.devDependency("@tailwindcss/vite", "^4.2.2");
+function dependenciesTailwindCss4({
+  sv,
+  file,
+  isKit,
+  directory,
+  dependencyVersion,
+  language,
+  packageManager,
+}: Context) {
   if (packageManager === "pnpm") {
     sv.file(
       file.findUp("pnpm-workspace.yaml"),
@@ -51,48 +42,9 @@ function dependenciesTailwindCss4(
     );
   }
 
-  if (prettierInstalled)
+  if (dependencyVersion("prettier")) {
     sv.devDependency("prettier-plugin-tailwindcss", "^0.7.2");
-
-  for (const plugin of plugins) {
-    addDependency(tailwindcss4PluginPackage(plugin));
   }
-
-  // add the vite plugin
-  sv.file(
-    file.viteConfig,
-    transforms.script(({ ast, js }) => {
-      const vitePluginName = "tailwindcss";
-      js.imports.addDefault(ast, {
-        as: vitePluginName,
-        from: "@tailwindcss/vite",
-      });
-      js.vite.addPlugin(ast, { code: `${vitePluginName}()`, mode: "prepend" });
-    }),
-  );
-
-  sv.file(
-    file.stylesheet,
-    transforms.css(({ ast, css }) => {
-      // since we are prepending all the `AtRule` let's add them in reverse order,
-      // so they appear in the expected order in the final file
-
-      for (const plugin of plugins) {
-        const pkg = tailwindcss4PluginPackage(plugin);
-        css.addAtRule(ast, {
-          name: "plugin",
-          params: `'${pkg.name}'`,
-          append: false,
-        });
-      }
-
-      css.addAtRule(ast, {
-        name: "import",
-        params: `'tailwindcss'`,
-        append: false,
-      });
-    }),
-  );
 
   if (isKit) {
     const layoutSvelte = `${directory.kitRoutes}/+layout.svelte`;
@@ -141,14 +93,4 @@ function dependenciesTailwindCss4(
       json.arrayUpsert(data, "recommendations", "bradlc.vscode-tailwindcss");
     }),
   );
-
-  if (prettierInstalled) {
-    sv.file(
-      ".prettierrc",
-      transforms.json(({ data, json }) => {
-        json.arrayUpsert(data, "plugins", "prettier-plugin-tailwindcss");
-        data.tailwindStylesheet ??= file.getRelative({ to: file.stylesheet });
-      }),
-    );
-  }
 }

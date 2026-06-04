@@ -25,7 +25,7 @@ export function pageSvelte(ctx: Context) {
   }
 
   sv.file(
-    `${directory.kitRoutes}${isKit ? "/demo/sjsf/+page.svelte" : "sjsf.svelte"}`,
+    `${directory.kitRoutes}/${isKit ? "demo/sjsf/+page.svelte" : "sjsf.svelte"}`,
     createPage({ ...ctx.options, language, isTs, lib }),
   );
 }
