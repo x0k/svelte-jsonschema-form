@@ -168,6 +168,8 @@ export const VALIDATOR_TRANSFORMERS: Partial<
 > = {
   zod4: () => import("./schema-transformers/schema-to-zod.ts"),
   valibot: () => import("./schema-transformers/schema-to-valibot.ts"),
+  "standard-schema": () =>
+    import("./schema-transformers/schema-to-standard-schema.ts"),
 };
 
 export interface CreateExampleFilesOptions {

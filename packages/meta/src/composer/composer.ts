@@ -240,15 +240,11 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     files[`src/routes/${filename}.${language}`] = transform("");
   }
 
-  if (extraFiles) {
-    Object.assign(files, extraFiles);
-  }
+  Object.assign(files, extraFiles);
 
-  if (codeTransformers) {
-    for (const transform of codeTransformers) {
-      for (const [path, content] of Object.entries(files)) {
-        files[path] = transform(path, content);
-      }
+  for (const transform of codeTransformers) {
+    for (const [path, content] of Object.entries(files)) {
+      files[path] = transform(path, content);
     }
   }
 
