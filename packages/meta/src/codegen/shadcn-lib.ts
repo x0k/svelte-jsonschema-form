@@ -36,10 +36,10 @@ export function createShadcnLib({
   widgets,
 }: ShadcnLibOptions) {
   return transforms.script(({ ast, js, comments }) => {
-    const isShadcnExtras = themeOrSubTheme === "shadcn-extras";
-    if (themeOrSubTheme !== "shadcn4" || !isShadcnExtras) {
+    if (themeOrSubTheme !== "shadcn4" && themeOrSubTheme !== "shadcn-extras") {
       return false;
     }
+    const isShadcnExtras = themeOrSubTheme === "shadcn-extras";
 
     js.imports.addNamed(ast, {
       imports: ["setThemeContext"],

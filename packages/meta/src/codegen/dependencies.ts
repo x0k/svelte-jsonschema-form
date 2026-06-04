@@ -1,4 +1,3 @@
-import type { AtRule } from "../css.ts";
 import { formPackage } from "../form.ts";
 import { iconSetPackage } from "../icons.ts";
 import {
@@ -10,10 +9,7 @@ import {
   type PackageDependency,
 } from "../package.ts";
 import { sveltekitPackage } from "../sveltekit.ts";
-import {
-  tailwindcss4PluginPackage,
-  type Tailwindcss4Plugin,
-} from "../tailwindcss.ts";
+import { tailwindcss4PluginPackage } from "../tailwindcss.ts";
 import {
   isSubTheme,
   isTailwindcss4Theme,
@@ -41,7 +37,6 @@ import {
   type CodegenSvelteKitIntegration,
   type CodegenThemeOrSubTheme,
 } from "./model.ts";
-import type { NamespaceImportOptions } from "./lib.ts";
 
 interface DependenciesOptions<T extends CodegenThemeOrSubTheme> {
   themeOrSubTheme: T;
@@ -50,12 +45,10 @@ interface DependenciesOptions<T extends CodegenThemeOrSubTheme> {
   sveltekit: CodegenSvelteKitIntegration;
   widgets: ExtraWidgetFileNames[ToTheme<T>][];
   addDependency: (pkg: AbstractPackage) => void;
-  addTailwindCss4: (plugins: Iterable<Tailwindcss4Plugin>) => void;
 }
 
 export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
   addDependency,
-  addTailwindCss4,
   themeOrSubTheme,
   validatorWithSuffix,
   icons,
@@ -95,7 +88,11 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
     addDependencies(subThemeDependencies(themeOrSubTheme));
   }
   if (isTailwindcss4Theme(theme)) {
-    addTailwindCss4(tailwindcss4ThemePlugins(theme));
+    addDependency(extraPackage("tailwindcss4"));
+    addDependency(extraPackage("tailwindcss4Vite"));
+    for (const p of tailwindcss4ThemePlugins(theme)) {
+      addDependency(tailwindcss4PluginPackage(p));
+    }
   }
   if (
     isEndsWithPrecompiled(validatorWithSuffix) ||
@@ -137,39 +134,4 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
     addDependency(sveltekitPackage);
     addDependencies(sveltekitPackage.dependencies);
   }
-}
-
-export interface AddTailwindCss4Options {
-  addDependency: (pkg: AbstractPackage) => void;
-  addVitePlugin: (options: NamespaceImportOptions) => void;
-  addAppCssRule: (rules: AtRule) => void;
-}
-
-export function createAddTailwind4Css({
-  addDependency,
-  addVitePlugin,
-  addAppCssRule,
-}: AddTailwindCss4Options) {
-  return (plugins: Iterable<Tailwindcss4Plugin>) => {
-    addDependency(extraPackage("tailwindcss4"));
-    addDependency(extraPackage("tailwindcss4Vite"));
-    for (const p of plugins) {
-      addDependency(tailwindcss4PluginPackage(p));
-    }
-    addVitePlugin({
-      as: "tailwindcss",
-      from: "@tailwindcss/vite",
-    });
-    addAppCssRule({
-      name: "import",
-      params: `'tailwindcss'`,
-    });
-    for (const p of plugins) {
-      const pkg = tailwindcss4PluginPackage(p);
-      addAppCssRule({
-        name: "plugin",
-        params: `'${pkg.name}'`,
-      });
-    }
-  };
 }

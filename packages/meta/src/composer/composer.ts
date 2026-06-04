@@ -1,5 +1,4 @@
 import {
-  type NamespaceImportOptions,
   type CodegenThemeOrSubTheme,
   type CodegenIconSet,
   type CodegenValidator,
@@ -7,7 +6,6 @@ import {
   type ConditionalPrinter,
   type Language,
   type PathFactory,
-  createAddTailwind4Css,
   createDefaults,
   createLayout,
   createPage,
@@ -19,7 +17,6 @@ import {
   createViteConfig,
   createShadcnLib,
 } from "../codegen/index.ts";
-import type { AtRule } from "../css.ts";
 import {
   extraPackage,
   filterPackageDependencies,
@@ -30,11 +27,6 @@ import type { ToTheme } from "../themes.ts";
 import type { ExtraWidgetFileNames } from "../widgets.ts";
 
 import { buildPackageJson } from "./package-json.ts";
-import {
-  buildViteConfig,
-  type VitePluginConfig,
-  type ViteConfig,
-} from "./vite-config.ts";
 
 export type CodeTransformer = (filepath: string, code: string) => string;
 
@@ -119,6 +111,11 @@ const config = {
 export default config;
 `;
 
+const VITE_CONFIG = `import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });`;
+
 export function createComposer<T extends CodegenThemeOrSubTheme>(
   options: ComposerOptions<T>,
 ): Record<string, string> {
@@ -156,33 +153,12 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     }
   }
 
-  const vitePlugins: Record<string, VitePluginConfig> = {};
-  const appCssRules: AtRule[] = [];
-
   const addDependency = (pkg: AbstractPackage) => {
     dependencies.push(pkg);
   };
 
-  const addVitePlugin = ({ as, from }: NamespaceImportOptions) => {
-    vitePlugins[from] = {
-      import: as,
-      call: `${as}()`,
-    };
-  };
-
-  const addAppCssRule = (rule: AtRule) => {
-    appCssRules.push(rule);
-  };
-
-  const addTailwind4Css = createAddTailwind4Css({
-    addDependency,
-    addVitePlugin,
-    addAppCssRule,
-  });
-
   resolveDependencies({
     addDependency,
-    addTailwindCss4: addTailwind4Css,
     themeOrSubTheme,
     validatorWithSuffix,
     icons,
@@ -190,31 +166,21 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     widgets,
   });
 
-  vitePlugins["@sveltejs/kit/vite"] = {
-    import: "{ sveltekit }",
-    call: "sveltekit()",
-  };
-
   if (extraDependencies) {
     for (const dep of extraDependencies) {
       dependencies.push(dep);
     }
   }
 
-  const viteConfig: ViteConfig = { plugins: vitePlugins };
-  if (sveltekit === "remoteFunctions") {
-    viteConfig.optimizeDeps = {
-      exclude: ["@sjsf/form", "@sjsf/sveltekit/rf/client"],
-    };
-  }
-
   const layout = getLayoutContent(PADDED_THEMES.includes(themeOrSubTheme));
 
   const files: Record<string, string> = {
     "package.json": buildPackageJson({ name, dependencies }),
-    "vite.config.js": createViteConfig({ themeOrSubTheme })(
-      buildViteConfig(viteConfig),
-    ),
+    "vite.config.js": createViteConfig({
+      themeOrSubTheme,
+      icons,
+      sveltekit,
+    })(VITE_CONFIG),
     "svelte.config.js": SVELTE_CONFIG,
     "tsconfig.json": TSCONFIG,
     "src/app.html": createAppHtml({ themeOrSubTheme })(APP_HTML),
@@ -252,7 +218,6 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     themeOrSubTheme,
     icons,
     sandbox: true,
-    preludeRules: appCssRules.toReversed(),
   })("");
 
   const shadcnLibContent = createShadcnLib({

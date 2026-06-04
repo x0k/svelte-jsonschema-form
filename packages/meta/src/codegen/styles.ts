@@ -1,7 +1,13 @@
 import { transforms, type SvelteAst } from "@sveltejs/sv-utils";
 
 import type { AtRule, AtRuleOptions } from "../css.ts";
-import { themeOrSubThemeAtRules } from "../themes.ts";
+import { tailwindcss4PluginPackage } from "../tailwindcss.ts";
+import {
+  isTailwindcss4Theme,
+  tailwindcss4ThemePlugins,
+  themeOrSubThemeAtRules,
+  toTheme,
+} from "../themes.ts";
 
 import type { CodegenIconSet, CodegenThemeOrSubTheme } from "./model.ts";
 import { iconSetAtRules } from "../icons.ts";
@@ -12,7 +18,6 @@ export interface StylesOptions {
   themeOrSubTheme: CodegenThemeOrSubTheme;
   icons: CodegenIconSet;
   sandbox: boolean;
-  preludeRules: AtRule[];
 }
 
 export function createStyles({
@@ -20,15 +25,24 @@ export function createStyles({
   themeOrSubTheme,
   icons,
   sandbox,
-  preludeRules,
 }: StylesOptions) {
   return transforms.css(({ ast, css }) => {
     let uiLibIsNotConfigured = isStyleSheetEmpty(ast);
 
-    for (const rule of preludeRules) {
+    const theme = toTheme(themeOrSubTheme);
+    if (isTailwindcss4Theme(theme)) {
+      const twPlugins = Array.from(tailwindcss4ThemePlugins(theme));
+      for (const p of twPlugins) {
+        const pkg = tailwindcss4PluginPackage(p);
+        css.addAtRule(ast, {
+          name: "plugin",
+          params: `'${pkg.name}'`,
+          append: false,
+        });
+      }
       css.addAtRule(ast, {
-        name: rule.name,
-        params: rule.params,
+        name: "import",
+        params: `'tailwindcss'`,
         append: false,
       });
     }
