@@ -12,6 +12,7 @@ export interface StylesOptions {
   themeOrSubTheme: CodegenThemeOrSubTheme;
   icons: CodegenIconSet;
   sandbox: boolean;
+  preludeRules: AtRule[];
 }
 
 export function createStyles({
@@ -19,9 +20,18 @@ export function createStyles({
   themeOrSubTheme,
   icons,
   sandbox,
+  preludeRules,
 }: StylesOptions) {
   return transforms.css(({ ast, css }) => {
     let uiLibIsNotConfigured = isStyleSheetEmpty(ast);
+
+    for (const rule of preludeRules) {
+      css.addAtRule(ast, {
+        name: rule.name,
+        params: rule.params,
+        append: false,
+      });
+    }
 
     const atRuleOptions: AtRuleOptions = {
       nodeModulesPath,

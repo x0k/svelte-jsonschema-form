@@ -8982,7 +8982,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "Zimbabwe",
 ];
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -9907,7 +9908,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "Zimbabwe",
 ];
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -11784,7 +11786,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "Zimbabwe",
 ];
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -12834,7 +12837,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "Zimbabwe",
 ];
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -13880,7 +13884,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "Zimbabwe",
 ];
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -17133,7 +17139,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code>
 </pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -17386,7 +17393,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code>
 </pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -17919,7 +17927,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code>
 </pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -18297,7 +18306,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code>
 </pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -18671,7 +18681,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code>
 </pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -20726,7 +20738,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -20927,7 +20940,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -21356,7 +21370,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -21682,7 +21697,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -22004,7 +22020,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -23901,7 +23919,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -24090,7 +24109,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -24495,7 +24515,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -24809,7 +24830,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -25119,7 +25141,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -28641,7 +28665,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
   import type { HTMLInputAttributes } from "svelte/elements";
@@ -29007,7 +29032,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -29766,7 +29792,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -30257,7 +30284,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -30744,7 +30772,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -33789,7 +33819,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "src/routes/object-field.svelte": "<script lang="ts" module>
   import type { SchemaObjectValue } from "@sjsf/form/core";
@@ -34074,7 +34105,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -34671,7 +34703,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -35081,7 +35114,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -35487,7 +35521,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -37802,7 +37838,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   }
 </style>
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -38026,7 +38063,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   }
 </style>
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -38501,7 +38539,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   }
 </style>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -38850,7 +38889,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   }
 </style>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -39195,7 +39235,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   }
 </style>
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -41682,7 +41724,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   }
 </style>
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "src/routes/layout.svelte": "<script lang="ts" module>
   import type { Snippet } from "svelte";
@@ -41934,7 +41977,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   }
 </style>
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -42465,7 +42509,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   }
 </style>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -42842,7 +42887,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   }
 </style>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -43215,7 +43261,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   }
 </style>
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -45274,7 +45322,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {/snippet}
 </Markdown>
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -45471,7 +45520,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {/snippet}
 </Markdown>
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -45892,7 +45942,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {/snippet}
 </Markdown>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -46214,7 +46265,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {/snippet}
 </Markdown>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -46532,7 +46584,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {/snippet}
 </Markdown>
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -50468,7 +50522,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <Content />
 </Form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "src/routes/multi-step-field.svelte": "<script lang="ts" module>
   import { createContext } from "svelte";
@@ -50876,7 +50931,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <Content />
 </Form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -51719,7 +51775,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <Content />
 </Form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -52252,7 +52309,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <Content />
 </Form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -52781,7 +52839,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <Content />
 </Form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -56719,7 +56779,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "src/routes/nullable-field.svelte": "<script lang="ts" module>
   import { isSchemaObject } from "@sjsf/form/lib/json-schema";
@@ -57096,7 +57157,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -57877,7 +57939,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -58379,7 +58442,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -58877,7 +58941,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -62565,7 +62631,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -62929,7 +62996,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -63684,7 +63752,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -64173,7 +64242,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -64658,7 +64728,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -66821,7 +66893,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -67018,7 +67091,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -67439,7 +67513,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -67761,7 +67836,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -68079,7 +68155,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -72107,7 +72185,8 @@ export const [getStoreContext, setStoreContext] = createContext<StoreContext>();
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "src/routes/stored-file-field.svelte": "<script lang="ts" module>
   declare module "@sjsf/form" {
@@ -72527,7 +72606,8 @@ export const [getStoreContext, setStoreContext] = createContext<StoreContext>();
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -73394,7 +73474,8 @@ export const [getStoreContext, setStoreContext] = createContext<StoreContext>();
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -73938,7 +74019,8 @@ export const [getStoreContext, setStoreContext] = createContext<StoreContext>();
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -74478,7 +74560,9 @@ export const [getStoreContext, setStoreContext] = createContext<StoreContext>();
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -80048,7 +80132,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "Zimbabwe",
 ];
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -80569,7 +80654,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "Zimbabwe",
 ];
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -81638,7 +81724,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "Zimbabwe",
 ];
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -82284,7 +82371,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "Zimbabwe",
 ];
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -82926,7 +83014,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "Zimbabwe",
 ];
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -86439,7 +86529,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   })}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -86756,7 +86847,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   })}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -87417,7 +87509,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   })}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -87859,7 +87952,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   })}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -88297,7 +88391,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   })}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -90126,7 +90222,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -90298,7 +90395,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -90669,7 +90767,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -90966,7 +91065,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -91259,7 +91359,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm {form} />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -95985,7 +96087,8 @@ export const schema = {
 
 <Form />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "src/routes/sub-tabs.svelte": "<script lang="ts">
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
@@ -96465,7 +96568,8 @@ export const schema = {
 
 <Form />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -97452,7 +97556,8 @@ export const schema = {
 
 <Form />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -98057,7 +98162,8 @@ export const schema = {
 
 <Form />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -98658,7 +98764,9 @@ export const schema = {
 
 <Form />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -101268,7 +101376,8 @@ export const actions = {
   }}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -101492,7 +101601,8 @@ export const actions = {
   }}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -101967,7 +102077,8 @@ export const actions = {
   }}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -102316,7 +102427,8 @@ export const actions = {
   }}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -102661,7 +102773,9 @@ export const actions = {
   }}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -105774,7 +105888,8 @@ export const actions = {
   }}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -106078,7 +106193,8 @@ export const actions = {
   }}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -106713,7 +106829,8 @@ export const actions = {
   }}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -107142,7 +107259,8 @@ export const actions = {
   }}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -107567,7 +107685,9 @@ export const actions = {
   }}
 />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -110023,7 +110143,8 @@ export const actions = {
 
 <BasicForm {form} method="POST" />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -110256,7 +110377,8 @@ export const actions = {
 
 <BasicForm {form} method="POST" />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -110749,7 +110871,8 @@ export const actions = {
 
 <BasicForm {form} method="POST" />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -111107,7 +111230,8 @@ export const actions = {
 
 <BasicForm {form} method="POST" />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -111461,7 +111585,9 @@ export const actions = {
 
 <BasicForm {form} method="POST" />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -113776,7 +113902,8 @@ export const actions = {
   <SubmitButton />
 </form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -114002,7 +114129,8 @@ export const actions = {
   <SubmitButton />
 </form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -114481,7 +114609,8 @@ export const actions = {
   <SubmitButton />
 </form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -114832,7 +114961,8 @@ export const actions = {
   <SubmitButton />
 </form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -115179,7 +115309,9 @@ export const actions = {
   <SubmitButton />
 </form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -118299,7 +118431,8 @@ export const actions = {
   <SubmitButton />
 </form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "src/routes/model.ts": "import type { Schema } from "@sjsf/form";
 
@@ -118613,7 +118746,8 @@ export const actions = {
   <SubmitButton />
 </form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -119268,7 +119402,8 @@ export const actions = {
   <SubmitButton />
 </form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -119707,7 +119842,8 @@ export const actions = {
   <SubmitButton />
 </form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -120142,7 +120278,9 @@ export const actions = {
   <SubmitButton />
 </form>
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -122526,7 +122664,8 @@ export const createPost = form(
   },
 );
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -122744,7 +122883,8 @@ export const createPost = form(
   },
 );
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -123207,7 +123347,8 @@ export const createPost = form(
   },
 );
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -123550,7 +123691,8 @@ export const createPost = form(
   },
 );
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -123889,7 +124031,9 @@ export const createPost = form(
   },
 );
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -126619,7 +126763,8 @@ export const createResult = form("unchecked", async (data) => {
   redirect(303, "..");
 });
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -126888,7 +127033,8 @@ export const createResult = form("unchecked", async (data) => {
   redirect(303, "..");
 });
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -127453,7 +127599,8 @@ export const createResult = form("unchecked", async (data) => {
   redirect(303, "..");
 });
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -127847,7 +127994,8 @@ export const createResult = form("unchecked", async (data) => {
   redirect(303, "..");
 });
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -128237,7 +128385,9 @@ export const createResult = form("unchecked", async (data) => {
   redirect(303, "..");
 });
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -130608,7 +130758,8 @@ export const createPost = form(
   },
 );
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -130836,7 +130987,8 @@ export const createPost = form(
   },
 );
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -131319,7 +131471,8 @@ export const createPost = form(
   },
 );
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -131672,7 +131825,8 @@ export const createPost = form(
   },
 );
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -132021,7 +132175,9 @@ export const createPost = form(
   },
 );
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -134451,7 +134607,8 @@ export const createPost = form(
 <Content />
 <SubmitButton />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -134689,7 +134846,8 @@ export const createPost = form(
 <Content />
 <SubmitButton />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -135192,7 +135350,8 @@ export const createPost = form(
 <Content />
 <SubmitButton />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -135555,7 +135714,8 @@ export const createPost = form(
 <Content />
 <SubmitButton />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -135914,7 +136074,9 @@ export const createPost = form(
 <Content />
 <SubmitButton />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -136622,7 +136784,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -136786,7 +136949,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -137141,7 +137305,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -137430,7 +137595,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -137715,7 +137881,9 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -139138,7 +139306,8 @@ export declare namespace StandardJSONSchemaV1 {
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -139565,7 +139734,8 @@ export declare namespace StandardJSONSchemaV1 {
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -140446,7 +140616,8 @@ export declare namespace StandardJSONSchemaV1 {
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -140998,7 +141169,8 @@ export declare namespace StandardJSONSchemaV1 {
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -141546,7 +141718,9 @@ export declare namespace StandardJSONSchemaV1 {
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -142431,7 +142605,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -142591,7 +142766,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -142938,7 +143114,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -143223,7 +143400,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -143504,7 +143682,9 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
@@ -144110,7 +144290,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/daisyui5-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -144266,7 +144447,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/flowbite3-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -144605,7 +144787,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -144886,7 +145069,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/shadcn4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
 :root {
@@ -145163,7 +145347,9 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm {form} novalidate />
 ",
-  "src/routes/layout.css": "@import "@sjsf/skeleton4-theme/styles.css";
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",

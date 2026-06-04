@@ -34,6 +34,7 @@ export function appCss(ctx: Context) {
       icons,
       themeOrSubTheme,
       sandbox: false,
+      preludeRules: [],
     }),
   );
 

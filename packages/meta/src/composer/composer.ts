@@ -225,6 +225,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     themeOrSubTheme,
     icons,
     sandbox: true,
+    preludeRules: appCssRules.toReversed(),
   })("");
 
   if (sveltekit !== "no") {
