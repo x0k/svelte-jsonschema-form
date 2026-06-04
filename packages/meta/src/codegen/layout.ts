@@ -2,7 +2,7 @@ import { transforms } from "@sveltejs/sv-utils";
 
 import { svelteWrapFragment } from "./lib.ts";
 import type { CodegenThemeOrSubTheme, PathFactory } from "./model.ts";
-import { setupShadcnContext } from "./shadcn-context.ts";
+import { setupShadcnContext } from "./shadcn-lib.ts";
 
 export interface CreateLayoutOptions {
   language: "ts" | "js";

@@ -17,6 +17,7 @@ import {
   PADDED_THEMES,
   createAppHtml,
   createViteConfig,
+  createShadcnLib,
 } from "../codegen/index.ts";
 import type { AtRule } from "../css.ts";
 import {
@@ -253,6 +254,16 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     sandbox: true,
     preludeRules: appCssRules.toReversed(),
   })("");
+
+  const shadcnLibContent = createShadcnLib({
+    themeOrSubTheme,
+    resolveImportPath: (_, libPath) => libPath,
+    widgets,
+  })("");
+
+  if (shadcnLibContent) {
+    files[`src/lib/sjsf/shadcn.${language}`] = shadcnLibContent;
+  }
 
   if (sveltekit !== "no") {
     const { filename, transform } = createSvelteKitIntegration({
