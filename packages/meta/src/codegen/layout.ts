@@ -1,7 +1,5 @@
 import { transforms } from "@sveltejs/sv-utils";
 
-import { isThemeExtension, themeExtensionOrigin, toTheme } from "../themes.ts";
-
 import { svelteWrapFragment } from "./lib.ts";
 import type { CodegenThemeOrSubTheme, PathFactory } from "./model.ts";
 import { setupShadcnContext } from "./shadcn-context.ts";
@@ -32,19 +30,12 @@ export function createLayout({
       });
     }
 
-    const themeOrExtension = toTheme(themeOrSubTheme);
-    const theme = isThemeExtension(themeOrExtension)
-      ? themeExtensionOrigin(themeOrExtension)
-      : themeOrExtension;
-
-    if (theme === "shadcn4") {
-      setupShadcnContext({
-        instance: ast.instance,
-        js,
-        lib,
-        theme,
-      });
-    }
+    setupShadcnContext({
+      themeOrSubTheme,
+      instance: ast.instance,
+      js,
+      lib,
+    });
 
     if (isKit && ast.fragment.nodes.length === 0) {
       svelte.addSlot(ast, { svelteVersion });

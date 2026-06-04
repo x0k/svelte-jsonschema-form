@@ -1,9 +1,14 @@
 import { transforms, type SvelteAst, js as jsUtils } from "@sveltejs/sv-utils";
 
-import { themePackage } from "../themes.ts";
+import {
+  isThemeExtension,
+  themeExtensionOrigin,
+  themePackage,
+  toTheme,
+} from "../themes.ts";
 import { shadcnExtrasUiSubPath, shadcnNewYorkThemeSubPath } from "../shadcn.ts";
 import { getTopLevelFunction } from "./lib.ts";
-import type { PathFactory } from "./model.ts";
+import type { CodegenThemeOrSubTheme, PathFactory } from "./model.ts";
 
 export interface ShadcnContextOptions {
   importedComponents: Iterable<string>[];
@@ -89,17 +94,27 @@ export function ${SET_SHADCN_THEME_CONTEXT_FN_NAME}() {
 }
 
 export interface SetupShadcnContextOptions {
-  theme: "shadcn4";
+  themeOrSubTheme: CodegenThemeOrSubTheme;
   lib: PathFactory;
   instance: SvelteAst.Script;
   js: typeof jsUtils;
 }
 
 export function setupShadcnContext({
+  themeOrSubTheme,
   lib,
   instance,
   js,
 }: SetupShadcnContextOptions) {
+  const themeOrExtension = toTheme(themeOrSubTheme);
+  const theme = isThemeExtension(themeOrExtension)
+    ? themeExtensionOrigin(themeOrExtension)
+    : themeOrExtension;
+
+  if (theme !== "shadcn4") {
+    return;
+  }
+
   js.imports.addNamed(instance.content, {
     imports: [SET_SHADCN_THEME_CONTEXT_FN_NAME],
     from: lib("sjsf/shadcn"),

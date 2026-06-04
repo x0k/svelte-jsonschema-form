@@ -15,6 +15,8 @@ import {
   createSvelteKitIntegration,
   resolveDependencies,
   PADDED_THEMES,
+  createAppHtml,
+  createViteConfig,
 } from "../codegen/index.ts";
 import type { AtRule } from "../css.ts";
 import {
@@ -187,10 +189,12 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
 
   const files: Record<string, string> = {
     "package.json": buildPackageJson({ name, dependencies }),
-    "vite.config.js": buildViteConfig(viteConfig),
+    "vite.config.js": createViteConfig({ themeOrSubTheme })(
+      buildViteConfig(viteConfig),
+    ),
     "svelte.config.js": buildSvelteConfig({}),
     "tsconfig.json": TSCONFIG,
-    "src/app.html": APP_HTML,
+    "src/app.html": createAppHtml({ themeOrSubTheme })(APP_HTML),
     "src/routes/+layout.svelte": createLayout({
       language,
       themeOrSubTheme,

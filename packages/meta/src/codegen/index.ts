@@ -12,3 +12,5 @@ export * from "./shadcn-context.ts";
 export * from "./styles.ts";
 export * from "./sveltekit.ts";
 export * from "./layout.ts";
+export * from "./app-html.ts";
+export * from "./vite-config.ts";

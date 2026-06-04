@@ -11946,11 +11946,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -13037,16 +13039,21 @@ exports[`generic examples > async-combobox > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -18087,11 +18094,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -18506,16 +18515,21 @@ exports[`generic examples > decomposed-field > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -21530,11 +21544,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -21897,16 +21913,21 @@ exports[`generic examples > deprecated-keyword > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -24675,11 +24696,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -25031,16 +25054,21 @@ exports[`generic examples > draft-2020-12 > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -30055,11 +30083,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -30587,16 +30617,21 @@ exports[`generic examples > enum-widgets > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -34899,11 +34934,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -35350,16 +35387,21 @@ exports[`generic examples > formulas > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -38699,11 +38741,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -39089,16 +39133,21 @@ exports[`generic examples > label-on-left > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -42712,11 +42761,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -43130,16 +43181,21 @@ exports[`generic examples > layout-slots > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -46102,11 +46158,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -46466,16 +46524,21 @@ exports[`generic examples > markdown-description > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -52098,11 +52161,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -52672,16 +52737,21 @@ exports[`generic examples > multi-step > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -58244,11 +58314,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -58787,16 +58859,21 @@ exports[`generic examples > nullable-fields > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -63912,11 +63989,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -64442,16 +64521,21 @@ exports[`generic examples > optional-data-controls > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -67673,11 +67757,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -68036,16 +68122,21 @@ exports[`generic examples > pattern-properties-validator > skeleton4__ajv8 1`] =
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -73782,11 +73873,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -74366,16 +74459,21 @@ exports[`generic examples > preupload-file > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -81884,11 +81982,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -82571,16 +82671,21 @@ exports[`generic examples > remote-enum > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -87669,11 +87774,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -88152,16 +88259,21 @@ exports[`generic examples > schema-transformation > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -90927,11 +91039,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -91265,16 +91379,21 @@ exports[`generic examples > starter > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -97784,11 +97903,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -98430,16 +98551,21 @@ exports[`generic examples > tabbed-layout > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -102237,11 +102363,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -102628,16 +102756,21 @@ exports[`sveltekit examples > form-actions > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/post.ts": "import type { FromSchema } from "json-schema-to-ts";
 import type { Schema } from "@sjsf/form";
@@ -106989,11 +107122,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -107460,16 +107595,21 @@ exports[`sveltekit examples > form-actions-dynamic-schema > skeleton4__ajv8 1`] 
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/server.ts": "import type { Schema } from "@sjsf/form";
 
@@ -111031,11 +111171,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -111431,16 +111573,21 @@ exports[`sveltekit examples > form-actions-flex > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/post.ts": "import type { FromSchema } from "json-schema-to-ts";
 import type { Schema } from "@sjsf/form";
@@ -114769,11 +114916,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -115162,16 +115311,21 @@ exports[`sveltekit examples > form-actions-without-js > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -119630,11 +119784,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -120111,16 +120267,21 @@ exports[`sveltekit examples > multi-step-native-form > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
@@ -123507,11 +123668,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
-  optimizeDeps: {"exclude":["@sjsf/form","@sjsf/sveltekit/rf/client"]},
-  resolve: {}
-})",
+  optimizeDeps: { "exclude": ["@sjsf/form", "@sjsf/sveltekit/rf/client"] },
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -123892,16 +124055,21 @@ exports[`sveltekit examples > remote-functions > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/post.ts": "import type { FromSchema } from "json-schema-to-ts";
 import type { Schema } from "@sjsf/form";
@@ -127759,11 +127927,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
-  optimizeDeps: {"exclude":["@sjsf/form","@sjsf/sveltekit/rf/client"]},
-  resolve: {}
-})",
+  optimizeDeps: { "exclude": ["@sjsf/form", "@sjsf/sveltekit/rf/client"] },
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -128195,16 +128365,21 @@ exports[`sveltekit examples > remote-functions-dynamic-schema > skeleton4__ajv8 
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/server.ts": "import type { Schema } from "@sjsf/form";
 
@@ -131631,11 +131806,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
-  optimizeDeps: {"exclude":["@sjsf/form","@sjsf/sveltekit/rf/client"]},
-  resolve: {}
-})",
+  optimizeDeps: { "exclude": ["@sjsf/form", "@sjsf/sveltekit/rf/client"] },
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -132026,16 +132203,21 @@ exports[`sveltekit examples > remote-functions-enhance > skeleton4__ajv8 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/post.ts": "import type { FromSchema } from "json-schema-to-ts";
 import type { Schema } from "@sjsf/form";
@@ -135510,11 +135692,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
-  optimizeDeps: {"exclude":["@sjsf/form","@sjsf/sveltekit/rf/client"]},
-  resolve: {}
-})",
+  optimizeDeps: { "exclude": ["@sjsf/form", "@sjsf/sveltekit/rf/client"] },
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -135915,16 +136099,21 @@ exports[`sveltekit examples > remote-functions-without-js > skeleton4__ajv8 1`] 
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/post.ts": "import type { FromSchema } from "json-schema-to-ts";
 import type { Schema } from "@sjsf/form";
@@ -137465,11 +137654,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -137793,16 +137984,21 @@ exports[`validator-specific examples > arktype-starter > skeleton4 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
@@ -140776,11 +140972,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -141367,16 +141565,21 @@ exports[`validator-specific examples > typebox-starter > skeleton4 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
@@ -143274,11 +143477,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -143599,16 +143804,21 @@ exports[`validator-specific examples > valibot-starter > skeleton4 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
@@ -144947,11 +145157,13 @@ export default config;
   "vite.config.js": "import { defineConfig } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {},
-  resolve: {}
-})",
+  resolve: {},
+  ssr: { noExternal: ["@lucide/svelte"] }
+});",
 }
 `;
 
@@ -145267,16 +145479,21 @@ exports[`validator-specific examples > zod-starter > skeleton4 1`] = `
   }
 }",
   "src/app.html": "<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
