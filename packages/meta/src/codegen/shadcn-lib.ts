@@ -111,7 +111,10 @@ export function createShadcnLib({
 
     for (const [
       importPath,
-      { active: activeNames, commented: commentedNames },
+      {
+        active: activeNames,
+        // commented: commentedNames
+      },
     ] of byPath) {
       if (activeNames.length > 0) {
         js.imports.addNamed(ast, {
@@ -119,12 +122,12 @@ export function createShadcnLib({
           from: importPath,
         });
       }
-      if (commentedNames.length > 0) {
-        comments.add(ast, {
-          type: "Line",
-          value: `import { ${commentedNames.join(", ")} } from "${importPath}";`,
-        });
-      }
+      // if (commentedNames.length > 0) {
+      //   comments.add(ast, {
+      //     type: "Line",
+      //     value: `import { ${commentedNames.join(", ")} } from "${importPath}";`,
+      //   });
+      // }
     }
 
     if (getTopLevelFunction(ast, SET_SHADCN_THEME_CONTEXT_FN_NAME)) {
