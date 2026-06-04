@@ -10,7 +10,6 @@ import {
   createLayout,
   createPage,
   createStyles,
-  createSvelteKitIntegration,
   resolveDependencies,
   PADDED_THEMES,
   createAppHtml,
@@ -228,17 +227,6 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       widgets,
     })(""),
   );
-
-  if (sveltekit !== "no") {
-    const { filename, transform } = createSvelteKitIntegration({
-      sveltekit,
-      validatorWithSuffix,
-      isTs,
-      lib,
-      ts,
-    });
-    files[`src/routes/${filename}.${language}`] = transform("");
-  }
 
   Object.assign(files, extraFiles);
 
