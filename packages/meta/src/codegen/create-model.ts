@@ -11,15 +11,27 @@ import type {
   ConditionalPrinter,
 } from "./model.ts";
 
-export interface PostOptions {
+export interface ModelOptions {
   validator: CodegenNonPrecompiledValidator;
   isTs: boolean;
   ts: ConditionalPrinter;
   schema: Schema;
+  modelName: string;
 }
 
-// TODO: Convert schema to Zod, Valibot, Standard Schema validators
-export function createPost({ validator, isTs, schema, ts }: PostOptions) {
+function toTypeName(name: string): string {
+  return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+// TODO: Convert schema to Zod, Valibot
+export function createModel({
+  validator,
+  isTs,
+  schema,
+  ts,
+  modelName,
+}: ModelOptions) {
+  const typeName = toTypeName(modelName);
   return transforms.script(({ ast, js, comments }) => {
     if (isJsonSchemaValidator(validator) || validator === "noop") {
       if (isTs) {
@@ -54,7 +66,7 @@ export function createPost({ validator, isTs, schema, ts }: PostOptions) {
 
       if (isTs) {
         js.common.appendFromString(ast, {
-          code: "export type Post = FromSchema<typeof schema>;",
+          code: `export type Model = FromSchema<typeof schema>;`,
         });
       }
     } else if (validator === "zod4") {
@@ -65,20 +77,20 @@ export function createPost({ validator, isTs, schema, ts }: PostOptions) {
     title: z.string().meta({ title: "Title" }),
     content: z.string().min(10).meta({ title: "Content" }),
   })
-  .meta({ title: "Post" })`);
-      const postDeclaration = js.variables.declaration(ast, {
+  .meta({ title: "${typeName}" })`);
+      const modelDeclaration = js.variables.declaration(ast, {
         kind: "const",
-        name: "post",
+        name: "schema",
         value: postExpression,
       });
       js.exports.createNamed(ast, {
-        name: "post",
-        fallback: postDeclaration,
+        name: "schema",
+        fallback: modelDeclaration,
       });
 
       if (isTs) {
         js.common.appendFromString(ast, {
-          code: "export type Post = z.infer<typeof post>;",
+          code: `export type Model = z.infer<typeof schema>;`,
         });
       }
     } else if (validator === "valibot") {
@@ -101,26 +113,36 @@ export function createPost({ validator, isTs, schema, ts }: PostOptions) {
       ),
     }),
     v.metadata({
-      title: "Basic form",
+      title: "${typeName}",
     }),
   )`);
-      const postDeclaration = js.variables.declaration(ast, {
+      const modelDeclaration = js.variables.declaration(ast, {
         kind: "const",
-        name: "post",
+        name: "schema",
         value: postExpression,
       });
       js.exports.createNamed(ast, {
-        name: "post",
-        fallback: postDeclaration,
+        name: "schema",
+        fallback: modelDeclaration,
       });
 
       if (isTs) {
         js.common.appendFromString(ast, {
-          code: "export type Post = v.InferInput<typeof post>;",
+          code: `export type Model = v.InferInput<typeof schema>;`,
         });
       }
     } else if (validator === "standard-schema") {
       if (isTs) {
+        js.imports.addNamed(ast, {
+          isType: true,
+          imports: ["FromSchema"],
+          from: extraPackage("jsonSchemaToTs").name,
+        });
+        js.imports.addNamed(ast, {
+          isType: true,
+          imports: ["Schema"],
+          from: formPackage.name,
+        });
         js.imports.addNamed(ast, {
           imports: ["StandardSchemaV1", "StandardJSONSchemaV1"],
           from: "@standard-schema/spec",
@@ -128,55 +150,47 @@ export function createPost({ validator, isTs, schema, ts }: PostOptions) {
         });
       }
 
-      const postExpression = js.common.parseExpression(`({
+      const schemaJson = JSON.stringify(schema);
+      js.common.appendFromString(ast, {
+        code: isTs
+          ? `const internalSchema = (${schemaJson}) as const satisfies Schema;`
+          : `/** @type {import("${formPackage.name}").Schema} */\nconst internalSchema = (${schemaJson});`,
+        comments,
+      });
+
+      if (isTs) {
+        js.common.appendFromString(ast, {
+          code: `type InternalModel = FromSchema<typeof internalSchema>;`,
+          comments,
+        });
+      }
+
+      js.common.appendFromString(ast, {
+        code: `// TODO: Replace demo schema with real Standard Schema (arktype, typebox, valibot, zod, etc.)
+export const schema${ts(": StandardSchemaV1<InternalModel> & StandardJSONSchemaV1")} = {
   "~standard": {
     version: 1,
     vendor: "sjsf",
     validate(value) {
-      return value &&
-        typeof value === "object" &&
-        "title" in value &&
-        typeof value.title === "string" &&
-        "content" in value &&
-        typeof value.content === "string" &&
-        value.content.length > 10
-        ? {
-            value,
-          }
-        : {
-            issues: [
-              {
-                message: "Invalid",
-                path: [],
-              },
-            ],
-          };
+      return typeof value === "object" && value !== null
+        ? { value${ts(": value as InternalModel")} }
+        : { issues: [{ message: "Invalid", path: [] }] };
     },
     jsonSchema: {
-      input: () => (${JSON.stringify(schema)}),
+      input: () => internalSchema,
       output() {
         throw new Error("not implemented");
       },
     },
   },
-}${ts(" as const satisfies StandardSchemaV1 & StandardJSONSchemaV1")})`);
-      const postDeclaration = js.variables.declaration(ast, {
-        kind: "const",
-        name: "post",
-        value: postExpression,
-      });
-      comments.add(postDeclaration, {
-        type: "Line",
-        value: "Replace with the actual schema",
-      });
-      js.exports.createNamed(ast, {
-        name: "post",
-        fallback: postDeclaration,
+};`,
+        comments,
       });
 
       if (isTs) {
         js.common.appendFromString(ast, {
-          code: "export type Post = StandardSchemaV1.InferInput<typeof post>;",
+          code: `export type Model = StandardSchemaV1.InferInput<typeof schema>;`,
+          comments,
         });
       }
     } else {

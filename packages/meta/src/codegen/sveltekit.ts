@@ -25,7 +25,7 @@ export function createSvelteKitIntegration(
   const validatorImports = renderImports(
     validator.imports.concat(validator.schemaImports),
   );
-  const { sveltekit, lib, ts, isTs } = options;
+  const { sveltekit, lib, ts, isTs, modelName } = options;
   const setup = (
     {
       formActions: {
@@ -38,7 +38,7 @@ import * as defaults from "${lib("sjsf/defaults")}";
 export const load = async () => {
   return {
     postForm: {
-      ${!validator.schemaValidator ? "schema," : ""}
+      ${!validator.schemaValidator ? `schema: ${modelName}.schema,` : ""}
       initialValue: { title: "New post", content: "" },
     }${ts(` satisfies InitialFormData<${validator.inputType}>`)},
   };
@@ -70,7 +70,7 @@ import * as defaults from "${lib("sjsf/defaults")}";
 
 export const getInitialData = query(async () => {
   return {
-    ${!validator.schemaValidator ? "schema, " : ""}
+    ${!validator.schemaValidator ? `schema: ${modelName}.schema, ` : ""}
     initialValue: { title: "New post", content: "" },
   }${ts(` satisfies InitialFormData<${validator.inputType}>`)};
 });

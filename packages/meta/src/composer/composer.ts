@@ -1,8 +1,11 @@
+import type { Schema } from "@sjsf/form";
+
 import {
   type CodegenThemeOrSubTheme,
   type CodegenIconSet,
   type CodegenValidator,
   type CodegenSvelteKitIntegration,
+  type CodegenNonPrecompiledValidator,
   type ConditionalPrinter,
   type Language,
   type PathFactory,
@@ -15,6 +18,8 @@ import {
   createAppHtml,
   createViteConfig,
   createShadcnLib,
+  createModel,
+  withoutPrecompiledSuffix,
 } from "../codegen/index.ts";
 import {
   extraPackage,
@@ -40,6 +45,8 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   extraFiles: Record<string, string>;
   extraDependencies: AbstractPackage[];
   codeTransformers: CodeTransformer[];
+  modelName: string;
+  schema?: Schema;
 }
 
 const TSCONFIG = JSON.stringify(
@@ -129,6 +136,8 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     extraFiles,
     extraDependencies,
     codeTransformers,
+    modelName,
+    schema,
   } = options;
   const isKit = true;
   const nodeModulesPath = "../../node_modules";
@@ -188,8 +197,21 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       sveltekit,
       isTs,
       lib,
+      modelName,
     })(""),
   };
+
+  if (schema) {
+    files[`src/lib/${modelName}.${language}`] = createModel({
+      validator: withoutPrecompiledSuffix(
+        validatorWithSuffix,
+      ) as CodegenNonPrecompiledValidator,
+      isTs,
+      ts,
+      schema,
+      modelName,
+    })("");
+  }
 
   function addFile(filePath: string, content: string) {
     if (content) {

@@ -19,6 +19,7 @@ export interface ValidatorOptions {
   validatorWithSuffix: CodegenValidator;
   isTs: boolean;
   lib: PathFactory;
+  modelName: string;
 }
 
 interface ValidatorDefinition {
@@ -29,38 +30,31 @@ interface ValidatorDefinition {
   schemaValidator: boolean;
 }
 
-const createPostType = {
-  inputType: "Post",
+const defaultModelConfig = {
   schemaValidator: false,
-} satisfies Omit<ValidatorDefinition, "imports" | "schemaImports" | "options">;
+} satisfies Omit<
+  ValidatorDefinition,
+  "imports" | "schemaImports" | "options" | "inputType"
+>;
 
 export function createValidator({
   validatorWithSuffix,
   isTs,
   lib,
+  modelName,
 }: ValidatorOptions): ValidatorDefinition {
   if (isEndsWithPrecompiled(validatorWithSuffix)) {
     const validator = withoutPrecompiledSuffix(validatorWithSuffix);
-    const types = isTs
-      ? [
-          {
-            imports: ["Post"],
-            from: lib("post/model.generated"),
-            isType: true,
-          },
-        ]
-      : [];
     if (validator === "hyperjump") {
       return {
-        ...createPostType,
-        schemaImports: [
-          {
-            imports: ["schema"],
-            from: lib("post/model.generated"),
-          },
-          ...types,
-        ],
+        inputType: `${modelName}.Model`,
+        schemaValidator: false,
+        schemaImports: [],
         imports: [
+          {
+            as: modelName,
+            from: lib(`${modelName}/model.generated`),
+          },
           {
             imports: ["createValidatorRetriever"],
             from: internalValidatorSubPath("precompile"),
@@ -73,21 +67,17 @@ export function createValidator({
             imports: ["localization"],
             from: hyperjumpValidatorLocalizationSubPath("en-us"),
           },
-          {
-            imports: ["ast"],
-            from: lib("post/model.generated"),
-          },
         ],
-        options: `schema,
+        options: `schema: ${modelName}.schema,
 validator: createFormValidatorFactory({ 
   validatorRetriever: createValidatorRetriever({
     registry: {
       get(id) {
         const schemaUri = \`\${id}#\`;
-        return schemaUri in ast
+        return schemaUri in ${modelName}.ast
           ? {
               schemaUri,
-              ast,
+              ast: ${modelName}.ast,
             }
           : undefined;
       },
@@ -98,13 +88,13 @@ validator: createFormValidatorFactory({
       };
     }
     return {
-      ...createPostType,
+      inputType: `${modelName}.Model`,
+      schemaValidator: false,
       schemaImports: [
         {
-          imports: ["schema"],
-          from: lib("post/model.generated"),
+          as: modelName,
+          from: lib(`${modelName}/model.generated`),
         },
-        ...types,
       ],
       imports: [
         {
@@ -117,10 +107,10 @@ validator: createFormValidatorFactory({
         },
         {
           as: "validateFunctions",
-          from: lib("post/validators.generated"),
+          from: lib(`${modelName}/validators.generated`),
         },
       ],
-      options: `schema,
+      options: `schema: ${modelName}.schema,
 validator: createFormValidatorFactory({
   validatorRetriever: fromValidators(validateFunctions),
 })`,
@@ -164,40 +154,32 @@ validator: createFormValidatorFactory({
       >
     )[validatorWithSuffix];
     return {
-      schemaImports: [v.import],
+      schemaImports: [],
       imports: [
         {
           imports: ["adapt"],
           from: v.path,
         },
         {
-          imports: ["post"],
-          from: lib("post"),
+          as: modelName,
+          from: lib(modelName),
         },
       ],
-      options: `...adapt(post)`,
-      inputType: `${v.inferInput}<typeof post>`,
+      options: `...adapt(${modelName}.schema)`,
+      inputType: `${modelName}.Model`,
       schemaValidator: true,
     };
   }
   return {
-    ...createPostType,
+    inputType: `${modelName}.Model`,
+    schemaValidator: false,
     schemaImports: [
       {
-        imports: ["schema"],
-        from: lib("post"),
+        as: modelName,
+        from: lib(modelName),
       },
-      ...(isTs
-        ? [
-            {
-              imports: ["Post"],
-              from: lib("post"),
-              isType: true,
-            },
-          ]
-        : []),
     ],
     imports: [],
-    options: "schema",
+    options: `schema: ${modelName}.schema`,
   };
 }

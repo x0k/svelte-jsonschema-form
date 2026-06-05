@@ -80,6 +80,7 @@ export async function createExampleFiles(
     extraFiles: content.files,
     extraDependencies: content.dependencies,
     codeTransformers,
+    modelName: "model",
   });
 }
 

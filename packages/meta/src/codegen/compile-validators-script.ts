@@ -32,7 +32,7 @@ export function createCompileValidatorsScript(
   registerSchema,
   unregisterSchema,${ts("\n  type SchemaObject,")}
 } from "@hyperjump/json-schema/draft-07";
-import { compile, getSchema } from "@hyperjump/json-schema/experimental";
+import { ${ts("type AST, ")}getSchema, Validation } from "@hyperjump/json-schema/experimental";
 import { uneval } from "${extraPackage("devalue").name}";`,
     compileSchemaBody: ({ definePatchAndSchemas, saveModel }) => `let id = 0;
 const toId = (n${ts(": number")}) => \`https://example.com/v\${n}\`;
@@ -159,7 +159,7 @@ import type { FromSchema } from "${extraPackage("jsonSchemaToTs").name}";
 ${importStatements}
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)}${ts(` as const satisfies Schema;
-export type Post = FromSchema<typeof schema>`)};
+export type Model = FromSchema<typeof schema>`)};
 ${exportStatements}\`
   )`,
     saveValidators: (content) =>

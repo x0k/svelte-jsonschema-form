@@ -18,7 +18,10 @@ export function createForm(ctx: FormOptions): {
   const { sveltekit, isTs } = ctx;
   const validator = createValidator(ctx);
   const validatorOptionsWithoutSchema = validator.options.replace(
-    /\bschema\b\s*,?\s*/,
+    // Remove the `schema` property (e.g. `schema: post.schema,`) when the schema
+    // is already provided via SvelteKit meta/initialData.
+    // The `\S+` ensures we match the full value, avoiding false matches inside `adapt()`.
+    /\bschema\s*:\s*\S+\s*,?\s*/,
     "",
   );
   const isInputTypeRequired = isTs && !validator.schemaValidator;

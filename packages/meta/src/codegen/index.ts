@@ -6,7 +6,7 @@ export * from "./form.ts";
 export * from "./defaults.ts";
 export * from "./dependencies.ts";
 export * from "./page.ts";
-export * from "./post.ts";
+export * from "./create-model.ts";
 export * from "./compile-validators-script.ts";
 export * from "./shadcn-lib.ts";
 export * from "./styles.ts";

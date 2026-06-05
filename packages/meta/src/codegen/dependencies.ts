@@ -126,7 +126,11 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
     addDependencies(iconsPkg.dependencies);
   }
   // Type inference
-  if (isJsonSchemaValidator(withoutPrecompiledSuffix(validatorWithSuffix))) {
+  if (
+    isJsonSchemaValidator(withoutPrecompiledSuffix(validatorWithSuffix)) ||
+    // Required for internal fake type
+    validatorWithSuffix === "standard-schema"
+  ) {
     addDependency(extraPackage("jsonSchemaToTs"));
   }
   // Kit integration
