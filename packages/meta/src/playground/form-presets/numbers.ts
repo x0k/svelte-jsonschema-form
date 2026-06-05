@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Basics";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "Numbers",
+  description:
+    "Numeric field types (integer, number), ranges, steps, and enum constraints.",
+  tags: [PresetTag.Validation, PresetTag.Object],
+});
 
-export default {
+export default definePreset({
   resolver: "compat",
   schema: {
     type: "object",
@@ -65,4 +76,4 @@ export default {
     integerRange: 42,
     integerRangeSteps: 80,
   },
-} satisfies FormPreset;
+});

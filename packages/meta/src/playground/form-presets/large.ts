@@ -1,6 +1,17 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Other";
+export const meta = defineMetadata({
+  category: FormPresetCategory.Other,
+  title: "Large",
+  description:
+    "Complex large-scale form with many fields across multiple sections.",
+  tags: [PresetTag.Object, PresetTag.Validation],
+});
 
 function largeEnum(n: number) {
   const list = [];
@@ -10,7 +21,7 @@ function largeEnum(n: number) {
   return list;
 }
 
-export default {
+export default definePreset({
   resolver: "compat",
   schema: {
     definitions: {
@@ -51,4 +62,4 @@ export default {
     },
   },
   initialValue: {},
-} satisfies FormPreset;
+});

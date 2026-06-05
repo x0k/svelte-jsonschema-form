@@ -1,3 +1,4 @@
+import type { CatalogMeta } from "../catalog.ts";
 import type { FormState } from "./form-state.ts";
 
 type RequiredFormPresetProperties = "schema" | "uiSchema" | "initialValue";
@@ -5,39 +6,38 @@ type RequiredFormPresetProperties = "schema" | "uiSchema" | "initialValue";
 export type FormPreset = Pick<FormState, RequiredFormPresetProperties> &
   Partial<Omit<FormState, RequiredFormPresetProperties>>;
 
-const FORM_PRESET_CATEGORIES = [
-  "Schema Basics",
-  "Schema Logic",
-  "UI customization",
-  "Other",
-] as const;
+// NOTE: Order is important
+export enum FormPresetCategory {
+  SchemaBasics = "Schema Basics",
+  SchemaLogic = "Schema Logic",
+  UiCustomization = "UI customization",
+  Other = "Other",
+}
 
-export type FormPresetCategory = (typeof FORM_PRESET_CATEGORIES)[number];
+const ORDERED_CATEGORIES = Object.values(FormPresetCategory);
+
+export enum PresetTag {
+  Array = "array",
+  Composition = "composition",
+  Conditional = "conditional",
+  Layout = "layout",
+  Null = "null",
+  Object = "object",
+  Reference = "reference",
+  Validation = "validation",
+  Widget = "widget",
+}
+
+export type PresetMeta = CatalogMeta<FormPresetCategory, PresetTag>;
+
+export function defineMetadata(meta: PresetMeta): PresetMeta {
+  return meta;
+}
+
+export function definePreset(preset: FormPreset): FormPreset {
+  return preset;
+}
 
 export function formPresetCategories(): Iterable<FormPresetCategory> {
-  return FORM_PRESET_CATEGORIES;
+  return ORDERED_CATEGORIES;
 }
-
-const PRESET_CATEGORIES = import.meta.glob("./form-presets/*.js", {
-  import: "category",
-  eager: true,
-});
-const PRESET_LOADERS = import.meta.glob("./form-presets/*.js", {
-  import: "default",
-  eager: false,
-});
-function presetName(path: string) {
-  return path.slice(15, path.length - 3);
-}
-const SORTED_PRESETS = Object.keys(PRESET_LOADERS)
-  .map((path) => ({
-    category: PRESET_CATEGORIES[path]! as FormPresetCategory,
-    path,
-    name: presetName(path),
-    load: PRESET_LOADERS[path]! as () => Promise<FormPreset>,
-  }))
-  .sort((a, b) => a.name.localeCompare(b.name));
-export const GROUPED_FORM_PRESETS = Object.groupBy(
-  SORTED_PRESETS,
-  (s) => s.category,
-);

@@ -1,11 +1,12 @@
 import sveltePage from "examples/basic-starter/src/routes/deprecated-keyword/+page.svelte?raw";
 
-import { defineExample, defineMeta, Tag } from "../model.js";
+import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
+  category: ExampleCategory.SchemaAndValidation,
   title: "Deprecated Keyword",
   description: "Adding support for new JSON Schema keywords like 'deprecated'.",
-  tags: [Tag.SchemaManipulation],
+  tags: [Tag.Schema],
 });
 
 export default defineExample({

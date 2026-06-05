@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Logic";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "Additional Properties",
+  description:
+    "Dynamic property patterns using additionalProperties and patternProperties.",
+  tags: [PresetTag.Object, PresetTag.Validation],
+});
 
-export default {
+export default definePreset({
   schema: {
     title: "A customizable registration form",
     description: "A simple form with additional properties example.",
@@ -43,4 +54,4 @@ export default {
     lastName: "Norris",
     assKickCount: "infinity",
   },
-} satisfies FormPreset;
+});

@@ -1,8 +1,20 @@
-import type { FormPreset, FormPresetCategory } from "../form-preset.ts";
+import type { FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Basics";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "Draft 2020-12",
+  description:
+    "JSON Schema Draft 2020-12 features: prefixItems, unevaluatedProperties, $dynamicRef, and $dynamicAnchor.",
+  tags: [PresetTag.Validation, PresetTag.Composition],
+});
 
-export default {
+export default definePreset({
   schema: {
     $schema: "https://json-schema.org/draft/2020-12/schema",
     $id: "https://example.com/schema",
@@ -44,4 +56,4 @@ export default {
   } as FormPreset["schema"],
   initialValue: {},
   uiSchema: {},
-} satisfies FormPreset;
+});

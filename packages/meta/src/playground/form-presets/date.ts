@@ -1,8 +1,18 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Basics";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "Date",
+  description: "Date picker widget integration for date-type form fields.",
+  tags: [PresetTag.Widget],
+});
 
-export default {
+export default definePreset({
   schema: {
     title: "Date and time widgets",
     type: "object",
@@ -57,4 +67,4 @@ export default {
     },
   },
   initialValue: {},
-} satisfies FormPreset;
+});

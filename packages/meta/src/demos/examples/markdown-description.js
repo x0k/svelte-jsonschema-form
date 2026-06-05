@@ -3,9 +3,10 @@ import pageSvelte from "examples/basic-starter/src/routes/markdown-description/+
 
 import { extraPackage } from "meta";
 
-import { defineExample, defineMeta, Tag } from "../model.js";
+import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
+  category: ExampleCategory.LayoutAndComponents,
   title: "Markdown Description",
   description: "Rich markdown descriptions using svelte-exmarkdown.",
   tags: [Tag.CustomComponent],

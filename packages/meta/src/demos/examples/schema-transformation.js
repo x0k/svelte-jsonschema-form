@@ -1,11 +1,12 @@
 import sveltePage from "examples/basic-starter/src/routes/schema-transformation/+page.svelte?raw";
 
-import { defineExample, defineMeta, Tag } from "../model.js";
+import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
+  category: ExampleCategory.SchemaAndValidation,
   title: "Schema Transformation",
   description: "JSON Schema transformation before form rendering.",
-  tags: [Tag.SchemaManipulation],
+  tags: [Tag.Schema],
 });
 
 export default defineExample({

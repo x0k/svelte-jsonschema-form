@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Logic";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "Schema Dependencies",
+  description:
+    "Conditional schema dependencies that apply sub-schemas based on property presence.",
+  tags: [PresetTag.Conditional],
+});
 
-export default {
+export default definePreset({
   resolver: "compat",
   schema: {
     title: "Schema dependencies",
@@ -180,4 +191,4 @@ export default {
       },
     ],
   },
-} satisfies FormPreset;
+});

@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Other";
+export const meta = defineMetadata({
+  category: FormPresetCategory.Other,
+  title: "Errors",
+  description:
+    "Validation error display and custom error messaging strategies.",
+  tags: [PresetTag.Validation],
+});
 
-export default {
+export default definePreset({
   resolver: "compat",
   schema: {
     title: "Contextualized errors",
@@ -45,4 +56,4 @@ export default {
     skills: ["karate", "budo", "aikido"],
     multipleChoicesList: ["foo", "bar", "fuzz"],
   },
-} satisfies FormPreset;
+});

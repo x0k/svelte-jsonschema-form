@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "UI customization";
+export const meta = defineMetadata({
+  category: FormPresetCategory.UiCustomization,
+  title: "Grid",
+  description:
+    "Multi-column grid layouts using responsive field grid configuration.",
+  tags: [PresetTag.Layout],
+});
 
-export default {
+export default definePreset({
   // Based on https://habr.com/ru/articles/884862/ (RU)
   schema: {
     title: "Fill in user information",
@@ -55,4 +66,4 @@ export default {
     },
   },
   initialValue: {},
-} satisfies FormPreset;
+});

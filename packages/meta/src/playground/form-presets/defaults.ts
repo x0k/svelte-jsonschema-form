@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Basics";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "Defaults",
+  description:
+    "Default value propagation from schema definitions and property defaults.",
+  tags: [PresetTag.Validation, PresetTag.Object],
+});
 
-export default {
+export default definePreset({
   schema: {
     title: "Schema default properties",
     type: "object",
@@ -71,4 +82,4 @@ export default {
       array: [{}, {}],
     },
   },
-} satisfies FormPreset;
+});

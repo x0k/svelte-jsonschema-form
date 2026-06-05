@@ -3,12 +3,14 @@ import standardTs from "examples/basic-starter/src/lib/standard.ts?raw";
 
 import { extraPackage } from "meta";
 
-import { defineExample, defineMeta, Tag } from "../model.js";
+import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
+  category: ExampleCategory.GettingStarted,
   title: "TypeBox Starter",
   description: "TypeBox with standard-schema validator starter.",
-  tags: [Tag.Starter, Tag.Validator],
+  tags: [],
+  isValidatorSpecific: true,
 });
 
 export default defineExample({

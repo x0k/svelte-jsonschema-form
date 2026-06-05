@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "UI customization";
+export const meta = defineMetadata({
+  category: FormPresetCategory.UiCustomization,
+  title: "Ordering",
+  description:
+    "Field ordering and rearrangement using ui-schema order configuration.",
+  tags: [PresetTag.Layout],
+});
 
-export default {
+export default definePreset({
   schema: {
     title: "A registration form",
     type: "object",
@@ -63,4 +74,4 @@ export default {
     bio: "Roundhouse kicking asses since 1940",
     password: "noneed",
   },
-} satisfies FormPreset;
+});

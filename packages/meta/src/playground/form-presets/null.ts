@@ -1,8 +1,18 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Basics";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "Null",
+  description: "Null type field handling and its UI representation.",
+  tags: [PresetTag.Null],
+});
 
-export default {
+export default definePreset({
   schema: {
     title: "Null field example",
     description: "A short form with a null field",
@@ -39,4 +49,4 @@ export default {
     },
   },
   initialValue: {},
-} satisfies FormPreset;
+});

@@ -3,6 +3,8 @@ export * from "./css.ts";
 export * from "./package.ts";
 export * from "./errors.ts";
 
+export { filterByTags } from "./catalog.ts";
+
 export * from "./form.ts";
 export * from "./validators.ts";
 export * from "./themes.ts";

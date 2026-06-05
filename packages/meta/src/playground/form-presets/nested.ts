@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Basics";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "Nested",
+  description:
+    "Deeply nested object structures with multiple levels of hierarchy.",
+  tags: [PresetTag.Object, PresetTag.Composition],
+});
 
-export default {
+export default definePreset({
   schema: {
     title: "A list of tasks",
     type: "object",
@@ -67,4 +78,4 @@ export default {
       },
     ],
   },
-} satisfies FormPreset;
+});

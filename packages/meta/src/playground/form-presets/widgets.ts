@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "UI customization";
+export const meta = defineMetadata({
+  category: FormPresetCategory.UiCustomization,
+  title: "Widgets",
+  description:
+    "Custom widget implementations for specialized input control rendering.",
+  tags: [PresetTag.Widget],
+});
 
-export default {
+export default definePreset({
   resolver: "compat",
   schema: {
     title: "Widgets",
@@ -241,4 +252,4 @@ export default {
     },
     secret: "I'm a hidden string.",
   },
-} satisfies FormPreset;
+});

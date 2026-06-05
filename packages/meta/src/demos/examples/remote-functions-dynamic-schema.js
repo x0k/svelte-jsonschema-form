@@ -9,12 +9,14 @@ import {
   defineMeta,
   remoteFormDefaultsReplacer,
   Tag,
+  ExampleCategory,
 } from "../model.js";
 
 export const meta = defineMeta({
+  category: ExampleCategory.SvelteKitIntegrations,
   title: "Remote Functions Dynamic Schema",
   description: "Dynamic schemas combined with SvelteKit remote functions.",
-  tags: [Tag.RemoteFunctions, Tag.SvelteKit, Tag.Dynamic],
+  tags: [Tag.RemoteFunctions],
 });
 
 export default defineExample({

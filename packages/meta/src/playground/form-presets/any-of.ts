@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Logic";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "Any Of",
+  description:
+    "Schema anyOf composition with multiple valid schemas and conditional rendering.",
+  tags: [PresetTag.Composition],
+});
 
-export default {
+export default definePreset({
   schema: {
     type: "object",
     properties: {
@@ -61,4 +72,4 @@ export default {
   },
   uiSchema: {},
   initialValue: {},
-} satisfies FormPreset;
+});

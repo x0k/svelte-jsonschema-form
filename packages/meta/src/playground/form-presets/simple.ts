@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Other";
+export const meta = defineMetadata({
+  category: FormPresetCategory.Other,
+  title: "Simple",
+  description:
+    "A basic registration form showcasing common field types (string, integer, boolean) with various UI options.",
+  tags: [PresetTag.Object, PresetTag.Validation],
+});
 
-export default {
+export default definePreset({
   schema: {
     title: "A registration form",
     description: "A simple form example.",
@@ -131,4 +142,4 @@ export default {
     password: "noneed",
     telephone: "1-800-KICKASS",
   },
-} satisfies FormPreset;
+});

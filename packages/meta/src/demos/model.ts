@@ -1,3 +1,4 @@
+import type { CatalogMeta } from "../catalog.ts";
 import type { AbstractPackage } from "../package.ts";
 import type { ExtraWidgetFileNames } from "../widgets.ts";
 import type { ToTheme } from "../themes.ts";
@@ -9,42 +10,40 @@ import {
   type CodegenNonPrecompiledValidator,
 } from "../codegen/index.ts";
 import type { CodeTransformer } from "../composer/index.ts";
-export { type Example, EXAMPLES } from "./example.generated.ts";
+
+export enum ExampleCategory {
+  GettingStarted = "Getting Started",
+  SvelteKitIntegrations = "SvelteKit Integrations",
+  SchemaAndValidation = "Schema & Validation",
+  LayoutAndComponents = "Layout & Components",
+}
+
+export function exampleCategories(): Iterable<ExampleCategory> {
+  return ORDERED_CATEGORIES;
+}
+
+const ORDERED_CATEGORIES = Object.values(ExampleCategory);
 
 export enum Tag {
-  /** Async data loading (remote sources, search) */
-  Async = "async",
   /** Custom field/description components */
   CustomComponent = "custom component",
-  /** Runtime schema changes */
-  Dynamic = "dynamic",
   /** Enum/selection field handling */
   Enum = "enum",
   /** SvelteKit form actions integration */
   FormActions = "form actions",
-  /** Form layout customization */
+  /** Custom form layout */
   Layout = "layout",
-  /** Multi-step wizard forms */
-  MultiStep = "multi step",
   /** Works without JavaScript */
   NoJs = "no js",
   /** SvelteKit remote functions integration */
   RemoteFunctions = "remote functions",
-  /** Schema extension and manipulation */
-  SchemaManipulation = "schema manipulation",
-  /** Getting-started templates */
-  Starter = "starter",
-  /** SvelteKit integration */
-  SvelteKit = "sveltekit",
-  /** Different validator integrations */
-  Validator = "validator",
+  /** Schema version/feature usage */
+  Schema = "schema",
 }
 
-export interface ExampleMetadata {
-  title: string;
-  description: string;
-  tags: Tag[];
-}
+export type ExampleMetadata = CatalogMeta<ExampleCategory, Tag> & {
+  isValidatorSpecific?: boolean;
+};
 
 export interface ExampleContent {
   files: Record<string, string>;

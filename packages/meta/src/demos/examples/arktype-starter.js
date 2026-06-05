@@ -2,12 +2,14 @@ import sveltePage from "examples/basic-starter/src/routes/arktype-starter/+page.
 
 import { extraPackage } from "meta";
 
-import { defineExample, defineMeta, Tag } from "../model.js";
+import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
+  category: ExampleCategory.GettingStarted,
   title: "Arktype Starter",
   description: "Arktype with standard-schema validator starter.",
-  tags: [Tag.Starter, Tag.Validator],
+  tags: [],
+  isValidatorSpecific: true,
 });
 
 export default defineExample({

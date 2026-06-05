@@ -1,7 +1,18 @@
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Logic";
+export const meta = defineMetadata({
+  category: FormPresetCategory.Other,
+  title: "One Of Defaults",
+  description:
+    "Pre-filled default values across oneOf alternatives for improved UX.",
+  tags: [PresetTag.Composition, PresetTag.Conditional, PresetTag.Validation],
+});
 
 enum TransformPreset {
   Default = "Default",
@@ -206,7 +217,7 @@ const uiSchema: UiSchemaRoot = {
   },
 };
 
-export default {
+export default definePreset({
   resolver: "compat",
   schema,
   uiSchema,
@@ -217,4 +228,4 @@ export default {
     paginate: false,
     createOnOpen: true,
   },
-} satisfies FormPreset;
+});

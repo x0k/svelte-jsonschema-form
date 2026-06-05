@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "UI customization";
+export const meta = defineMetadata({
+  category: FormPresetCategory.UiCustomization,
+  title: "UI Options",
+  description:
+    "Various UI option customizations including placeholders, autofocus, and text formatting.",
+  tags: [PresetTag.Layout, PresetTag.Widget],
+});
 
-export default {
+export default definePreset({
   schema: {
     title: "A registration form",
     description: "A simple form example. Demonstrating ui options",
@@ -87,4 +98,4 @@ export default {
     bio: "Roundhouse kicking asses since 1940",
     password: "noneed",
   },
-} satisfies FormPreset;
+});

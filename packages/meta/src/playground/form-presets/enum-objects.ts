@@ -1,8 +1,18 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Basics";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "Enum Objects",
+  description: "Enum-based object property selection and handling.",
+  tags: [PresetTag.Object],
+});
 
-export default {
+export default definePreset({
   resolver: "compat",
   schema: {
     definitions: {
@@ -90,4 +100,4 @@ export default {
       },
     ],
   },
-} satisfies FormPreset;
+});

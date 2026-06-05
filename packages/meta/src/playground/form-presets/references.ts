@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Basics";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "References",
+  description:
+    "JSON Schema $ref references for reusable and modular schema definitions.",
+  tags: [PresetTag.Reference],
+});
 
-export default {
+export default definePreset({
   schema: {
     definitions: {
       address: {
@@ -81,4 +92,4 @@ export default {
       children: [{ name: "leaf" }],
     },
   },
-} satisfies FormPreset;
+});

@@ -1,8 +1,19 @@
-import type { FormPresetCategory, FormPreset } from "../form-preset.ts";
+import {
+  defineMetadata,
+  definePreset,
+  FormPresetCategory,
+  PresetTag,
+} from "../form-preset.ts";
 
-export const category: FormPresetCategory = "Schema Basics";
+export const meta = defineMetadata({
+  category: FormPresetCategory.SchemaBasics,
+  title: "Alternatives",
+  description:
+    "Multiple field definitions combined with anyOf for polymorphic object type.",
+  tags: [PresetTag.Composition],
+});
 
-export default {
+export default definePreset({
   resolver: "compat",
   schema: {
     definitions: {
@@ -98,4 +109,4 @@ export default {
     colorPalette: ["#ff0000"],
     blendMode: "screen",
   },
-} satisfies FormPreset;
+});

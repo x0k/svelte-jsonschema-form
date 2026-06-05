@@ -4,13 +4,12 @@ import type {
   CodegenThemeOrSubTheme,
 } from "../codegen/index.ts";
 import { codegenThemeOrSubTheme } from "../codegen/index.ts";
+import { nonPrecompiledValidators } from "./model.ts";
 import {
-  type Example,
-  EXAMPLES,
-  Tag,
-  nonPrecompiledValidators,
-} from "./model.ts";
-import { EXAMPLE_METADATA, createExampleFiles } from "./example.ts";
+  EXAMPLE_ENTRIES,
+  createExampleFiles,
+  type ExampleEntry,
+} from "./example.ts";
 
 const BASE = { themeOrSubTheme: "basic", validator: "ajv8" } as const;
 
@@ -19,10 +18,8 @@ interface ExampleVariant {
   validator: CodegenNonPrecompiledValidator;
 }
 
-function* getVariants(example: Example): Generator<ExampleVariant> {
-  const isValidatorSpecific = EXAMPLE_METADATA[example].tags.includes(
-    Tag.Validator,
-  );
+function* getVariants(entry: ExampleEntry): Generator<ExampleVariant> {
+  const isValidatorSpecific = entry.meta.isValidatorSpecific ?? false;
 
   yield BASE;
   for (const t of codegenThemeOrSubTheme()) {
@@ -38,13 +35,13 @@ function* getVariants(example: Example): Generator<ExampleVariant> {
 }
 
 describe("examples", () => {
-  for (const example of EXAMPLES) {
-    describe(example, () => {
-      const variants = Array.from(getVariants(example));
+  for (const entry of EXAMPLE_ENTRIES) {
+    describe(entry.path, () => {
+      const variants = Array.from(getVariants(entry));
       for (const { themeOrSubTheme, validator } of variants) {
         it(`${themeOrSubTheme}__${validator}`, async () => {
           expect(
-            await createExampleFiles({ example, themeOrSubTheme, validator }),
+            await createExampleFiles({ entry, themeOrSubTheme, validator }),
           ).toMatchSnapshot();
         });
       }

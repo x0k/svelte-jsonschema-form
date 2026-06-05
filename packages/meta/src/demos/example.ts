@@ -1,3 +1,4 @@
+import type { CatalogEntry } from "../catalog.ts";
 import type {
   CodegenThemeOrSubTheme,
   CodegenValidator,
@@ -5,20 +6,36 @@ import type {
 import { type CodeTransformer, createComposer } from "../composer/index.ts";
 import { sandboxOpen, type SandboxPlatform } from "../sandbox/index.ts";
 
-import type { Example } from "./example.generated.ts";
-import { type ExampleMetadata, type ExampleContent, Tag } from "./model.ts";
+import {
+  type ExampleMetadata,
+  type ExampleContent,
+  ExampleCategory,
+} from "./model.ts";
 
-export const EXAMPLE_METADATA = import.meta.glob("./*.js", {
-  base: "./examples",
-  eager: true,
+const EXAMPLE_METADATA = import.meta.glob("./examples/*.js", {
   import: "meta",
-}) as Record<Example, ExampleMetadata>;
+  eager: true,
+});
 
-export const EXAMPLE_CONTENT = import.meta.glob("./*.js", {
-  base: "./examples",
-  eager: false,
+const EXAMPLE_LOADERS = import.meta.glob("./examples/*.js", {
   import: "default",
-}) as Record<Example, () => Promise<ExampleContent>>;
+  eager: false,
+});
+
+export type ExampleEntry = CatalogEntry<ExampleMetadata, ExampleContent>;
+
+export const EXAMPLE_ENTRIES: ExampleEntry[] = Object.keys(EXAMPLE_LOADERS)
+  .map((path) => ({
+    meta: EXAMPLE_METADATA[path] as ExampleMetadata,
+    path,
+    load: EXAMPLE_LOADERS[path] as () => Promise<ExampleContent>,
+  }))
+  .sort((a, b) => a.meta.title.localeCompare(b.meta.title));
+
+export const GROUPED_EXAMPLES = Object.groupBy(
+  EXAMPLE_ENTRIES,
+  (e) => e.meta.category,
+) as Partial<Record<ExampleCategory, ExampleEntry[]>>;
 
 export const VALIDATOR_TRANSFORMERS: Partial<
   Record<CodegenValidator, () => Promise<{ default: CodeTransformer }>>
@@ -30,7 +47,7 @@ export const VALIDATOR_TRANSFORMERS: Partial<
 };
 
 export interface CreateExampleFilesOptions {
-  example: Example;
+  entry: ExampleEntry;
   themeOrSubTheme: CodegenThemeOrSubTheme;
   validator: CodegenValidator;
 }
@@ -38,10 +55,10 @@ export interface CreateExampleFilesOptions {
 export async function createExampleFiles(
   options: CreateExampleFilesOptions,
 ): Promise<Record<string, string>> {
-  const { example, themeOrSubTheme, validator } = options;
-  const meta = EXAMPLE_METADATA[example];
-  const content = await EXAMPLE_CONTENT[example]();
-  const isValidatorSpecific = meta.tags.includes(Tag.Validator);
+  const { entry, themeOrSubTheme, validator } = options;
+  const { meta, load } = entry;
+  const content = await load();
+  const isValidatorSpecific = meta.isValidatorSpecific ?? false;
 
   const codeTransformers = content.codeTransformers.slice();
 
@@ -73,7 +90,7 @@ export interface OpenExampleOptions extends CreateExampleFilesOptions {
 export async function openExample(options: OpenExampleOptions) {
   const files = await createExampleFiles(options);
   await sandboxOpen({
-    name: options.example,
+    name: options.entry.path,
     platform: options.platform,
     files,
   });
