@@ -30,7 +30,7 @@
       {#each formPresetCategories() as category}
         <p class="pt-4 font-semibold">{category}</p>
         <div class="flex gap-2 flex-wrap justify-center">
-          {#each GROUPED_FORM_PRESETS[category] as { path, name, load } (path)}
+          {#each GROUPED_FORM_PRESETS[category] as { meta, load } (meta.title)}
             <Button
               variant="secondary"
               onclick={async () => {
@@ -38,7 +38,7 @@
                 onSelect(await load());
               }}
             >
-              {name}
+              {meta.title}
             </Button>
           {/each}
         </div>
