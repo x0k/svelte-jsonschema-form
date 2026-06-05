@@ -1,6 +1,6 @@
 import pageSvelte from "examples/basic-starter/src/routes/decomposed-field/+page.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
   title: "Decomposed Field",

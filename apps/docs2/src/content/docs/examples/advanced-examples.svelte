@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { identity } from "@sjsf/form/lib/function";
   import { themeOrSubThemeTitle, validatorTitle } from "meta";
   import {
     codegenThemeOrSubTheme,
@@ -8,19 +7,36 @@
   } from "meta/codegen";
   import { SandboxPlatform, SANDBOX_PLATFORMS } from "meta/sandbox";
   import {
-    GENERIC_EXAMPLES,
-    SVELTE_KIT_EXAMPLES,
-    VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
-    VALIDATOR_SPECIFIC_EXAMPLES,
-    nonPrecompiledValidators,
+    EXAMPLES,
+    EXAMPLE_METADATA,
     openExample,
+    ExampleCategory,
+    nonPrecompiledValidators,
   } from "meta/demos";
-
-  import Buttons from "./buttons.svelte";
 
   let platform: SandboxPlatform = $state.raw(SandboxPlatform.StackBlitz);
   let theme: CodegenThemeOrSubTheme = $state.raw("basic");
   let validator: CodegenNonPrecompiledValidator = $state.raw("ajv8");
+
+  let open = $state({
+    generic: false,
+    formActions: false,
+    remoteFunctions: false,
+    validatorSpecific: false,
+  });
+
+  const generic = EXAMPLES.filter(
+    (e) => EXAMPLE_METADATA[e].category === ExampleCategory.Generic
+  );
+  const formActions = EXAMPLES.filter(
+    (e) => EXAMPLE_METADATA[e].category === ExampleCategory.FormActions
+  );
+  const remoteFunctions = EXAMPLES.filter(
+    (e) => EXAMPLE_METADATA[e].category === ExampleCategory.RemoteFunctions
+  );
+  const validatorSpecific = EXAMPLES.filter(
+    (e) => EXAMPLE_METADATA[e].category === ExampleCategory.ValidatorSpecific
+  );
 </script>
 
 <div class="pickers">
@@ -57,41 +73,223 @@
   </label>
 </div>
 
-<h3>Generic</h3>
+<button class="section-toggle" onclick={() => (open.generic = !open.generic)}>
+  <h3>Generic</h3>
+  <svg
+    class="chevron"
+    viewBox="0 0 24 24"
+    width="1em"
+    height="1em"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    {#if open.generic}
+      <polyline points="6 9 12 15 18 9" />
+    {:else}
+      <polyline points="9 18 15 12 9 6" />
+    {/if}
+  </svg>
+</button>
+{#if open.generic}
+  <div class="cards">
+    {#each generic as example (example)}
+      {@const meta = EXAMPLE_METADATA[example]}
+      <div
+        class="card not-content"
+        role="button"
+        tabindex="0"
+        onclick={() =>
+          openExample({ example, themeOrSubTheme: theme, validator, platform })}
+        onkeydown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openExample({
+              example,
+              themeOrSubTheme: theme,
+              validator,
+              platform,
+            });
+          }
+        }}
+      >
+        <span class="stack">
+          <span class="title">{meta.title}</span>
+          <span class="description">{meta.description}</span>
+        </span>
+        <span class="arrow">→</span>
+      </div>
+    {/each}
+  </div>
+{/if}
 
-<Buttons
-  items={GENERIC_EXAMPLES}
-  onClick={(example) => {
-    openExample({ example, themeOrSubTheme: theme, validator, platform });
-  }}
-  label={identity}
-/>
+<button
+  class="section-toggle"
+  onclick={() => (open.formActions = !open.formActions)}
+>
+  <h3>Form Actions</h3>
+  <svg
+    class="chevron"
+    viewBox="0 0 24 24"
+    width="1em"
+    height="1em"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    {#if open.formActions}
+      <polyline points="6 9 12 15 18 9" />
+    {:else}
+      <polyline points="9 18 15 12 9 6" />
+    {/if}
+  </svg>
+</button>
+{#if open.formActions}
+  <div class="cards">
+    {#each formActions as example (example)}
+      {@const meta = EXAMPLE_METADATA[example]}
+      <div
+        class="card not-content"
+        role="button"
+        tabindex="0"
+        onclick={() =>
+          openExample({ example, themeOrSubTheme: theme, validator, platform })}
+        onkeydown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openExample({
+              example,
+              themeOrSubTheme: theme,
+              validator,
+              platform,
+            });
+          }
+        }}
+      >
+        <span class="stack">
+          <span class="title">{meta.title}</span>
+          <span class="description">{meta.description}</span>
+        </span>
+        <span class="arrow">→</span>
+      </div>
+    {/each}
+  </div>
+{/if}
 
-<h3>SvelteKit</h3>
+<button
+  class="section-toggle"
+  onclick={() => (open.remoteFunctions = !open.remoteFunctions)}
+>
+  <h3>Remote Functions</h3>
+  <svg
+    class="chevron"
+    viewBox="0 0 24 24"
+    width="1em"
+    height="1em"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    {#if open.remoteFunctions}
+      <polyline points="6 9 12 15 18 9" />
+    {:else}
+      <polyline points="9 18 15 12 9 6" />
+    {/if}
+  </svg>
+</button>
+{#if open.remoteFunctions}
+  <div class="cards">
+    {#each remoteFunctions as example (example)}
+      {@const meta = EXAMPLE_METADATA[example]}
+      <div
+        class="card not-content"
+        role="button"
+        tabindex="0"
+        onclick={() =>
+          openExample({ example, themeOrSubTheme: theme, validator, platform })}
+        onkeydown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openExample({
+              example,
+              themeOrSubTheme: theme,
+              validator,
+              platform,
+            });
+          }
+        }}
+      >
+        <span class="stack">
+          <span class="title">{meta.title}</span>
+          <span class="description">{meta.description}</span>
+        </span>
+        <span class="arrow">→</span>
+      </div>
+    {/each}
+  </div>
+{/if}
 
-<Buttons
-  items={SVELTE_KIT_EXAMPLES}
-  onClick={(example) => {
-    openExample({ example, themeOrSubTheme: theme, validator, platform });
-  }}
-  label={identity}
-/>
-
-<h3>Validator specific</h3>
-<p><em>Validator selector will be ignored</em></p>
-
-<Buttons
-  items={VALIDATOR_SPECIFIC_EXAMPLES}
-  onClick={(example) => {
-    openExample({
-      example,
-      themeOrSubTheme: theme,
-      validator: VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
-      platform,
-    });
-  }}
-  label={identity}
-/>
+<button
+  class="section-toggle"
+  onclick={() => (open.validatorSpecific = !open.validatorSpecific)}
+>
+  <h3>Validator specific</h3>
+  <svg
+    class="chevron"
+    viewBox="0 0 24 24"
+    width="1em"
+    height="1em"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    {#if open.validatorSpecific}
+      <polyline points="6 9 12 15 18 9" />
+    {:else}
+      <polyline points="9 18 15 12 9 6" />
+    {/if}
+  </svg>
+</button>
+{#if open.validatorSpecific}
+  <p><em>Validator selector will be ignored</em></p>
+  <div class="cards">
+    {#each validatorSpecific as example (example)}
+      {@const meta = EXAMPLE_METADATA[example]}
+      <div
+        class="card not-content"
+        role="button"
+        tabindex="0"
+        onclick={() =>
+          openExample({ example, themeOrSubTheme: theme, validator, platform })}
+        onkeydown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openExample({
+              example,
+              themeOrSubTheme: theme,
+              validator,
+              platform,
+            });
+          }
+        }}
+      >
+        <span class="stack">
+          <span class="title">{meta.title}</span>
+          <span class="description">{meta.description}</span>
+        </span>
+        <span class="arrow">→</span>
+      </div>
+    {/each}
+  </div>
+{/if}
 
 <style>
   .pickers {
@@ -106,7 +304,87 @@
       padding: 0.5rem;
       border-radius: 0.5rem;
       color: inherit;
-      /* appearance: none; */
     }
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 1rem;
+  }
+
+  @media (min-width: 50rem) {
+    .cards {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    align-items: start;
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    box-shadow: var(--sl-shadow-sm);
+    background: transparent;
+    cursor: pointer;
+    text-align: start;
+    color: inherit;
+  }
+
+  .card:hover {
+    background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+    border-color: var(--sl-color-gray-2);
+  }
+
+  .card:hover .arrow {
+    color: var(--sl-color-white);
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .title {
+    color: var(--sl-color-white);
+    font-weight: 600;
+    font-size: var(--sl-text-lg);
+    line-height: var(--sl-line-height-headings);
+  }
+
+  .description {
+    color: var(--sl-color-gray-3);
+    line-height: 1.5;
+  }
+
+  .arrow {
+    color: var(--sl-color-gray-3);
+    font-size: 1.333em;
+  }
+
+  .section-toggle {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .chevron {
+    flex-shrink: 0;
+    color: var(--sl-color-gray-3);
   }
 </style>

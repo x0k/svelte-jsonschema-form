@@ -4,7 +4,7 @@ import pageSvelte from "examples/sveltekit-starter/src/routes/form-actions-dynam
 import nestedPageSvelte from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/[id]/+page.svelte?raw";
 import pageServerTs from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/[id]/+page.server.ts?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
   title: "Form Actions Dynamic Schema",

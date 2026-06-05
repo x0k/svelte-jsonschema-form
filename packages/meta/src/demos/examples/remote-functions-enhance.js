@@ -1,17 +1,17 @@
 import postModelTs from "examples/sveltekit-starter/src/lib/post.ts?raw";
-import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions/data.remote?raw";
-import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw";
+import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions-enhance/data.remote?raw";
+import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
 
 import {
   defineExample,
   defineMeta,
   remoteFormDefaultsReplacer,
   ExampleCategory,
-} from "../model.ts";
+} from "../model.js";
 
 export const meta = defineMeta({
-  title: "Remote Functions",
-  description: "SvelteKit remote functions for server-side logic.",
+  title: "Remote Functions Enhance",
+  description: "Progressively enhanced remote functions.",
   category: ExampleCategory.RemoteFunctions,
 });
 

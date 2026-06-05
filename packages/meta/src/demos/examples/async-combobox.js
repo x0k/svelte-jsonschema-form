@@ -3,7 +3,7 @@ import pageSvelte from "examples/basic-starter/src/routes/async-combobox/+page.s
 import asyncComboboxSvelte from "examples/basic-starter/src/routes/async-combobox/async-combobox.svelte?raw";
 import asyncComboboxWidgetSvelte from "examples/basic-starter/src/routes/async-combobox/async-combobox-widget.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
   title: "Async Combobox",

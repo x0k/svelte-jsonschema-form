@@ -1,6 +1,6 @@
 import sveltePage from "examples/basic-starter/src/routes/zod-starter/+page.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
   title: "Zod Starter",

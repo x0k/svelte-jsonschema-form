@@ -2,7 +2,7 @@ import pageSvelte from "examples/basic-starter/src/routes/draft-2020-12/+page.sv
 
 import { extraPackage } from "meta";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
   title: "Draft 2020-12",

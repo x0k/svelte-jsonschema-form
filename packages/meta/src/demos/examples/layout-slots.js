@@ -1,7 +1,7 @@
 import pageSvelte from "examples/basic-starter/src/routes/layout-slots/+page.svelte?raw";
 import layoutSvelte from "examples/basic-starter/src/routes/layout-slots/layout.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
   title: "Layout Slots",

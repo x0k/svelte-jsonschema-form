@@ -1,7 +1,7 @@
 import pageSvelte from "examples/basic-starter/src/routes/enum-widgets/+page.svelte?raw";
 import radioWithOrderSvelte from "examples/basic-starter/src/routes/enum-widgets/radio-with-other.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
   title: "Enum Widgets",

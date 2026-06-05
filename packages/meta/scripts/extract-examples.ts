@@ -12,7 +12,7 @@ async function main() {
   const files = await fs.readdir(EXAMPLES_DIR);
 
   const examples = files
-    .filter((f) => f.endsWith(".ts"))
+    .filter((f) => f.endsWith(".js"))
     .map((f) => `./${f}`)
     .sort();
 

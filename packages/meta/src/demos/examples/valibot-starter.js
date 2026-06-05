@@ -1,6 +1,6 @@
 import pageSvelte from "examples/basic-starter/src/routes/valibot-starter/+page.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
   title: "Valibot Starter",

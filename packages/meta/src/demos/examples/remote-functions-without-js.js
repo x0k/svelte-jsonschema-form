@@ -8,7 +8,7 @@ import {
   defineMeta,
   remoteFormDefaultsReplacer,
   ExampleCategory,
-} from "../model.ts";
+} from "../model.js";
 
 export const meta = defineMeta({
   title: "Remote Functions Without JS",

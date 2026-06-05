@@ -12,13 +12,13 @@ import {
   ExampleCategory,
 } from "./model.ts";
 
-export const EXAMPLE_METADATA = import.meta.glob("./*.ts", {
+export const EXAMPLE_METADATA = import.meta.glob("./*.js", {
   base: "./examples",
   eager: true,
   import: "meta",
 }) as Record<Example, ExampleMetadata>;
 
-export const EXAMPLE_CONTENT = import.meta.glob("./*.ts", {
+export const EXAMPLE_CONTENT = import.meta.glob("./*.js", {
   base: "./examples",
   eager: false,
   import: "default",

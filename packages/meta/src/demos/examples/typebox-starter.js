@@ -3,7 +3,7 @@ import standardTs from "examples/basic-starter/src/lib/standard.ts?raw";
 
 import { extraPackage } from "meta";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
   title: "TypeBox Starter",

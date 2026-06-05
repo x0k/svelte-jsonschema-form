@@ -9,7 +9,7 @@ import subTabsSvelte from "examples/basic-starter/src/routes/tabbed-layout/sub-t
 import pageSvelte from "examples/basic-starter/src/routes/tabbed-layout/+page.svelte?raw";
 import topTabsSvelte from "examples/basic-starter/src/routes/tabbed-layout/top-tabs.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
   title: "Tabbed Layout",

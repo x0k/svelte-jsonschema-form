@@ -3,7 +3,7 @@ import pageSvelte from "examples/basic-starter/src/routes/markdown-description/+
 
 import { extraPackage } from "meta";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
   title: "Markdown Description",
