@@ -44,6 +44,8 @@ const VALIDATOR_KINDS = [
   "ajv8_precompiled",
   // Schema validator
   "zod4",
+  // Only precompiled
+  "hyperjump_precompiled",
 ] satisfies ValidatorOptionValue[];
 
 function* kinds() {

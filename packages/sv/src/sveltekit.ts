@@ -25,6 +25,7 @@ export function sveltekitTs({
       sveltekit,
       ts,
       validatorWithSuffix,
+      modelName: "post",
     });
     sv.file(
       `${directory.kitRoutes}/demo/sjsf/${filename}.${language}`,

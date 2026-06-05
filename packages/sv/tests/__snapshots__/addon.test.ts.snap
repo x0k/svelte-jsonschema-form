@@ -81,7 +81,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -165,11 +165,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -432,7 +431,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -507,11 +506,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -617,7 +615,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -701,11 +699,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -965,7 +962,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -1040,11 +1037,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -1147,7 +1143,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -1231,11 +1227,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -1495,7 +1490,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -1570,11 +1565,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -1677,7 +1671,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -1761,11 +1755,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -2025,7 +2018,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -2100,11 +2093,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -2208,7 +2200,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -2292,22 +2284,32 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/demo/sjsf/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
-import { schema } from "$lib/post";
-import type { Post } from "$lib/post";
+import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
 	return {
-		postForm: ({ schema, initialValue: { title: "New post", content: "" } }) satisfies InitialFormData<Post>
+		postForm: ({
+			schema: post.schema,
+			initialValue: { title: "New post", content: "" }
+		}) satisfies InitialFormData<post.Model>
 	};
 };
 
 export const actions = ({
-	default: createAction({ ...defaults, name: "postForm", sendData: true, schema }, (data: Post) => {
-		console.log(data);
+	default: createAction(
+		{
+			...defaults,
+			name: "postForm",
+			sendData: true,
+			schema: post.schema
+		},
+		(data: post.Model) => {
+			console.log(data);
 
-		return { post: { ...data, id: "new-post" } };
-	})
+			return { post: { ...data, id: "new-post" } };
+		}
+	)
 }) satisfies Actions;
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
@@ -2432,7 +2434,7 @@ import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 \`);
 
 	const ajv = new Ajv({
@@ -2599,13 +2601,15 @@ import { createAction } from "@sjsf/sveltekit/server";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf/ajv8-validator/precompile";
 import * as validateFunctions from "$lib/post/validators.generated";
-import { schema } from "$lib/post/model.generated";
-import type { Post } from "$lib/post/model.generated";
+import * as post from "$lib/post/model.generated";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
 	return {
-		postForm: ({ schema, initialValue: { title: "New post", content: "" } }) satisfies InitialFormData<Post>
+		postForm: ({
+			schema: post.schema,
+			initialValue: { title: "New post", content: "" }
+		}) satisfies InitialFormData<post.Model>
 	};
 };
 
@@ -2615,10 +2619,10 @@ export const actions = ({
 			...defaults,
 			name: "postForm",
 			sendData: true,
-			schema,
+			schema: post.schema,
 			validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 		},
-		(data: Post) => {
+		(data: post.Model) => {
 			console.log(data);
 
 			return { post: { ...data, id: "new-post" } };
@@ -2645,6 +2649,352 @@ export const actions = ({
 			}
 		},
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+	});
+</script>
+
+<BasicForm form={form} method="POST" novalidate />
+",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";
+",
+  "svelte.config.js": "import adapter from '@sveltejs/adapter-auto';
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+	compilerOptions: {
+		// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
+		runes: ({ filename }) => (filename.split(/[/\\\\]/).includes('node_modules') ? undefined : true)
+	},
+	kit: {
+		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
+		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
+		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
+		adapter: adapter()
+	}
+};
+
+export default config;
+",
+  "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });
+",
+}
+`;
+
+exports[`@sjsf/sv 'sveltekit__formActions__hyperjump_pre…' 'kit-ts' 1`] = `
+{
+  "package.json": "{
+	"name": "kit-ts",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo '' && npm run sjsf:compile",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"sjsf:compile": "node scripts/compile-validators.ts"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^7.0.1",
+		"@sveltejs/kit": "^2.57.0",
+		"@sveltejs/vite-plugin-svelte": "^7.0.0",
+		"devalue": "^5.8.0",
+		"esm-env": "^1.2.0",
+		"json-schema-to-ts": "^3.1.1",
+		"svelte": "^5.55.2",
+		"svelte-check": "^4.4.6",
+		"typescript": "^6.0.2",
+		"vite": "^8.0.7"
+	},
+	"dependencies": {
+		"@fluent/bundle": "^0.19.0",
+		"@hyperjump/json-schema": "^1.17.0",
+		"@sjsf-lab/hyperjump-validator": "^3.0.0",
+		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/form": "^3.5.0",
+		"@sjsf/sveltekit": "^3.6.0",
+		"@sveltejs/kit": "^2.48.3",
+		"svelte": "^5.34.8"
+	}
+}
+",
+  "scripts/compile-validators.ts": "import fs from "node:fs/promises";
+import path from "node:path";
+import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
+import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
+import { registerSchema, unregisterSchema, type SchemaObject } from "@hyperjump/json-schema/draft-07";
+import { type AST, getSchema, Validation } from "@hyperjump/json-schema/experimental";
+import { uneval } from "devalue";
+
+const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
+const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
+const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
+
+async function compileSchema(schemaRelPath: string) {
+	const schemaPath = path.resolve(schemaRelPath);
+	const schemaDir = path.dirname(schemaPath);
+	const source = await fs.readFile(schemaPath, "utf-8");
+	const schema = JSON.parse(source);
+	let id = 0;
+	const toId = (n: number) => \`https://example.com/v\${n}\`;
+
+	const patch = insertSubSchemaIds(schema, {
+		fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE,
+		createId: () => toId(id++)
+	});
+
+	const schemas = fragmentSchema(patch);
+
+	for (const schema of schemas) {
+		registerSchema(Object.assign({ $schema: "http://json-schema.org/draft-07/schema" }, schema as SchemaObject));
+	}
+
+	try {
+		// https://github.com/hyperjump-io/json-schema/issues/116
+		const ast = { metaData: {}, plugins: new Set() } as unknown as AST;
+
+		for (const schema of schemas) {
+			const s = await getSchema(schema.$id!);
+
+			await Validation.compile(s, ast, s);
+		}
+
+		// It is easier to save as a TS file
+		// https://github.com/microsoft/TypeScript/issues/32063
+		await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
+import { uneval } from "devalue";
+import type { AST } from "@hyperjump/json-schema/experimental";
+export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
+export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
+export type Model = FromSchema<typeof schema>;
+export const ast = \${uneval(ast)} as unknown as AST;\`);
+	} finally {
+		for (const schema of schemas) {
+			unregisterSchema(schema.$id!);
+		}
+	}
+}
+
+async function main() {
+	for (const p of JSON_SCHEMA_PATHS) {
+		await compileSchema(p);
+	}
+}
+
+if (import.meta.main) {
+	await main();
+}
+",
+  "src/app.d.ts": "// See https://svelte.dev/docs/kit/types#app.d.ts
+// for information about these interfaces
+declare global {
+	namespace App {
+		// interface Error {}
+		// interface Locals {}
+		// interface PageData {}
+		// interface PageState {}
+		// interface Platform {}
+	}
+}
+
+export {};
+",
+  "src/app.html": "<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
+",
+  "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
+  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+",
+  "src/lib/post/schema.json": "{
+	"title": "Post",
+	"type": "object",
+	"properties": {
+		"title": {
+			"title": "Title",
+			"type": "string"
+		},
+		"content": {
+			"title": "Content",
+			"type": "string",
+			"minLength": 10
+		}
+	},
+	"required": [
+		"title",
+		"content"
+	]
+}
+",
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@hyperjump/json-schema/draft-07";
+import "@hyperjump/json-schema/formats-lite";
+import type { FormState, ResolveFieldType } from "@sjsf/form";
+import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
+	return ({ schema }) => {
+		if (schema.oneOf !== undefined) {
+			return "oneOfField";
+		}
+
+		if (schema.anyOf !== undefined) {
+			return "anyOfField";
+		}
+
+		const type = getSimpleSchemaType(schema);
+
+		if (type === "array") {
+			return isFixedItems(schema) ? "tupleField" : "arrayField";
+		}
+
+		return \`\${type}Field\`;
+	};
+}
+
+export { translation } from "@sjsf/form/translations/en";
+export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from "@sjsf/basic-theme";
+
+export const onSubmitError = createFocusOnFirstError();
+",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import favicon from '$lib/assets/favicon.svg';
+
+	let { children } = $props();
+</script>
+
+<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+{@render children()}
+",
+  "src/routes/+page.svelte": "<h1>Welcome to SvelteKit</h1>
+<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+",
+  "src/routes/demo/+page.svelte": "<script lang="ts">
+	import { resolve } from '$app/paths';
+</script>
+
+<a href={resolve('/demo/sjsf')}>sjsf</a>
+",
+  "src/routes/demo/sjsf/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
+import type { InitialFormData } from "@sjsf/sveltekit";
+import { createAction } from "@sjsf/sveltekit/server";
+import * as post from "$lib/post/model.generated";
+import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
+import { createFormValidatorFactory } from "@sjsf-lab/hyperjump-validator/precompile";
+import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
+import * as defaults from "$lib/sjsf/defaults";
+
+export const load = async () => {
+	return {
+		postForm: ({
+			schema: post.schema,
+			initialValue: { title: "New post", content: "" }
+		}) satisfies InitialFormData<post.Model>
+	};
+};
+
+export const actions = ({
+	default: createAction(
+		{
+			...defaults,
+			name: "postForm",
+			sendData: true,
+			schema: post.schema,
+			validator: createFormValidatorFactory({
+				validatorRetriever: createValidatorRetriever({
+					registry: {
+						get(id) {
+							const schemaUri = \`\${id}#\`;
+
+							return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
+						}
+					}
+				}),
+				localization
+			})
+		},
+		(data: post.Model) => {
+			console.log(data);
+
+			return { post: { ...data, id: "new-post" } };
+		}
+	)
+}) satisfies Actions;
+",
+  "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import type { ActionData, PageData } from './$types';
+	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
+	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
+	import { createFormValidatorFactory } from '@sjsf-lab/hyperjump-validator/precompile';
+	import { createValidatorRetriever } from '@sjsf/form/validators/precompile';
+	import * as post from '$lib/post/model.generated';
+	import { BasicForm } from '@sjsf/form';
+
+	const meta = createMeta<ActionData, PageData>().postForm;
+
+	const { form } = setupSvelteKitForm(meta, {
+		...defaults,
+		onSuccess: (result) => {
+			if (result.type === "success") {
+				console.log(result.data?.post);
+			}
+		},
+
+		validator: createFormValidatorFactory({
+			validatorRetriever: createValidatorRetriever({
+				registry: {
+					get(id) {
+						const schemaUri = \`\${id}#\`;
+
+						return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
+					}
+				}
+			}),
+			localization
+		})
 	});
 </script>
 
@@ -2746,12 +3096,12 @@ export {};
 ",
   "src/lib/post.ts": "import * as z from 'zod';
 
-export const post = z.object({
+export const schema = z.object({
 	title: z.string().meta({ title: 'Title' }),
 	content: z.string().min(10).meta({ title: 'Content' })
 }).meta({ title: 'Post' });
 
-export type Post = z.infer<typeof post>;
+export type Model = z.infer<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -2827,13 +3177,12 @@ export const onSubmitError = createFocusOnFirstError();
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
 import { adapt } from "@sjsf/zod4-validator/classic";
-import { post } from "$lib/post";
-import * as z from "zod";
+import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
 	return {
-		postForm: ({ initialValue: { title: "New post", content: "" } }) satisfies InitialFormData<z.infer<typeof post>>
+		postForm: ({ initialValue: { title: "New post", content: "" } }) satisfies InitialFormData<post.Model>
 	};
 };
 
@@ -2843,7 +3192,7 @@ export const actions = ({
 			...defaults,
 			name: "postForm",
 			sendData: true,
-			...adapt(post)
+			...adapt(post.schema)
 		},
 		(data) => {
 			console.log(data);
@@ -2857,7 +3206,7 @@ export const actions = ({
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { ActionData, PageData } from './$types';
 	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
-	import { post } from '$lib/post';
+	import * as post from '$lib/post';
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm } from '@sjsf/form';
 
@@ -2870,7 +3219,7 @@ export const actions = ({
 				console.log(result.data?.post);
 			}
 		},
-		...adapt(post)
+		...adapt(post.schema)
 	});
 </script>
 
@@ -2985,7 +3334,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -3070,13 +3419,12 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as defaults from '$lib/sjsf/defaults';
 	import { createPost, getInitialData } from './data.remote';
 	import { connect } from '@sjsf/sveltekit/rf/client';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const initialData = await getInitialData();
 
-	const form = createForm<Post>(await connect(
+	const form = createForm<post.Model>(await connect(
 		createPost.enhance(async ({ submit }) => {
 			if (await submit()) {
 				console.log(createPost.result);
@@ -3092,15 +3440,17 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit";
 import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 import { form, query } from "$app/server";
-import { schema } from "$lib/post";
-import type { Post } from "$lib/post";
+import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({ schema, initialValue: { title: "New post", content: "" } }) satisfies InitialFormData<Post>;
+	return ({
+		schema: post.schema,
+		initialValue: { title: "New post", content: "" }
+	}) satisfies InitialFormData<post.Model>;
 });
 
-export const createPost = form(createServerValidator<Post>({ ...defaults, schema }), ({ data }) => {
+export const createPost = form(createServerValidator<post.Model>({ ...defaults, schema: post.schema }), ({ data }) => {
 	console.log(data);
 
 	return { ...data, id: "new-post" };
@@ -3216,7 +3566,7 @@ import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 \`);
 
 	const ajv = new Ajv({
@@ -3381,8 +3731,7 @@ export const onSubmitError = createFocusOnFirstError();
 	import * as defaults from '$lib/sjsf/defaults';
 	import { createPost, getInitialData } from './data.remote';
 	import { connect } from '@sjsf/sveltekit/rf/client';
-	import type { Post } from '$lib/post/model.generated';
-	import { schema } from '$lib/post/model.generated';
+	import * as post from '$lib/post/model.generated';
 	import * as validateFunctions from '$lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
@@ -3390,7 +3739,7 @@ export const onSubmitError = createFocusOnFirstError();
 
 	const initialData = await getInitialData();
 
-	const form = createForm<Post>(await connect(
+	const form = createForm<post.Model>(await connect(
 		createPost.enhance(async ({ submit }) => {
 			if (await submit()) {
 				console.log(createPost.result);
@@ -3414,19 +3763,373 @@ import { form, query } from "$app/server";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf/ajv8-validator/precompile";
 import * as validateFunctions from "$lib/post/validators.generated";
-import { schema } from "$lib/post/model.generated";
-import type { Post } from "$lib/post/model.generated";
+import * as post from "$lib/post/model.generated";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({ schema, initialValue: { title: "New post", content: "" } }) satisfies InitialFormData<Post>;
+	return ({
+		schema: post.schema,
+		initialValue: { title: "New post", content: "" }
+	}) satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(
-	createServerValidator<Post>({
+	createServerValidator<post.Model>({
 		...defaults,
-		schema,
+		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+	}),
+	({ data }) => {
+		console.log(data);
+
+		return { ...data, id: "new-post" };
+	}
+);
+",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";
+",
+  "svelte.config.js": "import adapter from '@sveltejs/adapter-auto';
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+	compilerOptions: {
+		// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
+		runes: ({ filename }) => filename.split(/[/\\\\]/).includes('node_modules') ? undefined : true,
+		experimental: { async: true }
+	},
+	kit: {
+		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
+		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
+		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
+		adapter: adapter(),
+		experimental: { remoteFunctions: true }
+	}
+};
+
+export default config;
+",
+  "vite.config.ts": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+	plugins: [sveltekit()],
+	optimizeDeps: {
+		exclude: // https://github.com/sveltejs/kit/issues/14788
+		['@sjsf/form', '@sjsf/sveltekit/rf/client']
+	}
+});
+",
+}
+`;
+
+exports[`@sjsf/sv 'sveltekit__remoteFunctions__hyperjump…' 'kit-ts' 1`] = `
+{
+  "package.json": "{
+	"name": "kit-ts",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo '' && npm run sjsf:compile",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"sjsf:compile": "node scripts/compile-validators.ts"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^7.0.1",
+		"@sveltejs/kit": "^2.57.0",
+		"@sveltejs/vite-plugin-svelte": "^7.0.0",
+		"devalue": "^5.8.0",
+		"esm-env": "^1.2.0",
+		"json-schema-to-ts": "^3.1.1",
+		"svelte": "^5.55.2",
+		"svelte-check": "^4.4.6",
+		"typescript": "^6.0.2",
+		"vite": "^8.0.7"
+	},
+	"dependencies": {
+		"@fluent/bundle": "^0.19.0",
+		"@hyperjump/json-schema": "^1.17.0",
+		"@sjsf-lab/hyperjump-validator": "^3.0.0",
+		"@sjsf/basic-theme": "^3.6.0",
+		"@sjsf/form": "^3.5.0",
+		"@sjsf/sveltekit": "^3.6.0",
+		"@sveltejs/kit": "^2.48.3",
+		"svelte": "^5.34.8"
+	}
+}
+",
+  "scripts/compile-validators.ts": "import fs from "node:fs/promises";
+import path from "node:path";
+import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
+import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
+import { registerSchema, unregisterSchema, type SchemaObject } from "@hyperjump/json-schema/draft-07";
+import { type AST, getSchema, Validation } from "@hyperjump/json-schema/experimental";
+import { uneval } from "devalue";
+
+const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
+const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
+const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
+
+async function compileSchema(schemaRelPath: string) {
+	const schemaPath = path.resolve(schemaRelPath);
+	const schemaDir = path.dirname(schemaPath);
+	const source = await fs.readFile(schemaPath, "utf-8");
+	const schema = JSON.parse(source);
+	let id = 0;
+	const toId = (n: number) => \`https://example.com/v\${n}\`;
+
+	const patch = insertSubSchemaIds(schema, {
+		fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE,
+		createId: () => toId(id++)
+	});
+
+	const schemas = fragmentSchema(patch);
+
+	for (const schema of schemas) {
+		registerSchema(Object.assign({ $schema: "http://json-schema.org/draft-07/schema" }, schema as SchemaObject));
+	}
+
+	try {
+		// https://github.com/hyperjump-io/json-schema/issues/116
+		const ast = { metaData: {}, plugins: new Set() } as unknown as AST;
+
+		for (const schema of schemas) {
+			const s = await getSchema(schema.$id!);
+
+			await Validation.compile(s, ast, s);
+		}
+
+		// It is easier to save as a TS file
+		// https://github.com/microsoft/TypeScript/issues/32063
+		await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
+import { uneval } from "devalue";
+import type { AST } from "@hyperjump/json-schema/experimental";
+export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
+export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
+export type Model = FromSchema<typeof schema>;
+export const ast = \${uneval(ast)} as unknown as AST;\`);
+	} finally {
+		for (const schema of schemas) {
+			unregisterSchema(schema.$id!);
+		}
+	}
+}
+
+async function main() {
+	for (const p of JSON_SCHEMA_PATHS) {
+		await compileSchema(p);
+	}
+}
+
+if (import.meta.main) {
+	await main();
+}
+",
+  "src/app.d.ts": "// See https://svelte.dev/docs/kit/types#app.d.ts
+// for information about these interfaces
+declare global {
+	namespace App {
+		// interface Error {}
+		// interface Locals {}
+		// interface PageData {}
+		// interface PageState {}
+		// interface Platform {}
+	}
+}
+
+export {};
+",
+  "src/app.html": "<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
+",
+  "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
+  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+",
+  "src/lib/post/schema.json": "{
+	"title": "Post",
+	"type": "object",
+	"properties": {
+		"title": {
+			"title": "Title",
+			"type": "string"
+		},
+		"content": {
+			"title": "Content",
+			"type": "string",
+			"minLength": 10
+		}
+	},
+	"required": [
+		"title",
+		"content"
+	]
+}
+",
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@hyperjump/json-schema/draft-07";
+import "@hyperjump/json-schema/formats-lite";
+import type { FormState, ResolveFieldType } from "@sjsf/form";
+import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
+	return ({ schema }) => {
+		if (schema.oneOf !== undefined) {
+			return "oneOfField";
+		}
+
+		if (schema.anyOf !== undefined) {
+			return "anyOfField";
+		}
+
+		const type = getSimpleSchemaType(schema);
+
+		if (type === "array") {
+			return isFixedItems(schema) ? "tupleField" : "arrayField";
+		}
+
+		return \`\${type}Field\`;
+	};
+}
+
+export { translation } from "@sjsf/form/translations/en";
+export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from "@sjsf/basic-theme";
+
+export const onSubmitError = createFocusOnFirstError();
+",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import favicon from '$lib/assets/favicon.svg';
+
+	let { children } = $props();
+</script>
+
+<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+{@render children()}
+",
+  "src/routes/+page.svelte": "<h1>Welcome to SvelteKit</h1>
+<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+",
+  "src/routes/demo/+page.svelte": "<script lang="ts">
+	import { resolve } from '$app/paths';
+</script>
+
+<a href={resolve('/demo/sjsf')}>sjsf</a>
+",
+  "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import { createPost, getInitialData } from './data.remote';
+	import { connect } from '@sjsf/sveltekit/rf/client';
+	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
+	import { createFormValidatorFactory } from '@sjsf-lab/hyperjump-validator/precompile';
+	import { createValidatorRetriever } from '@sjsf/form/validators/precompile';
+	import * as post from '$lib/post/model.generated';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const initialData = await getInitialData();
+
+	const form = createForm<post.Model>(await connect(
+		createPost.enhance(async ({ submit }) => {
+			if (await submit()) {
+				console.log(createPost.result);
+				form.reset();
+			}
+		}),
+		{
+			...defaults,
+			...initialData,
+			fields: createPost.fields,
+			validator: createFormValidatorFactory({
+				validatorRetriever: createValidatorRetriever({
+					registry: {
+						get(id) {
+							const schemaUri = \`\${id}#\`;
+
+							return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
+						}
+					}
+				}),
+				localization
+			})
+		}
+	));
+</script>
+
+<BasicForm form={form} novalidate />
+",
+  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit";
+import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+import { form, query } from "$app/server";
+import * as post from "$lib/post/model.generated";
+import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
+import { createFormValidatorFactory } from "@sjsf-lab/hyperjump-validator/precompile";
+import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
+import * as defaults from "$lib/sjsf/defaults";
+
+export const getInitialData = query(async () => {
+	return ({
+		schema: post.schema,
+		initialValue: { title: "New post", content: "" }
+	}) satisfies InitialFormData<post.Model>;
+});
+
+export const createPost = form(
+	createServerValidator<post.Model>({
+		...defaults,
+		schema: post.schema,
+		validator: createFormValidatorFactory({
+			validatorRetriever: createValidatorRetriever({
+				registry: {
+					get(id) {
+						const schemaUri = \`\${id}#\`;
+
+						return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
+					}
+				}
+			}),
+			localization
+		})
 	}),
 	({ data }) => {
 		console.log(data);
@@ -3539,12 +4242,12 @@ export {};
 ",
   "src/lib/post.ts": "import * as z from 'zod';
 
-export const post = z.object({
+export const schema = z.object({
 	title: z.string().meta({ title: 'Title' }),
 	content: z.string().min(10).meta({ title: 'Content' })
 }).meta({ title: 'Post' });
 
-export type Post = z.infer<typeof post>;
+export type Model = z.infer<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -3620,7 +4323,7 @@ export const onSubmitError = createFocusOnFirstError();
 	import * as defaults from '$lib/sjsf/defaults';
 	import { createPost, getInitialData } from './data.remote';
 	import { connect } from '@sjsf/sveltekit/rf/client';
-	import { post } from '$lib/post';
+	import * as post from '$lib/post';
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -3637,7 +4340,7 @@ export const onSubmitError = createFocusOnFirstError();
 			...defaults,
 			...initialData,
 			fields: createPost.fields,
-			...adapt(post)
+			...adapt(post.schema)
 		}
 	));
 </script>
@@ -3648,15 +4351,14 @@ export const onSubmitError = createFocusOnFirstError();
 import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 import { form, query } from "$app/server";
 import { adapt } from "@sjsf/zod4-validator/classic";
-import { post } from "$lib/post";
-import * as z from "zod";
+import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({ initialValue: { title: "New post", content: "" } }) satisfies InitialFormData<z.infer<typeof post>>;
+	return ({ initialValue: { title: "New post", content: "" } }) satisfies InitialFormData<post.Model>;
 });
 
-export const createPost = form(createServerValidator({ ...defaults, ...adapt(post) }), ({ data }) => {
+export const createPost = form(createServerValidator({ ...defaults, ...adapt(post.schema) }), ({ data }) => {
 	console.log(data);
 
 	return { ...data, id: "new-post" };
@@ -3776,7 +4478,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -3859,11 +4561,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -4118,7 +4819,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -4192,11 +4893,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -4298,7 +4998,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -4381,11 +5081,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -4638,7 +5337,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -4712,11 +5411,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -4824,7 +5522,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -4912,11 +5610,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -5182,7 +5879,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -5261,11 +5958,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -5374,7 +6070,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -5462,11 +6158,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -5757,7 +6452,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -5836,11 +6531,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -5943,7 +6637,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -6026,11 +6720,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -6288,7 +6981,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -6362,11 +7055,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -6480,7 +7172,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -6654,11 +7346,10 @@ export function setShadcnThemeContext() {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -7054,7 +7745,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -7216,11 +7907,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -7341,7 +8031,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -7496,11 +8186,10 @@ export function setShadcnThemeContext() {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -7897,7 +8586,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -8040,11 +8729,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -8162,7 +8850,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -8254,11 +8942,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -8529,7 +9216,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -8612,11 +9299,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -8719,7 +9405,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -8807,11 +9493,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -9066,7 +9751,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -9145,11 +9830,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -9243,7 +9927,7 @@ import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 \`);
 
 	const ajv = new Ajv({
@@ -9406,17 +10090,16 @@ export const onSubmitError = createFocusOnFirstError();
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post/model.generated';
-	import { schema } from '$lib/post/model.generated';
+	import * as post from '$lib/post/model.generated';
 	import * as validateFunctions from '$lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({
+	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
-		schema,
+		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
@@ -9535,7 +10218,7 @@ import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 \`);
 
 	const ajv = new Ajv({
@@ -9821,17 +10504,16 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post/model.generated';
-	import { schema } from 'src/lib/post/model.generated';
+	import * as post from 'src/lib/post/model.generated';
 	import * as validateFunctions from 'src/lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({
+	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
-		schema,
+		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
@@ -9933,7 +10615,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -10008,11 +10690,10 @@ export { createFormValidator as validator } from "@sjsf-lab/ata-validator";
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -10266,7 +10947,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -10332,11 +11013,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -10433,7 +11113,7 @@ import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 \`);
 
 	const base = { $schema: "http://json-schema.org/draft-07/schema" };
@@ -10572,17 +11252,16 @@ export const onSubmitError = createFocusOnFirstError();
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post/model.generated';
-	import { schema } from '$lib/post/model.generated';
+	import * as post from '$lib/post/model.generated';
 	import * as validateFunctions from '$lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf-lab/ata-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({
+	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
-		schema,
+		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
@@ -10704,7 +11383,7 @@ import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 \`);
 
 	const base = { $schema: "http://json-schema.org/draft-07/schema" };
@@ -10966,17 +11645,16 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post/model.generated';
-	import { schema } from 'src/lib/post/model.generated';
+	import * as post from 'src/lib/post/model.generated';
 	import * as validateFunctions from 'src/lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf-lab/ata-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({
+	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
-		schema,
+		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
@@ -11078,7 +11756,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -11153,11 +11831,10 @@ export { createFormValidator as validator } from "@sjsf/cfworker-validator";
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -11411,7 +12088,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -11477,11 +12154,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -11546,7 +12222,7 @@ import path from "node:path";
 import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { registerSchema, unregisterSchema, type SchemaObject } from "@hyperjump/json-schema/draft-07";
-import { compile, getSchema } from "@hyperjump/json-schema/experimental";
+import { type AST, getSchema, Validation } from "@hyperjump/json-schema/experimental";
 import { uneval } from "devalue";
 
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
@@ -11595,7 +12271,7 @@ import { uneval } from "devalue";
 import type { AST } from "@hyperjump/json-schema/experimental";
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 export const ast = \${uneval(ast)} as unknown as AST;\`);
 	} finally {
 		for (const schema of schemas) {
@@ -11738,24 +12414,23 @@ export const onSubmitError = createFocusOnFirstError();
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post/model.generated';
-	import { ast, schema } from '$lib/post/model.generated';
 	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { createValidatorRetriever } from '@sjsf/form/validators/precompile';
+	import * as post from '$lib/post/model.generated';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({
+	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
-		schema,
+		schema: post.schema,
 		validator: createFormValidatorFactory({
 			validatorRetriever: createValidatorRetriever({
 				registry: {
 					get(id) {
 						const schemaUri = \`\${id}#\`;
 
-						return schemaUri in ast ? { schemaUri, ast } : undefined;
+						return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
 					}
 				}
 			}),
@@ -11849,7 +12524,7 @@ import path from "node:path";
 import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { registerSchema, unregisterSchema, type SchemaObject } from "@hyperjump/json-schema/draft-07";
-import { compile, getSchema } from "@hyperjump/json-schema/experimental";
+import { type AST, getSchema, Validation } from "@hyperjump/json-schema/experimental";
 import { uneval } from "devalue";
 
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
@@ -11898,7 +12573,7 @@ import { uneval } from "devalue";
 import type { AST } from "@hyperjump/json-schema/experimental";
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 export const ast = \${uneval(ast)} as unknown as AST;\`);
 	} finally {
 		for (const schema of schemas) {
@@ -12164,24 +12839,23 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post/model.generated';
-	import { ast, schema } from 'src/lib/post/model.generated';
 	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { createValidatorRetriever } from '@sjsf/form/validators/precompile';
+	import * as post from 'src/lib/post/model.generated';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({
+	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
-		schema,
+		schema: post.schema,
 		validator: createFormValidatorFactory({
 			validatorRetriever: createValidatorRetriever({
 				registry: {
 					get(id) {
 						const schemaUri = \`\${id}#\`;
 
-						return schemaUri in ast ? { schemaUri, ast } : undefined;
+						return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
 					}
 				}
 			}),
@@ -12284,7 +12958,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -12359,11 +13033,10 @@ export { createFormValidator as validator } from "@sjsf/form/validators/noop";
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} />
@@ -12614,7 +13287,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -12680,11 +13353,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} />
@@ -12784,7 +13456,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -12859,11 +13531,10 @@ export { createFormValidator as validator } from "@sjsf/schemasafe-validator";
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post';
-	import { schema } from '$lib/post';
+	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -13117,7 +13788,7 @@ export const schema = ({
 	"required": ["title", "content"]
 } as const) satisfies Schema;;
 
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -13183,11 +13854,10 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post';
-	import { schema } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({ ...defaults, onSubmit: console.log, schema });
+	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -13276,7 +13946,7 @@ import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 \`);
 
 	// @ts-expect-error Typings for \`multi\` version are missing
@@ -13422,17 +14092,16 @@ export const onSubmitError = createFocusOnFirstError();
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { Post } from '$lib/post/model.generated';
-	import { schema } from '$lib/post/model.generated';
+	import * as post from '$lib/post/model.generated';
 	import * as validateFunctions from '$lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/schemasafe-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({
+	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
-		schema,
+		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
@@ -13546,7 +14215,7 @@ import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
-export type Post = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 \`);
 
 	// @ts-expect-error Typings for \`multi\` version are missing
@@ -13815,17 +14484,16 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { Post } from 'src/lib/post/model.generated';
-	import { schema } from 'src/lib/post/model.generated';
+	import * as post from 'src/lib/post/model.generated';
 	import * as validateFunctions from 'src/lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/schemasafe-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<Post>({
+	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
-		schema,
+		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
 </script>
@@ -13870,6 +14538,7 @@ exports[`@sjsf/sv 'validator__standard-schema' 'kit-ts' 1`] = `
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
 		"esm-env": "^1.2.0",
+		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
 		"typescript": "^6.0.2",
@@ -13913,38 +14582,43 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
-  "src/lib/post.ts": "import type { StandardSchemaV1, StandardJSONSchemaV1 } from '@standard-schema/spec';
+  "src/lib/post.ts": "import type { StandardSchemaV1, StandardJSONSchemaV1 } from "@standard-schema/spec";
+import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
 
-export //Replace with the actual schema
-const post = ({
-	'~standard': {
+const internalSchema = ({
+	"title": "Post",
+	"type": "object",
+	"properties": {
+		"title": { "title": "Title", "type": "string" },
+		"content": { "title": "Content", "type": "string", "minLength": 10 }
+	},
+	"required": ["title", "content"]
+} as const) satisfies Schema;
+
+type InternalModel = FromSchema<typeof internalSchema>;
+
+// TODO: Replace demo schema with real Standard Schema (arktype, typebox, valibot, zod, etc.)
+export const schema: StandardSchemaV1<InternalModel> & StandardJSONSchemaV1 = {
+	"~standard": {
 		version: 1,
-		vendor: 'sjsf',
+		vendor: "sjsf",
 		validate(value) {
-			return value && typeof value === 'object' && 'title' in value && typeof value.title === 'string' && 'content' in value && typeof value.content === 'string' && value.content.length > 10
-				? { value }
-				: { issues: [{ message: 'Invalid', path: [] }] };
+			return typeof value === "object" && value !== null
+				? { value: value as InternalModel }
+				: { issues: [{ message: "Invalid", path: [] }] };
 		},
 
 		jsonSchema: {
-			input: () => ({
-				'title': 'Post',
-				'type': 'object',
-				'properties': {
-					'title': { 'title': 'Title', 'type': 'string' },
-					'content': { 'title': 'Content', 'type': 'string', 'minLength': 10 }
-				},
-				'required': ['title', 'content']
-			}),
-
+			input: () => internalSchema,
 			output() {
-				throw new Error('not implemented');
+				throw new Error("not implemented");
 			}
 		}
 	}
-} as const) satisfies StandardSchemaV1 & StandardJSONSchemaV1;
+};
 
-export type Post = StandardSchemaV1.InferInput<typeof post>;
+export type Model = StandardSchemaV1.InferInput<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -14018,12 +14692,11 @@ export const onSubmitError = createFocusOnFirstError();
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import type { StandardSchemaV1 } from '@standard-schema/spec';
-	import { post } from '$lib/post';
+	import * as post from '$lib/post';
 	import { adapt } from '@sjsf/form/validators/standard-schema';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post) });
+	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -14088,6 +14761,7 @@ exports[`@sjsf/sv 'validator__standard-schema' 'vite-ts' 1`] = `
     "@tsconfig/svelte": "^5.0.6",
     "@types/node": "^24.10.1",
     "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1",
     "svelte": "^5.45.2",
     "svelte-check": "^4.3.4",
     "typescript": "~5.9.3",
@@ -14263,38 +14937,43 @@ button:focus-visible {
   count is {count}
 </button>
 ",
-  "src/lib/post.ts": "import type { StandardSchemaV1, StandardJSONSchemaV1 } from '@standard-schema/spec';
+  "src/lib/post.ts": "import type { StandardSchemaV1, StandardJSONSchemaV1 } from "@standard-schema/spec";
+import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
 
-export //Replace with the actual schema
-const post = ({
-	'~standard': {
+const internalSchema = ({
+	"title": "Post",
+	"type": "object",
+	"properties": {
+		"title": { "title": "Title", "type": "string" },
+		"content": { "title": "Content", "type": "string", "minLength": 10 }
+	},
+	"required": ["title", "content"]
+} as const) satisfies Schema;
+
+type InternalModel = FromSchema<typeof internalSchema>;
+
+// TODO: Replace demo schema with real Standard Schema (arktype, typebox, valibot, zod, etc.)
+export const schema: StandardSchemaV1<InternalModel> & StandardJSONSchemaV1 = {
+	"~standard": {
 		version: 1,
-		vendor: 'sjsf',
+		vendor: "sjsf",
 		validate(value) {
-			return value && typeof value === 'object' && 'title' in value && typeof value.title === 'string' && 'content' in value && typeof value.content === 'string' && value.content.length > 10
-				? { value }
-				: { issues: [{ message: 'Invalid', path: [] }] };
+			return typeof value === "object" && value !== null
+				? { value: value as InternalModel }
+				: { issues: [{ message: "Invalid", path: [] }] };
 		},
 
 		jsonSchema: {
-			input: () => ({
-				'title': 'Post',
-				'type': 'object',
-				'properties': {
-					'title': { 'title': 'Title', 'type': 'string' },
-					'content': { 'title': 'Content', 'type': 'string', 'minLength': 10 }
-				},
-				'required': ['title', 'content']
-			}),
-
+			input: () => internalSchema,
 			output() {
-				throw new Error('not implemented');
+				throw new Error("not implemented");
 			}
 		}
 	}
-} as const) satisfies StandardSchemaV1 & StandardJSONSchemaV1;
+};
 
-export type Post = StandardSchemaV1.InferInput<typeof post>;
+export type Model = StandardSchemaV1.InferInput<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -14359,12 +15038,11 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import type { StandardSchemaV1 } from '@standard-schema/spec';
-	import { post } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { adapt } from '@sjsf/form/validators/standard-schema';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post) });
+	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -14453,15 +15131,15 @@ export {};
 ",
   "src/lib/post.ts": "import * as v from 'valibot';
 
-export const post = v.pipe(
+export const schema = v.pipe(
 	v.object({
 		title: v.pipe(v.string(), v.metadata({ title: 'Title' })),
 		content: v.pipe(v.string(), v.minLength(10), v.metadata({ title: 'Content' }))
 	}),
-	v.metadata({ title: 'Basic form' })
+	v.metadata({ title: 'Post' })
 );
 
-export type Post = v.InferInput<typeof post>;
+export type Model = v.InferInput<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -14535,12 +15213,11 @@ export const onSubmitError = createFocusOnFirstError();
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import * as v from 'valibot';
-	import { post } from '$lib/post';
+	import * as post from '$lib/post';
 	import { adapt } from '@sjsf/valibot-validator';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post) });
+	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -14783,15 +15460,15 @@ button:focus-visible {
 ",
   "src/lib/post.ts": "import * as v from 'valibot';
 
-export const post = v.pipe(
+export const schema = v.pipe(
 	v.object({
 		title: v.pipe(v.string(), v.metadata({ title: 'Title' })),
 		content: v.pipe(v.string(), v.minLength(10), v.metadata({ title: 'Content' }))
 	}),
-	v.metadata({ title: 'Basic form' })
+	v.metadata({ title: 'Post' })
 );
 
-export type Post = v.InferInput<typeof post>;
+export type Model = v.InferInput<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -14856,12 +15533,11 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as v from 'valibot';
-	import { post } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { adapt } from '@sjsf/valibot-validator';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post) });
+	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -14949,12 +15625,12 @@ export {};
 ",
   "src/lib/post.ts": "import * as z from 'zod';
 
-export const post = z.object({
+export const schema = z.object({
 	title: z.string().meta({ title: 'Title' }),
 	content: z.string().min(10).meta({ title: 'Content' })
 }).meta({ title: 'Post' });
 
-export type Post = z.infer<typeof post>;
+export type Model = z.infer<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -15028,12 +15704,11 @@ export const onSubmitError = createFocusOnFirstError();
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import * as z from 'zod';
-	import { post } from '$lib/post';
+	import * as post from '$lib/post';
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post) });
+	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -15275,12 +15950,12 @@ button:focus-visible {
 ",
   "src/lib/post.ts": "import * as z from 'zod';
 
-export const post = z.object({
+export const schema = z.object({
 	title: z.string().meta({ title: 'Title' }),
 	content: z.string().min(10).meta({ title: 'Content' })
 }).meta({ title: 'Post' });
 
-export type Post = z.infer<typeof post>;
+export type Model = z.infer<typeof schema>;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
@@ -15345,12 +16020,11 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as z from 'zod';
-	import { post } from 'src/lib/post';
+	import * as post from 'src/lib/post';
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post) });
+	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
 </script>
 
 <BasicForm form={form} novalidate />

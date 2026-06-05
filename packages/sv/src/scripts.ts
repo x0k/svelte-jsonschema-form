@@ -26,6 +26,7 @@ export function scriptsFolder(ctx: Context) {
       jsonSchemaPaths: [`${directory.lib}${POST_JSON_SCHEMA_PATH}`],
       language,
       ts,
+      modelName: "post",
     }),
   );
 

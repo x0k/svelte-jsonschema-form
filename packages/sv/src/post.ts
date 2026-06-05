@@ -1,4 +1,4 @@
-import { createPost, isEndsWithPrecompiled, type Schema } from "meta/codegen";
+import { createModel, isEndsWithPrecompiled, type Schema } from "meta/codegen";
 
 import { POST_JSON_SCHEMA_PATH, type Context } from "./model.js";
 import { transforms } from "./sv-utils.js";
@@ -44,7 +44,13 @@ export function postTs({
   } else {
     sv.file(
       `${directory.lib}/post.${language}`,
-      createPost({ validator: validatorWithSuffix, ts, schema, isTs }),
+      createModel({
+        validator: validatorWithSuffix,
+        ts,
+        schema,
+        isTs,
+        modelName: "post",
+      }),
     );
   }
 }

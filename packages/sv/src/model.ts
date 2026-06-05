@@ -14,6 +14,7 @@ import {
   codegenSvelteKitIntegrations,
   codegenThemeOrSubTheme,
   codegenValidators,
+  isEndsWithPrecompiled,
   withoutPrecompiledSuffix,
   type CodegenSvelteKitIntegration,
   type CodegenThemeOrSubTheme,
@@ -47,14 +48,15 @@ function* svelteKitIntegrationOptions() {
 }
 
 export function* themeOrSubThemeOptions() {
-  for (const t of codegenThemeOrSubTheme()) {
-    const theme = toTheme(t);
+  for (const themeOrSubTheme of codegenThemeOrSubTheme()) {
+    const theme = toTheme(themeOrSubTheme);
     const hint = isLabTheme(theme) ? `experimental` : undefined;
+    const title = themeOrSubThemeTitle(themeOrSubTheme);
     yield {
       label: isThemeExtension(theme)
-        ? `${themeOrSubThemeTitle(themeExtensionOrigin(theme))} & ${themeOrSubThemeTitle(t)}`
-        : themeOrSubThemeTitle(t),
-      value: t,
+        ? `${themeOrSubThemeTitle(themeExtensionOrigin(theme))} & ${title}`
+        : title,
+      value: themeOrSubTheme,
       hint,
     } satisfies SelectOption;
   }
@@ -63,9 +65,10 @@ export function* themeOrSubThemeOptions() {
 export function* validatorOptions() {
   for (const value of codegenValidators()) {
     const withoutSuffix = withoutPrecompiledSuffix(value);
+    const title = validatorTitle(withoutSuffix);
     yield {
       value,
-      label: validatorTitle(withoutSuffix),
+      label: isEndsWithPrecompiled(value) ? `${title} (precompiled)` : title,
       hint: isLabValidator(withoutSuffix) ? "experimental" : undefined,
     } satisfies SelectOption;
   }
