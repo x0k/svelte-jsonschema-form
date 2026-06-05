@@ -11,6 +11,7 @@
     EXAMPLE_METADATA,
     openExample,
     ExampleCategory,
+    type Example,
     nonPrecompiledValidators,
   } from "meta/demos";
 
@@ -38,6 +39,64 @@
     (e) => EXAMPLE_METADATA[e].category === ExampleCategory.ValidatorSpecific
   );
 </script>
+
+{#snippet sectionToggle(label: string, sectionKey: keyof typeof open)}
+  <button
+    class="section-toggle"
+    onclick={() => (open[sectionKey] = !open[sectionKey])}
+  >
+    <h3>{label}</h3>
+    <svg
+      class="chevron"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      {#if open[sectionKey]}
+        <polyline points="6 9 12 15 18 9" />
+      {:else}
+        <polyline points="9 18 15 12 9 6" />
+      {/if}
+    </svg>
+  </button>
+{/snippet}
+
+{#snippet exampleCards(examplesList: Example[])}
+  <div class="cards">
+    {#each examplesList as example (example)}
+      {@const meta = EXAMPLE_METADATA[example]}
+      <div
+        class="card not-content"
+        role="button"
+        tabindex="0"
+        onclick={() =>
+          openExample({ example, themeOrSubTheme: theme, validator, platform })}
+        onkeydown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openExample({
+              example,
+              themeOrSubTheme: theme,
+              validator,
+              platform,
+            });
+          }
+        }}
+      >
+        <span class="stack">
+          <span class="title">{meta.title}</span>
+          <span class="description">{meta.description}</span>
+        </span>
+        <span class="arrow">→</span>
+      </div>
+    {/each}
+  </div>
+{/snippet}
 
 <div class="pickers">
   <button style="display: none;">Avoid starlight styles pollution</button>
@@ -73,222 +132,31 @@
   </label>
 </div>
 
-<button class="section-toggle" onclick={() => (open.generic = !open.generic)}>
-  <h3>Generic</h3>
-  <svg
-    class="chevron"
-    viewBox="0 0 24 24"
-    width="1em"
-    height="1em"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    {#if open.generic}
-      <polyline points="6 9 12 15 18 9" />
-    {:else}
-      <polyline points="9 18 15 12 9 6" />
-    {/if}
-  </svg>
-</button>
+{@render sectionToggle(`Generic (${generic.length})`, "generic")}
 {#if open.generic}
-  <div class="cards">
-    {#each generic as example (example)}
-      {@const meta = EXAMPLE_METADATA[example]}
-      <div
-        class="card not-content"
-        role="button"
-        tabindex="0"
-        onclick={() =>
-          openExample({ example, themeOrSubTheme: theme, validator, platform })}
-        onkeydown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            openExample({
-              example,
-              themeOrSubTheme: theme,
-              validator,
-              platform,
-            });
-          }
-        }}
-      >
-        <span class="stack">
-          <span class="title">{meta.title}</span>
-          <span class="description">{meta.description}</span>
-        </span>
-        <span class="arrow">→</span>
-      </div>
-    {/each}
-  </div>
+  {@render exampleCards(generic)}
 {/if}
 
-<button
-  class="section-toggle"
-  onclick={() => (open.formActions = !open.formActions)}
->
-  <h3>Form Actions</h3>
-  <svg
-    class="chevron"
-    viewBox="0 0 24 24"
-    width="1em"
-    height="1em"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    {#if open.formActions}
-      <polyline points="6 9 12 15 18 9" />
-    {:else}
-      <polyline points="9 18 15 12 9 6" />
-    {/if}
-  </svg>
-</button>
+{@render sectionToggle(`Form Actions (${formActions.length})`, "formActions")}
 {#if open.formActions}
-  <div class="cards">
-    {#each formActions as example (example)}
-      {@const meta = EXAMPLE_METADATA[example]}
-      <div
-        class="card not-content"
-        role="button"
-        tabindex="0"
-        onclick={() =>
-          openExample({ example, themeOrSubTheme: theme, validator, platform })}
-        onkeydown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            openExample({
-              example,
-              themeOrSubTheme: theme,
-              validator,
-              platform,
-            });
-          }
-        }}
-      >
-        <span class="stack">
-          <span class="title">{meta.title}</span>
-          <span class="description">{meta.description}</span>
-        </span>
-        <span class="arrow">→</span>
-      </div>
-    {/each}
-  </div>
+  {@render exampleCards(formActions)}
 {/if}
 
-<button
-  class="section-toggle"
-  onclick={() => (open.remoteFunctions = !open.remoteFunctions)}
->
-  <h3>Remote Functions</h3>
-  <svg
-    class="chevron"
-    viewBox="0 0 24 24"
-    width="1em"
-    height="1em"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    {#if open.remoteFunctions}
-      <polyline points="6 9 12 15 18 9" />
-    {:else}
-      <polyline points="9 18 15 12 9 6" />
-    {/if}
-  </svg>
-</button>
+{@render sectionToggle(
+  `Remote Functions (${remoteFunctions.length})`,
+  "remoteFunctions"
+)}
 {#if open.remoteFunctions}
-  <div class="cards">
-    {#each remoteFunctions as example (example)}
-      {@const meta = EXAMPLE_METADATA[example]}
-      <div
-        class="card not-content"
-        role="button"
-        tabindex="0"
-        onclick={() =>
-          openExample({ example, themeOrSubTheme: theme, validator, platform })}
-        onkeydown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            openExample({
-              example,
-              themeOrSubTheme: theme,
-              validator,
-              platform,
-            });
-          }
-        }}
-      >
-        <span class="stack">
-          <span class="title">{meta.title}</span>
-          <span class="description">{meta.description}</span>
-        </span>
-        <span class="arrow">→</span>
-      </div>
-    {/each}
-  </div>
+  {@render exampleCards(remoteFunctions)}
 {/if}
 
-<button
-  class="section-toggle"
-  onclick={() => (open.validatorSpecific = !open.validatorSpecific)}
->
-  <h3>Validator specific</h3>
-  <svg
-    class="chevron"
-    viewBox="0 0 24 24"
-    width="1em"
-    height="1em"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    {#if open.validatorSpecific}
-      <polyline points="6 9 12 15 18 9" />
-    {:else}
-      <polyline points="9 18 15 12 9 6" />
-    {/if}
-  </svg>
-</button>
+{@render sectionToggle(
+  `Validator specific (${validatorSpecific.length})`,
+  "validatorSpecific"
+)}
 {#if open.validatorSpecific}
   <p><em>Validator selector will be ignored</em></p>
-  <div class="cards">
-    {#each validatorSpecific as example (example)}
-      {@const meta = EXAMPLE_METADATA[example]}
-      <div
-        class="card not-content"
-        role="button"
-        tabindex="0"
-        onclick={() =>
-          openExample({ example, themeOrSubTheme: theme, validator, platform })}
-        onkeydown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            openExample({
-              example,
-              themeOrSubTheme: theme,
-              validator,
-              platform,
-            });
-          }
-        }}
-      >
-        <span class="stack">
-          <span class="title">{meta.title}</span>
-          <span class="description">{meta.description}</span>
-        </span>
-        <span class="arrow">→</span>
-      </div>
-    {/each}
-  </div>
+  {@render exampleCards(validatorSpecific)}
 {/if}
 
 <style>
@@ -385,6 +253,7 @@
 
   .chevron {
     flex-shrink: 0;
+    margin: 0;
     color: var(--sl-color-gray-3);
   }
 </style>
