@@ -2,7 +2,13 @@ import pageServerTs from "examples/sveltekit-starter/src/routes/multi-step-nativ
 import pageSvelte from "examples/sveltekit-starter/src/routes/multi-step-native-form/+page.svelte?raw";
 import modelTs from "examples/sveltekit-starter/src/routes/multi-step-native-form/model.ts?raw";
 
-import { defineExample } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+
+export const meta = defineMeta({
+  title: "Multi-step Native Form",
+  description: "Multi-step form using native HTML form submission.",
+  category: ExampleCategory.FormActions,
+});
 
 export default defineExample({
   sveltekit: "formActions",

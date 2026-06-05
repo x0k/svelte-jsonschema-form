@@ -3,7 +3,18 @@ import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions
 import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-without-js/+page.svelte?raw";
 import formContentSvelte from "examples/sveltekit-starter/src/routes/remote-functions-without-js/form-content.svelte?raw";
 
-import { defineExample, remoteFormDefaultsReplacer } from "../model.ts";
+import {
+  defineExample,
+  defineMeta,
+  remoteFormDefaultsReplacer,
+  ExampleCategory,
+} from "../model.ts";
+
+export const meta = defineMeta({
+  title: "Remote Functions Without JS",
+  description: "Remote functions with JavaScript disabled.",
+  category: ExampleCategory.RemoteFunctions,
+});
 
 export default defineExample({
   sveltekit: "remoteFunctions",

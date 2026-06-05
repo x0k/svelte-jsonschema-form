@@ -1,6 +1,12 @@
 import sveltePage from "examples/basic-starter/src/routes/deprecated-keyword/+page.svelte?raw";
 
-import { defineExample } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+
+export const meta = defineMeta({
+  title: "Deprecated Keyword",
+  description: "Using the deprecated keyword on form fields.",
+  category: ExampleCategory.Generic,
+});
 
 export default defineExample({
   files: {

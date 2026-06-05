@@ -1,7 +1,13 @@
 import pageSvelte from "examples/basic-starter/src/routes/nullable-fields/+page.svelte?raw";
 import nullableFieldSvelte from "examples/basic-starter/src/routes/nullable-fields/nullable-field.svelte?raw";
 
-import { defineExample } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+
+export const meta = defineMeta({
+  title: "Nullable Fields",
+  description: "Nullable field handling and null value states.",
+  category: ExampleCategory.Generic,
+});
 
 export default defineExample({
   files: {

@@ -2,7 +2,13 @@ import postModelTs from "examples/sveltekit-starter/src/lib/post.ts?raw";
 import pageServerTs from "examples/sveltekit-starter/src/routes/form-actions/+page.server.ts?raw";
 import pageSvelte from "examples/sveltekit-starter/src/routes/form-actions/+page.svelte?raw";
 
-import { defineExample } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+
+export const meta = defineMeta({
+  title: "Form Actions",
+  description: "JSON Schema forms integrated with SvelteKit form actions.",
+  category: ExampleCategory.FormActions,
+});
 
 export default defineExample({
   sveltekit: "formActions",

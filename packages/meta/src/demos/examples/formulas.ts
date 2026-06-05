@@ -1,7 +1,13 @@
 import pageSvelte from "examples/basic-starter/src/routes/formulas/+page.svelte?raw";
 import objectFieldSvelte from "examples/basic-starter/src/routes/formulas/object-field.svelte?raw";
 
-import { defineExample } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+
+export const meta = defineMeta({
+  title: "Formulas",
+  description: "Computed fields with formula-based values.",
+  category: ExampleCategory.Generic,
+});
 
 export default defineExample({
   files: {

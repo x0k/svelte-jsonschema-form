@@ -4,7 +4,18 @@ import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-d
 import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/data.remote.ts?raw";
 import nestedPageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/[id]/+page.svelte?raw";
 
-import { defineExample, remoteFormDefaultsReplacer } from "../model.ts";
+import {
+  defineExample,
+  defineMeta,
+  remoteFormDefaultsReplacer,
+  ExampleCategory,
+} from "../model.ts";
+
+export const meta = defineMeta({
+  title: "Remote Functions Dynamic Schema",
+  description: "Dynamic schemas combined with SvelteKit remote functions.",
+  category: ExampleCategory.RemoteFunctions,
+});
 
 export default defineExample({
   sveltekit: "remoteFunctions",

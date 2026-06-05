@@ -1,7 +1,13 @@
 import pageServerTs from "examples/sveltekit-starter/src/routes/form-actions-without-js/+page.server.ts?raw";
 import pageSvelte from "examples/sveltekit-starter/src/routes/form-actions-without-js/+page.svelte?raw";
 
-import { defineExample } from "../model.ts";
+import { defineExample, defineMeta, ExampleCategory } from "../model.ts";
+
+export const meta = defineMeta({
+  title: "Form Actions Without JS",
+  description: "Form actions with JavaScript disabled.",
+  category: ExampleCategory.FormActions,
+});
 
 export default defineExample({
   sveltekit: "formActions",
