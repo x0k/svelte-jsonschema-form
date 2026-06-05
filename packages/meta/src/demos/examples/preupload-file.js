@@ -4,12 +4,13 @@ import contextTs from "examples/basic-starter/src/routes/preupload-file/context.
 import svelteFrom from "examples/basic-starter/src/routes/preupload-file/form.svelte?raw";
 import svelteStoredFileField from "examples/basic-starter/src/routes/preupload-file/stored-file-field.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.js";
+import { defineExample, defineMeta, Tag } from "../model.js";
 
 export const meta = defineMeta({
   title: "Pre-upload File",
-  description: "File upload with client-side preview before submission.",
-  category: ExampleCategory.Generic,
+  description:
+    "Custom file upload widget with client-side preview before submission.",
+  tags: [Tag.CustomComponent],
 });
 
 export default defineExample({

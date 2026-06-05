@@ -7,7 +7,7 @@ import { codegenThemeOrSubTheme } from "../codegen/index.ts";
 import {
   type Example,
   EXAMPLES,
-  ExampleCategory,
+  Tag,
   nonPrecompiledValidators,
 } from "./model.ts";
 import { EXAMPLE_METADATA, createExampleFiles } from "./example.ts";
@@ -20,8 +20,9 @@ interface ExampleVariant {
 }
 
 function* getVariants(example: Example): Generator<ExampleVariant> {
-  const isValidatorSpecific =
-    EXAMPLE_METADATA[example].category === ExampleCategory.ValidatorSpecific;
+  const isValidatorSpecific = EXAMPLE_METADATA[example].tags.includes(
+    Tag.Validator,
+  );
 
   yield BASE;
   for (const t of codegenThemeOrSubTheme()) {

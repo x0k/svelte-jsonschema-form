@@ -5,25 +5,45 @@ import {
   codegenValidators,
   isEndsWithPrecompiled,
   type CodegenThemeOrSubTheme,
-  type CodegenValidator,
   type CodegenSvelteKitIntegration,
   type CodegenNonPrecompiledValidator,
 } from "../codegen/index.ts";
-import { createComposer, type CodeTransformer } from "../composer/index.ts";
-import type { Example } from "./example.generated.ts";
+import type { CodeTransformer } from "../composer/index.ts";
 export { type Example, EXAMPLES } from "./example.generated.ts";
 
-export enum ExampleCategory {
-  Generic = "generic",
-  FormActions = "form-actions",
-  RemoteFunctions = "remote-functions",
-  ValidatorSpecific = "validator-specific",
+export enum Tag {
+  /** Async data loading (remote sources, search) */
+  Async = "async",
+  /** Custom field/description components */
+  CustomComponent = "custom component",
+  /** Runtime schema changes */
+  Dynamic = "dynamic",
+  /** Enum/selection field handling */
+  Enum = "enum",
+  /** SvelteKit form actions integration */
+  FormActions = "form actions",
+  /** Form layout customization */
+  Layout = "layout",
+  /** Multi-step wizard forms */
+  MultiStep = "multi step",
+  /** Works without JavaScript */
+  NoJs = "no js",
+  /** SvelteKit remote functions integration */
+  RemoteFunctions = "remote functions",
+  /** Schema extension and manipulation */
+  SchemaManipulation = "schema manipulation",
+  /** Getting-started templates */
+  Starter = "starter",
+  /** SvelteKit integration */
+  SvelteKit = "sveltekit",
+  /** Different validator integrations */
+  Validator = "validator",
 }
 
 export interface ExampleMetadata {
   title: string;
   description: string;
-  category: ExampleCategory;
+  tags: Tag[];
 }
 
 export interface ExampleContent {

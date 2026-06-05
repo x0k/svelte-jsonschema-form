@@ -2,12 +2,12 @@ import countriesTs from "examples/basic-starter/src/routes/remote-enum/countries
 import pageSvelte from "examples/basic-starter/src/routes/remote-enum/+page.svelte?raw";
 import comboboxSvelte from "examples/basic-starter/src/routes/remote-enum/combobox.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.js";
+import { defineExample, defineMeta, Tag } from "../model.js";
 
 export const meta = defineMeta({
   title: "Remote Enum",
   description: "Async enum options loaded from a remote source.",
-  category: ExampleCategory.Generic,
+  tags: [Tag.Async, Tag.Enum],
 });
 
 export default defineExample({

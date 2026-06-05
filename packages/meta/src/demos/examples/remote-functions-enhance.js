@@ -6,13 +6,13 @@ import {
   defineExample,
   defineMeta,
   remoteFormDefaultsReplacer,
-  ExampleCategory,
+  Tag,
 } from "../model.js";
 
 export const meta = defineMeta({
   title: "Remote Functions Enhance",
   description: "Progressively enhanced remote functions.",
-  category: ExampleCategory.RemoteFunctions,
+  tags: [Tag.RemoteFunctions, Tag.SvelteKit],
 });
 
 export default defineExample({

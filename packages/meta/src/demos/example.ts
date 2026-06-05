@@ -6,11 +6,7 @@ import { type CodeTransformer, createComposer } from "../composer/index.ts";
 import { sandboxOpen, type SandboxPlatform } from "../sandbox/index.ts";
 
 import type { Example } from "./example.generated.ts";
-import {
-  type ExampleMetadata,
-  type ExampleContent,
-  ExampleCategory,
-} from "./model.ts";
+import { type ExampleMetadata, type ExampleContent, Tag } from "./model.ts";
 
 export const EXAMPLE_METADATA = import.meta.glob("./*.js", {
   base: "./examples",
@@ -45,8 +41,7 @@ export async function createExampleFiles(
   const { example, themeOrSubTheme, validator } = options;
   const meta = EXAMPLE_METADATA[example];
   const content = await EXAMPLE_CONTENT[example]();
-  const isValidatorSpecific =
-    meta.category === ExampleCategory.ValidatorSpecific;
+  const isValidatorSpecific = meta.tags.includes(Tag.Validator);
 
   const codeTransformers = content.codeTransformers.slice();
 

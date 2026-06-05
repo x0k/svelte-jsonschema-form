@@ -1,12 +1,12 @@
 import pageSvelte from "examples/basic-starter/src/routes/layout-slots/+page.svelte?raw";
 import layoutSvelte from "examples/basic-starter/src/routes/layout-slots/layout.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.js";
+import { defineExample, defineMeta, Tag } from "../model.js";
 
 export const meta = defineMeta({
   title: "Layout Slots",
   description: "Form layout customization using slot-based components.",
-  category: ExampleCategory.Generic,
+  tags: [Tag.Layout],
 });
 
 export default defineExample({

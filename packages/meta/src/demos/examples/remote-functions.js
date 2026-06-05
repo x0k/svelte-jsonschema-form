@@ -6,13 +6,13 @@ import {
   defineExample,
   defineMeta,
   remoteFormDefaultsReplacer,
-  ExampleCategory,
+  Tag,
 } from "../model.js";
 
 export const meta = defineMeta({
   title: "Remote Functions",
   description: "SvelteKit remote functions for server-side logic.",
-  category: ExampleCategory.RemoteFunctions,
+  tags: [Tag.RemoteFunctions, Tag.SvelteKit],
 });
 
 export default defineExample({

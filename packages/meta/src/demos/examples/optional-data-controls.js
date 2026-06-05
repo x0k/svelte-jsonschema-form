@@ -1,11 +1,11 @@
 import sveltePage from "examples/basic-starter/src/routes/optional-data-controls/+page.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.js";
+import { defineExample, defineMeta, Tag } from "../model.js";
 
 export const meta = defineMeta({
   title: "Optional Data Controls",
   description: "Controlling optional field behavior and appearance.",
-  category: ExampleCategory.Generic,
+  tags: [Tag.CustomComponent],
 });
 
 export default defineExample({

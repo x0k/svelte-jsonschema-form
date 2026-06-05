@@ -1,11 +1,11 @@
 import sveltePage from "examples/basic-starter/src/routes/+page.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.js";
+import { defineExample, defineMeta, Tag } from "../model.js";
 
 export const meta = defineMeta({
   title: "Starter",
   description: "Basic JSON Schema form setup with Svelte.",
-  category: ExampleCategory.Generic,
+  tags: [Tag.Starter],
 });
 
 export default defineExample({

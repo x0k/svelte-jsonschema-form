@@ -3,12 +3,12 @@ import pageSvelte from "examples/basic-starter/src/routes/async-combobox/+page.s
 import asyncComboboxSvelte from "examples/basic-starter/src/routes/async-combobox/async-combobox.svelte?raw";
 import asyncComboboxWidgetSvelte from "examples/basic-starter/src/routes/async-combobox/async-combobox-widget.svelte?raw";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.js";
+import { defineExample, defineMeta, Tag } from "../model.js";
 
 export const meta = defineMeta({
   title: "Async Combobox",
   description: "Custom async combobox widget with search functionality.",
-  category: ExampleCategory.Generic,
+  tags: [Tag.Async, Tag.CustomComponent],
 });
 
 export default defineExample({

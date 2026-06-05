@@ -2,12 +2,12 @@ import pageSvelte from "examples/basic-starter/src/routes/draft-2020-12/+page.sv
 
 import { extraPackage } from "meta";
 
-import { defineExample, defineMeta, ExampleCategory } from "../model.js";
+import { defineExample, defineMeta, Tag } from "../model.js";
 
 export const meta = defineMeta({
   title: "Draft 2020-12",
   description: "JSON Schema draft 2020-12 features including $ref.",
-  category: ExampleCategory.Generic,
+  tags: [Tag.SchemaManipulation],
 });
 
 export default defineExample({
