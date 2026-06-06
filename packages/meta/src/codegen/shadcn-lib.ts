@@ -1,6 +1,7 @@
 import { transforms, type SvelteAst, js as jsUtils } from "@sveltejs/sv-utils";
 
-import { themePackage } from "../themes.ts";
+import { themePackage, type ToTheme } from "../themes.ts";
+import type { ExtraWidgetFileNames } from "../widgets.ts";
 import {
   shadcn4ExtraWidgetComponents,
   shadcnExtrasExtraWidgetComponents,
@@ -25,7 +26,7 @@ export type ShadcnPathResolver = (folder: string, libPath: string) => string;
 export interface ShadcnLibOptions {
   themeOrSubTheme: CodegenThemeOrSubTheme;
   resolveImportPath: ShadcnPathResolver;
-  widgets: string[];
+  widgets: Iterable<ExtraWidgetFileNames[ToTheme<CodegenThemeOrSubTheme>]>;
 }
 
 const SET_SHADCN_THEME_CONTEXT_FN_NAME = "setShadcnThemeContext";

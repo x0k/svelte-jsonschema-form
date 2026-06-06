@@ -41,7 +41,25 @@ import {
   type ConditionalPrinter,
   type CodegenSvelteKitIntegration,
 } from "./model.ts";
+import { isRecordEmpty } from "@sjsf/form/lib/object";
 import { createReExport, getTopLevelFunction } from "./lib.ts";
+
+export interface MergerOptions {
+  allOf: "populateDefaults" | "skipDefaults";
+  arrayMinItems: {
+    populate: "all" | "never" | "requiredOnly";
+    mergeExtraDefaults: boolean;
+  };
+  constAsDefaults: "always" | "skipOneOf" | "never";
+  emptyObjectFields:
+    | "populateAllDefaults"
+    | "populateRequiredDefaults"
+    | "skipEmptyDefaults"
+    | "skipDefaults";
+  mergeDefaultsIntoFormData:
+    | "useFormDataIfPresent"
+    | "useDefaultIfFormDataUndefined";
+}
 
 export interface DefaultsOptions<T extends CodegenThemeOrSubTheme> {
   themeOrSubTheme: T;
@@ -49,9 +67,12 @@ export interface DefaultsOptions<T extends CodegenThemeOrSubTheme> {
   icons: CodegenIconSet;
   resolver: Resolver | "inline";
   sveltekit: CodegenSvelteKitIntegration;
-  widgets: ExtraWidgetFileNames[ToTheme<T>][];
+  widgets: Iterable<ExtraWidgetFileNames[ToTheme<T>]>;
   isTs: boolean;
   ts: ConditionalPrinter;
+  merger: Partial<MergerOptions>;
+  focusOnFirstError: boolean;
+  uiOptionsRegistry: Record<string, unknown>;
 }
 
 const SVELTE_KIT_INTEGRATION_ID_BUILDERS: Record<
@@ -75,6 +96,9 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
   widgets,
   isTs,
   ts,
+  merger,
+  focusOnFirstError,
+  uiOptionsRegistry,
 }: DefaultsOptions<T>) {
   return transforms.script(({ ast, comments, js }) => {
     const isAjv = validatorWithSuffix === "ajv8";
@@ -153,11 +177,56 @@ export function resolver(_ctx) {`,
       name: "translation",
       source: formTranslationSubPath("en"),
     });
-    createReExport(ast, {
-      name: "merger",
-      imported: "createFormMerger",
-      source: formMergerSubPath("modern"),
-    });
+    if (!isRecordEmpty(merger)) {
+      js.imports.addNamed(ast, {
+        imports: ["createFormMerger"],
+        from: formMergerSubPath("modern"),
+      });
+
+      const fields: string[] = [];
+      if (merger.allOf !== undefined) {
+        fields.push(`allOf: "${merger.allOf}"`);
+      }
+      if (merger.arrayMinItems !== undefined) {
+        const am: string[] = [];
+        if (merger.arrayMinItems.populate !== undefined) {
+          am.push(`populate: "${merger.arrayMinItems.populate}"`);
+        }
+        if (merger.arrayMinItems.mergeExtraDefaults !== undefined) {
+          am.push(
+            `mergeExtraDefaults: ${merger.arrayMinItems.mergeExtraDefaults}`,
+          );
+        }
+        fields.push(`arrayMinItems: { ${am.join(", ")} }`);
+      }
+      if (merger.constAsDefaults !== undefined) {
+        fields.push(`constAsDefaults: "${merger.constAsDefaults}"`);
+      }
+      if (merger.emptyObjectFields !== undefined) {
+        fields.push(`emptyObjectFields: "${merger.emptyObjectFields}"`);
+      }
+      if (merger.mergeDefaultsIntoFormData !== undefined) {
+        fields.push(
+          `mergeDefaultsIntoFormData: "${merger.mergeDefaultsIntoFormData}"`,
+        );
+      }
+
+      js.common.appendFromString(ast, {
+        code: `export function merger(options) {
+  return createFormMerger({
+    ...options,
+    ${fields.join(",\n    ")},
+  });
+}`,
+        comments,
+      });
+    } else {
+      createReExport(ast, {
+        name: "merger",
+        imported: "createFormMerger",
+        source: formMergerSubPath("modern"),
+      });
+    }
     createReExport(ast, {
       name: "idBuilder",
       imported: "createFormIdBuilder",
@@ -213,23 +282,25 @@ export function resolver(_ctx) {`,
       js.imports.addEmpty(ast, { from: "@hyperjump/json-schema/draft-07" });
     }
 
-    js.imports.addNamed(ast, {
-      imports: ["createFocusOnFirstError"],
-      from: formUtilSubPath("focus-on-first-error"),
-    });
-    const onSubmitErrorExpression = js.common.parseExpression(
-      "createFocusOnFirstError()",
-    );
-    const onSubmitErrorDeclaration = js.variables.declaration(ast, {
-      kind: "const",
-      name: "onSubmitError",
-      value: onSubmitErrorExpression,
-    });
+    if (focusOnFirstError) {
+      js.imports.addNamed(ast, {
+        imports: ["createFocusOnFirstError"],
+        from: formUtilSubPath("focus-on-first-error"),
+      });
+      const onSubmitErrorExpression = js.common.parseExpression(
+        "createFocusOnFirstError()",
+      );
+      const onSubmitErrorDeclaration = js.variables.declaration(ast, {
+        kind: "const",
+        name: "onSubmitError",
+        value: onSubmitErrorExpression,
+      });
 
-    js.exports.createNamed(ast, {
-      name: "onSubmitError",
-      fallback: onSubmitErrorDeclaration,
-    });
+      js.exports.createNamed(ast, {
+        name: "onSubmitError",
+        fallback: onSubmitErrorDeclaration,
+      });
+    }
 
     if (
       getTopLevelFunction(ast, "validator") ||
@@ -279,6 +350,16 @@ export const validator = (options) => createFormValidator({
         source: isInternalValidator(validatorWithSuffix)
           ? internalValidatorSubPath(validatorWithSuffix)
           : externalValidatorPackage(validatorWithSuffix).name,
+      });
+    }
+
+    if (!isRecordEmpty(uiOptionsRegistry)) {
+      const entries = Object.entries(uiOptionsRegistry)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join(",\n  ");
+      js.common.appendFromString(ast, {
+        code: `export const uiOptionsRegistry = {\n  ${entries},\n};`,
+        comments,
       });
     }
   });

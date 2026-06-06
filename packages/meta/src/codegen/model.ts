@@ -1,4 +1,4 @@
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 
 import { iconSets } from "../icons.ts";
 import type { Generated } from "../types.ts";
@@ -14,7 +14,7 @@ import {
   themeSubThemes,
 } from "../themes.ts";
 
-export type { Schema };
+export type { Schema, UiSchemaRoot };
 
 export type Language = "ts" | "js";
 

@@ -30,13 +30,6 @@ interface ValidatorDefinition {
   schemaValidator: boolean;
 }
 
-const defaultModelConfig = {
-  schemaValidator: false,
-} satisfies Omit<
-  ValidatorDefinition,
-  "imports" | "schemaImports" | "options" | "inputType"
->;
-
 export function createValidator({
   validatorWithSuffix,
   isTs,

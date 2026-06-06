@@ -1,5 +1,6 @@
 import { transforms, type AstTypes } from "@sveltejs/sv-utils";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot, FormValue } from "@sjsf/form";
+import { isRecordEmpty } from "@sjsf/form/lib/object";
 
 import { isJsonSchemaValidator } from "../validators.ts";
 import { extraPackage } from "../package.ts";
@@ -17,6 +18,8 @@ export interface ModelOptions {
   ts: ConditionalPrinter;
   schema: Schema;
   modelName: string;
+  uiSchema: UiSchemaRoot;
+  initialValue: FormValue;
 }
 
 function toTypeName(name: string): string {
@@ -30,6 +33,8 @@ export function createModel({
   schema,
   ts,
   modelName,
+  uiSchema,
+  initialValue,
 }: ModelOptions) {
   const typeName = toTypeName(modelName);
   return transforms.script(({ ast, js, comments }) => {
@@ -195,6 +200,36 @@ export const schema${ts(": StandardSchemaV1<InternalModel> & StandardJSONSchemaV
       }
     } else {
       throw neverError(validator, "unexpected validator");
+    }
+
+    if (!isRecordEmpty(uiSchema)) {
+      const expression: AstTypes.Expression = js.common.parseFromString(
+        `(${JSON.stringify(uiSchema)}${ts(" as const satisfies UiSchemaRoot")})`,
+      );
+      const declaration = js.variables.declaration(ast, {
+        kind: "const",
+        name: "uiSchema",
+        value: expression,
+      });
+      js.exports.createNamed(ast, {
+        name: "uiSchema",
+        fallback: declaration,
+      });
+    }
+
+    if (initialValue !== undefined) {
+      const expression: AstTypes.Expression = js.common.parseFromString(
+        `(${JSON.stringify(initialValue)})`,
+      );
+      const declaration = js.variables.declaration(ast, {
+        kind: "const",
+        name: "initialValue",
+        value: expression,
+      });
+      js.exports.createNamed(ast, {
+        name: "initialValue",
+        fallback: declaration,
+      });
     }
   });
 }

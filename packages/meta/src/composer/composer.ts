@@ -1,4 +1,4 @@
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot, FormValue } from "@sjsf/form";
 
 import {
   type CodegenThemeOrSubTheme,
@@ -20,6 +20,7 @@ import {
   createShadcnLib,
   createModel,
   withoutPrecompiledSuffix,
+  type MergerOptions,
 } from "../codegen/index.ts";
 import {
   extraPackage,
@@ -47,6 +48,12 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   codeTransformers: CodeTransformer[];
   modelName: string;
   schema?: Schema;
+  uiSchema?: UiSchemaRoot;
+  initialValue?: FormValue;
+  disabled?: boolean;
+  merger?: Partial<MergerOptions>;
+  focusOnFirstError?: boolean;
+  uiOptionsRegistry?: Record<string, unknown>;
 }
 
 const TSCONFIG = JSON.stringify(
@@ -137,7 +144,14 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     extraDependencies,
     codeTransformers,
     modelName,
+    // Optional
     schema,
+    initialValue,
+    uiSchema = {},
+    disabled = false,
+    merger = {},
+    focusOnFirstError = true,
+    uiOptionsRegistry = {},
   } = options;
   const isKit = true;
   const nodeModulesPath = "../../node_modules";
@@ -189,6 +203,9 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       widgets,
       isTs,
       ts,
+      merger,
+      focusOnFirstError,
+      uiOptionsRegistry,
     })(""),
     "src/routes/+page.svelte": createPage({
       language,
@@ -198,6 +215,9 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       isTs,
       lib,
       modelName,
+      disabled,
+      uiSchema,
+      initialValue,
     })(""),
   };
 
@@ -210,6 +230,8 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       ts,
       schema,
       modelName,
+      uiSchema,
+      initialValue: initialValue as FormValue,
     })("");
   }
 

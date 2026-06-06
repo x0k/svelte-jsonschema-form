@@ -1,3 +1,5 @@
+import type { FormValue, UiSchemaRoot } from "@sjsf/form";
+import { isRecordEmpty } from "@sjsf/form/lib/object";
 import { neverError } from "../errors.ts";
 import { svelteKitRfSubPath, svelteKitSubPath } from "../sveltekit.ts";
 
@@ -7,6 +9,9 @@ import { createValidator, type ValidatorOptions } from "./validator.ts";
 
 export interface FormOptions extends ValidatorOptions {
   sveltekit: CodegenSvelteKitIntegration;
+  disabled: boolean;
+  uiSchema: UiSchemaRoot;
+  initialValue: FormValue;
 }
 
 export function createForm(ctx: FormOptions): {
@@ -15,7 +20,7 @@ export function createForm(ctx: FormOptions): {
   init: string;
   attributes: string;
 } {
-  const { sveltekit, isTs } = ctx;
+  const { sveltekit, isTs, disabled, uiSchema, initialValue, modelName } = ctx;
   const validator = createValidator(ctx);
   const validatorOptionsWithoutSchema = validator.options.replace(
     // Remove the `schema` property (e.g. `schema: post.schema,`) when the schema
@@ -96,7 +101,7 @@ const form = createForm${inputType}(
     init: `const form = createForm${inputType}({
   ...defaults,
   onSubmit: console.log,
-  ${validator.options}
+  ${disabled !== false ? `disabled: ${disabled},\n  ` : ""}${!isRecordEmpty(uiSchema) ? `uiSchema: ${modelName}.uiSchema,\n  ` : ""}${initialValue !== undefined ? `initialValue: ${modelName}.initialValue,\n  ` : ""}${validator.options}
 })`,
     attributes: "",
   };

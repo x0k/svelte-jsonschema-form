@@ -2,6 +2,7 @@ export * from "./lib.ts";
 export * from "./model.ts";
 export * from "./validator.ts";
 export * from "./form.ts";
+export * from "./json.ts";
 
 export * from "./defaults.ts";
 export * from "./dependencies.ts";

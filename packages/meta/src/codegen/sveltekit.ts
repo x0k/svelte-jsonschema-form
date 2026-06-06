@@ -1,3 +1,5 @@
+import type { FormValue, UiSchemaRoot } from "@sjsf/form";
+import { isRecordEmpty } from "@sjsf/form/lib/object";
 import { transforms } from "@sveltejs/sv-utils";
 
 import {
@@ -16,6 +18,8 @@ import { renderImports } from "./lib.ts";
 export interface SvelteKitIntegrationOptions extends ValidatorOptions {
   sveltekit: Exclude<CodegenSvelteKitIntegration, "no">;
   ts: ConditionalPrinter;
+  uiSchema: UiSchemaRoot;
+  initialValue: FormValue;
 }
 
 export function createSvelteKitIntegration(
@@ -25,7 +29,8 @@ export function createSvelteKitIntegration(
   const validatorImports = renderImports(
     validator.imports.concat(validator.schemaImports),
   );
-  const { sveltekit, lib, ts, isTs, modelName } = options;
+  const { sveltekit, lib, ts, isTs, modelName, uiSchema, initialValue } =
+    options;
   const setup = (
     {
       formActions: {
@@ -39,7 +44,8 @@ export const load = async () => {
   return {
     postForm: {
       ${!validator.schemaValidator ? `schema: ${modelName}.schema,` : ""}
-      initialValue: { title: "New post", content: "" },
+      ${!isRecordEmpty(uiSchema) ? `uiSchema: ${modelName}.uiSchema,` : ""}
+      ${initialValue !== undefined ? `initialValue: ${modelName}.initialValue,` : ""}
     }${ts(` satisfies InitialFormData<${validator.inputType}>`)},
   };
 };
@@ -71,7 +77,8 @@ import * as defaults from "${lib("sjsf/defaults")}";
 export const getInitialData = query(async () => {
   return {
     ${!validator.schemaValidator ? `schema: ${modelName}.schema, ` : ""}
-    initialValue: { title: "New post", content: "" },
+    ${!isRecordEmpty(uiSchema) ? `uiSchema: ${modelName}.uiSchema,` : ""}
+    ${initialValue !== undefined ? `initialValue: ${modelName}.initialValue,` : ""}
   }${ts(` satisfies InitialFormData<${validator.inputType}>`)};
 });
 
