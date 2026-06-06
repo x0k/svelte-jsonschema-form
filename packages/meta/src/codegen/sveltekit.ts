@@ -11,6 +11,7 @@ import {
 import type {
   ConditionalPrinter,
   CodegenSvelteKitIntegration,
+  FieldsValidationMode,
 } from "./model.ts";
 import { createValidator, type ValidatorOptions } from "./validator.ts";
 import { renderImports } from "./lib.ts";
@@ -20,6 +21,7 @@ export interface SvelteKitIntegrationOptions extends ValidatorOptions {
   ts: ConditionalPrinter;
   uiSchema: UiSchemaRoot;
   initialValue: FormValue;
+  fieldsValidationMode: FieldsValidationMode;
 }
 
 export function createSvelteKitIntegration(
@@ -29,8 +31,16 @@ export function createSvelteKitIntegration(
   const validatorImports = renderImports(
     validator.imports.concat(validator.schemaImports),
   );
-  const { sveltekit, lib, ts, isTs, modelName, uiSchema, initialValue } =
-    options;
+  const {
+    sveltekit,
+    lib,
+    ts,
+    isTs,
+    modelName,
+    uiSchema,
+    initialValue,
+    fieldsValidationMode,
+  } = options;
   const setup = (
     {
       formActions: {
@@ -43,9 +53,10 @@ import * as defaults from "${lib("sjsf/defaults")}";
 export const load = async () => {
   return {
     postForm: {
-      ${!validator.schemaValidator ? `schema: ${modelName}.schema,` : ""}
+      ${!validator.canInferFormType ? `schema: ${modelName}.schema,` : ""}
       ${!isRecordEmpty(uiSchema) ? `uiSchema: ${modelName}.uiSchema,` : ""}
       ${initialValue !== undefined ? `initialValue: ${modelName}.initialValue,` : ""}
+      ${fieldsValidationMode > 0 ? `fieldsValidationMode: ${modelName}.fieldsValidationMode,` : ""}
     }${ts(` satisfies InitialFormData<${validator.inputType}>`)},
   };
 };
@@ -58,7 +69,7 @@ export const actions = {
       sendData: true,
       ${validator.options}
     },
-    (data${isTs && !validator.schemaValidator ? `: ${validator.inputType}` : ""}) => {
+    (data${isTs && !validator.canInferFormType ? `: ${validator.inputType}` : ""}) => {
       console.log(data)
       return { post: { ...data, id: "new-post" } };
     },
@@ -76,14 +87,15 @@ import * as defaults from "${lib("sjsf/defaults")}";
 
 export const getInitialData = query(async () => {
   return {
-    ${!validator.schemaValidator ? `schema: ${modelName}.schema, ` : ""}
+    ${!validator.canInferFormType ? `schema: ${modelName}.schema, ` : ""}
     ${!isRecordEmpty(uiSchema) ? `uiSchema: ${modelName}.uiSchema,` : ""}
     ${initialValue !== undefined ? `initialValue: ${modelName}.initialValue,` : ""}
+    ${fieldsValidationMode !== 0 ? `fieldsValidationMode: ${modelName}.fieldsValidationMode,` : ""}
   }${ts(` satisfies InitialFormData<${validator.inputType}>`)};
 });
 
 export const createPost = form(
-  createServerValidator${isTs && !validator.schemaValidator ? `<${validator.inputType}>` : ""}({
+  createServerValidator${isTs && !validator.canInferFormType ? `<${validator.inputType}>` : ""}({
     ...defaults,
     ${validator.options}
   }),

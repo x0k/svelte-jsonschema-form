@@ -89,6 +89,7 @@ export async function createExampleFiles(
     extraDependencies: content.dependencies,
     codeTransformers,
     modelName: "model",
+    fieldsValidationMode: 0,
   });
 }
 

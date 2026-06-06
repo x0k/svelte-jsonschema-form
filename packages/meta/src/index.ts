@@ -2,7 +2,10 @@ export * from "./types.ts";
 export * from "./css.ts";
 export * from "./package.ts";
 export * from "./errors.ts";
-
+export {
+  FIELD_VALIDATION_FLAGS,
+  type FieldValidationFlag,
+} from "./validation.generated.ts";
 export { filterByTags } from "./catalog.ts";
 
 export * from "./form.ts";

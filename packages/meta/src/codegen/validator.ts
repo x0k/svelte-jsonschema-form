@@ -22,17 +22,16 @@ export interface ValidatorOptions {
   modelName: string;
 }
 
-interface ValidatorDefinition {
+export interface ValidatorDefinition {
   schemaImports: (NamedImportOptions | NamespaceImportOptions)[];
   imports: (NamedImportOptions | NamespaceImportOptions)[];
   options: string;
   inputType: string;
-  schemaValidator: boolean;
+  canInferFormType: boolean;
 }
 
 export function createValidator({
   validatorWithSuffix,
-  isTs,
   lib,
   modelName,
 }: ValidatorOptions): ValidatorDefinition {
@@ -41,7 +40,7 @@ export function createValidator({
     if (validator === "hyperjump") {
       return {
         inputType: `${modelName}.Model`,
-        schemaValidator: false,
+        canInferFormType: false,
         schemaImports: [],
         imports: [
           {
@@ -82,7 +81,7 @@ validator: createFormValidatorFactory({
     }
     return {
       inputType: `${modelName}.Model`,
-      schemaValidator: false,
+      canInferFormType: false,
       schemaImports: [
         {
           as: modelName,
@@ -160,12 +159,12 @@ validator: createFormValidatorFactory({
       ],
       options: `...adapt(${modelName}.schema)`,
       inputType: `${modelName}.Model`,
-      schemaValidator: true,
+      canInferFormType: true,
     };
   }
   return {
     inputType: `${modelName}.Model`,
-    schemaValidator: false,
+    canInferFormType: false,
     schemaImports: [
       {
         as: modelName,

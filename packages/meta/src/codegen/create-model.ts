@@ -7,9 +7,11 @@ import { extraPackage } from "../package.ts";
 import { formPackage } from "../form.ts";
 import { neverError } from "../errors.ts";
 
-import type {
-  CodegenNonPrecompiledValidator,
-  ConditionalPrinter,
+import {
+  fieldsValidationModeFlags,
+  type CodegenNonPrecompiledValidator,
+  type ConditionalPrinter,
+  type FieldsValidationMode,
 } from "./model.ts";
 
 export interface ModelOptions {
@@ -20,6 +22,7 @@ export interface ModelOptions {
   modelName: string;
   uiSchema: UiSchemaRoot;
   initialValue: FormValue;
+  fieldsValidationMode: FieldsValidationMode;
 }
 
 function toTypeName(name: string): string {
@@ -35,6 +38,7 @@ export function createModel({
   modelName,
   uiSchema,
   initialValue,
+  fieldsValidationMode,
 }: ModelOptions) {
   const typeName = toTypeName(modelName);
   return transforms.script(({ ast, js, comments }) => {
@@ -229,6 +233,23 @@ export const schema${ts(": StandardSchemaV1<InternalModel> & StandardJSONSchemaV
       js.exports.createNamed(ast, {
         name: "initialValue",
         fallback: declaration,
+      });
+    }
+
+    if (fieldsValidationMode > 0) {
+      const flags = fieldsValidationModeFlags(fieldsValidationMode);
+      js.imports.addNamed(ast, {
+        imports: flags,
+        from: formPackage.name,
+      });
+      const fieldsValidationModeDeclaration = js.variables.declaration(ast, {
+        kind: "const",
+        name: "fieldsValidationMode",
+        value: js.common.parseFromString(flags.join(" | ")),
+      });
+      js.exports.createNamed(ast, {
+        name: "fieldsValidationMode",
+        fallback: fieldsValidationModeDeclaration,
       });
     }
   });

@@ -1,7 +1,11 @@
-import type { Schema, UiSchemaRoot } from "@sjsf/form";
+import type { FieldsValidationMode, Schema, UiSchemaRoot } from "@sjsf/form";
 
 import { iconSets } from "../icons.ts";
 import type { Generated } from "../types.ts";
+import {
+  FIELD_VALIDATION_FLAGS,
+  type FieldValidationFlag,
+} from "../validation.generated.ts";
 import {
   isPrecompiledOnlyValidator,
   isPrecompiledValidator,
@@ -14,11 +18,28 @@ import {
   themeSubThemes,
 } from "../themes.ts";
 
-export type { Schema, UiSchemaRoot };
+export type { FieldsValidationMode, Schema, UiSchemaRoot };
+
+export function fieldsValidationModeFlags(
+  mode: FieldsValidationMode,
+): FieldValidationFlag[] {
+  return (
+    Object.entries(FIELD_VALIDATION_FLAGS) as [
+      FieldValidationFlag,
+      FieldsValidationMode,
+    ][]
+  )
+    .filter(([, bit]) => mode & bit)
+    .map(([name]) => name);
+}
 
 export type Language = "ts" | "js";
 
 export type ConditionalPrinter = (content: string, alt?: string) => string;
+
+export function createPrinter(condition: boolean): ConditionalPrinter {
+  return (content: string, alt = "") => (condition ? content : alt);
+}
 
 export type PathFactory = (path: string) => string;
 

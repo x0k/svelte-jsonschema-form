@@ -2,10 +2,18 @@ import { transforms } from "@sveltejs/sv-utils";
 
 import { formPackage } from "../form.ts";
 
-import type { CodegenThemeOrSubTheme, Language } from "./model.ts";
-import { createForm, type FormOptions } from "./form.ts";
+import type {
+  CodegenThemeOrSubTheme,
+  CodegenValidator,
+  Language,
+  PathFactory,
+} from "./model.ts";
+import type { FormDefinition } from "./form.ts";
 
-export interface PageOptions extends FormOptions {
+export interface PageOptions {
+  lib: PathFactory;
+  validatorWithSuffix: CodegenValidator;
+  form: FormDefinition;
   language: Language;
   themeOrSubTheme: CodegenThemeOrSubTheme;
 }
@@ -21,10 +29,8 @@ export const PADDED_THEMES: CodegenThemeOrSubTheme[] = [
 ];
 
 export function createPage(options: PageOptions) {
-  const { language, validatorWithSuffix, lib, themeOrSubTheme } = options;
+  const { language, validatorWithSuffix, lib, themeOrSubTheme, form } = options;
   return transforms.svelteScript({ language }, ({ ast, js, svelte }) => {
-    const form = createForm(options);
-
     js.imports.addNamed(ast.instance.content, {
       imports: form.formPackageImports,
       from: formPackage.name,

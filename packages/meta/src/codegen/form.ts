@@ -4,24 +4,41 @@ import { neverError } from "../errors.ts";
 import { svelteKitRfSubPath, svelteKitSubPath } from "../sveltekit.ts";
 
 import type { NamedImportOptions, NamespaceImportOptions } from "./lib.ts";
-import type { CodegenSvelteKitIntegration } from "./model.ts";
-import { createValidator, type ValidatorOptions } from "./validator.ts";
+import type {
+  CodegenSvelteKitIntegration,
+  FieldsValidationMode,
+} from "./model.ts";
+import type { ValidatorDefinition } from "./validator.ts";
 
-export interface FormOptions extends ValidatorOptions {
+export interface FormOptions {
+  isTs: boolean;
+  modelName: string;
   sveltekit: CodegenSvelteKitIntegration;
   disabled: boolean;
   uiSchema: UiSchemaRoot;
   initialValue: FormValue;
+  fieldsValidationMode: FieldsValidationMode;
+  validator: ValidatorDefinition;
 }
 
-export function createForm(ctx: FormOptions): {
+export interface FormDefinition {
   formPackageImports: string[];
   additionalImports: (NamedImportOptions | NamespaceImportOptions)[];
   init: string;
   attributes: string;
-} {
-  const { sveltekit, isTs, disabled, uiSchema, initialValue, modelName } = ctx;
-  const validator = createValidator(ctx);
+}
+
+export function createForm(ctx: FormOptions): FormDefinition {
+  const {
+    sveltekit,
+    isTs,
+    disabled,
+    uiSchema,
+    initialValue,
+    modelName,
+    fieldsValidationMode,
+    validator,
+  } = ctx;
   const validatorOptionsWithoutSchema = validator.options.replace(
     // Remove the `schema` property (e.g. `schema: post.schema,`) when the schema
     // is already provided via SvelteKit meta/initialData.
@@ -29,7 +46,7 @@ export function createForm(ctx: FormOptions): {
     /\bschema\s*:\s*\S+\s*,?\s*/,
     "",
   );
-  const isInputTypeRequired = isTs && !validator.schemaValidator;
+  const isInputTypeRequired = isTs && !validator.canInferFormType;
   const inputType = isInputTypeRequired ? `<${validator.inputType}>` : "";
   if (sveltekit === "formActions") {
     return {
@@ -101,7 +118,7 @@ const form = createForm${inputType}(
     init: `const form = createForm${inputType}({
   ...defaults,
   onSubmit: console.log,
-  ${disabled !== false ? `disabled: ${disabled},\n  ` : ""}${!isRecordEmpty(uiSchema) ? `uiSchema: ${modelName}.uiSchema,\n  ` : ""}${initialValue !== undefined ? `initialValue: ${modelName}.initialValue,\n  ` : ""}${validator.options}
+  ${disabled !== false ? `disabled: ${disabled},\n  ` : ""}${!isRecordEmpty(uiSchema) ? `uiSchema: ${modelName}.uiSchema,\n  ` : ""}${initialValue !== undefined ? `initialValue: ${modelName}.initialValue,\n  ` : ""}${fieldsValidationMode !== 0 ? `fieldsValidationMode: ${modelName}.fieldsValidationMode,\n  ` : ""}${validator.options}
 })`,
     attributes: "",
   };

@@ -6,7 +6,7 @@ import {
   type CodegenValidator,
   type CodegenSvelteKitIntegration,
   type CodegenNonPrecompiledValidator,
-  type ConditionalPrinter,
+  type FieldsValidationMode,
   type Language,
   type PathFactory,
   createDefaults,
@@ -21,6 +21,9 @@ import {
   createModel,
   withoutPrecompiledSuffix,
   type MergerOptions,
+  createPrinter,
+  createValidator,
+  createForm,
 } from "../codegen/index.ts";
 import {
   extraPackage,
@@ -50,6 +53,7 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   schema?: Schema;
   uiSchema?: UiSchemaRoot;
   initialValue?: FormValue;
+  fieldsValidationMode: FieldsValidationMode;
   disabled?: boolean;
   merger?: Partial<MergerOptions>;
   focusOnFirstError?: boolean;
@@ -144,6 +148,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     extraDependencies,
     codeTransformers,
     modelName,
+    fieldsValidationMode,
     // Optional
     schema,
     initialValue,
@@ -156,7 +161,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
   const isKit = true;
   const nodeModulesPath = "../../node_modules";
   const isTs = language === "ts";
-  const ts: ConditionalPrinter = (content, alt = "") => (isTs ? content : alt);
+  const ts = createPrinter(isTs);
   const lib: PathFactory = (path) => `$lib/${path}`;
 
   const dependencies: AbstractPackage[] = [
@@ -179,6 +184,24 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     icons,
     sveltekit,
     widgets,
+  });
+
+  const validator = createValidator({
+    validatorWithSuffix,
+    isTs,
+    lib,
+    modelName,
+  });
+
+  const form = createForm({
+    validator,
+    disabled,
+    fieldsValidationMode,
+    initialValue,
+    isTs,
+    modelName,
+    sveltekit,
+    uiSchema,
   });
 
   const files: Record<string, string> = {
@@ -211,13 +234,8 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       language,
       themeOrSubTheme,
       validatorWithSuffix,
-      sveltekit,
-      isTs,
       lib,
-      modelName,
-      disabled,
-      uiSchema,
-      initialValue,
+      form,
     })(""),
   };
 
@@ -232,6 +250,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       modelName,
       uiSchema,
       initialValue: initialValue as FormValue,
+      fieldsValidationMode,
     })("");
   }
 
