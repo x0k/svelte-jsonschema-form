@@ -1,6 +1,17 @@
-import { createPage, addToDemoPage } from "meta/codegen";
+import {
+  createPage,
+  addToDemoPage,
+  createValidator,
+  createForm,
+} from "meta/codegen";
 
-import { POST_INITIAL_VALUE, POST_UI_SCHEMA, type Context } from "./model.js";
+import {
+  POST_FIELDS_VALIDATION_MODE,
+  POST_INITIAL_VALUE,
+  POST_MODEL_NAME,
+  POST_UI_SCHEMA,
+  type Context,
+} from "./model.js";
 
 export function pageSvelte(ctx: Context) {
   const {
@@ -24,17 +35,29 @@ export function pageSvelte(ctx: Context) {
     );
   }
 
+  const validator = createValidator({
+    ...ctx.options,
+    modelName: POST_MODEL_NAME,
+    isTs,
+    lib,
+  });
+  const form = createForm({
+    ...ctx.options,
+    disabled: false,
+    uiSchema: POST_UI_SCHEMA,
+    initialValue: POST_INITIAL_VALUE,
+    fieldsValidationMode: POST_FIELDS_VALIDATION_MODE,
+    isTs,
+    modelName: POST_MODEL_NAME,
+    validator,
+  });
   sv.file(
     `${directory.kitRoutes}/${isKit ? "demo/sjsf/+page.svelte" : "sjsf.svelte"}`,
     createPage({
       ...ctx.options,
       language,
-      isTs,
+      form,
       lib,
-      modelName: "post",
-      disabled: false,
-      uiSchema: POST_UI_SCHEMA,
-      initialValue: POST_INITIAL_VALUE,
     }),
   );
 }

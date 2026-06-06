@@ -9,6 +9,7 @@ import {
   themeExtensionOrigin,
   isLabValidator,
   toTheme,
+  FIELD_VALIDATION_FLAGS,
 } from "meta";
 import {
   codegenSvelteKitIntegrations,
@@ -18,6 +19,7 @@ import {
   withoutPrecompiledSuffix,
   type CodegenSvelteKitIntegration,
   type CodegenThemeOrSubTheme,
+  type FieldsValidationMode,
   type Schema,
   type UiSchemaRoot,
 } from "meta/codegen";
@@ -157,7 +159,9 @@ export function createContext(ws: Workspace): Context {
   };
 }
 
-export const POST_MODEL_DIR = `/post/`;
+export const POST_MODEL_NAME = "post";
+
+export const POST_MODEL_DIR = `/${POST_MODEL_NAME}/`;
 
 export const POST_SCHEMA = {
   title: "Post",
@@ -185,5 +189,8 @@ export const POST_UI_SCHEMA = {
 } satisfies UiSchemaRoot;
 
 export const POST_INITIAL_VALUE = { title: "New post", content: "" };
+
+export const POST_FIELDS_VALIDATION_MODE: FieldsValidationMode =
+  FIELD_VALIDATION_FLAGS.ON_INPUT | FIELD_VALIDATION_FLAGS.ON_CHANGE;
 
 export const POST_EXTRA_WIDGETS = ["textarea"] as const;

@@ -3,7 +3,11 @@ import {
   isEndsWithPrecompiled,
 } from "meta/codegen";
 
-import { POST_MODEL_DIR, type Context } from "./model.js";
+import {
+  POST_FIELDS_VALIDATION_MODE,
+  POST_MODEL_DIR,
+  type Context,
+} from "./model.js";
 import { transforms } from "./sv-utils.js";
 
 export function scriptsFolder(ctx: Context) {
@@ -26,6 +30,7 @@ export function scriptsFolder(ctx: Context) {
       modelPaths: [`${directory.lib}${POST_MODEL_DIR}`],
       language,
       ts,
+      fieldsValidationMode: POST_FIELDS_VALIDATION_MODE,
     }),
   );
 

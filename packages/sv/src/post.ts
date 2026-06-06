@@ -5,6 +5,7 @@ import {
 } from "meta/codegen";
 
 import {
+  POST_FIELDS_VALIDATION_MODE,
   POST_INITIAL_VALUE,
   POST_MODEL_DIR,
   POST_SCHEMA,
@@ -43,6 +44,7 @@ export function postTs({
         modelName: "post",
         initialValue: POST_INITIAL_VALUE,
         uiSchema: POST_UI_SCHEMA,
+        fieldsValidationMode: POST_FIELDS_VALIDATION_MODE,
       }),
     );
   }
