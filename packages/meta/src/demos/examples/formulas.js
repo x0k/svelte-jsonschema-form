@@ -4,7 +4,7 @@ import objectFieldSvelte from "examples/basic-starter/src/routes/formulas/object
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.SchemaAndValidation,
+  category: ExampleCategory.LogicExtension,
   title: "Formulas",
   description:
     "Custom field component with its own logic (formula-based values).",

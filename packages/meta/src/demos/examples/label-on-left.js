@@ -3,7 +3,7 @@ import sveltePage from "examples/basic-starter/src/routes/label-on-left/+page.sv
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.LayoutAndComponents,
+  category: ExampleCategory.UiExtension,
   title: "Label on Left",
   description: "Field labels rendered on the left side.",
   tags: [Tag.Layout],

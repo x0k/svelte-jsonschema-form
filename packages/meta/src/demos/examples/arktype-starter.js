@@ -5,7 +5,7 @@ import { extraPackage } from "meta";
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.GettingStarted,
+  category: ExampleCategory.Starters,
   title: "Arktype Starter",
   description: "Arktype with standard-schema validator starter.",
   tags: [],

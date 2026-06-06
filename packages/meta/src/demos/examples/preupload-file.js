@@ -7,7 +7,7 @@ import svelteStoredFileField from "examples/basic-starter/src/routes/preupload-f
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.LayoutAndComponents,
+  category: ExampleCategory.LogicExtension,
   title: "Pre-upload File",
   description:
     "Custom file upload widget with client-side preview before submission.",

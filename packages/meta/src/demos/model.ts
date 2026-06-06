@@ -11,18 +11,19 @@ import {
 } from "../codegen/index.ts";
 import type { CodeTransformer } from "../composer/index.ts";
 
+// NOTE: Order is important
 export enum ExampleCategory {
-  GettingStarted = "Getting Started",
+  Starters = "Starters",
+  LogicExtension = "Logic Extensions",
+  UiExtension = "UI Extensions",
   SvelteKitIntegrations = "SvelteKit Integrations",
-  SchemaAndValidation = "Schema & Validation",
-  LayoutAndComponents = "Layout & Components",
 }
+
+const ORDERED_CATEGORIES = Object.values(ExampleCategory);
 
 export function exampleCategories(): Iterable<ExampleCategory> {
   return ORDERED_CATEGORIES;
 }
-
-const ORDERED_CATEGORIES = Object.values(ExampleCategory);
 
 export enum Tag {
   /** Custom field/description components */

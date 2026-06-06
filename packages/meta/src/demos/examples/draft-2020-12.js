@@ -5,7 +5,7 @@ import { extraPackage } from "meta";
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.SchemaAndValidation,
+  category: ExampleCategory.LogicExtension,
   title: "Draft 2020-12",
   description: "JSON Schema draft 2020-12 features including $ref.",
   tags: [Tag.Schema],

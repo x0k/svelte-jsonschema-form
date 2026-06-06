@@ -4,7 +4,7 @@ import multiStepFieldSvelte from "examples/basic-starter/src/routes/multi-step/m
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.LayoutAndComponents,
+  category: ExampleCategory.UiExtension,
   title: "Multi-step",
   description: "Multi-step wizard form with navigation.",
   tags: [Tag.Layout],

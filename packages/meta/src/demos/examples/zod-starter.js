@@ -3,7 +3,7 @@ import sveltePage from "examples/basic-starter/src/routes/zod-starter/+page.svel
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.GettingStarted,
+  category: ExampleCategory.Starters,
   title: "Zod Starter",
   description: "Zod validator integration starter.",
   tags: [],

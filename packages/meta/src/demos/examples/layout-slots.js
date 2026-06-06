@@ -4,7 +4,7 @@ import layoutSvelte from "examples/basic-starter/src/routes/layout-slots/layout.
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.LayoutAndComponents,
+  category: ExampleCategory.UiExtension,
   title: "Layout Slots",
   description: "Form layout customization using slot-based components.",
   tags: [Tag.Layout],

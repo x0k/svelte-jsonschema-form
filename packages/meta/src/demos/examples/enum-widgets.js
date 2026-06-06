@@ -4,7 +4,7 @@ import radioWithOrderSvelte from "examples/basic-starter/src/routes/enum-widgets
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.LayoutAndComponents,
+  category: ExampleCategory.UiExtension,
   title: "Enum Widgets",
   description: "Different widget types for enum properties.",
   tags: [Tag.Enum, Tag.CustomComponent],

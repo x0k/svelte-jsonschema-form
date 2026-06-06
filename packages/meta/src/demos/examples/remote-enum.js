@@ -5,7 +5,7 @@ import comboboxSvelte from "examples/basic-starter/src/routes/remote-enum/combob
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.SchemaAndValidation,
+  category: ExampleCategory.LogicExtension,
   title: "Remote Enum",
   description: "Async enum options loaded from a remote source.",
   tags: [Tag.Enum],

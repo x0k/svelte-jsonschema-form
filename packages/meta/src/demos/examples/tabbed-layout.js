@@ -12,7 +12,7 @@ import topTabsSvelte from "examples/basic-starter/src/routes/tabbed-layout/top-t
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.LayoutAndComponents,
+  category: ExampleCategory.UiExtension,
   title: "Tabbed Layout",
   description: "Custom tabbed layout for form sections.",
   tags: [Tag.Layout],

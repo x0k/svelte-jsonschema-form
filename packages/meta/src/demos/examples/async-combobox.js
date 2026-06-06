@@ -6,10 +6,10 @@ import asyncComboboxWidgetSvelte from "examples/basic-starter/src/routes/async-c
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.SchemaAndValidation,
+  category: ExampleCategory.LogicExtension,
   title: "Async Combobox",
   description: "Custom async combobox widget with search functionality.",
-  tags: [Tag.CustomComponent],
+  tags: [Tag.CustomComponent, Tag.Enum],
 });
 
 export default defineExample({

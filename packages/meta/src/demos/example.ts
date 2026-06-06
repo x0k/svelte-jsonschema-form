@@ -52,6 +52,14 @@ export interface CreateExampleFilesOptions {
   validator: CodegenValidator;
 }
 
+function exampleName({
+  entry: { meta },
+  themeOrSubTheme,
+  validator,
+}: CreateExampleFilesOptions) {
+  return `${meta.title} (${themeOrSubTheme}, ${validator})`;
+}
+
 export async function createExampleFiles(
   options: CreateExampleFilesOptions,
 ): Promise<Record<string, string>> {
@@ -70,7 +78,7 @@ export async function createExampleFiles(
   }
 
   return createComposer({
-    name: `${meta.title} (${themeOrSubTheme}, ${validator})`,
+    name: exampleName(options),
     language: "ts",
     icons: "none",
     themeOrSubTheme,
@@ -91,7 +99,7 @@ export interface OpenExampleOptions extends CreateExampleFilesOptions {
 export async function openExample(options: OpenExampleOptions) {
   const files = await createExampleFiles(options);
   await sandboxOpen({
-    name: options.entry.path,
+    name: exampleName(options),
     platform: options.platform,
     files,
   });

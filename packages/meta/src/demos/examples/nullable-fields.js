@@ -4,7 +4,7 @@ import nullableFieldSvelte from "examples/basic-starter/src/routes/nullable-fiel
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.SchemaAndValidation,
+  category: ExampleCategory.LogicExtension,
   title: "Nullable Fields",
   description: "Custom nullable field component for null value states.",
   tags: [Tag.CustomComponent],

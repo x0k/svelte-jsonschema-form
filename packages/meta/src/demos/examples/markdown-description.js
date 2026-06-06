@@ -6,7 +6,7 @@ import { extraPackage } from "meta";
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.LayoutAndComponents,
+  category: ExampleCategory.UiExtension,
   title: "Markdown Description",
   description: "Rich markdown descriptions using svelte-exmarkdown.",
   tags: [Tag.CustomComponent],

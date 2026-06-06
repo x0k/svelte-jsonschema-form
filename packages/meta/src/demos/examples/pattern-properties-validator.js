@@ -3,7 +3,7 @@ import pageSvelte from "examples/basic-starter/src/routes/pattern-properties-val
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.SchemaAndValidation,
+  category: ExampleCategory.LogicExtension,
   title: "Pattern Properties Validator",
   description:
     "Custom field component with validation logic for patternProperties.",

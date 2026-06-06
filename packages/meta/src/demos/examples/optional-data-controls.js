@@ -3,7 +3,7 @@ import sveltePage from "examples/basic-starter/src/routes/optional-data-controls
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
-  category: ExampleCategory.SchemaAndValidation,
+  category: ExampleCategory.LogicExtension,
   title: "Optional Data Controls",
   description: "Controlling optional field behavior and appearance.",
   tags: [Tag.CustomComponent],
