@@ -1,6 +1,6 @@
 import { createDefaults } from "meta/codegen";
 
-import { type Context } from "./model.js";
+import { POST_EXTRA_WIDGETS, type Context } from "./model.js";
 
 export function defaultsTs({
   options,
@@ -12,6 +12,15 @@ export function defaultsTs({
 }: Context) {
   sv.file(
     `${directory.lib}/sjsf/defaults.${language}`,
-    createDefaults({ ...options, isTs, ts, resolver: "inline", widgets: [] }),
+    createDefaults({
+      ...options,
+      isTs,
+      ts,
+      resolver: "inline",
+      widgets: POST_EXTRA_WIDGETS,
+      focusOnFirstError: true,
+      merger: {},
+      uiOptionsRegistry: {},
+    }),
   );
 }

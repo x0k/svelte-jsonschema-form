@@ -18,7 +18,10 @@ import {
   withoutPrecompiledSuffix,
   type CodegenSvelteKitIntegration,
   type CodegenThemeOrSubTheme,
+  type Schema,
+  type UiSchemaRoot,
 } from "meta/codegen";
+import type * as _uiSchemaAugmentation from "meta/playground";
 
 import packageJson from "../package.json" with { type: "json" };
 import { createPrinter } from "./sv-utils.js";
@@ -154,4 +157,33 @@ export function createContext(ws: Workspace): Context {
   };
 }
 
-export const POST_JSON_SCHEMA_PATH = `/post/schema.json`;
+export const POST_MODEL_DIR = `/post/`;
+
+export const POST_SCHEMA = {
+  title: "Post",
+  type: "object",
+  properties: {
+    title: {
+      title: "Title",
+      type: "string",
+    },
+    content: {
+      title: "Content",
+      type: "string",
+      minLength: 10,
+    },
+  },
+  required: ["title", "content"],
+} satisfies Schema;
+
+export const POST_UI_SCHEMA = {
+  content: {
+    "ui:components": {
+      textWidget: "textareaWidget",
+    },
+  },
+} satisfies UiSchemaRoot;
+
+export const POST_INITIAL_VALUE = { title: "New post", content: "" };
+
+export const POST_EXTRA_WIDGETS = ["textarea"] as const;

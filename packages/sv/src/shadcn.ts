@@ -1,7 +1,7 @@
 import { createShadcnLib } from "meta/codegen";
 
 import { fileExists, transforms } from "./sv-utils.js";
-import type { Context } from "./model.js";
+import { POST_EXTRA_WIDGETS, type Context } from "./model.js";
 
 export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
   const isShadcn4 = options.themeOrSubTheme === "shadcn4";
@@ -44,7 +44,7 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
           ? localPath
           : libPath;
       },
-      widgets: [],
+      widgets: POST_EXTRA_WIDGETS,
     }),
   );
 }

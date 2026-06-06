@@ -3,7 +3,7 @@ import {
   isEndsWithPrecompiled,
 } from "meta/codegen";
 
-import { POST_JSON_SCHEMA_PATH, type Context } from "./model.js";
+import { POST_MODEL_DIR, type Context } from "./model.js";
 import { transforms } from "./sv-utils.js";
 
 export function scriptsFolder(ctx: Context) {
@@ -23,10 +23,9 @@ export function scriptsFolder(ctx: Context) {
     `scripts/compile-validators.${language}`,
     createCompileValidatorsScript({
       validator: validatorWithSuffix,
-      jsonSchemaPaths: [`${directory.lib}${POST_JSON_SCHEMA_PATH}`],
+      modelPaths: [`${directory.lib}${POST_MODEL_DIR}`],
       language,
       ts,
-      modelName: "post",
     }),
   );
 

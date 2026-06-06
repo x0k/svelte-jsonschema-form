@@ -1,6 +1,6 @@
 import { createPage, addToDemoPage } from "meta/codegen";
 
-import type { Context } from "./model.js";
+import { POST_INITIAL_VALUE, POST_UI_SCHEMA, type Context } from "./model.js";
 
 export function pageSvelte(ctx: Context) {
   const {
@@ -26,6 +26,15 @@ export function pageSvelte(ctx: Context) {
 
   sv.file(
     `${directory.kitRoutes}/${isKit ? "demo/sjsf/+page.svelte" : "sjsf.svelte"}`,
-    createPage({ ...ctx.options, language, isTs, lib, modelName: "post" }),
+    createPage({
+      ...ctx.options,
+      language,
+      isTs,
+      lib,
+      modelName: "post",
+      disabled: false,
+      uiSchema: POST_UI_SCHEMA,
+      initialValue: POST_INITIAL_VALUE,
+    }),
   );
 }

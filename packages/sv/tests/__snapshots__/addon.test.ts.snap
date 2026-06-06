@@ -82,10 +82,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -131,7 +138,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export { icons } from "@sjsf/flowbite-icons";
@@ -168,7 +174,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -432,10 +444,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -481,7 +500,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export { icons } from "@sjsf/flowbite-icons";
@@ -509,7 +527,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -616,10 +640,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -665,7 +696,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export { icons } from "@sjsf/lucide-icons";
@@ -702,7 +732,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -963,10 +999,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -1012,7 +1055,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export { icons } from "@sjsf/lucide-icons";
@@ -1040,7 +1082,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -1144,10 +1192,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -1193,7 +1248,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export { icons } from "@sjsf/moving-icons";
@@ -1230,7 +1284,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -1491,10 +1551,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -1540,7 +1607,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export { icons } from "@sjsf/moving-icons";
@@ -1568,7 +1634,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -1672,10 +1744,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -1721,7 +1800,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export { icons } from "@sjsf/radix-icons";
@@ -1758,7 +1836,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -2019,10 +2103,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -2068,7 +2159,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export { icons } from "@sjsf/radix-icons";
@@ -2096,7 +2186,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -2201,10 +2297,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -2250,7 +2353,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -2291,7 +2393,8 @@ export const load = async () => {
 	return {
 		postForm: ({
 			schema: post.schema,
-			initialValue: { title: "New post", content: "" }
+			uiSchema: post.uiSchema,
+			initialValue: post.initialValue
 		}) satisfies InitialFormData<post.Model>
 	};
 };
@@ -2414,28 +2517,49 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
 	// https://github.com/microsoft/TypeScript/issues/32063
-	await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+	await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-\`);
+\${uiSchema
+		? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+		: ""}\${initialValue
+		? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+		: ""}\`);
 
 	const ajv = new Ajv({
 		...DEFAULT_AJV_CONFIG,
@@ -2464,11 +2588,11 @@ export type Model = FromSchema<typeof schema>;
 
 	const bundle = outputFiles[0].text;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
+	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
-	await Promise.all(JSON_SCHEMA_PATHS.map(compileSchema));
+	await Promise.all(MODEL_PATHS.map(compileSchema));
 }
 
 if (import.meta.main) {
@@ -2505,6 +2629,11 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -2525,7 +2654,16 @@ export {};
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -2571,7 +2709,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -2608,7 +2745,8 @@ export const load = async () => {
 	return {
 		postForm: ({
 			schema: post.schema,
-			initialValue: { title: "New post", content: "" }
+			uiSchema: post.uiSchema,
+			initialValue: post.initialValue
 		}) satisfies InitialFormData<post.Model>
 	};
 };
@@ -2734,14 +2872,31 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	let id = 0;
 	const toId = (n: number) => \`https://example.com/v\${n}\`;
 
@@ -2768,8 +2923,8 @@ async function compileSchema(schemaRelPath: string) {
 
 		// It is easier to save as a TS file
 		// https://github.com/microsoft/TypeScript/issues/32063
-		await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+		await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 import { uneval } from "devalue";
@@ -2777,7 +2932,11 @@ import type { AST } from "@hyperjump/json-schema/experimental";
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-export const ast = \${uneval(ast)} as unknown as AST;\`);
+export const ast = \${uneval(ast)} as unknown as AST;\${uiSchema
+			? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+			: ""}\${initialValue
+			? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+			: ""}\`);
 	} finally {
 		for (const schema of schemas) {
 			unregisterSchema(schema.$id!);
@@ -2786,7 +2945,7 @@ export const ast = \${uneval(ast)} as unknown as AST;\`);
 }
 
 async function main() {
-	for (const p of JSON_SCHEMA_PATHS) {
+	for (const p of MODEL_PATHS) {
 		await compileSchema(p);
 	}
 }
@@ -2825,6 +2984,11 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -2845,9 +3009,18 @@ export {};
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@hyperjump/json-schema/draft-07";
 import "@hyperjump/json-schema/formats-lite";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -2893,7 +3066,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -2930,7 +3102,8 @@ export const load = async () => {
 	return {
 		postForm: ({
 			schema: post.schema,
-			initialValue: { title: "New post", content: "" }
+			uiSchema: post.uiSchema,
+			initialValue: post.initialValue
 		}) satisfies InitialFormData<post.Model>
 	};
 };
@@ -3094,16 +3267,23 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
-  "src/lib/post.ts": "import * as z from 'zod';
+  "src/lib/post.ts": "import * as z from "zod";
 
 export const schema = z.object({
-	title: z.string().meta({ title: 'Title' }),
-	content: z.string().min(10).meta({ title: 'Content' })
-}).meta({ title: 'Post' });
+	title: z.string().meta({ title: "Title" }),
+	content: z.string().min(10).meta({ title: "Content" })
+}).meta({ title: "Post" });
 
 export type Model = z.infer<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -3149,7 +3329,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -3182,7 +3361,7 @@ import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
 	return {
-		postForm: ({ initialValue: { title: "New post", content: "" } }) satisfies InitialFormData<post.Model>
+		postForm: ({ uiSchema: post.uiSchema, initialValue: post.initialValue }) satisfies InitialFormData<post.Model>
 	};
 };
 
@@ -3335,10 +3514,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -3384,7 +3570,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -3446,7 +3631,8 @@ import * as defaults from "$lib/sjsf/defaults";
 export const getInitialData = query(async () => {
 	return ({
 		schema: post.schema,
-		initialValue: { title: "New post", content: "" }
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue
 	}) satisfies InitialFormData<post.Model>;
 });
 
@@ -3546,28 +3732,49 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
 	// https://github.com/microsoft/TypeScript/issues/32063
-	await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+	await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-\`);
+\${uiSchema
+		? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+		: ""}\${initialValue
+		? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+		: ""}\`);
 
 	const ajv = new Ajv({
 		...DEFAULT_AJV_CONFIG,
@@ -3596,11 +3803,11 @@ export type Model = FromSchema<typeof schema>;
 
 	const bundle = outputFiles[0].text;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
+	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
-	await Promise.all(JSON_SCHEMA_PATHS.map(compileSchema));
+	await Promise.all(MODEL_PATHS.map(compileSchema));
 }
 
 if (import.meta.main) {
@@ -3637,6 +3844,11 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -3657,7 +3869,16 @@ export {};
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -3703,7 +3924,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -3769,7 +3989,8 @@ import * as defaults from "$lib/sjsf/defaults";
 export const getInitialData = query(async () => {
 	return ({
 		schema: post.schema,
-		initialValue: { title: "New post", content: "" }
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue
 	}) satisfies InitialFormData<post.Model>;
 });
 
@@ -3874,14 +4095,31 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	let id = 0;
 	const toId = (n: number) => \`https://example.com/v\${n}\`;
 
@@ -3908,8 +4146,8 @@ async function compileSchema(schemaRelPath: string) {
 
 		// It is easier to save as a TS file
 		// https://github.com/microsoft/TypeScript/issues/32063
-		await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+		await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 import { uneval } from "devalue";
@@ -3917,7 +4155,11 @@ import type { AST } from "@hyperjump/json-schema/experimental";
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-export const ast = \${uneval(ast)} as unknown as AST;\`);
+export const ast = \${uneval(ast)} as unknown as AST;\${uiSchema
+			? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+			: ""}\${initialValue
+			? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+			: ""}\`);
 	} finally {
 		for (const schema of schemas) {
 			unregisterSchema(schema.$id!);
@@ -3926,7 +4168,7 @@ export const ast = \${uneval(ast)} as unknown as AST;\`);
 }
 
 async function main() {
-	for (const p of JSON_SCHEMA_PATHS) {
+	for (const p of MODEL_PATHS) {
 		await compileSchema(p);
 	}
 }
@@ -3965,6 +4207,11 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -3985,9 +4232,18 @@ export {};
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@hyperjump/json-schema/draft-07";
 import "@hyperjump/json-schema/formats-lite";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -4033,7 +4289,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -4110,7 +4365,8 @@ import * as defaults from "$lib/sjsf/defaults";
 export const getInitialData = query(async () => {
 	return ({
 		schema: post.schema,
-		initialValue: { title: "New post", content: "" }
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue
 	}) satisfies InitialFormData<post.Model>;
 });
 
@@ -4240,16 +4496,23 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
-  "src/lib/post.ts": "import * as z from 'zod';
+  "src/lib/post.ts": "import * as z from "zod";
 
 export const schema = z.object({
-	title: z.string().meta({ title: 'Title' }),
-	content: z.string().min(10).meta({ title: 'Content' })
-}).meta({ title: 'Post' });
+	title: z.string().meta({ title: "Title" }),
+	content: z.string().min(10).meta({ title: "Content" })
+}).meta({ title: "Post" });
 
 export type Model = z.infer<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -4295,7 +4558,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -4355,7 +4617,7 @@ import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({ initialValue: { title: "New post", content: "" } }) satisfies InitialFormData<post.Model>;
+	return ({ uiSchema: post.uiSchema, initialValue: post.initialValue }) satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(createServerValidator({ ...defaults, ...adapt(post.schema) }), ({ data }) => {
@@ -4479,10 +4741,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -4528,7 +4797,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -4564,7 +4832,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -4820,10 +5094,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -4869,7 +5150,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -4896,7 +5176,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -4999,10 +5285,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf-lab/beercss-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -5048,7 +5341,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf-lab/beercss-theme/extra-widgets/radio-include";
 // import "@sjsf-lab/beercss-theme/extra-widgets/range-include";
 // import "@sjsf-lab/beercss-theme/extra-widgets/switch-include";
-// import "@sjsf-lab/beercss-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf-lab/beercss-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -5084,7 +5376,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -5338,10 +5636,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf-lab/beercss-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -5387,7 +5692,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf-lab/beercss-theme/extra-widgets/radio-include";
 // import "@sjsf-lab/beercss-theme/extra-widgets/range-include";
 // import "@sjsf-lab/beercss-theme/extra-widgets/switch-include";
-// import "@sjsf-lab/beercss-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf-lab/beercss-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -5414,7 +5718,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -5523,10 +5833,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -5577,7 +5894,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/daisyui5-theme/extra-widgets/range-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/rating-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/switch-include";
-// import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/daisyui5-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -5613,7 +5929,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -5880,10 +6202,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -5934,7 +6263,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/daisyui5-theme/extra-widgets/range-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/rating-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/switch-include";
-// import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/daisyui5-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -5961,7 +6289,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -6071,10 +6405,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -6124,7 +6465,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/flowbite3-theme/extra-widgets/range-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/switch-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/tags-include";
-// import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
 export { theme } from "@sjsf/flowbite3-theme";
 
@@ -6161,7 +6501,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -6453,10 +6799,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -6506,7 +6859,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/flowbite3-theme/extra-widgets/range-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/switch-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/tags-include";
-// import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
 export { theme } from "@sjsf/flowbite3-theme";
 
@@ -6534,7 +6886,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -6638,10 +6996,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -6687,7 +7052,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -6723,7 +7087,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -6982,10 +7352,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -7031,7 +7408,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -7058,7 +7434,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -7173,10 +7555,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -7227,7 +7616,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/shadcn4-theme/extra-widgets/range-slider-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/range-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 // import "@sjsf-lab/shadcn-extras-theme/extra-widgets/file-drop-zone-include";
 // import "@sjsf-lab/shadcn-extras-theme/extra-widgets/ip-v4-address-input-include";
 // import "@sjsf-lab/shadcn-extras-theme/extra-widgets/nlp-date-input-include";
@@ -7262,7 +7650,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	Select,
 	SelectTrigger,
 	SelectContent,
-	SelectItem
+	SelectItem,
+	Textarea
 } from '@sjsf/shadcn4-theme/new-york';
 
 import { setThemeContext } from '@sjsf/shadcn4-theme';
@@ -7286,7 +7675,8 @@ export function setShadcnThemeContext() {
 			Select,
 			SelectTrigger,
 			SelectContent,
-			SelectItem
+			SelectItem,
+			Textarea
 
 			// Popover,
 			// PopoverContent,
@@ -7305,7 +7695,6 @@ export function setShadcnThemeContext() {
 			// RadioGroupItem,
 			// Slider,
 			// Switch,
-			// Textarea,
 			// FileDropZone,
 			// FileDropZoneTrigger,
 			// IPv4AddressInput,
@@ -7349,7 +7738,13 @@ export function setShadcnThemeContext() {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -7746,10 +8141,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -7800,7 +8202,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/shadcn4-theme/extra-widgets/range-slider-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/range-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 // import "@sjsf-lab/shadcn-extras-theme/extra-widgets/file-drop-zone-include";
 // import "@sjsf-lab/shadcn-extras-theme/extra-widgets/ip-v4-address-input-include";
 // import "@sjsf-lab/shadcn-extras-theme/extra-widgets/nlp-date-input-include";
@@ -7835,7 +8236,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	Select,
 	SelectTrigger,
 	SelectContent,
-	SelectItem
+	SelectItem,
+	Textarea
 } from '@sjsf/shadcn4-theme/new-york';
 
 import { setThemeContext } from '@sjsf/shadcn4-theme';
@@ -7859,7 +8261,8 @@ export function setShadcnThemeContext() {
 			Select,
 			SelectTrigger,
 			SelectContent,
-			SelectItem
+			SelectItem,
+			Textarea
 
 			// Popover,
 			// PopoverContent,
@@ -7878,7 +8281,6 @@ export function setShadcnThemeContext() {
 			// RadioGroupItem,
 			// Slider,
 			// Switch,
-			// Textarea,
 			// FileDropZone,
 			// FileDropZoneTrigger,
 			// IPv4AddressInput,
@@ -7910,7 +8312,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -8032,10 +8440,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -8086,7 +8501,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/shadcn4-theme/extra-widgets/range-slider-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/range-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/shadcn4-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -8114,7 +8528,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	Select,
 	SelectTrigger,
 	SelectContent,
-	SelectItem
+	SelectItem,
+	Textarea
 } from '@sjsf/shadcn4-theme/new-york';
 
 import { setThemeContext } from '@sjsf/shadcn4-theme';
@@ -8138,7 +8553,8 @@ export function setShadcnThemeContext() {
 			Select,
 			SelectTrigger,
 			SelectContent,
-			SelectItem
+			SelectItem,
+			Textarea
 
 			// Popover,
 			// PopoverContent,
@@ -8156,8 +8572,7 @@ export function setShadcnThemeContext() {
 			// RadioGroup,
 			// RadioGroupItem,
 			// Slider,
-			// Switch,
-			// Textarea
+			// Switch
 		}
 	});
 }
@@ -8189,7 +8604,13 @@ export function setShadcnThemeContext() {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -8587,10 +9008,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -8641,7 +9069,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/shadcn4-theme/extra-widgets/range-slider-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/range-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
-// import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/shadcn4-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -8669,7 +9096,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	Select,
 	SelectTrigger,
 	SelectContent,
-	SelectItem
+	SelectItem,
+	Textarea
 } from '@sjsf/shadcn4-theme/new-york';
 
 import { setThemeContext } from '@sjsf/shadcn4-theme';
@@ -8693,7 +9121,8 @@ export function setShadcnThemeContext() {
 			Select,
 			SelectTrigger,
 			SelectContent,
-			SelectItem
+			SelectItem,
+			Textarea
 
 			// Popover,
 			// PopoverContent,
@@ -8711,8 +9140,7 @@ export function setShadcnThemeContext() {
 			// RadioGroup,
 			// RadioGroupItem,
 			// Slider,
-			// Switch,
-			// Textarea
+			// Switch
 		}
 	});
 }
@@ -8732,7 +9160,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -8851,10 +9285,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/skeleton4-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -8909,7 +9350,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/skeleton4-theme/extra-widgets/slider-include";
 // import "@sjsf/skeleton4-theme/extra-widgets/switch-include";
 // import "@sjsf/skeleton4-theme/extra-widgets/tags-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/skeleton4-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -8945,7 +9385,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -9217,10 +9663,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/skeleton4-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -9275,7 +9728,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/skeleton4-theme/extra-widgets/slider-include";
 // import "@sjsf/skeleton4-theme/extra-widgets/switch-include";
 // import "@sjsf/skeleton4-theme/extra-widgets/tags-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/skeleton4-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -9302,7 +9754,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -9406,10 +9864,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -9460,7 +9925,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf-lab/svar-theme/extra-widgets/radio-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/range-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/switch-include";
-// import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf-lab/svar-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -9496,7 +9960,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -9752,10 +10222,17 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
@@ -9806,7 +10283,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf-lab/svar-theme/extra-widgets/radio-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/range-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/switch-include";
-// import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf-lab/svar-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -9833,7 +10309,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -9907,28 +10389,49 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
 	// https://github.com/microsoft/TypeScript/issues/32063
-	await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+	await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-\`);
+\${uiSchema
+		? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+		: ""}\${initialValue
+		? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+		: ""}\`);
 
 	const ajv = new Ajv({
 		...DEFAULT_AJV_CONFIG,
@@ -9957,11 +10460,11 @@ export type Model = FromSchema<typeof schema>;
 
 	const bundle = outputFiles[0].text;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
+	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
-	await Promise.all(JSON_SCHEMA_PATHS.map(compileSchema));
+	await Promise.all(MODEL_PATHS.map(compileSchema));
 }
 
 if (import.meta.main) {
@@ -9998,6 +10501,11 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -10018,7 +10526,16 @@ export {};
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -10064,7 +10581,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -10099,6 +10615,8 @@ export const onSubmitError = createFocusOnFirstError();
 	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
 		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
@@ -10198,28 +10716,49 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
 	// https://github.com/microsoft/TypeScript/issues/32063
-	await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+	await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-\`);
+\${uiSchema
+		? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+		: ""}\${initialValue
+		? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+		: ""}\`);
 
 	const ajv = new Ajv({
 		...DEFAULT_AJV_CONFIG,
@@ -10248,11 +10787,11 @@ export type Model = FromSchema<typeof schema>;
 
 	const bundle = outputFiles[0].text;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
+	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
-	await Promise.all(JSON_SCHEMA_PATHS.map(compileSchema));
+	await Promise.all(MODEL_PATHS.map(compileSchema));
 }
 
 if (import.meta.main) {
@@ -10421,6 +10960,11 @@ button:focus-visible {
   count is {count}
 </button>
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -10441,7 +10985,16 @@ button:focus-visible {
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -10487,7 +11040,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -10513,6 +11065,8 @@ export default app
 	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
 		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
@@ -10616,8 +11170,15 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -10663,7 +11224,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -10693,7 +11253,13 @@ export { createFormValidator as validator } from "@sjsf-lab/ata-validator";
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -10948,8 +11514,15 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -10995,7 +11568,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -11016,7 +11588,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -11093,37 +11671,58 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
 	// https://github.com/microsoft/TypeScript/issues/32063
-	await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+	await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-\`);
+\${uiSchema
+		? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+		: ""}\${initialValue
+		? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+		: ""}\`);
 
 	const base = { $schema: "http://json-schema.org/draft-07/schema" };
 	const bundle = Validator.bundleStandalone(schemas.map((s) => Object.assign(s, base)), { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }).replace("const validators", \`export const [\${schemas.map((s) => s.$id).join(", ")}]\`).slice(0, -50);
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${FORM_FORMATS}\\n\${bundle}\`);
+	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${FORM_FORMATS}\\n\${bundle}\`);
 }
 
 async function main() {
-	await Promise.all(JSON_SCHEMA_PATHS.map(compileSchema));
+	await Promise.all(MODEL_PATHS.map(compileSchema));
 }
 
 if (import.meta.main) {
@@ -11160,6 +11759,11 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -11180,7 +11784,16 @@ export {};
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -11226,7 +11839,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -11261,6 +11873,8 @@ export const onSubmitError = createFocusOnFirstError();
 	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
 		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
@@ -11363,37 +11977,58 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
 	// https://github.com/microsoft/TypeScript/issues/32063
-	await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+	await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-\`);
+\${uiSchema
+		? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+		: ""}\${initialValue
+		? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+		: ""}\`);
 
 	const base = { $schema: "http://json-schema.org/draft-07/schema" };
 	const bundle = Validator.bundleStandalone(schemas.map((s) => Object.assign(s, base)), { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }).replace("const validators", \`export const [\${schemas.map((s) => s.$id).join(", ")}]\`).slice(0, -50);
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${FORM_FORMATS}\\n\${bundle}\`);
+	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${FORM_FORMATS}\\n\${bundle}\`);
 }
 
 async function main() {
-	await Promise.all(JSON_SCHEMA_PATHS.map(compileSchema));
+	await Promise.all(MODEL_PATHS.map(compileSchema));
 }
 
 if (import.meta.main) {
@@ -11562,6 +12197,11 @@ button:focus-visible {
   count is {count}
 </button>
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -11582,7 +12222,16 @@ button:focus-visible {
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -11628,7 +12277,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -11654,6 +12302,8 @@ export default app
 	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
 		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
@@ -11757,8 +12407,15 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -11804,7 +12461,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -11834,7 +12490,13 @@ export { createFormValidator as validator } from "@sjsf/cfworker-validator";
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -12089,8 +12751,15 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -12136,7 +12805,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -12157,7 +12825,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -12229,14 +12903,31 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	let id = 0;
 	const toId = (n: number) => \`https://example.com/v\${n}\`;
 
@@ -12263,8 +12954,8 @@ async function compileSchema(schemaRelPath: string) {
 
 		// It is easier to save as a TS file
 		// https://github.com/microsoft/TypeScript/issues/32063
-		await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+		await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 import { uneval } from "devalue";
@@ -12272,7 +12963,11 @@ import type { AST } from "@hyperjump/json-schema/experimental";
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-export const ast = \${uneval(ast)} as unknown as AST;\`);
+export const ast = \${uneval(ast)} as unknown as AST;\${uiSchema
+			? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+			: ""}\${initialValue
+			? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+			: ""}\`);
 	} finally {
 		for (const schema of schemas) {
 			unregisterSchema(schema.$id!);
@@ -12281,7 +12976,7 @@ export const ast = \${uneval(ast)} as unknown as AST;\`);
 }
 
 async function main() {
-	for (const p of JSON_SCHEMA_PATHS) {
+	for (const p of MODEL_PATHS) {
 		await compileSchema(p);
 	}
 }
@@ -12320,6 +13015,11 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -12340,9 +13040,18 @@ export {};
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@hyperjump/json-schema/draft-07";
 import "@hyperjump/json-schema/formats-lite";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -12388,7 +13097,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -12423,6 +13131,8 @@ export const onSubmitError = createFocusOnFirstError();
 	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
 		schema: post.schema,
 		validator: createFormValidatorFactory({
 			validatorRetriever: createValidatorRetriever({
@@ -12531,14 +13241,31 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	let id = 0;
 	const toId = (n: number) => \`https://example.com/v\${n}\`;
 
@@ -12565,8 +13292,8 @@ async function compileSchema(schemaRelPath: string) {
 
 		// It is easier to save as a TS file
 		// https://github.com/microsoft/TypeScript/issues/32063
-		await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+		await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 import { uneval } from "devalue";
@@ -12574,7 +13301,11 @@ import type { AST } from "@hyperjump/json-schema/experimental";
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-export const ast = \${uneval(ast)} as unknown as AST;\`);
+export const ast = \${uneval(ast)} as unknown as AST;\${uiSchema
+			? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+			: ""}\${initialValue
+			? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+			: ""}\`);
 	} finally {
 		for (const schema of schemas) {
 			unregisterSchema(schema.$id!);
@@ -12583,7 +13314,7 @@ export const ast = \${uneval(ast)} as unknown as AST;\`);
 }
 
 async function main() {
-	for (const p of JSON_SCHEMA_PATHS) {
+	for (const p of MODEL_PATHS) {
 		await compileSchema(p);
 	}
 }
@@ -12754,6 +13485,11 @@ button:focus-visible {
   count is {count}
 </button>
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -12774,9 +13510,18 @@ button:focus-visible {
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@hyperjump/json-schema/draft-07";
 import "@hyperjump/json-schema/formats-lite";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -12822,7 +13567,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -12848,6 +13592,8 @@ export default app
 	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
 		schema: post.schema,
 		validator: createFormValidatorFactory({
 			validatorRetriever: createValidatorRetriever({
@@ -12959,8 +13705,15 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -13006,7 +13759,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -13036,7 +13788,13 @@ export { createFormValidator as validator } from "@sjsf/form/validators/noop";
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} />
@@ -13288,8 +14046,15 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -13335,7 +14100,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -13356,7 +14120,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} />
@@ -13457,8 +14227,15 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -13504,7 +14281,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -13534,7 +14310,13 @@ export { createFormValidator as validator } from "@sjsf/schemasafe-validator";
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -13789,8 +14571,15 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -13836,7 +14625,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -13857,7 +14645,13 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({ ...defaults, onSubmit: console.log, schema: post.schema });
+	const form = createForm<post.Model>({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		schema: post.schema
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -13926,28 +14720,49 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
 	// https://github.com/microsoft/TypeScript/issues/32063
-	await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+	await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-\`);
+\${uiSchema
+		? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+		: ""}\${initialValue
+		? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+		: ""}\`);
 
 	// @ts-expect-error Typings for \`multi\` version are missing
 	const validate = validator(schemas, {
@@ -13959,11 +14774,11 @@ export type Model = FromSchema<typeof schema>;
 
 	const validateFunctions = \`export const [\${schemas.map((s) => s.$id).join(", ")}] = \${validate.toModule()}\`;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${validateFunctions}\`);
+	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${validateFunctions}\`);
 }
 
 async function main() {
-	await Promise.all(JSON_SCHEMA_PATHS.map(compileSchema));
+	await Promise.all(MODEL_PATHS.map(compileSchema));
 }
 
 if (import.meta.main) {
@@ -14000,6 +14815,11 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -14020,7 +14840,16 @@ export {};
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -14066,7 +14895,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -14101,6 +14929,8 @@ export const onSubmitError = createFocusOnFirstError();
 	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
 		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
@@ -14195,28 +15025,49 @@ const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE, ON_ARRAY_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
-const JSON_SCHEMA_PATHS = ["src/lib/post/schema.json"];
+const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
-async function compileSchema(schemaRelPath: string) {
-	const schemaPath = path.resolve(schemaRelPath);
-	const schemaDir = path.dirname(schemaPath);
-	const source = await fs.readFile(schemaPath, "utf-8");
-	const schema = JSON.parse(source);
+async function readJson(dir: string, file: string) {
+	const filePath = path.join(dir, file);
+
+	try {
+		await fs.access(filePath);
+
+		return JSON.parse(await fs.readFile(filePath, "utf-8"));
+	} catch {
+		return null;
+	}
+}
+
+async function compileSchema(modelDirRelPath: string) {
+	const modelDir = path.resolve(modelDirRelPath);
+	const schema = await readJson(modelDir, "schema.json");
+
+	if (!schema) {
+		throw new Error(\`schema.json file not found in "\${modelDir}" directory\`);
+	}
+
+	const uiSchema = await readJson(modelDir, "ui-schema.json");
+	const initialValue = await readJson(modelDir, "initial-value.json");
 	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
 	// https://github.com/microsoft/TypeScript/issues/32063
-	await fs.writeFile(path.join(schemaDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
-import type { Schema } from "@sjsf/form";
+	await fs.writeFile(path.join(modelDir, "model.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
 
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-\`);
+\${uiSchema
+		? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
+		: ""}\${initialValue
+		? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
+		: ""}\`);
 
 	// @ts-expect-error Typings for \`multi\` version are missing
 	const validate = validator(schemas, {
@@ -14228,11 +15079,11 @@ export type Model = FromSchema<typeof schema>;
 
 	const validateFunctions = \`export const [\${schemas.map((s) => s.$id).join(", ")}] = \${validate.toModule()}\`;
 
-	await fs.writeFile(path.join(schemaDir, "validators.generated.js"), \`// @ts-nocheck\\n\${validateFunctions}\`);
+	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${validateFunctions}\`);
 }
 
 async function main() {
-	await Promise.all(JSON_SCHEMA_PATHS.map(compileSchema));
+	await Promise.all(MODEL_PATHS.map(compileSchema));
 }
 
 if (import.meta.main) {
@@ -14401,6 +15252,11 @@ button:focus-visible {
   count is {count}
 </button>
 ",
+  "src/lib/post/initial-value.json": "{
+	"title": "New post",
+	"content": ""
+}
+",
   "src/lib/post/schema.json": "{
 	"title": "Post",
 	"type": "object",
@@ -14421,7 +15277,16 @@ button:focus-visible {
 	]
 }
 ",
+  "src/lib/post/ui-schema.json": "{
+	"content": {
+		"ui:components": {
+			"textWidget": "textareaWidget"
+		}
+	}
+}
+",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -14467,7 +15332,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -14493,6 +15357,8 @@ export default app
 	const form = createForm<post.Model>({
 		...defaults,
 		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
 		schema: post.schema,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	});
@@ -14619,8 +15485,15 @@ export const schema: StandardSchemaV1<InternalModel> & StandardJSONSchemaV1 = {
 };
 
 export type Model = StandardSchemaV1.InferInput<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -14666,7 +15539,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -14696,7 +15568,13 @@ export const onSubmitError = createFocusOnFirstError();
 	import { adapt } from '@sjsf/form/validators/standard-schema';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
+	const form = createForm({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		...adapt(post.schema)
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -14974,8 +15852,15 @@ export const schema: StandardSchemaV1<InternalModel> & StandardJSONSchemaV1 = {
 };
 
 export type Model = StandardSchemaV1.InferInput<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -15021,7 +15906,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -15042,7 +15926,13 @@ export default app
 	import { adapt } from '@sjsf/form/validators/standard-schema';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
+	const form = createForm({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		...adapt(post.schema)
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -15129,19 +16019,26 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
-  "src/lib/post.ts": "import * as v from 'valibot';
+  "src/lib/post.ts": "import * as v from "valibot";
 
 export const schema = v.pipe(
 	v.object({
-		title: v.pipe(v.string(), v.metadata({ title: 'Title' })),
-		content: v.pipe(v.string(), v.minLength(10), v.metadata({ title: 'Content' }))
+		title: v.pipe(v.string(), v.metadata({ title: "Title" })),
+		content: v.pipe(v.string(), v.minLength(10), v.metadata({ title: "Content" }))
 	}),
-	v.metadata({ title: 'Post' })
+	v.metadata({ title: "Post" })
 );
 
 export type Model = v.InferInput<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -15187,7 +16084,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -15217,7 +16113,13 @@ export const onSubmitError = createFocusOnFirstError();
 	import { adapt } from '@sjsf/valibot-validator';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
+	const form = createForm({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		...adapt(post.schema)
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -15458,19 +16360,26 @@ button:focus-visible {
   count is {count}
 </button>
 ",
-  "src/lib/post.ts": "import * as v from 'valibot';
+  "src/lib/post.ts": "import * as v from "valibot";
 
 export const schema = v.pipe(
 	v.object({
-		title: v.pipe(v.string(), v.metadata({ title: 'Title' })),
-		content: v.pipe(v.string(), v.minLength(10), v.metadata({ title: 'Content' }))
+		title: v.pipe(v.string(), v.metadata({ title: "Title" })),
+		content: v.pipe(v.string(), v.minLength(10), v.metadata({ title: "Content" }))
 	}),
-	v.metadata({ title: 'Post' })
+	v.metadata({ title: "Post" })
 );
 
 export type Model = v.InferInput<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -15516,7 +16425,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -15537,7 +16445,13 @@ export default app
 	import { adapt } from '@sjsf/valibot-validator';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
+	const form = createForm({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		...adapt(post.schema)
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -15623,16 +16537,23 @@ export {};
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
-  "src/lib/post.ts": "import * as z from 'zod';
+  "src/lib/post.ts": "import * as z from "zod";
 
 export const schema = z.object({
-	title: z.string().meta({ title: 'Title' }),
-	content: z.string().min(10).meta({ title: 'Content' })
-}).meta({ title: 'Post' });
+	title: z.string().meta({ title: "Title" }),
+	content: z.string().min(10).meta({ title: "Content" })
+}).meta({ title: "Post" });
 
 export type Model = z.infer<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -15678,7 +16599,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -15708,7 +16628,13 @@ export const onSubmitError = createFocusOnFirstError();
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
+	const form = createForm({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		...adapt(post.schema)
+	});
 </script>
 
 <BasicForm form={form} novalidate />
@@ -15948,16 +16874,23 @@ button:focus-visible {
   count is {count}
 </button>
 ",
-  "src/lib/post.ts": "import * as z from 'zod';
+  "src/lib/post.ts": "import * as z from "zod";
 
 export const schema = z.object({
-	title: z.string().meta({ title: 'Title' }),
-	content: z.string().min(10).meta({ title: 'Content' })
-}).meta({ title: 'Post' });
+	title: z.string().meta({ title: "Title" }),
+	content: z.string().min(10).meta({ title: "Content" })
+}).meta({ title: "Post" });
 
 export type Model = z.infer<typeof schema>;
+
+export const uiSchema = ({
+	"content": { "ui:components": { "textWidget": "textareaWidget" } }
+} as const) satisfies UiSchemaRoot;;
+
+export const initialValue = ({ "title": "New post", "content": "" });;
 ",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import type { FormState, ResolveFieldType } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
 
@@ -16003,7 +16936,6 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 // import "@sjsf/basic-theme/extra-widgets/radio-include";
 // import "@sjsf/basic-theme/extra-widgets/range-include";
-// import "@sjsf/basic-theme/extra-widgets/textarea-include";
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
@@ -16024,7 +16956,13 @@ export default app
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm({ ...defaults, onSubmit: console.log, ...adapt(post.schema) });
+	const form = createForm({
+		...defaults,
+		onSubmit: console.log,
+		uiSchema: post.uiSchema,
+		initialValue: post.initialValue,
+		...adapt(post.schema)
+	});
 </script>
 
 <BasicForm form={form} novalidate />

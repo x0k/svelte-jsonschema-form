@@ -1,24 +1,16 @@
-import { createModel, isEndsWithPrecompiled, type Schema } from "meta/codegen";
+import {
+  createJsonFile,
+  createModel,
+  isEndsWithPrecompiled,
+} from "meta/codegen";
 
-import { POST_JSON_SCHEMA_PATH, type Context } from "./model.js";
-import { transforms } from "./sv-utils.js";
-
-const schema = {
-  title: "Post",
-  type: "object",
-  properties: {
-    title: {
-      title: "Title",
-      type: "string",
-    },
-    content: {
-      title: "Content",
-      type: "string",
-      minLength: 10,
-    },
-  },
-  required: ["title", "content"],
-} satisfies Schema;
+import {
+  POST_INITIAL_VALUE,
+  POST_MODEL_DIR,
+  POST_SCHEMA,
+  POST_UI_SCHEMA,
+  type Context,
+} from "./model.js";
 
 export function postTs({
   isTs,
@@ -33,13 +25,12 @@ export function postTs({
   }
 
   if (isEndsWithPrecompiled(validatorWithSuffix)) {
+    const modelDir = `${directory.lib}${POST_MODEL_DIR}`;
+    sv.file(`${modelDir}schema.json`, createJsonFile(POST_SCHEMA));
+    sv.file(`${modelDir}ui-schema.json`, createJsonFile(POST_UI_SCHEMA));
     sv.file(
-      `${directory.lib}${POST_JSON_SCHEMA_PATH}`,
-      transforms.json(({ data }) => {
-        if (Object.keys(data).length === 0) {
-          Object.assign(data, schema);
-        }
-      }),
+      `${modelDir}initial-value.json`,
+      createJsonFile(POST_INITIAL_VALUE),
     );
   } else {
     sv.file(
@@ -47,9 +38,11 @@ export function postTs({
       createModel({
         validator: validatorWithSuffix,
         ts,
-        schema,
+        schema: POST_SCHEMA,
         isTs,
         modelName: "post",
+        initialValue: POST_INITIAL_VALUE,
+        uiSchema: POST_UI_SCHEMA,
       }),
     );
   }

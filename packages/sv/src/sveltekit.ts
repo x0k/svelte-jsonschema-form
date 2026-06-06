@@ -1,6 +1,6 @@
 import { createSvelteKitIntegration } from "meta/codegen";
 
-import type { Context } from "./model.js";
+import { POST_INITIAL_VALUE, POST_UI_SCHEMA, type Context } from "./model.js";
 import { transforms } from "./sv-utils.js";
 
 export function sveltekitTs({
@@ -26,6 +26,8 @@ export function sveltekitTs({
       ts,
       validatorWithSuffix,
       modelName: "post",
+      uiSchema: POST_UI_SCHEMA,
+      initialValue: POST_INITIAL_VALUE,
     });
     sv.file(
       `${directory.kitRoutes}/demo/sjsf/${filename}.${language}`,
