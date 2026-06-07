@@ -176,14 +176,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -532,14 +525,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -740,14 +726,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -1093,14 +1072,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -1298,14 +1270,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -1651,14 +1616,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -1856,14 +1814,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -2209,14 +2160,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -2417,29 +2361,16 @@ import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
 	return {
-		postForm: ({
-			schema: post.schema,
-			uiSchema: post.uiSchema,
-			initialValue: post.initialValue,
-			fieldsValidationMode: post.fieldsValidationMode
-		}) satisfies InitialFormData<post.Model>
+		postForm: ({ ...post }) satisfies InitialFormData<post.Model>
 	};
 };
 
 export const actions = ({
-	default: createAction(
-		{
-			...defaults,
-			name: "postForm",
-			sendData: true,
-			schema: post.schema
-		},
-		(data: post.Model) => {
-			console.log(data);
+	default: createAction({ ...defaults, ...post, name: "postForm", sendData: true }, (data: post.Model) => {
+		console.log(data);
 
-			return { post: { ...data, id: "new-post" } };
-		}
-	)
+		return { post: { ...data, id: "new-post" } };
+	})
 }) satisfies Actions;
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
@@ -2770,12 +2701,7 @@ import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
 	return {
-		postForm: ({
-			schema: post.schema,
-			uiSchema: post.uiSchema,
-			initialValue: post.initialValue,
-			fieldsValidationMode: post.fieldsValidationMode
-		}) satisfies InitialFormData<post.Model>
+		postForm: ({ ...post }) satisfies InitialFormData<post.Model>
 	};
 };
 
@@ -2783,10 +2709,10 @@ export const actions = ({
 	default: createAction(
 		{
 			...defaults,
+			...post,
+			validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) }),
 			name: "postForm",
-			sendData: true,
-			schema: post.schema,
-			validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+			sendData: true
 		},
 		(data: post.Model) => {
 			console.log(data);
@@ -2809,12 +2735,12 @@ export const actions = ({
 
 	const { form } = setupSvelteKitForm(meta, {
 		...defaults,
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) }),
 		onSuccess: (result) => {
 			if (result.type === "success") {
 				console.log(result.data?.post);
 			}
-		},
-		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+		}
 	});
 </script>
 
@@ -2955,16 +2881,19 @@ async function compileSchema(modelDirRelPath: string) {
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
-import { uneval } from "devalue";
-import type { AST } from "@hyperjump/json-schema/experimental";
+
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-export const ast = \${uneval(ast)} as unknown as AST;\${uiSchema
+\${uiSchema
 			? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
 			: ""}\${initialValue
 			? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
 			: ""}\`);
+
+		await fs.writeFile(path.join(modelDir, "ast.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { AST } from "@hyperjump/json-schema/experimental";
+export const ast = \${uneval(ast)} as unknown as AST;\`);
 	} finally {
 		for (const schema of schemas) {
 			unregisterSchema(schema.$id!);
@@ -3121,6 +3050,7 @@ export const onSubmitError = createFocusOnFirstError();
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
 import * as post from "$lib/post/model.generated";
+import { ast } from "$lib/post/ast.generated";
 import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf-lab/hyperjump-validator/precompile";
 import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
@@ -3128,12 +3058,7 @@ import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
 	return {
-		postForm: ({
-			schema: post.schema,
-			uiSchema: post.uiSchema,
-			initialValue: post.initialValue,
-			fieldsValidationMode: post.fieldsValidationMode
-		}) satisfies InitialFormData<post.Model>
+		postForm: ({ ...post }) satisfies InitialFormData<post.Model>
 	};
 };
 
@@ -3141,21 +3066,21 @@ export const actions = ({
 	default: createAction(
 		{
 			...defaults,
-			name: "postForm",
-			sendData: true,
-			schema: post.schema,
+			...post,
 			validator: createFormValidatorFactory({
 				validatorRetriever: createValidatorRetriever({
 					registry: {
 						get(id) {
 							const schemaUri = \`\${id}#\`;
 
-							return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
+							return schemaUri in ast ? { schemaUri, ast } : undefined;
 						}
 					}
 				}),
 				localization
-			})
+			}),
+			name: "postForm",
+			sendData: true
 		},
 		(data: post.Model) => {
 			console.log(data);
@@ -3172,6 +3097,7 @@ export const actions = ({
 	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { createValidatorRetriever } from '@sjsf/form/validators/precompile';
+	import { ast } from '$lib/post/ast.generated';
 	import * as post from '$lib/post/model.generated';
 	import { BasicForm } from '@sjsf/form';
 
@@ -3179,24 +3105,24 @@ export const actions = ({
 
 	const { form } = setupSvelteKitForm(meta, {
 		...defaults,
-		onSuccess: (result) => {
-			if (result.type === "success") {
-				console.log(result.data?.post);
-			}
-		},
-
 		validator: createFormValidatorFactory({
 			validatorRetriever: createValidatorRetriever({
 				registry: {
 					get(id) {
 						const schemaUri = \`\${id}#\`;
 
-						return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
+						return schemaUri in ast ? { schemaUri, ast } : undefined;
 					}
 				}
 			}),
 			localization
-		})
+		}),
+
+		onSuccess: (result) => {
+			if (result.type === "success") {
+				console.log(result.data?.post);
+			}
+		}
 	});
 </script>
 
@@ -3392,11 +3318,7 @@ import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
 	return {
-		postForm: ({
-			uiSchema: post.uiSchema,
-			initialValue: post.initialValue,
-			fieldsValidationMode: post.fieldsValidationMode
-		}) satisfies InitialFormData<post.Model>
+		postForm: ({ ...post }) satisfies InitialFormData<post.Model>
 	};
 };
 
@@ -3404,9 +3326,9 @@ export const actions = ({
 	default: createAction(
 		{
 			...defaults,
+			...adapt(post.schema),
 			name: "postForm",
-			sendData: true,
-			...adapt(post.schema)
+			sendData: true
 		},
 		(data) => {
 			console.log(data);
@@ -3428,12 +3350,12 @@ export const actions = ({
 
 	const { form } = setupSvelteKitForm(meta, {
 		...defaults,
+		...adapt(post.schema),
 		onSuccess: (result) => {
 			if (result.type === "success") {
 				console.log(result.data?.post);
 			}
-		},
-		...adapt(post.schema)
+		}
 	});
 </script>
 
@@ -3666,15 +3588,10 @@ import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({
-		schema: post.schema,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode
-	}) satisfies InitialFormData<post.Model>;
+	return ({ ...post }) satisfies InitialFormData<post.Model>;
 });
 
-export const createPost = form(createServerValidator<post.Model>({ ...defaults, schema: post.schema }), ({ data }) => {
+export const createPost = form(createServerValidator<post.Model>({ ...defaults, ...post }), ({ data }) => {
 	console.log(data);
 
 	return { ...data, id: "new-post" };
@@ -4007,8 +3924,8 @@ export const onSubmitError = createFocusOnFirstError();
 		{
 			...defaults,
 			...initialData,
-			fields: createPost.fields,
-			validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+			validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) }),
+			fields: createPost.fields
 		}
 	));
 </script>
@@ -4025,18 +3942,13 @@ import * as post from "$lib/post/model.generated";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({
-		schema: post.schema,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode
-	}) satisfies InitialFormData<post.Model>;
+	return ({ ...post }) satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(
 	createServerValidator<post.Model>({
 		...defaults,
-		schema: post.schema,
+		...post,
 		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
 	}),
 	({ data }) => {
@@ -4189,16 +4101,19 @@ async function compileSchema(modelDirRelPath: string) {
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
-import { uneval } from "devalue";
-import type { AST } from "@hyperjump/json-schema/experimental";
+
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-export const ast = \${uneval(ast)} as unknown as AST;\${uiSchema
+\${uiSchema
 			? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
 			: ""}\${initialValue
 			? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
 			: ""}\`);
+
+		await fs.writeFile(path.join(modelDir, "ast.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { AST } from "@hyperjump/json-schema/experimental";
+export const ast = \${uneval(ast)} as unknown as AST;\`);
 	} finally {
 		for (const schema of schemas) {
 			unregisterSchema(schema.$id!);
@@ -4358,6 +4273,7 @@ export const onSubmitError = createFocusOnFirstError();
 	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { createValidatorRetriever } from '@sjsf/form/validators/precompile';
+	import { ast } from '$lib/post/ast.generated';
 	import * as post from '$lib/post/model.generated';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -4373,19 +4289,19 @@ export const onSubmitError = createFocusOnFirstError();
 		{
 			...defaults,
 			...initialData,
-			fields: createPost.fields,
 			validator: createFormValidatorFactory({
 				validatorRetriever: createValidatorRetriever({
 					registry: {
 						get(id) {
 							const schemaUri = \`\${id}#\`;
 
-							return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
+							return schemaUri in ast ? { schemaUri, ast } : undefined;
 						}
 					}
 				}),
 				localization
-			})
+			}),
+			fields: createPost.fields
 		}
 	));
 </script>
@@ -4396,31 +4312,27 @@ export const onSubmitError = createFocusOnFirstError();
 import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 import { form, query } from "$app/server";
 import * as post from "$lib/post/model.generated";
+import { ast } from "$lib/post/ast.generated";
 import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf-lab/hyperjump-validator/precompile";
 import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({
-		schema: post.schema,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode
-	}) satisfies InitialFormData<post.Model>;
+	return ({ ...post }) satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(
 	createServerValidator<post.Model>({
 		...defaults,
-		schema: post.schema,
+		...post,
 		validator: createFormValidatorFactory({
 			validatorRetriever: createValidatorRetriever({
 				registry: {
 					get(id) {
 						const schemaUri = \`\${id}#\`;
 
-						return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
+						return schemaUri in ast ? { schemaUri, ast } : undefined;
 					}
 				}
 			}),
@@ -4643,8 +4555,8 @@ export const onSubmitError = createFocusOnFirstError();
 		{
 			...defaults,
 			...initialData,
-			fields: createPost.fields,
-			...adapt(post.schema)
+			...adapt(post.schema),
+			fields: createPost.fields
 		}
 	));
 </script>
@@ -4659,11 +4571,7 @@ import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode
-	}) satisfies InitialFormData<post.Model>;
+	return ({ ...post }) satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(createServerValidator({ ...defaults, ...adapt(post.schema) }), ({ data }) => {
@@ -4880,14 +4788,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -5227,14 +5128,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -5430,14 +5324,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -5775,14 +5662,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -5989,14 +5869,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -6352,14 +6225,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -6567,14 +6433,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -6955,14 +6814,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -7159,14 +7011,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -7509,14 +7354,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -7816,14 +7654,7 @@ export function setShadcnThemeContext() {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -8393,14 +8224,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -8688,14 +8512,7 @@ export function setShadcnThemeContext() {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -9247,14 +9064,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -9475,14 +9285,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -9847,14 +9650,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />
@@ -10056,14 +9852,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -10408,14 +10197,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -10714,12 +10496,9 @@ export const onSubmitError = createFocusOnFirstError();
 
 	const form = createForm<post.Model>({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema,
-		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+		...post,
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) }),
+		onSubmit: console.log
 	});
 </script>
 
@@ -11165,12 +10944,9 @@ export default app
 
 	const form = createForm<post.Model>({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema,
-		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+		...post,
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) }),
+		onSubmit: console.log
 	});
 </script>
 
@@ -11357,14 +11133,7 @@ export { createFormValidator as validator } from "@sjsf-lab/ata-validator";
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -11695,14 +11464,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -11980,12 +11742,9 @@ export const onSubmitError = createFocusOnFirstError();
 
 	const form = createForm<post.Model>({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema,
-		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+		...post,
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) }),
+		onSubmit: console.log
 	});
 </script>
 
@@ -12410,12 +12169,9 @@ export default app
 
 	const form = createForm<post.Model>({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema,
-		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+		...post,
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) }),
+		onSubmit: console.log
 	});
 </script>
 
@@ -12602,14 +12358,7 @@ export { createFormValidator as validator } from "@sjsf/cfworker-validator";
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -12940,14 +12689,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -13074,16 +12816,19 @@ async function compileSchema(modelDirRelPath: string) {
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
-import { uneval } from "devalue";
-import type { AST } from "@hyperjump/json-schema/experimental";
+
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-export const ast = \${uneval(ast)} as unknown as AST;\${uiSchema
+\${uiSchema
 			? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
 			: ""}\${initialValue
 			? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
 			: ""}\`);
+
+		await fs.writeFile(path.join(modelDir, "ast.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { AST } from "@hyperjump/json-schema/experimental";
+export const ast = \${uneval(ast)} as unknown as AST;\`);
 	} finally {
 		for (const schema of schemas) {
 			unregisterSchema(schema.$id!);
@@ -13241,28 +12986,26 @@ export const onSubmitError = createFocusOnFirstError();
 	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { createValidatorRetriever } from '@sjsf/form/validators/precompile';
+	import { ast } from '$lib/post/ast.generated';
 	import * as post from '$lib/post/model.generated';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema,
+		...post,
 		validator: createFormValidatorFactory({
 			validatorRetriever: createValidatorRetriever({
 				registry: {
 					get(id) {
 						const schemaUri = \`\${id}#\`;
 
-						return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
+						return schemaUri in ast ? { schemaUri, ast } : undefined;
 					}
 				}
 			}),
 			localization
-		})
+		}),
+		onSubmit: console.log
 	});
 </script>
 
@@ -13413,16 +13156,19 @@ async function compileSchema(modelDirRelPath: string) {
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { \${FIELDS_VALIDATION_KEYS} } from "@sjsf/form";
-import { uneval } from "devalue";
-import type { AST } from "@hyperjump/json-schema/experimental";
+
 export const fieldsValidationMode = \${FIELDS_VALIDATION_MODE};
 export const schema = \${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;
 export type Model = FromSchema<typeof schema>;
-export const ast = \${uneval(ast)} as unknown as AST;\${uiSchema
+\${uiSchema
 			? "\\nexport const uiSchema = " + JSON.stringify(uiSchema, null, 2) + " as const satisfies UiSchemaRoot;"
 			: ""}\${initialValue
 			? "\\nexport const initialValue = " + JSON.stringify(initialValue, null, 2) + ";"
 			: ""}\`);
+
+		await fs.writeFile(path.join(modelDir, "ast.generated.ts"), \`// Generated by \${SCRIPT_PATH} - do not edit
+import type { AST } from "@hyperjump/json-schema/experimental";
+export const ast = \${uneval(ast)} as unknown as AST;\`);
 	} finally {
 		for (const schema of schemas) {
 			unregisterSchema(schema.$id!);
@@ -13703,28 +13449,26 @@ export default app
 	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { createValidatorRetriever } from '@sjsf/form/validators/precompile';
+	import { ast } from 'src/lib/post/ast.generated';
 	import * as post from 'src/lib/post/model.generated';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema,
+		...post,
 		validator: createFormValidatorFactory({
 			validatorRetriever: createValidatorRetriever({
 				registry: {
 					get(id) {
 						const schemaUri = \`\${id}#\`;
 
-						return schemaUri in post.ast ? { schemaUri, ast: post.ast } : undefined;
+						return schemaUri in ast ? { schemaUri, ast } : undefined;
 					}
 				}
 			}),
 			localization
-		})
+		}),
+		onSubmit: console.log
 	});
 </script>
 
@@ -13908,14 +13652,7 @@ export { createFormValidator as validator } from "@sjsf/form/validators/noop";
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} />
@@ -14243,14 +13980,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} />
@@ -14436,14 +14166,7 @@ export { createFormValidator as validator } from "@sjsf/schemasafe-validator";
 	import * as post from '$lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -14774,14 +14497,7 @@ export default app
 	import * as post from 'src/lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<post.Model>({
-		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema
-	});
+	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />
@@ -15058,12 +14774,9 @@ export const onSubmitError = createFocusOnFirstError();
 
 	const form = createForm<post.Model>({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema,
-		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+		...post,
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) }),
+		onSubmit: console.log
 	});
 </script>
 
@@ -15487,12 +15200,9 @@ export default app
 
 	const form = createForm<post.Model>({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		schema: post.schema,
-		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+		...post,
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) }),
+		onSubmit: console.log
 	});
 </script>
 
@@ -15704,11 +15414,9 @@ export const onSubmitError = createFocusOnFirstError();
 
 	const form = createForm({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		...adapt(post.schema)
+		...post,
+		...adapt(post.schema),
+		onSubmit: console.log
 	});
 </script>
 
@@ -16065,11 +15773,9 @@ export default app
 
 	const form = createForm({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		...adapt(post.schema)
+		...post,
+		...adapt(post.schema),
+		onSubmit: console.log
 	});
 </script>
 
@@ -16255,11 +15961,9 @@ export const onSubmitError = createFocusOnFirstError();
 
 	const form = createForm({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		...adapt(post.schema)
+		...post,
+		...adapt(post.schema),
+		onSubmit: console.log
 	});
 </script>
 
@@ -16590,11 +16294,9 @@ export default app
 
 	const form = createForm({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		...adapt(post.schema)
+		...post,
+		...adapt(post.schema),
+		onSubmit: console.log
 	});
 </script>
 
@@ -16776,11 +16478,9 @@ export const onSubmitError = createFocusOnFirstError();
 
 	const form = createForm({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		...adapt(post.schema)
+		...post,
+		...adapt(post.schema),
+		onSubmit: console.log
 	});
 </script>
 
@@ -17107,11 +16807,9 @@ export default app
 
 	const form = createForm({
 		...defaults,
-		onSubmit: console.log,
-		uiSchema: post.uiSchema,
-		initialValue: post.initialValue,
-		fieldsValidationMode: post.fieldsValidationMode,
-		...adapt(post.schema)
+		...post,
+		...adapt(post.schema),
+		onSubmit: console.log
 	});
 </script>
 

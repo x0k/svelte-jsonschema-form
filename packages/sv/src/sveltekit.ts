@@ -1,23 +1,19 @@
 import { createSvelteKitIntegration } from "meta/codegen";
 
-import {
-  POST_FIELDS_VALIDATION_MODE,
-  POST_INITIAL_VALUE,
-  POST_UI_SCHEMA,
-  type Context,
-} from "./model.js";
+import { POST_MODEL_NAME, type Context } from "./model.js";
 import { transforms } from "./sv-utils.js";
 
 export function sveltekitTs({
   file,
   isKit,
-  options: { sveltekit, demo, validatorWithSuffix },
+  options: { sveltekit, demo },
   directory,
   language,
   sv,
   ts,
   isTs,
   lib,
+  validator,
 }: Context) {
   if (!isKit || sveltekit === "no") {
     return;
@@ -29,11 +25,8 @@ export function sveltekitTs({
       lib,
       sveltekit,
       ts,
-      validatorWithSuffix,
-      modelName: "post",
-      uiSchema: POST_UI_SCHEMA,
-      initialValue: POST_INITIAL_VALUE,
-      fieldsValidationMode: POST_FIELDS_VALIDATION_MODE,
+      modelName: POST_MODEL_NAME,
+      validator,
     });
     sv.file(
       `${directory.kitRoutes}/demo/sjsf/${filename}.${language}`,

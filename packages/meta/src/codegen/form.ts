@@ -1,23 +1,15 @@
-import type { FormValue, UiSchemaRoot } from "@sjsf/form";
-import { isRecordEmpty } from "@sjsf/form/lib/object";
 import { neverError } from "../errors.ts";
 import { svelteKitRfSubPath, svelteKitSubPath } from "../sveltekit.ts";
 
 import type { NamedImportOptions, NamespaceImportOptions } from "./lib.ts";
-import type {
-  CodegenSvelteKitIntegration,
-  FieldsValidationMode,
-} from "./model.ts";
-import type { ValidatorDefinition } from "./validator.ts";
+import type { CodegenSvelteKitIntegration } from "./model.ts";
+import { validatorProp, type ValidatorDefinition } from "./validator.ts";
 
 export interface FormOptions {
   isTs: boolean;
   modelName: string;
   sveltekit: CodegenSvelteKitIntegration;
   disabled: boolean;
-  uiSchema: UiSchemaRoot;
-  initialValue: FormValue;
-  fieldsValidationMode: FieldsValidationMode;
   validator: ValidatorDefinition;
 }
 
@@ -29,25 +21,10 @@ export interface FormDefinition {
 }
 
 export function createForm(ctx: FormOptions): FormDefinition {
-  const {
-    sveltekit,
-    isTs,
-    disabled,
-    uiSchema,
-    initialValue,
-    modelName,
-    fieldsValidationMode,
-    validator,
-  } = ctx;
-  const validatorOptionsWithoutSchema = validator.options.replace(
-    // Remove the `schema` property (e.g. `schema: post.schema,`) when the schema
-    // is already provided via SvelteKit meta/initialData.
-    // The `\S+` ensures we match the full value, avoiding false matches inside `adapt()`.
-    /\bschema\s*:\s*\S+\s*,?\s*/,
-    "",
-  );
+  const { sveltekit, isTs, disabled, modelName, validator } = ctx;
+  const validatorProps = validatorProp(validator);
   const isInputTypeRequired = isTs && !validator.canInferFormType;
-  const inputType = isInputTypeRequired ? `<${validator.inputType}>` : "";
+  const inputType = isInputTypeRequired ? `<${modelName}.Model>` : "";
   if (sveltekit === "formActions") {
     return {
       formPackageImports: ["BasicForm"],
@@ -66,12 +43,12 @@ export function createForm(ctx: FormOptions): FormDefinition {
       init: `const meta = createMeta<ActionData, PageData>().postForm;
 const { form } = setupSvelteKitForm(meta, {
   ...defaults,
+  ${validatorProps}
   onSuccess: (result) => {
     if (result.type === "success") {
       console.log(result.data?.post);
     }
   },
-  ${validatorOptionsWithoutSchema}
 })`,
       attributes: 'method="POST"',
     };
@@ -102,8 +79,8 @@ const form = createForm${inputType}(
     {
       ...defaults,
       ...initialData,
+      ${validatorProps}
       fields: createPost.fields,
-      ${validatorOptionsWithoutSchema}
     },
   ),
 )`,
@@ -117,8 +94,10 @@ const form = createForm${inputType}(
     additionalImports: validator.imports.concat(validator.schemaImports),
     init: `const form = createForm${inputType}({
   ...defaults,
+  ...${modelName},
+  ${validatorProps}
   onSubmit: console.log,
-  ${disabled !== false ? `disabled: ${disabled},\n  ` : ""}${!isRecordEmpty(uiSchema) ? `uiSchema: ${modelName}.uiSchema,\n  ` : ""}${initialValue !== undefined ? `initialValue: ${modelName}.initialValue,\n  ` : ""}${fieldsValidationMode !== 0 ? `fieldsValidationMode: ${modelName}.fieldsValidationMode,\n  ` : ""}${validator.options}
+  ${disabled !== false ? `disabled: ${disabled},\n  ` : ""}
 })`,
     attributes: "",
   };

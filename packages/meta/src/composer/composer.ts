@@ -196,12 +196,9 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
   const form = createForm({
     validator,
     disabled,
-    fieldsValidationMode,
-    initialValue,
     isTs,
     modelName,
     sveltekit,
-    uiSchema,
   });
 
   const files: Record<string, string> = {

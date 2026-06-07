@@ -25,8 +25,7 @@ export interface ValidatorOptions {
 export interface ValidatorDefinition {
   schemaImports: (NamedImportOptions | NamespaceImportOptions)[];
   imports: (NamedImportOptions | NamespaceImportOptions)[];
-  options: string;
-  inputType: string;
+  validatorProp: string;
   canInferFormType: boolean;
 }
 
@@ -39,13 +38,16 @@ export function createValidator({
     const validator = withoutPrecompiledSuffix(validatorWithSuffix);
     if (validator === "hyperjump") {
       return {
-        inputType: `${modelName}.Model`,
         canInferFormType: false,
         schemaImports: [],
         imports: [
           {
             as: modelName,
             from: lib(`${modelName}/model.generated`),
+          },
+          {
+            imports: ["ast"],
+            from: lib(`${modelName}/ast.generated`),
           },
           {
             imports: ["createValidatorRetriever"],
@@ -60,16 +62,15 @@ export function createValidator({
             from: hyperjumpValidatorLocalizationSubPath("en-us"),
           },
         ],
-        options: `schema: ${modelName}.schema,
-validator: createFormValidatorFactory({ 
+        validatorProp: `validator: createFormValidatorFactory({ 
   validatorRetriever: createValidatorRetriever({
     registry: {
       get(id) {
         const schemaUri = \`\${id}#\`;
-        return schemaUri in ${modelName}.ast
+        return schemaUri in ast
           ? {
               schemaUri,
-              ast: ${modelName}.ast,
+              ast,
             }
           : undefined;
       },
@@ -80,7 +81,6 @@ validator: createFormValidatorFactory({
       };
     }
     return {
-      inputType: `${modelName}.Model`,
       canInferFormType: false,
       schemaImports: [
         {
@@ -102,8 +102,7 @@ validator: createFormValidatorFactory({
           from: lib(`${modelName}/validators.generated`),
         },
       ],
-      options: `schema: ${modelName}.schema,
-validator: createFormValidatorFactory({
+      validatorProp: `validator: createFormValidatorFactory({
   validatorRetriever: fromValidators(validateFunctions),
 })`,
     };
@@ -145,6 +144,7 @@ validator: createFormValidatorFactory({
         }
       >
     )[validatorWithSuffix];
+    const schemaProp = `...adapt(${modelName}.schema)`;
     return {
       schemaImports: [],
       imports: [
@@ -157,13 +157,11 @@ validator: createFormValidatorFactory({
           from: lib(modelName),
         },
       ],
-      options: `...adapt(${modelName}.schema)`,
-      inputType: `${modelName}.Model`,
+      validatorProp: schemaProp,
       canInferFormType: true,
     };
   }
   return {
-    inputType: `${modelName}.Model`,
     canInferFormType: false,
     schemaImports: [
       {
@@ -172,6 +170,22 @@ validator: createFormValidatorFactory({
       },
     ],
     imports: [],
-    options: `schema: ${modelName}.schema`,
+    validatorProp: ``,
   };
+}
+
+function wrap(value: string) {
+  return value && `${value},`;
+}
+
+export function validatorProp({ validatorProp }: ValidatorDefinition) {
+  return wrap(validatorProp);
+}
+
+export function schemaAndValidatorProp(
+  modelName: string,
+  { canInferFormType, validatorProp }: ValidatorDefinition,
+) {
+  const validator = wrap(validatorProp);
+  return canInferFormType ? validator : `...${modelName},\n  ${validator}`;
 }

@@ -15,13 +15,17 @@ import {
   codegenSvelteKitIntegrations,
   codegenThemeOrSubTheme,
   codegenValidators,
+  createForm,
+  createValidator,
   isEndsWithPrecompiled,
   withoutPrecompiledSuffix,
   type CodegenSvelteKitIntegration,
   type CodegenThemeOrSubTheme,
   type FieldsValidationMode,
+  type FormDefinition,
   type Schema,
   type UiSchemaRoot,
+  type ValidatorDefinition,
 } from "meta/codegen";
 import type * as _uiSchemaAugmentation from "meta/playground";
 
@@ -140,6 +144,8 @@ export type Context = Workspace & {
   ts: (content: string, alt?: string) => string;
   js: (content: string, alt?: string) => string;
   lib: (path: string) => string;
+  validator: ValidatorDefinition;
+  form: FormDefinition;
 };
 
 export interface AddonSetupOptions {
@@ -150,12 +156,28 @@ export function createContext(ws: Workspace): Context {
   const { language, directory, isKit } = ws;
   const isTs = language === "ts";
   const [ts, js] = createPrinter(isTs, !isTs);
+  const lib = (path: string) => `${isKit ? "$lib" : directory.lib}/${path}`;
+  const validator = createValidator({
+    ...ws.options,
+    isTs,
+    lib,
+    modelName: POST_MODEL_NAME,
+  });
+  const form = createForm({
+    ...ws.options,
+    disabled: false,
+    isTs,
+    modelName: POST_MODEL_NAME,
+    validator,
+  });
   return {
     ...ws,
     isTs,
     ts: ts!,
     js: js!,
-    lib: (path) => `${isKit ? "$lib" : directory.lib}/${path}`,
+    lib,
+    validator,
+    form,
   };
 }
 
