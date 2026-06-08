@@ -53,11 +53,12 @@
     PLAYGROUND_RESOLVERS,
     PLAYGROUND_SJSF_THEMES,
     PLAYGROUND_SJSF_THEME_STYLES,
-    PLAYGROUND_VALIDATORS,
+    isEndsWith2020,
     playgroundIconSetTitle,
     playgroundIconSets,
     playgroundResolvers,
     playgroundThemes,
+    playgroundValidator,
     playgroundValidatorTitle,
     playgroundValidators,
     type FormState,
@@ -222,12 +223,12 @@
       return data.uiSchema;
     },
     validator: (options) => {
-      const v = PLAYGROUND_VALIDATORS[data.validator]<FormValue>(options);
+      const v = playgroundValidator(data.validator)<FormValue>(options);
       return {
         ...v,
         validateFormValue(rootSchema, formValue) {
           return v.validateFormValue(
-            isDraft2020 && data.validator.endsWith("_2020")
+            isDraft2020 && isEndsWith2020(data.validator)
               ? data.schema
               : rootSchema,
             data.omitExtraData

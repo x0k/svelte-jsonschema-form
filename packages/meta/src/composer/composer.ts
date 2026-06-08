@@ -86,7 +86,7 @@ const TSCONFIG = JSON.stringify(
   2,
 );
 
-const APP_HTML = `<!doctype html>
+const APP_HTML = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />

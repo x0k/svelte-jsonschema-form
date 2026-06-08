@@ -354,33 +354,27 @@ export function resolver(_ctx) {`,
 
     if (!isRecordEmpty(moduleAugmentation)) {
       const typeNames: string[] = [];
-      const entries: string[] = [];
+      const interfaceBlocks: string[] = [];
       if (moduleAugmentation.componentProps !== undefined) {
         typeNames.push("ComponentProps");
-        entries.push("ComponentProps");
-        for (const [key, value] of Object.entries(
-          moduleAugmentation.componentProps,
-        )) {
-          entries.push(`  ${key}: ${value};`);
-        }
+        const props = Object.entries(moduleAugmentation.componentProps)
+          .map(([key, value]) => `  ${key}: ${value};`)
+          .join("\n");
+        interfaceBlocks.push(`interface ComponentProps {\n${props}\n}`);
       }
       if (moduleAugmentation.componentBindings !== undefined) {
         typeNames.push("ComponentBindings");
-        entries.push("ComponentBindings");
-        for (const [key, value] of Object.entries(
-          moduleAugmentation.componentBindings,
-        )) {
-          entries.push(`  ${key}: ${value};`);
-        }
+        const props = Object.entries(moduleAugmentation.componentBindings)
+          .map(([key, value]) => `  ${key}: ${value};`)
+          .join("\n");
+        interfaceBlocks.push(`interface ComponentBindings {\n${props}\n}`);
       }
       if (moduleAugmentation.uiOptionsRegistry !== undefined) {
         typeNames.push("UiOptionsRegistry");
-        entries.push("UiOptionsRegistry");
-        for (const [key, value] of Object.entries(
-          moduleAugmentation.uiOptionsRegistry,
-        )) {
-          entries.push(`  ${key}: ${value};`);
-        }
+        const props = Object.entries(moduleAugmentation.uiOptionsRegistry)
+          .map(([key, value]) => `  ${key}: ${value};`)
+          .join("\n");
+        interfaceBlocks.push(`interface UiOptionsRegistry {\n${props}\n}`);
       }
       if (isTs) {
         js.imports.addNamed(ast, {
@@ -390,7 +384,7 @@ export function resolver(_ctx) {`,
         });
         js.common.appendFromString(ast, {
           code: `declare module "${formPackage.name}" {
-  interface ${entries.join(" {\n  }\n  interface ")} {}
+  ${interfaceBlocks.join("\n  ")}
 }`,
           comments,
         });

@@ -7,3 +7,4 @@ export * from "./validators.ts";
 export * from "./themes.ts";
 export * from "./resolvers.ts";
 export * from "./icons.ts";
+export * from "./sandbox-factory.ts";

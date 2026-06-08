@@ -24,31 +24,9 @@ import {
   type Schema as SafeSchema,
 } from "@exodus/schemasafe";
 import { Validator as AtaValidator } from "ata-validator";
-
-import type { Generated } from "../types.ts";
-import { validatorTitle } from "../validators.ts";
-import {
-  codegemIsJsonSchemaValidator,
-  codegenValidators,
-} from "../codegen/index.ts";
+import type { PlaygroundValidator } from "./model.ts";
 
 const addFormats = _addFormats as unknown as FormatsPlugin;
-
-export function* playgroundValidators() {
-  for (const v of codegenValidators()) {
-    if (!codegemIsJsonSchemaValidator(v) || v.precompiled) {
-      continue;
-    }
-    yield v;
-  }
-}
-
-export type PlaygroundValidator = Generated<typeof playgroundValidators>;
-
-export function playgroundValidatorTitle(v: PlaygroundValidator) {
-  const title = validatorTitle(v.name);
-  return v.draft2020 ? `${title} (2020-12)` : title;
-}
 
 const PLAYGROUND_VALIDATORS = {
   ajv8: <T>(options: Parameters<typeof ajv8>[0]) =>
@@ -88,11 +66,8 @@ const PLAYGROUND_VALIDATORS = {
       ...options,
       factory: (schema) => new AtaValidator(schema, DEFAULT_ATA_OPTIONS),
     }),
-} satisfies Record<
-  `${PlaygroundValidator["name"]}${"_2020" | ""}`,
-  <T>(...args: any) => FormValidator<T>
->;
+} satisfies Record<PlaygroundValidator, <T>(...args: any) => FormValidator<T>>;
 
-export function getPlaygroundValidator(v: PlaygroundValidator) {
-  return PLAYGROUND_VALIDATORS[`${v.name}${v.draft2020 ? "_2020" : ""}`];
+export function playgroundValidator(v: PlaygroundValidator) {
+  return PLAYGROUND_VALIDATORS[v];
 }

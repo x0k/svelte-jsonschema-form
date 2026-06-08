@@ -9,7 +9,7 @@
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
   import AlignLeft from "@lucide/svelte/icons/align-left";
   import {
-    PLAYGROUND_VALIDATORS,
+    playgroundValidator,
     playgroundValidators,
     playgroundValidatorTitle,
     type ValidatorState,
@@ -62,7 +62,7 @@
   });
   const merger = createSchemaMerger({ jsonSchemaMerger });
   const validator = $derived(
-    PLAYGROUND_VALIDATORS[data.validator]({
+    playgroundValidator(data.validator)({
       merger: () => merger,
     }),
   );
