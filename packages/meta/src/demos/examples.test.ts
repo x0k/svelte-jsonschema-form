@@ -1,22 +1,21 @@
 import { describe, it, expect } from "vitest";
-import type {
-  CodegenNonPrecompiledValidator,
-  CodegenThemeOrSubTheme,
-} from "../codegen/index.ts";
+import type { CodegenThemeOrSubTheme } from "../codegen/index.ts";
 import { codegenThemeOrSubTheme } from "../codegen/index.ts";
-import { nonPrecompiledValidators } from "./model.ts";
 import {
   EXAMPLE_ENTRIES,
   createExampleFiles,
   type ExampleEntry,
 } from "./example.ts";
-
-const BASE = { themeOrSubTheme: "basic", validator: "ajv8" } as const;
-
+import { demosValidators, type DemosValidator } from "./model.ts";
 interface ExampleVariant {
   themeOrSubTheme: CodegenThemeOrSubTheme;
-  validator: CodegenNonPrecompiledValidator;
+  validator: DemosValidator["name"];
 }
+
+const BASE = {
+  themeOrSubTheme: "basic",
+  validator: "ajv8",
+} as const satisfies ExampleVariant;
 
 function* getVariants(entry: ExampleEntry): Generator<ExampleVariant> {
   const isValidatorSpecific = entry.meta.isValidatorSpecific ?? false;
@@ -27,9 +26,9 @@ function* getVariants(entry: ExampleEntry): Generator<ExampleVariant> {
     yield { themeOrSubTheme: t, validator: BASE.validator };
   }
   if (!isValidatorSpecific) {
-    for (const v of nonPrecompiledValidators()) {
-      if (v === BASE.validator) continue;
-      yield { themeOrSubTheme: BASE.themeOrSubTheme, validator: v };
+    for (const v of demosValidators()) {
+      if (v.name === BASE.validator) continue;
+      yield { themeOrSubTheme: BASE.themeOrSubTheme, validator: v.name };
     }
   }
 }

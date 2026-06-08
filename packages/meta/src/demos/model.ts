@@ -4,12 +4,11 @@ import type { ExtraWidgetFileNames } from "../widgets.ts";
 import type { ToTheme } from "../themes.ts";
 import {
   codegenValidators,
-  isEndsWithPrecompiled,
   type CodegenThemeOrSubTheme,
   type CodegenSvelteKitIntegration,
-  type CodegenNonPrecompiledValidator,
 } from "../codegen/index.ts";
 import type { CodeTransformer } from "../composer/index.ts";
+import type { Generated } from "../types.ts";
 
 // NOTE: Order is important
 export enum ExampleCategory {
@@ -46,13 +45,24 @@ export type ExampleMetadata = CatalogMeta<ExampleCategory, Tag> & {
   isValidatorSpecific?: boolean;
 };
 
+export function* demosValidators() {
+  for (const v of codegenValidators()) {
+    if (v.draft2020 || v.precompiled) {
+      continue;
+    }
+    yield v;
+  }
+}
+
+export type DemosValidator = Generated<typeof demosValidators>;
+
 export interface ExampleContent {
   files: Record<string, string>;
   dependencies: AbstractPackage[];
   codeTransformers: CodeTransformer[];
   sveltekit: CodegenSvelteKitIntegration;
   widgets: ExtraWidgetFileNames[ToTheme<CodegenThemeOrSubTheme>][];
-  validator: CodegenNonPrecompiledValidator;
+  validator: DemosValidator["name"];
 }
 
 export function defineMeta(meta: ExampleMetadata) {
@@ -73,11 +83,3 @@ export function defineExample(c: Partial<ExampleContent>): ExampleContent {
 
 export const remoteFormDefaultsReplacer: CodeTransformer = (_filepath, code) =>
   code.replace("sjsf/remote-defaults", "sjsf/defaults");
-
-export function* nonPrecompiledValidators() {
-  for (const v of codegenValidators()) {
-    if (!isEndsWithPrecompiled(v)) {
-      yield v;
-    }
-  }
-}

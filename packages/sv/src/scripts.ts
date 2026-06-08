@@ -1,7 +1,4 @@
-import {
-  createCompileValidatorsScript,
-  isEndsWithPrecompiled,
-} from "meta/codegen";
+import { createCompileValidatorsScript } from "meta/codegen";
 
 import {
   POST_FIELDS_VALIDATION_MODE,
@@ -12,21 +9,21 @@ import { transforms } from "./sv-utils.js";
 
 export function scriptsFolder(ctx: Context) {
   const {
-    options: { validatorWithSuffix, demo },
+    options: { validator, demo },
     file,
     language,
     sv,
     ts,
     directory,
   } = ctx;
-  if (!demo || !isEndsWithPrecompiled(validatorWithSuffix)) {
+  if (!demo || !validator.precompiled) {
     return;
   }
 
   sv.file(
     `scripts/compile-validators.${language}`,
     createCompileValidatorsScript({
-      validator: validatorWithSuffix,
+      validator,
       modelPaths: [`${directory.lib}${POST_MODEL_DIR}`],
       language,
       ts,

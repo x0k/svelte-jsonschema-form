@@ -42,7 +42,7 @@ export function createModel({
 }: ModelOptions) {
   const typeName = toTypeName(modelName);
   return transforms.script(({ ast, js, comments }) => {
-    if (isJsonSchemaValidator(validator) || validator === "noop") {
+    if (isJsonSchemaValidator(validator.name) || validator.name === "noop") {
       if (isTs) {
         js.imports.addNamed(ast, {
           isType: true,
@@ -78,7 +78,7 @@ export function createModel({
           code: `export type Model = FromSchema<typeof schema>;`,
         });
       }
-    } else if (validator === "zod4") {
+    } else if (validator.name === "zod4") {
       js.imports.addNamespace(ast, { from: "zod", as: "z" });
 
       const postExpression = js.common.parseExpression(`z
@@ -102,7 +102,7 @@ export function createModel({
           code: `export type Model = z.infer<typeof schema>;`,
         });
       }
-    } else if (validator === "valibot") {
+    } else if (validator.name === "valibot") {
       js.imports.addNamespace(ast, { from: "valibot", as: "v" });
 
       const postExpression = js.common.parseExpression(`v.pipe(
@@ -140,7 +140,7 @@ export function createModel({
           code: `export type Model = v.InferInput<typeof schema>;`,
         });
       }
-    } else if (validator === "standard-schema") {
+    } else if (validator.name === "standard-schema") {
       if (isTs) {
         js.imports.addNamed(ast, {
           isType: true,
@@ -203,7 +203,7 @@ export const schema${ts(": StandardSchemaV1<InternalModel> & StandardJSONSchemaV
         });
       }
     } else {
-      throw neverError(validator, "unexpected validator");
+      throw neverError(validator.name, "unexpected validator");
     }
 
     if (!isRecordEmpty(uiSchema)) {

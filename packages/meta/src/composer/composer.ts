@@ -3,9 +3,7 @@ import type { Schema, UiSchemaRoot, FormValue } from "@sjsf/form";
 import {
   type CodegenThemeOrSubTheme,
   type CodegenIconSet,
-  type CodegenValidator,
   type CodegenSvelteKitIntegration,
-  type CodegenNonPrecompiledValidator,
   type FieldsValidationMode,
   type Language,
   type PathFactory,
@@ -19,11 +17,15 @@ import {
   createViteConfig,
   createShadcnLib,
   createModel,
-  withoutPrecompiledSuffix,
   type MergerOptions,
+  type ModuleAugmentation,
+  type MergerConfigLike,
+  type ThemeExtension,
+  type UiOptionsRegistryEntry,
   createPrinter,
   createValidator,
   createForm,
+  type CodegenNonPrecompiledValidator,
 } from "../codegen/index.ts";
 import {
   extraPackage,
@@ -43,21 +45,26 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   language: Language;
   themeOrSubTheme: T;
   icons: CodegenIconSet;
-  validatorWithSuffix: CodegenValidator;
+  validator: CodegenNonPrecompiledValidator;
   sveltekit: CodegenSvelteKitIntegration;
   widgets: ExtraWidgetFileNames[ToTheme<T>][];
   extraFiles: Record<string, string>;
   extraDependencies: AbstractPackage[];
   codeTransformers: CodeTransformer[];
   modelName: string;
-  schema?: Schema;
-  uiSchema?: UiSchemaRoot;
-  initialValue?: FormValue;
+  uiSchema: UiSchemaRoot;
+  /** If `undefined` is specified, the model file will not be generated */
+  schema: Schema | undefined;
+  initialValue: FormValue;
   fieldsValidationMode: FieldsValidationMode;
-  disabled?: boolean;
-  merger?: Partial<MergerOptions>;
-  focusOnFirstError?: boolean;
-  uiOptionsRegistry?: Record<string, unknown>;
+  disabled: boolean;
+  merger: Partial<MergerOptions>;
+  uiOptionsRegistry: Record<string, UiOptionsRegistryEntry>;
+  themeExtension: ThemeExtension;
+  moduleAugmentation: Partial<ModuleAugmentation>;
+  mergerConfig: MergerConfigLike;
+  omitExtraData: boolean;
+  focusOnFirstError: boolean;
 }
 
 const TSCONFIG = JSON.stringify(
@@ -141,7 +148,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     language,
     themeOrSubTheme,
     icons,
-    validatorWithSuffix,
+    validator,
     sveltekit,
     widgets,
     extraFiles,
@@ -149,14 +156,17 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     codeTransformers,
     modelName,
     fieldsValidationMode,
-    // Optional
     schema,
+    uiSchema,
     initialValue,
-    uiSchema = {},
-    disabled = false,
-    merger = {},
-    focusOnFirstError = true,
-    uiOptionsRegistry = {},
+    disabled,
+    merger,
+    uiOptionsRegistry,
+    themeExtension,
+    moduleAugmentation,
+    mergerConfig,
+    omitExtraData,
+    focusOnFirstError,
   } = options;
   const isKit = true;
   const nodeModulesPath = "../../node_modules";
@@ -180,25 +190,27 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
   resolveDependencies({
     addDependency,
     themeOrSubTheme,
-    validatorWithSuffix,
+    validator,
     icons,
     sveltekit,
     widgets,
   });
 
-  const validator = createValidator({
-    validatorWithSuffix,
+  const validatorDefinition = createValidator({
+    validator,
     isTs,
     lib,
     modelName,
   });
 
   const form = createForm({
-    validator,
+    validator: validatorDefinition,
     disabled,
     isTs,
     modelName,
     sveltekit,
+    mergerConfig,
+    omitExtraData,
   });
 
   const files: Record<string, string> = {
@@ -216,7 +228,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     "src/app.html": createAppHtml({ themeOrSubTheme })(APP_HTML),
     "src/lib/sjsf/defaults.ts": createDefaults({
       themeOrSubTheme,
-      validatorWithSuffix,
+      validator,
       icons,
       resolver: "basic",
       sveltekit,
@@ -225,12 +237,14 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       ts,
       merger,
       focusOnFirstError,
+      themeExtension,
+      moduleAugmentation,
       uiOptionsRegistry,
     })(""),
     "src/routes/+page.svelte": createPage({
       language,
       themeOrSubTheme,
-      validatorWithSuffix,
+      validator,
       lib,
       form,
     })(""),
@@ -238,15 +252,13 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
 
   if (schema) {
     files[`src/lib/${modelName}.${language}`] = createModel({
-      validator: withoutPrecompiledSuffix(
-        validatorWithSuffix,
-      ) as CodegenNonPrecompiledValidator,
+      validator,
       isTs,
       ts,
       schema,
       modelName,
       uiSchema,
-      initialValue: initialValue as FormValue,
+      initialValue,
       fieldsValidationMode,
     })("");
   }

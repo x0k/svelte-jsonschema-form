@@ -25,22 +25,20 @@ import {
 } from "../widgets.ts";
 import {
   externalValidatorPackage,
-  isInternalValidator,
   isJsonSchemaValidator,
 } from "../validators.ts";
 
 import {
-  isEndsWithPrecompiled,
-  withoutPrecompiledSuffix,
   type CodegenValidator,
   type CodegenIconSet,
   type CodegenSvelteKitIntegration,
   type CodegenThemeOrSubTheme,
+  codegenIsExternalValidator,
 } from "./model.ts";
 
 interface DependenciesOptions<T extends CodegenThemeOrSubTheme> {
   themeOrSubTheme: T;
-  validatorWithSuffix: CodegenValidator;
+  validator: CodegenValidator;
   icons: CodegenIconSet;
   sveltekit: CodegenSvelteKitIntegration;
   widgets: ExtraWidgetFileNames[ToTheme<T>][];
@@ -50,7 +48,7 @@ interface DependenciesOptions<T extends CodegenThemeOrSubTheme> {
 export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
   addDependency,
   themeOrSubTheme,
-  validatorWithSuffix,
+  validator,
   icons,
   sveltekit,
   widgets,
@@ -94,26 +92,27 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
       addDependency(tailwindcss4PluginPackage(p));
     }
   }
+
   if (
-    isEndsWithPrecompiled(validatorWithSuffix) ||
-    !isInternalValidator(validatorWithSuffix)
+    validator.precompiled ||
+    validator.draft2020 ||
+    codegenIsExternalValidator(validator)
   ) {
     // Validator
-    const validator = withoutPrecompiledSuffix(validatorWithSuffix);
-    const validatorPkg = externalValidatorPackage(validator);
+    const validatorPkg = externalValidatorPackage(validator.name);
     addDependency(validatorPkg);
     addDependencies(validatorPkg.dependencies);
-    if (validator === "ajv8") {
+    if (validator.name === "ajv8") {
       addDependency(extraPackage("ajvFormat"));
+      if (validator.precompiled) {
+        addDependency(extraPackage("esbuild"));
+      }
     }
-    if (validatorWithSuffix === "ajv8_precompiled") {
-      addDependency(extraPackage("esbuild"));
-    }
-    if (validatorWithSuffix === "hyperjump_precompiled") {
+    if (validator.name === "hyperjump") {
       addDependency(extraPackage("devalue"));
     }
   } else {
-    if (validatorWithSuffix === "standard-schema") {
+    if (validator.name === "standard-schema") {
       addDependencies(formPackage.dependencies, [
         optionalPackageName("standardSchemaSpec"),
       ]);
@@ -127,9 +126,9 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
   }
   // Type inference
   if (
-    isJsonSchemaValidator(withoutPrecompiledSuffix(validatorWithSuffix)) ||
+    isJsonSchemaValidator(validator.name) ||
     // Required for internal fake type
-    validatorWithSuffix === "standard-schema"
+    validator.name === "standard-schema"
   ) {
     addDependency(extraPackage("jsonSchemaToTs"));
   }

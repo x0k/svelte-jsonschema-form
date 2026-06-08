@@ -27,27 +27,38 @@ export interface CompileValidatorsScriptOptions {
 export function createCompileValidatorsScript(
   options: CompileValidatorsScriptOptions,
 ) {
-  const { validator, ts, language } = options;
-
-  const hyperjump_precompiled = createScriptRenderer({
+  const hyperjump = createScriptRenderer({
     parallel: false,
-    vendorImports: `import {
+    vendorImports: (ctx) => {
+      const hyperjumpModule = ctx.validator.draft2020
+        ? "@hyperjump/json-schema/draft-2020-12"
+        : "@hyperjump/json-schema/draft-07";
+      return `import {
   registerSchema,
-  unregisterSchema,${ts("\n  type SchemaObject,")}
-} from "@hyperjump/json-schema/draft-07";
-import { ${ts("type AST, ")}getSchema, Validation } from "@hyperjump/json-schema/experimental";
-import { uneval } from "${extraPackage("devalue").name}";`,
-    compileSchemaBody: ({ definePatchAndSchemas, saveModel }) => `let id = 0;
+  unregisterSchema,${ctx.ts("\n  type SchemaObject,")}
+} from "${hyperjumpModule}";
+import { ${ctx.ts("type AST, ")}getSchema, Validation } from "@hyperjump/json-schema/experimental";
+import { uneval } from "${extraPackage("devalue").name}";`;
+    },
+    compileSchemaBody: ({
+      ctx: { validator, ts, language },
+      definePatchAndSchemas,
+      saveModel,
+    }) => `let id = 0;
 const toId = (n${ts(": number")}) => \`https://example.com/v\${n}\`;
 ${definePatchAndSchemas(`createId: () => toId(id++)`)}
 
 for (const schema of schemas) {
-  registerSchema(
+  registerSchema(${
+    validator.draft2020
+      ? `schema${ts(" as SchemaObject")}`
+      : `
     Object.assign(
       { $schema: "http://json-schema.org/draft-07/schema" },
       schema${ts(" as SchemaObject")}
     )
-  );
+`
+  });
 }
 
 try {
@@ -74,17 +85,17 @@ export const ast = \${uneval(ast)}${ts(" as unknown as AST")};\`
   });
 
   const scripts: Record<
-    CodegenPrecompiledValidator,
+    CodegenPrecompiledValidator["name"],
     (ctx: CompileValidatorsScriptOptions) => string
   > = {
-    ajv8_precompiled,
-    schemasafe_precompiled,
-    hyperjump_precompiled,
-    ata_precompiled,
+    ajv8,
+    schemasafe,
+    hyperjump,
+    ata,
   };
 
   return transforms.script(({ ast, comments, js }) => {
-    const code = scripts[validator](options);
+    const code = scripts[options.validator.name](options);
     js.common.appendFromString(ast, {
       comments,
       code,
@@ -93,8 +104,9 @@ export const ast = \${uneval(ast)}${ts(" as unknown as AST")};\`
 }
 
 interface ScriptOptions {
-  vendorImports: string;
+  vendorImports: (ctx: CompileValidatorsScriptOptions) => string;
   compileSchemaBody: (options: {
+    ctx: CompileValidatorsScriptOptions;
     definePatchAndSchemas: (extra?: string) => string;
     saveModel: (
       options?: Partial<{
@@ -112,12 +124,8 @@ function createScriptRenderer({
   compileSchemaBody,
   parallel,
 }: ScriptOptions) {
-  return ({
-    modelPaths,
-    ts,
-    language,
-    fieldsValidationMode,
-  }: CompileValidatorsScriptOptions) => {
+  return (ctx: CompileValidatorsScriptOptions) => {
+    const { modelPaths, ts, language, fieldsValidationMode } = ctx;
     const flags = fieldsValidationModeFlags(fieldsValidationMode);
     const flagsExpr = flags.join(", ");
     const runtimeFlagsImport =
@@ -140,7 +148,7 @@ ${runtimeFlagsImport}import {
   fragmentSchema,
 } from "${internalValidatorSubPath("precompile")}";
 
-${vendorImports};
+${vendorImports(ctx)};
 
 const FIELDS_VALIDATION = { ${flagsExpr} };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
@@ -171,6 +179,7 @@ async function compileSchema(modelDirRelPath${ts(": string")}) {
   const initialValue = await readJson(modelDir, "initial-value.json");
 
   ${compileSchemaBody({
+    ctx,
     definePatchAndSchemas: (
       extraProperties = "",
     ) => `const patch = insertSubSchemaIds(schema, {
@@ -216,21 +225,24 @@ if (import.meta.main) {
   };
 }
 
-const ajv8_precompiled = createScriptRenderer({
+const ajv8 = createScriptRenderer({
   parallel: true,
-  vendorImports: `import { addFormComponents, DEFAULT_AJV_CONFIG } from "${externalValidatorPackage("ajv8").name}";
-import Ajv from "ajv";
+  vendorImports: (
+    ctx,
+  ) => `import { addFormComponents, DEFAULT_AJV_CONFIG } from "${externalValidatorPackage("ajv8").name}";
+${ctx.validator.draft2020 ? `import { Ajv2020 } from "ajv/dist/2020.js";` : `import Ajv from "ajv";`}
 import standaloneCode from "ajv/dist/standalone/index.js";
 import addFormats from "${extraPackage("ajvFormat").name}";
 import { build } from "${extraPackage("esbuild").name}"`,
   compileSchemaBody: ({
+    ctx,
     definePatchAndSchemas,
     saveModel,
     saveValidators,
   }) => `${definePatchAndSchemas()};
 ${saveModel()};
 
-const ajv = new Ajv({
+const ajv = new ${ctx.validator.draft2020 ? "Ajv2020" : "Ajv"}({
   ...DEFAULT_AJV_CONFIG,
   schemas,
   code: {
@@ -260,35 +272,41 @@ const bundle = outputFiles[0].text;
 ${saveValidators("bundle")};`,
 });
 
-const schemasafe_precompiled = createScriptRenderer({
+const schemasafe = createScriptRenderer({
   parallel: true,
-  vendorImports: `import { validator } from "@exodus/schemasafe";
+  vendorImports: () => `import { validator } from "@exodus/schemasafe";
 import {
   DEFAULT_VALIDATOR_OPTIONS,
   FORM_FORMATS,
 } from "${externalValidatorPackage("schemasafe").name}"`,
   compileSchemaBody: ({
+    ctx,
     definePatchAndSchemas,
     saveModel,
     saveValidators,
-  }) => `${definePatchAndSchemas()};
+  }) => {
+    const draftOption = ctx.validator.draft2020
+      ? `\n  $schemaDefault: "https://json-schema.org/draft/2020-12/schema",`
+      : "";
+    return `${definePatchAndSchemas()};
 ${saveModel()};
 // @ts-expect-error Typings for \`multi\` version are missing
 const validate = validator(schemas, {
   ...DEFAULT_VALIDATOR_OPTIONS,
   formats: FORM_FORMATS,
   schemas: new Map(schemas.map((schema) => [schema.$id, schema])),
-  multi: true,
+  multi: true,${draftOption}
 });
 
 const validateFunctions = \`export const [\${schemas.map((s) => s.$id).join(", ")}] = \${validate.toModule()}\`;
 
-${saveValidators("validateFunctions")};`,
+${saveValidators("validateFunctions")};`;
+  },
 });
 
-const ata_precompiled = createScriptRenderer({
+const ata = createScriptRenderer({
   parallel: true,
-  vendorImports: `import { Validator } from "ata-validator";
+  vendorImports: () => `import { Validator } from "ata-validator";
 import {
   DEFAULT_VALIDATOR_OPTIONS,
   COLOR_FORMAT_REGEX,
@@ -298,13 +316,18 @@ import {
 const FORM_FORMATS = \`const COLOR_FORMAT_REGEX = \${COLOR_FORMAT_REGEX.toString()};
 const DATA_URL_FORMAT_REGEX = \${DATA_URL_FORMAT_REGEX.toString()}\`;`,
   compileSchemaBody: ({
+    ctx,
     definePatchAndSchemas,
     saveModel,
     saveValidators,
-  }) => `${definePatchAndSchemas()};
+  }) => {
+    const schemaUrl = ctx.validator.draft2020
+      ? "https://json-schema.org/draft/2020-12/schema"
+      : "http://json-schema.org/draft-07/schema";
+    return `${definePatchAndSchemas()};
 ${saveModel()};
 
-const base = { $schema: "http://json-schema.org/draft-07/schema" };
+const base = { $schema: "${schemaUrl}" };
 const bundle = Validator.bundleStandalone(
   schemas.map((s) => Object.assign(s, base)),
   { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }
@@ -316,5 +339,6 @@ const bundle = Validator.bundleStandalone(
   .slice(0, -50);
 
 ${saveValidators("FORM_FORMATS}\\n${bundle")}
-`,
+`;
+  },
 });

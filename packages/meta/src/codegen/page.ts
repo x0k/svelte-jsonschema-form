@@ -12,7 +12,7 @@ import type { FormDefinition } from "./form.ts";
 
 export interface PageOptions {
   lib: PathFactory;
-  validatorWithSuffix: CodegenValidator;
+  validator: CodegenValidator;
   form: FormDefinition;
   language: Language;
   themeOrSubTheme: CodegenThemeOrSubTheme;
@@ -28,8 +28,13 @@ export const PADDED_THEMES: CodegenThemeOrSubTheme[] = [
   "beercss",
 ];
 
-export function createPage(options: PageOptions) {
-  const { language, validatorWithSuffix, lib, themeOrSubTheme, form } = options;
+export function createPage({
+  language,
+  validator,
+  lib,
+  themeOrSubTheme,
+  form,
+}: PageOptions) {
   return transforms.svelteScript({ language }, ({ ast, js, svelte }) => {
     js.imports.addNamed(ast.instance.content, {
       imports: form.formPackageImports,
@@ -51,7 +56,7 @@ export function createPage(options: PageOptions) {
 
     js.common.appendFromString(ast.instance.content, { code: form.init });
 
-    if (validatorWithSuffix !== "noop") {
+    if (validator.name !== "noop") {
       form.attributes += " novalidate";
     }
 

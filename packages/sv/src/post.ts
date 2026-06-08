@@ -1,8 +1,4 @@
-import {
-  createJsonFile,
-  createModel,
-  isEndsWithPrecompiled,
-} from "meta/codegen";
+import { createJsonFile, createModel } from "meta/codegen";
 
 import {
   POST_FIELDS_VALIDATION_MODE,
@@ -18,14 +14,14 @@ export function postTs({
   sv,
   directory,
   language,
-  options: { validatorWithSuffix, demo },
+  options: { validator, demo },
   ts,
 }: Context) {
   if (!demo) {
     return;
   }
 
-  if (isEndsWithPrecompiled(validatorWithSuffix)) {
+  if (validator.precompiled) {
     const modelDir = `${directory.lib}${POST_MODEL_DIR}`;
     sv.file(`${modelDir}schema.json`, createJsonFile(POST_SCHEMA));
     sv.file(`${modelDir}ui-schema.json`, createJsonFile(POST_UI_SCHEMA));
@@ -37,7 +33,7 @@ export function postTs({
     sv.file(
       `${directory.lib}/post.${language}`,
       createModel({
-        validator: validatorWithSuffix,
+        validator,
         ts,
         schema: POST_SCHEMA,
         isTs,

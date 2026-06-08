@@ -1,4 +1,5 @@
-import { transforms } from "@sveltejs/sv-utils";
+import { transforms, type AstTypes } from "@sveltejs/sv-utils";
+import { isRecordEmpty } from "@sjsf/form/lib/object";
 
 import {
   formCoreSubpath,
@@ -32,17 +33,19 @@ import {
   isJsonSchemaValidator,
 } from "../validators.ts";
 
-import {
-  isEndsWithPrecompiled,
-  withoutPrecompiledSuffix,
-  type CodegenIconSet,
-  type CodegenThemeOrSubTheme,
-  type CodegenValidator,
-  type ConditionalPrinter,
-  type CodegenSvelteKitIntegration,
+import { createDraft2020ValidatorExport } from "./validator.ts";
+import type {
+  CodegenIconSet,
+  CodegenThemeOrSubTheme,
+  CodegenValidator,
+  ConditionalPrinter,
+  CodegenSvelteKitIntegration,
 } from "./model.ts";
-import { isRecordEmpty } from "@sjsf/form/lib/object";
-import { createReExport, getTopLevelFunction } from "./lib.ts";
+import {
+  createReExport,
+  getTopLevelFunction,
+  type NamedImportOptions,
+} from "./lib.ts";
 
 export interface MergerOptions {
   allOf: "populateDefaults" | "skipDefaults";
@@ -61,9 +64,21 @@ export interface MergerOptions {
     | "useDefaultIfFormDataUndefined";
 }
 
+export type ThemeExtension = NamedImportOptions[];
+
+export interface ModuleAugmentation {
+  componentProps: Record<string, string>;
+  componentBindings: Record<string, string>;
+  uiOptionsRegistry: Record<string, string>;
+}
+
+export type UiOptionsRegistryEntry =
+  | { kind: "StringEnumValueMapperBuilder" }
+  | { kind: "IdEnumValueMapperBuilder" };
+
 export interface DefaultsOptions<T extends CodegenThemeOrSubTheme> {
   themeOrSubTheme: T;
-  validatorWithSuffix: CodegenValidator;
+  validator: CodegenValidator;
   icons: CodegenIconSet;
   resolver: Resolver | "inline";
   sveltekit: CodegenSvelteKitIntegration;
@@ -72,7 +87,9 @@ export interface DefaultsOptions<T extends CodegenThemeOrSubTheme> {
   ts: ConditionalPrinter;
   merger: Partial<MergerOptions>;
   focusOnFirstError: boolean;
-  uiOptionsRegistry: Record<string, unknown>;
+  themeExtension: ThemeExtension;
+  moduleAugmentation: Partial<ModuleAugmentation>;
+  uiOptionsRegistry: Record<string, UiOptionsRegistryEntry>;
 }
 
 const SVELTE_KIT_INTEGRATION_ID_BUILDERS: Record<
@@ -89,7 +106,7 @@ const LINK_COMMENT =
 
 export function createDefaults<T extends CodegenThemeOrSubTheme>({
   themeOrSubTheme,
-  validatorWithSuffix,
+  validator,
   icons,
   resolver,
   sveltekit,
@@ -98,10 +115,12 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
   ts,
   merger,
   focusOnFirstError,
+  themeExtension,
+  moduleAugmentation,
   uiOptionsRegistry,
 }: DefaultsOptions<T>) {
   return transforms.script(({ ast, comments, js }) => {
-    const isAjv = validatorWithSuffix === "ajv8";
+    const isAjv = validator.name === "ajv8" && validator.precompiled === false;
 
     if (isAjv && isTs) {
       js.imports.addNamed(ast, {
@@ -234,13 +253,45 @@ export function resolver(_ctx) {`,
     });
 
     const theme = toTheme(themeOrSubTheme);
-    const themeNode = createReExport(ast, {
-      name: "theme",
-      source: themePackage(theme).name,
-    });
+    const themePackageName = themePackage(theme).name;
     const activeWidgets = new Set<ExtraWidgetFileNames[ToTheme<T>]>(widgets);
+    let themeNode: AstTypes.ExportNamedDeclaration;
+    if (themeExtension.length > 0) {
+      js.imports.addNamed(ast, {
+        imports: ["extendByRecord"],
+        from: "@sjsf/form/lib/resolver",
+      });
+      js.imports.addNamed(ast, {
+        from: themePackageName,
+        imports: { theme: "base" },
+      });
+      for (const c of themeExtension) {
+        js.imports.addNamed(ast, c);
+      }
+      const names = themeExtension
+        .flatMap((c) =>
+          Array.isArray(c.imports) ? c.imports : Object.values(c.imports),
+        )
+        .join(", ");
+      const themeExpression = js.common.parseExpression(
+        `extendByRecord(base, { ${names} })`,
+      );
+      const themeDeclaration = js.variables.declaration(ast, {
+        kind: "const",
+        name: "theme",
+        value: themeExpression,
+      });
+      themeNode = js.exports.createNamed(ast, {
+        name: "theme",
+        fallback: themeDeclaration,
+      });
+    } else {
+      themeNode = createReExport(ast, {
+        name: "theme",
+        source: themePackageName,
+      });
+    }
     if (isThemeExtension(theme)) {
-      // TODO: Remove this type cast
       const originTheme = themeExtensionOrigin(theme) as ToTheme<T>;
       for (const w of themeExtraWidgets(originTheme)) {
         if (activeWidgets.has(w)) {
@@ -275,7 +326,7 @@ export function resolver(_ctx) {`,
       });
     }
 
-    if (withoutPrecompiledSuffix(validatorWithSuffix) === "hyperjump") {
+    if (validator.name === "hyperjump") {
       js.imports.addEmpty(ast, {
         from: "@hyperjump/json-schema/formats-lite",
       });
@@ -285,7 +336,7 @@ export function resolver(_ctx) {`,
     if (focusOnFirstError) {
       js.imports.addNamed(ast, {
         imports: ["createFocusOnFirstError"],
-        from: formUtilSubPath("focus-on-first-error"),
+        from: "@sjsf/form/focus-on-first-error",
       });
       const onSubmitErrorExpression = js.common.parseExpression(
         "createFocusOnFirstError()",
@@ -295,27 +346,92 @@ export function resolver(_ctx) {`,
         name: "onSubmitError",
         value: onSubmitErrorExpression,
       });
-
       js.exports.createNamed(ast, {
         name: "onSubmitError",
         fallback: onSubmitErrorDeclaration,
       });
     }
 
+    if (!isRecordEmpty(moduleAugmentation)) {
+      const typeNames: string[] = [];
+      const entries: string[] = [];
+      if (moduleAugmentation.componentProps !== undefined) {
+        typeNames.push("ComponentProps");
+        entries.push("ComponentProps");
+        for (const [key, value] of Object.entries(
+          moduleAugmentation.componentProps,
+        )) {
+          entries.push(`  ${key}: ${value};`);
+        }
+      }
+      if (moduleAugmentation.componentBindings !== undefined) {
+        typeNames.push("ComponentBindings");
+        entries.push("ComponentBindings");
+        for (const [key, value] of Object.entries(
+          moduleAugmentation.componentBindings,
+        )) {
+          entries.push(`  ${key}: ${value};`);
+        }
+      }
+      if (moduleAugmentation.uiOptionsRegistry !== undefined) {
+        typeNames.push("UiOptionsRegistry");
+        entries.push("UiOptionsRegistry");
+        for (const [key, value] of Object.entries(
+          moduleAugmentation.uiOptionsRegistry,
+        )) {
+          entries.push(`  ${key}: ${value};`);
+        }
+      }
+      if (isTs) {
+        js.imports.addNamed(ast, {
+          from: formPackage.name,
+          imports: typeNames,
+          isType: true,
+        });
+        js.common.appendFromString(ast, {
+          code: `declare module "${formPackage.name}" {
+  interface ${entries.join(" {\n  }\n  interface ")} {}
+}`,
+          comments,
+        });
+      } else {
+        js.common.appendFromString(ast, {
+          code: `/**
+ * @typedef {import("${formPackage.name}").${typeNames.join(
+   " & ",
+ )}} _ModuleAugmentation
+ */`,
+          comments,
+        });
+      }
+    }
+
     if (
       getTopLevelFunction(ast, "validator") ||
-      isEndsWithPrecompiled(validatorWithSuffix) ||
-      !(
-        isJsonSchemaValidator(validatorWithSuffix) ||
-        validatorWithSuffix === "noop"
-      )
+      validator.precompiled ||
+      !(isJsonSchemaValidator(validator.name) || validator.name === "noop")
     ) {
       return;
     }
 
-    if (isAjv) {
+    if (validator.draft2020) {
+      const { imports, code } = createDraft2020ValidatorExport(validator, ts);
+      for (const i of imports) {
+        if (i.isDefault) {
+          if (i.as === undefined) continue;
+          js.imports.addDefault(ast, { from: i.from, as: i.as });
+        } else {
+          js.imports.addNamed(ast, {
+            from: i.from,
+            imports: i.imports ?? [],
+            isType: i.isType,
+          });
+        }
+      }
+      js.common.appendFromString(ast, { code, comments });
+    } else if (isAjv) {
       js.imports.addNamed(ast, {
-        from: externalValidatorPackage(validatorWithSuffix).name,
+        from: externalValidatorPackage(validator.name).name,
         imports: ["addFormComponents", "createFormValidator"],
       });
       js.imports.addDefault(ast, {
@@ -347,18 +463,35 @@ export const validator = (options) => createFormValidator({
       createReExport(ast, {
         name: "validator",
         imported: "createFormValidator",
-        source: isInternalValidator(validatorWithSuffix)
-          ? internalValidatorSubPath(validatorWithSuffix)
-          : externalValidatorPackage(validatorWithSuffix).name,
+        source: isInternalValidator(validator.name)
+          ? internalValidatorSubPath(validator.name)
+          : externalValidatorPackage(validator.name).name,
       });
     }
 
     if (!isRecordEmpty(uiOptionsRegistry)) {
-      const entries = Object.entries(uiOptionsRegistry)
-        .map(([key, value]) => `${key}: ${value}`)
-        .join(",\n  ");
+      const entries: string[] = [];
+      const importedClasses = new Set<string>();
+      for (const [key, entry] of Object.entries(uiOptionsRegistry)) {
+        switch (entry.kind) {
+          case "StringEnumValueMapperBuilder":
+            importedClasses.add("StringEnumValueMapperBuilder");
+            entries.push(`${key}: () => new StringEnumValueMapperBuilder()`);
+            break;
+          case "IdEnumValueMapperBuilder":
+            importedClasses.add("IdEnumValueMapperBuilder");
+            entries.push(`${key}: () => new IdEnumValueMapperBuilder()`);
+            break;
+        }
+      }
+      for (const importedClass of importedClasses) {
+        js.imports.addNamed(ast, {
+          from: `${formPackage.name}/options.svelte`,
+          imports: [importedClass],
+        });
+      }
       js.common.appendFromString(ast, {
-        code: `export const uiOptionsRegistry = {\n  ${entries},\n};`,
+        code: `export const uiOptionsRegistry = {\n  ${entries.join(",\n  ")},\n};`,
         comments,
       });
     }

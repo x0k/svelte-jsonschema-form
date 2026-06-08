@@ -1,3 +1,5 @@
+import { isRecordEmpty } from "@sjsf/form/lib/object";
+
 import { neverError } from "../errors.ts";
 import { svelteKitRfSubPath, svelteKitSubPath } from "../sveltekit.ts";
 
@@ -5,12 +7,31 @@ import type { NamedImportOptions, NamespaceImportOptions } from "./lib.ts";
 import type { CodegenSvelteKitIntegration } from "./model.ts";
 import { validatorProp, type ValidatorDefinition } from "./validator.ts";
 
+export interface MergerConfigLike {
+  allOf?: "populateDefaults" | "skipDefaults";
+  arrayMinItems?: {
+    populate?: "all" | "never" | "requiredOnly";
+    mergeExtraDefaults?: boolean;
+  };
+  constAsDefaults?: "always" | "skipOneOf" | "never";
+  emptyObjectFields?:
+    | "populateAllDefaults"
+    | "populateRequiredDefaults"
+    | "skipEmptyDefaults"
+    | "skipDefaults";
+  mergeDefaultsIntoFormData?:
+    | "useFormDataIfPresent"
+    | "useDefaultIfFormDataUndefined";
+}
+
 export interface FormOptions {
   isTs: boolean;
   modelName: string;
   sveltekit: CodegenSvelteKitIntegration;
   disabled: boolean;
   validator: ValidatorDefinition;
+  mergerConfig: MergerConfigLike;
+  omitExtraData: boolean;
 }
 
 export interface FormDefinition {
@@ -20,16 +41,100 @@ export interface FormDefinition {
   attributes: string;
 }
 
-export function createForm(ctx: FormOptions): FormDefinition {
-  const { sveltekit, isTs, disabled, modelName, validator } = ctx;
+function buildMergerConfigFields(config: MergerConfigLike): string {
+  const fields: string[] = [];
+  if (config.allOf !== undefined) {
+    fields.push(`allOf: "${config.allOf}"`);
+  }
+  if (config.arrayMinItems !== undefined) {
+    const arrayMinItems: string[] = [];
+    if (config.arrayMinItems.populate !== undefined) {
+      arrayMinItems.push(`populate: "${config.arrayMinItems.populate}"`);
+    }
+    if (config.arrayMinItems.mergeExtraDefaults !== undefined) {
+      arrayMinItems.push(
+        `mergeExtraDefaults: ${config.arrayMinItems.mergeExtraDefaults}`,
+      );
+    }
+    fields.push(`arrayMinItems: { ${arrayMinItems.join(", ")} }`);
+  }
+  if (config.constAsDefaults !== undefined) {
+    fields.push(`constAsDefaults: "${config.constAsDefaults}"`);
+  }
+  if (config.emptyObjectFields !== undefined) {
+    fields.push(`emptyObjectFields: "${config.emptyObjectFields}"`);
+  }
+  if (config.mergeDefaultsIntoFormData !== undefined) {
+    fields.push(
+      `mergeDefaultsIntoFormData: "${config.mergeDefaultsIntoFormData}"`,
+    );
+  }
+  return fields.join(",\n    ");
+}
+
+export function createForm({
+  sveltekit,
+  isTs,
+  disabled,
+  modelName,
+  validator,
+  mergerConfig,
+  omitExtraData,
+}: FormOptions): FormDefinition {
   const validatorProps = validatorProp(validator);
   const isInputTypeRequired = isTs && !validator.canInferFormType;
   const inputType = isInputTypeRequired ? `<${modelName}.Model>` : "";
+
+  const additionalImports: (NamedImportOptions | NamespaceImportOptions)[] = [];
+  const pageOverrideLines: string[] = [];
+
+  if (!isRecordEmpty(mergerConfig)) {
+    additionalImports.push({
+      imports: ["createFormMerger"],
+      from: "@sjsf/form/mergers/modern",
+    });
+    const fields = buildMergerConfigFields(mergerConfig);
+    pageOverrideLines.push(
+      `merger: (options) => createFormMerger({\n    ...options,\n    ${fields}\n  }),`,
+    );
+  }
+
+  if (omitExtraData) {
+    additionalImports.push({
+      imports: ["omitExtraData"],
+      from: "@sjsf/form/omit-extra-data",
+    });
+    pageOverrideLines.push(
+      `validator: (options) => {
+    const v = defaults.validator(options);
+    return {
+      ...v,
+      validateFormValue(rootSchema, formValue) {
+        return v.validateFormValue(
+          rootSchema,
+          omitExtraData(v, options.merger(), options.schema, formValue)
+        );
+      },
+    };
+  },`,
+    );
+  }
+
+  const bodyLines: string[] = [];
+  if (pageOverrideLines.length > 0) {
+    bodyLines.push(...pageOverrideLines);
+  }
+  if (validatorProps.length > 0) {
+    bodyLines.push(validatorProps);
+  }
+  const bodyBlock = bodyLines.map((l) => `  ${l}`).join("\n");
+
   if (sveltekit === "formActions") {
     return {
       formPackageImports: ["BasicForm"],
       additionalImports: [
         ...validator.imports,
+        ...additionalImports,
         {
           imports: ["createMeta", "setupSvelteKitForm"],
           from: svelteKitSubPath("client"),
@@ -43,7 +148,7 @@ export function createForm(ctx: FormOptions): FormDefinition {
       init: `const meta = createMeta<ActionData, PageData>().postForm;
 const { form } = setupSvelteKitForm(meta, {
   ...defaults,
-  ${validatorProps}
+${bodyBlock}
   onSuccess: (result) => {
     if (result.type === "success") {
       console.log(result.data?.post);
@@ -57,6 +162,7 @@ const { form } = setupSvelteKitForm(meta, {
       formPackageImports: ["BasicForm", "createForm"],
       additionalImports: [
         ...validator.imports,
+        ...additionalImports,
         ...(isInputTypeRequired ? validator.schemaImports : []),
         {
           imports: ["connect"],
@@ -79,7 +185,7 @@ const form = createForm${inputType}(
     {
       ...defaults,
       ...initialData,
-      ${validatorProps}
+${bodyBlock}
       fields: createPost.fields,
     },
   ),
@@ -91,11 +197,13 @@ const form = createForm${inputType}(
   }
   return {
     formPackageImports: ["BasicForm", "createForm"],
-    additionalImports: validator.imports.concat(validator.schemaImports),
+    additionalImports: validator.imports
+      .concat(validator.schemaImports)
+      .concat(additionalImports),
     init: `const form = createForm${inputType}({
   ...defaults,
   ...${modelName},
-  ${validatorProps}
+${bodyBlock}
   onSubmit: console.log,
   ${disabled !== false ? `disabled: ${disabled},\n  ` : ""}
 })`,

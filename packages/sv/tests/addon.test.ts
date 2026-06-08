@@ -3,17 +3,24 @@ import {
   codegenIconSets,
   codegenSvelteKitIntegrations,
   codegenThemeOrSubTheme,
+  CodegenValidator,
   codegenValidators,
 } from "meta/codegen";
 
 import addon from "../src/index.js";
-import { AddonOptions, validatorOptions } from "../src/model";
+import { AddonOptions, SvValidator } from "../src/model";
 import { snapshotFs } from "./setup/snapshot-fs.js";
 import { setupSnapshotTest } from "./setup/snapshot-suit";
 
+const BASE_VALIDATOR: CodegenValidator = {
+  name: "ajv8",
+  precompiled: false,
+  draft2020: false,
+};
+
 const BASE = {
   themeOrSubTheme: "basic",
-  validatorWithSuffix: "ajv8",
+  validator: JSON.stringify(BASE_VALIDATOR),
   icons: "none",
   sveltekit: "no",
   demo: true,
@@ -31,32 +38,33 @@ function kind<O extends Partial<AddonOptions>>(type: string, options: O) {
   };
 }
 
-type ValidatorOptionValue = (ReturnType<
-  typeof validatorOptions
-> extends Generator<infer V>
-  ? V
-  : never)["value"];
-
 const VALIDATOR_KINDS = [
-  // JSON schema validator
-  "ajv8",
-  // Precompiled validator
-  "ajv8_precompiled",
-  // Schema validator
-  "zod4",
-  // Only precompiled
-  "hyperjump_precompiled",
-] satisfies ValidatorOptionValue[];
+  { name: "ajv8", precompiled: false, draft2020: false },
+  { name: "ajv8", precompiled: true, draft2020: false },
+  { name: "zod4", precompiled: false, draft2020: false },
+  { name: "hyperjump", precompiled: true, draft2020: false },
+] satisfies SvValidator[];
+
+function validatorName(v: SvValidator) {
+  const suffix = v.precompiled ? "_precompiled" : "";
+  return `${v.name}${suffix}`;
+}
 
 function* kinds() {
   for (const themeOrSubTheme of codegenThemeOrSubTheme()) {
     yield kind(`theme__${themeOrSubTheme}`, { themeOrSubTheme });
   }
-  for (const validatorWithSuffix of codegenValidators()) {
-    if (validatorWithSuffix === BASE.validatorWithSuffix) {
+  for (const validator of codegenValidators()) {
+    if (
+      validator.draft2020 ||
+      (validator.name === BASE_VALIDATOR.name &&
+        validator.precompiled === BASE_VALIDATOR.precompiled)
+    ) {
       continue;
     }
-    yield kind(`validator__${validatorWithSuffix}`, { validatorWithSuffix });
+    yield kind(`validator__${validatorName(validator)}`, {
+      validator: JSON.stringify(validator),
+    });
   }
   for (const icons of codegenIconSets()) {
     if (icons === BASE.icons) {
@@ -68,10 +76,10 @@ function* kinds() {
     if (sveltekit === BASE.sveltekit) {
       continue;
     }
-    for (const validatorWithSuffix of VALIDATOR_KINDS) {
-      yield kind(`sveltekit__${sveltekit}__${validatorWithSuffix}`, {
+    for (const v of VALIDATOR_KINDS) {
+      yield kind(`sveltekit__${sveltekit}__${validatorName(v)}`, {
         sveltekit,
-        validatorWithSuffix,
+        validator: JSON.stringify(v),
       });
     }
   }

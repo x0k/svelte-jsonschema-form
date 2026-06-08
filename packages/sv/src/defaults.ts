@@ -20,6 +20,8 @@ export function defaultsTs({
       widgets: POST_EXTRA_WIDGETS,
       focusOnFirstError: true,
       merger: {},
+      themeExtension: [],
+      moduleAugmentation: {},
       uiOptionsRegistry: {},
     }),
   );

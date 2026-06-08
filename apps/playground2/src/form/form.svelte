@@ -63,7 +63,7 @@
     type FormState,
   } from "meta/playground";
   import "meta/playground/augmentations";
-  import { PROJECT_PLATFORMS } from "meta/composer";
+  import { SANDBOX_PLATFORMS, type SandboxPlatform } from "meta/sandbox";
 
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
@@ -163,7 +163,7 @@
     return count;
   });
 
-  let sandboxPlatform = $state(PROJECT_PLATFORMS[0]!);
+  let sandboxPlatform: SandboxPlatform = $state(SANDBOX_PLATFORMS[0]!);
 
   const changedMergerOptionsCount = $derived(getChangedMergerOptionsCount(data));
 
@@ -543,7 +543,7 @@
         <ChevronDown class="size-4" />
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
-        {#each PROJECT_PLATFORMS as platform (platform)}
+        {#each SANDBOX_PLATFORMS as platform (platform)}
           <DropdownMenu.Item onclick={() => (sandboxPlatform = platform)}>
             {platform}
           </DropdownMenu.Item>

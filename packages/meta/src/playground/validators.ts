@@ -26,49 +26,31 @@ import {
 import { Validator as AtaValidator } from "ata-validator";
 
 import type { Generated } from "../types.ts";
+import { validatorTitle } from "../validators.ts";
 import {
-  isJsonSchemaValidator,
-  isPrecompiledOnlyValidator,
-  validators,
-  validatorTitle,
-} from "../validators.ts";
+  codegemIsJsonSchemaValidator,
+  codegenValidators,
+} from "../codegen/index.ts";
 
 const addFormats = _addFormats as unknown as FormatsPlugin;
 
-const _2020_SUFFIX = "_2020";
-
-type With2020Suffix<T extends string> = `${T}${typeof _2020_SUFFIX}`;
-
-export function isEndsWith2020(v: string): v is With2020Suffix<string> {
-  return v.endsWith(_2020_SUFFIX);
-}
-
-export function without2020Suffix<V extends string>(
-  v: V | With2020Suffix<V>,
-): V {
-  return isEndsWith2020(v) ? (v.slice(0, -_2020_SUFFIX.length) as V) : v;
-}
-
 export function* playgroundValidators() {
-  for (const v of validators()) {
-    if (!isJsonSchemaValidator(v) || isPrecompiledOnlyValidator(v)) {
+  for (const v of codegenValidators()) {
+    if (!codegemIsJsonSchemaValidator(v) || v.precompiled) {
       continue;
     }
     yield v;
-    yield `${v}${_2020_SUFFIX}` as const;
   }
 }
 
 export type PlaygroundValidator = Generated<typeof playgroundValidators>;
 
 export function playgroundValidatorTitle(v: PlaygroundValidator) {
-  if (isEndsWith2020(v)) {
-    return `${validatorTitle(without2020Suffix(v))} (2020-12)`;
-  }
-  return validatorTitle(v);
+  const title = validatorTitle(v.name);
+  return v.draft2020 ? `${title} (2020-12)` : title;
 }
 
-export const PLAYGROUND_VALIDATORS = {
+const PLAYGROUND_VALIDATORS = {
   ajv8: <T>(options: Parameters<typeof ajv8>[0]) =>
     ajv8<T>({
       ...options,
@@ -106,4 +88,11 @@ export const PLAYGROUND_VALIDATORS = {
       ...options,
       factory: (schema) => new AtaValidator(schema, DEFAULT_ATA_OPTIONS),
     }),
-} satisfies Record<PlaygroundValidator, <T>(...args: any) => FormValidator<T>>;
+} satisfies Record<
+  `${PlaygroundValidator["name"]}${"_2020" | ""}`,
+  <T>(...args: any) => FormValidator<T>
+>;
+
+export function getPlaygroundValidator(v: PlaygroundValidator) {
+  return PLAYGROUND_VALIDATORS[`${v.name}${v.draft2020 ? "_2020" : ""}`];
+}

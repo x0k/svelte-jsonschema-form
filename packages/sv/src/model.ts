@@ -2,7 +2,6 @@ import { defineAddon, defineAddonOptions, type SelectQuestion } from "sv";
 import {
   isLabTheme,
   themeOrSubThemeTitle,
-  validatorTitle,
   iconSets,
   iconSetTitle,
   isThemeExtension,
@@ -10,6 +9,7 @@ import {
   isLabValidator,
   toTheme,
   FIELD_VALIDATION_FLAGS,
+  type Generated,
 } from "meta";
 import {
   codegenSvelteKitIntegrations,
@@ -17,8 +17,6 @@ import {
   codegenValidators,
   createForm,
   createValidator,
-  isEndsWithPrecompiled,
-  withoutPrecompiledSuffix,
   type CodegenSvelteKitIntegration,
   type CodegenThemeOrSubTheme,
   type FieldsValidationMode,
@@ -71,14 +69,30 @@ export function* themeOrSubThemeOptions() {
   }
 }
 
+export function* svValidators() {
+  for (const validator of codegenValidators()) {
+    if (validator.draft2020) {
+      continue;
+    }
+    yield validator;
+  }
+}
+
+export type SvValidator = Generated<typeof svValidators>;
+
 export function* validatorOptions() {
-  for (const value of codegenValidators()) {
-    const withoutSuffix = withoutPrecompiledSuffix(value);
-    const title = validatorTitle(withoutSuffix);
+  for (const validator of svValidators()) {
+    let title: string = validator.name;
+    if (validator.draft2020) {
+      title = `${title} (2020-12)`;
+    }
+    if (validator.precompiled) {
+      title = `${title} (precompiled)`;
+    }
     yield {
-      value,
-      label: isEndsWithPrecompiled(value) ? `${title} (precompiled)` : title,
-      hint: isLabValidator(withoutSuffix) ? "experimental" : undefined,
+      value: JSON.stringify(validator),
+      label: title,
+      hint: isLabValidator(validator.name) ? "experimental" : undefined,
     } satisfies SelectOption;
   }
 }
@@ -111,7 +125,7 @@ export const createOptions = (options: AddonSetupOptions) =>
       default: "none",
       options: Array.from(iconOptions()),
     })
-    .add("validatorWithSuffix", {
+    .add("validator", {
       question: "Select a validation engine",
       type: "select",
       default: "ajv8",
@@ -139,7 +153,12 @@ type Workspace = Parameters<Addon["run"]>[0];
 
 export type AddonOptions = Workspace["options"];
 
-export type Context = Workspace & {
+export type ContextOptions = Omit<AddonOptions, "validator"> & {
+  validator: SvValidator;
+};
+
+export type Context = Omit<Workspace, "options"> & {
+  options: ContextOptions;
   isTs: boolean;
   ts: (content: string, alt?: string) => string;
   js: (content: string, alt?: string) => string;
@@ -157,21 +176,28 @@ export function createContext(ws: Workspace): Context {
   const isTs = language === "ts";
   const [ts, js] = createPrinter(isTs, !isTs);
   const lib = (path: string) => `${isKit ? "$lib" : directory.lib}/${path}`;
-  const validator = createValidator({
+  const options: ContextOptions = {
     ...ws.options,
+    validator: JSON.parse(ws.options.validator),
+  };
+  const validator = createValidator({
+    ...options,
     isTs,
     lib,
     modelName: POST_MODEL_NAME,
   });
   const form = createForm({
-    ...ws.options,
+    ...options,
     disabled: false,
+    mergerConfig: {},
+    omitExtraData: false,
     isTs,
     modelName: POST_MODEL_NAME,
     validator,
   });
   return {
     ...ws,
+    options,
     isTs,
     ts: ts!,
     js: js!,

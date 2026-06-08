@@ -1,8 +1,5 @@
 import type { CatalogEntry } from "../catalog.ts";
-import type {
-  CodegenThemeOrSubTheme,
-  CodegenValidator,
-} from "../codegen/index.ts";
+import type { CodegenThemeOrSubTheme } from "../codegen/index.ts";
 import { type CodeTransformer, createComposer } from "../composer/index.ts";
 import { sandboxOpen, type SandboxPlatform } from "../sandbox/index.ts";
 
@@ -10,6 +7,7 @@ import {
   type ExampleMetadata,
   type ExampleContent,
   ExampleCategory,
+  type DemosValidator,
 } from "./model.ts";
 
 const EXAMPLE_METADATA = import.meta.glob("./examples/*.js", {
@@ -38,7 +36,7 @@ export const GROUPED_EXAMPLES = Object.groupBy(
 ) as Partial<Record<ExampleCategory, ExampleEntry[]>>;
 
 export const VALIDATOR_TRANSFORMERS: Partial<
-  Record<CodegenValidator, () => Promise<{ default: CodeTransformer }>>
+  Record<DemosValidator["name"], () => Promise<{ default: CodeTransformer }>>
 > = {
   zod4: () => import("./schema-transformers/schema-to-zod.ts"),
   valibot: () => import("./schema-transformers/schema-to-valibot.ts"),
@@ -49,7 +47,7 @@ export const VALIDATOR_TRANSFORMERS: Partial<
 export interface CreateExampleFilesOptions {
   entry: ExampleEntry;
   themeOrSubTheme: CodegenThemeOrSubTheme;
-  validator: CodegenValidator;
+  validator: DemosValidator["name"];
 }
 
 function exampleName({
@@ -82,14 +80,33 @@ export async function createExampleFiles(
     language: "ts",
     icons: "none",
     themeOrSubTheme,
-    validatorWithSuffix: isValidatorSpecific ? content.validator : validator,
+    validator: {
+      name: isValidatorSpecific ? content.validator : validator,
+      draft2020: false,
+      precompiled: false,
+    },
     sveltekit: content.sveltekit,
     widgets: content.widgets,
     extraFiles: content.files,
     extraDependencies: content.dependencies,
     codeTransformers,
     modelName: "model",
+    focusOnFirstError: true,
+    // These options are not relevant for demos,
+    // because if they are used at all,
+    // they are applied via `extraFiles`
     fieldsValidationMode: 0,
+    omitExtraData: false,
+    disabled: false,
+    merger: {},
+    uiOptionsRegistry: {},
+    uiSchema: {},
+    themeExtension: [],
+    moduleAugmentation: {},
+    mergerConfig: {},
+    // inlined on demo page
+    schema: undefined,
+    initialValue: undefined,
   });
 }
 
