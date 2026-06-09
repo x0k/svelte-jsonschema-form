@@ -39,10 +39,14 @@ class Router {
     this.#update?.();
   }
 
-  store<T extends Record<string, any>>(data: T) {
+  share<T extends Record<string, any>>(data: T) {
     const url = new URL(window.location.href);
     url.hash = compressToEncodedURIComponent(JSON.stringify(data));
-    history.replaceState(null, "", url);
+    return url;
+  }
+
+  store<T extends Record<string, any>>(data: T) {
+    history.replaceState(null, "", this.share(data));
   }
 
   load<T extends Record<string, any>>(defaultData: T): T {

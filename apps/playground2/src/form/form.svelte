@@ -36,6 +36,8 @@
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
   import AlignLeft from "@lucide/svelte/icons/align-left";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
+  import ExternalLink from "@lucide/svelte/icons/external-link";
+  import Copy from "@lucide/svelte/icons/copy";
   import { themeOrSubThemeTitle } from "meta";
   import {
     ALL_OF_STATE_BEHAVIOR,
@@ -65,6 +67,7 @@
   } from "meta/playground";
   import "meta/playground/augmentations";
   import { SANDBOX_PLATFORMS, type SandboxPlatform } from "meta/sandbox";
+  import { toast } from 'svelte-sonner';
 
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
@@ -91,6 +94,7 @@
   import { setShadcnContext } from "@/shadcn-context.js";
   import Header from "@/header.svelte";
   import { router } from "@/router.js";
+  import { copyTextToClipboard } from "@/copy-to-clipboard";
 
   import { getChangedMergerOptionsCount } from "./merger-options";
   import * as customComponents from "./custom-form-components/index.js";
@@ -164,9 +168,11 @@
     return count;
   });
 
-  let sandboxPlatform: SandboxPlatform = $state(SANDBOX_PLATFORMS[0]!);
+  let action: SandboxPlatform | "copy" = $state("copy");
 
-  const changedMergerOptionsCount = $derived(getChangedMergerOptionsCount(data));
+  const changedMergerOptionsCount = $derived(
+    getChangedMergerOptionsCount(data),
+  );
 
   const { compareSchemaDefinitions, compareSchemaValues } = createComparator();
   const jsonSchemaMerger = createMerger({
@@ -529,10 +535,23 @@
   <ButtonGroup.Root>
     <Button
       variant="outline"
-      onclick={() =>
-        openSandbox({ formState: data, platform: sandboxPlatform })}
+      onclick={() => {
+        if (action === "copy") {
+          void copyTextToClipboard(
+            router.share($state.snapshot(data)).toString(),
+          );
+          toast.success('Link copied')
+        } else {
+          openSandbox({ formState: data, platform: action });
+        }
+      }}
     >
-      Open in {sandboxPlatform}
+      {#if action === "copy"}
+        Share <Copy />
+      {:else}
+        {action}
+        <ExternalLink />
+      {/if}
     </Button>
     <DropdownMenu.Root>
       <DropdownMenu.Trigger
@@ -543,10 +562,13 @@
       >
         <ChevronDown class="size-4" />
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content>
+      <DropdownMenu.Content align="center" class="w-40" >
+        <DropdownMenu.Item onclick={() => (action = "copy")}>
+          Share Link
+        </DropdownMenu.Item>
         {#each SANDBOX_PLATFORMS as platform (platform)}
-          <DropdownMenu.Item onclick={() => (sandboxPlatform = platform)}>
-            {platform}
+          <DropdownMenu.Item onclick={() => (action = platform)}>
+            Open in {platform}
           </DropdownMenu.Item>
         {/each}
       </DropdownMenu.Content>
