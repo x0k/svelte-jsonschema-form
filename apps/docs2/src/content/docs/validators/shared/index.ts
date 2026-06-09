@@ -1,6 +1,7 @@
+import type { FromSchema } from "json-schema-to-ts";
 import type { Schema, UiSchema } from "@sjsf/form";
 
-export const schema: Schema = {
+export const schema = {
   type: "object",
   properties: {
     id: {
@@ -28,7 +29,9 @@ export const schema: Schema = {
       },
     },
   },
-};
+} as const satisfies Schema;
+
+export type Model = FromSchema<typeof schema>;
 
 export const uiSchema: UiSchema = {
   id: {
@@ -52,4 +55,4 @@ export const initialValue = {
   id: "Invalid",
   skills: ["karate", "budo", "aikido"],
   multipleChoicesList: ["foo", "bar", "fuzz"],
-} as const;
+} satisfies Model;

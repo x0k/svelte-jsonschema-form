@@ -6,10 +6,11 @@
     playgroundResolvers,
     playgroundThemes
   } from "meta/playground";
-  import { SANDBOX_PLATFORMS } from "meta/sandbox";
   import { builderValidators, builderValidatorTitle } from "meta/builder";
+  import { SANDBOX_PLATFORMS, sandboxPlatformLabel, sandboxPlatformIcon } from "meta/sandbox";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import ExternalLink from "@lucide/svelte/icons/external-link";
+  import Download from "@lucide/svelte/icons/download";
   import Copy from "@lucide/svelte/icons/copy";
   import { toast } from "svelte-sonner";
 
@@ -135,8 +136,12 @@
                   fileFieldMode: ctx.uiSchemaFileFieldMode
                 })}
             >
-              Open in {platform}
-              <ExternalLink />
+              {sandboxPlatformLabel(platform)}
+              {#if sandboxPlatformIcon(platform) === "external-link"}
+                <ExternalLink />
+              {:else}
+                <Download />
+              {/if}
             </DropdownMenu.Item>
           {/each}
         </DropdownMenu.Content>

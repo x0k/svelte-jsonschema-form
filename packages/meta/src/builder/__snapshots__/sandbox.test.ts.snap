@@ -3,7 +3,7 @@
 exports[`builder sandbox-factory > basic > basic 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -153,7 +153,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > fields > extra fields 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -303,7 +303,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > themes > basic 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -453,7 +453,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > themes > beercss 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -603,7 +603,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > themes > daisyui5 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -765,7 +765,7 @@ export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
 exports[`builder sandbox-factory > themes > flowbite3 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -951,7 +951,7 @@ export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
 exports[`builder sandbox-factory > themes > pico 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -1103,7 +1103,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > themes > shadcn-extras 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -1472,7 +1472,7 @@ export default defineConfig({
 exports[`builder sandbox-factory > themes > shadcn4 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -1824,7 +1824,7 @@ export default defineConfig({
 exports[`builder sandbox-factory > themes > skeleton4 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -1999,7 +1999,7 @@ export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
 exports[`builder sandbox-factory > themes > svar 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -2154,7 +2154,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > ui-schema > with uiSchema 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -2311,7 +2311,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > validators > ajv8 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -2461,7 +2461,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > validators > ata 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -2601,7 +2601,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > validators > cfworker 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -2741,7 +2741,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > validators > schemasafe 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -2881,7 +2881,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > validators > valibot 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -3027,7 +3027,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > validators > zod4 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
@@ -3169,7 +3169,7 @@ export default defineConfig({ plugins: [sveltekit()] });",
 exports[`builder sandbox-factory > widgets > extra widgets 1`] = `
 {
   "package.json": "{
-  "name": "Sandbox",
+  "name": "sandbox",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {

@@ -43,6 +43,7 @@ catalog:
   devalue: ^5.8.0
   esbuild: 0.28.0
   esm-env: ^1.2.2
+  fflate: ^0.8.2
   flowbite: ^3.1.2
   flowbite-svelte: ^1.33.1
   globals: 17.6.0

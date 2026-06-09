@@ -141,6 +141,13 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });`;
 
+export function normalizeProjectName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 export function createComposer<T extends CodegenThemeOrSubTheme>(
   options: ComposerOptions<T>,
 ): Record<string, string> {
@@ -216,7 +223,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
 
   const files: Record<string, string> = {
     "package.json": buildPackageJson({
-      name,
+      name: normalizeProjectName(name),
       dependencies: new Map(dependencies.map((d) => [d.name, d])).values(),
     }),
     "vite.config.js": createViteConfig({

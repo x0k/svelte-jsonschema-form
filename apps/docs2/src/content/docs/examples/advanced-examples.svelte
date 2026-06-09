@@ -3,23 +3,23 @@
   import {
     codegenThemeOrSubTheme,
     type CodegenThemeOrSubTheme,
-    type CodegenNonPrecompiledValidator,
   } from "meta/codegen";
-  import { SandboxPlatform, SANDBOX_PLATFORMS } from "meta/sandbox";
   import {
     GROUPED_EXAMPLES,
     openExample,
     Tag,
     exampleCategories,
     type ExampleEntry,
-    nonPrecompiledValidators,
   } from "meta/demos";
+  import { SandboxPlatform, SANDBOX_PLATFORMS } from "meta/sandbox";
   import ExampleCards from "./example-cards.svelte";
   import CatalogFilter from "./catalog-filter.svelte";
+    import type { DemosValidator } from 'meta/demos';
+    import { demosValidators } from 'meta/demos';
 
   let platform: SandboxPlatform = $state.raw(SandboxPlatform.StackBlitz);
   let theme: CodegenThemeOrSubTheme = $state.raw("basic");
-  let validator: CodegenNonPrecompiledValidator = $state.raw("ajv8");
+  let validator: DemosValidator['name'] = $state.raw("ajv8");
 </script>
 
 {#snippet exampleCards(entries: readonly ExampleEntry[])}
@@ -55,9 +55,9 @@
   <label>
     <span>Validator</span>
     <select bind:value={validator}>
-      {#each nonPrecompiledValidators() as v (v)}
-        <option value={v}>
-          {validatorTitle(v)}
+      {#each demosValidators() as { name } (name)}
+        <option value={name}>
+          {validatorTitle(name)}
         </option>
       {/each}
     </select>

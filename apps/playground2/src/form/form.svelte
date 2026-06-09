@@ -37,6 +37,7 @@
   import AlignLeft from "@lucide/svelte/icons/align-left";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import ExternalLink from "@lucide/svelte/icons/external-link";
+  import Download from "@lucide/svelte/icons/download";
   import Copy from "@lucide/svelte/icons/copy";
   import { themeOrSubThemeTitle } from "meta";
   import {
@@ -66,7 +67,11 @@
     type FormState,
   } from "meta/playground";
   import "meta/playground/augmentations";
-  import { SANDBOX_PLATFORMS } from "meta/sandbox";
+  import {
+    SANDBOX_PLATFORMS,
+    sandboxPlatformLabel,
+    sandboxPlatformIcon,
+  } from "meta/sandbox";
   import { toast } from "svelte-sonner";
 
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
@@ -560,8 +565,12 @@
           <DropdownMenu.Item
             onclick={() => openSandbox({ formState: data, platform })}
           >
-            Open in {platform}
-            <ExternalLink />
+            {sandboxPlatformLabel(platform)}
+            {#if sandboxPlatformIcon(platform) === "external-link"}
+              <ExternalLink />
+            {:else}
+              <Download />
+            {/if}
           </DropdownMenu.Item>
         {/each}
       </DropdownMenu.Content>

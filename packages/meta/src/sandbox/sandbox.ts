@@ -6,6 +6,7 @@ const PLATFORM_FACTORIES: Record<
 > = {
   [SandboxPlatform.StackBlitz]: () => import("./platforms/stackblitz.ts"),
   [SandboxPlatform.SvelteLab]: () => import("./platforms/svelte-lab.ts"),
+  [SandboxPlatform.Local]: () => import("./platforms/local.ts"),
 };
 
 export async function sandboxOpen(options: SandboxOptions) {
