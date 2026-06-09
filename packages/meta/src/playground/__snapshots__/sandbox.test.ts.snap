@@ -2,8 +2,7 @@
 
 exports[`sandbox-factory > basic > basic 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -28,7 +27,7 @@ exports[`sandbox-factory > basic > basic 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -40,7 +39,7 @@ exports[`sandbox-factory > basic > basic 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -50,7 +49,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -90,7 +89,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -98,7 +97,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -107,8 +106,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -130,7 +129,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -144,19 +143,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > form > disabled 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -181,7 +177,7 @@ exports[`sandbox-factory > form > disabled 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -193,7 +189,7 @@ exports[`sandbox-factory > form > disabled 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -203,7 +199,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -243,7 +239,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -251,7 +247,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -260,8 +256,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -283,7 +279,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -297,19 +293,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > form > omitExtraData 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -334,7 +327,7 @@ exports[`sandbox-factory > form > omitExtraData 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -346,7 +339,7 @@ exports[`sandbox-factory > form > omitExtraData 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -356,7 +349,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -396,7 +389,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -404,7 +397,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import { omitExtraData } from '@sjsf/form/omit-extra-data';
 	import * as model from '$lib/model';
@@ -428,8 +421,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -451,7 +444,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -465,19 +458,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > merger > non-default 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -502,7 +492,7 @@ exports[`sandbox-factory > merger > non-default 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -514,7 +504,7 @@ exports[`sandbox-factory > merger > non-default 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -524,7 +514,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
+  "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
@@ -576,7 +566,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -584,7 +574,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import { createFormMerger } from '@sjsf/form/mergers/modern';
 	import * as model from '$lib/model';
@@ -606,8 +596,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -629,7 +619,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -643,19 +633,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > themes > basic 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -680,7 +667,7 @@ exports[`sandbox-factory > themes > basic 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -692,7 +679,7 @@ exports[`sandbox-factory > themes > basic 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -702,7 +689,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -742,7 +729,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -750,7 +737,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -759,8 +746,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -782,7 +769,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -796,19 +783,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > themes > beercss 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -834,7 +818,7 @@ exports[`sandbox-factory > themes > beercss 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -846,7 +830,7 @@ exports[`sandbox-factory > themes > beercss 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -856,7 +840,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -896,7 +880,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import 'beercss/dist/cdn/beer.css';
 	import type { Snippet } from 'svelte';
 
@@ -904,7 +888,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -913,7 +897,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -935,7 +919,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -949,19 +933,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > themes > daisyui5 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -990,7 +971,7 @@ exports[`sandbox-factory > themes > daisyui5 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -1002,7 +983,7 @@ exports[`sandbox-factory > themes > daisyui5 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -1012,7 +993,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -1057,7 +1038,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -1065,7 +1046,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -1074,10 +1055,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-    "src/routes/layout.css": "@import 'tailwindcss';
+  "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -1099,7 +1080,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -1113,20 +1094,17 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+  "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > themes > flowbite3 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -1155,7 +1133,7 @@ exports[`sandbox-factory > themes > flowbite3 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -1167,7 +1145,7 @@ exports[`sandbox-factory > themes > flowbite3 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -1177,7 +1155,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -1222,7 +1200,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -1230,7 +1208,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -1239,7 +1217,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-    "src/routes/layout.css": "@import 'tailwindcss';
+  "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/flowbite3-theme/styles.css";
 @plugin "flowbite/plugin";
 @custom-variant dark (&:where(.dark, .dark *));
@@ -1266,7 +1244,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   --color-secondary-800: #075985;
   --color-secondary-900: #0c4a6e;
 };",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -1288,7 +1266,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -1302,20 +1280,17 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+  "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > themes > pico 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -1341,7 +1316,7 @@ exports[`sandbox-factory > themes > pico 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -1353,7 +1328,7 @@ exports[`sandbox-factory > themes > pico 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -1363,7 +1338,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -1403,7 +1378,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -1411,7 +1386,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -1420,9 +1395,9 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-    "src/routes/layout.css": "@import "@picocss/pico/css/pico.css";
+  "src/routes/layout.css": "@import "@picocss/pico/css/pico.css";
 @import "@sjsf/basic-theme/css/pico.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -1444,7 +1419,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -1458,19 +1433,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > themes > shadcn-extras 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -1501,7 +1473,7 @@ exports[`sandbox-factory > themes > shadcn-extras 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -1513,7 +1485,7 @@ exports[`sandbox-factory > themes > shadcn-extras 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -1523,7 +1495,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -1575,7 +1547,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/lib/sjsf/shadcn.ts": "import {
+  "src/lib/sjsf/shadcn.ts": "import {
 	Button,
 	FieldDescription,
 	FieldError,
@@ -1650,7 +1622,7 @@ export function setShadcnThemeContext() {
 		}
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -1661,7 +1633,7 @@ export function setShadcnThemeContext() {
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -1670,7 +1642,7 @@ export function setShadcnThemeContext() {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-    "src/routes/layout.css": "@import 'tailwindcss';
+  "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/shadcn4-theme/styles.css";
 @import "@sjsf-lab/shadcn-extras-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
@@ -1790,7 +1762,7 @@ export function setShadcnThemeContext() {
     @apply bg-background text-foreground;
   }
 };",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -1812,7 +1784,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -1826,7 +1798,7 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+  "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
@@ -1834,15 +1806,12 @@ export default defineConfig({
 	plugins: [sveltekit(), tailwindcss()],
 	ssr: { noExternal: ['@lucide/svelte'] }
 });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > themes > shadcn4 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -1876,7 +1845,7 @@ exports[`sandbox-factory > themes > shadcn4 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -1888,7 +1857,7 @@ exports[`sandbox-factory > themes > shadcn4 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -1898,7 +1867,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -1943,7 +1912,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/lib/sjsf/shadcn.ts": "import {
+  "src/lib/sjsf/shadcn.ts": "import {
 	Button,
 	FieldDescription,
 	FieldError,
@@ -2006,7 +1975,7 @@ export function setShadcnThemeContext() {
 		}
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -2017,7 +1986,7 @@ export function setShadcnThemeContext() {
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -2026,7 +1995,7 @@ export function setShadcnThemeContext() {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-    "src/routes/layout.css": "@import 'tailwindcss';
+  "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/shadcn4-theme/styles.css";
 @custom-variant dark (&:where(.dark *));
 
@@ -2145,7 +2114,7 @@ export function setShadcnThemeContext() {
     @apply bg-background text-foreground;
   }
 };",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -2167,7 +2136,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -2181,7 +2150,7 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+  "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
@@ -2189,15 +2158,12 @@ export default defineConfig({
 	plugins: [sveltekit(), tailwindcss()],
 	ssr: { noExternal: ['@lucide/svelte'] }
 });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > themes > skeleton4 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -2227,7 +2193,7 @@ exports[`sandbox-factory > themes > skeleton4 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 
 <html lang="en" data-theme="cerberus">
 	<head>
@@ -2244,7 +2210,7 @@ exports[`sandbox-factory > themes > skeleton4 1`] = `
 
 	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -2254,7 +2220,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -2303,7 +2269,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -2311,7 +2277,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -2320,13 +2286,13 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-    "src/routes/layout.css": "@import 'tailwindcss';
+  "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/skeleton4-theme/styles.css";
 @plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -2348,7 +2314,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -2362,20 +2328,17 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+  "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > themes > svar 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -2401,7 +2364,7 @@ exports[`sandbox-factory > themes > svar 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -2413,7 +2376,7 @@ exports[`sandbox-factory > themes > svar 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -2423,7 +2386,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -2468,7 +2431,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import { Willow } from '@svar-ui/svelte-core';
 	import type { Snippet } from 'svelte';
 
@@ -2476,7 +2439,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <Willow>{@render children()}</Willow>",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -2485,7 +2448,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -2507,7 +2470,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -2521,19 +2484,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > ui-schema > customizations 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -2559,7 +2519,7 @@ exports[`sandbox-factory > ui-schema > customizations 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -2571,12 +2531,12 @@ exports[`sandbox-factory > ui-schema > customizations 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/custom-components/index.ts": "export { default as markdownDescription } from "./markdown-description.svelte";
+  "src/lib/custom-components/index.ts": "export { default as markdownDescription } from "./markdown-description.svelte";
 export { default as transparentLayout } from "./transparent-layout.svelte";
 ",
-    "src/lib/custom-components/markdown-description.svelte": "<stub>markdown</stub>",
-    "src/lib/custom-components/transparent-layout.svelte": "<stub>transparent</stub>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/custom-components/markdown-description.svelte": "<stub>markdown</stub>",
+  "src/lib/custom-components/transparent-layout.svelte": "<stub>transparent</stub>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -2600,7 +2560,7 @@ export const uiSchema = ({
 		"name": { "ui:components": { "textWidget": "textareaWidget" } }
 	}
 } as const) satisfies UiSchemaRoot;;",
-    "src/lib/sjsf/defaults.ts": "import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
+  "src/lib/sjsf/defaults.ts": "import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 
@@ -2661,7 +2621,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 export const uiOptionsRegistry = {
 	stringEnumValueMapper: () => new StringEnumValueMapperBuilder()
 };",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -2669,7 +2629,7 @@ export const uiOptionsRegistry = {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -2678,8 +2638,8 @@ export const uiOptionsRegistry = {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -2701,7 +2661,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -2715,19 +2675,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > ui-schema > refs 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -2752,7 +2709,7 @@ exports[`sandbox-factory > ui-schema > refs 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -2764,10 +2721,10 @@ exports[`sandbox-factory > ui-schema > refs 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/custom-components/index.ts": "export { default as transparentLayout } from "./transparent-layout.svelte";
+  "src/lib/custom-components/index.ts": "export { default as transparentLayout } from "./transparent-layout.svelte";
 ",
-    "src/lib/custom-components/transparent-layout.svelte": "<stub>transparent</stub>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/custom-components/transparent-layout.svelte": "<stub>transparent</stub>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -2790,7 +2747,7 @@ export const uiSchema = ({
 	"email": { "$ref": "customField" },
 	"address": { "$ref": "customLayout" }
 } as const) satisfies UiSchemaRoot;;",
-    "src/lib/sjsf/defaults.ts": "import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
+  "src/lib/sjsf/defaults.ts": "import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 
@@ -2851,7 +2808,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 export const uiOptionsRegistry = {
 	stringEnumValueMapper: () => new StringEnumValueMapperBuilder()
 };",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -2859,7 +2816,7 @@ export const uiOptionsRegistry = {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -2868,8 +2825,8 @@ export const uiOptionsRegistry = {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -2891,7 +2848,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -2905,19 +2862,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > validators > ajv8 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -2942,7 +2896,7 @@ exports[`sandbox-factory > validators > ajv8 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -2954,7 +2908,7 @@ exports[`sandbox-factory > validators > ajv8 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -2964,7 +2918,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import type { ValidatorFactoryOptions } from '@sjsf/form';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -3004,7 +2958,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -3012,7 +2966,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -3021,8 +2975,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -3044,7 +2998,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -3058,19 +3012,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > validators > ajv8_2020 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -3095,7 +3046,7 @@ exports[`sandbox-factory > validators > ajv8_2020 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -3107,7 +3058,7 @@ exports[`sandbox-factory > validators > ajv8_2020 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -3117,7 +3068,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
 import { Ajv2020 } from 'ajv/dist/2020.js';
 import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -3158,7 +3109,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -3166,7 +3117,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -3174,8 +3125,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -3197,7 +3148,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -3211,19 +3162,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > validators > ata 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -3247,7 +3195,7 @@ exports[`sandbox-factory > validators > ata 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -3259,7 +3207,7 @@ exports[`sandbox-factory > validators > ata 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -3269,7 +3217,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -3300,7 +3248,7 @@ export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -3308,7 +3256,7 @@ export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -3317,8 +3265,8 @@ export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -3340,7 +3288,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -3354,19 +3302,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > validators > ata_2020 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -3390,7 +3335,7 @@ exports[`sandbox-factory > validators > ata_2020 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -3402,7 +3347,7 @@ exports[`sandbox-factory > validators > ata_2020 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -3412,7 +3357,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import { Validator } from 'ata-validator';
+  "src/lib/sjsf/defaults.ts": "import { Validator } from 'ata-validator';
 
 import {
 	createFormValidator,
@@ -3456,7 +3401,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		factory: (schema) => new Validator(schema, DEFAULT_ATA_OPTIONS)
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -3464,7 +3409,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -3472,8 +3417,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -3495,7 +3440,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -3509,19 +3454,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > validators > cfworker 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -3545,7 +3487,7 @@ exports[`sandbox-factory > validators > cfworker 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -3557,7 +3499,7 @@ exports[`sandbox-factory > validators > cfworker 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -3567,7 +3509,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -3598,7 +3540,7 @@ export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -3606,7 +3548,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -3615,8 +3557,8 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -3638,7 +3580,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -3652,19 +3594,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > validators > cfworker_2020 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -3688,7 +3627,7 @@ exports[`sandbox-factory > validators > cfworker_2020 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -3700,7 +3639,7 @@ exports[`sandbox-factory > validators > cfworker_2020 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -3710,7 +3649,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import { Validator, type Schema } from "@cfworker/json-schema";
+  "src/lib/sjsf/defaults.ts": "import { Validator, type Schema } from "@cfworker/json-schema";
 import { createFormValidator } from "@sjsf/cfworker-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 
@@ -3749,7 +3688,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		factory: (schema) => new Validator(schema, "2020-12", false)
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -3757,7 +3696,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -3765,8 +3704,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -3788,7 +3727,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -3802,19 +3741,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > validators > schemasafe 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -3838,7 +3774,7 @@ exports[`sandbox-factory > validators > schemasafe 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -3850,7 +3786,7 @@ exports[`sandbox-factory > validators > schemasafe 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -3860,7 +3796,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -3891,7 +3827,7 @@ export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -3899,7 +3835,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -3908,8 +3844,8 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -3931,7 +3867,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -3945,19 +3881,16 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;
 
 exports[`sandbox-factory > validators > schemasafe_2020 1`] = `
 {
-  "files": {
-    "package.json": "{
+  "package.json": "{
   "name": "Sandbox",
   "version": "0.0.1",
   "type": "module",
@@ -3981,7 +3914,7 @@ exports[`sandbox-factory > validators > schemasafe_2020 1`] = `
     "dev": "vite dev"
   }
 }",
-    "src/app.html": "<!DOCTYPE html>
+  "src/app.html": "<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -3993,7 +3926,7 @@ exports[`sandbox-factory > validators > schemasafe_2020 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-    "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = ({
@@ -4003,7 +3936,7 @@ export const schema = ({
 } as const) satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-    "src/lib/sjsf/defaults.ts": "import { ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
+  "src/lib/sjsf/defaults.ts": "import { ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
 import { validator as safeValidator, type Schema } from "@exodus/schemasafe";
 
 import {
@@ -4052,7 +3985,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 		})
 	});
 }",
-    "src/routes/+layout.svelte": "<script lang="ts">
+  "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
 
@@ -4060,7 +3993,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 {@render children()}",
-    "src/routes/+page.svelte": "<script lang="ts">
+  "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -4068,8 +4001,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-    "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-    "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -4091,7 +4024,7 @@ const config = {
 
 export default config;
 ",
-    "tsconfig.json": "{
+  "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
@@ -4105,11 +4038,9 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-    "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({ plugins: [sveltekit()] });",
-  },
-  "name": "Sandbox",
 }
 `;

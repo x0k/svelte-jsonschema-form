@@ -6,8 +6,8 @@
     playgroundResolvers,
     playgroundThemes
   } from "meta/playground";
+  import { SandboxPlatform } from 'meta/sandbox'
   import { builderValidators, builderValidatorTitle } from "meta/builder";
-  import { ProjectPlatform } from "meta/composer";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import ExternalLink from "@lucide/svelte/icons/external-link";
 
@@ -29,16 +29,15 @@
 
   const uniqueId = $props.id();
 
-  type SandboxPlatform = ProjectPlatform | "playground";
-  let selectedTarget = $state<SandboxPlatform>("playground");
+  let action = $state<SandboxPlatform | 'playground'>("playground");
 
   async function handleMainClick() {
-    if (selectedTarget === "playground") {
+    if (action === "playground") {
       const url = `https://x0k.github.io/svelte-jsonschema-form/playground3#${encodeJson(ctx.createPlaygroundSample())}`;
       window.open(url);
     } else {
       await openSandbox({
-        platform: selectedTarget,
+        platform: action,
         theme: ctx.theme,
         validator: ctx.validator,
         schema: ctx.schema,
@@ -108,7 +107,7 @@
   <div class="flex flex-col gap-2">
     <ButtonGroup.Root class="w-full">
       <Button variant="ghost" class="flex-1 gap-2" onclick={handleMainClick}>
-        Open in {selectedTarget === "playground" ? "Playground" : selectedTarget}
+        Open in {action === "playground" ? "Playground" : action}
         <ExternalLink tabindex={-1} />
       </Button>
       <DropdownMenu.Root>
@@ -116,13 +115,13 @@
           <ChevronDown class="size-4" />
         </DropdownMenu.Trigger>
         <DropdownMenu.Content>
-          <DropdownMenu.Item onclick={() => (selectedTarget = "playground")}>
+          <DropdownMenu.Item onclick={() => (action = "playground")}>
             Playground
           </DropdownMenu.Item>
-          <DropdownMenu.Item onclick={() => (selectedTarget = ProjectPlatform.StackBlitz)}>
+          <DropdownMenu.Item onclick={() => (action = SandboxPlatform.StackBlitz)}>
             StackBlitz
           </DropdownMenu.Item>
-          <DropdownMenu.Item onclick={() => (selectedTarget = ProjectPlatform.SvelteLab)}>
+          <DropdownMenu.Item onclick={() => (action = SandboxPlatform.SvelteLab)}>
             SvelteLab
           </DropdownMenu.Item>
         </DropdownMenu.Content>

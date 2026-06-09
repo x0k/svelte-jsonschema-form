@@ -1,10 +1,7 @@
 import { describe, it, expect } from "vitest";
 
 import { codegenThemeOrSubTheme } from "../codegen/model.ts";
-import {
-  createSandboxFiles,
-  type CustomComponentSources,
-} from "./sandbox-factory.ts";
+import { createSandboxFiles, type CustomComponentSources } from "./sandbox.ts";
 import type { FormState } from "./form-state.ts";
 import { playgroundValidators } from "./model.ts";
 

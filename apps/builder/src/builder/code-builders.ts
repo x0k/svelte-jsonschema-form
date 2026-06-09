@@ -28,8 +28,13 @@ import {
   type WidgetTypes,
   type ToTheme
 } from "meta";
-import type { PlaygroundIconSet, PlaygroundResolver, PlaygroundTheme } from "meta/playground";
-import { type BuilderValidator, type WidgetType, WIDGET_EXTRA_FIELD } from "meta/builder";
+import {
+  WIDGET_EXTRA_FIELD,
+  type PlaygroundIconSet,
+  type PlaygroundResolver,
+  type PlaygroundTheme
+} from "meta/playground";
+import { type BuilderValidator, type WidgetType } from "meta/builder";
 
 import { isBaseWidget, type FileFieldMode, fileFieldModeToFields } from "./model.js";
 

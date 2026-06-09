@@ -168,7 +168,7 @@ function detectCustomComponentsAndFields(
 export function createSandboxFiles(
   formState: FormState,
   sources: CustomComponentSources,
-): SandboxFiles {
+) {
   const { theme, validator } = formState;
   const {
     usesTransparentLayout,
@@ -242,7 +242,7 @@ export function createSandboxFiles(
   }
 
   const codeTransformers: CodeTransformer[] = [];
-  const files = createComposer({
+  return createComposer({
     name: "Sandbox",
     language: "ts",
     themeOrSubTheme: theme,
@@ -288,9 +288,4 @@ export function createSandboxFiles(
     focusOnFirstError: formState.focusOnFirstError,
     disabled: formState.disabled,
   });
-
-  return {
-    name: "Sandbox",
-    files,
-  };
 }

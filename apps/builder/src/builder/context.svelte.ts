@@ -329,12 +329,15 @@ export class BuilderContext {
     )
   );
   readonly appCss = $derived.by(() => {
-    const rules = themeOrSubThemeAtRules(this.theme, { nodeModulesPath: "../node_modules" }).map(
-      renderAtRule
-    );
+    const rules = themeOrSubThemeAtRules(this.theme, {
+      nodeModulesPath: "../node_modules",
+      sandbox: false
+    }).map(renderAtRule);
     if (this.icons !== "none") {
       rules.push(
-        ...iconSetAtRules(this.icons, { nodeModulesPath: "../node_modules" }).map(renderAtRule)
+        ...iconSetAtRules(this.icons, { nodeModulesPath: "../node_modules", sandbox: false }).map(
+          renderAtRule
+        )
       );
     }
     const content = join(...rules);

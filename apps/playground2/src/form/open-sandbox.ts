@@ -20,6 +20,10 @@ const componentSources: CustomComponentSources = {
 };
 
 export async function openSandbox({ formState, platform }: SandboxOptions) {
-  const { name, files } = createSandboxFiles(formState, componentSources);
-  await sandboxOpen({ name, platform, files });
+  const files = createSandboxFiles(formState, componentSources);
+  await sandboxOpen({
+    name: `Playground (${formState.theme}, ${formState.validator})`,
+    platform,
+    files,
+  });
 }
