@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 
 import { codegenThemeOrSubTheme } from "../codegen/model.ts";
-import { createSandboxFiles, type CustomComponentSources } from "./sandbox.ts";
+import { createSandboxFiles, type CustomComponents } from "./sandbox.ts";
 import type { FormState } from "./form-state.ts";
 import { playgroundValidators } from "./model.ts";
 
@@ -30,7 +30,7 @@ const BASE_FORM_STATE: FormState = {
   mergeDefaultsIntoFormData: "useFormDataIfPresent",
 };
 
-const defaultSources: CustomComponentSources = {
+const CUSTOM_COMPONENTS: CustomComponents = {
   markdownDescription: "<stub>markdown</stub>",
   transparentLayout: "<stub>transparent</stub>",
 };
@@ -38,7 +38,11 @@ const defaultSources: CustomComponentSources = {
 function testCase(name: string, overrides: Partial<FormState> = {}) {
   it(name, () => {
     expect(
-      createSandboxFiles({ ...BASE_FORM_STATE, ...overrides }, defaultSources),
+      createSandboxFiles({
+        name: "Sandbox",
+        formState: { ...BASE_FORM_STATE, ...overrides },
+        customComponents: CUSTOM_COMPONENTS,
+      }),
     ).toMatchSnapshot();
   });
 }

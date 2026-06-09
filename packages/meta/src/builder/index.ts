@@ -12,3 +12,4 @@ export * from "./range-node.ts";
 export * from "./node-types-full.ts";
 export * from "./customizable-node-types.ts";
 export * from "./widget-use-label.ts";
+export * from "./sandbox.ts";

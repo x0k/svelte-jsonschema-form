@@ -1,6 +1,7 @@
 import type { FromSchema } from "json-schema-to-ts";
 import type { Brand } from "@sjsf/form/lib/types";
 import type { Schema } from "@sjsf/form";
+
 import { NodeType } from "./node-types.ts";
 
 export type NodeId = Brand<"node-id">;

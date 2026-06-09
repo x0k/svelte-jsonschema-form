@@ -1,7 +1,7 @@
 import type { FromSchema } from "json-schema-to-ts";
 import type { Schema } from "@sjsf/form";
-import { NodeType } from "./node-types.ts";
 
+import { NodeType } from "./node-types.ts";
 import {
   OperatorType,
   type AbstractOperator,

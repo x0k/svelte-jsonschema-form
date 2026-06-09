@@ -1,6 +1,6 @@
 import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeExtension, themeExtensionOrigin, toTheme } from "../themes.ts";
-import type { PlaygroundTheme } from "../playground/themes.ts";
+import type { PlaygroundTheme } from "../playground/index.ts";
 import {
   WIDGET_NODE_TYPE,
   WIDGET_RANGE_VALUE_TYPE,

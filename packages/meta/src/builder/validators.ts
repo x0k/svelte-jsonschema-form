@@ -8,32 +8,9 @@ import { createFormValidator as schemasafe } from "@sjsf/schemasafe-validator";
 import { createFormValidator as ata } from "@sjsf-lab/ata-validator";
 import _addFormats, { type FormatsPlugin } from "ajv-formats";
 
-import type { Generated } from "../types.ts";
-import {
-  isInternalValidator,
-  isPrecompiledOnlyValidator,
-  isSchemaValidator,
-  validators,
-  validatorTitle,
-} from "../validators.ts";
+import type { BuilderValidator } from "./model.ts";
 
 const addFormats = _addFormats as unknown as FormatsPlugin;
-
-export function* builderValidators() {
-  for (const v of validators()) {
-    if (isPrecompiledOnlyValidator(v) || isInternalValidator(v)) {
-      continue;
-    }
-    yield v;
-  }
-}
-
-export type BuilderValidator = Generated<typeof builderValidators>;
-
-export function builderValidatorTitle(v: BuilderValidator) {
-  const title = validatorTitle(v);
-  return isSchemaValidator(v) ? `${title} (output only)` : title;
-}
 
 const ajv8Factory = <T>(options: Parameters<typeof ajv8>[0]) =>
   ajv8<T>({

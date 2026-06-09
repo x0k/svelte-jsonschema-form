@@ -1,7 +1,7 @@
 import type { FromSchema } from "json-schema-to-ts";
 import type { Schema } from "@sjsf/form";
-import type { NodeType } from "./node-types.ts";
 
+import type { NodeType } from "./node-types.ts";
 import type { AbstractCustomizableNode } from "./node-base.ts";
 
 export const STRING_NODE_OPTIONS_SCHEMA = {

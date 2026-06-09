@@ -20,7 +20,7 @@
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import { encodeJson } from "$lib/url.js";
 
-  import { openSandbox } from "../open-sandbox.js";
+  import { openSandbox } from "../sandbox.js";
   import { RouteName } from "../model.js";
   import { getBuilderContext } from "../context.svelte.js";
   import Container from "../container.svelte";
@@ -41,7 +41,7 @@
         theme: ctx.theme,
         validator: ctx.validator,
         schema: ctx.schema,
-        uiSchema: ctx.uiSchema,
+        uiSchema: ctx.uiSchema ?? {},
         html5Validation: ctx.html5Validation,
         resolver: ctx.resolver,
         icons: ctx.icons,

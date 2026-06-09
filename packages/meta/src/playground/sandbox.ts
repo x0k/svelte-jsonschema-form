@@ -7,6 +7,7 @@ import {
 
 import { extraPackage, type AbstractPackage } from "../package.ts";
 import {
+  type CodegenValidator,
   type ThemeExtension,
   codegemIsJsonSchemaValidator,
 } from "../codegen/index.ts";
@@ -27,7 +28,7 @@ import type { FormState } from "./form-state.ts";
 import type { PlaygroundTheme } from "./themes.ts";
 import { isEndsWith2020, without2020Suffix } from "./model.ts";
 
-export interface CustomComponentSources {
+export interface CustomComponents {
   markdownDescription: string;
   transparentLayout: string;
 }
@@ -165,27 +166,38 @@ function detectCustomComponentsAndFields(
   };
 }
 
-export function createSandboxFiles(
-  formState: FormState,
-  sources: CustomComponentSources,
-) {
-  const { theme, validator } = formState;
+export interface SandboxFilesOptions {
+  name: string;
+  formState: FormState;
+  customComponents: CustomComponents;
+}
+
+export function createSandboxFiles({
+  name,
+  formState,
+  customComponents: { markdownDescription, transparentLayout },
+}: SandboxFilesOptions) {
   const {
     usesTransparentLayout,
     usesMarkdownDescription,
     usesStringEnumMapper,
     extraWidgets,
     extraFields,
-  } = detectCustomComponentsAndFields(formState.uiSchema, theme);
+  } = detectCustomComponentsAndFields(formState.uiSchema, formState.theme);
 
   const usesCustomComponents = usesTransparentLayout || usesMarkdownDescription;
   const hasCustomMergerOptions = getChangedMergerOptionsCount(formState) !== 0;
+
+  const validator = {
+    name: without2020Suffix(formState.validator),
+    draft2020: isEndsWith2020(formState.validator),
+    precompiled: false,
+  } as const satisfies CodegenValidator;
   const omitExtraData =
-    formState.omitExtraData &&
-    codegemIsJsonSchemaValidator({ name: without2020Suffix(validator) } as any);
+    formState.omitExtraData && codegemIsJsonSchemaValidator(validator);
 
   const moduleAugmentation: NonNullable<
-    ComposerOptions<typeof theme>["moduleAugmentation"]
+    ComposerOptions<typeof formState.theme>["moduleAugmentation"]
   > = {};
   if (usesCustomComponents) {
     moduleAugmentation.componentBindings = {};
@@ -214,7 +226,7 @@ export function createSandboxFiles(
         `export { default as markdownDescription } from "./markdown-description.svelte";`,
       );
       extraFiles["src/lib/custom-components/markdown-description.svelte"] =
-        sources.markdownDescription;
+        markdownDescription;
       extraDependencies.push(extraPackage("svelteExmarkdown"));
     }
     if (usesTransparentLayout) {
@@ -222,7 +234,7 @@ export function createSandboxFiles(
         `export { default as transparentLayout } from "./transparent-layout.svelte";`,
       );
       extraFiles["src/lib/custom-components/transparent-layout.svelte"] =
-        sources.transparentLayout;
+        transparentLayout;
     }
     extraFiles["src/lib/custom-components/index.ts"] = barrel.join("\n") + "\n";
   }
@@ -243,15 +255,11 @@ export function createSandboxFiles(
 
   const codeTransformers: CodeTransformer[] = [];
   return createComposer({
-    name: "Sandbox",
+    name,
     language: "ts",
-    themeOrSubTheme: theme,
+    validator,
+    themeOrSubTheme: formState.theme,
     icons: formState.icons,
-    validator: {
-      precompiled: false,
-      name: without2020Suffix(validator),
-      draft2020: isEndsWith2020(validator),
-    },
     sveltekit: "no",
     widgets: extraWidgets,
     fields: extraFields,

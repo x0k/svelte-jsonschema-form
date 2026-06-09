@@ -1,4 +1,4 @@
-import type { PlaygroundTheme } from "../playground/themes.ts";
+import type { PlaygroundTheme } from "../playground/index.ts";
 import type { WidgetType } from "./widget-names.ts";
 
 const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<PlaygroundTheme>> = {

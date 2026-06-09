@@ -1,10 +1,7 @@
-import {
-  createSandboxFiles,
-  type CustomComponentSources,
-} from "meta/playground";
+import { createSandboxFiles } from "meta/playground";
 import { sandboxOpen, type SandboxPlatform } from "meta/sandbox";
 
-import type { FormState } from "meta/playground";
+import type { CustomComponents, FormState } from "meta/playground";
 
 import markdownDescriptionSource from "./custom-form-components/markdown-description.svelte?raw";
 import transparentLayoutSource from "./custom-form-components/transparent-layout.svelte?raw";
@@ -14,15 +11,16 @@ export interface SandboxOptions {
   platform: SandboxPlatform;
 }
 
-const componentSources: CustomComponentSources = {
+const customComponents: CustomComponents = {
   markdownDescription: markdownDescriptionSource,
   transparentLayout: transparentLayoutSource,
 };
 
 export async function openSandbox({ formState, platform }: SandboxOptions) {
-  const files = createSandboxFiles(formState, componentSources);
+  const name = `Playground (${formState.theme}, ${formState.validator})`;
+  const files = createSandboxFiles({ name, customComponents, formState });
   await sandboxOpen({
-    name: `Playground (${formState.theme}, ${formState.validator})`,
+    name,
     platform,
     files,
   });
