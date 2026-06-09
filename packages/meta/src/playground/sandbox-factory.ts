@@ -1,3 +1,10 @@
+import {
+  isUiSchemaRef,
+  type UiSchema,
+  type UiSchemaDefinition,
+  type UiSchemaRoot,
+} from "@sjsf/form";
+
 import { extraPackage, type AbstractPackage } from "../package.ts";
 import {
   type ThemeExtension,
@@ -8,7 +15,16 @@ import {
   type CodeTransformer,
   type ComposerOptions,
 } from "../composer/index.ts";
+import { WIDGETS } from "../widgets.generated.ts";
+import { toTheme, type Theme } from "../themes.ts";
+import { WIDGET_EXTRA_FIELD } from "./widget-extra-fields.ts";
+import {
+  extraFieldNameToFileName,
+  type ExtraFieldFileName,
+} from "../fields.ts";
+import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
 import type { FormState } from "./form-state.ts";
+import type { PlaygroundTheme } from "./themes.ts";
 import { isEndsWith2020, without2020Suffix } from "./model.ts";
 
 export interface CustomComponentSources {
@@ -42,17 +58,110 @@ function getChangedMergerOptionsCount(
   return count;
 }
 
-function detectCustomComponents(uiSchemaStr: string) {
-  const usesTransparentLayout = uiSchemaStr.includes('"transparentLayout"');
-  const usesMarkdownDescription = uiSchemaStr.includes('"markdownDescription"');
-  const usesStringEnumMapper = uiSchemaStr.includes(
-    '"registry:stringEnumValueMapper"',
-  );
+const UI_SCHEMA_META_KEYS = new Set([
+  "ui:options",
+  "ui:components",
+  "ui:globalOptions",
+  "$ref",
+]);
+
+function traverseUiSchema(
+  def: UiSchemaRoot | undefined,
+  visitor: (node: UiSchema) => void,
+): void {
+  if (def === undefined || isUiSchemaRef(def)) {
+    return;
+  }
+  visitor(def);
+  for (const key of Object.keys(def)) {
+    if (UI_SCHEMA_META_KEYS.has(key)) {
+      continue;
+    }
+    const value = def[key];
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        traverseUiSchema(item, visitor);
+      }
+    } else {
+      traverseUiSchema(value as UiSchemaDefinition, visitor);
+    }
+  }
+}
+
+const WIDGET_EXTRA_FIELD_KEYS = new Set<string>(
+  Object.keys(WIDGET_EXTRA_FIELD),
+);
+
+function detectCustomComponentsAndFields(
+  uiSchema: UiSchemaRoot,
+  theme: PlaygroundTheme,
+): {
+  usesTransparentLayout: boolean;
+  usesMarkdownDescription: boolean;
+  usesStringEnumMapper: boolean;
+  extraWidgets: ExtraWidgetFileNames[Theme][];
+  extraFields: ExtraFieldFileName[];
+} {
+  const actualTheme = toTheme(theme as Theme);
+  const themeMeta = WIDGETS[actualTheme];
+
+  let usesTransparentLayout = false;
+  let usesMarkdownDescription = false;
+  let usesStringEnumMapper = false;
+
+  // Build reverse map: widget type name → file name for this theme
+  const widgetTypeToFile = new Map<string, string>();
+  for (const [file, type] of Object.entries(themeMeta.widgets)) {
+    widgetTypeToFile.set(type, file);
+  }
+  for (const [file, type] of Object.entries(themeMeta.extraWidgets)) {
+    widgetTypeToFile.set(type, file);
+  }
+  const allWidgetTypeNames = new Set(widgetTypeToFile.keys());
+
+  const extraWidgetFileNames = new Set<string>();
+  const extraFieldFileNames = new Set<ExtraFieldFileName>();
+
+  traverseUiSchema(uiSchema, (node) => {
+    const components = node["ui:components"];
+    if (components) {
+      for (const value of Object.values(components)) {
+        if (typeof value !== "string") continue;
+        if (value === "transparentLayout") usesTransparentLayout = true;
+        if (value === "markdownDescription") usesMarkdownDescription = true;
+
+        if (
+          allWidgetTypeNames.has(value) &&
+          !isThemeBaseWidget(actualTheme, value)
+        ) {
+          const fileName = widgetTypeToFile.get(value);
+          if (fileName !== undefined) extraWidgetFileNames.add(fileName);
+          if (WIDGET_EXTRA_FIELD_KEYS.has(value)) {
+            const extraField =
+              WIDGET_EXTRA_FIELD[value as keyof typeof WIDGET_EXTRA_FIELD];
+            if (extraField !== undefined) extraFieldFileNames.add(extraField);
+          }
+        } else {
+          const fileName = extraFieldNameToFileName(value);
+          if (fileName !== undefined) extraFieldFileNames.add(fileName);
+        }
+      }
+    }
+
+    const options = node["ui:options"];
+    if (options?.enumValueMapperBuilder === "registry:stringEnumValueMapper") {
+      usesStringEnumMapper = true;
+    }
+  });
+
   return {
     usesTransparentLayout,
     usesMarkdownDescription,
     usesStringEnumMapper,
-    usesCustomComponents: usesTransparentLayout || usesMarkdownDescription,
+    extraWidgets: [
+      ...extraWidgetFileNames,
+    ] as ExtraWidgetFileNames[typeof actualTheme][],
+    extraFields: [...extraFieldFileNames],
   };
 }
 
@@ -61,14 +170,15 @@ export function createSandboxFiles(
   sources: CustomComponentSources,
 ): SandboxFiles {
   const { theme, validator } = formState;
-  const uiSchemaStr = JSON.stringify(formState.uiSchema, null, 2);
   const {
     usesTransparentLayout,
     usesMarkdownDescription,
     usesStringEnumMapper,
-    usesCustomComponents,
-  } = detectCustomComponents(uiSchemaStr);
+    extraWidgets,
+    extraFields,
+  } = detectCustomComponentsAndFields(formState.uiSchema, theme);
 
+  const usesCustomComponents = usesTransparentLayout || usesMarkdownDescription;
   const hasCustomMergerOptions = getChangedMergerOptionsCount(formState) !== 0;
   const omitExtraData =
     formState.omitExtraData &&
@@ -143,7 +253,8 @@ export function createSandboxFiles(
       draft2020: isEndsWith2020(validator),
     },
     sveltekit: "no",
-    widgets: [],
+    widgets: extraWidgets,
+    fields: extraFields,
     extraFiles,
     extraDependencies,
     codeTransformers,
@@ -152,17 +263,7 @@ export function createSandboxFiles(
     uiSchema: formState.uiSchema,
     initialValue: formState.initialValue,
     fieldsValidationMode: formState.fieldsValidationMode,
-    merger: {},
-    uiOptionsRegistry: usesStringEnumMapper
-      ? {
-          stringEnumValueMapper: {
-            kind: "StringEnumValueMapperBuilder",
-          },
-        }
-      : {},
-    moduleAugmentation,
-    themeExtension,
-    mergerConfig: hasCustomMergerOptions
+    merger: hasCustomMergerOptions
       ? {
           allOf: formState.allOf,
           arrayMinItems: {
@@ -174,6 +275,15 @@ export function createSandboxFiles(
           mergeDefaultsIntoFormData: formState.mergeDefaultsIntoFormData,
         }
       : {},
+    uiOptionsRegistry: usesStringEnumMapper
+      ? {
+          stringEnumValueMapper: {
+            kind: "StringEnumValueMapperBuilder",
+          },
+        }
+      : {},
+    moduleAugmentation,
+    themeExtension,
     omitExtraData,
     focusOnFirstError: formState.focusOnFirstError,
     disabled: formState.disabled,

@@ -95,6 +95,7 @@ export async function createExampleFiles(
     // These options are not relevant for demos,
     // because if they are used at all,
     // they are applied via `extraFiles`
+    fields: [],
     fieldsValidationMode: 0,
     omitExtraData: false,
     disabled: false,
@@ -103,7 +104,6 @@ export async function createExampleFiles(
     uiSchema: {},
     themeExtension: [],
     moduleAugmentation: {},
-    mergerConfig: {},
     // inlined on demo page
     schema: undefined,
     initialValue: undefined,

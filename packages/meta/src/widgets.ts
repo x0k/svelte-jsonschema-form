@@ -12,11 +12,14 @@ export type ExtraWidgetFileNames = {
   [T in Theme]: keyof Widgets[T]["extraWidgets"] & string;
 };
 
+type BaseWidgetType<T extends Theme> =
+  Widgets[T]["widgets"][WidgetFileNames[T]];
+
+type ExtraWidgetType<T extends Theme> =
+  Widgets[T]["extraWidgets"][ExtraWidgetFileNames[T]];
+
 export type WidgetTypes = {
-  [T in Theme]:
-    | Widgets[T]["widgets"][WidgetFileNames[T]]
-    | Widgets[T]["extraWidgets"][ExtraWidgetFileNames[T]]
-    | "aggregatedWidget";
+  [T in Theme]: BaseWidgetType<T> | ExtraWidgetType<T> | "aggregatedWidget";
 };
 
 export type WidgetType = WidgetTypes[Theme];
@@ -40,6 +43,19 @@ export function widgetFileName<T extends Theme>(
     | WidgetFileNames[T]
     | ExtraWidgetFileNames[T]
     | "virtual-widget-import";
+}
+
+export function isThemeBaseWidget<T extends Theme>(
+  theme: T,
+  widgetType: string,
+): boolean {
+  const widgets = WIDGETS[theme];
+  for (const w of Object.values(widgets.widgets)) {
+    if (widgetType === w) {
+      return true;
+    }
+  }
+  return false;
 }
 
 export function themeExtraWidgets<T extends Theme>(

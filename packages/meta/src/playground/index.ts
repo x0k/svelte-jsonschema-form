@@ -1,3 +1,4 @@
+export * from "./model.ts";
 export * from "./form-preset.ts";
 export * from "./form-state.ts";
 export * from "./form-preset-loaders.ts";

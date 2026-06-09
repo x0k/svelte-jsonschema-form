@@ -1,3 +1,4 @@
+import type { DeepPartial } from "@sjsf/form/lib/types";
 import type { Schema, UiSchemaRoot, FormValue } from "@sjsf/form";
 
 import {
@@ -19,7 +20,6 @@ import {
   createModel,
   type MergerOptions,
   type ModuleAugmentation,
-  type MergerConfigLike,
   type ThemeExtension,
   type UiOptionsRegistryEntry,
   createPrinter,
@@ -35,6 +35,7 @@ import {
 import { sveltekitPackage } from "../sveltekit.ts";
 import type { ToTheme } from "../themes.ts";
 import type { ExtraWidgetFileNames } from "../widgets.ts";
+import type { ExtraFieldFileName } from "../fields.ts";
 
 import { buildPackageJson } from "./package-json.ts";
 
@@ -48,6 +49,7 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   validator: CodegenNonPrecompiledValidator;
   sveltekit: CodegenSvelteKitIntegration;
   widgets: ExtraWidgetFileNames[ToTheme<T>][];
+  fields: ExtraFieldFileName[];
   extraFiles: Record<string, string>;
   extraDependencies: AbstractPackage[];
   codeTransformers: CodeTransformer[];
@@ -58,11 +60,10 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   initialValue: FormValue;
   fieldsValidationMode: FieldsValidationMode;
   disabled: boolean;
-  merger: Partial<MergerOptions>;
+  merger: DeepPartial<MergerOptions>;
   uiOptionsRegistry: Record<string, UiOptionsRegistryEntry>;
   themeExtension: ThemeExtension;
   moduleAugmentation: Partial<ModuleAugmentation>;
-  mergerConfig: MergerConfigLike;
   omitExtraData: boolean;
   focusOnFirstError: boolean;
 }
@@ -151,6 +152,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     validator,
     sveltekit,
     widgets,
+    fields,
     extraFiles,
     extraDependencies,
     codeTransformers,
@@ -164,7 +166,6 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     uiOptionsRegistry,
     themeExtension,
     moduleAugmentation,
-    mergerConfig,
     omitExtraData,
     focusOnFirstError,
   } = options;
@@ -209,7 +210,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     isTs,
     modelName,
     sveltekit,
-    mergerConfig,
+    merger,
     omitExtraData,
   });
 
@@ -233,6 +234,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       resolver: "basic",
       sveltekit,
       widgets,
+      fields,
       isTs,
       ts,
       merger,

@@ -1,3 +1,4 @@
+import type { DeepPartial } from "@sjsf/form/lib/types";
 import { isRecordEmpty } from "@sjsf/form/lib/object";
 
 import { neverError } from "../errors.ts";
@@ -6,23 +7,7 @@ import { svelteKitRfSubPath, svelteKitSubPath } from "../sveltekit.ts";
 import type { NamedImportOptions, NamespaceImportOptions } from "./lib.ts";
 import type { CodegenSvelteKitIntegration } from "./model.ts";
 import { validatorProp, type ValidatorDefinition } from "./validator.ts";
-
-export interface MergerConfigLike {
-  allOf?: "populateDefaults" | "skipDefaults";
-  arrayMinItems?: {
-    populate?: "all" | "never" | "requiredOnly";
-    mergeExtraDefaults?: boolean;
-  };
-  constAsDefaults?: "always" | "skipOneOf" | "never";
-  emptyObjectFields?:
-    | "populateAllDefaults"
-    | "populateRequiredDefaults"
-    | "skipEmptyDefaults"
-    | "skipDefaults";
-  mergeDefaultsIntoFormData?:
-    | "useFormDataIfPresent"
-    | "useDefaultIfFormDataUndefined";
-}
+import type { MergerOptions } from "./defaults.ts";
 
 export interface FormOptions {
   isTs: boolean;
@@ -30,7 +15,7 @@ export interface FormOptions {
   sveltekit: CodegenSvelteKitIntegration;
   disabled: boolean;
   validator: ValidatorDefinition;
-  mergerConfig: MergerConfigLike;
+  merger: DeepPartial<MergerOptions>;
   omitExtraData: boolean;
 }
 
@@ -41,7 +26,7 @@ export interface FormDefinition {
   attributes: string;
 }
 
-function buildMergerConfigFields(config: MergerConfigLike): string {
+function buildMergerConfigFields(config: DeepPartial<MergerOptions>): string {
   const fields: string[] = [];
   if (config.allOf !== undefined) {
     fields.push(`allOf: "${config.allOf}"`);
@@ -78,7 +63,7 @@ export function createForm({
   disabled,
   modelName,
   validator,
-  mergerConfig,
+  merger,
   omitExtraData,
 }: FormOptions): FormDefinition {
   const validatorProps = validatorProp(validator);
@@ -88,12 +73,12 @@ export function createForm({
   const additionalImports: (NamedImportOptions | NamespaceImportOptions)[] = [];
   const pageOverrideLines: string[] = [];
 
-  if (!isRecordEmpty(mergerConfig)) {
+  if (!isRecordEmpty(merger)) {
     additionalImports.push({
       imports: ["createFormMerger"],
       from: "@sjsf/form/mergers/modern",
     });
-    const fields = buildMergerConfigFields(mergerConfig);
+    const fields = buildMergerConfigFields(merger);
     pageOverrideLines.push(
       `merger: (options) => createFormMerger({\n    ...options,\n    ${fields}\n  }),`,
     );

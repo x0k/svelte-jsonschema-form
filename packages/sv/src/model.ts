@@ -189,8 +189,8 @@ export function createContext(ws: Workspace): Context {
   const form = createForm({
     ...options,
     disabled: false,
-    mergerConfig: {},
     omitExtraData: false,
+    merger: {},
     isTs,
     modelName: POST_MODEL_NAME,
     validator,

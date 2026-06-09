@@ -54,3 +54,15 @@ export function extraFieldSubPath(
 ) {
   return `${formPackage.name}/fields/extra/${extraFieldName}${include ? "-include" : ""}`;
 }
+
+// @slop
+const EXTRA_FIELD_NAME_TO_FILE = new Map<string, ExtraFieldFileName>();
+for (const [filename, entry] of Object.entries(EXTRA_FIELDS)) {
+  EXTRA_FIELD_NAME_TO_FILE.set(entry.name, filename as ExtraFieldFileName);
+}
+
+export function extraFieldNameToFileName(
+  name: string,
+): ExtraFieldFileName | undefined {
+  return EXTRA_FIELD_NAME_TO_FILE.get(name);
+}

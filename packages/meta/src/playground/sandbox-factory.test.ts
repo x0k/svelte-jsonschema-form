@@ -1,69 +1,12 @@
 import { describe, it, expect } from "vitest";
-import type { UiSchemaRoot } from "@sjsf/form";
 
-import { codegenThemeOrSubTheme } from "../codegen/index.ts";
+import { codegenThemeOrSubTheme } from "../codegen/model.ts";
 import {
   createSandboxFiles,
   type CustomComponentSources,
 } from "./sandbox-factory.ts";
 import type { FormState } from "./form-state.ts";
 import { playgroundValidators } from "./model.ts";
-
-type SandboxVariant = {
-  name: string;
-} & Partial<FormState>;
-
-const BASE: SandboxVariant = {
-  name: "basic",
-};
-
-function* getVariants(): Generator<SandboxVariant> {
-  yield BASE;
-  for (const theme of codegenThemeOrSubTheme()) {
-    if (theme === BASE.theme) continue;
-    yield { name: `theme:${theme}`, theme };
-  }
-  for (const validator of playgroundValidators()) {
-    if (validator === BASE.validator) continue;
-    yield {
-      name: `validator:${validator}`,
-      validator,
-    };
-  }
-  yield {
-    name: "component:markdownDescription",
-    uiSchema: {
-      "ui:components": { description: "markdownDescription" },
-    },
-  };
-  yield {
-    name: "component:transparentLayout",
-    uiSchema: {
-      "ui:components": { layout: "transparentLayout" },
-    },
-  };
-  yield {
-    name: "component:stringEnumValueMapper",
-    uiSchema: {
-      "ui:options": {
-        enumValueMapperBuilder: "registry:stringEnumValueMapper",
-      },
-    },
-  };
-  yield {
-    name: "merger:non-default",
-    allOf: "populateDefaults",
-    emptyObjectFields: "skipDefaults",
-  };
-  yield {
-    name: "form:disabled",
-    disabled: true,
-  };
-  yield {
-    name: "form:omitExtraData",
-    omitExtraData: true,
-  };
-}
 
 const BASE_FORM_STATE: FormState = {
   schema: {
@@ -95,16 +38,86 @@ const defaultSources: CustomComponentSources = {
   transparentLayout: "<stub>transparent</stub>",
 };
 
+function testCase(name: string, overrides: Partial<FormState> = {}) {
+  it(name, () => {
+    expect(
+      createSandboxFiles({ ...BASE_FORM_STATE, ...overrides }, defaultSources),
+    ).toMatchSnapshot();
+  });
+}
+
 describe("sandbox-factory", () => {
-  const variants = Array.from(getVariants());
-  for (const { name, ...overrides } of variants) {
-    it(name, () => {
-      expect(
-        createSandboxFiles(
-          { ...BASE_FORM_STATE, ...overrides },
-          defaultSources,
-        ),
-      ).toMatchSnapshot();
+  describe("basic", () => {
+    testCase("basic");
+  });
+
+  describe("themes", () => {
+    for (const theme of codegenThemeOrSubTheme()) {
+      testCase(theme, { theme });
+    }
+  });
+
+  describe("validators", () => {
+    for (const validator of playgroundValidators()) {
+      testCase(validator, { validator });
+    }
+  });
+
+  describe("ui-schema", () => {
+    testCase("customizations", {
+      uiSchema: {
+        "ui:components": {
+          stringField: "enumField",
+          arrayField: "multiEnumField",
+          description: "markdownDescription",
+          layout: "transparentLayout",
+          numberWidget: "rangeWidget",
+        },
+        "ui:options": {
+          enumValueMapperBuilder: "registry:stringEnumValueMapper",
+        },
+        properties: {
+          name: {
+            "ui:components": { textWidget: "textareaWidget" },
+          },
+        },
+      },
     });
-  }
+
+    testCase("refs", {
+      uiSchema: {
+        "ui:definitions": {
+          customField: {
+            "ui:components": { stringField: "enumField" },
+            "ui:options": {
+              enumValueMapperBuilder: "registry:stringEnumValueMapper",
+            },
+          },
+          customLayout: {
+            "ui:components": { layout: "transparentLayout" },
+          },
+        },
+        name: { $ref: "customField" },
+        email: { $ref: "customField" },
+        address: { $ref: "customLayout" },
+      },
+    });
+  });
+
+  describe("merger", () => {
+    testCase("non-default", {
+      allOf: "populateDefaults",
+      emptyObjectFields: "skipDefaults",
+    });
+  });
+
+  describe("form", () => {
+    testCase("disabled", {
+      disabled: true,
+    });
+
+    testCase("omitExtraData", {
+      omitExtraData: true,
+    });
+  });
 });

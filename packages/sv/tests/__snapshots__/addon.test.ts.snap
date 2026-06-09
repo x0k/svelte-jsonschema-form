@@ -95,8 +95,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -453,8 +453,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -645,8 +645,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -1000,8 +1000,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -1189,8 +1189,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -1544,8 +1544,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -1733,8 +1733,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -2088,8 +2088,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -2278,8 +2278,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -3484,8 +3484,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -4708,8 +4708,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -5057,8 +5057,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -5244,8 +5244,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf-lab/beercss-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -5591,8 +5591,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf-lab/beercss-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -5784,8 +5784,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -6149,8 +6149,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -6348,8 +6348,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -6738,8 +6738,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -6931,8 +6931,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -7283,8 +7283,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -7482,8 +7482,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -8064,8 +8064,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -8359,8 +8359,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -8923,8 +8923,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -9196,8 +9196,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/skeleton4-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -9570,8 +9570,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf/skeleton4-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -9767,8 +9767,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -10121,8 +10121,8 @@ export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
+import type { FormState, ResolveFieldType, ValidatorFactoryOptions } from "@sjsf/form";
 import { getSimpleSchemaType, isFixedItems } from "@sjsf/form/core";
-import type { ValidatorFactoryOptions, FormState, ResolveFieldType } from "@sjsf/form";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";

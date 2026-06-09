@@ -1,4 +1,5 @@
 import { transforms, type AstTypes } from "@sveltejs/sv-utils";
+import type { DeepPartial } from "@sjsf/form/lib/types";
 import { isRecordEmpty } from "@sjsf/form/lib/object";
 
 import {
@@ -8,7 +9,6 @@ import {
   formPackage,
   formResolverSubPath,
   formTranslationSubPath,
-  formUtilSubPath,
   type Resolver,
 } from "../form.ts";
 import {
@@ -19,7 +19,11 @@ import {
   type ToTheme,
 } from "../themes.ts";
 import { sveltekitPackage, svelteKitRfSubPath } from "../sveltekit.ts";
-import { extraFields, extraFieldSubPath } from "../fields.ts";
+import {
+  extraFields,
+  extraFieldSubPath,
+  type ExtraFieldFileName,
+} from "../fields.ts";
 import {
   themeExtraWidgets,
   themeExtraWidgetSubPath,
@@ -83,9 +87,10 @@ export interface DefaultsOptions<T extends CodegenThemeOrSubTheme> {
   resolver: Resolver | "inline";
   sveltekit: CodegenSvelteKitIntegration;
   widgets: Iterable<ExtraWidgetFileNames[ToTheme<T>]>;
+  fields: Iterable<ExtraFieldFileName>;
   isTs: boolean;
   ts: ConditionalPrinter;
-  merger: Partial<MergerOptions>;
+  merger: DeepPartial<MergerOptions>;
   focusOnFirstError: boolean;
   themeExtension: ThemeExtension;
   moduleAugmentation: Partial<ModuleAugmentation>;
@@ -111,6 +116,7 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
   resolver,
   sveltekit,
   widgets,
+  fields,
   isTs,
   ts,
   merger,
@@ -120,16 +126,6 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
   uiOptionsRegistry,
 }: DefaultsOptions<T>) {
   return transforms.script(({ ast, comments, js }) => {
-    const isAjv = validator.name === "ajv8" && validator.precompiled === false;
-
-    if (isAjv && isTs) {
-      js.imports.addNamed(ast, {
-        from: formPackage.name,
-        imports: ["ValidatorFactoryOptions"],
-        isType: true,
-      });
-    }
-
     if (resolver === "inline") {
       if (!getTopLevelFunction(ast, "resolver")) {
         js.imports.addNamed(ast, {
@@ -180,11 +176,18 @@ export function resolver(_ctx) {`,
         name: "resolver",
         source: formResolverSubPath(resolver),
       });
+      const activeFields = new Set<ExtraFieldFileName>(fields);
       for (const f of extraFields({ wrappedFields: false })) {
-        comments.add(resolverExport, {
-          type: "Line",
-          value: ` import "${extraFieldSubPath(f, true)}";`,
-        });
+        if (activeFields.has(f)) {
+          js.imports.addEmpty(ast, {
+            from: extraFieldSubPath(f, true),
+          });
+        } else {
+          comments.add(resolverExport, {
+            type: "Line",
+            value: ` import "${extraFieldSubPath(f, true)}";`,
+          });
+        }
       }
       comments.add(resolverExport, {
         type: "Line",
@@ -423,7 +426,15 @@ export function resolver(_ctx) {`,
         }
       }
       js.common.appendFromString(ast, { code, comments });
-    } else if (isAjv) {
+    } else if (validator.name === "ajv8") {
+      if (isTs) {
+        js.imports.addNamed(ast, {
+          from: formPackage.name,
+          imports: ["ValidatorFactoryOptions"],
+          isType: true,
+        });
+      }
+
       js.imports.addNamed(ast, {
         from: externalValidatorPackage(validator.name).name,
         imports: ["addFormComponents", "createFormValidator"],
