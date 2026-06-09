@@ -66,8 +66,8 @@
     type FormState,
   } from "meta/playground";
   import "meta/playground/augmentations";
-  import { SANDBOX_PLATFORMS, type SandboxPlatform } from "meta/sandbox";
-  import { toast } from 'svelte-sonner';
+  import { SANDBOX_PLATFORMS } from "meta/sandbox";
+  import { toast } from "svelte-sonner";
 
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
@@ -83,6 +83,7 @@
   import Select from "$lib/select.svelte";
   import Noop from "$lib/noop.svelte";
   import { gripHeader } from "$lib/grip-header.svelte";
+  import { copyTextToClipboard } from "$lib/copy-to-clipboard";
   import {
     constraints,
     createApplySplit,
@@ -94,7 +95,6 @@
   import { setShadcnContext } from "@/shadcn-context.js";
   import Header from "@/header.svelte";
   import { router } from "@/router.js";
-  import { copyTextToClipboard } from "@/copy-to-clipboard";
 
   import { getChangedMergerOptionsCount } from "./merger-options";
   import * as customComponents from "./custom-form-components/index.js";
@@ -167,8 +167,6 @@
     }
     return count;
   });
-
-  let action: SandboxPlatform | "copy" = $state("copy");
 
   const changedMergerOptionsCount = $derived(
     getChangedMergerOptionsCount(data),
@@ -535,23 +533,18 @@
   <ButtonGroup.Root>
     <Button
       variant="outline"
-      onclick={() => {
-        if (action === "copy") {
-          void copyTextToClipboard(
-            router.share($state.snapshot(data)).toString(),
-          );
-          toast.success('Link copied')
-        } else {
-          openSandbox({ formState: data, platform: action });
+      onclick={async () => {
+        try {
+          const str = router.share($state.snapshot(data)).toString();
+          await copyTextToClipboard(str);
+          toast.success("Link copied");
+        } catch (err) {
+          console.error(err);
+          toast.error("An error has occurred");
         }
       }}
     >
-      {#if action === "copy"}
-        Share <Copy />
-      {:else}
-        {action}
-        <ExternalLink />
-      {/if}
+      Share <Copy />
     </Button>
     <DropdownMenu.Root>
       <DropdownMenu.Trigger
@@ -562,13 +555,13 @@
       >
         <ChevronDown class="size-4" />
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content align="center" class="w-40" >
-        <DropdownMenu.Item onclick={() => (action = "copy")}>
-          Share Link
-        </DropdownMenu.Item>
+      <DropdownMenu.Content align="center" class="w-44">
         {#each SANDBOX_PLATFORMS as platform (platform)}
-          <DropdownMenu.Item onclick={() => (action = platform)}>
+          <DropdownMenu.Item
+            onclick={() => openSandbox({ formState: data, platform })}
+          >
             Open in {platform}
+            <ExternalLink />
           </DropdownMenu.Item>
         {/each}
       </DropdownMenu.Content>
