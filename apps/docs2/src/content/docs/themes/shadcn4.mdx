@@ -61,7 +61,10 @@ Since `shadcn-svelte` is not a component library you should provide your compone
 
     :::
 
-    <Code lang="typescript" code={shadcnContextCode} />
+    <Code lang="typescript" code={shadcnContextCode
+        .replace('import * as components from "@sjsf-lab/shadcn-extras-theme/ui";\n', '')
+        .replace('      ...components,\n', '')}
+    />
   </TabItem>
   <TabItem label="Library components">
     :::caution

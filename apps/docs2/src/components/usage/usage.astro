@@ -31,7 +31,12 @@ const CODE = {
   daisyui5: withDaisyui5Code,
   flowbite3: withFlowbite3Code,
   skeleton4: withSkeleton4Code,
-  shadcn4: withShadcn4Code,
+  shadcn4: withShadcn4Code
+    .replace(
+      'import * as extraComponents from "@sjsf-lab/shadcn-extras-theme/ui";\n',
+      ""
+    )
+    .replace("components: { ...components, ...extraComponents }", "components"),
 } satisfies Record<ActualTheme, string>;
 
 const DEFAULTS = {

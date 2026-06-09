@@ -2,6 +2,7 @@
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
+  import * as extraComponents from "@sjsf-lab/shadcn-extras-theme/ui";
 
   import {
     schema,
@@ -22,8 +23,7 @@
     onSubmit: ({ name }) => window.alert(`Hello, ${name}`),
   });
 
-  //@ts-expect-error shadcn-svelte-extras
-  setThemeContext({ components });
+  setThemeContext({ components: { ...components, ...extraComponents } });
 </script>
 
 <BasicForm {form} />
