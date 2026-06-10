@@ -34,8 +34,8 @@
     "@dnd-kit/collision": "^0.4.0",
     "@dnd-kit/dom": "^0.4.0",
     "@picocss/pico": "catalog:",
-    "@shikijs/langs": "^4.0.2",
-    "@shikijs/themes": "^4.0.2",
+    "@shikijs/langs": "catalog:",
+    "@shikijs/themes": "catalog:",
     "@sjsf-lab/beercss-theme": "workspace:*",
     "@sjsf-lab/svar-theme": "workspace:*",
     "@sjsf-lab/shadcn-extras-theme": "workspace:*",
@@ -61,6 +61,6 @@
     "json-schema-to-valibot": "catalog:",
     "json-schema-to-zod": "catalog:",
     "lz-string": "catalog:",
-    "shiki": "^4.0.2"
+    "shiki": "catalog:"
   }
 }

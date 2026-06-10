@@ -28,6 +28,9 @@ function remarkBasePath(base) {
   };
 }
 
+const injectedCss = ["@jis3r/icons", "basic", "svar", "beercss", "examples/"];
+const nonRunic = ["svelte-json-tree", "flowbite-svelte@0.47"];
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://x0k.github.io",

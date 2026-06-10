@@ -7,7 +7,7 @@ import {
   type CodegenThemeOrSubTheme,
   type CodegenSvelteKitIntegration,
 } from "../codegen/index.ts";
-import type { CodeTransformer } from "../composer/index.ts";
+import type { CodeTransformer, ComposerOptions } from "../composer/index.ts";
 import type { Generated } from "../types.ts";
 
 // NOTE: Order is important
@@ -83,3 +83,28 @@ export function defineExample(c: Partial<ExampleContent>): ExampleContent {
 
 export const remoteFormDefaultsReplacer: CodeTransformer = (_filepath, code) =>
   code.replace("sjsf/remote-defaults", "sjsf/defaults");
+
+export const COMPOSER_DEFAULTS = {
+  modelName: "model",
+  language: "ts",
+  sveltekit: "no",
+  focusOnFirstError: true,
+  // These options are not relevant for demos,
+  // because if they are used at all,
+  // they are applied via `extraFiles`
+  extraDependencies: [],
+  codeTransformers: [],
+  widgets: [],
+  fields: [],
+  fieldsValidationMode: 0,
+  omitExtraData: false,
+  disabled: false,
+  merger: {},
+  uiOptionsRegistry: {},
+  uiSchema: {},
+  themeExtension: [],
+  moduleAugmentation: {},
+  // inlined on demo page
+  schema: undefined,
+  initialValue: undefined,
+} as const satisfies Partial<ComposerOptions<any>>;

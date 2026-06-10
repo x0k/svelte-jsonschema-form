@@ -40,7 +40,12 @@ describe("examples", () => {
       for (const { themeOrSubTheme, validator } of variants) {
         it(`${themeOrSubTheme}__${validator}`, async () => {
           expect(
-            await createExampleFiles({ entry, themeOrSubTheme, validator }),
+            await createExampleFiles({
+              name: "sandbox",
+              entry,
+              themeOrSubTheme,
+              validator,
+            }),
           ).toMatchSnapshot();
         });
       }

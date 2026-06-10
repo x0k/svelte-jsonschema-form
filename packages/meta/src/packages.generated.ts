@@ -18,7 +18,7 @@ export const EXTRA_PACKAGES = {
   },
   "devalue": {
     "name": "devalue",
-    "version": "5.8.0",
+    "version": "5.8.1",
     "dev": true
   },
   "pico": {
@@ -28,7 +28,7 @@ export const EXTRA_PACKAGES = {
   },
   "vite": {
     "name": "vite",
-    "version": "8.0.14",
+    "version": "8.0.16",
     "dev": true
   },
   "typescript": {
@@ -73,7 +73,7 @@ export const EXTRA_PACKAGES = {
   },
   "typebox": {
     "name": "typebox",
-    "version": "1.1.38",
+    "version": "1.2.8",
     "dev": false
   },
   "arktype": {

@@ -8,6 +8,7 @@ import {
   type ExampleContent,
   ExampleCategory,
   type DemosValidator,
+  COMPOSER_DEFAULTS,
 } from "./model.ts";
 
 const EXAMPLE_METADATA = import.meta.glob("./examples/*.js", {
@@ -45,23 +46,18 @@ export const VALIDATOR_TRANSFORMERS: Partial<
 };
 
 export interface CreateExampleFilesOptions {
+  name: string;
   entry: ExampleEntry;
   themeOrSubTheme: CodegenThemeOrSubTheme;
   validator: DemosValidator["name"];
 }
 
-function exampleName({
-  entry: { meta },
+export async function createExampleFiles({
+  name,
+  entry,
   themeOrSubTheme,
   validator,
-}: CreateExampleFilesOptions) {
-  return `${meta.title} (${themeOrSubTheme}, ${validator})`;
-}
-
-export async function createExampleFiles(
-  options: CreateExampleFilesOptions,
-): Promise<Record<string, string>> {
-  const { entry, themeOrSubTheme, validator } = options;
+}: CreateExampleFilesOptions): Promise<Record<string, string>> {
   const { meta, load } = entry;
   const content = await load();
   const isValidatorSpecific = meta.isValidatorSpecific ?? false;
@@ -76,8 +72,8 @@ export async function createExampleFiles(
   }
 
   return createComposer({
-    name: exampleName(options),
-    language: "ts",
+    ...COMPOSER_DEFAULTS,
+    name,
     icons: "none",
     themeOrSubTheme,
     validator: {
@@ -90,34 +86,26 @@ export async function createExampleFiles(
     extraFiles: content.files,
     extraDependencies: content.dependencies,
     codeTransformers,
-    modelName: "model",
-    focusOnFirstError: true,
-    // These options are not relevant for demos,
-    // because if they are used at all,
-    // they are applied via `extraFiles`
-    fields: [],
-    fieldsValidationMode: 0,
-    omitExtraData: false,
-    disabled: false,
-    merger: {},
-    uiOptionsRegistry: {},
-    uiSchema: {},
-    themeExtension: [],
-    moduleAugmentation: {},
-    // inlined on demo page
-    schema: undefined,
-    initialValue: undefined,
   });
 }
 
-export interface OpenExampleOptions extends CreateExampleFilesOptions {
+export interface OpenExampleOptions extends Omit<
+  CreateExampleFilesOptions,
+  "name"
+> {
   platform: SandboxPlatform;
 }
 
 export async function openExample(options: OpenExampleOptions) {
-  const files = await createExampleFiles(options);
+  const {
+    entry: { meta },
+    themeOrSubTheme,
+    validator,
+  } = options;
+  const name = `${meta.title} (${themeOrSubTheme}, ${validator})`;
+  const files = await createExampleFiles({ ...options, name });
   await sandboxOpen({
-    name: exampleName(options),
+    name,
     platform: options.platform,
     files,
   });

@@ -13,6 +13,7 @@ import { withBase } from '@/lib/base-path';
 import FormCard from '@/components/form-card.astro'
 import Npm from "@/components/npm.astro";
 import Deps from '@/components/peer-dependencies.astro';
+import Demo from '@/components/demo.svelte';
 
 import SimpleSetupForm from "./simple-setup.svelte";
 import simpleSetupCode from './simple-setup.svelte?raw';
@@ -37,6 +38,8 @@ Install as a community add-on using the Svelte CLI.
 ## Usage
 
 Let's start with the simplest setup:
+
+<Demo name="simple-setup" theme="basic" client:visible />
 
 <Code code={simpleSetupCode} lang="svelte" />
 
