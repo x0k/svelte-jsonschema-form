@@ -3,14 +3,9 @@
   "compilerOptions": {
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "outDir": "dist",
-    "rootDirs": [
-      ".",
-      "../src"
-    ],
-    "rewriteRelativeImportExtensions": true
+    "rootDirs": ["."],
+    "rewriteRelativeImportExtensions": true,
+    "types": ["node"]
   },
-  "include": [
-    "*.ts"
-  ]
+  "include": ["*.ts"]
 }

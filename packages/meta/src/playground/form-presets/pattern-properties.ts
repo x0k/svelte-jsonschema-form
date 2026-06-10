@@ -6,7 +6,7 @@ import {
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
-  category: FormPresetCategory.SchemaBasics,
+  category: FormPresetCategory.SchemaLogic,
   title: "Pattern Properties",
   description:
     "Pattern-based property validation matching regex-defined property names.",

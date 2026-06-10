@@ -56,6 +56,7 @@
     PLAYGROUND_RESOLVERS,
     PLAYGROUND_SJSF_THEMES,
     PLAYGROUND_SJSF_THEME_STYLES,
+    PLAYGROUND_SJSF_GLOBAL_THEME_STYLES,
     isEndsWith2020,
     playgroundIconSetTitle,
     playgroundIconSets,
@@ -157,6 +158,7 @@
     extendByRecord(PLAYGROUND_SJSF_THEMES[data.theme], customComponents),
   );
   const themeStyle = $derived(PLAYGROUND_SJSF_THEME_STYLES[data.theme]);
+  const themeGlobalStyle = $derived(PLAYGROUND_SJSF_GLOBAL_THEME_STYLES[data.theme]);
   const iconsSet = $derived(data.icons && PLAYGROUND_ICON_SETS[data.icons]);
   const iconSetStyle = $derived(
     data.icons && PLAYGROUND_ICON_SET_STYLES[data.icons],
@@ -399,6 +401,10 @@
 
   const editors: Record<string, Editor<any>> = $state({});
 </script>
+
+<svelte:head>
+  {@html `<style>${themeGlobalStyle}</style>`}
+</svelte:head>
 
 <Header
   transitions={{

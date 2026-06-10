@@ -7,7 +7,7 @@ import {
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
-  category: FormPresetCategory.Other,
+  category: FormPresetCategory.SchemaLogic,
   title: "One Of Defaults",
   description:
     "Pre-filled default values across oneOf alternatives for improved UX.",

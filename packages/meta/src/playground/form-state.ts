@@ -9,8 +9,7 @@ import type {
   UiSchemaRoot,
 } from "@sjsf/form";
 
-import type { PlaygroundValidator } from "./model.ts";
-import type { PlaygroundTheme } from "./themes.ts";
+import type { PlaygroundValidator, PlaygroundTheme } from "./model.ts";
 import type { PlaygroundIconSet } from "./icons.ts";
 import type { PlaygroundResolver } from "./resolvers.ts";
 

@@ -6,7 +6,7 @@ import {
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
-  category: FormPresetCategory.SchemaBasics,
+  category: FormPresetCategory.SchemaLogic,
   title: "All Of",
   description: "Schema composition with allOf merging multiple sub-schemas.",
   tags: [PresetTag.Composition],

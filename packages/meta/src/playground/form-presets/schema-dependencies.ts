@@ -6,7 +6,7 @@ import {
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
-  category: FormPresetCategory.SchemaBasics,
+  category: FormPresetCategory.SchemaLogic,
   title: "Schema Dependencies",
   description:
     "Conditional schema dependencies that apply sub-schemas based on property presence.",

@@ -2,7 +2,7 @@ import type { WidgetTypes } from "../widgets.ts";
 import type { ToTheme } from "../themes.ts";
 import type { ExtraFieldFileName } from "../fields.ts";
 
-import type { PlaygroundTheme } from "./themes.ts";
+import type { PlaygroundTheme } from "./model.ts";
 
 type PlaygroundWidgetType = WidgetTypes[ToTheme<PlaygroundTheme>];
 

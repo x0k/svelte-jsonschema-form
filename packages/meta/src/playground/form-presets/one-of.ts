@@ -6,7 +6,7 @@ import {
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
-  category: FormPresetCategory.SchemaBasics,
+  category: FormPresetCategory.SchemaLogic,
   title: "One Of",
   description: "Schema oneOf composition with mutually exclusive sub-schemas.",
   tags: [PresetTag.Composition, PresetTag.Conditional],

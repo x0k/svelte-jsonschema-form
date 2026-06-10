@@ -2,6 +2,12 @@ import {
   codegemIsJsonSchemaValidator,
   codegenValidators,
 } from "../codegen/index.ts";
+import {
+  isLegacyTheme,
+  isThemeWithSubThemes,
+  themes,
+  themeSubThemes,
+} from "../themes.ts";
 import type { Generated } from "../types.ts";
 import { validatorTitle } from "../validators.ts";
 
@@ -34,3 +40,17 @@ export function playgroundValidatorTitle(v: PlaygroundValidator) {
   const title = validatorTitle(without2020Suffix(v));
   return isEndsWith2020(v) ? `${title} (2020-12)` : title;
 }
+
+export function* playgroundThemes() {
+  for (const t of themes()) {
+    if (isLegacyTheme(t)) {
+      continue;
+    }
+    yield t;
+    if (isThemeWithSubThemes(t)) {
+      yield* themeSubThemes(t);
+    }
+  }
+}
+
+export type PlaygroundTheme = Generated<typeof playgroundThemes>;

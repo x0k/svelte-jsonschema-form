@@ -25,8 +25,11 @@ import {
 } from "../fields.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
 import type { FormState } from "./form-state.ts";
-import type { PlaygroundTheme } from "./themes.ts";
-import { isEndsWith2020, without2020Suffix } from "./model.ts";
+import {
+  type PlaygroundTheme,
+  isEndsWith2020,
+  without2020Suffix,
+} from "./model.ts";
 
 export interface CustomComponents {
   markdownDescription: string;
