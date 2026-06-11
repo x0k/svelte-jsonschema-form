@@ -76,6 +76,7 @@
 <div class="tag-bar">
   {#each tags as tag (tag)}
     <Button
+      variant="pill"
       active={selectedTags.has(tag)}
       disabled={disabledTags.has(tag)}
       onclick={() => {

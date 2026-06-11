@@ -36,7 +36,7 @@
     {#snippet children(entry)}
       <span class="tag-pills">
         {#each entry.meta.tags as tag (tag)}
-          <Button size="sm">{tag}</Button>
+          <Button variant="pill" size="sm">{tag}</Button>
         {/each}
       </span>
     {/snippet}

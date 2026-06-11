@@ -11,7 +11,6 @@
     PLAYGROUND_ICON_SETS,
     playgroundIconSetTitle,
     playgroundIconSets,
-    type PlaygroundIconSet,
   } from "meta/playground";
   import { SANDBOX_PLATFORMS, sandboxPlatformLabel } from "meta/sandbox";
   import { openDemo, type DemosValidator } from "meta/demos";
@@ -59,13 +58,14 @@
     disableCode,
     initialPicker = null,
   }: DemoProps = $props();
+  const demoId = $props.id();
 
   let demoState = $state({
     picker: untrack(() => initialPicker),
   });
 
   let selectedTheme = $derived(theme ?? "basic");
-  let selectedIconSet = $derived<PlaygroundIconSet>(iconSet ?? "none");
+  let selectedIconSet = $derived(iconSet ?? ("none" as const));
 
   const defaults = $derived({
     ...baseDefaults,
@@ -140,39 +140,45 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
     <div class="toolbar-group">
       {#if theme === undefined}
         <Button
-          variant="icon"
           active={demoState.picker === "themes"}
+          aria-controls={`${demoId}-themes-panel`}
+          aria-expanded={demoState.picker === "themes"}
           onclick={() => {
             demoState.picker = demoState.picker === "themes" ? null : "themes";
           }}
           title="Themes"
         >
           <SwatchBook size={16} />
+          <span>{themeOrSubThemeTitle(selectedTheme)}</span>
         </Button>
       {/if}
       {#if iconSet !== undefined}
         <Button
-          variant="icon"
           active={demoState.picker === "icons"}
+          aria-controls={`${demoId}-icons-panel`}
+          aria-expanded={demoState.picker === "icons"}
           onclick={() => {
             demoState.picker = demoState.picker === "icons" ? null : "icons";
           }}
           title="Icons"
         >
           <Astroid size={16} />
+          <span>{playgroundIconSetTitle(selectedIconSet)}</span>
         </Button>
       {/if}
       {#if !disableSandboxes}
         <Button
-          variant="icon"
           active={demoState.picker === "sandboxes"}
+          aria-controls={`${demoId}-sandboxes-panel`}
+          aria-expanded={demoState.picker === "sandboxes"}
+          aria-label="Choose sandbox platform"
           onclick={() => {
             demoState.picker =
               demoState.picker === "sandboxes" ? null : "sandboxes";
           }}
-          title="Sandboxes"
+          title="Actions"
         >
-          <Terminal size={16} />
+          <Terminal size={16} /> <span>Actions</span>
         </Button>
       {/if}
     </div>
@@ -180,10 +186,17 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
 
   <!-- Theme pills -->
   {#if demoState.picker === "themes"}
-    <div class="pills-panel">
+    <div
+      id={`${demoId}-themes-panel`}
+      class="pills-panel"
+      role="group"
+      aria-label="Theme options"
+    >
       {#each playgroundThemes() as t (t)}
         <Button
+          variant="pill"
           active={selectedTheme === t}
+          aria-pressed={selectedTheme === t}
           onclick={() => {
             selectedTheme = t;
           }}
@@ -196,10 +209,17 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
 
   <!-- Icon pills -->
   {#if demoState.picker === "icons"}
-    <div class="pills-panel">
+    <div
+      id={`${demoId}-icons-panel`}
+      class="pills-panel"
+      role="group"
+      aria-label="Icon set options"
+    >
       {#each playgroundIconSets() as i (i)}
         <Button
+          variant="pill"
           active={selectedIconSet === i}
+          aria-pressed={selectedIconSet === i}
           onclick={() => {
             selectedIconSet = i;
           }}
@@ -212,9 +232,16 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
 
   <!-- Sandbox pills -->
   {#if demoState.picker === "sandboxes"}
-    <div class="pills-panel">
+    <div
+      id={`${demoId}-sandboxes-panel`}
+      class="pills-panel"
+      role="group"
+      aria-label="Sandbox platform options"
+    >
       {#each SANDBOX_PLATFORMS as platform (platform)}
         <Button
+          variant="pill"
+          aria-label={`Open demo in ${sandboxPlatformLabel(platform)}`}
           onclick={async () => {
             await openDemo({
               name: "example",
@@ -281,7 +308,7 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.5rem;
   }
 
   .pills-panel {

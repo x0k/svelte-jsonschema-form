@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-  import Clipboard from "@lucide/svelte/icons/clipboard";
+  import Copy from "@lucide/svelte/icons/copy";
   import Check from "@lucide/svelte/icons/check";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import ChevronUp from "@lucide/svelte/icons/chevron-up";
@@ -26,6 +26,7 @@
   }
 
   const { files }: Props = $props();
+  const codeViewId = $props.id();
 
   const highlightFiles = async () => {
     const entries = Object.entries(files);
@@ -71,18 +72,48 @@
       }, 1500);
     });
   }
+
+  function handleTabKeydown(event: KeyboardEvent, index: number) {
+    let nextIndex = index;
+
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      nextIndex = (index + 1) % files.length;
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      nextIndex = (index - 1 + files.length) % files.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = files.length - 1;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    selectedIndex = nextIndex;
+    const tabs = (
+      event.currentTarget as HTMLElement
+    ).parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+    tabs?.[nextIndex]?.focus();
+  }
 </script>
 
 <div class="code-view">
   {#if files.length > 1}
-    <div class="code-tabs">
+    <div class="code-tabs" role="tablist" aria-label="Code files">
       {#each files as file, i (file.title)}
         <button
+          type="button"
           class="code-tab"
           class:active={selectedIndex === i}
+          id={`${codeViewId}-tab-${i}`}
+          role="tab"
+          aria-controls={`${codeViewId}-panel`}
+          aria-selected={selectedIndex === i}
+          tabindex={selectedIndex === i ? 0 : -1}
           onclick={() => {
             selectedIndex = i;
           }}
+          onkeydown={(event) => handleTabKeydown(event, i)}
         >
           {file.title}
         </button>
@@ -95,35 +126,59 @@
     bind:this={codeContentEl}
   >
     <div class="buttons">
-      <Button variant="icon" onclick={handleCopy} title="Copy to clipboard">
+      <Button
+        variant="outlined"
+        size="lg"
+        onclick={handleCopy}
+        aria-label={copyStatus === "copied"
+          ? "Copied to clipboard"
+          : "Copy code to clipboard"}
+        title="Copy to clipboard"
+      >
         {#if copyStatus === "copied"}
-          <Check size={14} />
+          <Check size={16} />
         {:else}
-          <Clipboard size={14} />
+          <Copy size={16} />
         {/if}
       </Button>
       {#if showButton}
         <Button
-          variant="icon"
+          variant="outlined"
+          size="lg"
           onclick={() => (expanded = !expanded)}
+          aria-controls={`${codeViewId}-panel`}
+          aria-expanded={expanded}
+          aria-label={expanded ? "Collapse code" : "Expand code"}
           title={expanded ? "Collapse" : "Expand"}
         >
           {#if expanded}
-            <ChevronUp size={14} />
+            <ChevronUp size={16} />
           {:else}
-            <ChevronDown size={14} />
+            <ChevronDown size={16} />
           {/if}
         </Button>
       {/if}
     </div>
     <div
+      id={`${codeViewId}-panel`}
       class="code-scroll"
+      role={files.length > 1 ? "tabpanel" : undefined}
+      aria-label={files.length === 1
+        ? `${files[selectedIndex].title} code`
+        : undefined}
+      aria-labelledby={files.length > 1
+        ? `${codeViewId}-tab-${selectedIndex}`
+        : undefined}
+      tabindex="0"
       style:max-height={showButton && !expanded
         ? `${COLLAPSED_MAX_HEIGHT}px`
         : `${contentHeight}px`}
     >
       {@html selected}
     </div>
+    <span class="sr-only" aria-live="polite">
+      {copyStatus === "copied" ? "Copied to clipboard" : ""}
+    </span>
   </div>
 </div>
 
@@ -152,6 +207,10 @@
   }
   .code-tab:hover {
     color: var(--sl-color-white);
+  }
+  .code-tab:focus-visible {
+    outline: 2px solid var(--sl-color-text-accent);
+    outline-offset: 2px;
   }
   .code-tab.active {
     color: var(--sl-color-white);
@@ -199,5 +258,16 @@
   .code-content :global(pre.shiki code) {
     background: transparent;
     font-family: var(--sl-font-mono);
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 </style>

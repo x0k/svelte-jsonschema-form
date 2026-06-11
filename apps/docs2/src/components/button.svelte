@@ -1,13 +1,11 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import type { HTMLButtonAttributes } from "svelte/elements";
 
-  interface Props {
+  interface Props extends Omit<HTMLButtonAttributes, "children" | "class"> {
     active?: boolean;
-    disabled?: boolean;
-    onclick?: () => void;
-    variant?: "pill" | "icon";
-    size?: "sm" | "md";
-    title?: string;
+    size?: "sm" | "md" | "lg";
+    variant?: "pill" | "ghost" | "outlined";
     children: Snippet;
   }
 
@@ -15,88 +13,108 @@
     active = false,
     disabled = false,
     onclick,
-    variant = "pill",
     size = "md",
     title,
+    variant = "ghost",
     children,
+    ...restProps
   }: Props = $props();
 </script>
 
-{#if onclick}
-  <button
-    class="btn {variant} {size}"
-    class:active
-    {disabled}
-    {onclick}
-    {title}
-  >
-    {@render children()}
-  </button>
-{:else}
-  <span class="btn {variant} {size}">
-    {@render children()}
-  </span>
-{/if}
+<button
+  {...restProps}
+  type="button"
+  class="btn {variant} {size}"
+  class:active
+  {disabled}
+  {onclick}
+  {title}
+>
+  {@render children()}
+</button>
 
 <style>
+  /* Base */
   .btn {
+    --btn-height: 2rem;
+
     all: unset;
+    box-sizing: border-box;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    min-height: var(--btn-height);
+    padding-inline: 0.75rem;
+    font-size: var(--sl-text-sm);
+    line-height: 1;
     color: var(--sl-color-gray-3);
     cursor: pointer;
+    gap: 0.5rem;
     transition:
       background 0.15s,
       color 0.15s,
       border-color 0.15s;
-  }
+    border-radius: 0.2rem;
 
-  /* Pill variant */
-  .btn.pill {
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 999px;
-    background: var(--sl-color-bg);
-  }
+    &:global(:has(svg:only-child)) {
+      inline-size: var(--btn-height);
+      padding-inline: 0;
+    }
 
-  .btn.pill.md {
-    padding: 0.25rem 1rem;
-    font-size: var(--sl-text-xs);
-  }
+    &:hover {
+      background: var(--sl-color-gray-6);
+      color: var(--sl-color-white);
+    }
 
-  .btn.pill.sm {
-    padding: 0.125rem 0.5rem;
-    font-size: var(--sl-text-xs);
-  }
+    &:focus-visible {
+      outline: 2px solid var(--sl-color-text-accent);
+      outline-offset: 2px;
+    }
 
-  /* Icon variant */
-  .btn.icon {
-    justify-content: center;
-    width: 1.6rem;
-    height: 1.6rem;
-    border: 1px solid transparent;
-    border-radius: 0.375rem;
-    background: transparent;
-  }
+    &:disabled {
+      opacity: 0.35;
+      cursor: default;
+      pointer-events: none;
+    }
 
-  /* Shared states */
-  .btn:hover {
-    background: var(--sl-color-gray-6);
-    color: var(--sl-color-white);
-  }
+    &.sm {
+      --btn-height: 1.625rem;
 
-  .btn.active {
-    background: var(--sl-color-gray-5);
-    color: var(--sl-color-white);
-    border-color: var(--sl-color-text-accent);
-  }
+      padding-inline: 0.625rem;
+      font-size: var(--sl-text-xs);
+    }
 
-  :global([data-theme="light"]) .btn.active {
-    background-color: transparent;
-  }
+    &.lg {
+      --btn-height: 2.25rem;
 
-  .btn:disabled {
-    opacity: 0.35;
-    cursor: default;
-    pointer-events: none;
+      padding-inline: 1rem;
+    }
+
+    /* Variants — visual style */
+    &.pill {
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 999px;
+      background: var(--sl-color-bg);
+    }
+
+    &.ghost {
+      border: 1px solid transparent;
+    }
+
+    &.outlined {
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 0.375rem;
+      background: transparent;
+    }
+
+    &.active {
+      background: var(--sl-color-gray-5);
+      color: var(--sl-color-white);
+      border-color: var(--sl-color-text-accent);
+
+      :global([data-theme="light"]) & {
+        background-color: transparent;
+      }
+    }
   }
 </style>

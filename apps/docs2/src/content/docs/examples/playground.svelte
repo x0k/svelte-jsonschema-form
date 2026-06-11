@@ -36,7 +36,7 @@
       {#snippet children(preset)}
         <span class="tag-pills">
           {#each preset.meta.tags as tag (tag)}
-            <Button size="sm">{tag}</Button>
+            <Button variant="pill" size="sm">{tag}</Button>
           {/each}
         </span>
       {/snippet}
