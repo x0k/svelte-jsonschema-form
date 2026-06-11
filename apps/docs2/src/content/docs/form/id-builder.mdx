@@ -2,6 +2,12 @@
 title: ID Builder
 ---
 
+import { Code } from '@astrojs/starlight/components'
+
+import modernMergerCode from 'pkgs/form/src/id-builders/modern.ts?raw'
+
+The ID Builder is used to convert a field path into an input ID (and name).
+
 ```ts
 type Path = Array<string | number>;
 type RPath = Readonly<Path>;
@@ -26,3 +32,7 @@ interface FormIdBuilder {
   fromPath: (path: FieldPath) => string;
 }
 ```
+
+Modern ID Builder implementation:
+
+<Code code={modernMergerCode} lang="typescript" />

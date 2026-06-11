@@ -2,10 +2,29 @@
 title: Reactive flow
 ---
 
-import Mermaid from '@/components/mermaid.astro'
+import Mermaid from "@/components/mermaid.astro";
 
-import code from './reactive-flow.mmd?raw'
+import reactiveFlowCode from "./reactive-flow.mmd?raw";
+import oninputCode from "./event-flow-oninput.mmd?raw";
+import submitCode from "./event-flow-submit.mmd?raw";
+import resetCode from "./event-flow-reset.mmd?raw";
 
-A simplified diagram of the form’s reactive flow:
+A diagram of the form's reactive flow — how options, internal state, and public API connect:
 
-<Mermaid code={code} />
+<Mermaid code={reactiveFlowCode} />
+
+## Event Flows
+
+What happens when the user interacts with the form:
+
+### Field Input
+
+<Mermaid code={oninputCode} />
+
+### Form Submit
+
+<Mermaid code={submitCode} />
+
+### Form Reset
+
+<Mermaid code={resetCode} />

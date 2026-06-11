@@ -1,0 +1,36 @@
+flowchart TD
+  trigger["Reset trigger"]
+  isEvent{"event provided?"}
+  prevent["e.preventDefault()"]
+  clearState["fieldsStateMap.clear()"]
+  allFlags["All field state flags wiped"]
+  isChanged["isChanged = false\n(map.size === 0)"]
+  isSubmitted["isSubmitted = false\n(no SUBMITTED flag on root)"]
+  clearErrors["errors.clear()"]
+  allErrorsRemoved["All validation errors removed"]
+  mergeDefaults["merger.mergeFormDataAndSchemaDefaults"]
+  mergeArgs["{ formData: options.initialValue,\n  schema: options.schema }"]
+  setValue["valueRef.current = merged value"]
+  valueReset["Form value restored to initial state"]
+  reconcile["createFormValueReconciler\n(reconciles keyed arrays)"]
+  onReset["options.onReset(e)"]
+  done["done"]
+
+  trigger --> isEvent
+  isEvent -->|yes| prevent
+  isEvent -->|no| clearState
+  prevent --> clearState
+  clearState --> allFlags
+  allFlags --> isChanged
+  allFlags --> isSubmitted
+  clearState --> clearErrors
+  clearErrors --> allErrorsRemoved
+  clearState --> mergeDefaults
+  mergeDefaults --> mergeArgs
+  mergeArgs --> setValue
+  setValue --> valueReset
+  valueReset --> reconcile
+  reconcile --> onReset
+  allErrorsRemoved --> onReset
+  isChanged --> onReset
+  onReset --> done

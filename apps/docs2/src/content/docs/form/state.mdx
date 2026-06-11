@@ -4,6 +4,10 @@ sidebar:
   order: 1
 ---
 
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { withBase } from "@/lib/base-path";
+
 ```typescript
 export type FormSubmission<Output> = Task<
   [event: SubmitEvent],
@@ -60,11 +64,11 @@ export interface FormState<T> {
 SJSF provides a set of functions to work with the form state that can either **read** (queries) or **modify** (commands) it.
 
 :::note
-  Most of these methods are intended for **internal use** within form components.
+Most of these methods are intended for **internal use** within form components.
 :::
 
 :::note
-  All the methods listed below are marked with `@query` or `@command` in their JSDoc.
+All the methods listed below are marked with `@query` or `@command` in their JSDoc.
 :::
 
 **Queries:**
@@ -90,6 +94,12 @@ In addition to the semantic difference, there is also a behavioral one when used
 When a `query` is called, the reactive variables it accesses will be **tracked**.
 When a `command` is called, the accessed variables **will not be tracked**.
 
+<LinkCard
+  title="Reactive flow"
+  href={withBase("/form/reactive-flow/")}
+  description="See the diagrams for how queries, commands, and event flows connect to FormState."
+/>
+
 ### `FieldPath` vs `RPath`
 
 You may have noticed that some methods have alternate versions with the `ByPath` suffix.
@@ -111,9 +121,7 @@ you should consider the following aspects:
 It is recommended to initialize the state as follows:
 
 ```ts
-let value = $state(
-  merger.mergeFormDataAndSchemaDefaults(initialValue, schema)
-);
+let value = $state(merger.mergeFormDataAndSchemaDefaults(initialValue, schema));
 ```
 
 ### Arrays
@@ -123,7 +131,7 @@ To modify arrays, use one of the following methods:
 1. Reassign
 
 ```ts
-value.array = value.array.concat(123)
+value.array = value.array.concat(123);
 ```
 
 2. Use `KeyedArray` API
@@ -131,17 +139,17 @@ value.array = value.array.concat(123)
 ```ts
 import { createForm, type KeyedArraysMap } from "@sjsf/form";
 
-const keyedArraysMap: KeyedArraysMap = new WeakMap()
-let value = $state({ array: [] })
+const keyedArraysMap: KeyedArraysMap = new WeakMap();
+let value = $state({ array: [] });
 const form = createForm({
   keyedArraysMap,
   value: [() => value, (v) => (value = v)],
   // ...otherOptions
-})
+});
 
-const api = keyedArraysMap.get(value.array)
+const api = keyedArraysMap.get(value.array);
 if (api) {
-  api.push(123)
+  api.push(123);
 }
 ```
 
