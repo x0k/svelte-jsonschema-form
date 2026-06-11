@@ -1,7 +1,9 @@
 <script lang="ts">
   import { SimpleForm, type Schema, type UiSchema } from "@sjsf/form";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  import { getDemoContext } from "@/lib/demo";
+
+  const { defaults } = getDemoContext();
 
   const schema = {
     type: "object",

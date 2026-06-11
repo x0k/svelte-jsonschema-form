@@ -19,7 +19,7 @@
 
   import Button from "./button.svelte";
 
-  const COLLAPSED_MAX_HEIGHT = 500;
+  const COLLAPSED_MAX_HEIGHT = 400;
 
   interface Props {
     files: CodeFile[];

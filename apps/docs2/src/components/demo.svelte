@@ -20,7 +20,7 @@
   import * as components from "@sjsf/shadcn4-theme/new-york";
   import * as extraComponents from "@sjsf-lab/shadcn-extras-theme/ui";
 
-  import SwatchBook from "@lucide/svelte/icons/swatch-book";
+  import Palette from "@lucide/svelte/icons/palette";
   import Terminal from "@lucide/svelte/icons/square-terminal";
   import Astroid from "@lucide/svelte/icons/astroid";
 
@@ -148,7 +148,7 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
           }}
           title="Themes"
         >
-          <SwatchBook size={16} />
+          <Palette size={16} />
           <span>{themeOrSubThemeTitle(selectedTheme)}</span>
         </Button>
       {/if}
