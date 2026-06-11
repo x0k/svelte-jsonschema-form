@@ -303,10 +303,5 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
   .preview-code {
     border-top: 1px solid var(--sl-color-gray-5);
     margin: 0;
-    overflow: hidden;
-    :global(pre) {
-      max-height: 500px;
-      scrollbar-width: none;
-    }
   }
 </style>
