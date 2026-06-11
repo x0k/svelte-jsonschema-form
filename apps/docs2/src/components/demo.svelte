@@ -10,19 +10,27 @@
   import { SANDBOX_PLATFORMS, sandboxPlatformLabel } from "meta/sandbox";
   import { openDemo, type DemosValidator } from "meta/demos";
   import type { CodegenIconSet } from "meta/codegen";
+  import { Willow, WillowDark } from "@svar-ui/svelte-core";
+  import { BitsConfig } from "bits-ui";
+  import { setThemeContext } from "@sjsf/shadcn4-theme";
+  import * as components from "@sjsf/shadcn4-theme/new-york";
+  import * as extraComponents from "@sjsf-lab/shadcn-extras-theme/ui";
 
   import Eye from "@lucide/svelte/icons/eye";
   import CodeXml from "@lucide/svelte/icons/code-xml";
   import Palette from "@lucide/svelte/icons/palette";
   import Zap from "@lucide/svelte/icons/zap";
 
-  import { defaults, setDefaultsContext } from "@/lib/demo";
   import { type DemoName, DEMOS } from "@/lib/demo.generated";
   import { highlighterPromise, type SupportedLanguage } from "@/lib/shiki";
   import { themeManager } from "@/theme.svelte";
+  import * as baseDefaults from "@/lib/sjsf/defaults";
 
   import { ShadowHost } from "./shadow";
+  import Noop from "./shadow/root.svelte";
   import CodeView from "./code.svelte";
+
+  setThemeContext({ components: { ...components, ...extraComponents } });
 
   interface DemoProps {
     name: DemoName;
@@ -33,22 +41,20 @@
 
   const { name, theme, validator = "ajv8", icons }: DemoProps = $props();
 
-  let state = $state({
+  let demoState = $state({
     view: "preview" as "preview" | "code",
     picker: null as null | "themes" | "sandboxes",
   });
 
   let selectedTheme = $derived(theme ?? "basic");
 
-  setDefaultsContext(
-    Object.setPrototypeOf(
-      {
-        get theme() {
-          return PLAYGROUND_SJSF_THEMES[selectedTheme];
-        },
+  const defaults = Object.setPrototypeOf(
+    {
+      get theme() {
+        return PLAYGROUND_SJSF_THEMES[selectedTheme];
       },
-      defaults
-    )
+    },
+    baseDefaults
   );
 
   const globalStyles = $derived(
@@ -81,6 +87,27 @@
     if (path.endsWith(".css")) return "css";
     return "typescript";
   }
+
+  const SvarProvider = $derived(
+    selectedTheme === "svar"
+      ? themeManager.isDark
+        ? WillowDark
+        : Willow
+      : Noop
+  );
+
+  let portalEl = $state.raw() as HTMLDivElement;
+  const rootNode = $derived(portalEl?.getRootNode());
+  const options = {
+    getRootNode() {
+      return rootNode;
+    },
+  };
+  const portalOptions = {
+    get target() {
+      return portalEl;
+    },
+  };
 </script>
 
 <svelte:head>
@@ -93,10 +120,9 @@
     <div class="toolbar-group toolbar-left">
       <button
         class="toolbar-btn"
-        class:active={state.view === "preview"}
+        class:active={demoState.view === "preview"}
         onclick={() => {
-          state.picker = null;
-          state.view = "preview";
+          demoState.view = "preview";
         }}
         title="Preview"
       >
@@ -104,10 +130,9 @@
       </button>
       <button
         class="toolbar-btn"
-        class:active={state.view === "code"}
+        class:active={demoState.view === "code"}
         onclick={() => {
-          state.picker = null;
-          state.view = "code";
+          demoState.view = "code";
         }}
         title="Code"
       >
@@ -118,9 +143,9 @@
       {#if theme === undefined}
         <button
           class="toolbar-btn"
-          class:active={state.picker === "themes"}
+          class:active={demoState.picker === "themes"}
           onclick={() => {
-            state.picker = state.picker === "themes" ? null : "themes";
+            demoState.picker = demoState.picker === "themes" ? null : "themes";
           }}
           title="Themes"
         >
@@ -129,9 +154,10 @@
       {/if}
       <button
         class="toolbar-btn"
-        class:active={state.picker === "sandboxes"}
+        class:active={demoState.picker === "sandboxes"}
         onclick={() => {
-          state.picker = state.picker === "sandboxes" ? null : "sandboxes";
+          demoState.picker =
+            demoState.picker === "sandboxes" ? null : "sandboxes";
         }}
         title="Sandboxes"
       >
@@ -141,7 +167,7 @@
   </div>
 
   <!-- Theme pills -->
-  {#if state.picker === "themes"}
+  {#if demoState.picker === "themes"}
     <div class="pills-panel">
       {#each themeList as t (t.id)}
         <button
@@ -158,7 +184,7 @@
   {/if}
 
   <!-- Sandbox pills -->
-  {#if state.picker === "sandboxes"}
+  {#if demoState.picker === "sandboxes"}
     <div class="pills-panel">
       {#each SANDBOX_PLATFORMS as platform (platform)}
         <button
@@ -182,12 +208,25 @@
 
   <!-- Main content -->
   <div class="preview-content">
-    {#if state.view === "preview"}
+    {#if demoState.view === "preview"}
       <ShadowHost
         style={PLAYGROUND_SJSF_THEME_STYLES[selectedTheme]}
         data-theme={themeManager.darkOrLight}
       >
-        <Component />
+        <SvarProvider>
+          <div
+            bind:this={portalEl}
+            class={themeManager.darkOrLight}
+            data-theme={selectedTheme.startsWith("skeleton")
+              ? "cerberus"
+              : themeManager.darkOrLight}
+            style="padding: 2rem;"
+          >
+            <BitsConfig defaultPortalTo={portalEl}>
+              <Component {defaults} />
+            </BitsConfig>
+          </div>
+        </SvarProvider>
       </ShadowHost>
     {:else}
       <CodeView highlighter={await highlighterPromise} files={codeFiles} />

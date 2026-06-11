@@ -89,7 +89,9 @@ for (const folder of demoFolders) {
   }
 
   // Generate demo definition file
-  const imports: string[] = ['import type { Component } from "svelte";'];
+  const imports: string[] = [
+    'import { type DemoData, cleanPage } from "../demo.ts";',
+  ];
 
   if (componentImport) {
     // Use PageComponent to avoid naming conflict with the Component type
@@ -107,7 +109,14 @@ for (const folder of demoFolders) {
 
   // Build files record entries (sorted by filename)
   const filesEntries = rawImports
-    .map((r) => `  "${r.relativePath}": ${r.variable},`)
+    .map(
+      (r) =>
+        `  "${path.join("src", "routes", r.relativePath)}": ${
+          r.relativePath.endsWith("+page.svelte")
+            ? `cleanPage(${r.variable})`
+            : r.variable
+        },`
+    )
     .join("\n");
 
   const demoFileContent = componentImport
@@ -117,10 +126,7 @@ const files: Record<string, string> = {
 ${filesEntries}
 };
 
-export default { files, Component: PageComponent } satisfies {
-  files: Record<string, string>;
-  Component: Component;
-};
+export default { files, Component: PageComponent } satisfies DemoData;
 `
     : `${imports.join("\n")}
 
@@ -148,12 +154,7 @@ const importEntries = demoEntries
   .map((e) => `  "${e.name}": () => import("${e.importPath}"),`)
   .join("\n");
 
-const generatedContent = `import type { Component } from "svelte";
-
-export interface DemoData {
-  files: Record<string, string>;
-  Component: Component;
-}
+const generatedContent = `import type { DemoData } from "./demo.ts";
 
 export type DemoName =
 ${typeEntries || '  ""'};

@@ -1,7 +1,8 @@
 <script lang="ts">
   import { type Schema, type UiSchemaRoot, SimpleForm } from "@sjsf/form";
+  import type { DemoProps } from "@/lib/demo";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  const { defaults }: DemoProps = $props();
 
   const schema: Schema = {
     type: "string",

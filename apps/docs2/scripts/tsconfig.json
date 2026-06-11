@@ -1,0 +1,11 @@
+{
+  "extends": "@total-typescript/tsconfig/tsc/no-dom/library",
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "rootDirs": ["."],
+    "rewriteRelativeImportExtensions": true,
+    "types": ["node"]
+  },
+  "include": ["*.ts"]
+}

@@ -1,6 +1,6 @@
 import { type DemoData, cleanPage } from "../demo.ts";
-import PageComponent from "../../demos/simple-setup/+page.svelte";
-import pageSvelte from "../../demos/simple-setup/+page.svelte?raw";
+import PageComponent from "../../demos/form-state/+page.svelte";
+import pageSvelte from "../../demos/form-state/+page.svelte?raw";
 
 const files: Record<string, string> = {
   "src/routes/+page.svelte": cleanPage(pageSvelte),

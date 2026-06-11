@@ -507,6 +507,8 @@ sv/:
 
 docs/:
   pushd apps/docs2
+  g:
+    pnpm run generate-demos
   c:
     pnpm run check
   d:

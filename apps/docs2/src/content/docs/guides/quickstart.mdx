@@ -15,15 +15,6 @@ import Npm from "@/components/npm.astro";
 import Deps from '@/components/peer-dependencies.astro';
 import Demo from '@/components/demo.svelte';
 
-import SimpleSetupForm from "./simple-setup.svelte";
-import simpleSetupCode from './simple-setup.svelte?raw';
-
-import UiSchemaForm from './ui-schema.svelte';
-import uiSchemaCode from './ui-schema.svelte?raw';
-
-import FormStateForm from './form-state.svelte';
-import formStateCode from './form-state.svelte?raw';
-
 import ControlledForm from './controlled-form.svelte';
 import controlledFormCode from './controlled-form.svelte?raw';
 
@@ -40,12 +31,6 @@ Install as a community add-on using the Svelte CLI.
 Let's start with the simplest setup:
 
 <Demo name="simple-setup" theme="basic" client:visible />
-
-<Code code={simpleSetupCode} lang="svelte" />
-
-<FormCard>
-  <SimpleSetupForm client:only="svelte" />
-</FormCard>
 
 In the example above, we create a form based on json schema and
 use HTML5 validation to validate the form.
@@ -71,11 +56,7 @@ We'll talk about `* as defaults` in the [Reusable defaults](/guides/reusable-def
 
 :::
 
-<Code code={uiSchemaCode} lang="svelte" />
-
-<FormCard>
-  <UiSchemaForm client:only="svelte" />
-</FormCard>
+<Demo name="ui-schema" client:visible />
 
 <LinkCard title="UI Schema" href={withBase("/form/ui-schema/")} />
 
@@ -89,11 +70,7 @@ Use getters to pass reactive parameters.
 
 :::
 
-<Code code={formStateCode} lang="svelte" />
-
-<FormCard>
-  <FormStateForm client:only="svelte" />
-</FormCard>
+<Demo name="form-state" client:visible />
 
 <LinkCard title="Form state" href={withBase("/form/state/")} />
 
