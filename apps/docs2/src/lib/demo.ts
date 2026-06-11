@@ -5,6 +5,7 @@ import type {
   FormMerger,
   FormState,
   FormValidator,
+  Icons,
   IdBuilderFactoryOptions,
   MergerFactoryOptions,
   ResolveFieldType,
@@ -20,6 +21,7 @@ interface Defaults {
   validator: <T>(options: ValidatorFactoryOptions) => FormValidator<T>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   translation: Translation;
+  icons: Icons | undefined;
 }
 
 export interface DemoContext {
@@ -31,14 +33,15 @@ export interface DemoData {
   Component: Component;
 }
 
-const importRegExp =
-  /\s*import\s*(type)?\s*{.+?}\s*from\s+"@\/lib\/demo";?\n?/g;
+const importRegExp = /import\s*(type)?\s*{.+?}\s*from\s+"@\/lib\/demo"/;
 const contextRegExp = /const\s*{.+?}\s*=\s*getDemoContext\(\);?/;
+const multiEmptyLinesRegExp = /\n\s*\n+/g;
 
 export function cleanPage(content: string) {
   return content
-    .replaceAll(importRegExp, "")
-    .replace(contextRegExp, 'import * as defaults from "$lib/sjsf/defaults"');
+    .replace(importRegExp, 'import * as defaults from "$lib/sjsf/defaults"')
+    .replace(contextRegExp, "")
+    .replaceAll(multiEmptyLinesRegExp, "\n\n");
 }
 
 export const [getDemoContext, setDemoContext] = createContext<DemoContext>();

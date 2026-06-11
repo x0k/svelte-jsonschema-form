@@ -1,25 +1,29 @@
 <script lang="ts">
+  import { themeOrSubThemeTitle, type IconSet } from "meta";
+  import type { CodegenIconSet } from "meta/codegen";
   import {
     type PlaygroundTheme,
     PLAYGROUND_SJSF_THEMES,
     PLAYGROUND_SJSF_THEME_STYLES,
     PLAYGROUND_SJSF_GLOBAL_THEME_STYLES,
+    PLAYGROUND_ICON_SET_STYLES,
     playgroundThemes,
+    PLAYGROUND_ICON_SETS,
+    playgroundIconSetTitle,
+    playgroundIconSets,
+    type PlaygroundIconSet,
   } from "meta/playground";
-  import { themeOrSubThemeTitle } from "meta";
   import { SANDBOX_PLATFORMS, sandboxPlatformLabel } from "meta/sandbox";
   import { openDemo, type DemosValidator } from "meta/demos";
-  import type { CodegenIconSet } from "meta/codegen";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
   import { setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
   import * as extraComponents from "@sjsf-lab/shadcn-extras-theme/ui";
 
-  import Eye from "@lucide/svelte/icons/eye";
-  import CodeXml from "@lucide/svelte/icons/code-xml";
-  import Palette from "@lucide/svelte/icons/palette";
-  import Zap from "@lucide/svelte/icons/zap";
+  import SwatchBook from "@lucide/svelte/icons/swatch-book";
+  import Terminal from "@lucide/svelte/icons/square-terminal";
+  import Astroid from "@lucide/svelte/icons/astroid";
 
   import * as baseDefaults from "@/lib/sjsf/defaults";
   import { setDemoContext } from "@/lib/demo";
@@ -38,20 +42,37 @@
     name: DemoName;
     theme?: PlaygroundTheme;
     validator?: DemosValidator["name"];
-    icons?: CodegenIconSet;
+    iconSet?: IconSet;
+    enableIconSets?: boolean;
+    disableSandboxes?: boolean;
+    disableCode?: boolean;
   }
 
-  const { name, theme, validator = "ajv8", icons }: DemoProps = $props();
+  const {
+    name,
+    theme,
+    validator = "ajv8",
+    iconSet,
+    enableIconSets,
+    disableSandboxes,
+    disableCode,
+  }: DemoProps = $props();
 
   let demoState = $state({
-    picker: null as null | "themes" | "sandboxes",
+    picker: (enableIconSets ? "icons" : null) as
+      | null
+      | "themes"
+      | "sandboxes"
+      | "icons",
   });
 
   let selectedTheme = $derived(theme ?? "basic");
+  let selectedIconSet = $derived<PlaygroundIconSet>(iconSet ?? "none");
 
   const defaults = $derived({
     ...baseDefaults,
     theme: PLAYGROUND_SJSF_THEMES[selectedTheme],
+    icons: PLAYGROUND_ICON_SETS[selectedIconSet],
   });
 
   setDemoContext({
@@ -64,12 +85,9 @@
     PLAYGROUND_SJSF_GLOBAL_THEME_STYLES[selectedTheme]
   );
 
-  const themeList = $derived(
-    Array.from(playgroundThemes()).map((t) => ({
-      id: t,
-      title: themeOrSubThemeTitle(t),
-    }))
-  );
+  const shadowDomStyles =
+    $derived(`${PLAYGROUND_SJSF_THEME_STYLES[selectedTheme]}
+${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
 
   const { Component, files: extraFiles } = $derived(
     (await DEMOS[name]()).default
@@ -131,34 +149,64 @@
           }}
           title="Themes"
         >
-          <Palette size={16} />
+          <SwatchBook size={16} />
         </Button>
       {/if}
-      <Button
-        variant="icon"
-        active={demoState.picker === "sandboxes"}
-        onclick={() => {
-          demoState.picker =
-            demoState.picker === "sandboxes" ? null : "sandboxes";
-        }}
-        title="Sandboxes"
-      >
-        <Zap size={16} />
-      </Button>
+      {#if iconSet === undefined || enableIconSets}
+        <Button
+          variant="icon"
+          active={demoState.picker === "icons"}
+          onclick={() => {
+            demoState.picker = demoState.picker === "icons" ? null : "icons";
+          }}
+          title="Icons"
+        >
+          <Astroid size={16} />
+        </Button>
+      {/if}
+      {#if !disableSandboxes}
+        <Button
+          variant="icon"
+          active={demoState.picker === "sandboxes"}
+          onclick={() => {
+            demoState.picker =
+              demoState.picker === "sandboxes" ? null : "sandboxes";
+          }}
+          title="Sandboxes"
+        >
+          <Terminal size={16} />
+        </Button>
+      {/if}
     </div>
   </div>
 
   <!-- Theme pills -->
   {#if demoState.picker === "themes"}
     <div class="pills-panel">
-      {#each themeList as t (t.id)}
+      {#each playgroundThemes() as t (t)}
         <Button
-          active={selectedTheme === t.id}
+          active={selectedTheme === t}
           onclick={() => {
-            selectedTheme = t.id;
+            selectedTheme = t;
           }}
         >
-          {t.title}
+          {themeOrSubThemeTitle(t)}
+        </Button>
+      {/each}
+    </div>
+  {/if}
+
+  <!-- Icon pills -->
+  {#if demoState.picker === "icons"}
+    <div class="pills-panel">
+      {#each playgroundIconSets() as i (i)}
+        <Button
+          active={selectedIconSet === i}
+          onclick={() => {
+            selectedIconSet = i;
+          }}
+        >
+          {playgroundIconSetTitle(i)}
         </Button>
       {/each}
     </div>
@@ -173,8 +221,8 @@
             await openDemo({
               name: "example",
               themeOrSubTheme: selectedTheme,
+              icons: selectedIconSet,
               validator,
-              icons,
               extraFiles,
               platform,
             });
@@ -188,29 +236,30 @@
 
   <!-- Main content -->
   <div class="preview-content">
-    <ShadowHost
-      style={PLAYGROUND_SJSF_THEME_STYLES[selectedTheme]}
-      data-theme={themeManager.darkOrLight}
-    >
-      <SvarProvider>
-        <div
-          bind:this={portalEl}
-          class={themeManager.darkOrLight}
-          data-theme={selectedTheme.startsWith("skeleton")
-            ? "cerberus"
-            : themeManager.darkOrLight}
-          style="padding: 2rem;"
-        >
-          <BitsConfig defaultPortalTo={portalEl}>
-            <Component />
-          </BitsConfig>
-        </div>
-      </SvarProvider>
-    </ShadowHost>
+    {#key defaults}
+      <ShadowHost style={shadowDomStyles} data-theme={themeManager.darkOrLight}>
+        <SvarProvider>
+          <div
+            bind:this={portalEl}
+            class={themeManager.darkOrLight}
+            data-theme={selectedTheme.startsWith("skeleton")
+              ? "cerberus"
+              : themeManager.darkOrLight}
+            style="padding: 2rem;"
+          >
+            <BitsConfig defaultPortalTo={portalEl}>
+              <Component />
+            </BitsConfig>
+          </div>
+        </SvarProvider>
+      </ShadowHost>
+    {/key}
   </div>
-  <div class="preview-code">
-    <CodeView files={codeFiles} />
-  </div>
+  {#if !disableCode}
+    <div class="preview-code">
+      <CodeView files={codeFiles} />
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -225,7 +274,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.6rem;
+    padding: 0.8rem;
     /* background: var(--sl-color-bg-nav); */
     border-bottom: 1px solid var(--sl-color-gray-5);
   }
@@ -251,10 +300,10 @@
   .preview-content {
     min-height: 0;
     margin: 0;
-    border-bottom: 1px solid var(--sl-color-gray-5);
   }
 
   .preview-code {
+    border-top: 1px solid var(--sl-color-gray-5);
     margin: 0;
     overflow: hidden;
     :global(pre) {

@@ -1,19 +1,12 @@
 ---
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
-import { Code } from "@astrojs/starlight/components";
-import flowbiteStyles from "@sjsf/flowbite-icons/styles.css?inline";
-import { iconSetPackage, iconSets, iconSetTitle, type IconSet } from 'meta'
+import { iconSetPackage, iconSets, iconSetTitle, type IconSet } from 'meta';
 
-import FormCard from "@/components/form-card.astro";
 import Npm from "@/components/npm.astro";
+import Demo from '@/components/demo.svelte';
 
-import IconsDemo from "./icons-demo.svelte";
 import FlowbiteIconsInstall from "./_flowbite-icons-install.md";
 import { getPackageDependencies } from '@/shared';
-
-const STYLES: Partial<Record<IconSet, string>> = {
-  flowbite: flowbiteStyles,
-};
 
 const ADDITIONAL: Partial<Record<IconSet, AstroComponentFactory>> = {
   flowbite: FlowbiteIconsInstall,
@@ -28,16 +21,6 @@ const styles = ICON_SETS.map(
     height: 100%;
   }`
 ).join("\n");
-
-const createUsageCode = (pkg: string) => `<script lang="ts">
-  import { createForm } from '@sjsf/form';
-  import { icons } from '${pkg}';
-
-  const form = createForm({
-    icons,
-    ...
-  })
-</script>`;
 ---
 
 <div class="theme-tabs">
@@ -62,17 +45,6 @@ const createUsageCode = (pkg: string) => `<script lang="ts">
         <div class="theme-content" data-theme={iconSet}>
           <Npm pkg={getPackageDependencies(iconSetPackage(iconSet))} />
           {Additional && <Additional />}
-
-          <h3 id="usage">Usage</h3>
-
-          <Code
-            code={createUsageCode(iconSetPackage(iconSet).name)}
-            lang="typescript"
-          />
-
-          <FormCard style={STYLES[iconSet]}>
-            <IconsDemo client:only="svelte" iconSet={iconSet} />
-          </FormCard>
         </div>
       );
     })
@@ -87,8 +59,8 @@ const createUsageCode = (pkg: string) => `<script lang="ts">
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
-    position: sticky;
-    top: calc(56px + 48px + 0.5rem);
+    /* position: sticky;
+    top: calc(56px + 48px + 0.5rem); */
   }
   @media (min-width: 50rem) {
     .theme-tabs {

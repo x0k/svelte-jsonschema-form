@@ -4,14 +4,12 @@ sidebar:
   order: 5
 ---
 
-import { LinkCard, LinkButton, Code, Card, Icon } from '@astrojs/starlight/components';
+import { LinkCard, LinkButton, Code, Card } from '@astrojs/starlight/components';
 
 import { withBase } from '@/lib/base-path';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
-
-import Icons from './icons.svelte';
-import iconsCode from './icons.svelte?raw';
+import Demo from '@/components/demo.svelte';
 
 import IconsShowCase from './_icons.astro';
 
@@ -30,12 +28,12 @@ Translations are imported from `@sjsf/form/translations/{locale}`, currently sup
 
 Text is good, but you can do better by adding icons!
 
-<Code code={iconsCode} lang='svelte' />
-
-<FormCard>
-  <Icons client:only="svelte">Hello <Icon name="seti:svelte" /> from <Icon name="astro" /></Icons>
-</FormCard>
+<Demo name="icons" client:visible />
 
 There are also ready-made sets of icons for the control buttons.
 
 <IconsShowCase />
+
+## Demo
+
+<Demo name="all-icons" enableIconSets iconSet="lucide" client:visible />

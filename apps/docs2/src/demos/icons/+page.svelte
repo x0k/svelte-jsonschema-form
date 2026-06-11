@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
   import { fromRecord } from "@sjsf/form/lib/resolver";
   import { SimpleForm } from "@sjsf/form";
+  import Send from "@lucide/svelte/icons/send";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  import { getDemoContext } from "@/lib/demo";
 
-  const { children }: { children: Snippet } = $props();
+  const { defaults } = getDemoContext();
 </script>
 
 <SimpleForm
@@ -15,6 +15,10 @@
     type: "null",
   }}
   icons={fromRecord({
-    submit: children,
+    submit,
   })}
 />
+
+{#snippet submit()}
+  Submit <Send size={12} />
+{/snippet}
