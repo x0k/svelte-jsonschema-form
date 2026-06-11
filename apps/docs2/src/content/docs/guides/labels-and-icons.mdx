@@ -8,7 +8,6 @@ import { LinkCard, LinkButton, Code, Card } from '@astrojs/starlight/components'
 
 import { withBase } from '@/lib/base-path';
 import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
 import Demo from '@/components/demo.svelte';
 
 import IconsShowCase from './_icons.astro';
@@ -36,4 +35,4 @@ There are also ready-made sets of icons for the control buttons.
 
 ## Demo
 
-<Demo name="all-icons" enableIconSets iconSet="lucide" client:visible />
+<Demo name="all-icons" initialPicker="icons" iconSet="lucide" client:visible />

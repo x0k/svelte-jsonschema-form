@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { untrack } from "svelte";
   import { themeOrSubThemeTitle, type IconSet } from "meta";
-  import type { CodegenIconSet } from "meta/codegen";
   import {
     type PlaygroundTheme,
     PLAYGROUND_SJSF_THEMES,
@@ -38,14 +38,16 @@
 
   setThemeContext({ components: { ...components, ...extraComponents } });
 
+  type Picker = null | "themes" | "sandboxes" | "icons";
+
   interface DemoProps {
     name: DemoName;
     theme?: PlaygroundTheme;
     validator?: DemosValidator["name"];
     iconSet?: IconSet;
-    enableIconSets?: boolean;
     disableSandboxes?: boolean;
     disableCode?: boolean;
+    initialPicker?: Picker;
   }
 
   const {
@@ -53,17 +55,13 @@
     theme,
     validator = "ajv8",
     iconSet,
-    enableIconSets,
     disableSandboxes,
     disableCode,
+    initialPicker = null,
   }: DemoProps = $props();
 
   let demoState = $state({
-    picker: (enableIconSets ? "icons" : null) as
-      | null
-      | "themes"
-      | "sandboxes"
-      | "icons",
+    picker: untrack(() => initialPicker),
   });
 
   let selectedTheme = $derived(theme ?? "basic");
@@ -152,7 +150,7 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
           <SwatchBook size={16} />
         </Button>
       {/if}
-      {#if iconSet === undefined || enableIconSets}
+      {#if iconSet !== undefined}
         <Button
           variant="icon"
           active={demoState.picker === "icons"}
