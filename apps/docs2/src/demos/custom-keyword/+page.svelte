@@ -10,9 +10,11 @@
   import { type Ajv } from "ajv";
   import { BasicForm, createForm, ON_CHANGE } from "@sjsf/form";
   import { formatFileSize } from "@sjsf/form/validators/file-size";
-  import { addFormComponents } from "@sjsf/ajv8-validator";
+  import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  import { getDemoContext } from "@/lib/demo";
+
+  const { defaults } = getDemoContext();
 
   function addKeywords(ajv: Ajv): Ajv {
     ajv.addKeyword({
@@ -36,7 +38,7 @@
   const form = createForm({
     ...defaults,
     validator: (options) =>
-      defaults.validator({
+      createFormValidator({
         ...options,
         ajvPlugins: (ajv) => addKeywords(addFormComponents(ajv)),
       }),

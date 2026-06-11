@@ -6,18 +6,11 @@ sidebar:
 
 import { Code } from '@astrojs/starlight/components';
 
-import FormCard from '@/components/form-card.astro';
-
-import Form from './manual-mode.svelte';
-import formCode from './manual-mode.svelte?raw';
+import Demo from '@/components/demo.svelte';
 
 Manual mode gives you complete control over form layout and field placement.
 
-<Code code={formCode} lang="svelte" />
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="manual-mode" client:visible />
 
 ## Caveats
 

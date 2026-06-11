@@ -1,11 +1,13 @@
 <script>
   import { BasicForm, createForm } from "@sjsf/form";
-
-  import * as defaults from "@/lib/sjsf/defaults";
   import {
     createFileSizeValidator,
     formatFileSize,
   } from "@sjsf/form/validators/file-size";
+
+  import { getDemoContext } from "@/lib/demo";
+
+  const { defaults } = getDemoContext();
 
   const form = createForm({
     ...defaults,

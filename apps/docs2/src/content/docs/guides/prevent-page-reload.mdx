@@ -6,10 +6,7 @@ sidebar:
 
 import { Code } from '@astrojs/starlight/components';
 
-import FormCard from '@/components/form-card.astro';
-
-import Form from './prevent-page-reload.svelte'
-import formCode from './prevent-page-reload.svelte?raw'
+import Demo from '@/components/demo.svelte';
 
 You can prevent data loss due to accidentally closing or reloading a tab by using
 the `preventPageReload` function.
@@ -18,8 +15,4 @@ the `preventPageReload` function.
 
 Try to change the value of the form and reload the page.
 
-<Code code={formCode} lang="svelte" />
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="prevent-page-reload" client:visible />
