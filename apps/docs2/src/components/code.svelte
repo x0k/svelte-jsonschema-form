@@ -54,19 +54,21 @@
 </script>
 
 <div class="code-view">
-  <div class="code-tabs">
-    {#each files as file, i (file.title)}
-      <button
-        class="code-tab"
-        class:active={selectedIndex === i}
-        onclick={() => {
-          selectedIndex = i;
-        }}
-      >
-        {file.title}
-      </button>
-    {/each}
-  </div>
+  {#if files.length > 1}
+    <div class="code-tabs">
+      {#each files as file, i (file.title)}
+        <button
+          class="code-tab"
+          class:active={selectedIndex === i}
+          onclick={() => {
+            selectedIndex = i;
+          }}
+        >
+          {file.title}
+        </button>
+      {/each}
+    </div>
+  {/if}
   <div class="code-content">
     <div class="copy-button">
       <Button variant="icon" onclick={handleCopy} title="Copy to clipboard">

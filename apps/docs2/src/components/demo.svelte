@@ -251,6 +251,7 @@
   .preview-content {
     min-height: 0;
     margin: 0;
+    border-bottom: 1px solid var(--sl-color-gray-5);
   }
 
   .preview-code {

@@ -2,9 +2,14 @@
   import { SimpleForm } from "@sjsf/form";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  import { getDemoContext } from "@/lib/demo";
 
-  import { objectSchema, objectUiSchema } from "./demo-schemas";
+  import {
+    objectSchema,
+    objectUiSchema,
+  } from "../demo-schemas";
+
+  const { defaults } = getDemoContext();
 </script>
 
 <SimpleForm

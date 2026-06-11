@@ -8,22 +8,7 @@ import { Code, Card, LinkCard, Tabs, TabItem } from '@astrojs/starlight/componen
 import { DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS } from '@sjsf/form';
 
 import { withBase } from '@/lib/base-path'
-import FormCard from '@/components/form-card.astro'
-
-import LiveValidation from './live-validation.svelte'
-import liveValidationCode from './live-validation.svelte?raw'
-
-import FieldsValidation from './fields-validation.svelte'
-import fieldsValidationCode from './fields-validation.svelte?raw'
-
-import AsyncValidation from './async-validation.svelte'
-import asyncValidationCode from './async-validation.svelte?raw'
-
-import FocusOnFirsError from './focus-on-first-error.svelte'
-import focusOnFirstErrorCode from './focus-on-first-error.svelte?raw'
-
-import ErrorsList from './errors-list.svelte'
-import errorsListCode from './errors-list.svelte?raw'
+import Demo from '@/components/demo.svelte'
 
 By default, form data when submitted will be validated using HTML5 validation and the provided validator.
 
@@ -37,11 +22,7 @@ To disable HTML5 validation pass `novalidate` attribute to the form element.
 
 You can easily implement live validation by utilizing Svelte 5 reactivity
 
-<Code code={liveValidationCode} lang="svelte" />
-
-<FormCard>
-  <LiveValidation client:only="svelte" />
-</FormCard>
+<Demo name="live-validation" client:visible />
 
 While it is possible, this approach has low efficiency because
 it is usually not meaningful to validate the entire form when only one field is changed.
@@ -75,11 +56,7 @@ onDestroy(() => {
 
 :::
 
-<Code code={fieldsValidationCode} lang="svelte" />
-
-<FormCard>
-  <FieldsValidation client:only="svelte" />
-</FormCard>
+<Demo name="fields-validation" client:visible />
 
 The form in the example above, will validate fields on `input` and `change` events.
 
@@ -99,16 +76,7 @@ You can change this behavior by passing the `submissionCombinator` and `fieldsVa
 
 :::
 
-<Tabs>
-  <TabItem label="Form">
-    <FormCard title='Async form' >
-      <AsyncValidation client:only="svelte" />
-    </FormCard>
-  </TabItem>
-  <TabItem label="form.svelte">
-    <Code code={asyncValidationCode} lang="svelte" />
-  </TabItem>
-</Tabs>
+<Demo name="async-validation" client:visible />
 
 Please see your validator page for more information.
 
@@ -116,11 +84,7 @@ Please see your validator page for more information.
 
 You can achieve focus on the first error by using the `createFocusOnFirstError` function.
 
-<Code code={focusOnFirstErrorCode} lang="svelte" />
-
-<FormCard>
-  <FocusOnFirsError client:only="svelte" />
-</FormCard>
+<Demo name="focus-on-first-error" client:visible />
 
 1. `focusOnFirstError` will try to find a focusable element and focus it.
 2. If it's not found, it will try to find an errors list and scroll it into view.
@@ -130,11 +94,7 @@ You can achieve focus on the first error by using the `createFocusOnFirstError` 
 
 If necessary, you can create a list of errors
 
-<Code code={errorsListCode} lang="svelte" />
-
-<FormCard>
-  <ErrorsList client:only="svelte" />
-</FormCard>
+<Demo name="errors-list" client:visible />
 
 ## State transformation
 
