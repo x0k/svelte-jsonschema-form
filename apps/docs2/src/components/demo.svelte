@@ -21,14 +21,16 @@
   import Palette from "@lucide/svelte/icons/palette";
   import Zap from "@lucide/svelte/icons/zap";
 
-  import { type DemoName, DEMOS } from "@/lib/demo.generated";
-  import { highlighterPromise, type SupportedLanguage } from "@/lib/shiki";
-  import { themeManager } from "@/theme.svelte";
   import * as baseDefaults from "@/lib/sjsf/defaults";
+  import { setDemoContext } from "@/lib/demo";
+  import { type DemoName, DEMOS } from "@/lib/demo.generated";
+  import type { SupportedLanguage } from "@/lib/shiki";
+  import { themeManager } from "@/theme.svelte";
 
   import { ShadowHost } from "./shadow";
   import Noop from "./shadow/root.svelte";
   import CodeView from "./code.svelte";
+  import Button from "./button.svelte";
 
   setThemeContext({ components: { ...components, ...extraComponents } });
 
@@ -42,20 +44,21 @@
   const { name, theme, validator = "ajv8", icons }: DemoProps = $props();
 
   let demoState = $state({
-    view: "preview" as "preview" | "code",
     picker: null as null | "themes" | "sandboxes",
   });
 
   let selectedTheme = $derived(theme ?? "basic");
 
-  const defaults = Object.setPrototypeOf(
-    {
-      get theme() {
-        return PLAYGROUND_SJSF_THEMES[selectedTheme];
-      },
+  const defaults = $derived({
+    ...baseDefaults,
+    theme: PLAYGROUND_SJSF_THEMES[selectedTheme],
+  });
+
+  setDemoContext({
+    get defaults() {
+      return defaults;
     },
-    baseDefaults
-  );
+  });
 
   const globalStyles = $derived(
     PLAYGROUND_SJSF_GLOBAL_THEME_STYLES[selectedTheme]
@@ -117,44 +120,23 @@
 <div class="preview-panel">
   <!-- Toolbar -->
   <div class="preview-toolbar">
-    <div class="toolbar-group toolbar-left">
-      <button
-        class="toolbar-btn"
-        class:active={demoState.view === "preview"}
-        onclick={() => {
-          demoState.view = "preview";
-        }}
-        title="Preview"
-      >
-        <Eye size={16} />
-      </button>
-      <button
-        class="toolbar-btn"
-        class:active={demoState.view === "code"}
-        onclick={() => {
-          demoState.view = "code";
-        }}
-        title="Code"
-      >
-        <CodeXml size={16} />
-      </button>
-    </div>
-    <div class="toolbar-group toolbar-right">
+    <div class="toolbar-group"></div>
+    <div class="toolbar-group">
       {#if theme === undefined}
-        <button
-          class="toolbar-btn"
-          class:active={demoState.picker === "themes"}
+        <Button
+          variant="icon"
+          active={demoState.picker === "themes"}
           onclick={() => {
             demoState.picker = demoState.picker === "themes" ? null : "themes";
           }}
           title="Themes"
         >
           <Palette size={16} />
-        </button>
+        </Button>
       {/if}
-      <button
-        class="toolbar-btn"
-        class:active={demoState.picker === "sandboxes"}
+      <Button
+        variant="icon"
+        active={demoState.picker === "sandboxes"}
         onclick={() => {
           demoState.picker =
             demoState.picker === "sandboxes" ? null : "sandboxes";
@@ -162,7 +144,7 @@
         title="Sandboxes"
       >
         <Zap size={16} />
-      </button>
+      </Button>
     </div>
   </div>
 
@@ -170,15 +152,14 @@
   {#if demoState.picker === "themes"}
     <div class="pills-panel">
       {#each themeList as t (t.id)}
-        <button
-          class="pill"
-          class:active={selectedTheme === t.id}
+        <Button
+          active={selectedTheme === t.id}
           onclick={() => {
             selectedTheme = t.id;
           }}
         >
           {t.title}
-        </button>
+        </Button>
       {/each}
     </div>
   {/if}
@@ -187,8 +168,7 @@
   {#if demoState.picker === "sandboxes"}
     <div class="pills-panel">
       {#each SANDBOX_PLATFORMS as platform (platform)}
-        <button
-          class="pill"
+        <Button
           onclick={async () => {
             await openDemo({
               name: "example",
@@ -201,36 +181,35 @@
           }}
         >
           {sandboxPlatformLabel(platform)}
-        </button>
+        </Button>
       {/each}
     </div>
   {/if}
 
   <!-- Main content -->
   <div class="preview-content">
-    {#if demoState.view === "preview"}
-      <ShadowHost
-        style={PLAYGROUND_SJSF_THEME_STYLES[selectedTheme]}
-        data-theme={themeManager.darkOrLight}
-      >
-        <SvarProvider>
-          <div
-            bind:this={portalEl}
-            class={themeManager.darkOrLight}
-            data-theme={selectedTheme.startsWith("skeleton")
-              ? "cerberus"
-              : themeManager.darkOrLight}
-            style="padding: 2rem;"
-          >
-            <BitsConfig defaultPortalTo={portalEl}>
-              <Component {defaults} />
-            </BitsConfig>
-          </div>
-        </SvarProvider>
-      </ShadowHost>
-    {:else}
-      <CodeView highlighter={await highlighterPromise} files={codeFiles} />
-    {/if}
+    <ShadowHost
+      style={PLAYGROUND_SJSF_THEME_STYLES[selectedTheme]}
+      data-theme={themeManager.darkOrLight}
+    >
+      <SvarProvider>
+        <div
+          bind:this={portalEl}
+          class={themeManager.darkOrLight}
+          data-theme={selectedTheme.startsWith("skeleton")
+            ? "cerberus"
+            : themeManager.darkOrLight}
+          style="padding: 2rem;"
+        >
+          <BitsConfig defaultPortalTo={portalEl}>
+            <Component />
+          </BitsConfig>
+        </div>
+      </SvarProvider>
+    </ShadowHost>
+  </div>
+  <div class="preview-code">
+    <CodeView files={codeFiles} />
   </div>
 </div>
 
@@ -246,7 +225,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8rem;
+    padding: 0.6rem;
     /* background: var(--sl-color-bg-nav); */
     border-bottom: 1px solid var(--sl-color-gray-5);
   }
@@ -258,38 +237,10 @@
     gap: 0.25rem;
   }
 
-  .toolbar-btn {
-    all: unset;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid transparent;
-    border-radius: 0.375rem;
-    background: transparent;
-    color: var(--sl-color-gray-3);
-    cursor: pointer;
-    transition:
-      background 0.15s,
-      color 0.15s,
-      border-color 0.15s;
-  }
-
-  .toolbar-btn:hover {
-    background: var(--sl-color-gray-6);
-    color: var(--sl-color-white);
-  }
-
-  .toolbar-btn.active {
-    background: var(--sl-color-gray-5);
-    color: var(--sl-color-white);
-    border-color: var(--sl-color-text-accent);
-  }
-
   .pills-panel {
     margin: 0;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 0.5rem;
     padding: 0.75rem 1rem;
@@ -297,36 +248,17 @@
     /* background: var(--sl-color-bg-nav); */
   }
 
-  .pill {
-    all: unset;
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 1rem;
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 9999px;
-    background: var(--sl-color-bg);
-    color: var(--sl-color-gray-3);
-    font-size: var(--sl-text-xs);
-    cursor: pointer;
-    transition:
-      background 0.15s,
-      color 0.15s,
-      border-color 0.15s;
-  }
-
-  .pill:hover {
-    background: var(--sl-color-gray-6);
-    color: var(--sl-color-white);
-  }
-
-  .pill.active {
-    background: var(--sl-color-gray-5);
-    color: var(--sl-color-white);
-    border-color: var(--sl-color-text-accent);
-  }
-
   .preview-content {
     min-height: 0;
     margin: 0;
+  }
+
+  .preview-code {
+    margin: 0;
+    overflow: hidden;
+    :global(pre) {
+      max-height: 500px;
+      scrollbar-width: none;
+    }
   }
 </style>

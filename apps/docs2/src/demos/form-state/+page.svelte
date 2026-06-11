@@ -6,9 +6,10 @@
     getValueSnapshot,
     type Schema,
   } from "@sjsf/form";
-  import type { DemoProps } from "@/lib/demo";
 
-  const { defaults }: DemoProps = $props();
+  import { getDemoContext } from "@/lib/demo";
+
+  const { defaults } = getDemoContext();
 
   const schema: Schema = {
     type: "string",

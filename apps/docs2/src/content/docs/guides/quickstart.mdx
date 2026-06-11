@@ -15,9 +15,6 @@ import Npm from "@/components/npm.astro";
 import Deps from '@/components/peer-dependencies.astro';
 import Demo from '@/components/demo.svelte';
 
-import ControlledForm from './controlled-form.svelte';
-import controlledFormCode from './controlled-form.svelte?raw';
-
 ## Installation
 
 Install as a community add-on using the Svelte CLI.
@@ -95,8 +92,4 @@ Before using, please read the section - [Direct modification of form state](/for
 
 :::
 
-<Code code={controlledFormCode} lang="svelte" />
-
-<FormCard>
-  <ControlledForm client:only="svelte" />
-</FormCard>
+<Demo name="controlled-form" client:visible />

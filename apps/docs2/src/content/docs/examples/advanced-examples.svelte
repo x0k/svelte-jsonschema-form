@@ -10,16 +10,19 @@
     Tag,
     exampleCategories,
     type ExampleEntry,
+    type DemosValidator,
+    demosValidators,
   } from "meta/demos";
   import { SandboxPlatform, SANDBOX_PLATFORMS } from "meta/sandbox";
+
+  import Button from "@/components/button.svelte";
+
   import ExampleCards from "./example-cards.svelte";
   import CatalogFilter from "./catalog-filter.svelte";
-    import type { DemosValidator } from 'meta/demos';
-    import { demosValidators } from 'meta/demos';
 
   let platform: SandboxPlatform = $state.raw(SandboxPlatform.StackBlitz);
   let theme: CodegenThemeOrSubTheme = $state.raw("basic");
-  let validator: DemosValidator['name'] = $state.raw("ajv8");
+  let validator: DemosValidator["name"] = $state.raw("ajv8");
 </script>
 
 {#snippet exampleCards(entries: readonly ExampleEntry[])}
@@ -33,7 +36,7 @@
     {#snippet children(entry)}
       <span class="tag-pills">
         {#each entry.meta.tags as tag (tag)}
-          <span class="tag-pill">{tag}</span>
+          <Button size="sm">{tag}</Button>
         {/each}
       </span>
     {/snippet}
@@ -109,13 +112,5 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem;
-  }
-
-  .tag-pill {
-    padding: 0.125rem 0.5rem;
-    border: 1px solid var(--sl-color-gray-6);
-    border-radius: 999px;
-    font-size: var(--sl-text-xs);
-    color: var(--sl-color-gray-3);
   }
 </style>

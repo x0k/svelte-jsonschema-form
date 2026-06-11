@@ -10,6 +10,8 @@
   import { filterByTags } from "meta";
   import type { Snippet } from "svelte";
 
+  import Button from "@/components/button.svelte";
+
   interface Props {
     tags: readonly TTag[];
     categories: Iterable<TCategory>;
@@ -73,10 +75,8 @@
 
 <div class="tag-bar">
   {#each tags as tag (tag)}
-    <button
-      class="tag-chip"
-      class:active={selectedTags.has(tag)}
-      class:disabled={disabledTags.has(tag)}
+    <Button
+      active={selectedTags.has(tag)}
       disabled={disabledTags.has(tag)}
       onclick={() => {
         if (selectedTags.has(tag)) {
@@ -87,7 +87,7 @@
       }}
     >
       {tag}
-    </button>
+    </Button>
   {/each}
 </div>
 
@@ -127,37 +127,6 @@
     align-items: flex-start;
     gap: 0.5rem;
     margin: 1rem 0;
-  }
-
-  .tag-chip {
-    padding: 0.25rem 0.75rem;
-    margin: 0;
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 999px;
-    background: transparent;
-    color: var(--sl-color-gray-3);
-    cursor: pointer;
-    font-size: var(--sl-text-sm);
-    font-family: inherit;
-    line-height: 1.4;
-    outline: none;
-  }
-
-  .tag-chip:hover {
-    border-color: var(--sl-color-gray-2);
-    color: var(--sl-color-white);
-  }
-
-  .tag-chip.active {
-    border: 1px solid var(--sl-color-gray-2);
-    background: var(--sl-color-gray-5);
-    color: var(--sl-color-white);
-  }
-
-  .tag-chip.disabled {
-    opacity: 0.35;
-    cursor: default;
-    pointer-events: none;
   }
 
   .clear-btn {

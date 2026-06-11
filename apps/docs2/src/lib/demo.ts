@@ -1,4 +1,4 @@
-import type { Component } from "svelte";
+import { createContext, type Component } from "svelte";
 import type {
   Creatable,
   FormIdBuilder,
@@ -22,20 +22,23 @@ interface Defaults {
   translation: Translation;
 }
 
-export interface DemoProps {
+export interface DemoContext {
   defaults: Defaults;
 }
 
 export interface DemoData {
   files: Record<string, string>;
-  Component: Component<DemoProps> | Component;
+  Component: Component;
 }
 
-const importRegExp = /import\s*(type)?\s*{.+?}\s*from\s+"@\/lib\/demo"/;
-const propsRegExp = /\s*const\s*{.+?}\s*:\s*DemoProps\s*=\s*\$props\(\);?/;
+const importRegExp =
+  /\s*import\s*(type)?\s*{.+?}\s*from\s+"@\/lib\/demo";?\n?/g;
+const contextRegExp = /const\s*{.+?}\s*=\s*getDemoContext\(\);?/;
 
 export function cleanPage(content: string) {
   return content
-    .replace(importRegExp, 'import * as defaults from "$lib/sjsf/defaults"')
-    .replace(propsRegExp, "");
+    .replaceAll(importRegExp, "")
+    .replace(contextRegExp, 'import * as defaults from "$lib/sjsf/defaults"');
 }
+
+export const [getDemoContext, setDemoContext] = createContext<DemoContext>();
