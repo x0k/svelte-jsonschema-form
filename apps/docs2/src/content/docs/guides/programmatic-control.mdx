@@ -7,18 +7,11 @@ sidebar:
 import { Code, LinkCard } from '@astrojs/starlight/components';
 
 import { withBase } from '@/lib/base-path';
-import FormCard from '@/components/form-card.astro'
-
-import Form from './programmatic-control.svelte';
-import formCode from './programmatic-control.svelte?raw';
+import Demo from '@/components/demo.svelte';
 
 You can bind to the from element to control it programmatically:
 
-<Code code={formCode} lang="svelte" />
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="programmatic-control" client:visible />
 
 Use the form methods to control and access the form state:
 

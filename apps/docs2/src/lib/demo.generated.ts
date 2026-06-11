@@ -16,6 +16,7 @@ export type DemoName =
   | "if-then-else"
   | "live-validation"
   | "one-of"
+  | "programmatic-control"
   | "simple-setup"
   | "ui-schema";
 
@@ -35,6 +36,7 @@ export const DEMOS: Record<DemoName, () => Promise<{ default: DemoData }>> = {
   "if-then-else": () => import("./demos/if-then-else.ts"),
   "live-validation": () => import("./demos/live-validation.ts"),
   "one-of": () => import("./demos/one-of.ts"),
+  "programmatic-control": () => import("./demos/programmatic-control.ts"),
   "simple-setup": () => import("./demos/simple-setup.ts"),
   "ui-schema": () => import("./demos/ui-schema.ts"),
 };
