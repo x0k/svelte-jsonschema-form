@@ -530,6 +530,9 @@ importers:
 
   apps/docs2:
     dependencies:
+      '@cfworker/json-schema':
+        specifier: 'catalog:'
+        version: 4.1.1
       '@exodus/schemasafe':
         specifier: 'catalog:'
         version: 1.3.0

@@ -16,6 +16,7 @@
     "check": "pnpm run generate-demos && pnpm run precompile-validators && astro check && svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
+    "@cfworker/json-schema": "catalog:",
     "@exodus/schemasafe": "catalog:",
     "@json-table/core": "^0.3.0",
     "@lucide/svelte": "catalog:",
