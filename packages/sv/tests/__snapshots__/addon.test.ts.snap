@@ -2794,7 +2794,7 @@ exports[`@sjsf/sv 'sveltekit__formActions__hyperjump_pre…' 'kit-ts' 1`] = `
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"devalue": "^5.8.0",
+		"devalue": "^5.8.1",
 		"esm-env": "^1.2.0",
 		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.55.2",
@@ -4014,7 +4014,7 @@ exports[`@sjsf/sv 'sveltekit__remoteFunctions__hyperjump…' 'kit-ts' 1`] = `
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"devalue": "^5.8.0",
+		"devalue": "^5.8.1",
 		"esm-env": "^1.2.0",
 		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.55.2",
@@ -10999,7 +10999,7 @@ exports[`@sjsf/sv 'validator__ata' 'kit-ts' 1`] = `
 		"@sjsf-lab/ata-validator": "^3.1.1",
 		"@sjsf/basic-theme": "^3.6.0",
 		"@sjsf/form": "^3.5.0",
-		"ata-validator": "^0.13.3",
+		"ata-validator": "^0.21.0",
 		"svelte": "^5.34.8"
 	}
 }
@@ -11207,7 +11207,7 @@ exports[`@sjsf/sv 'validator__ata' 'vite-ts' 1`] = `
     "@sjsf-lab/ata-validator": "^3.1.1",
     "@sjsf/basic-theme": "^3.6.0",
     "@sjsf/form": "^3.5.0",
-    "ata-validator": "^0.13.3",
+    "ata-validator": "^0.21.0",
     "svelte": "^5.34.8"
   }
 }
@@ -11517,7 +11517,7 @@ exports[`@sjsf/sv 'validator__ata_precompiled' 'kit-ts' 1`] = `
 		"@sjsf-lab/ata-validator": "^3.1.1",
 		"@sjsf/basic-theme": "^3.6.0",
 		"@sjsf/form": "^3.5.0",
-		"ata-validator": "^0.13.3",
+		"ata-validator": "^0.21.0",
 		"svelte": "^5.34.8"
 	}
 }
@@ -11821,7 +11821,7 @@ exports[`@sjsf/sv 'validator__ata_precompiled' 'vite-ts' 1`] = `
     "@sjsf-lab/ata-validator": "^3.1.1",
     "@sjsf/basic-theme": "^3.6.0",
     "@sjsf/form": "^3.5.0",
-    "ata-validator": "^0.13.3",
+    "ata-validator": "^0.21.0",
     "svelte": "^5.34.8"
   }
 }
@@ -12732,7 +12732,7 @@ exports[`@sjsf/sv 'validator__hyperjump_precompiled' 'kit-ts' 1`] = `
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"devalue": "^5.8.0",
+		"devalue": "^5.8.1",
 		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
@@ -13072,7 +13072,7 @@ exports[`@sjsf/sv 'validator__hyperjump_precompiled' 'vite-ts' 1`] = `
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "@tsconfig/svelte": "^5.0.6",
     "@types/node": "^24.10.1",
-    "devalue": "^5.8.0",
+    "devalue": "^5.8.1",
     "json-schema-to-ts": "^3.1.1",
     "svelte": "^5.45.2",
     "svelte-check": "^4.3.4",

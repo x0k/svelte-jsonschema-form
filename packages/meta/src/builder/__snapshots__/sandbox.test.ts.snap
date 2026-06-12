@@ -16,7 +16,7 @@ exports[`builder sandbox-factory > basic > basic 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -166,7 +166,7 @@ exports[`builder sandbox-factory > fields > extra fields 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -316,7 +316,7 @@ exports[`builder sandbox-factory > themes > basic 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -467,7 +467,7 @@ exports[`builder sandbox-factory > themes > beercss 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -618,7 +618,7 @@ exports[`builder sandbox-factory > themes > daisyui5 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -779,7 +779,7 @@ exports[`builder sandbox-factory > themes > flowbite3 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -964,7 +964,7 @@ exports[`builder sandbox-factory > themes > pico 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -1120,7 +1120,7 @@ exports[`builder sandbox-factory > themes > shadcn-extras 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -1492,7 +1492,7 @@ exports[`builder sandbox-factory > themes > shadcn4 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -1839,7 +1839,7 @@ exports[`builder sandbox-factory > themes > skeleton4 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -2013,7 +2013,7 @@ exports[`builder sandbox-factory > themes > svar 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -2167,7 +2167,7 @@ exports[`builder sandbox-factory > ui-schema > with uiSchema 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -2324,7 +2324,7 @@ exports[`builder sandbox-factory > validators > ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -2470,10 +2470,10 @@ exports[`builder sandbox-factory > validators > ata 1`] = `
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.6.0",
     "@sjsf-lab/ata-validator": "^3.1.1",
-    "ata-validator": "^0.13.3"
+    "ata-validator": "^0.21.0"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -2613,7 +2613,7 @@ exports[`builder sandbox-factory > validators > cfworker 1`] = `
     "@cfworker/json-schema": "^4.1.0"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -2753,7 +2753,7 @@ exports[`builder sandbox-factory > validators > schemasafe 1`] = `
     "@exodus/schemasafe": "^1.3.0"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -2894,7 +2894,7 @@ exports[`builder sandbox-factory > validators > valibot 1`] = `
     "valibot": "^1.2.0"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -3039,7 +3039,7 @@ exports[`builder sandbox-factory > validators > zod4 1`] = `
     "zod": "^4.1.0"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
@@ -3182,7 +3182,7 @@ exports[`builder sandbox-factory > widgets > extra widgets 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^5.9.3",
