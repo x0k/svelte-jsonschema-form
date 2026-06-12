@@ -7,9 +7,10 @@
     "dev": "astro dev",
     "generate-demos": "node scripts/generate-demos.ts",
     "precompile-ajv-validator": "node src/content/docs/validators/ajv/precompile/compile-schema-script.ts",
+    "precompile-ata-validator": "node src/content/docs/validators/ata/precompile/compile-schema-script.ts",
     "precompile-hyperjump-validator": "node src/content/docs/validators/hyperjump/compile-schema-script.ts",
     "precompile-schemasafe-validator": "node src/content/docs/validators/schemasafe/precompile/compile-schema-script.ts",
-    "precompile-validators": "pnpm run precompile-ajv-validator && pnpm run precompile-hyperjump-validator && pnpm run precompile-schemasafe-validator",
+    "precompile-validators": "pnpm run precompile-ajv-validator && pnpm run precompile-ajv-validator && pnpm run precompile-hyperjump-validator && pnpm run precompile-schemasafe-validator",
     "build": "CHECK_LINKS=true astro build",
     "preview": "astro preview",
     "check": "pnpm run generate-demos && pnpm run precompile-validators && astro check && svelte-check --tsconfig ./tsconfig.json"

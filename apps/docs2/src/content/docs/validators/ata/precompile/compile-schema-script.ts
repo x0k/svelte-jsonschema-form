@@ -6,12 +6,8 @@ import {
   insertSubSchemaIds,
   fragmentSchema,
 } from "@sjsf/form/validators/precompile";
-import { Validator } from "ata-validator";
-import {
-  DEFAULT_VALIDATOR_OPTIONS,
-  COLOR_FORMAT_REGEX,
-  DATA_URL_FORMAT_REGEX,
-} from "@sjsf-lab/ata-validator";
+import { bundleCompact } from "ata-validator/build";
+import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/precompile";
 
 import inputSchema from "../../shared/input-schema.json" with { type: "json" };
 
@@ -34,9 +30,9 @@ export const schema = ${JSON.stringify(patch.schema, null, 2)} as const satisfie
 
 const base = { $schema: "http://json-schema.org/draft-07/schema" };
 const schemas = fragmentSchema(patch);
-const bundle = Validator.bundleStandalone(
+const bundle = bundleCompact(
   schemas.map((s) => Object.assign(s, base)),
-  { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }
+  DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS
 )
   .replace(
     "const validators",
@@ -46,7 +42,5 @@ const bundle = Validator.bundleStandalone(
 
 fs.writeFileSync(
   path.join(import.meta.dirname, "validate-functions.js"),
-  `const COLOR_FORMAT_REGEX = ${COLOR_FORMAT_REGEX.toString()};
-const DATA_URL_FORMAT_REGEX = ${DATA_URL_FORMAT_REGEX.toString()};
-${bundle}`
+  bundle
 );
