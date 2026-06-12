@@ -1,13 +1,11 @@
 <script lang="ts">
   import BitsUiProvider from "@/components/bits-ui-provider.svelte";
-  import { createAstro } from '@/astro.svelte';
+  import { themeManager } from "@/theme.svelte";
 
   import Form from "./form.svelte";
-
-  const astro = createAstro()
 </script>
 
-<div class="demo-container {astro.darkOrLight}">
+<div class="demo-container {themeManager.darkOrLight}">
   <BitsUiProvider>
     <Form />
   </BitsUiProvider>

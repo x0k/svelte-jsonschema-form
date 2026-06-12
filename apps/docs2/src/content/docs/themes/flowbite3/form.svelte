@@ -3,14 +3,12 @@
   import { theme } from "@sjsf/flowbite3-theme";
   import { specs } from '@sjsf/flowbite3-theme/specs'
 
-  import { createAstro } from "@/astro.svelte";
+  import { themeManager } from "@/theme.svelte";
   import * as defaults from "@/lib/sjsf/defaults";
 
   import { createSchemas } from "../_demo-schema";
 
-  const astro = createAstro();
-
-  const form = createForm({
+    const form = createForm({
     ...defaults,
     ...createSchemas(specs),
     theme,
@@ -20,7 +18,7 @@
 <BasicForm
   {form}
   novalidate
-  class="flex flex-col gap-4 mb-4 {astro.darkOrLight}"
+  class="flex flex-col gap-4 mb-4 {themeManager.darkOrLight}"
 />
 
 <pre>{JSON.stringify(getValueSnapshot(form), null, 2)}</pre>

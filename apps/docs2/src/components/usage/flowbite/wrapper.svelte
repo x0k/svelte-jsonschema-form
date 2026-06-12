@@ -1,11 +1,9 @@
 <script lang="ts">
-  import { createAstro } from "@/astro.svelte";
+  import { themeManager } from "@/theme.svelte";
 
-  import Form from './form.svelte'
-
-  const astro = createAstro()
+  import Form from "./form.svelte";
 </script>
 
-<div class="demo-container {astro.darkOrLight}">
+<div class="demo-container {themeManager.darkOrLight}">
   <Form />
 </div>

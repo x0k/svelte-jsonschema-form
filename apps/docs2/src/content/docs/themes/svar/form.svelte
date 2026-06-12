@@ -4,12 +4,11 @@
   import { theme } from "@sjsf-lab/svar-theme";
   import { specs } from '@sjsf-lab/svar-theme/specs';
 
-  import { createAstro } from '@/astro.svelte';
   import * as defaults from "@/lib/sjsf/defaults";
+  import { themeManager } from '@/theme.svelte';
 
   import { createSchemas } from "../_demo-schema";
 
-  const astro = createAstro();
   
   const form = createForm({
     ...defaults,
@@ -17,7 +16,7 @@
     theme,
   });
 
-  const Theme = $derived(astro.darkOrLight === 'dark' ? WillowDark : Willow)
+  const Theme = $derived(themeManager.darkOrLight === 'dark' ? WillowDark : Willow)
 </script>
 
 <div>

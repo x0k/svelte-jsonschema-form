@@ -1,14 +1,12 @@
 <script lang="ts">
-  import { createAstro } from "@/astro.svelte";
+  import { themeManager } from "@/theme.svelte";
 
   import Form from "./form.svelte";
-
-  const astro = createAstro();
 </script>
 
 <div
   class="demo-container"
-  data-theme={astro.darkOrLight}
+  data-theme={themeManager.darkOrLight}
   style="background-color: transparent;"
 >
   <Form />

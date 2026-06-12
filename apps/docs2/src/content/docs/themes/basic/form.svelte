@@ -4,22 +4,20 @@
   import { specs } from "@sjsf/basic-theme/specs";
 
   import * as defaults from "@/lib/sjsf/defaults";
-  import { createAstro } from "@/astro.svelte";
+  import { themeManager } from "@/theme.svelte";
 
   import { createSchemas } from "../_demo-schema";
 
-  const astro = createAstro();
-
-  const form = createForm({
+    const form = createForm({
     ...defaults,
     ...createSchemas(specs),
     theme,
   });
 </script>
 
-<BasicForm {form} novalidate data-theme={astro.darkOrLight} />
+<BasicForm {form} novalidate data-theme={themeManager.darkOrLight} />
 
-<pre data-theme={astro.darkOrLight}>{JSON.stringify(
+<pre data-theme={themeManager.darkOrLight}>{JSON.stringify(
     getValueSnapshot(form),
     null,
     2
