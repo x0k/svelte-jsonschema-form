@@ -17,6 +17,25 @@ function toVariableName(filename: string): string {
     .replace(/_([a-z])/g, (_, c) => c.toUpperCase());
 }
 
+function parseRelativeImports(content: string): string[] {
+  const importRegex = /from\s+["'](\.\.[^"']+|\.\/[^"']+)["']/g;
+  const imports: string[] = [];
+  let match;
+  while ((match = importRegex.exec(content)) !== null) {
+    imports.push(match[1]!);
+  }
+  return imports;
+}
+
+function resolveImport(fromDir: string, importPath: string): string | null {
+  const resolved = path.resolve(fromDir, importPath);
+  if (fs.existsSync(resolved)) return resolved;
+  for (const ext of [".ts", ".js", ".svelte"]) {
+    if (fs.existsSync(resolved + ext)) return resolved + ext;
+  }
+  return null;
+}
+
 function readFilesRecursive(dir: string): string[] {
   const files: string[] = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -63,10 +82,29 @@ for (const folder of demoFolders) {
   // Read all files in the demo directory
   const allFiles = readFilesRecursive(demoDir).sort();
 
+  // Detect external imports (files outside the demo folder)
+  const externalFiles = new Set<string>();
+  for (const filePath of allFiles) {
+    const content = fs.readFileSync(filePath, "utf-8");
+    for (const importPath of parseRelativeImports(content)) {
+      const resolved = resolveImport(path.dirname(filePath), importPath);
+      if (
+        resolved &&
+        !resolved.startsWith(demoDir + path.sep) &&
+        resolved !== demoDir
+      ) {
+        externalFiles.add(resolved);
+      }
+    }
+  }
+  allFiles.push(...[...externalFiles].filter((f) => !allFiles.includes(f)));
+  allFiles.sort();
+
   const rawImports: {
     variable: string;
     relativePath: string;
     filename: string;
+    absolutePath: string;
   }[] = [];
   let componentImport: string | null = null;
 
@@ -85,6 +123,7 @@ for (const folder of demoFolders) {
       variable,
       relativePath,
       filename,
+      absolutePath: filePath,
     });
   }
 
@@ -103,12 +142,18 @@ for (const folder of demoFolders) {
   // Add raw imports
   const rawImportLines = rawImports.map(
     (r) =>
-      `import ${r.variable} from "../../demos/${folder}/${r.relativePath}?raw";`
+      `import ${r.variable} from "${path.relative(LIB_DEMOS_DIR, r.absolutePath).replaceAll("\\", "/")}?raw";`
   );
   imports.push(...rawImportLines);
 
-  // Build files record entries (sorted by filename)
-  const filesEntries = rawImports
+  // Build files record entries (+page.svelte first, then alphabetical)
+  const sortedImports = [...rawImports].sort((a, b) => {
+    if (a.relativePath.endsWith("+page.svelte")) return -1;
+    if (b.relativePath.endsWith("+page.svelte")) return 1;
+    return a.filename.localeCompare(b.filename);
+  });
+
+  const filesEntries = sortedImports
     .map(
       (r) =>
         `  "${path.join("src", "routes", r.relativePath)}": ${
