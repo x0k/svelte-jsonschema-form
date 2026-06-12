@@ -271,6 +271,11 @@ overrides:
   playwright: 1.59.1
   vite: ^8.0.16
 
+patchedDependencies:
+  json-schema-to-valibot:
+    hash: ddc470a34740c856ac8c66e6e1c83a534a7ed9474ccb15efc6ac4280d317e483
+    path: patches/json-schema-to-valibot.patch
+
 importers:
 
   .:
@@ -454,7 +459,7 @@ importers:
         version: 8.0.3
       json-schema-to-valibot:
         specifier: 'catalog:'
-        version: 0.3.1(typescript@5.9.3)
+        version: 0.3.1(patch_hash=ddc470a34740c856ac8c66e6e1c83a534a7ed9474ccb15efc6ac4280d317e483)(typescript@5.9.3)
       json-schema-to-zod:
         specifier: 'catalog:'
         version: 2.8.1
@@ -659,7 +664,7 @@ importers:
         version: 1.33.1(rollup@4.57.1)(svelte@5.56.3(@typescript-eslint/types@8.61.0))(tailwindcss@4.3.0)
       json-schema-to-valibot:
         specifier: 'catalog:'
-        version: 0.3.1(typescript@5.9.3)
+        version: 0.3.1(patch_hash=ddc470a34740c856ac8c66e6e1c83a534a7ed9474ccb15efc6ac4280d317e483)(typescript@5.9.3)
       json-schema-to-zod:
         specifier: 'catalog:'
         version: 2.8.1
@@ -2150,7 +2155,7 @@ importers:
         version: 0.8.3
       json-schema-to-valibot:
         specifier: 'catalog:'
-        version: 0.3.1(typescript@5.9.3)
+        version: 0.3.1(patch_hash=ddc470a34740c856ac8c66e6e1c83a534a7ed9474ccb15efc6ac4280d317e483)(typescript@5.9.3)
       json-schema-to-zod:
         specifier: 'catalog:'
         version: 2.8.1
@@ -12915,7 +12920,7 @@ snapshots:
       '@babel/runtime': 7.29.7
       ts-algebra: 2.0.0
 
-  json-schema-to-valibot@0.3.1(typescript@5.9.3):
+  json-schema-to-valibot@0.3.1(patch_hash=ddc470a34740c856ac8c66e6e1c83a534a7ed9474ccb15efc6ac4280d317e483)(typescript@5.9.3):
     dependencies:
       citty: 0.1.6
       valibot: 1.1.0(typescript@5.9.3)

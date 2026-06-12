@@ -10,6 +10,8 @@ import {
 } from "../themes.ts";
 import type { Generated } from "../types.ts";
 import { validatorTitle } from "../validators.ts";
+import { iconSets, iconSetTitle } from "../icons.ts";
+import { resolvers, type Resolver } from "../form.ts";
 
 const DRAFT_2020_SUFFIX = `_2020`;
 
@@ -54,3 +56,18 @@ export function* playgroundThemes() {
 }
 
 export type PlaygroundTheme = Generated<typeof playgroundThemes>;
+
+export function* playgroundIconSets() {
+  yield "none";
+  yield* iconSets();
+}
+
+export type PlaygroundIconSet = Generated<typeof playgroundIconSets>;
+
+export function playgroundIconSetTitle(iconSet: PlaygroundIconSet) {
+  return iconSet === "none" ? "None" : iconSetTitle(iconSet);
+}
+
+export type PlaygroundResolver = Resolver;
+
+export const playgroundResolvers = resolvers;

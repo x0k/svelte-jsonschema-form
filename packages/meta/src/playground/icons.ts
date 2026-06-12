@@ -13,27 +13,18 @@ import { icons as radix } from "@sjsf/radix-icons";
 import "@sjsf/radix-icons/extra/clear-include.svelte";
 import "@sjsf/radix-icons/extra/edit-include.svelte";
 
-import type { Generated } from "../types.ts";
-import { iconSets, iconSetTitle } from "../icons.ts";
+import type { PlaygroundIconSet } from "./model.ts";
 
-export function* playgroundIconSets() {
-  yield "none";
-  yield* iconSets();
-}
-
-export type PlaygroundIconSet = Generated<typeof playgroundIconSets>;
-
-export function playgroundIconSetTitle(iconSet: PlaygroundIconSet) {
-  return iconSet === "none" ? "None" : iconSetTitle(iconSet);
-}
-
-export const PLAYGROUND_ICON_SETS = {
+export const PLAYGROUND_ICON_SETS: Record<
+  PlaygroundIconSet,
+  Icons | undefined
+> = {
   none: undefined,
   flowbite,
   lucide,
   moving,
   radix,
-} satisfies Record<PlaygroundIconSet, Icons | undefined>;
+};
 
 export const PLAYGROUND_ICON_SET_STYLES = {
   none: "",
