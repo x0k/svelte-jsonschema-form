@@ -8,7 +8,7 @@ index a866792e1c638c8c18d23d89426d006c140343f8..58aec3e6fec058642384dd862a41cf0a
    "types": "dist/index.d.ts",
 +  "exports": {
 +    ".": {
-+      "import": "./dist/index.mjs",
++      "import": "./dist/index.js",
 +      "types": "./dist/index.d.ts"
 +    }
 +  },
