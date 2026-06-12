@@ -1,7 +1,7 @@
-import { docsLoader } from "@astrojs/starlight/loaders";
 import { docsSchema } from "@astrojs/starlight/schema";
 import { defineCollection, type CollectionEntry } from "astro:content";
 import { z } from "astro/zod";
+import { changelogsLoader } from "./loaders/changelogs";
 import { isValidPackageCodeName } from "./shared";
 
 export const baseSchema = z.object({
@@ -34,7 +34,7 @@ export type PackageEntry = DocsEntry<"package">;
 
 export const collections = {
   docs: defineCollection({
-    loader: docsLoader(),
+    loader: changelogsLoader(),
     schema: docsSchema({ extend: docsCollectionSchema }),
   }),
 };

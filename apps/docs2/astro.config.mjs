@@ -6,6 +6,7 @@ import svelte from "@astrojs/svelte";
 import starlightLinksValidator from "starlight-links-validator";
 import { visit } from "unist-util-visit";
 import starlightLlmsTxt from "starlight-llms-txt";
+import { discoverChangelogSlugs } from "./src/loaders/changelog-discovery";
 
 const base = "/svelte-jsonschema-form/";
 
@@ -30,6 +31,9 @@ function remarkBasePath(base) {
 
 const injectedCss = ["@jis3r/icons", "basic", "svar", "beercss", "examples/"];
 const nonRunic = ["svelte-json-tree", "flowbite-svelte@0.47"];
+
+const projectRoot = fileURLToPath(new URL("../..", import.meta.url));
+const changelogItems = discoverChangelogSlugs(projectRoot);
 
 // https://astro.build/config
 export default defineConfig({
@@ -56,14 +60,14 @@ export default defineConfig({
       // },
       social: [
         {
-          icon: "discord",
-          href: "https://discord.gg/hVxFWk7dRn",
-          label: "Discord",
-        },
-        {
           icon: "github",
           href: "https://github.com/x0k/svelte-jsonschema-form",
           label: "GitHub",
+        },
+        {
+          icon: "discord",
+          href: "https://discord.gg/hVxFWk7dRn",
+          label: "Discord",
         },
       ],
       head: [
@@ -113,14 +117,14 @@ export default defineConfig({
         {
           label: "Changelogs",
           collapsed: true,
-          items: [{ autogenerate: { directory: "changelogs" } }],
+          items: changelogItems,
         },
         { label: "Documentation v2", link: "/v2/" },
       ],
       components: {
         // Head: "./src/components/custom-head.astro",
         Header: "./src/components/header-with-links.astro",
-        MarkdownContent: "./src/components/markdown-content.astro",
+        // MarkdownContent: "./src/components/markdown-content.astro",
         PageTitle: "./src/components/page-title.astro",
       },
       customCss: ["./src/styles.css"],
