@@ -113,7 +113,7 @@
       border-color: var(--sl-color-text-accent);
 
       :global([data-theme="light"]) & {
-        background-color: transparent;
+        background-color: var(--sl-color-bg);
       }
     }
   }

@@ -152,7 +152,7 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
           <span>{themeOrSubThemeTitle(selectedTheme)}</span>
         </Button>
       {/if}
-      {#if iconSet !== undefined}
+      {#if initialPicker === 'icons'}
         <Button
           active={demoState.picker === "icons"}
           aria-controls={`${demoId}-icons-panel`}

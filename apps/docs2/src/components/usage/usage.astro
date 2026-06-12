@@ -4,6 +4,7 @@ import { themeOrSubThemeTitle } from "meta";
 
 import { actualThemes, type ActualTheme } from "@/shared";
 import FormCard from "@/components/form-card.astro";
+import StaticTabs from "@/components/static-tabs.astro";
 
 import Form from "./form.svelte";
 
@@ -55,101 +56,42 @@ const STYLES = {
   shadcn4: shadcn4Styles,
 } satisfies Record<ActualTheme, string>;
 
-const initialTheme = (Astro.params.theme ?? "basic") as ActualTheme;
-
-const ACTUAL_THEMES = Array.from(actualThemes());
-
-const styles = ACTUAL_THEMES.map(
-  (theme) => `
-  .theme-tabs:has(.theme-tab[data-theme="${theme}"]:checked) ~ .theme-content[data-theme="${theme}"] {
-    display: block;
-    height: 100%
-  }
-`
-).join("\n");
----
-
-<div class="theme-tabs">
-  {
-    ACTUAL_THEMES.map((theme) => (
-      <input
-        type="radio"
-        name="theme-input"
-        class="theme-tab"
-        aria-label={themeOrSubThemeTitle(theme)}
-        checked={theme === initialTheme}
-        data-theme={theme}
-      />
-    ))
-  }
-</div>
-{
-  ACTUAL_THEMES.map((theme) => (
-    <div class="theme-content" data-theme={theme}>
-      <Tabs>
-        <TabItem label="form.svelte">
-          <Code code={CODE[theme]} lang="svelte" />
-        </TabItem>
-        <TabItem label="model.ts">
-          <Code code={schemaCode} lang="typescript" />
-        </TabItem>
-        <TabItem label="defaults.ts">
-          <Code code={DEFAULTS[theme]} lang="typescript" />
-        </TabItem>
-      </Tabs>
-
-      <FormCard style={STYLES[theme]}>
-        <Form theme={theme} client:only="svelte" />
-      </FormCard>
-    </div>
-  ))
+export interface Props {
+  theme?: ActualTheme
 }
 
-<style>
-  .theme-tabs {
-    z-index: 10;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    position: sticky;
-    top: calc(64px + 1rem);
-  }
-  .theme-tab {
-    min-width: fit-content;
-    appearance: none;
-    cursor: pointer;
-    text-align: center;
-    user-select: none;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    display: inline-flex;
-    padding-inline: 1.25rem;
-    padding-block: 0.15rem;
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 2rem;
-    background-color: var(--sl-color-bg);
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    /* box-shadow: var(--sl-shadow-md); */
-    &:after {
-      content: attr(aria-label);
-    }
-    &:checked {
-      background-color: var(--sl-color-gray-5);
-      border-color: var(--sl-color-text-accent);
-    }
-  }
-  .theme-content {
-    display: none;
-    width: 100%;
-    order: 1;
-    margin-top: 1rem;
-    &:nth-child(2) > :global(:nth-child(2)) {
-      margin-top: 0;
-    }
-  }
-</style>
+const initialTheme = (Astro.props.theme ?? "basic");
 
-<style set:html={styles}></style>
+const ACTUAL_THEMES = Array.from(actualThemes());
+---
+
+<StaticTabs
+  sticky
+  tabs={ACTUAL_THEMES.map((theme) => ({
+    key: theme,
+    label: themeOrSubThemeTitle(theme),
+    checked: theme === initialTheme,
+  }))}
+>
+  {
+    ACTUAL_THEMES.map((theme) => (
+      <div class="static-content" data-theme={theme}>
+        <Tabs>
+          <TabItem label="form.svelte">
+            <Code code={CODE[theme]} lang="svelte" />
+          </TabItem>
+          <TabItem label="model.ts">
+            <Code code={schemaCode} lang="typescript" />
+          </TabItem>
+          <TabItem label="defaults.ts">
+            <Code code={DEFAULTS[theme]} lang="typescript" />
+          </TabItem>
+        </Tabs>
+
+        <FormCard style={STYLES[theme]}>
+          <Form theme={theme} client:only="svelte" />
+        </FormCard>
+      </div>
+    ))
+  }
+</StaticTabs>
