@@ -306,15 +306,8 @@ ${saveValidators("validateFunctions")};`;
 
 const ata = createScriptRenderer({
   parallel: true,
-  vendorImports: () => `import { Validator } from "ata-validator";
-import {
-  DEFAULT_VALIDATOR_OPTIONS,
-  COLOR_FORMAT_REGEX,
-  DATA_URL_FORMAT_REGEX,
-} from "${externalValidatorPackage("ata").name}"
-
-const FORM_FORMATS = \`const COLOR_FORMAT_REGEX = \${COLOR_FORMAT_REGEX.toString()};
-const DATA_URL_FORMAT_REGEX = \${DATA_URL_FORMAT_REGEX.toString()}\`;`,
+  vendorImports: () => `import { bundleCompact } from "ata-validator/build";
+import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "${externalValidatorPackage("ata").name}/precompile"`,
   compileSchemaBody: ({
     ctx,
     definePatchAndSchemas,
@@ -328,9 +321,9 @@ const DATA_URL_FORMAT_REGEX = \${DATA_URL_FORMAT_REGEX.toString()}\`;`,
 ${saveModel()};
 
 const base = { $schema: "${schemaUrl}" };
-const bundle = Validator.bundleStandalone(
+const bundle = bundleCompact(
   schemas.map((s) => Object.assign(s, base)),
-  { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }
+  DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS
 )
   .replace(
     "const validators",
@@ -338,7 +331,7 @@ const bundle = Validator.bundleStandalone(
   )
   .slice(0, -50);
 
-${saveValidators("FORM_FORMATS}\\n${bundle")}
+${saveValidators("bundle")}
 `;
   },
 });

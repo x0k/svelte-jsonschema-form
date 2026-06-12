@@ -11526,16 +11526,8 @@ exports[`@sjsf/sv 'validator__ata_precompiled' 'kit-ts' 1`] = `
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
-import { Validator } from "ata-validator";
-
-import {
-	DEFAULT_VALIDATOR_OPTIONS,
-	COLOR_FORMAT_REGEX,
-	DATA_URL_FORMAT_REGEX
-} from "@sjsf-lab/ata-validator";
-
-const FORM_FORMATS = \`const COLOR_FORMAT_REGEX = \${COLOR_FORMAT_REGEX.toString()};
-const DATA_URL_FORMAT_REGEX = \${DATA_URL_FORMAT_REGEX.toString()}\`;
+import { bundleCompact } from "ata-validator/build";
+import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/precompile";
 
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
@@ -11586,9 +11578,9 @@ export type Model = FromSchema<typeof schema>;
 		: ""}\`);
 
 	const base = { $schema: "http://json-schema.org/draft-07/schema" };
-	const bundle = Validator.bundleStandalone(schemas.map((s) => Object.assign(s, base)), { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }).replace("const validators", \`export const [\${schemas.map((s) => s.$id).join(", ")}]\`).slice(0, -50);
+	const bundle = bundleCompact(schemas.map((s) => Object.assign(s, base)), DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS).replace("const validators", \`export const [\${schemas.map((s) => s.$id).join(", ")}]\`).slice(0, -50);
 
-	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${FORM_FORMATS}\\n\${bundle}\`);
+	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
@@ -11830,16 +11822,8 @@ exports[`@sjsf/sv 'validator__ata_precompiled' 'vite-ts' 1`] = `
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
-import { Validator } from "ata-validator";
-
-import {
-	DEFAULT_VALIDATOR_OPTIONS,
-	COLOR_FORMAT_REGEX,
-	DATA_URL_FORMAT_REGEX
-} from "@sjsf-lab/ata-validator";
-
-const FORM_FORMATS = \`const COLOR_FORMAT_REGEX = \${COLOR_FORMAT_REGEX.toString()};
-const DATA_URL_FORMAT_REGEX = \${DATA_URL_FORMAT_REGEX.toString()}\`;
+import { bundleCompact } from "ata-validator/build";
+import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/precompile";
 
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
@@ -11890,9 +11874,9 @@ export type Model = FromSchema<typeof schema>;
 		: ""}\`);
 
 	const base = { $schema: "http://json-schema.org/draft-07/schema" };
-	const bundle = Validator.bundleStandalone(schemas.map((s) => Object.assign(s, base)), { ...DEFAULT_VALIDATOR_OPTIONS, format: "esm" }).replace("const validators", \`export const [\${schemas.map((s) => s.$id).join(", ")}]\`).slice(0, -50);
+	const bundle = bundleCompact(schemas.map((s) => Object.assign(s, base)), DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS).replace("const validators", \`export const [\${schemas.map((s) => s.$id).join(", ")}]\`).slice(0, -50);
 
-	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${FORM_FORMATS}\\n\${bundle}\`);
+	await fs.writeFile(path.join(modelDir, "validators.generated.js"), \`// @ts-nocheck\\n\${bundle}\`);
 }
 
 async function main() {
