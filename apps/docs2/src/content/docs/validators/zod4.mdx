@@ -6,19 +6,14 @@ sidebar:
   order: 1
 ---
 
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 import { externalValidatorPackage } from "meta";
 
-import { getPackageDependencies } from '@/shared';
-import Npm from '@/components/npm.astro';
-import Deps from '@/components/peer-dependencies.astro';
-import FormCard from '@/components/form-card.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import Demo from "@/components/demo.svelte";
 
-import Form from './zod4/form.svelte';
-import formCode from './zod4/form.svelte?raw';
-import sharedCode from './shared/index.ts?raw';
-
-export const pkg = externalValidatorPackage('zod4')
+export const pkg = externalValidatorPackage("zod4");
 
 You may want to use Zod validator because:
 
@@ -46,18 +41,7 @@ Use `@sjsf/zod4-validator/mini` to work with `zod/mini`
 
 :::
 
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={formCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="shared.ts">
-    <Code code={sharedCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="zod4" iconsPicker client:visible />
 
 ## Async validation
 

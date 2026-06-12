@@ -7,11 +7,13 @@
     ON_ARRAY_CHANGE,
     getValueSnapshot,
   } from "@sjsf/form";
-  import { createFormValidator } from "@sjsf-lab/ata-validator";
+  import { createFormValidator } from "@sjsf/ajv8-validator";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  import { getDemoContext } from "@/lib/demo";
 
-  import { initialValue, schema, uiSchema } from "../shared";
+  import { initialValue, schema, uiSchema } from "../demo-schema";
+
+  const { defaults } = getDemoContext();
 
   const form = createForm({
     ...defaults,
@@ -26,4 +28,3 @@
 <BasicForm {form} novalidate />
 
 <pre>{JSON.stringify(getValueSnapshot(form), null, 2)}</pre>
-

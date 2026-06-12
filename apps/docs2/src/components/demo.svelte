@@ -46,7 +46,7 @@
     iconSet?: IconSet;
     disableSandboxes?: boolean;
     disableCode?: boolean;
-    initialPicker?: Picker;
+    iconsPicker?: boolean;
   }
 
   const {
@@ -56,12 +56,12 @@
     iconSet,
     disableSandboxes,
     disableCode,
-    initialPicker = null,
+    iconsPicker
   }: DemoProps = $props();
   const demoId = $props.id();
 
   let demoState = $state({
-    picker: untrack(() => initialPicker),
+    picker: null as Picker,
   });
 
   let selectedTheme = $derived(theme ?? "basic");
@@ -152,7 +152,7 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
           <span>{themeOrSubThemeTitle(selectedTheme)}</span>
         </Button>
       {/if}
-      {#if initialPicker === 'icons'}
+      {#if iconsPicker}
         <Button
           active={demoState.picker === "icons"}
           aria-controls={`${demoId}-icons-panel`}

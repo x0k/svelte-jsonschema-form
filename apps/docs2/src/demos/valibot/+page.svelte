@@ -10,9 +10,11 @@
   import { adapt } from "@sjsf/valibot-validator";
   import * as v from "valibot";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  import { getDemoContext } from "@/lib/demo";
 
-  import { initialValue, uiSchema } from "../shared";
+  import { initialValue, uiSchema } from "../demo-schema";
+
+  const { defaults } = getDemoContext();
 
   const schema = v.object({
     id: v.optional(

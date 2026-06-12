@@ -7,10 +7,12 @@
   import "@hyperjump/json-schema/formats-lite";
   import "@hyperjump/json-schema/draft-07";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  import { getDemoContext } from "@/lib/demo";
 
   import { schema, fieldsValidationMode } from "./patched-schema";
   import { ast } from "./ast";
+
+  const { defaults } = getDemoContext();
 
   const form = createForm({
     ...defaults,

@@ -4,13 +4,7 @@ sidebar:
   order: 5
 ---
 
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
-
-import FormCard from '@/components/form-card.astro';
-
-import Form from './standard-schema/form.svelte';
-import formCode from './standard-schema/form.svelte?raw';
-import sharedCode from './shared/index.ts?raw';
+import Demo from "@/components/demo.svelte";
 
 You can use any entity that implements [Standard Schema](https://standardschema.dev/schema)
 or [Standard JSON Schema](https://standardschema.dev/json-schema) as a source for
@@ -18,18 +12,7 @@ the JSON Schema and for performing full form validation.
 
 ## Example
 
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={formCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="shared.ts">
-    <Code code={sharedCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="standard-schema" iconsPicker client:visible />
 
 ## Limitations
 

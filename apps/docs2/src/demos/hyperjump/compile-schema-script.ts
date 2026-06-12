@@ -17,7 +17,7 @@ import {
 } from "@hyperjump/json-schema/experimental";
 import { uneval } from "devalue";
 
-import inputSchema from "../shared/input-schema.json" with { type: "json" };
+import inputSchema from "../input-schema.json" with { type: "json" };
 
 const fieldsValidationMode = ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE;
 

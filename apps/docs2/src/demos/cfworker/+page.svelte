@@ -9,9 +9,11 @@
   } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/cfworker-validator";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  import { getDemoContext } from "@/lib/demo";
 
-  import { initialValue, schema, uiSchema } from "../shared";
+  import { initialValue, schema, uiSchema } from "../demo-schema";
+
+  const { defaults } = getDemoContext();
 
   const form = createForm({
     ...defaults,

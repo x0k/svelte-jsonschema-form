@@ -14,7 +14,7 @@ import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
 
 import { build } from "esbuild";
 
-import inputSchema from "../../shared/input-schema.json" with { type: "json" };
+import inputSchema from "../input-schema.json" with { type: "json" };
 
 const fieldsValidationMode = ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE;
 

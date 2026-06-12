@@ -11,9 +11,11 @@
   import { z } from "zod";
   import { en } from "zod/locales";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  import { getDemoContext } from "@/lib/demo";
 
-  import { initialValue, uiSchema } from "../shared";
+  import { initialValue, uiSchema } from "../demo-schema";
+
+  const { defaults } = getDemoContext();
 
   z.config(en());
 

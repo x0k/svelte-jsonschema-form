@@ -1,15 +1,13 @@
 <script lang="ts">
-  import {
-    BasicForm,
-    createForm,
-    getValueSnapshot,
-  } from "@sjsf/form";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { adapt } from "@sjsf/form/validators/standard-schema";
   import { type } from "arktype";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  import { getDemoContext } from "@/lib/demo";
 
-  import { initialValue, uiSchema } from "../shared";
+  import { initialValue, uiSchema } from "../demo-schema";
+
+  const { defaults } = getDemoContext();
 
   const schema = type({
     "id?": "string>=8&/^\\d+$/",
