@@ -9,7 +9,9 @@
   import { createTask } from "@sjsf/form/lib/task.svelte";
   import "@sjsf/basic-theme/extra-widgets/radio-include";
 
-  import * as defaults from "@/lib/sjsf/defaults";
+  import { getDemoContext } from "@/lib/demo";
+
+  const { defaults } = getDemoContext();
 
   let data = $state<string>();
 

@@ -19,6 +19,7 @@ export type DemoName =
   | "file-size-validator"
   | "focus-on-first-error"
   | "form-state"
+  | "generic-backend"
   | "hyperjump"
   | "icons"
   | "if-then-else"
@@ -55,6 +56,7 @@ export const DEMOS: Record<DemoName, () => Promise<{ default: DemoData }>> = {
   "file-size-validator": () => import("./demos/file-size-validator.ts"),
   "focus-on-first-error": () => import("./demos/focus-on-first-error.ts"),
   "form-state": () => import("./demos/form-state.ts"),
+  "generic-backend": () => import("./demos/generic-backend.ts"),
   "hyperjump": () => import("./demos/hyperjump.ts"),
   "icons": () => import("./demos/icons.ts"),
   "if-then-else": () => import("./demos/if-then-else.ts"),
