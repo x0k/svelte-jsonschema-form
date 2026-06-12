@@ -5,13 +5,16 @@ import { makeBlockFactory } from "@json-table/core/json-to-table";
 import { blockToHTML } from "@json-table/core/block-to-html";
 import {
   themeExtraWidgetSubPath,
+  type ExtraFieldName,
   type ExtraWidgetFileNames,
   type Theme,
 } from "meta";
 
 import { s } from "theme-testing/specs";
 
-const WIDGET_USED_AS_DEFAULT_IN_FIELDS: Record<string, string[] | undefined> = {
+const WIDGET_USED_AS_DEFAULT_IN_FIELDS: Partial<
+  Record<ExtraWidgetFileNames[Theme], ExtraFieldName[]>
+> = {
   checkboxes: ["multiEnumField"],
   file: ["fileField", "filesField"],
   tags: ["tagsField"],

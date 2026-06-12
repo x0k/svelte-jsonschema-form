@@ -9,6 +9,8 @@ type ExtraFields = typeof EXTRA_FIELDS;
 
 export type ExtraFieldFileName = keyof ExtraFields;
 
+export type ExtraFieldName = ExtraFields[keyof ExtraFields]["name"];
+
 export function* fields() {
   for (const f of Object.values(FIELDS)) {
     yield f.filename;
