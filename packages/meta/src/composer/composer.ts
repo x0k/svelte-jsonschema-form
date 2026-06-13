@@ -7,7 +7,6 @@ import {
   type CodegenSvelteKitIntegration,
   type FieldsValidationMode,
   type Language,
-  type PathFactory,
   createDefaults,
   createLayout,
   createPage,
@@ -18,6 +17,7 @@ import {
   createViteConfig,
   createShadcnLib,
   createModel,
+  KIT_PATH_FACTORY,
   type MergerOptions,
   type ModuleAugmentation,
   type ThemeExtension,
@@ -25,7 +25,6 @@ import {
   createPrinter,
   createValidator,
   createForm,
-  type CodegenNonPrecompiledValidator,
   type CodegenValidator,
 } from "../codegen/index.ts";
 import {
@@ -182,7 +181,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
   const isTs = language === "ts";
   const ts = createPrinter(isTs);
   const js = createPrinter(!isTs);
-  const lib: PathFactory = (path) => `$lib/${path}`;
+  const lib = KIT_PATH_FACTORY;
 
   const dependencies: AbstractPackage[] = [
     extraPackage("vite"),

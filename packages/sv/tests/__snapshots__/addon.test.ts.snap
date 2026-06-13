@@ -521,8 +521,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -1068,8 +1068,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -1612,8 +1612,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -2156,8 +2156,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -5124,8 +5124,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -5658,8 +5658,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -6221,8 +6221,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -6810,8 +6810,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -7350,8 +7350,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -7871,7 +7871,7 @@ exports[`@sjsf/sv 'theme__shadcn-extras' 'vite-ts' 1`] = `
   - '@tailwindcss/oxide'
 ",
   "src/App.svelte": "<script lang="ts">
-	import { setShadcnThemeContext } from 'src/lib/sjsf/shadcn';
+	import { setShadcnThemeContext } from './lib/sjsf/shadcn';
 	import './app.css';
 	import svelteLogo from './assets/svelte.svg';
 	import viteLogo from '/vite.svg';
@@ -8220,8 +8220,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -8731,7 +8731,7 @@ exports[`@sjsf/sv 'theme__shadcn4' 'vite-ts' 1`] = `
   - '@tailwindcss/oxide'
 ",
   "src/App.svelte": "<script lang="ts">
-	import { setShadcnThemeContext } from 'src/lib/sjsf/shadcn';
+	import { setShadcnThemeContext } from './lib/sjsf/shadcn';
 	import './app.css';
 	import svelteLogo from './assets/svelte.svg';
 	import viteLogo from '/vite.svg';
@@ -9060,8 +9060,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -9646,8 +9646,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -10193,8 +10193,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -10935,9 +10935,9 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post/model.generated';
-	import * as validateFunctions from 'src/lib/post/validators.generated';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post/model.generated';
+	import * as validateFunctions from '../lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -11460,8 +11460,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -12144,9 +12144,9 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post/model.generated';
-	import * as validateFunctions from 'src/lib/post/validators.generated';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post/model.generated';
+	import * as validateFunctions from '../lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf-lab/ata-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -12669,8 +12669,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -13429,12 +13429,12 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
+	import * as defaults from '../lib/sjsf/defaults';
 	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { createValidatorRetriever } from '@sjsf/form/validators/precompile';
-	import { ast } from 'src/lib/post/ast.generated';
-	import * as post from 'src/lib/post/model.generated';
+	import { ast } from '../lib/post/ast.generated';
+	import * as post from '../lib/post/model.generated';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({
@@ -13960,8 +13960,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -14477,8 +14477,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -15175,9 +15175,9 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post/model.generated';
-	import * as validateFunctions from 'src/lib/post/validators.generated';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post/model.generated';
+	import * as validateFunctions from '../lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/schemasafe-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -15750,8 +15750,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { adapt } from '@sjsf/form/validators/standard-schema';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -16271,8 +16271,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { adapt } from '@sjsf/valibot-validator';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -16784,8 +16784,8 @@ const app = mount(App, {
 export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
-	import * as defaults from 'src/lib/sjsf/defaults';
-	import * as post from 'src/lib/post';
+	import * as defaults from '../lib/sjsf/defaults';
+	import * as post from '../lib/post';
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm, createForm } from '@sjsf/form';
 

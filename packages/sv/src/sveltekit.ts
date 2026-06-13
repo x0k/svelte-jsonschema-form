@@ -1,4 +1,4 @@
-import { createSvelteKitIntegration } from "meta/codegen";
+import { KIT_PATH_FACTORY, createSvelteKitIntegration } from "meta/codegen";
 
 import { POST_MODEL_NAME, type Context } from "./model.js";
 import { transforms } from "./sv-utils.js";
@@ -12,27 +12,24 @@ export function sveltekitTs({
   sv,
   ts,
   isTs,
-  lib,
   validator,
 }: Context) {
-  if (!isKit || sveltekit === "no") {
+  if (!isKit || sveltekit === "no" || !demo) {
     return;
   }
 
-  if (demo) {
-    const { filename, transform } = createSvelteKitIntegration({
-      isTs,
-      lib,
-      sveltekit,
-      ts,
-      modelName: POST_MODEL_NAME,
-      validator,
-    });
-    sv.file(
-      `${directory.kitRoutes}/demo/sjsf/${filename}.${language}`,
-      transform,
-    );
-  }
+  const { filename, transform } = createSvelteKitIntegration({
+    isTs,
+    lib: KIT_PATH_FACTORY,
+    sveltekit,
+    ts,
+    modelName: POST_MODEL_NAME,
+    validator,
+  });
+  sv.file(
+    `${directory.kitRoutes}/demo/sjsf/${filename}.${language}`,
+    transform,
+  );
 
   if (sveltekit === "remoteFunctions") {
     sv.file(

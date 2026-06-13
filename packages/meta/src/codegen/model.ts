@@ -48,6 +48,8 @@ export function createPrinter(condition: boolean): ConditionalPrinter {
 
 export type PathFactory = (path: string) => string;
 
+export const KIT_PATH_FACTORY: PathFactory = (path) => `$lib/${path}`;
+
 export function* codegenThemeOrSubTheme() {
   for (const t of themes()) {
     if (isLegacyTheme(t)) {

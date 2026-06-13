@@ -1,8 +1,10 @@
 import {
+  KIT_PATH_FACTORY,
   createAppHtml,
   createLayout,
   createStyles,
   isStyleSheetEmpty,
+  type PathFactory,
 } from "meta/codegen";
 
 import type { Context } from "./model.js";
@@ -17,7 +19,6 @@ export function appCss(ctx: Context) {
     directory,
     language,
     cwd,
-    lib,
   } = ctx;
   const { ast } = parse.css(loadFile(cwd, file.stylesheet));
   const uiLibIsNotConfigured = isStyleSheetEmpty(ast);
@@ -50,6 +51,14 @@ export function appCss(ctx: Context) {
         to: file.stylesheet,
       })
     : "";
+
+  const lib: PathFactory = isKit
+    ? KIT_PATH_FACTORY
+    : (path) =>
+        file.getRelative({
+          from: layoutSvelte,
+          to: `${directory.lib}/${path}`,
+        });
 
   sv.file(
     layoutSvelte,

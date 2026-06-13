@@ -17,10 +17,12 @@ import {
   codegenValidators,
   createForm,
   createValidator,
+  KIT_PATH_FACTORY,
   type CodegenSvelteKitIntegration,
   type CodegenThemeOrSubTheme,
   type FieldsValidationMode,
   type FormDefinition,
+  type PathFactory,
   type Schema,
   type UiSchemaRoot,
   type ValidatorDefinition,
@@ -162,7 +164,6 @@ export type Context = Omit<Workspace, "options"> & {
   isTs: boolean;
   ts: (content: string, alt?: string) => string;
   js: (content: string, alt?: string) => string;
-  lib: (path: string) => string;
   validator: ValidatorDefinition;
   form: FormDefinition;
 };
@@ -172,14 +173,20 @@ export interface AddonSetupOptions {
 }
 
 export function createContext(ws: Workspace): Context {
-  const { language, directory, isKit } = ws;
+  const { language, file, directory, isKit } = ws;
   const isTs = language === "ts";
   const [ts, js] = createPrinter(isTs, !isTs);
-  const lib = (path: string) => `${isKit ? "$lib" : directory.lib}/${path}`;
   const options: ContextOptions = {
     ...ws.options,
     validator: JSON.parse(ws.options.validator),
   };
+  const lib: PathFactory = isKit
+    ? KIT_PATH_FACTORY
+    : (path) =>
+        file.getRelative({
+          from: `${directory.kitRoutes}/sjsf.svelte`,
+          to: `${directory.lib}/${path}`,
+        });
   const validator = createValidator({
     ...options,
     isTs,
@@ -200,7 +207,7 @@ export function createContext(ws: Workspace): Context {
     isTs,
     ts: ts!,
     js: js!,
-    lib,
+    // lib,
     validator,
     form,
   };
