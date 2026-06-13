@@ -42,11 +42,11 @@ exports[`sandbox-factory > basic > basic 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -192,11 +192,11 @@ exports[`sandbox-factory > form > disabled 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -342,11 +342,11 @@ exports[`sandbox-factory > form > omitExtraData 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -498,11 +498,11 @@ exports[`sandbox-factory > merger > non-default 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
@@ -661,11 +661,11 @@ exports[`sandbox-factory > themes > basic 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -812,11 +812,11 @@ exports[`sandbox-factory > themes > beercss 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -965,11 +965,11 @@ exports[`sandbox-factory > themes > daisyui5 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -1127,11 +1127,11 @@ exports[`sandbox-factory > themes > flowbite3 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -1310,11 +1310,11 @@ exports[`sandbox-factory > themes > pico 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -1467,11 +1467,11 @@ exports[`sandbox-factory > themes > shadcn-extras 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -1839,11 +1839,11 @@ exports[`sandbox-factory > themes > shadcn4 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -2192,11 +2192,11 @@ exports[`sandbox-factory > themes > skeleton4 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -2358,11 +2358,11 @@ exports[`sandbox-factory > themes > svar 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -2518,15 +2518,15 @@ export { default as transparentLayout } from "./transparent-layout.svelte";
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"ui:components": {
 		"stringField": "enumField",
 		"arrayField": "multiEnumField",
@@ -2538,7 +2538,7 @@ export const uiSchema = ({
 	"properties": {
 		"name": { "ui:components": { "textWidget": "textareaWidget" } }
 	}
-} as const) satisfies UiSchemaRoot;;",
+} as const satisfies UiSchemaRoot;;",
   "src/lib/sjsf/defaults.ts": "import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -2584,7 +2584,7 @@ export const theme = extendByRecord(base, { markdownDescription, transparentLayo
 
 export const onSubmitError = createFocusOnFirstError();
 
-declare "@sjsf/form" {
+declare module "@sjsf/form" {
 	interface ComponentProps { markdownDescription: description; transparentLayout: layout }
 	interface ComponentBindings { markdownDescription: ""; transparentLayout: "" }
 	interface UiOptionsRegistry { stringEnumValueMapper: EnumValueMapperBuilder }
@@ -2706,15 +2706,15 @@ exports[`sandbox-factory > ui-schema > refs 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"ui:definitions": {
 		"customField": {
 			"ui:components": { "stringField": "enumField" },
@@ -2725,7 +2725,7 @@ export const uiSchema = ({
 	"name": { "$ref": "customField" },
 	"email": { "$ref": "customField" },
 	"address": { "$ref": "customLayout" }
-} as const) satisfies UiSchemaRoot;;",
+} as const satisfies UiSchemaRoot;;",
   "src/lib/sjsf/defaults.ts": "import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -2771,7 +2771,7 @@ export const theme = extendByRecord(base, { transparentLayout });
 
 export const onSubmitError = createFocusOnFirstError();
 
-declare "@sjsf/form" {
+declare module "@sjsf/form" {
 	interface ComponentProps { transparentLayout: layout }
 	interface ComponentBindings { transparentLayout: "" }
 	interface UiOptionsRegistry { stringEnumValueMapper: EnumValueMapperBuilder }
@@ -2890,11 +2890,11 @@ exports[`sandbox-factory > validators > ajv8 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -3040,11 +3040,11 @@ exports[`sandbox-factory > validators > ajv8_2020 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -3189,11 +3189,11 @@ exports[`sandbox-factory > validators > ata 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -3329,11 +3329,11 @@ exports[`sandbox-factory > validators > ata_2020 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { Validator } from 'ata-validator';
@@ -3481,11 +3481,11 @@ exports[`sandbox-factory > validators > cfworker 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -3621,11 +3621,11 @@ exports[`sandbox-factory > validators > cfworker_2020 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { Validator, type Schema } from "@cfworker/json-schema";
@@ -3768,11 +3768,11 @@ exports[`sandbox-factory > validators > schemasafe 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -3908,11 +3908,11 @@ exports[`sandbox-factory > validators > schemasafe_2020 1`] = `
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";

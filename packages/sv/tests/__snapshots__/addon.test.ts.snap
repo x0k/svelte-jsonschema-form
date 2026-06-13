@@ -72,7 +72,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -80,13 +80,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -430,7 +430,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -438,13 +438,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -622,7 +622,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -630,13 +630,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -977,7 +977,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -985,13 +985,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -1166,7 +1166,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -1174,13 +1174,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -1521,7 +1521,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -1529,13 +1529,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -1710,7 +1710,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -1718,13 +1718,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -2065,7 +2065,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -2073,13 +2073,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -2255,7 +2255,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -2263,13 +2263,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -2360,18 +2360,16 @@ import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
-	return {
-		postForm: ({ ...post }) satisfies InitialFormData<post.Model>
-	};
+	return { postForm: { ...post } satisfies InitialFormData<post.Model> };
 };
 
-export const actions = ({
+export const actions = {
 	default: createAction({ ...defaults, ...post, name: "postForm", sendData: true }, (data: post.Model) => {
 		console.log(data);
 
 		return { post: { ...data, id: "new-post" } };
 	})
-}) satisfies Actions;
+} satisfies Actions;
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
@@ -2700,12 +2698,10 @@ import * as post from "$lib/post/model.generated";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
-	return {
-		postForm: ({ ...post }) satisfies InitialFormData<post.Model>
-	};
+	return { postForm: { ...post } satisfies InitialFormData<post.Model> };
 };
 
-export const actions = ({
+export const actions = {
 	default: createAction(
 		{
 			...defaults,
@@ -2720,7 +2716,7 @@ export const actions = ({
 			return { post: { ...data, id: "new-post" } };
 		}
 	)
-}) satisfies Actions;
+} satisfies Actions;
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
@@ -3057,12 +3053,10 @@ import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us"
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
-	return {
-		postForm: ({ ...post }) satisfies InitialFormData<post.Model>
-	};
+	return { postForm: { ...post } satisfies InitialFormData<post.Model> };
 };
 
-export const actions = ({
+export const actions = {
 	default: createAction(
 		{
 			...defaults,
@@ -3088,7 +3082,7 @@ export const actions = ({
 			return { post: { ...data, id: "new-post" } };
 		}
 	)
-}) satisfies Actions;
+} satisfies Actions;
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
@@ -3232,9 +3226,9 @@ export const schema = z.object({
 
 export type Model = z.infer<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -3317,12 +3311,10 @@ import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
-	return {
-		postForm: ({ ...post }) satisfies InitialFormData<post.Model>
-	};
+	return { postForm: { ...post } satisfies InitialFormData<post.Model> };
 };
 
-export const actions = ({
+export const actions = {
 	default: createAction(
 		{
 			...defaults,
@@ -3336,7 +3328,7 @@ export const actions = ({
 			return { post: { ...data, id: "new-post" } };
 		}
 	)
-}) satisfies Actions;
+} satisfies Actions;
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
@@ -3461,7 +3453,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -3469,13 +3461,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -3588,7 +3580,7 @@ import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({ ...post }) satisfies InitialFormData<post.Model>;
+	return { ...post } satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(createServerValidator<post.Model>({ ...defaults, ...post }), ({ data }) => {
@@ -3942,7 +3934,7 @@ import * as post from "$lib/post/model.generated";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({ ...post }) satisfies InitialFormData<post.Model>;
+	return { ...post } satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(
@@ -4319,7 +4311,7 @@ import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us"
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({ ...post }) satisfies InitialFormData<post.Model>;
+	return { ...post } satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(
@@ -4458,9 +4450,9 @@ export const schema = z.object({
 
 export type Model = z.infer<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -4571,7 +4563,7 @@ import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return ({ ...post }) satisfies InitialFormData<post.Model>;
+	return { ...post } satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(createServerValidator({ ...defaults, ...adapt(post.schema) }), ({ data }) => {
@@ -4685,7 +4677,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -4693,13 +4685,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -5034,7 +5026,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -5042,13 +5034,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -5221,7 +5213,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -5229,13 +5221,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -5568,7 +5560,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -5576,13 +5568,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -5761,7 +5753,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -5769,13 +5761,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -6126,7 +6118,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -6134,13 +6126,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -6325,7 +6317,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -6333,13 +6325,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -6715,7 +6707,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -6723,13 +6715,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -6908,7 +6900,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -6916,13 +6908,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -7260,7 +7252,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -7268,13 +7260,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -7459,7 +7451,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -7467,13 +7459,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -8041,7 +8033,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -8049,13 +8041,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -8336,7 +8328,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -8344,13 +8336,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -8900,7 +8892,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -8908,13 +8900,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -9173,7 +9165,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -9181,13 +9173,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -9547,7 +9539,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -9555,13 +9547,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -9744,7 +9736,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -9752,13 +9744,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -10098,7 +10090,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -10106,13 +10098,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -11038,7 +11030,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -11046,13 +11038,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -11378,7 +11370,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -11386,13 +11378,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -12247,7 +12239,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -12255,13 +12247,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -12587,7 +12579,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -12595,13 +12587,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -13541,7 +13533,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -13549,13 +13541,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -13878,7 +13870,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -13886,13 +13878,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -14055,7 +14047,7 @@ export {};
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -14063,13 +14055,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -14395,7 +14387,7 @@ button:focus-visible {
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = ({
+export const schema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -14403,13 +14395,13 @@ export const schema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;;
+} as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -15279,7 +15271,7 @@ import type { StandardSchemaV1, StandardJSONSchemaV1 } from "@standard-schema/sp
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-const internalSchema = ({
+const internalSchema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -15287,7 +15279,7 @@ const internalSchema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;
+} as const satisfies Schema;
 
 type InternalModel = FromSchema<typeof internalSchema>;
 
@@ -15313,9 +15305,9 @@ export const schema: StandardSchemaV1<InternalModel> & StandardJSONSchemaV1 = {
 
 export type Model = StandardSchemaV1.InferInput<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -15647,7 +15639,7 @@ import type { StandardSchemaV1, StandardJSONSchemaV1 } from "@standard-schema/sp
 import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-const internalSchema = ({
+const internalSchema = {
 	"title": "Post",
 	"type": "object",
 	"properties": {
@@ -15655,7 +15647,7 @@ const internalSchema = ({
 		"content": { "title": "Content", "type": "string", "minLength": 10 }
 	},
 	"required": ["title", "content"]
-} as const) satisfies Schema;
+} as const satisfies Schema;
 
 type InternalModel = FromSchema<typeof internalSchema>;
 
@@ -15681,9 +15673,9 @@ export const schema: StandardSchemaV1<InternalModel> & StandardJSONSchemaV1 = {
 
 export type Model = StandardSchemaV1.InferInput<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -15860,9 +15852,9 @@ export const schema = v.pipe(
 
 export type Model = v.InferInput<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -16202,9 +16194,9 @@ export const schema = v.pipe(
 
 export type Model = v.InferInput<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -16377,9 +16369,9 @@ export const schema = z.object({
 
 export type Model = z.infer<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;
@@ -16715,9 +16707,9 @@ export const schema = z.object({
 
 export type Model = z.infer<typeof schema>;
 
-export const uiSchema = ({
+export const uiSchema = {
 	"content": { "ui:components": { "textWidget": "textareaWidget" } }
-} as const) satisfies UiSchemaRoot;;
+} as const satisfies UiSchemaRoot;;
 
 export const initialValue = ({ "title": "New post", "content": "" });;
 export const fieldsValidationMode = ON_INPUT | ON_CHANGE;;

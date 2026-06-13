@@ -1,7 +1,7 @@
 import { KIT_PATH_FACTORY, createSvelteKitIntegration } from "meta/codegen";
 
 import { POST_MODEL_NAME, type Context } from "./model.js";
-import { transforms } from "./sv-utils.js";
+import { svelteConfig, transforms } from "./sv-utils.js";
 
 export function sveltekitTs({
   file,
@@ -13,6 +13,7 @@ export function sveltekitTs({
   ts,
   isTs,
   validator,
+  cwd,
 }: Context) {
   if (!isKit || sveltekit === "no" || !demo) {
     return;
@@ -32,25 +33,17 @@ export function sveltekitTs({
   );
 
   if (sveltekit === "remoteFunctions") {
-    sv.file(
-      file.svelteConfig,
-      transforms.script(({ ast, js }) => {
-        const { value: svelteConfig } = js.exports.createDefault(ast, {
-          fallback: js.object.create({}),
-        });
-        js.object.overrideProperties(svelteConfig, {
-          compilerOptions: {
-            experimental: {
-              async: true,
-            },
+    svelteConfig.edit({ sv, cwd }, ({ override }) => {
+      override({
+        compilerOptions: {
+          experimental: {
+            async: true,
           },
-          kit: {
-            experimental: {
-              remoteFunctions: true,
-            },
-          },
-        });
-      }),
-    );
+        },
+        experimental: {
+          remoteFunctions: true,
+        },
+      });
+    });
   }
 }

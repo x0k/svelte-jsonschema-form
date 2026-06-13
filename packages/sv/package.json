@@ -24,14 +24,14 @@
 		"access": "public"
 	},
 	"peerDependencies": {
-		"sv": "^0.15.0"
+		"sv": "^0.16.0"
 	},
 	"devDependencies": {
 		"@sveltejs/sv-utils": "catalog:",
-		"@types/node": "^25.6.2",
+		"@types/node": "^25.9.3",
 		"meta": "workspace:*",
-		"sv": "^0.15.3",
-		"tsdown": "^0.21.10",
+		"sv": "^0.16.1",
+		"tsdown": "^0.22.2",
 		"vitest": "catalog:"
 	},
 	"keywords": [
