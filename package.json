@@ -62,7 +62,8 @@
       "vite": "catalog:"
     },
     "patchedDependencies": {
-      "json-schema-to-valibot": "patches/json-schema-to-valibot.patch"
+      "json-schema-to-valibot": "patches/json-schema-to-valibot.patch",
+      "satteri@0.8.1": "patches/satteri@0.8.1.patch"
     }
   }
 }

@@ -4,33 +4,22 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import svelte from "@astrojs/svelte";
 import starlightLinksValidator from "starlight-links-validator";
-import { visit } from "unist-util-visit";
+import { defineMdastPlugin } from "satteri";
+import { satteri } from "@astrojs/markdown-satteri";
 import starlightLlmsTxt from "starlight-llms-txt";
+
 import { discoverChangelogSlugs } from "./src/loaders/changelog-discovery";
 
 const base = "/svelte-jsonschema-form/";
 
-/**
- *
- * @param {string} base
- * @returns
- */
-function remarkBasePath(base) {
-  /**
-   * @param {any} tree
-   */
-  return (tree) => {
-    visit(tree, "link", (node) => {
-      // Only modify internal links (starting with /)
-      if (node.url && node.url.startsWith("/") && !node.url.startsWith(base)) {
-        node.url = base + node.url.slice(1);
-      }
-    });
-  };
-}
-
-const injectedCss = ["@jis3r/icons", "basic", "svar", "beercss", "examples/"];
-const nonRunic = ["svelte-json-tree", "flowbite-svelte@0.47"];
+const basePathPlugin = defineMdastPlugin({
+  name: "base-path",
+  link(node, ctx) {
+    if (node.url.startsWith("/") && !node.url.startsWith(base)) {
+      ctx.setProperty(node, "url", base + node.url.slice(1));
+    }
+  },
+});
 
 const projectRoot = fileURLToPath(new URL("../..", import.meta.url));
 const changelogItems = discoverChangelogSlugs(projectRoot);
@@ -131,22 +120,12 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [[remarkBasePath, base]],
+    processor: satteri({
+      features: { directive: true, gfm: true },
+      mdastPlugins: [basePathPlugin],
+    }),
   },
   vite: {
-    // https://github.com/withastro/astro/issues/16636#issue-4397624688
-    // NOTE: astro@@7.0.0-alpha.0 also has an issue with missing CSS
-    // plugins: [
-    //   {
-    //     name: "fix-rolldown-esbuild-compat",
-    //     enforce: "pre",
-    //     configResolved(config) {
-    //       if (config.optimizeDeps?.esbuildOptions?.plugins) {
-    //         config.optimizeDeps.esbuildOptions.plugins = [];
-    //       }
-    //     },
-    //   },
-    // ],
     optimizeDeps: {
       exclude: ["@jis3r/icons"],
       include: ["bits-ui"],

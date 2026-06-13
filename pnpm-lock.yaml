@@ -275,6 +275,9 @@ patchedDependencies:
   json-schema-to-valibot:
     hash: 491d55ccb96902fce367363309df8eb1cafd3aaab1acbc8e8fea30a6423b8cf3
     path: patches/json-schema-to-valibot.patch
+  satteri@0.8.1:
+    hash: 56fd6ee9675ebd6f45386875d67520335ff3d65af3ccd66f12a4ffe050f62f91
+    path: patches/satteri@0.8.1.patch
 
 importers:
 
@@ -780,6 +783,9 @@ importers:
       json-schema-to-ts:
         specifier: 'catalog:'
         version: 3.1.1
+      satteri:
+        specifier: ^0.8.0
+        version: 0.8.1(patch_hash=56fd6ee9675ebd6f45386875d67520335ff3d65af3ccd66f12a4ffe050f62f91)
       sharp:
         specifier: ^0.35.0
         version: 0.35.0
@@ -795,9 +801,6 @@ importers:
       svelte:
         specifier: 'catalog:'
         version: 5.56.3(@typescript-eslint/types@8.61.0)
-      unist-util-visit:
-        specifier: ^5.1.0
-        version: 5.1.0
 
   apps/playground2:
     dependencies:
@@ -8554,7 +8557,7 @@ snapshots:
       '@astrojs/internal-helpers': 0.10.0
       '@astrojs/prism': 4.0.2
       github-slugger: 2.0.0
-      satteri: 0.8.1
+      satteri: 0.8.1(patch_hash=56fd6ee9675ebd6f45386875d67520335ff3d65af3ccd66f12a4ffe050f62f91)
 
   '@astrojs/mdx@5.0.4(astro@7.0.0-beta.3(@emnapi/core@1.10.0)(@emnapi/runtime@1.11.0)(@types/node@25.9.2)(jiti@2.6.1)(rollup@4.57.1)(yaml@2.8.3))':
     dependencies:
@@ -14340,7 +14343,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  satteri@0.8.1:
+  satteri@0.8.1(patch_hash=56fd6ee9675ebd6f45386875d67520335ff3d65af3ccd66f12a4ffe050f62f91):
     dependencies:
       '@types/estree-jsx': 1.0.5
       '@types/hast': 3.0.4
