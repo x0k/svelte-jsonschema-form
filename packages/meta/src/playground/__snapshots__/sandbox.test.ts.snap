@@ -509,6 +509,7 @@ export type Model = FromSchema<typeof schema>;",
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import type { FormMergerOptions } from "@sjsf/form/mergers/modern";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
@@ -527,14 +528,14 @@ export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { translation } from "@sjsf/form/translations/en";
 
-export function merger(options) {
+export function merger(options: FormMergerOptions) {
 	return createFormMerger({
 		...options,
-		allOf: "populateDefaults",
-		arrayMinItems: { populate: "all", mergeExtraDefaults: false },
-		constAsDefaults: "always",
-		emptyObjectFields: "skipDefaults",
-		mergeDefaultsIntoFormData: "useFormDataIfPresent"
+		"allOf": "populateDefaults",
+		"arrayMinItems": { "populate": "all", "mergeExtraDefaults": false },
+		"constAsDefaults": "always",
+		"emptyObjectFields": "skipDefaults",
+		"mergeDefaultsIntoFormData": "useFormDataIfPresent"
 	});
 }
 
@@ -567,23 +568,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import { createFormMerger } from '@sjsf/form/mergers/modern';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
 
-	const form = createForm<model.Model>({
-		...defaults,
-		...model,
-		merger: (options) => createFormMerger({
-			...options,
-			allOf: "populateDefaults",
-			arrayMinItems: { populate: "all", mergeExtraDefaults: false },
-			constAsDefaults: "always",
-			emptyObjectFields: "skipDefaults",
-			mergeDefaultsIntoFormData: "useFormDataIfPresent"
-		}),
-		onSubmit: console.log
-	});
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
 </script>
 
 <BasicForm form={form} novalidate />",

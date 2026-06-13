@@ -90,6 +90,7 @@ export interface DefaultsOptions<T extends CodegenThemeOrSubTheme> {
   fields: Iterable<ExtraFieldFileName>;
   isTs: boolean;
   ts: ConditionalPrinter;
+  js: ConditionalPrinter;
   merger: DeepPartial<MergerOptions>;
   focusOnFirstError: boolean;
   themeExtension: ThemeExtension;
@@ -119,21 +120,22 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
   fields,
   isTs,
   ts,
+  js,
   merger,
   focusOnFirstError,
   themeExtension,
   moduleAugmentation,
   uiOptionsRegistry,
 }: DefaultsOptions<T>) {
-  return transforms.script(({ ast, comments, js }) => {
+  return transforms.script(({ ast, comments, js: jsApi }) => {
     if (resolver === "inline") {
       if (!getTopLevelFunction(ast, "resolver")) {
-        js.imports.addNamed(ast, {
+        jsApi.imports.addNamed(ast, {
           imports: ["getSimpleSchemaType", "isFixedItems"],
           from: formCoreSubpath,
         });
         if (isTs) {
-          js.imports.addNamed(ast, {
+          jsApi.imports.addNamed(ast, {
             imports: ["FormState", "ResolveFieldType"],
             from: formPackage.name,
             isType: true,
@@ -166,7 +168,7 @@ export function resolver(_ctx) {`,
     return \`\${type}Field\`;
   };
 }`;
-        js.common.appendFromString(ast, {
+        jsApi.common.appendFromString(ast, {
           code: resolverCode,
           comments,
         });
@@ -179,7 +181,7 @@ export function resolver(_ctx) {`,
       const activeFields = new Set<ExtraFieldFileName>(fields);
       for (const f of extraFields({ wrappedFields: false })) {
         if (activeFields.has(f)) {
-          js.imports.addEmpty(ast, {
+          jsApi.imports.addEmpty(ast, {
             from: extraFieldSubPath(f, true),
           });
         } else {
@@ -200,44 +202,28 @@ export function resolver(_ctx) {`,
       source: formTranslationSubPath("en"),
     });
     if (!isRecordEmpty(merger)) {
-      js.imports.addNamed(ast, {
+      jsApi.imports.addNamed(ast, {
         imports: ["createFormMerger"],
         from: formMergerSubPath("modern"),
       });
-
-      const fields: string[] = [];
-      if (merger.allOf !== undefined) {
-        fields.push(`allOf: "${merger.allOf}"`);
-      }
-      if (merger.arrayMinItems !== undefined) {
-        const am: string[] = [];
-        if (merger.arrayMinItems.populate !== undefined) {
-          am.push(`populate: "${merger.arrayMinItems.populate}"`);
-        }
-        if (merger.arrayMinItems.mergeExtraDefaults !== undefined) {
-          am.push(
-            `mergeExtraDefaults: ${merger.arrayMinItems.mergeExtraDefaults}`,
-          );
-        }
-        fields.push(`arrayMinItems: { ${am.join(", ")} }`);
-      }
-      if (merger.constAsDefaults !== undefined) {
-        fields.push(`constAsDefaults: "${merger.constAsDefaults}"`);
-      }
-      if (merger.emptyObjectFields !== undefined) {
-        fields.push(`emptyObjectFields: "${merger.emptyObjectFields}"`);
-      }
-      if (merger.mergeDefaultsIntoFormData !== undefined) {
-        fields.push(
-          `mergeDefaultsIntoFormData: "${merger.mergeDefaultsIntoFormData}"`,
-        );
+      if (isTs) {
+        jsApi.imports.addNamed(ast, {
+          imports: ["FormMergerOptions"],
+          from: formMergerSubPath("modern"),
+          isType: true,
+        });
       }
 
-      js.common.appendFromString(ast, {
-        code: `export function merger(options) {
+      const fields = JSON.stringify(merger).slice(1, -1);
+
+      jsApi.common.appendFromString(ast, {
+        code: `${js(`/**
+ * @param {import("${formMergerSubPath("modern")}").FormMergerOptions} options
+ * @returns {import("${formPackage.name}").FormMerger}
+ */\n`)}export function merger(options${ts(": FormMergerOptions")}) {
   return createFormMerger({
     ...options,
-    ${fields.join(",\n    ")},
+    ${fields},
   });
 }`,
         comments,
@@ -260,31 +246,31 @@ export function resolver(_ctx) {`,
     const activeWidgets = new Set<ExtraWidgetFileNames[ToTheme<T>]>(widgets);
     let themeNode: AstTypes.ExportNamedDeclaration;
     if (themeExtension.length > 0) {
-      js.imports.addNamed(ast, {
+      jsApi.imports.addNamed(ast, {
         imports: ["extendByRecord"],
         from: "@sjsf/form/lib/resolver",
       });
-      js.imports.addNamed(ast, {
+      jsApi.imports.addNamed(ast, {
         from: themePackageName,
         imports: { theme: "base" },
       });
       for (const c of themeExtension) {
-        js.imports.addNamed(ast, c);
+        jsApi.imports.addNamed(ast, c);
       }
       const names = themeExtension
         .flatMap((c) =>
           Array.isArray(c.imports) ? c.imports : Object.values(c.imports),
         )
         .join(", ");
-      const themeExpression = js.common.parseExpression(
+      const themeExpression = jsApi.common.parseExpression(
         `extendByRecord(base, { ${names} })`,
       );
-      const themeDeclaration = js.variables.declaration(ast, {
+      const themeDeclaration = jsApi.variables.declaration(ast, {
         kind: "const",
         name: "theme",
         value: themeExpression,
       });
-      themeNode = js.exports.createNamed(ast, {
+      themeNode = jsApi.exports.createNamed(ast, {
         name: "theme",
         fallback: themeDeclaration,
       });
@@ -298,7 +284,7 @@ export function resolver(_ctx) {`,
       const originTheme = themeExtensionOrigin(theme) as ToTheme<T>;
       for (const w of themeExtraWidgets(originTheme)) {
         if (activeWidgets.has(w)) {
-          js.imports.addEmpty(ast, {
+          jsApi.imports.addEmpty(ast, {
             from: themeExtraWidgetSubPath(originTheme, w, true),
           });
         } else {
@@ -311,7 +297,7 @@ export function resolver(_ctx) {`,
     }
     for (const w of themeExtraWidgets(theme)) {
       if (activeWidgets.has(w)) {
-        js.imports.addEmpty(ast, {
+        jsApi.imports.addEmpty(ast, {
           from: themeExtraWidgetSubPath(theme, w, true),
         });
       } else {
@@ -330,26 +316,26 @@ export function resolver(_ctx) {`,
     }
 
     if (validator.name === "hyperjump") {
-      js.imports.addEmpty(ast, {
+      jsApi.imports.addEmpty(ast, {
         from: "@hyperjump/json-schema/formats-lite",
       });
-      js.imports.addEmpty(ast, { from: "@hyperjump/json-schema/draft-07" });
+      jsApi.imports.addEmpty(ast, { from: "@hyperjump/json-schema/draft-07" });
     }
 
     if (focusOnFirstError) {
-      js.imports.addNamed(ast, {
+      jsApi.imports.addNamed(ast, {
         imports: ["createFocusOnFirstError"],
         from: "@sjsf/form/focus-on-first-error",
       });
-      const onSubmitErrorExpression = js.common.parseExpression(
+      const onSubmitErrorExpression = jsApi.common.parseExpression(
         "createFocusOnFirstError()",
       );
-      const onSubmitErrorDeclaration = js.variables.declaration(ast, {
+      const onSubmitErrorDeclaration = jsApi.variables.declaration(ast, {
         kind: "const",
         name: "onSubmitError",
         value: onSubmitErrorExpression,
       });
-      js.exports.createNamed(ast, {
+      jsApi.exports.createNamed(ast, {
         name: "onSubmitError",
         fallback: onSubmitErrorDeclaration,
       });
@@ -380,19 +366,19 @@ export function resolver(_ctx) {`,
         interfaceBlocks.push(`interface UiOptionsRegistry {\n${props}\n}`);
       }
       if (isTs) {
-        js.imports.addNamed(ast, {
+        jsApi.imports.addNamed(ast, {
           from: formPackage.name,
           imports: typeNames,
           isType: true,
         });
-        js.common.appendFromString(ast, {
+        jsApi.common.appendFromString(ast, {
           code: `declare module "${formPackage.name}" {
   ${interfaceBlocks.join("\n  ")}
 }`,
           comments,
         });
       } else {
-        js.common.appendFromString(ast, {
+        jsApi.common.appendFromString(ast, {
           code: `/**
  * @typedef {import("${formPackage.name}").${typeNames.join(
    " & ",
@@ -416,35 +402,35 @@ export function resolver(_ctx) {`,
       for (const i of imports) {
         if (i.isDefault) {
           if (i.as === undefined) continue;
-          js.imports.addDefault(ast, { from: i.from, as: i.as });
+          jsApi.imports.addDefault(ast, { from: i.from, as: i.as });
         } else {
-          js.imports.addNamed(ast, {
+          jsApi.imports.addNamed(ast, {
             from: i.from,
             imports: i.imports ?? [],
             isType: i.isType,
           });
         }
       }
-      js.common.appendFromString(ast, { code, comments });
+      jsApi.common.appendFromString(ast, { code, comments });
     } else if (validator.name === "ajv8") {
       if (isTs) {
-        js.imports.addNamed(ast, {
+        jsApi.imports.addNamed(ast, {
           from: formPackage.name,
           imports: ["ValidatorFactoryOptions"],
           isType: true,
         });
       }
 
-      js.imports.addNamed(ast, {
+      jsApi.imports.addNamed(ast, {
         from: externalValidatorPackage(validator.name).name,
         imports: ["addFormComponents", "createFormValidator"],
       });
-      js.imports.addDefault(ast, {
+      jsApi.imports.addDefault(ast, {
         from: "ajv-formats",
         as: "addFormats",
       });
 
-      js.common.appendFromString(ast, {
+      jsApi.common.appendFromString(ast, {
         code: isTs
           ? // NOTE: Svelte ignores the generic type in an arrow function
             `export function validator<T>(options: ValidatorFactoryOptions) {
@@ -490,12 +476,12 @@ export const validator = (options) => createFormValidator({
         }
       }
       for (const importedClass of importedClasses) {
-        js.imports.addNamed(ast, {
+        jsApi.imports.addNamed(ast, {
           from: `${formPackage.name}/options.svelte`,
           imports: [importedClass],
         });
       }
-      js.common.appendFromString(ast, {
+      jsApi.common.appendFromString(ast, {
         code: `export const uiOptionsRegistry = {\n  ${entries.join(",\n  ")},\n};`,
         comments,
       });

@@ -1,4 +1,5 @@
 import { neverError } from "../errors.ts";
+import { extraPackage } from "../package.ts";
 import {
   externalValidatorPackage,
   hyperjumpValidatorLocalizationSubPath,
@@ -253,7 +254,11 @@ export function createDraft2020ValidatorExport(
             from: externalValidatorPackage("ajv8").name,
           },
           { imports: ["Ajv2020"], from: "ajv/dist/2020.js" },
-          { from: "ajv-formats", as: "addFormats", isDefault: true },
+          {
+            from: extraPackage("ajvFormat").name,
+            as: "addFormats",
+            isDefault: true,
+          },
         ],
         code: buildValidatorFactoryCode(
           ts,
@@ -333,7 +338,7 @@ export function createDraft2020ValidatorExport(
           { imports: ["ast"], from: "@sjsf/form/../ast.generated" },
           {
             imports: ["createValidatorRetriever"],
-            from: "@sjsf/form/validators/precompile",
+            from: internalValidatorSubPath("precompile"),
           },
           {
             imports: ["createFormValidatorFactory"],

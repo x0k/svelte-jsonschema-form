@@ -181,6 +181,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
   const nodeModulesPath = "../../node_modules";
   const isTs = language === "ts";
   const ts = createPrinter(isTs);
+  const js = createPrinter(!isTs);
   const lib: PathFactory = (path) => `$lib/${path}`;
 
   const dependencies: AbstractPackage[] = [
@@ -218,7 +219,6 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     isTs,
     modelName,
     sveltekit,
-    merger,
     omitExtraData,
   });
 
@@ -245,6 +245,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       fields,
       isTs,
       ts,
+      js,
       merger,
       focusOnFirstError,
       themeExtension,

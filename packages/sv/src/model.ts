@@ -190,7 +190,6 @@ export function createContext(ws: Workspace): Context {
     ...options,
     disabled: false,
     omitExtraData: false,
-    merger: {},
     isTs,
     modelName: POST_MODEL_NAME,
     validator,

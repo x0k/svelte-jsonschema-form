@@ -1,14 +1,9 @@
-import type { DeepPartial } from "@sjsf/form/lib/types";
-import { isRecordEmpty } from "@sjsf/form/lib/object";
-
 import { neverError } from "../errors.ts";
 import { svelteKitRfSubPath, svelteKitSubPath } from "../sveltekit.ts";
 
 import type { NamedImportOptions, NamespaceImportOptions } from "./lib.ts";
 import type { CodegenSvelteKitIntegration } from "./model.ts";
 import { validatorProp, type ValidatorDefinition } from "./validator.ts";
-import type { MergerOptions } from "./defaults.ts";
-import { formMergerSubPath } from "../form.ts";
 import { internalValidatorSubPath } from "../validators.ts";
 
 export interface FormOptions {
@@ -17,7 +12,6 @@ export interface FormOptions {
   sveltekit: CodegenSvelteKitIntegration;
   disabled: boolean;
   validator: ValidatorDefinition;
-  merger: DeepPartial<MergerOptions>;
   omitExtraData: boolean;
 }
 
@@ -28,44 +22,12 @@ export interface FormDefinition {
   attributes: string;
 }
 
-function buildMergerConfigFields(config: DeepPartial<MergerOptions>): string {
-  const fields: string[] = [];
-  if (config.allOf !== undefined) {
-    fields.push(`allOf: "${config.allOf}"`);
-  }
-  if (config.arrayMinItems !== undefined) {
-    const arrayMinItems: string[] = [];
-    if (config.arrayMinItems.populate !== undefined) {
-      arrayMinItems.push(`populate: "${config.arrayMinItems.populate}"`);
-    }
-    if (config.arrayMinItems.mergeExtraDefaults !== undefined) {
-      arrayMinItems.push(
-        `mergeExtraDefaults: ${config.arrayMinItems.mergeExtraDefaults}`,
-      );
-    }
-    fields.push(`arrayMinItems: { ${arrayMinItems.join(", ")} }`);
-  }
-  if (config.constAsDefaults !== undefined) {
-    fields.push(`constAsDefaults: "${config.constAsDefaults}"`);
-  }
-  if (config.emptyObjectFields !== undefined) {
-    fields.push(`emptyObjectFields: "${config.emptyObjectFields}"`);
-  }
-  if (config.mergeDefaultsIntoFormData !== undefined) {
-    fields.push(
-      `mergeDefaultsIntoFormData: "${config.mergeDefaultsIntoFormData}"`,
-    );
-  }
-  return fields.join(",\n    ");
-}
-
 export function createForm({
   sveltekit,
   isTs,
   disabled,
   modelName,
   validator,
-  merger,
   omitExtraData,
 }: FormOptions): FormDefinition {
   const validatorProps = validatorProp(validator);
@@ -74,17 +36,6 @@ export function createForm({
 
   const additionalImports: (NamedImportOptions | NamespaceImportOptions)[] = [];
   const pageOverrideLines: string[] = [];
-
-  if (!isRecordEmpty(merger)) {
-    additionalImports.push({
-      imports: ["createFormMerger"],
-      from: formMergerSubPath("modern"),
-    });
-    const fields = buildMergerConfigFields(merger);
-    pageOverrideLines.push(
-      `merger: (options) => createFormMerger({\n    ...options,\n    ${fields}\n  }),`,
-    );
-  }
 
   if (omitExtraData) {
     additionalImports.push({

@@ -9,6 +9,7 @@ export function defaultsTs({
   language,
   directory,
   ts,
+  js,
 }: Context) {
   sv.file(
     `${directory.lib}/sjsf/defaults.${language}`,
@@ -16,6 +17,7 @@ export function defaultsTs({
       ...options,
       isTs,
       ts,
+      js,
       resolver: "inline",
       widgets: POST_EXTRA_WIDGETS,
       focusOnFirstError: true,
