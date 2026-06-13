@@ -6,9 +6,9 @@
   TItem extends { meta: { tags: readonly TTag[] } }
 "
 >
+  import type { Snippet } from "svelte";
   import { SvelteSet } from "svelte/reactivity";
   import { filterByTags } from "meta";
-  import type { Snippet } from "svelte";
 
   import Button from "@/components/button.svelte";
 
@@ -100,7 +100,7 @@
     >{/if}
 </p>
 
-{#each categoriesWithItems as { category, items }}
+{#each categoriesWithItems as { category, items } (category)}
   <details open>
     <summary>{category}</summary>
     {@render children({ category, items })}
