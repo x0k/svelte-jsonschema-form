@@ -36,17 +36,15 @@ function resolveImport(fromDir: string, importPath: string): string | null {
   return null;
 }
 
-function readFilesRecursive(dir: string): string[] {
-  const files: string[] = [];
+function* readFilesRecursive(dir: string): Generator<string> {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      files.push(...readFilesRecursive(fullPath));
+      yield* readFilesRecursive(fullPath);
     } else {
-      files.push(fullPath);
+      yield fullPath;
     }
   }
-  return files;
 }
 
 async function main() {
@@ -77,9 +75,8 @@ async function main() {
       continue;
     }
 
-    const allFiles = readFilesRecursive(demoDir).sort();
+    const allFiles = new Set(readFilesRecursive(demoDir));
 
-    const externalFiles = new Set<string>();
     for (const filePath of allFiles) {
       const content = fs.readFileSync(filePath, "utf-8");
       for (const importPath of parseRelativeImports(content)) {
@@ -89,12 +86,10 @@ async function main() {
           !resolved.startsWith(demoDir + path.sep) &&
           resolved !== demoDir
         ) {
-          externalFiles.add(resolved);
+          allFiles.add(resolved);
         }
       }
     }
-    allFiles.push(...[...externalFiles].filter((f) => !allFiles.includes(f)));
-    allFiles.sort();
 
     const rawImports: {
       variable: string;
@@ -141,19 +136,18 @@ async function main() {
       );
     }
 
-    const rawImportLines = rawImports.map(
-      (r) =>
+    for (const r of rawImports) {
+      imports.push(
         `import ${r.variable} from "${path.relative(LIB_DEMOS_DIR, r.absolutePath).replaceAll("\\", "/")}?raw";`
-    );
-    imports.push(...rawImportLines);
+      );
+    }
 
-    const sortedImports = [...rawImports].sort((a, b) => {
-      if (a.relativePath.endsWith("+page.svelte")) return -1;
-      if (b.relativePath.endsWith("+page.svelte")) return 1;
-      return a.filename.localeCompare(b.filename);
-    });
-
-    const filesEntries = sortedImports
+    const filesEntries = rawImports
+      .sort((a, b) => {
+        if (a.relativePath.endsWith("+page.svelte")) return -1;
+        if (b.relativePath.endsWith("+page.svelte")) return 1;
+        return a.filename.localeCompare(b.filename);
+      })
       .map(
         (r) =>
           `  "${path.join("src", "routes", r.relativePath)}": ${

@@ -1,10 +1,10 @@
 import { type DemoData, type DemoMeta, cleanPage } from "../demo.ts";
 import PageComponent from "../../demos/schemasafe-precompile/+page.svelte";
-import inputSchemaJson from "../../demos/input-schema.json?raw";
 import pageSvelte from "../../demos/schemasafe-precompile/+page.svelte?raw";
 import compileSchemaScriptTs from "../../demos/schemasafe-precompile/compile-schema-script.ts?raw";
 import patchedSchemaTs from "../../demos/schemasafe-precompile/patched-schema.ts?raw";
 import validateFunctionsJs from "../../demos/schemasafe-precompile/validate-functions.js?raw";
+import inputSchemaJson from "../../demos/input-schema.json?raw";
 
 const files: Record<string, string> = {
   "src/routes/+page.svelte": cleanPage(pageSvelte),

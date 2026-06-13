@@ -1,7 +1,7 @@
 import { type DemoData, type DemoMeta, cleanPage } from "../demo.ts";
 import PageComponent from "../../demos/usage-form/+page.svelte";
-import createUserTs from "../../demos/create-user.ts?raw";
 import pageSvelte from "../../demos/usage-form/+page.svelte?raw";
+import createUserTs from "../../demos/create-user.ts?raw";
 
 const files: Record<string, string> = {
   "src/routes/+page.svelte": cleanPage(pageSvelte),

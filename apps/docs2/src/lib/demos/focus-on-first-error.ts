@@ -1,7 +1,7 @@
 import { type DemoData, type DemoMeta, cleanPage } from "../demo.ts";
 import PageComponent from "../../demos/focus-on-first-error/+page.svelte";
-import demoSchemasTs from "../../demos/demo-schemas.ts?raw";
 import pageSvelte from "../../demos/focus-on-first-error/+page.svelte?raw";
+import demoSchemasTs from "../../demos/demo-schemas.ts?raw";
 
 const files: Record<string, string> = {
   "src/routes/+page.svelte": cleanPage(pageSvelte),
