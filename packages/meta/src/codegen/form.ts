@@ -8,6 +8,8 @@ import type { NamedImportOptions, NamespaceImportOptions } from "./lib.ts";
 import type { CodegenSvelteKitIntegration } from "./model.ts";
 import { validatorProp, type ValidatorDefinition } from "./validator.ts";
 import type { MergerOptions } from "./defaults.ts";
+import { formMergerSubPath } from "../form.ts";
+import { internalValidatorSubPath } from "../validators.ts";
 
 export interface FormOptions {
   isTs: boolean;
@@ -76,7 +78,7 @@ export function createForm({
   if (!isRecordEmpty(merger)) {
     additionalImports.push({
       imports: ["createFormMerger"],
-      from: "@sjsf/form/mergers/modern",
+      from: formMergerSubPath("modern"),
     });
     const fields = buildMergerConfigFields(merger);
     pageOverrideLines.push(
@@ -86,23 +88,10 @@ export function createForm({
 
   if (omitExtraData) {
     additionalImports.push({
-      imports: ["omitExtraData"],
-      from: "@sjsf/form/omit-extra-data",
+      imports: ["withOmitExtraData"],
+      from: internalValidatorSubPath("omit-extra-data"),
     });
-    pageOverrideLines.push(
-      `validator: (options) => {
-    const v = defaults.validator(options);
-    return {
-      ...v,
-      validateFormValue(rootSchema, formValue) {
-        return v.validateFormValue(
-          rootSchema,
-          omitExtraData(v, options.merger(), options.schema, formValue)
-        );
-      },
-    };
-  },`,
-    );
+    pageOverrideLines.push(`validator: withOmitExtraData(defaults.validator),`);
   }
 
   const bodyLines: string[] = [];

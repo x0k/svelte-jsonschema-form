@@ -399,23 +399,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import { omitExtraData } from '@sjsf/form/omit-extra-data';
+	import { withOmitExtraData } from '@sjsf/form/validators/omit-extra-data';
 	import * as model from '$lib/model';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<model.Model>({
 		...defaults,
 		...model,
-		validator: (options) => {
-			const v = defaults.validator(options);
-
-			return {
-				...v,
-				validateFormValue(rootSchema, formValue) {
-					return v.validateFormValue(rootSchema, omitExtraData(v, options.merger(), options.schema, formValue));
-				}
-			};
-		},
+		validator: withOmitExtraData(defaults.validator),
 		onSubmit: console.log
 	});
 </script>
