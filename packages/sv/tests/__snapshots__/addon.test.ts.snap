@@ -5716,8 +5716,8 @@ exports[`@sjsf/sv 'theme__daisyui5' 'kit-ts' 1`] = `
 	}
 }
 ",
-  "pnpm-workspace.yaml": "onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  "pnpm-workspace.yaml": "allowBuilds:
+  '@tailwindcss/oxide': true
 ",
   "src/app.d.ts": "// See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
@@ -5948,8 +5948,8 @@ exports[`@sjsf/sv 'theme__daisyui5' 'vite-ts' 1`] = `
   }
 }
 ",
-  "pnpm-workspace.yaml": "onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  "pnpm-workspace.yaml": "allowBuilds:
+  '@tailwindcss/oxide': true
 ",
   "src/App.svelte": "<script lang="ts">
 	import './app.css';
@@ -6280,8 +6280,8 @@ exports[`@sjsf/sv 'theme__flowbite3' 'kit-ts' 1`] = `
 	}
 }
 ",
-  "pnpm-workspace.yaml": "onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  "pnpm-workspace.yaml": "allowBuilds:
+  '@tailwindcss/oxide': true
 ",
   "src/app.d.ts": "// See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
@@ -6537,8 +6537,8 @@ exports[`@sjsf/sv 'theme__flowbite3' 'vite-ts' 1`] = `
   }
 }
 ",
-  "pnpm-workspace.yaml": "onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  "pnpm-workspace.yaml": "allowBuilds:
+  '@tailwindcss/oxide': true
 ",
   "src/App.svelte": "<script lang="ts">
 	import './app.css';
@@ -7414,8 +7414,8 @@ exports[`@sjsf/sv 'theme__shadcn-extras' 'kit-ts' 1`] = `
 	}
 }
 ",
-  "pnpm-workspace.yaml": "onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  "pnpm-workspace.yaml": "allowBuilds:
+  '@tailwindcss/oxide': true
 ",
   "src/app.d.ts": "// See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
@@ -7859,8 +7859,8 @@ exports[`@sjsf/sv 'theme__shadcn-extras' 'vite-ts' 1`] = `
   }
 }
 ",
-  "pnpm-workspace.yaml": "onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  "pnpm-workspace.yaml": "allowBuilds:
+  '@tailwindcss/oxide': true
 ",
   "src/App.svelte": "<script lang="ts">
 	import { setShadcnThemeContext } from './lib/sjsf/shadcn';
@@ -8291,8 +8291,8 @@ exports[`@sjsf/sv 'theme__shadcn4' 'kit-ts' 1`] = `
 	}
 }
 ",
-  "pnpm-workspace.yaml": "onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  "pnpm-workspace.yaml": "allowBuilds:
+  '@tailwindcss/oxide': true
 ",
   "src/app.d.ts": "// See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
@@ -8719,8 +8719,8 @@ exports[`@sjsf/sv 'theme__shadcn4' 'vite-ts' 1`] = `
   }
 }
 ",
-  "pnpm-workspace.yaml": "onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  "pnpm-workspace.yaml": "allowBuilds:
+  '@tailwindcss/oxide': true
 ",
   "src/App.svelte": "<script lang="ts">
 	import { setShadcnThemeContext } from './lib/sjsf/shadcn';
@@ -9123,8 +9123,8 @@ exports[`@sjsf/sv 'theme__skeleton4' 'kit-ts' 1`] = `
 	}
 }
 ",
-  "pnpm-workspace.yaml": "onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  "pnpm-workspace.yaml": "allowBuilds:
+  '@tailwindcss/oxide': true
 ",
   "src/app.d.ts": "// See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
@@ -9368,8 +9368,8 @@ exports[`@sjsf/sv 'theme__skeleton4' 'vite-ts' 1`] = `
   }
 }
 ",
-  "pnpm-workspace.yaml": "onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  "pnpm-workspace.yaml": "allowBuilds:
+  '@tailwindcss/oxide': true
 ",
   "src/App.svelte": "<script lang="ts">
 	import './app.css';

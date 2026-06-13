@@ -13,7 +13,7 @@ permissions:
   pull-requests: write
 
 env:
-  PLAYWRIGHT_VERSION: "1.59.1"
+  PLAYWRIGHT_VERSION: "1.60.0"
 
 jobs:
   version:
@@ -29,7 +29,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 26
           cache: pnpm
 
       - name: Install dependencies

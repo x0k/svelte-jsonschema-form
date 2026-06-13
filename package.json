@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@11.6.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "check": "turbo run check",
@@ -49,21 +49,5 @@
     "vite-plugin-devtools-json": "^1.0.0",
     "vitest": "catalog:",
     "vitest-browser-svelte": "^2.1.1"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@tailwindcss/oxide",
-      "@sveltejs/sv-utils",
-      "esbuild",
-      "sharp"
-    ],
-    "overrides": {
-      "playwright": "catalog:",
-      "vite": "catalog:"
-    },
-    "patchedDependencies": {
-      "json-schema-to-valibot": "patches/json-schema-to-valibot.patch",
-      "satteri@0.8.1": "patches/satteri@0.8.1.patch"
-    }
   }
 }

@@ -1,8 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    playwright.url = "github:pietdevries94/playwright-web-flake/1.59.1";
+    playwright.url = "github:pietdevries94/playwright-web-flake/1.60.0";
     mk.url = "github:x0k/mk";
   };
   outputs =
@@ -39,7 +39,7 @@
           ];
           buildInputs = [
             mk.packages.${system}.default
-            pkgs.nodejs_24
+            pkgs.nodejs_26
             pkgs.pnpm
           ];
           shellHook = ''
