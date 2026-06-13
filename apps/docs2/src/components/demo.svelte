@@ -1,8 +1,22 @@
+<script lang="ts" module>
+  import type { PlaygroundTheme, PlaygroundIconSet } from "meta/playground";
+
+  import { createPersistentRef } from "@/lib/svelte.svelte";
+
+  const persistentThemeRef = createPersistentRef<PlaygroundTheme>(
+    "demo-theme",
+    "basic"
+  );
+  const persistentIconsRef = createPersistentRef<PlaygroundIconSet>(
+    "demo-icons",
+    "none"
+  );
+</script>
+
 <script lang="ts">
   import { untrack } from "svelte";
   import { themeOrSubThemeTitle, type IconSet, extraPackage } from "meta";
   import {
-    type PlaygroundTheme,
     PLAYGROUND_SJSF_THEMES,
     PLAYGROUND_SJSF_THEME_STYLES,
     PLAYGROUND_SJSF_GLOBAL_THEME_STYLES,
@@ -26,11 +40,12 @@
   import Terminal from "@lucide/svelte/icons/square-terminal";
   import Astroid from "@lucide/svelte/icons/astroid";
 
-  import * as baseDefaults from "@/lib/sjsf/defaults";
-  import { setDemoContext } from "@/lib/demo";
   import { type DemoName, DEMOS } from "@/lib/demo.generated";
   import type { SupportedLanguage } from "@/lib/shiki";
+  import * as baseDefaults from "@/lib/sjsf/defaults";
+  import { createRef } from "@/lib/svelte.svelte";
   import { themeManager } from "@/theme.svelte";
+  import { setDemoContext } from "@/lib/demo";
 
   import { ShadowHost } from "./shadow";
   import Noop from "./shadow/root.svelte";
@@ -68,8 +83,12 @@
     picker: untrack(() => initialPicker),
   });
 
-  let selectedTheme = $derived(theme ?? "basic");
-  let selectedIconSet = $derived(iconSet ?? ("none" as const));
+  const selectedTheme = $derived(
+    theme === undefined ? persistentThemeRef : createRef(theme)
+  );
+  const selectedIconSet = $derived(
+    iconSet === undefined ? persistentIconsRef : createRef(iconSet)
+  );
 
   let portalEl = $state.raw() as HTMLDivElement;
   const rootNode = $derived(portalEl?.getRootNode());
@@ -99,8 +118,8 @@
 
   const defaults = $derived({
     ...baseDefaults,
-    theme: PLAYGROUND_SJSF_THEMES[selectedTheme],
-    icons: PLAYGROUND_ICON_SETS[selectedIconSet],
+    theme: PLAYGROUND_SJSF_THEMES[selectedTheme.current],
+    icons: PLAYGROUND_ICON_SETS[selectedIconSet.current],
     extraUiOptions,
     idPrefix: name,
   });
@@ -112,12 +131,12 @@
   });
 
   const globalStyles = $derived(
-    PLAYGROUND_SJSF_GLOBAL_THEME_STYLES[selectedTheme]
+    PLAYGROUND_SJSF_GLOBAL_THEME_STYLES[selectedTheme.current]
   );
 
   const shadowDomStyles =
-    $derived(`${PLAYGROUND_SJSF_THEME_STYLES[selectedTheme]}
-${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}
+    $derived(`${PLAYGROUND_SJSF_THEME_STYLES[selectedTheme.current]}
+${PLAYGROUND_ICON_SET_STYLES[selectedIconSet.current]}
 ${shadowStyles}`);
 
   const {
@@ -143,7 +162,7 @@ ${shadowStyles}`);
   }
 
   const SvarProvider = $derived(
-    selectedTheme === "svar"
+    selectedTheme.current === "svar"
       ? themeManager.isDark
         ? WillowDark
         : Willow
@@ -171,7 +190,7 @@ ${shadowStyles}`);
           title="Themes"
         >
           <Palette size={16} />
-          <span>{themeOrSubThemeTitle(selectedTheme)}</span>
+          <span>{themeOrSubThemeTitle(selectedTheme.current)}</span>
         </Button>
       {/if}
       {#if iconsPicker}
@@ -185,7 +204,7 @@ ${shadowStyles}`);
           title="Icons"
         >
           <Astroid size={16} />
-          <span>{playgroundIconSetTitle(selectedIconSet)}</span>
+          <span>{playgroundIconSetTitle(selectedIconSet.current)}</span>
         </Button>
       {/if}
       {#if !disableSandboxes}
@@ -217,10 +236,10 @@ ${shadowStyles}`);
       {#each playgroundThemes() as t (t)}
         <Button
           variant="pill"
-          active={selectedTheme === t}
-          aria-pressed={selectedTheme === t}
+          active={selectedTheme.current === t}
+          aria-pressed={selectedTheme.current === t}
           onclick={() => {
-            selectedTheme = t;
+            selectedTheme.current = t;
           }}
         >
           {themeOrSubThemeTitle(t)}
@@ -240,10 +259,10 @@ ${shadowStyles}`);
       {#each playgroundIconSets() as i (i)}
         <Button
           variant="pill"
-          active={selectedIconSet === i}
-          aria-pressed={selectedIconSet === i}
+          active={selectedIconSet.current === i}
+          aria-pressed={selectedIconSet.current === i}
           onclick={() => {
-            selectedIconSet = i;
+            selectedIconSet.current = i;
           }}
         >
           {playgroundIconSetTitle(i)}
@@ -271,9 +290,9 @@ ${shadowStyles}`);
               precompiled: false,
             };
             await openDemo({
-              name: `${name} (${selectedTheme}, ${validator.name})`,
-              themeOrSubTheme: selectedTheme,
-              icons: selectedIconSet,
+              name: `${name} (${selectedTheme.current}, ${validator.name})`,
+              themeOrSubTheme: selectedTheme.current,
+              icons: selectedIconSet.current,
               validator,
               extraFiles,
               extraDependencies: [
@@ -300,7 +319,7 @@ ${shadowStyles}`);
           <div
             bind:this={portalEl}
             class="demo-container {themeManager.darkOrLight}"
-            data-theme={selectedTheme.startsWith("skeleton")
+            data-theme={selectedTheme.current.startsWith("skeleton")
               ? "cerberus"
               : themeManager.darkOrLight}
             style="padding: 2rem;"
