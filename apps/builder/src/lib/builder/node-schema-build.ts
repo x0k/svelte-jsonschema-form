@@ -1,9 +1,16 @@
 import type { Schema } from "@sjsf/form";
+import {
+  NodeType,
+  type AbstractNode,
+  type NodeId,
+  EnumValueType,
+  OperatorType,
+  type AbstractOperator
+} from "meta/builder";
 
 import { assertThing } from "$lib/assert.js";
 import { mergeSchemas } from "$lib/json-schema.js";
 
-import { NodeType, type AbstractNode, type NodeId } from "./node-base.js";
 import type {
   CustomizableNode,
   EnumItemNode,
@@ -13,8 +20,6 @@ import type {
   ObjectPropertyNode,
   OperatorNode
 } from "./node.js";
-import { EnumValueType } from "./enum.js";
-import { OperatorType, type AbstractOperator } from "./operator.js";
 import {
   isArrayNode,
   isCustomizableNode,

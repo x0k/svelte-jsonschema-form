@@ -18,6 +18,10 @@ const RESOLVERS = ["basic", "compat"] as const;
 
 export type Resolver = (typeof RESOLVERS)[number];
 
+export function resolvers(): Iterable<Resolver> {
+  return RESOLVERS;
+}
+
 export function formResolverSubPath(resolver: Resolver) {
   return `${formPackage.name}/resolvers/${resolver}`;
 }

@@ -1,0 +1,64 @@
+flowchart TD
+  domInput["DOM input event"]
+  customHandler{"config.eventHandlers\n.oninput?"}
+  customRun["eventHandlers.oninput()"]
+  setFieldState["setFieldState(ctx, path, FIELD_INPUTTED)"]
+  mapSet["fieldsStateMap.set(path, flags | FIELD_INPUTTED)"]
+  isChanged["isChanged = true\n(map.size > 0)"]
+  validationCheck{"fieldsValidationMode\nincludes ON_INPUT?"}
+  afterCheck{"Modifier preconditions met?"}
+  afterSubmitted{"AFTER_SUBMITTED set?\nisSubmitted = true?"}
+  afterChanged{"AFTER_CHANGED set?\nFIELD_CHANGED set?"}
+  afterTouched{"AFTER_TOUCHED set?\nFIELD_BLURRED set?"}
+  skipValidation["skip validation"]
+  debounce["debounce wrapper\n(default 300ms)"]
+  runValidation["fieldsValidation.run(config, value)"]
+  combinator{"combinator check\n(default: abortPrevious)"}
+  abort["abort previous task"]
+  waitPrevious["wait for previous\nto complete"]
+  validate["validator.validateFieldValue\nor validateFieldValueAsync"]
+  onSuccess["onSuccess"]
+  updateErrors["updateFieldErrors(ctx, path, fieldErrors)"]
+  hasErrors{"fieldErrors\nempty?"}
+  clearFieldErrors["clear errors for path"]
+  setFieldErrors["set errors for path"]
+  onFailure["onFailure"]
+  setErrorMsg["updateFieldErrors(ctx, path,\n[translate('validation-process-error',\n{ error })])"]
+  onFieldsValidationFailure["options.onFieldsValidationFailure\n(error, config, value)"]
+  done["done"]
+
+  domInput --> customHandler
+  customHandler -->|yes| customRun
+  customHandler -->|no| setFieldState
+  customRun --> setFieldState
+  setFieldState --> mapSet
+  mapSet --> isChanged
+  setFieldState --> validationCheck
+  validationCheck -->|yes| afterCheck
+  validationCheck -->|no| done
+  afterCheck --> afterSubmitted
+  afterSubmitted -->|yes| afterChanged
+  afterSubmitted -->|no| skipValidation
+  afterChanged -->|yes| afterTouched
+  afterChanged -->|no| skipValidation
+  afterTouched -->|yes| debounce
+  afterTouched -->|no| skipValidation
+  skipValidation --> done
+  debounce --> runValidation
+  runValidation --> combinator
+  combinator -->|abort| abort
+  combinator -->|wait| waitPrevious
+  combinator -->|proceed| validate
+  abort --> validate
+  waitPrevious --> validate
+  validate --> onSuccess
+  validate --> onFailure
+  onSuccess --> updateErrors
+  updateErrors --> hasErrors
+  hasErrors -->|yes| setFieldErrors
+  hasErrors -->|no| clearFieldErrors
+  setFieldErrors --> done
+  clearFieldErrors --> done
+  onFailure --> setErrorMsg
+  setErrorMsg --> onFieldsValidationFailure
+  onFieldsValidationFailure --> done

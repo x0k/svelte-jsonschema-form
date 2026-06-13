@@ -4,17 +4,30 @@ import type { FormValue, Schema, SchemaValue, UiSchema } from "@sjsf/form";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { DragDropManager, Draggable, Droppable, Feedback } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
-import type { Sample } from "$apps/playground2/src/core/sample.js";
+import { iconSetAtRules, isSchemaValidator, renderAtRule, themeOrSubThemeAtRules } from "meta";
+import type {
+  FormPreset,
+  PlaygroundIconSet,
+  PlaygroundResolver,
+  PlaygroundTheme
+} from "meta/playground";
+import {
+  themeCustomizableNodeTypes,
+  themeRangeValueTypes,
+  NodeType,
+  type BuilderValidator,
+  type WidgetType,
+  getUseLabel,
+  type NodeId
+} from "meta/builder";
 
 import {
   createNode,
-  NodeType,
   type Node,
   type CustomizableNode,
   type ObjectNode,
   NODE_OPTIONS_SCHEMAS,
   NODE_OPTIONS_UI_SCHEMAS,
-  type NodeId,
   type OperatorNode,
   summarizeOperator,
   OK_STATUS,
@@ -30,10 +43,7 @@ import {
   isFileNode,
   createObjectProperty
 } from "$lib/builder/index.js";
-import { ActualTheme, mergeUiSchemas, type Theme, type WidgetType } from "$lib/sjsf/theme.js";
-import { Validator } from "$lib/sjsf/validators.js";
-import { Resolver } from "$lib/sjsf/resolver.js";
-import { Icons, ICONS_APP_CSS } from "$lib/sjsf/icons.js";
+import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 import { highlight, type SupportedLanguage } from "$lib/shiki.js";
 import { mergeSchemas } from "$lib/json-schema.js";
 import { addBuilderFormats } from "$lib/ajv.js";
@@ -49,16 +59,13 @@ import {
   FILE_FIELD_SINGLE_MODE,
   RADIO_WIDGET_OPTIONS,
   RouteName,
-  TEXT_WIDGET_OPTIONS,
-  getUseLabel
+  TEXT_WIDGET_OPTIONS
 } from "./model.js";
 import type { NodeContext } from "./node-context.js";
 import {
-  THEME_APP_CSS,
-  THEME_CUSTOMIZABLE_NODE_TYPES,
-  THEME_RANGE_VALUE_TYPES,
-  THEME_SCHEMAS,
-  THEME_UI_SCHEMAS
+  themeNodeWidgetSchema,
+  themeNodeWidgetUiSchema,
+  THEME_NODE_OVERRIDES
 } from "./theme-schemas.js";
 import { buildFormDefaults, buildFormDotSvelte, buildInstallSh, join } from "./code-builders.js";
 
@@ -96,10 +103,10 @@ export interface NodeIssue {
 
 export interface BuilderState1 {
   rootNode?: CustomizableNode;
-  theme: Theme;
-  resolver: Resolver;
-  icons: Icons;
-  validator: Validator;
+  theme: PlaygroundTheme;
+  resolver: PlaygroundResolver;
+  icons: PlaygroundIconSet;
+  validator: BuilderValidator;
   ignoreWarnings: boolean;
   html5Validation: boolean;
   route: Route;
@@ -123,10 +130,6 @@ const noopReadonlyNodeRef: ReadonlyNodeRef = {
   current: undefined
 };
 
-const obj = createNode(NodeType.Object) as ObjectNode;
-obj.options.title = "Form title";
-obj.properties.push(createObjectProperty(createNode(NodeType.String)));
-
 export class BuilderContext {
   #dnd = new DragDropManager({ plugins: [Feedback.configure({ dropAnimation: null })] });
   #validator = createFormValidator({
@@ -141,7 +144,7 @@ export class BuilderContext {
   #dropHandlers = new Map<UniqueId, (node: Node) => void>();
   #draggedNode = $state.raw<Node>();
 
-  rootNode = $state<CustomizableNode | undefined>(obj);
+  rootNode = $state<CustomizableNode | undefined>();
 
   #selectedNodeRef = $state.raw(noopNodeRef);
   readonly selectedNode = $derived.by(() => {
@@ -162,13 +165,13 @@ export class BuilderContext {
     }
   });
 
-  theme = $state.raw<Theme>(ActualTheme.Shadcn4);
-  resolver = $state.raw(Resolver.Basic);
-  icons = $state.raw(Icons.None);
-  validator = $state.raw(Validator.Ajv);
+  theme = $state.raw<PlaygroundTheme>("shadcn4");
+  resolver = $state.raw<PlaygroundResolver>("basic");
+  icons = $state.raw<PlaygroundIconSet>("none");
+  validator = $state.raw<BuilderValidator>("ajv8");
 
-  readonly availableCustomizableNodeTypes = $derived(THEME_CUSTOMIZABLE_NODE_TYPES[this.theme]);
-  readonly availableRangeValueTypes = $derived(THEME_RANGE_VALUE_TYPES[this.theme]);
+  readonly availableCustomizableNodeTypes = $derived(themeCustomizableNodeTypes(this.theme));
+  readonly availableRangeValueTypes = $derived(themeRangeValueTypes(this.theme));
 
   get isDragged() {
     return this.#sourceId !== undefined;
@@ -297,6 +300,8 @@ export class BuilderContext {
     });
   });
   readonly uiSchema = $derived(this.#uiSchemaOutput.uiSchema);
+  readonly uiSchemaWidgets = $derived(this.#uiSchemaOutput.widgets);
+  readonly uiSchemaFileFieldMode = $derived(this.#uiSchemaOutput.fileFieldMode);
 
   readonly formDotSvelte = $derived(
     this.highlight(
@@ -324,7 +329,18 @@ export class BuilderContext {
     )
   );
   readonly appCss = $derived.by(() => {
-    const content = join(THEME_APP_CSS[this.theme], ICONS_APP_CSS[this.icons]);
+    const rules = themeOrSubThemeAtRules(this.theme, {
+      nodeModulesPath: "../node_modules",
+      sandbox: false
+    }).map(renderAtRule);
+    if (this.icons !== "none") {
+      rules.push(
+        ...iconSetAtRules(this.icons, { nodeModulesPath: "../node_modules", sandbox: false }).map(
+          renderAtRule
+        )
+      );
+    }
+    const content = join(...rules);
     return (
       content && this.highlight("css", `/* Add these lines to the app.css file */\n${content}`)
     );
@@ -345,6 +361,11 @@ export class BuilderContext {
     onDestroy(() => {
       this.#dnd.destroy();
     });
+    const overrides = THEME_NODE_OVERRIDES[this.theme];
+    const obj = createNode(NodeType.Object, overrides) as ObjectNode;
+    obj.options.title = "Form title";
+    obj.properties.push(createObjectProperty(createNode(NodeType.String, overrides)));
+    this.rootNode = obj;
     this.#dnd.monitor.addEventListener("beforedragstart", ({ operation: { source } }) => {
       if (source === null) {
         return;
@@ -423,13 +444,13 @@ export class BuilderContext {
     });
   }
 
-  createPlaygroundSample(): Readonly<Sample> {
+  createPlaygroundSample(): Readonly<FormPreset> {
     return {
       schema: this.schema,
       uiSchema: this.uiSchema ?? {},
       initialValue: null,
-      validator: this.validator,
-      theme: this.theme === ActualTheme.Daisy5 ? "daisy5" : this.theme,
+      validator: isSchemaValidator(this.validator) ? "ajv8" : this.validator,
+      theme: this.theme,
       resolver: this.resolver,
       icons: this.icons,
       html5Validation: this.html5Validation
@@ -522,7 +543,7 @@ export class BuilderContext {
 
   nodeSchema(node: CustomizableNode) {
     const original = NODE_OPTIONS_SCHEMAS[node.type];
-    const augmentation = THEME_SCHEMAS[this.theme][node.type]?.(node as never);
+    const augmentation = themeNodeWidgetSchema(this.theme, node.type, node);
     return augmentation ? mergeSchemas(original, augmentation) : original;
   }
 
@@ -538,7 +559,7 @@ export class BuilderContext {
         }
       }
     });
-    const augmentation = THEME_UI_SCHEMAS[this.theme][node.type]?.(node as never);
+    const augmentation = themeNodeWidgetUiSchema(this.theme, node.type, node);
     return augmentation ? mergeUiSchemas(next, augmentation as UiSchema) : next;
   }
 

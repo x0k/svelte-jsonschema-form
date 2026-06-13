@@ -7,18 +7,11 @@ sidebar:
 import { Code } from '@astrojs/starlight/components';
 import { DEFAULT_ID_PREFIX } from '@sjsf/form'
 
-import FormCard from '@/components/form-card.astro';
-
-import Form from './multiple-forms.svelte';
-import formCode from './multiple-forms.svelte?raw';
+import Demo from '@/components/demo.svelte';
 
 To use multiple forms on the same page, you must specify a custom `idPrefix`
 to avoid id collision in the DOM.
 
 The default value of `idPrefix` is <code>{DEFAULT_ID_PREFIX}</code>.
 
-<Code code={formCode} lang='svelte' />
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="multiple-forms" client:visible />

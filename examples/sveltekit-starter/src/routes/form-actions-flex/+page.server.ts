@@ -2,7 +2,7 @@ import { fail, type Actions } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
 
-import * as defaults from "$lib/form-defaults";
+import * as defaults from "$lib/sjsf/defaults";
 import { type CreatePost, schema } from "$lib/post";
 
 export const load = async () => {

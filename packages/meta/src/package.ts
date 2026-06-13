@@ -1,3 +1,5 @@
+import { EXTRA_PACKAGES } from "./packages.generated.ts";
+
 type PeerDependenciesMeta = Record<string, { optional?: boolean }>;
 
 interface RawPackage {
@@ -5,6 +7,9 @@ interface RawPackage {
   version: string;
   peerDependencies?: Record<string, string>;
   peerDependenciesMeta?: PeerDependenciesMeta;
+  repository?: {
+    directory?: string;
+  };
 }
 
 export interface AbstractPackage {
@@ -18,31 +23,9 @@ export interface PackageDependency extends AbstractPackage {
 }
 
 export interface Package extends AbstractPackage {
+  directory: string;
   dependencies: PackageDependency[];
 }
-
-const EXTRA_PACKAGES = {
-  ajvFormat: {
-    name: "ajv-formats",
-    version: "^3.0.0",
-    dev: false,
-  },
-  jsonSchemaToTs: {
-    name: "json-schema-to-ts",
-    version: "^3.0.0",
-    dev: true,
-  },
-  esbuild: {
-    name: "esbuild",
-    version: "^0.28.0",
-    dev: true,
-  },
-  devalue: {
-    name: "devalue",
-    version: "^5.7.0",
-    dev: true,
-  },
-} as const satisfies Record<string, AbstractPackage>;
 
 export type ExtraPackage = keyof typeof EXTRA_PACKAGES;
 
@@ -57,6 +40,7 @@ const OPTIONAL_PKG = {
 export type OptionalPackage = keyof typeof OPTIONAL_PKG;
 
 const DEV_PACKAGES_REGISTRY = new Set([
+  "esm-env",
   "@tailwindcss/forms",
   "flowbite",
   "@picocss/pico",
@@ -67,12 +51,14 @@ export function fromPackageJson({
   version,
   peerDependencies = {},
   peerDependenciesMeta = {},
+  repository: { directory = "" } = {},
 }: RawPackage): Package {
   const isOptional = createMetaExtractor(peerDependenciesMeta);
   return {
     name,
-    version: `^${version}`,
+    version,
     dev: DEV_PACKAGES_REGISTRY.has(name),
+    directory,
     dependencies: Object.entries(peerDependencies).map(([name, version]) => ({
       name,
       version: formatPeerDependencyVersion(version),
@@ -82,15 +68,41 @@ export function fromPackageJson({
   };
 }
 
+export type Version = [number, number, number];
+
+export function createVersion(versionStr: string) {
+  const t = versionStr.split(".").map(Number);
+  if (t.length !== 3 || t.some(isNaN)) {
+    throw new Error(`Unexpected version format: "${versionStr}"`);
+  }
+  return t as Version;
+}
+
+const VERSION_MODIFIERS = ["^", "~", "<=", "<"] as const;
+
+export function resolveExactVersion(versionStr: string): string {
+  const m = VERSION_MODIFIERS.find((m) => versionStr.startsWith(m));
+  if (m) {
+    versionStr = versionStr.slice(m.length);
+  }
+  const ver = createVersion(versionStr);
+  if (m === "<") {
+    ver[ver[0] === 0 ? 1 : 0]--;
+  }
+  return ver.join(".");
+}
+
 function formatPeerDependencyVersion(version: string) {
-  return version.replace("workspace:", "").split("||").at(-1)!.trim();
+  const str = version.replace("workspace:", "").split(" ").at(-1)!.trim();
+  return resolveExactVersion(str);
 }
 
 function createMetaExtractor(peerDependenciesMeta: PeerDependenciesMeta) {
   return (name: string) => Boolean(peerDependenciesMeta[name]?.optional);
 }
 
-export type IncludeOptional = boolean | Iterable<string>;
+// `true` filter is redundant
+export type IncludeOptional = false | Iterable<string>;
 
 export function* filterPackageDependencies(
   dependencies: Iterable<PackageDependency>,

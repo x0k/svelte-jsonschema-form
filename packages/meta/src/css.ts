@@ -5,4 +5,9 @@ export interface AtRule {
 
 export interface AtRuleOptions {
   nodeModulesPath: string;
+  sandbox: boolean;
+}
+
+export function renderAtRule(rule: AtRule) {
+  return `@${rule.name} "${rule.params}";`;
 }

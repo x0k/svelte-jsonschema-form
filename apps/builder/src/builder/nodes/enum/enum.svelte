@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ENUM_VALUE_TYPE_TITLES, ENUM_VALUE_TYPES, type NodeType } from "$lib/builder/index.js";
+  import { ENUM_VALUE_TYPE_TITLES, ENUM_VALUE_TYPES, type NodeType } from "meta/builder";
 
   import type { NodeProps } from "../../model.js";
   import NodeContainer from "../../node-container.svelte";

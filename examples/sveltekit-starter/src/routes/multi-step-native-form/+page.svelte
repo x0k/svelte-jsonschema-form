@@ -8,11 +8,9 @@
     type Config,
     getValueSnapshot,
   } from "@sjsf/form";
-  // WARN: You must export this ID Builder in your `defaults` file
-  import { createFormIdBuilder } from "@sjsf/sveltekit";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
 
   import type { ActionData, PageData } from "./$types";
   import { STEP_KEY } from "./model";
@@ -21,19 +19,18 @@
 
   const { form } = setupSvelteKitForm(meta, {
     ...defaults,
-    idBuilder: createFormIdBuilder,
     extraUiOptions: fromFactories({
       layouts: (config: Config) =>
         config.path.length === 1
           ? {
               "object-property": {
                 get style(): string {
+                  // NOTE: Calling `getValueSnapshot` here will cause the styles
+                  // to be recalculated whenever the form values change.
+                  // If performance is critical for you can use controlled form
                   const snap = getValueSnapshot(form)
                   const step = isRecord(snap) && snap[STEP_KEY]
                   return `display: ${
-                    // NOTE: Remember that each call to form.value causes a new
-                    // form state snapshot to be created.
-                    // If performance is critical for you can use controlled form
                     config.path[0] === step ? "block" : "none"
                   }`;
                 },

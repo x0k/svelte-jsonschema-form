@@ -1,32 +1,54 @@
 <script lang="ts">
-  import { identity } from "@sjsf/form/lib/function";
-
+  import { themeOrSubThemeTitle, validatorTitle } from "meta";
   import {
-    GENERIC_EXAMPLES,
-    THEME_TITLES,
-    type ActualTheme,
-    type Validator,
-    VALIDATOR_SPECIFIC_EXAMPLES,
-    VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
-    VALIDATORS,
-    SVELTE_KIT_EXAMPLES,
-    THEMES,
-  } from "@/shared";
-  import { openProject, Platform, PLATFORMS } from "@/web-ide";
+    codegenThemeOrSubTheme,
+    type CodegenThemeOrSubTheme,
+  } from "meta/codegen";
+  import {
+    GROUPED_EXAMPLES,
+    openExample,
+    Tag,
+    exampleCategories,
+    type ExampleEntry,
+    type DemosValidator,
+    demosValidators,
+  } from "meta/demos";
+  import { SandboxPlatform, SANDBOX_PLATFORMS } from "meta/sandbox";
 
-  import Buttons from "./buttons.svelte";
+  import Button from "@/components/button.svelte";
 
-  let platform: Platform = $state.raw(Platform.StackBlitz);
-  let theme: ActualTheme = $state.raw("basic");
-  let validator: Validator = $state.raw("Ajv");
+  import ExampleCards from "./example-cards.svelte";
+  import CatalogFilter from "./catalog-filter.svelte";
+
+  let platform: SandboxPlatform = $state.raw(SandboxPlatform.StackBlitz);
+  let theme: CodegenThemeOrSubTheme = $state.raw("basic");
+  let validator: DemosValidator["name"] = $state.raw("ajv8");
 </script>
+
+{#snippet exampleCards(entries: readonly ExampleEntry[])}
+  <ExampleCards
+    items={entries}
+    onclick={(entry) =>
+      openExample({ entry, themeOrSubTheme: theme, validator, platform })}
+    title={(entry) => entry.meta.title}
+    description={(entry) => entry.meta.description}
+  >
+    {#snippet children(entry)}
+      <span class="tag-pills">
+        {#each entry.meta.tags as tag (tag)}
+          <Button variant="pill" size="sm">{tag}</Button>
+        {/each}
+      </span>
+    {/snippet}
+  </ExampleCards>
+{/snippet}
 
 <div class="pickers">
   <button style="display: none;">Avoid starlight styles pollution</button>
   <label>
     <span>Platform</span>
     <select bind:value={platform}>
-      {#each PLATFORMS as v (v)}
+      {#each SANDBOX_PLATFORMS as v (v)}
         <option value={v}>
           {v}
         </option>
@@ -36,9 +58,9 @@
   <label>
     <span>Validator</span>
     <select bind:value={validator}>
-      {#each VALIDATORS as v (v)}
-        <option value={v}>
-          {v}
+      {#each demosValidators() as { name } (name)}
+        <option value={name}>
+          {validatorTitle(name)}
         </option>
       {/each}
     </select>
@@ -46,62 +68,31 @@
   <label>
     <span>Theme</span>
     <select bind:value={theme}>
-      {#each THEMES as t (t)}
+      {#each codegenThemeOrSubTheme() as t (t)}
         <option value={t}>
-          {THEME_TITLES[t]}
+          {themeOrSubThemeTitle(t)}
         </option>
       {/each}
     </select>
   </label>
 </div>
 
-<h3>Generic</h3>
-
-<Buttons
-  items={GENERIC_EXAMPLES}
-  onClick={(example) => {
-    openProject({
-      platform,
-      example,
-      theme,
-      validator,
-    });
-  }}
-  label={identity}
-/>
-
-<h3>SvelteKit</h3>
-
-<Buttons
-  items={SVELTE_KIT_EXAMPLES}
-  onClick={(example) => {
-    openProject({
-      platform,
-      example,
-      theme,
-      validator,
-    });
-  }}
-  label={identity}
-/>
-
-<h3>Validator specific</h3>
-<p><em>Validator selector will be ignored</em></p>
-
-<Buttons
-  items={VALIDATOR_SPECIFIC_EXAMPLES}
-  onClick={(example) => {
-    openProject({
-      platform,
-      example,
-      theme,
-      validator: VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
-    });
-  }}
-  label={identity}
-/>
+<CatalogFilter
+  tags={Object.values(Tag)}
+  categories={exampleCategories()}
+  grouped={GROUPED_EXAMPLES}
+  label="example"
+>
+  {#snippet children({ category, items })}
+    {@render exampleCards(items)}
+  {/snippet}
+</CatalogFilter>
 
 <style>
+  :global(html) {
+    overflow-y: scroll;
+  }
+
   .pickers {
     display: grid;
     grid-auto-flow: column;
@@ -114,7 +105,12 @@
       padding: 0.5rem;
       border-radius: 0.5rem;
       color: inherit;
-      /* appearance: none; */
     }
+  }
+
+  .tag-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
   }
 </style>

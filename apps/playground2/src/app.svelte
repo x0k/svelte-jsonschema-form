@@ -1,10 +1,13 @@
 <script lang="ts">
   import type { Component } from "svelte";
 
+  import { Toaster } from "$lib/components/ui/sonner/index.js";
+
   import { router, type Page } from "./router.js";
   import Form from "./form/form.svelte";
   import Validator from "./validator.svelte";
   import Merger from "./merger.svelte";
+  import { themeManager } from "./theme.svelte";
 
   const PAGES: Record<Page, Component<{}, {}, any>> = {
     "": Form,
@@ -15,6 +18,7 @@
   const PageComponent = $derived(PAGES[router.page]);
 </script>
 
+<Toaster richColors theme={themeManager.theme} />
 <div
   class="p-4 gap-4 h-screen grid grid-rows-[auto_1fr] grid-cols-1 dark:scheme-dark"
 >

@@ -1,0 +1,29 @@
+import { type DemoData, type DemoMeta, cleanPage } from "../demo.ts";
+import PageComponent from "../../demos/ata-precompile/+page.svelte";
+import pageSvelte from "../../demos/ata-precompile/+page.svelte?raw";
+import compileSchemaScriptTs from "../../demos/ata-precompile/compile-schema-script.ts?raw";
+import patchedSchemaTs from "../../demos/ata-precompile/patched-schema.ts?raw";
+import validateFunctionsJs from "../../demos/ata-precompile/validate-functions.js?raw";
+import inputSchemaJson from "../../demos/input-schema.json?raw";
+
+const files: Record<string, string> = {
+  "src/routes/+page.svelte": cleanPage(pageSvelte),
+  "src/routes/compile-schema-script.ts": compileSchemaScriptTs,
+  "src/input-schema.json": inputSchemaJson,
+  "src/routes/patched-schema.ts": patchedSchemaTs,
+  "src/routes/validate-functions.js": validateFunctionsJs,
+};
+const meta: DemoMeta = {
+  "validator": {
+    "name": "ata",
+    "draft2020": false,
+    "precompiled": true
+  },
+  "fields": [
+    "multi-enum"
+  ],
+  "widgets": [
+    "checkboxes"
+  ]
+};
+export default { files, Component: PageComponent, meta } satisfies DemoData;

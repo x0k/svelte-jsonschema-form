@@ -1,7 +1,7 @@
 <script lang="ts">
   import { BasicForm, createForm, type UiSchemaRoot } from "@sjsf/form";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
   import {
     Layout,
     createTabbedFocusOnFirstError,

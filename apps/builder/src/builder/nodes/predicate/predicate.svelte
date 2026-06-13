@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { summarizeOperator, type NodeType } from "$lib/builder/index.js";
+  import type { NodeType } from "meta/builder";
 
   import type { NodeProps } from "../../model.js";
   import { getBuilderContext, type ReadonlyNodeRef } from "../../context.svelte.js";

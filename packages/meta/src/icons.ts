@@ -27,12 +27,20 @@ const ICON_SET_PACKAGES = {
 const ICON_SET_AT_RULES: Partial<
   Record<IconSet, (options: AtRuleOptions) => AtRule[]>
 > = {
-  flowbite: ({ nodeModulesPath }) => [
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${iconSetPackage("flowbite").name}/dist`,
-    },
-  ],
+  flowbite: ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${iconSetPackage("flowbite").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${iconSetPackage("flowbite").name}/dist`,
+          },
+        ],
 };
 
 export function iconSets(): Iterable<IconSet> {

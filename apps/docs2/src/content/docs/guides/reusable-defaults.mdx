@@ -6,13 +6,13 @@ sidebar:
 
 import { Code } from '@astrojs/starlight/components';
 
-import defaultsCode from '@/lib/form/defaults.ts?raw';
+import defaultsCode from '@/lib/sjsf/defaults.ts?raw';
 
 Even with a simple setup, resulting code is very verbose.
 Therefore, it is convenient to create a file that re-exports the selected
 resolver, theme, validator, merger and translation.
 
-<Code code={defaultsCode} lang="typescript" title="lib/form/defaults.ts" />
+<Code code={defaultsCode} lang="typescript" title="lib/sjsf/defaults.ts" />
 
 And use it like this:
 
@@ -28,7 +28,7 @@ define `export const defaults = { ... }` in a `defaults` file.
 :::
 
 ```typescript
-import * as defaults from '$lib/form/defaults'
+import * as defaults from '$lib/sjsf/defaults'
 
 const form = createForm({ ...defaults, <your-options> })
 ```

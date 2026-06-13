@@ -5,7 +5,20 @@
     "moduleResolution": "nodenext",
     "outDir": "dist",
     "rootDir": "src",
-    "rewriteRelativeImportExtensions": true
+    "types": [
+      "vite/client",
+    ],
+    "lib": [
+      "es2024",
+      "DOM.Iterable",
+      "DOM"
+    ],
+    "rewriteRelativeImportExtensions": true,
+    "paths": {
+      "examples/*": [
+        "../../examples/*"
+      ],
+    }
   },
   "include": [
     "src/**/*.ts",

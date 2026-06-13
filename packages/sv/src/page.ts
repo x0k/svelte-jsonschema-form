@@ -1,39 +1,22 @@
 import {
-  formPackage,
-  svelteKitRfSubPath,
-  svelteKitSubPath,
-  type NonLegacyThemeOrSubTheme,
-} from "meta";
-
-import { neverError, createValidator, type Context } from "./model.js";
-import {
+  createPage,
   addToDemoPage,
-  transforms,
-  type NamedImportOptions,
-  type NamespaceImportOptions,
-} from "./sv-utils.js";
+  type PathFactory,
+  KIT_PATH_FACTORY,
+} from "meta/codegen";
 
-const PADDED_THEMES: NonLegacyThemeOrSubTheme[] = [
-  "pico",
-  "daisyui5",
-  "flowbite3",
-  "skeleton4",
-  "shadcn4",
-  "shadcn-extras",
-  "beercss",
-];
+import type { Context } from "./model.js";
 
-export function pageSvelte(ctx: Context) {
-  const {
-    sv,
-    directory,
-    language,
-    isKit,
-    lib,
-    options: { themeOrSubTheme, validatorWithSuffix, demo },
-  } = ctx;
-
-  if (!demo) {
+export function pageSvelte({
+  sv,
+  directory,
+  language,
+  isKit,
+  options,
+  form,
+  file,
+}: Context) {
+  if (!options.demo) {
     return;
   }
 
@@ -44,133 +27,21 @@ export function pageSvelte(ctx: Context) {
     );
   }
 
+  const lib: PathFactory = isKit
+    ? KIT_PATH_FACTORY
+    : (path) =>
+        file.getRelative({
+          from: `${directory.kitRoutes}/sjsf.svelte`,
+          to: `${directory.lib}/${path}`,
+        });
+
   sv.file(
-    `${directory.kitRoutes}${isKit ? "/demo/sjsf/+page.svelte" : "sjsf.svelte"}`,
-    transforms.svelteScript({ language }, ({ ast, js, svelte }) => {
-      const form = createForm(ctx);
-
-      js.imports.addNamed(ast.instance.content, {
-        imports: form.formPackageImports,
-        from: formPackage.name,
-      });
-
-      for (const i of form.additionalImports) {
-        if ("as" in i) {
-          js.imports.addNamespace(ast.instance.content, i);
-        } else {
-          js.imports.addNamed(ast.instance.content, i);
-        }
-      }
-
-      js.imports.addNamespace(ast.instance.content, {
-        as: "defaults",
-        from: lib("sjsf/defaults"),
-      });
-
-      js.common.appendFromString(ast.instance.content, { code: form.init });
-
-      if (validatorWithSuffix !== "noop") {
-        form.attributes += " novalidate";
-      }
-
-      if (PADDED_THEMES.includes(themeOrSubTheme)) {
-        form.attributes += ' style="padding: 2rem;"';
-      }
-
-      svelte.addFragment(ast, `<BasicForm {form} ${form.attributes}/>`);
+    `${directory.kitRoutes}/${isKit ? "demo/sjsf/+page.svelte" : "sjsf.svelte"}`,
+    createPage({
+      ...options,
+      language,
+      form,
+      lib,
     }),
   );
-}
-
-function createForm(ctx: Context): {
-  formPackageImports: string[];
-  additionalImports: (NamedImportOptions | NamespaceImportOptions)[];
-  init: string;
-  attributes: string;
-} {
-  const {
-    options: { sveltekit },
-    isTs,
-  } = ctx;
-  const validator = createValidator(ctx);
-  const validatorOptionsWithoutSchema = validator.options.replace(
-    /\bschema\b\s*,?\s*/,
-    "",
-  );
-  const isInputTypeRequired = isTs && !validator.schemaValidator;
-  const inputType = isInputTypeRequired ? `<${validator.inputType}>` : "";
-  if (sveltekit === "formActions") {
-    return {
-      formPackageImports: ["BasicForm"],
-      additionalImports: [
-        ...validator.imports,
-        {
-          imports: ["createMeta", "setupSvelteKitForm"],
-          from: svelteKitSubPath("client"),
-        },
-        {
-          imports: ["ActionData", "PageData"],
-          from: "./$types",
-          isType: true,
-        },
-      ],
-      init: `const meta = createMeta<ActionData, PageData>().postForm;
-const { form } = setupSvelteKitForm(meta, {
-  ...defaults,
-  onSuccess: (result) => {
-    if (result.type === "success") {
-      console.log(result.data?.post);
-    }
-  },
-  ${validatorOptionsWithoutSchema}
-})`,
-      attributes: 'method="POST"',
-    };
-  } else if (sveltekit === "remoteFunctions") {
-    return {
-      formPackageImports: ["BasicForm", "createForm"],
-      additionalImports: [
-        ...validator.imports,
-        ...(isInputTypeRequired ? validator.schemaImports : []),
-        {
-          imports: ["connect"],
-          from: svelteKitRfSubPath("client"),
-        },
-        {
-          imports: ["createPost", "getInitialData"],
-          from: "./data.remote",
-        },
-      ],
-      init: `const initialData = await getInitialData();
-const form = createForm${inputType}(
-  await connect(
-    createPost.enhance(async ({ submit }) => {
-      if (await submit()) {
-        console.log(createPost.result);
-        form.reset();
-      }
-    }),
-    {
-      ...defaults,
-      ...initialData,
-      fields: createPost.fields,
-      ${validatorOptionsWithoutSchema}
-    },
-  ),
-)`,
-      attributes: "",
-    };
-  } else if (sveltekit !== "no") {
-    throw neverError(sveltekit, "unexpected sveltekit integration option");
-  }
-  return {
-    formPackageImports: ["BasicForm", "createForm"],
-    additionalImports: validator.imports.concat(validator.schemaImports),
-    init: `const form = createForm${inputType}({
-  ...defaults,
-  onSubmit: console.log,
-  ${validator.options}
-})`,
-    attributes: "",
-  };
 }

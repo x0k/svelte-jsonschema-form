@@ -3,7 +3,7 @@ import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
 
 import { loadSchemaById, saveResult } from "$lib/server";
-import * as defaults from "$lib/form-defaults";
+import * as defaults from "$lib/sjsf/defaults";
 
 import type { PageServerLoad } from "./$types";
 

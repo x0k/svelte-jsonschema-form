@@ -2,122 +2,100 @@ import { defineAddon, defineAddonOptions, type SelectQuestion } from "sv";
 import {
   isLabTheme,
   themeOrSubThemeTitle,
-  validators,
-  validatorTitle,
-  type Validator,
-  type NonLegacyThemeOrSubTheme,
   iconSets,
   iconSetTitle,
   isThemeExtension,
   themeExtensionOrigin,
-  type PrecompiledValidator,
-  isPrecompiledOnlyValidator,
-  isPrecompiledValidator,
   isLabValidator,
-  isThemeWithSubThemes,
-  themeSubThemes,
-  themes,
-  isLegacyTheme,
-  precompiledValidatorSubPath,
-  hyperjumpValidatorLocalizationSubPath,
-  isSchemaValidator,
-  zod4ValidatorVersionSubPath,
-  externalValidatorPackage,
-  internalValidatorSubPath,
+  toTheme,
+  FIELD_VALIDATION_FLAGS,
+  type Generated,
 } from "meta";
+import {
+  codegenSvelteKitIntegrations,
+  codegenThemeOrSubTheme,
+  codegenValidators,
+  createForm,
+  createValidator,
+  KIT_PATH_FACTORY,
+  type CodegenSvelteKitIntegration,
+  type CodegenThemeOrSubTheme,
+  type FieldsValidationMode,
+  type FormDefinition,
+  type PathFactory,
+  type Schema,
+  type UiSchemaRoot,
+  type ValidatorDefinition,
+} from "meta/codegen";
+import type * as _uiSchemaAugmentation from "meta/playground";
 
 import packageJson from "../package.json" with { type: "json" };
-import {
-  createPrinter,
-  type NamedImportOptions,
-  type NamespaceImportOptions,
-} from "./sv-utils.js";
+import { createPrinter } from "./sv-utils.js";
 
 const ADDON_ID = packageJson.name;
 
 type SelectOption = SelectQuestion<string>["options"][number];
 
-export const SVELTE_KIT_INTEGRATION_OPTIONS = [
-  { value: "no", label: "No" },
-  { value: "formActions", label: "Form Actions" },
-  {
-    value: "remoteFunctions",
-    label: "Remote Functions",
-    hint: "experimental",
-  },
-] as const satisfies SelectOption[];
+const SVELTE_KIT_INTEGRATION_META: Record<
+  CodegenSvelteKitIntegration,
+  { label: string; experimental?: true }
+> = {
+  no: { label: "No" },
+  formActions: { label: "Form Actions" },
+  remoteFunctions: { label: "Remote Functions", experimental: true },
+};
 
-export type SvelteKitIntegrationOption =
-  (typeof SVELTE_KIT_INTEGRATION_OPTIONS)[number]["value"];
-
-function validatorOpt<V extends Validator>(v: V) {
-  return {
-    value: v,
-    label: validatorTitle(v),
-    hint: isLabValidator(v) ? "experimental" : undefined,
-  } as const;
-}
-
-const PRECOMPILED_SUFFIX = `-precompiled`;
-
-type WithPrecompiledSuffix<T extends string> =
-  `${T}${typeof PRECOMPILED_SUFFIX}`;
-
-function precompiledOpt<V extends PrecompiledValidator>(v: V) {
-  return {
-    value: `${v}${PRECOMPILED_SUFFIX}`,
-    label: `${validatorTitle(v)} (precompiled)`,
-    hint: isLabValidator(v) ? "experimental" : undefined,
-  } as const;
-}
-
-export function isEndsWithPrecompiled(
-  v: string,
-): v is WithPrecompiledSuffix<string> {
-  return v.endsWith(PRECOMPILED_SUFFIX);
-}
-
-export function withoutPrecompiledSuffix<V extends string>(
-  v: V | WithPrecompiledSuffix<V>,
-): V {
-  return isEndsWithPrecompiled(v)
-    ? (v.slice(0, -PRECOMPILED_SUFFIX.length) as V)
-    : v;
-}
-
-export function* themeOrSubThemeOptions() {
-  for (const t of themes()) {
-    if (isLegacyTheme(t)) {
-      continue;
-    }
-    const hint = isLabTheme(t) ? `experimental` : undefined;
+function* svelteKitIntegrationOptions() {
+  for (const value of codegenSvelteKitIntegrations()) {
+    const { label, experimental } = SVELTE_KIT_INTEGRATION_META[value];
     yield {
-      label: isThemeExtension(t)
-        ? `${themeOrSubThemeTitle(themeExtensionOrigin(t))} & ${themeOrSubThemeTitle(t)}`
-        : themeOrSubThemeTitle(t),
-      value: t,
-      hint,
+      value,
+      label,
+      hint: experimental && "experimental",
     } satisfies SelectOption;
-    if (isThemeWithSubThemes(t)) {
-      for (const s of themeSubThemes(t)) {
-        yield {
-          label: themeOrSubThemeTitle(s),
-          value: s,
-          hint,
-        } satisfies SelectOption;
-      }
-    }
   }
 }
 
+export function* themeOrSubThemeOptions() {
+  for (const themeOrSubTheme of codegenThemeOrSubTheme()) {
+    const theme = toTheme(themeOrSubTheme);
+    const hint = isLabTheme(theme) ? `experimental` : undefined;
+    const title = themeOrSubThemeTitle(themeOrSubTheme);
+    yield {
+      label: isThemeExtension(theme)
+        ? `${themeOrSubThemeTitle(themeExtensionOrigin(theme))} & ${title}`
+        : title,
+      value: themeOrSubTheme,
+      hint,
+    } satisfies SelectOption;
+  }
+}
+
+export function* svValidators() {
+  for (const validator of codegenValidators()) {
+    if (validator.draft2020) {
+      continue;
+    }
+    yield validator;
+  }
+}
+
+export type SvValidator = Generated<typeof svValidators>;
+
 export function* validatorOptions() {
-  for (const v of validators()) {
-    if (!isPrecompiledOnlyValidator(v)) {
-      yield validatorOpt(v);
+  for (const validator of svValidators()) {
+    let title: string = validator.name;
+    if (validator.draft2020) {
+      title = `${title} (2020-12)`;
     }
-    if (isPrecompiledValidator(v)) {
-      yield precompiledOpt(v);
+    if (validator.precompiled) {
+      title = `${title} (precompiled)`;
     }
+    yield {
+      value: JSON.stringify(validator),
+      label: title,
+      hint: isLabValidator(validator.name) ? "experimental" : undefined,
+    } satisfies SelectOption;
   }
 }
 
@@ -140,7 +118,7 @@ export const createOptions = (options: AddonSetupOptions) =>
     .add("themeOrSubTheme", {
       question: "Select a theme (or sub-theme)",
       type: "select",
-      default: "basic" satisfies NonLegacyThemeOrSubTheme,
+      default: "basic" satisfies CodegenThemeOrSubTheme,
       options: Array.from(themeOrSubThemeOptions()),
     })
     .add("icons", {
@@ -149,7 +127,7 @@ export const createOptions = (options: AddonSetupOptions) =>
       default: "none",
       options: Array.from(iconOptions()),
     })
-    .add("validatorWithSuffix", {
+    .add("validator", {
       question: "Select a validation engine",
       type: "select",
       default: "ajv8",
@@ -158,8 +136,8 @@ export const createOptions = (options: AddonSetupOptions) =>
     .add("sveltekit", {
       question: "Enable SvelteKit integration?",
       type: "select",
-      default: "no" satisfies SvelteKitIntegrationOption,
-      options: SVELTE_KIT_INTEGRATION_OPTIONS,
+      default: "no" satisfies CodegenSvelteKitIntegration,
+      options: Array.from(svelteKitIntegrationOptions()),
       condition: () => options.isKit,
     })
     .add("demo", {
@@ -177,11 +155,17 @@ type Workspace = Parameters<Addon["run"]>[0];
 
 export type AddonOptions = Workspace["options"];
 
-export type Context = Workspace & {
+export type ContextOptions = Omit<AddonOptions, "validator"> & {
+  validator: SvValidator;
+};
+
+export type Context = Omit<Workspace, "options"> & {
+  options: ContextOptions;
   isTs: boolean;
   ts: (content: string, alt?: string) => string;
   js: (content: string, alt?: string) => string;
-  lib: (path: string) => string;
+  validator: ValidatorDefinition;
+  form: FormDefinition;
 };
 
 export interface AddonSetupOptions {
@@ -189,201 +173,78 @@ export interface AddonSetupOptions {
 }
 
 export function createContext(ws: Workspace): Context {
-  const { language, directory, isKit } = ws;
+  const { language, file, directory, isKit } = ws;
   const isTs = language === "ts";
   const [ts, js] = createPrinter(isTs, !isTs);
+  const options: ContextOptions = {
+    ...ws.options,
+    validator: JSON.parse(ws.options.validator),
+  };
+  const lib: PathFactory = isKit
+    ? KIT_PATH_FACTORY
+    : (path) =>
+        file.getRelative({
+          from: `${directory.kitRoutes}/sjsf.svelte`,
+          to: `${directory.lib}/${path}`,
+        });
+  const validator = createValidator({
+    ...options,
+    isTs,
+    lib,
+    modelName: POST_MODEL_NAME,
+  });
+  const form = createForm({
+    ...options,
+    disabled: false,
+    omitExtraData: false,
+    isTs,
+    modelName: POST_MODEL_NAME,
+    validator,
+  });
   return {
     ...ws,
+    options,
     isTs,
     ts: ts!,
     js: js!,
-    lib: (path) => `${isKit ? "$lib" : directory.lib}/${path}`,
+    // lib,
+    validator,
+    form,
   };
 }
 
-export const POST_JSON_SCHEMA_PATH = `/post/schema.json`;
+export const POST_MODEL_NAME = "post";
 
-export function neverError(value: never, message: string) {
-  return new Error(`${message}: ${value}`);
-}
+export const POST_MODEL_DIR = `/${POST_MODEL_NAME}/`;
 
-interface ValidatorDefinition {
-  schemaImports: (NamedImportOptions | NamespaceImportOptions)[];
-  imports: (NamedImportOptions | NamespaceImportOptions)[];
-  options: string;
-  inputType: string;
-  schemaValidator: boolean;
-}
-
-const createPostType = {
-  inputType: "Post",
-  schemaValidator: false,
-} satisfies Omit<ValidatorDefinition, "imports" | "schemaImports" | "options">;
-
-export function createValidator({
-  options: { validatorWithSuffix },
-  isTs,
-  lib,
-}: Context): ValidatorDefinition {
-  if (isEndsWithPrecompiled(validatorWithSuffix)) {
-    const validator = withoutPrecompiledSuffix(validatorWithSuffix);
-    const types = isTs
-      ? [
-          {
-            imports: ["Post"],
-            from: lib("post/model.generated"),
-            isType: true,
-          },
-        ]
-      : [];
-    if (validator === "hyperjump") {
-      return {
-        ...createPostType,
-        schemaImports: [
-          {
-            imports: ["schema"],
-            from: lib("post/model.generated"),
-          },
-          ...types,
-        ],
-        imports: [
-          {
-            imports: ["createValidatorRetriever"],
-            from: internalValidatorSubPath("precompile"),
-          },
-          {
-            imports: ["createFormValidatorFactory"],
-            from: precompiledValidatorSubPath(validator),
-          },
-          {
-            imports: ["localization"],
-            from: hyperjumpValidatorLocalizationSubPath("en-us"),
-          },
-          {
-            imports: ["ast"],
-            from: lib("post/model.generated"),
-          },
-        ],
-        options: `schema,
-validator: createFormValidatorFactory({ 
-  validatorRetriever: createValidatorRetriever({
-    registry: {
-      get(id) {
-        const schemaUri = \`\${id}#\`;
-        return schemaUri in ast
-          ? {
-              schemaUri,
-              ast,
-            }
-          : undefined;
-      },
+export const POST_SCHEMA = {
+  title: "Post",
+  type: "object",
+  properties: {
+    title: {
+      title: "Title",
+      type: "string",
     },
-  }),
-  localization
-})`,
-      };
-    }
-    return {
-      ...createPostType,
-      schemaImports: [
-        {
-          imports: ["schema"],
-          from: lib("post/model.generated"),
-        },
-        ...types,
-      ],
-      imports: [
-        {
-          imports: ["fromValidators"],
-          from: internalValidatorSubPath("precompile"),
-        },
-        {
-          imports: ["createFormValidatorFactory"],
-          from: precompiledValidatorSubPath(validator),
-        },
-        {
-          as: "validateFunctions",
-          from: lib("post/validators.generated"),
-        },
-      ],
-      options: `schema,
-validator: createFormValidatorFactory({
-  validatorRetriever: fromValidators(validateFunctions),
-})`,
-    };
-  }
-  if (isSchemaValidator(validatorWithSuffix)) {
-    const v = (
-      {
-        zod4: {
-          import: {
-            as: "z",
-            from: "zod",
-          },
-          path: zod4ValidatorVersionSubPath("classic"),
-          inferInput: "z.infer",
-        },
-        valibot: {
-          import: {
-            as: "v",
-            from: "valibot",
-          },
-          path: externalValidatorPackage("valibot").name,
-          inferInput: "v.InferInput",
-        },
-        "standard-schema": {
-          import: {
-            imports: ["StandardSchemaV1"],
-            from: "@standard-schema/spec",
-            isType: true,
-          },
-          path: internalValidatorSubPath("standard-schema"),
-          inferInput: "StandardSchemaV1.InferInput",
-        },
-      } satisfies Record<
-        typeof validatorWithSuffix,
-        {
-          import: NamedImportOptions | NamespaceImportOptions;
-          path: string;
-          inferInput: string;
-        }
-      >
-    )[validatorWithSuffix];
-    return {
-      schemaImports: [v.import],
-      imports: [
-        {
-          imports: ["adapt"],
-          from: v.path,
-        },
-        {
-          imports: ["post"],
-          from: lib("post"),
-        },
-      ],
-      options: `...adapt(post)`,
-      inputType: `${v.inferInput}<typeof post>`,
-      schemaValidator: true,
-    };
-  }
-  return {
-    ...createPostType,
-    schemaImports: [
-      {
-        imports: ["schema"],
-        from: lib("post"),
-      },
-      ...(isTs
-        ? [
-            {
-              imports: ["Post"],
-              from: lib("post"),
-              isType: true,
-            },
-          ]
-        : []),
-    ],
-    imports: [],
-    options: "schema",
-  };
-}
+    content: {
+      title: "Content",
+      type: "string",
+      minLength: 10,
+    },
+  },
+  required: ["title", "content"],
+} satisfies Schema;
+
+export const POST_UI_SCHEMA = {
+  content: {
+    "ui:components": {
+      textWidget: "textareaWidget",
+    },
+  },
+} satisfies UiSchemaRoot;
+
+export const POST_INITIAL_VALUE = { title: "New post", content: "" };
+
+export const POST_FIELDS_VALIDATION_MODE: FieldsValidationMode =
+  FIELD_VALIDATION_FLAGS.ON_INPUT | FIELD_VALIDATION_FLAGS.ON_CHANGE;
+
+export const POST_EXTRA_WIDGETS = ["textarea"] as const;

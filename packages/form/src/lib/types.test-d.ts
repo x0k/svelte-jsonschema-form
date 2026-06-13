@@ -1,5 +1,5 @@
 import { expectTypeOf, test } from "vitest";
-import type { JsonPaths } from "./types.js";
+import type { DeepPartial, JsonPaths } from "./types.js";
 
 test("JsonPaths", () => {
   interface SimpleFields {
@@ -82,5 +82,66 @@ test("JsonPaths", () => {
 
   expectTypeOf<JsonPaths<Nullable>>().toEqualTypeOf<
     ["user"] | ["user", "name"] | ["foo"] | ["foo", "bar"]
+  >();
+});
+
+test("DeepPartial", () => {
+  expectTypeOf<DeepPartial<string>>().toEqualTypeOf<string>();
+  expectTypeOf<DeepPartial<number>>().toEqualTypeOf<number>();
+  expectTypeOf<DeepPartial<null>>().toEqualTypeOf<null>();
+  expectTypeOf<DeepPartial<undefined>>().toEqualTypeOf<undefined>();
+
+  expectTypeOf<DeepPartial<string[]>>().toEqualTypeOf<(string | undefined)[]>();
+  expectTypeOf<DeepPartial<readonly number[]>>().toEqualTypeOf<
+    readonly (number | undefined)[]
+  >();
+  expectTypeOf<DeepPartial<[string, number]>>().toEqualTypeOf<
+    [string | undefined, number | undefined]
+  >();
+  expectTypeOf<DeepPartial<readonly [string, number]>>().toEqualTypeOf<
+    readonly [string | undefined, number | undefined]
+  >();
+
+  interface Simple {
+    name: string;
+    age: number;
+  }
+  expectTypeOf<DeepPartial<Simple>>().toEqualTypeOf<{
+    name?: string;
+    age?: number;
+  }>();
+
+  interface Nested {
+    user: {
+      name: string;
+      address: {
+        street: string;
+        city: string;
+      };
+    };
+    tags: string[];
+  }
+  expectTypeOf<DeepPartial<Nested>>().toEqualTypeOf<{
+    user?: { name?: string; address?: { street?: string; city?: string } };
+    tags?: (string | undefined)[];
+  }>();
+
+  interface WithOptional {
+    required: string;
+    optional?: number;
+  }
+  expectTypeOf<DeepPartial<WithOptional>>().toEqualTypeOf<{
+    required?: string;
+    optional?: number;
+  }>();
+
+  expectTypeOf<DeepPartial<Record<string, number>>>().toEqualTypeOf<
+    Record<string, number | undefined>
+  >();
+  expectTypeOf<DeepPartial<Record<string, string[]>>>().toEqualTypeOf<
+    Record<string, (string | undefined)[] | undefined>
+  >();
+  expectTypeOf<DeepPartial<Record<string, { x: number }>>>().toEqualTypeOf<
+    Record<string, { x?: number } | undefined>
   >();
 });

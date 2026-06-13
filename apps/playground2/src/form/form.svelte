@@ -1,16 +1,3 @@
-<script lang="ts" module>
-  import {
-    StringEnumValueMapperBuilder,
-    type EnumValueMapperBuilder,
-  } from "@sjsf/form/options.svelte";
-
-  declare module "@sjsf/form" {
-    interface UiOptionsRegistry {
-      stringEnumValueMapper: () => EnumValueMapperBuilder;
-    }
-  }
-</script>
-
 <script lang="ts">
   import { BitsConfig } from "bits-ui";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
@@ -41,31 +28,18 @@
   import { createFormMerger } from "@sjsf/form/mergers/modern";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { convert } from "@sjsf/form/converters/draft-2020-12";
+  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
   import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
   import AlignLeft from "@lucide/svelte/icons/align-left";
-
-  import { Button } from "$lib/components/ui/button/index.js";
-  import { Label } from "$lib/components/ui/label/index.js";
-  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
-  import { debouncedEffect } from "$lib/svelte.svelte.js";
-  import { ShadowHost } from "$lib/shadow/index.js";
-  import Editor from "$lib/editor.svelte";
-  import Popup from "$lib/popup.svelte";
-  import Bits from "$lib/bits.svelte";
-  import Select from "$lib/select.svelte";
-  import Noop from "$lib/noop.svelte";
-  import { gripHeader } from "$lib/grip-header.svelte";
-  import {
-    constraints,
-    createApplySplit,
-    createTilerContext,
-    gapPx,
-  } from "$lib/tiler.js";
-
+  import ChevronDown from "@lucide/svelte/icons/chevron-down";
+  import ExternalLink from "@lucide/svelte/icons/external-link";
+  import Download from "@lucide/svelte/icons/download";
+  import Copy from "@lucide/svelte/icons/copy";
+  import { themeOrSubThemeTitle } from "meta";
   import {
     ALL_OF_STATE_BEHAVIOR,
     ALL_OF_STATE_BEHAVIOR_TITLES,
@@ -77,26 +51,64 @@
     EMPTY_OBJECT_FIELDS_BEHAVIOR_TITLES,
     MERGE_DEFAULTS_INTO_FORM,
     MERGE_DEFAULTS_INTO_FORM_TITLES,
-    icons,
-    iconsStyles,
-    resolvers,
-    themes,
-    themeStyles,
-    validators,
-    VALIDATOR_TITLES,
-    type PlaygroundState,
-    REAL_VALIDATORS,
-  } from "@/core/index.js";
+    PLAYGROUND_ICON_SETS,
+    PLAYGROUND_ICON_SET_STYLES,
+    PLAYGROUND_RESOLVERS,
+    PLAYGROUND_SJSF_THEMES,
+    PLAYGROUND_SJSF_THEME_STYLES,
+    PLAYGROUND_SJSF_GLOBAL_THEME_STYLES,
+    isEndsWith2020,
+    playgroundIconSetTitle,
+    playgroundIconSets,
+    playgroundResolvers,
+    playgroundThemes,
+    playgroundValidator,
+    playgroundValidatorTitle,
+    playgroundValidators,
+    type FormState,
+  } from "meta/playground";
+  import "meta/playground/augmentations";
+  import {
+    SANDBOX_PLATFORMS,
+    sandboxPlatformLabel,
+    sandboxPlatformIcon,
+  } from "meta/sandbox";
+  import { toast } from "svelte-sonner";
+
+  import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
+  import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
+  import { Label } from "$lib/components/ui/label/index.js";
+  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+  import * as Separator from "$lib/components/ui/separator/index.js";
+  import { debouncedEffect } from "$lib/svelte.svelte.js";
+  import { ShadowHost } from "$lib/shadow/index.js";
+  import Editor from "$lib/editor.svelte";
+  import Popup from "$lib/popup.svelte";
+  import Bits from "$lib/bits.svelte";
+  import Select from "$lib/select.svelte";
+  import Noop from "$lib/noop.svelte";
+  import { gripHeader } from "$lib/grip-header.svelte";
+  import { copyTextToClipboard } from "$lib/copy-to-clipboard";
+  import {
+    constraints,
+    createApplySplit,
+    createTilerContext,
+    gapPx,
+  } from "$lib/tiler.js";
+
   import { themeManager } from "@/theme.svelte";
   import { setShadcnContext } from "@/shadcn-context.js";
   import Header from "@/header.svelte";
   import { router } from "@/router.js";
 
+  import { getChangedMergerOptionsCount } from "./merger-options";
   import * as customComponents from "./custom-form-components/index.js";
   import SamplePicker from "./sample-picker.svelte";
   import CopyFormData from "./copy-form-data.svelte";
+  import { openSandbox } from "./open-sandbox";
 
-  const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
+  const DEFAULT_PLAYGROUND_STATE: FormState = {
     schema: {
       type: "object",
       title: "Basic form",
@@ -142,10 +154,15 @@
     return () => router.store(snap);
   });
 
-  const theme = $derived(extendByRecord(themes[data.theme], customComponents));
-  const themeStyle = $derived(themeStyles[data.theme]);
-  const iconsSet = $derived(data.icons && icons[data.icons]);
-  const iconSetStyle = $derived(data.icons && iconsStyles[data.icons]);
+  const theme = $derived(
+    extendByRecord(PLAYGROUND_SJSF_THEMES[data.theme], customComponents),
+  );
+  const themeStyle = $derived(PLAYGROUND_SJSF_THEME_STYLES[data.theme]);
+  const themeGlobalStyle = $derived(PLAYGROUND_SJSF_GLOBAL_THEME_STYLES[data.theme]);
+  const iconsSet = $derived(data.icons && PLAYGROUND_ICON_SETS[data.icons]);
+  const iconSetStyle = $derived(
+    data.icons && PLAYGROUND_ICON_SET_STYLES[data.icons],
+  );
   const fieldsValidationCount = $derived.by(() => {
     let count = 0;
     let snap = data.fieldsValidationMode;
@@ -157,6 +174,10 @@
     }
     return count;
   });
+
+  const changedMergerOptionsCount = $derived(
+    getChangedMergerOptionsCount(data),
+  );
 
   const { compareSchemaDefinitions, compareSchemaValues } = createComparator();
   const jsonSchemaMerger = createMerger({
@@ -194,7 +215,7 @@
   const form = createForm({
     idBuilder: createFormIdBuilder,
     get resolver() {
-      return resolvers[data.resolver];
+      return PLAYGROUND_RESOLVERS[data.resolver];
     },
     value: [
       () => data.initialValue,
@@ -213,12 +234,12 @@
       return data.uiSchema;
     },
     validator: (options) => {
-      const v = validators[data.validator]<FormValue>(options);
+      const v = playgroundValidator(data.validator)<FormValue>(options);
       return {
         ...v,
         validateFormValue(rootSchema, formValue) {
           return v.validateFormValue(
-            isDraft2020 && data.validator.endsWith("_2020")
+            isDraft2020 && isEndsWith2020(data.validator)
               ? data.schema
               : rootSchema,
             data.omitExtraData
@@ -381,6 +402,10 @@
   const editors: Record<string, Editor<any>> = $state({});
 </script>
 
+<svelte:head>
+  {@html `<style>${themeGlobalStyle}</style>`}
+</svelte:head>
+
 <Header
   transitions={{
     "": () => data,
@@ -396,113 +421,167 @@
     }),
   }}
 >
-  <SamplePicker
-    onSelect={(sample) => {
-      Object.assign(data, sample);
-      originalInitialValue = sample.initialValue;
-    }}
-  />
-  <Popup>
-    {#snippet label()}
-      Form options ({+data.disabled +
-        +data.html5Validation +
-        +data.focusOnFirstError +
-        +data.omitExtraData})
-    {/snippet}
-    <Label>
-      <Checkbox bind:checked={data.disabled} />
-      Disabled
-    </Label>
-    <Label>
-      <Checkbox bind:checked={data.html5Validation} />
-      HTML5 validation
-    </Label>
-    <Label>
-      <Checkbox bind:checked={data.focusOnFirstError} />
-      Focus on first error
-    </Label>
-    <Label>
-      <Checkbox bind:checked={data.omitExtraData} />
-      Omit extra data
-    </Label>
-  </Popup>
-  <Popup>
-    {#snippet label()}
-      Fields validation ({fieldsValidationCount})
-    {/snippet}
-    <Bits
-      title="Triggers"
-      bind:value={data.fieldsValidationMode}
-      flags={[
-        [ON_INPUT, "On Input"],
-        [ON_CHANGE, "On Change"],
-        [ON_BLUR, "On Blur"],
-        [ON_ARRAY_CHANGE, "Array Changed"],
-        [ON_OBJECT_CHANGE, "Object Changed"],
-      ]}
+  <ButtonGroup.Root>
+    <SamplePicker
+      onSelect={(sample) => {
+        Object.assign(data, sample);
+        originalInitialValue = sample.initialValue;
+      }}
     />
-    <Bits
-      title="Modifiers"
-      bind:value={data.fieldsValidationMode}
-      flags={[
-        [AFTER_CHANGED, "After Changed"],
-        [AFTER_TOUCHED, "After Touched"],
-        [AFTER_SUBMITTED, "After Submitted"],
-      ]}
-    />
-  </Popup>
-  <Popup>
-    {#snippet label()}
-      Merger options
-    {/snippet}
+  </ButtonGroup.Root>
+
+  <ButtonGroup.Root>
     <Select
-      label="Populate minItems in arrays"
-      bind:value={data.arrayMinItemsPopulate}
-      items={ARRAY_MIN_ITEMS_POPULATE}
-      labels={ARRAY_MIN_ITEMS_POPULATE_TITLES}
-    />
-    <Label>
-      <Checkbox bind:checked={data.arrayMinItemsMergeExtraDefaults} />
-      Merge array defaults with formData
-    </Label>
-    <Select
-      label="allOf defaults behavior"
-      bind:value={data.allOf}
-      items={ALL_OF_STATE_BEHAVIOR}
-      labels={ALL_OF_STATE_BEHAVIOR_TITLES}
+      label="Theme"
+      bind:value={data.theme}
+      items={playgroundThemes()}
+      itemLabel={themeOrSubThemeTitle}
     />
     <Select
-      label="const as default behavior"
-      bind:value={data.constAsDefault}
-      items={CONST_AS_DEFAULT_STATE_BEHAVIOR}
-      labels={CONST_AS_DEFAULT_STATE_BEHAVIOR_TITLES}
+      label="Validator"
+      bind:value={data.validator}
+      items={playgroundValidators()}
+      itemLabel={playgroundValidatorTitle}
     />
     <Select
-      label="Object fields default behavior"
-      bind:value={data.emptyObjectFields}
-      items={EMPTY_OBJECT_FIELDS_BEHAVIOR}
-      labels={EMPTY_OBJECT_FIELDS_BEHAVIOR_TITLES}
+      label="Icons"
+      bind:value={data.icons}
+      items={playgroundIconSets()}
+      itemLabel={playgroundIconSetTitle}
     />
     <Select
-      label="Merge defaults into formData"
-      bind:value={data.mergeDefaultsIntoFormData}
-      items={MERGE_DEFAULTS_INTO_FORM}
-      labels={MERGE_DEFAULTS_INTO_FORM_TITLES}
+      label="Resolver"
+      bind:value={data.resolver}
+      items={playgroundResolvers()}
     />
-  </Popup>
-  <Select
-    label="Resolver"
-    bind:value={data.resolver}
-    items={Object.keys(resolvers)}
-  />
-  <Select
-    label="Validator"
-    bind:value={data.validator}
-    items={REAL_VALIDATORS}
-    labels={VALIDATOR_TITLES}
-  />
-  <Select label="Theme" bind:value={data.theme} items={Object.keys(themes)} />
-  <Select label="Icons" bind:value={data.icons} items={Object.keys(icons)} />
+    <Popup>
+      {#snippet label()}
+        Settings ({+data.disabled +
+          +data.html5Validation +
+          +data.focusOnFirstError +
+          +data.omitExtraData +
+          fieldsValidationCount +
+          changedMergerOptionsCount})
+      {/snippet}
+      <p class="text-sm font-medium">Form</p>
+      <Label>
+        <Checkbox bind:checked={data.disabled} />
+        Disabled
+      </Label>
+      <Label>
+        <Checkbox bind:checked={data.html5Validation} />
+        HTML5 validation
+      </Label>
+      <Label>
+        <Checkbox bind:checked={data.focusOnFirstError} />
+        Focus on first error
+      </Label>
+      <Label>
+        <Checkbox bind:checked={data.omitExtraData} />
+        Omit extra data
+      </Label>
+      <Separator.Root class="my-1" />
+      <p class="text-sm font-medium">Fields validation</p>
+      <Bits
+        title="Triggers"
+        bind:value={data.fieldsValidationMode}
+        flags={[
+          [ON_INPUT, "On Input"],
+          [ON_CHANGE, "On Change"],
+          [ON_BLUR, "On Blur"],
+          [ON_ARRAY_CHANGE, "Array Changed"],
+          [ON_OBJECT_CHANGE, "Object Changed"],
+        ]}
+      />
+      <Bits
+        title="Modifiers"
+        bind:value={data.fieldsValidationMode}
+        flags={[
+          [AFTER_CHANGED, "After Changed"],
+          [AFTER_TOUCHED, "After Touched"],
+          [AFTER_SUBMITTED, "After Submitted"],
+        ]}
+      />
+      <Separator.Root class="my-1" />
+      <p class="text-sm font-medium">Merger</p>
+      <Select
+        label="Populate minItems in arrays"
+        bind:value={data.arrayMinItemsPopulate}
+        items={ARRAY_MIN_ITEMS_POPULATE}
+        labels={ARRAY_MIN_ITEMS_POPULATE_TITLES}
+      />
+      <Label>
+        <Checkbox bind:checked={data.arrayMinItemsMergeExtraDefaults} />
+        Merge array defaults with formData
+      </Label>
+      <Select
+        label="allOf defaults behavior"
+        bind:value={data.allOf}
+        items={ALL_OF_STATE_BEHAVIOR}
+        labels={ALL_OF_STATE_BEHAVIOR_TITLES}
+      />
+      <Select
+        label="const as default behavior"
+        bind:value={data.constAsDefault}
+        items={CONST_AS_DEFAULT_STATE_BEHAVIOR}
+        labels={CONST_AS_DEFAULT_STATE_BEHAVIOR_TITLES}
+      />
+      <Select
+        label="Object fields default behavior"
+        bind:value={data.emptyObjectFields}
+        items={EMPTY_OBJECT_FIELDS_BEHAVIOR}
+        labels={EMPTY_OBJECT_FIELDS_BEHAVIOR_TITLES}
+      />
+      <Select
+        label="Merge defaults into formData"
+        bind:value={data.mergeDefaultsIntoFormData}
+        items={MERGE_DEFAULTS_INTO_FORM}
+        labels={MERGE_DEFAULTS_INTO_FORM_TITLES}
+      />
+    </Popup>
+  </ButtonGroup.Root>
+
+  <ButtonGroup.Root>
+    <Button
+      variant="outline"
+      onclick={async () => {
+        try {
+          const str = router.share($state.snapshot(data)).toString();
+          await copyTextToClipboard(str);
+          toast.success("Link copied");
+        } catch (err) {
+          console.error(err);
+          toast.error("An error has occurred");
+        }
+      }}
+    >
+      Share <Copy />
+    </Button>
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger
+        class={buttonVariants({
+          variant: "outline",
+          class: "px-1",
+        })}
+      >
+        <ChevronDown class="size-4" />
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content align="center" class="w-44">
+        {#each SANDBOX_PLATFORMS as platform (platform)}
+          <DropdownMenu.Item
+            onclick={() => openSandbox({ formState: data, platform })}
+          >
+            {sandboxPlatformLabel(platform)}
+            {#if sandboxPlatformIcon(platform) === "external-link"}
+              <ExternalLink />
+            {:else}
+              <Download />
+            {/if}
+          </DropdownMenu.Item>
+        {/each}
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
+  </ButtonGroup.Root>
 </Header>
 <Panel bind:layout />
 

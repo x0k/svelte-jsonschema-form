@@ -47,7 +47,7 @@
   };
   const selectNode = (e: Event) => {
     e.stopPropagation();
-    if (disableSelection) {
+    if (disableSelection || ctx.selectedNode === node) {
       return;
     }
     ctx.selectNode(nodeRef, showRequired);

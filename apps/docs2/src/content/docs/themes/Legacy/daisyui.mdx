@@ -1,7 +1,7 @@
 ---
 title: daisyUI v4
 type: package
-package: "@sjsf/daisyui-theme"
+packageCodeName: "daisyui"
 sidebar:
   order: 206
 ---
@@ -9,10 +9,9 @@ sidebar:
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/daisyui-theme/specs';
 import styles from '@sjsf/daisyui-theme/styles.css?inline';
+import { themePackage } from "meta";
 
-import pkg from 'legacy/daisyui-theme/package.json'
-
-import { themePkg } from '@/shared';
+import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
@@ -23,12 +22,13 @@ import uiOptionsCode from './daisyui/ui-options?raw';
 import { createSchemas, replacer, createExtraImports } from "../_demo-schema";
 
 export const schemas = createSchemas(specs)
+export const pkg = themePackage('daisyui')
 
 ## Installation
 
-<Npm pkg={themePkg('daisyui')} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ### Install daisyUI
 

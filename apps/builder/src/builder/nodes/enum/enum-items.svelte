@@ -6,13 +6,9 @@
   import { untrack } from "svelte";
   import { identity } from "@sjsf/form/lib/function";
   import Plus from "@lucide/svelte/icons/plus";
+  import { EnumValueType } from "meta/builder";
 
-  import {
-    isEnumItemNode,
-    createEnumItemNode,
-    EnumValueType,
-    type EnumItemNode
-  } from "$lib/builder/index.js";
+  import { isEnumItemNode, createEnumItemNode, type EnumItemNode } from "$lib/builder/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 

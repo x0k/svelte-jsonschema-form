@@ -1,17 +1,7 @@
-import {
-  shadcn4ExtraWidgetComponents,
-  shadcnExtrasExtraWidgetComponents,
-  shadcnExtrasUiSubPath,
-  shadcnNewYorkThemeSubPath,
-  shadcnRequiredComponents,
-  themePackage,
-  type WidgetComponentsApproximation,
-} from "meta";
+import { createShadcnLib } from "meta/codegen";
 
-import { fileExists, getTopLevelFunction, transforms } from "./sv-utils.js";
-import type { Context } from "./model.js";
-
-export const SET_SHADCN_THEME_CONTEXT_FN_NAME = "setShadcnThemeContext";
+import { fileExists, transforms } from "./sv-utils.js";
+import { POST_EXTRA_WIDGETS, type Context } from "./model.js";
 
 export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
   const isShadcn4 = options.themeOrSubTheme === "shadcn4";
@@ -44,128 +34,17 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
     }),
   );
 
-  const importedComponents: string[] = [];
-  const libImports: string[] = [];
-  const localImports: [path: string, imports: string[]][] = [];
-
-  for (const { folder, components } of shadcnRequiredComponents()) {
-    const uiComponentIndexFilePath = `${realUiPath}/${folder}/index.ts`;
-    if (!isConfigEmpty && fileExists(cwd, uiComponentIndexFilePath)) {
-      localImports.push([uiComponentIndexFilePath, components.slice()]);
-    } else {
-      libImports.push(...components);
-    }
-    importedComponents.push(...components);
-  }
-
-  const importedComponentsSet = new Set(importedComponents);
-  const extraLocalImports = new Map<string, string[]>();
-
-  const isNotImported = (c: string) =>
-    !importedComponentsSet.has(c) && Boolean(importedComponentsSet.add(c));
-  function handleExtraWidgetComponents(
-    data: WidgetComponentsApproximation,
-    extraLibImports: string[],
-  ) {
-    for (const [folder, components] of Object.entries(data)) {
-      const uiComponentIndexFilePath = `${realUiPath}/${folder}/index.ts`;
-      const isComponentsArray = Array.isArray(components);
-      if (!isConfigEmpty && fileExists(cwd, uiComponentIndexFilePath)) {
-        const toImport = isComponentsArray
-          ? components.filter(isNotImported)
-          : Object.entries(components)
-              .filter(([_, c]) => isNotImported(c))
-              .map(([name, alias]) => `${name} as ${alias}`);
-        if (toImport.length > 0) {
-          const imports = extraLocalImports.get(uiComponentIndexFilePath);
-          if (imports) {
-            imports.push(...toImport);
-          } else {
-            extraLocalImports.set(uiComponentIndexFilePath, toImport);
-          }
-        }
-      } else {
-        extraLibImports.push(
-          ...(isComponentsArray
-            ? components
-            : Object.values(components)
-          ).filter(isNotImported),
-        );
-      }
-    }
-  }
-
-  const shadcn4ExtraLibImports: string[] = [];
-  for (const c of shadcn4ExtraWidgetComponents()) {
-    handleExtraWidgetComponents(c.components, shadcn4ExtraLibImports);
-  }
-  const shadcnExtrasExtraLibImports: string[] = [];
-  if (isShadcnExtras) {
-    for (const c of shadcnExtrasExtraWidgetComponents()) {
-      handleExtraWidgetComponents(c.components, shadcnExtrasExtraLibImports);
-    }
-  }
-  for (const c of importedComponents) {
-    importedComponentsSet.delete(c);
-  }
-
   sv.file(
     `${directory.lib}/sjsf/shadcn.${language}`,
-    transforms.script(({ ast, js, comments }) => {
-      js.imports.addNamed(ast, {
-        imports: ["setThemeContext"],
-        from: themePackage("shadcn4").name,
-      });
-
-      if (libImports.length > 0) {
-        js.imports.addNamed(ast, {
-          imports: libImports,
-          from: shadcnNewYorkThemeSubPath,
-        });
-      }
-      for (const [source, imports] of localImports) {
-        js.imports.addNamed(ast, {
-          from: source,
-          imports,
-        });
-      }
-
-      if (getTopLevelFunction(ast, SET_SHADCN_THEME_CONTEXT_FN_NAME)) {
-        return;
-      }
-
-      if (shadcn4ExtraLibImports.length > 0) {
-        comments.add(ast, {
-          type: "Line",
-          value: `import { ${shadcn4ExtraLibImports.join(", ")} } from "${shadcnNewYorkThemeSubPath}";`,
-        });
-      }
-      if (shadcnExtrasExtraLibImports.length > 0) {
-        comments.add(ast, {
-          type: "Line",
-          value: `import { ${shadcnExtrasExtraLibImports.join(", ")} } from "${shadcnExtrasUiSubPath}";`,
-        });
-      }
-      for (const [path, components] of extraLocalImports) {
-        comments.add(ast, {
-          type: "Line",
-          value: `import { ${components.join(", ")} } from "${path}";`,
-        });
-      }
-
-      js.common.appendFromString(ast, {
-        code: `// https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/#components
-export function ${SET_SHADCN_THEME_CONTEXT_FN_NAME}() {
-  setThemeContext({
-    components: {
-      ${importedComponents.join(", ")}\n${Array.from(importedComponentsSet)
-        .map((c) => `// ${c}`)
-        .join(",\n")}
-    }
-  })
-}`,
-        comments,
-      });
+    createShadcnLib({
+      themeOrSubTheme: options.themeOrSubTheme,
+      resolveImportPath: (folder, libPath) => {
+        const localPath = `${realUiPath}/${folder}/index.ts`;
+        return !isConfigEmpty && fileExists(cwd, localPath)
+          ? localPath
+          : libPath;
+      },
+      widgets: POST_EXTRA_WIDGETS,
     }),
   );
 }

@@ -18,7 +18,7 @@
 
   preventPageReload({
     get isChanged() {
-      return ctx.isSaveRequired;
+      return location.hostname !== "localhost" && ctx.isSaveRequired;
     }
   });
 

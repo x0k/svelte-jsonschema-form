@@ -1,40 +1,32 @@
 ---
 title: cfworker/json-schema
 type: package
-package: "@sjsf/cfworker-validator"
+packageCodeName: "cfworker"
 sidebar:
   order: 3
 ---
 
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { LinkButton } from "@astrojs/starlight/components";
+import { externalValidatorPackage } from "meta";
 
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import Demo from "@/components/demo.svelte";
 
-import Form from './cfworker/form.svelte';
-import formCode from './cfworker/form.svelte?raw';
-import sharedCode from './shared/index.ts?raw';
+export const pkg = externalValidatorPackage("cfworker");
 
 Form validator implementation based on [@cfworker/json-schema](https://github.com/cfworker/cfworker/tree/main/packages/json-schema).
 
 ## Installation
 
-<Npm pkg="@sjsf/cfworker-validator @cfworker/json-schema" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Example
 
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={formCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="shared.ts">
-    <Code code={sharedCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="cfworker" iconsPicker client:visible />
 
 ## Caveats
 
@@ -49,12 +41,12 @@ Form validator implementation based on [@cfworker/json-schema](https://github.co
     v === undefined || v === null
       ? null
       : typeof v === "object"
-      ? JSON.parse(JSON.stringify(v))
-      : v
+        ? JSON.parse(JSON.stringify(v))
+        : v;
   ```
 
   It will also lead to incorrect error text (e.g.
-  `Instance type “null” is invalid. Expected “string”`) where you would like to
+  `Instance type "null" is invalid. Expected "string"`) where you would like to
   see the text `this field is requred`.
   This can be fixed using [error transformation](/form/validator/).
 

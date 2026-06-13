@@ -8,19 +8,19 @@
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
   import AlignLeft from "@lucide/svelte/icons/align-left";
+  import {
+    playgroundValidator,
+    playgroundValidators,
+    playgroundValidatorTitle,
+    type ValidatorState,
+  } from "meta/playground";
 
   import Select from "$lib/select.svelte";
   import Editor from "$lib/editor.svelte";
   import { gripHeader } from "$lib/grip-header.svelte";
   import { Button } from "$lib/components/ui/button/index.js";
+  import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
   import { debouncedEffect } from "$lib/svelte.svelte.js";
-
-  import {
-    REAL_VALIDATORS,
-    VALIDATOR_TITLES,
-    validators,
-    type ValidatorPageState,
-  } from "@/core/index.js";
 
   import Header from "./header.svelte";
   import { router } from "./router.js";
@@ -31,7 +31,7 @@
     gapPx,
   } from "./lib/tiler.js";
 
-  const DEFAULT_PAGE_STATE: ValidatorPageState = {
+  const DEFAULT_PAGE_STATE: ValidatorState = {
     schema: {
       type: "object",
       title: "Basic form",
@@ -62,7 +62,7 @@
   });
   const merger = createSchemaMerger({ jsonSchemaMerger });
   const validator = $derived(
-    validators[data.validator]({
+    playgroundValidator(data.validator)({
       merger: () => merger,
     }),
   );
@@ -188,11 +188,13 @@
     }),
   }}
 >
-  <Select
-    label="Validator"
-    bind:value={data.validator}
-    items={REAL_VALIDATORS}
-    labels={VALIDATOR_TITLES}
-  />
+  <ButtonGroup.Root>
+    <Select
+      label="Validator"
+      bind:value={data.validator}
+      items={playgroundValidators()}
+      itemLabel={playgroundValidatorTitle}
+    />
+  </ButtonGroup.Root>
 </Header>
 <Panel bind:layout />

@@ -1,10 +1,8 @@
 <script lang="ts">
   import { setFormContext, Content, SubmitButton } from "@sjsf/form";
-  // WARN: You must export this ID Builder in your `defaults` file
-  import { createFormIdBuilder } from "@sjsf/sveltekit";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
 
   import type { ActionData, PageData } from "./$types";
 
@@ -12,7 +10,6 @@
 
   const { form } = setupSvelteKitForm(meta, {
     ...defaults,
-    idBuilder: createFormIdBuilder,
     onSubmit: console.log,
   });
   setFormContext(form);

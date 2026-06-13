@@ -1,9 +1,10 @@
 <script lang="ts">
+  import type { NodeType } from "meta/builder";
+
   import {
     createRangeNode,
     RANGE_VALUE_TYPE_TITLES,
-    RANGE_VALUE_TYPES,
-    type NodeType
+    RANGE_VALUE_TYPES
   } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../model.js";
@@ -11,6 +12,7 @@
   import NodeHeader from "../customizable-node-header.svelte";
   import NodeIssues from "../node-issues.svelte";
   import { getBuilderContext } from "../context.svelte.js";
+  import { THEME_NODE_OVERRIDES } from "../theme-schemas.js";
 
   import ValueTypeSelect from "./value-type-select.svelte";
 
@@ -31,7 +33,7 @@
         bind:value={
           () => node.valueType,
           (t) => {
-            node = createRangeNode(node.id, t, node.options);
+            node = createRangeNode(node.id, t, node.options, THEME_NODE_OVERRIDES[ctx.theme]);
           }
         }
         items={ctx.availableRangeValueTypes}

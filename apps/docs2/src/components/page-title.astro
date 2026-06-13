@@ -1,17 +1,17 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { Icon } from "@astrojs/starlight/components";
 import Default from "@astrojs/starlight/components/PageTitle.astro";
 
-import { getPackageMetadata } from "@/shared";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { getPackageMetadataByCodeName } from "@/shared";
 
 const { data } = Astro.locals.starlightRoute.entry;
-let meta: ReturnType<typeof getPackageMetadata>;
+let meta: ReturnType<typeof getPackageMetadataByCodeName>;
 ---
 
 {
   data.type === "package" ? (
-    ((meta = getPackageMetadata(data.package)),
+    ((meta = getPackageMetadataByCodeName(data.packageCodeName)),
     (
       <div class="wrapper">
         <h1 id="_top">
@@ -26,16 +26,37 @@ let meta: ReturnType<typeof getPackageMetadata>;
             <Icon size="1rem" name="github" /> GitHub
           </a>
           <a href={meta.npmUrl}>
+            <Icon size="1rem" name="npm" /> npm
+          </a>
+          <a href={meta.npmxUrl}>
             <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
               width="16"
               height="16"
-              viewBox="0 0 576 512"
-              fill="currentColor"
-              aria-hidden="true"
+              version="1.1"
             >
-              <path d="M288 288h-32v-64h32v64zm288-128v192H288v32H160v-32H0V160h576zm-416 32H32v128h64v-96h32v96h32V192zm160 0H192v160h64v-32h64V192zm224 0H352v128h64v-96h32v96h32v-96h32v96h32V192z" />
+              <rect width="512" height="512" rx="64" fill="currentColor" />
+              <rect
+                x="110"
+                y="310"
+                width="60"
+                height="60"
+                fill="var(--sl-color-bg)"
+              />
+              <text
+                x="320"
+                y="370"
+                font-family="'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
+                font-size="420"
+                font-weight="500"
+                text-anchor="middle"
+                fill="var(--sl-color-bg)"
+              >
+                <tspan>/</tspan>
+              </text>
             </svg>
-            npm
+            npmx
           </a>
           <a
             href={getRelativeLocaleUrl(

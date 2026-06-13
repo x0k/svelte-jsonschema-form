@@ -1,48 +1,56 @@
-<script lang="ts" module>
-  import {
-    type SampleCategory,
-    SAMPLE_CATEGORIES,
-  } from "apps/playground2/src/core/sample";
-
-  const sampleCategories = import.meta.glob(
-    "apps/playground2/src/samples/*.ts",
-    {
-      import: "category",
-      eager: true,
-    }
-  );
-  const sampleLoaders = import.meta.glob("apps/playground2/src/samples/*.ts", {
-    eager: false,
-    import: "default",
-  });
-
-  function getSampleName(path: string) {
-    return path.substring(27, path.length - 3);
-  }
-  const groupedSamples = Object.groupBy(
-    Object.keys(sampleCategories),
-    (s) => sampleCategories[s] as SampleCategory
-  );
-</script>
-
 <script lang="ts">
   import lz from "lz-string";
+  import {
+    formPresetCategories,
+    GROUPED_FORM_PRESETS,
+    PresetTag,
+    type PresetEntry,
+  } from "meta/playground";
 
-  import Buttons from "./buttons.svelte";
+  import Button from "@/components/button.svelte";
+
+  import ExampleCards from "./example-cards.svelte";
+  import CatalogFilter from "./catalog-filter.svelte";
 
   const { playgroundLink }: { playgroundLink: string } = $props();
 </script>
 
-{#each SAMPLE_CATEGORIES as category}
-  <h3>{category}</h3>
-  <Buttons
-    items={groupedSamples[category]!}
-    onClick={async (path) => {
-      const sample = await sampleLoaders[path]();
-      window.open(
-        `${playgroundLink}#${lz.compressToEncodedURIComponent(JSON.stringify(sample))}`
-      );
-    }}
-    label={getSampleName}
-  />
-{/each}
+<CatalogFilter
+  tags={Object.values(PresetTag)}
+  categories={formPresetCategories()}
+  grouped={GROUPED_FORM_PRESETS}
+  label="preset"
+>
+  {#snippet children({ category, items })}
+    <ExampleCards
+      {items}
+      onclick={async (preset: PresetEntry) => {
+        const data = await preset.load();
+        window.open(
+          `${playgroundLink}#${lz.compressToEncodedURIComponent(JSON.stringify(data))}`
+        );
+      }}
+      title={(preset) => preset.meta.title}
+      description={(preset) => preset.meta.description}
+    >
+      {#snippet children(preset)}
+        <span class="tag-pills">
+          {#each preset.meta.tags as tag (tag)}
+            <Button variant="pill" size="sm">{tag}</Button>
+          {/each}
+        </span>
+      {/snippet}
+    </ExampleCards>
+  {/snippet}
+</CatalogFilter>
+
+<style>
+  :global(html) {
+    overflow-y: scroll;
+  }
+  .tag-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+</style>

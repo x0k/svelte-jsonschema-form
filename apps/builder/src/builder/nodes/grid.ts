@@ -1,4 +1,6 @@
-import type { GridCell, NodeId } from "$lib/builder/index.js";
+import type { NodeId } from "meta/builder";
+
+import type { GridCell } from "$lib/builder/index.js";
 
 export type CheckRect = [x: number, x1: number, y: number, y1: number];
 

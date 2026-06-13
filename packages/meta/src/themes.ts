@@ -11,11 +11,12 @@ import _beercssPackageJson from "@sjsf-lab/beercss-theme/package.json" with { ty
 import _daisyuiPackageJson from "@sjsf/daisyui-theme/package.json" with { type: "json" };
 import _flowbitePackageJson from "@sjsf/flowbite-theme/package.json" with { type: "json" };
 import _skeleton3PackageJson from "@sjsf/skeleton3-theme/package.json" with { type: "json" };
-import _shadcnPackageJson from "@sjsf/shadcn4-theme/package.json" with { type: "json" };
+import _shadcnPackageJson from "@sjsf/shadcn-theme/package.json" with { type: "json" };
 
 import {
   type Package,
   type PackageDependency,
+  extraPackage,
   fromPackageJson,
 } from "./package.ts";
 import type { AtRule, AtRuleOptions } from "./css.ts";
@@ -69,6 +70,13 @@ const THEME_EXTENSION_ORIGINS = {
 
 export type ThemeExtension = (typeof THEME_EXTENSION)[number];
 
+export type ThemeOrigin<T extends ThemeExtension> =
+  (typeof THEME_EXTENSION_ORIGINS)[T];
+
+export type WithOrigin<T extends Theme> = T extends ThemeExtension
+  ? T | ThemeOrigin<T>
+  : T;
+
 const TAILWINDCSS4_THEMES = [
   "daisyui5",
   "flowbite3",
@@ -104,15 +112,23 @@ for (const [parentTheme, subThemes] of Object.entries(THEME_SUB_THEMES)) {
   }
 }
 
-export type ActualTheme = Exclude<Theme, LegacyTheme | LabTheme>;
+type ThemeSubThemes = typeof THEME_SUB_THEMES;
 
 export type SubTheme = (typeof SUB_THEMES)[number];
 
-export type ThemeWithSubThemes = keyof typeof THEME_SUB_THEMES;
+export type ThemeWithSubThemes = keyof ThemeSubThemes;
 
 export type ThemeOrSubTheme = Theme | SubTheme;
 
-export type NonLegacyThemeOrSubTheme = Exclude<ThemeOrSubTheme, LegacyTheme>;
+export type ParentTheme<S extends SubTheme> = keyof {
+  [T in ThemeWithSubThemes as S extends ThemeSubThemes[T][number]
+    ? T
+    : never]: true;
+};
+
+export type ToTheme<T extends ThemeOrSubTheme> = T extends SubTheme
+  ? ParentTheme<T>
+  : T;
 
 const THEME_OR_SUB_THEME_TITLES: Record<ThemeOrSubTheme, string> = {
   basic: "Basic",
@@ -132,11 +148,18 @@ const THEME_OR_SUB_THEME_TITLES: Record<ThemeOrSubTheme, string> = {
 
 const THEME_BRAND = {
   basic: "",
+  daisyui: "daisyUI",
   daisyui5: "daisyUI",
+  flowbite: "Flowbite",
   flowbite3: "Flowbite",
+  skeleton3: "Skeleton",
   skeleton4: "Skeleton",
+  shadcn: "shadcn-svelte",
   shadcn4: "shadcn-svelte",
-} satisfies Record<ActualTheme, string>;
+  "shadcn-extras": "shadcn-svelte-extras",
+  beercss: "Beer CSS",
+  svar: "SVAR",
+} satisfies Record<Theme, string>;
 
 const THEME_PACKAGES = {
   basic: fromPackageJson(_basicPackageJson),
@@ -156,10 +179,8 @@ const THEME_PACKAGES = {
 const SUB_THEME_DEPENDENCIES: Record<SubTheme, PackageDependency[]> = {
   pico: [
     {
-      name: "@picocss/pico",
-      version: "^2.1.0",
+      ...extraPackage("pico"),
       optional: false,
-      dev: true,
     },
   ],
 };
@@ -177,40 +198,84 @@ const THEME_OR_SUB_THEME_AT_RULES: Partial<
     { name: "import", params: "@picocss/pico/css/pico.css" },
     { name: "import", params: `${themePackage("basic").name}/css/pico.css` },
   ],
-  daisyui5: ({ nodeModulesPath }) => [
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("daisyui5").name}/dist`,
-    },
-  ],
-  flowbite3: ({ nodeModulesPath }) => [
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("flowbite3").name}/dist`,
-    },
-  ],
-  skeleton4: ({ nodeModulesPath }) => [
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("skeleton4").name}/dist`,
-    },
-  ],
-  shadcn4: ({ nodeModulesPath }) => [
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("shadcn4").name}/dist`,
-    },
-  ],
-  "shadcn-extras": ({ nodeModulesPath }) => [
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("shadcn4").name}/dist`,
-    },
-    {
-      name: "source",
-      params: `${nodeModulesPath}/${themePackage("shadcn-extras").name}/dist`,
-    },
-  ],
+  daisyui5: ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${themePackage("daisyui5").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("daisyui5").name}/dist`,
+          },
+        ],
+  flowbite3: ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${themePackage("flowbite3").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("flowbite3").name}/dist`,
+          },
+        ],
+  skeleton4: ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${themePackage("skeleton4").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("skeleton4").name}/dist`,
+          },
+        ],
+  shadcn4: ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${themePackage("shadcn4").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("shadcn4").name}/dist`,
+          },
+        ],
+  "shadcn-extras": ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${themePackage("shadcn4").name}/styles.css`,
+          },
+          {
+            name: "import",
+            params: `${themePackage("shadcn-extras").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("shadcn4").name}/dist`,
+          },
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("shadcn-extras").name}/dist`,
+          },
+        ],
 };
 
 export function themes(): Iterable<Theme> {
@@ -239,7 +304,7 @@ export function isThemeExtension(theme: Theme): theme is ThemeExtension {
   return THEME_EXTENSION_SET.has(theme);
 }
 
-export function themeExtensionOrigin(extension: ThemeExtension): Theme {
+export function themeExtensionOrigin(extension: ThemeExtension) {
   return THEME_EXTENSION_ORIGINS[extension];
 }
 
@@ -261,15 +326,19 @@ export function themeSubThemes(theme: ThemeWithSubThemes): Iterable<SubTheme> {
   return THEME_SUB_THEMES[theme];
 }
 
-export function themeParent(theme: SubTheme): Theme {
-  return SUB_THEME_PARENTS.get(theme)!;
+export function themeParent<S extends SubTheme>(theme: S): ParentTheme<S> {
+  return SUB_THEME_PARENTS.get(theme)! as ParentTheme<S>;
+}
+
+export function toTheme<T extends ThemeOrSubTheme>(theme: T) {
+  return (isSubTheme(theme) ? themeParent(theme) : theme) as ToTheme<T>;
 }
 
 export function themeOrSubThemeTitle(theme: ThemeOrSubTheme): string {
   return THEME_OR_SUB_THEME_TITLES[theme];
 }
 
-export function themeBrand(theme: ActualTheme): string {
+export function themeBrand(theme: Theme): string {
   return THEME_BRAND[theme];
 }
 

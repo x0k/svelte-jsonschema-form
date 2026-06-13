@@ -1,4 +1,13 @@
 import { noop } from "@sjsf/form/lib/function";
+import {
+  NodeType,
+  type RangeValueType,
+  type AbstractNode,
+  type NodeId,
+  EnumValueType,
+  OperatorType,
+  type AbstractOperator
+} from "meta/builder";
 
 import {
   isJsonValueArray,
@@ -10,10 +19,6 @@ import {
 } from "$lib/json.js";
 import { isValidRegExp } from "$lib/reg-exp.js";
 import { isKnownJsonSchemaFormat } from "$lib/json-schema.js";
-
-import { NodeType, type AbstractNode, type NodeId } from "./node-base.js";
-import { EnumValueType } from "./enum.js";
-import { OperatorType, type AbstractOperator } from "./operator.js";
 import {
   type ComparisonOperator,
   type CustomizableNode,
@@ -37,7 +42,7 @@ import {
   isTagsNode
 } from "./node-guards.js";
 import { getNodeChild, getNodeOptions, getNodeProperty } from "./node-props.js";
-import { RANGE_VALUE_TYPE_TITLES, type RangeValueType } from "./range-node.js";
+import { RANGE_VALUE_TYPE_TITLES } from "./range-node.js";
 
 export interface ValidatorRegistries {
   complementary: NodeId | undefined;

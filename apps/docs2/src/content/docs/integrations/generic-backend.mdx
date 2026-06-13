@@ -6,15 +6,8 @@ sidebar:
 
 import { Card, Code } from '@astrojs/starlight/components'
 
-import FormCard from '@/components/form-card.astro';
+import Demo from '@/components/demo.svelte';
 
-import Form from './_generic-backend.svelte';
-import formCode from './_generic-backend.svelte?raw';
+You can improve the experience of sending data to the server by using the `createTask` factory.
 
-You can improve the experience of sending data to the server by using the `createTask` function.
-
-<Code code={formCode} lang="svelte" />
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="generic-backend" client:visible />

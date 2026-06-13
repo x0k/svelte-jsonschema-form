@@ -12,7 +12,7 @@
   } from "@sjsf/form";
   import { getTemplateProps } from "@sjsf/form/templates/get-template-props";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
 
   const schema = {
     type: "object",

@@ -2,40 +2,49 @@ import { parse, print } from "svelte/compiler";
 import type { Schema, UiSchema } from "@sjsf/form";
 import { jsonSchemaToZod } from "json-schema-to-zod";
 import { jsonSchemaToValibot, type JsonSchema as ValibotJsonSchema } from "json-schema-to-valibot";
-
-import { Icons, ICONS_PEER_DEPS } from "$lib/sjsf/icons.js";
-import type { Resolver } from "$lib/sjsf/resolver.js";
 import {
-  ActualTheme,
-  LabTheme,
-  packageFromTheme,
+  externalValidatorPackage,
+  extraFieldSubPath,
+  filterPackageDependencies,
+  formIdBuilderSubPath,
+  formMergerSubPath,
+  formPackage,
+  formResolverSubPath,
+  formTranslationSubPath,
+  iconSetPackage,
+  isSchemaValidator,
+  isThemeExtension,
+  themeExtensionOrigin,
+  themeExtraWidgetOptionalDependencies,
+  themeExtraWidgets,
+  themePackage,
+  toTheme,
+  widgetFileName,
+  zod4ValidatorVersionSubPath,
+  type ExtraWidgetFileNames,
+  type ExtraFieldFileName,
+  type SchemaValidator,
   type Theme,
-  THEME_OPTIONAL_DEPS,
-  THEME_PEER_DEPS,
-  type WidgetType
-} from "$lib/sjsf/theme.js";
-import { Validator, VALIDATOR_PEER_DEPS } from "$lib/sjsf/validators.js";
-
+  type WidgetTypes,
+  type ToTheme
+} from "meta";
 import {
-  isBaseWidget,
   WIDGET_EXTRA_FIELD,
-  type ExtraWidgetType,
-  EXTRA_WIDGET_IMPORTS,
-  type FileFieldMode,
-  fileFieldModeToFields
-} from "./model.js";
+  type PlaygroundIconSet,
+  type PlaygroundResolver,
+  type PlaygroundTheme
+} from "meta/playground";
+import { type BuilderValidator, type WidgetType } from "meta/builder";
+
+import { isBaseWidget, type FileFieldMode, fileFieldModeToFields } from "./model.js";
 
 export interface FormDefaultsOptions {
   widgets: Set<WidgetType>;
-  resolver: Resolver;
-  theme: Theme;
-  icons: Icons;
-  validator: Validator;
+  resolver: PlaygroundResolver;
+  theme: PlaygroundTheme;
+  icons: PlaygroundIconSet;
+  validator: BuilderValidator;
   fileFieldMode: FileFieldMode;
-}
-
-function camelToKebabCase(str: string): string {
-  return str.replace(/([A-Z])/g, "-$1").toLowerCase();
 }
 
 export function join(...args: (string | false)[]) {
@@ -54,61 +63,71 @@ export function buildFormDefaults({
   validator,
   fileFieldMode
 }: FormDefaultsOptions): string {
-  const extraFields = new Set<string>();
-  const extraWidgetTypes: ExtraWidgetType[] = [];
+  const extraFields = new Set<ExtraFieldFileName>();
+  const extraWidgetTypes: WidgetType[] = [];
   for (const w of widgets) {
     if (!isBaseWidget(w)) {
       extraWidgetTypes.push(w);
     }
-    const fields = fileFieldModeToFields(fileFieldMode);
+    for (const f of fileFieldModeToFields(fileFieldMode)) {
+      extraFields.add(f);
+    }
     const widgetExtraField = WIDGET_EXTRA_FIELD[w];
     if (widgetExtraField !== undefined) {
-      fields.push(widgetExtraField);
-    }
-    for (const f of fields) {
-      extraFields.add(f);
+      extraFields.add(widgetExtraField);
     }
   }
 
   const iconsExport =
-    Icons.None === icons ? false : `export { icons } from "@sjsf/${icons}-icons";`;
+    icons === "none" ? false : `export { icons } from "${iconSetPackage(icons).name}";`;
+
+  const effectiveTheme = toTheme(theme);
+  const effectiveThemePackage = themePackage(effectiveTheme);
+  const originThemePackage = isThemeExtension(effectiveTheme)
+    ? themePackage(themeExtensionOrigin(effectiveTheme))
+    : effectiveThemePackage;
+
+  const extensionWidgetNames = isThemeExtension(effectiveTheme)
+    ? new Set<ReturnType<typeof widgetFileName<ToTheme<PlaygroundTheme>>>>(
+        themeExtraWidgets(effectiveTheme)
+      )
+    : null;
+
+  const extraWidgetImports = extraWidgetTypes.map((widgetType) => {
+    const fileName = widgetFileName(effectiveTheme, widgetType);
+    const pkg =
+      !extensionWidgetNames || extensionWidgetNames.has(fileName)
+        ? effectiveThemePackage
+        : originThemePackage;
+    return `import "${pkg.name}/extra-widgets/${fileName}-include";`;
+  });
 
   return join2(
     join(
-      `export { resolver } from "@sjsf/form/resolvers/${resolver}";`,
-      ...Array.from(extraFields).map(
-        (f) => `import "@sjsf/form/fields/extra/${camelToKebabCase(f)}-include";`
-      )
+      `export { resolver } from "${formResolverSubPath(resolver)}";`,
+      ...Array.from(extraFields).map((f) => `import "${extraFieldSubPath(f, true)}";`)
     ),
-    join(
-      `export { theme } from "${packageFromTheme(theme)}";`,
-      ...extraWidgetTypes.map(
-        (w) =>
-          `import "${packageFromTheme(theme)}/extra-widgets/${EXTRA_WIDGET_IMPORTS[w]}-include";`
-      )
-    ),
+    join(`export { theme } from "${effectiveThemePackage.name}";`, ...extraWidgetImports),
     iconsExport,
-    'export { translation } from "@sjsf/form/translations/en";',
-    `export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";`,
-    `export { createFormMerger as merger } from "@sjsf/form/mergers/modern";`,
+    `export { translation } from "${formTranslationSubPath("en")}";`,
+    `export { createFormIdBuilder as idBuilder } from "${formIdBuilderSubPath("modern")}";`,
+    `export { createFormMerger as merger } from "${formMergerSubPath("modern")}";`,
     !(validator in VALIDATOR_ADAPTERS) &&
-      `export { createFormValidator as validator } from "@sjsf/${validator}-validator";`
+      `export { createFormValidator as validator } from "${externalValidatorPackage(validator).name}";`
   );
 }
 
 export interface FormDotSvelteOptions {
-  theme: Theme;
+  theme: PlaygroundTheme;
   schema: Schema;
-  validator: Validator;
+  validator: BuilderValidator;
   uiSchema: UiSchema | undefined;
   html5Validation: boolean;
 }
 
-const VALIDATOR_ADAPTERS: Partial<Record<Validator, string>> = {
-  [Validator.Zod]:
-    'import { adapt } from "@sjsf/zod4-validator/classic";\nimport { z } from "zod";',
-  [Validator.Valibot]:
-    'import { adapt } from "@sjsf/valibot-validator";\nimport * as v from "valibot";'
+const VALIDATOR_ADAPTERS: Record<BuilderValidator & SchemaValidator, string> = {
+  zod4: `import { adapt } from "${zod4ValidatorVersionSubPath("classic")}";\nimport { z } from "zod";`,
+  valibot: `import { adapt } from "${externalValidatorPackage("valibot").name}";\nimport * as v from "valibot";`
 };
 
 function toLines(str: string) {
@@ -123,18 +142,19 @@ function defaultSchemaFactory(schema: Schema) {
   return `const schema = ${jsonToLines(schema)} as const satisfies Schema`;
 }
 
-const SCHEMA_FACTORIES: Record<Validator, (schema: Schema) => string> = {
-  [Validator.Ajv]: defaultSchemaFactory,
-  [Validator.SchemaSafe]: defaultSchemaFactory,
-  [Validator.CfWorker]: defaultSchemaFactory,
-  [Validator.Zod]: (schema) => `
+const SCHEMA_FACTORIES: Record<BuilderValidator, (schema: Schema) => string> = {
+  ajv8: defaultSchemaFactory,
+  schemasafe: defaultSchemaFactory,
+  cfworker: defaultSchemaFactory,
+  ata: defaultSchemaFactory,
+  zod4: (schema) => `
 		// This code was generated by the 'json-schema-to-zod' library and
 		// may not fully match the original schema
 		${jsonSchemaToZod(schema, {
       noImport: true,
       name: "schema"
     })}`,
-  [Validator.Valibot]: (schema) => `
+  valibot: (schema) => `
 		// This code was generated by the 'json-schema-to-valibot' library and
 		// may not fully match the original schema
 		${jsonSchemaToValibot(schema as ValibotJsonSchema, {
@@ -149,16 +169,19 @@ export function buildFormDotSvelte({
   html5Validation,
   validator
 }: FormDotSvelteOptions): string {
-  const isShadcn = theme === ActualTheme.Shadcn4;
-  const isSvar = theme === LabTheme.Svar;
-  const validatorAdapter = VALIDATOR_ADAPTERS[validator] ?? false;
+  const isSvar = theme === "svar";
+  const validatorAdapter = isSchemaValidator(validator) ? VALIDATOR_ADAPTERS[validator] : false;
   const code = join(
     `<script lang="ts">
-  import { createForm, BasicForm, type Schema, type UiSchemaRoot } from "@sjsf/form";`,
+  import { createForm, BasicForm, type Schema, type UiSchemaRoot } from "${formPackage.name}";`,
     validatorAdapter && `  ${toLines(validatorAdapter)}`,
-    isShadcn &&
-      `  import { setThemeContext } from "@sjsf/shadcn4-theme";
-  import * as components from "@sjsf/shadcn4-theme/new-york";`,
+    (theme === "shadcn4" || theme === "shadcn-extras") &&
+      `  import { setThemeContext } from "${themePackage("shadcn4").name}";`,
+    theme === "shadcn4" &&
+      `  import * as components from "${themePackage("shadcn4").name}/new-york";`,
+    theme === "shadcn-extras" &&
+      `  import * as components from "${themePackage("shadcn4").name}/new-york";
+  import * as extraComponents from "${themePackage("shadcn-extras").name}/ui";`,
     isSvar && `  import { Willow } from "@svar-ui/svelte-core";`,
     `
   import * as defaults from "$lib/form/defaults.js";
@@ -173,9 +196,12 @@ export function buildFormDotSvelte({
     uiSchema,
     onSubmit: console.log
   })`,
-    isShadcn &&
+    theme === "shadcn4" &&
       `
   setThemeContext({ components })`,
+    theme === "shadcn-extras" &&
+      `
+  setThemeContext({ components: { ...components, ...extraComponents } })`,
     `</script>`,
     isSvar && `<Willow>`,
     `<BasicForm {form}${html5Validation ? "" : " novalidate"} />`,
@@ -186,37 +212,47 @@ export function buildFormDotSvelte({
     : code;
 }
 
-export interface InstallShOptions {
-  theme: Theme;
-  validator: Validator;
-  icons: Icons;
+export interface InstallShOptions<T extends PlaygroundTheme> {
+  theme: T;
+  validator: BuilderValidator;
+  icons: PlaygroundIconSet;
   widgets: Set<WidgetType>;
 }
 
-export function buildInstallSh({ theme, validator, icons, widgets }: InstallShOptions) {
-  const peer = Array.from(
-    new Set(
-      [VALIDATOR_PEER_DEPS[validator], THEME_PEER_DEPS[theme], ICONS_PEER_DEPS[icons]]
-        .filter(Boolean)
-        .flatMap((s) => s.split(" "))
-    )
+function* themeOptionalDeps<T extends Theme>(theme: T, widgets: Iterable<ExtraWidgetFileNames[T]>) {
+  for (const w of widgets) {
+    yield* themeExtraWidgetOptionalDependencies(theme, w);
+  }
+}
+
+export function buildInstallSh<T extends PlaygroundTheme>({
+  theme,
+  validator,
+  icons,
+  widgets
+}: InstallShOptions<T>) {
+  const t = toTheme(theme);
+  const themePkg = themePackage(t);
+  const widgetFileNames = new Set(
+    Array.from(widgets, (w) => widgetFileName(t, w as WidgetTypes[typeof t]))
   );
-  let cmd = `npm i @sjsf/form ${packageFromTheme(theme)} @sjsf/${validator}-validator`;
-  if (icons !== Icons.None) {
-    cmd += ` @sjsf/${icons}-icons`;
+  const deps = [
+    ...filterPackageDependencies(externalValidatorPackage(validator).dependencies, false),
+    ...filterPackageDependencies(
+      themePkg.dependencies,
+      Array.from(themeOptionalDeps(t, widgetFileNames as Set<ExtraWidgetFileNames[typeof t]>))
+    )
+  ];
+
+  let cmd = `npm i ${formPackage.name} ${themePkg.name} ${externalValidatorPackage(validator).name}`;
+  if (icons !== "none") {
+    const pkg = iconSetPackage(icons);
+    cmd += ` ${pkg.name}`;
+    deps.push(...filterPackageDependencies(pkg.dependencies, false));
   }
-  const optional = Object.entries(THEME_OPTIONAL_DEPS[theme])
-    .filter(([_, libWidgets]) => {
-      for (const w of libWidgets) {
-        if (widgets.has(w)) {
-          return true;
-        }
-      }
-      return false;
-    })
-    .map(([lib]) => lib);
-  if (optional.length > 0) {
-    cmd += ` ${optional.join(" ")}`;
-  }
+  const peerSet = new Set(deps.map((d) => d.name));
+  peerSet.delete("svelte");
+  peerSet.delete(formPackage.name);
+  const peer = Array.from(peerSet);
   return join(peer.length > 0 && `# peer deps: ${peer.join(" ")}`, cmd);
 }

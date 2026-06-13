@@ -1,7 +1,7 @@
 import { Type, type Static } from "typebox";
 import { createForm, type UiSchema } from "@sjsf/form";
 
-import * as defaults from "@/lib/form/defaults";
+import * as defaults from "@/lib/sjsf/defaults";
 
 const schema = Type.Object({
   text: Type.String(),

@@ -1,6 +1,6 @@
 <script is:inline async>
   const url = new URL(location.href);
-  const version = /\/v3\//;
+  const version = /\/(v3|lab|sveltekit)\//;
   if (version.test(url.pathname)) {
     url.pathname = url.pathname.replace(version, "/");
     window.location.replace(url);

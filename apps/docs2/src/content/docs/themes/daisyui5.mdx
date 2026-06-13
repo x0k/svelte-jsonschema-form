@@ -1,7 +1,7 @@
 ---
 title: daisyUI v5
 type: package
-package: "@sjsf/daisyui5-theme"
+packageCodeName: "daisyui5"
 sidebar:
   order: 1
 ---
@@ -9,25 +9,25 @@ sidebar:
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/daisyui5-theme/specs';
 import styles from '@sjsf/daisyui5-theme/styles.css?inline';
+import { themePackage } from "meta";
 
-import pkg from 'pkgs/daisyui5-theme/package.json'
-
-import { themePkg } from '@/shared';
+import { getPackageDependencies } from '@/shared';
 import Npm from '@/components/npm.astro';
+import Deps from '@/components/peer-dependencies.astro';
 import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
 
 import Form from './daisyui5/form.svelte'
 import uiOptionsCode from './daisyui5/ui-options?raw';
 import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
+export const pkg = themePackage('daisyui5')
 
 ## Installation
 
-<Npm pkg={themePkg("daisyui5")} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ### Install daisyUI v5
 

@@ -1,9 +1,21 @@
-import { EXTRA_FIELDS } from "./fields.generated.ts";
+import { FIELDS, EXTRA_FIELDS } from "./fields.generated.ts";
 import { formPackage } from "./form.ts";
+
+type Fields = typeof FIELDS;
+
+export type FieldFileName = keyof Fields;
 
 type ExtraFields = typeof EXTRA_FIELDS;
 
-type ExtraFieldFileName = keyof ExtraFields;
+export type ExtraFieldFileName = keyof ExtraFields;
+
+export type ExtraFieldName = ExtraFields[keyof ExtraFields]["name"];
+
+export function* fields() {
+  for (const f of Object.values(FIELDS)) {
+    yield f.filename;
+  }
+}
 
 const EXTRA_FIELD_WRAPPERS = new Map<
   ExtraFieldFileName,
@@ -29,9 +41,7 @@ export interface ExtraFieldsFilter {
   wrappedFields?: boolean;
 }
 
-export function* extraFields({
-  wrappedFields = true,
-}: ExtraFieldsFilter = {}): Iterable<ExtraFieldFileName> {
+export function* extraFields({ wrappedFields = true }: ExtraFieldsFilter = {}) {
   for (const f of EXTRA_FIELDS_LIST) {
     if (wrappedFields === false && EXTRA_FIELD_WRAPPERS.has(f.filename)) {
       continue;
@@ -45,4 +55,16 @@ export function extraFieldSubPath(
   include = false,
 ) {
   return `${formPackage.name}/fields/extra/${extraFieldName}${include ? "-include" : ""}`;
+}
+
+// @slop
+const EXTRA_FIELD_NAME_TO_FILE = new Map<string, ExtraFieldFileName>();
+for (const [filename, entry] of Object.entries(EXTRA_FIELDS)) {
+  EXTRA_FIELD_NAME_TO_FILE.set(entry.name, filename as ExtraFieldFileName);
+}
+
+export function extraFieldNameToFileName(
+  name: string,
+): ExtraFieldFileName | undefined {
+  return EXTRA_FIELD_NAME_TO_FILE.get(name);
 }

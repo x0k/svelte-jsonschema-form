@@ -1,3 +1,71 @@
+export const FIELDS = {
+  "any-of": {
+    "name": "anyOfField",
+    "filename": "any-of",
+    "wrapperOf": "combination"
+  },
+  "boolean": {
+    "name": "booleanField",
+    "filename": "boolean",
+    "wrapperOf": "field-base"
+  },
+  "integer": {
+    "name": "integerField",
+    "filename": "integer",
+    "wrapperOf": "field-base"
+  },
+  "null": {
+    "name": "nullField",
+    "filename": "null",
+    "wrapperOf": null
+  },
+  "number-field": {
+    "name": "numberField",
+    "filename": "number-field",
+    "wrapperOf": "field-base"
+  },
+  "one-of": {
+    "name": "oneOfField",
+    "filename": "one-of",
+    "wrapperOf": "combination"
+  },
+  "string": {
+    "name": "stringField",
+    "filename": "string",
+    "wrapperOf": "field-base"
+  },
+  "unknown": {
+    "name": "unknownField",
+    "filename": "unknown",
+    "wrapperOf": null
+  },
+  "array-field": {
+    "name": "arrayField",
+    "filename": "array-field",
+    "wrapperOf": "array-base"
+  },
+  "array-item-field": {
+    "name": "arrayItemField",
+    "filename": "array-item-field",
+    "wrapperOf": null
+  },
+  "tuple-field": {
+    "name": "tupleField",
+    "filename": "tuple-field",
+    "wrapperOf": "array-base"
+  },
+  "object-field": {
+    "name": "objectField",
+    "filename": "object-field",
+    "wrapperOf": null
+  },
+  "object-property-field": {
+    "name": "objectPropertyField",
+    "filename": "object-property-field",
+    "wrapperOf": null
+  }
+} as const;
+
 export const EXTRA_FIELDS = {
   "aggregated": {
     "name": "aggregatedField",

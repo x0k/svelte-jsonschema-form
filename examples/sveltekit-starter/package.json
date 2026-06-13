@@ -11,20 +11,14 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.58.0",
-		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.55.5",
-		"svelte-check": "^4.4.6",
-		"typescript": "^5.9.3",
-		"vite": "^8.0.10"
+		"json-schema-to-ts": "catalog:"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/basic-theme": "workspace:*",
 		"@sjsf/form": "workspace:*",
 		"@sjsf/sveltekit": "workspace:*",
-		"ajv": "^8.20.0"
+		"ajv": "catalog:",
+		"svelte": "catalog:"
 	}
 }

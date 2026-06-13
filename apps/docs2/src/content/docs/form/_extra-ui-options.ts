@@ -1,7 +1,7 @@
 import { fromRecord } from "@sjsf/form/lib/resolver";
-import { createForm } from '@sjsf/form';
+import { createForm } from "@sjsf/form";
 
-import * as defaults from "@/lib/form/defaults";
+import * as defaults from "@/lib/sjsf/defaults";
 
 const form = createForm({
   ...defaults,

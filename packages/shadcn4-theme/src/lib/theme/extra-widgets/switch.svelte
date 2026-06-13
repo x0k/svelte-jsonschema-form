@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { Component } from 'svelte';
-	import type { Switch, SwitchRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	import type { Switch as Shadcn4Switch, SwitchRootProps, WithoutChildrenOrChild } from 'bits-ui';
 	import '@sjsf/form/fields/extra-widgets/switch';
 
 	import '../types/label.js';
@@ -13,7 +13,7 @@
 
 	declare module '../context.js' {
 		interface ThemeComponents {
-			Switch: Component<WithoutChildrenOrChild<Switch.RootProps>, {}, 'checked' | 'ref'>;
+			Switch: Component<WithoutChildrenOrChild<Shadcn4Switch.RootProps>, {}, 'checked' | 'ref'>;
 		}
 	}
 </script>

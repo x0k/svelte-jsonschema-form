@@ -1,32 +1,18 @@
 ---
 title: Quickstart
 type: package
-package: "@sjsf/form"
+packageCodeName: "form"
 sidebar:
   order: 0
 ---
 
 import { Code, Card, LinkCard } from '@astrojs/starlight/components';
-
-import pkg from 'pkgs/form/package.json'
+import { formPackage } from 'meta';
 
 import { withBase } from '@/lib/base-path';
-import { createThemeInstall } from '@/shared'
-import FormCard from '@/components/form-card.astro'
 import Npm from "@/components/npm.astro";
 import Deps from '@/components/peer-dependencies.astro';
-
-import SimpleSetupForm from "./simple-setup.svelte";
-import simpleSetupCode from './simple-setup.svelte?raw';
-
-import UiSchemaForm from './ui-schema.svelte';
-import uiSchemaCode from './ui-schema.svelte?raw';
-
-import FormStateForm from './form-state.svelte';
-import formStateCode from './form-state.svelte?raw';
-
-import ControlledForm from './controlled-form.svelte';
-import controlledFormCode from './controlled-form.svelte?raw';
+import Demo from '@/components/demo.svelte';
 
 ## Installation
 
@@ -34,17 +20,13 @@ Install as a community add-on using the Svelte CLI.
 
 <Npm type="dlx" pkg="sv add @sjsf" />
 
-<Deps hideOptional {...pkg} />
+<Deps hideOptional pkg={formPackage} />
 
 ## Usage
 
 Let's start with the simplest setup:
 
-<Code code={simpleSetupCode} lang="svelte" />
-
-<FormCard>
-  <SimpleSetupForm client:only="svelte" />
-</FormCard>
+<Demo name="simple-setup" theme="basic" client:visible />
 
 In the example above, we create a form based on json schema and
 use HTML5 validation to validate the form.
@@ -70,11 +52,7 @@ We'll talk about `* as defaults` in the [Reusable defaults](/guides/reusable-def
 
 :::
 
-<Code code={uiSchemaCode} lang="svelte" />
-
-<FormCard>
-  <UiSchemaForm client:only="svelte" />
-</FormCard>
+<Demo name="ui-schema" client:visible />
 
 <LinkCard title="UI Schema" href={withBase("/form/ui-schema/")} />
 
@@ -88,11 +66,7 @@ Use getters to pass reactive parameters.
 
 :::
 
-<Code code={formStateCode} lang="svelte" />
-
-<FormCard>
-  <FormStateForm client:only="svelte" />
-</FormCard>
+<Demo name="form-state" client:visible />
 
 <LinkCard title="Form state" href={withBase("/form/state/")} />
 
@@ -117,8 +91,4 @@ Before using, please read the section - [Direct modification of form state](/for
 
 :::
 
-<Code code={controlledFormCode} lang="svelte" />
-
-<FormCard>
-  <ControlledForm client:only="svelte" />
-</FormCard>
+<Demo name="controlled-form" client:visible />

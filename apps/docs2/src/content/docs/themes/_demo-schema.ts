@@ -3,21 +3,37 @@ import { transpose } from "@json-table/core/lib/matrix";
 import { createMatrix, fromMatrix } from "@json-table/core/block-matrix";
 import { makeBlockFactory } from "@json-table/core/json-to-table";
 import { blockToHTML } from "@json-table/core/block-to-html";
+import {
+  themeExtraWidgetSubPath,
+  type ExtraFieldName,
+  type ExtraWidgetFileNames,
+  type Theme,
+} from "meta";
 
 import { s } from "theme-testing/specs";
 
-import { THEME_PACKAGES, type Theme } from "@/shared";
-
-const WIDGET_USED_AS_DEFAULT_IN_FIELDS: Record<string, string[] | undefined> = {
+const WIDGET_USED_AS_DEFAULT_IN_FIELDS: Partial<
+  Record<ExtraWidgetFileNames[Theme], ExtraFieldName[]>
+> = {
   checkboxes: ["multiEnumField"],
-  file: ["fileField", "filesField"],
-  tags: ["tagsField"],
+  file: [
+    "fileField",
+    "filesField",
+    "arrayFilesField",
+    "nativeFileField",
+    "nativeFilesField",
+    "arrayNativeFilesField",
+  ],
+  tags: ["tagsField", "arrayTagsField"],
 };
 
-export function createExtraImports(theme: Theme, widgets: string[]) {
+export function createExtraImports<T extends Theme>(
+  theme: T,
+  widgets: ExtraWidgetFileNames[T][]
+) {
   return widgets
     .map((w) => {
-      const line = `import "${THEME_PACKAGES[theme]}/extra-widgets/${w}-include"`;
+      const line = `import "${themeExtraWidgetSubPath(theme, w, true)}"`;
       const fields = WIDGET_USED_AS_DEFAULT_IN_FIELDS[w];
       return fields
         ? `// Used by default in the following fields: ${fields.join(

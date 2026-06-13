@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { type NodeType, OPERATOR_TITLES } from "meta/builder";
+
   import {
     isComparisonOperator,
     isEqOperator,
@@ -9,8 +11,6 @@
     isUniqueItemsOperator,
     isUOperator,
     isOperatorNode,
-    OPERATOR_TITLES,
-    type NodeType,
     type NOperator,
     isHasPropertyOperator,
     isContainsOperator

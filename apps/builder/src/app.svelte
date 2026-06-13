@@ -16,10 +16,6 @@
 
   setShadcnContext();
 
-  const clearLink = new URL(location.href);
-  clearLink.search = "";
-  clearLink.hash = "";
-
   const promises = Promise.all([
     highlighterPromise,
     openDB<AppDBSchema>("builder-db", 1, {

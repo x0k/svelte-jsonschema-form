@@ -1,12 +1,11 @@
 import { identity } from "@sjsf/form/lib/function";
 import type { UiOptions, UiSchema } from "@sjsf/form";
+import { NodeType, type AbstractNode, type NodeId, EnumValueType } from "meta/builder";
 
 import { assertThing } from "$lib/assert.js";
-import { mergeUiSchemas } from "$lib/sjsf/theme.js";
+import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 
-import { NodeType, type AbstractNode, type NodeId } from "./node-base.js";
 import type { EnumItemNode, Node, WidgetNode } from "./node.js";
-import { EnumValueType } from "./enum.js";
 
 export interface TextWidgetParams {
   type: string | undefined;

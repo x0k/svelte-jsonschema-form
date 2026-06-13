@@ -1,7 +1,7 @@
 <script lang="ts">
+  import type { NodeType } from "meta/builder";
   import GripVertical from "@lucide/svelte/icons/grip-vertical";
 
-  import type { NodeType } from "$lib/builder/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
 
   import type { NodeProps } from "../../model.js";

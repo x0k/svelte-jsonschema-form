@@ -72,7 +72,7 @@
     "deep-freeze-es6": "^5.0.0",
     "globals": "catalog:",
     "json-schema-compare": "^0.2.2",
-    "json-schema-typed": "^8.0.2",
+    "json-schema-typed": "catalog:",
     "json-schema-merge-allof": "^0.8.1",
     "svelte": "catalog:"
   },

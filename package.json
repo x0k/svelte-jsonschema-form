@@ -19,32 +19,32 @@
   "devDependencies": {
     "@changesets/changelog-git": "^0.2.1",
     "@changesets/cli": "2.31.0",
-    "@eslint/compat": "^2.0.5",
+    "@eslint/compat": "^2.1.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "catalog:",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "catalog:",
     "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.59.1",
-    "@sveltejs/package": "2.5.7",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/kit": "catalog:",
+    "@sveltejs/package": "2.5.8",
+    "@sveltejs/vite-plugin-svelte": "catalog:",
     "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@total-typescript/tsconfig": "^1.0.4",
-    "@types/node": "^25.6.2",
-    "@vitest/browser": "^4.1.5",
-    "@vitest/browser-playwright": "^4.1.5",
-    "eslint": "^10.3.0",
+    "@types/node": "^25.9.2",
+    "@vitest/browser": "^4.1.8",
+    "@vitest/browser-playwright": "^4.1.8",
+    "eslint": "^10.4.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-svelte": "^3.17.1",
+    "eslint-plugin-svelte": "^3.19.0",
     "only-allow": "^1.2.2",
     "playwright": "catalog:",
-    "prettier": "^3.8.3",
-    "prettier-plugin-svelte": "^3.5.1",
+    "prettier": "^3.8.4",
+    "prettier-plugin-svelte": "^4.1.0",
     "prettier-plugin-tailwindcss": "^0.8.0",
-    "publint": "^0.3.19",
-    "svelte-check": "^4.4.8",
-    "turbo": "^2.9.10",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.59.2",
+    "publint": "^0.3.21",
+    "svelte-check": "^4.6.0",
+    "turbo": "^2.9.17",
+    "typescript": "catalog:",
+    "typescript-eslint": "^8.61.0",
     "vite": "catalog:",
     "vite-plugin-devtools-json": "^1.0.0",
     "vitest": "catalog:",
@@ -53,15 +53,17 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",
-      "ata-validator",
-      "esbuild"
+      "@sveltejs/sv-utils",
+      "esbuild",
+      "sharp"
     ],
     "overrides": {
       "playwright": "catalog:",
       "vite": "catalog:"
     },
     "patchedDependencies": {
-      "json-schema-to-valibot": "patches/json-schema-to-valibot.patch"
+      "json-schema-to-valibot": "patches/json-schema-to-valibot.patch",
+      "satteri@0.8.1": "patches/satteri@0.8.1.patch"
     }
   }
 }

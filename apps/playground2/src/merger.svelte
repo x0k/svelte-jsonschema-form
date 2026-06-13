@@ -12,9 +12,11 @@
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
   import AlignLeft from "@lucide/svelte/icons/align-left";
+  import type { MergerState } from "meta/playground";
 
   import { debouncedEffect } from "$lib/svelte.svelte.js";
   import { Button } from "$lib/components/ui/button/index.js";
+  import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
   import Editor from "$lib/editor.svelte";
   import Popup from "$lib/popup.svelte";
   import { Label } from "$lib/components/ui/label/index.js";
@@ -27,12 +29,10 @@
     gapPx,
   } from "$lib/tiler.js";
 
-  import type { MergerPageState } from "@/core/index.js";
-
   import Header from "./header.svelte";
   import { router } from "./router.js";
 
-  const DEFAULT_PAGE_STATE: MergerPageState = {
+  const DEFAULT_PAGE_STATE: MergerState = {
     schema: {
       allOf: [
         {
@@ -168,24 +168,26 @@
     m: () => data,
   }}
 >
-  <Popup>
-    {#snippet label()}
-      Options ({+data.deep +
-        +data.intersectJson +
-        +data.deduplicateJsonSchemas})
-    {/snippet}
-    <Label>
-      <Checkbox bind:checked={data.intersectJson} />
-      Intersect JSON values (enum keyword)
-    </Label>
-    <Label>
-      <Checkbox bind:checked={data.deduplicateJsonSchemas} />
-      Deduplicate JSON Schemas (combinator keywords)
-    </Label>
-    <Label>
-      <Checkbox bind:checked={data.deep} />
-      Merge nested `allOf`
-    </Label>
-  </Popup>
+  <ButtonGroup.Root>
+    <Popup>
+      {#snippet label()}
+        Options ({+data.deep +
+          +data.intersectJson +
+          +data.deduplicateJsonSchemas})
+      {/snippet}
+      <Label>
+        <Checkbox bind:checked={data.intersectJson} />
+        Intersect JSON values (enum keyword)
+      </Label>
+      <Label>
+        <Checkbox bind:checked={data.deduplicateJsonSchemas} />
+        Deduplicate JSON Schemas (combinator keywords)
+      </Label>
+      <Label>
+        <Checkbox bind:checked={data.deep} />
+        Merge nested `allOf`
+      </Label>
+    </Popup>
+  </ButtonGroup.Root>
 </Header>
 <Panel bind:layout />

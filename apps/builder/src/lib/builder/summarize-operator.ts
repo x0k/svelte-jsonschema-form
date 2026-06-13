@@ -1,6 +1,6 @@
 import { isValidRegExp } from "$lib/reg-exp.js";
 
-import { OperatorType } from "./operator.js";
+import { OperatorType } from "meta/builder";
 import { type Node, type OperatorNode } from "./node.js";
 import { getNodeChild, getNodeProperty, getNodeTitle } from "./node-props.js";
 import { isContainsOperator } from "./node-guards.js";

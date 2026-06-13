@@ -1,9 +1,7 @@
 <script lang="ts">
   import { createMeta, SvelteKitForm } from "@sjsf/sveltekit/client";
-  // WARN: You must export this ID Builder in your `defaults` file
-  import { createFormIdBuilder } from "@sjsf/sveltekit";
 
-  import * as defaults from "$lib/form-defaults";
+  import * as defaults from "$lib/sjsf/defaults";
 
   import type { ActionData, PageData } from "./$types";
 
@@ -13,7 +11,6 @@
 <SvelteKitForm
   {...defaults}
   {meta}
-  idBuilder={createFormIdBuilder}
   uiSchema={{
     "ui:options": {
       form: {

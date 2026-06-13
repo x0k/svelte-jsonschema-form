@@ -1,6 +1,8 @@
 <script lang="ts">
   import CircleX from "@lucide/svelte/icons/circle-x";
   import CircleAlert from "@lucide/svelte/icons/circle-alert";
+  import { themeOrSubThemeTitle } from "meta";
+  import { playgroundIconSets, playgroundIconSetTitle, playgroundThemes } from "meta/playground";
 
   import { isCustomizableNode } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
@@ -8,8 +10,6 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import Select from "$lib/components/select.svelte";
-  import { THEME_TITLES, THEMES } from "$lib/sjsf/theme.js";
-  import { ICONS, ICONS_TITLES } from "$lib/sjsf/icons.js";
   import { encodeJson } from "$lib/url.js";
 
   import { PreviewSubRouteName, RouteName } from "../model.js";
@@ -36,8 +36,8 @@
       class="w-full"
       labelId="{uniqueId}-theme"
       bind:value={ctx.theme}
-      items={THEMES}
-      labels={THEME_TITLES}
+      items={playgroundThemes()}
+      itemLabel={themeOrSubThemeTitle}
     />
   </div>
   <div class="flex flex-col gap-1.5">
@@ -46,8 +46,8 @@
       class="w-full"
       labelId="{uniqueId}-icons"
       bind:value={ctx.icons}
-      items={ICONS}
-      labels={ICONS_TITLES}
+      items={playgroundIconSets()}
+      itemLabel={playgroundIconSetTitle}
     />
   </div>
   <div class="flex items-center gap-2">

@@ -1,11 +1,12 @@
 ---
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { isTheme, themeOrSubThemeTitle } from 'meta'
 
-import { THEME_TITLES, THEMES, type Theme } from "@/shared";
+import { actualThemes } from '@/shared';
 import { Content, frontmatter } from "@/content/docs/index.mdx";
 
 export function getStaticPaths() {
-  return THEMES.slice(1).map((theme) => ({ params: { theme } }));
+  return Array.from(actualThemes()).slice(1).map((theme) => ({ params: { theme } }));
 }
 
 function fixGetStartedUrl(
@@ -33,7 +34,7 @@ function fixGetStartedUrl(
 <StarlightPage
   frontmatter={{
     ...fixGetStartedUrl(frontmatter),
-    title: `${frontmatter.title} with ${THEME_TITLES[Astro.params.theme as Theme]}`,
+    title: `${frontmatter.title} with ${isTheme(Astro.params.theme) ? themeOrSubThemeTitle(Astro.params.theme): Astro.params.theme}`,
   }}
 >
   <Content />

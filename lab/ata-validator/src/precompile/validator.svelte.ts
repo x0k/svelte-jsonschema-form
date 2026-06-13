@@ -1,3 +1,4 @@
+import { DATA_URL_FORMAT } from "@sjsf/form/core";
 import type {
   FieldValueValidator,
   FormValueValidator,
@@ -5,18 +6,48 @@ import type {
   Validator,
 } from "@sjsf/form";
 import { fromValidators } from "@sjsf/form/validators/precompile";
-import type { ValidationResult as AtaValidationResult } from "ata-validator";
+import type { ValidationError } from "ata-validator";
+import type { BundleStandaloneOptions } from "ata-validator/build";
 
-import type { ValueCloner } from "../validator.svelte.js";
+import {
+  COLOR_FORMAT_REGEX,
+  DATA_URL_FORMAT_REGEX,
+  DEFAULT_VALIDATOR_OPTIONS,
+  type ValueCloner,
+} from "../validator.svelte.js";
 import {
   createFormErrorsTransformer,
   transformFieldErrors,
   type ErrorsTransformerOptions,
 } from "../errors.js";
 
+type FormatPredicate = NonNullable<BundleStandaloneOptions["formats"]>[string];
+
+function createFormatPredicate(regExp: RegExp) {
+  return new Function(
+    "value",
+    `return ${regExp}.test(value)`,
+  ) as FormatPredicate;
+}
+
+export const DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS = {
+  ...DEFAULT_VALIDATOR_OPTIONS,
+  format: "esm",
+  formats: {
+    color: createFormatPredicate(COLOR_FORMAT_REGEX),
+    [DATA_URL_FORMAT]: createFormatPredicate(DATA_URL_FORMAT_REGEX),
+  } satisfies Record<
+    keyof (typeof DEFAULT_VALIDATOR_OPTIONS)["formats"],
+    FormatPredicate
+  >,
+} satisfies BundleStandaloneOptions;
+
 export type CompiledValidator = (
   data: unknown,
-) => AtaValidationResult | { valid: true; errors: ReadonlyArray<never> };
+) => // NOTE: The result has been extended to support
+  // inferred types of precompiled functions
+  | { valid: boolean; errors: ValidationError[] }
+  | { valid: true; errors: ReadonlyArray<never> };
 
 export type ValidateFunctions = {
   [key: string]: CompiledValidator;

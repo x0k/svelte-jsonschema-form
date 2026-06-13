@@ -1,7 +1,7 @@
 import { createForm, type Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-import * as defaults from "@/lib/form/defaults";
+import * as defaults from "@/lib/sjsf/defaults";
 
 const schema = {
   type: "object",
@@ -13,10 +13,10 @@ const schema = {
     },
   },
   required: ["text"],
-  additionalProperties: false
+  additionalProperties: false,
 } as const satisfies Schema;
 
 const form = createForm<FromSchema<typeof schema>>({
   ...defaults,
   schema,
-})
+});

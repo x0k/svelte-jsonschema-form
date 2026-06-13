@@ -81,7 +81,11 @@ const INTERNAL_VALIDATORS_SET = new Set<Validator>(INTERNAL_VALIDATORS);
 
 export type InternalValidator = (typeof INTERNAL_VALIDATORS)[number];
 
-const INTERNAL_VALIDATOR_MODULES = ["precompile"] as const;
+const INTERNAL_VALIDATOR_MODULES = [
+  "precompile",
+  "file-size",
+  "omit-extra-data",
+] as const;
 
 export type InternalValidatorModule =
   (typeof INTERNAL_VALIDATOR_MODULES)[number];

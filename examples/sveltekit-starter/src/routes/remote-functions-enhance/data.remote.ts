@@ -1,9 +1,9 @@
-import { invalid } from '@sveltejs/kit';
+import { invalid } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 
 import { form, query } from "$app/server";
-import * as defaults from "$lib/form-defaults";
+import * as defaults from "$lib/sjsf/remote-defaults";
 import { schema, type CreatePost } from "$lib/post";
 
 export const getInitialData = query(async () => {
@@ -18,10 +18,11 @@ export const createPost = form(
     ...defaults,
     schema,
   }),
-  ({ data: { title, content } }) => {
-    if (title.length > 100) {
+  ({ data }) => {
+    if (data.title.length > 100) {
       invalid({ path: ["title"], message: "Title is too long" });
     }
-    return { id: "new-post", title, content };
-  }
+    console.log(data);
+    return { ...data, id: "new-post" };
+  },
 );

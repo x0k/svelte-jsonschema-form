@@ -1,0 +1,3317 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`builder sandbox-factory > basic > basic 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > fields > extra fields 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+import '@sjsf/form/fields/extra/file-include';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > themes > basic 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > themes > beercss 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf-lab/beercss-theme": "^3.3.0",
+    "beercss": "^4.0.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf-lab/beercss-theme/extra-widgets/checkboxes-include";
+// import "@sjsf-lab/beercss-theme/extra-widgets/date-picker-include";
+// import "@sjsf-lab/beercss-theme/extra-widgets/file-include";
+// import "@sjsf-lab/beercss-theme/extra-widgets/radio-include";
+// import "@sjsf-lab/beercss-theme/extra-widgets/range-include";
+// import "@sjsf-lab/beercss-theme/extra-widgets/switch-include";
+// import "@sjsf-lab/beercss-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf-lab/beercss-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import 'beercss/dist/cdn/beer.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+<div style="padding: 2rem">{@render children()}</div>",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > themes > daisyui5 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/daisyui5-theme": "^3.6.0",
+    "daisyui": "^5.4.0",
+    "pikaday": "^1.8.2",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "tailwindcss": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/date-picker-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/file-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/multi-select-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/radio-buttons-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/radio-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/range-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/rating-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/switch-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/daisyui5-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+<div style="padding: 2rem">{@render children()}</div>",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/daisyui5-theme/styles.css";
+@plugin "daisyui";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
+}
+`;
+
+exports[`builder sandbox-factory > themes > flowbite3 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/flowbite3-theme": "^3.6.0",
+    "flowbite-svelte": "^1.22.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "flowbite": "^3.1.0",
+    "tailwindcss": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/flowbite3-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/date-picker-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/date-range-picker-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/file-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/multi-select-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/radio-buttons-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/radio-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/range-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/switch-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/tags-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
+export { theme } from '@sjsf/flowbite3-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+<div style="padding: 2rem">{@render children()}</div>",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/flowbite3-theme/styles.css";
+@plugin "flowbite/plugin";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-primary-50: #fff5f2;
+  --color-primary-100: #fff1ee;
+  --color-primary-200: #ffe4de;
+  --color-primary-300: #ffd5cc;
+  --color-primary-400: #ffbcad;
+  --color-primary-500: #fe795d;
+  --color-primary-600: #ef562f;
+  --color-primary-700: #eb4f27;
+  --color-primary-800: #cc4522;
+  --color-primary-900: #a5371b;
+
+  --color-secondary-50: #f0f9ff;
+  --color-secondary-100: #e0f2fe;
+  --color-secondary-200: #bae6fd;
+  --color-secondary-300: #7dd3fc;
+  --color-secondary-400: #38bdf8;
+  --color-secondary-500: #0ea5e9;
+  --color-secondary-600: #0284c7;
+  --color-secondary-700: #0369a1;
+  --color-secondary-800: #075985;
+  --color-secondary-900: #0c4a6e;
+};",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
+}
+`;
+
+exports[`builder sandbox-factory > themes > pico 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "@picocss/pico": "^2.1.1",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+<div style="padding: 2rem">{@render children()}</div>",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@import "@picocss/pico/css/pico.css";
+@import "@sjsf/basic-theme/css/pico.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > themes > shadcn-extras 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf-lab/shadcn-extras-theme": "^3.4.1",
+    "@sjsf/shadcn4-theme": "^3.5.0",
+    "bits-ui": "^2.14.0",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^3.3.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "tailwindcss": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/date-range-picker-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/file-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/multi-select-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/radio-buttons-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/range-slider-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/range-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/file-drop-zone-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/ip-v4-address-input-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/nlp-date-input-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/password-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/phone-input-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/star-rating-include";
+// import "@sjsf-lab/shadcn-extras-theme/extra-widgets/tags-input-include";
+export { theme } from '@sjsf-lab/shadcn-extras-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/lib/sjsf/shadcn.ts": "import {
+	Button,
+	FieldDescription,
+	FieldError,
+	FieldLabel,
+	Field,
+	FieldSet,
+	FieldLegend,
+	FieldGroup,
+	FieldTitle,
+	ButtonGroup,
+	Checkbox,
+	Input,
+	Select,
+	SelectTrigger,
+	SelectContent,
+	SelectItem
+} from '@sjsf/shadcn4-theme/new-york';
+
+import { setThemeContext } from '@sjsf/shadcn4-theme';
+
+// https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/#components
+export function setShadcnThemeContext() {
+	setThemeContext({
+		components: {
+			Button,
+			FieldDescription,
+			FieldError,
+			FieldLabel,
+			Field,
+			FieldSet,
+			FieldLegend,
+			FieldGroup,
+			FieldTitle,
+			ButtonGroup,
+			Checkbox,
+			Input,
+			Select,
+			SelectTrigger,
+			SelectContent,
+			SelectItem
+
+			// Popover,
+			// PopoverContent,
+			// PopoverTrigger,
+			// Command,
+			// CommandInput,
+			// CommandList,
+			// CommandEmpty,
+			// CommandGroup,
+			// CommandItem,
+			// Calendar,
+			// RangeCalendar,
+			// ToggleGroup,
+			// ToggleGroupItem,
+			// RadioGroup,
+			// RadioGroupItem,
+			// Slider,
+			// Switch,
+			// Textarea,
+			// FileDropZone,
+			// FileDropZoneTrigger,
+			// IPv4AddressInput,
+			// NLPDateInput,
+			// PasswordRoot,
+			// PasswordInput,
+			// PasswordStrength,
+			// PasswordToggleVisibility,
+			// PhoneInput,
+			// StarRatingRoot,
+			// StarRatingStar,
+			// TagsInput
+		}
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+
+	setShadcnThemeContext();
+</script>
+
+<div style="padding: 2rem">{@render children()}</div>",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
+@import "@sjsf-lab/shadcn-extras-theme/styles.css";
+@custom-variant dark (&:where(.dark *));
+
+:root {
+	--radius: 0.625rem;
+	--background: oklch(1 0 0);
+	--foreground: oklch(0.145 0 0);
+	--card: oklch(1 0 0);
+	--card-foreground: oklch(0.145 0 0);
+	--popover: oklch(1 0 0);
+	--popover-foreground: oklch(0.145 0 0);
+	--primary: oklch(0.205 0 0);
+	--primary-foreground: oklch(0.985 0 0);
+	--secondary: oklch(0.97 0 0);
+	--secondary-foreground: oklch(0.205 0 0);
+	--muted: oklch(0.97 0 0);
+	--muted-foreground: oklch(0.556 0 0);
+	--accent: oklch(0.97 0 0);
+	--accent-foreground: oklch(0.205 0 0);
+	--destructive: oklch(0.577 0.245 27.325);
+	--border: oklch(0.922 0 0);
+	--input: oklch(0.922 0 0);
+	--ring: oklch(0.708 0 0);
+	--chart-1: oklch(0.646 0.222 41.116);
+	--chart-2: oklch(0.6 0.118 184.704);
+	--chart-3: oklch(0.398 0.07 227.392);
+	--chart-4: oklch(0.828 0.189 84.429);
+	--chart-5: oklch(0.769 0.188 70.08);
+	--sidebar: oklch(0.985 0 0);
+	--sidebar-foreground: oklch(0.145 0 0);
+	--sidebar-primary: oklch(0.205 0 0);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.97 0 0);
+	--sidebar-accent-foreground: oklch(0.205 0 0);
+	--sidebar-border: oklch(0.922 0 0);
+	--sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+	--background: oklch(0.145 0 0);
+	--foreground: oklch(0.985 0 0);
+	--card: oklch(0.205 0 0);
+	--card-foreground: oklch(0.985 0 0);
+	--popover: oklch(0.269 0 0);
+	--popover-foreground: oklch(0.985 0 0);
+	--primary: oklch(0.922 0 0);
+	--primary-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.269 0 0);
+	--secondary-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.269 0 0);
+	--muted-foreground: oklch(0.708 0 0);
+	--accent: oklch(0.371 0 0);
+	--accent-foreground: oklch(0.985 0 0);
+	--destructive: oklch(0.704 0.191 22.216);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 15%);
+	--ring: oklch(0.556 0 0);
+	--chart-1: oklch(0.488 0.243 264.376);
+	--chart-2: oklch(0.696 0.17 162.48);
+	--chart-3: oklch(0.769 0.188 70.08);
+	--chart-4: oklch(0.627 0.265 303.9);
+	--chart-5: oklch(0.645 0.246 16.439);
+	--sidebar: oklch(0.205 0 0);
+	--sidebar-foreground: oklch(0.985 0 0);
+	--sidebar-primary: oklch(0.488 0.243 264.376);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.269 0 0);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+};
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+ 
+  body {
+    @apply bg-background text-foreground;
+  }
+};",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+	plugins: [sveltekit(), tailwindcss()],
+	ssr: { noExternal: ['@lucide/svelte'] }
+});",
+}
+`;
+
+exports[`builder sandbox-factory > themes > shadcn4 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/shadcn4-theme": "^3.6.0",
+    "@internationalized/date": "^3.10.0",
+    "@lucide/svelte": "^1.0.0",
+    "bits-ui": "^2.14.0",
+    "clsx": "^2.1.0",
+    "shadcn-svelte": "^1.2.0",
+    "tailwind-merge": "^3.3.0",
+    "tailwind-variants": "^3.0.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "tailwindcss": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/date-range-picker-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/file-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/multi-select-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/radio-buttons-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/range-slider-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/range-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/shadcn4-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/lib/sjsf/shadcn.ts": "import {
+	Button,
+	FieldDescription,
+	FieldError,
+	FieldLabel,
+	Field,
+	FieldSet,
+	FieldLegend,
+	FieldGroup,
+	FieldTitle,
+	ButtonGroup,
+	Checkbox,
+	Input,
+	Select,
+	SelectTrigger,
+	SelectContent,
+	SelectItem
+} from '@sjsf/shadcn4-theme/new-york';
+
+import { setThemeContext } from '@sjsf/shadcn4-theme';
+
+// https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/#components
+export function setShadcnThemeContext() {
+	setThemeContext({
+		components: {
+			Button,
+			FieldDescription,
+			FieldError,
+			FieldLabel,
+			Field,
+			FieldSet,
+			FieldLegend,
+			FieldGroup,
+			FieldTitle,
+			ButtonGroup,
+			Checkbox,
+			Input,
+			Select,
+			SelectTrigger,
+			SelectContent,
+			SelectItem
+
+			// Popover,
+			// PopoverContent,
+			// PopoverTrigger,
+			// Command,
+			// CommandInput,
+			// CommandList,
+			// CommandEmpty,
+			// CommandGroup,
+			// CommandItem,
+			// Calendar,
+			// RangeCalendar,
+			// ToggleGroup,
+			// ToggleGroupItem,
+			// RadioGroup,
+			// RadioGroupItem,
+			// Slider,
+			// Switch,
+			// Textarea
+		}
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+
+	setShadcnThemeContext();
+</script>
+
+<div style="padding: 2rem">{@render children()}</div>",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/shadcn4-theme/styles.css";
+@custom-variant dark (&:where(.dark *));
+
+:root {
+	--radius: 0.625rem;
+	--background: oklch(1 0 0);
+	--foreground: oklch(0.145 0 0);
+	--card: oklch(1 0 0);
+	--card-foreground: oklch(0.145 0 0);
+	--popover: oklch(1 0 0);
+	--popover-foreground: oklch(0.145 0 0);
+	--primary: oklch(0.205 0 0);
+	--primary-foreground: oklch(0.985 0 0);
+	--secondary: oklch(0.97 0 0);
+	--secondary-foreground: oklch(0.205 0 0);
+	--muted: oklch(0.97 0 0);
+	--muted-foreground: oklch(0.556 0 0);
+	--accent: oklch(0.97 0 0);
+	--accent-foreground: oklch(0.205 0 0);
+	--destructive: oklch(0.577 0.245 27.325);
+	--border: oklch(0.922 0 0);
+	--input: oklch(0.922 0 0);
+	--ring: oklch(0.708 0 0);
+	--chart-1: oklch(0.646 0.222 41.116);
+	--chart-2: oklch(0.6 0.118 184.704);
+	--chart-3: oklch(0.398 0.07 227.392);
+	--chart-4: oklch(0.828 0.189 84.429);
+	--chart-5: oklch(0.769 0.188 70.08);
+	--sidebar: oklch(0.985 0 0);
+	--sidebar-foreground: oklch(0.145 0 0);
+	--sidebar-primary: oklch(0.205 0 0);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.97 0 0);
+	--sidebar-accent-foreground: oklch(0.205 0 0);
+	--sidebar-border: oklch(0.922 0 0);
+	--sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+	--background: oklch(0.145 0 0);
+	--foreground: oklch(0.985 0 0);
+	--card: oklch(0.205 0 0);
+	--card-foreground: oklch(0.985 0 0);
+	--popover: oklch(0.269 0 0);
+	--popover-foreground: oklch(0.985 0 0);
+	--primary: oklch(0.922 0 0);
+	--primary-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.269 0 0);
+	--secondary-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.269 0 0);
+	--muted-foreground: oklch(0.708 0 0);
+	--accent: oklch(0.371 0 0);
+	--accent-foreground: oklch(0.985 0 0);
+	--destructive: oklch(0.704 0.191 22.216);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 15%);
+	--ring: oklch(0.556 0 0);
+	--chart-1: oklch(0.488 0.243 264.376);
+	--chart-2: oklch(0.696 0.17 162.48);
+	--chart-3: oklch(0.769 0.188 70.08);
+	--chart-4: oklch(0.627 0.265 303.9);
+	--chart-5: oklch(0.645 0.246 16.439);
+	--sidebar: oklch(0.205 0 0);
+	--sidebar-foreground: oklch(0.985 0 0);
+	--sidebar-primary: oklch(0.488 0.243 264.376);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.269 0 0);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+};
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+ 
+  body {
+    @apply bg-background text-foreground;
+  }
+};",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+	plugins: [sveltekit(), tailwindcss()],
+	ssr: { noExternal: ['@lucide/svelte'] }
+});",
+}
+`;
+
+exports[`builder sandbox-factory > themes > skeleton4 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/skeleton4-theme": "^3.6.0",
+    "@skeletonlabs/skeleton": "^4.2.0",
+    "@skeletonlabs/skeleton-svelte": "^4.2.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "@tailwindcss/forms": "^0.5.11",
+    "tailwindcss": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+
+<html lang="en" data-theme="cerberus">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/skeleton4-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/combobox-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/date-picker-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/date-range-picker-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/file-upload-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/file-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/multi-select-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/radio-buttons-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/radio-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/range-slider-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/range-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/rating-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/slider-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/switch-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/tags-include";
+// import "@sjsf/skeleton4-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/skeleton4-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+<div style="padding: 2rem">{@render children()}</div>",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate style="padding: 2rem;" />",
+  "src/routes/layout.css": "@import 'tailwindcss';
+@import "@sjsf/skeleton4-theme/styles.css";
+@plugin '@tailwindcss/forms';
+@import "@skeletonlabs/skeleton";
+@import "@skeletonlabs/skeleton-svelte";
+@import "@skeletonlabs/skeleton/themes/cerberus";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
+}
+`;
+
+exports[`builder sandbox-factory > themes > svar 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf-lab/svar-theme": "^3.3.0",
+    "@svar-ui/svelte-core": "^2.3.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf-lab/svar-theme/extra-widgets/checkboxes-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/color-picker-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/color-select-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/combobox-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/date-picker-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/date-range-picker-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/multi-select-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/radio-buttons-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/radio-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/range-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/switch-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf-lab/svar-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import { Willow } from '@svar-ui/svelte-core';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+<Willow>{@render children()}</Willow>",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate />",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > ui-schema > with uiSchema 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;
+
+export const uiSchema = {
+	"ui:components": { "stringField": "enumField", "arrayField": "multiEnumField" },
+	"properties": {
+		"name": { "ui:components": { "textWidget": "textareaWidget" } }
+	}
+} as const satisfies UiSchemaRoot;;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > validators > ajv8 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > validators > ata 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf-lab/ata-validator": "^3.1.1",
+    "ata-validator": "^0.21.0"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > validators > cfworker 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/cfworker-validator": "^3.6.0",
+    "@cfworker/json-schema": "^4.1.0"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > validators > schemasafe 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/schemasafe-validator": "^3.6.0",
+    "@exodus/schemasafe": "^1.3.0"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > validators > valibot 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/valibot-validator": "^3.6.0",
+    "@valibot/to-json-schema": "^1.3.0",
+    "valibot": "^1.2.0"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import * as v from 'valibot';
+
+export const schema = v.pipe(
+	v.object({
+		title: v.pipe(v.string(), v.metadata({ title: 'Title' })),
+		content: v.pipe(v.string(), v.minLength(10), v.metadata({ title: 'Content' }))
+	}),
+	v.metadata({ title: 'Model' })
+);
+
+export type Model = v.InferInput<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { adapt } from '@sjsf/valibot-validator';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm({
+		...defaults,
+		...model,
+		...adapt(model.schema),
+		onSubmit: console.log
+	});
+</script>
+
+<BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > validators > zod4 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/zod4-validator": "^3.6.0",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import * as z from 'zod';
+
+export const schema = z.object({
+	title: z.string().meta({ title: 'Title' }),
+	content: z.string().min(10).meta({ title: 'Content' })
+}).meta({ title: 'Model' });
+
+export type Model = z.infer<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { adapt } from '@sjsf/zod4-validator/classic';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm({
+		...defaults,
+		...model,
+		...adapt(model.schema),
+		onSubmit: console.log
+	});
+</script>
+
+<BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;
+
+exports[`builder sandbox-factory > widgets > extra widgets 1`] = `
+{
+  "package.json": "{
+  "name": "sandbox",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@sjsf/form": "^3.5.0",
+    "@sveltejs/kit": "^2.48.3",
+    "svelte": "^5.34.8",
+    "@sjsf/basic-theme": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.6.0",
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "typescript": "^5.9.3",
+    "esm-env": "^1.2.0",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "vite dev"
+  }
+}",
+  "src/app.html": "<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>",
+  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+
+export const schema = {
+	"type": "object",
+	"title": "Test",
+	"properties": { "name": { "type": "string" } }
+} as const satisfies Schema;;
+
+export type Model = FromSchema<typeof schema>;",
+  "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
+import type { ValidatorFactoryOptions } from '@sjsf/form';
+import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
+
+// import "@sjsf/form/fields/extra/aggregated-include";
+// import "@sjsf/form/fields/extra/array-files-include";
+// import "@sjsf/form/fields/extra/array-native-files-include";
+// import "@sjsf/form/fields/extra/array-tags-include";
+// import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/enum-include";
+// import "@sjsf/form/fields/extra/file-include";
+// import "@sjsf/form/fields/extra/multi-enum-include";
+// import "@sjsf/form/fields/extra/object-key-enum-include";
+// import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-file-include";
+// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
+export { resolver } from '@sjsf/form/resolvers/basic';
+
+export { translation } from '@sjsf/form/translations/en';
+export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
+export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
+
+// import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+// import "@sjsf/basic-theme/extra-widgets/file-include";
+// import "@sjsf/basic-theme/extra-widgets/multi-select-include";
+// import "@sjsf/basic-theme/extra-widgets/radio-include";
+// import "@sjsf/basic-theme/extra-widgets/range-include";
+// import "@sjsf/basic-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/basic-theme';
+
+export const onSubmitError = createFocusOnFirstError();
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+	return createFormValidator<T>({
+		...options,
+		ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
+	});
+}",
+  "src/routes/+layout.svelte": "<script lang="ts">
+	import './layout.css';
+	import type { Snippet } from 'svelte';
+
+	const { children }: { children: Snippet } = $props();
+</script>
+
+{@render children()}",
+  "src/routes/+page.svelte": "<script lang="ts">
+	import * as defaults from '$lib/sjsf/defaults';
+	import * as model from '$lib/model';
+	import { BasicForm, createForm } from '@sjsf/form';
+
+	const form = createForm<model.Model>({ ...defaults, ...model, onSubmit: console.log });
+</script>
+
+<BasicForm form={form} novalidate />",
+  "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
+  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+    experimental: {
+      remoteFunctions: true,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+    experimental: {
+      async: true,
+    },
+  },
+};
+
+export default config;
+",
+  "tsconfig.json": "{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler"
+  }
+}",
+  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({ plugins: [sveltekit()] });",
+}
+`;

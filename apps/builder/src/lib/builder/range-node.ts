@@ -1,21 +1,16 @@
-import type { FromSchema } from "json-schema-to-ts";
-import type { Schema } from "@sjsf/form";
-
 import {
   NodeType,
-  type AbstractCustomizableNode,
+  RangeValueType,
+  type NodeId,
   type CommonOptions,
-  type NodeId
-} from "./node-base.js";
-import type { StringNode } from "./string-node.js";
-import type { NumberNode } from "./number-node.js";
-import type { CustomizableNodeType } from "./node.js";
-import { createNode } from "./node-factories.js";
+  type RangeOptions,
+  type RangeNode,
+  type CustomizableNodeType,
+  type NodeOverridesMap,
+  RANGE_VALUE_TYPE_TO_WIDGET
+} from "meta/builder";
 
-export enum RangeValueType {
-  String = "string",
-  Number = "number"
-}
+import { createNode } from "./node-factories.js";
 
 export const RANGE_VALUE_TYPE_TITLES: Record<RangeValueType, string> = {
   [RangeValueType.String]: "String",
@@ -29,46 +24,12 @@ export const RANGE_VALUE_TYPE_TO_NODE_TYPE: Record<RangeValueType, NodeType> = {
   [RangeValueType.Number]: NodeType.Number
 };
 
-export const RANGE_NODE_OPTIONS_SCHEMA = {
-  title: "Range options",
-  type: "object",
-  properties: {
-    widget: {
-      title: "Widget",
-      type: "string",
-      default: "dateRangePickerWidget"
-    },
-    help: {
-      title: "Help",
-      type: "string"
-    }
-  },
-  required: ["widget"]
-} as const satisfies Schema;
-
-export type RangeOptions = FromSchema<typeof RANGE_NODE_OPTIONS_SCHEMA>;
-
-export type RangeNode = AbstractCustomizableNode<NodeType.Range, RangeOptions> &
-  (
-    | {
-        valueType: RangeValueType.String;
-        startNode: StringNode;
-        endNode: StringNode;
-      }
-    | {
-        valueType: RangeValueType.Number;
-        startNode: NumberNode;
-        endNode: NumberNode;
-      }
-  );
-
-const RANGE_VALUE_TYPE_TO_WIDGET: Record<RangeValueType, string> = {
-  [RangeValueType.String]: "dateRangePickerWidget",
-  [RangeValueType.Number]: "rangeSliderWidget"
-};
-
-function createNodeWithTitle<T extends CustomizableNodeType>(type: T, title: string) {
-  const node = createNode(type);
+function createNodeWithTitle<T extends CustomizableNodeType>(
+  type: T,
+  title: string,
+  overrides: NodeOverridesMap
+) {
+  const node = createNode(type, overrides);
   node.options.title = title;
   return node;
 }
@@ -76,7 +37,8 @@ function createNodeWithTitle<T extends CustomizableNodeType>(type: T, title: str
 export function createRangeNode<T extends RangeValueType>(
   id: NodeId,
   valueType: T,
-  options: RangeOptions & CommonOptions
+  options: RangeOptions & CommonOptions,
+  overrides: NodeOverridesMap
 ): RangeNode {
   const base = {
     id,
@@ -91,15 +53,15 @@ export function createRangeNode<T extends RangeValueType>(
       return {
         ...base,
         valueType,
-        startNode: createNodeWithTitle(NodeType.String, "Start"),
-        endNode: createNodeWithTitle(NodeType.String, "End")
+        startNode: createNodeWithTitle(NodeType.String, "Start", overrides),
+        endNode: createNodeWithTitle(NodeType.String, "End", overrides)
       };
     case RangeValueType.Number:
       return {
         ...base,
         valueType,
-        startNode: createNodeWithTitle(NodeType.Number, "Start"),
-        endNode: createNodeWithTitle(NodeType.Number, "End")
+        startNode: createNodeWithTitle(NodeType.Number, "Start", overrides),
+        endNode: createNodeWithTitle(NodeType.Number, "End", overrides)
       };
   }
 }

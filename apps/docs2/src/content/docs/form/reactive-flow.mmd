@@ -1,49 +1,92 @@
 flowchart TD
-  subgraph Options["Options"]
+  subgraph Options["Options (createForm)"]
     schema["schema"]
     uiSchema["uiSchema"]
-    idPrefix["idPrefix"]
     uiOptionsRegistry["uiOptionsRegistry"]
     initialValue["initialValue"]
-    value["value"]
+    value["value (Bind)"]
     initialErrors["initialErrors"]
+    disabled["disabled"]
+    fieldsValidationMode["fieldsValidationMode"]
   end
-  subgraph Internal["Internal State"]
-    pathsTrieRef["pathsTrieRef"]
+
+  subgraph Internal["Internal"]
     validator["validator"]
     merger["merger"]
-    valueRef["valueRef"]
-    idBuilder["idBuilder"]
-    errors["errors"]
   end
-  subgraph Form["Form State"]
+
+  subgraph InternalState["Internal State"]
+    pathsTrieRef["pathsTrieRef"]
+    fieldsStateMap["fieldsStateMap"]
+    errors["errors (FormErrors)"]
+  end
+
+  subgraph FormState["FormState"]
     formValue["value"]
     formIsSubmitted["isSubmitted"]
     formIsChanged["isChanged"]
+    submission["submission"]
+    fieldsValidation["fieldsValidation"]
   end
-  
-  schema --> pathsTrieRef
+
+  subgraph Queries["Queries"]
+    getValueSnapshot["getValueSnapshot"]
+    getFieldErrors["getFieldErrors"]
+    hasErrors["hasErrors"]
+    getErrors["getErrors"]
+    validate["validate"]
+    getComponent["getComponent"]
+    getFieldComponent["getFieldComponent"]
+    retrieveSchema["retrieveSchema"]
+    isDisabled["isDisabled"]
+    hasFieldStateByPath["hasFieldStateByPath"]
+  end
+
+  subgraph Commands["Commands"]
+    updateErrors["updateErrors"]
+    updateFieldErrors["updateFieldErrors"]
+    setValue["setValue"]
+    validateField["validateField"]
+    setFieldStateByPath["setFieldStateByPath"]
+  end
+
+  schema --> validator
   uiSchema --> validator
   uiOptionsRegistry --> validator
-  schema --> validator
   validator --> merger
   schema --> merger
   uiSchema --> merger
-  value --> valueRef
-  initialValue --> valueRef
-  schema --> valueRef
-  merger --> valueRef
-  idPrefix --> idBuilder
-  schema --> idBuilder
-  uiSchema --> idBuilder
-  uiOptionsRegistry --> idBuilder
-  merger --> idBuilder
-  validator --> idBuilder
-  valueRef --> idBuilder
-  initialErrors --> errors
-  pathsTrieRef --> errors
+
+  schema --> pathsTrieRef
+
   merger --> formValue
   schema --> formValue
-  validator --> formValue
-  valueRef --> formValue
-  idPrefix --> formIsSubmitted
+  value --> formValue
+  initialValue --> formValue
+
+  pathsTrieRef --> formIsSubmitted
+  pathsTrieRef --> formIsChanged
+  fieldsStateMap --> formIsSubmitted
+  fieldsStateMap --> formIsChanged
+
+  validator --> submission
+  validator --> fieldsValidation
+
+  initialErrors --> errors
+
+  formValue -.-> getValueSnapshot
+  errors -.-> getFieldErrors
+  errors -.-> hasErrors
+  errors -.-> getErrors
+  formValue -.-> validate
+  FormState -.-> getComponent
+  FormState -.-> getFieldComponent
+  FormState -.-> retrieveSchema
+  FormState -.-> isDisabled
+  fieldsStateMap -.-> hasFieldStateByPath
+
+  errors -.-> updateErrors
+  errors -.-> updateFieldErrors
+  formValue -.-> setValue
+  fieldsValidation -.-> validateField
+  fieldsStateMap -.-> setFieldStateByPath
