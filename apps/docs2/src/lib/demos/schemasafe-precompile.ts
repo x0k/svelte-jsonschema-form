@@ -1,4 +1,4 @@
-import { type DemoData, cleanPage } from "../demo.ts";
+import { type DemoData, type DemoMeta, cleanPage } from "../demo.ts";
 import PageComponent from "../../demos/schemasafe-precompile/+page.svelte";
 import inputSchemaJson from "../../demos/input-schema.json?raw";
 import pageSvelte from "../../demos/schemasafe-precompile/+page.svelte?raw";
@@ -13,5 +13,17 @@ const files: Record<string, string> = {
   "src/routes/patched-schema.ts": patchedSchemaTs,
   "src/routes/validate-functions.js": validateFunctionsJs,
 };
-
-export default { files, Component: PageComponent } satisfies DemoData;
+const meta: DemoMeta = {
+  "validator": {
+    "name": "schemasafe",
+    "draft2020": false,
+    "precompiled": true
+  },
+  "fields": [
+    "multi-enum"
+  ],
+  "widgets": [
+    "checkboxes"
+  ]
+};
+export default { files, Component: PageComponent, meta } satisfies DemoData;

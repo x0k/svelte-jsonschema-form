@@ -1,9 +1,16 @@
-import { type DemoData, cleanPage } from "../demo.ts";
+import { type DemoData, type DemoMeta, cleanPage } from "../demo.ts";
 import PageComponent from "../../demos/custom-keyword/+page.svelte";
 import pageSvelte from "../../demos/custom-keyword/+page.svelte?raw";
 
 const files: Record<string, string> = {
   "src/routes/+page.svelte": cleanPage(pageSvelte),
 };
-
-export default { files, Component: PageComponent } satisfies DemoData;
+const meta: DemoMeta = {
+  "fields": [
+    "unknown-native-file"
+  ],
+  "widgets": [
+    "file"
+  ]
+};
+export default { files, Component: PageComponent, meta } satisfies DemoData;

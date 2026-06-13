@@ -1,6 +1,6 @@
 <script lang="ts">
   import { untrack } from "svelte";
-  import { themeOrSubThemeTitle, type IconSet } from "meta";
+  import { themeOrSubThemeTitle, type IconSet, extraPackage } from "meta";
   import {
     type PlaygroundTheme,
     PLAYGROUND_SJSF_THEMES,
@@ -13,7 +13,7 @@
     playgroundIconSets,
   } from "meta/playground";
   import { SANDBOX_PLATFORMS, sandboxPlatformLabel } from "meta/sandbox";
-  import { openDemo, type DemosValidator } from "meta/demos";
+  import { openDemo } from "meta/demos";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
   import { fromRecord } from "@sjsf/form/lib/resolver";
@@ -44,7 +44,6 @@
   interface DemoProps {
     name: DemoName;
     theme?: PlaygroundTheme;
-    validator?: DemosValidator["name"];
     iconSet?: IconSet;
     disableSandboxes?: boolean;
     disableCode?: boolean;
@@ -56,7 +55,6 @@
   const {
     name,
     theme,
-    validator = "ajv8",
     iconSet,
     disableSandboxes,
     disableCode,
@@ -122,9 +120,11 @@
 ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}
 ${shadowStyles}`);
 
-  const { Component, files: extraFiles } = $derived(
-    (await DEMOS[name]()).default
-  );
+  const {
+    Component,
+    files: extraFiles,
+    meta,
+  } = $derived((await DEMOS[name]()).default);
 
   const codeFiles = $derived(
     Object.entries(extraFiles).map(([path, content]) => ({
@@ -265,12 +265,23 @@ ${shadowStyles}`);
           variant="pill"
           aria-label={`Open demo in ${sandboxPlatformLabel(platform)}`}
           onclick={async () => {
+            const validator = meta.validator ?? {
+              name: "ajv8",
+              draft2020: false,
+              precompiled: false,
+            };
             await openDemo({
-              name: "example",
+              name: `${name} (${selectedTheme}, ${validator.name})`,
               themeOrSubTheme: selectedTheme,
               icons: selectedIconSet,
               validator,
               extraFiles,
+              extraDependencies: [
+                extraPackage("jsonSchemaToTs"),
+                ...(meta.extraDependencies ?? []),
+              ],
+              fields: meta.fields ?? [],
+              widgets: meta.widgets ?? [],
               platform,
             });
           }}

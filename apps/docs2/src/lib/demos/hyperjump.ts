@@ -1,4 +1,4 @@
-import { type DemoData, cleanPage } from "../demo.ts";
+import { type DemoData, type DemoMeta, cleanPage } from "../demo.ts";
 import PageComponent from "../../demos/hyperjump/+page.svelte";
 import pageSvelte from "../../demos/hyperjump/+page.svelte?raw";
 import astTs from "../../demos/hyperjump/ast.ts?raw";
@@ -13,5 +13,17 @@ const files: Record<string, string> = {
   "src/input-schema.json": inputSchemaJson,
   "src/routes/patched-schema.ts": patchedSchemaTs,
 };
-
-export default { files, Component: PageComponent } satisfies DemoData;
+const meta: DemoMeta = {
+  "validator": {
+    "name": "hyperjump",
+    "draft2020": false,
+    "precompiled": true
+  },
+  "fields": [
+    "multi-enum"
+  ],
+  "widgets": [
+    "checkboxes"
+  ]
+};
+export default { files, Component: PageComponent, meta } satisfies DemoData;

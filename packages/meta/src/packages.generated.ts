@@ -105,5 +105,10 @@ export const EXTRA_PACKAGES = {
     "name": "tw-animate-css",
     "version": "1.4.0",
     "dev": true
+  },
+  "lucideSvelte": {
+    "name": "@lucide/svelte",
+    "version": "1.17.0",
+    "dev": false
   }
 } as const satisfies Record<string, AbstractPackage>;

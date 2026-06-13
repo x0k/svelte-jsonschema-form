@@ -36,6 +36,7 @@ const EXTRA_PACKAGES_META: Record<string, ExtraPackageMeta> = {
     dev: true,
   },
   twAnimateCss: { name: "tw-animate-css", catalog: "shadcn", dev: true },
+  lucideSvelte: { name: "@lucide/svelte", dev: false },
 };
 
 async function main() {

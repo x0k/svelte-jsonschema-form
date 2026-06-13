@@ -140,6 +140,11 @@ export type CodegenPrecompiledValidator = Extract<
 
 export type Codegen2020Validator = Extract<CodegenValidator, Draft2020<true>>;
 
+export type CodegenDraft7Validator = Extract<
+  CodegenValidator,
+  Draft2020<false>
+>;
+
 export function codegenIsExternalValidator<V extends CodegenValidatorMeta>(
   v: V,
 ): v is V & Name<Exclude<Validator, InternalValidator>> {

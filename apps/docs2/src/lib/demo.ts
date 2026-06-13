@@ -14,6 +14,13 @@ import type {
   Translation,
   ValidatorFactoryOptions,
 } from "@sjsf/form";
+import type {
+  AbstractPackage,
+  ExtraFieldFileName,
+  ExtraWidgetFileNames,
+  Theme as MetaTheme,
+} from "meta";
+import type { CodegenDraft7Validator } from "meta/codegen";
 
 interface Defaults {
   idPrefix: string;
@@ -31,9 +38,17 @@ export interface DemoContext {
   defaults: Defaults;
 }
 
+export interface DemoMeta {
+  extraDependencies?: AbstractPackage[];
+  fields?: ExtraFieldFileName[];
+  widgets?: ExtraWidgetFileNames[MetaTheme][];
+  validator?: CodegenDraft7Validator;
+}
+
 export interface DemoData {
   files: Record<string, string>;
   Component: Component;
+  meta: DemoMeta;
 }
 
 const importRegExp = /import\s*(type)?\s*{.+?}\s*from\s+"@\/lib\/demo"/;

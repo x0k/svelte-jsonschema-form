@@ -49,157 +49,156 @@ function readFilesRecursive(dir: string): string[] {
   return files;
 }
 
-// Scan demos directory
-if (!fs.existsSync(DEMOS_DIR)) {
-  console.error(`Demos directory not found: ${DEMOS_DIR}`);
-  process.exit(1);
-}
-
-const demoFolders = fs
-  .readdirSync(DEMOS_DIR, { withFileTypes: true })
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name)
-  .sort();
-
-if (demoFolders.length === 0) {
-  console.warn("No demo folders found in", DEMOS_DIR);
-}
-
-// Ensure output directory exists
-fs.mkdirSync(LIB_DEMOS_DIR, { recursive: true });
-
-const demoEntries: { name: string; importPath: string }[] = [];
-
-for (const folder of demoFolders) {
-  const demoDir = path.join(DEMOS_DIR, folder);
-
-  // Check for +page.svelte
-  if (!fs.existsSync(path.join(demoDir, "+page.svelte"))) {
-    console.warn(`Warning: Demo "${folder}" has no +page.svelte, skipping`);
-    continue;
+async function main() {
+  if (!fs.existsSync(DEMOS_DIR)) {
+    console.error(`Demos directory not found: ${DEMOS_DIR}`);
+    process.exit(1);
   }
 
-  // Read all files in the demo directory
-  const allFiles = readFilesRecursive(demoDir).sort();
+  const demoFolders = fs
+    .readdirSync(DEMOS_DIR, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+    .sort();
 
-  // Detect external imports (files outside the demo folder)
-  const externalFiles = new Set<string>();
-  for (const filePath of allFiles) {
-    const content = fs.readFileSync(filePath, "utf-8");
-    for (const importPath of parseRelativeImports(content)) {
-      const resolved = resolveImport(path.dirname(filePath), importPath);
-      if (
-        resolved &&
-        !resolved.startsWith(demoDir + path.sep) &&
-        resolved !== demoDir
-      ) {
-        externalFiles.add(resolved);
+  if (demoFolders.length === 0) {
+    console.warn("No demo folders found in", DEMOS_DIR);
+  }
+
+  fs.mkdirSync(LIB_DEMOS_DIR, { recursive: true });
+
+  const demoEntries: { name: string; importPath: string }[] = [];
+
+  for (const folder of demoFolders) {
+    const demoDir = path.join(DEMOS_DIR, folder);
+
+    if (!fs.existsSync(path.join(demoDir, "+page.svelte"))) {
+      console.warn(`Warning: Demo "${folder}" has no +page.svelte, skipping`);
+      continue;
+    }
+
+    const allFiles = readFilesRecursive(demoDir).sort();
+
+    const externalFiles = new Set<string>();
+    for (const filePath of allFiles) {
+      const content = fs.readFileSync(filePath, "utf-8");
+      for (const importPath of parseRelativeImports(content)) {
+        const resolved = resolveImport(path.dirname(filePath), importPath);
+        if (
+          resolved &&
+          !resolved.startsWith(demoDir + path.sep) &&
+          resolved !== demoDir
+        ) {
+          externalFiles.add(resolved);
+        }
       }
     }
-  }
-  allFiles.push(...[...externalFiles].filter((f) => !allFiles.includes(f)));
-  allFiles.sort();
+    allFiles.push(...[...externalFiles].filter((f) => !allFiles.includes(f)));
+    allFiles.sort();
 
-  const rawImports: {
-    variable: string;
-    relativePath: string;
-    filename: string;
-    absolutePath: string;
-  }[] = [];
-  let componentImport: string | null = null;
+    const rawImports: {
+      variable: string;
+      relativePath: string;
+      filename: string;
+      absolutePath: string;
+    }[] = [];
+    let componentImport: string | null = null;
 
-  for (const filePath of allFiles) {
-    const relativePath = path.relative(demoDir, filePath);
-    const filename = path.basename(filePath);
-    const variable = toVariableName(filename);
-
-    // Check if this is +page.svelte (the component)
-    if (relativePath === "+page.svelte") {
-      componentImport = `import Component from "../../demos/${folder}/${relativePath}";`;
+    const metaPath = path.join(demoDir, "_meta.ts");
+    let metaContent: string | null = null;
+    if (fs.existsSync(metaPath)) {
+      const metaModule = await import(metaPath);
+      metaContent = JSON.stringify(metaModule.default ?? metaModule, null, 2);
     }
 
-    // Add raw import for code display
-    rawImports.push({
-      variable,
-      relativePath,
-      filename,
-      absolutePath: filePath,
-    });
-  }
+    for (const filePath of allFiles) {
+      const relativePath = path.relative(demoDir, filePath);
+      const filename = path.basename(filePath);
 
-  // Generate demo definition file
-  const imports: string[] = [
-    'import { type DemoData, cleanPage } from "../demo.ts";',
-  ];
+      if (filename === "_meta.ts") continue;
 
-  if (componentImport) {
-    // Use PageComponent to avoid naming conflict with the Component type
-    imports.push(
-      `import PageComponent from "../../demos/${folder}/+page.svelte";`
-    );
-  }
+      const variable = toVariableName(filename);
 
-  // Add raw imports
-  const rawImportLines = rawImports.map(
-    (r) =>
-      `import ${r.variable} from "${path.relative(LIB_DEMOS_DIR, r.absolutePath).replaceAll("\\", "/")}?raw";`
-  );
-  imports.push(...rawImportLines);
+      if (relativePath === "+page.svelte") {
+        componentImport = `import Component from "../../demos/${folder}/${relativePath}";`;
+      }
 
-  // Build files record entries (+page.svelte first, then alphabetical)
-  const sortedImports = [...rawImports].sort((a, b) => {
-    if (a.relativePath.endsWith("+page.svelte")) return -1;
-    if (b.relativePath.endsWith("+page.svelte")) return 1;
-    return a.filename.localeCompare(b.filename);
-  });
+      rawImports.push({
+        variable,
+        relativePath,
+        filename,
+        absolutePath: filePath,
+      });
+    }
 
-  const filesEntries = sortedImports
-    .map(
+    const imports: string[] = [
+      'import { type DemoData, type DemoMeta, cleanPage } from "../demo.ts";',
+    ];
+
+    if (componentImport) {
+      imports.push(
+        `import PageComponent from "../../demos/${folder}/+page.svelte";`
+      );
+    }
+
+    const rawImportLines = rawImports.map(
       (r) =>
-        `  "${path.join("src", "routes", r.relativePath)}": ${
-          r.relativePath.endsWith("+page.svelte")
-            ? `cleanPage(${r.variable})`
-            : r.variable
-        },`
-    )
-    .join("\n");
+        `import ${r.variable} from "${path.relative(LIB_DEMOS_DIR, r.absolutePath).replaceAll("\\", "/")}?raw";`
+    );
+    imports.push(...rawImportLines);
 
-  const demoFileContent = componentImport
-    ? `${imports.join("\n")}
+    const sortedImports = [...rawImports].sort((a, b) => {
+      if (a.relativePath.endsWith("+page.svelte")) return -1;
+      if (b.relativePath.endsWith("+page.svelte")) return 1;
+      return a.filename.localeCompare(b.filename);
+    });
+
+    const filesEntries = sortedImports
+      .map(
+        (r) =>
+          `  "${path.join("src", "routes", r.relativePath)}": ${
+            r.relativePath.endsWith("+page.svelte")
+              ? `cleanPage(${r.variable})`
+              : r.variable
+          },`
+      )
+      .join("\n");
+
+    const demoFileContent = componentImport
+      ? `${imports.join("\n")}
 
 const files: Record<string, string> = {
 ${filesEntries}
 };
-
-export default { files, Component: PageComponent } satisfies DemoData;
+${`const meta: DemoMeta = ${metaContent ?? "{}"};`}
+export default { files, Component: PageComponent, meta } satisfies DemoData;
 `
-    : `${imports.join("\n")}
+      : `${imports.join("\n")}
 
 const files: Record<string, string> = {
 ${filesEntries}
 };
-
-export default { files } satisfies {
+${`const meta: DemoMeta = ${metaContent ?? "{}"};`}
+export default { files, meta } satisfies {
   files: Record<string, string>;
 };
 `;
 
-  const outputPath = path.join(LIB_DEMOS_DIR, `${folder}.ts`);
-  fs.writeFileSync(outputPath, demoFileContent);
+    const outputPath = path.join(LIB_DEMOS_DIR, `${folder}.ts`);
+    fs.writeFileSync(outputPath, demoFileContent);
 
-  demoEntries.push({
-    name: folder,
-    importPath: `./demos/${folder}.ts`,
-  });
-}
+    demoEntries.push({
+      name: folder,
+      importPath: `./demos/${folder}.ts`,
+    });
+  }
 
-// Generate the main file
-const typeEntries = demoEntries.map((e) => `  | "${e.name}"`).join("\n");
-const importEntries = demoEntries
-  .map((e) => `  "${e.name}": () => import("${e.importPath}"),`)
-  .join("\n");
+  const typeEntries = demoEntries.map((e) => `  | "${e.name}"`).join("\n");
+  const importEntries = demoEntries
+    .map((e) => `  "${e.name}": () => import("${e.importPath}"),`)
+    .join("\n");
 
-const generatedContent = `import type { DemoData } from "./demo.ts";
+  const generatedContent = `import type { DemoData } from "./demo.ts";
 
 export type DemoName =
 ${typeEntries || '  ""'};
@@ -209,7 +208,10 @@ ${importEntries}
 };
 `;
 
-fs.writeFileSync(GENERATED_FILE, generatedContent);
+  fs.writeFileSync(GENERATED_FILE, generatedContent);
 
-console.log(`Generated ${demoEntries.length} demo(s) in ${LIB_DEMOS_DIR}`);
-console.log(`Generated ${GENERATED_FILE}`);
+  console.log(`Generated ${demoEntries.length} demo(s) in ${LIB_DEMOS_DIR}`);
+  console.log(`Generated ${GENERATED_FILE}`);
+}
+
+await main();

@@ -26,6 +26,7 @@ import {
   createValidator,
   createForm,
   type CodegenNonPrecompiledValidator,
+  type CodegenValidator,
 } from "../codegen/index.ts";
 import {
   extraPackage,
@@ -46,7 +47,7 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   language: Language;
   themeOrSubTheme: T;
   icons: CodegenIconSet;
-  validator: CodegenNonPrecompiledValidator;
+  validator: CodegenValidator;
   sveltekit: CodegenSvelteKitIntegration;
   widgets: ExtraWidgetFileNames[ToTheme<T>][];
   fields: ExtraFieldFileName[];
@@ -259,7 +260,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     })(""),
   };
 
-  if (schema) {
+  if (schema && !validator.precompiled) {
     files[`src/lib/${modelName}.${language}`] = createModel({
       validator,
       isTs,
