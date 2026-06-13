@@ -34,6 +34,7 @@ export type DemoName =
   | "simple-setup"
   | "standard-schema"
   | "ui-schema"
+  | "usage-form"
   | "valibot"
   | "zod4";
 
@@ -71,6 +72,7 @@ export const DEMOS: Record<DemoName, () => Promise<{ default: DemoData }>> = {
   "simple-setup": () => import("./demos/simple-setup.ts"),
   "standard-schema": () => import("./demos/standard-schema.ts"),
   "ui-schema": () => import("./demos/ui-schema.ts"),
+  "usage-form": () => import("./demos/usage-form.ts"),
   "valibot": () => import("./demos/valibot.ts"),
   "zod4": () => import("./demos/zod4.ts"),
 };

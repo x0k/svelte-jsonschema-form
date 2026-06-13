@@ -16,6 +16,8 @@
   import { openDemo, type DemosValidator } from "meta/demos";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
+  import { fromRecord } from "@sjsf/form/lib/resolver";
+  import type { ExtraUiOptions } from "@sjsf/form";
   import { setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
   import * as extraComponents from "@sjsf-lab/shadcn-extras-theme/ui";
@@ -47,6 +49,8 @@
     disableSandboxes?: boolean;
     disableCode?: boolean;
     iconsPicker?: boolean;
+    shadowStyles?: string;
+    initialPicker?: Picker;
   }
 
   const {
@@ -56,21 +60,51 @@
     iconSet,
     disableSandboxes,
     disableCode,
-    iconsPicker
+    iconsPicker,
+    shadowStyles = "",
+    initialPicker = null,
   }: DemoProps = $props();
   const demoId = $props.id();
 
   let demoState = $state({
-    picker: null as Picker,
+    picker: untrack(() => initialPicker),
   });
 
   let selectedTheme = $derived(theme ?? "basic");
   let selectedIconSet = $derived(iconSet ?? ("none" as const));
 
+  let portalEl = $state.raw() as HTMLDivElement;
+  const rootNode = $derived(portalEl?.getRootNode());
+  const options = {
+    getRootNode() {
+      return rootNode;
+    },
+  };
+  const portalOptions = {
+    get target() {
+      return portalEl;
+    },
+  };
+
+  const extraUiOptions: ExtraUiOptions = fromRecord({
+    skeleton4Slider: options,
+    skeleton4FileUpload: options,
+    skeleton4Rating: options,
+    skeleton4Segment: options,
+    skeleton4Switch: options,
+    skeleton4Tags: options,
+    skeleton4DatePicker: options,
+    skeleton4DatePickerPortal: portalOptions,
+    skeleton4Combobox: options,
+    skeleton4ComboboxPortal: portalOptions,
+  });
+
   const defaults = $derived({
     ...baseDefaults,
     theme: PLAYGROUND_SJSF_THEMES[selectedTheme],
     icons: PLAYGROUND_ICON_SETS[selectedIconSet],
+    extraUiOptions,
+    idPrefix: name,
   });
 
   setDemoContext({
@@ -85,7 +119,8 @@
 
   const shadowDomStyles =
     $derived(`${PLAYGROUND_SJSF_THEME_STYLES[selectedTheme]}
-${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
+${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}
+${shadowStyles}`);
 
   const { Component, files: extraFiles } = $derived(
     (await DEMOS[name]()).default
@@ -114,19 +149,6 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
         : Willow
       : Noop
   );
-
-  let portalEl = $state.raw() as HTMLDivElement;
-  const rootNode = $derived(portalEl?.getRootNode());
-  const options = {
-    getRootNode() {
-      return rootNode;
-    },
-  };
-  const portalOptions = {
-    get target() {
-      return portalEl;
-    },
-  };
 </script>
 
 <svelte:head>
@@ -266,15 +288,22 @@ ${PLAYGROUND_ICON_SET_STYLES[selectedIconSet]}`);
         <SvarProvider>
           <div
             bind:this={portalEl}
-            class={themeManager.darkOrLight}
+            class="demo-container {themeManager.darkOrLight}"
             data-theme={selectedTheme.startsWith("skeleton")
               ? "cerberus"
               : themeManager.darkOrLight}
             style="padding: 2rem;"
           >
-            <BitsConfig defaultPortalTo={portalEl}>
-              <Component />
-            </BitsConfig>
+            {#if portalEl}
+              <BitsConfig defaultPortalTo={portalEl}>
+                <svelte:boundary>
+                  <Component />
+                  {#snippet failed(error)}
+                    <p style="color: red; padding: 1rem;">{error}</p>
+                  {/snippet}
+                </svelte:boundary>
+              </BitsConfig>
+            {/if}
           </div>
         </SvarProvider>
       </ShadowHost>

@@ -9,26 +9,34 @@ hero:
   actions:
     - text: Get Started
       # WARN: `base` included
-      link: /svelte-jsonschema-form/guides/quickstart/
+      link: /guides/quickstart/
       icon: right-arrow
     - text: Playground
-      link: https://x0k.github.io/svelte-jsonschema-form/playground3
+      link: https://x0k.github.io/playground3
       icon: external
       variant: minimal
       attrs:
         target: "_blank"
     - text: Form Builder
-      link: https://x0k.github.io/svelte-jsonschema-form/builder3
+      link: https://x0k.github.io/builder3
       icon: external
       variant: minimal
       attrs:
         target: "_blank"
 ---
 
-import { Code, Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import {
+  Code,
+  Card,
+  CardGrid,
+  LinkCard,
+  Tabs,
+  TabItem,
+  Badge,
+} from "@astrojs/starlight/components";
 
 import Npm from "@/components/npm.astro";
-import Usage from '@/components/usage/usage.astro';
+import Demo from "@/components/demo.svelte";
 
 ## Installation
 
@@ -36,9 +44,64 @@ Install as a community add-on using the Svelte CLI.
 
 <Npm type="dlx" pkg="sv add @sjsf" />
 
-## Usage
+## Demo
 
-<Usage />
+<Demo
+  name="usage-form"
+  initialPicker="themes"
+  shadowStyles={`
+    .demo-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      align-items: stretch;
+      gap: 1rem;
+    }
+    @media (max-width: 1080px) {
+      .demo-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    .demo-container > pre {
+      overflow: auto;
+      display: flex;
+      align-items: center;
+      scrollbar-width: none;
+    }
+  `}
+  client:load
+/>
+
+## Supported Themes
+
+- [Basic](/themes/basic/)
+  - [Pico CSS](/themes/basic/#pico-css)
+- [daisyUI v5](/themes/daisyui5/)
+- [Flowbite Svelte](/themes/flowbite3/)
+- [Skeleton v4](/themes/skeleton4/)
+- [shadcn-svelte](/themes/shadcn4/)
+  - [shadcn-svelte-extras](/themes/shadcn-extras/) (experimental)
+- [SVAR](/themes/svar/) (experimental)
+- [Beer CSS](/themes/beercss/) (experimental)
+
+## Supported Validators
+
+- [Ajv v8](/validators/ajv/)
+  - [Precompiled](/validators/ajv/#precompiled-validation)
+- [Zod v4](/validators/zod4/)
+- [Valibot](/validators/valibot/)
+- [@cfworker/json-schema](/validators/cfworker/)
+- [@exodus/schemasafe](/validators/schemasafe/)
+  - [Precompiled](/validators/schemasafe/#precompiled-validation)
+- [Standard Schema](/validators/standard-schema/)
+- [ata-validator](/validators/ata/) (experimental)
+  - [Precompiled](/validators/ata/#precompiled-validation) (experimental)
+- [@hyperjump/json-schema](/validators/hyperjump/) (experimental)
+
+## Integrations
+
+- [Generic backend](/integrations/generic-backend/)
+- [Form actions](/integrations/form-actions/)
+- [Remote functions](/integrations/remote-functions/) (experimental)
 
 ## License
 

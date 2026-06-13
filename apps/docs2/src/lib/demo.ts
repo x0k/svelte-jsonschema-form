@@ -1,6 +1,7 @@
 import { createContext, type Component } from "svelte";
 import type {
   Creatable,
+  ExtraUiOptions,
   FormIdBuilder,
   FormMerger,
   FormState,
@@ -15,6 +16,7 @@ import type {
 } from "@sjsf/form";
 
 interface Defaults {
+  idPrefix: string;
   resolver: <T>(ctx: FormState<T>) => ResolveFieldType;
   theme: Theme;
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
@@ -22,6 +24,7 @@ interface Defaults {
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   translation: Translation;
   icons: Icons | undefined;
+  extraUiOptions: ExtraUiOptions;
 }
 
 export interface DemoContext {

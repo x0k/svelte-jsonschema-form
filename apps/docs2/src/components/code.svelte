@@ -169,7 +169,7 @@
       aria-labelledby={files.length > 1
         ? `${codeViewId}-tab-${selectedIndex}`
         : undefined}
-      tabindex="0"
+      tabindex="-1"
       style:max-height={showButton && !expanded
         ? `${COLLAPSED_MAX_HEIGHT}px`
         : `${contentHeight}px`}

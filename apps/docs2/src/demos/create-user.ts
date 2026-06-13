@@ -43,7 +43,7 @@ export const schema = {
         enum: ["HTML", "CSS", "JS/TS", "Svelte"],
       },
       uniqueItems: true,
-      minItems: 4
+      minItems: 4,
     },
     bio: {
       type: "string",
@@ -61,7 +61,7 @@ export const schema = {
   },
 } as const satisfies Schema;
 
-export type CreateUser = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
 
 export const uiSchema: UiSchemaRoot = {
   "ui:options": {
@@ -158,7 +158,7 @@ export const uiSchema: UiSchemaRoot = {
   },
 };
 
-export const initialValue: CreateUser = {
+export const initialValue: Model = {
   name: "Sarah Johnson",
   email: "invalid@email",
   age: 28,
