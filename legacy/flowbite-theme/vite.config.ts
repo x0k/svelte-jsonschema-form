@@ -1,11 +1,36 @@
+import { resolve, dirname } from 'node:path';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 
+const VIRTUAL_MODULE_PREFIX = 'virtual-module:';
+
 export default defineConfig({
 	plugins: [sveltekit()],
 	optimizeDeps: {
-		include: ['ajv', 'esm-env', 'jsonpointer', 'flowbite-svelte/*']
+		include: ['ajv', 'esm-env', 'jsonpointer'],
+		rolldownOptions: {
+			resolve: {
+				conditionNames: ['svelte', 'import', 'node', 'default']
+			},
+			plugins: [
+				{
+					name: 'fix-virtual-svelte-imports',
+					resolveId(source, importer) {
+						if (!source.endsWith('.svelte') || !importer || !source.startsWith('.')) {
+							return;
+						}
+						if (importer.startsWith(VIRTUAL_MODULE_PREFIX)) {
+							const realPath = importer.slice(VIRTUAL_MODULE_PREFIX.length).replace(/\?.*$/, '');
+							return {
+								id: resolve(dirname(realPath), source),
+								external: true
+							};
+						}
+					}
+				}
+			]
+		}
 	},
 	test: {
 		projects: [

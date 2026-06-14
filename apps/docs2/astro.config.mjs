@@ -1,5 +1,6 @@
 // @ts-check
 import { fileURLToPath } from "node:url";
+import { resolve, dirname } from "node:path";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import svelte from "@astrojs/svelte";
@@ -24,6 +25,36 @@ const basePathPlugin = defineMdastPlugin({
 
 const projectRoot = fileURLToPath(new URL("../..", import.meta.url));
 const changelogItems = discoverChangelogSlugs(projectRoot);
+
+function fixVirtualSvelteImports() {
+  const legacyFlowbiteDir = resolve(projectRoot, "legacy/flowbite-theme");
+  return {
+    name: "fix-virtual-svelte-imports",
+    enforce: "pre",
+    /** @param {string} id @param {string | undefined} importer */
+    resolveId(id, importer) {
+      if (!importer?.startsWith("virtual-module:")) return null;
+      const realImporter = importer.replace(/^virtual-module:/, "");
+      if (id.endsWith(".svelte") && id.startsWith(".")) {
+        const realId = resolve(dirname(realImporter), id);
+        return { id: realId, external: true };
+      }
+      if (
+        id.startsWith("flowbite-svelte/") &&
+        realImporter.startsWith(legacyFlowbiteDir)
+      ) {
+        const subpath = id.slice("flowbite-svelte/".length);
+        const realId = resolve(
+          legacyFlowbiteDir,
+          "node_modules/flowbite-svelte",
+          subpath
+        );
+        return { id: realId, external: true };
+      }
+      return null;
+    },
+  };
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -136,6 +167,12 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ["@jis3r/icons"],
       include: ["bits-ui"],
+      rolldownOptions: {
+        resolve: {
+          conditionNames: ["svelte", "import", "node", "default"],
+        },
+        plugins: [fixVirtualSvelteImports()],
+      },
     },
     resolve: {
       dedupe: ["bits-ui"],

@@ -1,8 +1,10 @@
-import { resolve } from "node:path";
+import { resolve, dirname } from "node:path";
 import { defineConfig } from "vitest/config";
 import tailwindcss from "@tailwindcss/vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 // import { visualizer } from "rollup-plugin-visualizer";
+
+const VIRTUAL_MODULE_PREFIX = "virtual-module:";
 
 export default defineConfig({
   base: "/svelte-jsonschema-form/playground3/",
@@ -21,6 +23,34 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ["@jis3r/icons"],
     include: ["svelte-tiler", "svelte-tiler/*", "svelte-sonner"],
+    rolldownOptions: {
+      resolve: {
+        conditionNames: ["svelte", "import", "node", "default"],
+      },
+      plugins: [
+        {
+          name: "fix-virtual-svelte-imports",
+          resolveId(source, importer) {
+            if (
+              !source.endsWith(".svelte") ||
+              !importer ||
+              !source.startsWith(".")
+            ) {
+              return;
+            }
+            if (importer.startsWith(VIRTUAL_MODULE_PREFIX)) {
+              const realPath = importer
+                .slice(VIRTUAL_MODULE_PREFIX.length)
+                .replace(/\?.*$/, "");
+              return {
+                id: resolve(dirname(realPath), source),
+                external: true,
+              };
+            }
+          },
+        },
+      ],
+    },
   },
   test: {
     include: ["src/**/*.test.ts"],
