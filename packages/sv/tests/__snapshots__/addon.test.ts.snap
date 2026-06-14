@@ -2340,7 +2340,7 @@ import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
-	return { postForm: { ...post } satisfies InitialFormData<post.Model> };
+	return { postForm: post satisfies InitialFormData<post.Model> };
 };
 
 export const actions = {
@@ -2675,7 +2675,7 @@ import * as post from "$lib/post/model.generated";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
-	return { postForm: { ...post } satisfies InitialFormData<post.Model> };
+	return { postForm: post satisfies InitialFormData<post.Model> };
 };
 
 export const actions = {
@@ -3027,7 +3027,7 @@ import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us"
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
-	return { postForm: { ...post } satisfies InitialFormData<post.Model> };
+	return { postForm: post satisfies InitialFormData<post.Model> };
 };
 
 export const actions = {
@@ -3283,7 +3283,11 @@ import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
-	return { postForm: { ...post } satisfies InitialFormData<post.Model> };
+	const { schema: _, ...initialFormData } = post;
+
+	return {
+		postForm: initialFormData satisfies InitialFormData<post.Model>
+	};
 };
 
 export const actions = {
@@ -3549,7 +3553,7 @@ import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return { ...post } satisfies InitialFormData<post.Model>;
+	return post satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(createServerValidator<post.Model>({ ...defaults, ...post }), ({ data }) => {
@@ -3898,7 +3902,7 @@ import * as post from "$lib/post/model.generated";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return { ...post } satisfies InitialFormData<post.Model>;
+	return post satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(
@@ -4270,7 +4274,7 @@ import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us"
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return { ...post } satisfies InitialFormData<post.Model>;
+	return post satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(
@@ -4518,7 +4522,9 @@ import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
-	return { ...post } satisfies InitialFormData<post.Model>;
+	const { schema: _, ...initialFormData } = post;
+
+	return initialFormData satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(createServerValidator({ ...defaults, ...adapt(post.schema) }), ({ data }) => {

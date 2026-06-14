@@ -50,11 +50,7 @@ ${validatorImports};
 import * as defaults from "${lib("sjsf/defaults")}";
 
 export const load = async () => {
-  return {
-    postForm: {
-      ...${modelName},
-    }${ts(` satisfies InitialFormData<${inputType}>`)},
-  };
+  ${validator.canInferFormType ? `const { schema: _, ...initialFormData } = ${modelName};\n  return {\n    postForm: initialFormData${ts(` satisfies InitialFormData<${inputType}>`)},\n  };` : `return {\n    postForm: ${modelName}${ts(` satisfies InitialFormData<${inputType}>`)},\n  };`}
 };
 
 export const actions = {
@@ -82,9 +78,7 @@ ${validatorImports};
 import * as defaults from "${lib("sjsf/defaults")}";
 
 export const getInitialData = query(async () => {
-  return {
-    ...${modelName},
-  }${ts(` satisfies InitialFormData<${inputType}>`)};
+  ${validator.canInferFormType ? `const { schema: _, ...initialFormData } = ${modelName};\n  return initialFormData${ts(` satisfies InitialFormData<${inputType}>`)};` : `return ${modelName}${ts(` satisfies InitialFormData<${inputType}>`)};`}
 });
 
 export const createPost = form(
