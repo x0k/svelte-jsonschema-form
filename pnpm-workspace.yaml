@@ -25,7 +25,7 @@ catalog:
   "@sveltejs/acorn-typescript": ^1.0.10
   "@sveltejs/adapter-auto": ^7.0.1
   "@sveltejs/kit": ^2.64.0
-  "@sveltejs/sv-utils": github:x0k/svelte-cli#cf6d252&path:/packages/sv-utils
+  "@sveltejs/sv-utils": npm:@x0k/sv-utils@0.3.0
   "@sveltejs/vite-plugin-svelte": ^7.1.2
   "@tailwindcss/forms": ^0.5.11
   "@tailwindcss/vite": ^4.3.0
@@ -102,8 +102,6 @@ catalogs:
 overrides:
   playwright: "catalog:"
   vite: "catalog:"
-  # https://github.com/orgs/pnpm/discussions/10413#discussioncomment-17050129
-  "sv>@sveltejs/sv-utils": "-"
 patchedDependencies:
   json-schema-to-valibot: patches/json-schema-to-valibot.patch
   satteri@0.8.1: patches/satteri@0.8.1.patch
@@ -112,3 +110,5 @@ allowBuilds:
   esbuild: true
   sharp: true
   ata-validator: false
+minimumReleaseAgeExclude:
+  - "@x0k/sv-utils@0.3.0"
