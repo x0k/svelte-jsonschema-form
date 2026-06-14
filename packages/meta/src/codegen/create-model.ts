@@ -207,6 +207,13 @@ export const schema${ts(": StandardSchemaV1<InternalModel> & StandardJSONSchemaV
     }
 
     if (!isRecordEmpty(uiSchema)) {
+      if (isTs) {
+        js.imports.addNamed(ast, {
+          isType: true,
+          imports: ["UiSchemaRoot"],
+          from: formPackage.name,
+        });
+      }
       const expression: AstTypes.Expression = js.common.parseFromString(
         `(${JSON.stringify(uiSchema)}${ts(" as const satisfies UiSchemaRoot")})`,
       );

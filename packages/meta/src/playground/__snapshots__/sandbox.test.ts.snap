@@ -2515,7 +2515,7 @@ export { default as transparentLayout } from "./transparent-layout.svelte";
 ",
   "src/lib/custom-components/markdown-description.svelte": "<stub>markdown</stub>",
   "src/lib/custom-components/transparent-layout.svelte": "<stub>transparent</stub>",
-  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -2703,7 +2703,7 @@ exports[`sandbox-factory > ui-schema > refs 1`] = `
   "src/lib/custom-components/index.ts": "export { default as transparentLayout } from "./transparent-layout.svelte";
 ",
   "src/lib/custom-components/transparent-layout.svelte": "<stub>transparent</stub>",
-  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {

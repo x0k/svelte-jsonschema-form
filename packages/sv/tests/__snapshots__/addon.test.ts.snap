@@ -69,7 +69,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -422,7 +422,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -614,7 +614,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -964,7 +964,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -1153,7 +1153,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -1503,7 +1503,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -1692,7 +1692,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -2042,7 +2042,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -2232,7 +2232,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -3188,6 +3188,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
 export const schema = z.object({
@@ -3418,7 +3419,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -4394,6 +4395,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
 export const schema = z.object({
@@ -4622,7 +4624,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -4968,7 +4970,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -5155,7 +5157,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -5499,7 +5501,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -5692,7 +5694,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -6055,7 +6057,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -6254,7 +6256,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -6642,7 +6644,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -6835,7 +6837,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -7184,7 +7186,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -7383,7 +7385,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -7961,7 +7963,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -8256,7 +8258,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -8816,7 +8818,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -9089,7 +9091,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -9461,7 +9463,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -9658,7 +9660,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -10009,7 +10011,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -10946,7 +10948,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -11283,7 +11285,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -12149,7 +12151,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -12486,7 +12488,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -13437,7 +13439,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -13771,7 +13773,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -13948,7 +13950,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -14285,7 +14287,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -15166,7 +15168,7 @@ export {};
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { StandardSchemaV1, StandardJSONSchemaV1 } from "@standard-schema/spec";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 const internalSchema = {
@@ -15531,7 +15533,7 @@ button:focus-visible {
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { StandardSchemaV1, StandardJSONSchemaV1 } from "@standard-schema/spec";
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 const internalSchema = {
@@ -15735,6 +15737,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import type { UiSchemaRoot } from "@sjsf/form";
 import * as v from "valibot";
 
 export const schema = v.pipe(
@@ -16074,6 +16077,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import type { UiSchemaRoot } from "@sjsf/form";
 import * as v from "valibot";
 
 export const schema = v.pipe(
@@ -16252,6 +16256,7 @@ export {};
   "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
 export const schema = z.object({
@@ -16587,6 +16592,7 @@ button:focus-visible {
 </button>
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
 export const schema = z.object({

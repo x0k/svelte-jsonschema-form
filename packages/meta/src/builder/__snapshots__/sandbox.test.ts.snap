@@ -2190,7 +2190,7 @@ exports[`builder sandbox-factory > ui-schema > with uiSchema 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
+  "src/lib/model.ts": "import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
