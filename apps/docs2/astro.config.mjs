@@ -3,7 +3,8 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import svelte from "@astrojs/svelte";
-import starlightLinksValidator from "starlight-links-validator";
+// Disabled until satteri support is available
+// import starlightLinksValidator from "starlight-links-validator";
 import { defineMdastPlugin } from "satteri";
 import { satteri } from "@astrojs/markdown-satteri";
 import starlightLlmsTxt from "starlight-llms-txt";
@@ -42,7 +43,13 @@ export default defineConfig({
           rawContent: true,
           exclude: ["404", "changelogs/**", "examples/**"],
         }),
-      ].concat(process.env.CHECK_LINKS ? [starlightLinksValidator()] : []),
+      ].concat(
+        process.env.CHECK_LINKS
+          ? [
+              // starlightLinksValidator()
+            ]
+          : []
+      ),
       title: "svelte-jsonschema-form v3",
       // logo: {
       //   src: "./src/assets/logo.svg",
