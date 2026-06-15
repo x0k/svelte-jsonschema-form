@@ -15,6 +15,6 @@ export function viteConfig(ctx: Context) {
       themeOrSubTheme,
       icons,
       sveltekit,
-    }),
+    })
   );
 }

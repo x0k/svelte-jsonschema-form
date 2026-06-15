@@ -11,8 +11,9 @@ export interface ButtonTypes {}
 
 export type ButtonType = keyof ButtonTypes;
 
-export interface AbstractButton<T extends ButtonType>
-  extends ComponentCommonProps {
+export interface AbstractButton<
+  T extends ButtonType,
+> extends ComponentCommonProps {
   type: T;
   disabled: boolean;
   children: Snippet;
@@ -31,8 +32,9 @@ export type LayoutComponentProps = {
   [T in LayoutType]: AbstractLayout<T> & LayoutTypes[T];
 }[LayoutType];
 
-export interface AbstractLayout<T extends LayoutType>
-  extends ComponentCommonProps {
+export interface AbstractLayout<
+  T extends LayoutType,
+> extends ComponentCommonProps {
   type: T;
   children: Snippet;
 }

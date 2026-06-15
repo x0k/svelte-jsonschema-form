@@ -1,6 +1,6 @@
-import { definitions } from '../definitions';
+import { definitions } from "../definitions";
 
-import Combobox from './combobox.svelte';
-import './combobox.svelte';
+import Combobox from "./combobox.svelte";
+import "./combobox.svelte";
 
 definitions.selectWidget = Combobox;

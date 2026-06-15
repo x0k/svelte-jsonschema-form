@@ -45,5 +45,5 @@ export const WIDGET_RANGE_VALUE_TYPE: Partial<
 };
 
 export const RANGE_VALUE_TYPE_TO_WIDGET = Object.fromEntries(
-  Object.entries(WIDGET_RANGE_VALUE_TYPE).map(([k, v]) => [v, k]),
+  Object.entries(WIDGET_RANGE_VALUE_TYPE).map(([k, v]) => [v, k])
 ) as Record<RangeValueType, string>;

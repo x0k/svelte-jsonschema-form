@@ -56,7 +56,7 @@ export function createModel({
         });
       }
       let schemaExpression: AstTypes.Expression = js.common.parseFromString(
-        `(${JSON.stringify(schema)}${ts(" as const satisfies Schema")})`,
+        `(${JSON.stringify(schema)}${ts(" as const satisfies Schema")})`
       );
       const schemaDeclaration = js.variables.declaration(ast, {
         kind: "const",
@@ -215,7 +215,7 @@ export const schema${ts(": StandardSchemaV1<InternalModel> & StandardJSONSchemaV
         });
       }
       const expression: AstTypes.Expression = js.common.parseFromString(
-        `(${JSON.stringify(uiSchema)}${ts(" as const satisfies UiSchemaRoot")})`,
+        `(${JSON.stringify(uiSchema)}${ts(" as const satisfies UiSchemaRoot")})`
       );
       const declaration = js.variables.declaration(ast, {
         kind: "const",
@@ -230,7 +230,7 @@ export const schema${ts(": StandardSchemaV1<InternalModel> & StandardJSONSchemaV
 
     if (initialValue !== undefined) {
       const expression: AstTypes.Expression = js.common.parseFromString(
-        `(${JSON.stringify(initialValue)})`,
+        `(${JSON.stringify(initialValue)})`
       );
       const declaration = js.variables.declaration(ast, {
         kind: "const",

@@ -1,30 +1,30 @@
 <script lang="ts">
-  import { BasicForm, type ValidatorFactoryOptions } from '@sjsf/form';
+  import { BasicForm, type ValidatorFactoryOptions } from "@sjsf/form";
 
   import {
     createMeta,
     createAdditionalPropertyKeyValidator,
-    setupSvelteKitForm
-  } from '$lib/client/index.js';
+    setupSvelteKitForm,
+  } from "$lib/client/index.js";
 
-  import type { PageData, ActionData } from './$types.js';
-  import { ERROR_TYPE_OBJECTS } from './model.js';
-  import * as defaults from './form-defaults.js';
+  import type { PageData, ActionData } from "./$types.js";
+  import { ERROR_TYPE_OBJECTS } from "./model.js";
+  import * as defaults from "./form-defaults.js";
 
   const meta = createMeta<ActionData, PageData>().form2;
   const { form } = setupSvelteKitForm(meta, {
     ...defaults,
-    idPrefix: 'form2',
+    idPrefix: "form2",
     schema: {
-      title: 'Parent',
+      title: "Parent",
       additionalProperties: {
-        title: 'Child',
-        type: 'object',
+        title: "Child",
+        type: "object",
         additionalProperties: {
-          title: 'value',
-          type: 'string'
-        }
-      }
+          title: "value",
+          type: "string",
+        },
+      },
     },
     onSubmitError: console.warn,
     validator: <T,>(options: ValidatorFactoryOptions) =>
@@ -33,9 +33,9 @@
         createAdditionalPropertyKeyValidator({
           error({ type, values }) {
             return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
-          }
+          },
         })
-      )
+      ),
   });
 </script>
 

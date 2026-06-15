@@ -27,7 +27,7 @@ export function postTs({
     sv.file(`${modelDir}ui-schema.json`, createJsonFile(POST_UI_SCHEMA));
     sv.file(
       `${modelDir}initial-value.json`,
-      createJsonFile(POST_INITIAL_VALUE),
+      createJsonFile(POST_INITIAL_VALUE)
     );
   } else {
     sv.file(
@@ -41,7 +41,7 @@ export function postTs({
         initialValue: POST_INITIAL_VALUE,
         uiSchema: POST_UI_SCHEMA,
         fieldsValidationMode: POST_FIELDS_VALIDATION_MODE,
-      }),
+      })
     );
   }
 }

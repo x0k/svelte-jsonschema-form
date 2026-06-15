@@ -173,7 +173,7 @@ export function setupShadcnContext({
     from: lib("sjsf/shadcn"),
   });
   const statement = js.common.parseStatement(
-    `${SET_SHADCN_THEME_CONTEXT_FN_NAME}();`,
+    `${SET_SHADCN_THEME_CONTEXT_FN_NAME}();`
   );
   js.common.appendStatement(instance.content, { statement });
 }

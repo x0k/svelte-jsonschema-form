@@ -140,7 +140,7 @@ type Shadcn4ExtraWidgetComponent = {
 export function shadcn4ExtraWidgetComponents(): Iterable<Shadcn4ExtraWidgetComponent> {
   return Object.entries(SHADCN4_EXTRA_WIDGET_COMPONENTS).map(
     ([widget, components]) =>
-      ({ widget, components }) as Shadcn4ExtraWidgetComponent,
+      ({ widget, components }) as Shadcn4ExtraWidgetComponent
   );
 }
 
@@ -193,6 +193,6 @@ type ShadcnExtrasExtraWidgetComponent = {
 export function shadcnExtrasExtraWidgetComponents(): Iterable<ShadcnExtrasExtraWidgetComponent> {
   return Object.entries(SHADCN_EXTRAS_EXTRA_WIDGET_COMPONENTS).map(
     ([widget, components]) =>
-      ({ widget, components }) as ShadcnExtrasExtraWidgetComponent,
+      ({ widget, components }) as ShadcnExtrasExtraWidgetComponent
   );
 }

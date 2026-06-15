@@ -88,7 +88,7 @@
     fromRecord({
       schema,
       output,
-    }),
+    })
   );
   const createTabs = Tabs.setup({
     headers: fromRecord({
@@ -125,7 +125,7 @@
               }),
             },
           ],
-        }),
+        })
   );
 
   debouncedEffect(() => {

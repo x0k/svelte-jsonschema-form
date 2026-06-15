@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import type { HTMLAttributes } from "svelte/elements";
-  import '@sjsf/form/fields/extra-components/description';
+  import "@sjsf/form/fields/extra-components/description";
 
   declare module "@sjsf/form" {
     interface UiOptions {
@@ -26,7 +26,7 @@
 
 <div
   {...descriptionAttributes(ctx, config, "descriptionAttributes", {
-    class: 'sjsf-description'
+    class: "sjsf-description",
   })}
 >
   {description}

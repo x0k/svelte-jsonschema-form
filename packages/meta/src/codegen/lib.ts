@@ -18,7 +18,7 @@ export interface NamespaceImportOptions {
 }
 
 export function renderImport(
-  options: NamedImportOptions | NamespaceImportOptions,
+  options: NamedImportOptions | NamespaceImportOptions
 ) {
   if ("as" in options) {
     return `import * as ${options.as} from "${options.from}"`;
@@ -28,14 +28,14 @@ export function renderImport(
 
 export function renderImports(
   imports: (NamedImportOptions | NamespaceImportOptions)[],
-  separator = ";\n",
+  separator = ";\n"
 ) {
   return imports.map(renderImport).join(separator);
 }
 
 export function createReExport(
   node: AstTypes.Program,
-  options: { name: string; source: string; imported?: string },
+  options: { name: string; source: string; imported?: string }
 ): AstTypes.ExportNamedDeclaration {
   const localName = options.imported ?? options.name;
 
@@ -51,7 +51,7 @@ export function createReExport(
           s.exported.name === options.name
         );
       });
-    },
+    }
   );
 
   if (namedExport) return namedExport;
@@ -86,7 +86,7 @@ export function createReExport(
 export function getTopLevelFunction(node: AstTypes.Program, name: string) {
   return node.body.find(
     (
-      item,
+      item
     ): item is
       | AstTypes.FunctionDeclaration
       | AstTypes.VariableDeclaration
@@ -114,7 +114,7 @@ export function getTopLevelFunction(node: AstTypes.Program, name: string) {
         });
       }
       return false;
-    },
+    }
   );
 }
 
@@ -124,7 +124,7 @@ export function addToDemoPage(path: string, language: "ts" | "js") {
     for (const node of ast.fragment.nodes) {
       if (node.type === "RegularElement") {
         const hrefAttribute = node.attributes.find(
-          (x) => x.type === "Attribute" && x.name === "href",
+          (x) => x.type === "Attribute" && x.name === "href"
         ) as SvelteAst.Attribute;
         if (!hrefAttribute || !hrefAttribute.value) continue;
 
@@ -132,7 +132,7 @@ export function addToDemoPage(path: string, language: "ts" | "js") {
 
         const hasDemo = hrefAttribute.value.some(
           // we use includes as it could be "/demo/${path}" or "resolve("demo/${path}")" or "resolve('demo/${path}')"
-          (x) => x.type === "Text" && x.data.includes(`/demo/${path}`),
+          (x) => x.type === "Text" && x.data.includes(`/demo/${path}`)
         );
         if (hasDemo) {
           return false;
@@ -152,7 +152,7 @@ export function addToDemoPage(path: string, language: "ts" | "js") {
 }
 
 export function jsCreateAsConst(
-  node: AstTypes.Expression,
+  node: AstTypes.Expression
 ): AstTypes.TSAsExpression {
   return {
     type: "TSAsExpression",
@@ -170,7 +170,7 @@ export function jsCreateAsConst(
 // https://github.com/sveltejs/cli/blob/19ed7a0f940816a63c1c7f963a04bb72d7b19a8f/packages/sv-utils/src/tooling/css/index.ts#L3
 export function cssAddPseudoRule(
   node: SvelteAst.CSS.StyleSheetBase,
-  options: { selector: string },
+  options: { selector: string }
 ): SvelteAst.CSS.Rule {
   const selectorName = options.selector;
 
@@ -235,10 +235,10 @@ export function svelteWrapFragment(
   options: {
     wrapper: string;
     attributes?: Array<SvelteAst.Attribute>;
-  },
+  }
 ): void {
   const svelteHeadIndex = ast.fragment.nodes.findIndex(
-    (n) => n.type === "SvelteHead",
+    (n) => n.type === "SvelteHead"
   );
   const existingNodes = ast.fragment.nodes.splice(svelteHeadIndex + 1);
 

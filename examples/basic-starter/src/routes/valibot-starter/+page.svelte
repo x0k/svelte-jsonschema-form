@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
-  import { adapt } from '@sjsf/valibot-validator';
+  import { adapt } from "@sjsf/valibot-validator";
   import * as v from "valibot";
 
   import * as defaults from "$lib/sjsf/defaults";
@@ -10,7 +10,7 @@
       hello: v.string(),
     }),
     v.metadata({
-      title: 'Basic form'
+      title: "Basic form",
     })
   );
 

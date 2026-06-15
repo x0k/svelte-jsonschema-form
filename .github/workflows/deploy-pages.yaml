@@ -181,7 +181,7 @@ jobs:
           publish_dir: ./v2/builder/dist
           destination_dir: builder
           publish_branch: gh-pages
-      
+
       - name: Download v1 apps
         uses: actions/download-artifact@v8
         with:

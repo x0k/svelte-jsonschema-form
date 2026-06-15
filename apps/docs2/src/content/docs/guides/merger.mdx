@@ -4,9 +4,9 @@ sidebar:
   order: 4
 ---
 
-import { LinkCard } from '@astrojs/starlight/components';
+import { LinkCard } from "@astrojs/starlight/components";
 
-import { withBase } from '@/lib/base-path';
+import { withBase } from "@/lib/base-path";
 import Npm from "@/components/npm.astro";
 
 ## Overview
@@ -54,8 +54,8 @@ export const merger = (options: MergerFactoryOptions) => {
   return {
     ...createFormMerger(options),
     mergeSchemas,
-  }
-}
+  };
+};
 ```
 
 **Option 2: Provide a custom merger for specific properties**
@@ -64,14 +64,15 @@ export const merger = (options: MergerFactoryOptions) => {
 import { createMerger as createJsonSchemaMerger } from "@sjsf/lib/json-schema";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 
-export const merger = (options: MergerFactoryOptions) => createFormMerger({
-  ...options,
-  jsonSchemaMerger: createJsonSchemaMerger({
-    mergers: {
-      title: (_, r) => r, // Always use the rightmost non-undefined value
-    }
-  })
-})
+export const merger = (options: MergerFactoryOptions) =>
+  createFormMerger({
+    ...options,
+    jsonSchemaMerger: createJsonSchemaMerger({
+      mergers: {
+        title: (_, r) => r, // Always use the rightmost non-undefined value
+      },
+    }),
+  });
 ```
 
 :::caution[Property Override Behavior]
@@ -92,21 +93,26 @@ To resolve this, configure JSON schema deduplication and intersection functions:
 
 ```ts
 import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
-import { createComparator, createMerger as createJsonSchemaMerger } from "@sjsf/lib/json-schema";
+import {
+  createComparator,
+  createMerger as createJsonSchemaMerger,
+} from "@sjsf/lib/json-schema";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
 
-export const merger = (options: MergerFactoryOptions) => createFormMerger({
-  ...options,
-  jsonSchemaMerger: createJsonSchemaMerger({
-    intersectJson: createIntersector(compareSchemaValues),
-    deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
-  })
-})
+export const merger = (options: MergerFactoryOptions) =>
+  createFormMerger({
+    ...options,
+    jsonSchemaMerger: createJsonSchemaMerger({
+      intersectJson: createIntersector(compareSchemaValues),
+      deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
+    }),
+  });
 ```
 
 **What this configuration does:**
+
 - `intersectJson`: Handles intersection of JSON values
 - `deduplicateJsonSchemaDef`: Removes duplicate schema definitions
 

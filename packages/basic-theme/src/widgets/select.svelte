@@ -38,7 +38,7 @@
   const { placeholder, ...attributes } = $derived(
     selectAttributes(ctx, config, "select", handlers, {
       class: "sjsf-select",
-    }),
+    })
   );
 </script>
 

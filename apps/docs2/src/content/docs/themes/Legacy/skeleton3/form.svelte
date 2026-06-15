@@ -9,7 +9,7 @@
 
   import { createSchemas } from "../../_demo-schema";
 
-    let rootNode = $state<Node>();
+  let rootNode = $state<Node>();
   const options = {
     getRootNode() {
       return rootNode!;

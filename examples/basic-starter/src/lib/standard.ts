@@ -42,7 +42,7 @@ function PathSegments(pointer: string): string[] {
     .map((segment) => segment.replace(/~1/g, "/").replace(/~0/g, "~"));
 }
 function ErrorToIssue(
-  error: TLocalizedValidationError,
+  error: TLocalizedValidationError
 ): StandardSchemaV1.Issue {
   const path = PathSegments(error.instancePath);
   return { path, message: error.message };
@@ -68,7 +68,7 @@ export class StandardSchemaProps<Value>
     };
   }
   public validate = (
-    value: unknown,
+    value: unknown
   ):
     | StandardSchemaV1.Result<Value>
     | Promise<StandardSchemaV1.Result<Value>> => {
@@ -98,7 +98,7 @@ export class StandardSchema<
 // ------------------------------------------------------------------
 /** Returns an implementation of Standard Schema + Standard JSON Schema */
 export function StandardSchemaV1<const Type extends TSchema>(
-  type: Type,
+  type: Type
 ): StandardSchema<Type> {
   return new StandardSchema(type);
 }
@@ -153,7 +153,7 @@ export declare namespace StandardSchemaV1 {
     /** Validates unknown input values. */
     readonly validate: (
       value: unknown,
-      options?: StandardSchemaV1.Options | undefined,
+      options?: StandardSchemaV1.Options | undefined
     ) => Result<Output> | Promise<Result<Output>>;
   }
   /** The result interface of the validate function. */
@@ -219,11 +219,11 @@ export declare namespace StandardJSONSchemaV1 {
   export interface Converter {
     /** Converts the input type to JSON Schema. May throw if conversion is not supported. */
     readonly input: (
-      options: StandardJSONSchemaV1.Options,
+      options: StandardJSONSchemaV1.Options
     ) => Record<string, unknown>;
     /** Converts the output type to JSON Schema. May throw if conversion is not supported. */
     readonly output: (
-      options: StandardJSONSchemaV1.Options,
+      options: StandardJSONSchemaV1.Options
     ) => Record<string, unknown>;
   }
   /**

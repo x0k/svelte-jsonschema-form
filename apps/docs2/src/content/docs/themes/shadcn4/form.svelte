@@ -9,7 +9,7 @@
 
   import { createSchemas } from "../_demo-schema";
 
-    const form = createForm({
+  const form = createForm({
     ...defaults,
     ...createSchemas(specs),
     theme,

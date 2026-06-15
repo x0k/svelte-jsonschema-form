@@ -1,14 +1,14 @@
 <script lang="ts">
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { theme } from "@sjsf/flowbite3-theme";
-  import { specs } from '@sjsf/flowbite3-theme/specs'
+  import { specs } from "@sjsf/flowbite3-theme/specs";
 
   import { themeManager } from "@/theme.svelte";
   import * as defaults from "@/lib/sjsf/defaults";
 
   import { createSchemas } from "../_demo-schema";
 
-    const form = createForm({
+  const form = createForm({
     ...defaults,
     ...createSchemas(specs),
     theme,

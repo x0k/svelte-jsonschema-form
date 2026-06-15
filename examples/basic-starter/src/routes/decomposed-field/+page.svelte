@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { FromSchema } from 'json-schema-to-ts';
+  import type { FromSchema } from "json-schema-to-ts";
   import {
     type Schema,
     createForm,
@@ -25,7 +25,7 @@
       },
     },
     required: ["hello"],
-    additionalProperties: false
+    additionalProperties: false,
   } as const satisfies Schema;
 
   const form = createForm<FromSchema<typeof schema>>({
@@ -37,7 +37,7 @@
   const t = defaults.theme;
 </script>
 
-<Field {form} path={['hello']}>
+<Field {form} path={["hello"]}>
   {#snippet render({ config, uiOption, valueRef })}
     <!-- NOTE: form === ctx -->
     {@const ctx = getFormContext()}

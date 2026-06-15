@@ -14,7 +14,7 @@ export interface CatalogEntry<TMeta, TItem> {
 export function filterByTags<T>(
   items: readonly T[],
   selectedTags: ReadonlySet<string>,
-  getTags: (item: T) => readonly string[],
+  getTags: (item: T) => readonly string[]
 ): T[] {
   if (selectedTags.size === 0) return [...items];
   const selected = [...selectedTags];

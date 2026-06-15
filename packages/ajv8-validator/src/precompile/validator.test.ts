@@ -56,7 +56,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
       validatorRetriever: fromValidators(validateFunctions),
     });
     return factory(options);
-  },
+  }
 );
 
 validatorTests(createFormValidator);

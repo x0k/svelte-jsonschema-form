@@ -75,7 +75,7 @@ export interface Context extends CompiledSchema {
 export function createContext(
   options: ValidatorOptions,
   schema: Schema,
-  value: FormValue,
+  value: FormValue
 ): Context {
   const getCompiledSchema = createRetriever(options);
   return {
@@ -93,7 +93,7 @@ export function validate(ctx: Context) {
 
 export function evaluateCompiledSchema(
   ctx: Context,
-  localization: Localization,
+  localization: Localization
 ) {
   const outputPlugin = new JsonSchemaErrorsOutputPlugin();
   const context = {
@@ -109,7 +109,7 @@ export function evaluateCompiledSchema(
           outputPlugin.output,
           ctx.value,
           localization,
-          ctx.ast,
+          ctx.ast
         ),
       };
 }

@@ -291,7 +291,7 @@ export function isLegacyTheme(theme: Theme): theme is LegacyTheme {
 }
 
 export function isThemeWithSubThemes(
-  theme: Theme,
+  theme: Theme
 ): theme is ThemeWithSubThemes {
   return theme in THEME_SUB_THEMES;
 }
@@ -313,7 +313,7 @@ export function isTailwindcss4Theme(theme: Theme): theme is Tailwindcss4Theme {
 }
 
 export function tailwindcss4ThemePlugins(
-  theme: Tailwindcss4Theme,
+  theme: Tailwindcss4Theme
 ): Iterable<Tailwindcss4Plugin> {
   return TAILWINDCSS4_THEME_PLUGINS[theme];
 }
@@ -347,14 +347,14 @@ export function themePackage(theme: Theme): Package {
 }
 
 export function subThemeDependencies(
-  subTheme: SubTheme,
+  subTheme: SubTheme
 ): Iterable<PackageDependency> {
   return SUB_THEME_DEPENDENCIES[subTheme];
 }
 
 export function themeOrSubThemeAtRules(
   theme: ThemeOrSubTheme,
-  options: AtRuleOptions,
+  options: AtRuleOptions
 ) {
   return THEME_OR_SUB_THEME_AT_RULES[theme]?.(options) ?? [];
 }

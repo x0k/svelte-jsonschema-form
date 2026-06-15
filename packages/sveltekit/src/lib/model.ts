@@ -1,5 +1,5 @@
-import type { DeepPartial, MaybePromise } from '@sjsf/form/lib/types';
-import type { RPath, SchemaDefinition, SchemaValue } from '@sjsf/form/core';
+import type { DeepPartial, MaybePromise } from "@sjsf/form/lib/types";
+import type { RPath, SchemaDefinition, SchemaValue } from "@sjsf/form/core";
 import type {
   FieldValue,
   FormOptions,
@@ -7,24 +7,27 @@ import type {
   Schema,
   UiSchema,
   UiSchemaRoot,
-  ValidationError
-} from '@sjsf/form';
+  ValidationError,
+} from "@sjsf/form";
 
-import type { PickOptionalSerializable } from './internal.js';
+import type { PickOptionalSerializable } from "./internal.js";
 
-export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
-export const FORM_DATA_FILE_PREFIX = '__sjsf_sveltekit_file__';
+export const JSON_CHUNKS_KEY = "__sjsf_sveltekit_json_chunks";
+export const FORM_DATA_FILE_PREFIX = "__sjsf_sveltekit_file__";
 
-export type SerializableOptionalFormOptions<T> = PickOptionalSerializable<FormOptions<T>>;
+export type SerializableOptionalFormOptions<T> = PickOptionalSerializable<
+  FormOptions<T>
+>;
 
-export type InitialFormData<T = unknown> = SerializableOptionalFormOptions<T> & {
-  schema?: Schema;
-  initialValue?: DeepPartial<T>;
-  initialErrors?: ValidationError[];
-  uiSchema?: UiSchemaRoot;
-};
+export type InitialFormData<T = unknown> =
+  SerializableOptionalFormOptions<T> & {
+    schema?: Schema;
+    initialValue?: DeepPartial<T>;
+    initialErrors?: ValidationError[];
+    uiSchema?: UiSchemaRoot;
+  };
 
-export type SendData = boolean | 'withoutClientSideUpdate';
+export type SendData = boolean | "withoutClientSideUpdate";
 
 export interface ValidFormData<T, SD extends SendData> {
   isValid: true;
@@ -58,7 +61,10 @@ export type EntryConverter<T> = (
   options: EntryConverterOptions<T>
 ) => MaybePromise<FieldValue>;
 
-export type EnumItemDecoder = (options: SchemaValue[], value: string) => SchemaValue | undefined;
+export type EnumItemDecoder = (
+  options: SchemaValue[],
+  value: string
+) => SchemaValue | undefined;
 
 export interface Codec {
   encode: (str: string) => string;

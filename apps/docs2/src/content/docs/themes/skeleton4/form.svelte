@@ -9,7 +9,7 @@
 
   import { createSchemas } from "../_demo-schema";
 
-    let rootNode = $state<Node>();
+  let rootNode = $state<Node>();
   const options = {
     getRootNode() {
       return rootNode!;
@@ -17,9 +17,9 @@
   };
   const portalProps = {
     get target() {
-      return divEl
-    }
-  }
+      return divEl;
+    },
+  };
 
   const form = createForm({
     ...defaults,
@@ -38,7 +38,7 @@
       skeleton4DatePicker: options,
       skeleton4DatePickerPortal: portalProps,
       skeleton4DateRangePicker: options,
-      skeleton4DateRangePickerPortal: portalProps
+      skeleton4DateRangePickerPortal: portalProps,
     }),
   });
 

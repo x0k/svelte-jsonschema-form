@@ -24,5 +24,5 @@ export const createPost = form(
     }
     console.log(data);
     return { ...data, id: "new-post" };
-  },
+  }
 );

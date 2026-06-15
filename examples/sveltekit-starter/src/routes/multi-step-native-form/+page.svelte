@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
-  import { isRecord } from '@sjsf/form/lib/object'
+  import { isRecord } from "@sjsf/form/lib/object";
   import {
     setFormContext,
     Content,
@@ -28,8 +28,8 @@
                   // NOTE: Calling `getValueSnapshot` here will cause the styles
                   // to be recalculated whenever the form values change.
                   // If performance is critical for you can use controlled form
-                  const snap = getValueSnapshot(form)
-                  const step = isRecord(snap) && snap[STEP_KEY]
+                  const snap = getValueSnapshot(form);
+                  const step = isRecord(snap) && snap[STEP_KEY];
                   return `display: ${
                     config.path[0] === step ? "block" : "none"
                   }`;

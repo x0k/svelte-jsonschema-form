@@ -8,20 +8,23 @@ import {
   type UiOptionsRegistry,
   type UiSchemaRoot,
   type Validator,
-  type ValidatorFactoryOptions
-} from '@sjsf/form';
+  type ValidatorFactoryOptions,
+} from "@sjsf/form";
 
-import type { EntryConverter, EnumItemDecoder } from '$lib/model.js';
+import type { EntryConverter, EnumItemDecoder } from "$lib/model.js";
 import {
   createEnumItemDecoder,
   createFormDataEntryConverter,
   type FormDataConverterOptions,
-  type UnknownEntryConverter
-} from '$lib/internal/convert-form-data-entry.js';
+  type UnknownEntryConverter,
+} from "$lib/internal/convert-form-data-entry.js";
 
-import { createOptionIndexDecoder, DEFAULT_PSEUDO_PREFIX } from '../id-builder.js';
-import { parseSchemaValue, type Input } from './schema-value-parser.js';
-import { decode, encode } from './codec.js';
+import {
+  createOptionIndexDecoder,
+  DEFAULT_PSEUDO_PREFIX,
+} from "../id-builder.js";
+import { parseSchemaValue, type Input } from "./schema-value-parser.js";
+import { decode, encode } from "./codec.js";
 
 export interface SvelteKitDataParserOptions {
   schema: Schema;
@@ -29,7 +32,10 @@ export interface SvelteKitDataParserOptions {
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
-  createEntryConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
+  createEntryConverter?: Creatable<
+    EntryConverter<FormDataEntryValue>,
+    FormDataConverterOptions
+  >;
   convertUnknownEntry?: UnknownEntryConverter;
   enumItemDecoder?: EnumItemDecoder;
   pseudoPrefix?: string;
@@ -44,19 +50,21 @@ export function createSvelteKitDataParser({
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
-  enumItemDecoder = createEnumItemDecoder(createOptionIndexDecoder(encode(pseudoPrefix)))
+  enumItemDecoder = createEnumItemDecoder(
+    createOptionIndexDecoder(encode(pseudoPrefix))
+  ),
 }: SvelteKitDataParserOptions) {
   const validator: Validator = create(createValidator, {
     schema: schema,
     uiSchema: uiSchema,
     uiOptionsRegistry,
-    merger: () => merger
+    merger: () => merger,
   });
   const merger = create(createMerger, {
     schema: schema,
     uiSchema: uiSchema,
     validator,
-    uiOptionsRegistry
+    uiOptionsRegistry,
   });
   const convertEntry = create(createEntryConverter, {
     validator,
@@ -64,7 +72,7 @@ export function createSvelteKitDataParser({
     rootSchema: schema,
     rootUiSchema: uiSchema,
     convertUnknownEntry,
-    enumItemDecoder
+    enumItemDecoder,
   });
   return (
     signal: AbortSignal,
@@ -80,6 +88,6 @@ export function createSvelteKitDataParser({
       schema: schema,
       uiSchema: uiSchema,
       validator,
-      codec: { decode, encode }
+      codec: { decode, encode },
     });
 }

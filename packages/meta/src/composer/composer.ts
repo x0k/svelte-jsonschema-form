@@ -84,7 +84,7 @@ const TSCONFIG = JSON.stringify(
     },
   },
   null,
-  2,
+  2
 );
 
 const APP_HTML = `<!DOCTYPE html>
@@ -149,7 +149,7 @@ export function normalizeProjectName(name: string): string {
 }
 
 export function createComposer<T extends CodegenThemeOrSubTheme>(
-  options: ComposerOptions<T>,
+  options: ComposerOptions<T>
 ): Record<string, string> {
   const {
     name,
@@ -287,7 +287,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       themeOrSubTheme,
       icons,
       sandbox: true,
-    })(""),
+    })("")
   );
 
   // NOTE: We cannot move the padding functionality to `createLayout` because
@@ -307,7 +307,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       themeOrSubTheme,
       resolveImportPath: (_, libPath) => libPath,
       widgets,
-    })(""),
+    })("")
   );
 
   Object.assign(files, extraFiles);

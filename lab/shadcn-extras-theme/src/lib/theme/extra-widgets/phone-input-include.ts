@@ -1,12 +1,12 @@
-import { definitions } from '../definitions.js';
+import { definitions } from "../definitions.js";
 
-import PhoneInput from './phone-input.svelte';
-import './phone-input.svelte';
+import PhoneInput from "./phone-input.svelte";
+import "./phone-input.svelte";
 
-declare module '../definitions.js' {
-	interface ExtraWidgets {
-		shadcnExtrasPhoneInputWidget: {};
-	}
+declare module "../definitions.js" {
+  interface ExtraWidgets {
+    shadcnExtrasPhoneInputWidget: {};
+  }
 }
 
 definitions.shadcnExtrasPhoneInputWidget = PhoneInput;

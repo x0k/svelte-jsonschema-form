@@ -25,27 +25,31 @@ export interface AbstractSchemaTraverserContext<
   path: SubSchemasArrayKey extends K ? Array<string | number> : string[];
 }
 
-export interface ArraySchemaTraverserContext<K extends AnySubSchemaKey>
-  extends AbstractSchemaTraverserContext<"array", K> {
+export interface ArraySchemaTraverserContext<
+  K extends AnySubSchemaKey,
+> extends AbstractSchemaTraverserContext<"array", K> {
   parent: Schema;
   key: SubSchemasArrayKey & K;
   index: number;
 }
 
-export interface RecordSchemaTraverserContext<K extends AnySubSchemaKey>
-  extends AbstractSchemaTraverserContext<"record", K> {
+export interface RecordSchemaTraverserContext<
+  K extends AnySubSchemaKey,
+> extends AbstractSchemaTraverserContext<"record", K> {
   parent: Schema;
   key: SubSchemasRecordKey & K;
   property: string;
 }
 
-export interface SubSchemaTraverserContext<K extends AnySubSchemaKey>
-  extends AbstractSchemaTraverserContext<"sub", K> {
+export interface SubSchemaTraverserContext<
+  K extends AnySubSchemaKey,
+> extends AbstractSchemaTraverserContext<"sub", K> {
   parent: Schema;
   key: SubSchemaKey & K;
 }
-export interface RootSchemaTraverserContext<K extends AnySubSchemaKey>
-  extends AbstractSchemaTraverserContext<"root", K> {}
+export interface RootSchemaTraverserContext<
+  K extends AnySubSchemaKey,
+> extends AbstractSchemaTraverserContext<"root", K> {}
 
 export type SchemaTraverserContext<K extends AnySubSchemaKey> =
   | ArraySchemaTraverserContext<K>

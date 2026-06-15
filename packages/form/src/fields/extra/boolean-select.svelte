@@ -91,9 +91,7 @@
     value: () => value ?? undefined,
     update: (v) => (value = v === undefined ? undefined : Boolean(v)),
   });
-  const clearable = $derived(
-    uiOption("clearable") ?? !config.required
-  );
+  const clearable = $derived(uiOption("clearable") ?? !config.required);
 
   const handlers = makeEventHandlers(
     ctx,

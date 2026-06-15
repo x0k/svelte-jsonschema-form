@@ -12,18 +12,18 @@ The following code is an anti-pattern:
 
 ```svelte
 <script lang="ts">
-  let formId = $state.raw(crypto.randomUUID())
+  let formId = $state.raw(crypto.randomUUID());
   let form = createForm({
     ...defaults,
-    schema
-  })
+    schema,
+  });
 
   function update(schema: Schema) {
     form = createForm({
       ...defaults,
-      schema
-    })
-    formId = crypto.randomUUID()
+      schema,
+    });
+    formId = crypto.randomUUID();
   }
 </script>
 
@@ -51,7 +51,7 @@ All properties support reactivity
   })
 </script>
 
-<BasicForm {form}/>
+<BasicForm {form} />
 ```
 
 To understand the relationships between options, see the [Reactive flow](/form/reactive-flow/) diagram or

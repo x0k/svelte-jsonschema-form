@@ -42,7 +42,7 @@ const EXTRA_PACKAGES_META: Record<string, ExtraPackageMeta> = {
 async function main() {
   const yamlPath = path.join(
     import.meta.dirname,
-    "../../../pnpm-workspace.yaml",
+    "../../../pnpm-workspace.yaml"
   );
   const doc = parse(await fs.readFile(yamlPath, "utf-8")) as {
     catalog: Record<string, string>;
@@ -57,7 +57,7 @@ async function main() {
       throw new Error(
         `Package "${meta.name}" not found in ${
           meta.catalog ? `catalogs.${meta.catalog}` : "catalog"
-        }`,
+        }`
       );
     }
     versions[key] = {
@@ -69,7 +69,7 @@ async function main() {
 
   const outPath = path.join(
     import.meta.dirname,
-    "../src/packages.generated.ts",
+    "../src/packages.generated.ts"
   );
   const content = `// auto-generated -- do not edit. Run \`npm run extract-versions\` to update.
 import type { AbstractPackage } from "./package.ts";

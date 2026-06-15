@@ -6,22 +6,28 @@ sidebar:
   order: 209
 ---
 
-import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/shadcn-theme/specs';
-import styles from '@sjsf/shadcn-theme/styles.css?inline';
+import {
+  Code,
+  Card,
+  LinkButton,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/shadcn-theme/specs";
+import styles from "@sjsf/shadcn-theme/styles.css?inline";
 import { themePackage } from "meta";
 
-import { getPackageDependencies } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import Form from './shadcn/form.svelte';
-import uiOptionsCode from './shadcn/ui-options?raw';
+import Form from "./shadcn/form.svelte";
+import uiOptionsCode from "./shadcn/ui-options?raw";
 import { createSchemas, replacer, createExtraImports } from "../_demo-schema";
 
-export const schemas = createSchemas(specs)
-export const pkg = themePackage("shadcn")
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("shadcn");
 
 ## Installation
 
@@ -37,7 +43,12 @@ This is `shadcn-svelte` based theme (Tailwind v3).
 
 ### Install shadcn-svelte
 
-<LinkButton href="https://tw3.shadcn-svelte.com/docs/installation" variant='secondary' target="_blank" icon="external">
+<LinkButton
+  href="https://tw3.shadcn-svelte.com/docs/installation"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Installation - shadcn-svelte
 </LinkButton>
 
@@ -62,7 +73,7 @@ export default {
 
 ```typescript
 // Inject them as you like
-import shadcnStyles from '@sjsf/shadcn-theme/styles.css?inline';
+import shadcnStyles from "@sjsf/shadcn-theme/styles.css?inline";
 ```
 
 ## Components
@@ -76,11 +87,11 @@ You should prefer to use components from your code base to avoid code duplicatio
 :::
 
 ```typescript
-import { setThemeContext } from '@sjsf/shadcn-theme';
-import * as components from '@sjsf/shadcn-theme/default';
+import { setThemeContext } from "@sjsf/shadcn-theme";
+import * as components from "@sjsf/shadcn-theme/default";
 // or import * as components from '@sjsf/shadcn-theme/new-york';
 
-setThemeContext({ components })
+setThemeContext({ components });
 ```
 
 ## Extra widgets
@@ -102,17 +113,17 @@ use one or import the replacement widget directly.
 
 :::
 
-<Code lang='ts' code={createExtraImports("shadcn", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("shadcn", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">

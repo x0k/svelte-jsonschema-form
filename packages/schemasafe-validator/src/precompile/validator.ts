@@ -44,7 +44,7 @@ function createRetriever(options: CoreValidatorOptions) {
                   combination: (id) => id + options.augmentSuffix,
                 },
               }
-            : undefined,
+            : undefined
         ))
     : options.validatorRetriever;
 }
@@ -73,7 +73,7 @@ export type FormValueValidatorOptions = ValidatorOptions & {
 };
 
 export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions,
+  options: FormValueValidatorOptions
 ): FormValueValidator<T> {
   const getValidate = createAndCastRetriever(options);
   return {
@@ -85,14 +85,14 @@ export function createFormValueValidator<T>(
         options.merger(),
         rootSchema,
         validate.errors,
-        formValue,
+        formValue
       );
     },
   };
 }
 
 export function createFieldValueValidator(
-  options: ValidatorOptions,
+  options: ValidatorOptions
 ): FieldValueValidator {
   const getValidate = createAndCastRetriever(options);
   return {
@@ -107,13 +107,13 @@ export function createFieldValueValidator(
 export type FormValidatorOptions = ValidatorOptions & FormValueValidatorOptions;
 
 export function createFormValidatorFactory<T>(
-  vOptions: CoreValidatorOptions & Partial<ValueToJSON>,
+  vOptions: CoreValidatorOptions & Partial<ValueToJSON>
 ) {
   return (
     options: Omit<
       FormValidatorOptions,
       keyof ValueToJSON | keyof ValidatorOptions
-    >,
+    >
   ) => {
     const full: FormValidatorOptions = {
       ...options,
@@ -126,7 +126,7 @@ export function createFormValidatorFactory<T>(
     return Object.assign(
       createValidator(full),
       createFormValueValidator<T>(full),
-      createFieldValueValidator(full),
+      createFieldValueValidator(full)
     );
   };
 }

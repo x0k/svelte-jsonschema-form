@@ -17,10 +17,10 @@
     itemLabel,
   }: Props = $props();
 
-  const itemsArray = $derived(Array.isArray(items) ? items : Array.from(items))
+  const itemsArray = $derived(Array.isArray(items) ? items : Array.from(items));
 
   function lbl(item: T) {
-    return itemLabel?.(item) ?? labels?.[item] ?? item
+    return itemLabel?.(item) ?? labels?.[item] ?? item;
   }
 </script>
 

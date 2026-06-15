@@ -21,11 +21,11 @@ const BASE_OPTIONS: BuilderSandboxOptions = {
 
 function testCase(
   name: string,
-  overrides: Partial<BuilderSandboxOptions> = {},
+  overrides: Partial<BuilderSandboxOptions> = {}
 ) {
   it(name, () => {
     expect(
-      createSandboxFiles({ ...BASE_OPTIONS, ...overrides }),
+      createSandboxFiles({ ...BASE_OPTIONS, ...overrides })
     ).toMatchSnapshot();
   });
 }

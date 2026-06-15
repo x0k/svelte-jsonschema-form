@@ -1,12 +1,12 @@
 <script lang="ts">
- import { setThemeContext } from "@sjsf/shadcn-theme"
- import * as components from "@sjsf/shadcn-theme/new-york";
+  import { setThemeContext } from "@sjsf/shadcn-theme";
+  import * as components from "@sjsf/shadcn-theme/new-york";
 
-	import './layout.css';
-	
-	let { children } = $props();
+  import "./layout.css";
 
-	setThemeContext({ components })
+  let { children } = $props();
+
+  setThemeContext({ components });
 </script>
 
 {@render children()}

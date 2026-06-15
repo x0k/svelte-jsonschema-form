@@ -38,7 +38,7 @@ function dependenciesTailwindCss4({
   if (packageManager === "pnpm") {
     sv.file(
       file.findUp("pnpm-workspace.yaml"),
-      pnpm.allowBuilds("@tailwindcss/oxide"),
+      pnpm.allowBuilds("@tailwindcss/oxide")
     );
   }
 
@@ -63,7 +63,7 @@ function dependenciesTailwindCss4({
             throw new Error("Failed to determine svelte version");
           svelte.addSlot(ast, { svelteVersion });
         }
-      }),
+      })
     );
   } else {
     const appSvelte = `${directory.src}/App.svelte`;
@@ -75,7 +75,7 @@ function dependenciesTailwindCss4({
       appSvelte,
       transforms.svelteScript({ language }, ({ ast, js }) => {
         js.imports.addEmpty(ast.instance.content, { from: stylesheetRelative });
-      }),
+      })
     );
   }
 
@@ -84,13 +84,13 @@ function dependenciesTailwindCss4({
     transforms.json(({ data }) => {
       data["files.associations"] ??= {};
       data["files.associations"]["*.css"] = "tailwindcss";
-    }),
+    })
   );
 
   sv.file(
     ".vscode/extensions.json",
     transforms.json(({ data, json }) => {
       json.arrayUpsert(data, "recommendations", "bradlc.vscode-tailwindcss");
-    }),
+    })
   );
 }

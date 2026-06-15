@@ -31,7 +31,7 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
       // TODO: Support for custom aliases
       realUiPath = configUiPath.replace("$lib", directory.lib);
       return false;
-    }),
+    })
   );
 
   sv.file(
@@ -45,6 +45,6 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
           : libPath;
       },
       widgets: POST_EXTRA_WIDGETS,
-    }),
+    })
   );
 }

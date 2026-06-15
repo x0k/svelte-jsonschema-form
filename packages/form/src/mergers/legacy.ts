@@ -184,7 +184,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
       formData,
       schema,
       initialDefaultsGenerated = false,
-      includeUndefinedValues = false
+      includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
         options.validator,

@@ -18,7 +18,7 @@ export const states = (schema: Schema): Schema => ({
     default: schema,
     error: schema,
   },
-  required: ['default']
+  required: ["default"],
 });
 
 export const boolean: Schema = {

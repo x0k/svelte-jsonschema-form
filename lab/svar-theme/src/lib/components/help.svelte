@@ -1,16 +1,20 @@
 <script lang="ts">
-	import { getFormContext, helpAttributes, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/components/help.svelte';
+  import {
+    getFormContext,
+    helpAttributes,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import "@sjsf/basic-theme/components/help.svelte";
 
-	const { help, config }: ComponentProps['help'] = $props();
+  const { help, config }: ComponentProps["help"] = $props();
 
-	const ctx = getFormContext();
+  const ctx = getFormContext();
 </script>
 
 <div
-	{...helpAttributes(ctx, config, 'helpAttributes', {
-		style: 'font-weight: 300;'
-	})}
+  {...helpAttributes(ctx, config, "helpAttributes", {
+    style: "font-weight: 300;",
+  })}
 >
-	{help}
+  {help}
 </div>

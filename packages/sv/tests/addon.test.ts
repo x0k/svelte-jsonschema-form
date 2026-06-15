@@ -99,7 +99,7 @@ const { test, testCases } = setupSnapshotTest(
       }
       return true;
     },
-  },
+  }
 );
 
 test.for(testCases)("@sjsf/sv $kind.type $variant", async (testCase, ctx) => {

@@ -32,7 +32,7 @@ export function snapshotFs(
     excludeExtensions = DEFAULT_EXCLUDE_EXT,
     filter,
   }: SnapshotFsOptions = {},
-  _root = dir,
+  _root = dir
 ): FsSnapshot {
   const excludeSet = new Set(exclude);
   const excludeExtSet = new Set(excludeExtensions);
@@ -60,6 +60,6 @@ export function snapshotFs(
   walk(dir);
 
   return Object.fromEntries(
-    Object.entries(result).sort(([a], [b]) => a.localeCompare(b)),
+    Object.entries(result).sort(([a], [b]) => a.localeCompare(b))
   );
 }

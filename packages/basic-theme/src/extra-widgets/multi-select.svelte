@@ -34,7 +34,7 @@
   const attributes = $derived(
     selectAttributes(ctx, config, "multiSelect", handlers, {
       class: "sjsf-multi-select",
-    }),
+    })
   );
 </script>
 

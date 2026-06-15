@@ -526,5 +526,5 @@ export const CUSTOMIZABLE_TYPE_TITLES: Record<CustomizableNodeType, string> = {
 };
 
 export const CUSTOMIZABLE_TYPES = Object.keys(
-  CUSTOMIZABLE_TYPE_TITLES,
+  CUSTOMIZABLE_TYPE_TITLES
 ) as CustomizableNodeType[];

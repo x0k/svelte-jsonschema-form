@@ -1,10 +1,16 @@
 <script lang="ts">
-  import { Content, createForm, setFormContext, SubmitButton, type FormOptions } from "@sjsf/form";
+  import {
+    Content,
+    createForm,
+    setFormContext,
+    SubmitButton,
+    type FormOptions,
+  } from "@sjsf/form";
 
-  const { formOptions }: { formOptions: FormOptions<any> } = $props()
+  const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
   const form = createForm(formOptions);
-  setFormContext(form)
+  setFormContext(form);
 </script>
 
 <Content />

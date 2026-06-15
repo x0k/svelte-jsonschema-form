@@ -26,7 +26,7 @@ type FormatPredicate = NonNullable<BundleStandaloneOptions["formats"]>[string];
 function createFormatPredicate(regExp: RegExp) {
   return new Function(
     "value",
-    `return ${regExp}.test(value)`,
+    `return ${regExp}.test(value)`
   ) as FormatPredicate;
 }
 
@@ -43,7 +43,7 @@ export const DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS = {
 } satisfies BundleStandaloneOptions;
 
 export type CompiledValidator = (
-  data: unknown,
+  data: unknown
 ) => // NOTE: The result has been extended to support
   // inferred types of precompiled functions
   | { valid: boolean; errors: ValidationError[] }
@@ -80,7 +80,7 @@ function createRetriever(options: CoreValidatorOptions) {
                   combination: (id) => id + options.augmentSuffix,
                 },
               }
-            : undefined,
+            : undefined
         ))
     : options.validatorRetriever;
 }
@@ -105,7 +105,7 @@ export type FormValueValidatorOptions = ValidatorOptions &
   ValueCloner;
 
 export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions,
+  options: FormValueValidatorOptions
 ): FormValueValidator<T> {
   const getValidator = createRetriever(options);
   const transformErrors = createFormErrorsTransformer(options);
@@ -126,7 +126,7 @@ export function createFormValueValidator<T>(
 export type FieldValueValidatorOptions = ValidatorOptions & ValueCloner;
 
 export function createFieldValueValidator(
-  options: FieldValueValidatorOptions,
+  options: FieldValueValidatorOptions
 ): FieldValueValidator {
   const getValidator = createRetriever(options);
   return {
@@ -146,7 +146,7 @@ export type FormValidatorOptions = ValidatorOptions &
   FieldValueValidatorOptions;
 
 export function createFormValidatorFactory<T>(
-  vOptions: CoreValidatorOptions & Partial<ValueCloner>,
+  vOptions: CoreValidatorOptions & Partial<ValueCloner>
 ) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
     const full: FormValidatorOptions = {
@@ -159,7 +159,7 @@ export function createFormValidatorFactory<T>(
     return Object.assign(
       createValidator(full),
       createFormValueValidator<T>(full),
-      createFieldValueValidator(full),
+      createFieldValueValidator(full)
     );
   };
 }

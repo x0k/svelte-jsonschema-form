@@ -37,7 +37,7 @@ _widgetFileNames["aggregatedWidget"] = "virtual-widget-import";
 
 export function widgetFileName<T extends Theme>(
   _theme: T,
-  widgetType: WidgetTypes[T],
+  widgetType: WidgetTypes[T]
 ) {
   return _widgetFileNames[widgetType as WidgetType] as
     | WidgetFileNames[T]
@@ -47,7 +47,7 @@ export function widgetFileName<T extends Theme>(
 
 export function isThemeBaseWidget<T extends Theme>(
   theme: T,
-  widgetType: string,
+  widgetType: string
 ): boolean {
   const widgets = WIDGETS[theme];
   for (const w of Object.values(widgets.widgets)) {
@@ -59,7 +59,7 @@ export function isThemeBaseWidget<T extends Theme>(
 }
 
 export function themeExtraWidgets<T extends Theme>(
-  theme: T,
+  theme: T
 ): Iterable<ExtraWidgetFileNames[T]> {
   return Object.keys(WIDGETS[theme]["extraWidgets"]) as Iterable<
     ExtraWidgetFileNames[T]
@@ -69,7 +69,7 @@ export function themeExtraWidgets<T extends Theme>(
 export function themeExtraWidgetSubPath<T extends Theme>(
   theme: T,
   widget: ExtraWidgetFileNames[T],
-  include = false,
+  include = false
 ) {
   return `${themePackage(theme).name}/extra-widgets/${widget}${include ? "-include" : ""}`;
 }
@@ -82,14 +82,14 @@ const CLIENT_SIDE_ONLY_EXTRA_WIDGETS: {
 
 export function isThemeClientSideOnlyExtraWidget<T extends Theme>(
   theme: T,
-  widget: ExtraWidgetFileNames[T],
+  widget: ExtraWidgetFileNames[T]
 ) {
   return CLIENT_SIDE_ONLY_EXTRA_WIDGETS[theme]?.includes(widget);
 }
 
 export function* themeExtraWidgetOptionalDependencies<T extends Theme>(
   theme: T,
-  widget: ExtraWidgetFileNames[T],
+  widget: ExtraWidgetFileNames[T]
 ) {
   const deps = WIDGETS[theme].optionalDeps;
   for (const [lib, widgets] of Object.entries(deps)) {

@@ -4,7 +4,7 @@ import type * as H from "@hyperjump/json-schema-errors";
 
 export function transformFormErrors<T>(
   out: H.ValidationResult,
-  data: FormValue,
+  data: FormValue
 ): ValidationResult<T> {
   return out.valid
     ? {

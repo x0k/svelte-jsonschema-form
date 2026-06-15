@@ -2,10 +2,13 @@
   import type { Snippet } from "svelte";
   import { DEV } from "esm-env";
 
-  import type { Ref } from '@/lib/svelte.svelte.js';
+  import type { Ref } from "@/lib/svelte.svelte.js";
   import type { JsonPaths } from "@/lib/types.js";
   import { isObject } from "@/lib/object.js";
-  import { getSchemaDefinitionByPath, isSchemaObjectValue } from "@/core/index.js";
+  import {
+    getSchemaDefinitionByPath,
+    isSchemaObjectValue,
+  } from "@/core/index.js";
 
   import {
     getFieldComponent,
@@ -128,13 +131,13 @@
       return form[FORM_SCHEMA];
     }
     let val: FieldValue = valueRef.current;
-    const parentPath = path.slice(0, -1)
+    const parentPath = path.slice(0, -1);
     for (let i = 0; i < parentPath.length && val !== undefined; i++) {
       const p = parentPath[i]!;
-      if (typeof p === 'number') {
-        val = Array.isArray(val) ? val[p] : undefined
+      if (typeof p === "number") {
+        val = Array.isArray(val) ? val[p] : undefined;
       } else {
-        val = isSchemaObjectValue(val) ? val[p] : undefined
+        val = isSchemaObjectValue(val) ? val[p] : undefined;
       }
     }
     const def = getSchemaDefinitionByPath(

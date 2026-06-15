@@ -50,7 +50,7 @@ function getChangedMergerOptionsCount(
     | "constAsDefault"
     | "emptyObjectFields"
     | "mergeDefaultsIntoFormData"
-  >,
+  >
 ): number {
   let count = 0;
   if (options.arrayMinItemsPopulate !== "all") count++;
@@ -71,7 +71,7 @@ const UI_SCHEMA_META_KEYS = new Set([
 
 function traverseUiSchema(
   def: UiSchemaRoot | undefined,
-  visitor: (node: UiSchema) => void,
+  visitor: (node: UiSchema) => void
 ): void {
   if (def === undefined || isUiSchemaRef(def)) {
     return;
@@ -93,12 +93,12 @@ function traverseUiSchema(
 }
 
 const WIDGET_EXTRA_FIELD_KEYS = new Set<string>(
-  Object.keys(WIDGET_EXTRA_FIELD),
+  Object.keys(WIDGET_EXTRA_FIELD)
 );
 
 function detectCustomComponentsAndFields(
   uiSchema: UiSchemaRoot,
-  theme: PlaygroundTheme,
+  theme: PlaygroundTheme
 ): {
   usesTransparentLayout: boolean;
   usesMarkdownDescription: boolean;
@@ -226,7 +226,7 @@ export function createSandboxFiles({
     const barrel: string[] = [];
     if (usesMarkdownDescription) {
       barrel.push(
-        `export { default as markdownDescription } from "./markdown-description.svelte";`,
+        `export { default as markdownDescription } from "./markdown-description.svelte";`
       );
       extraFiles["src/lib/custom-components/markdown-description.svelte"] =
         markdownDescription;
@@ -234,7 +234,7 @@ export function createSandboxFiles({
     }
     if (usesTransparentLayout) {
       barrel.push(
-        `export { default as transparentLayout } from "./transparent-layout.svelte";`,
+        `export { default as transparentLayout } from "./transparent-layout.svelte";`
       );
       extraFiles["src/lib/custom-components/transparent-layout.svelte"] =
         transparentLayout;

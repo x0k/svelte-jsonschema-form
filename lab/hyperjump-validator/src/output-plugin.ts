@@ -27,7 +27,7 @@ export class JsonSchemaErrorsOutputPlugin implements EvaluationPlugin<ErrorsCont
   beforeSchema(
     _url: string,
     _instance: Instance.JsonNode,
-    context: ErrorsContext,
+    context: ErrorsContext
   ): void {
     context.output = {};
   }
@@ -37,7 +37,7 @@ export class JsonSchemaErrorsOutputPlugin implements EvaluationPlugin<ErrorsCont
     _instance: Instance.JsonNode,
     context: ErrorsContext,
     schemaContext: ErrorsContext,
-    _keyword: Keyword<unknown>,
+    _keyword: Keyword<unknown>
   ): void {
     context.output = schemaContext.output;
   }
@@ -48,7 +48,7 @@ export class JsonSchemaErrorsOutputPlugin implements EvaluationPlugin<ErrorsCont
     context: ErrorsContext,
     valid: boolean,
     schemaContext: ErrorsContext,
-    keyword: Keyword<unknown>,
+    keyword: Keyword<unknown>
   ): void {
     const [keywordUri, schemaLocation] = keywordNode;
 
@@ -69,7 +69,7 @@ export class JsonSchemaErrorsOutputPlugin implements EvaluationPlugin<ErrorsCont
     url: string,
     instance: Instance.JsonNode,
     context: ErrorsContext,
-    valid: boolean,
+    valid: boolean
   ): void {
     if (typeof context.ast[url] === "boolean" && !valid) {
       context.output[Instance.uri(instance)] ??= {};
@@ -96,7 +96,7 @@ const mergeOutput = (a: NormalizedOutput, b: NormalizedOutput) => {
 
       Object.assign(
         a[instanceLocation][keywordUri],
-        b[instanceLocation][keywordUri],
+        b[instanceLocation][keywordUri]
       );
     }
   }

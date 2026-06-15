@@ -19,7 +19,7 @@ import type {
   Combobox as SkeletonCombobox,
 } from "@skeletonlabs/skeleton-svelte";
 
-type Props<T> = T extends Component<infer P, any, any> ? P : never
+type Props<T> = T extends Component<infer P, any, any> ? P : never;
 
 export interface UiOptions {
   /**

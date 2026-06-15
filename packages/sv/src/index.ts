@@ -52,7 +52,7 @@ export default defineAddon({
         isKit
           ? `Visit ${color.route("/demo/sjsf")} route`
           : `See ${color.route(`${directory.kitRoutes}/sjsf.svelte`)} file`
-      } to view the demo`,
+      } to view the demo`
     );
     return steps;
   },

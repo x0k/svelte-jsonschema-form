@@ -14,7 +14,7 @@ npm install @sjsf/form @sjsf-lab/beercss-theme
 ## Usage
 
 1. Install Beer CSS v3
-  
+
 [Get started](https://github.com/beercss/beercss?tab=readme-ov-file#get-started)
 
 2. Apply theme

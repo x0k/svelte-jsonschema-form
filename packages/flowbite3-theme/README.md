@@ -14,7 +14,7 @@ npm install @sjsf/form @sjsf/flowbite3-theme
 ## Usage
 
 1. Install Flowbite Svelte
-  
+
 [Flowbite Svelte - UI Component Library](https://next.flowbite-svelte.com/docs/pages/introduction)
 
 2. Configuration

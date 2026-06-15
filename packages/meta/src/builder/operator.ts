@@ -87,7 +87,7 @@ const COMPARATOR_OPERATORS = [
 ] as const;
 
 export const COMPARISON_OPERATORS_SET = new Set<OperatorType>(
-  COMPARATOR_OPERATORS,
+  COMPARATOR_OPERATORS
 );
 
 export type ComparatorOperatorType = (typeof COMPARATOR_OPERATORS)[number];

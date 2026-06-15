@@ -1,26 +1,26 @@
 <script lang="ts" module>
-	import {
-		ArrowDownOutline,
-		TrashBinOutline,
-		FileCopyOutline,
-		ArrowUpOutline
-	} from 'flowbite-svelte-icons';
+  import {
+    ArrowDownOutline,
+    TrashBinOutline,
+    FileCopyOutline,
+    ArrowUpOutline,
+  } from "flowbite-svelte-icons";
 
-	export { arrowDownOutline, arrowUpOutline, trashBinOutline, fileCopyOutline };
+  export { arrowDownOutline, arrowUpOutline, trashBinOutline, fileCopyOutline };
 </script>
 
 {#snippet arrowUpOutline()}
-	<ArrowUpOutline />
+  <ArrowUpOutline />
 {/snippet}
 
 {#snippet arrowDownOutline()}
-	<ArrowDownOutline />
+  <ArrowDownOutline />
 {/snippet}
 
 {#snippet trashBinOutline()}
-	<TrashBinOutline />
+  <TrashBinOutline />
 {/snippet}
 
 {#snippet fileCopyOutline()}
-	<FileCopyOutline />
+  <FileCopyOutline />
 {/snippet}

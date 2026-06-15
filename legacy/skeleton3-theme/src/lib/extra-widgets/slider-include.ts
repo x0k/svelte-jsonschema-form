@@ -1,12 +1,12 @@
-import { definitions } from '../definitions.js';
+import { definitions } from "../definitions.js";
 
-import Slider from './slider.svelte';
-import './slider.svelte';
+import Slider from "./slider.svelte";
+import "./slider.svelte";
 
-declare module '../definitions.js' {
-	interface ExtraWidgets {
-		skeleton3SliderWidget: {};
-	}
+declare module "../definitions.js" {
+  interface ExtraWidgets {
+    skeleton3SliderWidget: {};
+  }
 }
 
 definitions.skeleton3SliderWidget = Slider;

@@ -1,82 +1,90 @@
 <script lang="ts" module>
-	import type { Component } from 'svelte';
-	import type {
-		RadioGroup,
-		RadioGroupItemProps,
-		RadioGroupRootProps,
-		WithoutChildrenOrChild
-	} from 'bits-ui';
-	import '@sjsf/form/fields/extra-widgets/radio';
+  import type { Component } from "svelte";
+  import type {
+    RadioGroup,
+    RadioGroupItemProps,
+    RadioGroupRootProps,
+    WithoutChildrenOrChild,
+  } from "bits-ui";
+  import "@sjsf/form/fields/extra-widgets/radio";
 
-	import '../types/label';
+  import "../types/label";
 
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			shadcnRadioGroup?: WithoutChildrenOrChild<RadioGroupRootProps>;
-			shadcnRadioItem?: Omit<WithoutChildrenOrChild<RadioGroupItemProps>, 'value'>;
-		}
-	}
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      shadcnRadioGroup?: WithoutChildrenOrChild<RadioGroupRootProps>;
+      shadcnRadioItem?: Omit<
+        WithoutChildrenOrChild<RadioGroupItemProps>,
+        "value"
+      >;
+    }
+  }
 
-	declare module '../context.js' {
-		interface ThemeComponents {
-			RadioGroup: Component<RadioGroup.RootProps, {}, 'value' | 'ref'>;
-			RadioGroupItem: Component<WithoutChildrenOrChild<RadioGroup.ItemProps>>;
-		}
-	}
+  declare module "../context.js" {
+    interface ThemeComponents {
+      RadioGroup: Component<RadioGroup.RootProps, {}, "value" | "ref">;
+      RadioGroupItem: Component<WithoutChildrenOrChild<RadioGroup.ItemProps>>;
+    }
+  }
 </script>
 
 <script lang="ts">
-	import {
-		type ComponentProps,
-		customInputAttributes,
-		getFormContext,
-		uiOptionProps
-	} from '@sjsf/form';
-	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
+  import {
+    type ComponentProps,
+    customInputAttributes,
+    getFormContext,
+    uiOptionProps,
+  } from "@sjsf/form";
+  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
 
-	import { getThemeContext } from '../context';
+  import { getThemeContext } from "../context";
 
-	const ctx = getFormContext();
-	const themeCtx = getThemeContext();
+  const ctx = getFormContext();
+  const themeCtx = getThemeContext();
 
-	const { RadioGroup, RadioGroupItem, Label } = $derived(themeCtx.components);
+  const { RadioGroup, RadioGroupItem, Label } = $derived(themeCtx.components);
 
-	let { config, handlers, value = $bindable(), options }: ComponentProps['radioWidget'] = $props();
+  let {
+    config,
+    handlers,
+    value = $bindable(),
+    options,
+  }: ComponentProps["radioWidget"] = $props();
 
-	const mapped = singleOption({
-		mapper: () => idMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
+  const mapped = singleOption({
+    mapper: () => idMapper(options),
+    value: () => value,
+    update: (v) => (value = v),
+  });
 
-	const attributes = $derived(
-		customInputAttributes(ctx, config, 'shadcnRadioGroup', {
-			onValueChange: handlers.onchange
-		})
-	);
+  const attributes = $derived(
+    customInputAttributes(ctx, config, "shadcnRadioGroup", {
+      onValueChange: handlers.onchange,
+    })
+  );
 
-	const itemAttributes = $derived(
-		uiOptionProps('shadcnRadioItem')(
-			{
-				onclick: handlers.oninput,
-				onblur: handlers.onblur
-			},
-			config,
-			ctx
-		)
-	);
+  const itemAttributes = $derived(
+    uiOptionProps("shadcnRadioItem")(
+      {
+        onclick: handlers.oninput,
+        onblur: handlers.onblur,
+      },
+      config,
+      ctx
+    )
+  );
 </script>
 
 <RadioGroup bind:value={mapped.current} {...attributes}>
-	{#each options as option (option.id)}
-		<div class="flex items-center space-x-2">
-			<RadioGroupItem
-				{...itemAttributes}
-				value={option.id}
-				id={option.id}
-				disabled={option.disabled}
-			/>
-			<Label for={option.id}>{option.label}</Label>
-		</div>
-	{/each}
+  {#each options as option (option.id)}
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem
+        {...itemAttributes}
+        value={option.id}
+        id={option.id}
+        disabled={option.disabled}
+      />
+      <Label for={option.id}>{option.label}</Label>
+    </div>
+  {/each}
 </RadioGroup>

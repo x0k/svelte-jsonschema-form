@@ -34,7 +34,7 @@
           insert: JSON.stringify(value, null, 2),
         },
         annotations: ExternalChange.of(true),
-      }),
+      })
     );
   });
   let error = $state.raw(false);
@@ -50,7 +50,7 @@
           to: view.state.doc.length,
           insert: JSON.stringify(value, null, 2),
         },
-      }),
+      })
     );
   }
 </script>
@@ -95,7 +95,7 @@
               backgroundColor: "var(--background) !important",
             },
           },
-          { dark: themeManager.isDark },
+          { dark: themeManager.isDark }
         ),
       ],
     });

@@ -53,7 +53,7 @@ function createRetriever(options: ValidatorOptions) {
                   combination: (id) => id + options.augmentSuffix,
                 },
               }
-            : undefined,
+            : undefined
         ))
     : options.validatorRetriever;
 }
@@ -80,7 +80,7 @@ export type FormValueValidatorOptions = ValidatorOptions &
   ErrorsTransformerOptions;
 
 export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions,
+  options: FormValueValidatorOptions
 ): FormValueValidator<T> {
   const getValidateFunction = createRetriever(options);
   const transformErrors = createFormErrorsTransformer(options);
@@ -90,14 +90,14 @@ export function createFormValueValidator<T>(
         getValidateFunction(rootSchema),
         formValue,
         CAST_FORM_DATA<T>,
-        transformErrors,
+        transformErrors
       );
     },
   };
 }
 
 export function createFieldValueValidator(
-  options: ValidatorOptions,
+  options: ValidatorOptions
 ): FieldValueValidator {
   const getValidateFunction = createRetriever(options);
   return {
@@ -106,14 +106,14 @@ export function createFieldValueValidator(
         getValidateFunction(field.schema),
         fieldValue,
         NO_FILED_ERRORS,
-        createFieldErrorsTransformer(field),
+        createFieldErrorsTransformer(field)
       );
     },
   };
 }
 
 export function createAsyncFormValueValidator<T>(
-  options: FormValidatorOptions,
+  options: FormValidatorOptions
 ): AsyncFormValueValidator<T> {
   const getValidateFunction = createRetriever(options);
   const transformErrors = createFormErrorsTransformer(options);
@@ -123,14 +123,14 @@ export function createAsyncFormValueValidator<T>(
         getValidateFunction(rootSchema) as AsyncValidateFunction,
         formValue,
         CAST_FORM_DATA<T>,
-        transformErrors,
+        transformErrors
       );
     },
   };
 }
 
 export function createAsyncFieldValueValidator(
-  options: ValidatorOptions,
+  options: ValidatorOptions
 ): AsyncFieldValueValidator {
   const getValidateFunction = createRetriever(options);
   return {
@@ -139,7 +139,7 @@ export function createAsyncFieldValueValidator(
         getValidateFunction(field.schema) as AsyncValidateFunction,
         fieldValue,
         NO_FILED_ERRORS,
-        createFieldErrorsTransformer(field),
+        createFieldErrorsTransformer(field)
       );
     },
   };
@@ -158,7 +158,7 @@ export function createFormValidatorFactory<T>(vOptions: ValidatorOptions) {
     return Object.assign(
       createValidator(full),
       createFormValueValidator<T>(full),
-      createFieldValueValidator(full),
+      createFieldValueValidator(full)
     );
   };
 }
@@ -174,7 +174,7 @@ export function createAsyncFormValidatorFactory<T>(vOptions: ValidatorOptions) {
     return Object.assign(
       createValidator(full),
       createAsyncFormValueValidator<T>(full),
-      createAsyncFieldValueValidator(full),
+      createAsyncFieldValueValidator(full)
     );
   };
 }

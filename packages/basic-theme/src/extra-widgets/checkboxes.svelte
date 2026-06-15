@@ -34,7 +34,7 @@
   const attributes = $derived(
     inputAttributes(ctx, config, "checkboxes", handlers, {
       type: "checkbox",
-    }),
+    })
   );
 </script>
 

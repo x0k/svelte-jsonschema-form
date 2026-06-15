@@ -31,7 +31,7 @@
   })}
 >
   {title}
-  {#if config.required && templateType === 'fieldTemplate'}
+  {#if config.required && templateType === "fieldTemplate"}
     *
   {/if}
 </legend>

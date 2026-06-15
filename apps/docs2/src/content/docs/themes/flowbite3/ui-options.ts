@@ -79,7 +79,7 @@ export interface UiOptions {
   flowbite3Checkboxes?: CheckboxProps;
 
   flowbite3Datepicker?: DatepickerProps;
-  
+
   flowbite3DateRangePicker?: DatepickerProps;
 
   flowbite3File?: FileuploadProps;

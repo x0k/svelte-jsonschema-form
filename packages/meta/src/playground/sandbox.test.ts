@@ -42,7 +42,7 @@ function testCase(name: string, overrides: Partial<FormState> = {}) {
         name: "Sandbox",
         formState: { ...BASE_FORM_STATE, ...overrides },
         customComponents: CUSTOM_COMPONENTS,
-      }),
+      })
     ).toMatchSnapshot();
   });
 }

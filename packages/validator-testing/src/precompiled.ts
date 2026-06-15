@@ -5,8 +5,8 @@ import type { ExtraValidatorFactoryOptions } from "./validator-tests.js";
 
 export function createPrecompiledValidatorFactory<T>(
   factory: (
-    options: ExtraValidatorFactoryOptions,
-  ) => MaybePromise<Validator & FormValueValidator<T>>,
+    options: ExtraValidatorFactoryOptions
+  ) => MaybePromise<Validator & FormValueValidator<T>>
 ) {
   return factory;
 }

@@ -146,7 +146,7 @@
       const data = router.load(DEFAULT_PLAYGROUND_STATE);
       originalInitialValue = data.initialValue;
       return data;
-    })(),
+    })()
   );
 
   debouncedEffect(() => {
@@ -155,13 +155,15 @@
   });
 
   const theme = $derived(
-    extendByRecord(PLAYGROUND_SJSF_THEMES[data.theme], customComponents),
+    extendByRecord(PLAYGROUND_SJSF_THEMES[data.theme], customComponents)
   );
   const themeStyle = $derived(PLAYGROUND_SJSF_THEME_STYLES[data.theme]);
-  const themeGlobalStyle = $derived(PLAYGROUND_SJSF_GLOBAL_THEME_STYLES[data.theme]);
+  const themeGlobalStyle = $derived(
+    PLAYGROUND_SJSF_GLOBAL_THEME_STYLES[data.theme]
+  );
   const iconsSet = $derived(data.icons && PLAYGROUND_ICON_SETS[data.icons]);
   const iconSetStyle = $derived(
-    data.icons && PLAYGROUND_ICON_SET_STYLES[data.icons],
+    data.icons && PLAYGROUND_ICON_SET_STYLES[data.icons]
   );
   const fieldsValidationCount = $derived.by(() => {
     let count = 0;
@@ -176,7 +178,7 @@
   });
 
   const changedMergerOptionsCount = $derived(
-    getChangedMergerOptionsCount(data),
+    getChangedMergerOptionsCount(data)
   );
 
   const { compareSchemaDefinitions, compareSchemaValues } = createComparator();
@@ -201,14 +203,14 @@
 
   const isDraft2020 = $derived(
     data.schema.$schema?.startsWith(
-      "https://json-schema.org/draft/2020-12/schema",
-    ) === true,
+      "https://json-schema.org/draft/2020-12/schema"
+    ) === true
   );
 
   const finalSchema = $derived(
     isDraft2020
       ? convert(data.schema as Parameters<typeof convert>[0])
-      : data.schema,
+      : data.schema
   );
 
   const focusOnFirstError = createFocusOnFirstError();
@@ -244,7 +246,7 @@
               : rootSchema,
             data.omitExtraData
               ? omitExtraData(v, options.merger(), options.schema, formValue)
-              : formValue,
+              : formValue
           );
         },
       };
@@ -304,7 +306,7 @@
   setShadcnContext();
 
   const SvarProvider = $derived(
-    data.theme === "svar" ? (themeManager.isDark ? WillowDark : Willow) : Noop,
+    data.theme === "svar" ? (themeManager.isDark ? WillowDark : Willow) : Noop
   );
 
   const ctx = createTilerContext();
@@ -315,7 +317,7 @@
       uiSchema,
       formData,
       preview,
-    }),
+    })
   );
   const createTabs = Tabs.setup({
     headers: registryFromRecord({
@@ -389,7 +391,7 @@
               }),
             },
           ],
-        }),
+        })
   );
 
   debouncedEffect(() => {

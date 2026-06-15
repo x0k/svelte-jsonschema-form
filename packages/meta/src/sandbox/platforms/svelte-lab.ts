@@ -5,7 +5,7 @@ import type { SandboxOptions } from "../model.ts";
 
 export default function ({ files }: SandboxOptions) {
   const encoded = lz.compressToEncodedURIComponent(
-    JSON.stringify(convertToFileSystemTree(files)),
+    JSON.stringify(convertToFileSystemTree(files))
   );
   const params = new URLSearchParams([["code", encoded]]);
   const url = `https://www.sveltelab.dev/#${params.toString()}`;
@@ -13,7 +13,7 @@ export default function ({ files }: SandboxOptions) {
 }
 
 function convertToFileSystemTree(
-  flatFiles: Record<string, string>,
+  flatFiles: Record<string, string>
 ): FileSystemTree {
   const tree: FileSystemTree = {};
 

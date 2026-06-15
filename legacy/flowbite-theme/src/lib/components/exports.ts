@@ -6,4 +6,4 @@ export { default as title } from "./title.svelte";
 export { default as label } from "./label.svelte";
 export { default as description } from "./description.svelte";
 export { default as help } from "./help.svelte";
-export { default as errorsList } from './errors-list.svelte';
+export { default as errorsList } from "./errors-list.svelte";

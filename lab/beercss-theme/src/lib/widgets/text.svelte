@@ -1,12 +1,23 @@
 <script lang="ts">
-	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/widgets/text.svelte';
+  import {
+    Datalist,
+    getFormContext,
+    inputAttributes,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import "@sjsf/basic-theme/widgets/text.svelte";
 
-	let { handlers, value = $bindable(), config }: ComponentProps['textWidget'] = $props();
+  let {
+    handlers,
+    value = $bindable(),
+    config,
+  }: ComponentProps["textWidget"] = $props();
 
-	const ctx = getFormContext();
+  const ctx = getFormContext();
 
-	const attributes = $derived(inputAttributes(ctx, config, 'text', handlers, { type: 'text' }));
+  const attributes = $derived(
+    inputAttributes(ctx, config, "text", handlers, { type: "text" })
+  );
 </script>
 
 <input bind:value {...attributes} />

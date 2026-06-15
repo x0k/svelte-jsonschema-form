@@ -17,7 +17,7 @@ formValueValidatorTests((options) => {
       return v.validateFormValueAsync(
         signal,
         { ...rootSchema, $async: true } as AsyncSchema,
-        formValue,
+        formValue
       );
     },
   };

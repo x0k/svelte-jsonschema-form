@@ -11,6 +11,6 @@ export default function ({ name, files }: SandboxOptions) {
     },
     {
       openFile: INITIAL_FILE,
-    },
+    }
   );
 }

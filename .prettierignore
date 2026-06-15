@@ -18,3 +18,9 @@ packages/sv/demo
 
 # Miscellaneous
 static/
+
+apps/docs2/src/content/docs/form/theme.mdx
+
+# Generated shadcn components (only format index.ts)
+lab/shadcn-extras-theme/src/lib/components/ui/**/*
+!lab/shadcn-extras-theme/src/lib/components/ui/index.ts

@@ -42,7 +42,7 @@ export function themeWidgetAvailability(theme: PlaygroundTheme) {
 }
 
 export function themeCustomizableNodeTypes(
-  theme: PlaygroundTheme,
+  theme: PlaygroundTheme
 ): CustomizableNodeType[] {
   const avail = themeWidgetAvailability(theme);
   const types = [...BASE_CUSTOMIZABLE_NODE_TYPES];

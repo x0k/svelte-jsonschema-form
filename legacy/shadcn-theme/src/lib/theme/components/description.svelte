@@ -1,15 +1,19 @@
 <script lang="ts">
-	import { descriptionAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/components/description.svelte';
+  import {
+    descriptionAttributes,
+    getFormContext,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import "@sjsf/basic-theme/components/description.svelte";
 
-	const { description, config }: ComponentProps['description'] = $props();
+  const { description, config }: ComponentProps["description"] = $props();
 
-	const ctx = getFormContext();
+  const ctx = getFormContext();
 </script>
 
 <div
-	class="text-muted-foreground"
-	{...descriptionAttributes(ctx, config, 'descriptionAttributes', {})}
+  class="text-muted-foreground"
+  {...descriptionAttributes(ctx, config, "descriptionAttributes", {})}
 >
-	{description}
+  {description}
 </div>

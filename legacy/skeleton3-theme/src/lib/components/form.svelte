@@ -1,18 +1,27 @@
 <script lang="ts">
-	import { formAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/components/form.svelte';
+  import {
+    formAttributes,
+    getFormContext,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import "@sjsf/basic-theme/components/form.svelte";
 
-	let { config, children, ref = $bindable(), attributes }: ComponentProps['form'] = $props();
+  let {
+    config,
+    children,
+    ref = $bindable(),
+    attributes,
+  }: ComponentProps["form"] = $props();
 
-	const ctx = getFormContext();
+  const ctx = getFormContext();
 </script>
 
 <form
-	bind:this={ref}
+  bind:this={ref}
   onsubmit={ctx.submit}
   onreset={ctx.reset}
-	class="flex flex-col gap-4"
-	{...formAttributes(ctx, config, 'form', attributes, {})}
+  class="flex flex-col gap-4"
+  {...formAttributes(ctx, config, "form", attributes, {})}
 >
-	{@render children?.()}
+  {@render children?.()}
 </form>

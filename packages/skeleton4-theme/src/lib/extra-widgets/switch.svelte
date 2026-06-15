@@ -1,45 +1,55 @@
 <script lang="ts" module>
-	import type { SwitchRootProps } from '@skeletonlabs/skeleton-svelte';
-	import '@sjsf/form/fields/extra-widgets/switch';
+  import type { SwitchRootProps } from "@skeletonlabs/skeleton-svelte";
+  import "@sjsf/form/fields/extra-widgets/switch";
 
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			skeleton4Switch?: SwitchRootProps;
-		}
-	}
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      skeleton4Switch?: SwitchRootProps;
+    }
+  }
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, getId, type ComponentProps } from '@sjsf/form';
-	import { Switch } from '@skeletonlabs/skeleton-svelte';
+  import {
+    customInputAttributes,
+    getFormContext,
+    getId,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import { Switch } from "@skeletonlabs/skeleton-svelte";
 
-	let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
+  let {
+    config,
+    value = $bindable(),
+    handlers,
+    errors,
+  }: ComponentProps["switchWidget"] = $props();
 
-	const ctx = getFormContext();
+  const ctx = getFormContext();
 
-	const id = $derived(getId(ctx, config.path));
+  const id = $derived(getId(ctx, config.path));
 </script>
 
 <Switch
-	{...customInputAttributes(ctx, config, 'skeleton4Switch', {
-		ids: {
-			hiddenInput: id
-		},
-		name: id,
-		required: config.required,
-		readOnly: config.schema.readOnly,
-		invalid: errors.length > 0,
-		onCheckedChange: (e) => {
-			value = e.checked;
-			handlers.oninput?.();
-			handlers.onchange?.();
-		},
-		checked: value
-	})}
+  {...customInputAttributes(ctx, config, "skeleton4Switch", {
+    ids: {
+      hiddenInput: id,
+    },
+    name: id,
+    required: config.required,
+    readOnly: config.schema.readOnly,
+    invalid: errors.length > 0,
+    onCheckedChange: (e) => {
+      value = e.checked;
+      handlers.oninput?.();
+      handlers.onchange?.();
+    },
+    checked: value,
+  })}
 >
-	<Switch.Control>
-		<Switch.Thumb />
-	</Switch.Control>
-	<Switch.Label>{config.title}</Switch.Label>
-	<Switch.HiddenInput />
+  <Switch.Control>
+    <Switch.Thumb />
+  </Switch.Control>
+  <Switch.Label>{config.title}</Switch.Label>
+  <Switch.HiddenInput />
 </Switch>

@@ -5,10 +5,8 @@ import "./file.svelte";
 
 declare module "../definitions.js" {
   interface ExtraWidgets {
-    fileWidget: {}
+    fileWidget: {};
   }
 }
-
-
 
 definitions.fileWidget = File;

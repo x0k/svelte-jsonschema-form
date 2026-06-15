@@ -35,12 +35,12 @@ npm install @sjsf/form @sjsf/shadcn4-theme @sjsf-lab/shadcn-extras-theme
      import { theme } from '@sjsf-lab/shadcn-extras-theme';
      import * as components from '@sjsf/shadcn4-theme/new-york';
      import * as extraComponents from '@sjsf-lab/shadcn-extras-theme/ui';
-
+   
      const form = createForm({
        theme,
        ...
      })
-
+   
      setThemeContext({ components: { ...components, ...extraComponents } })
    </script>
    ```

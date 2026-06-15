@@ -65,7 +65,7 @@
     combinator: abortPrevious,
     delayedMs: 150,
     get timeoutMs() {
-      return timeoutMs
+      return timeoutMs;
     },
     onSuccess(results) {
       items = results;

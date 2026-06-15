@@ -28,7 +28,7 @@
   );
 </script>
 
-<label class="sjsf-checkbox" >
+<label class="sjsf-checkbox">
   <input
     type="checkbox"
     bind:checked={() => value ?? false, (v) => (value = v)}

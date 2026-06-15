@@ -1,43 +1,60 @@
 <script lang="ts" module>
-	import type { Component } from 'svelte';
-	import type { Switch as BitsUiSwitch, SwitchRootProps, WithoutChildrenOrChild } from 'bits-ui';
-	import '@sjsf/form/fields/extra-widgets/switch';
+  import type { Component } from "svelte";
+  import type {
+    Switch as BitsUiSwitch,
+    SwitchRootProps,
+    WithoutChildrenOrChild,
+  } from "bits-ui";
+  import "@sjsf/form/fields/extra-widgets/switch";
 
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			shadcnSwitch?: WithoutChildrenOrChild<SwitchRootProps>;
-		}
-	}
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      shadcnSwitch?: WithoutChildrenOrChild<SwitchRootProps>;
+    }
+  }
 
-	declare module '../context.js' {
-		interface ThemeComponents {
-			Switch: Component<WithoutChildrenOrChild<BitsUiSwitch.RootProps>, {}, 'checked' | 'ref'>;
-		}
-	}
+  declare module "../context.js" {
+    interface ThemeComponents {
+      Switch: Component<
+        WithoutChildrenOrChild<BitsUiSwitch.RootProps>,
+        {},
+        "checked" | "ref"
+      >;
+    }
+  }
 </script>
 
 <script lang="ts">
-	import { getId, customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+  import {
+    getId,
+    customInputAttributes,
+    getFormContext,
+    type ComponentProps,
+  } from "@sjsf/form";
 
-	import { getThemeContext } from '../context';
+  import { getThemeContext } from "../context";
 
-	const ctx = getFormContext();
-	const themeCtx = getThemeContext();
+  const ctx = getFormContext();
+  const themeCtx = getThemeContext();
 
-	const { Switch } = $derived(themeCtx.components);
+  const { Switch } = $derived(themeCtx.components);
 
-	let { value = $bindable(), config, handlers }: ComponentProps['switchWidget'] = $props();
+  let {
+    value = $bindable(),
+    config,
+    handlers,
+  }: ComponentProps["switchWidget"] = $props();
 
-	const id = $derived(getId(ctx, config.path));
+  const id = $derived(getId(ctx, config.path));
 </script>
 
 <Switch
-	bind:checked={() => value ?? false, (v) => (value = v)}
-	{...customInputAttributes(ctx, config, 'shadcnSwitch', {
-		...handlers,
-		id,
-		name: id,
-		required: config.required,
-		onCheckedChange: handlers.onchange
-	})}
+  bind:checked={() => value ?? false, (v) => (value = v)}
+  {...customInputAttributes(ctx, config, "shadcnSwitch", {
+    ...handlers,
+    id,
+    name: id,
+    required: config.required,
+    onCheckedChange: handlers.onchange,
+  })}
 />

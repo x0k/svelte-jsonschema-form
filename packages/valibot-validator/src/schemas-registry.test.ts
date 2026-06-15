@@ -27,7 +27,7 @@ describe("SchemasRegistry", () => {
         v.object({
           id: v.number(),
           name: v.string(),
-        }),
+        })
       ),
       tuple: v.tuple([v.number(), v.number()]),
       record: v.record(v.string(), v.string()),
@@ -260,7 +260,7 @@ describe("SchemasRegistry", () => {
       ]),
       {
         overrideSchema: registry.register,
-      },
+      }
     );
     const definitions = anyOf ?? [];
     if (!definitions.every(isSchemaObject)) {
@@ -283,7 +283,7 @@ describe("SchemasRegistry", () => {
     expect(v.safeParse(first, { foo: "foo" })).toHaveProperty("success", true);
     expect(v.safeParse(second, { foo: "foo" })).toHaveProperty(
       "success",
-      false,
+      false
     );
     expect(v.safeParse(second, { bar: "bar" })).toHaveProperty("success", true);
   });
@@ -302,7 +302,7 @@ describe("SchemasRegistry", () => {
       ]),
       {
         overrideSchema: registry.register,
-      },
+      }
     );
     const definitions = oneOf ?? [];
     if (!definitions.every(isSchemaObject)) {
@@ -323,13 +323,13 @@ describe("SchemasRegistry", () => {
     }
     expect(v.safeParse(first, {})).toHaveProperty("success", false);
     expect(
-      v.safeParse(first, { type: "email", email: "foo@test.com" }),
+      v.safeParse(first, { type: "email", email: "foo@test.com" })
     ).toHaveProperty("success", true);
     expect(
-      v.safeParse(second, { type: "email", email: "foo@test.com" }),
+      v.safeParse(second, { type: "email", email: "foo@test.com" })
     ).toHaveProperty("success", false);
     expect(
-      v.safeParse(second, { type: "url", url: "http://test.com" }),
+      v.safeParse(second, { type: "url", url: "http://test.com" })
     ).toHaveProperty("success", true);
   });
 });

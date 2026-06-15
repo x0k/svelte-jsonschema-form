@@ -6,7 +6,7 @@ const schemas: Record<string, Schema> = {
     properties: {
       foo: {
         type: "string",
-        minLength: 8
+        minLength: 8,
       },
     },
     required: ["foo"],
@@ -16,7 +16,7 @@ const schemas: Record<string, Schema> = {
     properties: {
       bar: {
         type: "number",
-        minimum: 12345
+        minimum: 12345,
       },
     },
     required: ["bar"],

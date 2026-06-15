@@ -26,7 +26,7 @@ import {
 export type { FieldsValidationMode, Schema, UiSchemaRoot };
 
 export function fieldsValidationModeFlags(
-  mode: FieldsValidationMode,
+  mode: FieldsValidationMode
 ): FieldValidationFlag[] {
   return (
     Object.entries(FIELD_VALIDATION_FLAGS) as [
@@ -148,13 +148,13 @@ export type CodegenDraft7Validator = Extract<
 >;
 
 export function codegenIsExternalValidator<V extends CodegenValidatorMeta>(
-  v: V,
+  v: V
 ): v is V & Name<Exclude<Validator, InternalValidator>> {
   return !isInternalValidator(v.name);
 }
 
 export function codegemIsJsonSchemaValidator<V extends CodegenValidatorMeta>(
-  v: V,
+  v: V
 ): v is V & Name<JsonSchemaValidator> {
   return isJsonSchemaValidator(v.name);
 }

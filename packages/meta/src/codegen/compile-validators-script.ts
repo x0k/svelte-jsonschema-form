@@ -25,7 +25,7 @@ export interface CompileValidatorsScriptOptions {
 }
 
 export function createCompileValidatorsScript(
-  options: CompileValidatorsScriptOptions,
+  options: CompileValidatorsScriptOptions
 ) {
   const hyperjump = createScriptRenderer({
     parallel: false,
@@ -112,7 +112,7 @@ interface ScriptOptions {
       options?: Partial<{
         importStatements: string;
         exportStatements: string;
-      }>,
+      }>
     ) => string;
     saveValidators: (content: string) => string;
   }) => string;
@@ -181,7 +181,7 @@ async function compileSchema(modelDirRelPath${ts(": string")}) {
   ${compileSchemaBody({
     ctx,
     definePatchAndSchemas: (
-      extraProperties = "",
+      extraProperties = ""
     ) => `const patch = insertSubSchemaIds(schema, {
   fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE,
   ${extraProperties}
@@ -228,7 +228,7 @@ if (import.meta.main) {
 const ajv8 = createScriptRenderer({
   parallel: true,
   vendorImports: (
-    ctx,
+    ctx
   ) => `import { addFormComponents, DEFAULT_AJV_CONFIG } from "${externalValidatorPackage("ajv8").name}";
 ${ctx.validator.draft2020 ? `import { Ajv2020 } from "ajv/dist/2020.js";` : `import Ajv from "ajv";`}
 import standaloneCode from "ajv/dist/standalone/index.js";

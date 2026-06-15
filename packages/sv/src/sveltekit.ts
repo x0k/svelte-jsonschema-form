@@ -29,7 +29,7 @@ export function sveltekitTs({
   });
   sv.file(
     `${directory.kitRoutes}/demo/sjsf/${filename}.${language}`,
-    transform,
+    transform
   );
 
   if (sveltekit === "remoteFunctions") {

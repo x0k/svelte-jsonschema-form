@@ -1,6 +1,6 @@
-import { extendByRecord } from '@sjsf/form/lib/resolver';
-import { base } from '@sjsf/form/theme';
+import { extendByRecord } from "@sjsf/form/lib/resolver";
+import { base } from "@sjsf/form/theme";
 
-import { definitions } from './definitions';
+import { definitions } from "./definitions";
 
 export const theme = extendByRecord(base, definitions);

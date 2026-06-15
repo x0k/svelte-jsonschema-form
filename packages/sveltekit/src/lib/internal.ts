@@ -1,7 +1,13 @@
-import type { SchemaDefinition } from '@sjsf/form/core';
-import type { IdentifiableFieldElement } from '@sjsf/form';
+import type { SchemaDefinition } from "@sjsf/form/core";
+import type { IdentifiableFieldElement } from "@sjsf/form";
 
-type SerializablePrimitive = string | number | boolean | null | undefined | bigint;
+type SerializablePrimitive =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | bigint;
 
 type SerializableSpecial =
   | Date
@@ -25,11 +31,15 @@ type SerializableKeys<T> = {
   [K in keyof T]: NonNullable<T[K]> extends Serializable ? K : never;
 }[keyof T];
 
-export type PickOptionalSerializable<T> = Pick<T, Extract<OptionalKeys<T>, SerializableKeys<T>>>;
+export type PickOptionalSerializable<T> = Pick<
+  T,
+  Extract<OptionalKeys<T>, SerializableKeys<T>>
+>;
 
-export const KEY_INPUT_KEY = 'key-input' satisfies keyof IdentifiableFieldElement;
-export const ONE_OF = 'oneof' satisfies keyof IdentifiableFieldElement;
-export const ANY_OF = 'anyof' satisfies keyof IdentifiableFieldElement;
+export const KEY_INPUT_KEY =
+  "key-input" satisfies keyof IdentifiableFieldElement;
+export const ONE_OF = "oneof" satisfies keyof IdentifiableFieldElement;
+export const ANY_OF = "anyof" satisfies keyof IdentifiableFieldElement;
 
 interface CompiledPattern {
   regExp: RegExp;
@@ -44,7 +54,7 @@ export function compilePatterns(patterns: Record<string, SchemaDefinition>) {
     const source = keys[i]!;
     result.push({
       regExp: new RegExp(source),
-      schema: patterns[source]!
+      schema: patterns[source]!,
     });
   }
   return result;

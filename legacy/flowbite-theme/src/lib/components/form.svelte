@@ -1,27 +1,36 @@
 <script lang="ts" module>
-	import type { HTMLFormAttributes } from 'svelte/elements';
+  import type { HTMLFormAttributes } from "svelte/elements";
 
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			flowbiteForm?: HTMLFormAttributes;
-		}
-	}
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      flowbiteForm?: HTMLFormAttributes;
+    }
+  }
 </script>
 
 <script lang="ts">
-	import { formAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+  import {
+    formAttributes,
+    getFormContext,
+    type ComponentProps,
+  } from "@sjsf/form";
 
-	let { config, children, ref = $bindable(), attributes }: ComponentProps['form'] = $props();
+  let {
+    config,
+    children,
+    ref = $bindable(),
+    attributes,
+  }: ComponentProps["form"] = $props();
 
-	const ctx = getFormContext();
+  const ctx = getFormContext();
 </script>
 
 <form
-	bind:this={ref}
-	onsubmit={ctx.submit}
-	onreset={ctx.reset}
-	class="flex flex-col gap-4"
-	{...formAttributes(ctx, config, 'flowbiteForm', attributes, {})}
+  bind:this={ref}
+  onsubmit={ctx.submit}
+  onreset={ctx.reset}
+  class="flex flex-col gap-4"
+  {...formAttributes(ctx, config, "flowbiteForm", attributes, {})}
 >
-	{@render children?.()}
+  {@render children?.()}
 </form>

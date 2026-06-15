@@ -55,7 +55,7 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
 }: DependenciesOptions<T>) {
   function addDependencies(
     deps: Iterable<PackageDependency>,
-    filter: IncludeOptional = false,
+    filter: IncludeOptional = false
   ) {
     for (const d of filterPackageDependencies(deps, filter)) {
       addDependency(d);
@@ -78,7 +78,7 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
     optionalDeps.push(
       optionalPackageName("pikaday"),
       optionalPackageName("skeletonSvelte"),
-      optionalPackageName("internationalizedDate"),
+      optionalPackageName("internationalizedDate")
     );
   }
   addDependencies(themePkg.dependencies, optionalDeps);

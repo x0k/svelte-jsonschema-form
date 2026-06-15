@@ -7,7 +7,11 @@
   export { gripHeader };
 </script>
 
-{#snippet gripHeader(props: HTMLAttributes<HTMLElement>, tile: Tiles["tabs"], index: number)}
+{#snippet gripHeader(
+  props: HTMLAttributes<HTMLElement>,
+  tile: Tiles["tabs"],
+  index: number
+)}
   <div {...props}>
     <Grip />
     {tile.titles[index]}

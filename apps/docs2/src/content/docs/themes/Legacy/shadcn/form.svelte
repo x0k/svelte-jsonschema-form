@@ -2,14 +2,14 @@
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { theme, setThemeContext } from "@sjsf/shadcn-theme";
   import * as components from "@sjsf/shadcn-theme/default";
-  import { specs } from '@sjsf/shadcn-theme/specs'
+  import { specs } from "@sjsf/shadcn-theme/specs";
 
   import { themeManager } from "@/theme.svelte";
   import * as defaults from "@/lib/sjsf/defaults";
 
   import { createSchemas } from "../../_demo-schema";
 
-    const form = createForm({
+  const form = createForm({
     ...defaults,
     ...createSchemas(specs),
     theme,

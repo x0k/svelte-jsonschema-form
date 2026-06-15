@@ -1,6 +1,11 @@
 <script lang="ts">
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
-  import { createForm, BasicForm, type Schema, getValueSnapshot } from "@sjsf/form";
+  import {
+    createForm,
+    BasicForm,
+    type Schema,
+    getValueSnapshot,
+  } from "@sjsf/form";
 
   import * as defaults from "$lib/sjsf/defaults";
 

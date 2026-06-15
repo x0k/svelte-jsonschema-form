@@ -106,7 +106,7 @@ export type IncludeOptional = false | Iterable<string>;
 
 export function* filterPackageDependencies(
   dependencies: Iterable<PackageDependency>,
-  includeOptional: IncludeOptional,
+  includeOptional: IncludeOptional
 ): Iterable<PackageDependency> {
   let isIncluded: (d: PackageDependency) => boolean;
   if (typeof includeOptional === "boolean") {

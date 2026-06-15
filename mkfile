@@ -12,6 +12,12 @@ d:
 t:
   pnpm run test $@
 
+fmt:
+  pnpm run format
+
+l:
+  pnpm run lint
+
 tu:
   pnpm run test $@ -- -u
 
@@ -232,56 +238,55 @@ kit/:
     pnpm run test $@
   popd
 
-l/:
-  pushd lab
-  ata/:
-    pushd ata-validator
-    b:
-      pnpm run build
-    t:
-      pnpm run test
-    popd
-  hyper/:
-    pushd hyperjump-validator
-    b:
-      pnpm run build
-    t:
-      pnpm run test
-    popd
-  shad/:
-    pushd shadcn-extras-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
-  svar/:
-    pushd svar-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
-  beer/:
-    pushd beercss-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
+pushd lab
+ata/:
+  pushd ata-validator
+  b:
+    pnpm run build
+  t:
+    pnpm run test
   popd
+hyper/:
+  pushd hyperjump-validator
+  b:
+    pnpm run build
+  t:
+    pnpm run test
+  popd
+shade/:
+  pushd shadcn-extras-theme
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  t:
+    pnpm run test $@
+  popd
+svar/:
+  pushd svar-theme
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  t:
+    pnpm run test $@
+  popd
+beer/:
+  pushd beercss-theme
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  t:
+    pnpm run test $@
+  popd
+popd
 
 leg/:
   pushd legacy

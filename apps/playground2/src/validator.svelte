@@ -64,7 +64,7 @@
   const validator = $derived(
     playgroundValidator(data.validator)({
       merger: () => merger,
-    }),
+    })
   );
 
   debouncedEffect(() => {
@@ -89,7 +89,7 @@
       schema,
       input,
       output,
-    }),
+    })
   );
   const createTabs = Tabs.setup({
     headers: fromRecord({
@@ -133,7 +133,7 @@
               }),
             },
           ],
-        }),
+        })
   );
 
   debouncedEffect(() => {

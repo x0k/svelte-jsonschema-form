@@ -1,11 +1,11 @@
-import { definitions } from '../definitions.js';
+import { definitions } from "../definitions.js";
 
-import Range from './range.svelte';
-import './range.svelte';
+import Range from "./range.svelte";
+import "./range.svelte";
 
 declare module "../definitions.js" {
   interface ExtraWidgets {
-    rangeWidget: {}
+    rangeWidget: {};
   }
 }
 

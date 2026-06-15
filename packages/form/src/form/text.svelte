@@ -3,7 +3,7 @@
   import type { Config } from "./config.js";
   import type { IconConfig, IconDefinition } from "./icons.js";
   import { getFormContext } from "./state/index.js";
-    import { FORM_ICONS } from './internals.js';
+  import { FORM_ICONS } from "./internals.js";
 
   const ctx = getFormContext();
 

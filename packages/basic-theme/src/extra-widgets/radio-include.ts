@@ -9,5 +9,4 @@ declare module "../definitions.js" {
   }
 }
 
-
 definitions.radioWidget = Radio;

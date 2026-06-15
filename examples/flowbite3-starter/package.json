@@ -1,27 +1,27 @@
 {
-	"name": "flowbite3-starter",
-	"private": true,
-	"version": "0.0.16",
-	"type": "module",
-	"scripts": {
-		"dev": "vite dev",
-		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
-	},
-	"devDependencies": {
-		"@tailwindcss/vite": "catalog:",
-		"flowbite": "catalog:",
-		"flowbite-svelte": "catalog:",
-		"svelte": "catalog:",
-		"tailwindcss": "catalog:"
-	},
-	"dependencies": {
-		"@sjsf/ajv8-validator": "workspace:*",
-		"@sjsf/basic-theme": "workspace:*",
-		"@sjsf/flowbite3-theme": "workspace:*",
-		"@sjsf/form": "workspace:*",
-		"ajv": "catalog:"
-	}
+  "name": "flowbite3-starter",
+  "private": true,
+  "version": "0.0.16",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "catalog:",
+    "flowbite": "catalog:",
+    "flowbite-svelte": "catalog:",
+    "svelte": "catalog:",
+    "tailwindcss": "catalog:"
+  },
+  "dependencies": {
+    "@sjsf/ajv8-validator": "workspace:*",
+    "@sjsf/basic-theme": "workspace:*",
+    "@sjsf/flowbite3-theme": "workspace:*",
+    "@sjsf/form": "workspace:*",
+    "ajv": "catalog:"
+  }
 }

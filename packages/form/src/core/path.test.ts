@@ -27,7 +27,7 @@ describe("getSchemaDefinitionByPath", () => {
       schema,
       schema,
       path,
-      value,
+      value
     );
 
   it("should return the property definition for an object schema", () => {

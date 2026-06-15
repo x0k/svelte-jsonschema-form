@@ -33,8 +33,7 @@ export function createMerger({
 }
 
 export interface FormMergerOptions
-  extends Experimental_DefaultFormStateBehavior,
-    MergerOptions {
+  extends Experimental_DefaultFormStateBehavior, MergerOptions {
   validator: Validator;
   schema: Schema;
 }
@@ -47,7 +46,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
       formData,
       schema,
       initialDefaultsGenerated = false,
-      includeUndefinedValues = false
+      includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
         options.validator,

@@ -16,8 +16,8 @@
   import type { ComponentProps } from "@/form/index.js";
 
   import { assertStrings } from "../assert.js";
-  import Tags from './tags.svelte';
-  import './tags.svelte'
+  import Tags from "./tags.svelte";
+  import "./tags.svelte";
 
   let { value = $bindable(), ...rest }: ComponentProps["arrayTagsField"] =
     $props();
@@ -35,4 +35,3 @@
     }
   }
 />
-

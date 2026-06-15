@@ -14,11 +14,11 @@ export function createAppHtml({ themeOrSubTheme }: AppHtmlOptions) {
     }
     const htmlNode = ast.nodes.find(
       (child): child is SvelteAst.RegularElement =>
-        child.type === "RegularElement" && child.name === "html",
+        child.type === "RegularElement" && child.name === "html"
     );
     if (!htmlNode) {
       console.warn(
-        "Could not find <html> node in app.html. You'll need to add the language placeholder manually",
+        "Could not find <html> node in app.html. You'll need to add the language placeholder manually"
       );
       return false;
     }

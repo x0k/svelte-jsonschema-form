@@ -22,7 +22,7 @@ export function isEndsWith2020(v: string): v is With2020Suffix<string> {
 }
 
 export function without2020Suffix<V extends string>(
-  v: V | With2020Suffix<V>,
+  v: V | With2020Suffix<V>
 ): V {
   return isEndsWith2020(v) ? (v.slice(0, -DRAFT_2020_SUFFIX.length) as V) : v;
 }

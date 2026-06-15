@@ -6,7 +6,7 @@ import type { AddonTestCase, Fixtures, SetupTestOptions } from "sv/testing";
 
 export function setupSnapshotTest<Addons extends AddonMap>(
   addons: Addons,
-  options?: Omit<SetupTestOptions<Addons>, "browser">,
+  options?: Omit<SetupTestOptions<Addons>, "browser">
 ) {
   const test = vitestTest.extend({}) as unknown as TestAPI<
     Pick<Fixtures, "cwd">

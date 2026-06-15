@@ -49,7 +49,7 @@ export function createApplySplit(ctx: TilerContext) {
         direction: type,
         children: tiles,
         gapPx,
-      }),
+      })
     );
   };
 }

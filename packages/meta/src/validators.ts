@@ -63,7 +63,7 @@ const PRECOMPILED_ONLY_VALIDATORS = [
 ] satisfies PrecompiledValidator[];
 
 const PRECOMPILED_ONLY_VALIDATORS_SET = new Set<Validator>(
-  PRECOMPILED_ONLY_VALIDATORS,
+  PRECOMPILED_ONLY_VALIDATORS
 );
 
 export type PrecompiledOnlyValidator =
@@ -127,49 +127,49 @@ export function isValidator(v: string): v is Validator {
 }
 
 export function isJsonSchemaValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is JsonSchemaValidator {
   return JSON_SCHEMA_VALIDATORS_SET.has(validator);
 }
 
 export function isSchemaValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is SchemaValidator {
   return SCHEMA_VALIDATORS_SET.has(validator);
 }
 
 export function isInternalValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is InternalValidator {
   return INTERNAL_VALIDATORS_SET.has(validator);
 }
 
 export function isPrecompiledValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is PrecompiledValidator {
   return PRECOMPILED_VALIDATORS_SET.has(validator);
 }
 
 export function isPrecompiledOnlyValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is PrecompiledOnlyValidator {
   return PRECOMPILED_ONLY_VALIDATORS_SET.has(validator);
 }
 
 export function isLabValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is LabValidator {
   return LAB_VALIDATORS_SET.has(validator);
 }
 
 export function externalValidatorPackage(
-  validator: ExternalValidator,
+  validator: ExternalValidator
 ): Package {
   return EXTERNAL_VALIDATOR_PACKAGES[validator];
 }
 
 export function internalValidatorSubPath(
-  validator: InternalValidator | InternalValidatorModule,
+  validator: InternalValidator | InternalValidatorModule
 ) {
   return `${formPackage.name}/validators/${validator}`;
 }

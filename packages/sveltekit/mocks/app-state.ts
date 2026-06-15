@@ -1,5 +1,5 @@
-export const page = {}
+export const page = {};
 
-export const navigating = {}
+export const navigating = {};
 
-export const updated = {}
+export const updated = {};

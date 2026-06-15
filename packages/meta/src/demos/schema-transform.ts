@@ -33,7 +33,7 @@ export function isSchemaPage(filepath: string, content: string) {
 
 export function parseSveltePage(
   content: string,
-  filepath: string,
+  filepath: string
 ): {
   ast: AST.Root;
   state: { isSchemaTransformed: boolean; isOptionsTransformed: boolean };
@@ -79,7 +79,7 @@ export function findFormSchemaPropertyIndex(node: {
 }
 
 export function findSchemaDeclIndex(
-  body: Program["body"] | null | undefined,
+  body: Program["body"] | null | undefined
 ): number {
   if (!body) return -1;
   return body.findIndex((stmt) => {
@@ -93,7 +93,7 @@ export function findSchemaDeclIndex(
 }
 
 export function astToSchemaValue(
-  node: TSESTree.Property["value"] | TSESTree.SpreadElement,
+  node: TSESTree.Property["value"] | TSESTree.SpreadElement
 ): SchemaValue | undefined {
   switch (node.type) {
     case AST_NODE_TYPES.Literal:
@@ -247,7 +247,7 @@ export function createSchemaTransformer({
           }
           next();
         },
-      },
+      }
     ) as AST.Root;
 
     if (
@@ -264,7 +264,7 @@ export function createSchemaTransformer({
       if (extendedState.isDefaultValidatorReferenced) {
         const destructuringProgram = acornTsParser.parse(
           "const { schema: sjsfSchema, validator: sjsfValidator } = adapt(schema);",
-          { sourceType: "module", ecmaVersion: 16 },
+          { sourceType: "module", ecmaVersion: 16 }
         ) as unknown as Program;
         if (body) {
           const schemaDeclIndex = findSchemaDeclIndex(body);

@@ -6,24 +6,35 @@ sidebar:
   order: 4
 ---
 
-import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/shadcn4-theme/specs';
-import styles from '@sjsf/shadcn4-theme/styles.css?inline';
+import {
+  Code,
+  Card,
+  LinkButton,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/shadcn4-theme/specs";
+import styles from "@sjsf/shadcn4-theme/styles.css?inline";
 import { themePackage } from "meta";
 
-import shadcnContextCode from 'apps/playground2/src/shadcn-context.ts?raw'
+import shadcnContextCode from "apps/playground2/src/shadcn-context.ts?raw";
 
-import { getPackageDependencies } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import Form from './shadcn4/wrapper.svelte';
-import uiOptionsCode from './shadcn4/ui-options?raw';
-import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
+import Form from "./shadcn4/wrapper.svelte";
+import uiOptionsCode from "./shadcn4/ui-options?raw";
+import {
+  createSchemas,
+  replacer,
+  createExtraImports,
+  validationEvents,
+} from "./_demo-schema";
 
-export const schemas = createSchemas(specs)
-export const pkg = themePackage('shadcn4')
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("shadcn4");
 
 ## Installation
 
@@ -33,7 +44,12 @@ export const pkg = themePackage('shadcn4')
 
 ### Install shadcn-svelte
 
-<LinkButton href="https://shadcn-svelte.com/docs/installation" variant='secondary' target="_blank" icon="external">
+<LinkButton
+  href="https://shadcn-svelte.com/docs/installation"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Installation - shadcn-svelte
 </LinkButton>
 
@@ -65,6 +81,7 @@ Since `shadcn-svelte` is not a component library you should provide your compone
         .replace('import * as components from "@sjsf-lab/shadcn-extras-theme/ui";\n', '')
         .replace('      ...components,\n', '')}
     />
+
   </TabItem>
   <TabItem label="Library components">
     :::caution
@@ -79,9 +96,9 @@ Since `shadcn-svelte` is not a component library you should provide your compone
 
     setThemeContext({ components })
     ```
+
   </TabItem>
 </Tabs>
-
 
 ## Extra widgets
 
@@ -95,17 +112,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("shadcn4", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("shadcn4", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">

@@ -45,7 +45,7 @@ describe("examples", () => {
               entry,
               themeOrSubTheme,
               validator,
-            }),
+            })
           ).toMatchSnapshot();
         });
       }

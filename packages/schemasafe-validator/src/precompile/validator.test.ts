@@ -27,7 +27,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
         ...DEFAULT_VALIDATOR_OPTIONS,
         schemas: new Map(schemas.map((s) => [s.$id, s])),
         multi: true,
-      },
+      }
     );
     const code = `export const [${schemas.map((s) => s.$id).join(", ")}] = ${validate.toModule()}`;
     const validateFunctions = await importModule<ValidateFunctions>(code);
@@ -35,7 +35,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
       validatorRetriever: fromValidators(validateFunctions),
     });
     return factory(options);
-  },
+  }
 );
 
 validatorTests(createFormValidator);

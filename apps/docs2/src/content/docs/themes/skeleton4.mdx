@@ -6,22 +6,33 @@ sidebar:
   order: 3
 ---
 
-import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/skeleton4-theme/specs';
+import {
+  Code,
+  Card,
+  TabItem,
+  Tabs,
+  LinkButton,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/skeleton4-theme/specs";
 import styles from "@sjsf/skeleton4-theme/styles.css?inline";
 import { themePackage } from "meta";
 
-import { getPackageDependencies } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import Form from './skeleton4/form.svelte';
-import uiOptionsCode from './skeleton4/ui-options?raw';
-import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
+import Form from "./skeleton4/form.svelte";
+import uiOptionsCode from "./skeleton4/ui-options?raw";
+import {
+  createSchemas,
+  replacer,
+  createExtraImports,
+  validationEvents,
+} from "./_demo-schema";
 
-export const schemas = createSchemas(specs)
-export const pkg = themePackage('skeleton4')
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("skeleton4");
 
 ## Installation
 
@@ -31,7 +42,12 @@ export const pkg = themePackage('skeleton4')
 
 ### Install Skeleton v4
 
-<LinkButton href="https://www.skeleton.dev/docs/get-started/installation/sveltekit" variant='secondary' target="_blank" icon="external">
+<LinkButton
+  href="https://www.skeleton.dev/docs/get-started/installation/sveltekit"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Install and configure Skeleton for SvelteKit
 </LinkButton>
 
@@ -55,17 +71,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("skeleton4", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("skeleton4", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">

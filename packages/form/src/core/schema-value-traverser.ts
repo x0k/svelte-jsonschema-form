@@ -13,14 +13,11 @@ export interface AbstractSchemaValueTraverserContext<
   path: Path;
 }
 
-export interface RootSchemaValueTraverserContext
-  extends AbstractSchemaValueTraverserContext<"root"> {}
-export interface ArraySchemaValueTraverserContext
-  extends AbstractSchemaValueTraverserContext<"array"> {
+export interface RootSchemaValueTraverserContext extends AbstractSchemaValueTraverserContext<"root"> {}
+export interface ArraySchemaValueTraverserContext extends AbstractSchemaValueTraverserContext<"array"> {
   index: number;
 }
-export interface RecordSchemaValueTraverserContext
-  extends AbstractSchemaValueTraverserContext<"record"> {
+export interface RecordSchemaValueTraverserContext extends AbstractSchemaValueTraverserContext<"record"> {
   key: string;
 }
 

@@ -7,7 +7,7 @@ import { parse } from "svelte/compiler";
 import { resolveComponentName, extractComponentPropsIndex } from "./analyze.ts";
 
 function collectModuleConstants(
-  moduleAst: TSESTree.Program,
+  moduleAst: TSESTree.Program
 ): Map<string, string> {
   const map = new Map<string, string>();
 
@@ -51,7 +51,7 @@ async function analyzeComponent(filepath: string) {
 
   if (ast.instance === null) {
     throw new Error(
-      `Unexpected component without instance script "${filepath}"`,
+      `Unexpected component without instance script "${filepath}"`
     );
   }
 
@@ -69,7 +69,7 @@ async function analyzeComponent(filepath: string) {
   }
 
   const wrapperOf = getWrappedComponent(
-    ast.instance.content as TSESTree.Program,
+    ast.instance.content as TSESTree.Program
   );
 
   return {
@@ -87,7 +87,7 @@ interface FieldMeta {
 async function analyzeDir(
   dir: string,
   meta: Record<string, FieldMeta>,
-  skip = new Set<string>(),
+  skip = new Set<string>()
 ) {
   for (const e of await fs.readdir(dir, { withFileTypes: true })) {
     if (!e.isFile() || !e.name.endsWith(".svelte") || skip.has(e.name)) {
@@ -130,7 +130,7 @@ async function main() {
   await analyzeDir(fieldsPath("extra"), extraFieldsMeta);
   const fieldsOutPath = path.join(
     import.meta.dirname,
-    "../src/fields.generated.ts",
+    "../src/fields.generated.ts"
   );
   const fieldsContent = `export const FIELDS = ${JSON.stringify(fieldsMeta, null, 2)} as const;
 
@@ -140,13 +140,13 @@ export const EXTRA_FIELDS = ${JSON.stringify(extraFieldsMeta, null, 2)} as const
   //
   const pgFieldsOutPath = path.join(
     import.meta.dirname,
-    "../src/playground/fields.generated.ts",
+    "../src/playground/fields.generated.ts"
   );
   const fields = Object.values(extraFieldsMeta);
   const pgFieldsContent = `${fields
     .map(
       ({ filename, name }) =>
-        `import ${name} from "@sjsf/form/fields/extra/${filename}.svelte";\nimport "@sjsf/form/fields/extra/${filename}.svelte";`,
+        `import ${name} from "@sjsf/form/fields/extra/${filename}.svelte";\nimport "@sjsf/form/fields/extra/${filename}.svelte";`
     )
     .join("\n")}
 export const fields = {

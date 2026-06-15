@@ -152,7 +152,8 @@ export function createFieldValueValidator({
 }
 
 export interface FormValidatorOptions
-  extends ValidatorOptions,
+  extends
+    ValidatorOptions,
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 

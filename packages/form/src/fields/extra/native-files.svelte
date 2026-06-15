@@ -55,7 +55,7 @@
       if (files === undefined) {
         return undefined;
       }
-      const array = Array.from(files)
+      const array = Array.from(files);
       if (!(await validateFileList(signal, ctx, config, files))) {
         throw new FileListValidationError();
       }

@@ -143,7 +143,7 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
         }
         const extraFieldImports = Array.from(
           extraFields({ wrappedFields: false }),
-          (f) => `// import "${extraFieldSubPath(f, true)}";`,
+          (f) => `// import "${extraFieldSubPath(f, true)}";`
         );
         const resolverCode = `${extraFieldImports.join("\n")}\n${LINK_COMMENT}\n${ts(
           `export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {`,
@@ -152,7 +152,7 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
  * @param {import("@sjsf/form").FormState<T>} ctx
  * @returns {import("@sjsf/form").ResolveFieldType}
  */
-export function resolver(_ctx) {`,
+export function resolver(_ctx) {`
         )}
   return ({ schema }) => {
     if (schema.oneOf !== undefined) {
@@ -259,11 +259,11 @@ export function resolver(_ctx) {`,
       }
       const names = themeExtension
         .flatMap((c) =>
-          Array.isArray(c.imports) ? c.imports : Object.values(c.imports),
+          Array.isArray(c.imports) ? c.imports : Object.values(c.imports)
         )
         .join(", ");
       const themeExpression = jsApi.common.parseExpression(
-        `extendByRecord(base, { ${names} })`,
+        `extendByRecord(base, { ${names} })`
       );
       const themeDeclaration = jsApi.variables.declaration(ast, {
         kind: "const",
@@ -328,7 +328,7 @@ export function resolver(_ctx) {`,
         from: "@sjsf/form/focus-on-first-error",
       });
       const onSubmitErrorExpression = jsApi.common.parseExpression(
-        "createFocusOnFirstError()",
+        "createFocusOnFirstError()"
       );
       const onSubmitErrorDeclaration = jsApi.variables.declaration(ast, {
         kind: "const",
@@ -381,7 +381,7 @@ export function resolver(_ctx) {`,
         jsApi.common.appendFromString(ast, {
           code: `/**
  * @typedef {import("${formPackage.name}").${typeNames.join(
-   " & ",
+   " & "
  )}} _ModuleAugmentation
  */`,
           comments,

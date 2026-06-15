@@ -35,8 +35,8 @@ const createFormValidator = createPrecompiledValidatorFactory(
       registerSchema(
         Object.assign(
           { $schema: "http://json-schema.org/draft-07/schema" },
-          schema as SchemaObject,
-        ),
+          schema as SchemaObject
+        )
       );
     }
     try {
@@ -68,7 +68,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
         unregisterSchema(s.$id!);
       }
     }
-  },
+  }
 );
 
 validatorTests(createFormValidator, { createIdFactory });

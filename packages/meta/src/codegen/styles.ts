@@ -304,13 +304,13 @@ const INITIAL_AT_RULES = [
 ] satisfies AtRule[];
 
 export function isStyleSheetEmpty(
-  ast: Omit<SvelteAst.CSS.StyleSheetBase, "attributes" | "content">,
+  ast: Omit<SvelteAst.CSS.StyleSheetBase, "attributes" | "content">
 ) {
   for (const c of ast.children) {
     if (
       c.type !== "Atrule" ||
       INITIAL_AT_RULES.findIndex(
-        (r) => r.name === c.name && c.prelude.includes(r.params),
+        (r) => r.name === c.name && c.prelude.includes(r.params)
       ) < 0
     ) {
       return false;

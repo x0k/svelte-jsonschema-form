@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Willow } from '@svar-ui/svelte-core'
+  import { Willow } from "@svar-ui/svelte-core";
 
-	let { children } = $props();
+  let { children } = $props();
 </script>
 
 <Willow>
-	{@render children()}
+  {@render children()}
 </Willow>

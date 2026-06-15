@@ -13,7 +13,7 @@ import {
 
 export default function standardSchemaTransformer(
   filepath: string,
-  content: string,
+  content: string
 ) {
   if (!isSchemaPage(filepath, content)) return content;
 
@@ -100,7 +100,7 @@ export default function standardSchemaTransformer(
         }
         next();
       },
-    },
+    }
   ) as AST.Root;
 
   if (extendedState.isSchemaTransformed && extendedState.isOptionsTransformed) {
@@ -148,7 +148,7 @@ export default function standardSchemaTransformer(
     if (extendedState.isDefaultValidatorReferenced) {
       const destructuringProgram = acornTsParser.parse(
         "const { schema: sjsfSchema, validator: sjsfValidator } = adapt(fakeValidator);",
-        { sourceType: "module", ecmaVersion: 16 },
+        { sourceType: "module", ecmaVersion: 16 }
       ) as unknown as Program;
       if (body && schemaDeclIndex >= 0) {
         body.splice(schemaDeclIndex + 2, 0, ...destructuringProgram.body);

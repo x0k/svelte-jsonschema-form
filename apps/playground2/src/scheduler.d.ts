@@ -19,7 +19,7 @@
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Prioritized_Task_Scheduling_API#task_priorities)
  */
-export type TaskPriority = 'user-blocking' | 'user-visible' | 'background';
+export type TaskPriority = "user-blocking" | "user-visible" | "background";
 
 /**
  * {@link Scheduler.postTask} options.
@@ -42,9 +42,9 @@ export type SchedulerPostTaskOptions = {
  */
 export type SchedulerYieldOptions = {
   /** The priority for the continuation, either a {@link TaskPriority} (`"user-blocking"`, `"user-visible"`, or `"background"`) or `"inherit"` to infer the priority from the current context. If set, this priority is used for the lifetime of the task and priority set on the `signal` is ignored. */
-  priority?: TaskPriority | 'inherit';
+  priority?: TaskPriority | "inherit";
   /** An {@link AbortSignal} or {@link TaskSignal} that can be used to abort or re-prioritize the task (from its associated controller), or `"inherit"` to inherit the current task's signal. The signal's priority is ignored if `priority` is set. */
-  signal?: AbortSignal | TaskSignal | 'inherit';
+  signal?: AbortSignal | TaskSignal | "inherit";
 };
 
 /**
@@ -55,7 +55,7 @@ export type SchedulerYieldOptions = {
 type TaskControllerOptions = {
   /** The {@link TaskPriority} of the signal associated with this {@link TaskController}. One of `"user-blocking"`, `"user-visible"`, or `"background"`. The default is `"user-visible"`. */
   priority?: TaskPriority;
-}
+};
 
 /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/TaskPriorityChangeEvent/TaskPriorityChangeEvent#options) */
 interface TaskPriorityChangeEventInit extends EventInit {
@@ -73,7 +73,10 @@ declare global {
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Scheduler/postTask)
      */
-    postTask<T extends unknown>(callback: () => T, options?: SchedulerPostTaskOptions): Promise<T>;
+    postTask<T extends unknown>(
+      callback: () => T,
+      options?: SchedulerPostTaskOptions
+    ): Promise<T>;
     /**
      * Returns a promise that yields to the event loop when awaited. Optionally specify a priority and/or a signal for aborting the task.
      * @param options {@link SchedulerYieldOptions} options.

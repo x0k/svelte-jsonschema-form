@@ -21,8 +21,8 @@
         ...initialData,
         // Required due to the use of `enhance`
         fields: createPost.fields,
-      },
-    ),
+      }
+    )
   );
 </script>
 

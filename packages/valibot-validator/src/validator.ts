@@ -72,8 +72,7 @@ export function createFormValueValidator<T>(
   };
 }
 
-export interface AsyncFormValueValidatorOptions
-  extends SchemaRegistryProvider {}
+export interface AsyncFormValueValidatorOptions extends SchemaRegistryProvider {}
 
 export function createAsyncFormValueValidator<T>(
   options: AsyncFormValueValidatorOptions
@@ -104,8 +103,7 @@ export function createFieldValueValidator({
   };
 }
 
-export interface AsyncFieldValueValidatorOptions
-  extends SchemaRegistryProvider {}
+export interface AsyncFieldValueValidatorOptions extends SchemaRegistryProvider {}
 
 export function createAsyncFieldValueValidator({
   schemaRegistry,
@@ -120,7 +118,8 @@ export function createAsyncFieldValueValidator({
 }
 
 export interface FormValidatorOptions
-  extends ValidatorOptions,
+  extends
+    ValidatorOptions,
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
@@ -133,7 +132,8 @@ export function createFormValidator<T>(options: FormValidatorOptions) {
 }
 
 export interface AsyncFormValidatorOptions
-  extends ValidatorOptions,
+  extends
+    ValidatorOptions,
     AsyncFormValueValidatorOptions,
     AsyncFieldValueValidatorOptions {}
 

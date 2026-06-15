@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { SvelteKitForm, createMeta } from '$lib/client/index.js';
+  import { SvelteKitForm, createMeta } from "$lib/client/index.js";
 
-  import type { ActionData, PageData } from './$types.js';
-  import * as defaults from './form-defaults.js';
+  import type { ActionData, PageData } from "./$types.js";
+  import * as defaults from "./form-defaults.js";
 
   const meta = createMeta<ActionData, PageData>().form;
 </script>
@@ -15,16 +15,16 @@
   onSuccess={console.log}
   onFailure={console.error}
   uiSchema={{
-    'ui:options': {
+    "ui:options": {
       form: {
-        action: '?/first',
-        novalidate: true
-      }
+        action: "?/first",
+        novalidate: true,
+      },
     },
     nativeFile: {
-      'ui:components': {
-        unknownField: 'unknownNativeFileField'
-      }
-    }
+      "ui:components": {
+        unknownField: "unknownNativeFileField",
+      },
+    },
   }}
 />

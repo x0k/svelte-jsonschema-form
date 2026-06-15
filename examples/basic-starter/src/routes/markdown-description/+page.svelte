@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { overrideByRecord } from '@sjsf/form/lib/resolver';
+  import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
 
   import * as defaults from "$lib/sjsf/defaults";
 
-  import Description from './description.svelte';
+  import Description from "./description.svelte";
 
   const schema = {
     type: "null",

@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  const field = "stringField"
+  const field = "stringField";
   declare module "../form/index.js" {
     interface ActionFields {
       [field]: {};

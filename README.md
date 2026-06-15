@@ -20,33 +20,33 @@ npx sv add @sjsf
 
 ```svelte
 <script lang="ts">
-  import { createForm, BasicForm, type Schema } from '@sjsf/form';
-  import { resolver } from '@sjsf/form/resolvers/basic';
-  import { translation } from '@sjsf/form/translations/en';
-  import { createFormMerger } from '@sjsf/form/mergers/modern';
-  import { createFormIdBuilder } from '@sjsf/form/id-builders/modern';
-  import { createFormValidator } from '@sjsf/ajv8-validator';
-  import { theme } from '@sjsf/basic-theme';
-  import '@sjsf/basic-theme/css/basic.css';
+  import { createForm, BasicForm, type Schema } from "@sjsf/form";
+  import { resolver } from "@sjsf/form/resolvers/basic";
+  import { translation } from "@sjsf/form/translations/en";
+  import { createFormMerger } from "@sjsf/form/mergers/modern";
+  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
+  import { createFormValidator } from "@sjsf/ajv8-validator";
+  import { theme } from "@sjsf/basic-theme";
+  import "@sjsf/basic-theme/css/basic.css";
 
   const schema: Schema = {
-    title: 'Tasks',
-    type: 'array',
+    title: "Tasks",
+    type: "array",
     items: {
-      type: 'object',
+      type: "object",
       properties: {
         name: {
-          type: 'string',
-          title: 'Name',
+          type: "string",
+          title: "Name",
         },
         description: {
-          type: 'string',
-          title: 'Description',
+          type: "string",
+          title: "Description",
         },
       },
-      required: ["name"]
+      required: ["name"],
     },
-  }
+  };
 
   const form = createForm({
     theme,
@@ -56,8 +56,8 @@ npx sv add @sjsf
     merger: createFormMerger,
     validator: createFormValidator,
     idBuilder: createFormIdBuilder,
-    onSubmit: console.log
-  })
+    onSubmit: console.log,
+  });
 </script>
 
 <BasicForm {form} />

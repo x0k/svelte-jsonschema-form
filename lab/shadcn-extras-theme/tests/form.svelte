@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { BasicForm, createForm, type FormOptions } from '@sjsf/form';
+  import { BasicForm, createForm, type FormOptions } from "@sjsf/form";
 
-	import '../src/app.css';
-	import { BitsConfig } from 'bits-ui';
+  import "../src/app.css";
+  import { BitsConfig } from "bits-ui";
 
-	const props: FormOptions<any> = $props();
+  const props: FormOptions<any> = $props();
 
-	const form = createForm(props);
+  const form = createForm(props);
 
-	let portalEl = $state.raw() as HTMLDivElement;
+  let portalEl = $state.raw() as HTMLDivElement;
 </script>
 
 <BitsConfig defaultPortalTo={portalEl}>
-	<BasicForm {form} />
+  <BasicForm {form} />
 </BitsConfig>
 <div bind:this={portalEl}></div>
