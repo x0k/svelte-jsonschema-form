@@ -19,14 +19,14 @@
     unmount: noop,
     get node() {
       return createNode();
-    }
+    },
   });
 </script>
 
 <div
   class={[
     "flex cursor-grab items-center gap-2 rounded-md border bg-background p-2 select-none hover:bg-accent",
-    draggable.isDragged && "bg-accent"
+    draggable.isDragged && "bg-accent",
   ]}
   {@attach draggable.attach}
 >

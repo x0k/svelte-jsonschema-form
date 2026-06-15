@@ -14,7 +14,9 @@
 </script>
 
 <div class="flex items-center gap-2">
-  <Label class="text-base text-muted-foreground" for={selectId}>Value type</Label>
+  <Label class="text-base text-muted-foreground" for={selectId}
+    >Value type</Label
+  >
   <Select.Root type="single" bind:value>
     <Select.Trigger id={selectId} size="sm">
       {labels[value]}

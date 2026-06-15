@@ -17,7 +17,11 @@
     className
   )}
 >
-  <RangeCalendarPrimitive.YearSelect bind:ref class="absolute inset-0 opacity-0" {...restProps}>
+  <RangeCalendarPrimitive.YearSelect
+    bind:ref
+    class="absolute inset-0 opacity-0"
+    {...restProps}
+  >
     {#snippet child({ props, yearItems, selectedYearItem })}
       <select {...props} {value}>
         {#each yearItems as yearItem (yearItem.value)}
@@ -35,7 +39,8 @@
         class="flex h-(--cell-size) items-center gap-1 rounded-md ps-2 pe-1 text-sm font-medium select-none [&>svg]:size-3.5 [&>svg]:text-muted-foreground"
         aria-hidden="true"
       >
-        {yearItems.find((item) => item.value === value)?.label || selectedYearItem.label}
+        {yearItems.find((item) => item.value === value)?.label ||
+          selectedYearItem.label}
         <ChevronDownIcon class="size-4" />
       </span>
     {/snippet}

@@ -13,7 +13,7 @@
     isOperatorNode,
     type NOperator,
     isHasPropertyOperator,
-    isContainsOperator
+    isContainsOperator,
   } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
@@ -31,9 +31,15 @@
   import InOperator from "./in-operator.svelte";
   import ContainsOperator from "./contains-operator.svelte";
 
-  let { node = $bindable(), draggable, unmount }: NodeProps<NodeType.Operator> = $props();
+  let {
+    node = $bindable(),
+    draggable,
+    unmount,
+  }: NodeProps<NodeType.Operator> = $props();
 
-  const isMultiOrEmpty = $derived(isNOperator(node) || isUniqueItemsOperator(node));
+  const isMultiOrEmpty = $derived(
+    isNOperator(node) || isUniqueItemsOperator(node)
+  );
 </script>
 
 <NodeContainer bind:node {draggable} showRequired={false} disableSelection>

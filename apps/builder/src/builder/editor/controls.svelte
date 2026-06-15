@@ -1,7 +1,12 @@
 <script lang="ts">
   import type { Component } from "svelte";
   import type { SVGAttributes } from "svelte/elements";
-  import { NodeType, OPERATOR_TITLES, OPERATOR_TYPES, OperatorType } from "meta/builder";
+  import {
+    NodeType,
+    OPERATOR_TITLES,
+    OPERATOR_TYPES,
+    OperatorType,
+  } from "meta/builder";
 
   import MdiSegment from "~icons/mdi/segment";
   import MdiGridLarge from "~icons/mdi/grid-large";
@@ -42,14 +47,17 @@
     createOperatorNode,
     CUSTOMIZABLE_TYPE_TITLES,
     detectApplicableOperators,
-    type Node
+    type Node,
   } from "$lib/builder/index.js";
 
   import { getBuilderContext } from "../context.svelte.js";
   import { THEME_NODE_OVERRIDES } from "../theme-schemas.js";
   import NodeFactory from "../node-factory.svelte";
 
-  const NODE_ICONS: Record<NodeType, Component<SVGAttributes<SVGSVGElement>> | null> = {
+  const NODE_ICONS: Record<
+    NodeType,
+    Component<SVGAttributes<SVGSVGElement>> | null
+  > = {
     [NodeType.Object]: MdiSegment,
     [NodeType.ObjectProperty]: null,
     [NodeType.ObjectPropertyDependency]: null,
@@ -65,10 +73,13 @@
     [NodeType.Boolean]: MdiToggleSwitchOffOutline,
     [NodeType.File]: MdiAttachFile,
     [NodeType.Tags]: MdiTag,
-    [NodeType.Range]: MdiArrowLeftRight
+    [NodeType.Range]: MdiArrowLeftRight,
   };
 
-  const OPERATOR_ICONS: Record<OperatorType, Component<SVGAttributes<SVGSVGElement>>> = {
+  const OPERATOR_ICONS: Record<
+    OperatorType,
+    Component<SVGAttributes<SVGSVGElement>>
+  > = {
     [OperatorType.And]: MdiSetAnd,
     [OperatorType.Or]: MdiSetOr,
     [OperatorType.Xor]: MdiSetXor,
@@ -94,7 +105,7 @@
     [OperatorType.UniqueItems]: MdiVectorArrangeAbove,
     // Object
     [OperatorType.HasProperty]: MdiPageNextOutline,
-    [OperatorType.Property]: MdiFileTree
+    [OperatorType.Property]: MdiFileTree,
   };
 
   const ctx = getBuilderContext();
@@ -107,20 +118,22 @@
   }[] = $derived.by(() => {
     if (ctx.selectedNode?.type === NodeType.Predicate) {
       // NOTE: Affected node should be always defined
-      const ops = detectApplicableOperators(ctx.affectedNode ?? ctx.selectedNode);
+      const ops = detectApplicableOperators(
+        ctx.affectedNode ?? ctx.selectedNode
+      );
       return OPERATOR_TYPES.filter((t) => ops.has(t)).map((t) => ({
         id: `op::${t}`,
         factory: () => createOperatorNode(t),
         title: OPERATOR_TITLES[t],
         nodeType: NodeType.Operator,
-        operatorType: t
+        operatorType: t,
       }));
     }
     return ctx.availableCustomizableNodeTypes.map((t) => ({
       id: `node::${t}`,
       factory: () => createNode(t, THEME_NODE_OVERRIDES[ctx.theme]),
       title: CUSTOMIZABLE_TYPE_TITLES[t],
-      nodeType: t
+      nodeType: t,
     }));
   });
 </script>
@@ -129,12 +142,15 @@
   {#each entries as { id, factory, title, nodeType, operatorType } (id)}
     <NodeFactory createNode={factory} {title}>
       {#snippet icon()}
-        {@const Icon = operatorType ? OPERATOR_ICONS[operatorType] : NODE_ICONS[nodeType]}
+        {@const Icon = operatorType
+          ? OPERATOR_ICONS[operatorType]
+          : NODE_ICONS[nodeType]}
         <Icon />
       {/snippet}
     </NodeFactory>
   {/each}
   <p class="pt-2 text-sm text-muted-foreground">
-    The set of available fields and their corresponding widgets depends on the selected theme.
+    The set of available fields and their corresponding widgets depends on the
+    selected theme.
   </p>
 </div>

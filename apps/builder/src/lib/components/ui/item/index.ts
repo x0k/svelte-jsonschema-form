@@ -30,5 +30,5 @@ export {
   Title as ItemTitle,
   Description as ItemDescription,
   Actions as ItemActions,
-  Media as ItemMedia
+  Media as ItemMedia,
 };

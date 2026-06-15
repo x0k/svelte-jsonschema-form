@@ -10,19 +10,26 @@ export interface NodeTraverserContext<T extends NodeType> {
   parentNode: Node | undefined;
 }
 
-export type NodeVisitor<T extends NodeType, R> = Visitor<Node, NodeTraverserContext<T>, R>;
+export type NodeVisitor<T extends NodeType, R> = Visitor<
+  Node,
+  NodeTraverserContext<T>,
+  R
+>;
 
 export function createNodeTraverser<R>(visitor: NodeVisitor<NodeType, R>) {
   return function* traverse(
     node: Node,
-    ctx: NodeTraverserContext<NodeType> = { parentType: "root", parentNode: undefined }
+    ctx: NodeTraverserContext<NodeType> = {
+      parentType: "root",
+      parentNode: undefined,
+    }
   ): Generator<R> {
     if (visitor.onEnter) {
       yield* visitor.onEnter(node, ctx);
     }
     const subCtx: NodeTraverserContext<NodeType> = {
       parentType: node.type,
-      parentNode: node
+      parentNode: node,
     };
     if (node.type === NodeType.Object) {
       for (const prop of node.properties) {

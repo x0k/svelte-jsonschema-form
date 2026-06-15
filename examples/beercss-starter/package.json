@@ -1,7 +1,7 @@
 {
   "name": "beercss-starter",
-  "private": true,
   "version": "0.0.12",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -11,9 +11,9 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "dependencies": {
+    "@sjsf-lab/beercss-theme": "workspace:*",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/form": "workspace:*",
-    "@sjsf-lab/beercss-theme": "workspace:*",
     "ajv": "catalog:",
     "beercss": "catalog:",
     "svelte": "catalog:"

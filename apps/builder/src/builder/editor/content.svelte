@@ -5,7 +5,7 @@
 
   const ctx = getBuilderContext();
   setNodeContext({
-    isDragged: false
+    isDragged: false,
   });
 </script>
 

@@ -2,35 +2,27 @@
   "name": "@sjsf-lab/hyperjump-validator",
   "version": "3.0.0",
   "description": "The @hyperjump/json-schema based validator for svelte-jsonschema-form",
-  "license": "MIT",
   "keywords": [
-    "validator",
+    "hyperjump",
     "jsonschema",
-    "hyperjump"
+    "validator"
   ],
-  "type": "module",
-  "files": [
-    "dist",
-    "!dist/**/*.test.*",
-    "!dist/**/*.spec.*"
-  ],
-  "publishConfig": {
-    "provenance": true
-  },
+  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
     "directory": "lab/hyperjump-validator"
   },
-  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
-  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
-  "scripts": {
-    "test": "vitest run",
-    "build": "tsc && publint",
-    "dev": "tsc --watch"
-  },
-  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "type": "module",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -48,10 +40,16 @@
       "default": "./dist/localizations/*.js"
     }
   },
-  "peerDependencies": {
-    "@fluent/bundle": "^0.19.0",
-    "@hyperjump/json-schema": "^1.17.0",
-    "@sjsf/form": "workspace:^3.5.0"
+  "publishConfig": {
+    "provenance": true
+  },
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc && publint",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@hyperjump/json-schema-errors": "github:hyperjump-io/json-schema-errors#8bda546feeca780ae02c1ebd7247291424ea4a98"
   },
   "devDependencies": {
     "@fluent/bundle": "^0.19.1",
@@ -60,7 +58,9 @@
     "svelte": "catalog:",
     "validator-testing": "workspace:*"
   },
-  "dependencies": {
-    "@hyperjump/json-schema-errors": "github:hyperjump-io/json-schema-errors#8bda546feeca780ae02c1ebd7247291424ea4a98"
+  "peerDependencies": {
+    "@fluent/bundle": "^0.19.0",
+    "@hyperjump/json-schema": "^1.17.0",
+    "@sjsf/form": "workspace:^3.5.0"
   }
 }

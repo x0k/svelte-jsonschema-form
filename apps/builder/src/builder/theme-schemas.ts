@@ -8,7 +8,7 @@ import {
   NodeType,
   type WidgetType,
   type Node,
-  type NodeOverridesMap
+  type NodeOverridesMap,
 } from "meta/builder";
 
 export function themeNodeWidgetSchema(
@@ -55,9 +55,9 @@ export function themeNodeWidgetUiSchema(
   return {
     widget: {
       "ui:options": {
-        enumNames: widget.enum.map((v) => WIDGET_NAMES[v as WidgetType])
-      }
-    }
+        enumNames: widget.enum.map((v) => WIDGET_NAMES[v as WidgetType]),
+      },
+    },
   };
 }
 
@@ -71,6 +71,6 @@ export const THEME_NODE_OVERRIDES: Record<PlaygroundTheme, NodeOverridesMap> = {
   svar: {},
   beercss: {},
   "shadcn-extras": {
-    [NodeType.Tags]: { widget: "shadcnExtrasTagsInputWidget" }
-  }
+    [NodeType.Tags]: { widget: "shadcnExtrasTagsInputWidget" },
+  },
 };

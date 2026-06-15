@@ -19,7 +19,7 @@
   preventPageReload({
     get isChanged() {
       return location.hostname !== "localhost" && ctx.isSaveRequired;
-    }
+    },
   });
 
   const clearLink = new URL(location.href);
@@ -34,7 +34,11 @@
   <a href={clearLink.toString()} class="text-xl font-bold">Form Builder</a>
   <ProjectsDialog class="mr-auto" {ctx} />
   <ProjectsControls {ctx} />
-  <Button variant="ghost" size="icon" href="https://x0k.github.io/svelte-jsonschema-form/">
+  <Button
+    variant="ghost"
+    size="icon"
+    href="https://x0k.github.io/svelte-jsonschema-form/"
+  >
     <OpenBook class="size-6" />
   </Button>
   <Button
@@ -59,7 +63,10 @@
     {/if}
   </Button>
 </div>
-<ConfirmationDialog {...ctx.confirmationDialogOptions} bind:open={ctx.confirmationDialogOpen} />
+<ConfirmationDialog
+  {...ctx.confirmationDialogOptions}
+  bind:open={ctx.confirmationDialogOpen}
+/>
 <GenericProjectDialog
   {...ctx.genericProjectDialogOptions}
   bind:open={ctx.genericProjectDialogOpen}

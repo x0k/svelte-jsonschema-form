@@ -2,36 +2,27 @@
   "name": "@sjsf/zod4-validator",
   "version": "3.6.0",
   "description": "The Zod v4 based validator for svelte-jsonschema-form",
-  "license": "MIT",
   "keywords": [
-    "validator",
     "jsonschema",
+    "validator",
     "zod"
   ],
-  "type": "module",
-  "files": [
-    "dist",
-    "!dist/**/*.test.*",
-    "!dist/**/*.spec.*"
-  ],
-  "publishConfig": {
-    "provenance": true
-  },
+  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
     "directory": "packages/zod4-validator"
   },
-  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
-  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
-  "scripts": {
-    "test": "vitest run",
-    "build": "tsc && publint",
-    "dev": "tsc --watch",
-    "lint": "eslint ."
-  },
-  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "type": "module",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -50,14 +41,23 @@
       "default": "./dist/mini/index.js"
     }
   },
-  "peerDependencies": {
-    "@sjsf/form": "workspace:^3.5.0",
-    "zod": "^4.1.0"
+  "publishConfig": {
+    "provenance": true
+  },
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc && publint",
+    "dev": "tsc --watch",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
-    "zod": "catalog:",
     "svelte": "catalog:",
-    "validator-testing": "workspace:*"
+    "validator-testing": "workspace:*",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "@sjsf/form": "workspace:^3.5.0",
+    "zod": "^4.1.0"
   }
 }

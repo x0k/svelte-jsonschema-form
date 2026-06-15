@@ -18,7 +18,10 @@
 
   import type { ProjectsContext } from "./context.svelte.js";
 
-  const { class: className, ctx }: { class?: ClassNameValue; ctx: ProjectsContext } = $props();
+  const {
+    class: className,
+    ctx,
+  }: { class?: ClassNameValue; ctx: ProjectsContext } = $props();
 
   let open = $state.raw(false);
 
@@ -84,15 +87,21 @@
                     {/snippet}
                   </DropdownMenu.Trigger>
                   <DropdownMenu.Content class="w-36" align="start">
-                    <DropdownMenu.Item onclick={() => ctx.openEditProjectDialog(p)}>
+                    <DropdownMenu.Item
+                      onclick={() => ctx.openEditProjectDialog(p)}
+                    >
                       <Pencil />
                       Edit
                     </DropdownMenu.Item>
-                    <DropdownMenu.Item onclick={() => ctx.openForkProjectDialog(p, closeDialog)}>
+                    <DropdownMenu.Item
+                      onclick={() => ctx.openForkProjectDialog(p, closeDialog)}
+                    >
                       <GitFork />
                       Fork
                     </DropdownMenu.Item>
-                    <DropdownMenu.Item onclick={() => ctx.openExportProjectDialog(p)}>
+                    <DropdownMenu.Item
+                      onclick={() => ctx.openExportProjectDialog(p)}
+                    >
                       <Download />
                       Export
                     </DropdownMenu.Item>

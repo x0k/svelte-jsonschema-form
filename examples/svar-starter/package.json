@@ -1,7 +1,7 @@
 {
   "name": "svar-starter",
-  "private": true,
   "version": "0.0.16",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -10,13 +10,13 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
-  "devDependencies": {},
   "dependencies": {
+    "@sjsf-lab/svar-theme": "workspace:*",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/form": "workspace:*",
-    "@sjsf-lab/svar-theme": "workspace:*",
     "@svar-ui/svelte-core": "catalog:",
     "ajv": "catalog:",
     "svelte": "catalog:"
-  }
+  },
+  "devDependencies": {}
 }

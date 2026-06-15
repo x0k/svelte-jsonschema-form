@@ -18,7 +18,7 @@
     labelId,
     labels,
     itemLabel,
-    class: className
+    class: className,
   }: Props = $props();
 
   const itemsArray = $derived(Array.isArray(items) ? items : Array.from(items));

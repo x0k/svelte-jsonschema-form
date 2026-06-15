@@ -1,7 +1,7 @@
 {
   "name": "flowbite-starter",
-  "private": true,
   "version": "0.0.17",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -10,13 +10,6 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
-  "devDependencies": {
-    "autoprefixer": "catalog:",
-    "flowbite": "catalog:legacy",
-    "svelte": "catalog:",
-    "tailwindcss": "catalog:legacy",
-    "postcss": "catalog:"
-  },
   "dependencies": {
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
@@ -24,5 +17,12 @@
     "@sjsf/form": "workspace:*",
     "ajv": "catalog:",
     "flowbite-svelte": "catalog:legacy"
+  },
+  "devDependencies": {
+    "autoprefixer": "catalog:",
+    "flowbite": "catalog:legacy",
+    "postcss": "catalog:",
+    "svelte": "catalog:",
+    "tailwindcss": "catalog:legacy"
   }
 }

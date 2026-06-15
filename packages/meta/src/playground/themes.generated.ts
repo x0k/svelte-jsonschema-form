@@ -27,7 +27,7 @@ export const basicTheme = extendByRecord(basicBase, {
   multiSelectWidget: basic_multiSelectWidget,
   radioWidget: basic_radioWidget,
   rangeWidget: basic_rangeWidget,
-  textareaWidget: basic_textareaWidget,
+  textareaWidget: basic_textareaWidget
 });
 
 import { theme as daisyui5Base } from "@sjsf/daisyui5-theme";
@@ -56,9 +56,7 @@ import daisyui5_textareaWidget from "@sjsf/daisyui5-theme/extra-widgets/textarea
 import "@sjsf/daisyui5-theme/extra-widgets/textarea.svelte";
 export const daisyui5Theme = extendByRecord(daisyui5Base, {
   ...fields,
-  daisyui5CallyDatePickerWidget: clientOnly(
-    () => import("@sjsf/daisyui5-theme/extra-widgets/cally-date-picker.svelte")
-  ),
+  daisyui5CallyDatePickerWidget: clientOnly(() => import("@sjsf/daisyui5-theme/extra-widgets/cally-date-picker.svelte")),
   checkboxesWidget: daisyui5_checkboxesWidget,
   datePickerWidget: daisyui5_datePickerWidget,
   fileWidget: daisyui5_fileWidget,
@@ -69,7 +67,7 @@ export const daisyui5Theme = extendByRecord(daisyui5Base, {
   rangeWidget: daisyui5_rangeWidget,
   ratingWidget: daisyui5_ratingWidget,
   switchWidget: daisyui5_switchWidget,
-  textareaWidget: daisyui5_textareaWidget,
+  textareaWidget: daisyui5_textareaWidget
 });
 
 import { theme as flowbite3Base } from "@sjsf/flowbite3-theme";
@@ -110,8 +108,7 @@ export const flowbite3Theme = extendByRecord(flowbite3Base, {
   switchWidget: flowbite3_switchWidget,
   tagsWidget: flowbite3_tagsWidget,
   textareaWidget: flowbite3_textareaWidget,
-  flowbite3ToggleRadioButtonsWidget:
-    flowbite3_flowbite3ToggleRadioButtonsWidget,
+  flowbite3ToggleRadioButtonsWidget: flowbite3_flowbite3ToggleRadioButtonsWidget
 });
 
 import { theme as shadcn4Base } from "@sjsf/shadcn4-theme";
@@ -152,7 +149,7 @@ export const shadcn4Theme = extendByRecord(shadcn4Base, {
   rangeSliderWidget: shadcn4_rangeSliderWidget,
   rangeWidget: shadcn4_rangeWidget,
   switchWidget: shadcn4_switchWidget,
-  textareaWidget: shadcn4_textareaWidget,
+  textareaWidget: shadcn4_textareaWidget
 });
 
 import { theme as skeleton4Base } from "@sjsf/skeleton4-theme";
@@ -205,7 +202,7 @@ export const skeleton4Theme = extendByRecord(skeleton4Base, {
   skeleton4SliderWidget: skeleton4_skeleton4SliderWidget,
   switchWidget: skeleton4_switchWidget,
   tagsWidget: skeleton4_tagsWidget,
-  textareaWidget: skeleton4_textareaWidget,
+  textareaWidget: skeleton4_textareaWidget
 });
 
 import { theme as beercssBase } from "@sjsf-lab/beercss-theme";
@@ -231,7 +228,7 @@ export const beercssTheme = extendByRecord(beercssBase, {
   radioWidget: beercss_radioWidget,
   rangeWidget: beercss_rangeWidget,
   switchWidget: beercss_switchWidget,
-  textareaWidget: beercss_textareaWidget,
+  textareaWidget: beercss_textareaWidget
 });
 
 // import { theme as shadcn_extrasBase } from "@sjsf-lab/shadcn-extras-theme";
@@ -252,13 +249,12 @@ import "@sjsf-lab/shadcn-extras-theme/extra-widgets/tags-input.svelte";
 export const shadcn_extrasTheme = extendByRecord(shadcn4Theme, {
   ...fields,
   shadcnExtrasFileDropZoneWidget: shadcn_extras_shadcnExtrasFileDropZoneWidget,
-  shadcnExtrasIPv4AddressInputWidget:
-    shadcn_extras_shadcnExtrasIPv4AddressInputWidget,
+  shadcnExtrasIPv4AddressInputWidget: shadcn_extras_shadcnExtrasIPv4AddressInputWidget,
   shadcnExtrasNLPDateInputWidget: shadcn_extras_shadcnExtrasNLPDateInputWidget,
   shadcnExtrasPasswordWidget: shadcn_extras_shadcnExtrasPasswordWidget,
   shadcnExtrasPhoneInputWidget: shadcn_extras_shadcnExtrasPhoneInputWidget,
   shadcnExtrasStarRatingWidget: shadcn_extras_shadcnExtrasStarRatingWidget,
-  shadcnExtrasTagsInputWidget: shadcn_extras_shadcnExtrasTagsInputWidget,
+  shadcnExtrasTagsInputWidget: shadcn_extras_shadcnExtrasTagsInputWidget
 });
 
 import { theme as svarBase } from "@sjsf-lab/svar-theme";
@@ -299,7 +295,7 @@ export const svarTheme = extendByRecord(svarBase, {
   radioWidget: svar_radioWidget,
   rangeWidget: svar_rangeWidget,
   switchWidget: svar_switchWidget,
-  textareaWidget: svar_textareaWidget,
+  textareaWidget: svar_textareaWidget
 });
 
 // skip "daisyui" theme

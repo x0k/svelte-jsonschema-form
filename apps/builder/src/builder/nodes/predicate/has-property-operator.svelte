@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { getNodeProperties, type HasPropertyOperator } from "$lib/builder/index.js";
+  import {
+    getNodeProperties,
+    type HasPropertyOperator,
+  } from "$lib/builder/index.js";
   import { untrack } from "svelte";
 
   import { getPredicateContext } from "./context.js";

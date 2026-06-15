@@ -42,9 +42,8 @@ export const DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS = {
   >,
 } satisfies BundleStandaloneOptions;
 
-export type CompiledValidator = (
-  data: unknown
-) => // NOTE: The result has been extended to support
+export type CompiledValidator = (data: unknown) =>
+  // NOTE: The result has been extended to support
   // inferred types of precompiled functions
   | { valid: boolean; errors: ValidationError[] }
   | { valid: true; errors: ReadonlyArray<never> };

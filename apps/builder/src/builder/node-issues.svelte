@@ -17,7 +17,7 @@
 
   const data = $derived({
     errors: ctx.errors[node.id],
-    warnings: ctx.warnings[node.id]
+    warnings: ctx.warnings[node.id],
   });
 </script>
 
@@ -29,8 +29,8 @@
         "list-inside list-disc",
         {
           "text-destructive": type === "errors",
-          "text-chart-3": type === "warnings"
-        }
+          "text-chart-3": type === "warnings",
+        },
       ]}
     >
       {#each issues as issue}

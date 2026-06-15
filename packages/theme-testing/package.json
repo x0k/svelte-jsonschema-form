@@ -1,26 +1,9 @@
 {
   "name": "theme-testing",
   "version": "1.0.27",
-  "license": "(MIT AND Apache-2.0)",
   "private": true,
+  "license": "(MIT AND Apache-2.0)",
   "type": "module",
-  "scripts": {
-    "build": "svelte-package && publint",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
-    "lint": "eslint ."
-  },
-  "peerDependencies": {
-    "svelte": "^5.34.8"
-  },
-  "dependencies": {
-    "@sjsf/ajv8-validator": "workspace:*",
-    "@sjsf/form": "workspace:*",
-    "@sveltejs/svelte-json-tree": "^2.2.1",
-    "ajv": "catalog:"
-  },
-  "devDependencies": {
-    "svelte": "catalog:"
-  },
   "exports": {
     "./demo": {
       "types": "./dist/demo/index.d.ts",
@@ -34,5 +17,22 @@
       "types": "./dist/specs/index.d.ts",
       "default": "./dist/specs/index.js"
     }
+  },
+  "scripts": {
+    "build": "svelte-package && publint",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@sjsf/ajv8-validator": "workspace:*",
+    "@sjsf/form": "workspace:*",
+    "@sveltejs/svelte-json-tree": "^2.2.1",
+    "ajv": "catalog:"
+  },
+  "devDependencies": {
+    "svelte": "catalog:"
+  },
+  "peerDependencies": {
+    "svelte": "^5.34.8"
   }
 }

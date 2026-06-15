@@ -6,7 +6,11 @@ import type { CustomizableNodeType } from "$lib/builder/index.js";
 import type { NodeProps } from "../model.js";
 
 import { EnumNode } from "./enum/index.js";
-import { ObjectNode, ObjectPropertyDependencyNode, ObjectPropertyNode } from "./object/index.js";
+import {
+  ObjectNode,
+  ObjectPropertyDependencyNode,
+  ObjectPropertyNode,
+} from "./object/index.js";
 import { OperatorNode, Predicate } from "./predicate/index.js";
 import RangeNode from "./range.svelte";
 import GridNode from "./grid.svelte";
@@ -32,7 +36,7 @@ export const NODES: {
   [NodeType.Boolean]: BasicField,
   [NodeType.File]: BasicField,
   [NodeType.Tags]: BasicField,
-  [NodeType.Range]: RangeNode
+  [NodeType.Range]: RangeNode,
 } satisfies {
   [T in CustomizableNodeType]: NodeComponent<T>;
 } & {

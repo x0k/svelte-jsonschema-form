@@ -14,7 +14,7 @@
     unmount,
     disablePadding,
     showRequired,
-    append = defaultAppend
+    append = defaultAppend,
   }: NodeProps<CustomizableNodeType> & {
     draggable: BuilderDraggable;
     disablePadding?: boolean;
@@ -24,7 +24,9 @@
 
 {#snippet defaultAppend()}
   {#if "widget" in node.options}
-    <span class="text-muted-foreground">{WIDGET_NAMES[node.options.widget as WidgetType]}</span>
+    <span class="text-muted-foreground"
+      >{WIDGET_NAMES[node.options.widget as WidgetType]}</span
+    >
   {/if}
 {/snippet}
 <NodeHeader {draggable} {unmount} {disablePadding} {append}>

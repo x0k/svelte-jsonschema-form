@@ -4,12 +4,17 @@ import type { FormValue, Schema, SchemaValue, UiSchema } from "@sjsf/form";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { DragDropManager, Draggable, Droppable, Feedback } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
-import { iconSetAtRules, isSchemaValidator, renderAtRule, themeOrSubThemeAtRules } from "meta";
+import {
+  iconSetAtRules,
+  isSchemaValidator,
+  renderAtRule,
+  themeOrSubThemeAtRules,
+} from "meta";
 import type {
   FormPreset,
   PlaygroundIconSet,
   PlaygroundResolver,
-  PlaygroundTheme
+  PlaygroundTheme,
 } from "meta/playground";
 import {
   themeCustomizableNodeTypes,
@@ -18,7 +23,7 @@ import {
   type BuilderValidator,
   type WidgetType,
   getUseLabel,
-  type NodeId
+  type NodeId,
 } from "meta/builder";
 
 import {
@@ -41,7 +46,7 @@ import {
   type Scope,
   type SchemaBuilderContext,
   isFileNode,
-  createObjectProperty
+  createObjectProperty,
 } from "$lib/builder/index.js";
 import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 import { highlight, type SupportedLanguage } from "$lib/shiki.js";
@@ -59,17 +64,23 @@ import {
   FILE_FIELD_SINGLE_MODE,
   RADIO_WIDGET_OPTIONS,
   RouteName,
-  TEXT_WIDGET_OPTIONS
+  TEXT_WIDGET_OPTIONS,
 } from "./model.js";
 import type { NodeContext } from "./node-context.js";
 import {
   themeNodeWidgetSchema,
   themeNodeWidgetUiSchema,
-  THEME_NODE_OVERRIDES
+  THEME_NODE_OVERRIDES,
 } from "./theme-schemas.js";
-import { buildFormDefaults, buildFormDotSvelte, buildInstallSh, join } from "./code-builders.js";
+import {
+  buildFormDefaults,
+  buildFormDotSvelte,
+  buildInstallSh,
+  join,
+} from "./code-builders.js";
 
-export const [getBuilderContext, setBuilderContext] = createContext<BuilderContext>();
+export const [getBuilderContext, setBuilderContext] =
+  createContext<BuilderContext>();
 
 type UniqueId = string | number;
 
@@ -124,16 +135,18 @@ const noopNodeRef: NodeRef = {
   current() {
     return undefined;
   },
-  update() {}
+  update() {},
 };
 const noopReadonlyNodeRef: ReadonlyNodeRef = {
-  current: undefined
+  current: undefined,
 };
 
 export class BuilderContext {
-  #dnd = new DragDropManager({ plugins: [Feedback.configure({ dropAnimation: null })] });
+  #dnd = new DragDropManager({
+    plugins: [Feedback.configure({ dropAnimation: null })],
+  });
   #validator = createFormValidator({
-    ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv))
+    ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv)),
   });
 
   #sourceId = $state.raw<UniqueId>();
@@ -170,8 +183,12 @@ export class BuilderContext {
   icons = $state.raw<PlaygroundIconSet>("none");
   validator = $state.raw<BuilderValidator>("ajv8");
 
-  readonly availableCustomizableNodeTypes = $derived(themeCustomizableNodeTypes(this.theme));
-  readonly availableRangeValueTypes = $derived(themeRangeValueTypes(this.theme));
+  readonly availableCustomizableNodeTypes = $derived(
+    themeCustomizableNodeTypes(this.theme)
+  );
+  readonly availableRangeValueTypes = $derived(
+    themeRangeValueTypes(this.theme)
+  );
 
   get isDragged() {
     return this.#sourceId !== undefined;
@@ -232,7 +249,9 @@ export class BuilderContext {
     | undefined
   >(undefined);
 
-  readonly schema: Schema = $derived(this.#buildOutput?.schema ?? { type: "object" });
+  readonly schema: Schema = $derived(
+    this.#buildOutput?.schema ?? { type: "object" }
+  );
   #uiSchemaOutput = $derived.by(() => {
     this.#buildOutput; // includes rootNode
     this.theme;
@@ -292,7 +311,7 @@ export class BuilderContext {
                 }
               }
               return {};
-            }
+            },
           },
           this.rootNode
         );
@@ -311,7 +330,7 @@ export class BuilderContext {
         schema: this.schema,
         uiSchema: this.uiSchema,
         validator: this.validator,
-        html5Validation: this.html5Validation
+        html5Validation: this.html5Validation,
       })
     )
   );
@@ -324,25 +343,30 @@ export class BuilderContext {
         resolver: this.resolver,
         theme: this.theme,
         icons: this.icons,
-        validator: this.validator
+        validator: this.validator,
       })
     )
   );
   readonly appCss = $derived.by(() => {
     const rules = themeOrSubThemeAtRules(this.theme, {
       nodeModulesPath: "../node_modules",
-      sandbox: false
+      sandbox: false,
     }).map(renderAtRule);
     if (this.icons !== "none") {
       rules.push(
-        ...iconSetAtRules(this.icons, { nodeModulesPath: "../node_modules", sandbox: false }).map(
-          renderAtRule
-        )
+        ...iconSetAtRules(this.icons, {
+          nodeModulesPath: "../node_modules",
+          sandbox: false,
+        }).map(renderAtRule)
       );
     }
     const content = join(...rules);
     return (
-      content && this.highlight("css", `/* Add these lines to the app.css file */\n${content}`)
+      content &&
+      this.highlight(
+        "css",
+        `/* Add these lines to the app.css file */\n${content}`
+      )
     );
   });
   readonly installSh = $derived(
@@ -352,7 +376,7 @@ export class BuilderContext {
         widgets: this.#uiSchemaOutput.widgets,
         theme: this.theme,
         icons: this.icons,
-        validator: this.validator
+        validator: this.validator,
       })
     )
   );
@@ -364,43 +388,53 @@ export class BuilderContext {
     const overrides = THEME_NODE_OVERRIDES[this.theme];
     const obj = createNode(NodeType.Object, overrides) as ObjectNode;
     obj.options.title = "Form title";
-    obj.properties.push(createObjectProperty(createNode(NodeType.String, overrides)));
+    obj.properties.push(
+      createObjectProperty(createNode(NodeType.String, overrides))
+    );
     this.rootNode = obj;
-    this.#dnd.monitor.addEventListener("beforedragstart", ({ operation: { source } }) => {
-      if (source === null) {
-        return;
+    this.#dnd.monitor.addEventListener(
+      "beforedragstart",
+      ({ operation: { source } }) => {
+        if (source === null) {
+          return;
+        }
+        const { id, data } = source;
+        this.#sourceId = id;
+        if (id !== undefined) {
+          this.#onDragStartHandlers.get(id)?.();
+          this.#draggedNode = data.node;
+        }
       }
-      const { id, data } = source;
-      this.#sourceId = id;
-      if (id !== undefined) {
-        this.#onDragStartHandlers.get(id)?.();
-        this.#draggedNode = data.node;
-      }
-    });
+    );
     this.#dnd.monitor.addEventListener("dragover", (event) => {
       this.#targetId = event.operation.target?.id;
     });
-    this.#dnd.monitor.addEventListener("dragend", ({ operation: { target, source } }) => {
-      this.#sourceId = undefined;
-      this.#targetId = undefined;
-      this.#draggedNode = undefined;
-      const tId = target?.id;
-      if (tId === undefined || source === null) {
-        return;
+    this.#dnd.monitor.addEventListener(
+      "dragend",
+      ({ operation: { target, source } }) => {
+        this.#sourceId = undefined;
+        this.#targetId = undefined;
+        this.#draggedNode = undefined;
+        const tId = target?.id;
+        if (tId === undefined || source === null) {
+          return;
+        }
+        const { id: sId, data } = source;
+        this.#beforeDropHandlers.get(sId)?.();
+        const handler = this.#dropHandlers.get(tId);
+        flushSync(() => {
+          handler?.(data.node);
+        });
       }
-      const { id: sId, data } = source;
-      this.#beforeDropHandlers.get(sId)?.();
-      const handler = this.#dropHandlers.get(tId);
-      flushSync(() => {
-        handler?.(data.node);
-      });
-    });
+    );
 
     let cId: number;
     let lastSnap: SchemaValue | undefined;
     const queueTask = window.requestIdleCallback ?? setTimeout;
     //@ts-expect-error Safari
-    const cancelTask = window.requestIdleCallback ? cancelIdleCallback : clearTimeout;
+    const cancelTask = window.requestIdleCallback
+      ? cancelIdleCallback
+      : clearTimeout;
     $effect(() => {
       if (!this.livePreview) {
         return;
@@ -408,7 +442,7 @@ export class BuilderContext {
       const snap = $state.snapshot({
         theme: this.theme,
         ignoreWarnings: this.ignoreWarnings,
-        rootNode: this.rootNode
+        rootNode: this.rootNode,
       });
       if (isSchemaValueDeepEqual(lastSnap, snap)) {
         return;
@@ -440,7 +474,7 @@ export class BuilderContext {
       route: this.route,
       theme: this.theme,
       validator: this.validator,
-      html5Validation: this.html5Validation
+      html5Validation: this.html5Validation,
     });
   }
 
@@ -453,18 +487,21 @@ export class BuilderContext {
       theme: this.theme,
       resolver: this.resolver,
       icons: this.icons,
-      html5Validation: this.html5Validation
+      html5Validation: this.html5Validation,
     };
   }
 
-  createDroppable<N extends Node>(nodeCtx: NodeContext, options: DroppableOptions<N>) {
+  createDroppable<N extends Node>(
+    nodeCtx: NodeContext,
+    options: DroppableOptions<N>
+  ) {
     const id = crypto.randomUUID();
     const droppable = new Droppable<DndData>(
       {
         id,
         accept(source) {
           return options.accept(source.data.node);
-        }
+        },
       },
       this.#dnd
     );
@@ -483,7 +520,9 @@ export class BuilderContext {
     const self = this;
     return {
       get isReady() {
-        return self.#draggedNode === undefined || options.accept(self.#draggedNode);
+        return (
+          self.#draggedNode === undefined || options.accept(self.#draggedNode)
+        );
       },
       get isOver() {
         return self.#targetId === id;
@@ -493,7 +532,7 @@ export class BuilderContext {
         return () => {
           droppable.element = undefined;
         };
-      }
+      },
     };
   }
 
@@ -505,10 +544,10 @@ export class BuilderContext {
         data: {
           get node() {
             return nodeSnapshot;
-          }
+          },
         },
         plugins: [Feedback.configure({ feedback: "clone" })],
-        id
+        id,
       },
       this.#dnd
     );
@@ -537,7 +576,7 @@ export class BuilderContext {
         return () => {
           draggable.handle = undefined;
         };
-      }
+      },
     };
   }
 
@@ -553,11 +592,11 @@ export class BuilderContext {
         "ui:options": {
           layouts: {
             "object-property": {
-              hidden: !this.#showRequired
-            }
-          }
-        }
-      }
+              hidden: !this.#showRequired,
+            },
+          },
+        },
+      },
     });
     const augmentation = themeNodeWidgetUiSchema(this.theme, node.type, node);
     return augmentation ? mergeUiSchemas(next, augmentation as UiSchema) : next;
@@ -568,7 +607,9 @@ export class BuilderContext {
       {
         operatorStatus: (operator) =>
           (this._errors[operator.id] === undefined ? OK_STATUS : ERROR_STATUS) |
-          (this._warnings[operator.id] === undefined ? OK_STATUS : WARNING_STATUS)
+          (this._warnings[operator.id] === undefined
+            ? OK_STATUS
+            : WARNING_STATUS),
       },
       operator,
       node
@@ -584,7 +625,7 @@ export class BuilderContext {
     } = {
       complementary: [],
       affectedNode: [],
-      enumValueType: []
+      enumValueType: [],
     };
     const errors: NodeIssue[] = [];
     const warnings: NodeIssue[] = [];
@@ -593,7 +634,10 @@ export class BuilderContext {
       {
         validateCustomizableNodeOptions(node) {
           const schema = self.nodeSchema(node);
-          const result = self.#validator.validateFormValue(schema, node.options as FormValue);
+          const result = self.#validator.validateFormValue(
+            schema,
+            node.options as FormValue
+          );
           if (result.errors) {
             errors.push({ nodeId: node.id, message: "Invalid field options" });
             console.error(result.errors);
@@ -614,18 +658,20 @@ export class BuilderContext {
           return {
             [Symbol.dispose]: () => {
               registries[registry].pop();
-            }
+            },
           };
         },
         peek(registry) {
           return registries[registry].at(-1);
-        }
+        },
       },
       this.rootNode
     );
     this.setIssues("errors", errors);
     this.setIssues("warnings", warnings);
-    return errors.length === 0 && (this.ignoreWarnings || warnings.length === 0);
+    return (
+      errors.length === 0 && (this.ignoreWarnings || warnings.length === 0)
+    );
   }
 
   build() {
@@ -636,7 +682,7 @@ export class BuilderContext {
       [K in keyof SchemaBuilderRegistries]: Array<SchemaBuilderRegistries[K]>;
     } = {
       scope: [],
-      affectedNode: []
+      affectedNode: [],
     };
     const propertyNames = new Map<NodeId, string>();
     const ctx: SchemaBuilderContext = {
@@ -650,7 +696,7 @@ export class BuilderContext {
             counter.set(str, count + 1);
             propertyNames.set(id, v);
             return v;
-          }
+          },
         };
         return Object.assign(scope, ctx.push("scope", scope));
       },
@@ -659,17 +705,17 @@ export class BuilderContext {
         return {
           [Symbol.dispose]() {
             registries[registry].pop();
-          }
+          },
         };
       },
       peek(registry) {
         return registries[registry].at(-1);
-      }
+      },
     };
     const schema = buildSchema(ctx, this.rootNode);
     this.#buildOutput = {
       propertyNames,
-      schema
+      schema,
     };
   }
 

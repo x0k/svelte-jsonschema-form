@@ -4,7 +4,7 @@
   import {
     type Node,
     isCustomizableOrPropertyNode,
-    isObjectPropertyNode
+    isObjectPropertyNode,
   } from "$lib/builder/index.js";
 
   import { getBuilderContext, type NodeRef } from "./context.svelte.js";
@@ -18,7 +18,11 @@
     showRequired: boolean;
   }
 
-  let { node = $bindable(), placeholder = defaultPlaceholder, showRequired }: Props = $props();
+  let {
+    node = $bindable(),
+    placeholder = defaultPlaceholder,
+    showRequired,
+  }: Props = $props();
 
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
@@ -28,7 +32,7 @@
     },
     update(n) {
       node = n;
-    }
+    },
   };
 </script>
 
@@ -40,7 +44,7 @@
     onDrop(newNode) {
       node = isObjectPropertyNode(newNode) ? newNode.property : newNode;
       ctx.selectNode(nodeRef, showRequired);
-    }
+    },
   })}
   <DropZone {placeholder} {droppable} />
 {/if}

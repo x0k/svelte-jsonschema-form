@@ -10,7 +10,7 @@
     children,
     unmount,
     append,
-    disablePadding
+    disablePadding,
   }: {
     unmount: () => void;
     draggable: BuilderDraggable;

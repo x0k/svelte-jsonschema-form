@@ -12,7 +12,7 @@
 <div
   class={[
     "mx-auto grid gap-6",
-    ctx.livePreview ? "grid-cols-[1fr_3fr_3fr_2fr]" : "grid-cols-[1fr_6fr_2fr]"
+    ctx.livePreview ? "grid-cols-[1fr_3fr_3fr_2fr]" : "grid-cols-[1fr_6fr_2fr]",
   ]}
 >
   <div

@@ -50,7 +50,7 @@
     },
     get orientation() {
       return orientation;
-    }
+    },
   });
 </script>
 

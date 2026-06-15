@@ -18,5 +18,5 @@ export {
   Button as InputGroupButton,
   Input as InputGroupInput,
   Text as InputGroupText,
-  Textarea as InputGroupTextarea
+  Textarea as InputGroupTextarea,
 };

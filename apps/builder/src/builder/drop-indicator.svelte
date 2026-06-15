@@ -1,7 +1,10 @@
 <script lang="ts" generics="N extends Node">
   import type { Node } from "$lib/builder/index.js";
 
-  import { getBuilderContext, type DroppableOptions } from "./context.svelte.js";
+  import {
+    getBuilderContext,
+    type DroppableOptions,
+  } from "./context.svelte.js";
   import { getNodeContext } from "./node-context.js";
 
   const options: DroppableOptions<N> = $props();

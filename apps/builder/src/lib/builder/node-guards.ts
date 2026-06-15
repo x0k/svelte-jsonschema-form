@@ -7,7 +7,7 @@ import {
   S_OPERATORS_SET,
   COMPARISON_OPERATORS_SET,
   type AbstractOperator,
-  type AbstractNode
+  type AbstractNode,
 } from "meta/builder";
 
 import {
@@ -19,7 +19,7 @@ import {
   type Operator,
   type OperatorNode,
   type SOperator,
-  type UOperator
+  type UOperator,
 } from "./node.js";
 
 export function isUOperator(node: Operator): node is UOperator {
@@ -34,7 +34,9 @@ export function isSOperator(node: Operator): node is SOperator {
   return S_OPERATORS_SET.has(node.op);
 }
 
-export function isComparisonOperator(node: Operator): node is ComparisonOperator {
+export function isComparisonOperator(
+  node: Operator
+): node is ComparisonOperator {
   return COMPARISON_OPERATORS_SET.has(node.op);
 }
 
@@ -51,11 +53,15 @@ export const isPatternOperator = createOperatorGuard(OperatorType.Pattern);
 
 export const isContainsOperator = createOperatorGuard(OperatorType.Contains);
 
-export const isUniqueItemsOperator = createOperatorGuard(OperatorType.UniqueItems);
+export const isUniqueItemsOperator = createOperatorGuard(
+  OperatorType.UniqueItems
+);
 
 export const isPropertyOperator = createOperatorGuard(OperatorType.Property);
 
-export const isHasPropertyOperator = createOperatorGuard(OperatorType.HasProperty);
+export const isHasPropertyOperator = createOperatorGuard(
+  OperatorType.HasProperty
+);
 
 export const isCustomizableNode = (node: Node): node is CustomizableNode =>
   node.type in CUSTOMIZABLE_TYPE_TITLES;
@@ -77,7 +83,9 @@ export const isOperatorNode = createNodeGuard(NodeType.Operator);
 
 export const isObjectPropertyNode = createNodeGuard(NodeType.ObjectProperty);
 
-export const isObjectPropertyDependencyNode = createNodeGuard(NodeType.ObjectPropertyDependency);
+export const isObjectPropertyDependencyNode = createNodeGuard(
+  NodeType.ObjectPropertyDependency
+);
 
 export const isCustomizableOrPropertyNode = (
   node: Node

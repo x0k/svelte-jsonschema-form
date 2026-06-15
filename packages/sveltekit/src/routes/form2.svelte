@@ -27,7 +27,7 @@
       },
     },
     onSubmitError: console.warn,
-    validator: <T,>(options: ValidatorFactoryOptions) =>
+    validator: <T>(options: ValidatorFactoryOptions) =>
       Object.assign(
         defaults.validator<T>(options),
         createAdditionalPropertyKeyValidator({

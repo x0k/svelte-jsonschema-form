@@ -1,8 +1,8 @@
 {
   "name": "docs2",
+  "version": "1.16.2",
   "private": true,
   "type": "module",
-  "version": "1.16.2",
   "scripts": {
     "dev": "astro dev",
     "generate-demos": "node scripts/generate-demos.ts",

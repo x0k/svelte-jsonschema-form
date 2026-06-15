@@ -4,7 +4,7 @@
   import {
     createRangeNode,
     RANGE_VALUE_TYPE_TITLES,
-    RANGE_VALUE_TYPES
+    RANGE_VALUE_TYPES,
   } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../model.js";
@@ -20,20 +20,30 @@
     node = $bindable(),
     draggable,
     unmount,
-    showRequired
+    showRequired,
   }: NodeProps<NodeType.Range> = $props();
 
   const ctx = getBuilderContext();
 </script>
 
-<NodeContainer bind:node {draggable} {showRequired} class="flex flex-col gap-0.5">
+<NodeContainer
+  bind:node
+  {draggable}
+  {showRequired}
+  class="flex flex-col gap-0.5"
+>
   <NodeHeader {node} {draggable} {unmount} {showRequired} disablePadding>
     {#snippet append()}
       <ValueTypeSelect
         bind:value={
           () => node.valueType,
           (t) => {
-            node = createRangeNode(node.id, t, node.options, THEME_NODE_OVERRIDES[ctx.theme]);
+            node = createRangeNode(
+              node.id,
+              t,
+              node.options,
+              THEME_NODE_OVERRIDES[ctx.theme]
+            );
           }
         }
         items={ctx.availableRangeValueTypes}

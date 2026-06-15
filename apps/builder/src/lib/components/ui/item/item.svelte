@@ -7,18 +7,18 @@
       variant: {
         default: "border-transparent",
         outline: "border-border",
-        muted: "bg-muted/50 border-transparent"
+        muted: "bg-muted/50 border-transparent",
       },
       size: {
         default: "gap-3.5 px-4 py-3.5",
         sm: "gap-2.5 px-3 py-2.5",
-        xs: "gap-2 px-2.5 py-2 in-data-[slot=dropdown-menu-content]:p-0"
-      }
+        xs: "gap-2 px-2.5 py-2 in-data-[slot=dropdown-menu-content]:p-0",
+      },
     },
     defaultVariants: {
       variant: "default",
-      size: "default"
-    }
+      size: "default",
+    },
   });
 
   export type ItemSize = VariantProps<typeof itemVariants>["size"];
@@ -48,7 +48,7 @@
     "data-slot": "item",
     "data-variant": variant,
     "data-size": size,
-    ...restProps
+    ...restProps,
   });
 </script>
 

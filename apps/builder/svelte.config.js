@@ -10,8 +10,10 @@ export default {
     dynamicCompileOptions({ filename }) {
       return {
         runes: true,
-        css: injectedCss.some((i) => filename.includes(i)) ? "injected" : "external"
+        css: injectedCss.some((i) => filename.includes(i))
+          ? "injected"
+          : "external",
       };
-    }
-  }
+    },
+  },
 };

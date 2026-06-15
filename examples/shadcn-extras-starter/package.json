@@ -1,7 +1,7 @@
 {
   "name": "shadcn-extras-starter",
-  "private": true,
   "version": "0.0.16",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -9,15 +9,6 @@
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
-  },
-  "devDependencies": {
-    "@tailwindcss/vite": "catalog:",
-    "svelte": "catalog:",
-    "tailwind-merge": "catalog:shadcn",
-    "tailwind-variants": "catalog:shadcn",
-    "tailwindcss": "catalog:",
-    "tw-animate-css": "catalog:shadcn",
-    "vite": "catalog:"
   },
   "dependencies": {
     "@sjsf-lab/shadcn-extras-theme": "workspace:*",
@@ -27,14 +18,23 @@
     "@sjsf/shadcn4-theme": "workspace:*",
     "@zxcvbn-ts/core": "catalog:shadcn",
     "@zxcvbn-ts/language-common": "catalog:shadcn",
+    "@zxcvbn-ts/language-en": "catalog:shadcn",
     "ajv": "catalog:",
     "bits-ui": "catalog:",
     "clsx": "catalog:shadcn",
-    "@zxcvbn-ts/language-en": "catalog:shadcn",
     "country-flag-icons": "catalog:shadcn",
     "runed": "catalog:shadcn",
     "svelte-tel-input": "catalog:shadcn",
     "svelte-toolbelt": "catalog:shadcn",
     "yeezy-dates": "catalog:shadcn"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "catalog:",
+    "svelte": "catalog:",
+    "tailwind-merge": "catalog:shadcn",
+    "tailwind-variants": "catalog:shadcn",
+    "tailwindcss": "catalog:",
+    "tw-animate-css": "catalog:shadcn",
+    "vite": "catalog:"
   }
 }

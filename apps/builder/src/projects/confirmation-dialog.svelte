@@ -12,10 +12,11 @@
     onConfirm: () => void;
   }
 
-  export const DEFAULT_CONFIRMATION_DIALOG_OPTIONS: ConfirmationDialogOptions = {
-    title: "",
-    onConfirm: noop
-  };
+  export const DEFAULT_CONFIRMATION_DIALOG_OPTIONS: ConfirmationDialogOptions =
+    {
+      title: "",
+      onConfirm: noop,
+    };
 </script>
 
 <script lang="ts">
@@ -28,7 +29,7 @@
     description,
     onConfirm,
     confirm = "Confirm",
-    variant = "default"
+    variant = "default",
   }: ConfirmationDialogOptions = $props();
 </script>
 

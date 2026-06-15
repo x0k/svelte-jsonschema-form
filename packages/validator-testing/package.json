@@ -1,16 +1,19 @@
 {
   "name": "validator-testing",
   "version": "1.0.27",
-  "license": "(MIT AND Apache-2.0)",
   "private": true,
+  "license": "(MIT AND Apache-2.0)",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint ."
-  },
-  "peerDependencies": {
-    "svelte": "^5.34.8"
   },
   "dependencies": {
     "@sjsf/form": "workspace:*"
@@ -18,10 +21,7 @@
   "devDependencies": {
     "svelte": "catalog:"
   },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
+  "peerDependencies": {
+    "svelte": "^5.34.8"
   }
 }

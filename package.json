@@ -1,11 +1,10 @@
 {
   "name": "svelte-jsonschema-form",
-  "private": true,
-  "author": "Krasilnikov Roman",
-  "license": "MIT",
-  "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@11.6.0",
+  "private": true,
+  "license": "MIT",
+  "author": "Krasilnikov Roman",
+  "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "check": "turbo run check",
@@ -15,8 +14,8 @@
     "preview": "turbo run preview",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint -- --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "ci:build": "turbo run build test",
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile && pnpm --filter @sjsf/sv run test -u"
   },
@@ -40,10 +39,8 @@
     "eslint-plugin-svelte": "^3.19.0",
     "globals": "catalog:",
     "only-allow": "^1.2.2",
+    "oxfmt": "^0.54.0",
     "playwright": "catalog:",
-    "prettier": "^3.8.4",
-    "prettier-plugin-svelte": "^4.1.0",
-    "prettier-plugin-tailwindcss": "^0.8.0",
     "publint": "^0.3.21",
     "svelte-check": "^4.6.0",
     "turbo": "^2.9.17",
@@ -53,5 +50,6 @@
     "vite-plugin-devtools-json": "^1.0.0",
     "vitest": "catalog:",
     "vitest-browser-svelte": "^2.1.1"
-  }
+  },
+  "packageManager": "pnpm@11.6.0"
 }

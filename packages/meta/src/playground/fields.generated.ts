@@ -43,5 +43,5 @@ export const fields = {
   objectKeyEnumField,
   remoteEnumField,
   tagsField,
-  unknownNativeFileField,
-} as const;
+  unknownNativeFileField
+} as const

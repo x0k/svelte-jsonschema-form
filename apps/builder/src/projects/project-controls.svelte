@@ -36,11 +36,15 @@
     <DropdownMenu.Root>
       <DropdownMenu.Trigger child={downButton} />
       <DropdownMenu.Content class="w-36" align="end">
-        <DropdownMenu.Item onclick={() => ctx.openEditProjectDialog(currentProject)}>
+        <DropdownMenu.Item
+          onclick={() => ctx.openEditProjectDialog(currentProject)}
+        >
           <Pencil />
           Edit
         </DropdownMenu.Item>
-        <DropdownMenu.Item onclick={() => ctx.openForkProjectDialog(currentProject)}>
+        <DropdownMenu.Item
+          onclick={() => ctx.openForkProjectDialog(currentProject)}
+        >
           <GitFork />
           Fork
         </DropdownMenu.Item>

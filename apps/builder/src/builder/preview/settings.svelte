@@ -4,10 +4,14 @@
     playgroundIconSets,
     playgroundIconSetTitle,
     playgroundResolvers,
-    playgroundThemes
+    playgroundThemes,
   } from "meta/playground";
   import { builderValidators, builderValidatorTitle } from "meta/builder";
-  import { SANDBOX_PLATFORMS, sandboxPlatformLabel, sandboxPlatformIcon } from "meta/sandbox";
+  import {
+    SANDBOX_PLATFORMS,
+    sandboxPlatformLabel,
+    sandboxPlatformIcon,
+  } from "meta/sandbox";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import ExternalLink from "@lucide/svelte/icons/external-link";
   import Download from "@lucide/svelte/icons/download";
@@ -133,7 +137,7 @@
                   resolver: ctx.resolver,
                   icons: ctx.icons,
                   widgets: ctx.uiSchemaWidgets,
-                  fileFieldMode: ctx.uiSchemaFileFieldMode
+                  fileFieldMode: ctx.uiSchemaFileFieldMode,
                 })}
             >
               {sandboxPlatformLabel(platform)}

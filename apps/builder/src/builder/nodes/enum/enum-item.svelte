@@ -13,7 +13,7 @@
     node = $bindable(),
     draggable,
     unmount,
-    toValue
+    toValue,
   }: NodeProps<NodeType.EnumItem> & {
     toValue: (v: string) => string;
   } = $props();

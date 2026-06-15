@@ -15,5 +15,5 @@ export {
   Content as TooltipContent,
   Trigger as TooltipTrigger,
   Provider as TooltipProvider,
-  Portal as TooltipPortal
+  Portal as TooltipPortal,
 };

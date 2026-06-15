@@ -7,19 +7,27 @@ import {
   createJSONBlob,
   JSON_FILE_EXTENSION,
   JSON_MIME_TYPE,
-  parseJSONBlob
+  parseJSONBlob,
 } from "$lib/file.js";
 import { decodeJson } from "$lib/url.js";
 
-import type { BuilderContext, BuilderState } from "../builder/context.svelte.js";
-import { type CreateProject, type Project, type ProjectId, type ProjectMeta } from "./model.js";
+import type {
+  BuilderContext,
+  BuilderState,
+} from "../builder/context.svelte.js";
+import {
+  type CreateProject,
+  type Project,
+  type ProjectId,
+  type ProjectMeta,
+} from "./model.js";
 import {
   DEFAULT_GENERIC_PROJECT_DIALOG_OPTIONS,
-  type GenericProjectDialogOptions
+  type GenericProjectDialogOptions,
 } from "./generic-project-dialog.svelte";
 import {
   DEFAULT_CONFIRMATION_DIALOG_OPTIONS,
-  type ConfirmationDialogOptions
+  type ConfirmationDialogOptions,
 } from "./confirmation-dialog.svelte";
 
 export interface ProjectsRepository<S> {
@@ -75,22 +83,31 @@ export class ProjectsContext {
     return this.#genericProjectDialogOptions !== undefined;
   }
   set genericProjectDialogOpen(v) {
-    this.#genericProjectDialogOptions = v ? DEFAULT_GENERIC_PROJECT_DIALOG_OPTIONS : undefined;
+    this.#genericProjectDialogOptions = v
+      ? DEFAULT_GENERIC_PROJECT_DIALOG_OPTIONS
+      : undefined;
   }
 
   get genericProjectDialogOptions() {
-    return this.#genericProjectDialogOptions ?? DEFAULT_GENERIC_PROJECT_DIALOG_OPTIONS;
+    return (
+      this.#genericProjectDialogOptions ??
+      DEFAULT_GENERIC_PROJECT_DIALOG_OPTIONS
+    );
   }
 
   get confirmationDialogOpen() {
     return this.#confirmationDialogOptions !== undefined;
   }
   set confirmationDialogOpen(v) {
-    this.#confirmationDialogOptions = v ? DEFAULT_CONFIRMATION_DIALOG_OPTIONS : undefined;
+    this.#confirmationDialogOptions = v
+      ? DEFAULT_CONFIRMATION_DIALOG_OPTIONS
+      : undefined;
   }
 
   get confirmationDialogOptions() {
-    return this.#confirmationDialogOptions ?? DEFAULT_CONFIRMATION_DIALOG_OPTIONS;
+    return (
+      this.#confirmationDialogOptions ?? DEFAULT_CONFIRMATION_DIALOG_OPTIONS
+    );
   }
 
   init(hash: string) {
@@ -137,9 +154,10 @@ export class ProjectsContext {
     if (this.isSaveRequired) {
       this.#confirmationDialogOptions = {
         title: "Open Form Without Saving",
-        description: "You have an unsaved state. Are you sure you want to continue?",
+        description:
+          "You have an unsaved state. Are you sure you want to continue?",
         variant: "warn",
-        onConfirm: openProject
+        onConfirm: openProject,
       };
       return;
     }
@@ -168,7 +186,7 @@ export class ProjectsContext {
           }
         );
       },
-      validateProjectName: this.#validateProjectName
+      validateProjectName: this.#validateProjectName,
     };
   }
 
@@ -190,7 +208,7 @@ export class ProjectsContext {
               console.error(err);
             }
           );
-        }
+        },
       };
     };
     if (this.isSaveRequired) {
@@ -199,7 +217,7 @@ export class ProjectsContext {
         description:
           "You have unsaved changes. If you continue, your current progress will be lost. Do you want to proceed with forking this form anyway?",
         variant: "warn",
-        onConfirm: forkProject
+        onConfirm: forkProject,
       };
       return;
     }
@@ -223,7 +241,7 @@ export class ProjectsContext {
         title: "Confirm Export Without Latest changes",
         description:
           "You have unsaved changes. If you continue, you current progress will not be exported. Do you want to proceed without saving anyway?",
-        onConfirm: exportProject
+        onConfirm: exportProject,
       };
       return;
     }
@@ -251,7 +269,7 @@ export class ProjectsContext {
             console.error(err);
           }
         );
-      }
+      },
     };
   }
 
@@ -264,7 +282,7 @@ export class ProjectsContext {
       onConfirm: () => {
         // WARN: Snapshot is required
         this.importState($state.snapshot(project.state));
-      }
+      },
     };
   }
 
@@ -276,7 +294,7 @@ export class ProjectsContext {
         this.projectsRepository
           .createProject({
             title,
-            state: this.#builderState
+            state: this.#builderState,
           })
           .then(
             (created) => {
@@ -289,7 +307,7 @@ export class ProjectsContext {
             }
           );
       },
-      validateProjectName: this.#validateProjectName
+      validateProjectName: this.#validateProjectName,
     };
   }
 
@@ -302,12 +320,12 @@ export class ProjectsContext {
           try {
             const blob = await blobOpen({
               extensions: [JSON_FILE_EXTENSION],
-              mimeTypes: [JSON_MIME_TYPE]
+              mimeTypes: [JSON_MIME_TYPE],
             });
             const state = await parseJSONBlob<BuilderState>(blob);
             const created = await this.projectsRepository.createProject({
               title,
-              state
+              state,
             });
             this.appendProject(created);
             this.#closeGenericDialog();
@@ -316,7 +334,7 @@ export class ProjectsContext {
             console.error(err);
           }
         },
-        validateProjectName: this.#validateProjectName
+        validateProjectName: this.#validateProjectName,
       };
     };
     if (this.isSaveRequired) {
@@ -325,7 +343,7 @@ export class ProjectsContext {
         description:
           "You have unsaved changes. If you continue, your current progress will be lost. Do you want to proceed import anyway?",
         variant: "warn",
-        onConfirm: importProject
+        onConfirm: importProject,
       };
       return;
     }
@@ -367,7 +385,7 @@ export class ProjectsContext {
       this.#confirmationDialogOptions = {
         title: "Export Unsaved State",
         description: "Are you sure you want to export an unsaved state?",
-        onConfirm: exportState
+        onConfirm: exportState,
       };
       return;
     }
@@ -377,7 +395,7 @@ export class ProjectsContext {
   private importState(state: BuilderState) {
     this.builder.importState({
       ...state,
-      livePreview: "livePreview" in state ? state.livePreview : true
+      livePreview: "livePreview" in state ? state.livePreview : true,
     });
   }
 

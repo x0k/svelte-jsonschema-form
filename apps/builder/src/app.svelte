@@ -22,24 +22,30 @@
       upgrade(db, oldVersion) {
         if (oldVersion < 1) {
           const projects = db.createObjectStore("projects", {
-            keyPath: "id"
+            keyPath: "id",
           });
           projects.createIndex("titleIndex", "title", { unique: true });
           projects.createIndex("updatedAtIndex", "updatedAt");
         }
-      }
-    })
+      },
+    }),
   ]);
 </script>
 
 <Toaster richColors theme={themeManager.theme} />
 <TooltipProvider delayDuration={0}>
-  <div class="min-h-screen bg-background dark:scheme-dark" style="--header-height: 60px;">
+  <div
+    class="min-h-screen bg-background dark:scheme-dark"
+    style="--header-height: 60px;"
+  >
     {#await promises}
       <p>Loading...</p>
     {:then [highlighter, db]}
       {@const builder = new BuilderContext(highlighter)}
-      {@const projects = new ProjectsContext(builder, new IDBProjectsRepository(db))}
+      {@const projects = new ProjectsContext(
+        builder,
+        new IDBProjectsRepository(db)
+      )}
       <div class="sticky top-0 z-50 bg-background">
         <Header ctx={projects} />
       </div>

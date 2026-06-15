@@ -1,5 +1,4 @@
 import { defineConfig } from "jsrepo";
-import prettier from "@jsrepo/transform-prettier";
 
 export default defineConfig({
   registries: ["@ieedan/shadcn-svelte-extras"],
@@ -10,5 +9,4 @@ export default defineConfig({
     util: "$lib/utils",
     lib: "$lib",
   },
-  transforms: [prettier()],
 });

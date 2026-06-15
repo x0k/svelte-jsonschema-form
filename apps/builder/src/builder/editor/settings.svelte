@@ -2,7 +2,11 @@
   import CircleX from "@lucide/svelte/icons/circle-x";
   import CircleAlert from "@lucide/svelte/icons/circle-alert";
   import { themeOrSubThemeTitle } from "meta";
-  import { playgroundIconSets, playgroundIconSetTitle, playgroundThemes } from "meta/playground";
+  import {
+    playgroundIconSets,
+    playgroundIconSetTitle,
+    playgroundThemes,
+  } from "meta/playground";
 
   import { isCustomizableNode } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
@@ -25,7 +29,9 @@
 
 {#if selected && isCustomizableNode(selected)}
   <Container class="mb-4 p-3">
-    <NodeSettings bind:node={() => selected, (n) => ctx.updateSelectedNode(n)} />
+    <NodeSettings
+      bind:node={() => selected, (n) => ctx.updateSelectedNode(n)}
+    />
   </Container>
 {/if}
 <Container class="flex flex-col gap-4 p-3">
@@ -63,7 +69,10 @@
     onclick={() => {
       if (ctx.validate()) {
         ctx.build();
-        ctx.route = { name: RouteName.Preview, subRoute: PreviewSubRouteName.Code };
+        ctx.route = {
+          name: RouteName.Preview,
+          subRoute: PreviewSubRouteName.Code,
+        };
       }
     }}
   >

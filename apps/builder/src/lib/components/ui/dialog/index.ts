@@ -30,5 +30,5 @@ export {
   Overlay as DialogOverlay,
   Content as DialogContent,
   Description as DialogDescription,
-  Close as DialogClose
+  Close as DialogClose,
 };

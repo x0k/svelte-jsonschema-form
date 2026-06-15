@@ -30,7 +30,7 @@ export function summarizeOperator(
       if (operator.operands.length === 0) {
         return {
           status: status | ERROR_STATUS,
-          value: `${operator.op}(<undefined>)`
+          value: `${operator.op}(<undefined>)`,
         };
       }
       const values: string[] = [];
@@ -41,7 +41,7 @@ export function summarizeOperator(
       }
       return {
         status,
-        value: `${operator.op}(${values.join(", ")})`
+        value: `${operator.op}(${values.join(", ")})`,
       };
     }
     case OperatorType.Contains:
@@ -49,7 +49,7 @@ export function summarizeOperator(
       if (operator.operand === undefined) {
         return {
           status: status | ERROR_STATUS,
-          value: `${operator.op}(<undefined>)`
+          value: `${operator.op}(<undefined>)`,
         };
       }
       const r = summarizeOperator(
@@ -59,59 +59,64 @@ export function summarizeOperator(
       );
       return {
         status: status | r.status,
-        value: `${operator.op}(${r.value})`
+        value: `${operator.op}(${r.value})`,
       };
     }
     case OperatorType.Eq: {
       return {
         status,
-        value: `${operator.op}(${operator.value})`
+        value: `${operator.op}(${operator.value})`,
       };
     }
     case OperatorType.In: {
       const haveItems = operator.values.length > 0;
       return {
         status: status | (haveItems ? OK_STATUS : ERROR_STATUS),
-        value: `${operator.op}([${haveItems ? operator.values.join(", ") : "<undefined>"}])`
+        value: `${operator.op}([${haveItems ? operator.values.join(", ") : "<undefined>"}])`,
       };
     }
     case OperatorType.Pattern: {
       const ok = isValidRegExp(operator.value);
       return {
         status: status | (ok ? OK_STATUS : ERROR_STATUS),
-        value: `${operator.op}(${ok ? operator.value : "<invalid>"})`
+        value: `${operator.op}(${ok ? operator.value : "<invalid>"})`,
       };
     }
     case OperatorType.UniqueItems: {
       return {
         status,
-        value: operator.op
+        value: operator.op,
       };
     }
     case OperatorType.HasProperty: {
       const prop =
-        node && operator.propertyId && (getNodeProperty(node, operator.propertyId) ?? undefined);
+        node &&
+        operator.propertyId &&
+        (getNodeProperty(node, operator.propertyId) ?? undefined);
       const propTitle = (prop && getNodeTitle(prop)) ?? operator.propertyId;
       return {
         status: status | (prop !== undefined ? OK_STATUS : ERROR_STATUS),
-        value: `${operator.op}(${propTitle ? `"${propTitle}"` : "<undefined>"})`
+        value: `${operator.op}(${propTitle ? `"${propTitle}"` : "<undefined>"})`,
       };
     }
     case OperatorType.Property: {
       const prop =
-        node && operator.propertyId && (getNodeProperty(node, operator.propertyId) ?? undefined);
-      const r = operator.operator && summarizeOperator(ctx, operator.operator, prop);
+        node &&
+        operator.propertyId &&
+        (getNodeProperty(node, operator.propertyId) ?? undefined);
+      const r =
+        operator.operator && summarizeOperator(ctx, operator.operator, prop);
       const propTitle = (prop && getNodeTitle(prop)) ?? operator.propertyId;
       return {
         status: status | (r?.status ?? ERROR_STATUS),
-        value: `${operator.op}(${propTitle ? `"${propTitle}"` : "<undefined>"}, ${r?.value ?? "<undefined>"})`
+        value: `${operator.op}(${propTitle ? `"${propTitle}"` : "<undefined>"}, ${r?.value ?? "<undefined>"})`,
       };
     }
     default: {
       const ok = operator.value !== undefined;
       return {
         status: status | (ok ? OK_STATUS : ERROR_STATUS),
-        value: `${operator.op}(${ok ? operator.value : "<undefined>"})`
+        value: `${operator.op}(${ok ? operator.value : "<undefined>"})`,
       };
     }
   }

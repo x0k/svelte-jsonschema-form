@@ -1,122 +1,129 @@
 export const WIDGETS = {
-  basic: {
-    widgets: {
-      checkbox: "checkboxWidget",
-      number: "numberWidget",
-      select: "selectWidget",
-      text: "textWidget",
+  "basic": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
     },
-    extraWidgets: {
-      checkboxes: "checkboxesWidget",
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
-      file: "fileWidget",
+      "file": "fileWidget",
       "multi-select": "multiSelectWidget",
-      radio: "radioWidget",
-      range: "rangeWidget",
-      textarea: "textareaWidget",
+      "radio": "radioWidget",
+      "range": "rangeWidget",
+      "textarea": "textareaWidget"
     },
-    optionalDeps: {},
+    "optionalDeps": {}
   },
-  daisyui5: {
-    widgets: {
-      checkbox: "checkboxWidget",
-      number: "numberWidget",
-      select: "selectWidget",
-      text: "textWidget",
+  "daisyui5": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
     },
-    extraWidgets: {
+    "extraWidgets": {
       "cally-date-picker": "daisyui5CallyDatePickerWidget",
-      checkboxes: "checkboxesWidget",
+      "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
-      file: "fileWidget",
+      "file": "fileWidget",
       "filter-radio-buttons": "daisyui5FilterRadioButtonsWidget",
       "multi-select": "multiSelectWidget",
       "radio-buttons": "radioButtonsWidget",
-      radio: "radioWidget",
-      range: "rangeWidget",
-      rating: "ratingWidget",
-      switch: "switchWidget",
-      textarea: "textareaWidget",
+      "radio": "radioWidget",
+      "range": "rangeWidget",
+      "rating": "ratingWidget",
+      "switch": "switchWidget",
+      "textarea": "textareaWidget"
     },
-    optionalDeps: {
-      cally: ["cally-date-picker"],
-      pikaday: ["date-picker"],
-    },
+    "optionalDeps": {
+      "cally": [
+        "cally-date-picker"
+      ],
+      "pikaday": [
+        "date-picker"
+      ]
+    }
   },
-  flowbite3: {
-    widgets: {
-      checkbox: "checkboxWidget",
-      number: "numberWidget",
-      select: "selectWidget",
-      text: "textWidget",
+  "flowbite3": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
     },
-    extraWidgets: {
-      checkboxes: "checkboxesWidget",
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
       "date-range-picker": "dateRangePickerWidget",
-      file: "fileWidget",
+      "file": "fileWidget",
       "multi-select": "multiSelectWidget",
       "radio-buttons": "radioButtonsWidget",
-      radio: "radioWidget",
-      range: "rangeWidget",
-      switch: "switchWidget",
-      tags: "tagsWidget",
-      textarea: "textareaWidget",
-      "toggle-radio-buttons": "flowbite3ToggleRadioButtonsWidget",
+      "radio": "radioWidget",
+      "range": "rangeWidget",
+      "switch": "switchWidget",
+      "tags": "tagsWidget",
+      "textarea": "textareaWidget",
+      "toggle-radio-buttons": "flowbite3ToggleRadioButtonsWidget"
     },
-    optionalDeps: {},
+    "optionalDeps": {}
   },
-  shadcn4: {
-    widgets: {
-      checkbox: "checkboxWidget",
-      number: "numberWidget",
-      select: "selectWidget",
-      text: "textWidget",
+  "shadcn4": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
     },
-    extraWidgets: {
-      checkboxes: "checkboxesWidget",
-      combobox: "comboboxWidget",
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
+      "combobox": "comboboxWidget",
       "date-picker": "datePickerWidget",
       "date-range-picker": "dateRangePickerWidget",
-      file: "fileWidget",
+      "file": "fileWidget",
       "multi-select": "multiSelectWidget",
       "radio-buttons": "radioButtonsWidget",
-      radio: "radioWidget",
+      "radio": "radioWidget",
       "range-slider": "rangeSliderWidget",
-      range: "rangeWidget",
-      switch: "switchWidget",
-      textarea: "textareaWidget",
+      "range": "rangeWidget",
+      "switch": "switchWidget",
+      "textarea": "textareaWidget"
     },
-    optionalDeps: {
-      "@internationalized/date": ["date-picker", "date-range-picker"],
-    },
+    "optionalDeps": {
+      "@internationalized/date": [
+        "date-picker",
+        "date-range-picker"
+      ]
+    }
   },
-  skeleton4: {
-    widgets: {
-      checkbox: "checkboxWidget",
-      number: "numberWidget",
-      select: "selectWidget",
-      text: "textWidget",
+  "skeleton4": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
     },
-    extraWidgets: {
-      checkboxes: "checkboxesWidget",
-      combobox: "comboboxWidget",
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
+      "combobox": "comboboxWidget",
       "date-picker": "datePickerWidget",
       "date-range-picker": "dateRangePickerWidget",
       "file-upload": "skeleton4FileUploadWidget",
-      file: "fileWidget",
+      "file": "fileWidget",
       "multi-select": "multiSelectWidget",
       "radio-buttons": "radioButtonsWidget",
-      radio: "radioWidget",
+      "radio": "radioWidget",
       "range-slider": "rangeSliderWidget",
-      range: "rangeWidget",
-      rating: "ratingWidget",
-      slider: "skeleton4SliderWidget",
-      switch: "switchWidget",
-      tags: "tagsWidget",
-      textarea: "textareaWidget",
+      "range": "rangeWidget",
+      "rating": "ratingWidget",
+      "slider": "skeleton4SliderWidget",
+      "switch": "switchWidget",
+      "tags": "tagsWidget",
+      "textarea": "textareaWidget"
     },
-    optionalDeps: {
+    "optionalDeps": {
       "@skeletonlabs/skeleton-svelte": [
         "combobox",
         "date-picker",
@@ -127,152 +134,156 @@ export const WIDGETS = {
         "rating",
         "slider",
         "switch",
-        "tags",
-      ],
-    },
+        "tags"
+      ]
+    }
   },
-  beercss: {
-    widgets: {
-      checkbox: "checkboxWidget",
-      number: "numberWidget",
-      select: "selectWidget",
-      text: "textWidget",
+  "beercss": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
     },
-    extraWidgets: {
-      checkboxes: "checkboxesWidget",
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
-      file: "fileWidget",
-      radio: "radioWidget",
-      range: "rangeWidget",
-      switch: "switchWidget",
-      textarea: "textareaWidget",
+      "file": "fileWidget",
+      "radio": "radioWidget",
+      "range": "rangeWidget",
+      "switch": "switchWidget",
+      "textarea": "textareaWidget"
     },
-    optionalDeps: {},
+    "optionalDeps": {}
   },
   "shadcn-extras": {
-    widgets: {},
-    extraWidgets: {
+    "widgets": {},
+    "extraWidgets": {
       "file-drop-zone": "shadcnExtrasFileDropZoneWidget",
       "ip-v4-address-input": "shadcnExtrasIPv4AddressInputWidget",
       "nlp-date-input": "shadcnExtrasNLPDateInputWidget",
-      password: "shadcnExtrasPasswordWidget",
+      "password": "shadcnExtrasPasswordWidget",
       "phone-input": "shadcnExtrasPhoneInputWidget",
       "star-rating": "shadcnExtrasStarRatingWidget",
-      "tags-input": "shadcnExtrasTagsInputWidget",
+      "tags-input": "shadcnExtrasTagsInputWidget"
     },
-    optionalDeps: {
-      "@lucide/svelte": ["file-drop-zone"],
-    },
+    "optionalDeps": {
+      "@lucide/svelte": [
+        "file-drop-zone"
+      ]
+    }
   },
-  svar: {
-    widgets: {
-      checkbox: "checkboxWidget",
-      number: "numberWidget",
-      select: "selectWidget",
-      text: "textWidget",
+  "svar": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
     },
-    extraWidgets: {
-      checkboxes: "checkboxesWidget",
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
       "color-picker": "svarColorPickerWidget",
       "color-select": "svarColorSelectWidget",
-      combobox: "comboboxWidget",
+      "combobox": "comboboxWidget",
       "date-picker": "datePickerWidget",
       "date-range-picker": "dateRangePickerWidget",
       "multi-select": "multiSelectWidget",
       "radio-buttons": "radioButtonsWidget",
-      radio: "radioWidget",
-      range: "rangeWidget",
-      switch: "switchWidget",
-      textarea: "textareaWidget",
+      "radio": "radioWidget",
+      "range": "rangeWidget",
+      "switch": "switchWidget",
+      "textarea": "textareaWidget"
     },
-    optionalDeps: {},
+    "optionalDeps": {}
   },
-  daisyui: {
-    widgets: {
-      checkbox: "checkboxWidget",
-      number: "numberWidget",
-      select: "selectWidget",
-      text: "textWidget",
+  "daisyui": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
     },
-    extraWidgets: {
-      checkboxes: "checkboxesWidget",
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
-      file: "fileWidget",
+      "file": "fileWidget",
       "multi-select": "multiSelectWidget",
       "radio-buttons": "radioWidget",
-      radio: "radioWidget",
-      range: "rangeWidget",
-      switch: "switchWidget",
-      textarea: "textareaWidget",
+      "radio": "radioWidget",
+      "range": "rangeWidget",
+      "switch": "switchWidget",
+      "textarea": "textareaWidget"
     },
-    optionalDeps: {},
+    "optionalDeps": {}
   },
-  flowbite: {
-    widgets: {
-      checkbox: "checkboxWidget",
-      number: "numberWidget",
-      select: "selectWidget",
-      text: "textWidget",
+  "flowbite": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
     },
-    extraWidgets: {
-      checkboxes: "checkboxesWidget",
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
       "date-picker": "datePickerWidget",
-      file: "fileWidget",
+      "file": "fileWidget",
       "multi-select": "multiSelectWidget",
-      radio: "radioWidget",
-      range: "rangeWidget",
-      switch: "switchWidget",
-      textarea: "textareaWidget",
+      "radio": "radioWidget",
+      "range": "rangeWidget",
+      "switch": "switchWidget",
+      "textarea": "textareaWidget"
     },
-    optionalDeps: {},
+    "optionalDeps": {}
   },
-  shadcn: {
-    widgets: {
-      checkbox: "checkboxWidget",
-      number: "numberWidget",
-      select: "selectWidget",
-      text: "textWidget",
+  "shadcn": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
     },
-    extraWidgets: {
-      checkboxes: "checkboxesWidget",
-      combobox: "selectWidget",
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
+      "combobox": "selectWidget",
       "date-picker": "datePickerWidget",
-      file: "fileWidget",
+      "file": "fileWidget",
       "multi-select": "multiSelectWidget",
       "radio-buttons": "radioButtonsWidget",
-      radio: "radioWidget",
-      range: "rangeWidget",
-      switch: "switchWidget",
-      textarea: "textareaWidget",
+      "radio": "radioWidget",
+      "range": "rangeWidget",
+      "switch": "switchWidget",
+      "textarea": "textareaWidget"
     },
-    optionalDeps: {
-      "@internationalized/date": ["date-picker"],
-    },
+    "optionalDeps": {
+      "@internationalized/date": [
+        "date-picker"
+      ]
+    }
   },
-  skeleton3: {
-    widgets: {
-      checkbox: "checkboxWidget",
-      number: "numberWidget",
-      select: "selectWidget",
-      text: "textWidget",
+  "skeleton3": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
     },
-    extraWidgets: {
-      checkboxes: "checkboxesWidget",
-      combobox: "comboboxWidget",
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
+      "combobox": "comboboxWidget",
       "date-picker": "datePickerWidget",
       "file-upload": "skeleton3FileUploadWidget",
-      file: "fileWidget",
+      "file": "fileWidget",
       "multi-select": "multiSelectWidget",
       "radio-buttons": "radioButtonsWidget",
-      radio: "radioWidget",
-      range: "rangeWidget",
-      rating: "ratingWidget",
-      slider: "skeleton3SliderWidget",
-      switch: "switchWidget",
-      tags: "tagsWidget",
-      textarea: "textareaWidget",
+      "radio": "radioWidget",
+      "range": "rangeWidget",
+      "rating": "ratingWidget",
+      "slider": "skeleton3SliderWidget",
+      "switch": "switchWidget",
+      "tags": "tagsWidget",
+      "textarea": "textareaWidget"
     },
-    optionalDeps: {
+    "optionalDeps": {
       "@skeletonlabs/skeleton-svelte": [
         "combobox",
         "file-upload",
@@ -280,8 +291,8 @@ export const WIDGETS = {
         "rating",
         "slider",
         "switch",
-        "tags",
-      ],
-    },
-  },
+        "tags"
+      ]
+    }
+  }
 } as const;

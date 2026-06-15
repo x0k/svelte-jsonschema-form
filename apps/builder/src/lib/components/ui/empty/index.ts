@@ -18,5 +18,5 @@ export {
   Media as EmptyMedia,
   Title as EmptyTitle,
   Description as EmptyDescription,
-  Content as EmptyContent
+  Content as EmptyContent,
 };

@@ -1,7 +1,7 @@
 {
   "name": "sveltekit-starter",
-  "private": true,
   "version": "0.0.16",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -10,9 +10,6 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
-  "devDependencies": {
-    "json-schema-to-ts": "catalog:"
-  },
   "dependencies": {
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
@@ -20,5 +17,8 @@
     "@sjsf/sveltekit": "workspace:*",
     "ajv": "catalog:",
     "svelte": "catalog:"
+  },
+  "devDependencies": {
+    "json-schema-to-ts": "catalog:"
   }
 }

@@ -10,11 +10,11 @@ export default defineConfig({
   resolve: {
     alias: {
       $lib: resolve("./src/lib"),
-      examples: resolve(__dirname, "../../examples")
-    }
+      examples: resolve(__dirname, "../../examples"),
+    },
   },
   optimizeDeps: {
     exclude: ["@jis3r/icons"],
-    include: ["@svar-ui/svelte-core", "svelte-sonner"]
-  }
+    include: ["@svar-ui/svelte-core", "svelte-sonner"],
+  },
 });

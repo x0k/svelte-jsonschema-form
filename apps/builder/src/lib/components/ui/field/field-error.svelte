@@ -30,7 +30,9 @@
   });
 
   const isMultipleErrors = $derived(errors && errors.length > 1);
-  const singleErrorMessage = $derived(errors && errors.length === 1 && errors[0]?.message);
+  const singleErrorMessage = $derived(
+    errors && errors.length === 1 && errors[0]?.message
+  );
 </script>
 
 {#if hasContent}

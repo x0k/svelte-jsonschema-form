@@ -29,5 +29,5 @@ export {
   Title as FieldTitle,
   Description as FieldDescription,
   Separator as FieldSeparator,
-  Error as FieldError
+  Error as FieldError,
 };

@@ -1,5 +1,9 @@
 <script lang="ts">
-  import { ENUM_VALUE_TYPE_TITLES, ENUM_VALUE_TYPES, type NodeType } from "meta/builder";
+  import {
+    ENUM_VALUE_TYPE_TITLES,
+    ENUM_VALUE_TYPES,
+    type NodeType,
+  } from "meta/builder";
 
   import type { NodeProps } from "../../model.js";
   import NodeContainer from "../../node-container.svelte";
@@ -14,11 +18,16 @@
     node = $bindable(),
     draggable,
     unmount,
-    showRequired
+    showRequired,
   }: NodeProps<NodeType.Enum> | NodeProps<NodeType.MultiEnum> = $props();
 </script>
 
-<NodeContainer bind:node {draggable} {showRequired} class="flex flex-col gap-0.5">
+<NodeContainer
+  bind:node
+  {draggable}
+  {showRequired}
+  class="flex flex-col gap-0.5"
+>
   <NodeHeader {node} {draggable} {unmount} {showRequired}>
     {#snippet append()}
       <ValueTypeSelect

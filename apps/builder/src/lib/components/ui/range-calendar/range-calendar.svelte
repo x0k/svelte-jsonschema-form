@@ -94,7 +94,7 @@
                       {#if day}
                         {@render day({
                           day: date,
-                          outsideMonth: !isEqualMonth(date, month.value)
+                          outsideMonth: !isEqualMonth(date, month.value),
                         })}
                       {:else}
                         <RangeCalendar.Day />
