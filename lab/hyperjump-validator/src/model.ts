@@ -13,7 +13,10 @@ import {
   type JsonNode,
 } from "@hyperjump/json-schema/instance/experimental";
 import type { FormValue, Schema, SchemaValue } from "@sjsf/form";
-import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
+import {
+  createValidatorRetriever,
+  type ValidatorRetrieverOption,
+} from "@sjsf/form/validators/precompile";
 
 import { JsonSchemaErrorsOutputPlugin } from "./output-plugin.js";
 
@@ -67,6 +70,26 @@ export interface ValueToJSON {
 }
 
 export type ValidatorOptions = CoreValidatorOptions & ValueToJSON;
+
+export function fromAst(
+  ast: AST,
+  options?: Partial<Omit<ValidatorRetrieverOption<any>, "registry">>
+) {
+  return createValidatorRetriever({
+    registry: {
+      get(id) {
+        const schemaUri = `${id}#`;
+        return schemaUri in ast
+          ? {
+              schemaUri,
+              ast,
+            }
+          : undefined;
+      },
+    },
+    ...options,
+  });
+}
 
 export interface Context extends CompiledSchema {
   value: JsonNode;

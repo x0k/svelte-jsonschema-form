@@ -1,2 +1,2 @@
-export { type ValidatorOptions } from "./model.js";
+export { type ValidatorOptions, fromAst } from "./model.js";
 export * from "./validator.js";

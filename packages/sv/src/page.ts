@@ -27,16 +27,18 @@ export function pageSvelte({
     );
   }
 
+  const filepath = `${directory.kitRoutes}/${isKit ? "demo/sjsf/+page.svelte" : "sjsf.svelte"}`;
+
   const lib: PathFactory = isKit
     ? KIT_PATH_FACTORY
     : (path) =>
         file.getRelative({
-          from: `${directory.kitRoutes}/sjsf.svelte`,
+          from: filepath,
           to: `${directory.lib}/${path}`,
         });
 
   sv.file(
-    `${directory.kitRoutes}/${isKit ? "demo/sjsf/+page.svelte" : "sjsf.svelte"}`,
+    filepath,
     createPage({
       ...options,
       language,
