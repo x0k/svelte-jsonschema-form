@@ -10,7 +10,7 @@
     "check": "turbo run check",
     "dev": "turbo run dev",
     "test": "turbo run test",
-    "build": "turbo run build --concurrency 12",
+    "build": "turbo run build",
     "preview": "turbo run preview",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint -- --fix",
@@ -18,7 +18,7 @@
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "ci:build": "turbo run build test",
-    "ci:version": "changeset version && pnpm install --no-frozen-lockfile && pnpm --filter @sjsf/sv run test -u"
+    "ci:version": "changeset version && pnpm install --no-frozen-lockfile && pnpm --filter @sjsf/sv --filter meta run test -u"
   },
   "devDependencies": {
     "@changesets/changelog-git": "^0.2.1",
