@@ -89,5 +89,3 @@ jobs:
 
       - name: Run tests
         run: pnpm run test
-        env:
-          PLAYWRIGHT_BROWSERS_PATH: ~/.cache/ms-playwright

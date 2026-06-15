@@ -46,7 +46,7 @@ jobs:
 
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpx playwright@${PLAYWRIGHT_VERSION} install chromium --with-deps
+        run: pnpx playwright@${{ env.PLAYWRIGHT_VERSION }} install chromium --with-deps
 
       - name: Cache turbo build setup
         uses: actions/cache@v5
