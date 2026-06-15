@@ -13,7 +13,9 @@
   "scripts": {
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "dependencies": {
     "@sjsf/form": "workspace:*"

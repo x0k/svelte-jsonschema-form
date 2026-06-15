@@ -55,7 +55,9 @@
     "dev": "vite",
     "test": "vitest run --exclude '.svelte-kit/**'",
     "build": "svelte-package && publint",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "devDependencies": {
     "@picocss/pico": "catalog:",

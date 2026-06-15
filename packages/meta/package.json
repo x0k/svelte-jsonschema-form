@@ -52,7 +52,9 @@
     "check": "npm run extract-metadata && svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint .",
     "build": "svelte-package && publint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "dependencies": {
     "@sjsf-lab/ata-validator": "workspace:*",

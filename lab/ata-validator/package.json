@@ -42,7 +42,9 @@
   "scripts": {
     "test": "vitest run",
     "build": "tsc && publint",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",

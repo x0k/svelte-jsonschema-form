@@ -27,7 +27,9 @@
     "build": "tsdown",
     "test": "vitest run",
     "check": "tsc",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "devDependencies": {
     "@sveltejs/sv-utils": "catalog:",

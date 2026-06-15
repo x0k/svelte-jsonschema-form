@@ -69,7 +69,9 @@
     "lint": "eslint .",
     "test:unit": "vitest",
     "test": "npm run test:unit -- --run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "dependencies": {
     "@sjsf/basic-theme": "workspace:^3.6.0"

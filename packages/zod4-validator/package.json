@@ -48,7 +48,9 @@
     "test": "vitest run",
     "build": "tsc && publint",
     "dev": "tsc --watch",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
