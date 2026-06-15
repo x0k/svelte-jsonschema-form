@@ -1,26 +1,13 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "examples/*": [
-        "../../examples/*"
-      ],
-      "pkgs/*": [
-        "../../packages/*"
-      ],
-      "lab/*": [
-        "../../lab/*"
-      ],
-      "legacy/*": [
-        "../../legacy/*"
-      ],
-      "apps/*": [
-        "../*"
-      ]
+      "@/*": ["./src/*"],
+      "examples/*": ["../../examples/*"],
+      "pkgs/*": ["../../packages/*"],
+      "lab/*": ["../../lab/*"],
+      "legacy/*": ["../../legacy/*"],
+      "apps/*": ["../*"]
     }
   },
   "include": [
@@ -30,9 +17,5 @@
     "src/**/*.svelte",
     "**/*"
   ],
-  "exclude": [
-    "dist",
-    "**/*.api.*",
-    "**/validate-functions.js"
-  ]
+  "exclude": ["dist", "**/*.api.*", "**/validate-functions.js"]
 }
