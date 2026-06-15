@@ -34,8 +34,7 @@
     "bench": "vitest bench",
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "format": "prettier --write .",
-    "lint": "prettier --check . && eslint ."
+    "lint": "eslint ."
   },
   "dependencies": {
     "@types/json-schema": "^7.0.15",

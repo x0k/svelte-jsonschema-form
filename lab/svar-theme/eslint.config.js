@@ -1,4 +1,3 @@
-import prettier from 'eslint-config-prettier';
-import svelte from 'eslint-plugin-svelte';
+import { svelteConfig } from "../../eslint.config.js";
 
-export default [prettier, ...svelte.configs.prettier];
+export default svelteConfig;

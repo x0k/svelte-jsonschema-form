@@ -6,9 +6,6 @@
     "rootDir": "src",
     "sourceMap": false
   },
-  "exclude": [
-    "vitest.config.ts",
-    "dist",
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["vitest.config.ts", "dist", "node_modules"]
 }

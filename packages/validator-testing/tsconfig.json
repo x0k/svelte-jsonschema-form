@@ -5,6 +5,7 @@
     "moduleResolution": "nodenext",
     "outDir": "dist",
     "rootDir": "src",
+    "types": ["node"]
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }
