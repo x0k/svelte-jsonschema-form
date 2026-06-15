@@ -45,46 +45,13 @@ export function createValidator({
   }
   if (validator.precompiled) {
     if (validator.name === "hyperjump") {
+      const { imports, body } = hyperjumpImportsAndBody(lib, modelName);
       return {
         canInferFormType: false,
         schemaImports: [],
-        imports: [
-          {
-            as: modelName,
-            from: lib(`${modelName}/model.generated`),
-          },
-          {
-            imports: ["ast"],
-            from: lib(`${modelName}/ast.generated`),
-          },
-          {
-            imports: ["createValidatorRetriever"],
-            from: internalValidatorSubPath("precompile"),
-          },
-          {
-            imports: ["createFormValidatorFactory"],
-            from: precompiledValidatorSubPath(validator.name),
-          },
-          {
-            imports: ["localization"],
-            from: hyperjumpValidatorLocalizationSubPath("en-us"),
-          },
-        ],
-        validatorProp: `validator: createFormValidatorFactory({ 
-  validatorRetriever: createValidatorRetriever({
-    registry: {
-      get(id) {
-        const schemaUri = \`\${id}#\`;
-        return schemaUri in ast
-          ? {
-              schemaUri,
-              ast,
-            }
-          : undefined;
-      },
-    },
-  }),
-  localization
+        imports,
+        validatorProp: `validator: createFormValidatorFactory({
+  ${body}
 })`,
       };
     }
@@ -240,10 +207,19 @@ export const validator = (options) => createFormValidatorFactory({
   );
 }
 
-export function createDraft2020ValidatorExport(
-  validator: Codegen2020Validator,
-  ts: ConditionalPrinter
-): Draft2020ValidatorExport {
+export interface Draft2020ValidatorExportOptions {
+  validator: Codegen2020Validator;
+  ts: ConditionalPrinter;
+  lib: PathFactory;
+  modelName: string;
+}
+
+export function createDraft2020ValidatorExport({
+  validator,
+  ts,
+  lib,
+  modelName,
+}: Draft2020ValidatorExportOptions): Draft2020ValidatorExport {
   switch (validator.name) {
     case "ajv8": {
       return {
@@ -331,45 +307,40 @@ export function createDraft2020ValidatorExport(
       };
     }
     case "hyperjump": {
+      const { imports, body } = hyperjumpImportsAndBody(lib, modelName);
       return {
-        imports: [
-          { as: "model", from: "@sjsf/form/.." },
-          { imports: ["ast"], from: "@sjsf/form/../ast.generated" },
-          {
-            imports: ["createValidatorRetriever"],
-            from: internalValidatorSubPath("precompile"),
-          },
-          {
-            imports: ["createFormValidatorFactory"],
-            from: `${externalValidatorPackage("hyperjump").name}/precompile`,
-          },
-          {
-            imports: ["localization"],
-            from: `${externalValidatorPackage("hyperjump").name}/localizations/en-us`,
-          },
-        ],
-        code: buildPrecompiledValidatorFactoryCode(
-          ts,
-          `validatorRetriever: createValidatorRetriever({
-    registry: {
-      get(id) {
-        const schemaUri = \`\${id}#\`;
-        return schemaUri in ast
-          ? {
-              schemaUri,
-              ast,
-            }
-          : undefined;
-      },
-    },
-  }),
-  localization`
-        ),
+        imports,
+        code: buildPrecompiledValidatorFactoryCode(ts, body),
       };
     }
     default:
       throw neverError(validator, "unsupported 2020 validator");
   }
+}
+
+function hyperjumpImportsAndBody(lib: PathFactory, modelName: string) {
+  const imports: (NamedImportOptions | NamespaceImportOptions)[] = [
+    {
+      as: modelName,
+      from: lib(`${modelName}/model.generated`),
+    },
+    {
+      imports: ["ast"],
+      from: lib(`${modelName}/ast.generated`),
+    },
+    {
+      imports: ["createFormValidatorFactory", "fromAst"],
+      from: precompiledValidatorSubPath("hyperjump"),
+    },
+    {
+      imports: ["localization"],
+      from: hyperjumpValidatorLocalizationSubPath("en-us"),
+    },
+  ];
+  return {
+    imports,
+    body: `validatorRetriever: fromAst(ast),\n  localization`,
+  };
 }
 
 function wrap(value: string) {
